@@ -32,7 +32,7 @@
 
 #include "EnemyAttack.h"
 #include "Enemy.h"
-#include "../mario/Mario.h"
+#include "../hero/Hero.h"
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -100,11 +100,11 @@ void EnemyAttack_enter(EnemyAttack this, void* owner){
 void EnemyAttack_execute(EnemyAttack this, void* owner){
 	
 	
-	if(MARIO_TIME_TO_DIE < Clock_getTime(_inGameClock) - Enemy_getActionTime((Enemy)owner)){
+//	if(HERO_TIME_TO_DIE < Clock_getTime(_inGameClock) - Enemy_getActionTime((Enemy)owner)){
 		
 		// change state
 		StateMachine_popState(Actor_getStateMachine((Actor)owner));
-	}
+//	}
 }
 
 

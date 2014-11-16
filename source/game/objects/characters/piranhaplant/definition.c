@@ -136,6 +136,19 @@ TextureDefinition PIRANHA_PLANT_V_TX = {
 		1
 };
 
+SpriteROMDef PIRANHA_PLAT_V_SPRITES[] = {
+	{
+		// the texture
+		&PIRANHA_PLANT_V_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_AFFINE,
+		
+		// display mode
+		WRLD_ON,
+	}
+};
+
 
 PiranhaPlantDefinition PIRANHA_PLANT_V_MC = {
 		{
@@ -144,32 +157,19 @@ PiranhaPlantDefinition PIRANHA_PLANT_V_MC = {
 					// object's class			   
 					__TYPE(PiranhaPlant),  
 			
-					// Sprite
-					{
-						// the texture
-						&PIRANHA_PLANT_V_TX,
-						
-						// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-						WRLD_AFFINE,
-						
-						// display mode
-						WRLD_ON,
-					},
+					// Sprites
+					__SPRITE_ARRAY(PIRANHA_PLAT_V_SPRITES)
 				},
 				
 				// deep
 				5,
-				
-				// friction factor
-				5.5,
 				
 				//collision detection gap			
 				//up,	down,	left,	right,
 				{4,		0,		0,		0,},		
 				
 				// in game type
-				kPiranhaPlant,
-				
+				kPiranhaPlant
 			},
 			
 			// pointer to the animation definition for the character

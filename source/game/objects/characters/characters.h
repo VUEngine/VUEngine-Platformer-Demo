@@ -22,7 +22,7 @@
 
 
 /*---------------------------------INCLUDES--------------------------------*/
-extern EntityDefinition MARIO_MC;
+extern EntityDefinition HERO_MC;
 extern EntityDefinition PIRANHA_PLANT_V_MC;
 
 /*---------------------------------ASSETS----------------------------------*/

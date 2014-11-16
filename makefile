@@ -32,13 +32,13 @@ MACROS = __DEBUG
 endif
 
 ifeq ($(TYPE), release)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESSENTIALS)
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/include/ -lm -lvbjae
+CCPARAM = -nodefaultlibs -mv810 -Wall -O3 -Winline $(GAME_ESSENTIALS)
 MACROS = NDEBUG
 endif
 
 ifeq ($(TYPE),preprocessor)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline $(GAME_ESSENTIALS) -E
 MACROS = __DEBUG
 endif

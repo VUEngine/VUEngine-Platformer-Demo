@@ -75,8 +75,8 @@ __CLASS(GameLevel);
 
 enum GameLevelMessageTypes{
 	
-	kMarioDied = kLastEngineMessage + 1,
-	kMarioFall,
+	kHeroDied = kLastEngineMessage + 1,
+	kHeroFall,
 	kShowUpLevel,
 	kStartLevel,
 	kHideStartUpMessage,

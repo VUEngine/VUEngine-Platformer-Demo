@@ -20,18 +20,18 @@
 
 /*---------------------------------INCLUDES--------------------------------*/
 #include <libgccvb.h>
-#include "Mario.h"
+#include "Hero.h"
 
 
 
-extern BYTE MARIO_MP[];
+extern BYTE HERO_MP[];
 
-extern BYTE MARIO_CH[];
+extern BYTE HERO_CH[];
 
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_IDLE_ANIM = {
+AnimationFunctionROMDef HERO_IDLE_ANIM = {
 	
 	// function's name
 	"Idle",
@@ -55,7 +55,7 @@ AnimationFunctionROMDef MARIO_IDLE_ANIM = {
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_WALKING_ANIM = {
+AnimationFunctionROMDef HERO_WALKING_ANIM = {
 	
 	// function's name
 	"Walk",
@@ -78,7 +78,7 @@ AnimationFunctionROMDef MARIO_WALKING_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_JUMPING_ANIM = {
+AnimationFunctionROMDef HERO_JUMPING_ANIM = {
 	
 	// function's name
 	"Jump",
@@ -101,7 +101,7 @@ AnimationFunctionROMDef MARIO_JUMPING_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_FALLING_ANIM = {
+AnimationFunctionROMDef HERO_FALLING_ANIM = {
 	
 	// function's name
 	"Fall",
@@ -124,7 +124,7 @@ AnimationFunctionROMDef MARIO_FALLING_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_SLIDING_ANIM = {
+AnimationFunctionROMDef HERO_SLIDING_ANIM = {
 	
 	// function's name
 	"Slide",
@@ -147,7 +147,7 @@ AnimationFunctionROMDef MARIO_SLIDING_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_HIT_FRONT_ANIM = {
+AnimationFunctionROMDef HERO_HIT_FRONT_ANIM = {
 	
 	// function's name
 	"HitFront",
@@ -170,7 +170,7 @@ AnimationFunctionROMDef MARIO_HIT_FRONT_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_HIT_BEHIND_ANIM = {
+AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM = {
 	
 	// function's name
 	"HitBehind",
@@ -193,7 +193,7 @@ AnimationFunctionROMDef MARIO_HIT_BEHIND_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_HIT_FIRE_ANIM = {
+AnimationFunctionROMDef HERO_HIT_FIRE_ANIM = {
 	
 	// function's name
 	"HitFire",
@@ -217,7 +217,7 @@ AnimationFunctionROMDef MARIO_HIT_FIRE_ANIM = {
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_JUMP_BACK_ANIM = {
+AnimationFunctionROMDef HERO_JUMP_BACK_ANIM = {
 	
 	// function's name
 	"JumpBack",
@@ -239,7 +239,7 @@ AnimationFunctionROMDef MARIO_JUMP_BACK_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_JUMP_FRONT_ANIM = {
+AnimationFunctionROMDef HERO_JUMP_FRONT_ANIM = {
 	
 	// function's name
 	"JumpFront",
@@ -262,7 +262,7 @@ AnimationFunctionROMDef MARIO_JUMP_FRONT_ANIM = {
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_FRONT_ANIM = {
+AnimationFunctionROMDef HERO_FRONT_ANIM = {
 	
 	// function's name
 	"Front",
@@ -284,7 +284,7 @@ AnimationFunctionROMDef MARIO_FRONT_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_BACK_ANIM = {
+AnimationFunctionROMDef HERO_BACK_ANIM = {
 	
 	// function's name
 	"Back",
@@ -307,7 +307,7 @@ AnimationFunctionROMDef MARIO_BACK_ANIM = {
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_BLINKING_ANIM = {
+AnimationFunctionROMDef HERO_BLINKING_ANIM = {
 	
 	// function's name
 	"Blink",
@@ -325,13 +325,13 @@ AnimationFunctionROMDef MARIO_BLINKING_ANIM = {
 	false,
 	
 	// method to call function completion
-	Mario_blinkDone,
+	Hero_blinkDone,
 };
 
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_WALKING_HOLD_ANIM = {
+AnimationFunctionROMDef HERO_WALKING_HOLD_ANIM = {
 	
 	// function's name
 	"WalkHolding",
@@ -354,7 +354,7 @@ AnimationFunctionROMDef MARIO_WALKING_HOLD_ANIM = {
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_BLINKING_HOLD_ANIM = {
+AnimationFunctionROMDef HERO_BLINKING_HOLD_ANIM = {
 	
 	// function's name
 	"BlinkHolding",
@@ -372,12 +372,12 @@ AnimationFunctionROMDef MARIO_BLINKING_HOLD_ANIM = {
 	false,
 	
 	// method to call function completion
-	Mario_blinkDone,
+	Hero_blinkDone,
 };
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_IDLE_HOLD_ANIM = {
+AnimationFunctionROMDef HERO_IDLE_HOLD_ANIM = {
 	
 	// function's name
 	"IdleHolding",
@@ -400,7 +400,7 @@ AnimationFunctionROMDef MARIO_IDLE_HOLD_ANIM = {
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_JUMPING_HOLD_ANIM = {
+AnimationFunctionROMDef HERO_JUMPING_HOLD_ANIM = {
 	
 	// function's name
 	"JumpHolding",
@@ -423,7 +423,7 @@ AnimationFunctionROMDef MARIO_JUMPING_HOLD_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_FALLING_HOLD_ANIM = {
+AnimationFunctionROMDef HERO_FALLING_HOLD_ANIM = {
 	
 	// function's name
 	"FallHolding",
@@ -446,7 +446,7 @@ AnimationFunctionROMDef MARIO_FALLING_HOLD_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_WALKING_FRONT_ANIM = {
+AnimationFunctionROMDef HERO_WALKING_FRONT_ANIM = {
 	
 	// function's name
 	"WalkFront",
@@ -471,7 +471,7 @@ AnimationFunctionROMDef MARIO_WALKING_FRONT_ANIM = {
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_WALKING_BACK_ANIM = {
+AnimationFunctionROMDef HERO_WALKING_BACK_ANIM = {
 	
 	// function's name
 	"WalkBack",
@@ -495,7 +495,7 @@ AnimationFunctionROMDef MARIO_WALKING_BACK_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_WIN_ANIM = {
+AnimationFunctionROMDef HERO_WIN_ANIM = {
 	
 	// function's name
 	"Win",
@@ -514,13 +514,13 @@ AnimationFunctionROMDef MARIO_WIN_ANIM = {
 	true,
 	
 	// method to call function completion
-	Mario_win,
+	Hero_win,
 	
 };
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MARIO_ONEDGE_ANIM = {
+AnimationFunctionROMDef HERO_ONEDGE_ANIM = {
 	
 	// function's name
 	"OnEdge",
@@ -544,46 +544,46 @@ AnimationFunctionROMDef MARIO_ONEDGE_ANIM = {
 };
 
 // an animation definition
-AnimationDescriptionROMDef MARIO_ANIM = {
+AnimationDescriptionROMDef HERO_ANIM = {
 	
 	// number of animation frames
 	28, 
 	
 	// animation functions
 	{
-		(AnimationFunction*)&MARIO_IDLE_ANIM,
-		(AnimationFunction*)&MARIO_WALKING_ANIM,
-		(AnimationFunction*)&MARIO_JUMPING_ANIM,
-		(AnimationFunction*)&MARIO_FALLING_ANIM,
-		(AnimationFunction*)&MARIO_SLIDING_ANIM,
-		(AnimationFunction*)&MARIO_HIT_FRONT_ANIM,
-		(AnimationFunction*)&MARIO_HIT_BEHIND_ANIM,
-		(AnimationFunction*)&MARIO_JUMP_BACK_ANIM,
-		(AnimationFunction*)&MARIO_JUMP_FRONT_ANIM,
-		(AnimationFunction*)&MARIO_FRONT_ANIM,
-		(AnimationFunction*)&MARIO_BACK_ANIM,
-		(AnimationFunction*)&MARIO_BLINKING_ANIM,
-		(AnimationFunction*)&MARIO_WALKING_HOLD_ANIM,
-		(AnimationFunction*)&MARIO_BLINKING_HOLD_ANIM,
-		(AnimationFunction*)&MARIO_IDLE_HOLD_ANIM,
-		(AnimationFunction*)&MARIO_JUMPING_HOLD_ANIM,
-		(AnimationFunction*)&MARIO_FALLING_HOLD_ANIM,
-		(AnimationFunction*)&MARIO_WALKING_FRONT_ANIM,
-		(AnimationFunction*)&MARIO_WALKING_BACK_ANIM,
-		(AnimationFunction*)&MARIO_WIN_ANIM,
-		(AnimationFunction*)&MARIO_ONEDGE_ANIM,
+		(AnimationFunction*)&HERO_IDLE_ANIM,
+		(AnimationFunction*)&HERO_WALKING_ANIM,
+		(AnimationFunction*)&HERO_JUMPING_ANIM,
+		(AnimationFunction*)&HERO_FALLING_ANIM,
+		(AnimationFunction*)&HERO_SLIDING_ANIM,
+		(AnimationFunction*)&HERO_HIT_FRONT_ANIM,
+		(AnimationFunction*)&HERO_HIT_BEHIND_ANIM,
+		(AnimationFunction*)&HERO_JUMP_BACK_ANIM,
+		(AnimationFunction*)&HERO_JUMP_FRONT_ANIM,
+		(AnimationFunction*)&HERO_FRONT_ANIM,
+		(AnimationFunction*)&HERO_BACK_ANIM,
+		(AnimationFunction*)&HERO_BLINKING_ANIM,
+		(AnimationFunction*)&HERO_WALKING_HOLD_ANIM,
+		(AnimationFunction*)&HERO_BLINKING_HOLD_ANIM,
+		(AnimationFunction*)&HERO_IDLE_HOLD_ANIM,
+		(AnimationFunction*)&HERO_JUMPING_HOLD_ANIM,
+		(AnimationFunction*)&HERO_FALLING_HOLD_ANIM,
+		(AnimationFunction*)&HERO_WALKING_FRONT_ANIM,
+		(AnimationFunction*)&HERO_WALKING_BACK_ANIM,
+		(AnimationFunction*)&HERO_WIN_ANIM,
+		(AnimationFunction*)&HERO_ONEDGE_ANIM,
 		NULL,
 	}
 	
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef MARIO0_TX = {
+TextureROMDef HERO0_TX = {
 		
 		// Chargroup
 		{
 				// chDefinition,				 
-				MARIO_CH,	
+				HERO_CH,	
 				
 				// numChars,
 				20,
@@ -593,7 +593,7 @@ TextureROMDef MARIO0_TX = {
 		},
 		
 		// bgmap definition
-		MARIO_MP,
+		HERO_MP,
 		
 		// cols (max 48)
 		4,
@@ -606,12 +606,12 @@ TextureROMDef MARIO0_TX = {
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef MARIO1_TX = {
+TextureROMDef HERO1_TX = {
 		
 		// Chargroup
 		{
 				// chDefinition,				 
-				MARIO_CH,	
+				HERO_CH,	
 				
 				// numChars,
 				20,
@@ -621,7 +621,7 @@ TextureROMDef MARIO1_TX = {
 		},
 		
 		// bgmap definition
-		MARIO_MP,
+		HERO_MP,
 		
 		// cols (max 48)
 		4,
@@ -633,12 +633,12 @@ TextureROMDef MARIO1_TX = {
 		1
 };
 
-SpriteROMDef MARIO_SPRITES[] = {
+SpriteROMDef HERO_SPRITES[] = {
 
 	// Sprite
 	{
 		// the texture
-		(TextureDefinition*)&MARIO1_TX,
+		(TextureDefinition*)&HERO1_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_AFFINE,
@@ -650,7 +650,7 @@ SpriteROMDef MARIO_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		(TextureDefinition*)&MARIO0_TX,
+		(TextureDefinition*)&HERO0_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_AFFINE,
@@ -661,21 +661,17 @@ SpriteROMDef MARIO_SPRITES[] = {
 	},
 };
 
-
-ActorROMDef MARIO_MC = {
+ActorROMDef HERO_MC = {
 		{
 			{
 				// object's class			   
-				__TYPE(Mario),
+				__TYPE(Hero),
 						
-				__SPRITE_ARRAY(MARIO_SPRITES),
+				__SPRITE_ARRAY(HERO_SPRITES),
 			},
 			
 			// deep
 			5,
-			
-			// friction factor
-			//5.5,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
@@ -683,11 +679,11 @@ ActorROMDef MARIO_MC = {
 			//{0,		0,		0,		0,},
 			
 			// in game type
-			kMario,
+			kHero,
 			
 		},
 		
 		// pointer to the animation definition for the character
-		(AnimationDescription*)&MARIO_ANIM,
+		(AnimationDescription*)&HERO_ANIM,
 };
 

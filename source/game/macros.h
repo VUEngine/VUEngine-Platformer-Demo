@@ -34,8 +34,8 @@
 #define DEAD_VELOCITY_Z			ITOFIX19_13(20)
 #define DEAD_ACCELERATION_Z		ITOFIX19_13(10)
 
-enum MarioVbTypes{
-	kMario = 1,
+enum HeroVbTypes{
+	kHero = 1,
 	kKoopa,
 	kPiranhaPlant,
 	kSolid,

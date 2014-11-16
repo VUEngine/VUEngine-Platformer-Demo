@@ -43,20 +43,20 @@
  */
 
 // declare the virtual methods
-#define MarioIdle_METHODS									\
+#define HeroIdle_METHODS									\
 	State_METHODS;									
 
 // declare the virtual methods which are redefined
-#define MarioIdle_SET_VTABLE(ClassName)						\
+#define HeroIdle_SET_VTABLE(ClassName)						\
 	State_SET_VTABLE(ClassName)								\
-	__VIRTUAL_SET(ClassName, MarioIdle, enter);				\
-	__VIRTUAL_SET(ClassName, MarioIdle, execute);			\
-	__VIRTUAL_SET(ClassName, MarioIdle, exit);				\
-	__VIRTUAL_SET(ClassName, MarioIdle, handleMessage);		\
+	__VIRTUAL_SET(ClassName, HeroIdle, enter);				\
+	__VIRTUAL_SET(ClassName, HeroIdle, execute);			\
+	__VIRTUAL_SET(ClassName, HeroIdle, exit);				\
+	__VIRTUAL_SET(ClassName, HeroIdle, handleMessage);		\
 	
-__CLASS(MarioIdle);
+__CLASS(HeroIdle);
 
-#define MarioIdle_ATTRIBUTES			\
+#define HeroIdle_ATTRIBUTES			\
 										\
 	/* inherits */						\
 	State_ATTRIBUTES
@@ -72,7 +72,7 @@ __CLASS(MarioIdle);
  */
 
 // setup the init focus screen
-MarioIdle MarioIdle_getInstance();
+HeroIdle HeroIdle_getInstance();
 
 
 

@@ -114,7 +114,7 @@ BackgroundROMDef FLOOR0_BG = {
 		true,
 		
 		// friction FTOFIX19_13
-		FTOFIX19_13(0.25f),
+		FTOFIX19_13(0.5f),
 		
 		// elasticity FTOFIX19_13
 		FTOFIX19_13(1.0f)

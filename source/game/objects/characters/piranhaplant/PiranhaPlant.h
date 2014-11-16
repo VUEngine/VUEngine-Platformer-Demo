@@ -55,11 +55,12 @@
 	
 	
 
-#define PiranhaPlant_SET_VTABLE(ClassName)						\
-	Enemy_SET_VTABLE(ClassName);								\
-	__VIRTUAL_SET(ClassName, PiranhaPlant, die);				\
-	__VIRTUAL_SET(ClassName, PiranhaPlant, takeHit);			\
-	__VIRTUAL_SET(ClassName, PiranhaPlant, setLocalPosition);
+#define PiranhaPlant_SET_VTABLE(ClassName)								\
+	Enemy_SET_VTABLE(ClassName);										\
+	__VIRTUAL_SET(ClassName, PiranhaPlant, die);						\
+	__VIRTUAL_SET(ClassName, PiranhaPlant, takeHit);					\
+	__VIRTUAL_SET(ClassName, PiranhaPlant, setLocalPosition);			\
+	__VIRTUAL_SET(ClassName, PiranhaPlant, getAxisFreeForMovement);
 	
 	
 
@@ -131,6 +132,9 @@ void PiranhaPlant_die(PiranhaPlant this);
 
 // set  position
 void PiranhaPlant_setLocalPosition(PiranhaPlant this, VBVec3D position);
+
+// retrieve axis free for movement
+int PiranhaPlant_getAxisFreeForMovement(PiranhaPlant this);
 
 // update movement
 void PiranhaPlant_move(PiranhaPlant this);

@@ -353,7 +353,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 			return Level_handleMessage((Level)this, owner, telegram);
 			break;
 
-		case kMarioDied:	
+		case kHeroDied:	
 			
 			Game_changeState(Game_getInstance(), (State)TitleScreen_getInstance());
 			

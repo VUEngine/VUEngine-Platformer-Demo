@@ -43,20 +43,20 @@
  */
 
 // declare the virtual methods
-#define MarioMoving_METHODS								\
+#define HeroMoving_METHODS								\
 	State_METHODS;									
 
 // declare the virtual methods which are redefined
-#define MarioMoving_SET_VTABLE(ClassName)						\
+#define HeroMoving_SET_VTABLE(ClassName)						\
 	State_SET_VTABLE(ClassName)									\
-	__VIRTUAL_SET(ClassName, MarioMoving, enter);				\
-	__VIRTUAL_SET(ClassName, MarioMoving, execute);				\
-	__VIRTUAL_SET(ClassName, MarioMoving, exit);				\
-	__VIRTUAL_SET(ClassName, MarioMoving, handleMessage);		\
+	__VIRTUAL_SET(ClassName, HeroMoving, enter);				\
+	__VIRTUAL_SET(ClassName, HeroMoving, execute);				\
+	__VIRTUAL_SET(ClassName, HeroMoving, exit);				\
+	__VIRTUAL_SET(ClassName, HeroMoving, handleMessage);		\
 
-__CLASS(MarioMoving);
+__CLASS(HeroMoving);
 
-#define MarioMoving_ATTRIBUTES		\
+#define HeroMoving_ATTRIBUTES		\
 										\
 	/* inherits */						\
 	State_ATTRIBUTES
@@ -72,6 +72,6 @@ __CLASS(MarioMoving);
  */
 
 // setup the init focus screen
-MarioMoving MarioMoving_getInstance();
+HeroMoving HeroMoving_getInstance();
 
 #endif

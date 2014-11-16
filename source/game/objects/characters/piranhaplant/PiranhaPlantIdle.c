@@ -34,7 +34,7 @@
 #include "PiranhaPlantIdle.h"
 #include "PiranhaPlantMoving.h"
 #include "PiranhaPlant.h"
-#include "../mario/Mario.h"
+#include "../hero/Hero.h"
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -114,14 +114,13 @@ void PiranhaPlantIdle_enter(PiranhaPlantIdle this, void* owner){
 	Actor_playAnimation((Actor)owner, "Idle");
 }
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
 void PiranhaPlantIdle_execute(PiranhaPlantIdle this, void* owner){
 	
 	// check if mario distance to the plant is within range
 	if(PIRANHA_PLANT_ATTACK_DISTANCE > Optics_lengthSquared3D(
-			Entity_getPosition((Entity)owner), Entity_getPosition((Entity)Mario_getInstance()))
+			Entity_getPosition((Entity)owner), Entity_getPosition((Entity)Hero_getInstance()))
 	){
 		StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)PiranhaPlantMoving_getInstance());
 	}

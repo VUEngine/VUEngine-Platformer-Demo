@@ -18,8 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,12 +27,14 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include "MarioMoving.h"
-#include "MarioIdle.h"
-#include "Mario.h"
+#include "HeroIdle.h"
+#include "HeroMoving.h"
+#include "Hero.h"
 
-#include <GameLevel.h>
+#ifdef __DEBUG
 
+//#include "../../levels/game/GameLevel.h"
+#endif
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -47,23 +47,22 @@
 
 
 // class's constructor
-void MarioMoving_constructor(MarioMoving this);
+static void HeroIdle_constructor(HeroIdle this);
 
 // class's destructor
-void MarioMoving_destructor(MarioMoving this);
+void HeroIdle_destructor(HeroIdle this);
 
 // state's enter
-void MarioMoving_enter(MarioMoving this, void* owner);
+void HeroIdle_enter(HeroIdle this, void* owner);
 
 // state's execute
-void MarioMoving_execute(MarioMoving this, void* owner);
+void HeroIdle_execute(HeroIdle this, void* owner);
 
 // state's exit
-void MarioMoving_exit(MarioMoving this, void* owner);
+void HeroIdle_exit(HeroIdle this, void* owner);
 
 // state's on message
-u16 MarioMoving_handleMessage(MarioMoving this, void* owner, Telegram telegram);
-
+u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram);
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -74,7 +73,7 @@ u16 MarioMoving_handleMessage(MarioMoving this, void* owner, Telegram telegram);
  * ---------------------------------------------------------------------------------------------------------
  */
 
-__CLASS_DEFINITION(MarioMoving);
+__CLASS_DEFINITION(HeroIdle);
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -84,12 +83,14 @@ __CLASS_DEFINITION(MarioMoving);
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-__SINGLETON(MarioMoving);
+__SINGLETON(HeroIdle);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
-void MarioMoving_constructor(MarioMoving this){
+void HeroIdle_constructor(HeroIdle this){
 
 	// construct base
 	__CONSTRUCT_BASE(State);
@@ -97,159 +98,224 @@ void MarioMoving_constructor(MarioMoving this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-void MarioMoving_destructor(MarioMoving this){
+void HeroIdle_destructor(HeroIdle this){
 
 	// destroy base
-	__SINGLETON_DESTROY(State);
+//	__SINGLETON_DESTROY(State);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
-void MarioMoving_enter(MarioMoving this, void* owner){
+void HeroIdle_enter(HeroIdle this, void* owner){
 	
-	// not in bridge
-	//Mario_setBridge((Mario)owner, NULL);
-
-	// start moving (animations, etc)
-	// correct gap accorging to animation
-	Mario_setGap((Mario)owner);
-
-	// start moving (animations, etc)
-	Mario_startMoving((Mario)owner);
+	// make sure it's not moving anymore 
+	Actor_stopMovement((Actor)owner);
 	
-	Printing_text("Moving   ", 0, 27);
-	Printing_text("       ", 1, 10);
+	// reset timer for blinking
+	Hero_resetActionTime((Hero)owner);
+	
+	if(Hero_isMovingOverZ((Hero)owner)){
+		
+		if(__NEAR == InGameEntity_getDirection((InGameEntity)owner).z){
 
+			// show animation
+			Actor_playAnimation((Actor)owner, "Front");
+		}
+		else{
+			
+			// show animation
+			Actor_playAnimation((Actor)owner, "Back");
+			
+		}
+	}
+	else{
+	
+		// show animation
+		Actor_playAnimation((Actor)owner, "Idle");
+	}
+	
+	Actor_playAnimation((Actor)owner, "Idle");
+
+	Hero_resetActionTime((Hero)owner);
+
+	Hero_setGap((Hero)owner);
+	
+//	Printing_text("Idle   ", 0, 0);
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
-void MarioMoving_execute(MarioMoving this, void* owner){
+void HeroIdle_execute(HeroIdle this, void* owner){
 	
-	// update movement
-	//Mario_move((Mario) owner);
-
-	//Body_printPhysics(Actor_getBody((Actor)owner), 1, 3);
-
-	Mario_checkIfDied((Mario)owner);
+	/*
+	if(!Hero_isMovingOverZ((Hero)owner)){
+		
+		
+		// if up key pressed
+		if(!((K_LU | K_LD) & vbKeyPressed())){
+	
+			// make mario to look to the side
+			Hero_lookSide((Hero)owner);
+		}
+	}
+	
+	if(!(K_B & vbKeyPressed())){
+		
+		// check if must thrown an object
+		//Hero_throwObject((Hero)owner);
+	}
+	*/
+	
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's exit 
-void MarioMoving_exit(MarioMoving this, void* owner){
+void HeroIdle_exit(HeroIdle this, void* owner){
 	
-	Mario_disableBoost((Mario)owner);
 }
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-u16 MarioMoving_handleMessage(MarioMoving this, void* owner, Telegram telegram){
+u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 
 	switch(Telegram_getMessage(telegram)){
-
-		// if the botton of the screen has been reached
-		case kFloorReached:
 	
-			//Mario_fallDead((Mario)owner);
+		case kCollision:
 
-			//Actor_stopMovement(owner, __YAXIS);
-			break;
-			
-		case kKeyPressed:
-			{
-				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-				// check direction
-				if((K_LL | K_LR ) & pressedKey){
-					
-					Mario_checkDirection((Mario)owner, pressedKey);					
-				}
-
-				// check if jump
-				if(K_A & pressedKey){
-					
-					Mario_jump((Mario)owner, false);			
-				}
-			}			
-			return true;
-			break;
-			
-		case kKeyUp:
-			{
-				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-				if(K_LL & releasedKey){
-	
-					Velocity velocity = Body_getVelocity(Actor_getBody((Actor)owner));
-					
-					if ( 0 > velocity.x){
-						
-						Mario_stopMoving((Mario)owner);		
-					}
-				}
-				else if(K_LR & releasedKey){
-	
-					Velocity velocity = Body_getVelocity(Actor_getBody((Actor)owner));
-					
-					if ( 0 < velocity.x){
-						
-						Mario_stopMoving((Mario)owner);		
-					}
-				}
-				
-				if(K_B & releasedKey){
-					
-					Mario_disableBoost((Mario)owner);
-				}
-			}
-			break;
-	
-		case kKeyHold:
-			{
-				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-				// check direction
-				if((K_LL | K_LR ) & holdKey){
-					
-					Mario_keepMoving((Mario)owner);					
-				}
-				
-				if(K_B & holdKey){
-					
-					Mario_enableBoost((Mario)owner);
-				}
-			}
-			break;
-
-		case kBodyStoped:
-			
-			return Mario_stopMovingOnAxis((Mario)owner, *(int*)Telegram_getExtraInfo(telegram), true);
+			// process the collision
+			return Hero_processCollision((Hero)owner, telegram);
 			break;
 
 		case kBodyStartedMoving:
 
-			// start movement
-			return Mario_startedMovingOnAxis((Mario)owner, *(int*)Telegram_getExtraInfo(telegram), false);
+			return Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram), true);
 			break;
 
-		case kBodyChangedDirection:
+		case kKeyPressed:
 			
-			return Mario_startedMovingOnAxis((Mario)owner, *(int*)Telegram_getExtraInfo(telegram), false);
+#ifdef __DEBUG
+			/*
+			if(kPlaying != GameWorld_getMode(GameWorld_getInstance())){
+				
+				return true;
+			}
+			*/
+#endif
+			{			
+				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+
+				if((K_LL | K_LR) & pressedKey){
+	
+						/* 
+						if((K_LR & pressedKey ) && (K_LL & pressedKey )){
+						
+							return true;
+						}
+	*/
+						Hero_checkDirection((Hero)owner, pressedKey, "Idle");					
+	
+						Hero_startedMovingOnAxis((Hero)owner, __XAXIS, true);
+						return true;
+						break;
+				}
+
+				if(K_A & pressedKey ){
+
+					Hero_jump((Hero)owner, true);
+					return true;
+				}
+
+				// if up key pressed
+				if(K_LU & pressedKey){
+	
+					// make mario to look to the player
+					Hero_lookBack((Hero)owner);
+	
+					// check if there is a bridge
+					Hero_checkIfBridge((Hero)owner, K_LU);
+	
+					// check if there is a bridge
+					Hero_checkIfBridge((Hero)owner, K_LU);
+					/*
+					vbjPrintInt(doPower(4,2), 1, 16);
+					vbjPrintInt(doPower1(4,2), 5, 16);
+					vbjPrintInt(doPower(4,3), 1, 17);
+					vbjPrintInt(doPower1(4,3), 5, 17);
+					*/
+					/*
+					{
+						int i,j = 1;
+						int baseLimit = 5;
+						int maxPower = 5;
+						int distance = 10;
+						int initBase = 2;
+						for(i= initBase;i <= baseLimit; i++){
+							
+							for(j = 1;j <= maxPower; j++){
+								int powerA = power(i, j);
+								int powerB = power1(i, j);
+								Printing_int(i, (i - initBase)* distance, j+2);
+								Printing_text("^", (i - initBase)* distance + 1, j+2);
+								Printing_int(j, (i - initBase)* distance + 2, j+2);
+								Printing_text("=", (i - initBase)* distance + 3, j+2);
+								Printing_int(powerA, (i - initBase)* distance + 4, j+2);
+								Printing_text("|", (i - initBase)* distance + 4 + Utilities_intLength(powerA), j+2);
+								Printing_int(powerB, (i - initBase)* distance + 4 + Utilities_intLength(powerA) + 1, j+2);
+							}
+						}
+					}
+					*/
+
+
+					return true;
+				}
+				
+				// if up key pressed
+				if(K_LD & pressedKey){
+	
+					// make mario to look away the player
+					Hero_lookFront((Hero)owner);
+	
+					// check if there is a bridge
+					Hero_checkIfBridge((Hero)owner, K_LD);
+	
+					// check if there is a bridge
+					Hero_checkIfBridge((Hero)owner, K_LD);
+	
+					return true;
+				}	
+	
+				/*
+				{
+					int alpha = 0;
+					// if up key pressed
+					if(K_LT & pressedKey){
+						
+						alpha--;
+						if(alpha < 0){
+							alpha = 511;
+						}
+						//Sprite_rotate(Entity_getSprite((Entity)owner), alpha);
+						
+					}
+					
+					// if up key pressed
+					if(K_RT & pressedKey){
+						alpha++;
+						if(alpha > 511){
+							alpha = 0;
+						}				
+						//Sprite_rotate(Entity_getSprite((Entity)owner), alpha);
+						
+					}
+				}
+				*/
+			}
 			break;
-		case kCollision:
-
-//			StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)MarioIdle_getInstance());					
-
-			return false;
-//			return Mario_processCollision((Mario)owner, telegram);				
-			break;
-			
-
-			
 	}
 	return false;
-	
 }
 

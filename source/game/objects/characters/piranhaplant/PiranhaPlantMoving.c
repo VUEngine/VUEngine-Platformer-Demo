@@ -34,7 +34,7 @@
 #include "PiranhaPlantIdle.h"
 #include "../enemy/EnemyDead.h"
 #include "PiranhaPlant.h"
-#include "../mario/Mario.h"
+#include "../hero/Hero.h"
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -114,6 +114,7 @@ void PiranhaPlantMoving_enter(PiranhaPlantMoving this, void* owner){
 	PiranhaPlant_startMovement((PiranhaPlant)owner);
 	
 	Actor_playAnimation((Actor)owner, "Bite");
+	Printing_text("PiranhaPlant Bite", 0, 8);
 }
 
 
@@ -150,20 +151,37 @@ void PiranhaPlantMoving_exit(PiranhaPlantMoving this, void* owner){
 u16 PiranhaPlantMoving_handleMessage(PiranhaPlantMoving this, void* owner, Telegram telegram){
 
 	int message = Telegram_getMessage(telegram);
-	InGameEntity inGameEntity = (InGameEntity) Telegram_getExtraInfo(telegram);
 	
 	switch(message){
 
 		case kCollision:
+		{
+			VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
+
+			VirtualNode node = NULL;
 			
-			if(kMario == InGameEntity_getInGameType(inGameEntity)){
+			// this will place the shape in the owner's position
+			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node)){
 			
-				// ok, i hit him
-				//Mario_takeHit((Mario)inGameEntity, Entity_getPosition((Entity)owner));
+				InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
 				
-				return true;
+				switch(InGameEntity_getInGameType(inGameEntity)){
+				
+					case kHero:
+							// ok, i hit him
+							//Hero_takeHit((Mario)inGameEntity, Entity_getPosition((Entity)owner));
+							
+						return true;
+						break;
+						
+					case kSolid:
+						
+						return true;
+						break;
+				}
+							
 			}
-			
+		}
 			break;
 	}
 

@@ -29,12 +29,13 @@
 
 #include <CollisionManager.h>
 #include <Optics.h>
+#include <PhysicalWorld.h>
 
 #include "PiranhaPlant.h"
 #include "PiranhaPlantIdle.h"
 #include "PiranhaPlantMoving.h"
 #include "../enemy/EnemyDead.h"
-#include "../mario/Mario.h"
+#include "../Hero/Hero.h"
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -92,6 +93,11 @@ void PiranhaPlant_constructor(PiranhaPlant this, PiranhaPlantDefinition* piranha
 	// register a shape for collision detection
 	PiranhaPlant_registerShape(this);
 
+	// register a body for physics
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), (Actor)this, 0);
+
+	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
+
 	// save over which axis I'm going to move
 	this->axis = piranhaPlantDefinition->axis;
 	
@@ -110,9 +116,7 @@ void PiranhaPlant_constructor(PiranhaPlant this, PiranhaPlantDefinition* piranha
 			this->direction.y = piranhaPlantDefinition->direction;
 			break;			
 	}
-	
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's conctructor
@@ -135,9 +139,7 @@ void PiranhaPlant_registerShape(PiranhaPlant this){
 void PiranhaPlant_unregisterShape(PiranhaPlant this){
 
 	Shape_setActive(this->shape, false);
-
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process a collision
@@ -152,27 +154,22 @@ u8 PiranhaPlant_processCollision(PiranhaPlant this, Telegram telegram){
 			
 			switch(InGameEntity_getInGameType(inGameEntity)){
 			
-				case kMario:
+				case kHero:
 
 					// tell mario to take a hit
-					//Mario_takeHit((Mario)inGameEntity, this->transform.globalPosition);
+					//Hero_takeHit((Hero)inGameEntity, this->transform.globalPosition);
 					break;
 			}
 	}
 
 	return false;
-
 }
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // tell me I've been hit
 void PiranhaPlant_takeHit(PiranhaPlant this, int axis, s8 direction){
 	
 }
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // die 
@@ -188,13 +185,12 @@ void PiranhaPlant_die(PiranhaPlant this){
 	//this->inGameState = kDead;
 }
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // set  position
 void PiranhaPlant_setLocalPosition(PiranhaPlant this, VBVec3D position){
 	
 	// set my position
-	Container_setLocalPosition((Container)this, position);
+	Actor_setLocalPosition((Actor)this, position);
 	
 	// save initial position
 	switch(this->axis){
@@ -213,14 +209,19 @@ void PiranhaPlant_setLocalPosition(PiranhaPlant this, VBVec3D position){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// retrieve axis free for movement
+int PiranhaPlant_getAxisFreeForMovement(PiranhaPlant this){
+
+	return 0;// ((__XAXIS & ~(__XAXIS & movingState) )|(__ZAXIS & ~(__ZAXIS & movingState)));
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // update movement
 void PiranhaPlant_move(PiranhaPlant this){
 
 	int displacement = 0;
 	
 	// update position
-	//Actor_move((Actor)this);
-		
 	switch(this->axis){
 		
 		case __XAXIS:
@@ -278,7 +279,6 @@ void PiranhaPlant_move(PiranhaPlant this){
 							
 							// set position
 							this->transform.localPosition.y = this->initialPosition + displacement;
-							
 						}
 					}
 					break;
@@ -295,7 +295,7 @@ void PiranhaPlant_move(PiranhaPlant this){
 			
 			// check if mario distance to the plant is out of range
 			if(PIRANHA_PLANT_ATTACK_DISTANCE < Optics_lengthSquared3D(
-					Entity_getPosition((Entity)this), Entity_getPosition((Entity)Mario_getInstance()))
+					Entity_getPosition((Entity)this), Entity_getPosition((Entity)Hero_getInstance()))
 			){
 				StateMachine_swapState(this->stateMachine, (State)PiranhaPlantIdle_getInstance());
 			}
@@ -314,6 +314,15 @@ void PiranhaPlant_startMovement(PiranhaPlant this){
 			
 		case __YAXIS:
 			
+			{
+				Velocity velocity = {
+					0,
+					((int)ITOFIX19_13(1) * this->direction.y),
+					0,
+				};
+				
+				Body_moveUniformly(this->body, velocity);
+			}
 			// move over y axis
 			//Actor_startMovement((Actor)this, __YAXIS, ~(__ACCELMOVEY | __RETARMOVEY),
 			//		PIRANHA_PLANT_VELOCITY_Y, PIRANHA_PLANT_ACCELERATION_Y);
@@ -324,4 +333,3 @@ void PiranhaPlant_startMovement(PiranhaPlant this){
 	
 	this->actionTime = 0;
 }
-

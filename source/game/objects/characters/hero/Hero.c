@@ -37,9 +37,9 @@
 #include <PhysicalWorld.h>
 
 #include <objects.h>
-#include "Mario.h"
-#include "MarioIdle.h"
-#include "MarioMoving.h"
+#include "Hero.h"
+#include "HeroIdle.h"
+#include "HeroMoving.h"
 
 #include <GameLevel.h>
 
@@ -63,10 +63,10 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// Mario.c
+// Hero.c
 
-// A Mario!
-__CLASS_DEFINITION(Mario); 
+// A Hero!
+__CLASS_DEFINITION(Hero); 
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -79,7 +79,6 @@ __CLASS_DEFINITION(Mario);
 
 extern double fabs (double);
 
-
 // a static member of this class
 static u32 gameLayers[TOTAL_GAME_LAYERS] = {
 	ITOFIX19_13(LAYER_0),
@@ -89,11 +88,33 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] = {
 	ITOFIX19_13(LAYER_4),
 };
 
-
-#define FORCE ITOFIX19_13(50)
-#define WEIGHT		10
+#define HERO_INPUT_FORCE ITOFIX19_13(10)
+#define HERO_WEIGHT		10
 #define FRICTION 	0.01f
 
+#define HERO_VELOCITY_X			ITOFIX19_13(7)
+#define HERO_VELOCITY_Y			FTOFIX19_13(-6.0f)
+#define HERO_VELOCITY_Z			ITOFIX19_13(175)
+#define HERO_ACCELERATION_X		ITOFIX19_13(10)
+#define HERO_ACCELERATION_Y		ITOFIX19_13(0)
+#define HERO_ACCELERATION_Z		ITOFIX19_13(0)
+#define HERO__BOOST_VELOCITY_X		ITOFIX19_13(9)
+#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-350)
+#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-425)
+#define HERO_SPEED_MULTIPLIER_X	FTOFIX19_13(1.5f)
+#define HERO_SPEED_MULTIPLIER_Y	FTOFIX19_13(1.2f)
+
+// time to wait after a hit, to die
+#define HERO_TIME_TO_DIE		500	// miliseconds
+
+#define HERO_HOLD_OBJECT_X		10
+#define HERO_HOLD_OBJECT_Y		0
+#define HERO_HOLD_OBJECT_Z		1
+
+#define HERO_WIN_DELAY			1800
+#define HERO_BLINK_DELAY		2000
+
+#define HERO_DISPLACEMENT_ON_BRIDGE	FTOFIX19_13(2.0f / __FPS_ANIM_FACTOR)
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -105,29 +126,29 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] = {
  */
 
 // Only one instance
-Mario mario = NULL;
+Hero mario = NULL;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // there can only be one mario instantiated
-Mario Mario_getInstance(){
+Hero Hero_getInstance(){
 	
 	return mario;
 }
 
-void Mario_setInstance(Mario instance){
+void Hero_setInstance(Hero instance){
 	
-	ASSERT(!mario, "Mario already instantiated");
+	ASSERT(!mario, "Hero already instantiated");
 	
 	mario = instance;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // always call these to macros next to each other
-__CLASS_NEW_DEFINITION(Mario, __PARAMETERS(ActorDefinition* actorDefinition, int ID))
-__CLASS_NEW_END(Mario, __ARGUMENTS(actorDefinition, ID));
+__CLASS_NEW_DEFINITION(Hero, __PARAMETERS(ActorDefinition* actorDefinition, int ID))
+__CLASS_NEW_END(Hero, __ARGUMENTS(actorDefinition, ID));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
-void Mario_constructor(Mario this, ActorDefinition* actorDefinition, int ID){
+void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 	
 	// construct base
 	__CONSTRUCT_BASE(Actor, __ARGUMENTS(actorDefinition, ID));
@@ -135,14 +156,14 @@ void Mario_constructor(Mario this, ActorDefinition* actorDefinition, int ID){
 	this->energy = 1;
 
 	// initialize me as idle
-	StateMachine_swapState(this->stateMachine, (State)MarioIdle_getInstance());
+	StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (InGameEntity)this, kCuboid);
 
 	{
 		// register a body for physics
-		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), (Actor)this, ITOFIX19_13(WEIGHT));
+		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), (Actor)this, ITOFIX19_13(HERO_WEIGHT));
 		
 		Body_setElasticity(this->body, FTOFIX19_13(0.0f));
 		
@@ -165,7 +186,7 @@ void Mario_constructor(Mario this, ActorDefinition* actorDefinition, int ID){
 	this->boost = false;
 	this->sensibleToFriction.y = false;
 	
-	Mario_setInstance(this);
+	Hero_setInstance(this);
 
 	{
 		Acceleration gravity = {FTOFIX19_13(0), FTOFIX19_13(9.0f), FTOFIX19_13(0)};
@@ -178,10 +199,10 @@ void Mario_constructor(Mario this, ActorDefinition* actorDefinition, int ID){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-void Mario_destructor(Mario this){
+void Hero_destructor(Hero this){
 
 	// free the instance pointer
-	ASSERT(mario == this, "Mario: more than on instance");
+	ASSERT(mario == this, "Hero: more than on instance");
 	mario = NULL;
 
 	// delete the super object
@@ -190,7 +211,7 @@ void Mario_destructor(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // start movement
-void Mario_startMoving1(Mario this){
+void Hero_startMoving1(Hero this){
 
 	/*
 	// must do some comparison regardless of my current direction
@@ -221,7 +242,7 @@ void Mario_startMoving1(Mario this){
 		this->movingOverZ = false;
 		
 		// begin to move
-		Actor_startMovement((Actor)this, __XAXIS, __RETARMOVEX, MARIO_VELOCITY_X, MARIO_ACCELERATION_X);
+		Actor_startMovement((Actor)this, __XAXIS, __RETARMOVEX, HERO_VELOCITY_X, HERO_ACCELERATION_X);
 		
 		// must change the direction ?
 		if(this->direction.x == compareDirection){				
@@ -247,7 +268,7 @@ void Mario_startMoving1(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // update movement
-void Mario_move(Mario this){
+void Hero_move(Hero this){
 
 
 	/*
@@ -262,7 +283,7 @@ void Mario_move(Mario this){
 			{
 				static int xx = 0;
 				
-				Printing_text("Mario", 1, 17);
+				Printing_text("Hero", 1, 17);
 				Printing_int(xx++, 1, 18);
 				Printing_hex(movingState, 1, 19);
 				
@@ -277,7 +298,7 @@ void Mario_move(Mario this){
 	// check if must throw the object
 	if(this->holdObject){
 	
-		Mario_throwObject(this);
+		Hero_throwObject(this);
 	}
 	
 	if(this->velocity.z){
@@ -310,7 +331,7 @@ void Mario_move(Mario this){
 		if(this->holdObject){
 			
 			// update object's position
-			Mario_updateHoldObjectPosition(this);
+			Hero_updateHoldObjectPosition(this);
 		}		
 		return;
 	}
@@ -329,7 +350,7 @@ void Mario_move(Mario this){
 				Actor_playAnimation((Actor)this, "Slide");
 			}
 			
-			this->velocity.x = MARIO_VELOCITY_X;
+			this->velocity.x = HERO_VELOCITY_X;
 		}
 	}
 	else{
@@ -350,7 +371,7 @@ void Mario_move(Mario this){
 			Actor_playAnimation((Actor)this, walkAnimation);
 			
 			// start moving
-			Actor_startMovement((Actor)this, __XAXIS, __RETARMOVEX, MARIO_VELOCITY_X, MARIO_ACCELERATION_X);
+			Actor_startMovement((Actor)this, __XAXIS, __RETARMOVEX, HERO_VELOCITY_X, HERO_ACCELERATION_X);
 		}
 	}
 
@@ -361,12 +382,12 @@ void Mario_move(Mario this){
 		if(currentPressedKey & K_B){
 			
 			// boost velocity
-			this->velocity.x = FIX19_13_MULT(MARIO_VELOCITY_X, MARIO_SPEED_MULTIPLIER_X);
+			this->velocity.x = FIX19_13_MULT(HERO_VELOCITY_X, HERO_SPEED_MULTIPLIER_X);
 		}
 		else{
 			
 			// shoot the shell
-			//this->velocity.x = MARIO_VELOCITY_X;
+			//this->velocity.x = HERO_VELOCITY_X;
 		}
 	}
 
@@ -378,7 +399,7 @@ void Mario_move(Mario this){
 			
 			if(vbPadPreviousKey() & K_A){
 				
-				this->acceleration.y = (MARIO_ACCELERATION_Y + __GRAVITY) * (-1) / MARIO_SPEED_MULTIPLIER_X;
+				this->acceleration.y = (HERO_ACCELERATION_Y + __GRAVITY) * (-1) / HERO_SPEED_MULTIPLIER_X;
 			}
 		}
 	}
@@ -415,27 +436,27 @@ void Mario_move(Mario this){
 	if(this->holdObject){
 		
 		// update object's position
-		Mario_updateHoldObjectPosition(this);
+		Hero_updateHoldObjectPosition(this);
 	}
 
 	//if(kDead != Actor_getInGameState((Actor)owner) && !(ownerMovementState.x || ownerMovementState.y || ownerMovementState.z)){
 	if(this->inGameState != kDead && !Actor_isMoving((Actor)this)){
 		
 		// go back to idle
-		StateMachine_swapState(this->stateMachine, (State)MarioIdle_getInstance());
+		StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
 	}
 	*/
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // keep adding force to jump
-void Mario_addMomentumToJump(Mario this) {
+void Hero_addMomentumToJump(Hero this) {
 	
 	if (this->body) {
 		
 		Velocity velocity = Body_getVelocity(this->body);
 
-		if (MARIO_VELOCITY_Y < velocity.y && 0 > FIX19_13TOF(velocity.y) && !Actor_isPlayingAnimation((Actor)this, "Fall")){
+		if (HERO_VELOCITY_Y < velocity.y && 0 > FIX19_13TOF(velocity.y) && !Actor_isPlayingAnimation((Actor)this, "Fall")){
 			
 			Force force = {0, ITOFIX19_13(-30), 0};
 			Body_addForce(this->body, &force);
@@ -449,9 +470,9 @@ void Mario_addMomentumToJump(Mario this) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // make him jump
-void Mario_jump(Mario this, int changeState){
+void Hero_jump(Hero this, int changeState){
 
-	Mario_startedMovingOnAxis(this, __YAXIS, changeState);
+	Hero_startedMovingOnAxis(this, __YAXIS, changeState);
 
 	if (this->body) {
 		
@@ -459,7 +480,7 @@ void Mario_jump(Mario this, int changeState){
 
 		if (!velocity.y){
 			
-			Force force = {0, this->boost? MARIO_BOOST_JUMP_FORCE: MARIO_NORMAL_JUMP_FORCE, 0};
+			Force force = {0, this->boost? HERO_BOOST_JUMP_HERO_INPUT_FORCE: HERO_NORMAL_JUMP_HERO_INPUT_FORCE, 0};
 			Body_addForce(this->body, &force);
 			Actor_playAnimation((Actor)this, "Jump");
 		}
@@ -468,7 +489,7 @@ void Mario_jump(Mario this, int changeState){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // start movement
-void Mario_startMoving(Mario this){
+void Hero_startMoving(Hero this){
 
 	/*
 	int movingState = Body_isMoving(this->body);
@@ -480,12 +501,12 @@ void Mario_startMoving(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // keep movement
-void Mario_keepMoving(Mario this){
+void Hero_keepMoving(Hero this){
 
-	ASSERT(this->body, "Mario: no body");
+	ASSERT(this->body, "Hero: no body");
 	static int movementType = 0;
 
-	fix19_13 maxVelocity = this->boost? MARIO__BOOST_VELOCITY_X: MARIO_VELOCITY_X;
+	fix19_13 maxVelocity = this->boost? HERO__BOOST_VELOCITY_X: HERO_VELOCITY_X;
 	
 	Velocity velocity = Body_getVelocity(this->body);
 
@@ -499,10 +520,9 @@ void Mario_keepMoving(Mario this){
 
 		if(velocity.x || ( __XAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration))){
 
-			fix19_13 xForce = 0 < this->direction.x? FORCE: -FORCE;
+			fix19_13 xForce = 0 < this->direction.x? HERO_INPUT_FORCE: -HERO_INPUT_FORCE;
 			Force force = {xForce, 0, 0};
 			Body_addForce(this->body, &force);
-			
 			movementType = __ACCELERATED_MOVEMENT;
 		}
 	}
@@ -537,11 +557,10 @@ void Mario_keepMoving(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // start movement
-void Mario_stopMoving(Mario this){
+void Hero_stopMoving(Hero this){
 
-	Printing_text("stopping",1 , 7);
 	Velocity velocity = Body_getVelocity(this->body);
-	
+
 	if(!velocity.y) {
 		
 		Actor_playAnimation((Actor)this, "Slide");
@@ -551,9 +570,9 @@ void Mario_stopMoving(Mario this){
 		Actor_playAnimation((Actor)this, "Fall");
 	}
 
-//	fix19_13 maxVelocity = this->boost? MARIO__BOOST_VELOCITY_X: MARIO_VELOCITY_X;
+//	fix19_13 maxVelocity = this->boost? HERO__BOOST_VELOCITY_X: HERO_VELOCITY_X;
 
-//	velocity.x = MARIO_VELOCITY_X * this->direction.x;
+//	velocity.x = HERO_VELOCITY_X * this->direction.x;
 	
 	// only modify x axis
 	velocity.y = 0;
@@ -570,7 +589,7 @@ void Mario_stopMoving(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // started moving over axis
-int Mario_startedMovingOnAxis(Mario this, int axis, int changeState){
+int Hero_startedMovingOnAxis(Hero this, int axis, int changeState){
 
 	// start movement
 	if(changeState) {
@@ -588,14 +607,14 @@ int Mario_startedMovingOnAxis(Mario this, int axis, int changeState){
 				
 				Actor_playAnimation((Actor)this, "Walk");
 
-				StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) MarioMoving_getInstance());
+				StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) HeroMoving_getInstance());
 			}
 		}
 		if(__YAXIS & axis){
 
 			Actor_playAnimation((Actor)this, "Fall");	
 
-			StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) MarioMoving_getInstance());
+			StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) HeroMoving_getInstance());
 		}
 	}
 	else{
@@ -620,15 +639,13 @@ int Mario_startedMovingOnAxis(Mario this, int axis, int changeState){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // stop moving over axis
-int Mario_stopMovingOnAxis(Mario this, int axis, int changeState){
+int Hero_stopMovingOnAxis(Hero this, int axis, int changeState){
 	
 	int movementState = Body_isMoving(this->body);
-	
+
 	if((__XAXIS & axis) && !(__YAXIS & movementState)) {
 		
 		Actor_playAnimation((Actor)this, "Idle");
-		Printing_text("stopped    ",1 , 7);
-
 	}
 
 	if(__YAXIS & axis) {
@@ -650,7 +667,7 @@ int Mario_stopMovingOnAxis(Mario this, int axis, int changeState){
 
 	if(changeState && !Body_isMoving(Actor_getBody((Actor)this))) {
 
-		StateMachine_swapState(Actor_getStateMachine((Actor) this), (State)MarioIdle_getInstance());					
+		StateMachine_swapState(Actor_getStateMachine((Actor) this), (State)HeroIdle_getInstance());					
 	}
 	
 	return false;
@@ -659,7 +676,7 @@ int Mario_stopMovingOnAxis(Mario this, int axis, int changeState){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // check direction
-void Mario_checkDirection(Mario this, u16 pressedKey){
+void Hero_checkDirection(Hero this, u16 pressedKey, char* animation){
 
 	// get world's size		
 	//Size worldSize = GameWorld_getSize(GameWorld_getInstance());
@@ -682,9 +699,9 @@ void Mario_checkDirection(Mario this, u16 pressedKey){
 
 	int movementState = Body_isMoving(this->body);
 
-	if(!(__YAXIS & movementState)){
+	if(animation && !(__YAXIS & movementState)){
 		
-		Actor_playAnimation((Actor)this, "Walk");
+		Actor_playAnimation((Actor)this, animation);
 	}
 
 	/*
@@ -698,7 +715,7 @@ void Mario_checkDirection(Mario this, u16 pressedKey){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process a collision
-int  Mario_processCollision(Mario this, Telegram telegram){
+int  Hero_processCollision(Hero this, Telegram telegram){
 	
 //	return false;
 	if(this->body) {
@@ -706,7 +723,7 @@ int  Mario_processCollision(Mario this, Telegram telegram){
 		// retrieve collision entity
 		InGameEntity inGameEntity = (InGameEntity) Telegram_getExtraInfo(telegram);
 		
-		//ASSERT(__GET_CAST(InGameEntity, inGameEntity), "Mario::processCollision: no InGameEntity ");
+		//ASSERT(__GET_CAST(InGameEntity, inGameEntity), "Hero::processCollision: no InGameEntity ");
 return false;
 		// determine the type of colliding entity
 		switch(InGameEntity_getInGameType(inGameEntity)){
@@ -724,7 +741,7 @@ return false;
 				break;
 			case kGoal:
 				
-				if(!StateMachine_isInState(this->stateMachine, (State)MarioWin_getInstance())){
+				if(!StateMachine_isInState(this->stateMachine, (State)HeroWin_getInstance())){
 					// if i have something being hold
 					if(this->holdObject){
 					
@@ -734,7 +751,7 @@ return false;
 					}
 					
 					// change state
-					StateMachine_swapState(this->stateMachine, (State)MarioWin_getInstance());
+					StateMachine_swapState(this->stateMachine, (State)HeroWin_getInstance());
 				}
 				break;
 				*/
@@ -777,7 +794,7 @@ return false;
 
 					
 					// align to the colliding object
-					StateMachine_swapState(this->stateMachine, (State)MarioIdle_getInstance());					
+					StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());					
 
 					Actor_alignTo((Actor)this, (InGameEntity)inGameEntity, __YAXIS, 1);
 
@@ -797,11 +814,11 @@ return false;
 			case kBridge:
 
 				// if I'm moving over the bridge
-				if(this->bridge != (Bridge)Telegram_getExtraInfo(telegram) && StateMachine_isInState(this->stateMachine, (State)MarioOnBridge_getInstance())){
+				if(this->bridge != (Bridge)Telegram_getExtraInfo(telegram) && StateMachine_isInState(this->stateMachine, (State)HeroOnBridge_getInstance())){
 				
 					VBVec3D bridgePosition = Entity_getPosition((Entity)Telegram_getExtraInfo(telegram));
 					
-					StateMachine_swapState(this->stateMachine, (State)MarioIdle_getInstance());
+					StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
 					
 					// place myself behind or infront of the bridge
 					if(__NEAR == Bridge_getDirection(this->bridge)){
@@ -820,7 +837,7 @@ return false;
 					                		   - Entity_getHeight((Entity)this) / 2	- 1);
 					
 					// determine which layer I'm
-					Mario_determineLayer(this);
+					Hero_determineLayer(this);
 					
 					// stop movement
 					Actor_stopMovement((Actor)this, __ZAXIS);
@@ -831,7 +848,7 @@ return false;
 				this->bridge = (Bridge)Telegram_getExtraInfo(telegram);
 				
 				// update hold object's position
-				Mario_updateHoldObjectPosition(this);
+				Hero_updateHoldObjectPosition(this);
 
 				return false;
 				break;
@@ -839,17 +856,17 @@ return false;
 			case kPiranhaPlant:
 				
 				// i just take the hit
-				Mario_takeHit(this, Entity_getPosition((Entity)inGameEntity));
+				Hero_takeHit(this, Entity_getPosition((Entity)inGameEntity));
 				break;
 
 			// if it was a koopa
 			case kKoopa:
 				{
 					// determine if the koopa hits mario						
-					if(Mario_isHitByEnemy(this, (Enemy)Telegram_getExtraInfo(telegram), message)){
+					if(Hero_isHitByEnemy(this, (Enemy)Telegram_getExtraInfo(telegram), message)){
 
 						// take a hit
-						Mario_takeHit(this, Entity_getPosition((Entity)inGameEntity));
+						Hero_takeHit(this, Entity_getPosition((Entity)inGameEntity));
 						
 						// tell koopa to attack
 						Koopa_attack((Koopa)inGameEntity);
@@ -867,7 +884,7 @@ return false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Mario_takeHitFrom(Mario this, Actor other){
+void Hero_takeHitFrom(Hero this, Actor other){
 	
 	//VBVec3D position = Entity_getPosition((Entity)other);
 	/*
@@ -881,7 +898,7 @@ void Mario_takeHitFrom(Mario this, Actor other){
 	else{
 
 		// now die
-		Mario_die(this);
+		Hero_die(this);
 	}
 	
 	// determine which animation to play 
@@ -919,7 +936,7 @@ void Mario_takeHitFrom(Mario this, Actor other){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
-int Mario_isHitByEnemy(Mario this, Enemy enemy, int axis){
+int Hero_isHitByEnemy(Hero this, Enemy enemy, int axis){
 
 	ASSERT(enemy);
 
@@ -950,7 +967,7 @@ int Mario_isHitByEnemy(Mario this, Enemy enemy, int axis){
 		Actor_alignTo((Actor)this, (InGameEntity)enemy, __XAXIS, 2);
 		
 		//check if player wants to jump over z axis
-		if(!Mario_checkIfZJump(this)){
+		if(!Hero_checkIfZJump(this)){
 			
 			if(this->holdObject){
 
@@ -968,12 +985,12 @@ int Mario_isHitByEnemy(Mario this, Enemy enemy, int axis){
 		if(K_A & vbKeyPressed()){
 
 			// I will bounce
-			Actor_jump((Actor)this, FIX19_13_MULT(MARIO_VELOCITY_Y, MARIO_SPEED_MULTIPLIER_Y), MARIO_ACCELERATION_Y);
+			Actor_jump((Actor)this, FIX19_13_MULT(HERO_VELOCITY_Y, HERO_SPEED_MULTIPLIER_Y), HERO_ACCELERATION_Y);
 		}
 		else
 		{
 			// I will bounce
-			Actor_jump((Actor)this, MARIO_VELOCITY_Y , MARIO_ACCELERATION_Y);
+			Actor_jump((Actor)this, HERO_VELOCITY_Y , HERO_ACCELERATION_Y);
 		}
 		
 
@@ -1020,7 +1037,7 @@ int Mario_isHitByEnemy(Mario this, Enemy enemy, int axis){
 			
 			if(!this->holdObject){
 				
-				Mario_pickupObject(this, (Actor)enemy);
+				Hero_pickupObject(this, (Actor)enemy);
 				
 				return false;
 			}
@@ -1036,7 +1053,7 @@ int Mario_isHitByEnemy(Mario this, Enemy enemy, int axis){
 		__VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __ARGUMENTS(__XAXIS, this->direction.x));
 
 		// I will bounce
-		Actor_jump((Actor)this, FIX19_13_DIV(MARIO_VELOCITY_Y, ITOFIX19_13(2)), MARIO_ACCELERATION_Y);
+		Actor_jump((Actor)this, FIX19_13_DIV(HERO_VELOCITY_Y, ITOFIX19_13(2)), HERO_ACCELERATION_Y);
 		
 		if(this->holdObject){
 
@@ -1057,7 +1074,7 @@ int Mario_isHitByEnemy(Mario this, Enemy enemy, int axis){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // set animation delta
-void Mario_setAnimationDelta(Mario this, int delta){
+void Hero_setAnimationDelta(Hero this, int delta){
 	
 	VirtualNode node = VirtualList_begin(this->sprites);
 	
@@ -1069,37 +1086,37 @@ void Mario_setAnimationDelta(Mario this, int delta){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // disable boost
-void Mario_disableBoost(Mario this){
+void Hero_disableBoost(Hero this){
 
 	if(this->boost) {
 	
 		this->boost = false;
-		Mario_setAnimationDelta(this, -1);
+		Hero_setAnimationDelta(this, -1);
 	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // enable boost
-void Mario_enableBoost(Mario this){
+void Hero_enableBoost(Hero this){
 	
 	if(!this->boost) {
 	
 		this->boost = true;
 		
-		Mario_setAnimationDelta(this, -2);
+		Hero_setAnimationDelta(this, -2);
 	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // set action time
-void Mario_setActionTime(Mario this, u32 time){
+void Hero_setActionTime(Hero this, u32 time){
 	
 	//this->actionTime = time;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // retrieve action time
-u32 Mario_getActionTime(Mario this){
+u32 Hero_getActionTime(Hero this){
 
 	return 0;
 //	return this->actionTime;
@@ -1107,7 +1124,7 @@ u32 Mario_getActionTime(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // pickup an object
-void Mario_pickupObject(Mario this, Actor object){
+void Hero_pickupObject(Hero this, Actor object){
 	
 	/*
 
@@ -1119,7 +1136,7 @@ void Mario_pickupObject(Mario this, Actor object){
 	this->holdObject = object;
 	
 	// set hold object's position 
-	Mario_updateHoldObjectPosition(this);
+	Hero_updateHoldObjectPosition(this);
 	
 	// remove from collision detection system
 	InGameEntity_setShapeState((InGameEntity)this->holdObject, false);
@@ -1127,7 +1144,7 @@ void Mario_pickupObject(Mario this, Actor object){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int Mario_checkIfZJump(Mario this){
+int Hero_checkIfZJump(Hero this){
 
 	/*
 	// if up/down pressed
@@ -1158,7 +1175,7 @@ int Mario_checkIfZJump(Mario this){
 		
 		// start moving in the new direction
 		Actor_startMovement((Actor)this, __ZAXIS, ~(__ACCELMOVEX | __RETARMOVEX),
-				MARIO_VELOCITY_Z, MARIO_ACCELERATION_Z);
+				HERO_VELOCITY_Z, HERO_ACCELERATION_Z);
 
 		this->movingOverZ = true;
 
@@ -1182,7 +1199,7 @@ int Mario_checkIfZJump(Mario this){
 		
 			// start movement
 			Actor_startMovement((Actor)this, __ZAXIS, ~(__ACCELMOVEX | __RETARMOVEX)
-					, MARIO_VELOCITY_Z, MARIO_ACCELERATION_Z);
+					, HERO_VELOCITY_Z, HERO_ACCELERATION_Z);
 
 			this->movingOverZ = true;
 			
@@ -1194,16 +1211,16 @@ int Mario_checkIfZJump(Mario this){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Mario_fallDead(Mario this){
+void Hero_fallDead(Hero this){
 
 	Actor_playAnimation((Actor)this, "HitFront");
 	
-	Mario_die(this);
+	Hero_die(this);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // called when blink animation is done
-void Mario_blinkDone(Mario this){
+void Hero_blinkDone(Hero this){
 	
 	// play idle animation depende on whether I'm holding something or nor
 	if(this->holdObject){
@@ -1218,21 +1235,21 @@ void Mario_blinkDone(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // was jumping over z?
-int  Mario_isMovingOverZ(Mario this){
+int  Hero_isMovingOverZ(Hero this){
 	
 	return this->movingOverZ;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // set jumping over z status
-void Mario_setMovingOverZ(Mario this, int  state){
+void Hero_setMovingOverZ(Hero this, int  state){
 	
 	this->movingOverZ = state;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // set hold object's position 
-void Mario_updateHoldObjectPosition(Mario this){
+void Hero_updateHoldObjectPosition(Hero this){
 	
 	/*
 	// make sure there is an object being hold
@@ -1246,11 +1263,11 @@ void Mario_updateHoldObjectPosition(Mario this){
 	
 		if(!this->movingOverZ){
 		
-			position.x += ITOFIX19_13(MARIO_HOLD_OBJECT_X * this->direction.x);
-			position.y += ITOFIX19_13(MARIO_HOLD_OBJECT_Y);
+			position.x += ITOFIX19_13(HERO_HOLD_OBJECT_X * this->direction.x);
+			position.y += ITOFIX19_13(HERO_HOLD_OBJECT_Y);
 		}
 		
-		position.z += ITOFIX19_13(MARIO_HOLD_OBJECT_Z * this->direction.z);
+		position.z += ITOFIX19_13(HERO_HOLD_OBJECT_Z * this->direction.z);
 		
 		Container_setLocalPosition((Container)this->holdObject, position);
 	}
@@ -1264,7 +1281,7 @@ void Mario_updateHoldObjectPosition(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // make mario to look to the player
-void Mario_lookFront(Mario this){
+void Hero_lookFront(Hero this){
 
 	// if already not playing
 	if(!Actor_isPlayingAnimation((Actor)this, "Front")){
@@ -1282,14 +1299,14 @@ void Mario_lookFront(Mario this){
 	this->movingOverZ = true;
 	
 	// update hold object's position
-	Mario_updateHoldObjectPosition(this);
+	Hero_updateHoldObjectPosition(this);
 */	
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // make mario to look away the player
-void Mario_lookBack(Mario this){
+void Hero_lookBack(Hero this){
 
 	// if already not playing
 	if(!Actor_isPlayingAnimation((Actor)this, "Back")){
@@ -1306,14 +1323,14 @@ void Mario_lookBack(Mario this){
 	this->movingOverZ = true;
 	
 	// update hold object's position
-	Mario_updateHoldObjectPosition(this);
+	Hero_updateHoldObjectPosition(this);
 	*/
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // set  graphical gap
-void Mario_setGap(Mario this){
+void Hero_setGap(Hero this){
 
 	this->gap = this->inGameEntityDefinition->gap;
 	
@@ -1328,7 +1345,7 @@ void Mario_setGap(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // make mario to look to the side
-void Mario_lookSide(Mario this){
+void Hero_lookSide(Hero this){
 	/*
 	char blinkStr[] = "Blink";
 	char idleStr[] = "Idle";
@@ -1371,7 +1388,7 @@ void Mario_lookSide(Mario this){
 		u32 currentTime = Clock_getTime(_clock);
 		
 		// randomly select if play blinking
-		if(currentTime - this->actionTime > MARIO_BLINK_DELAY){
+		if(currentTime - this->actionTime > HERO_BLINK_DELAY){
 			
 			Actor_playAnimation((Actor)this, animationToPlay);
 			
@@ -1379,7 +1396,7 @@ void Mario_lookSide(Mario this){
 			this->movingOverZ = false;
 
 			// update hold object's position
-			Mario_updateHoldObjectPosition(this);
+			Hero_updateHoldObjectPosition(this);
 			
 			this->actionTime = currentTime;
 		}
@@ -1404,7 +1421,7 @@ void Mario_lookSide(Mario this){
 				this->movingOverZ = false;
 
 				// update hold object's position
-				Mario_updateHoldObjectPosition(this);
+				Hero_updateHoldObjectPosition(this);
 				
 			}
 		}
@@ -1414,7 +1431,7 @@ void Mario_lookSide(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // check if must thrown an object
-void Mario_throwObject(Mario this){
+void Hero_throwObject(Hero this){
 	
 	/*
 	// if I'm not holding anything
@@ -1434,7 +1451,7 @@ void Mario_throwObject(Mario this){
 		// first place it in the same z coordinate
 		//VBVec3D position = Entity_getPosition((Entity)this->holdObject);
 		
-		Mario_updateHoldObjectPosition(this);
+		Hero_updateHoldObjectPosition(this);
 		
 		//position.z = this->transform.globalPosition.z;
 		//Entity_setPosition((Entity)this->holdObject, position);
@@ -1472,10 +1489,10 @@ void Mario_throwObject(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // die mario
-void Mario_die(Mario this){
+void Hero_die(Hero this){
 /*
 	// go to dead state
-	StateMachine_swapState(this->stateMachine, (State)MarioDead_getInstance());
+	StateMachine_swapState(this->stateMachine, (State)HeroDead_getInstance());
 	
 	// if I have something being hold
 	if(this->holdObject){
@@ -1499,7 +1516,7 @@ void Mario_die(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // check if must move over a bridge
-void Mario_checkIfBridge(Mario this, int keyPressed){
+void Hero_checkIfBridge(Hero this, int keyPressed){
 
 	/*
 	// if I'm close to a bridge
@@ -1575,23 +1592,23 @@ void Mario_checkIfBridge(Mario this, int keyPressed){
 		}
 
 		// change state
-		StateMachine_swapState(this->stateMachine, (State)MarioOnBridge_getInstance());
+		StateMachine_swapState(this->stateMachine, (State)HeroOnBridge_getInstance());
 	}
 	*/
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // update movement over the bridge
-void Mario_moveOnBridge(Mario this){
+void Hero_moveOnBridge(Hero this){
 
 /*
-	this->transform.globalPosition.z += FIX19_13_MULT(MARIO_DISPLACEMENT_ON_BRIDGE, ITOFIX19_13(this->direction.z));
+	this->transform.globalPosition.z += FIX19_13_MULT(HERO_DISPLACEMENT_ON_BRIDGE, ITOFIX19_13(this->direction.z));
 	
 	// if I'm holding something
 	if(this->holdObject){
 		
 		// update object's position
-		Mario_updateHoldObjectPosition(this);
+		Hero_updateHoldObjectPosition(this);
 	}
 	*/
 }
@@ -1603,7 +1620,7 @@ void Mario_moveOnBridge(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // determine which layer I'm
-void Mario_determineLayer(Mario this){
+void Hero_determineLayer(Hero this){
 //
 	int i = 0;
 	for(i = 0; i < TOTAL_GAME_LAYERS; i++){
@@ -1619,7 +1636,7 @@ void Mario_determineLayer(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // clear the actionTime
-void Mario_resetActionTime(Mario this){
+void Hero_resetActionTime(Hero this){
 
 	//this->actionTime = Clock_getTime(_clock);
 }
@@ -1627,13 +1644,13 @@ void Mario_resetActionTime(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // goal reached
-void Mario_win(Mario this){
+void Hero_win(Hero this){
 	/*
 	this->direction.z = __FAR;
 	
 	Actor_playAnimation((Actor)this, "WalkBack");
 	
-	Actor_startMovement((Actor)this, __ZAXIS, __UNIFORMMOVE, FIX19_13_DIV(MARIO_VELOCITY_Z, ITOFIX19_13(4)), 0);
+	Actor_startMovement((Actor)this, __ZAXIS, __UNIFORMMOVE, FIX19_13_DIV(HERO_VELOCITY_Z, ITOFIX19_13(4)), 0);
 	
 	this->actionTime = Clock_getTime(_inGameClock);
 	*/
@@ -1641,7 +1658,7 @@ void Mario_win(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // goal reached
-void Mario_moveOnWin(Mario this){
+void Hero_moveOnWin(Hero this){
 	
 	/*
 	u32 currentTime = Clock_getTime(_inGameClock);
@@ -1653,7 +1670,7 @@ void Mario_moveOnWin(Mario this){
 			//GameWorld_levelCleared(GameWorld_getInstance());
 		}
 		
-		if(currentTime - this->actionTime < MARIO_WIN_DELAY / 2){
+		if(currentTime - this->actionTime < HERO_WIN_DELAY / 2){
 				
 			Actor_move((Actor)this);
 		}
@@ -1666,7 +1683,7 @@ void Mario_moveOnWin(Mario this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process user input
-int Mario_doKeyPressed(Mario this, int pressedKey){
+int Hero_doKeyPressed(Hero this, int pressedKey){
 
 	// inform my current states about the key pressed		
 	return MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyPressed, &pressedKey);
@@ -1674,7 +1691,7 @@ int Mario_doKeyPressed(Mario this, int pressedKey){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process user input
-int Mario_doKeyUp(Mario this, int pressedKey){
+int Hero_doKeyUp(Hero this, int pressedKey){
 
 	// inform my current states about the key up		
 	return MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyUp, &pressedKey);
@@ -1682,7 +1699,7 @@ int Mario_doKeyUp(Mario this, int pressedKey){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process user input
-int Mario_doKeyHold(Mario this, int pressedKey){
+int Hero_doKeyHold(Hero this, int pressedKey){
 
 	// inform my current states about the key hold		
 	return MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyHold, &pressedKey);
@@ -1690,9 +1707,9 @@ int Mario_doKeyHold(Mario this, int pressedKey){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // check if dead
-void Mario_checkIfDied(Mario this) {
+void Hero_checkIfDied(Hero this) {
 
-	ASSERT(this->body, "Mario::checkIfDied: NULL body");
+	ASSERT(this->body, "Hero::checkIfDied: NULL body");
 		
 	Velocity velocity = Body_getVelocity(this->body);
 
@@ -1700,7 +1717,7 @@ void Mario_checkIfDied(Mario this) {
 		
 		if(this->transform.globalPosition.y > ITOFIX19_13(384)) {
 
-			MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Game_getInstance(), kMarioDied, NULL);
+			MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Game_getInstance(), kHeroDied, NULL);
 		}
 	}
 }

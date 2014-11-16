@@ -44,53 +44,24 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#define MARIO_VELOCITY_X			ITOFIX19_13(7)
-#define MARIO__BOOST_VELOCITY_X		ITOFIX19_13(9)
-
-#define MARIO_NORMAL_JUMP_FORCE		ITOFIX19_13(-350)
-#define MARIO_BOOST_JUMP_FORCE		ITOFIX19_13(-425)
 
 
-#define MARIO_VELOCITY_Y		FTOFIX19_13(-6.0f)
-#define MARIO_ACCELERATION_X	ITOFIX19_13(10)
-#define MARIO_ACCELERATION_Y	ITOFIX19_13(0)
-
-#define MARIO_VELOCITY_Z		ITOFIX19_13(175)
-#define MARIO_ACCELERATION_Z	ITOFIX19_13(0)
-
-#define MARIO_SPEED_MULTIPLIER_X	FTOFIX19_13(1.5f)
-#define MARIO_SPEED_MULTIPLIER_Y	FTOFIX19_13(1.2f)
-
-// time to wait after a hit, to die
-#define MARIO_TIME_TO_DIE		500	// miliseconds
-
-#define MARIO_HOLD_OBJECT_X		10
-#define MARIO_HOLD_OBJECT_Y		0
-#define MARIO_HOLD_OBJECT_Z		1
-
-#define MARIO_WIN_DELAY			1800
-
-
-#define MARIO_BLINK_DELAY		2000
-
-#define MARIO_DISPLACEMENT_ON_BRIDGE	FTOFIX19_13(2.0f / __FPS_ANIM_FACTOR)
-
-#define Mario_METHODS							\
+#define Hero_METHODS							\
 	Actor_METHODS;
 	
 
-#define Mario_SET_VTABLE(ClassName)							\
+#define Hero_SET_VTABLE(ClassName)							\
 	Actor_SET_VTABLE(ClassName);							\
-	__VIRTUAL_SET(ClassName, Mario, die);					\
-	__VIRTUAL_SET(ClassName, Mario, doKeyPressed);			\
-	__VIRTUAL_SET(ClassName, Mario, doKeyUp);				\
-	__VIRTUAL_SET(ClassName, Mario, doKeyHold);				\
-	__VIRTUAL_SET(ClassName, Mario, takeHitFrom);			\
+	__VIRTUAL_SET(ClassName, Hero, die);					\
+	__VIRTUAL_SET(ClassName, Hero, doKeyPressed);			\
+	__VIRTUAL_SET(ClassName, Hero, doKeyUp);				\
+	__VIRTUAL_SET(ClassName, Hero, doKeyHold);				\
+	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);			\
 
-// A Mario!
-__CLASS(Mario);
+// A Hero!
+__CLASS(Hero);
 
-#define Mario_ATTRIBUTES							\
+#define Hero_ATTRIBUTES							\
 													\
 	/* it is derivated from */						\
 	Actor_ATTRIBUTES								\
@@ -124,134 +95,134 @@ __CLASS(Mario);
  */
 
 // there can only be one mario instantiated
-Mario Mario_getInstance();
+Hero Hero_getInstance();
 
 // allocator
-__CLASS_NEW_DECLARE(Mario, __PARAMETERS(ActorDefinition* animatedEntityDefinition, int ID));
+__CLASS_NEW_DECLARE(Hero, __PARAMETERS(ActorDefinition* animatedEntityDefinition, int ID));
 
 // class's constructor
-void Mario_constructor(Mario this, ActorDefinition* definition, int ID);
+void Hero_constructor(Hero this, ActorDefinition* definition, int ID);
 
 // class's conctructor
-void Mario_destructor(Mario this);
+void Hero_destructor(Hero this);
 
 // start movement
-void Mario_startMoving(Mario this);
+void Hero_startMoving(Hero this);
 
 // keep movement
-void Mario_keepMoving(Mario this);
+void Hero_keepMoving(Hero this);
 
 // stop moving
-void Mario_stopMoving(Mario this);
+void Hero_stopMoving(Hero this);
 
 // started moving over axis
-int Mario_startedMovingOnAxis(Mario this, int axis, int changeState);
+int Hero_startedMovingOnAxis(Hero this, int axis, int changeState);
 
 // stop moving over axis
-int Mario_stopMovingOnAxis(Mario this, int axis, int changeState);
+int Hero_stopMovingOnAxis(Hero this, int axis, int changeState);
 
 // update movement
-void Mario_move(Mario this);
+void Hero_move(Hero this);
 
 // make him jump
-void Mario_jump(Mario this, int changeState);
+void Hero_jump(Hero this, int changeState);
 
 // keep adding force to jump
-void Mario_addMomentumToJump(Mario this);
+void Hero_addMomentumToJump(Hero this);
 
 // check direction
-void Mario_checkDirection(Mario this, u16 currentPressedKey);
+void Hero_checkDirection(Hero this, u16 currentPressedKey, char * animation);
 
 // process a collision
-int  Mario_processCollision(Mario this, Telegram telegram);
+int  Hero_processCollision(Hero this, Telegram telegram);
 
 // recieve a hit
-void Mario_takeHitFrom(Mario this, Actor other);
+void Hero_takeHitFrom(Hero this, Actor other);
 
 // react to a collision with a koopa
-//int Mario_isHitByEnemy(Mario this, Enemy enemy, int axis);
+//int Hero_isHitByEnemy(Hero this, Enemy enemy, int axis);
 
 // disable boost
-void Mario_disableBoost(Mario this);
+void Hero_disableBoost(Hero this);
 
 // enable boost
-void Mario_enableBoost(Mario this);
+void Hero_enableBoost(Hero this);
 
 // set action time
-void Mario_setActionTime(Mario this, u32 time);
+void Hero_setActionTime(Hero this, u32 time);
 
 // retrieve action time
-u32 Mario_getActionTime(Mario this);
+u32 Hero_getActionTime(Hero this);
 
 // pickup an object
-void Mario_pickupObject(Mario this, Actor object);
+void Hero_pickupObject(Hero this, Actor object);
 
 // check if player wants to jump over z axis
-int Mario_checkIfZJump(Mario this);
+int Hero_checkIfZJump(Hero this);
 
-// Mario falled 
-void Mario_fallDead(Mario this);
+// Hero falled 
+void Hero_fallDead(Hero this);
 
 // called when blink animation is done
-void Mario_blinkDone(Mario this);
+void Hero_blinkDone(Hero this);
 
 // was jumping over z?
-int  Mario_isMovingOverZ(Mario this);
+int  Hero_isMovingOverZ(Hero this);
 
 // set jumping over z status
-void Mario_setMovingOverZ(Mario this, int  state);
+void Hero_setMovingOverZ(Hero this, int  state);
 
 // set hold object's position 
-void Mario_updateHoldObjectPosition(Mario this);
+void Hero_updateHoldObjectPosition(Hero this);
 
 // make mario to look to the player
-void Mario_lookFront(Mario this);
+void Hero_lookFront(Hero this);
 
 // make mario to look away the player
-void Mario_lookBack(Mario this);
+void Hero_lookBack(Hero this);
 
 // set  graphical gap
-void Mario_setGap(Mario this);
+void Hero_setGap(Hero this);
 
 // make mario to look to the side
-void Mario_lookSide(Mario this);
+void Hero_lookSide(Hero this);
 
 // check if must thrown an object
-void Mario_throwObject(Mario this);
+void Hero_throwObject(Hero this);
 
 // die mario
-void Mario_die(Mario this);
+void Hero_die(Hero this);
 
 // check if must move over a bridge
-void Mario_checkIfBridge(Mario this, int  keyPressed);
+void Hero_checkIfBridge(Hero this, int  keyPressed);
 
 // update movement over the bridge
-void Mario_moveOnBridge(Mario this);
+void Hero_moveOnBridge(Hero this);
 
 // set bridge
 
 // determine which layer I'm
-void Mario_determineLayer(Mario this);
+void Hero_determineLayer(Hero this);
 
 // clear the actionTime
-void Mario_resetActionTime(Mario this);
+void Hero_resetActionTime(Hero this);
 
 // goal reached
-void Mario_win(Mario this);
+void Hero_win(Hero this);
 
 // goal reached
-void Mario_moveOnWin(Mario this);
+void Hero_moveOnWin(Hero this);
 
 // process user input
-int Mario_doKeyPressed(Mario this, int pressedKey);
+int Hero_doKeyPressed(Hero this, int pressedKey);
 
 // process user input
-int Mario_doKeyUp(Mario this, int pressedKey);
+int Hero_doKeyUp(Hero this, int pressedKey);
 
 // process user input
-int Mario_doKeyHold(Mario this, int pressedKey);
+int Hero_doKeyHold(Hero this, int pressedKey);
 
 // check if dead
-void Mario_checkIfDied(Mario this);
+void Hero_checkIfDied(Hero this);
 
 #endif /*MARIOLOGIC_H*/
