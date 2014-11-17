@@ -121,8 +121,6 @@ __CLASS_DEFINITION(SplashScreen);
 // it's a singleton
 __SINGLETON_DYNAMIC(SplashScreen);
 
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
 static void SplashScreen_constructor(SplashScreen this){

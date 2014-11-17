@@ -1,4 +1,7 @@
 #Makefile taken from Wikipedia.org
+#
+# Specify the main target
+TARGET = skeleton
 
 # Default build type
 TYPE = debug
@@ -11,8 +14,12 @@ DIRS := $(shell find source -type d -print)
 # Which libraries are linked
 LIBS =
 ROMHEADER=lib/vb.hdr 
+
 # Dynamic libraries
 DLIBS =
+
+# Binary output dir
+OUTPUT = output
 
 # Obligatory headers
 GAME_ESSENTIALS = -include source/game/common.h 	
@@ -26,13 +33,13 @@ MACROS = __DEBUG
 endif
 
 ifeq ($(TYPE), release)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -Wall -O3 -Winline $(GAME_ESSENTIALS)
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESSENTIALS)
 MACROS = NDEBUG
 endif
 
 ifeq ($(TYPE),preprocessor)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline $(GAME_ESSENTIALS) -E
 MACROS = __DEBUG
 endif
@@ -76,35 +83,39 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 # first build the engine
 ENGINE = libvbjae.a
 
-all: output.vb
+all: $(TARGET).vb
 
-$(ENGINE):
+$(OUTPUT)/$(ENGINE):
 		@rm -f $(ENGINE)
+		@rm -f $(OUTPUT)/$(ENGINE)
 
 	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) 
 
 	
-output.vb: main.elf
+$(TARGET).vb: $(OUTPUT)/main.elf
 	@echo Creating $@
-	@$(OBJCOPY) -O binary main.elf $@
+	@$(OBJCOPY) -O binary $(OUTPUT)/main.elf $(OUTPUT)/$@
+	@echo $(TARGET).vb done
 	@echo Padding $@
-	@$(VBJAENGINE)/lib/utilities/padder $@
+	@$(VBJAENGINE)/lib/utilities/padder $(OUTPUT)/$@
 	@echo 
 #	@echo Generating assembler code
-#	@$(OBJDUMP) -t main.elf > sections.txt
-#	@$(OBJDUMP) -S main.elf > machine.asm
-	@echo Done
+#	@$(OBJDUMP) -t $(OUTPUT)/main.elf > $(OUTPUT)/sections.txt
+#	@$(OBJDUMP) -S $(OUTPUT)/main.elf > $(OUTPUT)/machine.asm
 	
 tryLinkingAgain:
 	@echo Error linking, deleting library
 	@rm -f $(ENGINE)
+	@rm -f $(OUTPUT)/$(ENGINE)
 	@make all
 
-main.elf: $(ENGINE) dirs $(OBJECTS) 
-		@echo Linking.
+$(OUTPUT)/main.elf: $(OUTPUT)/$(ENGINE) dirs $(OBJECTS) 
+		@echo Linking $(TARGET).		
+		@cp $(OUTPUT)/$(ENGINE) .
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
 			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) || tryLinkingAgain
 		@rm -f $(ENGINE)
+		@rm -f $(OUTPUT)/$(ENGINE)
 
 
 
@@ -127,6 +138,7 @@ clean:
 		@-rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
 		@-rm -Rf $(STORE)
 		@-rm -f $(ENGINE)
+		@-rm -f $(OUTPUT)/*
 
 # Backup the source files.
 backup:

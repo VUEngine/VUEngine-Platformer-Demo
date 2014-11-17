@@ -137,7 +137,7 @@ Hero Hero_getInstance(){
 
 void Hero_setInstance(Hero instance){
 	
-	ASSERT(!mario, "Hero already instantiated");
+	ASSERT(!mario, "Hero::setInstance: already instantiated");
 	
 	mario = instance;
 }
@@ -202,68 +202,11 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 void Hero_destructor(Hero this){
 
 	// free the instance pointer
-	ASSERT(mario == this, "Hero: more than on instance");
+	ASSERT(mario == this, "Hero::destructor: more than on instance");
 	mario = NULL;
 
 	// delete the super object
 	__DESTROY_BASE(Actor);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// start movement
-void Hero_startMoving1(Hero this){
-
-	/*
-	// must do some comparison regardless of my current direction
-	int  compareDirection = 0;
-	int  newDirection = 0;
-
-	// pick the current pressed key
-	u16 currentPressedKey = vbKeyPressed();
-		
-	// determine which direction will compare
-	if(currentPressedKey & K_LL){
-		
-		compareDirection = __RIGHT;
-		newDirection = __LEFT;
-	}
-	else{
-
-		if(currentPressedKey & K_LR){
-			
-			compareDirection = __LEFT;
-			newDirection = __RIGHT;			
-		}
-	}
-	
-	// if a direction was determined 
-	if(newDirection){		
-		
-		this->movingOverZ = false;
-		
-		// begin to move
-		Actor_startMovement((Actor)this, __XAXIS, __RETARMOVEX, HERO_VELOCITY_X, HERO_ACCELERATION_X);
-		
-		// must change the direction ?
-		if(this->direction.x == compareDirection){				
-			
-			this->direction.x = newDirection;
-		}
-	}		
-
-	// only play walk animation if not jumping/falling
-	if(!this->velocity.y){
-		
-		if(this->holdObject){
-			
-			Actor_playAnimation((Actor)this, "WalkHolding");
-		}
-		else{
-			
-			Actor_playAnimation((Actor)this, "Walk");
-		}
-	}
-	*/
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -472,7 +415,7 @@ void Hero_addMomentumToJump(Hero this) {
 // make him jump
 void Hero_jump(Hero this, int changeState){
 
-	Hero_startedMovingOnAxis(this, __YAXIS, changeState);
+	Hero_startedMovingOnAxis(this, __YAXIS);
 
 	if (this->body) {
 		
@@ -503,7 +446,7 @@ void Hero_startMoving(Hero this){
 // keep movement
 void Hero_keepMoving(Hero this){
 
-	ASSERT(this->body, "Hero: no body");
+	ASSERT(this->body, "Hero::keepMoving: no body");
 	static int movementType = 0;
 
 	fix19_13 maxVelocity = this->boost? HERO__BOOST_VELOCITY_X: HERO_VELOCITY_X;
@@ -589,10 +532,10 @@ void Hero_stopMoving(Hero this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // started moving over axis
-int Hero_startedMovingOnAxis(Hero this, int axis, int changeState){
+int Hero_startedMovingOnAxis(Hero this, int axis){
 
 	// start movement
-	if(changeState) {
+	if((State)HeroMoving_getInstance() != StateMachine_getCurrentState(Actor_getStateMachine((Actor) this))) {
 	
  		if(__XAXIS & axis) {
 
@@ -639,7 +582,7 @@ int Hero_startedMovingOnAxis(Hero this, int axis, int changeState){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // stop moving over axis
-int Hero_stopMovingOnAxis(Hero this, int axis, int changeState){
+int Hero_stopMovingOnAxis(Hero this, int axis){
 	
 	int movementState = Body_isMoving(this->body);
 
@@ -665,7 +608,7 @@ int Hero_stopMovingOnAxis(Hero this, int axis, int changeState){
 
 	}
 
-	if(changeState && !Body_isMoving(Actor_getBody((Actor)this))) {
+	if((State)HeroIdle_getInstance() != StateMachine_getCurrentState(Actor_getStateMachine((Actor) this)) && !Body_isMoving(Actor_getBody((Actor)this))) {
 
 		StateMachine_swapState(Actor_getStateMachine((Actor) this), (State)HeroIdle_getInstance());					
 	}
@@ -927,7 +870,7 @@ void Hero_takeHitFrom(Hero this, Actor other){
 	}
 	
 	// register time
-	this->actionTime = Clock_getTime(_inGameClock);
+	this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 	
 	// must unregister the shape for collision detections
 	Shape_setActive(this->shape, false);
@@ -938,7 +881,7 @@ void Hero_takeHitFrom(Hero this, Actor other){
 /*
 int Hero_isHitByEnemy(Hero this, Enemy enemy, int axis){
 
-	ASSERT(enemy);
+	ASSERT(enemy, "Hero::isHitByEnemy: null enemy");
 
 	
 	// if enemy is already dead
@@ -1075,7 +1018,9 @@ int Hero_isHitByEnemy(Hero this, Enemy enemy, int axis){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // set animation delta
 void Hero_setAnimationDelta(Hero this, int delta){
-	
+
+	ASSERT(this->sprites, "Hero::setAnimationDelta: null sprites");
+
 	VirtualNode node = VirtualList_begin(this->sprites);
 	
 	for(; node; node = VirtualNode_getNext(node)){
@@ -1385,7 +1330,7 @@ void Hero_lookSide(Hero this){
 	// if not playing blinking animation
 	if(!Actor_isPlayingAnimation((Actor)this, animationToPlay)){
 
-		u32 currentTime = Clock_getTime(_clock);
+		u32 currentTime = Clock_getTime(Game_getClock(Game_getInstance()));
 		
 		// randomly select if play blinking
 		if(currentTime - this->actionTime > HERO_BLINK_DELAY){
@@ -1503,7 +1448,7 @@ void Hero_die(Hero this){
 	}
 
 	// register time
-	this->actionTime = Clock_getTime(_inGameClock);
+	this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 	
 	// must unregister the shape for collision detections
 	Shape_setActive(this->shape, false);
@@ -1638,7 +1583,7 @@ void Hero_determineLayer(Hero this){
 // clear the actionTime
 void Hero_resetActionTime(Hero this){
 
-	//this->actionTime = Clock_getTime(_clock);
+	//this->actionTime = Clock_getTime(Game_getClock(Game_getInstance()));
 }
 
 
@@ -1652,7 +1597,7 @@ void Hero_win(Hero this){
 	
 	Actor_startMovement((Actor)this, __ZAXIS, __UNIFORMMOVE, FIX19_13_DIV(HERO_VELOCITY_Z, ITOFIX19_13(4)), 0);
 	
-	this->actionTime = Clock_getTime(_inGameClock);
+	this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 	*/
 }
 
@@ -1661,7 +1606,7 @@ void Hero_win(Hero this){
 void Hero_moveOnWin(Hero this){
 	
 	/*
-	u32 currentTime = Clock_getTime(_inGameClock);
+	u32 currentTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 	
 	if(this->velocity.z){
 	
@@ -1709,7 +1654,7 @@ int Hero_doKeyHold(Hero this, int pressedKey){
 // check if dead
 void Hero_checkIfDied(Hero this) {
 
-	ASSERT(this->body, "Hero::checkIfDied: NULL body");
+	ASSERT(this->body, "Hero::checkIfDied: null body");
 		
 	Velocity velocity = Body_getVelocity(this->body);
 

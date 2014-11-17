@@ -671,11 +671,11 @@ ActorROMDef HERO_MC = {
 			},
 			
 			// deep
-			5,
+			10,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
-			{5,		1,		8,		6,},		
+			{5,		1,		8,		6},		
 			//{0,		0,		0,		0,},
 			
 			// in game type

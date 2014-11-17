@@ -27,6 +27,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+#include <Game.h>
 #include <CollisionManager.h>
 #include <Optics.h>
 #include <PhysicalWorld.h>
@@ -249,7 +250,7 @@ void PiranhaPlant_move(PiranhaPlant this){
 							this->direction.y = __DOWN;
 							
 							// start action time
-							this->actionTime = Clock_getTime(_inGameClock);
+							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 							
 							// set position
 							this->transform.localPosition.y = this->initialPosition - displacement;
@@ -275,7 +276,7 @@ void PiranhaPlant_move(PiranhaPlant this){
 							this->direction.y = __UP;
 							
 							// start action time
-							this->actionTime = Clock_getTime(_inGameClock);
+							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 							
 							// set position
 							this->transform.localPosition.y = this->initialPosition + displacement;

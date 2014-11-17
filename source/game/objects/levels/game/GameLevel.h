@@ -75,11 +75,12 @@ __CLASS(GameLevel);
 
 enum GameLevelMessageTypes{
 	
-	kHeroDied = kLastEngineMessage + 1,
+	kHeroDied = kLastEngineMessage + 1, // 16
 	kHeroFall,
-	kShowUpLevel,
-	kStartLevel,
-	kHideStartUpMessage,
+	kSetUpLevel,	//18
+	kShowUpLevel,	//19
+	kStartLevel,	// 20
+	kHideStartUpMessage, //21
 };
 
 /* ---------------------------------------------------------------------------------------------------------

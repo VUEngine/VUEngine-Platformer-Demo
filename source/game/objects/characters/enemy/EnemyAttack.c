@@ -100,7 +100,7 @@ void EnemyAttack_enter(EnemyAttack this, void* owner){
 void EnemyAttack_execute(EnemyAttack this, void* owner){
 	
 	
-//	if(HERO_TIME_TO_DIE < Clock_getTime(_inGameClock) - Enemy_getActionTime((Enemy)owner)){
+//	if(HERO_TIME_TO_DIE < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner)){
 		
 		// change state
 		StateMachine_popState(Actor_getStateMachine((Actor)owner));

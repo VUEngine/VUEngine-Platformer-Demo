@@ -106,9 +106,6 @@ void Hero_constructor(Hero this, ActorDefinition* definition, int ID);
 // class's conctructor
 void Hero_destructor(Hero this);
 
-// start movement
-void Hero_startMoving(Hero this);
-
 // keep movement
 void Hero_keepMoving(Hero this);
 
@@ -116,10 +113,10 @@ void Hero_keepMoving(Hero this);
 void Hero_stopMoving(Hero this);
 
 // started moving over axis
-int Hero_startedMovingOnAxis(Hero this, int axis, int changeState);
+int Hero_startedMovingOnAxis(Hero this, int axis);
 
 // stop moving over axis
-int Hero_stopMovingOnAxis(Hero this, int axis, int changeState);
+int Hero_stopMovingOnAxis(Hero this, int axis);
 
 // update movement
 void Hero_move(Hero this);

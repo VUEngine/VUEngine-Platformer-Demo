@@ -28,7 +28,9 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-
+#include <Game.h>
+#include <InGameEntity.h>
+#include <MessageDispatcher.h>
 
 #include "PiranhaPlantMoving.h"
 #include "PiranhaPlantIdle.h"
@@ -114,9 +116,7 @@ void PiranhaPlantMoving_enter(PiranhaPlantMoving this, void* owner){
 	PiranhaPlant_startMovement((PiranhaPlant)owner);
 	
 	Actor_playAnimation((Actor)owner, "Bite");
-	Printing_text("PiranhaPlant Bite", 0, 8);
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
@@ -131,7 +131,7 @@ void PiranhaPlantMoving_execute(PiranhaPlantMoving this, void* owner){
 	else{
 		
 		// if wait time elapsed
-		if(PIRANHA_PLANT_WAIT_DELAY < Clock_getTime(_inGameClock) - Enemy_getActionTime((Enemy)owner)){
+		if(PIRANHA_PLANT_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner)){
 			
 			// start movement in opposite direction
 			PiranhaPlant_startMovement((PiranhaPlant)owner);
@@ -157,6 +157,7 @@ u16 PiranhaPlantMoving_handleMessage(PiranhaPlantMoving this, void* owner, Teleg
 		case kCollision:
 		{
 			VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
+			ASSERT(collidingObjects, "PiranhaPlantMoving::handleMessage: null collidingObjects");
 
 			VirtualNode node = NULL;
 			
@@ -168,6 +169,16 @@ u16 PiranhaPlantMoving_handleMessage(PiranhaPlantMoving this, void* owner, Teleg
 				switch(InGameEntity_getInGameType(inGameEntity)){
 				
 					case kHero:
+					{
+						VirtualList collidingObjects = __NEW(VirtualList);
+
+						// add object to list
+						VirtualList_pushFront(collidingObjects, (void*)owner);
+
+						MessageDispatcher_dispatchMessage(0, (Object)InGameEntity_getShape(inGameEntity), (Object)inGameEntity, kCollision, (void*)collidingObjects);
+						
+						__DELETE(collidingObjects);
+					}
 							// ok, i hit him
 							//Hero_takeHit((Mario)inGameEntity, Entity_getPosition((Entity)owner));
 							

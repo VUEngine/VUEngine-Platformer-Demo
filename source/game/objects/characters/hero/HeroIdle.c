@@ -140,7 +140,7 @@ void HeroIdle_enter(HeroIdle this, void* owner){
 
 	Hero_setGap((Hero)owner);
 	
-//	Printing_text("Idle   ", 0, 0);
+	Printing_text("Idle   ", 0, 0);
 }
 
 
@@ -191,7 +191,7 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 
 		case kBodyStartedMoving:
 
-			return Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram), true);
+			return Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kKeyPressed:
@@ -217,7 +217,13 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 	*/
 						Hero_checkDirection((Hero)owner, pressedKey, "Idle");					
 	
-						Hero_startedMovingOnAxis((Hero)owner, __XAXIS, true);
+						Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
+						
+						if(K_A & pressedKey ){
+
+							Hero_jump((Hero)owner, true);
+						}
+
 						return true;
 						break;
 				}

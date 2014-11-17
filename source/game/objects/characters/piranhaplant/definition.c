@@ -82,7 +82,7 @@ AnimationFunction PIRANHA_PLANT_V_BITE_ANIM = {
 	{0, 1},
 	
 	// number of cicles a frame of animation is displayed
-	25,
+	20,
 	
 	// whether to play it in loop or not
 	true,
@@ -162,7 +162,7 @@ PiranhaPlantDefinition PIRANHA_PLANT_V_MC = {
 				},
 				
 				// deep
-				5,
+				10,
 				
 				//collision detection gap			
 				//up,	down,	left,	right,

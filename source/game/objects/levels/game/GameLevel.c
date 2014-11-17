@@ -101,8 +101,6 @@ __CLASS_DEFINITION(GameLevel);
 // it's a singleton
 __SINGLETON_DYNAMIC(GameLevel);
 
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
 static void GameLevel_constructor(GameLevel this){
@@ -126,8 +124,10 @@ static void GameLevel_destructor(GameLevel this){
 // state's enter
 static void GameLevel_enter(GameLevel this, void* owner){
 	
-	_optical->verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
-
+	Optical optical = Game_getOptical(Game_getInstance());
+	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
+	Game_setOptical(Game_getInstance(), optical);
+	
 	//load stage
 	Level_loadStage((Level)this, (StageDefinition*)&LEVEL_0_0_0_ST, true);
 
@@ -141,27 +141,16 @@ static void GameLevel_enter(GameLevel this, void* owner){
 	this->mode = kPaused;
 	
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kShowUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
 static void GameLevel_execute(GameLevel this, void* owner){
 	
-	if(kSettingUp == this->mode) {
-	
-		Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
-		
-		MessageDispatcher_dispatchMessage(2000, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
-
-		Printing_text("GET READY", 21, 5);
-
-		this->mode = kShowingUp;
-	}
-
 	// print clock if the second has changed
 	static int previousSecond = 0;	
-	int currentSecond = Clock_getSeconds(_inGameClock);
+	int currentSecond = Clock_getSeconds(Game_getInGameClock(Game_getInstance()));
 	
 	if(currentSecond != previousSecond){
 		
@@ -169,7 +158,7 @@ static void GameLevel_execute(GameLevel this, void* owner){
 		
 		Printing_text("Time ", 37, 0);
 
-		Clock_print(_inGameClock, 42, 0);
+		Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
 	}
 
 
@@ -225,34 +214,48 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 
 	// process message
 	switch(Telegram_getMessage(telegram)){
-	
-		case kHideStartUpMessage:
-			
-			Printing_text("            ", 21, 5);
-			break;
 
-		case kStartLevel:
-
-			Printing_text("    GO!   ", 21, 5);
-
-			this->mode = kPlaying;
-			
-			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kHideStartUpMessage, NULL);
-
-			break;
-			
-		case kShowUpLevel:
+		case kSetUpLevel:
 		
 			Printing_text("Time ", 37, 0);
-			
-			Clock_reset(_inGameClock);
-			Clock_start(_inGameClock);
-			Clock_print(_inGameClock, 42, 0);
-			
+			Clock_reset(Game_getInGameClock(Game_getInstance()));
+			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
+			Clock_start(Game_getInGameClock(Game_getInstance()));
+	
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
 
+			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kShowUpLevel, NULL);
+
 			this->mode = kSettingUp;
+			break;	
+
+		case kShowUpLevel:
+
+			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+			Printing_text("GET READY", 21, 5);
+			Clock_stop(Game_getInGameClock(Game_getInstance()));
+			Clock_reset(Game_getInGameClock(Game_getInstance()));
+			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
+			
+			MessageDispatcher_dispatchMessage(1500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
+
+			this->mode = kShowingUp;
+			break;
+			
+		case kStartLevel:
+
+			Printing_text("    GO!   ", 21, 5);
+			
+			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kHideStartUpMessage, NULL);
+			Clock_start(Game_getInGameClock(Game_getInstance()));
+
+			this->mode = kPlaying;
+			break;
+
+		case kHideStartUpMessage:
+			
+			Printing_text("            ", 21, 5);
 			break;
 			
 		case kKeyPressed:	
@@ -271,7 +274,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 					
 					this->mode = kPlaying;
 					Printing_text("     ", 22, 13);
-					Clock_pause(_inGameClock, false);
+					Clock_pause(Game_getInGameClock(Game_getInstance()), false);
 					
 					VIP_REGS[GPLT0] = __GPLT0VALUE;	
 					VIP_REGS[GPLT1] = __GPLT1VALUE;	
@@ -284,7 +287,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 					Printing_text("                  ", 0, 0);
 					this->mode = kPaused;
 					Printing_text("Pause", 22, 13);
-					Clock_pause(_inGameClock, true);
+					Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 					
 					VIP_REGS[GPLT0] = 0xA0;
 					VIP_REGS[GPLT1] = 0x90;
@@ -310,19 +313,19 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 				
 				if(kMovingScreen == this->mode){
 					
-					this->lastTime = Clock_getTime(_inGameClock);
+					this->lastTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 					Printing_text("Moving screen     ", 0, 0);
 				}
 				
 				if(kMovingPerspective == this->mode){
 					
-					this->lastTime = Clock_getTime(_inGameClock);
+					this->lastTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 					Printing_text("Moving perspective", 0, 0);
 				}
 				
 				if(kPlaying == this->mode){
 					
-					this->lastTime = Clock_getTime(_inGameClock);
+					this->lastTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 					Printing_text("                  ", 0, 0);
 				}				
 			}
@@ -356,7 +359,6 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 		case kHeroDied:	
 			
 			Game_changeState(Game_getInstance(), (State)TitleScreen_getInstance());
-			
 			return true;
 			break;			
 	}
@@ -387,13 +389,13 @@ void GameLevel_levelCleared(GameLevel this){
 void GameLevel_moveScreen(GameLevel this){
 /*
 	
-	u32 currentTime = Clock_getTime(_inGameClock);
+	u32 currentTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 	int displacement = 200 * (currentTime - this->lastTime) / 1000;
 	displacement = 50;
 
 	if(currentTime - this->lastTime > 200){
 		
-		this->lastTime = Clock_getTime(_inGameClock);;
+		this->lastTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));;
 		displacement = 4;
 	}
 	this->lastTime = currentTime;
@@ -434,72 +436,72 @@ static void GameLevel_movePerspective(GameLevel this){
 	
 		case K_LL:
 			
-			if(_optical->horizontalViewPointCenter > 0){
+			if(optical.horizontalViewPointCenter > 0){
 				
-				_optical->horizontalViewPointCenter--;
+				optical.horizontalViewPointCenter--;
 			}
 			else{
-				_optical->horizontalViewPointCenter=0;
+				optical.horizontalViewPointCenter=0;
 			}
 			
 			break;
 			
 		case K_LR:
 			
-			if(_optical->horizontalViewPointCenter < 384){
+			if(optical.horizontalViewPointCenter < 384){
 				
-				_optical->horizontalViewPointCenter++;
+				optical.horizontalViewPointCenter++;
 			}
 			else{
-				_optical->horizontalViewPointCenter=384;
+				optical.horizontalViewPointCenter=384;
 			}
 
 			break;
 			
 		case K_LU:
 			
-			if(_optical->verticalViewPointCenter > 0){
+			if(optical.verticalViewPointCenter > 0){
 				
-				_optical->verticalViewPointCenter--;
+				optical.verticalViewPointCenter--;
 			}
 			else{
-				_optical->verticalViewPointCenter=0;
+				optical.verticalViewPointCenter=0;
 			}
 
 			break;
 			
 		case K_LD:
 			
-			if(_optical->verticalViewPointCenter < 224){
+			if(optical.verticalViewPointCenter < 224){
 				
-				_optical->verticalViewPointCenter++;
+				optical.verticalViewPointCenter++;
 			}
 			else{
-				_optical->verticalViewPointCenter=224;
+				optical.verticalViewPointCenter=224;
 			}
 
 			break;
 			
 		case K_RL:
 			
-			if(_optical->baseDistance > 10){
+			if(optical.baseDistance > 10){
 				
-				_optical->baseDistance -=10;
+				optical.baseDistance -=10;
 			}
 			else{
-				_optical->baseDistance = 1;
+				optical.baseDistance = 1;
 			}
 	
 			break;
 			
 		case K_RR:
 			
-			if(_optical->baseDistance < __BASEFACTOR +__BASEFACTOR/2){
+			if(optical.baseDistance < __BASEFACTOR +__BASEFACTOR/2){
 				
-				_optical->baseDistance += 10;
+				optical.baseDistance += 10;
 			}
 			else{
-				_optical->baseDistance=__BASEFACTOR+__BASEFACTOR/2;
+				optical.baseDistance=__BASEFACTOR+__BASEFACTOR/2;
 			}
 	
 			break;
@@ -507,13 +509,13 @@ static void GameLevel_movePerspective(GameLevel this){
 			
 		case K_RU:
 			
-			if(_optical->maximunViewDistance > __MAXVIEWDISTANCE/2){
+			if(optical.maximunViewDistance > __MAXVIEWDISTANCE/2){
 				
-				_optical->maximunViewDistance--;
+				optical.maximunViewDistance--;
 			}
 			else{
 				
-				_optical->maximunViewDistance =__MAXVIEWDISTANCE/2;
+				optical.maximunViewDistance =__MAXVIEWDISTANCE/2;
 			}
 
 			
@@ -521,12 +523,12 @@ static void GameLevel_movePerspective(GameLevel this){
 			
 		case K_RD:
 			
-			if(_optical->maximunViewDistance < __MAXVIEWDISTANCE+__MAXVIEWDISTANCE/2){
+			if(optical.maximunViewDistance < __MAXVIEWDISTANCE+__MAXVIEWDISTANCE/2){
 				
-				_optical->maximunViewDistance++;
+				optical.maximunViewDistance++;
 			}
 			else{
-				_optical->maximunViewDistance = __MAXVIEWDISTANCE+__MAXVIEWDISTANCE/2;
+				optical.maximunViewDistance = __MAXVIEWDISTANCE+__MAXVIEWDISTANCE/2;
 			}
 
 			break;
