@@ -48,7 +48,7 @@ Description:
 
 A short summary of the file layout:
 
-source/			   		Mario VB source code
+source/			   		Skeleton VB source code
 source/game/objects/	Definition and implementation of the different graphics, objects, IA, worlds			
 output/					Binary output folder
 
@@ -65,7 +65,7 @@ Requirements:
 
 	· Minimal Linux environment (i.e: CygWin)
 	
-	· GCCVB 2.95 for V810 
+	· GCCVB 4.4.2 for V810 
 
 
 
@@ -83,7 +83,7 @@ COMPILING ON GNU/LINUX
 
 Requirements: 
 
-	· GCCVB 2.95 for V810 
+	· GCCVB 4.4.2 for V810 
 
 
 1. Create a CygWin environment variable called VBJAENGINE which must point to the vbJaEngine's folder.
