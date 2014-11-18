@@ -117,7 +117,7 @@ TextureDefinition PIRANHA_PLANT_V_TX = {
 				PIRANHA_PLANT_V_CH,	
 				
 				// numChars,
-				11 * 2,
+				12,
 				
 				// allocation type
 				__ANIMATED_SHARED

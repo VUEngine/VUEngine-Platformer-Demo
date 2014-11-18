@@ -56,10 +56,13 @@
 
 __CLASS(HeroMoving);
 
-#define HeroMoving_ATTRIBUTES		\
+#define HeroMoving_ATTRIBUTES			\
 										\
 	/* inherits */						\
-	State_ATTRIBUTES
+	State_ATTRIBUTES					\
+										\
+	/* check direction flag */			\
+	u8 mustCheckDirection;
 
 
 /* ---------------------------------------------------------------------------------------------------------

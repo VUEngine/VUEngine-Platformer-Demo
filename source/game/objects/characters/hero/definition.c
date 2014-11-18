@@ -647,6 +647,7 @@ SpriteROMDef HERO_SPRITES[] = {
 		// display mode
 		WRLD_ON,
 	},
+
 	// Sprite
 	{
 		// the texture

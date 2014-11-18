@@ -96,7 +96,6 @@ void PiranhaPlant_constructor(PiranhaPlant this, PiranhaPlantDefinition* piranha
 
 	// register a body for physics
 	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), (Actor)this, 0);
-
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
 	// save over which axis I'm going to move

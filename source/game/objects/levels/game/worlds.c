@@ -22,6 +22,7 @@
 /*---------------------------------INCLUDES--------------------------------*/
 #include <objects.h>
 #include <macros.h>
+#include "textures.h"
 
 /*---------------------------------ASSETS----------------------------------*/
 /*---------------------------------ASSETS----------------------------------*/
@@ -54,6 +55,11 @@ StageROMDef TITLE_ST = {
 		//background music		
 		NULL,
 
+		//textures 
+		{
+			NULL
+		},
+
 		//entities
 		{			
 			{&MARIO_TITLE_RIGHT_IM, {384/2, 192/2 + 8, LAYER_0}, NULL},
@@ -61,6 +67,11 @@ StageROMDef TITLE_ST = {
 			{NULL,{0,0,0}, NULL},
 		},
 };
+
+#define LAYER_0_FLOOR	208
+#define LAYER_1_FLOOR	208 - 16
+#define LAYER_2_FLOOR	208 - 32
+#define LAYER_3_FLOOR	208 - 64
 
 StageROMDef LEVEL_0_0_0_ST = {
 		
@@ -86,50 +97,61 @@ StageROMDef LEVEL_0_0_0_ST = {
 		
 		//background music		
 		(const u16 (*)[])WORLD_0_0_0_BGM,
-		//NULL,
 
-#define LAYER_0_FLOOR	208
-#define LAYER_1_FLOOR	208 - 16
-#define LAYER_2_FLOOR	208 - 32
-#define LAYER_3_FLOOR	208 - 64
+		// textures
+		{
+			&HERO1_TX,
+			&HERO0_TX,
+			&FLOOR0_TX,
+			&PIPE0_TX,
+			&PIRANHA_PLANT_V_TX,
+			&WALL0_TX,
+			&FLOOR1_TX,
+			&MOUNTS0_TX,
+			&FLOOR2_TX,
+			&GOAL0_TX,
+			&BACKMOUNT01_TX,
+			&BACKMOUNT02_TX,
+			&JAPANARC_TX,
+			
+			NULL
+		},
 		//entities
 		{			
 			{&BACKMOUNT0_SB, {112, 176, LAYER_4}, NULL},
 
-			{&WALL0_BG, {200, 100 + 10*8, PLAYABLE_LAYER_0}, NULL},			
-			{&WALL0_BG, {200, 100 + 7*8, PLAYABLE_LAYER_0}, NULL},			
-			
 			{&MOUNTS0_IM, {112, 176, LAYER_2}, NULL},
-//			{&MOUNTS1_IM, {612, 208-60, LAYER_3}, NULL},
+			{&MOUNTS1_IM, {612, 208-60, LAYER_3}, NULL},
 			{&FLOOR0_BG, {112, LAYER_0_FLOOR, LAYER_0}, NULL},
+			{&MOUNTS0_IM, {-31, 176, LAYER_2}, NULL},
 			{&FLOOR1_BG, {296, LAYER_0_FLOOR, LAYER_0}, NULL},
 			{&FLOOR0_BG, {478, LAYER_0_FLOOR, LAYER_0}, NULL},
+			{&WALL0_BG, {628, 65, PLAYABLE_LAYER_0}, NULL},			
+
 			{&JAPANARC_IM, {518, 160, BACKGROUND_LAYER_0}, NULL},
 			{&FLOOR0_BG, {592, LAYER_2_FLOOR, LAYER_2}, NULL},
+			{&WALL0_BG, {628, 224, PLAYABLE_LAYER_0}, NULL},			
+			{&WALL0_BG, {628 + 4 * 8, 224, PLAYABLE_LAYER_0}, NULL},			
+			{&WALL0_BG, {628 + 4 * 8 * 2 + 24, 224, PLAYABLE_LAYER_0}, NULL},			
 			{&PIPE0_BG, {728, 192, PLAYABLE_LAYER_2}, NULL},
 			{&FLOOR1_BG, {728, LAYER_1_FLOOR, LAYER_1}, NULL},
-			{&FLOOR0_BG, {808, LAYER_0_FLOOR, LAYER_0}, NULL},
-{&FLOOR0_BG, {712, 224, LAYER_0}, NULL},
+			{&FLOOR0_BG, {868, LAYER_0_FLOOR, LAYER_0}, NULL},
 			{&PIPE0_BG, {866, 186, PLAYABLE_LAYER_0 + 1}, NULL},			
 			{&PIRANHA_PLANT_V_MC, {865, 178, PLAYABLE_LAYER_0 + 2}, NULL},
 			{&WALL0_BG, {900, 160, PLAYABLE_LAYER_1}, NULL},			
 			{&FLOOR2_BG, {928, LAYER_2_FLOOR, LAYER_2}, NULL},
-{&FLOOR0_BG, {1000, 224, LAYER_0}, NULL},
-			{&FLOOR0_BG, {1220, LAYER_2_FLOOR, LAYER_2}, NULL},
+			{&FLOOR0_BG, {1020, LAYER_1_FLOOR, PLAYABLE_LAYER_0}, NULL},
 			{&PIPE1_BG, {1304, 160, PLAYABLE_LAYER_1}, NULL},			
 			{&PIPE0_BG, {1376, 184, PLAYABLE_LAYER_1}, NULL},			
-{&FLOOR0_BG, {1272, 224, LAYER_0}, NULL},
 			{&FLOOR1_BG, {1448, LAYER_1_FLOOR, LAYER_1}, NULL},
-			{&FLOOR0_BG, {1632, LAYER_1_FLOOR, LAYER_1}, NULL},
-{&FLOOR0_BG, {1564, LAYER_0_FLOOR, LAYER_0}, NULL},
+			{&FLOOR0_BG, {1624, LAYER_1_FLOOR, LAYER_1}, NULL},
 
 			{&POLE0_BG, {1584, 124, BACKGROUND_LAYER_1}, NULL},
 			{&GOAL0_IM, {1672, 64, BACKGROUND_LAYER_1}, NULL},
-			//{&GATE0_IM, {112, 96, PLAYABLE_LAYER_0}, NULL},
-
+			{&GATE0_IM, {112, 96, PLAYABLE_LAYER_0}, NULL},
 			{&HERO_MC, {60, 70, PLAYABLE_LAYER_0}, NULL},
 
-			{NULL,{0,0,0}, NULL},
+			{NULL, {0,0,0}, NULL},
 		},
 };
 

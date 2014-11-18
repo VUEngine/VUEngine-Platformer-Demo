@@ -127,9 +127,9 @@ static void GameLevel_enter(GameLevel this, void* owner){
 	Optical optical = Game_getOptical(Game_getInstance());
 	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
 	Game_setOptical(Game_getInstance(), optical);
-	
+
 	//load stage
-	Level_loadStage((Level)this, (StageDefinition*)&LEVEL_0_0_0_ST, true);
+	Level_loadStage((Level)this, (StageDefinition*)&LEVEL_0_0_0_ST, true, true);
 
 	// mario is alive!
 	this->marioIsDead = false;

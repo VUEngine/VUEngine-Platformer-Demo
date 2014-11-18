@@ -107,7 +107,7 @@ void Hero_constructor(Hero this, ActorDefinition* definition, int ID);
 void Hero_destructor(Hero this);
 
 // keep movement
-void Hero_keepMoving(Hero this);
+void Hero_keepMoving(Hero this, int changedDirection);
 
 // stop moving
 void Hero_stopMoving(Hero this);

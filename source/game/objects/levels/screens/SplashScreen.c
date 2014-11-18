@@ -82,10 +82,12 @@ static void SplashScreen_loadStage(SplashScreen this, StageDefinition* stageDefi
 extern const u16 ASCII_CH[];
 extern State __CONCAT(START_LEVEL, _getInstance)();
 
-#define PVB_SCREEN 				1
-#define PRECAUTION_SCREEN 		2
-#define VBJAE_SCREEN 			3
-#define SPLASH_EXIT 			4
+enum Screens {
+	kPvbScreen = 0,
+	kPrecautionScreen,
+	kVbJaeScreen,
+	kSplashExitScreen
+};
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -144,9 +146,9 @@ static void SplashScreen_enter(SplashScreen this, void* owner){
 	
 	_asciiChar = (const u16*)ASCII_CH;
 	
-	Level_loadStage((Level)this, (StageDefinition*)&PVB_ST, false);
+	Level_loadStage((Level)this, (StageDefinition*)&PVB_ST, false, true);
 
-	this->currentScreen = PVB_SCREEN;
+	this->currentScreen = kPvbScreen;
 	
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
@@ -180,22 +182,21 @@ static int SplashScreen_handleMessage(SplashScreen this, void* owner, Telegram t
 
 			switch(this->currentScreen){
 			
-				case PVB_SCREEN:
+				case kPvbScreen:
 
 						SplashScreen_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
-
-						this->currentScreen = PRECAUTION_SCREEN;
+						this->currentScreen = kPrecautionScreen;
 						break;
 						
-				case PRECAUTION_SCREEN:
+				case kPrecautionScreen:
 
 						SplashScreen_loadStage(this, (StageDefinition*)&VBJAE_ST);
-						this->currentScreen = VBJAE_SCREEN;
+						this->currentScreen = kVbJaeScreen;
 						break;
 						
-				case VBJAE_SCREEN:
+				case kVbJaeScreen:
 					
-						this->currentScreen = SPLASH_EXIT;
+						this->currentScreen = kSplashExitScreen;
 						Game_changeState(Game_getInstance(), (State)__CONCAT(START_LEVEL, _getInstance)());
 						break;
 			}
@@ -216,7 +217,7 @@ static void SplashScreen_loadStage(SplashScreen this, StageDefinition* stageDefi
 	// turn back the background
 	VIP_REGS[BKCOL] = 0x00;
 
-	Level_loadStage((Level)this, stageDefinition, false);
+	Level_loadStage((Level)this, stageDefinition, false, true);
 
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);

@@ -54,6 +54,11 @@ StageROMDef PVB_ST = {
 		
 		//background music		
 		NULL,
+		
+		//textures 
+		{
+			NULL
+		},
 
 		//entities
 		{			
@@ -88,7 +93,11 @@ StageROMDef PRECAUTION_ST = {
 		
 		//background music		
 		NULL,
-		//NULL,
+
+		//textures 
+		{
+			NULL
+		},
 
 		//entities
 		{			
@@ -124,6 +133,11 @@ StageROMDef PVBCC_ST = {
 		//background music		
 		NULL,
 
+		//textures 
+		{
+			NULL
+		},
+
 		//entities
 		{			
 			{&PVBCC_LEFT_IM, {384/2, 192/2 + 16, LAYER_0}, NULL},
@@ -158,7 +172,11 @@ StageROMDef VBJAE_ST = {
 		
 		//background music		
 		NULL,
-		//NULL,
+
+		//textures 
+		{
+			NULL
+		},
 
 		//entities
 		{			

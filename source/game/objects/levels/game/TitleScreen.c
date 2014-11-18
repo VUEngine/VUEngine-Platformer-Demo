@@ -124,7 +124,7 @@ static void TitleScreen_destructor(TitleScreen this){
 // state's enter
 static void TitleScreen_enter(TitleScreen this, void* owner){
 	
-	Level_loadStage((Level)this, (StageDefinition*)&TITLE_ST, false);
+	Level_loadStage((Level)this, (StageDefinition*)&TITLE_ST, false, true);
 	
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);

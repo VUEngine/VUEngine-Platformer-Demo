@@ -93,6 +93,8 @@ void HeroMoving_constructor(HeroMoving this){
 
 	// construct base
 	__CONSTRUCT_BASE(State);
+	
+	this->mustCheckDirection = false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +116,11 @@ void HeroMoving_enter(HeroMoving this, void* owner){
 	// correct gap accorging to animation
 	Hero_setGap((Hero)owner);
 
-	Printing_text("Moving   ", 0, 0);
+	this->mustCheckDirection = false;
+
+#ifdef __DEBUG
+	Printing_text("HeroMoving::enter", 0, 0);
+#endif
 }
 
 
@@ -204,7 +210,8 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 				// check direction
 				if((K_LL | K_LR ) & holdKey){
 					
-					Hero_keepMoving((Hero)owner);					
+					Hero_keepMoving((Hero)owner, this->mustCheckDirection);					
+					this->mustCheckDirection = false;
 				}
 				
 				if(K_B & holdKey){
@@ -229,6 +236,13 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 			
 			return Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
+
+		case kBodyBounced:
+			
+			this->mustCheckDirection = true;
+			return true;
+			break;
+
 		case kCollision:
 
 //			StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)HeroIdle_getInstance());					

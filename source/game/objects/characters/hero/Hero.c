@@ -444,7 +444,7 @@ void Hero_startMoving(Hero this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // keep movement
-void Hero_keepMoving(Hero this){
+void Hero_keepMoving(Hero this, int changedDirection){
 
 	ASSERT(this->body, "Hero::keepMoving: no body");
 	static int movementType = 0;
@@ -453,7 +453,7 @@ void Hero_keepMoving(Hero this){
 	
 	Velocity velocity = Body_getVelocity(this->body);
 
-	if (maxVelocity > fabs(velocity.x) || Actor_changedDirection((Actor)this, __XAXIS)){
+	if (changedDirection || maxVelocity > fabs(velocity.x) || Actor_changedDirection((Actor)this, __XAXIS)){
 		
 		Acceleration acceleration = {
 				__RIGHT == this->direction.x? ITOFIX19_13(5): ITOFIX19_13(-5),
@@ -468,6 +468,11 @@ void Hero_keepMoving(Hero this){
 			Body_addForce(this->body, &force);
 			movementType = __ACCELERATED_MOVEMENT;
 		}
+		
+		if(Actor_isPlayingAnimation((Actor)this, "Slide")){
+			
+			Actor_playAnimation((Actor)this, "Walk");
+		}			
 	}
 	else {
 		
@@ -608,14 +613,13 @@ int Hero_stopMovingOnAxis(Hero this, int axis){
 
 	}
 
-	if((State)HeroIdle_getInstance() != StateMachine_getCurrentState(Actor_getStateMachine((Actor) this)) && !Body_isMoving(Actor_getBody((Actor)this))) {
+	if(!Body_isMoving(Actor_getBody((Actor)this)) && (State)HeroIdle_getInstance() != StateMachine_getCurrentState(Actor_getStateMachine((Actor) this))) {
 
 		StateMachine_swapState(Actor_getStateMachine((Actor) this), (State)HeroIdle_getInstance());					
 	}
 	
 	return false;
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // check direction

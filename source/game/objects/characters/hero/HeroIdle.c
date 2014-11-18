@@ -140,7 +140,9 @@ void HeroIdle_enter(HeroIdle this, void* owner){
 
 	Hero_setGap((Hero)owner);
 	
-	Printing_text("Idle   ", 0, 0);
+#ifdef __DEBUG
+	Printing_text("HeroIde::enter   ", 0, 0);
+#endif
 }
 
 

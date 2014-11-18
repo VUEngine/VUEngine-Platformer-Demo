@@ -1,5 +1,5 @@
 #include <libgccvb.h>
-#include "G3d.h"
+#include <G3d.h>
 #include "GameFunctions.h"
 #include "GameData.h"
 
@@ -114,14 +114,14 @@ int StarFox(){
 	
 	level1.mapData = (u8*)Level1;
 
-	g3d_initObject(&objFighter,      (objectData*)Fighter);
-	g3d_initObject(&objGroundEffect, (objectData*)GroundEffect);
+	G3d_initObject(&objFighter,      (objectData*)Fighter);
+	G3d_initObject(&objGroundEffect, (objectData*)GroundEffect);
 	
 	initEnemyTable();
 	initObjectTable();
 	
 	for(i=0; i<LASER_TABLE_MAX; i++){
-		g3d_initObject(&laserTable[i],       (objectData*)Laser);
+		G3d_initObject(&laserTable[i],       (objectData*)Laser);
 		laserTable[i].properties.visible           = 0;
 		laserTable[i].properties.detectCollision   = 1;
 		laserTable[i].properties.lineColor         = 2;
@@ -158,7 +158,7 @@ int StarFox(){
 	//SND_REGS[5].SxINT = 0x80;
 	while(runGame){
 		handleInput(&objFighter);
-		g3d_moveCamera(&cam);
+		G3d_moveCamera(&cam);
 		
 		//Keep the fighter in front of the camera
 		objFighter.moveTo.x = cam.worldPosition.x;
@@ -170,14 +170,14 @@ int StarFox(){
 			if(enemyTable[i].objData != (objectData*)0x00) doMoveEnemy(&enemyTable[i]);
 		}
 		//Move the fighter around
-		g3d_moveObject(&objFighter);		
+		G3d_moveObject(&objFighter);		
 		//Move obstacles
 		for(i=0; i<OBJECT_TABLE_MAX; i++){
 			if(objectTable[i].objData != (objectData*)0x00){
-				g3d_moveObject(&objectTable[i]);
+				G3d_moveObject(&objectTable[i]);
 				//Check collision
 				collision = 0;
-				g3d_detectCollision(&objFighter.worldPosition, &objFighter.properties.hitCube, &objectTable[i].worldPosition, &objectTable[i].properties.hitCube, &collision);
+				G3d_detectCollision(&objFighter.worldPosition, &objFighter.properties.hitCube, &objectTable[i].worldPosition, &objectTable[i].properties.hitCube, &collision);
 				if(collision == 1) {
 					Channel3Play = 1;
 					Channel3Max = HIT_SOUND_SIZE;
@@ -194,7 +194,7 @@ int StarFox(){
 				for(j=0; j<ENEMY_TABLE_MAX; j++){
 					if(enemyTable[j].objData != (objectData*)0x00){
 						collision = 0;
-						g3d_detectCollision(&laserTable[i].worldPosition, &laserTable[i].properties.hitCube, &enemyTable[j].worldPosition, &enemyTable[j].properties.hitCube, &collision);
+						G3d_detectCollision(&laserTable[i].worldPosition, &laserTable[i].properties.hitCube, &enemyTable[j].worldPosition, &enemyTable[j].properties.hitCube, &collision);
 						if(collision == 1) {
 							Channel3Play = 1;
 							Channel3Max = HIT_SOUND_SIZE;
@@ -230,14 +230,14 @@ int StarFox(){
 		if(!frameSkip){ //Simple frame skipping
 			tickStart = tick;
 			for(i=0; i<ENEMY_TABLE_MAX; i++){
-				if(enemyTable[i].objData != (objectData*)0x00) g3d_drawObject(&enemyTable[i]);
+				if(enemyTable[i].objData != (objectData*)0x00) G3d_drawObject(&enemyTable[i]);
 			}
-			g3d_drawObject(&objFighter);
+			G3d_drawObject(&objFighter);
 			for(i=0; i<OBJECT_TABLE_MAX; i++){
-				if(objectTable[i].objData != (objectData*)0x00) g3d_drawObject(&objectTable[i]);
+				if(objectTable[i].objData != (objectData*)0x00) G3d_drawObject(&objectTable[i]);
 			}
 			for(i=0; i<LASER_TABLE_MAX; i++){
-				g3d_drawObject(&laserTable[i]);
+				G3d_drawObject(&laserTable[i]);
 			}
 			tickEnd = tick;
 			if((tickEnd - tickStart) > tickMax) tickMax = tickEnd - tickStart;
@@ -327,7 +327,7 @@ void doReadMapRow(map* m, u32 mapRow){
 		if(rowType == ROW_T_ENEMY){			
 			objIdx = 0;
 			while(enemyTable[objIdx].objData != (objectData*)0x00 && objIdx < ENEMY_TABLE_MAX) objIdx++;
-			g3d_initObject(&enemyTable[objIdx], EnemyObjectDataTable[b2 & 0x0F]);
+			G3d_initObject(&enemyTable[objIdx], EnemyObjectDataTable[b2 & 0x0F]);
 			enemyTable[objIdx].worldPosition.x = CELL_POSX(b1);
 			enemyTable[objIdx].worldPosition.y = CELL_POSY(b1);
 			enemyTable[objIdx].worldPosition.z = CELL_POSZ(b2) + FAR_Z;
@@ -343,7 +343,7 @@ void doReadMapRow(map* m, u32 mapRow){
 		if(rowType == ROW_T_OBSTACLE){
 			objIdx = 0;
 			while(objectTable[objIdx].objData != (objectData*)0x00 && objIdx < OBJECT_TABLE_MAX) objIdx++;
-			g3d_initObject(&objectTable[objIdx], StaticObjectDataTable[b2 & 0x0F]);
+			G3d_initObject(&objectTable[objIdx], StaticObjectDataTable[b2 & 0x0F]);
 			objectTable[objIdx].moveTo.x = objectTable[objIdx].worldPosition.x = CELL_POSX(b1);
 			objectTable[objIdx].moveTo.y = objectTable[objIdx].worldPosition.y = CELL_POSY(b1);
 			objectTable[objIdx].worldPosition.z = CELL_POSZ(b2) + FAR_Z;
@@ -368,9 +368,9 @@ Handles the players laser fire
 void doLaserFire(object* o, object* laser){
 	//Laser states: 0=Ready, 1=Moving, 2=End
 	if(laser->properties.state == 0 && laserFrame == 0 && fireLaser > 0){
-		g3d_copyVector3d(&o->worldPosition, &laser->worldPosition);
-		g3d_copyVector3d(&o->worldRotation, &laser->worldRotation);
-		g3d_copyVector3d(&laser->worldPosition, &laser->moveTo);
+		G3d_copyVector3d(&o->worldPosition, &laser->worldPosition);
+		G3d_copyVector3d(&o->worldRotation, &laser->worldRotation);
+		G3d_copyVector3d(&laser->worldPosition, &laser->moveTo);
 		laser->properties.visible = 1;
 		laserFrame = LASER_FRAME_DELAY;
 		laser->worldSpeed.z = F_NUM_UP(400);
@@ -434,7 +434,7 @@ void doMoveEnemy(object* o){
 			if(o->moveTo.x > o->worldPosition.x) o->worldRotation.y = 90;
 			if(o->moveTo.x < o->worldPosition.x) o->worldRotation.y = 270;
 			if(o->moveTo.z > o->worldPosition.z) o->worldRotation.y = 0;
-			g3d_moveObject(o);
+			G3d_moveObject(o);
 		}
 	}
 	if((o->properties.state & 0x0F) == 2){
@@ -455,12 +455,12 @@ void doGroundEffects(object* objGroundEffect){
 	
 	if(objGroundEffect->moveTo.z == objGroundEffect->worldPosition.z) objGroundEffect->moveTo.z = objGroundEffect->worldPosition.z - objGroundEffect->worldSpeed.z;
 	if(objGroundEffect->worldPosition.z < 0)                          objGroundEffect->worldPosition.z = (FAR_Z>>1);
-	g3d_moveObject(objGroundEffect);
+	G3d_moveObject(objGroundEffect);
 	//Draw a bunch of ground marks for depth and movement effect
 	for(i=0; i<8; i++){			
-		if(!frameSkip) g3d_drawObject(objGroundEffect);
+		if(!frameSkip) G3d_drawObject(objGroundEffect);
 		objGroundEffect->worldPosition.z += (FAR_Z>>1);
-		if(!frameSkip) g3d_drawObject(objGroundEffect);
+		if(!frameSkip) G3d_drawObject(objGroundEffect);
 		objGroundEffect->worldPosition.x += (GAME_AREA_WIDTH>>3);
 		objGroundEffect->worldPosition.z -= (FAR_Z>>1);
 	}

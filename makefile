@@ -4,8 +4,8 @@
 TARGET = skeleton
 
 # Default build type
-TYPE = debug
-#TYPE = release
+#TYPE = debug
+TYPE = release
 #TYPE = preprocessor
 
 # Which directories contain source files
@@ -98,7 +98,6 @@ $(TARGET).vb: $(OUTPUT)/main.elf
 	@echo $(TARGET).vb done
 	@echo Padding $@
 	@$(VBJAENGINE)/lib/utilities/padder $(OUTPUT)/$@
-	@echo 
 #	@echo Generating assembler code
 #	@$(OBJDUMP) -t $(OUTPUT)/main.elf > $(OUTPUT)/sections.txt
 #	@$(OBJDUMP) -S $(OUTPUT)/main.elf > $(OUTPUT)/machine.asm
