@@ -54,17 +54,8 @@ static void TitleScreen_constructor(TitleScreen this);
 // state's enter
 static void TitleScreen_enter(TitleScreen this, void* owner);
 
-// state's execute
-static void TitleScreen_execute(TitleScreen this, void* owner);
-
 // state's enter
 static void TitleScreen_exit(TitleScreen this, void* owner);
-
-// state's execute
-static void TitleScreen_pause(TitleScreen this, void* owner){}
-
-// state's execute
-static void TitleScreen_resume(TitleScreen this, void* owner){}
 
 // state's on message
 static int TitleScreen_handleMessage(TitleScreen this, void* owner, Telegram telegram);
@@ -128,13 +119,6 @@ static void TitleScreen_enter(TitleScreen this, void* owner){
 	
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's execute
-static void TitleScreen_execute(TitleScreen this, void* owner){
-	
-	// print clock if the second has changed
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

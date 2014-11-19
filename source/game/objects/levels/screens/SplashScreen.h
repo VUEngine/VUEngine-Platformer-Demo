@@ -50,8 +50,6 @@
 	__VIRTUAL_SET(ClassName, SplashScreen, enter);				\
 	__VIRTUAL_SET(ClassName, SplashScreen, execute);			\
 	__VIRTUAL_SET(ClassName, SplashScreen, exit);				\
-	__VIRTUAL_SET(ClassName, SplashScreen, pause);				\
-	__VIRTUAL_SET(ClassName, SplashScreen, resume);				\
 	__VIRTUAL_SET(ClassName, SplashScreen, handleMessage);		\
 
 

@@ -48,10 +48,7 @@
 #define TitleScreen_SET_VTABLE(ClassName)						\
 	Level_SET_VTABLE(ClassName)									\
 	__VIRTUAL_SET(ClassName, TitleScreen, enter);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, execute);				\
 	__VIRTUAL_SET(ClassName, TitleScreen, exit);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, pause);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, resume);				\
 	__VIRTUAL_SET(ClassName, TitleScreen, handleMessage);		\
 
 

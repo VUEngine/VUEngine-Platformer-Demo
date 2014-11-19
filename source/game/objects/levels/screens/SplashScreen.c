@@ -59,12 +59,6 @@ static void SplashScreen_execute(SplashScreen this, void* owner);
 // state's enter
 static void SplashScreen_exit(SplashScreen this, void* owner);
 
-// state's execute
-static void SplashScreen_pause(SplashScreen this, void* owner){}
-
-// state's execute
-static void SplashScreen_resume(SplashScreen this, void* owner){}
-
 // state's on message
 static int SplashScreen_handleMessage(SplashScreen this, void* owner, Telegram telegram);
 

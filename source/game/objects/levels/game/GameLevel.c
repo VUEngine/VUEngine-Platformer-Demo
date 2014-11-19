@@ -233,7 +233,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 		case kShowUpLevel:
 
 			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
-			Printing_text("GET READY", 21, 5);
+			Printing_text("GET READY", 21, 6);
 			Clock_stop(Game_getInGameClock(Game_getInstance()));
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
 			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
@@ -245,7 +245,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 			
 		case kStartLevel:
 
-			Printing_text("    GO!   ", 21, 5);
+			Printing_text("    GO!        ", 21, 6);
 			
 			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kHideStartUpMessage, NULL);
 			Clock_start(Game_getInGameClock(Game_getInstance()));
@@ -255,7 +255,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 
 		case kHideStartUpMessage:
 			
-			Printing_text("            ", 21, 5);
+			Printing_text("               ", 21, 6);
 			break;
 			
 		case kKeyPressed:	
