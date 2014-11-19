@@ -89,7 +89,7 @@ $(OUTPUT)/$(ENGINE):
 		@rm -f $(ENGINE)
 		@rm -f $(OUTPUT)/$(ENGINE)
 
-	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) 
+	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE)
 
 	
 $(TARGET).vb: $(OUTPUT)/main.elf

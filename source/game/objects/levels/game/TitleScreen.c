@@ -157,6 +157,15 @@ static int TitleScreen_handleMessage(TitleScreen this, void* owner, Telegram tel
 	
 		case kKeyPressed:	
 		
+			{
+				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+	
+				if(((pressedKey & K_STA) && (pressedKey & K_SEL))){
+					
+					break;
+				}
+			}
+
 			Game_changeState(Game_getInstance(), (State)GameLevel_getInstance());
 			break;
 	}

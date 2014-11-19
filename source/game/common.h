@@ -11,7 +11,6 @@
  */
 
 #include <libgccvb.h>
-#include <config.h>
 #include <Constants.h>
 #include <Globals.h>
 #include <HardwareManager.h>
