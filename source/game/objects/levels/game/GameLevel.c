@@ -496,12 +496,12 @@ static void GameLevel_movePerspective(GameLevel this){
 			
 		case K_RR:
 			
-			if(optical.baseDistance < __BASEFACTOR +__BASEFACTOR/2){
+			if(optical.baseDistance < __BASE_FACTOR +__BASE_FACTOR/2){
 				
 				optical.baseDistance += 10;
 			}
 			else{
-				optical.baseDistance=__BASEFACTOR+__BASEFACTOR/2;
+				optical.baseDistance=__BASE_FACTOR+__BASE_FACTOR/2;
 			}
 	
 			break;
