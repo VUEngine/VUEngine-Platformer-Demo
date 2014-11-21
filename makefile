@@ -112,7 +112,7 @@ $(OUTPUT)/main.elf: $(OUTPUT)/$(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET).		
 		@cp $(OUTPUT)/$(ENGINE) .
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
-			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) || tryLinkingAgain
+			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) || 	@rm -f $(OUTPUT)/$(ENGINE)
 		@rm -f $(ENGINE)
 		@rm -f $(OUTPUT)/$(ENGINE)
 

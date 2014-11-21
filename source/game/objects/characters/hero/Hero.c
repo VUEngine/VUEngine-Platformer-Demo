@@ -537,7 +537,7 @@ void Hero_stopMoving(Hero this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // started moving over axis
-int Hero_startedMovingOnAxis(Hero this, int axis){
+void Hero_startedMovingOnAxis(Hero this, int axis){
 
 	// start movement
 	if((State)HeroMoving_getInstance() != StateMachine_getCurrentState(Actor_getStateMachine((Actor) this))) {
@@ -581,8 +581,6 @@ int Hero_startedMovingOnAxis(Hero this, int axis){
 
 		}
 	}
-	
-	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

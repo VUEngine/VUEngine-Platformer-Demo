@@ -187,13 +187,14 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 	
 		case kCollision:
 
+			return false;
 			// process the collision
-			return Hero_processCollision((Hero)owner, telegram);
+//			return Hero_processCollision((Hero)owner, telegram);
 			break;
 
 		case kBodyStartedMoving:
 
-			return Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
+			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kKeyPressed:
@@ -209,7 +210,7 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 			{			
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-				if((K_LL | K_LR) & pressedKey){
+				if((K_LL | K_LR | K_A) & pressedKey){
 	
 						/* 
 						if((K_LR & pressedKey ) && (K_LL & pressedKey )){
@@ -228,12 +229,6 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 
 						return true;
 						break;
-				}
-
-				if(K_A & pressedKey ){
-
-					Hero_jump((Hero)owner, true);
-					return true;
 				}
 
 				// if up key pressed

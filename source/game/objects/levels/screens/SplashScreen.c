@@ -174,16 +174,6 @@ static int SplashScreen_handleMessage(SplashScreen this, void* owner, Telegram t
 	
 		case kKeyPressed:	
 
-			
-			{
-				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-	
-				if(((pressedKey & K_STA) && (pressedKey & K_SEL))){
-					
-					break;
-				}
-			}
-
 			switch(this->currentScreen){
 			
 				case kPvbScreen:

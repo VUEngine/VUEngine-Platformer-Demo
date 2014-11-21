@@ -113,7 +113,7 @@ void Hero_keepMoving(Hero this, int changedDirection);
 void Hero_stopMoving(Hero this);
 
 // started moving over axis
-int Hero_startedMovingOnAxis(Hero this, int axis);
+void Hero_startedMovingOnAxis(Hero this, int axis);
 
 // stop moving over axis
 int Hero_stopMovingOnAxis(Hero this, int axis);

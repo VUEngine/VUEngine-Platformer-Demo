@@ -223,18 +223,18 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 
 		case kBodyStoped:
 
-			return Hero_stopMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
+			Hero_stopMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kBodyStartedMoving:
 
 			// start movement
-			return Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
+			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kBodyChangedDirection:
 			
-			return Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
+			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kBodyBounced:

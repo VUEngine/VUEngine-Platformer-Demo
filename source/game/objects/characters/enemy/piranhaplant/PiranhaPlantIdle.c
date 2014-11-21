@@ -117,14 +117,30 @@ void PiranhaPlantIdle_enter(PiranhaPlantIdle this, void* owner){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
 void PiranhaPlantIdle_execute(PiranhaPlantIdle this, void* owner){
+	/*
+	// if not waiting
+	if(!Enemy_getActionTime((Enemy)owner)){
 	
+		// update movement
+		PiranhaPlant_move((PiranhaPlant)owner);		
+	}
+	else{
+		
+		// if wait time elapsed
+		if(PIRANHA_PLANT_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner)){
+			
+			// start movement in opposite direction
+			PiranhaPlant_startMovement((PiranhaPlant)owner);
+		}
+	}
+*/
 	// check if mario distance to the plant is within range
-	if(PIRANHA_PLANT_ATTACK_DISTANCE > Optics_lengthSquared3D(
+	/*if(PIRANHA_PLANT_ATTACK_DISTANCE > Optics_lengthSquared3D(
 			Entity_getPosition((Entity)owner), Entity_getPosition((Entity)Hero_getInstance()))
 	){
 		StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)PiranhaPlantMoving_getInstance());
-	}
-
+	}*/
+	StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)PiranhaPlantMoving_getInstance());
 }
 
 

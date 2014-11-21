@@ -288,7 +288,7 @@ void PiranhaPlant_move(PiranhaPlant this){
 	}
 
 	// if I've been stopped
-	if(!(this->axis & Actor_isMoving((Actor)this))){
+	if(false && !(this->axis & Actor_isMoving((Actor)this))){
 		
 		// check if must stop go idle
 		if(!displacement){
