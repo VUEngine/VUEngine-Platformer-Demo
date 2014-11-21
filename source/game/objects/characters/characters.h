@@ -20,8 +20,13 @@
 #ifndef CHARACTERS_H_
 #define CHARACTERS_H_
 
-
 /*---------------------------------INCLUDES--------------------------------*/
+
+#include "hero/Hero.h"
+#include "enemy/piranhaplant/PiranhaPlant.h"
+
+/*------------------------------DECLARATIONS--------------------------------*/
+
 extern EntityDefinition HERO_MC;
 extern EntityDefinition PIRANHA_PLANT_V_MC;
 

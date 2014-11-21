@@ -161,7 +161,7 @@ BackgroundROMDef FLOOR2_BG = {
 			},
 			
 			// deep
-			20,
+			120,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
@@ -178,7 +178,7 @@ BackgroundROMDef FLOOR2_BG = {
 		FTOFIX19_13(0),
 		
 		// elasticity FTOFIX19_13
-		FTOFIX19_13(0.4f)
+		FTOFIX19_13(0.9f)
 };
 
 BackgroundROMDef FLOOR3_BG = {

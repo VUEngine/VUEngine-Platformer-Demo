@@ -132,6 +132,9 @@ void PiranhaPlant_registerShape(PiranhaPlant this){
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (InGameEntity)this, kCuboid);
+	
+	// don't check collisions agains other objects
+	Shape_setCheckForCollisions(this->shape, false);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
