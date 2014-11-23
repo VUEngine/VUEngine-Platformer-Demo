@@ -31,6 +31,7 @@
 #include <CollisionManager.h>
 #include <Optics.h>
 #include <PhysicalWorld.h>
+#include <Prototypes.h>
 
 #include "PiranhaPlant.h"
 #include "PiranhaPlantIdle.h"
@@ -131,7 +132,7 @@ void PiranhaPlant_destructor(PiranhaPlant this){
 void PiranhaPlant_registerShape(PiranhaPlant this){
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (InGameEntity)this, kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
 	
 	// don't check collisions agains other objects
 	Shape_setCheckForCollisions(this->shape, false);

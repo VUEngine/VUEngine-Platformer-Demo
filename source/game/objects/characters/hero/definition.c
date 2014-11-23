@@ -189,7 +189,6 @@ AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM = {
 	
 	// method to call function completion
 	NULL,
-	
 };
 
 // a function which defines the frames to play

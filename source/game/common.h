@@ -17,6 +17,8 @@
 #include <VPUManager.h>
 #include <MemoryPool.h>
 #include <Printing.h>
+#include <Prototypes.h>
+
 
 /*---------------------------------INCLUDES--------------------------------*/
 // place here the forward declaration of you 

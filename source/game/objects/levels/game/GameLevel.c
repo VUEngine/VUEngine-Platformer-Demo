@@ -129,7 +129,7 @@ static void GameLevel_enter(GameLevel this, void* owner){
 	Game_setOptical(Game_getInstance(), optical);
 
 	//load stage
-	Level_loadStage((Level)this, (StageDefinition*)&LEVEL_0_0_0_ST, true, true);
+	Level_loadStage((Level)this, (StageDefinition*)&LEVEL_0_0_0_ST, true, false);
 
 	// mario is alive!
 	this->marioIsDead = false;

@@ -159,7 +159,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 	StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (InGameEntity)this, kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
 
 	{
 		// register a body for physics

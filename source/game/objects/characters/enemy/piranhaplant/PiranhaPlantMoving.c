@@ -31,6 +31,7 @@
 #include <Game.h>
 #include <InGameEntity.h>
 #include <MessageDispatcher.h>
+#include <Prototypes.h>
 
 #include "PiranhaPlantMoving.h"
 #include "PiranhaPlantIdle.h"
@@ -175,7 +176,7 @@ u16 PiranhaPlantMoving_handleMessage(PiranhaPlantMoving this, void* owner, Teleg
 						// add object to list
 						VirtualList_pushFront(collidingObjects, (void*)owner);
 
-						MessageDispatcher_dispatchMessage(0, (Object)InGameEntity_getShape(inGameEntity), (Object)inGameEntity, kCollision, (void*)collidingObjects);
+						MessageDispatcher_dispatchMessage(0, (Object)Entity_getShape((Entity)inGameEntity), (Object)inGameEntity, kCollision, (void*)collidingObjects);
 						
 						__DELETE(collidingObjects);
 					}

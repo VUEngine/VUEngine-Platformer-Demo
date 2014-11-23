@@ -30,6 +30,7 @@
 
 // include VbJaEngine's Game class
 #include <Game.h>
+#include <LevelEditor.h>
 
 // include the Game's objects
 #include <objects.h>
@@ -50,3 +51,21 @@ const ClassSizeData _userClassesSizeData[] = {
 		{"", NULL},
 };
 
+
+
+const UserObject _userObjects[] = {
+		
+		{"Japan. door", &JAPANARC_IM},
+		{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
+		{"Wall", &WALL0_BG},
+		{"Floor 0", &FLOOR0_BG},
+		{"Floor 1", &FLOOR1_BG},
+		{"Floor 2", &FLOOR2_BG},
+		{"Hor. pipe", &PIPE1_BG},
+		{"Ver. pipe", &PIPE0_BG},
+		{"Small mount", &MOUNTS0_IM},
+		{"Large mount", &MOUNTS1_IM},
+		{"Pole", &POLE0_BG},
+		{"Goal", &GOAL0_IM},
+		{"", NULL},
+};
