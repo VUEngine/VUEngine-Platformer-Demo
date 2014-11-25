@@ -46,15 +46,16 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+#ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] = {
 		
 	{"Hero", &Hero_getObjectSize},
 	{"PiranhaPlant", &PiranhaPlant_getObjectSize},
 	{"", NULL},
 };
+#endif
 
-
-
+#ifdef __LEVEL_EDITOR
 const UserObject _userObjects[] = {
 	
 	{"Japan. door", &JAPANARC_IM},
@@ -71,10 +72,13 @@ const UserObject _userObjects[] = {
 	{"Goal", &GOAL0_IM},
 	{"", NULL},
 };
+#endif
 
+#ifdef __ANIMATION_EDITOR
 const UserActor _userActors[] = {
 		
 	{"Hero", &HERO_MC},
 	{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
 	{"", NULL},
 };
+#endif
