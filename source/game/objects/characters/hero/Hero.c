@@ -639,7 +639,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation){
 
 	if (previousDirection != this->direction.x) {
 		
-		Body_stopMovement(this->body, __XAXIS);
+		//Body_stopMovement(this->body, __XAXIS);
 	}
 
 	int movementState = Body_isMoving(this->body);
