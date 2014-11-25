@@ -160,9 +160,6 @@ int Hero_checkIfZJump(Hero this);
 // Hero falled 
 void Hero_fallDead(Hero this);
 
-// called when blink animation is done
-void Hero_blinkDone(Hero this);
-
 // was jumping over z?
 int  Hero_isMovingOverZ(Hero this);
 

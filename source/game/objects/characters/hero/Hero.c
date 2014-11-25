@@ -221,7 +221,7 @@ void Hero_move(Hero this){
 		int movingState = Body_isMoving(this->body);
 		Velocity velocity = Body_getVelocity(this->body);
 
-		if(0 < velocity.y && (__YAXIS & movingState) && !Actor_isPlayingAnimation((Actor)this, "Fall")){
+		if(0 < velocity.y && (__YAXIS & movingState) && !Actor_isAnimationLoaded((Actor)this, "Fall")){
 			
 			{
 				static int xx = 0;
@@ -399,7 +399,7 @@ void Hero_addMomentumToJump(Hero this) {
 		
 		Velocity velocity = Body_getVelocity(this->body);
 
-		if (HERO_VELOCITY_Y < velocity.y && 0 > FIX19_13TOF(velocity.y) && !Actor_isPlayingAnimation((Actor)this, "Fall")){
+		if (HERO_VELOCITY_Y < velocity.y && 0 > FIX19_13TOF(velocity.y) && !Actor_isAnimationLoaded((Actor)this, "Fall")){
 			
 			Force force = {0, ITOFIX19_13(-30), 0};
 			Body_addForce(this->body, &force);
@@ -469,7 +469,7 @@ void Hero_keepMoving(Hero this, int changedDirection){
 			movementType = __ACCELERATED_MOVEMENT;
 		}
 		
-		if(Actor_isPlayingAnimation((Actor)this, "Slide")){
+		if(Actor_isAnimationLoaded((Actor)this, "Slide")){
 			
 			Actor_playAnimation((Actor)this, "Walk");
 		}			
@@ -492,11 +492,11 @@ void Hero_keepMoving(Hero this, int changedDirection){
 	/*
 	int movementAxis = Body_isMoving(this->body);
 	
-	if(!(__YAXIS & movementAxis) && !Actor_isPlayingAnimation((Actor)this, "Walk") && !Actor_isPlayingAnimation((Actor)this, "Jump")){
+	if(!(__YAXIS & movementAxis) && !Actor_isAnimationLoaded((Actor)this, "Walk") && !Actor_isAnimationLoaded((Actor)this, "Jump")){
 		
 		Actor_playAnimation((Actor)this, "Walk");
 	}
-	else if(0 < velocity.y && !Actor_isPlayingAnimation((Actor)this, "Fall")){
+	else if(0 < velocity.y && !Actor_isAnimationLoaded((Actor)this, "Fall")){
 		
 		Actor_playAnimation((Actor)this, "Fall");
 	}
@@ -513,7 +513,7 @@ void Hero_stopMoving(Hero this){
 		
 		Actor_playAnimation((Actor)this, "Slide");
 	}
-	else if(!Actor_isPlayingAnimation((Actor)this, "Fall")){
+	else if(!Actor_isAnimationLoaded((Actor)this, "Fall")){
 		
 		Actor_playAnimation((Actor)this, "Fall");
 	}
@@ -1166,21 +1166,6 @@ void Hero_fallDead(Hero this){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// called when blink animation is done
-void Hero_blinkDone(Hero this){
-	
-	// play idle animation depende on whether I'm holding something or nor
-	if(this->holdObject){
-		
-		Actor_playAnimation((Actor)this, "IdleHolding");
-	}
-	else{
-		
-		Actor_playAnimation((Actor)this, "Idle");
-	}
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // was jumping over z?
 int  Hero_isMovingOverZ(Hero this){
 	
@@ -1231,7 +1216,7 @@ void Hero_updateHoldObjectPosition(Hero this){
 void Hero_lookFront(Hero this){
 
 	// if already not playing
-	if(!Actor_isPlayingAnimation((Actor)this, "Front")){
+	if(!Actor_isAnimationLoaded((Actor)this, "Front")){
 
 		// play animation
 		Actor_playAnimation((Actor)this, "Front");
@@ -1256,7 +1241,7 @@ void Hero_lookFront(Hero this){
 void Hero_lookBack(Hero this){
 
 	// if already not playing
-	if(!Actor_isPlayingAnimation((Actor)this, "Back")){
+	if(!Actor_isAnimationLoaded((Actor)this, "Back")){
 
 		// play animation
 		Actor_playAnimation((Actor)this, "Back");
@@ -1282,7 +1267,7 @@ void Hero_setGap(Hero this){
 	this->gap = this->inGameEntityDefinition->gap;
 	
 	// if I'm not in the edge, return ROM gap
-	if(Actor_isPlayingAnimation((Actor)this, "OnEdge")){
+	if(Actor_isAnimationLoaded((Actor)this, "OnEdge")){
 	
 		// this is texture specific
 		this->gap.left += 4;
@@ -1330,7 +1315,7 @@ void Hero_lookSide(Hero this){
 	}
 	
 	// if not playing blinking animation
-	if(!Actor_isPlayingAnimation((Actor)this, animationToPlay)){
+	if(!Actor_isAnimationLoaded((Actor)this, animationToPlay)){
 
 		u32 currentTime = Clock_getTime(Game_getClock(Game_getInstance()));
 		
@@ -1360,7 +1345,7 @@ void Hero_lookSide(Hero this){
 			}
 		
 			// if not playing idle animation
-			if(!Actor_isPlayingAnimation((Actor)this, animationToPlay)){
+			if(!Actor_isAnimationLoaded((Actor)this, animationToPlay)){
 			
 				Actor_playAnimation((Actor)this, animationToPlay);
 				

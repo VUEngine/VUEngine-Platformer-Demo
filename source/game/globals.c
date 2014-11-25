@@ -30,7 +30,9 @@
 
 // include VbJaEngine's Game class
 #include <Game.h>
+#include <Debug.h>
 #include <LevelEditor.h>
+#include <AnimationEditor.h>
 
 // include the Game's objects
 #include <objects.h>
@@ -46,26 +48,33 @@
 
 const ClassSizeData _userClassesSizeData[] = {
 		
-		{"Hero", &Hero_getObjectSize},
-		{"PiranhaPlant", &PiranhaPlant_getObjectSize},
-		{"", NULL},
+	{"Hero", &Hero_getObjectSize},
+	{"PiranhaPlant", &PiranhaPlant_getObjectSize},
+	{"", NULL},
 };
 
 
 
 const UserObject _userObjects[] = {
+	
+	{"Japan. door", &JAPANARC_IM},
+	{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
+	{"Wall", &WALL0_BG},
+	{"Floor 0", &FLOOR0_BG},
+	{"Floor 1", &FLOOR1_BG},
+	{"Floor 2", &FLOOR2_BG},
+	{"Hor. pipe", &PIPE1_BG},
+	{"Ver. pipe", &PIPE0_BG},
+	{"Small mount", &MOUNTS0_IM},
+	{"Large mount", &MOUNTS1_IM},
+	{"Pole", &POLE0_BG},
+	{"Goal", &GOAL0_IM},
+	{"", NULL},
+};
+
+const UserActor _userActors[] = {
 		
-		{"Japan. door", &JAPANARC_IM},
-		{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
-		{"Wall", &WALL0_BG},
-		{"Floor 0", &FLOOR0_BG},
-		{"Floor 1", &FLOOR1_BG},
-		{"Floor 2", &FLOOR2_BG},
-		{"Hor. pipe", &PIPE1_BG},
-		{"Ver. pipe", &PIPE0_BG},
-		{"Small mount", &MOUNTS0_IM},
-		{"Large mount", &MOUNTS1_IM},
-		{"Pole", &POLE0_BG},
-		{"Goal", &GOAL0_IM},
-		{"", NULL},
+	{"Hero", &HERO_MC},
+	{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
+	{"", NULL},
 };

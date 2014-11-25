@@ -86,9 +86,8 @@ ENGINE = libvbjae.a
 all: $(TARGET).vb
 
 $(OUTPUT)/$(ENGINE):
-		@rm -f $(ENGINE)
-		@rm -f $(OUTPUT)/$(ENGINE)
-
+	@rm -f $(ENGINE)
+	@rm -f $(OUTPUT)/$(ENGINE)
 	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE)
 
 	
