@@ -18,9 +18,6 @@ ROMHEADER=lib/vb.hdr
 # Dynamic libraries
 DLIBS =
 
-# Binary output dir
-OUTPUT = output
-
 # Obligatory headers
 GAME_ESSENTIALS = -include source/game/common.h 	
 VBJAENGINE = $(VBDE)/libs/vbjaengine
@@ -83,37 +80,31 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 # first build the engine
 ENGINE = libvbjae.a
 
-all: $(TARGET).vb
+all: output.vb
 
-$(OUTPUT)/$(ENGINE):
+$(ENGINE):
 	@rm -f $(ENGINE)
-	@rm -f $(OUTPUT)/$(ENGINE)
 	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE)
 
 	
-$(TARGET).vb: $(OUTPUT)/main.elf
+output.vb: main.elf
 	@echo Creating $@
-	@$(OBJCOPY) -O binary $(OUTPUT)/main.elf $(OUTPUT)/$@
-	@echo $(TARGET).vb done
-	@echo Padding $@
-	@$(VBJAENGINE)/lib/utilities/padder $(OUTPUT)/$@
+	@$(OBJCOPY) -O binary main.elf $@
+	@echo output.vb done
 #	@echo Generating assembler code
-#	@$(OBJDUMP) -t $(OUTPUT)/main.elf > $(OUTPUT)/sections.txt
-#	@$(OBJDUMP) -S $(OUTPUT)/main.elf > $(OUTPUT)/machine.asm
+#	@$(OBJDUMP) -t main.elf > sections.txt
+#	@$(OBJDUMP) -S main.elf > machine.asm
 	
 tryLinkingAgain:
 	@echo Error linking, deleting library
 	@rm -f $(ENGINE)
-	@rm -f $(OUTPUT)/$(ENGINE)
 	@make all
 
-$(OUTPUT)/main.elf: $(OUTPUT)/$(ENGINE) dirs $(OBJECTS) 
-		@echo Linking $(TARGET).		
-		@cp $(OUTPUT)/$(ENGINE) .
+main.elf: $(ENGINE) dirs $(OBJECTS) 
+		@echo Linking $(TARGET).
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
-			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) || 	@rm -f $(OUTPUT)/$(ENGINE)
+			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB))
 		@rm -f $(ENGINE)
-		@rm -f $(OUTPUT)/$(ENGINE)
 
 
 
@@ -136,7 +127,6 @@ clean:
 		@-rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
 		@-rm -Rf $(STORE)
 		@-rm -f $(ENGINE)
-		@-rm -f $(OUTPUT)/*
 
 # Backup the source files.
 backup:
