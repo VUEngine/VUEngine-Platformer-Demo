@@ -40,7 +40,7 @@ AnimationFunctionROMDef HERO_IDLE_ANIM = {
 	2,
 	
 	// frames to play in animation
-	{0,1},
+	{4,5},
 	
 	// number of cicles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -64,7 +64,7 @@ AnimationFunctionROMDef HERO_WALKING_ANIM = {
 	2,
 	
 	// frames to play in animation
-	{10, 11},
+	{13, 14},
 	
 	// number of cicles a frame of animation is displayed
 	9 * __FPS_ANIM_FACTOR,
@@ -87,7 +87,7 @@ AnimationFunctionROMDef HERO_JUMPING_ANIM = {
 	1,
 	
 	// frames to play in animation
-	{2},
+	{6},
 	
 	// number of cicles a frame of animation is displayed
 	0,
@@ -110,7 +110,7 @@ AnimationFunctionROMDef HERO_FALLING_ANIM = {
 	1,
 	
 	// frames to play in animation
-	{3},
+	{7},
 	
 	// number of cicles a frame of animation is displayed
 	0,
@@ -133,7 +133,7 @@ AnimationFunctionROMDef HERO_SLIDING_ANIM = {
 	1,
 	
 	// frames to play in animation
-	{3},
+	{7},
 	
 	// number of cicles a frame of animation is displayed
 	0,
@@ -156,7 +156,7 @@ AnimationFunctionROMDef HERO_HIT_FRONT_ANIM = {
 	1,
 	
 	// frames to play in animation
-	{5},
+	{8},
 	
 	// number of cicles a frame of animation is displayed
 	0,
@@ -179,7 +179,7 @@ AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM = {
 	1,
 	
 	// frames to play in animation
-	{5},
+	{8},
 	
 	// number of cicles a frame of animation is displayed
 	0,
@@ -201,7 +201,7 @@ AnimationFunctionROMDef HERO_HIT_FIRE_ANIM = {
 	1,
 	
 	// frames to play in animation
-	{10},
+	{8},
 	
 	// number of cicles a frame of animation is displayed
 	0,
@@ -267,16 +267,16 @@ AnimationFunctionROMDef HERO_FRONT_ANIM = {
 	"Front",
 
 	// number of frames of this animation function
-	1,
+	2,
 	
 	// frames to play in animation
-	{0},
+	{0,1},
 	
 	// number of cicles a frame of animation is displayed
-	0,
+	14 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
-	false,
+	true,
 	
 	// method to call function completion
 	NULL,
@@ -289,16 +289,16 @@ AnimationFunctionROMDef HERO_BACK_ANIM = {
 	"Back",
 
 	// number of frames of this animation function
-	1,
+	2,
 	
 	// frames to play in animation
-	{6},
+	{2,3},
 	
 	// number of cicles a frame of animation is displayed
-	0,
+	14 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
-	false,
+	true,
 	
 	// method to call function completion
 	NULL,
@@ -309,7 +309,7 @@ AnimationFunctionROMDef HERO_BACK_ANIM = {
 AnimationDescriptionROMDef HERO_ANIM = {
 	
 	// number of animation frames
-	12, 
+	15, 
 	
 	// animation functions
 	{
@@ -338,7 +338,7 @@ TextureROMDef HERO0_TX = {
 				HERO_CH,	
 				
 				// numChars,
-				6,
+				9,
 				
 				// allocation type
 				__ANIMATED
@@ -348,35 +348,7 @@ TextureROMDef HERO0_TX = {
 		HERO_MP,
 		
 		// cols (max 48)
-		2,
-		
-		// rows (max 28)
 		3,
-		
-		//pallet number,
-		0
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef HERO1_TX = {
-		
-		// Chargroup
-		{
-				// chDefinition,				 
-				HERO_CH,	
-				
-				// numChars,
-				6,
-				
-				// allocation type
-				__ANIMATED
-		},
-		
-		// bgmap definition
-		HERO_MP,
-		
-		// cols (max 48)
-		2,
 		
 		// rows (max 28)
 		3,
@@ -400,18 +372,6 @@ SpriteROMDef HERO_SPRITES[] = {
 		WRLD_ON,
 	},
 
-	// Sprite
-	{
-		// the texture
-		(TextureDefinition*)&HERO0_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_AFFINE,
-		//WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
 };
 
 ActorROMDef HERO_MC = {
@@ -428,12 +388,10 @@ ActorROMDef HERO_MC = {
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
-			{6,		0,		0,		0},		
-			//{0,		0,		0,		0,},
+			{5,		1,		4,		4},
 			
 			// in game type
 			kHero,
-			
 		},
 		
 		// pointer to the animation definition for the character

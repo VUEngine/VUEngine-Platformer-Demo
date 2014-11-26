@@ -100,7 +100,6 @@ StageROMDef LEVEL_0_0_0_ST = {
 
 		// textures
 		{
-			&HERO1_TX,
 			&HERO0_TX,
 			&FLOOR0_TX,
 			&PIPE0_TX,
