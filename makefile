@@ -1,7 +1,7 @@
 #Makefile taken from Wikipedia.org
 #
 # Specify the main target
-TARGET = skeleton
+TARGET = output
 
 # Default build type
 #TYPE = debug
@@ -80,17 +80,17 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 # first build the engine
 ENGINE = libvbjae.a
 
-all: output.vb
+all: $(TARGET).vb
 
 $(ENGINE):
 	@rm -f $(ENGINE)
 	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE)
 
 	
-output.vb: main.elf
+$(TARGET).vb: main.elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary main.elf $@
-	@echo output.vb done
+	@echo $(TARGET).vb done
 #	@echo Generating assembler code
 #	@$(OBJDUMP) -t main.elf > sections.txt
 #	@$(OBJDUMP) -S main.elf > machine.asm
