@@ -4,8 +4,8 @@
 TARGET = skeleton
 
 # Default build type
-TYPE = debug
-#TYPE = release
+#TYPE = debug
+TYPE = release
 #TYPE = preprocessor
 
 # Which directories contain source files

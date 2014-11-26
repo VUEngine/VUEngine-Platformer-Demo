@@ -35,9 +35,9 @@ StageROMDef PVB_ST = {
 		// size
 		{
 			// x
-			384,
+			__SCREEN_WIDTH,
 			// y
-			192,
+			__SCREEN_HEIGHT,
 			// z
 			1
 		},
@@ -62,8 +62,8 @@ StageROMDef PVB_ST = {
 
 		//entities
 		{			
-			{&PVB_LEFT_IM, {384/2, 192/2 + 16, LAYER_0}, NULL},
-			{&PVB_RIGHT_IM, {384/2, 192/2 + 16, LAYER_0}, NULL},
+			{&PVB_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+			{&PVB_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
 			
 			{NULL,{0,0,0}, NULL},
 		},
@@ -74,9 +74,9 @@ StageROMDef PRECAUTION_ST = {
 		// size
 		{
 			// x
-			384,
+			__SCREEN_WIDTH,
 			// y
-			192,
+			__SCREEN_HEIGHT,
 			// z
 			1
 		},
@@ -101,7 +101,7 @@ StageROMDef PRECAUTION_ST = {
 
 		//entities
 		{			
-			{&PRECAUTION_IM, {384/2, 192/2 + 16, LAYER_0}, NULL},
+			{&PRECAUTION_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
 			
 			{NULL,{0,0,0}, NULL},
 		},
@@ -113,9 +113,9 @@ StageROMDef PVBCC_ST = {
 		// size
 		{
 			// x
-			384,
+			__SCREEN_WIDTH,
 			// y
-			192,
+			__SCREEN_HEIGHT,
 			// z
 			1
 		},
@@ -140,8 +140,8 @@ StageROMDef PVBCC_ST = {
 
 		//entities
 		{			
-			{&PVBCC_LEFT_IM, {384/2, 192/2 + 16, LAYER_0}, NULL},
-			{&PVBCC_RIGHT_IM, {384/2, 192/2 + 16, LAYER_0}, NULL},
+			{&PVBCC_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+			{&PVBCC_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
 			
 			{NULL,{0,0,0}, NULL},
 		},
@@ -153,9 +153,9 @@ StageROMDef VBJAE_ST = {
 		// size
 		{
 			// x
-			384,
+			__SCREEN_WIDTH,
 			// y
-			192,
+			__SCREEN_HEIGHT,
 			// z
 			1
 		},
@@ -180,8 +180,8 @@ StageROMDef VBJAE_ST = {
 
 		//entities
 		{			
-			{&VBJAE_LEFT_IM, {384/2, 192/2 + 16, LAYER_0}, NULL},
-			{&VBJAE_RIGHT_IM, {384/2, 192/2 + 16, LAYER_0}, NULL},
+			{&VBJAE_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+			{&VBJAE_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
 			
 			{NULL,{0,0,0}, NULL},
 		},

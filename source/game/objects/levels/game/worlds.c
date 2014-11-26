@@ -35,9 +35,9 @@ StageROMDef TITLE_ST = {
 		// size
 		{
 			// x
-			384,
+			__SCREEN_WIDTH,
 			// y
-			192,
+			__SCREEN_HEIGHT,
 			// z
 			1
 		},
@@ -62,8 +62,8 @@ StageROMDef TITLE_ST = {
 
 		//entities
 		{			
-			{&MARIO_TITLE_RIGHT_IM, {384/2, 192/2 + 8, LAYER_0}, NULL},
-			{&MARIO_TITLE_LEFT_IM, {384/2, 192/2 + 8, LAYER_0}, NULL},
+			{&MARIO_TITLE_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+			{&MARIO_TITLE_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1}, NULL},
 			{NULL,{0,0,0}, NULL},
 		},
 };

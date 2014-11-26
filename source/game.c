@@ -56,8 +56,8 @@ int main(void){
 	// Game_start(Game_getInstance(), (State)SplashScreen_getInstance());
 	// for quick level testing comment the line above
 	// and uncomment the line below
-	// Game_start(Game_getInstance(), (State)TitleScreen_getInstance());
-	Game_start(Game_getInstance(), (State)GameLevel_getInstance());
+	 Game_start(Game_getInstance(), (State)TitleScreen_getInstance());
+	//Game_start(Game_getInstance(), (State)GameLevel_getInstance());
 		
 	// end program
 	return true;
