@@ -116,7 +116,7 @@ void PiranhaPlantMoving_enter(PiranhaPlantMoving this, void* owner){
 	
 	PiranhaPlant_startMovement((PiranhaPlant)owner);
 	
-	Actor_playAnimation((Actor)owner, "Bite");
+	AnimatedInGameEntity_playAnimation((Actor)owner, "Bite");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,17 +169,6 @@ u16 PiranhaPlantMoving_handleMessage(PiranhaPlantMoving this, void* owner, Teleg
 				
 				switch(InGameEntity_getInGameType(inGameEntity)){
 				
-					case kHero:
-					{
-						VirtualList collidingObjects = __NEW(VirtualList);
-
-						// add object to list
-						VirtualList_pushFront(collidingObjects, (void*)owner);
-
-						MessageDispatcher_dispatchMessage(0, (Object)Entity_getShape((Entity)inGameEntity), (Object)inGameEntity, kCollision, (void*)collidingObjects);
-						
-						__DELETE(collidingObjects);
-					}
 							// ok, i hit him
 							//Hero_takeHit((Mario)inGameEntity, Entity_getPosition((Entity)owner));
 							

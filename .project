@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>skeleton</name>
+	<name>vbjaengine-skeleton</name>
 	<comment></comment>
 	<projects>
 		<project>libvbjae</project>
@@ -63,7 +63,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.fullBuildTarget</key>
-					<value>skeleton.vb</value>
+					<value>all</value>
 				</dictionary>
 				<dictionary>
 					<key>?children?</key>

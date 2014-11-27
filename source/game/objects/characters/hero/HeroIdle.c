@@ -119,22 +119,22 @@ void HeroIdle_enter(HeroIdle this, void* owner){
 		if(__NEAR == InGameEntity_getDirection((InGameEntity)owner).z){
 
 			// show animation
-			Actor_playAnimation((Actor)owner, "Front");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Front");
 		}
 		else{
 			
 			// show animation
-			Actor_playAnimation((Actor)owner, "Back");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Back");
 			
 		}
 	}
 	else{
 	
 		// show animation
-		Actor_playAnimation((Actor)owner, "Idle");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
 	}
 	
-	Actor_playAnimation((Actor)owner, "Idle");
+	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
 
 	Hero_resetActionTime((Hero)owner);
 

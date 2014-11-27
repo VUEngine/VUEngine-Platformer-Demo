@@ -111,7 +111,7 @@ void PiranhaPlantIdle_enter(PiranhaPlantIdle this, void* owner){
 	// do not move
 //	Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);
 
-	Actor_playAnimation((Actor)owner, "Idle");
+	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

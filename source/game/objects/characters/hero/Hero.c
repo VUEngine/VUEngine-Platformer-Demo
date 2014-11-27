@@ -221,7 +221,7 @@ void Hero_move(Hero this){
 		int movingState = Body_isMoving(this->body);
 		Velocity velocity = Body_getVelocity(this->body);
 
-		if(0 < velocity.y && (__YAXIS & movingState) && !Actor_isAnimationLoaded((Actor)this, "Fall")){
+		if(0 < velocity.y && (__YAXIS & movingState) && !AnimatedInGameEntity_isAnimationLoaded((Actor)this, "Fall")){
 			
 			{
 				static int xx = 0;
@@ -233,7 +233,7 @@ void Hero_move(Hero this){
 			}
 
 			// must play walk animation of not playing it
-			Actor_playAnimation((Actor)this, "Fall");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
 		}
 	}
 	*/
@@ -290,7 +290,7 @@ void Hero_move(Hero this){
 			// don't slide if holding something 
 			if(!this->holdObject){
 				
-				Actor_playAnimation((Actor)this, "Slide");
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Slide");
 			}
 			
 			this->velocity.x = HERO_VELOCITY_X;
@@ -311,7 +311,7 @@ void Hero_move(Hero this){
 		if(!this->velocity.y && !AnimatedSprite_isPlayingFunction((AnimatedSprite)this->sprite, this->actorDefinition->animationDescription, walkAnimation)){
 			
 			// must play walk animation of not playing it
-			Actor_playAnimation((Actor)this, walkAnimation);
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, walkAnimation);
 			
 			// start moving
 			Actor_startMovement((Actor)this, __XAXIS, __RETARMOVEX, HERO_VELOCITY_X, HERO_ACCELERATION_X);
@@ -367,7 +367,7 @@ void Hero_move(Hero this){
 			if(!AnimatedSprite_isPlayingFunction((AnimatedSprite)this->sprite, this->actorDefinition->animationDescription, fallAnimation)){
 			
 				// play animation
-				Actor_playAnimation((Actor)this, fallAnimation);
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, fallAnimation);
 			}
 		}
 	}
@@ -399,14 +399,14 @@ void Hero_addMomentumToJump(Hero this) {
 		
 		Velocity velocity = Body_getVelocity(this->body);
 
-		if (HERO_VELOCITY_Y < velocity.y && 0 > FIX19_13TOF(velocity.y) && !Actor_isAnimationLoaded((Actor)this, "Fall")){
+		if (HERO_VELOCITY_Y < velocity.y && 0 > FIX19_13TOF(velocity.y) && !AnimatedInGameEntity_isAnimationLoaded((AnimatedInGameEntity)this, "Fall")){
 			
 			Force force = {0, ITOFIX19_13(-30), 0};
 			Body_addForce(this->body, &force);
 		}
 		else {
 			
-			Actor_playAnimation((Actor)this, "Fall");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
 		}
 	}
 }
@@ -425,7 +425,7 @@ void Hero_jump(Hero this, int changeState){
 			
 			Force force = {0, this->boost? HERO_BOOST_JUMP_HERO_INPUT_FORCE: HERO_NORMAL_JUMP_HERO_INPUT_FORCE, 0};
 			Body_addForce(this->body, &force);
-			Actor_playAnimation((Actor)this, "Jump");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Jump");
 		}
 	}
 }
@@ -438,7 +438,7 @@ void Hero_startMoving(Hero this){
 	int movingState = Body_isMoving(this->body);
 	
 	if(movingState)
-	Actor_playAnimation((Actor)this, "Walk");
+	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
 	*/
 }
 
@@ -469,9 +469,9 @@ void Hero_keepMoving(Hero this, int changedDirection){
 			movementType = __ACCELERATED_MOVEMENT;
 		}
 		
-		if(Actor_isAnimationLoaded((Actor)this, "Slide")){
+		if(AnimatedInGameEntity_isAnimationLoaded((AnimatedInGameEntity)this, "Slide")){
 			
-			Actor_playAnimation((Actor)this, "Walk");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
 		}			
 	}
 	else {
@@ -492,13 +492,13 @@ void Hero_keepMoving(Hero this, int changedDirection){
 	/*
 	int movementAxis = Body_isMoving(this->body);
 	
-	if(!(__YAXIS & movementAxis) && !Actor_isAnimationLoaded((Actor)this, "Walk") && !Actor_isAnimationLoaded((Actor)this, "Jump")){
+	if(!(__YAXIS & movementAxis) && !AnimatedInGameEntity_isAnimationLoaded((Actor)this, "Walk") && !AnimatedInGameEntity_isAnimationLoaded((Actor)this, "Jump")){
 		
-		Actor_playAnimation((Actor)this, "Walk");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
 	}
-	else if(0 < velocity.y && !Actor_isAnimationLoaded((Actor)this, "Fall")){
+	else if(0 < velocity.y && !AnimatedInGameEntity_isAnimationLoaded((Actor)this, "Fall")){
 		
-		Actor_playAnimation((Actor)this, "Fall");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
 	}
 */
 }
@@ -511,11 +511,11 @@ void Hero_stopMoving(Hero this){
 
 	if(!velocity.y) {
 		
-		Actor_playAnimation((Actor)this, "Slide");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Slide");
 	}
-	else if(!Actor_isAnimationLoaded((Actor)this, "Fall")){
+	else if(!AnimatedInGameEntity_isAnimationLoaded((AnimatedInGameEntity)this, "Fall")){
 		
-		Actor_playAnimation((Actor)this, "Fall");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
 	}
 
 //	fix19_13 maxVelocity = this->boost? HERO__BOOST_VELOCITY_X: HERO_VELOCITY_X;
@@ -553,14 +553,14 @@ void Hero_startedMovingOnAxis(Hero this, int axis){
 			
 			if( __XAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)){
 				
-				Actor_playAnimation((Actor)this, "Walk");
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
 
 				StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) HeroMoving_getInstance());
 			}
 		}
 		if(__YAXIS & axis){
 
-			Actor_playAnimation((Actor)this, "Fall");	
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");	
 
 			StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) HeroMoving_getInstance());
 		}
@@ -569,12 +569,12 @@ void Hero_startedMovingOnAxis(Hero this, int axis){
 
 		if(__XAXIS & axis) {
 
-			Actor_playAnimation((Actor)this, "Walk");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
 		}
 
 		if(__YAXIS & axis) {
 
-			Actor_playAnimation((Actor)this, "Fall");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
 		}
 
 		if(__ZAXIS & axis) {
@@ -591,7 +591,7 @@ int Hero_stopMovingOnAxis(Hero this, int axis){
 
 	if((__XAXIS & axis) && !(__YAXIS & movementState)) {
 		
-		Actor_playAnimation((Actor)this, "Idle");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Idle");
 	}
 
 	if(__YAXIS & axis) {
@@ -600,10 +600,10 @@ int Hero_stopMovingOnAxis(Hero this, int axis){
 		
 		if(__UNIFORM_MOVEMENT == movementType.x) {
 
-			Actor_playAnimation((Actor)this, "Walk");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
 		}
 		else {
-			Actor_playAnimation((Actor)this, "Slide");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Slide");
 		}
 	}
 
@@ -646,7 +646,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation){
 
 	if(animation && !(__YAXIS & movementState)){
 		
-		Actor_playAnimation((Actor)this, animation);
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, animation);
 	}
 
 	/*
@@ -678,7 +678,7 @@ return false;
 				
 				if(__PASSIVE == this->velocity.z){
 					
-					Actor_playAnimation((Actor)this, "Win");
+					AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Win");
 					Actor_stopMovement((Actor)this, __XAXIS | __YAXIS | __ZAXIS);
 					
 				}
@@ -853,21 +853,21 @@ void Hero_takeHitFrom(Hero this, Actor other){
 		
 		if(__RIGHT == this->direction.x){
 			
-			Actor_playAnimation((Actor)this, "HitFront");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "HitFront");
 		}
 		else{
 		
-			Actor_playAnimation((Actor)this, "HitBehind");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "HitBehind");
 		}
 	}
 	else{
 		if(__LEFT == this->direction.x){
 			
-			Actor_playAnimation((Actor)this, "HitFront");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "HitFront");
 		}
 		else{
 		
-			Actor_playAnimation((Actor)this, "HitBehind");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "HitBehind");
 		}							
 	}
 	
@@ -917,12 +917,12 @@ int Hero_isHitByEnemy(Hero this, Enemy enemy, int axis){
 			if(this->holdObject){
 
 				// play animation
-				Actor_playAnimation((Actor)this, "JumpHolding");
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "JumpHolding");
 			}
 			else{
 				
 				// play animation
-				Actor_playAnimation((Actor)this, "Jump");
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Jump");
 			}
 		}
 
@@ -1003,12 +1003,12 @@ int Hero_isHitByEnemy(Hero this, Enemy enemy, int axis){
 		if(this->holdObject){
 
 			// play animation
-			Actor_playAnimation((Actor)this, "JumpHolding");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "JumpHolding");
 		}
 		else{
 			
 			// play animation
-			Actor_playAnimation((Actor)this, "Jump");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Jump");
 		}
 		return false;
 	}
@@ -1112,7 +1112,7 @@ int Hero_checkIfZJump(Hero this){
 		this->layer++;
 		
 		// play animation
-		Actor_playAnimation((Actor)this, "JumpBack");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "JumpBack");
 		
 		// don't allow movement over x axis
 		Actor_stopMovement((Actor)this, __XAXIS);
@@ -1136,7 +1136,7 @@ int Hero_checkIfZJump(Hero this){
 			this->layer--;
 			
 			// play animation
-			Actor_playAnimation((Actor)this, "JumpFront");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "JumpFront");
 			
 			// don't move over x axis
 			Actor_stopMovement((Actor)this, __XAXIS);
@@ -1160,7 +1160,7 @@ int Hero_checkIfZJump(Hero this){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Hero_fallDead(Hero this){
 
-	Actor_playAnimation((Actor)this, "HitFront");
+	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "HitFront");
 	
 	Hero_die(this);
 }
@@ -1216,10 +1216,10 @@ void Hero_updateHoldObjectPosition(Hero this){
 void Hero_lookFront(Hero this){
 
 	// if already not playing
-	if(!Actor_isAnimationLoaded((Actor)this, "Front")){
+	if(!AnimatedInGameEntity_isAnimationLoaded((AnimatedInGameEntity)this, "Front")){
 
 		// play animation
-		Actor_playAnimation((Actor)this, "Front");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Front");
 	}
 
 	/*
@@ -1241,10 +1241,10 @@ void Hero_lookFront(Hero this){
 void Hero_lookBack(Hero this){
 
 	// if already not playing
-	if(!Actor_isAnimationLoaded((Actor)this, "Back")){
+	if(!AnimatedInGameEntity_isAnimationLoaded((AnimatedInGameEntity)this, "Back")){
 
 		// play animation
-		Actor_playAnimation((Actor)this, "Back");
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Back");
 	}
 /*
 	// I'm looking away the screen
@@ -1267,7 +1267,7 @@ void Hero_setGap(Hero this){
 	this->gap = this->inGameEntityDefinition->gap;
 	
 	// if I'm not in the edge, return ROM gap
-	if(Actor_isAnimationLoaded((Actor)this, "OnEdge")){
+	if(AnimatedInGameEntity_isAnimationLoaded((AnimatedInGameEntity)this, "OnEdge")){
 	
 		// this is texture specific
 		this->gap.left += 4;
@@ -1308,21 +1308,21 @@ void Hero_lookSide(Hero this){
 	
 		if(this->transform.globalPosition.x > position.x + width || this->transform.globalPosition.x < position.x - width){
 			
-			Actor_playAnimation((Actor)this, "OnEdge");
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "OnEdge");
 			
 			return;
 		}
 	}
 	
 	// if not playing blinking animation
-	if(!Actor_isAnimationLoaded((Actor)this, animationToPlay)){
+	if(!AnimatedInGameEntity_isAnimationLoaded((Actor)this, animationToPlay)){
 
 		u32 currentTime = Clock_getTime(Game_getClock(Game_getInstance()));
 		
 		// randomly select if play blinking
 		if(currentTime - this->actionTime > HERO_BLINK_DELAY){
 			
-			Actor_playAnimation((Actor)this, animationToPlay);
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, animationToPlay);
 			
 			// back to normal
 			this->movingOverZ = false;
@@ -1345,9 +1345,9 @@ void Hero_lookSide(Hero this){
 			}
 		
 			// if not playing idle animation
-			if(!Actor_isAnimationLoaded((Actor)this, animationToPlay)){
+			if(!AnimatedInGameEntity_isAnimationLoaded((Actor)this, animationToPlay)){
 			
-				Actor_playAnimation((Actor)this, animationToPlay);
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, animationToPlay);
 				
 				// back to normal
 				this->movingOverZ = false;
@@ -1520,7 +1520,7 @@ void Hero_checkIfBridge(Hero this, int keyPressed){
 		if(!AnimatedSprite_isPlayingFunction((AnimatedSprite)this->sprite, this->actorDefinition->animationDescription, walkAnimation)){
 			
 			// must play walk animation of not playing it
-			Actor_playAnimation((Actor)this, walkAnimation);
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, walkAnimation);
 		}
 
 		// change state
@@ -1580,7 +1580,7 @@ void Hero_win(Hero this){
 	/*
 	this->direction.z = __FAR;
 	
-	Actor_playAnimation((Actor)this, "WalkBack");
+	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "WalkBack");
 	
 	Actor_startMovement((Actor)this, __ZAXIS, __UNIFORMMOVE, FIX19_13_DIV(HERO_VELOCITY_Z, ITOFIX19_13(4)), 0);
 	

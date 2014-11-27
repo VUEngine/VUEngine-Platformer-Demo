@@ -27,7 +27,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Background.h>
+#include <InanimatedInGameEntity.h>
 #include <Image.h>
 #include <ScrollBackground.h>
 
@@ -90,11 +90,11 @@ SpriteROMDef FLOOR2_BG_SPRITES[] = {
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-BackgroundROMDef FLOOR0_BG = {
+InanimatedInGameEntityROMDef FLOOR0_BG = {
 		{
 			{
 				// object's class			   
-				__TYPE(Background),  
+				__TYPE(InanimatedInGameEntity),  
 		
 				__SPRITE_ARRAY(FLOOR0_BG_SPRITES)
 			},
@@ -120,11 +120,11 @@ BackgroundROMDef FLOOR0_BG = {
 		FTOFIX19_13(1.0f)
 };
 
-BackgroundROMDef FLOOR1_BG = {
+InanimatedInGameEntityROMDef FLOOR1_BG = {
 		{
 			{
 				// object's class			   
-				__TYPE(Background),  
+				__TYPE(InanimatedInGameEntity),  
 		
 				__SPRITE_ARRAY(FLOOR1_BG_SPRITES),
 			},
@@ -151,11 +151,11 @@ BackgroundROMDef FLOOR1_BG = {
 };
 
 
-BackgroundROMDef FLOOR2_BG = {
+InanimatedInGameEntityROMDef FLOOR2_BG = {
 		{
 			{
 				// object's class			   
-				__TYPE(Background),  
+				__TYPE(InanimatedInGameEntity),  
 		
 				__SPRITE_ARRAY(FLOOR2_BG_SPRITES),
 			},
@@ -181,11 +181,11 @@ BackgroundROMDef FLOOR2_BG = {
 		FTOFIX19_13(0.9f)
 };
 
-BackgroundROMDef FLOOR3_BG = {
+InanimatedInGameEntityROMDef FLOOR3_BG = {
 		{
 			{
 				// object's class			   
-				__TYPE(Background),  
+				__TYPE(InanimatedInGameEntity),  
 		
 				__SPRITE_ARRAY(FLOOR2_BG_SPRITES),
 			},
@@ -227,11 +227,11 @@ SpriteROMDef PIPE0_BG_SPRITES[] = {
 		WRLD_ON,
 	},
 };
-BackgroundROMDef PIPE0_BG = {
+InanimatedInGameEntityROMDef PIPE0_BG = {
 		{
 			{
 				// object's class			   
-				__TYPE(Background),  
+				__TYPE(InanimatedInGameEntity),  
 		
 				__SPRITE_ARRAY(PIPE0_BG_SPRITES),
 			},
@@ -272,11 +272,11 @@ SpriteROMDef PIPE1_BG_SPRITES[] = {
 	},
 };
 
-BackgroundROMDef PIPE1_BG = {
+InanimatedInGameEntityROMDef PIPE1_BG = {
 		{
 			{
 				// object's class			   
-				__TYPE(Background),  
+				__TYPE(InanimatedInGameEntity),  
 		
 				__SPRITE_ARRAY(PIPE1_BG_SPRITES),
 			},
@@ -318,11 +318,11 @@ SpriteROMDef WALL0_BG_SPRITES[] = {
 	},
 };
 
-BackgroundROMDef WALL0_BG = {
+InanimatedInGameEntityROMDef WALL0_BG = {
 		{
 			{
 				// object's class			   
-				__TYPE(Background),  
+				__TYPE(InanimatedInGameEntity),  
 		
 				__SPRITE_ARRAY(WALL0_BG_SPRITES),
 			},
@@ -544,11 +544,11 @@ SpriteROMDef POLE0_BG_SPRITES[] = {
 	},
 };
 
-BackgroundROMDef POLE0_BG = {
+InanimatedInGameEntityROMDef POLE0_BG = {
 		{
 			{
 				// object's class			   
-				__TYPE(Background),  
+				__TYPE(InanimatedInGameEntity),  
 		
 				__SPRITE_ARRAY(POLE0_BG_SPRITES),
 			},
