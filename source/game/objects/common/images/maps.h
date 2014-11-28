@@ -32,6 +32,7 @@ extern BYTE VBJAE_RIGHT_MP[];
 extern BYTE PVBCC_MAP_LEFT[];
 extern BYTE PVBCC_MAP_RIGHT[];
 extern BYTE PRECAUTION_MP[];
+extern BYTE GENERIC_MAP_4[];
+extern BYTE GENERIC_MAP_9[];
 
 #endif /*MAPS_H_*/
-

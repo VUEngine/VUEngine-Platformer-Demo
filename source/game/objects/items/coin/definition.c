@@ -21,10 +21,8 @@
 /*---------------------------------INCLUDES--------------------------------*/
 #include <libgccvb.h>
 #include "Coin.h"
+#include "common/images/maps.h"
 
-
-
-extern BYTE COIN_MP[];
 
 extern BYTE COIN_CH[];
 
@@ -107,7 +105,7 @@ TextureROMDef COIN0_TX = {
 		},
 		
 		// bgmap definition
-		COIN_MP,
+		GENERIC_MAP_4,
 		
 		// cols (max 48)
 		2,

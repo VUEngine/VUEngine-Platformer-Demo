@@ -21,10 +21,9 @@
 /*---------------------------------INCLUDES--------------------------------*/
 #include <libgccvb.h>
 #include "Hero.h"
+#include "common/images/maps.h"
 
 
-
-extern BYTE HERO_MP[];
 
 extern BYTE HERO_CH[];
 
@@ -345,7 +344,7 @@ TextureROMDef HERO0_TX = {
 		},
 		
 		// bgmap definition
-		HERO_MP,
+		GENERIC_MAP_9,
 		
 		// cols (max 48)
 		3,
