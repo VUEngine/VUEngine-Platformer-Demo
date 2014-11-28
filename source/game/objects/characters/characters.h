@@ -24,11 +24,13 @@
 
 #include "hero/Hero.h"
 #include "enemy/piranhaplant/PiranhaPlant.h"
+#include "enemy/sawblade/SawBlade.h"
 
 /*------------------------------DECLARATIONS--------------------------------*/
 
 extern EntityDefinition HERO_MC;
 extern EntityDefinition PIRANHA_PLANT_V_MC;
+extern EntityDefinition SAW_BLADE_MC;
 
 /*---------------------------------ASSETS----------------------------------*/
 

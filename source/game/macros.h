@@ -38,6 +38,7 @@ enum HeroVbTypes{
 	kHero = 1,
 	kKoopa,
 	kPiranhaPlant,
+	kSawBlade,
 	kSolid,
 	kFloor,
 	kGoal,
