@@ -81,6 +81,7 @@ enum GameLevelMessageTypes{
 	kShowUpLevel,	//19
 	kStartLevel,	// 20
 	kHideStartUpMessage, //21
+	kTakeCoin, //22
 };
 
 /* ---------------------------------------------------------------------------------------------------------

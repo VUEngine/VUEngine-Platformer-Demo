@@ -244,12 +244,32 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 			break;
 
 		case kCollision:
+		{
+			VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
+			ASSERT(collidingObjects, "HeroMoving::handleMessage: null collidingObjects");
 
-//			StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)HeroIdle_getInstance());					
-
+			VirtualNode node = NULL;
+			
+			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node)){
+			
+				InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
+				
+				switch(InGameEntity_getInGameType(inGameEntity)){
+										
+					case kCoin:
+						
+						Printing_text("DISPATCHED MESSAGE", 21, 5);
+						MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeCoin, NULL);
+						return true;
+						break;
+				}
+							
+			}
+//			return Hero_processCollision((Hero)owner, telegram);	
 			return false;
-//			return Hero_processCollision((Hero)owner, telegram);				
+		}
 			break;
+
 			
 
 			

@@ -75,6 +75,8 @@ __CLASS_DEFINITION(Coin);
  * ---------------------------------------------------------------------------------------------------------
  */
 
+u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram);
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -113,22 +115,18 @@ void Coin_destructor(Coin this)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// process a collision
-u8 Coin_processCollision(Coin this, Telegram telegram) 
-{
-	Shape_setActive(this->shape, false);
-	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Taken");
-					
+// state's on message
+u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram){
 
+	Printing_text("RECEIVED MESSAGE", 21, 6);
+	switch(Telegram_getMessage(telegram)){
 
-					
-	int message = Telegram_getMessage(telegram);
-	InGameEntity inGameEntity = (InGameEntity) Telegram_getExtraInfo(telegram);
+		case kTakeCoin:
+		{
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Taken");
+		}
+			break;
+	}
 	
-	/*
-	if((message == kCollision) && (InGameEntity_getInGameType(inGameEntity)) == kHero)) {
-		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Taken");
-	}*/
-
 	return false;
 }
