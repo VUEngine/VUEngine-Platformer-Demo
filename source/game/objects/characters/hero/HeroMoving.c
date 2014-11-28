@@ -257,8 +257,7 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 				switch(InGameEntity_getInGameType(inGameEntity)){
 										
 					case kCoin:
-						
-						Printing_text("DISPATCHED MESSAGE", 21, 5);
+
 						MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeCoin, NULL);
 						return true;
 						break;

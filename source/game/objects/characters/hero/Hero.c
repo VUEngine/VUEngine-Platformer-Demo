@@ -142,7 +142,7 @@ void Hero_setInstance(Hero instance){
 	mario = instance;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// always call these to macros next to each other
+// always call these two macros next to each other
 __CLASS_NEW_DEFINITION(Hero, __PARAMETERS(ActorDefinition* actorDefinition, int ID))
 __CLASS_NEW_END(Hero, __ARGUMENTS(actorDefinition, ID));
 

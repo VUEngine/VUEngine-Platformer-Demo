@@ -78,7 +78,7 @@ __CLASS_DEFINITION(PiranhaPlant);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// always call these to macros next to each other
+// always call these two macros next to each other
 __CLASS_NEW_DEFINITION(PiranhaPlant, __PARAMETERS(PiranhaPlantDefinition* piranhaPlantDefinition, int ID))
 __CLASS_NEW_END(PiranhaPlant, __ARGUMENTS(piranhaPlantDefinition, ID));
 

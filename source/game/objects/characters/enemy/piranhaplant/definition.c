@@ -58,13 +58,13 @@ AnimationFunction PIRANHA_PLANT_V_IDLE_ANIM = {
 	// frames to play in animation
 	{0},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -81,13 +81,13 @@ AnimationFunction PIRANHA_PLANT_V_BITE_ANIM = {
 	// frames to play in animation
 	{0, 1},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	20,
 	
 	// whether to play it in loop or not
 	true,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
