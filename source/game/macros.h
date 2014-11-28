@@ -43,6 +43,7 @@ enum HeroVbTypes{
 	kGoal,
 	kGate,
 	kBridge,
+	kCoin,
 };
 
 

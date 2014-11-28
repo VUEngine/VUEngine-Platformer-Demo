@@ -17,30 +17,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-
-#ifndef OBJECTS_DEFINITIONS_H_
-#define OBJECTS_DEFINITIONS_H_
+#ifndef ITEMS_H_
+#define ITEMS_H_
 
 /*---------------------------------INCLUDES--------------------------------*/
-//include project's common images
-#include "common/images/images.h"
 
-//include project's images
-#include "images/images.h"
+#include "coin/Coin.h"
 
-//include project's bgm
-#include "sound/sound.h"
+/*------------------------------DECLARATIONS--------------------------------*/
 
-//include project's scroll backgrounds
-#include "backgrounds/backgrounds.h"
+extern EntityDefinition COIN_MC;
 
-//include project's characters
-#include "characters/characters.h"
+/*---------------------------------ASSETS----------------------------------*/
 
-//include project's items
-#include "items/items.h"
-
-// include the first state to use in the game
-#include "levels/levels.h"
-
-#endif /*DEFINITIONS_H_*/
+#endif
