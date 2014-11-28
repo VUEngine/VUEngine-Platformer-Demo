@@ -49,11 +49,8 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
-// SawBlade.c
-
-// A SawBlade!
 __CLASS_DEFINITION(SawBlade); 
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -78,7 +75,7 @@ __CLASS_DEFINITION(SawBlade);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// always call these to macros next to each other
+// always call these two macros next to each other
 __CLASS_NEW_DEFINITION(SawBlade, __PARAMETERS(SawBladeDefinition* sawBladeDefinition, int ID))
 __CLASS_NEW_END(SawBlade, __ARGUMENTS(sawBladeDefinition, ID));
 
