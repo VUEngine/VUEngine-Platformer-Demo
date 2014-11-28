@@ -1,4 +1,4 @@
-Mario VB GPL source release				24 October 2008
+Skeleton VB GPL source release				24 October 2008
 ==================================
 
 This file contains the following sections:
@@ -42,7 +42,7 @@ GENERAL NOTES
 
 Description: 
 	
-	Mario VB is a demo of a game created using the vbJaEngine to show off
+	Platform demo of a game created using the vbJaEngine to show off
 	some of the engine's capabilities. 
 
 
@@ -50,7 +50,6 @@ A short summary of the file layout:
 
 source/			   		Skeleton VB source code
 source/game/objects/	Definition and implementation of the different graphics, objects, IA, worlds			
-output/					Binary output folder
 
 
 For more documentation go to:
