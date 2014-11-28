@@ -76,10 +76,10 @@ __CLASS(Hero);
 	Actor holdObject;								\
 													\
 	/* which layer I'm */							\
-	int layer;										\
+	u8 layer;										\
 													\
 	/* Am I jumping over z */						\
-	int movingOverZ;								\
+	u8 movingOverZ;									\
 													\
 	/* boost flag */								\
 	u8 boost;										\
