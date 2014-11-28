@@ -76,6 +76,7 @@ __CLASS_DEFINITION(Coin);
  */
 
 u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram);
+void Coin_removeFromStage(Coin this);
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -116,19 +117,23 @@ void Coin_destructor(Coin this)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram){
+u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram)
+{
 
 	switch (Telegram_getMessage(telegram)) {
 
 		default: /* TODO: why is kTakeCoin not recognized? Remove default case. */
 		case kTakeCoin:
-			Printing_text("kTakeCoin", 21, 6);
 			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Taken");
 			Shape_setActive(this->shape, false);
-			//Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)owner, kDead);
-			//this->inGameState = kDead;
 			break;
 	}
 	
 	return false;
+}
+
+void Coin_removeFromStage(Coin this)
+{
+	//Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)owner, kDead);
+	//this->inGameState = kDead;
 }

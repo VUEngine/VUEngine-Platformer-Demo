@@ -40,13 +40,13 @@ AnimationFunctionROMDef COIN_SPIN_ANIM = {
 	// frames to play in animation
 	{0,1,2,3},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	10 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	true,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -63,14 +63,14 @@ AnimationFunctionROMDef COIN_TAKEN_ANIM = {
 	// frames to play in animation
 	{4,5,6},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	10 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
-	NULL,
+	// method to call on function completion
+	Coin_removeFromStage,
 	
 };
 

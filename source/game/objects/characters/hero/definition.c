@@ -41,13 +41,13 @@ AnimationFunctionROMDef HERO_IDLE_ANIM = {
 	// frames to play in animation
 	{4,5},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	true,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -65,13 +65,13 @@ AnimationFunctionROMDef HERO_WALKING_ANIM = {
 	// frames to play in animation
 	{13, 14},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	9 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	true,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -88,13 +88,13 @@ AnimationFunctionROMDef HERO_JUMPING_ANIM = {
 	// frames to play in animation
 	{6},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -111,13 +111,13 @@ AnimationFunctionROMDef HERO_FALLING_ANIM = {
 	// frames to play in animation
 	{7},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -134,13 +134,13 @@ AnimationFunctionROMDef HERO_SLIDING_ANIM = {
 	// frames to play in animation
 	{7},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -157,13 +157,13 @@ AnimationFunctionROMDef HERO_HIT_FRONT_ANIM = {
 	// frames to play in animation
 	{8},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -180,13 +180,13 @@ AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM = {
 	// frames to play in animation
 	{8},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 };
 
@@ -202,13 +202,13 @@ AnimationFunctionROMDef HERO_HIT_FIRE_ANIM = {
 	// frames to play in animation
 	{8},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 	
 };
@@ -226,13 +226,13 @@ AnimationFunctionROMDef HERO_JUMP_BACK_ANIM = {
 	// frames to play in animation
 	{12},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 };
 
@@ -248,13 +248,13 @@ AnimationFunctionROMDef HERO_JUMP_FRONT_ANIM = {
 	// frames to play in animation
 	{13},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	0,
 	
 	// whether to play it in loop or not
 	false,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 };
 
@@ -271,13 +271,13 @@ AnimationFunctionROMDef HERO_FRONT_ANIM = {
 	// frames to play in animation
 	{0,1},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	true,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 };
 
@@ -293,13 +293,13 @@ AnimationFunctionROMDef HERO_BACK_ANIM = {
 	// frames to play in animation
 	{2,3},
 	
-	// number of cicles a frame of animation is displayed
+	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	true,
 	
-	// method to call function completion
+	// method to call on function completion
 	NULL,
 };
 
