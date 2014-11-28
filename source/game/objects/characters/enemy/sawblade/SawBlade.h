@@ -17,8 +17,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef GAME_LEVEL_H_
-#define GAME_LEVEL_H_
+#ifndef SAW_BLADE_H_
+#define SAW_BLADE_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,7 +29,10 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Level.h>
+#include <Actor.h>
+
+#include <macros.h>
+#include "../enemy/Enemy.h"
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -40,49 +43,59 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// declare the virtual methods
-#define GameLevel_METHODS									\
-	Level_METHODS;									
+#define SAW_BLADE_ATTACK_DISTANCE		6400
 
-// declare the virtual methods which are redefined
-#define GameLevel_SET_VTABLE(ClassName)						\
-	Level_SET_VTABLE(ClassName)								\
-	__VIRTUAL_SET(ClassName, GameLevel, enter);				\
-	__VIRTUAL_SET(ClassName, GameLevel, execute);			\
-	__VIRTUAL_SET(ClassName, GameLevel, exit);				\
-	__VIRTUAL_SET(ClassName, GameLevel, pause);				\
-	__VIRTUAL_SET(ClassName, GameLevel, resume);			\
-	__VIRTUAL_SET(ClassName, GameLevel, handleMessage);		\
+#define SAW_BLADEELOCITY_Y		ITOFIX19_13(20)
+#define SAW_BLADE_ACCELERATION_Y	ITOFIX19_13(0)
 
+#define SAW_BLADE_WAIT_DELAY		1500
 
-__CLASS(GameLevel);
-
-#define GameLevel_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	Level_ATTRIBUTES					\
-										\
-	/* raise when mario is dead */		\
-	u8 marioIsDead: 1;					\
-	u8 levelCleared: 1;					\
-										\
-	/* to allow moving the screen */	\
-	u8 mode: 4;							\
-	u32 lastTime;
-
-
-
-
-enum GameLevelMessageTypes{
+#define SawBlade_METHODS							\
+	Enemy_METHODS;
 	
-	kHeroDied = kLastEngineMessage + 1, // 16
-	kHeroFall,
-	kSetUpLevel,	//18
-	kShowUpLevel,	//19
-	kStartLevel,	// 20
-	kHideStartUpMessage, //21
-	kTakeCoin, //22
-};
+	
+
+#define SawBlade_SET_VTABLE(ClassName)								\
+	Enemy_SET_VTABLE(ClassName);										\
+	__VIRTUAL_SET(ClassName, SawBlade, die);						\
+	__VIRTUAL_SET(ClassName, SawBlade, takeHit);					\
+	__VIRTUAL_SET(ClassName, SawBlade, setLocalPosition);			\
+	__VIRTUAL_SET(ClassName, SawBlade, getAxisFreeForMovement);
+	
+	
+
+// A Decoration which represents a generic object inside a Stage
+__CLASS(SawBlade);
+
+#define SawBlade_ATTRIBUTES						\
+													\
+	/* it is derivated from */						\
+	Enemy_ATTRIBUTES								\
+													\
+	/* save my initial position */					\
+	int initialPosition;							\
+													\
+	/* movement axis */								\
+	u8 axis: 4;										\
+													\
+	/* movement direction */						\
+	s8 movementDirection: 2;
+
+
+
+// definition in ROM memory
+typedef const struct SawBladeDefinition{
+
+	// It has a Characterat the beggining
+	ActorDefinition actorDefinition;
+	
+	// on which axis it moves
+	u8 axis;
+	
+	// movement direction
+	s8 direction;
+	
+}SawBladeDefinition;
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -93,19 +106,41 @@ enum GameLevelMessageTypes{
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// setup the init focus screen
-GameLevel GameLevel_getInstance(void);
+// allocator
+__CLASS_NEW_DECLARE(SawBlade , __PARAMETERS(SawBladeDefinition* sawBladeDefinition, int ID));
 
-// mario is dead
-void GameLevel_marioIsDead(GameLevel this);
+//class's conctructor
+void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int ID);
 
-// level completed
-void GameLevel_levelCleared(GameLevel this);
+// class's conctructor
+void SawBlade_destructor(SawBlade this);
 
-// move the screen
-void GameLevel_moveScreen(GameLevel this);
+// register a shape with the collision detection system
+void SawBlade_registerShape(SawBlade this);
 
-// get working mode
-int GameLevel_getMode(GameLevel this);
+// unregister the shape with the collision detection system
+void SawBlade_unregisterShape(SawBlade this);
 
-#endif /*GAME_LEVEL_H_*/
+// process a collision
+u8 SawBlade_processCollision(SawBlade this, Telegram telegram);
+
+// tell me I've been hit
+void SawBlade_takeHit(SawBlade this, int axis, s8 direction);
+
+// die 
+void SawBlade_die(SawBlade this);
+
+// set  position
+void SawBlade_setLocalPosition(SawBlade this, VBVec3D position);
+
+// retrieve axis free for movement
+int SawBlade_getAxisFreeForMovement(SawBlade this);
+
+// update movement
+void SawBlade_move(SawBlade this);
+
+// start moving
+void SawBlade_startMovement(SawBlade this);
+
+
+#endif

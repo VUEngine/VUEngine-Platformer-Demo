@@ -17,8 +17,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef GAME_LEVEL_H_
-#define GAME_LEVEL_H_
+#ifndef COIN_H_
+#define COIN_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,7 +29,10 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Level.h>
+#include <AnimatedInGameEntity.h>
+#include <macros.h>
+
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -40,49 +43,21 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// declare the virtual methods
-#define GameLevel_METHODS									\
-	Level_METHODS;									
 
-// declare the virtual methods which are redefined
-#define GameLevel_SET_VTABLE(ClassName)						\
-	Level_SET_VTABLE(ClassName)								\
-	__VIRTUAL_SET(ClassName, GameLevel, enter);				\
-	__VIRTUAL_SET(ClassName, GameLevel, execute);			\
-	__VIRTUAL_SET(ClassName, GameLevel, exit);				\
-	__VIRTUAL_SET(ClassName, GameLevel, pause);				\
-	__VIRTUAL_SET(ClassName, GameLevel, resume);			\
-	__VIRTUAL_SET(ClassName, GameLevel, handleMessage);		\
-
-
-__CLASS(GameLevel);
-
-#define GameLevel_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	Level_ATTRIBUTES					\
-										\
-	/* raise when mario is dead */		\
-	u8 marioIsDead: 1;					\
-	u8 levelCleared: 1;					\
-										\
-	/* to allow moving the screen */	\
-	u8 mode: 4;							\
-	u32 lastTime;
-
-
-
-
-enum GameLevelMessageTypes{
+#define Coin_METHODS							\
+	AnimatedInGameEntity_METHODS;
 	
-	kHeroDied = kLastEngineMessage + 1, // 16
-	kHeroFall,
-	kSetUpLevel,	//18
-	kShowUpLevel,	//19
-	kStartLevel,	// 20
-	kHideStartUpMessage, //21
-	kTakeCoin, //22
-};
+
+#define Coin_SET_VTABLE(ClassName)							\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);							\
+
+__CLASS(Coin);
+
+#define Coin_ATTRIBUTES							\
+													\
+	/* it is derivated from */						\
+	AnimatedInGameEntity_ATTRIBUTES								\
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -93,19 +68,10 @@ enum GameLevelMessageTypes{
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// setup the init focus screen
-GameLevel GameLevel_getInstance(void);
+__CLASS_NEW_DECLARE(Coin, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID));
 
-// mario is dead
-void GameLevel_marioIsDead(GameLevel this);
+void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int ID);
+void Coin_destructor(Coin this);
+u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram);
 
-// level completed
-void GameLevel_levelCleared(GameLevel this);
-
-// move the screen
-void GameLevel_moveScreen(GameLevel this);
-
-// get working mode
-int GameLevel_getMode(GameLevel this);
-
-#endif /*GAME_LEVEL_H_*/
+#endif

@@ -38,11 +38,13 @@ enum HeroVbTypes{
 	kHero = 1,
 	kKoopa,
 	kPiranhaPlant,
+	kSawBlade,
 	kSolid,
 	kFloor,
 	kGoal,
 	kGate,
 	kBridge,
+	kCoin,
 };
 
 
@@ -50,13 +52,13 @@ enum HeroVbTypes{
 
 enum GameWorldModes {
 	
-		kPlaying = 1,
-		kShowingUp,
-		kSettingUp,
-		kStartPlaying,
-		kPaused,
-		kMovingScreen,
-		kMovingPerspective,
+	kPlaying = 1,
+	kShowingUp,
+	kSettingUp,
+	kStartPlaying,
+	kPaused,
+	kMovingScreen,
+	kMovingPerspective,
 };
 
 #endif /*MACROS_H_*/

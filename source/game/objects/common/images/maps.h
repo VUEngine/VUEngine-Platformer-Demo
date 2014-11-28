@@ -34,4 +34,3 @@ extern BYTE PVBCC_MAP_RIGHT[];
 extern BYTE PRECAUTION_MP[];
 
 #endif /*MAPS_H_*/
-

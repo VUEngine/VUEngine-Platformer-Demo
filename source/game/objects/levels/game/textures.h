@@ -12,6 +12,7 @@
 
 #include "../../backgrounds/textures.h"
 #include "../../characters/textures.h"
+#include "../../items/textures.h"
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -44,4 +45,4 @@ extern TextureDefinition POLE0_TX;
 extern TextureDefinition GOAL0_TX;
 extern TextureDefinition GATE0_TX;
 
-#endif /*GAME_TEXTURES_H_*/
+#endif

@@ -17,8 +17,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef GAME_LEVEL_H_
-#define GAME_LEVEL_H_
+#ifndef SAW_BLADE_IDLE_H_
+#define SAW_BLADE_IDLE_H_
+
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,7 +31,8 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Level.h>
+#include <StateMachine.h>
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -41,48 +44,24 @@
  */
 
 // declare the virtual methods
-#define GameLevel_METHODS									\
-	Level_METHODS;									
+#define SawBladeIdle_METHODS								\
+	State_METHODS;									
 
 // declare the virtual methods which are redefined
-#define GameLevel_SET_VTABLE(ClassName)						\
-	Level_SET_VTABLE(ClassName)								\
-	__VIRTUAL_SET(ClassName, GameLevel, enter);				\
-	__VIRTUAL_SET(ClassName, GameLevel, execute);			\
-	__VIRTUAL_SET(ClassName, GameLevel, exit);				\
-	__VIRTUAL_SET(ClassName, GameLevel, pause);				\
-	__VIRTUAL_SET(ClassName, GameLevel, resume);			\
-	__VIRTUAL_SET(ClassName, GameLevel, handleMessage);		\
+#define SawBladeIdle_SET_VTABLE(ClassName)					\
+State_SET_VTABLE(ClassName)										\
+	__VIRTUAL_SET(ClassName, SawBladeIdle, enter);			\
+	__VIRTUAL_SET(ClassName, SawBladeIdle, execute);		\
+	__VIRTUAL_SET(ClassName, SawBladeIdle, exit);			\
+	__VIRTUAL_SET(ClassName, SawBladeIdle, handleMessage);	\
+	
+__CLASS(SawBladeIdle);
 
-
-__CLASS(GameLevel);
-
-#define GameLevel_ATTRIBUTES			\
+#define SawBladeIdle_ATTRIBUTES		\
 										\
 	/* inherits */						\
-	Level_ATTRIBUTES					\
-										\
-	/* raise when mario is dead */		\
-	u8 marioIsDead: 1;					\
-	u8 levelCleared: 1;					\
-										\
-	/* to allow moving the screen */	\
-	u8 mode: 4;							\
-	u32 lastTime;
+	State_ATTRIBUTES
 
-
-
-
-enum GameLevelMessageTypes{
-	
-	kHeroDied = kLastEngineMessage + 1, // 16
-	kHeroFall,
-	kSetUpLevel,	//18
-	kShowUpLevel,	//19
-	kStartLevel,	// 20
-	kHideStartUpMessage, //21
-	kTakeCoin, //22
-};
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -94,18 +73,6 @@ enum GameLevelMessageTypes{
  */
 
 // setup the init focus screen
-GameLevel GameLevel_getInstance(void);
+SawBladeIdle SawBladeIdle_getInstance();
 
-// mario is dead
-void GameLevel_marioIsDead(GameLevel this);
-
-// level completed
-void GameLevel_levelCleared(GameLevel this);
-
-// move the screen
-void GameLevel_moveScreen(GameLevel this);
-
-// get working mode
-int GameLevel_getMode(GameLevel this);
-
-#endif /*GAME_LEVEL_H_*/
+#endif

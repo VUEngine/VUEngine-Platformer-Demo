@@ -101,9 +101,11 @@ StageROMDef LEVEL_0_0_0_ST = {
 		// textures
 		{
 			&HERO0_TX,
+			&COIN0_TX,
 			&FLOOR0_TX,
 			&PIPE0_TX,
 			&PIRANHA_PLANT_V_TX,
+			&SAW_BLADE_TX,
 			&WALL0_TX,
 			&FLOOR1_TX,
 			&MOUNTS0_TX,
@@ -117,8 +119,12 @@ StageROMDef LEVEL_0_0_0_ST = {
 			NULL
 		},
 		//entities
-		{	
+		{
 			{&HERO_MC, 				{60, 0, PLAYABLE_LAYER_0}, NULL},
+			{&COIN_MC, 				{140, 180, PLAYABLE_LAYER_0 + 1}, NULL},
+			{&COIN_MC, 				{156, 180, PLAYABLE_LAYER_0 + 1}, NULL},
+			{&COIN_MC, 				{172, 180, PLAYABLE_LAYER_0 + 1}, NULL},
+			{&SAW_BLADE_MC, 		{250, 196, PLAYABLE_LAYER_0}, NULL},
 			{&BACKMOUNT0_SB, 		{112, 176, LAYER_4}, NULL},
 			{&MOUNTS1_IM, 			{112, 208-80, LAYER_3}, NULL},
 			{&FLOOR0_BG, 			{112, LAYER_0_FLOOR, LAYER_0}, NULL},

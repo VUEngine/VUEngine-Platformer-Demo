@@ -17,8 +17,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef GAME_LEVEL_H_
-#define GAME_LEVEL_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,83 +27,136 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Level.h>
+#include <AnimatedSprite.h>
+
+#include "SawBlade.h"
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 											CLASS'S DECLARATION
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// declare the virtual methods
-#define GameLevel_METHODS									\
-	Level_METHODS;									
 
-// declare the virtual methods which are redefined
-#define GameLevel_SET_VTABLE(ClassName)						\
-	Level_SET_VTABLE(ClassName)								\
-	__VIRTUAL_SET(ClassName, GameLevel, enter);				\
-	__VIRTUAL_SET(ClassName, GameLevel, execute);			\
-	__VIRTUAL_SET(ClassName, GameLevel, exit);				\
-	__VIRTUAL_SET(ClassName, GameLevel, pause);				\
-	__VIRTUAL_SET(ClassName, GameLevel, resume);			\
-	__VIRTUAL_SET(ClassName, GameLevel, handleMessage);		\
+extern BYTE SAW_BLADE_CH[];
+extern BYTE SAW_BLADE_MP[];
 
 
-__CLASS(GameLevel);
-
-#define GameLevel_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	Level_ATTRIBUTES					\
-										\
-	/* raise when mario is dead */		\
-	u8 marioIsDead: 1;					\
-	u8 levelCleared: 1;					\
-										\
-	/* to allow moving the screen */	\
-	u8 mode: 4;							\
-	u32 lastTime;
-
-
-
-
-enum GameLevelMessageTypes{
+AnimationFunction SAW_BLADE_SPIN_ANIM = {
 	
-	kHeroDied = kLastEngineMessage + 1, // 16
-	kHeroFall,
-	kSetUpLevel,	//18
-	kShowUpLevel,	//19
-	kStartLevel,	// 20
-	kHideStartUpMessage, //21
-	kTakeCoin, //22
+	// function's name
+	"Spin",
+
+	// number of frames of this animation function
+	2,
+	
+	// frames to play in animation
+	{0,1},
+	
+	// number of cicles a frame of animation is displayed
+	8 * __FPS_ANIM_FACTOR,
+	
+	// whether to play it in loop or not
+	true,
+	
+	// method to call function completion
+	NULL,
+	
 };
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 										PUBLIC INTERFACE
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+// an animation definition
+AnimationDescription SAW_BLADE_ANIM = {
+	
+	// number of animation frames
+	2,
+	
+	// animation functions
+	{
+		&SAW_BLADE_SPIN_ANIM,
+		NULL,
+	}
+	
+};
 
-// setup the init focus screen
-GameLevel GameLevel_getInstance(void);
 
-// mario is dead
-void GameLevel_marioIsDead(GameLevel this);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+TextureDefinition SAW_BLADE_TX = {
+		
+		// Chargroup
+		{
+				// chDefinition,				 
+				SAW_BLADE_CH,	
+				
+				// numChars,
+				18,
+				
+				// allocation type
+				__ANIMATED_SHARED
+		},
+		
+		// bgmap definition
+		SAW_BLADE_MP,
+		
+		// cols (max 48)
+		3,
+		
+		// rows (max 28)
+		3,
+		
+		//pallet number,
+		1
+};
 
-// level completed
-void GameLevel_levelCleared(GameLevel this);
+SpriteROMDef SAW_BLADE_SPRITES[] = {
+	{
+		// the texture
+		&SAW_BLADE_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_AFFINE,
+		
+		// display mode
+		WRLD_ON,
+	}
+};
 
-// move the screen
-void GameLevel_moveScreen(GameLevel this);
 
-// get working mode
-int GameLevel_getMode(GameLevel this);
+SawBladeDefinition SAW_BLADE_MC = {
+		{
+			{
+				{
+					// object's class			   
+					__TYPE(SawBlade),  
+			
+					// Sprites
+					__SPRITE_ARRAY(SAW_BLADE_SPRITES)
+				},
+				
+				// deep
+				10,
+				
+				//collision detection gap			
+				//up,	down,	left,	right,
+				{1,		2,		2,		1,},		
+				
+				// in game type
+				kSawBlade
+			},
+			
+			// pointer to the animation definition for the character
+			&SAW_BLADE_ANIM,
+		},
+		
+		// axis
+		__YAXIS,
+		
+		// direction
+		__UP
+};
 
-#endif /*GAME_LEVEL_H_*/
+
+

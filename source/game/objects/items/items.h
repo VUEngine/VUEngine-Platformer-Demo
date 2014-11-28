@@ -17,21 +17,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef CHARACTERS_H_
-#define CHARACTERS_H_
+#ifndef ITEMS_H_
+#define ITEMS_H_
 
 /*---------------------------------INCLUDES--------------------------------*/
 
-#include "hero/Hero.h"
-#include "enemy/piranhaplant/PiranhaPlant.h"
-#include "enemy/sawblade/SawBlade.h"
+#include "coin/Coin.h"
 
 /*------------------------------DECLARATIONS--------------------------------*/
 
-extern EntityDefinition HERO_MC;
-extern EntityDefinition PIRANHA_PLANT_V_MC;
-extern EntityDefinition SAW_BLADE_MC;
+extern EntityDefinition COIN_MC;
 
 /*---------------------------------ASSETS----------------------------------*/
 
-#endif /*CHARACTERS_H_*/
+#endif

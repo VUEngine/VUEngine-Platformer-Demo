@@ -24,9 +24,8 @@
 
 
 
-extern BYTE HERO_MP[];
-
 extern BYTE HERO_CH[];
+extern BYTE HERO_MP[];
 
 
 

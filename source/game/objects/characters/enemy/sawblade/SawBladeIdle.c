@@ -29,11 +29,12 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include "HeroMoving.h"
-#include "HeroIdle.h"
-#include "Hero.h"
+#include <Optics.h>
 
-#include <GameLevel.h>
+#include "SawBladeIdle.h"
+#include "SawBladeMoving.h"
+#include "SawBlade.h"
+#include "../hero/Hero.h"
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -47,22 +48,22 @@
 
 
 // class's constructor
-void HeroMoving_constructor(HeroMoving this);
+void SawBladeIdle_constructor(SawBladeIdle this);
 
 // class's destructor
-void HeroMoving_destructor(HeroMoving this);
+void SawBladeIdle_destructor(SawBladeIdle this);
 
 // state's enter
-void HeroMoving_enter(HeroMoving this, void* owner);
+void SawBladeIdle_enter(SawBladeIdle this, void* owner);
 
 // state's execute
-void HeroMoving_execute(HeroMoving this, void* owner);
+void SawBladeIdle_execute(SawBladeIdle this, void* owner);
 
-// state's exit
-void HeroMoving_exit(HeroMoving this, void* owner);
+// state's enter
+void SawBladeIdle_exit(SawBladeIdle this, void* owner);
 
 // state's on message
-u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram);
+u16 SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram);
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -74,7 +75,7 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram);
  * ---------------------------------------------------------------------------------------------------------
  */
 
-__CLASS_DEFINITION(HeroMoving);
+__CLASS_DEFINITION(SawBladeIdle);
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -85,21 +86,19 @@ __CLASS_DEFINITION(HeroMoving);
  * ---------------------------------------------------------------------------------------------------------
  */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-__SINGLETON(HeroMoving);
+__SINGLETON(SawBladeIdle);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
-void HeroMoving_constructor(HeroMoving this){
+void SawBladeIdle_constructor(SawBladeIdle this){
 
 	// construct base
 	__CONSTRUCT_BASE(State);
-	
-	this->mustCheckDirection = false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-void HeroMoving_destructor(HeroMoving this){
+void SawBladeIdle_destructor(SawBladeIdle this){
 
 	// destroy base
 	__SINGLETON_DESTROY(State);
@@ -107,174 +106,54 @@ void HeroMoving_destructor(HeroMoving this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
-void HeroMoving_enter(HeroMoving this, void* owner){
+void SawBladeIdle_enter(SawBladeIdle this, void* owner){
 	
-	// not in bridge
-	//Hero_setBridge((Hero)owner, NULL);
+	// do not move
+//	Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);
 
-	// start moving (animations, etc)
-	// correct gap accorging to animation
-	Hero_setGap((Hero)owner);
-
-	this->mustCheckDirection = false;
-
-#ifdef __DEBUG
-	Printing_text("HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 1);
-#endif
+	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
-void HeroMoving_execute(HeroMoving this, void* owner){
+void SawBladeIdle_execute(SawBladeIdle this, void* owner){
+	/*
+	// if not waiting
+	if(!Enemy_getActionTime((Enemy)owner)){
 	
-	// update movement
-	//Hero_move((Hero) owner);
-
-	//Body_printPhysics(Actor_getBody((Actor)owner), 1, 3);
-
-	Hero_checkIfDied((Hero)owner);
+		// update movement
+		SawBlade_move((SawBlade)owner);		
+	}
+	else{
+		
+		// if wait time elapsed
+		if(SAW_BLADE_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner)){
+			
+			// start movement in opposite direction
+			SawBlade_startMovement((SawBlade)owner);
+		}
+	}
+*/
+	// check if mario distance to the plant is within range
+	/*if(SAW_BLADE_ATTACK_DISTANCE > Optics_lengthSquared3D(
+			Entity_getPosition((Entity)owner), Entity_getPosition((Entity)Hero_getInstance()))
+	){
+		StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)SawBladeMoving_getInstance());
+	}*/
+	StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)SawBladeMoving_getInstance());
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's exit 
-void HeroMoving_exit(HeroMoving this, void* owner){
+void SawBladeIdle_exit(SawBladeIdle this, void* owner){
 	
-	Hero_disableBoost((Hero)owner);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
+u16 SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram){
 
-	switch(Telegram_getMessage(telegram)){
-
-		// if the botton of the screen has been reached
-		case kFloorReached:
-	
-			//Hero_fallDead((Hero)owner);
-
-			//Actor_stopMovement(owner, __YAXIS);
-			break;
-			
-		case kKeyPressed:
-			{
-				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-				// check direction
-				if((K_LL | K_LR ) & pressedKey){
-					
-					Hero_checkDirection((Hero)owner, pressedKey, "Walk");					
-				}
-
-				// check if jump
-				if(K_A & pressedKey){
-					
-					Hero_jump((Hero)owner, false);			
-				}
-			}		
-
-			return true;
-			break;
-			
-		case kKeyUp:
-			{
-				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-				if((K_LL | K_LR) & releasedKey){
-	
-					Velocity velocity = Body_getVelocity(Actor_getBody((Actor)owner));
-					
-					if (0 < abs(velocity.x)){
-						
-						Hero_stopMoving((Hero)owner);		
-					}
-					else {
-						
-						StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)HeroIdle_getInstance());					
-					}
-				}
-				
-				if(K_B & releasedKey){
-					
-					Hero_disableBoost((Hero)owner);
-				}
-			}
-			break;
-	
-		case kKeyHold:
-			{
-				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-				// check direction
-				if((K_LL | K_LR ) & holdKey){
-					
-					Hero_keepMoving((Hero)owner, this->mustCheckDirection);					
-					this->mustCheckDirection = false;
-				}
-				
-				if(K_B & holdKey){
-					
-					Hero_enableBoost((Hero)owner);
-				}
-			}
-			break;
-
-		case kBodyStoped:
-
-			Hero_stopMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
-			break;
-
-		case kBodyStartedMoving:
-
-			// start movement
-			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
-			break;
-
-		case kBodyChangedDirection:
-			
-			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
-			break;
-
-		case kBodyBounced:
-			
-			this->mustCheckDirection = true;
-			return true;
-			break;
-
-		case kCollision:
-		{
-			VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
-			ASSERT(collidingObjects, "HeroMoving::handleMessage: null collidingObjects");
-
-			VirtualNode node = NULL;
-			
-			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node)){
-			
-				InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
-				
-				switch(InGameEntity_getInGameType(inGameEntity)){
-										
-					case kCoin:
-						
-						Printing_text("DISPATCHED MESSAGE", 21, 5);
-						MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeCoin, NULL);
-						return true;
-						break;
-				}
-							
-			}
-//			return Hero_processCollision((Hero)owner, telegram);	
-			return false;
-		}
-			break;
-
-			
-
-			
-	}
 	return false;
-	
 }
 

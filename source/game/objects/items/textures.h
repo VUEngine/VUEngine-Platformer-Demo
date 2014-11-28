@@ -1,5 +1,5 @@
-#ifndef CHARACTERS_TEXTURES_H_
-#define CHARACTERS_TEXTURES_H_
+#ifndef ITEMS_TEXTURES_H_
+#define ITEMS_TEXTURES_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -20,9 +20,6 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern TextureDefinition HERO0_TX;
-extern TextureDefinition HERO1_TX;
-extern TextureDefinition PIRANHA_PLANT_V_TX;
-extern TextureDefinition SAW_BLADE_TX;
+extern TextureDefinition COIN0_TX;
 
 #endif
