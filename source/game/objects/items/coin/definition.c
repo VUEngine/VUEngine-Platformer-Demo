@@ -70,7 +70,7 @@ AnimationFunctionROMDef COIN_TAKEN_ANIM = {
 	false,
 	
 	// method to call on function completion
-	Coin_removeFromStage,
+	&Coin_removeFromStage,
 	
 };
 

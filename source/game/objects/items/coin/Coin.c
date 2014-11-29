@@ -132,8 +132,7 @@ u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram)
 	return false;
 }
 
-void Coin_removeFromStage(Coin this)
-{
-	//Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)owner, kDead);
-	//this->inGameState = kDead;
+void Coin_removeFromStage(Coin this) {
+	
+	Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
 }
