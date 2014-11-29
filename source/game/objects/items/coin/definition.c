@@ -70,7 +70,7 @@ AnimationFunctionROMDef COIN_TAKEN_ANIM = {
 	false,
 	
 	// method to call on function completion
-	Coin_removeFromStage,
+	&Coin_removeFromStage,
 	
 };
 
@@ -156,5 +156,8 @@ AnimatedInGameEntityROMDef COIN_MC = {
 		
 		// pointer to the animation definition for the item
 		(AnimationDescription*)&COIN_ANIM,
+		
+		// initial animation
+		NULL
 };
 

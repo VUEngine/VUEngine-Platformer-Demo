@@ -113,7 +113,7 @@ void SawBladeMoving_enter(SawBladeMoving this, void* owner){
 
 	SawBlade_startMovement((SawBlade)owner);
 	
-	AnimatedInGameEntity_playAnimation((Actor)owner, "Spin");
+	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Spin");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

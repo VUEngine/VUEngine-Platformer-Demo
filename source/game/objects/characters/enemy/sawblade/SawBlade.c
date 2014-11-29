@@ -92,6 +92,12 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	// register a body for physics
 	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), (Actor)this, 0);
 
+	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
+	
+	// initialize me as walking
+	StateMachine_swapState(this->stateMachine, (State)SawBladeIdle_getInstance());
+
+
 	// save over which axis I'm going to move
 	this->axis = sawBladeDefinition->axis;
 	
@@ -307,7 +313,7 @@ void SawBlade_startMovement(SawBlade this){
 			{	
 				Velocity velocity = {
 					0,
-					((int)ITOFIX19_13(1) * this->direction.y),
+					((int)ITOFIX19_13(10) * this->direction.y),
 					0,
 				};
 				

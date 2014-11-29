@@ -119,6 +119,9 @@ static void TitleScreen_enter(TitleScreen this, void* owner){
 	
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+	
+	// start in game clock for animations
+	Clock_start(Game_getInGameClock(Game_getInstance()));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -117,30 +117,13 @@ void SawBladeIdle_enter(SawBladeIdle this, void* owner){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
 void SawBladeIdle_execute(SawBladeIdle this, void* owner){
-	/*
-	// if not waiting
-	if(!Enemy_getActionTime((Enemy)owner)){
-	
-		// update movement
-		SawBlade_move((SawBlade)owner);		
-	}
-	else{
-		
-		// if wait time elapsed
-		if(SAW_BLADE_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner)){
-			
-			// start movement in opposite direction
-			SawBlade_startMovement((SawBlade)owner);
-		}
-	}
-*/
-	// check if mario distance to the plant is within range
-	/*if(SAW_BLADE_ATTACK_DISTANCE > Optics_lengthSquared3D(
+
+	// check if Hero's distance to the plant is within range
+	if(SAW_BLADE_ATTACK_DISTANCE > Optics_lengthSquared3D(
 			Entity_getPosition((Entity)owner), Entity_getPosition((Entity)Hero_getInstance()))
 	){
 		StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)SawBladeMoving_getInstance());
-	}*/
-	StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)SawBladeMoving_getInstance());
+	}
 }
 
 

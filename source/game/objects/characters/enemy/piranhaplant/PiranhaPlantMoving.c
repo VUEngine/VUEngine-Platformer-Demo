@@ -116,7 +116,7 @@ void PiranhaPlantMoving_enter(PiranhaPlantMoving this, void* owner){
 	
 	PiranhaPlant_startMovement((PiranhaPlant)owner);
 	
-	AnimatedInGameEntity_playAnimation((Actor)owner, "Bite");
+	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Bite");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

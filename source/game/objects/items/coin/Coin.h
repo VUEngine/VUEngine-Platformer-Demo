@@ -44,20 +44,20 @@
  */
 
 
-#define Coin_METHODS							\
+#define Coin_METHODS													\
 	AnimatedInGameEntity_METHODS;
 	
 
-#define Coin_SET_VTABLE(ClassName)							\
+#define Coin_SET_VTABLE(ClassName)										\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);							\
 	__VIRTUAL_SET(ClassName, Coin, handleMessage);
 
 __CLASS(Coin);
 
-#define Coin_ATTRIBUTES							\
-													\
-	/* it is derivated from */						\
-	AnimatedInGameEntity_ATTRIBUTES								\
+#define Coin_ATTRIBUTES													\
+																		\
+	/* it is derivated from */											\
+	AnimatedInGameEntity_ATTRIBUTES										\
 
 
 /* ---------------------------------------------------------------------------------------------------------

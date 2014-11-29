@@ -149,6 +149,9 @@ SawBladeDefinition SAW_BLADE_MC = {
 			
 			// pointer to the animation definition for the character
 			&SAW_BLADE_ANIM,
+			
+			// initial animation
+			NULL
 		},
 		
 		// axis

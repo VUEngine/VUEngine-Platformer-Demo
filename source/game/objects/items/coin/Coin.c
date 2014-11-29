@@ -105,6 +105,8 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 
 	// play spinning animation
 	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Spin");
+	
+	AnimatedInGameEntity_setClock((AnimatedInGameEntity)this, Game_getClock(Game_getInstance()));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,8 +134,7 @@ u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram)
 	return false;
 }
 
-void Coin_removeFromStage(Coin this)
-{
-	//Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)owner, kDead);
-	//this->inGameState = kDead;
+void Coin_removeFromStage(Coin this) {
+	
+	Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
 }
