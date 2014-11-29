@@ -62,8 +62,7 @@ StageROMDef TITLE_ST = {
 
 		//entities
 		{			
-			{&MARIO_TITLE_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-			{&MARIO_TITLE_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1}, NULL},
+			{&HERO_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
 			{NULL,{0,0,0}, NULL},
 		},
 };

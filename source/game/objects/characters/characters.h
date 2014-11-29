@@ -31,6 +31,7 @@
 extern EntityDefinition HERO_MC;
 extern EntityDefinition PIRANHA_PLANT_V_MC;
 extern EntityDefinition SAW_BLADE_MC;
+extern EntityDefinition HERO_IM;
 
 /*---------------------------------ASSETS----------------------------------*/
 

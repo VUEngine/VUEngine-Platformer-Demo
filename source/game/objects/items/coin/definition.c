@@ -156,5 +156,8 @@ AnimatedInGameEntityROMDef COIN_MC = {
 		
 		// pointer to the animation definition for the item
 		(AnimationDescription*)&COIN_ANIM,
+		
+		// initial animation
+		NULL
 };
 

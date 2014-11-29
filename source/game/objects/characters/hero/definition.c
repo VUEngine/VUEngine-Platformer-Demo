@@ -395,5 +395,37 @@ ActorROMDef HERO_MC = {
 		
 		// pointer to the animation definition for the character
 		(AnimationDescription*)&HERO_ANIM,
+
+		// initial animation
+		NULL
 };
+
+AnimatedInGameEntityROMDef HERO_IM = {
+		
+		{
+			{
+				// object's class			   
+				__TYPE(AnimatedInGameEntity),
+						
+				__SPRITE_ARRAY(HERO_SPRITES),
+			},
+			
+			// deep
+			8,
+			
+			//collision detection gap			
+			//up,	down,	left,	right,
+			{5,		1,		4,		4},
+			
+			// in game type
+			kHero,
+		},
+		
+		// pointer to the animation definition for the character
+		(AnimationDescription*)&HERO_ANIM,	
+		
+		// initial animation
+		"Idle"
+};
+
 

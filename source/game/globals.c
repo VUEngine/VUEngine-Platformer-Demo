@@ -58,8 +58,9 @@ const ClassSizeData _userClassesSizeData[] = {
 #ifdef __LEVEL_EDITOR
 const UserObject _userObjects[] = {
 	
+	{"Coin", &COIN_MC},
+	{"Saw blade", &SAW_BLADE_MC},
 	{"Japan. door", &JAPANARC_IM},
-	{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
 	{"Wall", &WALL0_BG},
 	{"Floor 0", &FLOOR0_BG},
 	{"Floor 1", &FLOOR1_BG},
@@ -78,7 +79,8 @@ const UserObject _userObjects[] = {
 const UserActor _userActors[] = {
 		
 	{"Hero", &HERO_MC},
-	{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
+	{"Coin", &COIN_MC},
+	{"Saw blade", &SAW_BLADE_MC},
 	{"", NULL},
 };
 #endif
