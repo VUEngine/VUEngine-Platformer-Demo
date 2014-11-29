@@ -110,10 +110,7 @@ void SawBladeMoving_destructor(SawBladeMoving this){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
 void SawBladeMoving_enter(SawBladeMoving this, void* owner){
-	
-	// do not move
-	//Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);
-	
+
 	SawBlade_startMovement((SawBlade)owner);
 	
 	AnimatedInGameEntity_playAnimation((Actor)owner, "Spin");
@@ -121,19 +118,18 @@ void SawBladeMoving_enter(SawBladeMoving this, void* owner){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
-void SawBladeMoving_execute(SawBladeMoving this, void* owner){
-	
+void SawBladeMoving_execute(SawBladeMoving this, void* owner)
+{	
 	// if not waiting
-	if(!Enemy_getActionTime((Enemy)owner)){
+	if (!Enemy_getActionTime((Enemy)owner)) {
 	
 		// update movement
 		SawBlade_move((SawBlade)owner);		
-	}
-	else{
+	} else {
 		
 		// if wait time elapsed
-		if(SAW_BLADE_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner)){
-			
+		if (SAW_BLADE_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner)) {
+
 			// start movement in opposite direction
 			SawBlade_startMovement((SawBlade)owner);
 		}
@@ -143,17 +139,18 @@ void SawBladeMoving_execute(SawBladeMoving this, void* owner){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's exit 
-void SawBladeMoving_exit(SawBladeMoving this, void* owner){
-	
+void SawBladeMoving_exit(SawBladeMoving this, void* owner)
+{
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-u16 SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram telegram){
-
+u16 SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram telegram)
+{
 	int message = Telegram_getMessage(telegram);
 	
-	switch(message){
+	switch (message) {
 
 		case kCollision:
 		{
@@ -163,14 +160,16 @@ u16 SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tele
 			VirtualNode node = NULL;
 			
 			// this will place the shape in the owner's position
-			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node)){
-			
+			for (node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node)) {
+
 				InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
 				
-				switch(InGameEntity_getInGameType(inGameEntity)){
+				switch (InGameEntity_getInGameType(inGameEntity)) {
 				
-							// ok, i hit him
-							//Hero_takeHit((Mario)inGameEntity, Entity_getPosition((Entity)owner));
+					case kHero:
+					
+						// ok, i hit him
+						//Hero_takeHit((Mario)inGameEntity, Entity_getPosition((Entity)owner));
 							
 						return true;
 						break;

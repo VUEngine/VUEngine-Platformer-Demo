@@ -27,60 +27,67 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+#include <Image.h>
 
-// include VbJaEngine's Game class
-#include <Game.h>
-#include <Debug.h>
-#include <LevelEditor.h>
-#include <AnimationEditor.h>
-
-// include the Game's objects
-#include <objects.h>
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 										DEFINITIONS
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#ifdef __DEBUG_TOOLS
-const ClassSizeData _userClassesSizeData[] = {
-		
-	{"Hero", &Hero_getObjectSize},
-	{"PiranhaPlant", &PiranhaPlant_getObjectSize},
-	{"", NULL},
-};
-#endif
 
-#ifdef __LEVEL_EDITOR
-const UserObject _userObjects[] = {
-	
-	{"SawBlade Lane V6", &SAW_BLADE_LANE_V_6_IM},
-	{"Japan. door", &JAPANARC_IM},
-	{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
-	{"Wall", &WALL0_BG},
-	{"Floor 0", &FLOOR0_BG},
-	{"Floor 1", &FLOOR1_BG},
-	{"Floor 2", &FLOOR2_BG},
-	{"Hor. pipe", &PIPE1_BG},
-	{"Ver. pipe", &PIPE0_BG},
-	{"Small mount", &MOUNTS0_IM},
-	{"Large mount", &MOUNTS1_IM},
-	{"Pole", &POLE0_BG},
-	{"Goal", &GOAL0_IM},
-	{"", NULL},
-};
-#endif
+extern BYTE SAW_BLADE_LANE_CH[];
+extern BYTE SAW_BLADE_LANE_V_6_MP[];
 
-#ifdef __ANIMATION_EDITOR
-const UserActor _userActors[] = {
+TextureROMDef SAW_BLADE_LANE_V_6_TX = {
+		// Chargroup
+		{
+				// chDefinition,				 
+				SAW_BLADE_LANE_CH,					
+				// numChars,
+				2,
+				
+				// allocation type
+				__NO_ANIMATED
+		},
 		
-	{"Hero", &HERO_MC},
-	{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
-	{"SawBlade", &SAW_BLADE_MC},
-	{"", NULL},
+		// bgmap definition
+		SAW_BLADE_LANE_V_6_MP,
+		
+		// cols (max 48)
+		1,
+		
+		// rows (max 28)
+		6,
+		
+		//pallet number,
+		1
+		
 };
-#endif
+
+SpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITES[] = {
+
+	// Sprite
+	{
+		// the texture
+		&SAW_BLADE_LANE_V_6_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+	},
+};
+
+ImageROMDef SAW_BLADE_LANE_V_6_IM = {
+		
+	// object's class			   
+	__TYPE(Image),  
+
+	__SPRITE_ARRAY(SAW_BLADE_LANE_V_6_IM_SPRITES),
+};

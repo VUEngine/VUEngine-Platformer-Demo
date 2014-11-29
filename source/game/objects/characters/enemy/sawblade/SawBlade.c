@@ -86,15 +86,11 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	// construct base
 	__CONSTRUCT_BASE(Enemy, __ARGUMENTS((ActorDefinition*)&sawBladeDefinition->actorDefinition, ID));
 
-	// initialize me as walking
-	StateMachine_swapState(this->stateMachine, (State)SawBladeMoving_getInstance());
-	
 	// register a shape for collision detection
 	SawBlade_registerShape(this);
 
 	// register a body for physics
 	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), (Actor)this, 0);
-	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
 	// save over which axis I'm going to move
 	this->axis = sawBladeDefinition->axis;
@@ -110,10 +106,14 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 			break;
 			
 		case __YAXIS:
-			
+
 			this->direction.y = sawBladeDefinition->direction;
 			break;			
 	}
+
+	// initialize me as moving
+	StateMachine_swapState(this->stateMachine, (State)SawBladeMoving_getInstance());
+	
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,7 +149,7 @@ u8 SawBlade_processCollision(SawBlade this, Telegram telegram){
 	int message = Telegram_getMessage(telegram);
 	InGameEntity inGameEntity = (InGameEntity) Telegram_getExtraInfo(telegram);
 	
-	switch(message){
+	switch (message) {
 
 		case kCollision:
 			
@@ -157,7 +157,7 @@ u8 SawBlade_processCollision(SawBlade this, Telegram telegram){
 			
 				case kHero:
 
-					// tell mario to take a hit
+					// tell hero to take a hit
 					//Hero_takeHit((Hero)inGameEntity, this->transform.globalPosition);
 					break;
 			}
@@ -220,7 +220,7 @@ int SawBlade_getAxisFreeForMovement(SawBlade this){
 // update movement
 void SawBlade_move(SawBlade this){
 
-	int displacement = 0;
+	int displacement = ITOFIX19_13(44);
 	
 	// update position
 	switch(this->axis){
@@ -233,13 +233,7 @@ void SawBlade_move(SawBlade this){
 			switch(this->direction.y){
 				
 				case __UP:
-					{
-						
-						if(__UP == this->movementDirection){
-							
-							displacement = ITOFIX19_13(Entity_getHeight((Entity)this));
-						}
-						
+					{	
 						// check position
 						if(this->transform.globalPosition.y < this->initialPosition - displacement){
 							
@@ -261,13 +255,8 @@ void SawBlade_move(SawBlade this){
 				case __DOWN:
 
 					{
-						if(__DOWN == this->movementDirection){
-							
-							displacement = ITOFIX19_13(Entity_getHeight((Entity)this));
-						}
-						
 						// check position
-						if(this->transform.globalPosition.y > this->initialPosition + displacement){
+						if(this->transform.globalPosition.y > this->initialPosition){
 							
 							// stop moving
 							Actor_stopMovement((Actor)this);
@@ -279,7 +268,7 @@ void SawBlade_move(SawBlade this){
 							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 							
 							// set position
-							this->transform.localPosition.y = this->initialPosition + displacement;
+							this->transform.localPosition.y = this->initialPosition;
 						}
 					}
 					break;
@@ -294,7 +283,7 @@ void SawBlade_move(SawBlade this){
 		// check if must stop go idle
 		if(!displacement){
 			
-			// check if mario distance to the plant is out of range
+			// check if hero distance to the plant is out of range
 			if(SAW_BLADE_ATTACK_DISTANCE < Optics_lengthSquared3D(
 					Entity_getPosition((Entity)this), Entity_getPosition((Entity)Hero_getInstance()))
 			){
@@ -307,7 +296,7 @@ void SawBlade_move(SawBlade this){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 // start moving
 void SawBlade_startMovement(SawBlade this){
-	
+
 	switch(this->axis){
 		
 		case __XAXIS:
@@ -315,7 +304,7 @@ void SawBlade_startMovement(SawBlade this){
 			
 		case __YAXIS:
 			
-			{
+			{	
 				Velocity velocity = {
 					0,
 					((int)ITOFIX19_13(1) * this->direction.y),
@@ -324,11 +313,6 @@ void SawBlade_startMovement(SawBlade this){
 				
 				Body_moveUniformly(this->body, velocity);
 			}
-			// move over y axis
-			//Actor_startMovement((Actor)this, __YAXIS, ~(__ACCELMOVEY | __RETARMOVEY),
-			//		SAW_BLADEELOCITY_Y, SAW_BLADE_ACCELERATION_Y);
-			
-			
 			break;			
 	}
 	
