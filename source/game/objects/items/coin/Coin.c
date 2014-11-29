@@ -105,6 +105,8 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 
 	// play spinning animation
 	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Spin");
+	
+	AnimatedInGameEntity_setClock((AnimatedInGameEntity)this, Game_getClock(Game_getInstance()));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
