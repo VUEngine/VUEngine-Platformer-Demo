@@ -78,10 +78,10 @@ const UserObject _userObjects[] = {
 #ifdef __ANIMATION_EDITOR
 const UserActor _userActors[] = {
 		
-	{"Hero", &HERO_MC},
-	{"Coin", &COIN_MC},
-	{"Ver. Piranha plant", &PIRANHA_PLANT_V_MC},
-	{"SawBlade", &SAW_BLADE_MC},
+	{"Hero", (ActorDefinition*)&HERO_MC},
+	{"Coin", (ActorDefinition*)&COIN_MC},
+	{"Ver. Piranha plant", (ActorDefinition*)&PIRANHA_PLANT_V_MC},
+	{"SawBlade", (ActorDefinition*)&SAW_BLADE_MC},
 	{"", NULL},
 };
 #endif

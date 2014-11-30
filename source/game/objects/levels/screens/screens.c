@@ -25,6 +25,12 @@
 
 /*---------------------------------ASSETS----------------------------------*/
 
+PositionedEntityROMDef PVB_ST_ENTITIES[] = {
+
+	{&PVB_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{&PVB_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{NULL,{0,0,0}, NULL},
+};
 
 StageROMDef PVB_ST = {
 		
@@ -49,20 +55,20 @@ StageROMDef PVB_ST = {
 		//background music		
 		NULL,
 		//textures 
-		{
-			NULL
-		},
+		NULL,
 		//UI entities
 		{
-			{NULL, {0,0,0}, NULL},
+			NULL,
+			NULL
 		},
 		//entities
-		{			
-			{&PVB_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-			{&PVB_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-			
-			{NULL,{0,0,0}, NULL},
-		},
+		PVB_ST_ENTITIES
+};
+
+PositionedEntityROMDef PRECAUTION_ST_ENTITIES[] = {
+
+	{&PRECAUTION_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{NULL,{0,0,0}, NULL},
 };
 
 StageROMDef PRECAUTION_ST = {
@@ -89,21 +95,22 @@ StageROMDef PRECAUTION_ST = {
 		//background music		
 		NULL,
 		//textures 
-		{
-			NULL
-		},
+		NULL,
 		//UI entities
 		{
-			{NULL, {0,0,0}, NULL},
+			NULL,
+			NULL
 		},
 		//entities
-		{			
-			{&PRECAUTION_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-			
-			{NULL,{0,0,0}, NULL},
-		},
+		PRECAUTION_ST_ENTITIES
 };
 
+PositionedEntityROMDef PVBCC_ST_ENTITIES[] = {
+
+	{&PVBCC_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{&PVBCC_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{NULL,{0,0,0}, NULL},
+};
 
 StageROMDef PVBCC_ST = {
 		
@@ -128,22 +135,22 @@ StageROMDef PVBCC_ST = {
 		//background music		
 		NULL,
 		//textures 
-		{
-			NULL
-		},
+		NULL,
 		//UI entities
 		{
-			{NULL, {0,0,0}, NULL},
+			NULL,
+			NULL
 		},
 		//entities
-		{			
-			{&PVBCC_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-			{&PVBCC_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-			
-			{NULL,{0,0,0}, NULL},
-		},
+		PVBCC_ST_ENTITIES
 };
 
+PositionedEntityROMDef VBJAE_ST_ENTITIES[] = {
+
+	{&VBJAE_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{&VBJAE_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{NULL,{0,0,0}, NULL},
+};
 
 StageROMDef VBJAE_ST = {
 		
@@ -168,22 +175,13 @@ StageROMDef VBJAE_ST = {
 		//background music		
 		NULL,
 		//textures 
-		{
-			NULL
-		},
+		NULL,
 		//UI entities
 		{
-			{NULL, {0,0,0}, NULL},
+			NULL,
+			NULL
 		},
 		//entities
-		{			
-			{&VBJAE_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-			{&VBJAE_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-			
-			{NULL,{0,0,0}, NULL},
-		},
+		VBJAE_ST_ENTITIES
 };
-
-
-
 
