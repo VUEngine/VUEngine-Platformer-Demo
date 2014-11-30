@@ -61,7 +61,7 @@
 // A Hero!
 __CLASS(Hero);
 
-#define Hero_ATTRIBUTES							\
+#define Hero_ATTRIBUTES								\
 													\
 	/* it is derivated from */						\
 	Actor_ATTRIBUTES								\
@@ -83,6 +83,9 @@ __CLASS(Hero);
 													\
 	/* boost flag */								\
 	u8 boost;										\
+													\
+	/* number of collected coins */					\
+	u8 coins;										\
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -218,5 +221,8 @@ int Hero_doKeyHold(Hero this, int pressedKey);
 
 // check if dead
 void Hero_checkIfDied(Hero this);
+
+// check if dead
+void Hero_collectCoin(Hero this);
 
 #endif /*MARIOLOGIC_H*/

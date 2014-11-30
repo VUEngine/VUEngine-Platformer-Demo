@@ -23,5 +23,6 @@
 
 extern TextureDefinition MARIO_TITLE_LEFT_TX;
 extern TextureDefinition MARIO_TITLE_RIGHT_TX;
+extern TextureDefinition GUI_TX;
 
 #endif /*GAME_IMAGE_TEXTURES_H_*/

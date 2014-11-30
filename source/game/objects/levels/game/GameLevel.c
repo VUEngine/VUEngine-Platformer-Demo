@@ -144,45 +144,13 @@ static void GameLevel_execute(GameLevel this, void* owner){
 	if(currentSecond != previousSecond){
 		
 		currentSecond = previousSecond;
-		
-		Printing_text("Time ", 37, 0);
 
-		Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
+		Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 	}
 
 
 	// call base
 	Level_execute((Level)this, owner);
-/*
-	// if mario is dead
-	if(this->marioIsDead){
-		
-		// force exit and enter to next state
-		Game_changeState(Game_getInstance(), (Level)TitleScreen_getInstance());
-			
-		return;
-	}
-
-	// if mario is dead
-	if(this->levelCleared){
-		
-		// force exit and enter to next state
-		Game_changeState(Game_getInstance(), (Level)VbJaeScreen_getInstance());
-
-		return;
-	}
-
-#ifdef __DEBUG
-	if(kPlaying == this->mode){
-#endif	
-		// center the screen
-		Stage_centerScreen(this->stage);
-
-#ifdef __DEBUG		
-	}
-#endif
-*/
-
 }
 
 
@@ -205,10 +173,9 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 	switch(Telegram_getMessage(telegram)){
 
 		case kSetUpLevel:
-		
-			Printing_text("Time ", 37, 0);
+
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
+			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 	
 			// start physical simulation again
@@ -225,7 +192,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 			Printing_text("GET READY", 21, 6);
 			Clock_stop(Game_getInGameClock(Game_getInstance()));
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
+			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 			
 			MessageDispatcher_dispatchMessage(1500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
 

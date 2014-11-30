@@ -153,6 +153,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 	__CONSTRUCT_BASE(Actor, __ARGUMENTS(actorDefinition, ID));
 
 	this->energy = 1;
+	this->coins = 0;
 
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
@@ -1648,4 +1649,11 @@ void Hero_checkIfDied(Hero this) {
 			MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Game_getInstance(), kHeroDied, NULL);
 		}
 	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// collect a coin
+void Hero_collectCoin(Hero this)
+{
+	this->coins++;
 }
