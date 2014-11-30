@@ -94,10 +94,6 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	
-	// initialize me as walking
-	StateMachine_swapState(this->stateMachine, (State)SawBladeIdle_getInstance());
-
-
 	// save over which axis I'm going to move
 	this->axis = sawBladeDefinition->axis;
 	
@@ -119,7 +115,6 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 
 	// initialize me as moving
 	StateMachine_swapState(this->stateMachine, (State)SawBladeMoving_getInstance());
-	
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
