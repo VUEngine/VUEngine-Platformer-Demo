@@ -155,10 +155,8 @@ static void GameLevel_execute(GameLevel this, void* owner){
 	if(currentSecond != previousSecond){
 		
 		currentSecond = previousSecond;
-		
-		Printing_text("Time ", 37, 0);
 
-		Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
+		Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 	}
 
 
@@ -216,10 +214,9 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 	switch(Telegram_getMessage(telegram)){
 
 		case kSetUpLevel:
-		
-			Printing_text("Time ", 37, 0);
+
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
+			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 	
 			// start physical simulation again
@@ -236,7 +233,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 			Printing_text("GET READY", 21, 6);
 			Clock_stop(Game_getInGameClock(Game_getInstance()));
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 0);
+			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 			
 			MessageDispatcher_dispatchMessage(1500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
 
@@ -368,7 +365,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// mario is dead
+// hero is dead
 void GameLevel_marioIsDead(GameLevel this){
 
 	// now he's dead
@@ -380,7 +377,6 @@ void GameLevel_marioIsDead(GameLevel this){
 // level completed
 void GameLevel_levelCleared(GameLevel this){
 
-	// now he's dead
 	this->levelCleared = true;
 }
 

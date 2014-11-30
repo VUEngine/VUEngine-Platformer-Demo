@@ -259,6 +259,7 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 										
 					case kCoin:
 
+						Hero_collectCoin((Hero)owner);
 						MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeCoin, NULL);
 						return true;
 						break;

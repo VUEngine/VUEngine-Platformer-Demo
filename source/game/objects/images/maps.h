@@ -27,6 +27,7 @@
 
 extern BYTE MARIO_TITLE_LEFT_MP[];
 extern BYTE MARIO_TITLE_RIGHT_MP[];
+extern BYTE GUI_MP[];
 
 #endif /*IMAGES_MAPS_H_*/
 

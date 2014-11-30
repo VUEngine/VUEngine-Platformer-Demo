@@ -29,6 +29,7 @@ extern const u16 ASCII_CH[];
 
 extern BYTE MARIO_TITLE_LEFT_CH[];
 extern BYTE MARIO_TITLE_RIGHT_CH[];
+extern BYTE GUI_CH[];
 
 #endif /*IMAGE_CHARS_H_*/
 
