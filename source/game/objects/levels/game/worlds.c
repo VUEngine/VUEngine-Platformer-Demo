@@ -131,8 +131,8 @@ StageROMDef LEVEL_0_0_0_ST = {
 			{&FLOOR1_BG, 			{296, LAYER_0_FLOOR, LAYER_0}, NULL},   
 			{&FLOOR0_BG, 			{478, LAYER_0_FLOOR, LAYER_0}, NULL},// 5
 			{&FLOOR0_BG, 			{592, LAYER_2_FLOOR, LAYER_2}, NULL},
-			{&WALL0_BG, 			{628 + 1 * 8, 224, LAYER_0}, NULL},			
-			{&WALL0_BG, 			{628 + 3 * 8 * 2 + 24, 224, LAYER_0}, NULL},   		
+			{&WALL0_BG, 			{628 + 1 * 8, 208, LAYER_0 + 1}, NULL},			
+			{&WALL0_BG, 			{628 + 3 * 8 * 2 + 24, 208, LAYER_0 + 1}, NULL},   		
 			{&MOUNTS0_IM, 			{812, 176, LAYER_2}, NULL},// 10
 			//{&PIRANHA_PLANT_V_MC, 	{865, 181, PLAYABLE_LAYER_0 + 2}, NULL},
 			{&PIPE0_BG, 			{866, 186, PLAYABLE_LAYER_0 + 1}, NULL},
