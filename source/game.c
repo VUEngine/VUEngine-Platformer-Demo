@@ -1,4 +1,4 @@
-/* VbJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
  * 
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
@@ -27,7 +27,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// include VbJaEngine's Game class
+// include VBJaEngine's Game class
 #include <Game.h>
 
 // include the Game's objects

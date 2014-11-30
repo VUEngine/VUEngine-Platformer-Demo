@@ -42,7 +42,7 @@ GENERAL NOTES
 
 Description: 
 	
-	Platform demo of a game created using the vbJaEngine to show off
+	Platform demo of a game created using the VBJaEngine to show off
 	some of the engine's capabilities. 
 
 
@@ -68,7 +68,7 @@ Requirements:
 
 
 
-1. Create an environment variable called VBJAENGINE which must point to the vbJaEngine's folder.
+1. Create an environment variable called VBJAENGINE which must point to the VBJaEngine's folder.
 
 2. To compile the execute the following command inside the game's folder:
 
@@ -85,7 +85,7 @@ Requirements:
 	· GCCVB 4.4.2 for V810 
 
 
-1. Create a CygWin environment variable called VBJAENGINE which must point to the vbJaEngine's folder.
+1. Create a CygWin environment variable called VBJAENGINE which must point to the VBJaEngine's folder.
 
 2. To compile the execute the following command inside the game's folder:
 
