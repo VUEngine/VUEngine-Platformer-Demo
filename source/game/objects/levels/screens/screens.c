@@ -37,7 +37,6 @@ StageROMDef PVB_ST = {
 			// z
 			1
 		},
-		
 		//initial screen position
 		{
 			// x
@@ -47,15 +46,16 @@ StageROMDef PVB_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		
 		//background music		
 		NULL,
-		
 		//textures 
 		{
 			NULL
 		},
-
+		//UI entities
+		{
+			{NULL, {0,0,0}, NULL},
+		},
 		//entities
 		{			
 			{&PVB_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
@@ -86,15 +86,16 @@ StageROMDef PRECAUTION_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		
 		//background music		
 		NULL,
-
 		//textures 
 		{
 			NULL
 		},
-
+		//UI entities
+		{
+			{NULL, {0,0,0}, NULL},
+		},
 		//entities
 		{			
 			{&PRECAUTION_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
@@ -115,7 +116,6 @@ StageROMDef PVBCC_ST = {
 			// z
 			1
 		},
-		
 		//initial screen position
 		{
 			// x
@@ -125,15 +125,16 @@ StageROMDef PVBCC_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		
 		//background music		
 		NULL,
-
 		//textures 
 		{
 			NULL
 		},
-
+		//UI entities
+		{
+			{NULL, {0,0,0}, NULL},
+		},
 		//entities
 		{			
 			{&PVBCC_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
@@ -155,7 +156,6 @@ StageROMDef VBJAE_ST = {
 			// z
 			1
 		},
-		
 		//initial screen position
 		{
 			// x
@@ -165,15 +165,16 @@ StageROMDef VBJAE_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		
 		//background music		
 		NULL,
-
 		//textures 
 		{
 			NULL
 		},
-
+		//UI entities
+		{
+			{NULL, {0,0,0}, NULL},
+		},
 		//entities
 		{			
 			{&VBJAE_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},

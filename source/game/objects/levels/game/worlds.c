@@ -37,7 +37,6 @@ StageROMDef TITLE_ST = {
 			// z
 			1
 		},
-		
 		//initial screen position
 		{
 			// x
@@ -47,15 +46,16 @@ StageROMDef TITLE_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		
 		//background music		
 		NULL,
-
 		//textures 
 		{
 			NULL
 		},
-
+		//UI entities
+		{
+			{NULL, {0,0,0}, NULL},
+		},
 		//entities
 		{			
 			{&HERO_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
@@ -79,7 +79,6 @@ StageROMDef LEVEL_0_0_0_ST = {
 			// z
 			LAYER_4
 		},
-		
 		//initial screen position
 		{
 			// x
@@ -89,10 +88,8 @@ StageROMDef LEVEL_0_0_0_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		
 		//background music		
 		(const u16 (*)[])WORLD_0_0_0_BGM,
-
 		// textures
 		{
 			&HERO0_TX,
@@ -115,10 +112,13 @@ StageROMDef LEVEL_0_0_0_ST = {
 			
 			NULL
 		},
+		//UI entities
+		{
+			{&GUI_IM, 				{__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT - 8, 0}, NULL},
+			{NULL, {0,0,0}, NULL},
+		},
 		//entities
 		{
-			{&GUI_IM, 				{192, 216, 0}, NULL},
-
 			{&HERO_MC, 				{60, 0, PLAYABLE_LAYER_0}, NULL},
 			{&COIN_MC, 				{140, LAYER_0_FLOOR - 24, PLAYABLE_LAYER_0 + 1}, NULL},
 			{&COIN_MC, 				{156, LAYER_0_FLOOR - 24, PLAYABLE_LAYER_0 + 1}, NULL},
