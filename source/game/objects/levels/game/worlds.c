@@ -50,6 +50,10 @@ StageROMDef TITLE_ST = {
 		NULL,
 		//textures 
 		{
+			&LOGO_LEFT_TX,
+			&LOGO_RIGHT_TX,
+			&SUPER_AWESOME_TX,
+			&VBJAENGINE_TX,
 			NULL
 		},
 		//UI entities
@@ -57,8 +61,11 @@ StageROMDef TITLE_ST = {
 			{NULL, {0,0,0}, NULL},
 		},
 		//entities
-		{			
-			{&HERO_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+		{
+			{&VBJAENGINE_IM, 	{__SCREEN_WIDTH >> 1, 	62, 	LAYER_0}, 		NULL},			
+			{&SUPER_AWESOME_IM, {__SCREEN_WIDTH >> 1, 	80, 	LAYER_0 - 16}, 	NULL},			
+			{&LOGO_IM, 			{__SCREEN_WIDTH >> 1, 	104, 	LAYER_0}, 		NULL},			
+			{&HERO_IM, 			{__SCREEN_WIDTH >> 1, 	158, 	LAYER_0}, 		NULL},
 			{NULL,{0,0,0}, NULL},
 		},
 };
@@ -108,8 +115,7 @@ StageROMDef LEVEL_0_0_0_ST = {
 			&BACKMOUNT02_TX,
 			&JAPANARC_TX,
 			&SAW_BLADE_LANE_V_6_TX,
-			&GUI_TX,
-			
+			&GUI_TX,			
 			NULL
 		},
 		//UI entities
@@ -149,8 +155,6 @@ StageROMDef LEVEL_0_0_0_ST = {
 			{&GOAL0_IM, 			{1592, 64, BACKGROUND_LAYER_1 + 1}, NULL},
 			{&FLOOR0_BG, 			{1604, LAYER_1_FLOOR, LAYER_1}, NULL},
 			//{&GATE0_IM, {112, 96, PLAYABLE_LAYER_0 + 1}, NULL},
-
-
 			{NULL, {0,0,0}, NULL},
 		},
 };

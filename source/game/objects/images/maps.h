@@ -28,6 +28,10 @@
 extern BYTE MARIO_TITLE_LEFT_MP[];
 extern BYTE MARIO_TITLE_RIGHT_MP[];
 extern BYTE GUI_MP[];
+extern BYTE LOGO_LEFT_MP[];
+extern BYTE LOGO_RIGHT_MP[];
+extern BYTE SUPER_AWESOME_MP[];
+extern BYTE VBJAENGINE_MP[];
 
 #endif /*IMAGES_MAPS_H_*/
 

@@ -30,6 +30,10 @@ extern const u16 ASCII_CH[];
 extern BYTE MARIO_TITLE_LEFT_CH[];
 extern BYTE MARIO_TITLE_RIGHT_CH[];
 extern BYTE GUI_CH[];
+extern BYTE LOGO_LEFT_CH[];
+extern BYTE LOGO_RIGHT_CH[];
+extern BYTE SUPER_AWESOME_CH[];
+extern BYTE VBJAENGINE_CH[];
 
 #endif /*IMAGE_CHARS_H_*/
 

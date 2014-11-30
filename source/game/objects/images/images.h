@@ -45,5 +45,8 @@
 extern EntityDefinition MARIO_TITLE_LEFT_IM;
 extern EntityDefinition MARIO_TITLE_RIGHT_IM;
 extern EntityDefinition GUI_IM;
+extern EntityDefinition LOGO_IM;
+extern EntityDefinition SUPER_AWESOME_IM;
+extern EntityDefinition VBJAENGINE_IM;
 
 #endif /*IMAGE_H_*/
