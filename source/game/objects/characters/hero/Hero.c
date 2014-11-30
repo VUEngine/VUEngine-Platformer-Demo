@@ -30,7 +30,6 @@
 
 #include <Game.h>
 #include <CollisionManager.h>
-#include <GameWorld.h>
 #include <MessageDispatcher.h>
 #include <Screen.h>
 #include <Cuboid.h>
@@ -622,9 +621,6 @@ int Hero_stopMovingOnAxis(Hero this, int axis){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // check direction
 void Hero_checkDirection(Hero this, u16 pressedKey, char* animation){
-
-	// get world's size		
-	//Size worldSize = GameWorld_getSize(GameWorld_getInstance());
 
 	int previousDirection = this->direction.x;
 	

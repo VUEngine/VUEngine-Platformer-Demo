@@ -33,7 +33,6 @@
 #include <MessageDispatcher.h>
 #include <PhysicalWorld.h>
 
-
 #include <GameLevel.h>
 #include <TitleScreen.h>
 #include <objects.h>
@@ -106,10 +105,6 @@ __SINGLETON_DYNAMIC(GameLevel);
 static void GameLevel_constructor(GameLevel this){
 		
 	__CONSTRUCT_BASE(Level);
-	
-	this->marioIsDead = false;
-	
-	this->levelCleared = false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,12 +126,6 @@ static void GameLevel_enter(GameLevel this, void* owner){
 	//load stage
 	Level_loadStage((Level)this, (StageDefinition*)&LEVEL_0_0_0_ST, true, false);
 
-	// mario is alive!
-	this->marioIsDead = false;
-	
-	// the level is not cleared yet
-	this->levelCleared = false;
-	
 	// playing by default
 	this->mode = kPaused;
 	
@@ -266,88 +255,11 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 				return Level_handleMessage((Level)this, owner, telegram);
 			}
 			
-			//if start button pressed
-			/*
-			if(vbNewKeyPressed(K_STA)){
-				
-				if(kPaused == this->mode){					
-					
-					this->mode = kPlaying;
-					Printing_text("     ", 22, 13);
-					Clock_pause(Game_getInGameClock(Game_getInstance()), false);
-					
-					VIP_REGS[GPLT0] = __GPLT0VALUE;	
-					VIP_REGS[GPLT1] = __GPLT1VALUE;	
-					VIP_REGS[GPLT2] = __GPLT2VALUE;
-					VIP_REGS[GPLT3] = __GPLT3VALUE;
-					
-				}
-				else{
-					
-					Printing_text("                  ", 0, 0);
-					this->mode = kPaused;
-					Printing_text("Pause", 22, 13);
-					Clock_pause(Game_getInGameClock(Game_getInstance()), true);
-					
-					VIP_REGS[GPLT0] = 0xA0;
-					VIP_REGS[GPLT1] = 0x90;
-					
-				}
-				return true;
-			}
-			*/
-
 			if(kPaused == this->mode){
 				
 				return true;
 			}
 			
-/*
-#ifdef __DEBUG
-			//if select button pressed
-			if(vbNewKeyPressed(K_SEL)){
-				this->mode++;
-				if(this->mode > GAMEWORLD_MODES - 1){
-					this->mode = 1;
-				}
-				
-				if(kMovingScreen == this->mode){
-					
-					this->lastTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-					Printing_text("Moving screen     ", 0, 0);
-				}
-				
-				if(kMovingPerspective == this->mode){
-					
-					this->lastTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-					Printing_text("Moving perspective", 0, 0);
-				}
-				
-				if(kPlaying == this->mode){
-					
-					this->lastTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-					Printing_text("                  ", 0, 0);
-				}				
-			}
-			
-			if(kMovingScreen == this->mode){
-				
-				if((K_LU | K_LD | K_LL | K_LR) & vbKeyPressed()){
-
-					GameLevel_moveScreen(this);
-
-				}
-			}
-			
-			if(kMovingPerspective == this->mode){
-				
-				if(vbKeyPressed()){
-
-					//GameLevel_movePerspective(this);
-				}
-			}			
-#endif 
-*/
 			break;
 			
 		case kKeyUp:
@@ -366,183 +278,3 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 	return false;
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// mario is dead
-void GameLevel_marioIsDead(GameLevel this){
-
-	// now he's dead
-	this->marioIsDead = true;
-	
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// level completed
-void GameLevel_levelCleared(GameLevel this){
-
-	// now he's dead
-	this->levelCleared = true;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// move the screen
-void GameLevel_moveScreen(GameLevel this){
-/*
-	
-	u32 currentTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-	int displacement = 200 * (currentTime - this->lastTime) / 1000;
-	displacement = 50;
-
-	if(currentTime - this->lastTime > 200){
-		
-		this->lastTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));;
-		displacement = 4;
-	}
-	this->lastTime = currentTime;
-	
-	displacement = ITOFIX19_13(displacement);
-	displacement = ITOFIX19_13(50);
-	
-	
-	if(vbKeyPressed() & K_LL){
-		
-		if(_screenPosition->x - displacement > 0){
-			
-			_screenPosition->x -= displacement;
-			
-			_screenMovementState->x = __ACTIVE;
-		}
-	}
-	
-	if(vbKeyPressed() & K_LR){
-		
-		//if(_screenPosition.x > displacement > 0){
-			
-			_screenPosition->x += displacement;
-			
-			_screenMovementState->x = __ACTIVE;
-			
-		//}
-	}
-	*/
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// move view point
-/*
-static void GameLevel_movePerspective(GameLevel this){
-
-	switch(vbKeyPressed()){
-	
-		case K_LL:
-			
-			if(optical.horizontalViewPointCenter > 0){
-				
-				optical.horizontalViewPointCenter--;
-			}
-			else{
-				optical.horizontalViewPointCenter=0;
-			}
-			
-			break;
-			
-		case K_LR:
-			
-			if(optical.horizontalViewPointCenter < 384){
-				
-				optical.horizontalViewPointCenter++;
-			}
-			else{
-				optical.horizontalViewPointCenter=384;
-			}
-
-			break;
-			
-		case K_LU:
-			
-			if(optical.verticalViewPointCenter > 0){
-				
-				optical.verticalViewPointCenter--;
-			}
-			else{
-				optical.verticalViewPointCenter=0;
-			}
-
-			break;
-			
-		case K_LD:
-			
-			if(optical.verticalViewPointCenter < 224){
-				
-				optical.verticalViewPointCenter++;
-			}
-			else{
-				optical.verticalViewPointCenter=224;
-			}
-
-			break;
-			
-		case K_RL:
-			
-			if(optical.baseDistance > 10){
-				
-				optical.baseDistance -=10;
-			}
-			else{
-				optical.baseDistance = 1;
-			}
-	
-			break;
-			
-		case K_RR:
-			
-			if(optical.baseDistance < __BASE_FACTOR +__BASE_FACTOR/2){
-				
-				optical.baseDistance += 10;
-			}
-			else{
-				optical.baseDistance=__BASE_FACTOR+__BASE_FACTOR/2;
-			}
-	
-			break;
-
-			
-		case K_RU:
-			
-			if(optical.maximunViewDistance > __MAXVIEWDISTANCE/2){
-				
-				optical.maximunViewDistance--;
-			}
-			else{
-				
-				optical.maximunViewDistance =__MAXVIEWDISTANCE/2;
-			}
-
-			
-			break;
-			
-		case K_RD:
-			
-			if(optical.maximunViewDistance < __MAXVIEWDISTANCE+__MAXVIEWDISTANCE/2){
-				
-				optical.maximunViewDistance++;
-			}
-			else{
-				optical.maximunViewDistance = __MAXVIEWDISTANCE+__MAXVIEWDISTANCE/2;
-			}
-
-			break;
-			
-		//}
-		
-	
-	//_screenMovementState->x = _screenMovementState->y = _screenMovementState->z = __ACTIVE; 
-
-}
-*/
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// get working mode
-int GameLevel_getMode(GameLevel this){
-	
-	return this->mode;
-}

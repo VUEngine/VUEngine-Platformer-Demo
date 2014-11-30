@@ -25,10 +25,6 @@
 #include "textures.h"
 
 /*---------------------------------ASSETS----------------------------------*/
-/*---------------------------------ASSETS----------------------------------*/
-/* If the world structure is altered, there are GameWorld's methods
- * which asume certain indexes for some attributes so check for those!
- */
 
 StageROMDef TITLE_ST = {
 		

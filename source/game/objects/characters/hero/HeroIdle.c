@@ -198,16 +198,7 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 			break;
 
 		case kKeyPressed:
-			
-#ifdef __DEBUG
-			/*
-			if(kPlaying != GameWorld_getMode(GameWorld_getInstance())){
-				
-				return true;
-			}
-			*/
-#endif
-			{			
+			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
 				if((K_LL | K_LR | K_A) & pressedKey){

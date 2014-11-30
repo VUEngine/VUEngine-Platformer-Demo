@@ -53,11 +53,11 @@ int main(void){
 	// after the normal splash screen sequence
 
 	// start the game at state
-	Game_start(Game_getInstance(), (State)SplashScreen_getInstance());
+	// Game_start(Game_getInstance(), (State)SplashScreen_getInstance());
 	// for quick level testing comment the line above
 	// and uncomment the line below
 	// Game_start(Game_getInstance(), (State)TitleScreen_getInstance());
-	// Game_start(Game_getInstance(), (State)GameLevel_getInstance());
+	 Game_start(Game_getInstance(), (State)GameLevel_getInstance());
 		
 	// end program
 	return true;

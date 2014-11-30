@@ -30,7 +30,6 @@
 
 #include <Game.h>
 #include <CollisionManager.h>
-#include <GameWorld.h>
 #include <MessageDispatcher.h>
 #include <Screen.h>
 #include <Cuboid.h>

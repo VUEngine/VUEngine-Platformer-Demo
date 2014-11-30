@@ -62,13 +62,8 @@ __CLASS(GameLevel);
 	/* inherits */						\
 	Level_ATTRIBUTES					\
 										\
-	/* raise when mario is dead */		\
-	u8 marioIsDead: 1;					\
-	u8 levelCleared: 1;					\
-										\
 	/* to allow moving the screen */	\
 	u8 mode: 4;							\
-	u32 lastTime;
 
 
 
@@ -95,17 +90,5 @@ enum GameLevelMessageTypes{
 
 // setup the init focus screen
 GameLevel GameLevel_getInstance(void);
-
-// mario is dead
-void GameLevel_marioIsDead(GameLevel this);
-
-// level completed
-void GameLevel_levelCleared(GameLevel this);
-
-// move the screen
-void GameLevel_moveScreen(GameLevel this);
-
-// get working mode
-int GameLevel_getMode(GameLevel this);
 
 #endif /*GAME_LEVEL_H_*/
