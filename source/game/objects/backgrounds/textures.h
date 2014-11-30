@@ -43,4 +43,6 @@ extern TextureDefinition POLE0_TX;
 extern TextureDefinition GOAL0_TX;
 extern TextureDefinition GATE0_TX;
 
+extern TextureDefinition VBJAENGINE_BG_TX;
+
 #endif /*GAME_TEXTURES_H_*/

@@ -54,6 +54,8 @@ StageROMDef TITLE_ST = {
 			&LOGO_RIGHT_TX,
 			&SUPER_AWESOME_TX,
 			&VBJAENGINE_TX,
+			&VBJAENGINE_BG_TX,
+			&FLOOR0_TX,
 			NULL
 		},
 		//UI entities
@@ -61,11 +63,13 @@ StageROMDef TITLE_ST = {
 			{NULL, {0,0,0}, NULL},
 		},
 		//entities
-		{
+		{		
 			{&VBJAENGINE_IM, 	{__SCREEN_WIDTH >> 1, 	62, 	LAYER_0}, 		NULL},			
 			{&SUPER_AWESOME_IM, {__SCREEN_WIDTH >> 1, 	80, 	LAYER_0 - 16}, 	NULL},			
 			{&LOGO_IM, 			{__SCREEN_WIDTH >> 1, 	104, 	LAYER_0}, 		NULL},			
-			{&HERO_IM, 			{__SCREEN_WIDTH >> 1, 	158, 	LAYER_0}, 		NULL},
+			{&HERO_IM, 			{__SCREEN_WIDTH >> 1, 	181, 	LAYER_0}, 		NULL},
+			{&FLOOR0_BG, 		{__SCREEN_WIDTH >> 1, 	208, 	LAYER_0}, 		NULL},
+			{&VBJAENGINE_BG_SB, {112, 160, LAYER_4}, NULL},
 			{NULL,{0,0,0}, NULL},
 		},
 };

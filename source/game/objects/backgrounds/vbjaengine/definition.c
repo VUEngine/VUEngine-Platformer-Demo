@@ -18,9 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef BACKGROUNDS_H_
-#define BACKGROUNDS_H_
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -30,51 +27,66 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Entity.h>
-#include "texture.h"
+#include <ScrollBackground.h>
+
+
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												DECLARATIONS
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-extern EntityDefinition TITLE_BG;
 
 
-extern EntityDefinition BIGPOW_BG;
-extern EntityDefinition MOUNT0_BG;
-extern EntityDefinition FLOOR1_BG;
-extern EntityDefinition MOUNT2_BG;
-extern EntityDefinition PIPE0_BG;
-extern EntityDefinition PIPE1_BG;
-extern EntityDefinition POLE0_BG;
-extern EntityDefinition POW0_BG;
-extern EntityDefinition WALL0_BG;
+extern BYTE VBJAENGINE_BG_CH[];
+extern BYTE VBJAENGINE_BG_MP[];
 
-extern EntityDefinition FLOOR0_BG;
-extern EntityDefinition FLOOR1_BG;
-extern EntityDefinition FLOOR2_BG;
-extern EntityDefinition FLOOR3_BG;
-extern EntityDefinition PIPE0_BG;
-extern EntityDefinition PIPE1_BG;
-extern EntityDefinition WALL0_BG;
+TextureROMDef VBJAENGINE_BG_TX = {
+		// Chargroup
+		{
+				// chDefinition,				 
+				VBJAENGINE_BG_CH,					
+				// numChars,
+				207,
+				
+				// allocation type
+				__NO_ANIMATED
+		},
+		
+		// bgmap definition
+		VBJAENGINE_BG_MP,
+		
+		// cols (max 48)
+		15,
+		
+		// rows (max 28)
+		15,
+		
+		//pallet number,
+		0
+};
 
-extern EntityDefinition POLE0_BG;
-extern EntityDefinition GOAL0_IM;
-extern EntityDefinition GATE0_IM;
+SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 
-extern EntityDefinition JAPANARC_IM;
-extern EntityDefinition MOUNT0_IM;
-extern EntityDefinition MOUNT1_IM;
-extern EntityDefinition MOUNT2_IM;
+	// Sprite
+	{
+		// the texture
+		&VBJAENGINE_BG_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+	},
+};
 
-extern EntityDefinition MOUNTS0_IM;
-extern EntityDefinition MOUNTS1_IM;
+ScrollBackgroundROMDef VBJAENGINE_BG_SB = {
+		
+	// object's class			   
+	__TYPE(ScrollBackground),  
 
-extern EntityDefinition BACKMOUNT0_SB;
-
-extern EntityDefinition VBJAENGINE_BG_SB;
-
-#endif /*BACKGROUNDS_H_*/
+	__SPRITE_ARRAY(VBJAENGINE_BG_SB_SPRITES),
+};
