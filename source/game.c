@@ -44,8 +44,7 @@
  */
 
 // Main game algorithm
-// There should be no need
-// to modify this.
+// There should be no need to modify this.
 int main(void){
 	
 	// don't forget to define the START_LEVEL macro in

@@ -28,6 +28,8 @@
  */
 
 #include <Image.h>
+#include <../assets/images/_o/SuperAwesome.h>
+#include <../assets/images/_o/VBJaEngineLogo.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -39,18 +41,10 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
 extern BYTE LOGO_LEFT_CH[];
 extern BYTE LOGO_RIGHT_CH[];
 extern BYTE LOGO_LEFT_MP[];
 extern BYTE LOGO_RIGHT_MP[];
-
-extern BYTE SUPER_AWESOME_CH[];
-extern BYTE SUPER_AWESOME_MP[];
-
-extern BYTE VBJAENGINE_CH[];
-extern BYTE VBJAENGINE_MP[];
-
 
 TextureROMDef LOGO_LEFT_TX = {
 		// Chargroup
@@ -142,7 +136,7 @@ TextureROMDef SUPER_AWESOME_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				SUPER_AWESOME_CH,					
+				SuperAwesomeTiles,					
 				// numChars,
 				39,
 				
@@ -151,7 +145,7 @@ TextureROMDef SUPER_AWESOME_TX = {
 		},
 		
 		// bgmap definition
-		SUPER_AWESOME_MP,
+		SuperAwesomeMap,
 		
 		// cols (max 48)
 		19,
@@ -203,16 +197,16 @@ TextureROMDef VBJAENGINE_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				VBJAENGINE_CH,					
+				VBJaEngineLogoTiles,					
 				// numChars,
-				55,
+				56,
 				
 				// allocation type
 				__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		VBJAENGINE_MP,
+		VBJaEngineLogoMap,
 		
 		// cols (max 48)
 		16,
