@@ -9,7 +9,7 @@ TYPE = release
 #TYPE = preprocessor
 
 # Which directories contain source files
-DIRS := $(shell find source -type d -print)
+DIRS := $(shell find * -type d -print)
 		
 # Which libraries are linked
 LIBS =
@@ -44,7 +44,7 @@ endif
 
 # Add directories to the include and library paths
 INCPATH_ENGINE := $(shell find $(VBJAENGINE) -type d -print)
-INCPATH_GAME := $(shell find source -type d -print)
+INCPATH_GAME := $(shell find * -type d -print)
  
 LIBPATH = 
 

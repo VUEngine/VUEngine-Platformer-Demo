@@ -1,0 +1,6 @@
+#include "Coin-reordered.h" 
+#include "Coin.h" 
+#include "Hero-reordered.h" 
+#include "Hero.h" 
+#include "SawBlade-reordered.h" 
+#include "SawBlade.h" 
