@@ -197,6 +197,7 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
+		case kKeyHold:
 		case kKeyPressed:
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
