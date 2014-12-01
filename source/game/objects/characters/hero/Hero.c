@@ -567,7 +567,9 @@ void Hero_startedMovingOnAxis(Hero this, int axis){
 	}
 	else{
 
-		if(__XAXIS & axis) {
+		int movementState = Body_isMoving(this->body);
+
+		if((__XAXIS & axis)  && !(__YAXIS & movementState)) {
 
 			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
 		}
