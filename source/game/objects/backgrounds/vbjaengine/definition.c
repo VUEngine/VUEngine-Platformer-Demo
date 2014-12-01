@@ -28,6 +28,7 @@
  */
 
 #include <ScrollBackground.h>
+#include <../assets/images/_o/VBJaEngineBG.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -39,30 +40,26 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
-extern BYTE VBJAENGINE_BG_CH[];
-extern BYTE VBJAENGINE_BG_MP[];
-
 TextureROMDef VBJAENGINE_BG_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				VBJAENGINE_BG_CH,					
+				VBJaEngineBGTiles,					
 				// numChars,
-				207,
+				197,
 				
 				// allocation type
 				__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		VBJAENGINE_BG_MP,
+		VBJaEngineBGMap,
 		
 		// cols (max 48)
-		15,
+		48,
 		
 		// rows (max 28)
-		15,
+		28,
 		
 		//pallet number,
 		0

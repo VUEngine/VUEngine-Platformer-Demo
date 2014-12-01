@@ -4,11 +4,11 @@
 //======================================================================
 //
 //	VBJaEngineBG, 512x512@2, 
-//	+ 197 tiles (t|f|p reduced) not compressed
+//	+ 197 tiles (t|f reduced) not compressed
 //	+ regular map (in SBBs), not compressed, 64x64 
 //	Total size: 3152 + 8192 = 11344
 //
-//	Time-stamp: 2014-12-01, 03:56:12
+//	Time-stamp: 2014-12-01, 04:06:50
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
