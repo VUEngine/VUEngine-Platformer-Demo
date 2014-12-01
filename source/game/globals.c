@@ -32,10 +32,14 @@
 #include <Game.h>
 #include <Debug.h>
 #include <LevelEditor.h>
+#include <I18n.h>
 #include <AnimationEditor.h>
 
 // include the Game's objects
 #include <objects.h>
+
+// include the Game's localization files
+#include <../assets/text/text.h>
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -46,6 +50,10 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+// register languages
+// I18n_register(I18n_getInstance(), "en", lang_en);
+ 
+ 
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] = {
 		
