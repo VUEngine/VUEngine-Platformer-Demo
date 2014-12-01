@@ -31,6 +31,7 @@
 #include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
+#include <I18n.h>
 #include <PhysicalWorld.h>
 
 #include <GameLevel.h>
@@ -189,7 +190,7 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 		case kShowUpLevel:
 
 			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
-			Printing_text("GET READY", 21, 6);
+			Printing_text(I18n_getText(I18n_getInstance(), 0), 21, 6);
 			Clock_stop(Game_getInGameClock(Game_getInstance()));
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
 			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);

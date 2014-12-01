@@ -34,6 +34,7 @@
 #include <objects.h>
 #include <macros.h>
 
+
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -46,6 +47,7 @@
 // Main game algorithm
 // There should be no need to modify this.
 int main(void){
+
 	
 	// don't forget to define the START_LEVEL macro in
 	// common.h (default: TitleScreen) which is the state set

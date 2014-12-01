@@ -3,7 +3,7 @@
  * Ensure this file is encoded in ANSI for umlauts to work.
  */
 
-const static char* lang_en[] = {
+const static char* Lang_EN[] = {
 
 // STR_READY
 "Ready",
