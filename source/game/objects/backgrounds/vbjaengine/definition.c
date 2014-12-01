@@ -78,6 +78,17 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 		// display mode
 		WRLD_ON,
 	},
+	// Sprite
+	{
+		// the texture
+		&VBJAENGINE_BG_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+	},
 };
 
 ScrollBackgroundROMDef VBJAENGINE_BG_SB = {
