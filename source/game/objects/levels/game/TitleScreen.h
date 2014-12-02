@@ -43,14 +43,13 @@
 // declare the virtual methods
 #define TitleScreen_METHODS										\
 	Level_METHODS;												\
-	__VIRTUAL_DEC(update);					\
 
 // declare the virtual methods which are redefined
 #define TitleScreen_SET_VTABLE(ClassName)						\
 	Level_SET_VTABLE(ClassName)									\
 	__VIRTUAL_SET(ClassName, TitleScreen, enter);				\
 	__VIRTUAL_SET(ClassName, TitleScreen, exit);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, update);				\
+	__VIRTUAL_SET(ClassName, TitleScreen, execute);				\
 	__VIRTUAL_SET(ClassName, TitleScreen, handleMessage);		\
 
 
@@ -66,7 +65,6 @@ __CLASS(TitleScreen);
 	u32 lastTime;
 
 
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -78,6 +76,5 @@ __CLASS(TitleScreen);
 
 // setup the init focus screen
 TitleScreen TitleScreen_getInstance(void);
-
 
 #endif /*TITLE_SCREEN_H_*/

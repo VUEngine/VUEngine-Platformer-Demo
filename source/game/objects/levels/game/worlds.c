@@ -36,12 +36,12 @@ PositionedEntityROMDef TITLE_ST_UI_ENTITIES[] = {
 	{&SUPER_AWESOME_IM, {__SCREEN_WIDTH >> 1, 	 80, 	LAYER_0 - 16	}, NULL},			
 	{&LOGO_IM, 			{__SCREEN_WIDTH >> 1, 	104, 	LAYER_0			}, NULL},			
 	{&HERO_IM, 			{__SCREEN_WIDTH >> 1, 	181, 	LAYER_0			}, NULL},
+	{&FLOOR0_BG, 		{__SCREEN_WIDTH >> 1, 	208, 	LAYER_0			}, NULL},
 	{NULL,{0,0,0}, NULL},
 };
 
 PositionedEntityROMDef TITLE_ST_ENTITIES[] = {
 
-	{&FLOOR0_BG, 		{__SCREEN_WIDTH >> 1, 	208, 	LAYER_0			}, NULL},
 	{&VBJAENGINE_BG_SB, {				   0, 	__SCREEN_HEIGHT >> 1, 	LAYER_0	+ 32		}, NULL},
 	{NULL,{0,0,0}, NULL},
 };
