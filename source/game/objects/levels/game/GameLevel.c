@@ -113,6 +113,8 @@ static void GameLevel_constructor(GameLevel this){
 // class's destructor
 static void GameLevel_destructor(GameLevel this){
 	
+	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
+
 	// destroy base
 	__SINGLETON_DESTROY(Level);
 }
