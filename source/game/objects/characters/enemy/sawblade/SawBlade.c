@@ -38,6 +38,7 @@
 #include "SawBladeMoving.h"
 #include "../enemy/EnemyDead.h"
 #include "../Hero/Hero.h"
+#include <GameLevel.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -113,8 +114,8 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 			break;			
 	}
 
-	// initialize me as moving
 	StateMachine_swapState(this->stateMachine, (State)SawBladeMoving_getInstance());
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

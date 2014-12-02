@@ -56,6 +56,7 @@
 	__VIRTUAL_SET(ClassName, Hero, doKeyPressed);			\
 	__VIRTUAL_SET(ClassName, Hero, doKeyUp);				\
 	__VIRTUAL_SET(ClassName, Hero, doKeyHold);				\
+	__VIRTUAL_SET(ClassName, Hero, doMessage);				\
 	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);			\
 
 // A Hero!
@@ -218,6 +219,9 @@ int Hero_doKeyUp(Hero this, int pressedKey);
 
 // process user input
 int Hero_doKeyHold(Hero this, int pressedKey);
+
+// process a message
+int Hero_doMessage(Hero this, int message);
 
 // check if dead
 void Hero_checkIfDied(Hero this);

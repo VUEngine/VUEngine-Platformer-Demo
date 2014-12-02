@@ -1637,6 +1637,22 @@ int Hero_doKeyHold(Hero this, int pressedKey){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// process a message
+int Hero_doMessage(Hero this, int message){
+	
+	switch(message) {
+		
+		case kStartLevel:
+			
+			// do some initialization stuff
+			break;
+	}
+
+	// inform my current states about the key hold		
+	return MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, message, NULL);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // check if dead
 void Hero_checkIfDied(Hero this) {
 

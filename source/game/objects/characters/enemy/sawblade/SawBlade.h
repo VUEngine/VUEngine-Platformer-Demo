@@ -56,7 +56,7 @@
 	
 
 #define SawBlade_SET_VTABLE(ClassName)								\
-	Enemy_SET_VTABLE(ClassName);										\
+	Enemy_SET_VTABLE(ClassName);									\
 	__VIRTUAL_SET(ClassName, SawBlade, die);						\
 	__VIRTUAL_SET(ClassName, SawBlade, takeHit);					\
 	__VIRTUAL_SET(ClassName, SawBlade, setLocalPosition);			\
@@ -141,6 +141,5 @@ void SawBlade_move(SawBlade this);
 
 // start moving
 void SawBlade_startMovement(SawBlade this);
-
 
 #endif

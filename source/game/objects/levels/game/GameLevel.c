@@ -70,8 +70,8 @@ static void GameLevel_resume(GameLevel this, void* owner){}
 // state's on message
 static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegram);
 
-// move view point
-//static void GameLevel_movePerspective(GameLevel this);
+// handle event
+static void GameLevel_onSecondChange(GameLevel this);
 
 extern const u16 ASCII_CH[];
 
@@ -105,6 +105,8 @@ __SINGLETON_DYNAMIC(GameLevel);
 static void GameLevel_constructor(GameLevel this){
 		
 	__CONSTRUCT_BASE(Level);
+	
+	Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,28 +133,18 @@ static void GameLevel_enter(GameLevel this, void* owner){
 	
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
+
+	Clock_reset(Game_getInGameClock(Game_getInstance()));
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
 static void GameLevel_execute(GameLevel this, void* owner){
 	
-	// print clock if the second has changed
-	static int previousSecond = 0;	
-	int currentSecond = Clock_getSeconds(Game_getInGameClock(Game_getInstance()));
-	
-	if(currentSecond != previousSecond){
-		
-		currentSecond = previousSecond;
-
-		Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
-	}
-
-
 	// call base
 	Level_execute((Level)this, owner);
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's exit 
@@ -174,26 +166,30 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 
 		case kSetUpLevel:
 
-			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
+			// make a little bit of physical simulations so each entity is placed at the floor
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 	
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
 
-			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kShowUpLevel, NULL);
+			// show level after 0.5 second
+			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kShowUpLevel, NULL);
 
 			this->mode = kSettingUp;
 			break;	
 
 		case kShowUpLevel:
 
-			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 			Printing_text("GET READY", 21, 6);
-			Clock_stop(Game_getInGameClock(Game_getInstance()));
-			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
+
+			// pause physical simulations
+			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 			
+			// fade screen
+			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+
+
+			// start game in 1.5 seconds
 			MessageDispatcher_dispatchMessage(1500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
 
 			this->mode = kShowingUp;
@@ -203,9 +199,18 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 
 			Printing_text("    GO!        ", 21, 6);
 			
+			// erase message in 1 second
 			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kHideStartUpMessage, NULL);
+			
+			// reset clock and restart
+			Clock_reset(Game_getInGameClock(Game_getInstance()));
 			Clock_start(Game_getInGameClock(Game_getInstance()));
+			
+			// start physical simulation again
+			PhysicalWorld_start(PhysicalWorld_getInstance());
 
+			Level_propagateMessage((Level)this, kStartLevel);
+			
 			this->mode = kPlaying;
 			break;
 
@@ -245,3 +250,9 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 	return false;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle event
+static void GameLevel_onSecondChange(GameLevel this) {
+	
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
+}

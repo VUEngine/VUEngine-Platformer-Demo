@@ -109,6 +109,7 @@ PositionedEntityROMDef LEVEL_0_0_0_ST_UI_ENTITIES[] = {
 
 PositionedEntityROMDef LEVEL_0_0_0_ST_ENTITIES[] = {
 
+		
 	{&HERO_MC, 				{60, 0, PLAYABLE_LAYER_0}, NULL},
 	{&COIN_MC, 				{140, LAYER_0_FLOOR - 24, PLAYABLE_LAYER_0 + 1}, NULL},
 	{&COIN_MC, 				{156, LAYER_0_FLOOR - 24, PLAYABLE_LAYER_0 + 1}, NULL},
