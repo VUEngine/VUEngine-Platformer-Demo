@@ -58,7 +58,7 @@ static void TitleScreen_enter(TitleScreen this, void* owner);
 static void TitleScreen_exit(TitleScreen this, void* owner);
 
 // update screen
-static void TitleScreen_update(TitleScreen this);
+static void TitleScreen_execute(TitleScreen this, void* owner);
 
 // state's on message
 static int TitleScreen_handleMessage(TitleScreen this, void* owner, Telegram telegram);
@@ -140,16 +140,15 @@ static void TitleScreen_exit(TitleScreen this, void* owner){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // screen update
-static void TitleScreen_update(TitleScreen this){
+static void TitleScreen_execute(TitleScreen this, void* owner){
 
 	VBVec3D translation = {
-		ITOFIX19_13(10),
-		ITOFIX19_13(10), 
-		ITOFIX19_13(10)
+		ITOFIX19_13(1),
+		ITOFIX19_13(0), 
+		ITOFIX19_13(0)
 	};
-	Printing_text("WURS", 10, 10);
 
-//	TitleScreen_move(TitleScreen_getInstance(), translation, false);
+	Screen_move(Screen_getInstance(), translation, false);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -170,9 +170,6 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 		Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	}
 	
-	// I'm the focus actor
-	Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
-	
 	// I'm not holding anything
 	this->holdObject = NULL;
 	
@@ -194,6 +191,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 		PhysicalWorld_setFriction(PhysicalWorld_getInstance(), FTOFIX19_13(FRICTION));
 	}
 	
+	// I'm the focus actor
 	Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
 }
 
