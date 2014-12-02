@@ -44,7 +44,7 @@ TextureROMDef GUI_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				guiTiles,					
+				GUITiles,					
 				// numChars,
 				20,
 				
@@ -53,7 +53,7 @@ TextureROMDef GUI_TX = {
 		},
 		
 		// bgmap definition
-		guiMap,
+		GUIMap,
 		
 		// cols (max 48)
 		48,
