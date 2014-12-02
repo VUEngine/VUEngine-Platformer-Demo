@@ -1,4 +1,4 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
+/* TREE_BG_FRONT: bitmap graphics engine for the Nintendo Virtual Boy 
  * 
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
@@ -28,7 +28,7 @@
  */
 
 #include <ScrollBackground.h>
-#include <../assets/images/_o/VBJaEngineBGDark.h>
+#include <../assets/images/_o/TreeBGFront.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -40,20 +40,20 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-TextureROMDef VBJAENGINE_BG_TX = {
+TextureROMDef TREE_BG_FRONT_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				VBJaEngineBGDarkTiles,					
+				TreeBGFrontTiles,
 				// numChars,
-				148,
+				71,
 				
 				// allocation type
 				__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		VBJaEngineBGDarkMap,
+		TreeBGFrontMap,
 		
 		// cols (max 48)
 		48,
@@ -62,15 +62,15 @@ TextureROMDef VBJAENGINE_BG_TX = {
 		28,
 		
 		//pallet number,
-		0
+		3
 };
 
-SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
+SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {
 
 	// Sprite
 	{
 		// the texture
-		&VBJAENGINE_BG_TX,
+		&TREE_BG_FRONT_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -81,7 +81,7 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&VBJAENGINE_BG_TX,
+		&TREE_BG_FRONT_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -91,10 +91,10 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 	},
 };
 
-ScrollBackgroundROMDef VBJAENGINE_BG_SB = {
+ScrollBackgroundROMDef TREE_BG_FRONT_SB = {
 		
 	// object's class			   
 	__TYPE(ScrollBackground),  
 
-	__SPRITE_ARRAY(VBJAENGINE_BG_SB_SPRITES),
+	__SPRITE_ARRAY(TREE_BG_FRONT_SB_SPRITES),
 };

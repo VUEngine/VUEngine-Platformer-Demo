@@ -28,6 +28,7 @@
  */
 
 #include <Image.h>
+#include <../assets/images/_o/GUI.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -39,24 +40,20 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
-extern BYTE GUI_CH[];
-extern BYTE GUI_MP[];
-
 TextureROMDef GUI_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				GUI_CH,					
+				GUITiles,					
 				// numChars,
-				19,
+				20,
 				
 				// allocation type
 				__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		GUI_MP,
+		GUIMap,
 		
 		// cols (max 48)
 		48,

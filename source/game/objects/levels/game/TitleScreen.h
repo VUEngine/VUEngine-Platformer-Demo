@@ -41,14 +41,16 @@
  */
 
 // declare the virtual methods
-#define TitleScreen_METHODS									\
-	Level_METHODS;									
+#define TitleScreen_METHODS										\
+	Level_METHODS;												\
+	__VIRTUAL_DEC(update);					\
 
 // declare the virtual methods which are redefined
 #define TitleScreen_SET_VTABLE(ClassName)						\
 	Level_SET_VTABLE(ClassName)									\
 	__VIRTUAL_SET(ClassName, TitleScreen, enter);				\
 	__VIRTUAL_SET(ClassName, TitleScreen, exit);				\
+	__VIRTUAL_SET(ClassName, TitleScreen, update);				\
 	__VIRTUAL_SET(ClassName, TitleScreen, handleMessage);		\
 
 
@@ -59,16 +61,9 @@ __CLASS(TitleScreen);
 	/* inherits */						\
 	Level_ATTRIBUTES					\
 										\
-	/* raise when mario is dead */		\
-	u8 marioIsDead: 1;					\
-	u8 levelCleared: 1;					\
-										\
 	/* to allow moving the screen */	\
 	u8 mode: 4;							\
 	u32 lastTime;
-
-
-
 
 
 

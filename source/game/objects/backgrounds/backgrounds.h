@@ -44,9 +44,6 @@ extern EntityDefinition TITLE_BG;
 
 
 extern EntityDefinition BIGPOW_BG;
-extern EntityDefinition MOUNT0_BG;
-extern EntityDefinition FLOOR1_BG;
-extern EntityDefinition MOUNT2_BG;
 extern EntityDefinition PIPE0_BG;
 extern EntityDefinition PIPE1_BG;
 extern EntityDefinition POLE0_BG;
@@ -65,16 +62,8 @@ extern EntityDefinition POLE0_BG;
 extern EntityDefinition GOAL0_IM;
 extern EntityDefinition GATE0_IM;
 
-extern EntityDefinition JAPANARC_IM;
-extern EntityDefinition MOUNT0_IM;
-extern EntityDefinition MOUNT1_IM;
-extern EntityDefinition MOUNT2_IM;
-
-extern EntityDefinition MOUNTS0_IM;
-extern EntityDefinition MOUNTS1_IM;
-
-extern EntityDefinition BACKMOUNT0_SB;
-
+extern TextureDefinition TREE_BG_FRONT_SB;
+extern TextureDefinition TREE_BG_BACK_SB;
 extern EntityDefinition VBJAENGINE_BG_SB;
 
 #endif /*BACKGROUNDS_H_*/
