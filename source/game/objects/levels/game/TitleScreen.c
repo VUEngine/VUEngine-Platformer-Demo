@@ -134,7 +134,7 @@ static void TitleScreen_execute(TitleScreen this, void* owner){
 
 	VBVec3D translation = {
 		ITOFIX19_13(1),
-		ITOFIX19_13(0), 
+		ITOFIX19_13(1), 
 		ITOFIX19_13(0)
 	};
 

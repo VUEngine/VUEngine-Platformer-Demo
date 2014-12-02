@@ -105,16 +105,12 @@ __SINGLETON_DYNAMIC(GameLevel);
 static void GameLevel_constructor(GameLevel this){
 		
 	__CONSTRUCT_BASE(Level);
-	
-	Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
 static void GameLevel_destructor(GameLevel this){
 	
-	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
-
 	// destroy base
 	__SINGLETON_DESTROY(Level);
 }
@@ -152,6 +148,8 @@ static void GameLevel_execute(GameLevel this, void* owner){
 // state's exit 
 static void GameLevel_exit(GameLevel this, void* owner){
 	
+	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
+
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
 
@@ -207,12 +205,14 @@ static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegra
 			// reset clock and restart
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
 			Clock_start(Game_getInGameClock(Game_getInstance()));
+			Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
 			
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
 
+			// tell any interested entity
 			Level_propagateMessage((Level)this, kStartLevel);
-			
+
 			this->mode = kPlaying;
 			break;
 
