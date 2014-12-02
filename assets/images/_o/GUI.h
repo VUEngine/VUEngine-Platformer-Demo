@@ -18,10 +18,10 @@
 #define GRIT_GUI_H
 
 #define guiTilesLen 320
-extern const unsigned char guiTiles[320];
+extern const unsigned char GUITiles[320];
 
 #define guiMapLen 8192
-extern const unsigned char guiMap[];
+extern const unsigned char GUIMap[];
 
 #endif // GRIT_GUI_H
 

@@ -106,7 +106,7 @@ static void GameLevel_constructor(GameLevel this){
 		
 	__CONSTRUCT_BASE(Level);
 	
-	Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
