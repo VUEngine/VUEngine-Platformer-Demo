@@ -1,4 +1,4 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
+/* TREE_BG_FRONT: bitmap graphics engine for the Nintendo Virtual Boy 
  * 
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
@@ -17,8 +17,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef TITLE_SCREEN_H_
-#define TITLE_SCREEN_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,55 +27,74 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Level.h>
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 											CLASS'S DECLARATION
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
-
-// declare the virtual methods
-#define TitleScreen_METHODS										\
-	Level_METHODS;												\
-	__VIRTUAL_DEC(update);					\
-
-// declare the virtual methods which are redefined
-#define TitleScreen_SET_VTABLE(ClassName)						\
-	Level_SET_VTABLE(ClassName)									\
-	__VIRTUAL_SET(ClassName, TitleScreen, enter);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, exit);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, update);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, handleMessage);		\
-
-
-__CLASS(TitleScreen);
-
-#define TitleScreen_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	Level_ATTRIBUTES					\
-										\
-	/* to allow moving the screen */	\
-	u8 mode: 4;							\
-	u32 lastTime;
-
+#include <ScrollBackground.h>
+#include <../assets/images/_o/TreeBGFront.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 										PUBLIC INTERFACE
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// setup the init focus screen
-TitleScreen TitleScreen_getInstance(void);
+TextureROMDef TREE_BG_FRONT_TX = {
+		// Chargroup
+		{
+				// chDefinition,				 
+				TreeBGFrontTiles,
+				// numChars,
+				71,
+				
+				// allocation type
+				__NO_ANIMATED
+		},
+		
+		// bgmap definition
+		TreeBGFrontMap,
+		
+		// cols (max 48)
+		48,
+		
+		// rows (max 28)
+		28,
+		
+		//pallet number,
+		3
+};
 
+SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {
 
-#endif /*TITLE_SCREEN_H_*/
+	// Sprite
+	{
+		// the texture
+		&TREE_BG_FRONT_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+	},
+	// Sprite
+	{
+		// the texture
+		&TREE_BG_FRONT_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+	},
+};
+
+ScrollBackgroundROMDef TREE_BG_FRONT_SB = {
+		
+	// object's class			   
+	__TYPE(ScrollBackground),  
+
+	__SPRITE_ARRAY(TREE_BG_FRONT_SB_SPRITES),
+};
