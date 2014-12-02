@@ -63,6 +63,7 @@ static void TitleScreen_execute(TitleScreen this, void* owner);
 // state's on message
 static int TitleScreen_handleMessage(TitleScreen this, void* owner, Telegram telegram);
 
+
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -119,12 +120,25 @@ static void TitleScreen_destructor(TitleScreen this){
 static void TitleScreen_enter(TitleScreen this, void* owner){
 	
 	Level_loadStage((Level)this, (StageDefinition*)&TITLE_ST, false, true);
-
+	
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 	
 	// start in game clock for animations
 	Clock_start(Game_getInGameClock(Game_getInstance()));
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// screen execute
+static void TitleScreen_execute(TitleScreen this, void* owner){
+
+	VBVec3D translation = {
+		ITOFIX19_13(1),
+		ITOFIX19_13(0), 
+		ITOFIX19_13(0)
+	};
+
+	Screen_move(Screen_getInstance(), translation, false);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,19 +150,6 @@ static void TitleScreen_exit(TitleScreen this, void* owner){
 
 	// destroy the state
 	__DELETE(this);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// screen update
-static void TitleScreen_execute(TitleScreen this, void* owner){
-
-	VBVec3D translation = {
-		ITOFIX19_13(1),
-		ITOFIX19_13(0), 
-		ITOFIX19_13(0)
-	};
-
-	Screen_move(Screen_getInstance(), translation, false);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
