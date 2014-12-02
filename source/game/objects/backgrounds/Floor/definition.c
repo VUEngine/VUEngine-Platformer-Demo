@@ -1,4 +1,4 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
+/* TREE_BG_BACK: bitmap graphics engine for the Nintendo Virtual Boy 
  * 
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
@@ -18,9 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef IMAGE_H_
-#define IMAGE_H_
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -30,22 +27,124 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Entity.h>
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
+
+#include <../assets/images/_o/Floor3x5L.h>
+#include <../assets/images/_o/Floor3x5R.h>
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												DECLARATIONS
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
 
+TextureROMDef FLOOR_3x5_L_TX = {
+		// Chargroup
+		{
+				// chDefinition,				 
+				Floor3x5LTiles,
+				// numChars,
+				17,
+				
+				// allocation type
+				__NO_ANIMATED
+		},
+		
+		// bgmap definition
+		Floor3x5LMap,
+		
+		// cols (max 48)
+		7,
+		
+		// rows (max 28)
+		11,
+		
+		//pallet number,
+		1
+};
 
-extern EntityDefinition GUI_IM;
-extern EntityDefinition LOGO_IM;
-extern EntityDefinition SUPER_AWESOME_IM;
-extern EntityDefinition VBJAENGINE_IM;
-extern EntityDefinition FLOOR_3x5_BG;
+TextureROMDef FLOOR_3x5_R_TX = {
+		// Chargroup
+		{
+				// chDefinition,				 
+				Floor3x5RTiles,
+				// numChars,
+				21,
+				
+				// allocation type
+				__NO_ANIMATED
+		},
+		
+		// bgmap definition
+		Floor3x5RMap,
+		
+		// cols (max 48)
+		7,
+		
+		// rows (max 28)
+		11,
+		
+		//pallet number,
+		1
+};
 
-#endif /*IMAGE_H_*/
+SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
+
+	// Sprite
+	{
+		// the texture
+		&FLOOR_3x5_L_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_LON,
+	},
+	// Sprite
+	{
+		// the texture
+		&FLOOR_3x5_R_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_RON,
+	},
+};
+
+InanimatedInGameEntityROMDef FLOOR_3x5_BG = {
+		{
+			{
+				// object's class			   
+				__TYPE(InanimatedInGameEntity),  
+		
+				__SPRITE_ARRAY(FLOOR_3x5_BG_SPRITES)
+			},
+			
+			// deep
+			20,
+			
+			//collision detection gap			
+			//up,	down,	left,	right,
+			{4,		0,		0,		8,},
+			
+			// in game type
+			kSolid,
+		},
+
+		// register shape
+		true,
+		
+		// friction FTOFIX19_13
+		FTOFIX19_13(0.5f),
+		
+		// elasticity FTOFIX19_13
+		FTOFIX19_13(1.0f)
+};
