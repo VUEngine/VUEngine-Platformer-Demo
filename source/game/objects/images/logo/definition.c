@@ -28,10 +28,6 @@
  */
 
 #include <Image.h>
-#include <../assets/images/_o/SuperAwesome.h>
-#include <../assets/images/_o/VBJaEngineLogo.h>
-#include <../assets/images/_o/PlatformerDemoLogoL.h>
-#include <../assets/images/_o/PlatformerDemoLogoR.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -42,18 +38,27 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
- 
+
+extern BYTE SuperAwesomeTiles[];
+extern BYTE SuperAwesomeMap[];
+extern BYTE VBJaEngineLogoTiles[];
+extern BYTE VBJaEngineLogoMap[];
+extern BYTE PlatformerDemoLogoLTiles[];
+extern BYTE PlatformerDemoLogoLMap[];
+extern BYTE PlatformerDemoLogoRTiles[];
+extern BYTE PlatformerDemoLogoRMap[];
+
 
 TextureROMDef LOGO_LEFT_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				PlatformerDemoLogoLTiles,					
-				// numChars,
-				166,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			PlatformerDemoLogoLTiles,					
+			// numChars,
+			166,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -72,13 +77,13 @@ TextureROMDef LOGO_LEFT_TX = {
 TextureROMDef LOGO_RIGHT_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				PlatformerDemoLogoRTiles,					
-				// numChars,
-				166,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,
+			PlatformerDemoLogoRTiles,					
+			// numChars,
+			166,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -139,13 +144,13 @@ ImageROMDef LOGO_IM = {
 TextureROMDef SUPER_AWESOME_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				SuperAwesomeTiles,					
-				// numChars,
-				39,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			SuperAwesomeTiles,					
+			// numChars,
+			39,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -203,13 +208,13 @@ ImageROMDef SUPER_AWESOME_IM = {
 TextureROMDef VBJAENGINE_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				VBJaEngineLogoTiles,					
-				// numChars,
-				56,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			VBJaEngineLogoTiles,					
+			// numChars,
+			56,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition

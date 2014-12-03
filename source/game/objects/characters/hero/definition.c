@@ -21,7 +21,9 @@
 /*---------------------------------INCLUDES--------------------------------*/
 #include <libgccvb.h>
 #include "Hero.h"
-#include <../assets/spritesheets/_o/Hero.h>
+
+extern BYTE HeroTiles[];
+extern BYTE HeroMap[];
 
 
 // a function which defines the frames to play
@@ -328,14 +330,14 @@ TextureROMDef HERO0_TX = {
 		
 		// Chargroup
 		{
-				// chDefinition,				 
-				HeroTiles,	
-				
-				// numChars,
-				9,
-				
-				// allocation type
-				__ANIMATED
+			// chDefinition,				 
+			HeroTiles,	
+			
+			// numChars,
+			9,
+			
+			// allocation type
+			__ANIMATED
 		},
 		
 		// bgmap definition

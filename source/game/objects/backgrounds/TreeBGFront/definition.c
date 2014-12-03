@@ -28,7 +28,6 @@
  */
 
 #include <ScrollBackground.h>
-#include <../assets/images/_o/TreeBGFront.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -40,16 +39,20 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+extern BYTE TreeBGFrontTiles[];
+extern BYTE TreeBGFrontMap[];
+
+
 TextureROMDef TREE_BG_FRONT_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				TreeBGFrontTiles,
-				// numChars,
-				71,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			TreeBGFrontTiles,
+			// numChars,
+			71,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition

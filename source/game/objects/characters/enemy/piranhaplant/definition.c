@@ -113,14 +113,14 @@ TextureDefinition PIRANHA_PLANT_V_TX = {
 		
 		// Chargroup
 		{
-				// chDefinition,				 
-				PIRANHA_PLANT_V_CH,	
-				
-				// numChars,
-				12,
-				
-				// allocation type
-				__ANIMATED_SHARED
+			// chDefinition,				 
+			PIRANHA_PLANT_V_CH,	
+			
+			// numChars,
+			12,
+			
+			// allocation type
+			__ANIMATED_SHARED
 		},
 		
 		// bgmap definition
