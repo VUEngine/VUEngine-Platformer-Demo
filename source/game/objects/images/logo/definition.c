@@ -104,7 +104,7 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&LOGO_LEFT_TX,
+		(TextureDefinition*)&LOGO_LEFT_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -119,7 +119,7 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&LOGO_RIGHT_TX,
+		(TextureDefinition*)&LOGO_RIGHT_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -171,7 +171,7 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&SUPER_AWESOME_TX,
+		(TextureDefinition*)&SUPER_AWESOME_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -186,7 +186,7 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&SUPER_AWESOME_TX,
+		(TextureDefinition*)&SUPER_AWESOME_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -235,7 +235,7 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&VBJAENGINE_TX,
+		(TextureDefinition*)&VBJAENGINE_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -247,7 +247,7 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&VBJAENGINE_TX,
+		(TextureDefinition*)&VBJAENGINE_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,

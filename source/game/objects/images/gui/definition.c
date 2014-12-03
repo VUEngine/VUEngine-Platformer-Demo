@@ -73,7 +73,7 @@ SpriteROMDef GUI_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&GUI_TX,
+		(TextureDefinition*)&GUI_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,

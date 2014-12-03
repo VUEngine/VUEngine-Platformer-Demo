@@ -73,7 +73,7 @@ SpriteROMDef TREE_BG_BACK_SB_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&TREE_BG_BACK_TX,
+		(TextureDefinition*)&TREE_BG_BACK_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -88,7 +88,7 @@ SpriteROMDef TREE_BG_BACK_SB_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&TREE_BG_BACK_TX,
+		(TextureDefinition*)&TREE_BG_BACK_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,

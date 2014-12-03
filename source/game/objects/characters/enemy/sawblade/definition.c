@@ -113,7 +113,7 @@ TextureDefinition SAW_BLADE_TX = {
 SpriteROMDef SAW_BLADE_SPRITES[] = {
 	{
 		// the texture
-		&SAW_BLADE_TX,
+		(TextureDefinition*)&SAW_BLADE_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_AFFINE,

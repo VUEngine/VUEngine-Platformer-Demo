@@ -101,7 +101,7 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&FLOOR_3x5_L_TX,
+		(TextureDefinition*)&FLOOR_3x5_L_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -115,7 +115,7 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&FLOOR_3x5_R_TX,
+		(TextureDefinition*)&FLOOR_3x5_R_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
