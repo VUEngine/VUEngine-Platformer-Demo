@@ -46,7 +46,7 @@
 // There should be no need to modify this.
 int main(void){
 	
-	// don't forget to define the START_LEVEL macro in
+	// don't forget to define the START_STATE macro in
 	// common.h (default: TitleScreen) which is the state set
 	// after the normal splash screen sequence
 

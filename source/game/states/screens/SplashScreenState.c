@@ -76,7 +76,7 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
  */
 
 extern const u16 ASCII_CH[];
-extern State __CONCAT(START_LEVEL, _getInstance)();
+extern State __CONCAT(START_STATE, _getInstance)();
 
 enum Screens {
 	kPvbScreen = 0,
@@ -193,7 +193,7 @@ static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, 
 				case kVbJaeScreen:
 					
 						this->currentScreen = kSplashExitScreen;
-						Game_changeState(Game_getInstance(), (State)__CONCAT(START_LEVEL, _getInstance)());
+						Game_changeState(Game_getInstance(), (State)__CONCAT(START_STATE, _getInstance)());
 						break;
 			}
 
