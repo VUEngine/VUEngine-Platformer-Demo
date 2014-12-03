@@ -12,7 +12,6 @@
 
 #include <libgccvb.h>
 #include <Constants.h>
-#include <Globals.h>
 #include <HardwareManager.h>
 #include <VPUManager.h>
 #include <MemoryPool.h>

@@ -73,6 +73,7 @@ static void SplashScreen_loadStage(SplashScreen this, StageDefinition* stageDefi
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
+
 extern const u16 ASCII_CH[];
 extern State __CONCAT(START_LEVEL, _getInstance)();
 
@@ -138,7 +139,7 @@ static void SplashScreen_destructor(SplashScreen this){
 // state's enter
 static void SplashScreen_enter(SplashScreen this, void* owner){
 	
-	_asciiChar = (const u16*)ASCII_CH;
+	Printing_setAscii((const u16*)ASCII_CH);
 	
 	Level_loadStage((Level)this, (StageDefinition*)&PVB_ST, false, true);
 

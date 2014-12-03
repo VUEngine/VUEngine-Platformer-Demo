@@ -140,9 +140,7 @@ void HeroIdle_enter(HeroIdle this, void* owner){
 
 	Hero_setGap((Hero)owner);
 	
-#ifdef __DEBUG
 	Printing_text("HeroIde::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 1);
-#endif
 }
 
 
