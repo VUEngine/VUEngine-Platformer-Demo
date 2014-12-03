@@ -65,7 +65,7 @@ TextureROMDef TREE_BG_FRONT_TX = {
 		28,
 		
 		//pallet number,
-		3
+		0
 };
 
 SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {

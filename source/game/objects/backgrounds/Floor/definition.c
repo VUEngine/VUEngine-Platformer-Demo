@@ -52,7 +52,7 @@ TextureROMDef FLOOR_3x5_L_TX = {
 			// chDefinition,				 
 			Floor3x5LTiles,
 			// numChars,
-			17,
+			18,
 			
 			// allocation type
 			__NO_ANIMATED
@@ -77,7 +77,7 @@ TextureROMDef FLOOR_3x5_R_TX = {
 			// chDefinition,				 
 			Floor3x5RTiles,
 			// numChars,
-			21,
+			23,
 			
 			// allocation type
 			__NO_ANIMATED

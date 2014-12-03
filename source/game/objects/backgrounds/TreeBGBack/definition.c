@@ -49,7 +49,7 @@ TextureROMDef TREE_BG_BACK_TX = {
 			// chDefinition,				 
 			TreeBGBackTiles,
 			// numChars,
-			72,
+			64,
 			
 			// allocation type
 			__NO_ANIMATED
