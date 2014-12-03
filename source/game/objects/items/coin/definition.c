@@ -22,9 +22,7 @@
 #include <libgccvb.h>
 #include "Coin.h"
 
-
-extern BYTE COIN_CH[];
-extern BYTE COIN_MP[];
+#include <../assets/spritesheets/_o/CoinL.h>
 
 
 
@@ -95,7 +93,7 @@ TextureROMDef COIN0_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				COIN_CH,	
+				CoinLTiles,	
 				
 				// numChars,
 				4,
@@ -105,7 +103,7 @@ TextureROMDef COIN0_TX = {
 		},
 		
 		// bgmap definition
-		COIN_MP,
+		CoinLMap,
 		
 		// cols (max 48)
 		2,

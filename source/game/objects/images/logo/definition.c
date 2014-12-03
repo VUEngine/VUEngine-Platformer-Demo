@@ -30,6 +30,8 @@
 #include <Image.h>
 #include <../assets/images/_o/SuperAwesome.h>
 #include <../assets/images/_o/VBJaEngineLogo.h>
+#include <../assets/images/_o/PlatformerDemoLogoL.h>
+#include <../assets/images/_o/PlatformerDemoLogoR.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -40,29 +42,25 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-
-extern BYTE LOGO_LEFT_CH[];
-extern BYTE LOGO_RIGHT_CH[];
-extern BYTE LOGO_LEFT_MP[];
-extern BYTE LOGO_RIGHT_MP[];
+ 
 
 TextureROMDef LOGO_LEFT_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				LOGO_LEFT_CH,					
+				PlatformerDemoLogoLTiles,					
 				// numChars,
-				165,
+				166,
 				
 				// allocation type
 				__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		LOGO_LEFT_MP,
+		PlatformerDemoLogoLMap,
 		
 		// cols (max 48)
-		41,
+		42,
 		
 		// rows (max 28)
 		7,
@@ -75,19 +73,19 @@ TextureROMDef LOGO_RIGHT_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				LOGO_RIGHT_CH,					
+				PlatformerDemoLogoRTiles,					
 				// numChars,
-				165,
+				166,
 				
 				// allocation type
 				__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		LOGO_RIGHT_MP,
+		PlatformerDemoLogoRMap,
 		
 		// cols (max 48)
-		41,
+		42,
 		
 		// rows (max 28)
 		7,

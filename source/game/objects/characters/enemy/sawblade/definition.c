@@ -28,6 +28,7 @@
  */
 
 #include <AnimatedSprite.h>
+#include <../assets/spritesheets/_o/SawBlade.h>
 
 #include "SawBlade.h"
 
@@ -40,10 +41,6 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-
-
-extern BYTE SAW_BLADE_CH[];
-extern BYTE SAW_BLADE_MP[];
 
 
 AnimationFunction SAW_BLADE_SPIN_ANIM = {
@@ -89,7 +86,7 @@ TextureDefinition SAW_BLADE_TX = {
 		// Chargroup
 		{
 				// chDefinition,				 
-				SAW_BLADE_CH,	
+				SawBladeTiles,	
 				
 				// numChars,
 				18,
@@ -99,7 +96,7 @@ TextureDefinition SAW_BLADE_TX = {
 		},
 		
 		// bgmap definition
-		SAW_BLADE_MP,
+		SawBladeMap,
 		
 		// cols (max 48)
 		3,
