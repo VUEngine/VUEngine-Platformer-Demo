@@ -3,12 +3,12 @@
 
 //======================================================================
 //
-//	Raster, 512x512@2, 
+//	Raster, 384x224@2, 
 //	+ 2 tiles (t|f reduced) not compressed
-//	+ regular map (in SBBs), not compressed, 64x64 
-//	Total size: 32 + 8192 = 8224
+//	+ regular map (flat), not compressed, 48x28 
+//	Total size: 32 + 2688 = 2720
 //
-//	Time-stamp: 2014-12-02, 15:14:04
+//	Time-stamp: 2014-12-03, 07:30:08
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -18,10 +18,10 @@
 #define GRIT_RASTER_H
 
 #define RasterTilesLen 32
-extern const unsigned char RasterTiles[32];
+extern const unsigned int RasterTiles[8];
 
-#define RasterMapLen 8192
-extern const unsigned char RasterMap[8192];
+#define RasterMapLen 2688
+extern const unsigned short RasterMap[1344];
 
 #endif // GRIT_RASTER_H
 

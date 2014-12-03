@@ -1,2 +1,2 @@
-#include "images/_objects/_index.h"
-#include "spritesheets/_objects/_index.h"
+#include "images/_o/_index.h"
+#include "spritesheets/_o/_index.h"

@@ -3,12 +3,12 @@
 
 //======================================================================
 //
-//	SawBlade, 512x512@2, 
-//	+ 18 tiles (t|f reduced) not compressed
-//	+ regular map (in SBBs), not compressed, 64x64 
-//	Total size: 288 + 8192 = 8480
+//	SawBlade, 24x48@2, 
+//	+ 19 tiles not compressed
+//	+ regular map (flat), not compressed, 3x6 
+//	Total size: 304 + 36 = 340
 //
-//	Time-stamp: 2014-12-01, 02:57:16
+//	Time-stamp: 2014-12-03, 07:30:09
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -17,11 +17,11 @@
 #ifndef GRIT_SAWBLADE_H
 #define GRIT_SAWBLADE_H
 
-#define SawBladeTilesLen 288
-extern const unsigned char SawBladeTiles[288];
+#define SawBladeTilesLen 304
+extern const unsigned int SawBladeTiles[76];
 
-#define SawBladeMapLen 8192
-extern const unsigned char SawBladeMap[8192];
+#define SawBladeMapLen 36
+extern const unsigned short SawBladeMap[18];
 
 #endif // GRIT_SAWBLADE_H
 

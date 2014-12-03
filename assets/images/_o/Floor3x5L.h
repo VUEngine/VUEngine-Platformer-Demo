@@ -3,12 +3,12 @@
 
 //======================================================================
 //
-//	Floor3x5L, 512x512@2, 
+//	Floor3x5L, 56x88@2, 
 //	+ 17 tiles (t|f reduced) not compressed
-//	+ regular map (in SBBs), not compressed, 64x64 
-//	Total size: 272 + 8192 = 8464
+//	+ regular map (flat), not compressed, 7x11 
+//	Total size: 272 + 156 = 428
 //
-//	Time-stamp: 2014-12-03, 00:14:35
+//	Time-stamp: 2014-12-03, 07:30:08
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -18,10 +18,10 @@
 #define GRIT_FLOOR3X5L_H
 
 #define Floor3x5LTilesLen 272
-extern const unsigned char Floor3x5LTiles[272];
+extern const unsigned int Floor3x5LTiles[68];
 
-#define Floor3x5LMapLen 8192
-extern const unsigned char Floor3x5LMap[];
+#define Floor3x5LMapLen 156
+extern const unsigned short Floor3x5LMap[78];
 
 #endif // GRIT_FLOOR3X5L_H
 
