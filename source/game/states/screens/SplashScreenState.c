@@ -180,21 +180,21 @@ static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, 
 			
 				case kPvbScreen:
 
-						SplashScreenState_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
-						this->currentScreen = kPrecautionScreen;
-						break;
+					SplashScreenState_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
+					this->currentScreen = kPrecautionScreen;
+					break;
 						
 				case kPrecautionScreen:
 
-						SplashScreenState_loadStage(this, (StageDefinition*)&VBJAE_ST);
-						this->currentScreen = kVbJaeScreen;
-						break;
+					SplashScreenState_loadStage(this, (StageDefinition*)&VBJAE_ST);
+					this->currentScreen = kVbJaeScreen;
+					break;
 						
 				case kVbJaeScreen:
-					
-						this->currentScreen = kSplashExitScreen;
-						Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance)());
-						break;
+				
+					this->currentScreen = kSplashExitScreen;
+					Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance());
+					break;
 			}
 
 			break;
