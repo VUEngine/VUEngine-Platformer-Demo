@@ -121,6 +121,9 @@ SpriteROMDef SAW_BLADE_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	}
 };
 

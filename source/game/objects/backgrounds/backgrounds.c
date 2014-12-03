@@ -56,6 +56,9 @@ SpriteROMDef FLOOR0_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -71,6 +74,9 @@ SpriteROMDef FLOOR1_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -86,6 +92,9 @@ SpriteROMDef FLOOR2_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -225,6 +234,9 @@ SpriteROMDef PIPE0_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 InanimatedInGameEntityROMDef PIPE0_BG = {
@@ -269,6 +281,9 @@ SpriteROMDef PIPE1_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -315,6 +330,9 @@ SpriteROMDef WALL0_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -361,6 +379,9 @@ SpriteROMDef POLE0_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -407,6 +428,9 @@ SpriteROMDef GOAL0_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -431,6 +455,9 @@ SpriteROMDef GATE0_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 

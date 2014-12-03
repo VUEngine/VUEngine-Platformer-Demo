@@ -105,6 +105,9 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_LON,
+		
+		// parallax displacement
+		-1,
 	},
 	// Sprite
 	{
@@ -116,6 +119,9 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_RON,
+
+		// parallax displacement
+		-1,
 	},
 };
 

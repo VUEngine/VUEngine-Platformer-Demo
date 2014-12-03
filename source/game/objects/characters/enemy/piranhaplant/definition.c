@@ -146,6 +146,9 @@ SpriteROMDef PIRANHA_PLAT_V_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	}
 };
 

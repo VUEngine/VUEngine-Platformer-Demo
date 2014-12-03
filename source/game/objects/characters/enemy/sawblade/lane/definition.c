@@ -81,6 +81,10 @@ SpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
+
 	},
 };
 

@@ -77,6 +77,10 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
+
 	},
 	// Sprite
 	{
@@ -88,6 +92,10 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
+
 	},
 };
 

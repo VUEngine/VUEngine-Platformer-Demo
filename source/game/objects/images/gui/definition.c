@@ -77,6 +77,9 @@ SpriteROMDef GUI_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 

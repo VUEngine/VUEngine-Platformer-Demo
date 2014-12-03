@@ -77,6 +77,10 @@ SpriteROMDef TREE_BG_BACK_SB_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
+
 	},
 	// Sprite
 	{
@@ -88,6 +92,9 @@ SpriteROMDef TREE_BG_BACK_SB_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 

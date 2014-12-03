@@ -52,6 +52,9 @@ SpriteROMDef PVBCC_LEFT_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_LON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -62,7 +65,6 @@ ImageROMDef PVBCC_LEFT_IM = {
 
 		__SPRITE_ARRAY(PVBCC_LEFT_IM_SPRITES),
 };
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 SpriteROMDef PVBCC_RIGHT_IM_SPRITES[] = {
@@ -77,6 +79,9 @@ SpriteROMDef PVBCC_RIGHT_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_RON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -101,6 +106,10 @@ SpriteROMDef PRECAUTION_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
+
 	},
 };
 
@@ -125,6 +134,9 @@ SpriteROMDef PVB_LEFT_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_LON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -149,6 +161,9 @@ SpriteROMDef PVB_RIGHT_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_RON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -172,6 +187,9 @@ SpriteROMDef VBJAE_LEFT_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_LON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -196,6 +214,9 @@ SpriteROMDef VBJAE_RIGHT_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_RON,
+
+		// parallax displacement
+		0,
 	},
 };
 

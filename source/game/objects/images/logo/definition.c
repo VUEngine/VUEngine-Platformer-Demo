@@ -108,6 +108,9 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_LON,
+
+		// parallax displacement
+		0,
 	},
 
 	// Sprite
@@ -120,6 +123,9 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_RON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -169,6 +175,9 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 
 	// Sprite

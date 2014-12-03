@@ -369,6 +369,10 @@ SpriteROMDef HERO_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
+
 	},
 
 };

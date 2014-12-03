@@ -126,10 +126,12 @@ SpriteROMDef COIN_SPRITES[] = {
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_AFFINE,
-		//WRLD_BGMAP,
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 
 };
