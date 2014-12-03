@@ -30,11 +30,13 @@
 #include <Game.h>
 #include <Screen.h>
 #include <Printing.h>
+#include <MessageDispatcher.h>
+#include <PhysicalWorld.h>
 
-#include "SplashScreen.h"
-#include <objects.h>
+#include <PlatformerLevelState.h>
+#include <TitleScreenState.h>
+#include "stages.h"
 #include <macros.h>
-
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -45,44 +47,31 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-static void SplashScreen_destructor(SplashScreen this);
+static void PlatformerLevelState_destructor(PlatformerLevelState this);
 
 // class's constructor
-static void SplashScreen_constructor(SplashScreen this);
+static void PlatformerLevelState_constructor(PlatformerLevelState this);
 
 // state's enter
-static void SplashScreen_enter(SplashScreen this, void* owner);
+static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
 
 // state's execute
-static void SplashScreen_execute(SplashScreen this, void* owner);
+static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner);
 
 // state's enter
-static void SplashScreen_exit(SplashScreen this, void* owner);
+static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
+
+// state's execute
+static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner){}
+
+// state's execute
+static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner){}
 
 // state's on message
-static int SplashScreen_handleMessage(SplashScreen this, void* owner, Telegram telegram);
+static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 
-// load stage
-static void SplashScreen_loadStage(SplashScreen this, StageDefinition* stageDefinition);
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 											DECLARATIONS
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
-
-extern const u16 ASCII_CH[];
-extern State __CONCAT(START_LEVEL, _getInstance)();
-
-enum Screens {
-	kPvbScreen = 0,
-	kPrecautionScreen,
-	kVbJaeScreen,
-	kSplashExitScreen
-};
+// handle event
+static void PlatformerLevelState_onSecondChange(PlatformerLevelState this);
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -93,16 +82,7 @@ enum Screens {
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#define SplashScreen_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	Level_ATTRIBUTES					\
-										\
-	/* screen */						\
-	u8 currentScreen;					\
-
-
-__CLASS_DEFINITION(SplashScreen);
+__CLASS_DEFINITION(PlatformerLevelState);
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -116,49 +96,58 @@ __CLASS_DEFINITION(SplashScreen);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // it's a singleton
-__SINGLETON_DYNAMIC(SplashScreen);
+__SINGLETON_DYNAMIC(PlatformerLevelState);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
-static void SplashScreen_constructor(SplashScreen this){
+static void PlatformerLevelState_constructor(PlatformerLevelState this){
 		
-	__CONSTRUCT_BASE(Level);
-	
-	this->currentScreen = 0;
+	__CONSTRUCT_BASE(GameState);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-static void SplashScreen_destructor(SplashScreen this){
+static void PlatformerLevelState_destructor(PlatformerLevelState this){
 	
 	// destroy base
-	__SINGLETON_DESTROY(Level);
+	__SINGLETON_DESTROY(GameState);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
-static void SplashScreen_enter(SplashScreen this, void* owner){
+static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner){
 	
-	Printing_setAscii((const u16*)ASCII_CH);
-	
-	Level_loadStage((Level)this, (StageDefinition*)&PVB_ST, false, true);
+	Optical optical = Game_getOptical(Game_getInstance());
+	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
+	Game_setOptical(Game_getInstance(), optical);
 
-	this->currentScreen = kPvbScreen;
+	//load stage
+	GameState_loadStage((GameState)this, (StageDefinition*)&LEVEL_0_0_0_ST, true, false);
+
+	// playing by default
+	this->mode = kPaused;
 	
-	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+	// show up level after a little bit
+	MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
+
+	Clock_reset(Game_getInGameClock(Game_getInstance()));
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
-static void SplashScreen_execute(SplashScreen this, void* owner){
-
+static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner){
+	
+	// call base
+	GameState_execute((GameState)this, owner);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's exit 
-static void SplashScreen_exit(SplashScreen this, void* owner){
+static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner){
 	
+	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
+
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
 
@@ -168,52 +157,102 @@ static void SplashScreen_exit(SplashScreen this, void* owner){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-static int SplashScreen_handleMessage(SplashScreen this, void* owner, Telegram telegram){
-	
+static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram){
+
 	// process message
 	switch(Telegram_getMessage(telegram)){
+
+		case kSetUpLevel:
+
+			// make a little bit of physical simulations so each entity is placed at the floor
+			Clock_start(Game_getInGameClock(Game_getInstance()));
 	
-		case kKeyPressed:	
+			// start physical simulation again
+			PhysicalWorld_start(PhysicalWorld_getInstance());
 
-			switch(this->currentScreen){
+			// show level after 0.5 second
+			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kShowUpLevel, NULL);
+
+			this->mode = kSettingUp;
+			break;	
+
+		case kShowUpLevel:
+
+			Printing_text("GET READY", 21, 6);
+
+			// pause physical simulations
+			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 			
-				case kPvbScreen:
+			// fade screen
+			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 
-						SplashScreen_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
-						this->currentScreen = kPrecautionScreen;
-						break;
-						
-				case kPrecautionScreen:
 
-						SplashScreen_loadStage(this, (StageDefinition*)&VBJAE_ST);
-						this->currentScreen = kVbJaeScreen;
-						break;
-						
-				case kVbJaeScreen:
-					
-						this->currentScreen = kSplashExitScreen;
-						Game_changeState(Game_getInstance(), (State)__CONCAT(START_LEVEL, _getInstance)());
-						break;
-			}
+			// start game in 1.5 seconds
+			MessageDispatcher_dispatchMessage(1500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
 
+			this->mode = kShowingUp;
 			break;
+			
+		case kStartLevel:
+
+			Printing_text("    GO!        ", 21, 6);
+			
+			// erase message in 1 second
+			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kHideStartUpMessage, NULL);
+			
+			// reset clock and restart
+			Clock_reset(Game_getInGameClock(Game_getInstance()));
+			Clock_start(Game_getInGameClock(Game_getInstance()));
+			Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
+			
+			// start physical simulation again
+			PhysicalWorld_start(PhysicalWorld_getInstance());
+
+			// tell any interested entity
+			GameState_propagateMessage((GameState)this, kStartLevel);
+
+			this->mode = kPlaying;
+			break;
+
+		case kHideStartUpMessage:
+			
+			Printing_text("               ", 21, 6);
+			break;
+			
+		case kKeyPressed:	
+			
+			// update level's stage
+			if(kPlaying == this->mode){
+				
+				return GameState_handleMessage((GameState)this, owner, telegram);
+			}
+			
+			if(kPaused == this->mode){
+				
+				return true;
+			}
+			
+			break;
+			
+		case kKeyUp:
+		case kKeyHold:
+			
+			return GameState_handleMessage((GameState)this, owner, telegram);
+			break;
+
+		case kHeroDied:	
+			
+			Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance());
+			return true;
+			break;			
 	}
 
-	return true;
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// load stage
-static void SplashScreen_loadStage(SplashScreen this, StageDefinition* stageDefinition) {
+// handle event
+static void PlatformerLevelState_onSecondChange(PlatformerLevelState this) {
 	
-	// make a fade out
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
-	
-	// turn back the background
-	VIP_REGS[BKCOL] = 0x00;
-
-	Level_loadStage((Level)this, stageDefinition, false, true);
-
-	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 }

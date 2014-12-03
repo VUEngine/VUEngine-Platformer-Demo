@@ -30,13 +30,13 @@
 #include <Game.h>
 #include <Screen.h>
 #include <Printing.h>
-#include <MessageDispatcher.h>
-#include <PhysicalWorld.h>
 
-#include <GameLevel.h>
-#include <TitleScreen.h>
+#include "TitleScreenState.h"
 #include <objects.h>
 #include <macros.h>
+#include "stages.h"
+
+#include "PlatformerLevelState.h"
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -47,31 +47,32 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-static void GameLevel_destructor(GameLevel this);
+static void TitleScreenState_destructor(TitleScreenState this);
 
 // class's constructor
-static void GameLevel_constructor(GameLevel this);
+static void TitleScreenState_constructor(TitleScreenState this);
 
 // state's enter
-static void GameLevel_enter(GameLevel this, void* owner);
-
-// state's execute
-static void GameLevel_execute(GameLevel this, void* owner);
+static void TitleScreenState_enter(TitleScreenState this, void* owner);
 
 // state's enter
-static void GameLevel_exit(GameLevel this, void* owner);
+static void TitleScreenState_exit(TitleScreenState this, void* owner);
 
-// state's execute
-static void GameLevel_pause(GameLevel this, void* owner){}
-
-// state's execute
-static void GameLevel_resume(GameLevel this, void* owner){}
+// update screen
+static void TitleScreenState_execute(TitleScreenState this, void* owner);
 
 // state's on message
-static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegram);
+static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
 
-// handle event
-static void GameLevel_onSecondChange(GameLevel this);
+
+/* ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * 											DECLARATIONS
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ */
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -82,7 +83,7 @@ static void GameLevel_onSecondChange(GameLevel this);
  * ---------------------------------------------------------------------------------------------------------
  */
 
-__CLASS_DEFINITION(GameLevel);
+__CLASS_DEFINITION(TitleScreenState);
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -96,58 +97,55 @@ __CLASS_DEFINITION(GameLevel);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // it's a singleton
-__SINGLETON_DYNAMIC(GameLevel);
+__SINGLETON_DYNAMIC(TitleScreenState);
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
-static void GameLevel_constructor(GameLevel this){
+static void TitleScreenState_constructor(TitleScreenState this){
 		
-	__CONSTRUCT_BASE(Level);
+	__CONSTRUCT_BASE(GameState);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-static void GameLevel_destructor(GameLevel this){
+static void TitleScreenState_destructor(TitleScreenState this){
 	
 	// destroy base
-	__SINGLETON_DESTROY(Level);
+	__SINGLETON_DESTROY(GameState);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
-static void GameLevel_enter(GameLevel this, void* owner){
+static void TitleScreenState_enter(TitleScreenState this, void* owner){
 	
-	Optical optical = Game_getOptical(Game_getInstance());
-	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
-	Game_setOptical(Game_getInstance(), optical);
-
-	//load stage
-	Level_loadStage((Level)this, (StageDefinition*)&LEVEL_0_0_0_ST, true, false);
-
-	// playing by default
-	this->mode = kPaused;
+	GameState_loadStage((GameState)this, (StageDefinition*)&TITLE_ST, false, true);
 	
-	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
-
-	Clock_reset(Game_getInGameClock(Game_getInstance()));
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
+	// make a fade in
+	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+	
+	// start in game clock for animations
+	Clock_start(Game_getInGameClock(Game_getInstance()));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's execute
-static void GameLevel_execute(GameLevel this, void* owner){
-	
-	// call base
-	Level_execute((Level)this, owner);
+// screen execute
+static void TitleScreenState_execute(TitleScreenState this, void* owner){
+
+	VBVec3D translation = {
+		ITOFIX19_13(1),
+		ITOFIX19_13(1), 
+		ITOFIX19_13(0)
+	};
+
+	Screen_move(Screen_getInstance(), translation, false);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's exit 
-static void GameLevel_exit(GameLevel this, void* owner){
+static void TitleScreenState_exit(TitleScreenState this, void* owner){
 	
-	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
-
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
 
@@ -157,102 +155,25 @@ static void GameLevel_exit(GameLevel this, void* owner){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-static int GameLevel_handleMessage(GameLevel this, void* owner, Telegram telegram){
+static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram){
 
 	// process message
 	switch(Telegram_getMessage(telegram)){
-
-		case kSetUpLevel:
-
-			// make a little bit of physical simulations so each entity is placed at the floor
-			Clock_start(Game_getInGameClock(Game_getInstance()));
 	
-			// start physical simulation again
-			PhysicalWorld_start(PhysicalWorld_getInstance());
-
-			// show level after 0.5 second
-			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kShowUpLevel, NULL);
-
-			this->mode = kSettingUp;
-			break;	
-
-		case kShowUpLevel:
-
-			Printing_text("GET READY", 21, 6);
-
-			// pause physical simulations
-			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
-			
-			// fade screen
-			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
-
-
-			// start game in 1.5 seconds
-			MessageDispatcher_dispatchMessage(1500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
-
-			this->mode = kShowingUp;
-			break;
-			
-		case kStartLevel:
-
-			Printing_text("    GO!        ", 21, 6);
-			
-			// erase message in 1 second
-			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kHideStartUpMessage, NULL);
-			
-			// reset clock and restart
-			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_start(Game_getInGameClock(Game_getInstance()));
-			Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))GameLevel_onSecondChange, __EVENT_SECOND_CHANGED);
-			
-			// start physical simulation again
-			PhysicalWorld_start(PhysicalWorld_getInstance());
-
-			// tell any interested entity
-			Level_propagateMessage((Level)this, kStartLevel);
-
-			this->mode = kPlaying;
-			break;
-
-		case kHideStartUpMessage:
-			
-			Printing_text("               ", 21, 6);
-			break;
-			
 		case kKeyPressed:	
-			
-			// update level's stage
-			if(kPlaying == this->mode){
-				
-				return Level_handleMessage((Level)this, owner, telegram);
+		
+			{
+				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+	
+				if(((pressedKey & K_STA) && (pressedKey & K_SEL))){
+					
+					break;
+				}
 			}
-			
-			if(kPaused == this->mode){
-				
-				return true;
-			}
-			
-			break;
-			
-		case kKeyUp:
-		case kKeyHold:
-			
-			return Level_handleMessage((Level)this, owner, telegram);
-			break;
 
-		case kHeroDied:	
-			
-			Game_changeState(Game_getInstance(), (State)TitleScreen_getInstance());
-			return true;
-			break;			
+			Game_changeState(Game_getInstance(), (State)PlatformerLevelState_getInstance());
+			break;
 	}
 
 	return false;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// handle event
-static void GameLevel_onSecondChange(GameLevel this) {
-	
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
 }

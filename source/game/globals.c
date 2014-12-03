@@ -31,7 +31,7 @@
 // include VBJaEngine's Game class
 #include <Game.h>
 #include <Debug.h>
-#include <LevelEditor.h>
+#include <StageEditor.h>
 #include <AnimationEditor.h>
 
 // include the Game's objects
@@ -55,7 +55,7 @@ const ClassSizeData _userClassesSizeData[] = {
 };
 #endif
 
-#ifdef __LEVEL_EDITOR
+#ifdef __STAGE_EDITOR
 const UserObject _userObjects[] = {
 	{"Coin", &COIN_MC},
 	{"Saw blade", &SAW_BLADE_MC},

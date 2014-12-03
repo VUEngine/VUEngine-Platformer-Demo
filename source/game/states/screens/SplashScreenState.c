@@ -31,11 +31,11 @@
 #include <Screen.h>
 #include <Printing.h>
 
-#include "TitleScreen.h"
+#include "SplashScreenState.h"
 #include <objects.h>
 #include <macros.h>
+#include "stages.h"
 
-#include "GameLevel.h"
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -46,23 +46,25 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-static void TitleScreen_destructor(TitleScreen this);
+static void SplashScreenState_destructor(SplashScreenState this);
 
 // class's constructor
-static void TitleScreen_constructor(TitleScreen this);
+static void SplashScreenState_constructor(SplashScreenState this);
 
 // state's enter
-static void TitleScreen_enter(TitleScreen this, void* owner);
+static void SplashScreenState_enter(SplashScreenState this, void* owner);
+
+// state's execute
+static void SplashScreenState_execute(SplashScreenState this, void* owner);
 
 // state's enter
-static void TitleScreen_exit(TitleScreen this, void* owner);
-
-// update screen
-static void TitleScreen_execute(TitleScreen this, void* owner);
+static void SplashScreenState_exit(SplashScreenState this, void* owner);
 
 // state's on message
-static int TitleScreen_handleMessage(TitleScreen this, void* owner, Telegram telegram);
+static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram);
 
+// load stage
+static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition* stageDefinition);
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -73,6 +75,16 @@ static int TitleScreen_handleMessage(TitleScreen this, void* owner, Telegram tel
  * ---------------------------------------------------------------------------------------------------------
  */
 
+extern const u16 ASCII_CH[];
+extern State __CONCAT(START_LEVEL, _getInstance)();
+
+enum Screens {
+	kPvbScreen = 0,
+	kPrecautionScreen,
+	kVbJaeScreen,
+	kSplashExitScreen
+};
+
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -82,7 +94,16 @@ static int TitleScreen_handleMessage(TitleScreen this, void* owner, Telegram tel
  * ---------------------------------------------------------------------------------------------------------
  */
 
-__CLASS_DEFINITION(TitleScreen);
+#define SplashScreenState_ATTRIBUTES			\
+										\
+	/* inherits */						\
+	GameState_ATTRIBUTES					\
+										\
+	/* screen */						\
+	u8 currentScreen;					\
+
+
+__CLASS_DEFINITION(SplashScreenState);
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -96,54 +117,48 @@ __CLASS_DEFINITION(TitleScreen);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // it's a singleton
-__SINGLETON_DYNAMIC(TitleScreen);
-
-
+__SINGLETON_DYNAMIC(SplashScreenState);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
-static void TitleScreen_constructor(TitleScreen this){
+static void SplashScreenState_constructor(SplashScreenState this){
 		
-	__CONSTRUCT_BASE(Level);
+	__CONSTRUCT_BASE(GameState);
+	
+	this->currentScreen = 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-static void TitleScreen_destructor(TitleScreen this){
+static void SplashScreenState_destructor(SplashScreenState this){
 	
 	// destroy base
-	__SINGLETON_DESTROY(Level);
+	__SINGLETON_DESTROY(GameState);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
-static void TitleScreen_enter(TitleScreen this, void* owner){
+static void SplashScreenState_enter(SplashScreenState this, void* owner){
 	
-	Level_loadStage((Level)this, (StageDefinition*)&TITLE_ST, false, true);
+	Printing_setAscii((const u16*)ASCII_CH);
+	
+	GameState_loadStage((GameState)this, (StageDefinition*)&PVB_ST, false, true);
+
+	this->currentScreen = kPvbScreen;
 	
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
-	
-	// start in game clock for animations
-	Clock_start(Game_getInGameClock(Game_getInstance()));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// screen execute
-static void TitleScreen_execute(TitleScreen this, void* owner){
+// state's execute
+static void SplashScreenState_execute(SplashScreenState this, void* owner){
 
-	VBVec3D translation = {
-		ITOFIX19_13(1),
-		ITOFIX19_13(1), 
-		ITOFIX19_13(0)
-	};
-
-	Screen_move(Screen_getInstance(), translation, false);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's exit 
-static void TitleScreen_exit(TitleScreen this, void* owner){
+static void SplashScreenState_exit(SplashScreenState this, void* owner){
 	
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
@@ -154,25 +169,52 @@ static void TitleScreen_exit(TitleScreen this, void* owner){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-static int TitleScreen_handleMessage(TitleScreen this, void* owner, Telegram telegram){
-
+static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram){
+	
 	// process message
 	switch(Telegram_getMessage(telegram)){
 	
 		case kKeyPressed:	
-		
-			{
-				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-	
-				if(((pressedKey & K_STA) && (pressedKey & K_SEL))){
+
+			switch(this->currentScreen){
+			
+				case kPvbScreen:
+
+						SplashScreenState_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
+						this->currentScreen = kPrecautionScreen;
+						break;
+						
+				case kPrecautionScreen:
+
+						SplashScreenState_loadStage(this, (StageDefinition*)&VBJAE_ST);
+						this->currentScreen = kVbJaeScreen;
+						break;
+						
+				case kVbJaeScreen:
 					
-					break;
-				}
+						this->currentScreen = kSplashExitScreen;
+						Game_changeState(Game_getInstance(), (State)__CONCAT(START_LEVEL, _getInstance)());
+						break;
 			}
 
-			Game_changeState(Game_getInstance(), (State)GameLevel_getInstance());
 			break;
 	}
 
-	return false;
+	return true;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// load stage
+static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition* stageDefinition) {
+	
+	// make a fade out
+	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
+	
+	// turn back the background
+	VIP_REGS[BKCOL] = 0x00;
+
+	GameState_loadStage((GameState)this, stageDefinition, false, true);
+
+	// make a fade in
+	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 }

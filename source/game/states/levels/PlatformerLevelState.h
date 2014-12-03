@@ -17,8 +17,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef SPLASH_SCREEN_H_
-#define SPLASH_SCREEN_H_
+#ifndef PLATFORMER_LEVEL_STATE_H_
+#define PLATFORMER_LEVEL_STATE_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Level.h>
+#include <GameState.h>
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -41,21 +41,43 @@
  */
 
 // declare the virtual methods
-#define SplashScreen_METHODS								\
-	Level_METHODS;									
+#define PlatformerLevelState_METHODS									\
+	GameState_METHODS;									
 
 // declare the virtual methods which are redefined
-#define SplashScreen_SET_VTABLE(ClassName)						\
-	Level_SET_VTABLE(ClassName)									\
-	__VIRTUAL_SET(ClassName, SplashScreen, enter);				\
-	__VIRTUAL_SET(ClassName, SplashScreen, execute);			\
-	__VIRTUAL_SET(ClassName, SplashScreen, exit);				\
-	__VIRTUAL_SET(ClassName, SplashScreen, handleMessage);		\
+#define PlatformerLevelState_SET_VTABLE(ClassName)						\
+	GameState_SET_VTABLE(ClassName)							\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);				\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, execute);			\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);				\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, pause);				\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);			\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, handleMessage);		\
 
 
-__CLASS(SplashScreen);
+__CLASS(PlatformerLevelState);
+
+#define PlatformerLevelState_ATTRIBUTES								\
+															\
+	/* inherits */											\
+	GameState_ATTRIBUTES									\
+															\
+	/* to allow moving the screen */						\
+	u8 mode: 4;												\
 
 
+
+
+enum PlatformerLevelStateMessageTypes{
+	
+	kHeroDied = kLastEngineMessage + 1, // 16
+	kHeroFall,				//17
+	kSetUpLevel,			//18
+	kShowUpLevel,			//19
+	kStartLevel,			//20
+	kHideStartUpMessage, 	//21
+	kTakeCoin, 				//22
+};
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -67,7 +89,6 @@ __CLASS(SplashScreen);
  */
 
 // setup the init focus screen
-SplashScreen SplashScreen_getInstance(void);
+PlatformerLevelState PlatformerLevelState_getInstance(void);
 
-
-#endif /*SPLASH_SCREEN_H_*/
+#endif /*PLATFORMER_LEVEL_STATE_H_*/

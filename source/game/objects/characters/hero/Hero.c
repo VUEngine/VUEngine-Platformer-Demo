@@ -40,7 +40,7 @@
 #include "HeroIdle.h"
 #include "HeroMoving.h"
 
-#include <GameLevel.h>
+#include <PlatformerLevelState.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------

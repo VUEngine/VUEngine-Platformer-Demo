@@ -17,8 +17,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef TITLE_SCREEN_H_
-#define TITLE_SCREEN_H_
+#ifndef SPLASH_SCREEN_STATE_H_
+#define SPLASH_SCREEN_STATE_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Level.h>
+#include <GameState.h>
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -41,28 +41,20 @@
  */
 
 // declare the virtual methods
-#define TitleScreen_METHODS										\
-	Level_METHODS;												\
+#define SplashScreenState_METHODS									\
+	GameState_METHODS;									
 
 // declare the virtual methods which are redefined
-#define TitleScreen_SET_VTABLE(ClassName)						\
-	Level_SET_VTABLE(ClassName)									\
-	__VIRTUAL_SET(ClassName, TitleScreen, enter);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, exit);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, execute);				\
-	__VIRTUAL_SET(ClassName, TitleScreen, handleMessage);		\
+#define SplashScreenState_SET_VTABLE(ClassName)						\
+	GameState_SET_VTABLE(ClassName)								\
+	__VIRTUAL_SET(ClassName, SplashScreenState, enter);				\
+	__VIRTUAL_SET(ClassName, SplashScreenState, execute);			\
+	__VIRTUAL_SET(ClassName, SplashScreenState, exit);				\
+	__VIRTUAL_SET(ClassName, SplashScreenState, handleMessage);		\
 
 
-__CLASS(TitleScreen);
+__CLASS(SplashScreenState);
 
-#define TitleScreen_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	Level_ATTRIBUTES					\
-										\
-	/* to allow moving the screen */	\
-	u8 mode: 4;							\
-	u32 lastTime;
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -75,6 +67,7 @@ __CLASS(TitleScreen);
  */
 
 // setup the init focus screen
-TitleScreen TitleScreen_getInstance(void);
+SplashScreenState SplashScreenState_getInstance(void);
 
-#endif /*TITLE_SCREEN_H_*/
+
+#endif /*SPLASH_SCREEN_STATE_H_*/

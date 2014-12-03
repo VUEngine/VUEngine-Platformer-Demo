@@ -38,7 +38,7 @@
 #include <objects.h>
 #include "Coin.h"
 
-#include <GameLevel.h>
+#include <PlatformerLevelState.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------

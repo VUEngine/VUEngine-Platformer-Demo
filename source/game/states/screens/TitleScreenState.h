@@ -17,10 +17,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-
-#ifndef WORLDS_H_
-#define WORLDS_H_
-
+#ifndef TITLE_SCREEN_STATE_H_
+#define TITLE_SCREEN_STATE_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -31,24 +29,52 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Stage.h>
+#include <GameState.h>
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												DECLARATIONS
+ * 											CLASS'S DECLARATION
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
 
-/*--------------------------USER GAME WORLDS-------------------------------*/
+// declare the virtual methods
+#define TitleScreenState_METHODS										\
+	GameState_METHODS;											\
 
-extern StageROMDef TITLE_ST;
-extern StageDefinition PAUSESCREEN_ST;
-extern StageDefinition SELECTIONSCREEN_ST;
-extern StageROMDef LEVEL_0_0_0_ST;
+// declare the virtual methods which are redefined
+#define TitleScreenState_SET_VTABLE(ClassName)						\
+	GameState_SET_VTABLE(ClassName)								\
+	__VIRTUAL_SET(ClassName, TitleScreenState, enter);				\
+	__VIRTUAL_SET(ClassName, TitleScreenState, exit);				\
+	__VIRTUAL_SET(ClassName, TitleScreenState, execute);				\
+	__VIRTUAL_SET(ClassName, TitleScreenState, handleMessage);		\
 
 
-#endif /*WORLDS_H_*/
+__CLASS(TitleScreenState);
 
+#define TitleScreenState_ATTRIBUTES							\
+														\
+	/* inherits */										\
+	GameState_ATTRIBUTES								\
+														\
+	/* to allow moving the screen */					\
+	u8 mode: 4;											\
+	u32 lastTime;
+
+
+/* ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * 										PUBLIC INTERFACE
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ */
+
+// setup the init focus screen
+TitleScreenState TitleScreenState_getInstance(void);
+
+#endif /*TITLE_SCREEN_STATE_H_*/

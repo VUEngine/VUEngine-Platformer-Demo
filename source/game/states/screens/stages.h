@@ -17,8 +17,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef GAME_LEVEL_H_
-#define GAME_LEVEL_H_
+
+#ifndef SCREENS_STAGES_H_
+#define SCREENS_STAGES_H_
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,66 +31,27 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Level.h>
+#include <Stage.h>
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 											CLASS'S DECLARATION
+ * 												DECLARATIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
+/*-------------------------GENERIC GAME WORLDS-----------------------------*/
 
-// declare the virtual methods
-#define GameLevel_METHODS									\
-	Level_METHODS;									
+extern StageROMDef PRECAUTION_ST;
+extern StageROMDef PVB_ST;
+extern StageROMDef PVBCC_ST;
+extern StageROMDef FOCUS_ST;
+extern StageROMDef VBJAE_ST;
+extern StageROMDef CREDITS_ST;
+extern StageROMDef RESTSCREEN_ST;
+extern StageROMDef AUTOPAUSESCREEN_ST;
+extern StageROMDef TITLE_ST;
 
-// declare the virtual methods which are redefined
-#define GameLevel_SET_VTABLE(ClassName)						\
-	Level_SET_VTABLE(ClassName)								\
-	__VIRTUAL_SET(ClassName, GameLevel, enter);				\
-	__VIRTUAL_SET(ClassName, GameLevel, execute);			\
-	__VIRTUAL_SET(ClassName, GameLevel, exit);				\
-	__VIRTUAL_SET(ClassName, GameLevel, pause);				\
-	__VIRTUAL_SET(ClassName, GameLevel, resume);			\
-	__VIRTUAL_SET(ClassName, GameLevel, handleMessage);		\
+#endif /*SCREENS_STAGES_H_*/
 
-
-__CLASS(GameLevel);
-
-#define GameLevel_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	Level_ATTRIBUTES					\
-										\
-	/* to allow moving the screen */	\
-	u8 mode: 4;							\
-
-
-
-
-enum GameLevelMessageTypes{
-	
-	kHeroDied = kLastEngineMessage + 1, // 16
-	kHeroFall,				//17
-	kSetUpLevel,			//18
-	kShowUpLevel,			//19
-	kStartLevel,			//20
-	kHideStartUpMessage, 	//21
-	kTakeCoin, 				//22
-};
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 										PUBLIC INTERFACE
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
-
-// setup the init focus screen
-GameLevel GameLevel_getInstance(void);
-
-#endif /*GAME_LEVEL_H_*/

@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef SCREENS_H_
-#define SCREENS_H_
+#ifndef LEVELS_H_
+#define LEVELS_H_
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -31,8 +31,8 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Stage.h>
-#include "SplashScreen.h"
+#include "levels/stages.h"
+#include "screens/stages.h"
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -42,16 +42,7 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-/*-------------------------GENERIC GAME WORLDS-----------------------------*/
 
-extern StageROMDef PRECAUTION_ST;
-extern StageROMDef PVB_ST;
-extern StageROMDef PVBCC_ST;
-extern StageROMDef FOCUS_ST;
-extern StageROMDef VBJAE_ST;
-extern StageROMDef CREDITS_ST;
-extern StageROMDef RESTSCREEN_ST;
-extern StageROMDef AUTOPAUSESCREEN_ST;
 
-#endif /*SCREENS_H_*/
+#endif /*LEVELS_H_*/
 

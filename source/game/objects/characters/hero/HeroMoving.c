@@ -33,7 +33,7 @@
 #include "HeroIdle.h"
 #include "Hero.h"
 
-#include <GameLevel.h>
+#include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
 
 

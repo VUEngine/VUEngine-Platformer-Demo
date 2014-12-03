@@ -22,7 +22,7 @@
 /*---------------------------------INCLUDES--------------------------------*/
 // place here the forward declaration of you 
 // first level to show after the splash screens)
-#define START_LEVEL TitleScreen
+#define START_LEVEL TitleScreenState
 
 
 #endif /*COMMON_H_*/

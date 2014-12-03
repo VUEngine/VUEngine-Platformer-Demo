@@ -20,6 +20,7 @@
 
 
 /*---------------------------------INCLUDES--------------------------------*/
+#include <Stage.h>
 #include <objects.h>
 #include <macros.h>
 
