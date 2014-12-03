@@ -6,7 +6,6 @@ This file contains the following sections:
 LICENSE
 GENERAL NOTES
 COMPILING ON WIN32
-COMPILING ON GNU/LINUX
 
 
 LICENSE
@@ -62,44 +61,34 @@ COMPILING ON WIN32
 
 Requirements: 
 
-	· Minimal Linux environment (i.e: CygWin)
+	· Minimal Linux environment (i.e: CygWin) that includes make and git
 	
 	· GCCVB 4.4.2 for V810 
 
 
-
-1. Create an environment variable called VBJAENGINE which must point to the VBJaEngine's folder.
+1. Create a CygWin environment variable called VBDE which must point to the VBJaEngine's parent folder.
 
 2. To compile the execute the following command inside the game's folder:
 
 	$ make
 
-	This will compile the engine and the game, the executable is placed in the output/ folder.
+	This will compile the engine and the game.
 
 
-COMPILING ON GNU/LINUX
+CREDITS
 ==================
-
-Requirements: 
-
-	· GCCVB 4.4.2 for V810 
-
-
-1. Create a CygWin environment variable called VBJAENGINE which must point to the VBJaEngine's folder.
-
-2. To compile the execute the following command inside the game's folder:
-
-	$ make
-
-	This will compile the engine and the game, the executable is placed in the output/ folder.
-
-
-
-ACKNOWLEDGMENTS
-==================
-
-	· Christian Radke (KR155E), for helping me with most of the demo's graphics, design, debbuging, etc.
 	
+	· Jorge Eremiev:
+		* Main programmer
+		* Debugging and testing
+		
+	· Christian Radke (KR155E):
+		* Programmer
+		* Game designer
+		* Graphic artist
+		* Level designer
+		* Debugging and testing
+		* Documentation
 	
 ==================  
 
