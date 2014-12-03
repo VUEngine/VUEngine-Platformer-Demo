@@ -118,8 +118,9 @@ void HeroMoving_enter(HeroMoving this, void* owner){
 	Hero_setGap((Hero)owner);
 
 	this->mustCheckDirection = false;
-
+#ifdef __DEBUG
 	Printing_text("HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 1);
+#endif
 }
 
 

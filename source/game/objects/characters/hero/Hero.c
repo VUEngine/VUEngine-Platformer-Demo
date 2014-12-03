@@ -450,8 +450,6 @@ void Hero_keepMoving(Hero this, int changedDirection){
 	fix19_13 maxVelocity = this->boost? HERO__BOOST_VELOCITY_X: HERO_VELOCITY_X;
 	
 	Velocity velocity = Body_getVelocity(this->body);
-
-	Printing_int(FIX19_13TOI(velocity.x), 1, 10);
 	
 	if (changedDirection || maxVelocity > fabs(velocity.x) || Actor_changedDirection((Actor)this, __XAXIS)){
 		
