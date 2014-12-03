@@ -52,7 +52,7 @@ TextureROMDef PRECAUTION_TX = {
 				PRECAUTION_CH,	
 				
 				// numChars,
-				96,
+				95,
 				
 				// allocation type
 				__NO_ANIMATED
