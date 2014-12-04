@@ -219,25 +219,21 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			Printing_text("               ", 21, 6);
 			break;
 			
-		case kKeyPressed:	
-			
-			// update level's stage
-			if(kPlaying == this->mode){
-				
-				return GameState_handleMessage((GameState)this, owner, telegram);
-			}
-			
-			if(kPaused == this->mode){
-				
-				return true;
-			}
-			
+		case kKeyPressed:
+
+			Object_fireEvent((Object)this, EVENT_KEY_PRESSED);
+			return true;
 			break;
-			
+
 		case kKeyUp:
+
+			Object_fireEvent((Object)this, EVENT_KEY_RELEASED);
+			return true;
+			break;
 		case kKeyHold:
 			
-			return GameState_handleMessage((GameState)this, owner, telegram);
+			Object_fireEvent((Object)this, EVENT_KEY_HOLD);
+			return true;
 			break;
 
 		case kHeroDied:	
