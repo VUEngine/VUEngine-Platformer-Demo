@@ -44,8 +44,7 @@
 /*-------------------------GENERIC GAME WORLDS-----------------------------*/
 
 extern StageROMDef PRECAUTION_ST;
-extern StageROMDef PVB_ST;
-extern StageROMDef PVBCC_ST;
+extern StageROMDef ADJUSTMENT_ST;
 extern StageROMDef FOCUS_ST;
 extern StageROMDef VBJAE_ST;
 extern StageROMDef CREDITS_ST;

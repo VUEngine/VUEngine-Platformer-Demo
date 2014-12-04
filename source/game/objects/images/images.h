@@ -47,5 +47,9 @@ extern EntityDefinition LOGO_IM;
 extern EntityDefinition SUPER_AWESOME_IM;
 extern EntityDefinition VBJAENGINE_IM;
 extern EntityDefinition FLOOR_3x5_BG;
+extern EntityDefinition ADJUSTMENT_SCREEN_LOGO_IM;
+extern EntityDefinition ADJUSTMENT_SCREEN_BG_IM;
+extern EntityDefinition ADJUSTMENT_SCREEN_ICON_IM_L;
+extern EntityDefinition ADJUSTMENT_SCREEN_ICON_IM_R;
 
 #endif /*IMAGE_H_*/

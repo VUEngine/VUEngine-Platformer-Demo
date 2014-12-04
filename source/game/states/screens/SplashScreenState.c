@@ -76,10 +76,10 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern const u16 ASCII_CH[];
+extern const u16 FontTiles[];
 
 enum Screens {
-	kPvbScreen = 0,
+	kAdjustmentScreen = 0,
 	kPrecautionScreen,
 	kVbJaeScreen,
 	kSplashExitScreen
@@ -140,11 +140,11 @@ static void SplashScreenState_destructor(SplashScreenState this){
 // state's enter
 static void SplashScreenState_enter(SplashScreenState this, void* owner){
 	
-	Printing_setAscii((const u16*)ASCII_CH);
+	Printing_setFontDefinition((const u16*)FontTiles);
 	
-	GameState_loadStage((GameState)this, (StageDefinition*)&PVB_ST, false, true);
+	GameState_loadStage((GameState)this, (StageDefinition*)&ADJUSTMENT_ST, false, true);
 
-	this->currentScreen = kPvbScreen;
+	this->currentScreen = kAdjustmentScreen;
 	
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
@@ -178,7 +178,7 @@ static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, 
 
 			switch(this->currentScreen){
 			
-				case kPvbScreen:
+				case kAdjustmentScreen:
 
 					SplashScreenState_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
 					this->currentScreen = kPrecautionScreen;
