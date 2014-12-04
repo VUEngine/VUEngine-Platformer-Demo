@@ -25,7 +25,7 @@
 /*---------------------------------INCLUDES--------------------------------*/
 #include <libgccvb.h>
 /*-------------------------------PROTOTYPES--------------------------------*/
-extern const u16 ASCII_CH[];
+extern const u16 FontTiles[];
 
 extern BYTE PVB_LEFT_CH[];
 extern BYTE PVB_RIGHT_CH[];

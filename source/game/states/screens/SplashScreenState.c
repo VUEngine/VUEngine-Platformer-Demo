@@ -76,7 +76,7 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern const u16 ASCII_CH[];
+extern const u16 FontTiles[];
 
 enum Screens {
 	kPvbScreen = 0,
@@ -140,7 +140,7 @@ static void SplashScreenState_destructor(SplashScreenState this){
 // state's enter
 static void SplashScreenState_enter(SplashScreenState this, void* owner){
 	
-	Printing_setAscii((const u16*)ASCII_CH);
+	Printing_setFontDefinition((const u16*)FontTiles);
 	
 	GameState_loadStage((GameState)this, (StageDefinition*)&PVB_ST, false, true);
 
