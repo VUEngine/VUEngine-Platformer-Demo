@@ -18,9 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef COMMON_IMAGES_H_
-#define COMMON_IMAGES_H_
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -30,20 +27,97 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Entity.h>
+#include <Image.h>
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												DECLARATIONS
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern EntityDefinition VBJAE_LEFT_IM;
-extern EntityDefinition VBJAE_RIGHT_IM;
-extern EntityDefinition PRECAUTION_IM;
-extern EntityDefinition TITLE_BG;
+extern BYTE AdjustmentScreenIconTiles[];
+extern BYTE AdjustmentScreenIconMap[];
 
-#endif /*COMMON_IMAGES_H_*/
+
+TextureROMDef ADJUSTMENT_SCREEN_ICON_TX = {
+		// Chargroup
+		{
+			// chDefinition,				 
+			AdjustmentScreenIconTiles,					
+			// numChars,
+			5,
+			
+			// allocation type
+			__NO_ANIMATED
+		},
+		
+		// ICONmap definition
+		AdjustmentScreenIconMap,
+		
+		// cols (max 48)
+		2,
+		
+		// rows (max 28)
+		2,
+		
+		//pallet number,
+		0
+};
+
+SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] = {
+
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
+		
+		// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_LON,
+
+		// parallax displacement
+		0,
+
+	},
+};
+
+SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] = {
+
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
+		
+		// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_RON,
+
+		// parallax displacement
+		0,
+
+	},
+};
+
+ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_L = {
+		
+	// object's class			   
+	__TYPE(Image),  
+
+	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES),
+};
+
+ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_R = {
+		
+	// object's class			   
+	__TYPE(Image),  
+
+	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES),
+};

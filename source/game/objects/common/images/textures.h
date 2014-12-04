@@ -21,11 +21,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern TextureDefinition PVBCC_LEFT_TX;
-extern TextureDefinition PVBCC_RIGHT_TX;
 extern TextureDefinition PRECAUTION_TX;
-extern TextureDefinition PVB_LEFT_TX;
-extern TextureDefinition PVB_RIGHT_TX;
 extern TextureDefinition VBJAE_LEFT_TX;
 extern TextureDefinition VBJAE_RIGHT_TX;
 

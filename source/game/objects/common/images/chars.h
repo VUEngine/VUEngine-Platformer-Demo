@@ -27,13 +27,9 @@
 /*-------------------------------PROTOTYPES--------------------------------*/
 extern const u16 FontTiles[];
 
-extern BYTE PVB_LEFT_CH[];
-extern BYTE PVB_RIGHT_CH[];
 extern BYTE PRECAUTION_CH[];
 extern BYTE VBJAE_LEFT_CH[];
 extern BYTE VBJAE_RIGHT_CH[];
-extern BYTE PVBCC_CHARSET_LEFT[];
-extern BYTE PVBCC_CHARSET_RIGHT[];
 extern BYTE PRECAUTION_CH[];
 
 #endif /*COMMON_IMAGE_CHARS_H_*/

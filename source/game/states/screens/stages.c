@@ -26,14 +26,17 @@
 
 /*---------------------------------ASSETS----------------------------------*/
 
-PositionedEntityROMDef PVB_ST_ENTITIES[] = {
-
-	{&PVB_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-	{&PVB_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+PositionedEntityROMDef ADJUSTMENT_ST_ENTITIES[] = {
+	{&ADJUSTMENT_SCREEN_BG_IM, 		{ __SCREEN_WIDTH >> 1,   __SCREEN_HEIGHT >> 1, 	LAYER_1}, NULL},
+	{&ADJUSTMENT_SCREEN_LOGO_IM,	{ __SCREEN_WIDTH >> 1,   				  100, 	LAYER_0}, NULL},
+	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{					8,						8, 	LAYER_0}, NULL},
+	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{   __SCREEN_WIDTH -8,	  __SCREEN_HEIGHT - 8, 	LAYER_0}, NULL},
+	{&ADJUSTMENT_SCREEN_ICON_IM_R,	{   __SCREEN_WIDTH -8,						8, 	LAYER_0}, NULL},
+	{&ADJUSTMENT_SCREEN_ICON_IM_R,	{					8,	  __SCREEN_HEIGHT - 8, 	LAYER_0}, NULL},
 	{NULL,{0,0,0}, NULL},
 };
 
-StageROMDef PVB_ST = {
+StageROMDef ADJUSTMENT_ST = {
 		
 		// size
 		{
@@ -63,7 +66,7 @@ StageROMDef PVB_ST = {
 			NULL
 		},
 		//entities
-		PVB_ST_ENTITIES
+		ADJUSTMENT_ST_ENTITIES
 };
 
 PositionedEntityROMDef PRECAUTION_ST_ENTITIES[] = {
@@ -104,46 +107,6 @@ StageROMDef PRECAUTION_ST = {
 		},
 		//entities
 		PRECAUTION_ST_ENTITIES
-};
-
-PositionedEntityROMDef PVBCC_ST_ENTITIES[] = {
-
-	{&PVBCC_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-	{&PVBCC_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-	{NULL,{0,0,0}, NULL},
-};
-
-StageROMDef PVBCC_ST = {
-		
-		// size
-		{
-			// x
-			__SCREEN_WIDTH,
-			// y
-			__SCREEN_HEIGHT,
-			// z
-			1
-		},
-		//initial screen position
-		{
-			// x
-			ITOFIX19_13(0),
-			// y
-			ITOFIX19_13(0),
-			//z
-			ITOFIX19_13(__ZZERO)
-		},
-		//background music		
-		NULL,
-		//textures 
-		NULL,
-		//UI entities
-		{
-			NULL,
-			NULL
-		},
-		//entities
-		PVBCC_ST_ENTITIES
 };
 
 PositionedEntityROMDef VBJAE_ST_ENTITIES[] = {

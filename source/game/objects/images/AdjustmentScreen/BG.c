@@ -18,9 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef COMMON_IMAGES_H_
-#define COMMON_IMAGES_H_
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -30,20 +27,70 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Entity.h>
+#include <Image.h>
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												DECLARATIONS
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern EntityDefinition VBJAE_LEFT_IM;
-extern EntityDefinition VBJAE_RIGHT_IM;
-extern EntityDefinition PRECAUTION_IM;
-extern EntityDefinition TITLE_BG;
+extern BYTE AdjustmentScreenBGTiles[];
+extern BYTE AdjustmentScreenBGMap[];
 
-#endif /*COMMON_IMAGES_H_*/
+
+TextureROMDef ADJUSTMENT_SCREEN_BG_TX = {
+		// Chargroup
+		{
+			// chDefinition,				 
+			AdjustmentScreenBGTiles,					
+			// numChars,
+			3,
+			
+			// allocation type
+			__NO_ANIMATED
+		},
+		
+		// bgmap definition
+		AdjustmentScreenBGMap,
+		
+		// cols (max 48)
+		12,
+		
+		// rows (max 28)
+		12,
+		
+		//pallet number,
+		0
+};
+
+SpriteROMDef ADJUSTMENT_SCREEN_BG_IM_SPRITES[] = {
+
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&ADJUSTMENT_SCREEN_BG_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+
+	},
+};
+
+ImageROMDef ADJUSTMENT_SCREEN_BG_IM = {
+		
+	// object's class			   
+	__TYPE(Image),  
+
+	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_BG_IM_SPRITES),
+};

@@ -1,3 +1,6 @@
+#include "AdjustmentScreenBG.c"  
+#include "AdjustmentScreenIcon.c"  
+#include "AdjustmentScreenLogo.c"  
 #include "Floor3x5L.c"  
 #include "Floor3x5R.c"  
 #include "GUI.c"  
