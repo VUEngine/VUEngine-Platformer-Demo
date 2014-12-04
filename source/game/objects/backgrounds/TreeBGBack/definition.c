@@ -28,7 +28,6 @@
  */
 
 #include <ScrollBackground.h>
-#include <../assets/images/_o/TreeBGBack.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -40,16 +39,20 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+extern BYTE TreeBGBackTiles[];
+extern BYTE TreeBGBackMap[];
+
+
 TextureROMDef TREE_BG_BACK_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				TreeBGBackTiles,
-				// numChars,
-				72,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			TreeBGBackTiles,
+			// numChars,
+			64,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -70,7 +73,7 @@ SpriteROMDef TREE_BG_BACK_SB_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&TREE_BG_BACK_TX,
+		(TextureDefinition*)&TREE_BG_BACK_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -85,7 +88,7 @@ SpriteROMDef TREE_BG_BACK_SB_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&TREE_BG_BACK_TX,
+		(TextureDefinition*)&TREE_BG_BACK_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,

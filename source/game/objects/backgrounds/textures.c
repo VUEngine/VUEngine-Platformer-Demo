@@ -49,14 +49,14 @@ extern const u16 ASCII_CH[];
 TextureROMDef FLOOR0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				FLOOR0_CH,	
-				
-				// numChars,
-				10,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			FLOOR0_CH,	
+			
+			// numChars,
+			10,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -76,14 +76,14 @@ TextureROMDef FLOOR0_TX = {
 TextureROMDef FLOOR1_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				FLOOR1_CH,	
-				
-				// numChars,
-				10,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			FLOOR1_CH,	
+			
+			// numChars,
+			10,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -104,14 +104,14 @@ TextureROMDef FLOOR1_TX = {
 TextureROMDef FLOOR2_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				FLOOR2_CH,	
-				
-				// numChars,
-				11,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			FLOOR2_CH,	
+			
+			// numChars,
+			11,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -131,14 +131,14 @@ TextureROMDef FLOOR2_TX = {
 TextureDefinition PIPE0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				PIPE0_CH,	
-				
-				// numChars,
-				16,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			PIPE0_CH,	
+			
+			// numChars,
+			16,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -158,14 +158,14 @@ TextureDefinition PIPE0_TX = {
 TextureDefinition PIPE1_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				PIPE1_CH,	
-				
-				// numChars,
-				17,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			PIPE1_CH,	
+			
+			// numChars,
+			17,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -186,14 +186,14 @@ TextureDefinition PIPE1_TX = {
 TextureDefinition WALL0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				WALL0_CH,	
-				
-				// numChars,
-				9,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			WALL0_CH,	
+			
+			// numChars,
+			9,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -213,14 +213,14 @@ TextureDefinition WALL0_TX = {
 TextureROMDef POLE0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				POLE0_CH,	
-				
-				// numChars,
-				4,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			POLE0_CH,	
+			
+			// numChars,
+			4,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -240,14 +240,14 @@ TextureROMDef POLE0_TX = {
 TextureROMDef GATE0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				GATE0_CH,	
-				
-				// numChars,
-				1,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			GATE0_CH,	
+			
+			// numChars,
+			1,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -268,14 +268,14 @@ TextureROMDef GATE0_TX = {
 TextureROMDef GOAL0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				GOAL0_CH,	
-				
-				// numChars,
-				11,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			GOAL0_CH,	
+			
+			// numChars,
+			11,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition

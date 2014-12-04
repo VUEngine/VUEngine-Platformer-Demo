@@ -28,7 +28,6 @@
  */
 
 #include <AnimatedSprite.h>
-#include <../assets/spritesheets/_o/SawBlade.h>
 
 #include "SawBlade.h"
 
@@ -41,6 +40,9 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
+
+extern BYTE SawBladeTiles[];
+extern BYTE SawBladeMap[];
 
 
 AnimationFunction SAW_BLADE_SPIN_ANIM = {
@@ -85,14 +87,14 @@ TextureDefinition SAW_BLADE_TX = {
 		
 		// Chargroup
 		{
-				// chDefinition,				 
-				SawBladeTiles,	
-				
-				// numChars,
-				18,
-				
-				// allocation type
-				__ANIMATED_SHARED
+			// chDefinition,				 
+			SawBladeTiles,	
+			
+			// numChars,
+			18,
+			
+			// allocation type
+			__ANIMATED_SHARED
 		},
 		
 		// bgmap definition
@@ -111,7 +113,7 @@ TextureDefinition SAW_BLADE_TX = {
 SpriteROMDef SAW_BLADE_SPRITES[] = {
 	{
 		// the texture
-		&SAW_BLADE_TX,
+		(TextureDefinition*)&SAW_BLADE_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_AFFINE,

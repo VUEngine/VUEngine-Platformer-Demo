@@ -28,7 +28,6 @@
  */
 
 #include <Image.h>
-#include <../assets/images/_o/GUI.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -40,16 +39,20 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+extern BYTE GUITiles[];
+extern BYTE GUIMap[];
+
+
 TextureROMDef GUI_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				GUITiles,					
-				// numChars,
-				20,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			GUITiles,					
+			// numChars,
+			20,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -70,7 +73,7 @@ SpriteROMDef GUI_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&GUI_TX,
+		(TextureDefinition*)&GUI_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,

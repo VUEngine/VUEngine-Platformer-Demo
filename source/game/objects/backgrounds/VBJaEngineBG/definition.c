@@ -28,7 +28,6 @@
  */
 
 #include <ScrollBackground.h>
-#include <../assets/images/_o/VBJaEngineBGDark.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -40,16 +39,20 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+extern BYTE VBJaEngineBGDarkTiles[];
+extern BYTE VBJaEngineBGDarkMap[];
+
+
 TextureROMDef VBJAENGINE_BG_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				VBJaEngineBGDarkTiles,					
-				// numChars,
-				148,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			VBJaEngineBGDarkTiles,					
+			// numChars,
+			148,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -70,7 +73,7 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&VBJAENGINE_BG_TX,
+		(TextureDefinition*)&VBJAENGINE_BG_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -85,7 +88,7 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&VBJAENGINE_BG_TX,
+		(TextureDefinition*)&VBJAENGINE_BG_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,

@@ -46,13 +46,13 @@ extern BYTE SAW_BLADE_LANE_V_6_MP[];
 TextureROMDef SAW_BLADE_LANE_V_6_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				SAW_BLADE_LANE_CH,					
-				// numChars,
-				2,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			SAW_BLADE_LANE_CH,					
+			// numChars,
+			2,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -74,7 +74,7 @@ SpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&SAW_BLADE_LANE_V_6_TX,
+		(TextureDefinition*)&SAW_BLADE_LANE_V_6_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,

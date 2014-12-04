@@ -30,9 +30,6 @@
 #include <InanimatedInGameEntity.h>
 #include <macros.h>
 
-#include <../assets/images/_o/Floor3x5L.h>
-#include <../assets/images/_o/Floor3x5R.h>
-
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -43,16 +40,22 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+extern BYTE Floor3x5LTiles[];
+extern BYTE Floor3x5LMap[];
+extern BYTE Floor3x5RTiles[];
+extern BYTE Floor3x5RMap[];
+
+
 TextureROMDef FLOOR_3x5_L_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				Floor3x5LTiles,
-				// numChars,
-				17,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			Floor3x5LTiles,
+			// numChars,
+			18,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -71,13 +74,13 @@ TextureROMDef FLOOR_3x5_L_TX = {
 TextureROMDef FLOOR_3x5_R_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				Floor3x5RTiles,
-				// numChars,
-				21,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			Floor3x5RTiles,
+			// numChars,
+			23,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -98,7 +101,7 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&FLOOR_3x5_L_TX,
+		(TextureDefinition*)&FLOOR_3x5_L_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -112,7 +115,7 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&FLOOR_3x5_R_TX,
+		(TextureDefinition*)&FLOOR_3x5_R_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
