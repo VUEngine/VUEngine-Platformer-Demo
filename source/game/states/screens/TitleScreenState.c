@@ -140,6 +140,9 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner){
 	};
 
 	Screen_move(Screen_getInstance(), translation, false);
+	
+	// call base
+	GameState_execute((GameState)this, owner);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
