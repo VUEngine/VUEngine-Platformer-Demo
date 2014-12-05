@@ -73,7 +73,7 @@ __CLASS_NEW_DECLARE(Coin, __PARAMETERS(AnimatedInGameEntityDefinition* animatedE
 
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int ID);
 void Coin_destructor(Coin this);
-u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram);
+u16 Coin_handleMessage(Coin this, Telegram telegram);
 void Coin_removeFromStage(Coin this);
 
 #endif

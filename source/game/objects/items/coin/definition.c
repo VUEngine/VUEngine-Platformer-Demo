@@ -157,5 +157,5 @@ AnimatedInGameEntityROMDef COIN_MC = {
 		(AnimationDescription*)&COIN_ANIM,
 		
 		// initial animation
-		NULL
+		"Spin"
 };

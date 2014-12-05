@@ -221,19 +221,28 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			
 		case kKeyPressed:
 
-			Object_fireEvent((Object)this, EVENT_KEY_PRESSED);
+			if(kPlaying == this->mode) {
+			
+				Object_fireEvent((Object)this, EVENT_KEY_PRESSED);
+			}
 			return true;
 			break;
 
 		case kKeyUp:
 
-			Object_fireEvent((Object)this, EVENT_KEY_RELEASED);
+			if(kPlaying == this->mode) {
+			
+				Object_fireEvent((Object)this, EVENT_KEY_RELEASED);
+			}
 			return true;
 			break;
 			
 		case kKeyHold:
 			
-			Object_fireEvent((Object)this, EVENT_KEY_HOLD);
+			if(kPlaying == this->mode) {
+			
+				Object_fireEvent((Object)this, EVENT_KEY_HOLD);
+			}
 			return true;
 			break;
 
