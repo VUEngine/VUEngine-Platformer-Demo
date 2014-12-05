@@ -29,6 +29,8 @@
 
 #include <I18n.h>
 #include <text.h>
+#include <lang_de.h>
+#include <lang_en.h>
 
 // include the game's states
 #include <states.h>
@@ -50,7 +52,7 @@ int main(void){
 	// register languages
 	I18n_registerLanguage(I18n_getInstance(), Lang_EN);
 	I18n_registerLanguage(I18n_getInstance(), Lang_DE);
-	I18n_setLanguage(I18n_getInstance(), 1);
+	I18n_setLanguage(I18n_getInstance(), LANG_DE);
 
 	// TitleScreenStage is the next state after the splash screen sequence
 

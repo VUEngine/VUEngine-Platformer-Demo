@@ -3,5 +3,7 @@ enum {
     STR_GO
 };
 
-#include "lang_en.h"
-#include "lang_de.h"
+enum {
+    LANG_EN,
+    LANG_DE
+};
