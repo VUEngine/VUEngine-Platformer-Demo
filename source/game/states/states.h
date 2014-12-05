@@ -30,6 +30,10 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+#include <SplashScreenState.h>
+#include <TitleScreenState.h>
+#include <PlatformerLevelState.h>
+
 #include "levels/stages.h"
 #include "screens/stages.h"
 
