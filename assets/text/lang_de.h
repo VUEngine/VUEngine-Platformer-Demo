@@ -6,6 +6,9 @@
 const static char* Lang_DE[] = {
 
 // STR_READY
-"Fertig",
+"Fertig?",
+
+// STR_GO
+"Los!",
 
 };

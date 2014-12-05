@@ -38,6 +38,8 @@
 #include <TitleScreenState.h>
 #include "stages.h"
 #include <macros.h>
+#include <text.h>
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -179,7 +181,7 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 
 		case kShowUpLevel:
 
-			Printing_text(I18n_getText(I18n_getInstance(), 0), 21, 6);
+			Printing_text(I18n_getText(I18n_getInstance(), STR_READY), 23, 6);
 
 			// pause physical simulations
 			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
@@ -193,10 +195,11 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 
 			this->mode = kShowingUp;
 			break;
-			
+
 		case kStartLevel:
 
-			Printing_text("    GO!        ", 21, 6);
+			Printing_text("               ", 23, 6);
+			Printing_text(I18n_getText(I18n_getInstance(), STR_GO), 25, 6);
 			
 			// erase message in 1 second
 			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kHideStartUpMessage, NULL);
@@ -217,7 +220,7 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 
 		case kHideStartUpMessage:
 			
-			Printing_text("               ", 21, 6);
+			Printing_text("               ", 23, 6);
 			break;
 			
 		case kKeyPressed:
