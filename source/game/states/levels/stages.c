@@ -89,9 +89,8 @@ StageROMDef TITLE_ST = {
 
 TextureROMDef* LEVEL_0_0_0_ST_TEXTURES[] = {
 		
-	&HERO0_TX,
-	&COIN0_TX,
-	&FLOOR0_TX,
+//	&COIN0_TX, // doesn't make any difference to preload an __ANIMATED texture
+// since it cannot be used by any entity and will be wasted
 	&PIPE0_TX,
 	&PIRANHA_PLANT_V_TX,
 	&SAW_BLADE_TX,
