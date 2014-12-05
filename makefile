@@ -19,8 +19,11 @@ ROMHEADER=lib/vb.hdr
 DLIBS =
 
 # Obligatory headers
-GAME_ESSENTIALS = -include source/game/common.h 	
 VBJAENGINE = $(VBDE)/libs/vbjaengine
+VBJANEGINE_CONFIG_FILE = $(shell pwd)/source/config.h
+GAME_ESSENTIALS = 	-include $(VBJANEGINE_CONFIG_FILE) \
+					-include $(VBJAENGINE)/libvbjae.h
+						
 
 # The next blocks change some variables depending on the build type
 ifeq ($(TYPE),debug)
@@ -84,7 +87,7 @@ all: $(TARGET).vb
 
 $(ENGINE):
 	@rm -f $(ENGINE)
-	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE)
+	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJANEGINE_CONFIG_FILE)
 
 	
 $(TARGET).vb: main.elf

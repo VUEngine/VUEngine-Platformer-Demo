@@ -38,7 +38,7 @@
 #include <objects.h>
 #include "Coin.h"
 
-#include <GameLevel.h>
+#include <PlatformerLevelState.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -74,7 +74,6 @@ __CLASS_DEFINITION(Coin);
  * ---------------------------------------------------------------------------------------------------------
  */
 
-u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram);
 void Coin_removeFromStage(Coin this);
 
 
@@ -101,11 +100,6 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
-
-	// play spinning animation
-	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Spin");
-	
-	AnimatedInGameEntity_setClock((AnimatedInGameEntity)this, Game_getClock(Game_getInstance()));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,12 +112,11 @@ void Coin_destructor(Coin this)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-u16 Coin_handleMessage(Coin this, void* owner, Telegram telegram)
+u16 Coin_handleMessage(Coin this, Telegram telegram)
 {
-
 	switch (Telegram_getMessage(telegram)) {
 
-		default: /* TODO: why is kTakeCoin not recognized? Remove default case. */
+		//default: /* TODO: why is kTakeCoin not recognized? Remove default case. */
 		case kTakeCoin:
 			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Taken");
 			Shape_setActive(this->shape, false);

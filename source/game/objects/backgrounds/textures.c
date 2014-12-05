@@ -42,21 +42,21 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern const u16 ASCII_CH[];
+extern const u16 FontTiles[];
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef FLOOR0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				FLOOR0_CH,	
-				
-				// numChars,
-				10,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			FLOOR0_CH,	
+			
+			// numChars,
+			10,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -76,14 +76,14 @@ TextureROMDef FLOOR0_TX = {
 TextureROMDef FLOOR1_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				FLOOR1_CH,	
-				
-				// numChars,
-				10,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			FLOOR1_CH,	
+			
+			// numChars,
+			10,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -104,14 +104,14 @@ TextureROMDef FLOOR1_TX = {
 TextureROMDef FLOOR2_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				FLOOR2_CH,	
-				
-				// numChars,
-				11,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			FLOOR2_CH,	
+			
+			// numChars,
+			11,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -128,128 +128,17 @@ TextureROMDef FLOOR2_TX = {
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef JAPANARC_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				JAPANARC_CH,	
-				
-				// numChars,
-				18,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		JAPANARC_MP,
-		
-		// cols (max 48)
-		16,
-		
-		// rows (max 28)
-		12,
-		
-		//pallet number,
-		1
-		
-};
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureDefinition MOUNT0_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				MOUNT0_CH,	
-				
-				// numChars,
-				5,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		MOUNT0_MP,
-		
-		// cols (max 48)
-		2,
-		
-		// rows (max 28)
-		3,
-		
-		//pallet number,
-		1
-};
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureDefinition MOUNT1_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				MOUNT1_CH,	
-				
-				// numChars,
-				9,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		MOUNT1_MP,
-		
-		// cols (max 48)
-		6,
-		
-		// rows (max 28)
-		3,
-		
-		//pallet number,
-		1
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureDefinition MOUNT2_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				MOUNT2_CH,	
-				
-				// numChars,
-				18,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		MOUNT2_MP,
-		
-		// cols (max 48)
-		4,
-		
-		// rows (max 28)
-		5,
-		
-		//pallet number,
-		1
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureDefinition PIPE0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				PIPE0_CH,	
-				
-				// numChars,
-				16,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			PIPE0_CH,	
+			
+			// numChars,
+			16,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -269,14 +158,14 @@ TextureDefinition PIPE0_TX = {
 TextureDefinition PIPE1_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				PIPE1_CH,	
-				
-				// numChars,
-				17,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			PIPE1_CH,	
+			
+			// numChars,
+			17,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -292,126 +181,19 @@ TextureDefinition PIPE1_TX = {
 		1
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureDefinition MOUNTS0_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				MOUNTS0_CH,	
-				
-				// numChars,
-				18,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		MOUNTS0_MP,
-		
-		// cols (max 48)
-		12,
-		
-		// rows (max 28)
-		5,
-		
-		//pallet number,
-		1
-};
-
-TextureDefinition MOUNTS1_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				MOUNTS1_CH,	
-				
-				// numChars,
-				83,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		MOUNTS1_MP,
-		
-		// cols (max 48)
-		27,
-		
-		// rows (max 28)
-		6,
-		
-		//pallet number,
-		1
-};
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureDefinition BACKMOUNT01_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				BACKMOUNT01_CH,	
-				
-				// numChars,
-				32,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		BACKMOUNT01_MP,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		25,
-		
-		//pallet number,
-		0
-};
-
-TextureDefinition BACKMOUNT02_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				BACKMOUNT02_CH,	
-				
-				// numChars,
-				56,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		BACKMOUNT02_MP,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		25,
-		
-		//pallet number,
-		0
-};
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureDefinition WALL0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				WALL0_CH,	
-				
-				// numChars,
-				9,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			WALL0_CH,	
+			
+			// numChars,
+			9,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -431,14 +213,14 @@ TextureDefinition WALL0_TX = {
 TextureROMDef POLE0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				POLE0_CH,	
-				
-				// numChars,
-				4,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			POLE0_CH,	
+			
+			// numChars,
+			4,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -458,14 +240,14 @@ TextureROMDef POLE0_TX = {
 TextureROMDef GATE0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				GATE0_CH,	
-				
-				// numChars,
-				1,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			GATE0_CH,	
+			
+			// numChars,
+			1,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -486,14 +268,14 @@ TextureROMDef GATE0_TX = {
 TextureROMDef GOAL0_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				GOAL0_CH,	
-				
-				// numChars,
-				11,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			GOAL0_CH,	
+			
+			// numChars,
+			11,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition

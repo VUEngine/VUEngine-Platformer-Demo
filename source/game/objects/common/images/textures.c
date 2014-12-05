@@ -42,20 +42,20 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern const u16 ASCII_CH[];
+extern const u16 FontTiles[];
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef PRECAUTION_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				PRECAUTION_CH,	
-				
-				// numChars,
-				96,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			PRECAUTION_CH,	
+			
+			// numChars,
+			95,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -71,130 +71,19 @@ TextureROMDef PRECAUTION_TX = {
 		0
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef PVBCC_LEFT_TX = {
-		
-		// Chargroup
-		{
-				// chDefinition,				 
-				PVBCC_CHARSET_LEFT,	
-				
-				// numChars,
-				238,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		PVBCC_MAP_LEFT,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		28,
-		
-		//pallet number,
-		0
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef PVBCC_RIGHT_TX = {
-		
-		// Chargroup
-		{
-				// chDefinition,				 
-				PVBCC_CHARSET_RIGHT,	
-				
-				// numChars,
-				235,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		PVBCC_MAP_RIGHT,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		28,
-		
-		//pallet number,
-		0
-};
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef PVB_LEFT_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				PVB_LEFT_CH,	
-				
-				// numChars,
-				81,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		PVB_LEFT_MP,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		28,
-		
-		//pallet number,
-		0
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef PVB_RIGHT_TX = {
-		// Chargroup
-		{
-				// chDefinition,				 
-				PVB_RIGHT_CH,	
-				
-				// numChars,
-				81,
-				
-				// allocation type
-				__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		PVB_RIGHT_MP,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		28,
-		
-		//pallet number,
-		0
-};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef VBJAE_LEFT_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				VBJAE_LEFT_CH,	
-				
-				// numChars,
-				97,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			VBJAE_LEFT_CH,	
+			
+			// numChars,
+			97,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
@@ -214,14 +103,14 @@ TextureROMDef VBJAE_LEFT_TX = {
 TextureROMDef VBJAE_RIGHT_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				VBJAE_RIGHT_CH,	
-				
-				// numChars,
-				97,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			VBJAE_RIGHT_CH,	
+			
+			// numChars,
+			97,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition

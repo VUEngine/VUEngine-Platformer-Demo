@@ -27,18 +27,8 @@
 extern BYTE FLOOR0_MP[];
 extern BYTE FLOOR1_MP[];
 extern BYTE FLOOR2_MP[];
-extern BYTE JAPANARC_MP[];
-extern BYTE MOUNT0_MP[];
-extern BYTE MOUNT1_MP[];
-extern BYTE MOUNT2_MP[];
 extern BYTE PIPE0_MP[];
 extern BYTE PIPE1_MP[];
-
-extern BYTE MOUNTS0_MP[];
-extern BYTE MOUNTS1_MP[];
-
-extern BYTE BACKMOUNT01_MP[];
-extern BYTE BACKMOUNT02_MP[];
 
 extern BYTE WALL0_MP[];
 

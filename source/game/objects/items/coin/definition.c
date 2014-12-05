@@ -22,10 +22,8 @@
 #include <libgccvb.h>
 #include "Coin.h"
 
-
-extern BYTE COIN_CH[];
-extern BYTE COIN_MP[];
-
+extern BYTE CoinLTiles[];
+extern BYTE CoinLMap[];
 
 
 // a function which defines the frames to play
@@ -91,21 +89,20 @@ AnimationDescriptionROMDef COIN_ANIM = {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef COIN0_TX = {
-		
 		// Chargroup
 		{
-				// chDefinition,				 
-				COIN_CH,	
-				
-				// numChars,
-				4,
-				
-				// allocation type
-				__ANIMATED
+			// chDefinition,				 
+			CoinLTiles,	
+			
+			// numChars,
+			4,
+			
+			// allocation type
+			__ANIMATED
 		},
 		
 		// bgmap definition
-		COIN_MP,
+		CoinLMap,
 		
 		// cols (max 48)
 		2,
@@ -126,10 +123,12 @@ SpriteROMDef COIN_SPRITES[] = {
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_AFFINE,
-		//WRLD_BGMAP,
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 
 };
@@ -158,6 +157,5 @@ AnimatedInGameEntityROMDef COIN_MC = {
 		(AnimationDescription*)&COIN_ANIM,
 		
 		// initial animation
-		NULL
+		"Spin"
 };
-

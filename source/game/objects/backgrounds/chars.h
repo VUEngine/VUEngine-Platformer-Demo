@@ -30,21 +30,10 @@ extern const u16 ASCII_CH[];
 extern BYTE FLOOR0_CH[];
 extern BYTE FLOOR1_CH[];
 extern BYTE FLOOR2_CH[];
-extern BYTE JAPANARC_CH[];
-extern BYTE MOUNT0_CH[];
-extern BYTE MOUNT1_CH[];
-extern BYTE MOUNT2_CH[];
 extern BYTE PIPE0_CH[];
 extern BYTE PIPE1_CH[];
 
-extern BYTE MOUNTS0_CH[];
-extern BYTE MOUNTS1_CH[];
-
-extern BYTE BACKMOUNT01_CH[];
-extern BYTE BACKMOUNT02_CH[];
-
 extern BYTE WALL0_CH[];
-
 
 extern BYTE POLE0_CH[];
 extern BYTE GATE0_CH[];

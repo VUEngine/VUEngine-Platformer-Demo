@@ -41,9 +41,8 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
-extern BYTE SAW_BLADE_CH[];
-extern BYTE SAW_BLADE_MP[];
+extern BYTE SawBladeTiles[];
+extern BYTE SawBladeMap[];
 
 
 AnimationFunction SAW_BLADE_SPIN_ANIM = {
@@ -88,18 +87,18 @@ TextureDefinition SAW_BLADE_TX = {
 		
 		// Chargroup
 		{
-				// chDefinition,				 
-				SAW_BLADE_CH,	
-				
-				// numChars,
-				18,
-				
-				// allocation type
-				__ANIMATED_SHARED
+			// chDefinition,				 
+			SawBladeTiles,	
+			
+			// numChars,
+			18,
+			
+			// allocation type
+			__ANIMATED_SHARED
 		},
 		
 		// bgmap definition
-		SAW_BLADE_MP,
+		SawBladeMap,
 		
 		// cols (max 48)
 		3,
@@ -114,13 +113,16 @@ TextureDefinition SAW_BLADE_TX = {
 SpriteROMDef SAW_BLADE_SPRITES[] = {
 	{
 		// the texture
-		&SAW_BLADE_TX,
+		(TextureDefinition*)&SAW_BLADE_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_AFFINE,
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	}
 };
 

@@ -39,24 +39,24 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
+extern BYTE GUITiles[];
+extern BYTE GUIMap[];
 
-extern BYTE GUI_CH[];
-extern BYTE GUI_MP[];
 
 TextureROMDef GUI_TX = {
 		// Chargroup
 		{
-				// chDefinition,				 
-				GUI_CH,					
-				// numChars,
-				19,
-				
-				// allocation type
-				__NO_ANIMATED
+			// chDefinition,				 
+			GUITiles,					
+			// numChars,
+			20,
+			
+			// allocation type
+			__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		GUI_MP,
+		GUIMap,
 		
 		// cols (max 48)
 		48,
@@ -73,13 +73,16 @@ SpriteROMDef GUI_IM_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		&GUI_TX,
+		(TextureDefinition*)&GUI_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 

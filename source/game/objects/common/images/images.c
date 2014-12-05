@@ -40,55 +40,8 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-SpriteROMDef PVBCC_LEFT_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&PVBCC_LEFT_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_LON,
-	},
-};
-
-ImageROMDef PVBCC_LEFT_IM = {
-		
-		// object's class			   
-		__TYPE(Image),  
-
-		__SPRITE_ARRAY(PVBCC_LEFT_IM_SPRITES),
-};
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef PVBCC_RIGHT_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&PVBCC_RIGHT_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_RON,
-	},
-};
-
-ImageROMDef PVBCC_RIGHT_IM = {
-		
-		// object's class			   
-		__TYPE(Image),  
-
-		__SPRITE_ARRAY(PVBCC_RIGHT_IM_SPRITES),
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 SpriteROMDef PRECAUTION_IM_SPRITES[] = {
 
 	// Sprite
@@ -101,6 +54,10 @@ SpriteROMDef PRECAUTION_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
+
 	},
 };
 
@@ -112,53 +69,6 @@ ImageROMDef PRECAUTION_IM = {
 		__SPRITE_ARRAY(PRECAUTION_IM_SPRITES),
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef PVB_LEFT_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&PVB_LEFT_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_LON,
-	},
-};
-
-ImageROMDef PVB_LEFT_IM = {
-		
-	// object's class			   
-	__TYPE(Image),  
-
-	__SPRITE_ARRAY(PVB_LEFT_IM_SPRITES),
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef PVB_RIGHT_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&PVB_RIGHT_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_RON,
-	},
-};
-
-ImageROMDef PVB_RIGHT_IM = {
-		
-	// object's class			   
-	__TYPE(Image),  
-
-	__SPRITE_ARRAY(PVB_RIGHT_IM_SPRITES),
-};
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 SpriteROMDef VBJAE_LEFT_IM_SPRITES[] = {
 
@@ -172,6 +82,9 @@ SpriteROMDef VBJAE_LEFT_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_LON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -196,6 +109,9 @@ SpriteROMDef VBJAE_RIGHT_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_RON,
+
+		// parallax displacement
+		0,
 	},
 };
 

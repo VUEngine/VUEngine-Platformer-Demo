@@ -40,7 +40,4 @@
 //include project's items
 #include "items/items.h"
 
-// include the first state to use in the game
-#include "levels/levels.h"
-
 #endif /*DEFINITIONS_H_*/

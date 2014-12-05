@@ -34,13 +34,14 @@
 #include <Screen.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <KeypadManager.h>
 
 #include <objects.h>
 #include "Hero.h"
 #include "HeroIdle.h"
 #include "HeroMoving.h"
 
-#include <GameLevel.h>
+#include <PlatformerLevelState.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -77,6 +78,16 @@ __CLASS_DEFINITION(Hero);
  */
 
 extern double fabs (double);
+
+// process user input
+static void Hero_onKeyPressed(Hero this);
+
+// process user input
+static void Hero_onKeyReleased(Hero this);
+
+// process user input
+static void Hero_onKeyHold(Hero this);
+
 
 // a static member of this class
 static u32 gameLayers[TOTAL_GAME_LAYERS] = {
@@ -125,20 +136,20 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] = {
  */
 
 // Only one instance
-Hero mario = NULL;
+Hero hero = NULL;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // there can only be one mario instantiated
 Hero Hero_getInstance(){
 	
-	return mario;
+	return hero;
 }
 
 void Hero_setInstance(Hero instance){
 	
-	ASSERT(!mario, "Hero::setInstance: already instantiated");
+	ASSERT(!hero, "Hero::setInstance: already instantiated");
 	
-	mario = instance;
+	hero = instance;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // always call these two macros next to each other
@@ -170,9 +181,6 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 		Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	}
 	
-	// I'm the focus actor
-	Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
-	
 	// I'm not holding anything
 	this->holdObject = NULL;
 	
@@ -194,7 +202,12 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 		PhysicalWorld_setFriction(PhysicalWorld_getInstance(), FTOFIX19_13(FRICTION));
 	}
 	
+	// I'm the focus actor
 	Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
+
+	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -202,8 +215,13 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 void Hero_destructor(Hero this){
 
 	// free the instance pointer
-	ASSERT(mario == this, "Hero::destructor: more than on instance");
-	mario = NULL;
+	ASSERT(hero == this, "Hero::destructor: more than on instance");
+
+	hero = NULL;
+	
+	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
 	// delete the super object
 	__DESTROY_BASE(Actor);
@@ -452,7 +470,7 @@ void Hero_keepMoving(Hero this, int changedDirection){
 	fix19_13 maxVelocity = this->boost? HERO__BOOST_VELOCITY_X: HERO_VELOCITY_X;
 	
 	Velocity velocity = Body_getVelocity(this->body);
-
+	
 	if (changedDirection || maxVelocity > fabs(velocity.x) || Actor_changedDirection((Actor)this, __XAXIS)){
 		
 		Acceleration acceleration = {
@@ -1614,26 +1632,32 @@ void Hero_moveOnWin(Hero this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process user input
-int Hero_doKeyPressed(Hero this, int pressedKey){
+static void Hero_onKeyPressed(Hero this){
 
+	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
+	
 	// inform my current states about the key pressed		
-	return MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyPressed, &pressedKey);
+	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyPressed, &pressedKey);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process user input
-int Hero_doKeyUp(Hero this, int pressedKey){
+static void Hero_onKeyReleased(Hero this){
+
+	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
 	// inform my current states about the key up		
-	return MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyUp, &pressedKey);
+	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyUp, &releasedKey);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process user input
-int Hero_doKeyHold(Hero this, int pressedKey){
+static void Hero_onKeyHold(Hero this){
+
+	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
 	// inform my current states about the key hold		
-	return MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyHold, &pressedKey);
+	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyHold, &holdKey);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

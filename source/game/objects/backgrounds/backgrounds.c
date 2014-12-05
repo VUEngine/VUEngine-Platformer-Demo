@@ -56,6 +56,9 @@ SpriteROMDef FLOOR0_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -71,6 +74,9 @@ SpriteROMDef FLOOR1_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -86,6 +92,9 @@ SpriteROMDef FLOOR2_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -225,6 +234,9 @@ SpriteROMDef PIPE0_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 InanimatedInGameEntityROMDef PIPE0_BG = {
@@ -269,6 +281,9 @@ SpriteROMDef PIPE1_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -315,6 +330,9 @@ SpriteROMDef WALL0_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -349,186 +367,6 @@ InanimatedInGameEntityROMDef WALL0_BG = {
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef JAPANARC_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&JAPANARC_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
-};
-
-ImageROMDef JAPANARC_IM = {
-		
-	// object's class			   
-		__TYPE(Image),  
-
-	__SPRITE_ARRAY(JAPANARC_IM_SPRITES),
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef MOUNT0_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&MOUNT0_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
-};
-
-ImageROMDef MOUNT0_IM = {
-		
-	// object's class			   
-	__TYPE(Image),  
-
-	__SPRITE_ARRAY(MOUNT0_IM_SPRITES),
-};
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef MOUNT1_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&MOUNT1_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
-};
-
-ImageROMDef MOUNT1_IM = {
-		
-	// object's class			   
-		__TYPE(Image),  
-
-	__SPRITE_ARRAY(MOUNT1_IM_SPRITES),
-};
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef MOUNT2_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&MOUNT2_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
-};
-
-ImageROMDef MOUNT2_IM = {
-		
-		// object's class			   
-		__TYPE(Image),  
-
-		__SPRITE_ARRAY(MOUNT2_IM_SPRITES),
-};
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef MOUNTS0_SB_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&MOUNTS0_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
-};
-
-ImageROMDef MOUNTS0_IM = {
-		
-		// object's class			   
-		__TYPE(Image),  
-
-		__SPRITE_ARRAY(MOUNTS0_SB_SPRITES),
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef MOUNTS1_SB_SPRITES[] = {
-	// Sprite
-	{
-		// the texture
-		&MOUNTS1_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
-};
-
-ImageROMDef MOUNTS1_IM = {
-		
-		// object's class			   
-		__TYPE(Image),  
-
-		__SPRITE_ARRAY(MOUNTS1_SB_SPRITES),
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SpriteROMDef BACKMOUNT0_SB_SPRITES[] = {
-	// Sprite
-	{
-		// the texture
-		&BACKMOUNT01_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
-	// Sprite
-	{
-		// the texture
-		&BACKMOUNT02_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-	},
-};
-
-ScrollBackgroundROMDef BACKMOUNT0_SB = {
-		
-		// object's class			   
-		__TYPE(ScrollBackground),  
-
-		__SPRITE_ARRAY(BACKMOUNT0_SB_SPRITES)
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 SpriteROMDef POLE0_BG_SPRITES[] = {
 
 	// Sprite
@@ -541,6 +379,9 @@ SpriteROMDef POLE0_BG_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -587,6 +428,9 @@ SpriteROMDef GOAL0_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 
@@ -611,6 +455,9 @@ SpriteROMDef GATE0_IM_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
 };
 

@@ -22,11 +22,8 @@
 #include <libgccvb.h>
 #include "Hero.h"
 
-
-
-extern BYTE HERO_CH[];
-extern BYTE HERO_MP[];
-
+extern BYTE HeroTiles[];
+extern BYTE HeroMap[];
 
 
 // a function which defines the frames to play
@@ -333,18 +330,18 @@ TextureROMDef HERO0_TX = {
 		
 		// Chargroup
 		{
-				// chDefinition,				 
-				HERO_CH,	
-				
-				// numChars,
-				9,
-				
-				// allocation type
-				__ANIMATED
+			// chDefinition,				 
+			HeroTiles,	
+			
+			// numChars,
+			9,
+			
+			// allocation type
+			__ANIMATED
 		},
 		
 		// bgmap definition
-		HERO_MP,
+		HeroMap,
 		
 		// cols (max 48)
 		3,
@@ -369,6 +366,10 @@ SpriteROMDef HERO_SPRITES[] = {
 		
 		// display mode
 		WRLD_ON,
+
+		// parallax displacement
+		0,
+
 	},
 
 };

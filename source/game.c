@@ -27,12 +27,18 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// include VBJaEngine's Game class
-#include <Game.h>
 
-// include the Game's objects
-#include <objects.h>
-#include <macros.h>
+/* ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * 												INCLUDES
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ */
+
+// include the game's states
+#include <states.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -49,16 +55,13 @@
 int main(void){
 
 	
-	// don't forget to define the START_LEVEL macro in
-	// common.h (default: TitleScreen) which is the state set
-	// after the normal splash screen sequence
+	// TitleScreenStage is the next state after the splash screen sequence
 
-	// start the game at state
-	Game_start(Game_getInstance(), (State)SplashScreen_getInstance());
+	//Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());
 	// for quick level testing comment the line above
 	// and uncomment the line below
-	// Game_start(Game_getInstance(), (State)TitleScreen_getInstance());
-	// Game_start(Game_getInstance(), (State)GameLevel_getInstance());
+	// Game_start(Game_getInstance(), (State)TitleScreenState_getInstance());
+	 Game_start(Game_getInstance(), (State)PlatformerLevelState_getInstance());
 		
 	// end program
 	return true;
