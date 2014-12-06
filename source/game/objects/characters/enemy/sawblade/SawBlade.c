@@ -181,9 +181,6 @@ void SawBlade_die(SawBlade this){
 
 	// now change state to dead
 	StateMachine_swapState(this->stateMachine, (State)EnemyDead_getInstance());
-	
-	// set state
-	//this->inGameState = kDead;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

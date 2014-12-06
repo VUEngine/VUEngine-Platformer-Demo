@@ -400,12 +400,6 @@ void Hero_move(Hero this){
 		Hero_updateHoldObjectPosition(this);
 	}
 
-	//if(kDead != Actor_getInGameState((Actor)owner) && !(ownerMovementState.x || ownerMovementState.y || ownerMovementState.z)){
-	if(this->inGameState != kDead && !Actor_isMoving((Actor)this)){
-		
-		// go back to idle
-		StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
-	}
 	*/
 }
 
@@ -1044,7 +1038,7 @@ void Hero_setAnimationDelta(Hero this, int delta){
 	
 	for(; node; node = VirtualNode_getNext(node)){
 	
-		AnimatedSprite_setAnimatedSpriteCicleDelta((AnimatedSprite)VirtualNode_getData(node), this->boost? -2: -1);
+		AnimatedSprite_setFrameDelayDelta((AnimatedSprite)VirtualNode_getData(node), this->boost? -2: -1);
 	}
 }
 

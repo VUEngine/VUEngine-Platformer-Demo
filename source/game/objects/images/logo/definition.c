@@ -177,7 +177,7 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 		WRLD_BGMAP,
 		
 		// display mode
-		WRLD_ON,
+		WRLD_LON,
 
 		// parallax displacement
 		0,
@@ -241,7 +241,7 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
 		WRLD_BGMAP,
 		
 		// display mode
-		WRLD_ON,
+		WRLD_LON,
 	},
 
 	// Sprite
