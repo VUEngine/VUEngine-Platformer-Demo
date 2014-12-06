@@ -36,7 +36,7 @@
 #include <PhysicalWorld.h>
 
 #include <objects.h>
-#include "Coin.h"
+#include "Door.h"
 
 #include <PlatformerLevelState.h>
 
@@ -60,10 +60,10 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// Coin.c
+// Door.c
 
-// A Coin!
-__CLASS_DEFINITION(Coin); 
+// A Door!
+__CLASS_DEFINITION(Door); 
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ __CLASS_DEFINITION(Coin);
  * ---------------------------------------------------------------------------------------------------------
  */
 
-void Coin_removeFromStage(Coin this);
+void Door_removeFromStage(Door this);
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -88,12 +88,12 @@ void Coin_removeFromStage(Coin this);
  
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Coin, __PARAMETERS(AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID))
-__CLASS_NEW_END(Coin, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+__CLASS_NEW_DEFINITION(Door, __PARAMETERS(AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID))
+__CLASS_NEW_END(Door, __ARGUMENTS(animatedInGameEntityDefinition, ID));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
 	// construct base
 	__CONSTRUCT_BASE(AnimatedInGameEntity, __ARGUMENTS(animatedInGameEntityDefinition, ID));
@@ -104,28 +104,8 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-void Coin_destructor(Coin this)
+void Door_destructor(Door this)
 {
 	// delete the super object
 	__DESTROY_BASE(AnimatedInGameEntity);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's on message
-u16 Coin_handleMessage(Coin this, Telegram telegram)
-{
-	switch (Telegram_getMessage(telegram)) {
-
-		case kTakeCoin:
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Taken");
-			Shape_setActive(this->shape, false);
-			break;
-	}
-	
-	return false;
-}
-
-void Coin_removeFromStage(Coin this) {
-	
-	Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
 }

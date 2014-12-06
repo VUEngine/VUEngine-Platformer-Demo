@@ -20,6 +20,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern TextureDefinition COIN0_TX;
+extern TextureDefinition COIN_TX;
+extern TextureDefinition DOOR_TX;
 
 #endif
