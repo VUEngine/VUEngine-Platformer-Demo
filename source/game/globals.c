@@ -45,12 +45,13 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-
+ 
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] = {
 		
 	{"Hero", &Hero_getObjectSize},
-	{"PiranhaPlant", &PiranhaPlant_getObjectSize},
+	{"Coin", &Coin_getObjectSize},
+	{"SawBlade", &SawBlade_getObjectSize},
 	{"", NULL},
 };
 #endif
@@ -77,7 +78,6 @@ const UserActor _userActors[] = {
 		
 	{"Hero", (ActorDefinition*)&HERO_MC},
 	{"Coin", (ActorDefinition*)&COIN_MC},
-	{"Ver. Piranha plant", (ActorDefinition*)&PIRANHA_PLANT_V_MC},
 	{"SawBlade", (ActorDefinition*)&SAW_BLADE_MC},
 	{"", NULL},
 };

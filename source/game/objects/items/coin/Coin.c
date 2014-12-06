@@ -116,7 +116,6 @@ u16 Coin_handleMessage(Coin this, Telegram telegram)
 {
 	switch (Telegram_getMessage(telegram)) {
 
-		//default: /* TODO: why is kTakeCoin not recognized? Remove default case. */
 		case kTakeCoin:
 			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Taken");
 			Shape_setActive(this->shape, false);

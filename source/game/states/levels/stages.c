@@ -89,10 +89,9 @@ StageROMDef TITLE_ST = {
 
 TextureROMDef* LEVEL_0_0_0_ST_TEXTURES[] = {
 		
-//	&COIN0_TX, // doesn't make any difference to preload an __ANIMATED texture
-// since it cannot be used by any entity and will be wasted
+	&COIN_TX, 
+	&FLOOR0_TX,
 	&PIPE0_TX,
-	&PIRANHA_PLANT_V_TX,
 	&SAW_BLADE_TX,
 	&WALL0_TX,
 	&FLOOR1_TX,
@@ -104,6 +103,7 @@ TextureROMDef* LEVEL_0_0_0_ST_TEXTURES[] = {
 	&TREE_BG_BACK_TX,
 	&FLOOR_3x5_L_TX,
 	&FLOOR_3x5_R_TX,
+	&DOOR_TX,
 	NULL
 };
 
@@ -124,7 +124,8 @@ PositionedEntityROMDef LEVEL_0_0_0_ST_ENTITIES[] = {
 	{&SAW_BLADE_LANE_V_6_IM,{237, LAYER_0_FLOOR - 30, PLAYABLE_LAYER_0 + 1}, NULL},
 	{&SAW_BLADE_MC, 		{238, LAYER_0_FLOOR - 8, PLAYABLE_LAYER_0}, NULL},
 	{&FLOOR0_BG, 			{88, LAYER_0_FLOOR, LAYER_0}, NULL},
-	{&FLOOR_3x5_BG,			{288, LAYER_0_FLOOR - 16, PLAYABLE_LAYER_0 + 1}, NULL},   
+	{&DOOR_MC,				{286, LAYER_0_FLOOR - 74, PLAYABLE_LAYER_0 + 1}, NULL},   
+	{&FLOOR_3x5_BG,			{288, LAYER_0_FLOOR - 16, PLAYABLE_LAYER_0 + 2}, NULL},   
 	{&FLOOR0_BG, 			{478, LAYER_0_FLOOR, LAYER_0}, NULL},
 	{&FLOOR0_BG, 			{592, LAYER_2_FLOOR, LAYER_2}, NULL},
 	{&WALL0_BG, 			{628 + 1 * 8, 208, LAYER_0 + 1}, NULL},			

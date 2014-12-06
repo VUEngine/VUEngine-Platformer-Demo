@@ -27,18 +27,14 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												INCLUDES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+#include <I18n.h>
+#include <text.h>
+#include <lang_de.h>
+#include <lang_en.h>
 
 // include the game's states
 #include <states.h>
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -53,11 +49,15 @@
 // There should be no need to modify this.
 int main(void){
 	
+	// register languages
+	I18n_registerLanguage(I18n_getInstance(), Lang_EN);
+	I18n_registerLanguage(I18n_getInstance(), Lang_DE);
+	I18n_setLanguage(I18n_getInstance(), LANG_DE);
+
 	// TitleScreenStage is the next state after the splash screen sequence
 
 	//Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());
-	// for quick level testing comment the line above
-	// and uncomment the line below
+	// for quick level testing comment the line above and uncomment the line below
 	// Game_start(Game_getInstance(), (State)TitleScreenState_getInstance());
 	 Game_start(Game_getInstance(), (State)PlatformerLevelState_getInstance());
 		

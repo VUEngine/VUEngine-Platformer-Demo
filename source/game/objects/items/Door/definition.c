@@ -20,29 +20,30 @@
 
 /*---------------------------------INCLUDES--------------------------------*/
 #include <libgccvb.h>
-#include "Coin.h"
+#include "Door.h"
 
-extern BYTE CoinLTiles[];
-extern BYTE CoinLMap[];
+extern BYTE DoorTiles[];
+extern BYTE DoorMap[];
+
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef COIN_SPIN_ANIM = {
+AnimationFunctionROMDef DOOR_CLOSED_ANIM = {
 	
 	// function's name
-	"Spin",
+	"Closed",
 
 	// number of frames of this animation function
-	4,
+	1,
 	
 	// frames to play in animation
-	{0,1,2,3},
+	{0},
 	
 	// number of cycles a frame of animation is displayed
-	10 * __FPS_ANIM_FACTOR,
+	0,
 	
 	// whether to play it in loop or not
-	true,
+	false,
 	
 	// method to call on function completion
 	NULL,
@@ -50,76 +51,77 @@ AnimationFunctionROMDef COIN_SPIN_ANIM = {
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef COIN_TAKEN_ANIM = {
+AnimationFunctionROMDef DOOR_OPEN_ANIM = {
 	
 	// function's name
-	"Taken",
+	"Open",
 
 	// number of frames of this animation function
-	3,
+	1,
 	
 	// frames to play in animation
-	{4,5,6},
+	{1},
 	
 	// number of cycles a frame of animation is displayed
-	10 * __FPS_ANIM_FACTOR,
+	0,
 	
 	// whether to play it in loop or not
 	false,
 	
 	// method to call on function completion
-	&Coin_removeFromStage,
+	NULL,
 	
 };
 
 // an animation definition
-AnimationDescriptionROMDef COIN_ANIM = {
-	
+AnimationDescriptionROMDef DOOR_ANIM = {
+
 	// number of animation frames
-	7, 
+	2, 
 	
 	// animation functions
 	{
-		(AnimationFunction*)&COIN_SPIN_ANIM,
-		(AnimationFunction*)&COIN_TAKEN_ANIM,
+		(AnimationFunction*)&DOOR_CLOSED_ANIM,
+		(AnimationFunction*)&DOOR_OPEN_ANIM,
 		NULL,
 	}
 	
 };
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef COIN_TX = {
+TextureROMDef DOOR_TX = {
 		// Chargroup
 		{
 			// chDefinition,				 
-			CoinLTiles,	
+			DoorTiles,	
 			
 			// numChars,
-			28,
+			12,
 			
 			// allocation type
 			__ANIMATED_SHARED
 		},
 		
 		// bgmap definition
-		CoinLMap,
+		DoorMap,
 		
 		// cols (max 48)
-		2,
+		3,
 		
 		// rows (max 28)
-		2,
+		4,
 		
 		//pallet number,
 		1
 };
 
-SpriteROMDef COIN_SPRITES[] = {
+SpriteROMDef DOOR_SPRITES[] = {
 
 	// Sprite
 	{
 		// the texture
-		(TextureDefinition*)&COIN_TX,
+		(TextureDefinition*)&DOOR_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_AFFINE,
@@ -128,34 +130,34 @@ SpriteROMDef COIN_SPRITES[] = {
 		WRLD_ON,
 
 		// parallax displacement
-		0,
+		1,
 	},
 
 };
 
-AnimatedInGameEntityROMDef COIN_MC = {
+AnimatedInGameEntityROMDef DOOR_MC = {
 		{
 			{
 				// object's class			   
-				__TYPE(Coin),
+				__TYPE(Door),
 						
-				__SPRITE_ARRAY(COIN_SPRITES),
+				__SPRITE_ARRAY(DOOR_SPRITES),
 			},
-			
+
 			// deep
 			4,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
-			{4,		4,		4,		4},
+			{3,		0,		3,		3},
 			
 			// in game type
-			kCoin,
+			kDoor,
 		},
 		
 		// pointer to the animation definition for the item
-		(AnimationDescription*)&COIN_ANIM,
+		(AnimationDescription*)&DOOR_ANIM,
 		
 		// initial animation
-		"Spin"
+		"Closed"
 };

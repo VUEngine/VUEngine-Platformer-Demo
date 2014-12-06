@@ -23,7 +23,6 @@
 /*---------------------------------INCLUDES--------------------------------*/
 
 #include "hero/Hero.h"
-#include "enemy/piranhaplant/PiranhaPlant.h"
 #include "enemy/sawblade/SawBlade.h"
 
 /*------------------------------DECLARATIONS--------------------------------*/

@@ -262,6 +262,13 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 						MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeCoin, NULL);
 						return true;
 						break;
+										
+					case kDoor:
+
+						VirtualList_removeElement(collidingObjects, inGameEntity);
+						Printing_text("door", 1, 10);
+						return false;
+						break;
 				}
 							
 			}

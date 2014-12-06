@@ -22,11 +22,13 @@
 
 /*---------------------------------INCLUDES--------------------------------*/
 
-#include "coin/Coin.h"
+#include "Coin/Coin.h"
+#include "Door/Door.h"
 
 /*------------------------------DECLARATIONS--------------------------------*/
 
 extern EntityDefinition COIN_MC;
+extern EntityDefinition DOOR_MC;
 
 /*---------------------------------ASSETS----------------------------------*/
 

@@ -19,7 +19,6 @@
  */
 
 
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -29,41 +28,27 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Optics.h>
+#include <Game.h>
+#include <CollisionManager.h>
+#include <MessageDispatcher.h>
+#include <Screen.h>
+#include <Cuboid.h>
+#include <PhysicalWorld.h>
 
-#include "PiranhaPlantIdle.h"
-#include "PiranhaPlantMoving.h"
-#include "PiranhaPlant.h"
-#include "../hero/Hero.h"
+#include <objects.h>
+#include "Door.h"
+
+#include <PlatformerLevelState.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												PROTOTYPES
+ * 											 CLASS'S MACROS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-
-
-// class's constructor
-void PiranhaPlantIdle_constructor(PiranhaPlantIdle this);
-
-// class's destructor
-void PiranhaPlantIdle_destructor(PiranhaPlantIdle this);
-
-// state's enter
-void PiranhaPlantIdle_enter(PiranhaPlantIdle this, void* owner);
-
-// state's execute
-void PiranhaPlantIdle_execute(PiranhaPlantIdle this, void* owner);
-
-// state's enter
-void PiranhaPlantIdle_exit(PiranhaPlantIdle this, void* owner);
-
-// state's on message
-u16 PiranhaPlantIdle_handleMessage(PiranhaPlantIdle this, void* owner, Telegram telegram);
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -75,7 +60,22 @@ u16 PiranhaPlantIdle_handleMessage(PiranhaPlantIdle this, void* owner, Telegram 
  * ---------------------------------------------------------------------------------------------------------
  */
 
-__CLASS_DEFINITION(PiranhaPlantIdle);
+// Door.c
+
+// A Door!
+__CLASS_DEFINITION(Door); 
+
+/* ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * 												PROTOTYPES
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ * ---------------------------------------------------------------------------------------------------------
+ */
+
+void Door_removeFromStage(Door this);
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -85,75 +85,27 @@ __CLASS_DEFINITION(PiranhaPlantIdle);
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
+ 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-__SINGLETON(PiranhaPlantIdle);
+// always call these two macros next to each other
+__CLASS_NEW_DEFINITION(Door, __PARAMETERS(AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID))
+__CLASS_NEW_END(Door, __ARGUMENTS(animatedInGameEntityDefinition, ID));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's constructor
-void PiranhaPlantIdle_constructor(PiranhaPlantIdle this){
-
+void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+{
 	// construct base
-	__CONSTRUCT_BASE(State);
+	__CONSTRUCT_BASE(AnimatedInGameEntity, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+
+	// register a shape for collision detection
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-void PiranhaPlantIdle_destructor(PiranhaPlantIdle this){
-
-	// destroy base
-	__SINGLETON_DESTROY(State);
+void Door_destructor(Door this)
+{
+	// delete the super object
+	__DESTROY_BASE(AnimatedInGameEntity);
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's enter
-void PiranhaPlantIdle_enter(PiranhaPlantIdle this, void* owner){
-	
-	// do not move
-//	Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);
-
-	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's execute
-void PiranhaPlantIdle_execute(PiranhaPlantIdle this, void* owner){
-	/*
-	// if not waiting
-	if(!Enemy_getActionTime((Enemy)owner)){
-	
-		// update movement
-		PiranhaPlant_move((PiranhaPlant)owner);		
-	}
-	else{
-		
-		// if wait time elapsed
-		if(PIRANHA_PLANT_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner)){
-			
-			// start movement in opposite direction
-			PiranhaPlant_startMovement((PiranhaPlant)owner);
-		}
-	}
-*/
-	// check if mario distance to the plant is within range
-	/*if(PIRANHA_PLANT_ATTACK_DISTANCE > Optics_lengthSquared3D(
-			Entity_getPosition((Entity)owner), Entity_getPosition((Entity)Hero_getInstance()))
-	){
-		StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)PiranhaPlantMoving_getInstance());
-	}*/
-	StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)PiranhaPlantMoving_getInstance());
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's exit 
-void PiranhaPlantIdle_exit(PiranhaPlantIdle this, void* owner){
-	
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's on message
-u16 PiranhaPlantIdle_handleMessage(PiranhaPlantIdle this, void* owner, Telegram telegram){
-
-	return false;
-}
-

@@ -22,7 +22,7 @@
 
 extern TextureDefinition HERO0_TX;
 extern TextureDefinition HERO1_TX;
-extern TextureDefinition PIRANHA_PLANT_V_TX;
+extern TextureDefinition COIN_TX;
 extern TextureDefinition SAW_BLADE_TX;
 extern TextureDefinition SAW_BLADE_LANE_V_6_TX;
 

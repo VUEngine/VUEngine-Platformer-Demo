@@ -17,10 +17,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#ifndef PIRANHA_PLANT_MOVING_H_
-#define PIRANHA_PLANT_MOVING_H_
-
-
+#ifndef DOOR_H_
+#define DOOR_H_
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -31,7 +29,9 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <StateMachine.h>
+#include <AnimatedInGameEntity.h>
+#include <macros.h>
+
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -43,24 +43,20 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// declare the virtual methods
-#define PiranhaPlantMoving_METHODS								\
-	State_METHODS;									
 
-// declare the virtual methods which are redefined
-#define PiranhaPlantMoving_SET_VTABLE(ClassName)					\
-	State_SET_VTABLE(ClassName)										\
-	__VIRTUAL_SET(ClassName, PiranhaPlantMoving, enter);			\
-	__VIRTUAL_SET(ClassName, PiranhaPlantMoving, execute);			\
-	__VIRTUAL_SET(ClassName, PiranhaPlantMoving, exit);				\
-	__VIRTUAL_SET(ClassName, PiranhaPlantMoving, handleMessage);	\
+#define Door_METHODS													\
+	AnimatedInGameEntity_METHODS;
+	
 
-__CLASS(PiranhaPlantMoving);
+#define Door_SET_VTABLE(ClassName)										\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);
 
-#define PiranhaPlantMoving_ATTRIBUTES		\
-										\
-	/* inherits */						\
-	State_ATTRIBUTES
+__CLASS(Door);
+
+#define Door_ATTRIBUTES													\
+																		\
+	/* it is derivated from */											\
+	AnimatedInGameEntity_ATTRIBUTES										\
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -72,7 +68,9 @@ __CLASS(PiranhaPlantMoving);
  * ---------------------------------------------------------------------------------------------------------
  */
 
-// setup the init focus screen
-PiranhaPlantMoving PiranhaPlantMoving_getInstance();
+__CLASS_NEW_DECLARE(Door, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID));
+
+void Door_constructor(Door this, AnimatedInGameEntityDefinition* definition, int ID);
+void Door_destructor(Door this);
 
 #endif

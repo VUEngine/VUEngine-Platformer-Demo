@@ -142,7 +142,7 @@ InanimatedInGameEntityROMDef FLOOR_3x5_BG = {
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
-			{4,		0,		0,		8,},
+			{6,		0,		0,		8,},
 			
 			// in game type
 			kSolid,
