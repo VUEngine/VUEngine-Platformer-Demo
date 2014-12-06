@@ -121,7 +121,7 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 		WRLD_BGMAP,
 		
 		// display mode
-		WRLD_RON,fm
+		WRLD_RON,
 
 		// parallax displacement
 		-1,
