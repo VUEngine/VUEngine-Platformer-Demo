@@ -64,10 +64,6 @@ void HeroMoving_exit(HeroMoving this, void* owner);
 // state's on message
 u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram);
 
-// TODO: move to the Hero class
-// process collisions
-static int HeroMoving_processCollision(HeroMoving this, void* owner, Telegram telegram);
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
