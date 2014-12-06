@@ -670,176 +670,6 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// process a collision
-int  Hero_processCollision(Hero this, Telegram telegram){
-	
-//	return false;
-	if(this->body) {
-		
-		// retrieve collision entity
-		InGameEntity inGameEntity = (InGameEntity) Telegram_getExtraInfo(telegram);
-		
-		//ASSERT(__GET_CAST(InGameEntity, inGameEntity), "Hero::processCollision: no InGameEntity ");
-return false;
-		// determine the type of colliding entity
-		switch(InGameEntity_getInGameType(inGameEntity)){
-		
-		/*
-			case kGate:
-				
-				if(__PASSIVE == this->velocity.z){
-					
-					AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Win");
-					Actor_stopMovement((Actor)this, __XAXIS | __YAXIS | __ZAXIS);
-					
-				}
-				return true;
-				break;
-			case kGoal:
-				
-				if(!StateMachine_isInState(this->stateMachine, (State)HeroWin_getInstance())){
-					// if i have something being hold
-					if(this->holdObject){
-					
-						// hold object must be destroyed
-						__VIRTUAL_CALL(void, Actor, die, (Actor)this->holdObject);
-	
-					}
-					
-					// change state
-					StateMachine_swapState(this->stateMachine, (State)HeroWin_getInstance());
-				}
-				break;
-				*/
-			// if solid
-			case kSolid:
-
-				/*
-					//if moving over the bridge
-					if(this->velocity.z && this->bridge){
-						
-						return false;
-					}
-
-					// stop movement over colliding axis and align to object if needed
-					if(this->velocity.z){
-
-						// align to the colliding object
-						Actor_alignTo((Actor)this, (InGameEntity)inGameEntity, __ZAXIS, 1);
-						
-						// finally stop the movement
-						Actor_stopMovement((Actor)this, __ZAXIS);
-						return true;
-					}
-
-					// test x axis
-					if(this->velocity.x && (kCollisionX == message || kCollisionXY == message)){
-						
-						// align to the colliding object
-						Actor_alignTo((Actor)this, (InGameEntity)inGameEntity, __XAXIS, 1);
-						
-						// finally stop the movement
-						Actor_stopMovement((Actor)this, __XAXIS);
-						
-						return true;
-					}
-*/
-				// test y axis
-				/*
-				if(velocity.y && (kCollisionY == message || kCollisionXY == message)){
-
-					
-					// align to the colliding object
-					StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());					
-
-					Actor_alignTo((Actor)this, (InGameEntity)inGameEntity, __YAXIS, 1);
-
-					// save object below
-					if(this->transform.globalPosition.y < Entity_getPosition((Entity)inGameEntity).y){
-						
-						// save object below me
-						//this->objectBelow = inGameEntity;							
-					}						
-					
-				}
-				*/
-
-				return false;
-				break;
-				/*
-			case kBridge:
-
-				// if I'm moving over the bridge
-				if(this->bridge != (Bridge)Telegram_getExtraInfo(telegram) && StateMachine_isInState(this->stateMachine, (State)HeroOnBridge_getInstance())){
-				
-					VBVec3D bridgePosition = Entity_getPosition((Entity)Telegram_getExtraInfo(telegram));
-					
-					StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
-					
-					// place myself behind or infront of the bridge
-					if(__NEAR == Bridge_getDirection(this->bridge)){
-						
-						this->transform.globalPosition.z = bridgePosition.z - ITOFIX19_13(1);
-						
-					}
-					else{
-						
-						this->transform.globalPosition.z = bridgePosition.z + ITOFIX19_13(1);
-					}
-					
-					this->transform.globalPosition.y = bridgePosition.y +
-					                   ITOFIX19_13(
-					                		   Entity_getHeight((Entity)this->bridge) / 2
-					                		   - Entity_getHeight((Entity)this) / 2	- 1);
-					
-					// determine which layer I'm
-					Hero_determineLayer(this);
-					
-					// stop movement
-					Actor_stopMovement((Actor)this, __ZAXIS);
-					
-				}
-				
-				// register bridge
-				this->bridge = (Bridge)Telegram_getExtraInfo(telegram);
-				
-				// update hold object's position
-				Hero_updateHoldObjectPosition(this);
-
-				return false;
-				break;
-
-			case kPiranhaPlant:
-				
-				// i just take the hit
-				Hero_takeHit(this, Entity_getPosition((Entity)inGameEntity));
-				break;
-
-			// if it was a koopa
-			case kKoopa:
-				{
-					// determine if the koopa hits mario						
-					if(Hero_isHitByEnemy(this, (Enemy)Telegram_getExtraInfo(telegram), message)){
-
-						// take a hit
-						Hero_takeHit(this, Entity_getPosition((Entity)inGameEntity));
-						
-						// tell koopa to attack
-						Koopa_attack((Koopa)inGameEntity);
-					}
-					
-					// we want to process solid object
-					return true;
-				}					
-				break;
-				*/
-		}
-	}
-	
-	return true;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Hero_takeHitFrom(Hero this, Actor other){
 	
 	//VBVec3D position = Entity_getPosition((Entity)other);
@@ -1676,4 +1506,48 @@ void Hero_checkIfDied(Hero this) {
 void Hero_collectCoin(Hero this)
 {
 	this->coins++;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// process collisions
+int Hero_processCollision(Hero this, Telegram telegram){
+	
+	VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
+	ASSERT(collidingObjects, "HeroMoving::handleMessage: null collidingObjects");
+
+	VirtualNode node = NULL;
+
+	VirtualList collidingObjectsToRemove = __NEW(VirtualList);
+
+	for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node)){
+	
+		InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
+		
+		switch(InGameEntity_getInGameType(inGameEntity)){
+								
+			case kCoin:
+
+				Hero_collectCoin(this);
+				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeCoin, NULL);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+								
+			case kDoor:
+
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+		}
+	}
+	
+	for(node = VirtualList_begin(collidingObjectsToRemove); node; node = VirtualNode_getNext(node)){
+
+		// when ever you process some objects of a collisions list
+		// remove them and leave the Actor handle the ones you don't
+		// care, i.e.: in most cases, the ones which are solid 
+		VirtualList_removeElement(collidingObjects, VirtualNode_getData(node));
+	}
+	
+	__DELETE(collidingObjectsToRemove);
+	
+	return !VirtualList_getSize(collidingObjects);
 }

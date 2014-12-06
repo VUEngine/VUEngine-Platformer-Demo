@@ -130,9 +130,6 @@ void Hero_addMomentumToJump(Hero this);
 // check direction
 void Hero_checkDirection(Hero this, u16 currentPressedKey, char * animation);
 
-// process a collision
-int  Hero_processCollision(Hero this, Telegram telegram);
-
 // recieve a hit
 void Hero_takeHitFrom(Hero this, Actor other);
 
@@ -212,5 +209,8 @@ void Hero_checkIfDied(Hero this);
 
 // check if dead
 void Hero_collectCoin(Hero this);
+
+// process collisions
+int Hero_processCollision(Hero this, Telegram telegram);
 
 #endif /*MARIOLOGIC_H*/

@@ -46,7 +46,6 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
 // class's constructor
 void HeroMoving_constructor(HeroMoving this);
 
@@ -65,6 +64,9 @@ void HeroMoving_exit(HeroMoving this, void* owner);
 // state's on message
 u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram);
 
+// TODO: move to the Hero class
+// process collisions
+static int HeroMoving_processCollision(HeroMoving this, void* owner, Telegram telegram);
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -244,44 +246,9 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 			break;
 
 		case kCollision:
-		{
-			VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
-			ASSERT(collidingObjects, "HeroMoving::handleMessage: null collidingObjects");
 
-			VirtualNode node = NULL;
-			
-			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node)){
-			
-				InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
-				
-				switch(InGameEntity_getInGameType(inGameEntity)){
-										
-					case kCoin:
-
-						Hero_collectCoin((Hero)owner);
-						MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeCoin, NULL);
-						return true;
-						break;
-										
-					case kDoor:
-
-						VirtualList_removeElement(collidingObjects, inGameEntity);
-						Printing_text("door", 1, 10);
-						return false;
-						break;
-				}
-							
-			}
-//			return Hero_processCollision((Hero)owner, telegram);	
-			return false;
-		}
+			return Hero_processCollision((Hero)owner, telegram);
 			break;
-
-			
-
-			
 	}
 	return false;
-	
 }
-
