@@ -84,6 +84,9 @@ __CLASS(Hero);
 													\
 	/* number of collected coins */					\
 	u8 coins;										\
+													\
+	/* number of lifes */							\
+	u8 lifes;										\
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -210,6 +213,12 @@ void Hero_checkIfDied(Hero this);
 
 // check if dead
 void Hero_collectCoin(Hero this);
+
+// get number of coins
+u8 Hero_getCoins(Hero this);
+
+// get number of lifes
+u8 Hero_getLifes(Hero this);
 
 // process collisions
 int Hero_processCollision(Hero this, Telegram telegram);

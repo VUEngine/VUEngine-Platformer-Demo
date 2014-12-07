@@ -41,34 +41,6 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
-SpriteROMDef PRECAUTION_IM_SPRITES[] = {
-
-	// Sprite
-	{
-		// the texture
-		&PRECAUTION_TX,
-		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-
-		// parallax displacement
-		0,
-
-	},
-};
-
-ImageROMDef PRECAUTION_IM = {
-		
-		// object's class			   
-		__TYPE(Image),  
-
-		__SPRITE_ARRAY(PRECAUTION_IM_SPRITES),
-};
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 SpriteROMDef VBJAE_LEFT_IM_SPRITES[] = {
 

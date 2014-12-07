@@ -163,6 +163,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 	// construct base
 	__CONSTRUCT_BASE(Actor, __ARGUMENTS(actorDefinition, ID));
 
+	this->lifes = 3;
 	this->energy = 1;
 	this->coins = 0;
 
@@ -1260,6 +1261,8 @@ void Hero_throwObject(Hero this){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // die mario
 void Hero_die(Hero this){
+
+	this->lifes--;
 /*
 	// go to dead state
 	StateMachine_swapState(this->stateMachine, (State)HeroDead_getInstance());
@@ -1504,6 +1507,21 @@ void Hero_checkIfDied(Hero this) {
 void Hero_collectCoin(Hero this)
 {
 	this->coins++;
+	Object_fireEvent((Object)PlatformerLevelState_getInstance(), EVENT_COIN_TAKEN);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// get number of coins
+u8 Hero_getCoins(Hero this)
+{
+	return this->coins;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// get number of lifes
+u8 Hero_getLifes(Hero this)
+{
+	return this->lifes;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

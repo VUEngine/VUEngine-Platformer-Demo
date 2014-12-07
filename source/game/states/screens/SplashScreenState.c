@@ -29,11 +29,13 @@
 
 #include <Game.h>
 #include <Screen.h>
+#include <I18n.h>
 #include <Printing.h>
 
 #include "SplashScreenState.h"
 #include <objects.h>
 #include <macros.h>
+#include <text.h>
 #include "stages.h"
 #include "TitleScreenState.h"
 
@@ -181,6 +183,7 @@ static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, 
 				case kAdjustmentScreen:
 
 					SplashScreenState_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
+					Printing_text(I18n_getText(I18n_getInstance(), STR_PRECAUTION), 8, 6);
 					this->currentScreen = kPrecautionScreen;
 					break;
 						

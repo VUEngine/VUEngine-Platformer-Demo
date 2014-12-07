@@ -36,6 +36,7 @@
 
 #include <PlatformerLevelState.h>
 #include <TitleScreenState.h>
+#include <Hero.h>
 #include "stages.h"
 #include <macros.h>
 #include <text.h>
@@ -75,6 +76,9 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 
 // handle event
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this);
+
+// handle event
+static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this);
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -133,8 +137,14 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner){
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
 
+	// reset clock and render time
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26);
+	
+	// render gui values
+	Printing_int(Hero_getLifes(Hero_getInstance()), 4, 26);
+	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26);
+	Printing_text("1-1", 35, 26);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,6 +160,7 @@ static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner)
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner){
 	
 	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_removeEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
 
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
@@ -209,6 +220,9 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 			Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
 			
+			// add events
+			Object_addEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
+			
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
 
@@ -265,4 +279,11 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this) {
 	
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle event
+static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this) {
+	
+	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26);
 }

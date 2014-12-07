@@ -24,9 +24,7 @@
 /*---------------------------------INCLUDES--------------------------------*/
 #include <libgccvb.h>
 /*-------------------------------PROTOTYPES--------------------------------*/
-extern BYTE PRECAUTION_MP[];
 extern BYTE VBJAE_LEFT_MP[];
 extern BYTE VBJAE_RIGHT_MP[];
-extern BYTE PRECAUTION_MP[];
 
 #endif /*MAPS_H_*/

@@ -18,9 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef IMAGE_H_
-#define IMAGE_H_
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -30,27 +27,70 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Entity.h>
+#include <Image.h>
+
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												DECLARATIONS
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
 
+extern BYTE PrecautionScreenJapaneseTiles[];
+extern BYTE PrecautionScreenJapaneseMap[];
 
-extern EntityDefinition GUI_IM;
-extern EntityDefinition LOGO_IM;
-extern EntityDefinition SUPER_AWESOME_IM;
-extern EntityDefinition VBJAENGINE_IM;
-extern EntityDefinition FLOOR_3x5_BG;
-extern EntityDefinition ADJUSTMENT_SCREEN_LOGO_IM;
-extern EntityDefinition ADJUSTMENT_SCREEN_BG_IM;
-extern EntityDefinition ADJUSTMENT_SCREEN_ICON_IM_L;
-extern EntityDefinition ADJUSTMENT_SCREEN_ICON_IM_R;
-extern EntityDefinition PRECAUTION_SCREEN_JAPANESE_IM;
 
-#endif /*IMAGE_H_*/
+TextureROMDef PRECAUTION_SCREEN_JAPANESE_TX = {
+		// Chargroup
+		{
+			// chDefinition,				 
+			PrecautionScreenJapaneseTiles,					
+			// numChars,
+			34,
+			
+			// allocation type
+			__NO_ANIMATED
+		},
+		
+		// bgmap definition
+		PrecautionScreenJapaneseMap,
+		
+		// cols (max 48)
+		25,
+		
+		// rows (max 28)
+		5,
+		
+		//pallet number,
+		0
+};
+
+SpriteROMDef PRECAUTION_SCREEN_JAPANESE_IM_SPRITES[] = {
+
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&PRECAUTION_SCREEN_JAPANESE_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+
+	},
+};
+
+ImageROMDef PRECAUTION_SCREEN_JAPANESE_IM = {
+		
+	// object's class			   
+	__TYPE(Image),  
+
+	__SPRITE_ARRAY(PRECAUTION_SCREEN_JAPANESE_IM_SPRITES),
+};
