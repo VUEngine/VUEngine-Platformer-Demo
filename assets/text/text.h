@@ -1,8 +1,7 @@
 enum {
 	STR_LANGUAGE_NAME,
 	STR_PRECAUTION,
-    STR_READY,
-    STR_GO
+    STR_LEVEL_1_1_NAME
 };
 
 enum {

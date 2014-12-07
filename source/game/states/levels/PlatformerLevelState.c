@@ -26,6 +26,8 @@
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
+ 
+#include <stdlib.h>
 
 #include <Game.h>
 #include <Screen.h>
@@ -181,18 +183,15 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			// make a little bit of physical simulations so each entity is placed at the floor
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 	
+			// print level descriptor
+			char* levelName = I18n_getText(I18n_getInstance(), STR_LEVEL_1_1_NAME);
+			Printing_text("LEVEL 1-1", 20, 5);
+			Printing_text("\"", 17, 6);
+			Printing_text(levelName, 18, 6);
+			Printing_text("\"", 18 + strlen(levelName), 6);
+	
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
-
-			// show level after 0.5 second
-			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kShowUpLevel, NULL);
-
-			this->mode = kSettingUp;
-			break;	
-
-		case kShowUpLevel:
-
-			Printing_text(I18n_getText(I18n_getInstance(), STR_READY), 23, 6);
 
 			// pause physical simulations
 			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
@@ -200,20 +199,16 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			// fade screen
 			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 
-
-			// start game in 1.5 seconds
-			MessageDispatcher_dispatchMessage(1500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
+			// show level after 0.5 second
+			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
 
 			this->mode = kShowingUp;
 			break;
 
 		case kStartLevel:
 
-			Printing_text("               ", 23, 6);
-			Printing_text(I18n_getText(I18n_getInstance(), STR_GO), 25, 6);
-			
 			// erase message in 1 second
-			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kHideStartUpMessage, NULL);
+			MessageDispatcher_dispatchMessage(2000, (Object)this, (Object)Game_getInstance(), kHideLevelMessage, NULL);
 			
 			// reset clock and restart
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
@@ -232,9 +227,11 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			this->mode = kPlaying;
 			break;
 
-		case kHideStartUpMessage:
-			
-			Printing_text("               ", 23, 6);
+		case kHideLevelMessage:
+
+			Printing_text("                                                ", 0, 5);
+			Printing_text("                                                ", 0, 6);
+
 			break;
 			
 		case kKeyPressed:

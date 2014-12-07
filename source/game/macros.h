@@ -50,7 +50,6 @@ enum GameWorldModes {
 	
 	kPlaying = 1,
 	kShowingUp,
-	kSettingUp,
 	kStartPlaying,
 	kPaused,
 	kMovingScreen,

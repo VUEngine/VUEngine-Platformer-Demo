@@ -73,10 +73,9 @@ enum PlatformerLevelStateMessageTypes{
 	kHeroDied = kLastEngineMessage + 1, // 16
 	kHeroFall,				//17
 	kSetUpLevel,			//18
-	kShowUpLevel,			//19
-	kStartLevel,			//20
-	kHideStartUpMessage, 	//21
-	kTakeCoin, 				//22
+	kStartLevel,			//19
+	kHideLevelMessage, 		//20
+	kTakeCoin, 				//21
 };
 
 /* ---------------------------------------------------------------------------------------------------------
