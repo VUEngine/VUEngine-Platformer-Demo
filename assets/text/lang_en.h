@@ -9,12 +9,9 @@ static char* Lang_EN[] = {
 "English",
 
 // STR_PRECAUTION
-"            Important:\n\n Read Instruction and Precaution\n\n    Booklets before operating",
+"           Important:\n\nRead Instruction and Precaution\n\n   Booklets before operating",
 
-// STR_READY
-"Ready?",
-
-// STR_GO
-"Go!",
+// STR_LEVEL_1_1_NAME
+"Woohoo Hills",
 
 };

@@ -1,4 +1,4 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
+/* CLOUDS: bitmap graphics engine for the Nintendo Virtual Boy 
  * 
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
@@ -18,9 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef BACKGROUNDS_H_
-#define BACKGROUNDS_H_
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -30,41 +27,84 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Entity.h>
-#include "texture.h"
+#include <ScrollBackground.h>
+
+
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												DECLARATIONS
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
-extern EntityDefinition TITLE_BG;
+
+extern BYTE CloudsTiles[];
+extern BYTE CloudsMap[];
 
 
-extern EntityDefinition BIGPOW_BG;
-extern EntityDefinition PIPE0_BG;
-extern EntityDefinition PIPE1_BG;
-extern EntityDefinition POLE0_BG;
-extern EntityDefinition POW0_BG;
-extern EntityDefinition WALL0_BG;
+TextureROMDef CLOUDS_TX = {
+		// Chargroup
+		{
+			// chDefinition,				 
+			CloudsTiles,
+			// numChars,
+			22,
+			
+			// allocation type
+			__NO_ANIMATED
+		},
+		
+		// bgmap definition
+		CloudsMap,
+		
+		// cols (max 48)
+		48,
+		
+		// rows (max 28)
+		7,
+		
+		//pallet number,
+		0
+};
 
-extern EntityDefinition FLOOR0_BG;
-extern EntityDefinition FLOOR1_BG;
-extern EntityDefinition FLOOR2_BG;
-extern EntityDefinition FLOOR3_BG;
-extern EntityDefinition PIPE0_BG;
-extern EntityDefinition PIPE1_BG;
-extern EntityDefinition WALL0_BG;
+SpriteROMDef CLOUDS_SB_SPRITES[] = {
 
-extern EntityDefinition POLE0_BG;
-extern EntityDefinition GOAL0_IM;
-extern EntityDefinition GATE0_IM;
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&CLOUDS_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
 
-extern TextureDefinition TREE_BG_FRONT_SB;
-extern TextureDefinition TREE_BG_BACK_SB;
-extern EntityDefinition VBJAENGINE_BG_SB;
-extern EntityDefinition CLOUDS_SB;
+		// parallax displacement
+		0,
 
-#endif /*BACKGROUNDS_H_*/
+	},
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&CLOUDS_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+	},
+};
+
+ScrollBackgroundROMDef CLOUDS_SB = {
+		
+	// object's class			   
+	__TYPE(ScrollBackground),  
+
+	__SPRITE_ARRAY(CLOUDS_SB_SPRITES),
+};

@@ -35,5 +35,7 @@ extern TextureDefinition GATE0_TX;
 
 extern TextureDefinition VBJAENGINE_BG_TX;
 extern TextureDefinition TREE_BG_FRONT_TX;
+extern TextureDefinition TREE_BG_BACK_TX;
+extern TextureDefinition CLOUDS_TX;
 
 #endif /*GAME_TEXTURES_H_*/
