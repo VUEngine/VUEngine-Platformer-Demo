@@ -6,6 +6,7 @@
 #include "GUI.c"  
 #include "PlatformerDemoLogoL.c"  
 #include "PlatformerDemoLogoR.c"  
+#include "PrecautionScreenJapanese.c"  
 #include "Raster.c"  
 #include "SuperAwesome.c"  
 #include "TreeBGBack.c"  

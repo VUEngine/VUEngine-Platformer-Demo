@@ -52,7 +52,7 @@ int main(void){
 	// register languages
 	I18n_registerLanguage(I18n_getInstance(), Lang_EN);
 	I18n_registerLanguage(I18n_getInstance(), Lang_DE);
-	I18n_setLanguage(I18n_getInstance(), LANG_DE);
+	I18n_setLanguage(I18n_getInstance(), LANG_EN);
 
 	// TitleScreenStage is the next state after the splash screen sequence
 

@@ -43,7 +43,6 @@
 
 extern EntityDefinition VBJAE_LEFT_IM;
 extern EntityDefinition VBJAE_RIGHT_IM;
-extern EntityDefinition PRECAUTION_IM;
 extern EntityDefinition TITLE_BG;
 
 #endif /*COMMON_IMAGES_H_*/

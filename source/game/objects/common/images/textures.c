@@ -45,34 +45,6 @@
 extern const u16 FontTiles[];
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef PRECAUTION_TX = {
-		// Chargroup
-		{
-			// chDefinition,				 
-			PRECAUTION_CH,	
-			
-			// numChars,
-			95,
-			
-			// allocation type
-			__NO_ANIMATED
-		},
-		
-		// bgmap definition
-		PRECAUTION_MP,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		28,
-		
-		//pallet number,
-		0
-};
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef VBJAE_LEFT_TX = {
 		// Chargroup
 		{

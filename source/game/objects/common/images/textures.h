@@ -21,7 +21,6 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern TextureDefinition PRECAUTION_TX;
 extern TextureDefinition VBJAE_LEFT_TX;
 extern TextureDefinition VBJAE_RIGHT_TX;
 
