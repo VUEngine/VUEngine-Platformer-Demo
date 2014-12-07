@@ -61,6 +61,7 @@ const UserObject _userObjects[] = {
 	{"Coin", &COIN_MC},
 	{"Saw blade", &SAW_BLADE_MC},
 	{"SawBlade Lane V6", &SAW_BLADE_LANE_V_6_IM},
+	{"Door", (ActorDefinition*)&DOOR_MC},
 	{"Wall", &WALL0_BG},
 	{"Floor 0", &FLOOR0_BG},
 	{"Floor 1", &FLOOR1_BG},
@@ -79,6 +80,7 @@ const UserActor _userActors[] = {
 	{"Hero", (ActorDefinition*)&HERO_MC},
 	{"Coin", (ActorDefinition*)&COIN_MC},
 	{"SawBlade", (ActorDefinition*)&SAW_BLADE_MC},
+	{"Door", (ActorDefinition*)&DOOR_MC},
 	{"", NULL},
 };
 #endif
