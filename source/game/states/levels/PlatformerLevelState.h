@@ -91,6 +91,7 @@ enum PlatformerLevelStateMessageTypes{
 #define EVENT_KEY_PRESSED		"keyPressed"
 #define EVENT_KEY_RELEASED		"keyReleased"
 #define EVENT_KEY_HOLD			"keyHold"
+#define EVENT_COIN_TAKEN		"CoinTaken"
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
