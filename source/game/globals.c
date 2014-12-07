@@ -27,7 +27,6 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-
 // include VBJaEngine's Game class
 #include <Game.h>
 #include <Debug.h>
@@ -61,7 +60,7 @@ const UserObject _userObjects[] = {
 	{"Coin", &COIN_MC},
 	{"Saw blade", &SAW_BLADE_MC},
 	{"SawBlade Lane V6", &SAW_BLADE_LANE_V_6_IM},
-	{"Door", (ActorDefinition*)&DOOR_MC},
+	{"Door", &DOOR_MC},
 	{"Wall", &WALL0_BG},
 	{"Floor 0", &FLOOR0_BG},
 	{"Floor 1", &FLOOR1_BG},

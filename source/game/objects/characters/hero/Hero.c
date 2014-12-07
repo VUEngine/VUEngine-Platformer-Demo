@@ -206,6 +206,8 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
 	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	
+	Printing_text("HERO", 1, 10);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,6 +222,8 @@ void Hero_destructor(Hero this){
 	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
 	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+
+	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
 	// delete the super object
 	__DESTROY_BASE(Actor);
