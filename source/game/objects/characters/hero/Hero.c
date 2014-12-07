@@ -203,9 +203,6 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID){
 		PhysicalWorld_setFriction(PhysicalWorld_getInstance(), FTOFIX19_13(FRICTION));
 	}
 	
-	// I'm the focus actor
-	Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
-
 	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
 	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
@@ -1497,7 +1494,8 @@ void Hero_checkIfDied(Hero this) {
 
 	if (0 < velocity.y){
 		
-		if(this->transform.globalPosition.y > ITOFIX19_13(384)) {
+		
+		if(this->transform.globalPosition.y > ITOFIX19_13(__SCREEN_HEIGHT) + Screen_getPosition(Screen_getInstance()).y) {
 
 			MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Game_getInstance(), kHeroDied, NULL);
 		}
@@ -1568,4 +1566,27 @@ int Hero_processCollision(Hero this, Telegram telegram){
 	__DELETE(collidingObjectsToRemove);
 	
 	return !VirtualList_getSize(collidingObjects);
+}
+
+// process message
+int Hero_doMessage(Hero this, int message){
+
+	switch(message){
+	
+		case kStartLevel:
+			
+			// I'm the focus actor
+			Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
+			
+			VBVec3D screenDisplacement = {
+					0, 
+					ITOFIX19_13(0),
+					ITOFIX19_13(-PLAYABLE_LAYER_0),
+			};
+			Screen_setFocuesEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
+			return true;
+			break;
+	}
+	
+	return false;
 }

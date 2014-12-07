@@ -46,14 +46,15 @@
 
 
 
-#define Hero_METHODS							\
+#define Hero_METHODS															\
 	Actor_METHODS;
 	
 
-#define Hero_SET_VTABLE(ClassName)							\
-	Actor_SET_VTABLE(ClassName);							\
-	__VIRTUAL_SET(ClassName, Hero, die);					\
-	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);			\
+#define Hero_SET_VTABLE(ClassName)												\
+	Actor_SET_VTABLE(ClassName);												\
+	__VIRTUAL_SET(ClassName, Hero, die);										\
+	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);								\
+	__VIRTUAL_SET(ClassName, Hero, doMessage);									\
 
 // A Hero!
 __CLASS(Hero);
@@ -221,5 +222,8 @@ u8 Hero_getLifes(Hero this);
 
 // process collisions
 int Hero_processCollision(Hero this, Telegram telegram);
+
+// process message
+int Hero_doMessage(Hero this, int message);
 
 #endif /*MARIOLOGIC_H*/
