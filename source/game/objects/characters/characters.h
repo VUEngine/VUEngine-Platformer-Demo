@@ -28,7 +28,6 @@
 /*------------------------------DECLARATIONS--------------------------------*/
 
 extern EntityDefinition HERO_MC;
-extern EntityDefinition PIRANHA_PLANT_V_MC;
 extern EntityDefinition SAW_BLADE_MC;
 extern EntityDefinition SAW_BLADE_LANE_V_6_IM;
 extern EntityDefinition HERO_IM;

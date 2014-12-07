@@ -134,7 +134,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner){
 	MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
 
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -264,5 +264,5 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 // handle event
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this) {
 	
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 27);
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26);
 }
