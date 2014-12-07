@@ -1581,7 +1581,7 @@ int Hero_doMessage(Hero this, int message){
 			VBVec3D screenDisplacement = {
 					0, 
 					ITOFIX19_13(0),
-					0
+					ITOFIX19_13(-PLAYABLE_LAYER_0),
 			};
 			Screen_setFocuesEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 			return true;
