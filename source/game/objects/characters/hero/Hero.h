@@ -59,34 +59,34 @@
 // A Hero!
 __CLASS(Hero);
 
-#define Hero_ATTRIBUTES								\
-													\
-	/* it is derivated from */						\
-	Actor_ATTRIBUTES								\
-													\
-	/* mario has energy	*/							\
-	int energy;										\
-													\
-	/* time when an event ocurred*/					\
-	u32 actionTime;									\
-													\
-	/* hold object */								\
-	Actor holdObject;								\
-													\
-	/* which layer I'm */							\
-	u8 layer;										\
-													\
-	/* Am I jumping over z */						\
-	u8 movingOverZ;									\
-													\
-	/* boost flag */								\
-	u8 boost;										\
-													\
-	/* number of collected coins */					\
-	u8 coins;										\
-													\
-	/* number of lifes */							\
-	u8 lifes;										\
+#define Hero_ATTRIBUTES															\
+																				\
+	/* it is derivated from */													\
+	Actor_ATTRIBUTES															\
+																				\
+	/* time when an event ocurred*/												\
+	u32 actionTime;																\
+																				\
+	/* hold object */															\
+	Actor holdObject;															\
+																				\
+	/* mario has energy	*/														\
+	s8 energy;																	\
+																				\
+	/* which layer I'm */														\
+	u8 layer;																	\
+																				\
+	/* Am I jumping over z */													\
+	u8 movingOverZ;																\
+																				\
+	/* boost flag */															\
+	u8 boost;																	\
+																				\
+	/* number of collected coins */												\
+	u8 coins;																	\
+																				\
+	/* number of lifes */														\
+	u8 lifes;																	\
 
 
 /* ---------------------------------------------------------------------------------------------------------

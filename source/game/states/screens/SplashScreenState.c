@@ -96,17 +96,15 @@ enum Screens {
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#define SplashScreenState_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	GameState_ATTRIBUTES					\
-										\
-	/* screen */						\
-	u8 currentScreen;					\
-
+#define SplashScreenState_ATTRIBUTES											\
+																				\
+	/* inherits */																\
+	GameState_ATTRIBUTES														\
+																				\
+	/* screen */																\
+	u8 currentScreen;															\
 
 __CLASS_DEFINITION(SplashScreenState);
-
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
