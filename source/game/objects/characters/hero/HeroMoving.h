@@ -31,6 +31,7 @@
  */
 
 #include <StateMachine.h>
+#include <PlatformerLevelState.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -43,27 +44,36 @@
  */
 
 // declare the virtual methods
-#define HeroMoving_METHODS								\
+#define HeroMoving_METHODS														\
 	State_METHODS;									
 
 // declare the virtual methods which are redefined
-#define HeroMoving_SET_VTABLE(ClassName)						\
-	State_SET_VTABLE(ClassName)									\
-	__VIRTUAL_SET(ClassName, HeroMoving, enter);				\
-	__VIRTUAL_SET(ClassName, HeroMoving, execute);				\
-	__VIRTUAL_SET(ClassName, HeroMoving, exit);				\
-	__VIRTUAL_SET(ClassName, HeroMoving, handleMessage);		\
+#define HeroMoving_SET_VTABLE(ClassName)										\
+	State_SET_VTABLE(ClassName)													\
+	__VIRTUAL_SET(ClassName, HeroMoving, enter);								\
+	__VIRTUAL_SET(ClassName, HeroMoving, execute);								\
+	__VIRTUAL_SET(ClassName, HeroMoving, exit);									\
+	__VIRTUAL_SET(ClassName, HeroMoving, handleMessage);						\
 
-__CLASS(HeroMoving);
+#define HeroMoving_ATTRIBUTES													\
+																				\
+	/* inherits */																\
+	State_ATTRIBUTES															\
+																				\
+	/* check direction flag */													\
+	u8 mustCheckDirection;														\
+																				\
+	/* flag to allow jump on bouncing */										\
+	u8 bouncing;																\
 
-#define HeroMoving_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	State_ATTRIBUTES					\
-										\
-	/* check direction flag */			\
-	u8 mustCheckDirection;
+ __CLASS(HeroMoving);
 
+
+ enum HeroMovingMessages {
+ 	
+	 kDisallowJumpOnBouncing = kLastPlatformerMessage + 1,
+	 kCheckIfHeroDied
+ };
 
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------

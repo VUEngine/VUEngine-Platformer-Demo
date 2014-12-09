@@ -57,6 +57,7 @@ const ClassSizeData _userClassesSizeData[] = {
 
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] = {
+	{"Hero", &HERO_MC},
 	{"Coin", &COIN_MC},
 	{"Saw blade", &SAW_BLADE_MC},
 	{"SawBlade Lane V6", &SAW_BLADE_LANE_V_6_IM},

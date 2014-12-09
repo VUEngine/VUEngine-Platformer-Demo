@@ -425,7 +425,7 @@ void Hero_addMomentumToJump(Hero this) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // make him jump
-void Hero_jump(Hero this, int changeState){
+void Hero_jump(Hero this, int changeState, int checkIfYMovement){
 
 	Hero_startedMovingOnAxis(this, __YAXIS);
 
@@ -433,7 +433,7 @@ void Hero_jump(Hero this, int changeState){
 		
 		Velocity velocity = Body_getVelocity(this->body);
 
-		if (!velocity.y){
+		if (!checkIfYMovement || !velocity.y){
 			
 			Force force = {0, this->boost? HERO_BOOST_JUMP_HERO_INPUT_FORCE: HERO_NORMAL_JUMP_HERO_INPUT_FORCE, 0};
 			Body_addForce(this->body, &force);
@@ -1488,7 +1488,7 @@ static void Hero_onKeyHold(Hero this){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // check if dead
-void Hero_checkIfDied(Hero this) {
+int Hero_isDead(Hero this) {
 
 	ASSERT(this->body, "Hero::checkIfDied: null body");
 		
@@ -1500,8 +1500,12 @@ void Hero_checkIfDied(Hero this) {
 		if(this->transform.globalPosition.y > ITOFIX19_13(__SCREEN_HEIGHT) + Screen_getPosition(Screen_getInstance()).y) {
 
 			MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Game_getInstance(), kHeroDied, NULL);
+			
+			return true;
 		}
 	}
+
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

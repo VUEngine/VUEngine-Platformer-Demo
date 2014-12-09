@@ -41,32 +41,29 @@
  */
 
 // declare the virtual methods
-#define PlatformerLevelState_METHODS									\
+#define PlatformerLevelState_METHODS											\
 	GameState_METHODS;									
 
 // declare the virtual methods which are redefined
-#define PlatformerLevelState_SET_VTABLE(ClassName)						\
-	GameState_SET_VTABLE(ClassName)							\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);				\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, execute);			\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);				\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, pause);				\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);			\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, handleMessage);		\
+#define PlatformerLevelState_SET_VTABLE(ClassName)								\
+	GameState_SET_VTABLE(ClassName)												\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);						\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, execute);					\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);						\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, pause);						\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);						\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, handleMessage);				\
 
 
 __CLASS(PlatformerLevelState);
 
-#define PlatformerLevelState_ATTRIBUTES								\
-															\
-	/* inherits */											\
-	GameState_ATTRIBUTES									\
-															\
-	/* to allow moving the screen */						\
-	u8 mode: 4;												\
-
-
-
+#define PlatformerLevelState_ATTRIBUTES											\
+																				\
+	/* inherits */																\
+	GameState_ATTRIBUTES														\
+																				\
+	/* to allow moving the screen */											\
+	u8 mode: 4;																	\
 
 enum PlatformerLevelStateMessageTypes{
 	
@@ -76,6 +73,9 @@ enum PlatformerLevelStateMessageTypes{
 	kStartLevel,			//19
 	kHideLevelMessage, 		//20
 	kTakeCoin, 				//21
+	
+	// don't remove me
+	kLastPlatformerMessage
 };
 
 /* ---------------------------------------------------------------------------------------------------------

@@ -94,6 +94,7 @@ void HeroMoving_constructor(HeroMoving this){
 	__CONSTRUCT_BASE(State);
 	
 	this->mustCheckDirection = false;
+	this->bouncing = false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,21 +120,15 @@ void HeroMoving_enter(HeroMoving this, void* owner){
 #ifdef __DEBUG
 	Printing_text("HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 1);
 #endif
+	
+	MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)owner, kCheckIfHeroDied, NULL);
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
 void HeroMoving_execute(HeroMoving this, void* owner){
-	
-	// update movement
-	//Hero_move((Hero) owner);
 
-	//Body_printPhysics(Actor_getBody((Actor)owner), 1, 3);
-
-	Hero_checkIfDied((Hero)owner);
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's exit 
@@ -148,14 +143,6 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 
 	switch(Telegram_getMessage(telegram)){
 
-		// if the botton of the screen has been reached
-		case kFloorReached:
-	
-			//Hero_fallDead((Hero)owner);
-
-			//Actor_stopMovement(owner, __YAXIS);
-			break;
-			
 		case kKeyPressed:
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
@@ -169,7 +156,7 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 				// check if jump
 				if(K_A & pressedKey){
 					
-					Hero_jump((Hero)owner, false);			
+					Hero_jump((Hero)owner, false, !this->bouncing);			
 				}
 			}		
 
@@ -231,19 +218,43 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 			break;
 
 		case kBodyChangedDirection:
-			
-			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
+			{
+				int axis = *(int*)Telegram_getExtraInfo(telegram);
+				Hero_startedMovingOnAxis((Hero)owner, axis);
+				
+				if(__YAXIS & axis){
+					
+					MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)owner, kCheckIfHeroDied, NULL);
+				}
+			}
 			break;
 
 		case kBodyBounced:
 			
 			this->mustCheckDirection = true;
+			this->bouncing = true;
+			
+			MessageDispatcher_dispatchMessage(100, (Object)this, (Object)owner, kDisallowJumpOnBouncing, NULL);
 			return true;
 			break;
-
+			
+		case kDisallowJumpOnBouncing:
+			
+			this->bouncing = false;
+			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)owner, kCheckIfHeroDied, NULL);
+			break;
+			
 		case kCollision:
 
 			return Hero_processCollision((Hero)owner, telegram);
+			break;
+			
+		case kCheckIfHeroDied:
+
+			if(!Hero_isDead((Hero)owner) && Body_getVelocity(Actor_getBody((Actor)owner)).y) {
+				
+				MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)owner, kCheckIfHeroDied, NULL);
+			}
 			break;
 	}
 	return false;

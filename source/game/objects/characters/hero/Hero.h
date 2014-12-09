@@ -126,7 +126,7 @@ int Hero_stopMovingOnAxis(Hero this, int axis);
 void Hero_move(Hero this);
 
 // make him jump
-void Hero_jump(Hero this, int changeState);
+void Hero_jump(Hero this, int changeState, int checkIfYMovement);
 
 // keep adding force to jump
 void Hero_addMomentumToJump(Hero this);
@@ -209,7 +209,7 @@ void Hero_win(Hero this);
 void Hero_moveOnWin(Hero this);
 
 // check if dead
-void Hero_checkIfDied(Hero this);
+int Hero_isDead(Hero this);
 
 // check if dead
 void Hero_collectCoin(Hero this);

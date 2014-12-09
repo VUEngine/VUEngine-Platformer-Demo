@@ -215,7 +215,7 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 						
 						if(K_A & pressedKey ){
 
-							Hero_jump((Hero)owner, true);
+							Hero_jump((Hero)owner, true, true);
 						}
 
 						return true;
