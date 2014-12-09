@@ -72,7 +72,6 @@
  enum HeroMovingMessages {
  	
 	 kDisallowJumpOnBouncing = kLastPlatformerMessage + 1,
-	 kCheckIfHeroDied
  };
 
 /* ---------------------------------------------------------------------------------------------------------

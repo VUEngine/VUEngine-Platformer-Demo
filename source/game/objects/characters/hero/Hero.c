@@ -215,6 +215,8 @@ void Hero_destructor(Hero this){
 	// free the instance pointer
 	ASSERT(hero == this, "Hero::destructor: more than on instance");
 
+	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Game_getInstance(), kHeroDied, NULL);
+
 	hero = NULL;
 	
 	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
@@ -225,182 +227,6 @@ void Hero_destructor(Hero this){
 
 	// delete the super object
 	__DESTROY_BASE(Actor);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// update movement
-void Hero_move(Hero this){
-
-
-	/*
-	// pick the current pressed key
-	if (this->body) {
-		
-		int movingState = Body_isMoving(this->body);
-		Velocity velocity = Body_getVelocity(this->body);
-
-		if(0 < velocity.y && (__YAXIS & movingState) && !AnimatedInGameEntity_isAnimationLoaded((Actor)this, "Fall")){
-			
-			{
-				static int xx = 0;
-				
-				Printing_text("Hero", 1, 17);
-				Printing_int(xx++, 1, 18);
-				Printing_hex(movingState, 1, 19);
-				
-			}
-
-			// must play walk animation of not playing it
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
-		}
-	}
-	*/
-	/*
-	// check if must throw the object
-	if(this->holdObject){
-	
-		Hero_throwObject(this);
-	}
-	
-	if(this->velocity.z){
-
-		if(__FAR == this->direction.z && this->transform.globalPosition.z > gameLayers[this->layer]){
-
-			Actor_stopMovement((Actor)this, __ZAXIS);
-			
-			this->transform.globalPosition.z = gameLayers[this->layer];
-			
-			return;
-		}
-		else{
-			
-			if(__NEAR == this->direction.z && this->transform.globalPosition.z < gameLayers[this->layer]){
-				
-				Actor_stopMovement((Actor)this, __ZAXIS);
-				
-				this->transform.globalPosition.z = gameLayers[this->layer];
-				
-				return;
-			}
-		}
-
-		
-		// move the actor
-		Actor_move((Actor)this);
-		
-		// if I'm holding something
-		if(this->holdObject){
-			
-			// update object's position
-			Hero_updateHoldObjectPosition(this);
-		}		
-		return;
-	}
-
-	//if mario is moving and all keys are left
-	if((this->velocity.x) && (!currentPressedKey  || (!(currentPressedKey & K_LR) && !(currentPressedKey &  K_LL)))){
-
-		if(!(this->moveType &__RETARMOVEX)){
-
-			// must start to stop
-			this->moveType |=__RETARMOVEX;
-			
-			// don't slide if holding something 
-			if(!this->holdObject){
-				
-				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Slide");
-			}
-			
-			this->velocity.x = HERO_VELOCITY_X;
-		}
-	}
-	else{
-
-		char walkStr[] = "Walk";
-		char walkHoldStr[] = "WalkHolding";
-		char* walkAnimation = walkStr;
-		
-		if(this->holdObject){
-			
-			walkAnimation = walkHoldStr;
-		}
-
-		// if it is only moving over the x axis and walking animation is no playing
-		if(!this->velocity.y && !AnimatedSprite_isPlayingFunction((AnimatedSprite)this->sprite, this->actorDefinition->animationDescription, walkAnimation)){
-			
-			// must play walk animation of not playing it
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, walkAnimation);
-			
-			// start moving
-			Actor_startMovement((Actor)this, __XAXIS, __RETARMOVEX, HERO_VELOCITY_X, HERO_ACCELERATION_X);
-		}
-	}
-
-	// if movement is uniform
-	if(!(this->moveType &__RETARMOVEX)){
-
-		// if B button is pressed
-		if(currentPressedKey & K_B){
-			
-			// boost velocity
-			this->velocity.x = FIX19_13_MULT(HERO_VELOCITY_X, HERO_SPEED_MULTIPLIER_X);
-		}
-		else{
-			
-			// shoot the shell
-			//this->velocity.x = HERO_VELOCITY_X;
-		}
-	}
-
-	// might be jumping
-	// TODO: increse y velocity if A button hold while jumping
-	if(this->velocity.y){
-		
-		if(__UP == this->direction.y){
-			
-			if(vbPadPreviousKey() & K_A){
-				
-				this->acceleration.y = (HERO_ACCELERATION_Y + __GRAVITY) * (-1) / HERO_SPEED_MULTIPLIER_X;
-			}
-		}
-	}
-
-
-	// if not jumping over z
-	if(!this->movingOverZ){
-
-		// if mario is falling
-		if(this->velocity.y && __DOWN == this->direction.y ) {
-	
-			char fallStr[] = "Fall";
-			char fallHoldStr[] = "FallHolding";
-			char* fallAnimation = fallStr;
-			
-			if(this->holdObject){
-				
-				fallAnimation = fallHoldStr;
-			}
-	
-			// and not playing corresponding animation
-			if(!AnimatedSprite_isPlayingFunction((AnimatedSprite)this->sprite, this->actorDefinition->animationDescription, fallAnimation)){
-			
-				// play animation
-				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, fallAnimation);
-			}
-		}
-	}
-	
-	// move the actor
-	Actor_move((Actor)this);
-
-	// if I'm holding something
-	if(this->holdObject){
-		
-		// update object's position
-		Hero_updateHoldObjectPosition(this);
-	}
-
-	*/
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -443,20 +269,8 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// start movement
-void Hero_startMoving(Hero this){
-
-	/*
-	int movingState = Body_isMoving(this->body);
-	
-	if(movingState)
-	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
-	*/
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // keep movement
-void Hero_keepMoving(Hero this, int changedDirection){
+void Hero_addForce(Hero this, int changedDirection){
 
 	ASSERT(this->body, "Hero::keepMoving: no body");
 	static int movementType = 0;
@@ -517,7 +331,7 @@ void Hero_keepMoving(Hero this, int changedDirection){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // start movement
-void Hero_stopMoving(Hero this){
+void Hero_stopMovement(Hero this){
 
 	Velocity velocity = Body_getVelocity(this->body);
 
@@ -545,7 +359,6 @@ void Hero_stopMoving(Hero this){
 	Body_moveAccelerated(this->body, __XAXIS);
 	
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // started moving over axis
@@ -1487,28 +1300,6 @@ static void Hero_onKeyHold(Hero this){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// check if dead
-int Hero_isDead(Hero this) {
-
-	ASSERT(this->body, "Hero::checkIfDied: null body");
-		
-	Velocity velocity = Body_getVelocity(this->body);
-
-	if (0 < velocity.y){
-		
-		
-		if(this->transform.globalPosition.y > ITOFIX19_13(__SCREEN_HEIGHT) + Screen_getPosition(Screen_getInstance()).y) {
-
-			MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Game_getInstance(), kHeroDied, NULL);
-			
-			return true;
-		}
-	}
-
-	return false;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // collect a coin
 void Hero_collectCoin(Hero this)
 {
@@ -1589,6 +1380,7 @@ int Hero_doMessage(Hero this, int message){
 					ITOFIX19_13(0),
 					ITOFIX19_13(-PLAYABLE_LAYER_0),
 			};
+			
 			Screen_setFocuesEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 			return true;
 			break;

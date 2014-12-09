@@ -111,10 +111,10 @@ void Hero_constructor(Hero this, ActorDefinition* definition, int ID);
 void Hero_destructor(Hero this);
 
 // keep movement
-void Hero_keepMoving(Hero this, int changedDirection);
+void Hero_addForce(Hero this, int changedDirection);
 
 // stop moving
-void Hero_stopMoving(Hero this);
+void Hero_stopMovement(Hero this);
 
 // started moving over axis
 void Hero_startedMovingOnAxis(Hero this, int axis);
@@ -207,9 +207,6 @@ void Hero_win(Hero this);
 
 // goal reached
 void Hero_moveOnWin(Hero this);
-
-// check if dead
-int Hero_isDead(Hero this);
 
 // check if dead
 void Hero_collectCoin(Hero this);

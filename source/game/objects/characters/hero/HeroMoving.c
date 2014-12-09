@@ -120,8 +120,6 @@ void HeroMoving_enter(HeroMoving this, void* owner){
 #ifdef __DEBUG
 	Printing_text("HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 1);
 #endif
-	
-	MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)owner, kCheckIfHeroDied, NULL);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,7 +171,7 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 					
 					if (0 < abs(velocity.x)){
 						
-						Hero_stopMoving((Hero)owner);		
+						Hero_stopMovement((Hero)owner);		
 					}
 					else {
 						
@@ -195,7 +193,7 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 				// check direction
 				if((K_LL | K_LR ) & holdKey){
 					
-					Hero_keepMoving((Hero)owner, this->mustCheckDirection);					
+					Hero_addForce((Hero)owner, this->mustCheckDirection);					
 					this->mustCheckDirection = false;
 				}
 				
@@ -212,28 +210,22 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 			break;
 
 		case kBodyStartedMoving:
-
-			// start movement
-			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
+			{
+				int axis = *(int*)Telegram_getExtraInfo(telegram);
+				// start movement
+				Hero_startedMovingOnAxis((Hero)owner, axis);
+			}
 			break;
 
 		case kBodyChangedDirection:
-			{
-				int axis = *(int*)Telegram_getExtraInfo(telegram);
-				Hero_startedMovingOnAxis((Hero)owner, axis);
-				
-				if(__YAXIS & axis){
-					
-					MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)owner, kCheckIfHeroDied, NULL);
-				}
-			}
+
+			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kBodyBounced:
 			
 			this->mustCheckDirection = true;
 			this->bouncing = true;
-			
 			MessageDispatcher_dispatchMessage(100, (Object)this, (Object)owner, kDisallowJumpOnBouncing, NULL);
 			return true;
 			break;
@@ -241,20 +233,11 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 		case kDisallowJumpOnBouncing:
 			
 			this->bouncing = false;
-			MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)owner, kCheckIfHeroDied, NULL);
 			break;
 			
 		case kCollision:
 
 			return Hero_processCollision((Hero)owner, telegram);
-			break;
-			
-		case kCheckIfHeroDied:
-
-			if(!Hero_isDead((Hero)owner) && Body_getVelocity(Actor_getBody((Actor)owner)).y) {
-				
-				MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)owner, kCheckIfHeroDied, NULL);
-			}
 			break;
 	}
 	return false;
