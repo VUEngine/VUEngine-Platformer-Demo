@@ -1,4 +1,4 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
+/* MOUND_1: bitmap graphics engine for the Nintendo Virtual Boy 
  * 
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
@@ -18,9 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef BACKGROUNDS_H_
-#define BACKGROUNDS_H_
-
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -30,29 +27,84 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Entity.h>
-#include "texture.h"
+#include <Image.h>
+
+
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
- * 												DECLARATIONS
+ * 												DEFINITIONS
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  */
- 
-extern TextureDefinition TREE_BG_FRONT_SB;
-extern TextureDefinition TREE_BG_BACK_SB;
-extern EntityDefinition VBJAENGINE_BG_SB;
-extern EntityDefinition CLOUDS_SB;
 
-extern EntityDefinition FLOOR_4x10_BG;
-extern EntityDefinition FLOOR_16x8_BG;
-extern EntityDefinition FLOOR_4x3_FLOAT_BG;
-extern EntityDefinition FLOOR_2x2_BLOCK_BG;
-
-extern EntityDefinition MOUND_1_IM;
-extern EntityDefinition MOUND_2_IM;
+extern BYTE Mound1Tiles[];
+extern BYTE Mound1Map[];
 
 
-#endif /*BACKGROUNDS_H_*/
+TextureROMDef MOUND_1_TX = {
+		// Chargroup
+		{
+			// chDefinition,				 
+			Mound1Tiles,
+			// numChars,
+			14,
+			
+			// allocation type
+			__NO_ANIMATED
+		},
+		
+		// bgmap definition
+		Mound1Map,
+		
+		// cols (max 48)
+		6,
+		
+		// rows (max 28)
+		9,
+		
+		//pallet number,
+		0
+};
+
+SpriteROMDef MOUND_1_IM_SPRITES[] = {
+
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&MOUND_1_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+
+	},
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&MOUND_1_TX,
+		
+		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+	},
+};
+
+ImageROMDef MOUND_1_IM = {
+		
+	// object's class			   
+	__TYPE(Image),  
+
+	__SPRITE_ARRAY(MOUND_1_IM_SPRITES),
+};
