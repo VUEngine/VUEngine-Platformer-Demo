@@ -24,16 +24,5 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern TextureDefinition FLOOR0_TX;
-extern TextureDefinition FLOOR1_TX;
-extern TextureDefinition FLOOR2_TX;
-extern TextureDefinition PIPE0_TX;
-extern TextureDefinition PIPE1_TX;
-
-extern TextureDefinition WALL0_TX;
-
-extern TextureDefinition POLE0_TX;
-extern TextureDefinition GOAL0_TX;
-extern TextureDefinition GATE0_TX;
-
+ 
 #endif

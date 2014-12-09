@@ -62,14 +62,6 @@ const UserObject _userObjects[] = {
 	{"Saw blade", &SAW_BLADE_MC},
 	{"SawBlade Lane V6", &SAW_BLADE_LANE_V_6_IM},
 	{"Door", &DOOR_MC},
-	{"Wall", &WALL0_BG},
-	{"Floor 0", &FLOOR0_BG},
-	{"Floor 1", &FLOOR1_BG},
-	{"Floor 2", &FLOOR2_BG},
-	{"Hor. pipe", &PIPE1_BG},
-	{"Ver. pipe", &PIPE0_BG},
-	{"Pole", &POLE0_BG},
-	{"Goal", &GOAL0_IM},
 	{"", NULL},
 };
 #endif

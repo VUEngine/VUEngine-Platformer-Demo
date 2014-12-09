@@ -40,68 +40,68 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern BYTE Floor3x5LTiles[];
-extern BYTE Floor3x5LMap[];
-extern BYTE Floor3x5RTiles[];
-extern BYTE Floor3x5RMap[];
+extern BYTE Floor16x8LTiles[];
+extern BYTE Floor16x8LMap[];
+extern BYTE Floor16x8RTiles[];
+extern BYTE Floor16x8RMap[];
 
 
-TextureROMDef FLOOR_3x5_L_TX = {
+TextureROMDef FLOOR_16x8_L_TX = {
 		// Chargroup
 		{
 			// chDefinition,				 
-			Floor3x5LTiles,
+			Floor16x8LTiles,
 			// numChars,
-			18,
+			13,
 			
 			// allocation type
 			__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		Floor3x5LMap,
+		Floor16x8LMap,
 		
 		// cols (max 48)
-		7,
+		17,
 		
 		// rows (max 28)
-		11,
+		9,
 		
 		//pallet number,
 		1
 };
 
-TextureROMDef FLOOR_3x5_R_TX = {
+TextureROMDef FLOOR_16x8_R_TX = {
 		// Chargroup
 		{
 			// chDefinition,				 
-			Floor3x5RTiles,
+			Floor16x8RTiles,
 			// numChars,
-			23,
+			14,
 			
 			// allocation type
 			__NO_ANIMATED
 		},
 		
 		// bgmap definition
-		Floor3x5RMap,
+		Floor16x8RMap,
 		
 		// cols (max 48)
-		7,
+		17,
 		
 		// rows (max 28)
-		11,
+		9,
 		
 		//pallet number,
 		1
 };
 
-SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
+SpriteROMDef FLOOR_16x8_BG_SPRITES[] = {
 
 	// Sprite
 	{
 		// the texture
-		(TextureDefinition*)&FLOOR_3x5_L_TX,
+		(TextureDefinition*)&FLOOR_16x8_L_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -115,7 +115,7 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 	// Sprite
 	{
 		// the texture
-		(TextureDefinition*)&FLOOR_3x5_R_TX,
+		(TextureDefinition*)&FLOOR_16x8_R_TX,
 		
 		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
 		WRLD_BGMAP,
@@ -128,13 +128,13 @@ SpriteROMDef FLOOR_3x5_BG_SPRITES[] = {
 	},
 };
 
-InanimatedInGameEntityROMDef FLOOR_3x5_BG = {
+InanimatedInGameEntityROMDef FLOOR_16x8_BG = {
 		{
 			{
 				// object's class			   
 				__TYPE(InanimatedInGameEntity),  
 		
-				__SPRITE_ARRAY(FLOOR_3x5_BG_SPRITES)
+				__SPRITE_ARRAY(FLOOR_16x8_BG_SPRITES)
 			},
 			
 			// deep
@@ -142,7 +142,7 @@ InanimatedInGameEntityROMDef FLOOR_3x5_BG = {
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
-			{6,		0,		0,		8,},
+			{6,		0,		4,		8,},
 			
 			// in game type
 			kSolid,
