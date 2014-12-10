@@ -27,7 +27,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
  
-#include <stdlib.h>
+#include <string.h>
 
 #include <Game.h>
 #include <Screen.h>
@@ -35,7 +35,6 @@
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <PhysicalWorld.h>
-
 #include <PlatformerLevelState.h>
 #include <TitleScreenState.h>
 #include <Hero.h>
