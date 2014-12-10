@@ -189,7 +189,7 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			
 			Printing_text("\"", 17, 6);
 			Printing_text(levelName, 18, 6);
-			//Printing_text("\"", 18 + strlen(levelName), 6);
+			Printing_text("\"", 18 + strlen(levelName), 6);
 	
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
