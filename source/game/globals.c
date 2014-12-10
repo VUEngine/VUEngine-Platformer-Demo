@@ -48,31 +48,32 @@
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] = {
 		
-	{"Hero", &Hero_getObjectSize},
-	{"Coin", &Coin_getObjectSize},
-	{"SawBlade", &SawBlade_getObjectSize},
-	{"", NULL},
+	{&Hero_getObjectSize, "Hero"},
+	{&Coin_getObjectSize, "Coin"},
+	{&SawBlade_getObjectSize, "SawBlade"},
+	{NULL, ""},
 };
 #endif
 
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] = {
-	{"Hero", &HERO_MC},
-	{"Coin", &COIN_MC},
-	{"Saw blade", &SAW_BLADE_MC},
-	{"SawBlade Lane V6", &SAW_BLADE_LANE_V_6_IM},
-	{"Door", &DOOR_MC},
-	{"", NULL},
+
+	{&HERO_MC, "Hero"},
+	{&COIN_MC, "Coin"},
+	{&SAW_BLADE_MC, "SawBlade"},
+	{&SAW_BLADE_LANE_V_6_IM, "SawBlade Lane V6"},
+	{&DOOR_MC, "Door"},
+	{NULL, ""},
 };
 #endif
 
 #ifdef __ANIMATION_EDITOR
 const UserActor _userActors[] = {
 		
-	{"Hero", (ActorDefinition*)&HERO_MC},
-	{"Coin", (ActorDefinition*)&COIN_MC},
-	{"SawBlade", (ActorDefinition*)&SAW_BLADE_MC},
-	{"Door", (ActorDefinition*)&DOOR_MC},
-	{"", NULL},
+	{(ActorDefinition*)&HERO_MC, "Hero"},
+	{(ActorDefinition*)&COIN_MC, "Coin"},
+	{(ActorDefinition*)&SAW_BLADE_MC, "SawBlade"},
+	{(ActorDefinition*)&DOOR_MC, "Door"},
+	{NULL, ""},
 };
 #endif

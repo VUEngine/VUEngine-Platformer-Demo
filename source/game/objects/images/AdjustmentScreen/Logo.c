@@ -45,14 +45,15 @@ extern BYTE AdjustmentScreenLogoMap[];
 
 TextureROMDef ADJUSTMENT_SCREEN_LOGO_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			AdjustmentScreenLogoTiles,					
-			// numChars,
+		{				
+			// numChars
 			66,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition				 
+			AdjustmentScreenLogoTiles,	
 		},
 		
 		// LOGOmap definition
@@ -88,9 +89,6 @@ SpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITES[] = {
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_LOGO_IM = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_LOGO_IM_SPRITES),
+	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_LOGO_IM_SPRITES),		   
 };

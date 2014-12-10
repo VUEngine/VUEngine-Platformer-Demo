@@ -28,9 +28,6 @@ extern BYTE HeroMap[];
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_IDLE_ANIM = {
-	
-	// function's name
-	"Idle",
 
 	// number of frames of this animation function
 	2,
@@ -47,14 +44,14 @@ AnimationFunctionROMDef HERO_IDLE_ANIM = {
 	// method to call on function completion
 	NULL,
 	
+	// function's name
+	"Idle",
+	
 };
 
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_WALKING_ANIM = {
-	
-	// function's name
-	"Walk",
 
 	// number of frames of this animation function
 	2,
@@ -71,13 +68,13 @@ AnimationFunctionROMDef HERO_WALKING_ANIM = {
 	// method to call on function completion
 	NULL,
 	
+	// function's name
+	"Walk",
+	
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_JUMPING_ANIM = {
-	
-	// function's name
-	"Jump",
 
 	// number of frames of this animation function
 	1,
@@ -94,13 +91,13 @@ AnimationFunctionROMDef HERO_JUMPING_ANIM = {
 	// method to call on function completion
 	NULL,
 	
+	// function's name
+	"Jump",
+	
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_FALLING_ANIM = {
-	
-	// function's name
-	"Fall",
 
 	// number of frames of this animation function
 	1,
@@ -116,14 +113,14 @@ AnimationFunctionROMDef HERO_FALLING_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"Fall",
 	
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_SLIDING_ANIM = {
-	
-	// function's name
-	"Slide",
 
 	// number of frames of this animation function
 	1,
@@ -140,13 +137,13 @@ AnimationFunctionROMDef HERO_SLIDING_ANIM = {
 	// method to call on function completion
 	NULL,
 	
+	// function's name
+	"Slide",
+	
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_HIT_FRONT_ANIM = {
-	
-	// function's name
-	"HitFront",
 
 	// number of frames of this animation function
 	1,
@@ -162,14 +159,14 @@ AnimationFunctionROMDef HERO_HIT_FRONT_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"HitFront",
 	
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM = {
-	
-	// function's name
-	"HitBehind",
 
 	// number of frames of this animation function
 	1,
@@ -185,13 +182,13 @@ AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"HitBehind",
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_HIT_FIRE_ANIM = {
-	
-	// function's name
-	"HitFire",
 
 	// number of frames of this animation function
 	1,
@@ -207,15 +204,15 @@ AnimationFunctionROMDef HERO_HIT_FIRE_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"HitFire",
 	
 };
 
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_JUMP_BACK_ANIM = {
-	
-	// function's name
-	"JumpBack",
 
 	// number of frames of this animation function
 	1,
@@ -231,13 +228,13 @@ AnimationFunctionROMDef HERO_JUMP_BACK_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"JumpBack",
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_JUMP_FRONT_ANIM = {
-	
-	// function's name
-	"JumpFront",
 
 	// number of frames of this animation function
 	1,
@@ -253,14 +250,14 @@ AnimationFunctionROMDef HERO_JUMP_FRONT_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"JumpFront",
 };
 
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_FRONT_ANIM = {
-	
-	// function's name
-	"Front",
 
 	// number of frames of this animation function
 	2,
@@ -276,13 +273,13 @@ AnimationFunctionROMDef HERO_FRONT_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"Front",
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_BACK_ANIM = {
-	
-	// function's name
-	"Back",
 
 	// number of frames of this animation function
 	2,
@@ -298,6 +295,9 @@ AnimationFunctionROMDef HERO_BACK_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"Back",
 };
 
 
@@ -330,14 +330,14 @@ TextureROMDef HERO0_TX = {
 		
 		// Chargroup
 		{
-			// chDefinition,				 
-			HeroTiles,	
-			
-			// numChars,
+			// numChars
 			9,
 			
 			// allocation type
-			__ANIMATED
+			__ANIMATED,
+			
+			// chDefinition				 
+			HeroTiles,
 		},
 		
 		// bgmap definition
@@ -360,7 +360,7 @@ SpriteROMDef HERO_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&HERO0_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_AFFINE,
 		//WRLD_BGMAP,
 		
@@ -377,14 +377,9 @@ SpriteROMDef HERO_SPRITES[] = {
 ActorROMDef HERO_MC = {
 		{
 			{
-				// object's class			   
 				__TYPE(Hero),
-						
-				__SPRITE_ARRAY(HERO_SPRITES),
+				__SPRITE_ARRAY(HERO_SPRITES),		   
 			},
-			
-			// deep
-			8,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
@@ -392,6 +387,9 @@ ActorROMDef HERO_MC = {
 			
 			// in game type
 			kHero,
+			
+			// deep
+			8,
 		},
 		
 		// pointer to the animation definition for the character
@@ -405,14 +403,9 @@ AnimatedInGameEntityROMDef HERO_IM = {
 		
 		{
 			{
-				// object's class			   
 				__TYPE(AnimatedInGameEntity),
-						
-				__SPRITE_ARRAY(HERO_SPRITES),
+				__SPRITE_ARRAY(HERO_SPRITES), 
 			},
-			
-			// deep
-			8,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
@@ -420,6 +413,9 @@ AnimatedInGameEntityROMDef HERO_IM = {
 			
 			// in game type
 			kHero,
+			
+			// deep
+			8,
 		},
 		
 		// pointer to the animation definition for the character

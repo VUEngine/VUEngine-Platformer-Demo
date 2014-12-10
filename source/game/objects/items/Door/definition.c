@@ -29,9 +29,6 @@ extern BYTE DoorMap[];
 
 // a function which defines the frames to play
 AnimationFunctionROMDef DOOR_CLOSED_ANIM = {
-	
-	// function's name
-	"Closed",
 
 	// number of frames of this animation function
 	1,
@@ -48,13 +45,13 @@ AnimationFunctionROMDef DOOR_CLOSED_ANIM = {
 	// method to call on function completion
 	NULL,
 	
+	// function's name
+	"Closed",
+	
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef DOOR_OPEN_ANIM = {
-	
-	// function's name
-	"Open",
 
 	// number of frames of this animation function
 	1,
@@ -70,6 +67,9 @@ AnimationFunctionROMDef DOOR_OPEN_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"Open",
 	
 };
 
@@ -93,14 +93,14 @@ AnimationDescriptionROMDef DOOR_ANIM = {
 TextureROMDef DOOR_TX = {
 		// Chargroup
 		{
-			// chDefinition,				 
-			DoorTiles,	
-			
-			// numChars,
+			// numChars
 			12,
 			
 			// allocation type
-			__ANIMATED_SHARED
+			__ANIMATED_SHARED,
+
+			// chDefinition
+			DoorTiles,	
 		},
 		
 		// bgmap definition
@@ -123,7 +123,7 @@ SpriteROMDef DOOR_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&DOOR_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_AFFINE,
 		
 		// display mode
@@ -137,15 +137,10 @@ SpriteROMDef DOOR_SPRITES[] = {
 
 AnimatedInGameEntityROMDef DOOR_MC = {
 		{
-			{
-				// object's class			   
+			{			
 				__TYPE(Door),
-						
-				__SPRITE_ARRAY(DOOR_SPRITES),
+				__SPRITE_ARRAY(DOOR_SPRITES),		   
 			},
-
-			// deep
-			4,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
@@ -153,6 +148,9 @@ AnimatedInGameEntityROMDef DOOR_MC = {
 			
 			// in game type
 			kDoor,
+
+			// deep
+			4,
 		},
 		
 		// pointer to the animation definition for the item

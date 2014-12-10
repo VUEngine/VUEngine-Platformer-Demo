@@ -49,7 +49,7 @@ SpriteROMDef VBJAE_LEFT_IM_SPRITES[] = {
 		// the texture
 		&VBJAE_LEFT_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -61,11 +61,8 @@ SpriteROMDef VBJAE_LEFT_IM_SPRITES[] = {
 };
 
 ImageROMDef VBJAE_LEFT_IM = {
-		
-		// object's class			   
-		__TYPE(Image),  
-
-		__SPRITE_ARRAY(VBJAE_LEFT_IM_SPRITES),
+	__TYPE(Image),  
+	__SPRITE_ARRAY(VBJAE_LEFT_IM_SPRITES),		   
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,7 +73,7 @@ SpriteROMDef VBJAE_RIGHT_IM_SPRITES[] = {
 		// the texture
 		&VBJAE_RIGHT_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -88,9 +85,6 @@ SpriteROMDef VBJAE_RIGHT_IM_SPRITES[] = {
 };
 
 ImageROMDef VBJAE_RIGHT_IM = {
-		
-		// object's class			   
-		__TYPE(Image),  
-
-		__SPRITE_ARRAY(VBJAE_RIGHT_IM_SPRITES),
+	__TYPE(Image),  
+	__SPRITE_ARRAY(VBJAE_RIGHT_IM_SPRITES),		   
 };

@@ -67,19 +67,17 @@ StageROMDef TITLE_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		//background music		
-		NULL,
 		//textures to preload
 		NULL,
 		//UI entities
 		{
-			// type
+			TITLE_ST_UI_ENTITIES,
 			__TYPE(UI),
-			// entities
-			TITLE_ST_UI_ENTITIES
 		},
 		//entities
-		TITLE_ST_ENTITIES
+		TITLE_ST_ENTITIES,
+		//background music		
+		NULL
 };
 
 #define LAYER_0_FLOOR	196
@@ -170,20 +168,18 @@ StageROMDef LEVEL_0_0_0_ST = {
 			// z
 			ITOFIX19_13(SCREEN_Z_POSITION)
 		},
-		//background music		
-		NULL,
 		//(const u16 (*)[])WORLD_0_0_0_BGM,
 		//textures to preload
 		(TextureDefinition**)LEVEL_0_0_0_ST_TEXTURES,
 		//UI 
 		{
-			// type
+			LEVEL_0_0_0_ST_UI_ENTITIES,
 			__TYPE(UI),
-			// entities
-			LEVEL_0_0_0_ST_UI_ENTITIES
 		},
 		//entities
-		LEVEL_0_0_0_ST_ENTITIES
+		LEVEL_0_0_0_ST_ENTITIES,
+		//background music		
+		NULL
 };
 
 

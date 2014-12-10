@@ -49,13 +49,14 @@ extern BYTE Floor4x3FloatRMap[];
 TextureROMDef FLOOR_4x3_FLOAT_L_TX = {
 		// Chargroup
 		{
-			// chDefinition,				 
-			Floor4x3FloatLTiles,
-			// numChars,
+			// numChars
 			16,
 
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition			 
+			Floor4x3FloatLTiles,
 		},
 		
 		// bgmap definition
@@ -74,13 +75,14 @@ TextureROMDef FLOOR_4x3_FLOAT_L_TX = {
 TextureROMDef FLOOR_4x3_FLOAT_R_TX = {
 		// Chargroup
 		{
-			// chDefinition,				 
-			Floor4x3FloatRTiles,
-			// numChars,
+			// numChars
 			17,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+
+			// chDefinition				 
+			Floor4x3FloatRTiles,
 		},
 		
 		// bgmap definition
@@ -103,7 +105,7 @@ SpriteROMDef FLOOR_4x3_FLOAT_BG_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&FLOOR_4x3_FLOAT_L_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -117,7 +119,7 @@ SpriteROMDef FLOOR_4x3_FLOAT_BG_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&FLOOR_4x3_FLOAT_R_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -130,15 +132,10 @@ SpriteROMDef FLOOR_4x3_FLOAT_BG_SPRITES[] = {
 
 InanimatedInGameEntityROMDef FLOOR_4x3_FLOAT_BG = {
 		{
-			{
-				// object's class			   
-				__TYPE(InanimatedInGameEntity),  
-		
-				__SPRITE_ARRAY(FLOOR_4x3_FLOAT_BG_SPRITES)
+			{ 
+				__TYPE(InanimatedInGameEntity),
+				__SPRITE_ARRAY(FLOOR_4x3_FLOAT_BG_SPRITES),
 			},
-			
-			// deep
-			20,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
@@ -146,14 +143,17 @@ InanimatedInGameEntityROMDef FLOOR_4x3_FLOAT_BG = {
 			
 			// in game type
 			kSolid,
+			
+			// deep
+			20,
 		},
-
-		// register shape
-		true,
 		
 		// friction FTOFIX19_13
 		FTOFIX19_13(0.5f),
 		
 		// elasticity FTOFIX19_13
-		FTOFIX19_13(1.0f)
+		FTOFIX19_13(1.0f),
+
+		// register shape
+		true,
 };

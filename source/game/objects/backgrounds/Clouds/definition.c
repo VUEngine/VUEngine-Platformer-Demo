@@ -46,13 +46,14 @@ extern BYTE CloudsMap[];
 TextureROMDef CLOUDS_TX = {
 		// Chargroup
 		{
-			// chDefinition,				 
-			CloudsTiles,
-			// numChars,
+			// numChars
 			22,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition				 
+			CloudsTiles,
 		},
 		
 		// bgmap definition
@@ -75,7 +76,7 @@ SpriteROMDef CLOUDS_SB_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&CLOUDS_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -90,7 +91,7 @@ SpriteROMDef CLOUDS_SB_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&CLOUDS_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -102,9 +103,6 @@ SpriteROMDef CLOUDS_SB_SPRITES[] = {
 };
 
 ScrollBackgroundROMDef CLOUDS_SB = {
-		
-	// object's class			   
 	__TYPE(ScrollBackground),  
-
-	__SPRITE_ARRAY(CLOUDS_SB_SPRITES),
+	__SPRITE_ARRAY(CLOUDS_SB_SPRITES),   
 };

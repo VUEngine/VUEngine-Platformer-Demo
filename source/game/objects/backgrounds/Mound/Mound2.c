@@ -46,13 +46,14 @@ extern BYTE Mound2Map[];
 TextureROMDef MOUND_2_TX = {
 		// Chargroup
 		{
-			// chDefinition,				 
-			Mound2Tiles,
-			// numChars,
+			// numChars
 			7,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition				 
+			Mound2Tiles,
 		},
 		
 		// bgmap definition
@@ -75,7 +76,7 @@ SpriteROMDef MOUND_2_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&MOUND_2_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -90,7 +91,7 @@ SpriteROMDef MOUND_2_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&MOUND_2_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -102,9 +103,6 @@ SpriteROMDef MOUND_2_IM_SPRITES[] = {
 };
 
 ImageROMDef MOUND_2_IM = {
-		
-	// object's class			   
-	__TYPE(Image),  
-
+	__TYPE(Image),
 	__SPRITE_ARRAY(MOUND_2_IM_SPRITES),
 };

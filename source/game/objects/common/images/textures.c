@@ -47,15 +47,15 @@ extern const u16 FontTiles[];
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef VBJAE_LEFT_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			VBJAE_LEFT_CH,	
-			
-			// numChars,
+		{			
+			// numChars
 			97,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition				 
+			VBJAE_LEFT_CH,	
 		},
 		
 		// bgmap definition
@@ -74,15 +74,15 @@ TextureROMDef VBJAE_LEFT_TX = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef VBJAE_RIGHT_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			VBJAE_RIGHT_CH,	
-			
+		{			
 			// numChars,
 			97,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition				 
+			VBJAE_RIGHT_CH,	
 		},
 		
 		// bgmap definition

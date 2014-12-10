@@ -51,14 +51,15 @@ extern BYTE PlatformerDemoLogoRMap[];
 
 TextureROMDef LOGO_LEFT_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			PlatformerDemoLogoLTiles,					
-			// numChars,
+		{				
+			// numChars
 			166,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+
+			// chDefinition
+			PlatformerDemoLogoLTiles,	
 		},
 		
 		// bgmap definition
@@ -76,14 +77,15 @@ TextureROMDef LOGO_LEFT_TX = {
 
 TextureROMDef LOGO_RIGHT_TX = {
 		// Chargroup
-		{
-			// chDefinition,
-			PlatformerDemoLogoRTiles,					
-			// numChars,
+		{					
+			// numChars
 			166,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition
+			PlatformerDemoLogoRTiles,
 		},
 		
 		// bgmap definition
@@ -106,7 +108,7 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&LOGO_LEFT_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -121,7 +123,7 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&LOGO_RIGHT_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -133,24 +135,22 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 };
 
 ImageROMDef LOGO_IM = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(LOGO_IM_SPRITES),
+	__SPRITE_ARRAY(LOGO_IM_SPRITES),		   
 };
 
 
 TextureROMDef SUPER_AWESOME_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			SuperAwesomeTiles,					
-			// numChars,
+		{				
+			// numChars
 			39,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition			 
+			SuperAwesomeTiles,	
 		},
 		
 		// bgmap definition
@@ -173,7 +173,7 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&SUPER_AWESOME_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -188,7 +188,7 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&SUPER_AWESOME_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -197,24 +197,22 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 };
 
 ImageROMDef SUPER_AWESOME_IM = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(SUPER_AWESOME_IM_SPRITES),
+	__SPRITE_ARRAY(SUPER_AWESOME_IM_SPRITES),		   
 };
 
 
 TextureROMDef VBJAENGINE_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			VBJaEngineLogoTiles,					
-			// numChars,
+		{					
+			// numChars
 			56,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition			 
+			VBJaEngineLogoTiles,
 		},
 		
 		// bgmap definition
@@ -237,7 +235,7 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&VBJAENGINE_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -249,7 +247,7 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&VBJAENGINE_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -258,9 +256,6 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
 };
 
 ImageROMDef VBJAENGINE_IM = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(VBJAENGINE_IM_SPRITES),
+	__SPRITE_ARRAY(VBJAENGINE_IM_SPRITES),		   
 };

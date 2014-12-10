@@ -46,9 +46,6 @@ extern BYTE SawBladeMap[];
 
 
 AnimationFunction SAW_BLADE_SPIN_ANIM = {
-	
-	// function's name
-	"Spin",
 
 	// number of frames of this animation function
 	2,
@@ -64,6 +61,9 @@ AnimationFunction SAW_BLADE_SPIN_ANIM = {
 	
 	// method to call on function completion
 	NULL,
+	
+	// function's name
+	"Spin",
 	
 };
 
@@ -87,14 +87,14 @@ TextureDefinition SAW_BLADE_TX = {
 		
 		// Chargroup
 		{
-			// chDefinition,				 
-			SawBladeTiles,	
-			
-			// numChars,
+			// numChars
 			18,
 			
 			// allocation type
-			__ANIMATED_SHARED
+			__ANIMATED_SHARED,
+			
+			// chDefinition				 
+			SawBladeTiles,	
 		},
 		
 		// bgmap definition
@@ -115,7 +115,7 @@ SpriteROMDef SAW_BLADE_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&SAW_BLADE_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_AFFINE,
 		
 		// display mode
@@ -131,22 +131,19 @@ SawBladeDefinition SAW_BLADE_MC = {
 		{
 			{
 				{
-					// object's class			   
-					__TYPE(SawBlade),  
-			
-					// Sprites
-					__SPRITE_ARRAY(SAW_BLADE_SPRITES)
+					__TYPE(SawBlade), 
+					__SPRITE_ARRAY(SAW_BLADE_SPRITES),
 				},
-				
-				// deep
-				10,
 				
 				//collision detection gap			
 				//up,	down,	left,	right,
 				{1,		2,		2,		1,},		
 				
 				// in game type
-				kSawBlade
+				kSawBlade,
+				
+				// deep
+				10,
 			},
 			
 			// pointer to the animation definition for the character

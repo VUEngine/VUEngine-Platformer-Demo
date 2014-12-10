@@ -45,14 +45,15 @@ extern BYTE AdjustmentScreenBGMap[];
 
 TextureROMDef ADJUSTMENT_SCREEN_BG_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			AdjustmentScreenBGTiles,					
-			// numChars,
+		{				
+			// numChars
 			3,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition	 
+			AdjustmentScreenBGTiles,	
 		},
 		
 		// bgmap definition
@@ -75,7 +76,7 @@ SpriteROMDef ADJUSTMENT_SCREEN_BG_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&ADJUSTMENT_SCREEN_BG_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -88,9 +89,6 @@ SpriteROMDef ADJUSTMENT_SCREEN_BG_IM_SPRITES[] = {
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_BG_IM = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_BG_IM_SPRITES),
+	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_BG_IM_SPRITES),		   
 };

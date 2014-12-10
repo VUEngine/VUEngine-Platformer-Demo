@@ -56,8 +56,6 @@ StageROMDef ADJUSTMENT_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		//background music		
-		NULL,
 		//textures 
 		NULL,
 		//UI entities
@@ -66,7 +64,9 @@ StageROMDef ADJUSTMENT_ST = {
 			NULL
 		},
 		//entities
-		ADJUSTMENT_ST_ENTITIES
+		ADJUSTMENT_ST_ENTITIES,
+		//background music		
+		NULL
 };
 
 PositionedEntityROMDef PRECAUTION_ST_ENTITIES[] = {
@@ -96,8 +96,6 @@ StageROMDef PRECAUTION_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		//background music		
-		NULL,
 		//textures 
 		NULL,
 		//UI entities
@@ -106,7 +104,9 @@ StageROMDef PRECAUTION_ST = {
 			NULL
 		},
 		//entities
-		PRECAUTION_ST_ENTITIES
+		PRECAUTION_ST_ENTITIES,
+		//background music		
+		NULL
 };
 
 PositionedEntityROMDef VBJAE_ST_ENTITIES[] = {
@@ -136,8 +136,6 @@ StageROMDef VBJAE_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
-		//background music		
-		NULL,
 		//textures 
 		NULL,
 		//UI entities
@@ -146,6 +144,8 @@ StageROMDef VBJAE_ST = {
 			NULL
 		},
 		//entities
-		VBJAE_ST_ENTITIES
+		VBJAE_ST_ENTITIES,
+		//background music		
+		NULL
 };
 

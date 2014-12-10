@@ -45,14 +45,15 @@ extern BYTE VBJaEngineBGDarkMap[];
 
 TextureROMDef VBJAENGINE_BG_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			VBJaEngineBGDarkTiles,					
-			// numChars,
+		{					
+			// numChars
 			148,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+
+			// chDefinition			 
+			VBJaEngineBGDarkTiles,
 		},
 		
 		// bgmap definition
@@ -75,7 +76,7 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&VBJAENGINE_BG_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -90,7 +91,7 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&VBJAENGINE_BG_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -103,9 +104,6 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] = {
 };
 
 ScrollBackgroundROMDef VBJAENGINE_BG_SB = {
-		
-	// object's class			   
 	__TYPE(ScrollBackground),  
-
-	__SPRITE_ARRAY(VBJAENGINE_BG_SB_SPRITES),
+	__SPRITE_ARRAY(VBJAENGINE_BG_SB_SPRITES),  
 };

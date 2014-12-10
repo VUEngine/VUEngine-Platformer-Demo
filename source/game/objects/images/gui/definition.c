@@ -45,14 +45,15 @@ extern BYTE GUIMap[];
 
 TextureROMDef GUI_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			GUITiles,					
-			// numChars,
+		{					
+			// numChars
 			20,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition				 
+			GUITiles,
 		},
 		
 		// bgmap definition
@@ -75,7 +76,7 @@ SpriteROMDef GUI_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&GUI_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -87,9 +88,6 @@ SpriteROMDef GUI_IM_SPRITES[] = {
 };
 
 ImageROMDef GUI_IM = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(GUI_IM_SPRITES),
+	__SPRITE_ARRAY(GUI_IM_SPRITES),		   
 };

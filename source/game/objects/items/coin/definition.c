@@ -28,9 +28,6 @@ extern BYTE CoinLMap[];
 
 // a function which defines the frames to play
 AnimationFunctionROMDef COIN_SPIN_ANIM = {
-	
-	// function's name
-	"Spin",
 
 	// number of frames of this animation function
 	4,
@@ -47,13 +44,13 @@ AnimationFunctionROMDef COIN_SPIN_ANIM = {
 	// method to call on function completion
 	NULL,
 	
+	// function's name
+	"Spin",
+	
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef COIN_TAKEN_ANIM = {
-	
-	// function's name
-	"Taken",
 
 	// number of frames of this animation function
 	3,
@@ -69,6 +66,9 @@ AnimationFunctionROMDef COIN_TAKEN_ANIM = {
 	
 	// method to call on function completion
 	&Coin_removeFromStage,
+	
+	// function's name
+	"Taken",
 	
 };
 
@@ -90,15 +90,15 @@ AnimationDescriptionROMDef COIN_ANIM = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef COIN_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			CoinLTiles,	
-			
-			// numChars,
+		{			
+			// numChars
 			28,
 			
 			// allocation type
-			__ANIMATED_SHARED
+			__ANIMATED_SHARED,
+			
+			// chDefinition				 
+			CoinLTiles,	
 		},
 		
 		// bgmap definition
@@ -121,7 +121,7 @@ SpriteROMDef COIN_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&COIN_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_AFFINE,
 		
 		// display mode
@@ -135,15 +135,10 @@ SpriteROMDef COIN_SPRITES[] = {
 
 AnimatedInGameEntityROMDef COIN_MC = {
 		{
-			{
-				// object's class			   
+			{			
 				__TYPE(Coin),
-						
-				__SPRITE_ARRAY(COIN_SPRITES),
+				__SPRITE_ARRAY(COIN_SPRITES),		   
 			},
-			
-			// deep
-			4,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
@@ -151,6 +146,9 @@ AnimatedInGameEntityROMDef COIN_MC = {
 			
 			// in game type
 			kCoin,
+			
+			// deep
+			4,
 		},
 		
 		// pointer to the animation definition for the item

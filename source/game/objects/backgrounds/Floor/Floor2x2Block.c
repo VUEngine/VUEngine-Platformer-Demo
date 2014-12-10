@@ -49,13 +49,14 @@ extern BYTE Floor2x2BlockRMap[];
 TextureROMDef FLOOR_2x2_BLOCK_L_TX = {
 		// Chargroup
 		{
-			// chDefinition,				 
-			Floor2x2BlockLTiles,
-			// numChars,
+			// numChars
 			10,
 
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition				 
+			Floor2x2BlockLTiles,
 		},
 		
 		// bgmap definition
@@ -74,13 +75,14 @@ TextureROMDef FLOOR_2x2_BLOCK_L_TX = {
 TextureROMDef FLOOR_2x2_BLOCK_R_TX = {
 		// Chargroup
 		{
-			// chDefinition,				 
-			Floor2x2BlockRTiles,
-			// numChars,
+			// numChars
 			10,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition			 
+			Floor2x2BlockRTiles,
 		},
 		
 		// bgmap definition
@@ -103,7 +105,7 @@ SpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -117,7 +119,7 @@ SpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&FLOOR_2x2_BLOCK_R_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -131,14 +133,9 @@ SpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITES[] = {
 InanimatedInGameEntityROMDef FLOOR_2x2_BLOCK_BG = {
 		{
 			{
-				// object's class			   
-				__TYPE(InanimatedInGameEntity),  
-		
-				__SPRITE_ARRAY(FLOOR_2x2_BLOCK_BG_SPRITES)
+				__TYPE(InanimatedInGameEntity),
+				__SPRITE_ARRAY(FLOOR_2x2_BLOCK_BG_SPRITES),
 			},
-			
-			// deep
-			20,
 			
 			//collision detection gap			
 			//up,	down,	left,	right,
@@ -146,14 +143,17 @@ InanimatedInGameEntityROMDef FLOOR_2x2_BLOCK_BG = {
 			
 			// in game type
 			kSolid,
+			
+			// deep
+			20,
 		},
-
-		// register shape
-		true,
 		
 		// friction FTOFIX19_13
 		FTOFIX19_13(1.0f),
 		
 		// elasticity FTOFIX19_13
-		FTOFIX19_13(1.0f)
+		FTOFIX19_13(1.0f),
+
+		// register shape
+		true,
 };

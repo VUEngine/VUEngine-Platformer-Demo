@@ -46,13 +46,14 @@ extern BYTE TreeBGFrontMap[];
 TextureROMDef TREE_BG_FRONT_TX = {
 		// Chargroup
 		{
-			// chDefinition,				 
-			TreeBGFrontTiles,
-			// numChars,
+			// numChars
 			71,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition				 
+			TreeBGFrontTiles,
 		},
 		
 		// bgmap definition
@@ -75,7 +76,7 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&TREE_BG_FRONT_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -90,7 +91,7 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&TREE_BG_FRONT_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -103,9 +104,6 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {
 };
 
 ScrollBackgroundROMDef TREE_BG_FRONT_SB = {
-		
-	// object's class			   
 	__TYPE(ScrollBackground),  
-
-	__SPRITE_ARRAY(TREE_BG_FRONT_SB_SPRITES),
+	__SPRITE_ARRAY(TREE_BG_FRONT_SB_SPRITES),   
 };

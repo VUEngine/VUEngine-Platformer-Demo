@@ -45,14 +45,15 @@ extern BYTE AdjustmentScreenIconMap[];
 
 TextureROMDef ADJUSTMENT_SCREEN_ICON_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			AdjustmentScreenIconTiles,					
+		{				
 			// numChars,
 			5,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition	 
+			AdjustmentScreenIconTiles,	
 		},
 		
 		// ICONmap definition
@@ -107,17 +108,11 @@ SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] = {
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_L = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES),
+	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES),	   
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_R = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES),
+	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES),		   
 };

@@ -45,14 +45,15 @@ extern BYTE PrecautionScreenJapaneseMap[];
 
 TextureROMDef PRECAUTION_SCREEN_JAPANESE_TX = {
 		// Chargroup
-		{
-			// chDefinition,				 
-			PrecautionScreenJapaneseTiles,					
-			// numChars,
+		{					
+			// numChars
 			34,
 			
 			// allocation type
-			__NO_ANIMATED
+			__NO_ANIMATED,
+			
+			// chDefinition 
+			PrecautionScreenJapaneseTiles,
 		},
 		
 		// bgmap definition
@@ -75,7 +76,7 @@ SpriteROMDef PRECAUTION_SCREEN_JAPANESE_IM_SPRITES[] = {
 		// the texture
 		(TextureDefinition*)&PRECAUTION_SCREEN_JAPANESE_TX,
 		
-		// bgmap mode ( BGMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
@@ -88,9 +89,6 @@ SpriteROMDef PRECAUTION_SCREEN_JAPANESE_IM_SPRITES[] = {
 };
 
 ImageROMDef PRECAUTION_SCREEN_JAPANESE_IM = {
-		
-	// object's class			   
 	__TYPE(Image),  
-
-	__SPRITE_ARRAY(PRECAUTION_SCREEN_JAPANESE_IM_SPRITES),
+	__SPRITE_ARRAY(PRECAUTION_SCREEN_JAPANESE_IM_SPRITES),		   
 };
