@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef LEVELS_STAGES_H_
-#define LEVELS_STAGES_H_
+#ifndef STAGES_H_
+#define STAGES_H_
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -33,6 +33,7 @@
 
 #include <Stage.h>
 
+
 /* ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------------------------------
@@ -42,10 +43,11 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-/*--------------------------USER GAME WORLDS-------------------------------*/
+extern StageROMDef ADJUSTMENT_ST;
+extern StageROMDef PRECAUTION_ST;
+extern StageROMDef VBJAE_ST;
+extern StageROMDef TITLE_ST;
+extern StageROMDef LEVEL_1_1_ROOM_1_ST;
 
-extern StageROMDef LEVEL_0_0_0_ST;
 
-
-#endif /*LEVELS_STAGES_H_*/
-
+#endif

@@ -24,90 +24,12 @@
 #include <objects.h>
 #include <macros.h>
 
+
 /*---------------------------------ASSETS----------------------------------*/
-
-PositionedEntityROMDef ADJUSTMENT_ST_ENTITIES[] = {
-	{&ADJUSTMENT_SCREEN_BG_IM, 		{ __SCREEN_WIDTH >> 1,   __SCREEN_HEIGHT >> 1, 	LAYER_1}, NULL},
-	{&ADJUSTMENT_SCREEN_LOGO_IM,	{ __SCREEN_WIDTH >> 1,   				  100, 	LAYER_0}, NULL},
-	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{					8,						8, 	LAYER_0}, NULL},
-	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{   __SCREEN_WIDTH -8,	  __SCREEN_HEIGHT - 8, 	LAYER_0}, NULL},
-	{&ADJUSTMENT_SCREEN_ICON_IM_R,	{   __SCREEN_WIDTH -8,						8, 	LAYER_0}, NULL},
-	{&ADJUSTMENT_SCREEN_ICON_IM_R,	{					8,	  __SCREEN_HEIGHT - 8, 	LAYER_0}, NULL},
-	{NULL,{0,0,0}, NULL},
-};
-
-StageROMDef ADJUSTMENT_ST = {
-		
-		// size
-		{
-			// x
-			__SCREEN_WIDTH,
-			// y
-			__SCREEN_HEIGHT,
-			// z
-			1
-		},
-		//initial screen position
-		{
-			// x
-			ITOFIX19_13(0),
-			// y
-			ITOFIX19_13(0),
-			//z
-			ITOFIX19_13(__ZZERO)
-		},
-		//textures 
-		NULL,
-		//UI entities
-		{
-			NULL,
-			NULL
-		},
-		//entities
-		ADJUSTMENT_ST_ENTITIES,
-		//background music		
-		NULL
-};
-
-PositionedEntityROMDef PRECAUTION_ST_ENTITIES[] = {
-
-	{&PRECAUTION_SCREEN_JAPANESE_IM, {__SCREEN_WIDTH >> 1, 142, LAYER_0}, NULL},
-	{NULL,{0,0,0}, NULL},
-};
-
-StageROMDef PRECAUTION_ST = {
-		
-		// size
-		{
-			// x
-			__SCREEN_WIDTH,
-			// y
-			__SCREEN_HEIGHT,
-			// z
-			1
-		},
-		
-		//initial screen position
-		{
-			// x
-			ITOFIX19_13(0),
-			// y
-			ITOFIX19_13(0),
-			//z
-			ITOFIX19_13(__ZZERO)
-		},
-		//textures 
-		NULL,
-		//UI entities
-		{
-			NULL,
-			NULL
-		},
-		//entities
-		PRECAUTION_ST_ENTITIES,
-		//background music		
-		NULL
-};
+/* Don't forget to place the NULL markers at the end of each array.
+ * It's the only way the engine has to know that it must stop reading 
+ * the stage's/ui's textures ante enties
+ */
 
 PositionedEntityROMDef VBJAE_ST_ENTITIES[] = {
 
@@ -115,6 +37,9 @@ PositionedEntityROMDef VBJAE_ST_ENTITIES[] = {
 	{&VBJAE_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
 	{NULL,{0,0,0}, NULL},
 };
+
+
+/*----------------------------STAGE DEFINITION-----------------------------*/
 
 StageROMDef VBJAE_ST = {
 		
@@ -127,6 +52,7 @@ StageROMDef VBJAE_ST = {
 			// z
 			1
 		},
+		
 		//initial screen position
 		{
 			// x
@@ -136,16 +62,19 @@ StageROMDef VBJAE_ST = {
 			//z
 			ITOFIX19_13(__ZZERO)
 		},
+		
 		//textures 
 		NULL,
+		
 		//UI entities
 		{
 			NULL,
 			NULL
 		},
+		
 		//entities
 		VBJAE_ST_ENTITIES,
+		
 		//background music		
 		NULL
 };
-

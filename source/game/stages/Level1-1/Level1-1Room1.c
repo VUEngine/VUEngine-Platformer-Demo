@@ -23,94 +23,15 @@
 #include <Stage.h>
 #include <objects.h>
 #include <macros.h>
-#include "textures.h"
+#include "stages/textures.h"
 
-/*---------------------------------ASSETS----------------------------------*/
-/* Don't forget to place the NULL markers at the end of each array.
- * It's the only way the engine has to know that it must stop reading 
- * the stage's/ui's textures ante enties
- */
 
-PositionedEntityROMDef TITLE_ST_UI_ENTITIES[] = {
-
-	{&VBJAENGINE_IM, 	{__SCREEN_WIDTH >> 1, 	 	62, 	LAYER_0			}, NULL},			
-	{&SUPER_AWESOME_IM, {__SCREEN_WIDTH >> 1, 	 	80, 	LAYER_0 - 16	}, NULL},			
-	{&LOGO_IM, 			{__SCREEN_WIDTH >> 1, 		104, 	LAYER_0			}, NULL},			
-	{&HERO_IM, 			{__SCREEN_WIDTH >> 1, 		172, 	LAYER_0 - 1		}, NULL},
-	{&FLOOR_16x8_BG, 	{__SCREEN_WIDTH >> 1,		214, 	LAYER_0			}, NULL},
-	{NULL,{0,0,0}, NULL},
-};
-
-PositionedEntityROMDef TITLE_ST_ENTITIES[] = {
-
-	{&VBJAENGINE_BG_SB, {0, __SCREEN_HEIGHT >> 1, LAYER_0 + 32}, NULL},
-	{NULL,{0,0,0}, NULL},
-};
-
-StageROMDef TITLE_ST = {
-		
-		// size
-		{
-			// x
-			__SCREEN_WIDTH,
-			// y
-			__SCREEN_HEIGHT,
-			// z
-			1
-		},
-		//initial screen position
-		{
-			// x
-			ITOFIX19_13(0),
-			// y
-			ITOFIX19_13(0),
-			//z
-			ITOFIX19_13(__ZZERO)
-		},
-		//textures to preload
-		NULL,
-		//UI entities
-		{
-			TITLE_ST_UI_ENTITIES,
-			__TYPE(UI),
-		},
-		//entities
-		TITLE_ST_ENTITIES,
-		//background music		
-		NULL
-};
+/*---------------------------------DEFINES---------------------------------*/
 
 #define LAYER_0_FLOOR	196
 #define LAYER_1_FLOOR	196 - 16
 #define LAYER_2_FLOOR	196 - 32
 #define LAYER_3_FLOOR	196 - 64
-
-TextureROMDef* LEVEL_0_0_0_ST_TEXTURES[] = {
-		
-	&COIN_TX, 
-	&SAW_BLADE_TX,
-	&SAW_BLADE_LANE_V_6_TX,
-	&GUI_TX,
-	&CLOUDS_TX,
-	&TREE_BG_FRONT_TX,
-	&TREE_BG_BACK_TX,
-	&FLOOR_4x10_L_TX,
-	&FLOOR_4x10_R_TX,
-	&FLOOR_16x8_L_TX,
-	&FLOOR_16x8_R_TX,
-	&FLOOR_4x3_FLOAT_L_TX,
-	&FLOOR_4x3_FLOAT_R_TX,
-	&DOOR_TX,
-	&MOUND_1_TX,
-	&MOUND_2_TX,
-	NULL
-};
-
-PositionedEntityROMDef LEVEL_0_0_0_ST_UI_ENTITIES[] = {
-		
-	{&GUI_IM, 				{__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT - 8, -4}, NULL},
-	{NULL, {0,0,0}, NULL}
-};
 
 #define LEVEL_X_SIZE 	3000
 #define LEVEL_Y_SIZE 	2000
@@ -120,7 +41,14 @@ PositionedEntityROMDef LEVEL_0_0_0_ST_UI_ENTITIES[] = {
 #define SCREEN_Y_POSITION 		LEVEL_Y_SIZE - __SCREEN_HEIGHT
 #define SCREEN_Z_POSITION 		0
 
-PositionedEntityROMDef LEVEL_0_0_0_ST_ENTITIES[] = {
+
+/*---------------------------------ASSETS----------------------------------*/
+/* Don't forget to place the NULL markers at the end of each array.
+ * It's the only way the engine has to know that it must stop reading 
+ * the stage's/ui's textures ante enties
+ */
+
+PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] = {
 
 	{&TREE_BG_BACK_SB,	 	{0, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
 	{&TREE_BG_FRONT_SB, 	{0, SCREEN_Y_POSITION + 168, LAYER_3}, NULL},
@@ -148,7 +76,37 @@ PositionedEntityROMDef LEVEL_0_0_0_ST_ENTITIES[] = {
 	{NULL, {0,0,0}, NULL},
 };
 
-StageROMDef LEVEL_0_0_0_ST = {
+PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_UI_ENTITIES[] = {
+		
+	{&GUI_IM, 				{__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT - 8, -4}, NULL},
+	{NULL, {0,0,0}, NULL}
+};
+
+TextureROMDef* LEVEL_1_1_ROOM_1_ST_TEXTURES[] = {
+		
+	&COIN_TX, 
+	&SAW_BLADE_TX,
+	&SAW_BLADE_LANE_V_6_TX,
+	&GUI_TX,
+	&CLOUDS_TX,
+	&TREE_BG_FRONT_TX,
+	&TREE_BG_BACK_TX,
+	&FLOOR_4x10_L_TX,
+	&FLOOR_4x10_R_TX,
+	&FLOOR_16x8_L_TX,
+	&FLOOR_16x8_R_TX,
+	&FLOOR_4x3_FLOAT_L_TX,
+	&FLOOR_4x3_FLOAT_R_TX,
+	&DOOR_TX,
+	&MOUND_1_TX,
+	&MOUND_2_TX,
+	NULL
+};
+
+
+/*----------------------------STAGE DEFINITION-----------------------------*/
+
+StageROMDef LEVEL_1_1_ROOM_1_ST = {
 		
 		// size
 		{
@@ -159,6 +117,7 @@ StageROMDef LEVEL_0_0_0_ST = {
 			// z
 			LEVEL_Z_SIZE
 		},
+
 		//initial screen position
 		{
 			// x
@@ -168,18 +127,20 @@ StageROMDef LEVEL_0_0_0_ST = {
 			// z
 			ITOFIX19_13(SCREEN_Z_POSITION)
 		},
+
 		//(const u16 (*)[])WORLD_0_0_0_BGM,
 		//textures to preload
-		(TextureDefinition**)LEVEL_0_0_0_ST_TEXTURES,
+		(TextureDefinition**)LEVEL_1_1_ROOM_1_ST_TEXTURES,
+
 		//UI 
 		{
-			LEVEL_0_0_0_ST_UI_ENTITIES,
+			LEVEL_1_1_ROOM_1_ST_UI_ENTITIES,
 			__TYPE(UI),
 		},
+
 		//entities
-		LEVEL_0_0_0_ST_ENTITIES,
+		LEVEL_1_1_ROOM_1_ST_ENTITIES,
+
 		//background music		
 		NULL
 };
-
-
