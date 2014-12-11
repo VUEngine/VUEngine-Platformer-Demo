@@ -136,7 +136,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner){
 	this->mode = kPaused;
 	
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
 
 	// reset clock and render time
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
