@@ -22,8 +22,6 @@
 #define OBJECTS_DEFINITIONS_H_
 
 /*---------------------------------INCLUDES--------------------------------*/
-//include project's common images
-#include "common/images/images.h"
 
 //include project's images
 #include "images/images.h"

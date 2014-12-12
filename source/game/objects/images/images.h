@@ -51,5 +51,6 @@ extern EntityDefinition ADJUSTMENT_SCREEN_BG_IM;
 extern EntityDefinition ADJUSTMENT_SCREEN_ICON_IM_L;
 extern EntityDefinition ADJUSTMENT_SCREEN_ICON_IM_R;
 extern EntityDefinition PRECAUTION_SCREEN_JAPANESE_IM;
+extern EntityDefinition VBJAENGINE_LOGO_IM;
 
 #endif /*IMAGE_H_*/

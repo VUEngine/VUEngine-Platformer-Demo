@@ -56,7 +56,7 @@ int main(void){
 
 	// TitleScreenStage is the next state after the splash screen sequence
 
-	// Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());
+	Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());
 	// for quick level testing comment the line above and uncomment the line below
 	// Game_start(Game_getInstance(), (State)TitleScreenState_getInstance());
 	 Game_start(Game_getInstance(), (State)PlatformerLevelState_getInstance());

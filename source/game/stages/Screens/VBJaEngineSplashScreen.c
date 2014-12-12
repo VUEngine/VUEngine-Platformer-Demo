@@ -31,10 +31,15 @@
  * the stage's/ui's textures ante enties
  */
 
+PositionedEntityROMDef VBJAE_ST_UI_ENTITIES[] = {
+
+	{&VBJAENGINE_LOGO_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{NULL,{0,0,0}, NULL},
+};
+
 PositionedEntityROMDef VBJAE_ST_ENTITIES[] = {
 
-	{&VBJAE_LEFT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
-	{&VBJAE_RIGHT_IM, {__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL},
+	{&VBJAENGINE_BG_SB, {0, __SCREEN_HEIGHT >> 1, LAYER_0 + 32}, NULL},
 	{NULL,{0,0,0}, NULL},
 };
 
@@ -68,8 +73,8 @@ StageROMDef VBJAE_ST = {
 		
 		//UI entities
 		{
-			NULL,
-			NULL
+			VBJAE_ST_UI_ENTITIES,
+			__TYPE(UI),
 		},
 		
 		//entities

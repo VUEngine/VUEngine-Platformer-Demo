@@ -154,6 +154,16 @@ static void SplashScreenState_enter(SplashScreenState this, void* owner){
 // state's execute
 static void SplashScreenState_execute(SplashScreenState this, void* owner){
 
+	if (this->currentScreen == kVbJaeScreen) {
+	
+		VBVec3D translation = {
+			ITOFIX19_13(1),
+			ITOFIX19_13(0), 
+			ITOFIX19_13(0)
+		};
+
+		Screen_move(Screen_getInstance(), translation, false);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

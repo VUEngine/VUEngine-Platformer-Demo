@@ -27,10 +27,7 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-#include <Texture.h>
-
-#include "chars.h"
-#include "maps.h"
+#include <Image.h>
 
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -42,58 +39,98 @@
  * ---------------------------------------------------------------------------------------------------------
  */
 
-extern const u16 FontTiles[];
+extern BYTE VBJaEngineLogoLTiles[];
+extern BYTE VBJaEngineLogoRTiles[];
+extern BYTE VBJaEngineLogoLMap[];
+extern BYTE VBJaEngineLogoRMap[];
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef VBJAE_LEFT_TX = {
+
+TextureROMDef VBJAENGINE_LOGO_L_TX = {
 		// Chargroup
-		{			
+		{				
 			// numChars
-			97,
+			69,
 			
 			// allocation type
 			__NO_ANIMATED,
-			
-			// chDefinition				 
-			VBJAE_LEFT_CH,	
+
+			// chDefinition
+			VBJaEngineLogoLTiles,	
 		},
 		
 		// bgmap definition
-		VBJAE_LEFT_MP,
+		VBJaEngineLogoLMap,
 		
 		// cols (max 48)
-		19,
+		17,
 		
 		// rows (max 28)
-		11,
+		9,
 		
 		//pallet number,
 		0
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef VBJAE_RIGHT_TX = {
+TextureROMDef VBJAENGINE_LOGO_R_TX = {
 		// Chargroup
-		{			
-			// numChars,
-			97,
+		{					
+			// numChars
+			68,
 			
 			// allocation type
 			__NO_ANIMATED,
 			
-			// chDefinition				 
-			VBJAE_RIGHT_CH,	
+			// chDefinition
+			VBJaEngineLogoRTiles,
 		},
 		
 		// bgmap definition
-		VBJAE_RIGHT_MP,
+		VBJaEngineLogoRMap,
 		
 		// cols (max 48)
-		19,
+		17,
 		
 		// rows (max 28)
-		11,
+		9,
 		
 		//pallet number,
 		0
+};
+
+SpriteROMDef VBJAENGINE_LOGO_IM_SPRITES[] = {
+
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&VBJAENGINE_LOGO_L_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_LON,
+
+		// parallax displacement
+		0,
+	},
+
+	// Sprite
+	{
+		// the texture
+		(TextureDefinition*)&VBJAENGINE_LOGO_R_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_RON,
+
+		// parallax displacement
+		0,
+	},
+};
+
+ImageROMDef VBJAENGINE_LOGO_IM = {
+	__TYPE(Image),  
+	__SPRITE_ARRAY(VBJAENGINE_LOGO_IM_SPRITES),		   
 };

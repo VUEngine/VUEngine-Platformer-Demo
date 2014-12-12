@@ -25,3 +25,5 @@
 #include "VBJaEngineBG.c"  
 #include "VBJaEngineBGDark.c"  
 #include "VBJaEngineLogo.c"  
+#include "VBJaEngineLogoL.c"  
+#include "VBJaEngineLogoR.c"  
