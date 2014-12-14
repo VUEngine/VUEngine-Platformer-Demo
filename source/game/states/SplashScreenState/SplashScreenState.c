@@ -190,15 +190,14 @@ static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, 
 			
 				case kAdjustmentScreen:
 
-					SplashScreenState_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
-					Printing_text(I18n_getText(I18n_getInstance(), STR_PRECAUTION), 8, 6);
 					this->currentScreen = kPrecautionScreen;
+					SplashScreenState_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
 					break;
 						
 				case kPrecautionScreen:
 
-					SplashScreenState_loadStage(this, (StageDefinition*)&VBJAE_ST);
 					this->currentScreen = kVbJaeScreen;
+					SplashScreenState_loadStage(this, (StageDefinition*)&VBJAE_ST);
 					break;
 						
 				case kVbJaeScreen:
@@ -225,6 +224,15 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
 	VIP_REGS[BKCOL] = 0x00;
 
 	GameState_loadStage((GameState)this, stageDefinition, false, true);
+
+	// do screen specific preparations
+	switch(this->currentScreen){
+
+		case kPrecautionScreen:
+
+			Printing_text(I18n_getText(I18n_getInstance(), STR_PRECAUTION), 8, 6);
+			break;
+	}
 
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
