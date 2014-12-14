@@ -3,7 +3,8 @@
  * Ensure this file is encoded in ANSI for umlauts to work.
  */
 
-static char* Lang_EN[] = {
+static char* Lang_EN[] =
+{
 
 // STR_LANGUAGE_NAME
 "English",

@@ -1,4 +1,5 @@
 /.make-*/
+/.idea/
 /.settings/
 /old/
 *.a

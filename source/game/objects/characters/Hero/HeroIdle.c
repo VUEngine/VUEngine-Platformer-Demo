@@ -1,135 +1,99 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												INCLUDES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
 
 #include "HeroIdle.h"
 #include "HeroMoving.h"
 #include "Hero.h"
 
 #ifdef __DEBUG
-
 //#include "../../levels/game/GameLevel.h"
 #endif
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												PROTOTYPES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
 
+//---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 static void HeroIdle_constructor(HeroIdle this);
-
-// class's destructor
 void HeroIdle_destructor(HeroIdle this);
-
-// state's enter
 void HeroIdle_enter(HeroIdle this, void* owner);
-
-// state's execute
 void HeroIdle_execute(HeroIdle this, void* owner);
-
-// state's exit
 void HeroIdle_exit(HeroIdle this, void* owner);
-
-// state's on message
 u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram);
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 											CLASS'S DEFINITION
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+
+//---------------------------------------------------------------------------------------------------------
+// 											CLASS'S DEFINITION
+//---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(HeroIdle);
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												CLASS'S METHODS
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 __SINGLETON(HeroIdle);
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//---------------------------------------------------------------------------------------------------------
+// 												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
+
 // class's constructor
-void HeroIdle_constructor(HeroIdle this){
-
+void HeroIdle_constructor(HeroIdle this)
+{
 	// construct base
 	__CONSTRUCT_BASE(State);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-void HeroIdle_destructor(HeroIdle this){
-
+void HeroIdle_destructor(HeroIdle this)
+{
 	// destroy base
 //	__SINGLETON_DESTROY(State);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
-void HeroIdle_enter(HeroIdle this, void* owner){
-	
-	// make sure it's not moving anymore 
+void HeroIdle_enter(HeroIdle this, void* owner)
+{
+	// make sure it's not moving anymore
 	Actor_stopMovement((Actor)owner);
 	
 	// reset timer for blinking
 	Hero_resetActionTime((Hero)owner);
 	
-	if(Hero_isMovingOverZ((Hero)owner)){
-		
-		if(__NEAR == InGameEntity_getDirection((InGameEntity)owner).z){
-
+	if (Hero_isMovingOverZ((Hero)owner))
+    {
+		if (__NEAR == InGameEntity_getDirection((InGameEntity)owner).z)
+        {
 			// show animation
 			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Front");
 		}
-		else{
-			
+		else
+		{
 			// show animation
 			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Back");
 			
 		}
 	}
-	else{
-	
+	else
+	{
 		// show animation
 		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
 	}
@@ -145,24 +109,22 @@ void HeroIdle_enter(HeroIdle this, void* owner){
 #endif
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
-void HeroIdle_execute(HeroIdle this, void* owner){
-	
+void HeroIdle_execute(HeroIdle this, void* owner)
+{
 	/*
-	if(!Hero_isMovingOverZ((Hero)owner)){
-		
-		
+	if (!Hero_isMovingOverZ((Hero)owner))
+    {
 		// if up key pressed
-		if(!((K_LU | K_LD) & vbKeyPressed())){
-	
-			// make mario to look to the side
+		if (!((K_LU | K_LD) & vbKeyPressed()))
+        {
+			// make hero to look to the side
 			Hero_lookSide((Hero)owner);
 		}
 	}
 	
-	if(!(K_B & vbKeyPressed())){
-		
+	if (!(K_B & vbKeyPressed()))
+    {
 		// check if must thrown an object
 		//Hero_throwObject((Hero)owner);
 	}
@@ -170,20 +132,16 @@ void HeroIdle_execute(HeroIdle this, void* owner){
 	
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's exit 
-void HeroIdle_exit(HeroIdle this, void* owner){
-	
+// state's exit
+void HeroIdle_exit(HeroIdle this, void* owner)
+{
 }
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
-
-	switch(Telegram_getMessage(telegram)){
-	
+u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
+{
+	switch(Telegram_getMessage(telegram))
+    {
 		case kCollision:
 
 			return false;
@@ -198,41 +156,38 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 
 		case kKeyHold:
 		case kKeyPressed:
+
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-				if((K_LL | K_LR | K_A) & pressedKey){
-	
-						/* 
-						if((K_LR & pressedKey ) && (K_LL & pressedKey )){
-						
-							return true;
-						}
-	*/
-						Hero_checkDirection((Hero)owner, pressedKey, "Idle");					
-	
-						Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
-						
-						if(K_A & pressedKey ){
+				if ((K_LL | K_LR | K_A) & pressedKey)
+                {
+                    /*
+                    if ((K_LR & pressedKey ) && (K_LL & pressedKey ))
+                    {
 
-							Hero_jump((Hero)owner, true, true);
-						}
+                        return true;
+                    }
+                    */
+                    Hero_checkDirection((Hero)owner, pressedKey, "Idle");
 
-						return true;
-						break;
+                    Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
+
+                    if (K_A & pressedKey )
+                    {
+                        Hero_jump((Hero)owner, true, true);
+                    }
+
+                    return true;
+                    break;
 				}
 
 				// if up key pressed
-				if(K_LU & pressedKey){
-	
-					// make mario to look to the player
+				if (K_LU & pressedKey)
+                {
+					// make hero to look to the player
 					Hero_lookBack((Hero)owner);
-	
-					// check if there is a bridge
-					Hero_checkIfBridge((Hero)owner, K_LU);
-	
-					// check if there is a bridge
-					Hero_checkIfBridge((Hero)owner, K_LU);
+
 					/*
 					vbjPrintInt(doPower(4,2), 1, 16);
 					vbjPrintInt(doPower1(4,2), 5, 16);
@@ -246,9 +201,10 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 						int maxPower = 5;
 						int distance = 10;
 						int initBase = 2;
-						for(i= initBase;i <= baseLimit; i++){
-							
-							for(j = 1;j <= maxPower; j++){
+						for(i= initBase;i <= baseLimit; i++)
+                        {
+							for(j = 1;j <= maxPower; j++)
+                            {
 								int powerA = power(i, j);
 								int powerB = power1(i, j);
 								Printing_int(i, (i - initBase)* distance, j+2);
@@ -263,21 +219,14 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 					}
 					*/
 
-
 					return true;
 				}
 				
 				// if up key pressed
-				if(K_LD & pressedKey){
-	
-					// make mario to look away the player
+				if (K_LD & pressedKey)
+                {
+					// make hero to look away the player
 					Hero_lookFront((Hero)owner);
-	
-					// check if there is a bridge
-					Hero_checkIfBridge((Hero)owner, K_LD);
-	
-					// check if there is a bridge
-					Hero_checkIfBridge((Hero)owner, K_LD);
 	
 					return true;
 				}	
@@ -286,10 +235,11 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 				{
 					int alpha = 0;
 					// if up key pressed
-					if(K_LT & pressedKey){
-						
+					if (K_LT & pressedKey)
+                    {
 						alpha--;
-						if(alpha < 0){
+						if (alpha < 0)
+                        {
 							alpha = 511;
 						}
 						//Sprite_rotate(Entity_getSprite((Entity)owner), alpha);
@@ -297,9 +247,11 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 					}
 					
 					// if up key pressed
-					if(K_RT & pressedKey){
+					if (K_RT & pressedKey)
+{
 						alpha++;
-						if(alpha > 511){
+						if (alpha > 511)
+{
 							alpha = 0;
 						}				
 						//Sprite_rotate(Entity_getSprite((Entity)owner), alpha);
@@ -312,4 +264,3 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram){
 	}
 	return false;
 }
-

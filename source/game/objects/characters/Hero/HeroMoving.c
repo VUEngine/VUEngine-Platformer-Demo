@@ -1,33 +1,26 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												INCLUDES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
 
 #include "HeroMoving.h"
 #include "HeroIdle.h"
@@ -37,59 +30,33 @@
 #include <MessageDispatcher.h>
 
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												PROTOTYPES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void HeroMoving_constructor(HeroMoving this);
-
-// class's destructor
 void HeroMoving_destructor(HeroMoving this);
-
-// state's enter
 void HeroMoving_enter(HeroMoving this, void* owner);
-
-// state's execute
 void HeroMoving_execute(HeroMoving this, void* owner);
-
-// state's exit
 void HeroMoving_exit(HeroMoving this, void* owner);
-
-// state's on message
 u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram);
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 											CLASS'S DEFINITION
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+
+//---------------------------------------------------------------------------------------------------------
+// 											CLASS'S DEFINITION
+//---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(HeroMoving);
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												CLASS'S METHODS
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 __SINGLETON(HeroMoving);
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// class's constructor
-void HeroMoving_constructor(HeroMoving this){
 
+//---------------------------------------------------------------------------------------------------------
+// 												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
+
+// class's constructor
+void HeroMoving_constructor(HeroMoving this)
+{
 	// construct base
 	__CONSTRUCT_BASE(State);
 	
@@ -97,21 +64,16 @@ void HeroMoving_constructor(HeroMoving this){
 	this->bouncing = false;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-void HeroMoving_destructor(HeroMoving this){
-
+void HeroMoving_destructor(HeroMoving this)
+{
 	// destroy base
 	__SINGLETON_DESTROY(State);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
-void HeroMoving_enter(HeroMoving this, void* owner){
-	
-	// not in bridge
-	//Hero_setBridge((Hero)owner, NULL);
-
+void HeroMoving_enter(HeroMoving this, void* owner)
+{
 	// start moving (animations, etc)
 	// correct gap accorging to animation
 	Hero_setGap((Hero)owner);
@@ -122,38 +84,36 @@ void HeroMoving_enter(HeroMoving this, void* owner){
 #endif
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
-void HeroMoving_execute(HeroMoving this, void* owner){
-
+void HeroMoving_execute(HeroMoving this, void* owner)
+{
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's exit 
-void HeroMoving_exit(HeroMoving this, void* owner){
-	
+// state's exit
+void HeroMoving_exit(HeroMoving this, void* owner)
+{
 	Hero_disableBoost((Hero)owner);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
-
-	switch(Telegram_getMessage(telegram)){
-
+u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
+{
+	switch(Telegram_getMessage(telegram))
+    {
 		case kKeyPressed:
+
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
 				// check direction
-				if((K_LL | K_LR ) & pressedKey){
-					
+				if ((K_LL | K_LR ) & pressedKey)
+                {
 					Hero_checkDirection((Hero)owner, pressedKey, "Walk");					
 				}
 
 				// check if jump
-				if(K_A & pressedKey){
-					
+				if (K_A & pressedKey)
+                {
 					Hero_jump((Hero)owner, false, !this->bouncing);			
 				}
 			}		
@@ -162,43 +122,45 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 			break;
 			
 		case kKeyUp:
+
 			{
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-				if((K_LL | K_LR) & releasedKey){
-	
+				if ((K_LL | K_LR) & releasedKey)
+                {
 					Velocity velocity = Body_getVelocity(Actor_getBody((Actor)owner));
 					
-					if (0 < abs(velocity.x)){
-						
+					if (0 < abs(velocity.x))
+                    {
 						Hero_stopMovement((Hero)owner);		
 					}
-					else {
-						
+					else
+                    {
 						StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)HeroIdle_getInstance());					
 					}
 				}
 				
-				if(K_B & releasedKey){
-					
+				if (K_B & releasedKey)
+                {
 					Hero_disableBoost((Hero)owner);
 				}
 			}
 			break;
 	
 		case kKeyHold:
+
 			{
 				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
 
 				// check direction
-				if((K_LL | K_LR ) & holdKey){
-					
+				if ((K_LL | K_LR ) & holdKey)
+                {
 					Hero_addForce((Hero)owner, this->mustCheckDirection);					
 					this->mustCheckDirection = false;
 				}
 				
-				if(K_B & holdKey){
-					
+				if (K_B & holdKey)
+                {
 					Hero_enableBoost((Hero)owner);
 				}
 			}
@@ -210,6 +172,7 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram){
 			break;
 
 		case kBodyStartedMoving:
+
 			{
 				int axis = *(int*)Telegram_getExtraInfo(telegram);
 				// start movement

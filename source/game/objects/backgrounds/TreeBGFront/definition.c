@@ -1,79 +1,73 @@
-/* TREE_BG_FRONT: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												INCLUDES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
 
 #include <ScrollBackground.h>
 
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												DEFINITIONS
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
 
 extern BYTE TreeBGFrontTiles[];
 extern BYTE TreeBGFrontMap[];
 
 
-TextureROMDef TREE_BG_FRONT_TX = {
-		// Chargroup
-		{
-			// numChars
-			71,
-			
-			// allocation type
-			__NO_ANIMATED,
-			
-			// chDefinition				 
-			TreeBGFrontTiles,
-		},
-		
-		// bgmap definition
-		TreeBGFrontMap,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		28,
-		
-		//pallet number,
-		0
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+
+TextureROMDef TREE_BG_FRONT_TX =
+{
+    {
+        // number of chars
+        71,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        TreeBGFrontTiles,
+    },
+
+    // bgmap definition
+    TreeBGFrontMap,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    28,
+
+    // palette number
+    0,
 };
 
-SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {
-
-	// Sprite
+SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] =
+{
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&TREE_BG_FRONT_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -86,9 +80,8 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {
 		0,
 
 	},
-	// Sprite
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&TREE_BG_FRONT_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -99,11 +92,11 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] = {
 
 		// parallax displacement
 		0,
-
 	},
 };
 
-ScrollBackgroundROMDef TREE_BG_FRONT_SB = {
-	__TYPE(ScrollBackground),  
-	__SPRITE_ARRAY(TREE_BG_FRONT_SB_SPRITES),   
+ScrollBackgroundROMDef TREE_BG_FRONT_SB =
+{
+	__TYPE(ScrollBackground),
+	__SPRITE_ARRAY(TREE_BG_FRONT_SB_SPRITES),
 };

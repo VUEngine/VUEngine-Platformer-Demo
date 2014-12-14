@@ -1,34 +1,46 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-/*---------------------------------INCLUDES--------------------------------*/
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
+
 #include <libgccvb.h>
 #include "Coin.h"
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
 
 extern BYTE CoinLTiles[];
 extern BYTE CoinLMap[];
 
 
-// a function which defines the frames to play
-AnimationFunctionROMDef COIN_SPIN_ANIM = {
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
 
+// a function which defines the frames to play
+AnimationFunctionROMDef COIN_SPIN_ANIM =
+{
 	// number of frames of this animation function
 	4,
 	
@@ -46,12 +58,11 @@ AnimationFunctionROMDef COIN_SPIN_ANIM = {
 	
 	// function's name
 	"Spin",
-	
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef COIN_TAKEN_ANIM = {
-
+AnimationFunctionROMDef COIN_TAKEN_ANIM =
+{
 	// number of frames of this animation function
 	3,
 	
@@ -69,14 +80,13 @@ AnimationFunctionROMDef COIN_TAKEN_ANIM = {
 	
 	// function's name
 	"Taken",
-	
 };
 
 // an animation definition
-AnimationDescriptionROMDef COIN_ANIM = {
-	
+AnimationDescriptionROMDef COIN_ANIM =
+{
 	// number of animation frames
-	7, 
+	7,
 	
 	// animation functions
 	{
@@ -84,41 +94,38 @@ AnimationDescriptionROMDef COIN_ANIM = {
 		(AnimationFunction*)&COIN_TAKEN_ANIM,
 		NULL,
 	}
-	
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-TextureROMDef COIN_TX = {
-		// Chargroup
-		{			
-			// numChars
-			28,
-			
-			// allocation type
-			__ANIMATED_SHARED,
-			
-			// chDefinition				 
-			CoinLTiles,	
-		},
-		
-		// bgmap definition
-		CoinLMap,
-		
-		// cols (max 48)
-		2,
-		
-		// rows (max 28)
-		2,
-		
-		//pallet number,
-		1
+TextureROMDef COIN_TX =
+{
+    {
+        // number of chars
+        28,
+
+        // allocation type
+        __ANIMATED_SHARED,
+
+        // char definition
+        CoinLTiles,
+    },
+
+    // bgmap definition
+    CoinLMap,
+
+    // cols (max 48)
+    2,
+
+    // rows (max 28)
+    2,
+
+    // palette number
+    1,
 };
 
-SpriteROMDef COIN_SPRITES[] = {
-
-	// Sprite
+SpriteROMDef COIN_SPRITES[] =
+{
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&COIN_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -130,30 +137,29 @@ SpriteROMDef COIN_SPRITES[] = {
 		// parallax displacement
 		0,
 	},
-
 };
 
-AnimatedInGameEntityROMDef COIN_MC = {
-		{
-			{			
-				__TYPE(Coin),
-				__SPRITE_ARRAY(COIN_SPRITES),		   
-			},
-			
-			//collision detection gap			
-			//up,	down,	left,	right,
-			{4,		4,		4,		4},
-			
-			// in game type
-			kCoin,
-			
-			// deep
-			4,
-		},
-		
-		// pointer to the animation definition for the item
-		(AnimationDescription*)&COIN_ANIM,
-		
-		// initial animation
-		"Spin"
+AnimatedInGameEntityROMDef COIN_MC =
+{
+    {
+        {
+            __TYPE(Coin),
+            __SPRITE_ARRAY(COIN_SPRITES),
+        },
+
+        // collision detection gap (up, down, left, right)
+        {4, 4, 4, 4},
+
+        // in game type
+        kCoin,
+
+        // deep
+        4,
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&COIN_ANIM,
+
+    // initial animation
+    "Spin",
 };

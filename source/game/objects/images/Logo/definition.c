@@ -1,43 +1,33 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												INCLUDES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
 
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												DEFINITIONS
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
 
 extern BYTE SuperAwesomeTiles[];
 extern BYTE SuperAwesomeMap[];
@@ -49,63 +39,66 @@ extern BYTE PlatformerDemoLogoRTiles[];
 extern BYTE PlatformerDemoLogoRMap[];
 
 
-TextureROMDef LOGO_LEFT_TX = {
-		// Chargroup
-		{				
-			// numChars
-			166,
-			
-			// allocation type
-			__NO_ANIMATED,
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
 
-			// chDefinition
-			PlatformerDemoLogoLTiles,	
-		},
-		
-		// bgmap definition
-		PlatformerDemoLogoLMap,
-		
-		// cols (max 48)
-		42,
-		
-		// rows (max 28)
-		7,
-		
-		//pallet number,
-		0
+TextureROMDef LOGO_LEFT_TX =
+{
+    {
+        // number of chars
+        166,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        PlatformerDemoLogoLTiles,
+    },
+
+    // bgmap definition
+    PlatformerDemoLogoLMap,
+
+    // cols (max 48)
+    42,
+
+    // rows (max 28)
+    7,
+
+    // palette number
+    0,
 };
 
-TextureROMDef LOGO_RIGHT_TX = {
-		// Chargroup
-		{					
-			// numChars
-			166,
-			
-			// allocation type
-			__NO_ANIMATED,
-			
-			// chDefinition
-			PlatformerDemoLogoRTiles,
-		},
-		
-		// bgmap definition
-		PlatformerDemoLogoRMap,
-		
-		// cols (max 48)
-		42,
-		
-		// rows (max 28)
-		7,
-		
-		//pallet number,
-		0
+TextureROMDef LOGO_RIGHT_TX =
+{
+    {
+        // number of chars
+        166,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        PlatformerDemoLogoRTiles,
+    },
+
+    // bgmap definition
+    PlatformerDemoLogoRMap,
+
+    // cols (max 48)
+    42,
+
+    // rows (max 28)
+    7,
+
+    // palette number
+    0,
 };
 
-SpriteROMDef LOGO_IM_SPRITES[] = {
-
-	// Sprite
+SpriteROMDef LOGO_IM_SPRITES[] =
+{
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&LOGO_LEFT_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -118,9 +111,8 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 		0,
 	},
 
-	// Sprite
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&LOGO_RIGHT_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -134,43 +126,44 @@ SpriteROMDef LOGO_IM_SPRITES[] = {
 	},
 };
 
-ImageROMDef LOGO_IM = {
-	__TYPE(Image),  
-	__SPRITE_ARRAY(LOGO_IM_SPRITES),		   
+ImageROMDef LOGO_IM =
+{
+	__TYPE(Image),
+	__SPRITE_ARRAY(LOGO_IM_SPRITES),
 };
 
 
-TextureROMDef SUPER_AWESOME_TX = {
-		// Chargroup
-		{				
-			// numChars
-			39,
-			
-			// allocation type
-			__NO_ANIMATED,
-			
-			// chDefinition			 
-			SuperAwesomeTiles,	
-		},
-		
-		// bgmap definition
-		SuperAwesomeMap,
-		
-		// cols (max 48)
-		19,
-		
-		// rows (max 28)
-		2,
-		
-		//pallet number,
-		0
+TextureROMDef SUPER_AWESOME_TX =
+{
+    {
+        // number of chars
+        39,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        SuperAwesomeTiles,
+    },
+
+    // bgmap definition
+    SuperAwesomeMap,
+
+    // cols (max 48)
+    19,
+
+    // rows (max 28)
+    2,
+
+    // palette number
+    0,
 };
 
-SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
+SpriteROMDef SUPER_AWESOME_IM_SPRITES[] =
+{
 
-	// Sprite
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&SUPER_AWESOME_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -183,9 +176,8 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 		0,
 	},
 
-	// Sprite
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&SUPER_AWESOME_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -196,43 +188,43 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] = {
 	},
 };
 
-ImageROMDef SUPER_AWESOME_IM = {
-	__TYPE(Image),  
-	__SPRITE_ARRAY(SUPER_AWESOME_IM_SPRITES),		   
+ImageROMDef SUPER_AWESOME_IM =
+{
+	__TYPE(Image),
+	__SPRITE_ARRAY(SUPER_AWESOME_IM_SPRITES),
 };
 
 
-TextureROMDef VBJAENGINE_TX = {
-		// Chargroup
-		{					
-			// numChars
-			56,
-			
-			// allocation type
-			__NO_ANIMATED,
-			
-			// chDefinition			 
-			VBJaEngineLogoTiles,
-		},
-		
-		// bgmap definition
-		VBJaEngineLogoMap,
-		
-		// cols (max 48)
-		16,
-		
-		// rows (max 28)
-		4,
-		
-		//pallet number,
-		0
+TextureROMDef VBJAENGINE_TX =
+{
+    {
+        // number of chars
+        56,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        VBJaEngineLogoTiles,
+    },
+
+    // bgmap definition
+    VBJaEngineLogoMap,
+
+    // cols (max 48)
+    16,
+
+    // rows (max 28)
+    4,
+
+    // palette number
+    0,
 };
 
-SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
-
-	// Sprite
+SpriteROMDef VBJAENGINE_IM_SPRITES[] =
+{
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&VBJAENGINE_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -241,10 +233,8 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
 		// display mode
 		WRLD_LON,
 	},
-
-	// Sprite
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&VBJAENGINE_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -255,7 +245,8 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] = {
 	},
 };
 
-ImageROMDef VBJAENGINE_IM = {
-	__TYPE(Image),  
-	__SPRITE_ARRAY(VBJAENGINE_IM_SPRITES),		   
+ImageROMDef VBJAENGINE_IM =
+{
+	__TYPE(Image),
+	__SPRITE_ARRAY(VBJAENGINE_IM_SPRITES),
 };
