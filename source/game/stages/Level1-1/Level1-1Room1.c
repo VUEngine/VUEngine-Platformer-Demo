@@ -37,7 +37,7 @@
 #define LEVEL_Y_SIZE 	2000
 #define LEVEL_Z_SIZE 	2000
 
-#define SCREEN_X_POSITION 		0
+#define SCREEN_X_POSITION 		1000
 #define SCREEN_Y_POSITION 		LEVEL_Y_SIZE - __SCREEN_HEIGHT
 #define SCREEN_Z_POSITION 		0
 
@@ -50,13 +50,20 @@
 
 PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] = {
 
-	{&TREE_BG_BACK_SB,	 	{0, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
-	{&TREE_BG_FRONT_SB, 	{0, SCREEN_Y_POSITION + 168, LAYER_3}, NULL},
-	{&CLOUDS_SB, 			{0, SCREEN_Y_POSITION - 16, LAYER_2}, NULL}, 
+	// since these are always visible
+	// it doesn't matter that they are not logically
+	// placed in this definition
+	{&TREE_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
+	{&TREE_BG_FRONT_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 168, LAYER_3}, NULL},
+	{&CLOUDS_SB, 			{SCREEN_X_POSITION, SCREEN_Y_POSITION - 16, LAYER_2}, NULL}, 
+	{&HERO_MC, 				{SCREEN_X_POSITION + 80, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL},
+
+	// the following entities must be placed in logical (spatial) order,
+	// according to the level's disposition, for the streaming to work properly
+	// beware of edge case scenarios!
 	{&FLOOR_16x8_BG,		{72, SCREEN_Y_POSITION + LAYER_0_FLOOR, PLAYABLE_LAYER_0 + 2}, NULL},
 	{&MOUND_1_IM,			{96, SCREEN_Y_POSITION + LAYER_0_FLOOR - 32, LAYER_1}, NULL},
 	{&FLOOR_4x10_BG,		{155, SCREEN_Y_POSITION + LAYER_0_FLOOR - 8, PLAYABLE_LAYER_0 + 2 - 0.01f}, NULL},
-	{&HERO_MC, 				{60, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL},
 	{&COIN_MC, 				{146, SCREEN_Y_POSITION + LAYER_0_FLOOR - 56, PLAYABLE_LAYER_0 + 1}, NULL},
 	{&COIN_MC, 				{162, SCREEN_Y_POSITION + LAYER_0_FLOOR - 56, PLAYABLE_LAYER_0 + 1}, NULL},
 	{&SAW_BLADE_LANE_V_6_IM,{198, SCREEN_Y_POSITION + LAYER_0_FLOOR - 62, PLAYABLE_LAYER_0 + 1}, NULL},
@@ -164,7 +171,7 @@ StageROMDef LEVEL_1_1_ROOM_1_ST = {
 		//initial screen position
 		{
 			// x
-			ITOFIX19_13(SCREEN_Z_POSITION),
+			ITOFIX19_13(SCREEN_X_POSITION),
 			// y
 			ITOFIX19_13(SCREEN_Y_POSITION),
 			// z

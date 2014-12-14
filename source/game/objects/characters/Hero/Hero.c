@@ -1370,7 +1370,7 @@ int Hero_doMessage(Hero this, int message){
 
 	switch(message){
 	
-		case kStartLevel:
+		case kSetUpLevel:
 			
 			// I'm the focus actor
 			Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
@@ -1381,7 +1381,7 @@ int Hero_doMessage(Hero this, int message){
 					ITOFIX19_13(-PLAYABLE_LAYER_0),
 			};
 			
-			Screen_setFocuesEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
+			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 			return true;
 			break;
 	}

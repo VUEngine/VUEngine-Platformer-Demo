@@ -195,9 +195,13 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 
 			// pause physical simulations
 			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
-			
-			// fade screen
-			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+
+			// tell any interested entity
+			GameState_propagateMessage((GameState)this, kSetUpLevel);
+
+			// account for any entity's tranform modification
+			// during their initialization
+			GameState_transform((GameState)this);
 
 			// show level after 0.5 second
 			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
@@ -206,6 +210,9 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			break;
 
 		case kStartLevel:
+
+			// fade screen
+			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 
 			// erase message in 1 second
 			MessageDispatcher_dispatchMessage(2000, (Object)this, (Object)Game_getInstance(), kHideLevelMessage, NULL);
