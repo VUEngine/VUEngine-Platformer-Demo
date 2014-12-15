@@ -108,13 +108,11 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 
 	if(!VirtualList_find(this->coins, coin))
 	{
-		VirtualList_pushBack(this->coins, coin);
-		
-		Coin firstCoin = (Coin)VirtualList_front(this->coins);
+		Coin firstCoin = (Coin)VirtualList_back(this->coins);
 		VirtualList firstCoinSprites = Entity_getSprites((Entity)firstCoin);
 		
 		AnimatedSprite firstCoinSprite = (AnimatedSprite)VirtualList_front(firstCoinSprites);
-		
+
 		if(firstCoinSprite) 
 		{			
 			s8 currentFrame = AnimatedSprite_getActualFrame(firstCoinSprite);
@@ -124,6 +122,7 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 			
 			VirtualNode node = VirtualList_begin(coinSprites);
 			
+			
 			for(; node; node = VirtualNode_getNext(node))
 			{
 				AnimatedSprite coinSprite = (AnimatedSprite)VirtualNode_getData(node);
@@ -131,6 +130,8 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 				AnimatedSprite_setFrameDelay(coinSprite, frameDelay);
  			}
 		}
+		
+		VirtualList_pushBack(this->coins, coin);
 	}
 }
 
