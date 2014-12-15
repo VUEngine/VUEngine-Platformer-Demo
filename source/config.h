@@ -11,7 +11,7 @@
 // 											DEBUGGING
 //---------------------------------------------------------------------------------------------------------
 
-#define __DEBUG_TOOLS
+#undef __DEBUG_TOOLS
 #define __PRINT_FRAMERATE
 
 
@@ -19,8 +19,8 @@
 // 											EDITORS
 //---------------------------------------------------------------------------------------------------------
 
-#define __STAGE_EDITOR
-#define __ANIMATION_EDITOR
+#undef __STAGE_EDITOR
+#undef __ANIMATION_EDITOR
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,10 +75,13 @@
 #define __CAP_FPS						1
 
 // clock resolution
-#define __TIMER_RESOLUTION				1
+#define __TIMER_RESOLUTION				10
 
 // target frames per second
-#define __TARGET_FPS 					60
+// must be a muliple of 50 to being able to use a timer resolution
+// greater than 1
+// if finer control is needed, change timer resolution to 1
+#define __TARGET_FPS 					50
 
 // target frames per second
 #define __OPTIMUM_FPS 					__TARGET_FPS
@@ -91,10 +94,6 @@
 // set animation delays as if they are 60 FPS,
 // and multiply by this factor
 #define __FPS_ANIM_FACTOR 	(__TARGET_FPS / (float)__OPTIMUM_FPS)
-
-//you will hardly have more than ten mapcharacters in affine mode
-//on screen at once
-#define	__TOTAL_PARAM_OBJECTS 32
 
 //seconds that must elapse to call rest state... in seconds (15 minutes)
 #define __REST_DELAY 		900
@@ -125,12 +124,11 @@
 #define __POOL_64B_SIZE 	(__BLOCK_64B * 32)
 #define __POOL_48B_SIZE 	(__BLOCK_48B * 16)
 #define __POOL_32B_SIZE 	(__BLOCK_32B * 64)
+#define __POOL_28B_SIZE 	(__BLOCK_28B * 512)
 
 #ifdef __DEBUG_TOOLS
-#define __POOL_28B_SIZE 	(__BLOCK_28B * 512)
 #define __POOL_16B_SIZE 	(__BLOCK_16B * 512)
 #else
-#define __POOL_28B_SIZE 	(__BLOCK_28B * 256)
 #define __POOL_16B_SIZE 	(__BLOCK_16B * 128)
 #endif
 
