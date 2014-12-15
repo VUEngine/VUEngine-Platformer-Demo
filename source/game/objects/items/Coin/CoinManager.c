@@ -120,7 +120,6 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 			s8 currentFrame = AnimatedSprite_getActualFrame(firstCoinSprite);
 			s8 frameDelay = AnimatedSprite_getFrameDelay(firstCoinSprite);
 			
-			Printing_int(currentFrame, 1, 10);
 			VirtualList coinSprites = Entity_getSprites((Entity)coin);
 			
 			VirtualNode node = VirtualList_begin(coinSprites);
