@@ -1,32 +1,36 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
 
-/*---------------------------------INCLUDES--------------------------------*/
 #include <Stage.h>
 #include <objects.h>
 #include <macros.h>
 #include "stages/textures.h"
 
 
-/*---------------------------------DEFINES---------------------------------*/
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINES
+//---------------------------------------------------------------------------------------------------------
 
 #define LAYER_0_FLOOR	196
 #define LAYER_1_FLOOR	196 - 16
@@ -42,10 +46,11 @@
 #define SCREEN_Z_POSITION 		0
 
 
-/*---------------------------------ASSETS----------------------------------*/
-/* Don't forget to place the NULL markers at the end of each array.
- * It's the only way the engine has to know that it must stop reading 
- * the stage's/ui's textures ante enties
+//---------------------------------------------------------------------------------------------------------
+// 												ASSETS
+// ---------------------------------------------------------------------------------------------------------
+/* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
+ * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
 PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] = {
@@ -126,15 +131,15 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] = {
 	{NULL, {0,0,0}, NULL},
 };
 
-PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_UI_ENTITIES[] = {
-		
+PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_UI_ENTITIES[] =
+{
 	{&GUI_IM, 				{__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT - 8, -4}, NULL},
 	{NULL, {0,0,0}, NULL}
 };
 
-TextureROMDef* LEVEL_1_1_ROOM_1_ST_TEXTURES[] = {
-		
-	&COIN_TX, 
+TextureROMDef* LEVEL_1_1_ROOM_1_ST_TEXTURES[] =
+{
+	&COIN_TX,
 	&SAW_BLADE_TX,
 	&SAW_BLADE_LANE_V_6_TX,
 	&GUI_TX,
@@ -154,43 +159,45 @@ TextureROMDef* LEVEL_1_1_ROOM_1_ST_TEXTURES[] = {
 };
 
 
-/*----------------------------STAGE DEFINITION-----------------------------*/
+//---------------------------------------------------------------------------------------------------------
+// 											STAGE DEFINITION
+//---------------------------------------------------------------------------------------------------------
 
-StageROMDef LEVEL_1_1_ROOM_1_ST = {
-		
-		// size
-		{
-			// x
-			LEVEL_X_SIZE,
-			// y
-			LEVEL_Y_SIZE,
-			// z
-			LEVEL_Z_SIZE
-		},
+StageROMDef LEVEL_1_1_ROOM_1_ST =
+{
+    // size
+    {
+        // x
+        LEVEL_X_SIZE,
+        // y
+        LEVEL_Y_SIZE,
+        // z
+        LEVEL_Z_SIZE
+    },
 
-		//initial screen position
-		{
-			// x
-			ITOFIX19_13(SCREEN_X_POSITION),
-			// y
-			ITOFIX19_13(SCREEN_Y_POSITION),
-			// z
-			ITOFIX19_13(SCREEN_Z_POSITION)
-		},
+    //initial screen position
+    {
+        // x
+        ITOFIX19_13(SCREEN_X_POSITION),
+        // y
+        ITOFIX19_13(SCREEN_Y_POSITION),
+        // z
+        ITOFIX19_13(SCREEN_Z_POSITION)
+    },
 
-		//(const u16 (*)[])WORLD_0_0_0_BGM,
-		//textures to preload
-		(TextureDefinition**)LEVEL_1_1_ROOM_1_ST_TEXTURES,
+    //textures to preload
+    (TextureDefinition**)LEVEL_1_1_ROOM_1_ST_TEXTURES,
 
-		//UI 
-		{
-			LEVEL_1_1_ROOM_1_ST_UI_ENTITIES,
-			__TYPE(UI),
-		},
+    //UI
+    {
+        LEVEL_1_1_ROOM_1_ST_UI_ENTITIES,
+        __TYPE(UI),
+    },
 
-		//entities
-		LEVEL_1_1_ROOM_1_ST_ENTITIES,
+    //entities
+    LEVEL_1_1_ROOM_1_ST_ENTITIES,
 
-		//background music		
-		NULL
+    //background music
+    NULL
+    //(const u16 (*)[])WORLD_0_0_0_BGM,
 };

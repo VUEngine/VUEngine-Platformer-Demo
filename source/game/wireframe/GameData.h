@@ -2,7 +2,8 @@
 #ifndef __GameData_H
 #define __GameData_H
 
-const s32 Letter_S[] = {18, //total number of vertices
+const s32 Letter_S[] =
+{18, //total number of vertices
 	10, //total number of line end points
 	2,
 	//Distinct vertices
@@ -11,7 +12,8 @@ const s32 Letter_S[] = {18, //total number of vertices
 	//Vertex indexes
 	,0,1,1,2,2,3,3,4,4,5};
 
-const s32 Letter_T[] = {12, //total number of vertices
+const s32 Letter_T[] =
+{12, //total number of vertices
 	4, //total number of line end points
 	2,
 	//Distinct vertices
@@ -20,7 +22,8 @@ const s32 Letter_T[] = {12, //total number of vertices
 	//Vertex indexes
 	,0,1,2,3};
 
-const s32 Letter_A[] = {15, //total number of vertices
+const s32 Letter_A[] =
+{15, //total number of vertices
 	6, //total number of line end points
 	2,
 	//Distinct vertices
@@ -29,7 +32,8 @@ const s32 Letter_A[] = {15, //total number of vertices
 	//Vertex indexes
 	,0,1,1,2,3,4};
 	
-const s32 Letter_R[] = {21, //total number of vertices
+const s32 Letter_R[] =
+{21, //total number of vertices
 	10, //total number of line end points
 	2,
 	//Distinct vertices
@@ -38,7 +42,8 @@ const s32 Letter_R[] = {21, //total number of vertices
 	//Vertex indexes
 	,0,1,0,2,2,3,3,4,5,6};
 
-const s32 Letter_F[] = {15, //total number of vertices
+const s32 Letter_F[] =
+{15, //total number of vertices
 	6, //total number of line end points
 	2,
 	//Distinct vertices
@@ -47,7 +52,8 @@ const s32 Letter_F[] = {15, //total number of vertices
 	//Vertex indexes
 	,0,1,0,3,2,4};
 	
-const s32 Letter_O[] = {12, //total number of vertices
+const s32 Letter_O[] =
+{12, //total number of vertices
 	8, //total number of line end points
 	2,
 	//Distinct vertices
@@ -56,7 +62,8 @@ const s32 Letter_O[] = {12, //total number of vertices
 	//Vertex indexes
 	,0,1,1,2,2,3,3,0};
 	
-const s32 Letter_X[] = {12, //total number of vertices
+const s32 Letter_X[] =
+{12, //total number of vertices
 	4, //total number of line end points
 	2,
 	//Distinct vertices
@@ -65,7 +72,8 @@ const s32 Letter_X[] = {12, //total number of vertices
 	//Vertex indexes
 	,0,1,2,3};
 
-const u8 Level1[] = {
+const u8 Level1[] =
+{
 	(ROW_T_ENEMY    | 0x02),  0x88,0x80,0x00, 
 	                          0x77,0x81,0x00,
 	(ROW_T_OBSTACLE | 0x02),  0x20,0xF0,0x00, 
@@ -123,7 +131,8 @@ const u8 Level1[] = {
 	0x00 //End byte
 };
 
-const s32 Fighter[] = {48, //total number of vertices
+const s32 Fighter[] =
+{48, //total number of vertices
 	46, //total number of line end points
 	2,
 	//Distinct vertices
@@ -137,7 +146,8 @@ const s32 Fighter[] = {48, //total number of vertices
 	,5,0,5,2,0,2,6,7,7,8,8,6,0,9,9,10
 	,10,0,11,12,12,13,13,11,2,14,14,15,15,2};
 
-const s32 Tree[] = {39, //total number of vertices
+const s32 Tree[] =
+{39, //total number of vertices
 	32, //total number of line end points
 	2,
 	//Distinct vertices
@@ -150,7 +160,8 @@ const s32 Tree[] = {39, //total number of vertices
 	,8,9,9,10,10,11,11,8,8,12,9,12,10,12,11,12
 	};
 	
-const s32 Phantron[] = {66, //total number of vertices
+const s32 Phantron[] =
+{66, //total number of vertices
 	78, //total number of line end points
 	2,
 	//Distinct vertices
@@ -167,7 +178,8 @@ const s32 Phantron[] = {66, //total number of vertices
 	,10,0,16,17,17,18,18,16,18,19,19,16,19,20,20,16
 	,20,21,21,16,21,17,18,21,19,21,21,21,16,1};
 
-const s32 Dart[] = {48, //total number of vertices
+const s32 Dart[] =
+{48, //total number of vertices
 	50, //total number of line end points
 	2,
 	//Distinct vertices
@@ -182,7 +194,8 @@ const s32 Dart[] = {48, //total number of vertices
 	,9,10,10,8,8,9,11,12,12,7,7,11,13,14,14,15
 	,15,13};
 	
-const s32 GroundEffect[] = {6, //total number of vertices
+const s32 GroundEffect[] =
+{6, //total number of vertices
 	2, //total number of line end points
 	2,
 	//Distinct vertices
@@ -190,7 +203,8 @@ const s32 GroundEffect[] = {6, //total number of vertices
 	//Vertex indexes
 	,0,1};
 
-const s32 Building[] = {24, //total number of vertices
+const s32 Building[] =
+{24, //total number of vertices
 	24, //total number of line end points
 	2,
 	//Distinct vertices
@@ -201,7 +215,8 @@ const s32 Building[] = {24, //total number of vertices
 	,0,1,1,2,2,3,3,0,4,5,5,6,6,7,7,4
 	,0,4,1,5,2,6,3,7};
 	
-const s32 Laser[] = {12, //total number of vertices
+const s32 Laser[] =
+{12, //total number of vertices
 	12, //total number of line end points
 	2,
 	//Distinct vertices
@@ -210,7 +225,8 @@ const s32 Laser[] = {12, //total number of vertices
 	//Vertex indexes
 	,0,1,1,2,2,3,3,0,0,2,1,3};
 	
-const s32 HealthRing[] = {36, //total number of vertices
+const s32 HealthRing[] =
+{36, //total number of vertices
 	24, //total number of line end points
 	2,
 	//Distinct vertices
@@ -222,17 +238,20 @@ const s32 HealthRing[] = {36, //total number of vertices
 	,0,1,1,2,2,0,3,4,4,5,5,3,6,7,7,8
 	,8,6,9,10,10,11,11,9};
 
-objectData* EnemyObjectDataTable[] = {
+objectData* EnemyObjectDataTable[] =
+{
 	(objectData*)Phantron,
 	(objectData*)Dart
 };
 
-objectData* StaticObjectDataTable[] = {
+objectData* StaticObjectDataTable[] =
+{
 	(objectData*)Tree,
 	(objectData*)Building
 };
 
-const u8 ArwingPicture[] = {
+const u8 ArwingPicture[] =
+{
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 //Char 0
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x54,0x00,0x95,0x80,0xf5,0x60,0xf9 //Char 1
 ,0x00,0x00,0x00,0x00,0x00,0x00,0x55,0x55,0xa5,0xaa,0xff,0xff,0xff,0xff,0xff,0xff //Char 2
@@ -448,7 +467,8 @@ const u8 ArwingPicture[] = {
 ,0x00,0x00,0x01,0x00,0x15,0x00,0x54,0x00,0x40,0x05,0x00,0x10,0x00,0x00,0x00,0x00 //Char 212
 };
 
-const u16 ArwingPictureBGM[] = {
+const u16 ArwingPictureBGM[] =
+{
 0x0000,0x0000,0x0000,0x0000
 ,0x0000,0x0001,0x0002,0x0003
 ,0x0004,0x0005,0x0005,0x0006
@@ -852,7 +872,8 @@ const u16 ArwingPictureBGM[] = {
 };
 
 #define HIT_SOUND_SIZE 1836
-const u8 HitSound[] = {
+const u8 HitSound[] =
+{
 0x62,0x13,0x58,0xca,0x64,0x44,0x68,0x87
 ,0x78,0x98,0x77,0x88,0x76,0x53,0x22,0x24
 ,0x66,0x32,0x22,0x49,0xbb,0xa9,0x64,0x79
@@ -1086,7 +1107,8 @@ const u8 HitSound[] = {
 };
 
 #define LASER_SOUND_SIZE 694
-const u8 LaserSound[] = {
+const u8 LaserSound[] =
+{
 0x77,0x77,0x77,0x77,0x77,0x77,0x76,0x66
 ,0x67,0x66,0x66,0x66,0x67,0x66,0x66,0x66
 ,0x67,0x75,0x55,0x55,0x55,0x75,0x55,0x55
@@ -1177,7 +1199,8 @@ const u8 LaserSound[] = {
 };
 
 #define ONLY_HOPE_SOUND_SIZE 19310
-const u8 onlyHopeSound[] = {
+const u8 onlyHopeSound[] =
+{
 0x77,0x77,0x77,0x77,0x77,0x77,0x77,0x77
 ,0x77,0x77,0x77,0x77,0x77,0x77,0x77,0x77
 ,0x77,0x77,0x77,0x77,0x77,0x77,0x77,0x77

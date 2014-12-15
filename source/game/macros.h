@@ -44,10 +44,10 @@ enum HeroVbTypes{
 };
 
 
-#define GAMEWORLD_MODES		4 
+#define GAMEWORLD_MODES		4
 
-enum GameWorldModes {
-	
+enum GameWorldModes
+{
 	kPlaying = 1,
 	kShowingUp,
 	kStartPlaying,
@@ -56,4 +56,5 @@ enum GameWorldModes {
 	kMovingPerspective,
 };
 
-#endif /*MACROS_H_*/
+
+#endif

@@ -1,31 +1,26 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												INCLUDES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
 #include <CollisionManager.h>
@@ -39,49 +34,30 @@
 #include "../enemy/EnemyDead.h"
 #include "../Hero/Hero.h"
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 											 CLASS'S DEFINITION
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
 
-__CLASS_DEFINITION(SawBlade); 
+//---------------------------------------------------------------------------------------------------------
+// 											 CLASS'S DEFINITION
+//---------------------------------------------------------------------------------------------------------
+
+__CLASS_DEFINITION(SawBlade);
 
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												PROTOTYPES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
 
 
+//---------------------------------------------------------------------------------------------------------
+// 												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
 
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												CLASS'S METHODS
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // always call these two macros next to each other
 __CLASS_NEW_DEFINITION(SawBlade, __PARAMETERS(SawBladeDefinition* sawBladeDefinition, int ID))
 __CLASS_NEW_END(SawBlade, __ARGUMENTS(sawBladeDefinition, ID));
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// class's conctructor
-void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int ID){
-	
+// class's constructor
+void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int ID)
+{
 	// construct base
 	__CONSTRUCT_BASE(Enemy, __ARGUMENTS((ActorDefinition*)&sawBladeDefinition->actorDefinition, ID));
 
@@ -99,8 +75,8 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	// set movement direction;
 	this->movementDirection = sawBladeDefinition->direction;
 	
-	switch(this->axis){
-		
+	switch(this->axis)
+    {
 		case __XAXIS:
 
 			this->direction.x = sawBladeDefinition->direction;			
@@ -113,21 +89,18 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	}
 
 	StateMachine_swapState(this->stateMachine, (State)SawBladeMoving_getInstance());
-
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// class's conctructor
-void SawBlade_destructor(SawBlade this){
-
+// class's constructor
+void SawBlade_destructor(SawBlade this)
+{
 	// delete the super object
 	__DESTROY_BASE(Enemy);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // register a shape with the collision detection system
-void SawBlade_registerShape(SawBlade this){
-
+void SawBlade_registerShape(SawBlade this)
+{
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
 	
@@ -135,26 +108,24 @@ void SawBlade_registerShape(SawBlade this){
 	Shape_setCheckForCollisions(this->shape, false);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // unregister the shape with the collision detection system
-void SawBlade_unregisterShape(SawBlade this){
-
+void SawBlade_unregisterShape(SawBlade this)
+{
 	Shape_setActive(this->shape, false);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // process a collision
-u8 SawBlade_processCollision(SawBlade this, Telegram telegram){
-	
+u8 SawBlade_processCollision(SawBlade this, Telegram telegram)
+{
 	int message = Telegram_getMessage(telegram);
 	InGameEntity inGameEntity = (InGameEntity) Telegram_getExtraInfo(telegram);
 	
-	switch (message) {
-
+	switch (message)
+    {
 		case kCollision:
 			
-			switch(InGameEntity_getInGameType(inGameEntity)){
-			
+			switch(InGameEntity_getInGameType(inGameEntity))
+            {
 				case kHero:
 
 					// tell hero to take a hit
@@ -166,16 +137,14 @@ u8 SawBlade_processCollision(SawBlade this, Telegram telegram){
 	return false;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // tell me I've been hit
-void SawBlade_takeHit(SawBlade this, int axis, s8 direction){
-	
+void SawBlade_takeHit(SawBlade this, int axis, s8 direction)
+{
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// die 
-void SawBlade_die(SawBlade this){
-	
+// die
+void SawBlade_die(SawBlade this)
+{
 	// must unregister the shape for collision detections
 	Shape_setActive(this->shape, false);
 
@@ -183,20 +152,18 @@ void SawBlade_die(SawBlade this){
 	StateMachine_swapState(this->stateMachine, (State)EnemyDead_getInstance());
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // set  position
-void SawBlade_setLocalPosition(SawBlade this, VBVec3D position){
-	
+void SawBlade_setLocalPosition(SawBlade this, VBVec3D position)
+{
 	// set my position
 	Actor_setLocalPosition((Actor)this, position);
 	
 	// save initial position
-	switch(this->axis){
-		
+	switch(this->axis)
+    {
 		case __XAXIS:
 
 			this->initialPosition = position.x;
-						
 			break;
 			
 		case __YAXIS:
@@ -206,34 +173,34 @@ void SawBlade_setLocalPosition(SawBlade this, VBVec3D position){
 	}
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // retrieve axis free for movement
-int SawBlade_getAxisFreeForMovement(SawBlade this){
-
+int SawBlade_getAxisFreeForMovement(SawBlade this)
+{
 	return 0;// ((__XAXIS & ~(__XAXIS & movingState) )|(__ZAXIS & ~(__ZAXIS & movingState)));
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // update movement
-void SawBlade_move(SawBlade this){
-
+void SawBlade_move(SawBlade this)
+{
 	int displacement = ITOFIX19_13(44);
 	
 	// update position
-	switch(this->axis){
-		
+	switch(this->axis)
+    {
 		case __XAXIS:
+
 			break;
 			
 		case __YAXIS:
 			
-			switch(this->direction.y){
-				
+			switch(this->direction.y)
+            {
 				case __UP:
+
 					{	
 						// check position
-						if(this->transform.globalPosition.y < this->initialPosition - displacement){
-							
+						if (this->transform.globalPosition.y < this->initialPosition - displacement)
+                        {
 							// stop moving
 							Actor_stopMovement((Actor)this);
 							
@@ -253,8 +220,8 @@ void SawBlade_move(SawBlade this){
 
 					{
 						// check position
-						if(this->transform.globalPosition.y > this->initialPosition){
-							
+						if (this->transform.globalPosition.y > this->initialPosition)
+                        {
 							// stop moving
 							Actor_stopMovement((Actor)this);
 							
@@ -275,34 +242,36 @@ void SawBlade_move(SawBlade this){
 	}
 
 	// if I've been stopped
-	if(false && !(this->axis & Actor_isMoving((Actor)this))){
-		
+	if (false && !(this->axis & Actor_isMoving((Actor)this)))
+    {
 		// check if must stop go idle
-		if(!displacement){
-			
+		if (!displacement)
+        {
 			// check if hero distance to the plant is out of range
-			if(SAW_BLADE_ATTACK_DISTANCE < Optics_lengthSquared3D(
+			if (SAW_BLADE_ATTACK_DISTANCE < Optics_lengthSquared3D(
 					Entity_getPosition((Entity)this), Entity_getPosition((Entity)Hero_getInstance()))
-			){
+			)
+            {
 				StateMachine_swapState(this->stateMachine, (State)SawBladeIdle_getInstance());
 			}
 		}
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 // start moving
-void SawBlade_startMovement(SawBlade this){
-
-	switch(this->axis){
-		
+void SawBlade_startMovement(SawBlade this)
+{
+	switch(this->axis)
+    {
 		case __XAXIS:
+
 			break;
 			
 		case __YAXIS:
 			
 			{	
-				Velocity velocity = {
+				Velocity velocity =
+                {
 					0,
 					((int)ITOFIX19_13(10) * this->direction.y),
 					0,

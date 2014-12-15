@@ -1,32 +1,27 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												INCLUDES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
- 
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
+
 #include <string.h>
 
 #include <Game.h>
@@ -43,88 +38,50 @@
 #include <text.h>
 
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												PROTOTYPES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
 
 static void PlatformerLevelState_destructor(PlatformerLevelState this);
-
-// class's constructor
 static void PlatformerLevelState_constructor(PlatformerLevelState this);
-
-// state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
-
-// state's execute
 static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner);
-
-// state's enter
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
-
-// state's execute
-static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner){}
-
-// state's execute
-static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner){}
-
-// state's on message
+static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner) {}
+static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner) {}
 static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
-
-// handle event
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this);
-
-// handle event
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this);
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 											CLASS'S DEFINITION
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+
+//---------------------------------------------------------------------------------------------------------
+// 											CLASS'S DEFINITION
+//---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(PlatformerLevelState);
-
-
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												CLASS'S METHODS
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// it's a singleton
 __SINGLETON_DYNAMIC(PlatformerLevelState);
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//---------------------------------------------------------------------------------------------------------
+// 												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
+
 // class's constructor
-static void PlatformerLevelState_constructor(PlatformerLevelState this){
-		
+static void PlatformerLevelState_constructor(PlatformerLevelState this)
+{
 	__CONSTRUCT_BASE(GameState);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // class's destructor
-static void PlatformerLevelState_destructor(PlatformerLevelState this){
-	
+static void PlatformerLevelState_destructor(PlatformerLevelState this)
+{
 	// destroy base
 	__SINGLETON_DESTROY(GameState);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's enter
-static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner){
-	
+static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
+{
 	Optical optical = Game_getOptical(Game_getInstance());
 	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
 	Game_setOptical(Game_getInstance(), optical);
@@ -148,18 +105,16 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner){
 	Printing_text("1-1", 35, 26);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's execute
-static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner){
-	
+static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner)
+{
 	// call base
 	GameState_execute((GameState)this, owner);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// state's exit 
-static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner){
-	
+// state's exit
+static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
+{
 	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
 	Object_removeEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
 
@@ -170,13 +125,12 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner){
 	__DELETE(this);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // state's on message
-static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram){
-
+static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)
+{
 	// process message
-	switch(Telegram_getMessage(telegram)){
-
+	switch(Telegram_getMessage(telegram))
+    {
 		case kSetUpLevel:
 
 			// make a little bit of physical simulations so each entity is placed at the floor
@@ -199,8 +153,7 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			// tell any interested entity
 			GameState_propagateMessage((GameState)this, kSetUpLevel);
 
-			// account for any entity's tranform modification
-			// during their initialization
+			// account for any entity's tranform modification during their initialization
 			GameState_transform((GameState)this);
 
 			// show level after 0.5 second
@@ -243,8 +196,8 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			
 		case kKeyPressed:
 
-			if(kPlaying == this->mode) {
-			
+			if (kPlaying == this->mode)
+            {
 				Object_fireEvent((Object)this, EVENT_KEY_PRESSED);
 			}
 			return true;
@@ -252,8 +205,8 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 
 		case kKeyUp:
 
-			if(kPlaying == this->mode) {
-			
+			if (kPlaying == this->mode)
+            {
 				Object_fireEvent((Object)this, EVENT_KEY_RELEASED);
 			}
 			return true;
@@ -261,8 +214,8 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			
 		case kKeyHold:
 			
-			if(kPlaying == this->mode) {
-			
+			if (kPlaying == this->mode)
+            {
 				Object_fireEvent((Object)this, EVENT_KEY_HOLD);
 			}
 			return true;
@@ -278,16 +231,14 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 	return false;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // handle event
-static void PlatformerLevelState_onSecondChange(PlatformerLevelState this) {
-	
+static void PlatformerLevelState_onSecondChange(PlatformerLevelState this)
+{
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // handle event
-static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this) {
-	
+static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this)
+{
 	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26);
 }

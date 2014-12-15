@@ -1,5 +1,5 @@
-Skeleton VB GPL source release				24 October 2008
-==================================
+VBJaEngine Platformer Demo GPL source release				24 October 2008
+=============================================
 
 This file contains the following sections:
 
@@ -39,15 +39,15 @@ See GPL-license.txt for the GNU GENERAL PUBLIC LICENSE
 GENERAL NOTES
 =============
 
-Description: 
+Description:
 	
 	Platform demo of a game created using the VBJaEngine to show off
-	some of the engine's capabilities. 
+	some of the engine's capabilities.
 
 
 A short summary of the file layout:
 
-source/			   		Skeleton VB source code
+source/			   		VB source code
 source/game/objects/	Definition and implementation of the different graphics, objects, IA, worlds			
 
 
@@ -59,11 +59,11 @@ http://www.vr32.de/modules/dokuwiki/doku.php?id=vbjaengine_programmer_s_guide
 COMPILING ON WIN32
 ==================
 
-Requirements: 
+Requirements:
 
-	· Minimal Linux environment (i.e: CygWin) that includes make and git
+	* Minimal Linux environment (i.e: CygWin) that includes make and git
 	
-	· GCCVB 4.4.2 for V810 
+	* GCCVB 4.4.2 for V810
 
 
 1. Create a CygWin environment variable called VBDE which must point to the VBJaEngine's parent folder.
@@ -78,11 +78,11 @@ Requirements:
 CREDITS
 ==================
 	
-	· Jorge Eremiev:
+	* Jorge Eremiev:
 		* Main programmer
 		* Debugging and testing
 		
-	· Christian Radke (KR155E):
+	* Christian Radke (KR155E):
 		* Programmer
 		* Game designer
 		* Graphic artist
@@ -90,10 +90,9 @@ CREDITS
 		* Debugging and testing
 		* Documentation
 	
-==================  
+==================
 
 V810 is a trade mark of NEC.
-Mario is a trade mark of Nintendo.
 Virtual Boy is a trade mark of Nintendo.
 
 Jorge Eremiev is in no way affiliated with either of these parties.

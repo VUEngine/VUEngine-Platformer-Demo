@@ -1,79 +1,72 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy 
- * 
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+ *
  * Copyright (C) 2007 Jorge Eremiev
  * jorgech3@gmail.com
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												INCLUDES
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
 
 
-/* ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * 												DEFINITIONS
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- * ---------------------------------------------------------------------------------------------------------
- */
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
 
 extern BYTE GUITiles[];
 extern BYTE GUIMap[];
 
 
-TextureROMDef GUI_TX = {
-		// Chargroup
-		{					
-			// numChars
-			20,
-			
-			// allocation type
-			__NO_ANIMATED,
-			
-			// chDefinition				 
-			GUITiles,
-		},
-		
-		// bgmap definition
-		GUIMap,
-		
-		// cols (max 48)
-		48,
-		
-		// rows (max 28)
-		2,
-		
-		//pallet number,
-		1
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+TextureROMDef GUI_TX =
+{
+    {
+        // number of chars
+        20,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        GUITiles,
+    },
+
+    // bgmap definition
+    GUIMap,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    2,
+
+    // palette number
+    1,
 };
 
-SpriteROMDef GUI_IM_SPRITES[] = {
-
-	// Sprite
+SpriteROMDef GUI_IM_SPRITES[] =
+{
 	{
-		// the texture
+		// texture definition
 		(TextureDefinition*)&GUI_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -87,7 +80,8 @@ SpriteROMDef GUI_IM_SPRITES[] = {
 	},
 };
 
-ImageROMDef GUI_IM = {
-	__TYPE(Image),  
-	__SPRITE_ARRAY(GUI_IM_SPRITES),		   
+ImageROMDef GUI_IM =
+{
+	__TYPE(Image),
+	__SPRITE_ARRAY(GUI_IM_SPRITES),
 };

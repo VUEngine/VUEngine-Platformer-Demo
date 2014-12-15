@@ -13,7 +13,7 @@ DIRS := $(shell find * -type d -print)
 		
 # Which libraries are linked
 LIBS =
-ROMHEADER=lib/vb.hdr 
+ROMHEADER=lib/vb.hdr
 
 # Dynamic libraries
 DLIBS =
@@ -48,8 +48,8 @@ endif
 # Add directories to the include and library paths
 INCPATH_ENGINE := $(shell find $(VBJAENGINE) -type d -print)
 INCPATH_GAME := $(shell find * -type d -print)
- 
-LIBPATH = 
+
+LIBPATH =
 
 # Which files to add to backups, apart from the source code
 EXTRA_FILES = makefile
@@ -104,7 +104,7 @@ tryLinkingAgain:
 	@rm -f $(ENGINE)
 	@make all
 
-main.elf: $(ENGINE) dirs $(OBJECTS) 
+main.elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET).
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
 			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB))

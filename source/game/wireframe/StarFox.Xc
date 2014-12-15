@@ -62,7 +62,8 @@ u8  volatile Channel5Play = 0;// 1 = play once, 2 = repeat
 u8  volatile Channel5Nibble = 0;
 u8* volatile Channel5Data = (u8*)0;
 
-s32 movePath[15] = {
+s32 movePath[15] =
+{
 	F_NUM_UP(-1000), F_NUM_UP(1000), F_NUM_UP(8000),
 	F_NUM_UP(-1000), F_NUM_UP(1000), F_NUM_UP(5000),
 	F_NUM_UP(1000),  F_NUM_UP(1000), F_NUM_UP(4000),
