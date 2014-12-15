@@ -58,9 +58,9 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] = {
 	// since these are always visible
 	// it doesn't matter that they are not logically
 	// placed in this definition
-	{&TREE_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
-	{&TREE_BG_FRONT_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 168, LAYER_3}, NULL},
-	{&CLOUDS_SB, 			{SCREEN_X_POSITION, SCREEN_Y_POSITION - 16, LAYER_2}, NULL}, 
+	//{&TREE_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
+	//{&TREE_BG_FRONT_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 168, LAYER_3}, NULL},
+	//{&CLOUDS_SB, 			{SCREEN_X_POSITION, SCREEN_Y_POSITION - 16, LAYER_2}, NULL}, 
 	{&HERO_MC, 				{SCREEN_X_POSITION + 80, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL},
 
 	// the following entities must be placed in logical (spatial) order,

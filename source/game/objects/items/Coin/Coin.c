@@ -31,6 +31,7 @@
 
 #include <objects.h>
 #include "Coin.h"
+#include "CoinManager.h"
 
 #include <PlatformerLevelState.h>
 
@@ -70,11 +71,15 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
+
+	CoinManager_registerCoin(CoinManager_getInstance(), this);
 }
 
 // class's destructor
 void Coin_destructor(Coin this)
 {
+	CoinManager_removeCoin(CoinManager_getInstance(), this);
+
 	// delete the super object
 	__DESTROY_BASE(AnimatedInGameEntity);
 }
