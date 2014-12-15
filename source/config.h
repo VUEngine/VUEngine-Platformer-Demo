@@ -100,7 +100,7 @@
 #define __TARGET_FPS 					60
 
 // target frames per second
-#define __OPTIMUM_FPS 					60
+#define __OPTIMUM_FPS 					__TARGET_FPS
 
 // target frames per second
 #define __MINIMUM_GOOD_FPS 				(__TARGET_FPS - 3)
