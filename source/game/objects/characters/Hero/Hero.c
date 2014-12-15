@@ -940,19 +940,22 @@ int Hero_doMessage(Hero this, int message)
 	switch(message)
 	{
 		case kSetUpLevel:
-			
-			// I'm the focus actor
-			Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
-			
-			VBVec3D screenDisplacement =
 			{
-                0,
-                ITOFIX19_13(0),
-                ITOFIX19_13(-PLAYABLE_LAYER_0),
-			};
-			
-			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
-			return true;
+				// then set myself as the focus
+				Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
+
+				// I'm the focus actor
+				VBVec3D screenDisplacement =
+				{
+	                0,
+	                ITOFIX19_13(0),
+	                ITOFIX19_13(-PLAYABLE_LAYER_0),
+				};
+				
+				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
+				
+				return true;
+			}
 			break;
 	}
 	

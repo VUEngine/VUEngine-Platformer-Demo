@@ -124,6 +124,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 	// destroy the state
 	__DELETE(this);
 }
+extern VBVec3D* _screenDisplacement;
 
 // state's on message
 static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)
@@ -155,7 +156,7 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 
 			// account for any entity's tranform modification during their initialization
 			GameState_transform((GameState)this);
-
+			
 			// show level after 0.5 second
 			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
 
