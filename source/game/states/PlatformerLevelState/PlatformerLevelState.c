@@ -124,7 +124,6 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 	// destroy the state
 	__DELETE(this);
 }
-extern VBVec3D* _screenDisplacement;
 
 // state's on message
 static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)

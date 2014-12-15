@@ -27,6 +27,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Object.h>
+#include <Coin.h>
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
@@ -47,6 +48,13 @@ __CLASS(CoinManager);
 // a singleton
 CoinManager CoinManager_getInstance();
 
+// destructor
 void CoinManager_destructor(CoinManager this);
+
+// register coin
+void CoinManager_registerCoin(CoinManager this, Coin coin);
+
+// remove coin
+void CoinManager_removeCoin(CoinManager this, Coin coin);
 
 #endif
