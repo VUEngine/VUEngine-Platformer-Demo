@@ -16,7 +16,8 @@
 extern TextureDefinition VBJAENGINE_BG_TX;
 extern TextureDefinition TREE_BG_FRONT_TX;
 extern TextureDefinition TREE_BG_BACK_TX;
-extern TextureDefinition CLOUDS_TX;
+extern TextureDefinition CLOUDS_A_TX;
+extern TextureDefinition CLOUDS_B_TX;
 
 extern TextureDefinition FLOOR_4x10_L_TX;
 extern TextureDefinition FLOOR_4x10_R_TX;

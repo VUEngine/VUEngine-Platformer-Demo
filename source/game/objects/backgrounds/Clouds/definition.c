@@ -29,15 +29,17 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CloudsTiles[];
-extern BYTE CloudsMap[];
+extern BYTE CloudsATiles[];
+extern BYTE CloudsBTiles[];
+extern BYTE CloudsAMap[];
+extern BYTE CloudsBMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef CLOUDS_TX =
+TextureROMDef CLOUDS_A_TX =
 {
     {
         // number of chars
@@ -47,11 +49,37 @@ TextureROMDef CLOUDS_TX =
         __NO_ANIMATED,
 
         // char definition
-        CloudsTiles,
+        CloudsATiles,
     },
 
     // bgmap definition
-    CloudsMap,
+    CloudsAMap,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    7,
+
+    // palette number
+    0,
+};
+
+TextureROMDef CLOUDS_B_TX =
+{
+    {
+        // number of chars
+        27,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        CloudsBTiles,
+    },
+
+    // bgmap definition
+    CloudsBMap,
 
     // cols (max 48)
     48,
@@ -67,7 +95,7 @@ SpriteROMDef CLOUDS_SB_SPRITES[] =
 {
 	{
 		// texture definition
-		(TextureDefinition*)&CLOUDS_TX,
+		(TextureDefinition*)&CLOUDS_A_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
@@ -81,11 +109,11 @@ SpriteROMDef CLOUDS_SB_SPRITES[] =
 	},
 	{
 		// texture definition
-		(TextureDefinition*)&CLOUDS_TX,
-		
+		(TextureDefinition*)&CLOUDS_B_TX,
+
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
-		
+
 		// display mode
 		WRLD_ON,
 
