@@ -87,7 +87,7 @@
 #define __OPTIMUM_FPS 					__TARGET_FPS
 
 // target frames per second
-#define __MINIMUM_GOOD_FPS 				(__TARGET_FPS - 3)
+#define __MINIMUM_GOOD_FPS 				(__TARGET_FPS - 0)
 
 #define __MILISECONDS_IN_SECOND			1000
 

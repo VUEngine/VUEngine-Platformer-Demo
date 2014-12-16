@@ -34,8 +34,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern TextureDefinition TREE_BG_FRONT_SB;
-extern TextureDefinition TREE_BG_BACK_SB;
+extern EntityDefinition TREE_BG_FRONT_SB;
+extern EntityDefinition TREE_BG_BACK_SB;
 extern EntityDefinition VBJAENGINE_BG_SB;
 extern EntityDefinition CLOUDS_SB;
 
