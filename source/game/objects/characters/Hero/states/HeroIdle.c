@@ -24,7 +24,7 @@
 
 #include "HeroIdle.h"
 #include "HeroMoving.h"
-#include "Hero.h"
+#include "../Hero.h"
 
 #ifdef __DEBUG
 //#include "../../levels/game/GameLevel.h"

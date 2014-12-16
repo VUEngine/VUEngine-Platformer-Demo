@@ -22,32 +22,30 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Optics.h>
+#include <Telegram.h>
 
-#include "SawBladeIdle.h"
-#include "SawBladeMoving.h"
-#include "SawBlade.h"
-#include "../hero/Hero.h"
+#include "EnemyDead.h"
+#include "../Enemy.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void SawBladeIdle_constructor(SawBladeIdle this);
-void SawBladeIdle_destructor(SawBladeIdle this);
-void SawBladeIdle_enter(SawBladeIdle this, void* owner);
-void SawBladeIdle_execute(SawBladeIdle this, void* owner);
-void SawBladeIdle_exit(SawBladeIdle this, void* owner);
-u16 SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram);
+void EnemyDead_constructor(EnemyDead this);
+void EnemyDead_destructor(EnemyDead this);
+void EnemyDead_enter(EnemyDead this, void* owner);
+void EnemyDead_execute(EnemyDead this, void* owner);
+void EnemyDead_exit(EnemyDead this, void* owner);
+u16 EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(SawBladeIdle);
-__SINGLETON(SawBladeIdle);
+__CLASS_DEFINITION(EnemyDead);
+__SINGLETON(EnemyDead);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,47 +53,62 @@ __SINGLETON(SawBladeIdle);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void SawBladeIdle_constructor(SawBladeIdle this)
+void EnemyDead_constructor(EnemyDead this)
 {
 	// construct base
 	__CONSTRUCT_BASE(State);
 }
 
 // class's destructor
-void SawBladeIdle_destructor(SawBladeIdle this)
+void EnemyDead_destructor(EnemyDead this)
 {
 	// destroy base
 	__SINGLETON_DESTROY(State);
 }
 
 // state's enter
-void SawBladeIdle_enter(SawBladeIdle this, void* owner)
+void EnemyDead_enter(EnemyDead this, void* owner)
 {
-	// do not move
-    // Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);
-
-	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
+	Direction direction = InGameEntity_getDirection((InGameEntity)owner);
+	direction.z = __NEAR;
+	InGameEntity_setDirection((InGameEntity)owner, direction);
+	
+	// stop movement
+/*	Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);
+	
+	// jump
+	Actor_jump((Actor)owner, DEAD_VELOCITY_Y, DEAD_ACCELERATION_Y);
+	
+	// move over z axis
+	Actor_startMovement((Actor)owner, __ZAXIS, ~(__ACCELMOVEX | __RETARMOVEX),
+			DEAD_VELOCITY_Z, DEAD_ACCELERATION_Z);
+	*/
 }
 
 // state's execute
-void SawBladeIdle_execute(SawBladeIdle this, void* owner)
+void EnemyDead_execute(EnemyDead this, void* owner)
 {
-	// check if Hero's distance to the plant is within range
-	if (SAW_BLADE_ATTACK_DISTANCE > Optics_lengthSquared3D(
-			Entity_getPosition((Entity)owner), Entity_getPosition((Entity)Hero_getInstance()))
-	)
-    {
-		StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)SawBladeMoving_getInstance());
-	}
+	// update movement
+//	Actor_move((Actor)owner);
 }
 
 // state's exit
-void SawBladeIdle_exit(SawBladeIdle this, void* owner)
+void EnemyDead_exit(EnemyDead this, void* owner)
 {
 }
 
 // state's on message
-u16 SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram)
+u16 EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram)
 {
+
+	// if the botton of the screen has been reached
+	if (kFloorReached == Telegram_getMessage(telegram))
+{
+		// inform the game that I'm dead
+		//Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)owner, kDead);
+
+	}
+
 	return false;
 }
+

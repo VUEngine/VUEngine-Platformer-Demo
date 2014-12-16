@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef HEROIDLE_H_
-#define HEROIDLE_H_
+#ifndef HERO_MOVING_H_
+#define HERO_MOVING_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -27,6 +27,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <StateMachine.h>
+#include <PlatformerLevelState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,23 +35,35 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define HeroIdle_METHODS									\
+#define HeroMoving_METHODS														\
 	State_METHODS;									
 
 // declare the virtual methods which are redefined
-#define HeroIdle_SET_VTABLE(ClassName)						\
-	State_SET_VTABLE(ClassName)								\
-	__VIRTUAL_SET(ClassName, HeroIdle, enter);				\
-	__VIRTUAL_SET(ClassName, HeroIdle, execute);			\
-	__VIRTUAL_SET(ClassName, HeroIdle, exit);				\
-	__VIRTUAL_SET(ClassName, HeroIdle, handleMessage);		\
-	
-__CLASS(HeroIdle);
+#define HeroMoving_SET_VTABLE(ClassName)										\
+	State_SET_VTABLE(ClassName)													\
+	__VIRTUAL_SET(ClassName, HeroMoving, enter);								\
+	__VIRTUAL_SET(ClassName, HeroMoving, execute);								\
+	__VIRTUAL_SET(ClassName, HeroMoving, exit);									\
+	__VIRTUAL_SET(ClassName, HeroMoving, handleMessage);						\
 
-#define HeroIdle_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	State_ATTRIBUTES
+#define HeroMoving_ATTRIBUTES													\
+																				\
+	/* inherits */																\
+	State_ATTRIBUTES															\
+																				\
+	/* check direction flag */													\
+	u8 mustCheckDirection;														\
+																				\
+	/* flag to allow jump on bouncing */										\
+	u8 bouncing;																\
+
+ __CLASS(HeroMoving);
+
+
+enum HeroMovingMessages
+{
+	 kDisallowJumpOnBouncing = kLastPlatformerMessage + 1,
+};
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -58,7 +71,7 @@ __CLASS(HeroIdle);
 //---------------------------------------------------------------------------------------------------------
 
 // setup the init focus screen
-HeroIdle HeroIdle_getInstance();
+HeroMoving HeroMoving_getInstance();
 
 
 #endif

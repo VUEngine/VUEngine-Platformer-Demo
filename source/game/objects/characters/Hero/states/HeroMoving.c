@@ -24,7 +24,7 @@
 
 #include "HeroMoving.h"
 #include "HeroIdle.h"
-#include "Hero.h"
+#include "../Hero.h"
 
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>

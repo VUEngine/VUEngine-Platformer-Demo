@@ -18,70 +18,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
+#ifndef HERO_IDLE_H_
+#define HERO_IDLE_H_
+
+
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "EnemyAttack.h"
-#include "Enemy.h"
-#include "../hero/Hero.h"
+#include <StateMachine.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
+// declare the virtual methods
+#define HeroIdle_METHODS									\
+	State_METHODS;									
+
+// declare the virtual methods which are redefined
+#define HeroIdle_SET_VTABLE(ClassName)						\
+	State_SET_VTABLE(ClassName)								\
+	__VIRTUAL_SET(ClassName, HeroIdle, enter);				\
+	__VIRTUAL_SET(ClassName, HeroIdle, execute);			\
+	__VIRTUAL_SET(ClassName, HeroIdle, exit);				\
+	__VIRTUAL_SET(ClassName, HeroIdle, handleMessage);		\
+	
+__CLASS(HeroIdle);
+
+#define HeroIdle_ATTRIBUTES			\
+										\
+	/* inherits */						\
+	State_ATTRIBUTES
+
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+// 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(EnemyAttack);
-__SINGLETON(EnemyAttack);
+// setup the init focus screen
+HeroIdle HeroIdle_getInstance();
 
 
-//---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
-//---------------------------------------------------------------------------------------------------------
-
-// class's constructor
-void EnemyAttack_constructor(EnemyAttack this)
-{
-	// construct base
-	__CONSTRUCT_BASE(State);
-}
-
-// class's destructor
-void EnemyAttack_destructor(EnemyAttack this)
-{
-	// destroy base
-	__SINGLETON_DESTROY(State);
-}
-
-// state's enter
-void EnemyAttack_enter(EnemyAttack this, void* owner)
-{
-	// do not move
-//	Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);
-}
-
-// state's execute
-void EnemyAttack_execute(EnemyAttack this, void* owner)
-{
-//	if (HERO_TIME_TO_DIE < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
-// {
-		// change state
-		StateMachine_popState(Actor_getStateMachine((Actor)owner));
-//	}
-}
-
-// state's exit
-void EnemyAttack_exit(EnemyAttack this, void* owner)
-{
-}
-
-// state's on message
-u16 EnemyAttack_handleMessage(EnemyAttack this, void* owner, Telegram telegram)
-{
-	return false;
-}
+#endif
