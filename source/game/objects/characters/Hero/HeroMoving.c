@@ -190,8 +190,6 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 		case kBodyStoped:
 			
-			Printing_text("stoped   ", 1, 11);
-			Printing_int(Clock_getTime(Game_getClock(Game_getInstance())), 10, 11);
 			Hero_stopMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
@@ -211,8 +209,6 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 		case kBodyBounced:
 			
-			Printing_text("Bouncing", 1, 11);
-			Printing_int(Clock_getTime(Game_getClock(Game_getInstance())), 20, 11);
 			this->mustCheckDirection = true;
 			this->bouncing = true;
 			MessageDispatcher_dispatchMessage(100, (Object)this, (Object)owner, kDisallowJumpOnBouncing, NULL);
