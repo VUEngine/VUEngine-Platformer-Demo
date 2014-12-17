@@ -105,7 +105,7 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 	Hero_setGap((Hero)owner);
 	
 #ifdef __DEBUG
-	Printing_text("HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 1);
+	Printing_text("HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2);
 #endif
 }
 
@@ -162,13 +162,6 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 				if ((K_LL | K_LR | K_A) & pressedKey)
                 {
-                    /*
-                    if ((K_LR & pressedKey ) && (K_LL & pressedKey ))
-                    {
-
-                        return true;
-                    }
-                    */
                     Hero_checkDirection((Hero)owner, pressedKey, "Idle");
 
                     Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
@@ -182,83 +175,21 @@ u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                     break;
 				}
 
-				// if up key pressed
-				if (K_LU & pressedKey)
+				if ((K_LU | K_LD) & pressedKey)
                 {
-					// make hero to look to the player
-					Hero_lookBack((Hero)owner);
+                    Hero_checkDirection((Hero)owner, pressedKey, "Idle");
 
-					/*
-					vbjPrintInt(doPower(4,2), 1, 16);
-					vbjPrintInt(doPower1(4,2), 5, 16);
-					vbjPrintInt(doPower(4,3), 1, 17);
-					vbjPrintInt(doPower1(4,3), 5, 17);
-					*/
-					/*
-					{
-						int i,j = 1;
-						int baseLimit = 5;
-						int maxPower = 5;
-						int distance = 10;
-						int initBase = 2;
-						for(i= initBase;i <= baseLimit; i++)
-                        {
-							for(j = 1;j <= maxPower; j++)
-                            {
-								int powerA = power(i, j);
-								int powerB = power1(i, j);
-								Printing_int(i, (i - initBase)* distance, j+2);
-								Printing_text("^", (i - initBase)* distance + 1, j+2);
-								Printing_int(j, (i - initBase)* distance + 2, j+2);
-								Printing_text("=", (i - initBase)* distance + 3, j+2);
-								Printing_int(powerA, (i - initBase)* distance + 4, j+2);
-								Printing_text("|", (i - initBase)* distance + 4 + Utilities_intLength(powerA), j+2);
-								Printing_int(powerB, (i - initBase)* distance + 4 + Utilities_intLength(powerA) + 1, j+2);
-							}
-						}
-					}
-					*/
+                    Hero_startedMovingOnAxis((Hero)owner, __ZAXIS);
 
-					return true;
-				}
-				
-				// if up key pressed
-				if (K_LD & pressedKey)
-                {
-					// make hero to look away the player
-					Hero_lookFront((Hero)owner);
-	
-					return true;
-				}	
-	
-				/*
-				{
-					int alpha = 0;
-					// if up key pressed
-					if (K_LT & pressedKey)
+                    if (K_A & pressedKey )
                     {
-						alpha--;
-						if (alpha < 0)
-                        {
-							alpha = 511;
-						}
-						//Sprite_rotate(Entity_getSprite((Entity)owner), alpha);
-						
-					}
-					
-					// if up key pressed
-					if (K_RT & pressedKey)
-{
-						alpha++;
-						if (alpha > 511)
-{
-							alpha = 0;
-						}				
-						//Sprite_rotate(Entity_getSprite((Entity)owner), alpha);
-						
-					}
+                        Hero_jump((Hero)owner, true, true);
+                    }
+
+                    return true;
+                    break;
 				}
-				*/
+	
 			}
 			break;
 	}

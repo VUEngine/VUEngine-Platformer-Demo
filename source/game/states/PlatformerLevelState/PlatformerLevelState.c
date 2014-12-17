@@ -42,8 +42,8 @@
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void PlatformerLevelState_destructor(PlatformerLevelState this);
 static void PlatformerLevelState_constructor(PlatformerLevelState this);
+static void PlatformerLevelState_destructor(PlatformerLevelState this);
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
@@ -59,7 +59,7 @@ static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this);
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(PlatformerLevelState);
-__SINGLETON_DYNAMIC(PlatformerLevelState);
+__SINGLETON(PlatformerLevelState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -70,6 +70,8 @@ __SINGLETON_DYNAMIC(PlatformerLevelState);
 static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE(GameState);
+	
+	this->stageDefinition = &LEVEL_1_1_ROOM_1_ST;
 }
 
 // class's destructor
@@ -87,7 +89,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Game_setOptical(Game_getInstance(), optical);
 
 	//load stage
-	GameState_loadStage((GameState)this, (StageDefinition*)&LEVEL_1_1_ROOM_1_ST, true, false);
+	GameState_loadStage((GameState)this, (StageDefinition*)this->stageDefinition, true, true);
 
 	// playing by default
 	this->mode = kPaused;
@@ -120,9 +122,6 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
-
-	// destroy the state
-	__DELETE(this);
 }
 
 // state's on message
@@ -241,4 +240,38 @@ static void PlatformerLevelState_onSecondChange(PlatformerLevelState this)
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this)
 {
 	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26);
+}
+
+// set the next state to load
+void PlatformerLevelState_setStage(PlatformerLevelState this, StageROMDef* stageDefinition)
+{
+	this->stageDefinition = stageDefinition;
+}
+
+void PlatformerLevelState_goToLevel1_1Room1() 
+{
+	PlatformerLevelState this = PlatformerLevelState_getInstance();
+	this->stageDefinition = &LEVEL_1_1_ROOM_1_ST;
+	Game_changeState(Game_getInstance(), (State)this);
+}
+
+void PlatformerLevelState_goToLevel1_1Room2() 
+{
+	PlatformerLevelState this = PlatformerLevelState_getInstance();
+	this->stageDefinition = &LEVEL_1_1_ROOM_2_ST;
+	Game_changeState(Game_getInstance(), (State)this);
+}
+
+void PlatformerLevelState_goToLevel1_2Room1() 
+{
+	PlatformerLevelState this = PlatformerLevelState_getInstance();
+	this->stageDefinition = &LEVEL_1_2_ROOM_1_ST;
+	Game_changeState(Game_getInstance(), (State)this);
+}
+
+void PlatformerLevelState_goToLevel1_3Room1() 
+{
+	PlatformerLevelState this = PlatformerLevelState_getInstance();
+	this->stageDefinition = &LEVEL_1_3_ROOM_1_ST;
+	Game_changeState(Game_getInstance(), (State)this);
 }

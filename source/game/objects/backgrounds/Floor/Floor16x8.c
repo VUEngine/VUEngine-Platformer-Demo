@@ -23,8 +23,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
+#include <InvisibleInGameEntity.h>
 #include <macros.h>
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -148,4 +148,115 @@ InanimatedInGameEntityROMDef FLOOR_16x8_BG =
 
     // register shape
     true,
+};
+
+InvisibleInGameEntityROMDef FLOOR_48x2x48 =
+{
+	{
+	    {
+	        {
+	            __TYPE(InvisibleInGameEntity),
+	            NULL,
+	        },
+	
+	        // collision detection gap (up, down, left, right)
+	        {0, 0, 0, 0},
+	
+	        // in game type
+	        kSolid,
+	
+	        // deep
+	        0,
+	    },
+	
+	    // friction FTOFIX19_13
+	    FTOFIX19_13(0.5f),
+	
+	    // elasticity FTOFIX19_13
+	    FTOFIX19_13(1.0f),
+	
+	    // register shape
+	    true,
+	},
+	
+	// width
+	48 * 8,
+	// height
+	2 * 8,
+	// deep
+	48 * 8,
+};
+
+InvisibleInGameEntityROMDef FLOOR_2x28x48 =
+{
+	{
+	    {
+	        {
+	            __TYPE(InvisibleInGameEntity),
+	            NULL,
+	        },
+	
+	        // collision detection gap (up, down, left, right)
+	        {0, 0, 0, 0},
+	
+	        // in game type
+	        kSolid,
+	
+	        // deep
+	        0,
+	    },
+	
+	    // friction FTOFIX19_13
+	    FTOFIX19_13(0.5f),
+	
+	    // elasticity FTOFIX19_13
+	    FTOFIX19_13(1.0f),
+	
+	    // register shape
+	    true,
+	},
+	
+	// width
+	2 * 8,
+	// height
+	28 * 8,
+	// deep
+	48 * 8,
+};
+
+InvisibleInGameEntityROMDef FLOOR_48x28x2 =
+{
+	{
+	    {
+	        {
+	            __TYPE(InvisibleInGameEntity),
+	            NULL,
+	        },
+	
+	        // collision detection gap (up, down, left, right)
+	        {0, 0, 0, 0},
+	
+	        // in game type
+	        kSolid,
+	
+	        // deep
+	        0,
+	    },
+	
+	    // friction FTOFIX19_13
+	    FTOFIX19_13(0.5f),
+	
+	    // elasticity FTOFIX19_13
+	    FTOFIX19_13(1.0f),
+	
+	    // register shape
+	    true,
+	},
+	
+	// width
+	48 * 8,
+	// height
+	28 * 8,
+	// deep
+	2 * 8,
 };

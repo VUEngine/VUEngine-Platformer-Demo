@@ -74,17 +74,17 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 	ITOFIX19_13(LAYER_4),
 };
 
-#define HERO_INPUT_FORCE ITOFIX19_13(10)
-#define HERO_WEIGHT		10
-#define FRICTION 	0.01f
+#define HERO_INPUT_FORCE 						ITOFIX19_13(10)
+#define HERO_WEIGHT								10
+#define FRICTION 								0.01f
 
-#define HERO_VELOCITY_X			ITOFIX19_13(7)
-#define HERO_VELOCITY_Y			FTOFIX19_13(-6.0f)
-#define HERO_VELOCITY_Z			ITOFIX19_13(175)
-#define HERO_ACCELERATION_X		ITOFIX19_13(10)
-#define HERO_ACCELERATION_Y		ITOFIX19_13(0)
-#define HERO_ACCELERATION_Z		ITOFIX19_13(0)
-#define HERO__BOOST_VELOCITY_X		ITOFIX19_13(9)
+#define HERO_VELOCITY_X							ITOFIX19_13(7)
+#define HERO_VELOCITY_Y							FTOFIX19_13(-6.0f)
+#define HERO_VELOCITY_Z							ITOFIX19_13(7)
+#define HERO_ACCELERATION_X						ITOFIX19_13(10)
+#define HERO_ACCELERATION_Y						ITOFIX19_13(0)
+#define HERO_ACCELERATION_Z						ITOFIX19_13(0)
+#define HERO_BOOST_VELOCITY_X					ITOFIX19_13(9)
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-350)
 #define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-425)
 #define HERO_SPEED_MULTIPLIER_X	FTOFIX19_13(1.5f)
@@ -176,9 +176,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 		PhysicalWorld_setFriction(PhysicalWorld_getInstance(), FTOFIX19_13(FRICTION));
 	}
 	
-	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_addEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 }
 
 // class's destructor
@@ -191,9 +191,9 @@ void Hero_destructor(Hero this)
 
 	hero = NULL;
 	
-	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_removeEventListener((Object)PlatformerLevelState_getInstance(), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
@@ -251,32 +251,33 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 }
 
 // keep movement
-void Hero_addForce(Hero this, int changedDirection)
+void Hero_addForce(Hero this, int changedDirection, int axis)
 {
 	ASSERT(this->body, "Hero::keepMoving: no body");
 	static int movementType = 0;
 
-	fix19_13 maxVelocity = this->boost? HERO__BOOST_VELOCITY_X: HERO_VELOCITY_X;
+	fix19_13 maxVelocity = this->boost? HERO_BOOST_VELOCITY_X: HERO_VELOCITY_X;
 	
 	Velocity velocity = Body_getVelocity(this->body);
 	
-	if (changedDirection || maxVelocity > fabs(velocity.x) || Actor_changedDirection((Actor)this, __XAXIS))
+	if (changedDirection || ((__XAXIS & axis) && maxVelocity > fabs(velocity.x)) || ((__ZAXIS & axis) && maxVelocity > fabs(velocity.z)) || Actor_changedDirection((Actor)this, __XAXIS) || Actor_changedDirection((Actor)this, __ZAXIS))
     {
 		Acceleration acceleration =
         {
-			__RIGHT == this->direction.x ? ITOFIX19_13(5) : ITOFIX19_13(-5),
+        	(__XAXIS & axis)? __RIGHT == this->direction.x ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE: 0,
 			0,
-			0
+			(__ZAXIS & axis)? __FAR == this->direction.z ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE: 0,
 		};
 
-		if (velocity.x || ( __XAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)))
+		if (velocity.x || velocity.z || ( __XAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)) || ( __ZAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)))
         {
-			fix19_13 xForce = 0 < this->direction.x? HERO_INPUT_FORCE: -HERO_INPUT_FORCE;
+			fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->direction.x? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
+			fix19_13 zForce = (__ZAXIS & axis)? __FAR == this->direction.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
 			Force force =
             {
                 xForce,
                 0,
-                0
+                zForce
             };
 			Body_addForce(this->body, &force);
 			movementType = __ACCELERATED_MOVEMENT;
@@ -289,17 +290,17 @@ void Hero_addForce(Hero this, int changedDirection)
 	}
 	else
     {
-		Velocity velocity =
+		Velocity newVelocity =
         {
-			((int)maxVelocity * this->direction.x),
+        	(__XAXIS & axis)? ((int)maxVelocity * this->direction.x): 0,
 			0,
-			0,
+			(__ZAXIS & axis)? ((int)maxVelocity * this->direction.z): 0,
 		};
 		
 		if (__UNIFORM_MOVEMENT != movementType)
         {
 			movementType = __UNIFORM_MOVEMENT;
-			Body_moveUniformly(this->body, velocity);
+			Body_moveUniformly(this->body, newVelocity);
 		}
 	}
 }
@@ -318,19 +319,21 @@ void Hero_stopMovement(Hero this)
 		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
 	}
 
-    //	fix19_13 maxVelocity = this->boost? HERO__BOOST_VELOCITY_X: HERO_VELOCITY_X;
+    //	fix19_13 maxVelocity = this->boost? HERO_BOOST_VELOCITY_X: HERO_VELOCITY_X;
 
     //	velocity.x = HERO_VELOCITY_X * this->direction.x;
 	
-	// only modify x axis
+	// only modify y axis
 	velocity.y = 0;
-	velocity.z = 0;
 	
 	// clear acceleration
 	Body_moveUniformly(this->body, velocity);
 
 	// begin to desaccelerate
-	Body_moveAccelerated(this->body, __XAXIS);
+	int axisOfDeacceleartion = 0;
+	axisOfDeacceleartion |= velocity.x? __XAXIS: 0;
+	axisOfDeacceleartion |= velocity.z? __ZAXIS: 0;
+	Body_moveAccelerated(this->body, axisOfDeacceleartion);
 }
 
 // started moving over axis
@@ -343,7 +346,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
         {
 			Acceleration acceleration =
             {
-                __RIGHT == this->direction.x ? ITOFIX19_13(5) : ITOFIX19_13(-5),
+                __RIGHT == this->direction.x ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE,
                 0,
                 0
 			};
@@ -356,9 +359,36 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 		}
 		if (__YAXIS & axis)
         {
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
-			StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) HeroMoving_getInstance());
+			Acceleration acceleration =
+            {
+        		0,
+                __DOWN == this->direction.x ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE,
+                0
+			};
+			
+			if ( __YAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration))
+            {
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Fall");
+				StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) HeroMoving_getInstance());
+			}
 		}
+
+		if (__ZAXIS & axis)
+        {
+			Acceleration acceleration =
+            {
+            	0,
+                0,
+                __FAR == this->direction.z ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE
+			};
+			
+			if (__ZAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration))
+            {
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
+				StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) HeroMoving_getInstance());
+			}
+		}
+
 	}
 	else
 	{
@@ -376,7 +406,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 
 		if (__ZAXIS & axis)
         {
-
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
 		}
 	}
 }
@@ -407,7 +437,9 @@ int Hero_stopMovingOnAxis(Hero this, int axis)
 
 	if (__ZAXIS & axis)
     {
-
+		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Idle");
+		StateMachine_swapState(Actor_getStateMachine((Actor) this), (State)HeroIdle_getInstance());					
+		return true;
 	}
 
 	if (!Body_isMoving(Actor_getBody((Actor)this)) && (State)HeroIdle_getInstance() != StateMachine_getCurrentState(Actor_getStateMachine((Actor) this)))
@@ -432,10 +464,13 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
     {
 		this->direction.x = __LEFT;
 	}
-
-	if (previousDirection != this->direction.x)
+	else if ((K_LU & pressedKey) && __FAR != this->direction.z)
     {
-		//Body_stopMovement(this->body, __XAXIS);
+		this->direction.z = __FAR;
+	}
+	else if ((K_LD & pressedKey) && __NEAR != this->direction.z)
+    {
+		this->direction.z = __NEAR;
 	}
 
 	int movementState = Body_isMoving(this->body);
@@ -812,7 +847,7 @@ void Hero_determineLayer(Hero this)
 	int i = 0;
 	for(i = 0; i < TOTAL_GAME_LAYERS; i++)
     {
-		if ((u16)this->transform.globalPosition.z > gameLayers[i] - ITOFIX19_13(5) && (unsigned)this->transform.globalPosition.z < gameLayers[i] + ITOFIX19_13(5))
+		if ((u16)this->transform.globalPosition.z > gameLayers[i] - HERO_INPUT_FORCE && (unsigned)this->transform.globalPosition.z < gameLayers[i] + HERO_INPUT_FORCE)
         {
 			this->layer = (int )i;
 			return;
@@ -917,6 +952,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kDoor:
 
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kEnterDoor, NULL);
 				break;
 		}
 	}

@@ -25,6 +25,8 @@
 #include <Stage.h>
 #include <objects.h>
 #include <macros.h>
+#include <PlatformerLevelState.h>
+
 #include "stages/textures.h"
 
 
@@ -61,7 +63,7 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] = {
 	{&TREE_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
 	{&TREE_BG_FRONT_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 168, LAYER_3}, NULL},
 	{&CLOUDS_SB, 			{SCREEN_X_POSITION, SCREEN_Y_POSITION - 16, LAYER_2}, NULL}, 
-	{&HERO_MC, 				{SCREEN_X_POSITION + 80, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL},
+	{&HERO_MC, 				{SCREEN_X_POSITION, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
@@ -95,7 +97,7 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] = {
 	{&SAW_BLADE_LANE_V_6_IM,{1198, SCREEN_Y_POSITION + LAYER_0_FLOOR - 62, PLAYABLE_LAYER_0 + 1}, NULL},
 	{&SAW_BLADE_MC, 		{1198, SCREEN_Y_POSITION + LAYER_0_FLOOR - 40, PLAYABLE_LAYER_0}, NULL},
 	{&FLOOR_4x3_FLOAT_BG,	{1236, SCREEN_Y_POSITION + LAYER_0_FLOOR - 56, PLAYABLE_LAYER_0 + 2}, NULL},
-	{&DOOR_MC,				{1238, SCREEN_Y_POSITION + LAYER_0_FLOOR - 86, PLAYABLE_LAYER_0 + 1}, NULL},
+	{&DOOR_MC,				{1238, SCREEN_Y_POSITION + LAYER_0_FLOOR - 86, PLAYABLE_LAYER_0 + 1}, PlatformerLevelState_goToLevel1_1Room2},
 	{&FLOOR_16x8_BG,		{1368, SCREEN_Y_POSITION + LAYER_0_FLOOR - 8, PLAYABLE_LAYER_0 + 2}, NULL},
 	{&MOUND_2_IM,			{1376, SCREEN_Y_POSITION + LAYER_0_FLOOR - 32, LAYER_1}, NULL},
 	{&FLOOR_2x2_BLOCK_BG,	{1496, SCREEN_Y_POSITION + LAYER_0_FLOOR - 76, PLAYABLE_LAYER_0 + 2}, NULL},

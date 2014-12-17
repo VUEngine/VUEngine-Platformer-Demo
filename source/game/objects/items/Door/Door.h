@@ -35,19 +35,24 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Door_METHODS													\
+#define Door_METHODS															\
 	AnimatedInGameEntity_METHODS;
 	
 
-#define Door_SET_VTABLE(ClassName)										\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);
+#define Door_SET_VTABLE(ClassName)												\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
+	__VIRTUAL_SET(ClassName, Door, setExtraInfo);								\
+	__VIRTUAL_SET(ClassName, Door, handleMessage);
 
 __CLASS(Door);
 
-#define Door_ATTRIBUTES													\
-																		\
-	/* it is derivated from */											\
-	AnimatedInGameEntity_ATTRIBUTES										\
+#define Door_ATTRIBUTES															\
+																				\
+	/* it is derivated from */													\
+	AnimatedInGameEntity_ATTRIBUTES												\
+																				\
+	/* function to call */														\
+	void (*action)(void)														\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -58,6 +63,8 @@ __CLASS_NEW_DECLARE(Door, __PARAMETERS(AnimatedInGameEntityDefinition* animatedE
 
 void Door_constructor(Door this, AnimatedInGameEntityDefinition* definition, int ID);
 void Door_destructor(Door this);
+void Door_setExtraInfo(Door this, void* extraInfo);
+u16 Door_handleMessage(Door this, Telegram telegram);
 
 
 #endif

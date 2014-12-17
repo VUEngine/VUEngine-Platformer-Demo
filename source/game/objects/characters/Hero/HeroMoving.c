@@ -80,7 +80,7 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 
 	this->mustCheckDirection = false;
 #ifdef __DEBUG
-	Printing_text("HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 1);
+	Printing_text("HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2);
 #endif
 }
 
@@ -110,7 +110,12 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
                 {
 					Hero_checkDirection((Hero)owner, pressedKey, "Walk");					
 				}
+				else if ((K_LU | K_LD ) & pressedKey)
+                {
+					Hero_checkDirection((Hero)owner, pressedKey, "Walk");					
+				}
 
+				
 				// check if jump
 				if (K_A & pressedKey)
                 {
@@ -122,7 +127,6 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			break;
 			
 		case kKeyUp:
-
 			{
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
@@ -139,7 +143,21 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 						StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)HeroIdle_getInstance());					
 					}
 				}
-				
+
+				if ((K_LU | K_LD) & releasedKey)
+                {
+					Velocity velocity = Body_getVelocity(Actor_getBody((Actor)owner));
+					
+					if (0 < abs(velocity.z))
+                    {
+						Hero_stopMovement((Hero)owner);		
+					}
+					else
+                    {
+						StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)HeroIdle_getInstance());					
+					}
+				}
+
 				if (K_B & releasedKey)
                 {
 					Hero_disableBoost((Hero)owner);
@@ -148,26 +166,32 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			break;
 	
 		case kKeyHold:
-
 			{
 				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
+
+				if (K_B & holdKey)
+                {
+					Hero_enableBoost((Hero)owner);
+				}
 
 				// check direction
 				if ((K_LL | K_LR ) & holdKey)
                 {
-					Hero_addForce((Hero)owner, this->mustCheckDirection);					
+					Hero_addForce((Hero)owner, this->mustCheckDirection, __XAXIS);					
 					this->mustCheckDirection = false;
 				}
-				
-				if (K_B & holdKey)
+				else if ((K_LU | K_LD ) & holdKey)
                 {
-					Hero_enableBoost((Hero)owner);
+					Hero_addForce((Hero)owner, this->mustCheckDirection, __ZAXIS);					
+					this->mustCheckDirection = false;
 				}
 			}
 			break;
 
 		case kBodyStoped:
-
+			
+			Printing_text("stoped   ", 1, 11);
+			Printing_int(Clock_getTime(Game_getClock(Game_getInstance())), 10, 11);
 			Hero_stopMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
@@ -187,6 +211,8 @@ u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 		case kBodyBounced:
 			
+			Printing_text("Bouncing", 1, 11);
+			Printing_int(Clock_getTime(Game_getClock(Game_getInstance())), 20, 11);
 			this->mustCheckDirection = true;
 			this->bouncing = true;
 			MessageDispatcher_dispatchMessage(100, (Object)this, (Object)owner, kDisallowJumpOnBouncing, NULL);

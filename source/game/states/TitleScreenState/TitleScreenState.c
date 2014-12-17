@@ -30,8 +30,7 @@
 #include <objects.h>
 #include <macros.h>
 #include "stages.h"
-
-#include "PlatformerLevelState.h"
+#include <LevelSelectorScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -130,8 +129,8 @@ static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Te
 					break;
 				}
 			}
-
-			Game_changeState(Game_getInstance(), (State)PlatformerLevelState_getInstance());
+			
+			Game_changeState(Game_getInstance(), (State)LevelSelectorScreenState_getInstance());
 			break;
 	}
 

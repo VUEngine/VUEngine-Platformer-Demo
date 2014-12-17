@@ -44,6 +44,10 @@ extern EntityDefinition FLOOR_16x8_BG;
 extern EntityDefinition FLOOR_4x3_FLOAT_BG;
 extern EntityDefinition FLOOR_2x2_BLOCK_BG;
 
+extern EntityDefinition FLOOR_48x2x48;
+extern EntityDefinition FLOOR_2x28x48;
+extern EntityDefinition FLOOR_48x28x2;
+
 extern EntityDefinition MOUND_1_IM;
 extern EntityDefinition MOUND_2_IM;
 

@@ -18,48 +18,50 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef COIN_H_
-#define COIN_H_
+#ifndef LEVEL_SELECTOR_STATE_H_
+#define LEVEL_SELECTOR_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
-#include <macros.h>
+#include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Coin_METHODS															\
-	AnimatedInGameEntity_METHODS;
-	
+// declare the virtual methods
+#define LevelSelectorScreenState_METHODS										\
+	GameState_METHODS;											    			\
 
-#define Coin_SET_VTABLE(ClassName)												\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Coin, handleMessage);
+// declare the virtual methods which are redefined
+#define LevelSelectorScreenState_SET_VTABLE(ClassName)							\
+	GameState_SET_VTABLE(ClassName)								    			\
+	__VIRTUAL_SET(ClassName, LevelSelectorScreenState, enter);					\
+	__VIRTUAL_SET(ClassName, LevelSelectorScreenState, exit);					\
+	__VIRTUAL_SET(ClassName, LevelSelectorScreenState, execute);				\
+	__VIRTUAL_SET(ClassName, LevelSelectorScreenState, handleMessage);			\
 
-__CLASS(Coin);
 
-#define Coin_ATTRIBUTES															\
-																				\
-	/* it is derivated from */													\
-	AnimatedInGameEntity_ATTRIBUTES												\
+__CLASS(LevelSelectorScreenState);
+
+#define LevelSelectorScreenState_ATTRIBUTES							        	\
+														            			\
+	/* inherits */																\
+	GameState_ATTRIBUTES														\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Coin, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID));
-
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int ID);
-void Coin_destructor(Coin this);
-u16 Coin_handleMessage(Coin this, Telegram telegram);
-void Coin_removeFromStage(Coin this);
+LevelSelectorScreenState LevelSelectorScreenState_getInstance(void);
+void LevelSelectorScreenState_goToLevel1_1();
+void LevelSelectorScreenState_goToLevel1_2();
+void LevelSelectorScreenState_goToLevel1_3();
 
 
 #endif

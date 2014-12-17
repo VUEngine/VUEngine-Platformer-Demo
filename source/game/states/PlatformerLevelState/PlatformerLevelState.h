@@ -55,9 +55,12 @@ __CLASS(PlatformerLevelState);
 	/* inherits */																\
 	GameState_ATTRIBUTES														\
 																				\
+	/* the stage to load */														\
+	StageROMDef* stageDefinition;												\
+																				\
 	/* to allow moving the screen */											\
 	u8 mode: 4;																	\
-
+	
 enum PlatformerLevelStateMessageTypes
 {
 	kHeroDied = kLastEngineMessage + 1, // 16
@@ -66,6 +69,7 @@ enum PlatformerLevelStateMessageTypes
 	kStartLevel,			//19
 	kHideLevelMessage, 		//20
 	kTakeCoin, 				//21
+	kEnterDoor, 			//22
 	
 	// don't remove me
 	kLastPlatformerMessage
@@ -88,6 +92,11 @@ enum PlatformerLevelStateMessageTypes
 
 // setup the init focus screen
 PlatformerLevelState PlatformerLevelState_getInstance(void);
+void PlatformerLevelState_setStage(PlatformerLevelState this, StageROMDef* stageDefinition);
+void PlatformerLevelState_goToLevel1_1Room1();
+void PlatformerLevelState_goToLevel1_1Room2();
+void PlatformerLevelState_goToLevel1_2Room1();
+void PlatformerLevelState_goToLevel1_3Room1();
 
 
 #endif
