@@ -94,7 +94,6 @@ static void LevelSelectorScreenState_enter(LevelSelectorScreenState this, void* 
 	
 	Printing_text("   AWESOME", 16, 4);
 	Printing_text("LEVEL SELECTOR", 16, 5);
-	Printing_text(" Press Start", 16, 7);
 }
 
 // state's execute

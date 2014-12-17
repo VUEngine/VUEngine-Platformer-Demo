@@ -121,7 +121,7 @@
 #define __POOL_192B_SIZE 	(__BLOCK_192B * 10)
 #define __POOL_128B_SIZE 	(__BLOCK_128B * 24)
 #define __POOL_100B_SIZE 	(__BLOCK_100B * 64)
-#define __POOL_64B_SIZE 	(__BLOCK_64B * 32)
+#define __POOL_64B_SIZE 	(__BLOCK_64B * 48)
 #define __POOL_48B_SIZE 	(__BLOCK_48B * 16)
 #define __POOL_32B_SIZE 	(__BLOCK_32B * 64)
 #define __POOL_28B_SIZE 	(__BLOCK_28B * 512)

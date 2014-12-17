@@ -122,6 +122,9 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
+	
+	// call base
+	GameState_exit((GameState)this, owner);
 }
 
 // state's on message
