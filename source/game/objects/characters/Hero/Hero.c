@@ -32,8 +32,8 @@
 
 #include <objects.h>
 #include "Hero.h"
-#include "HeroIdle.h"
-#include "HeroMoving.h"
+#include "states/HeroIdle.h"
+#include "states/HeroMoving.h"
 
 #include <PlatformerLevelState.h>
 

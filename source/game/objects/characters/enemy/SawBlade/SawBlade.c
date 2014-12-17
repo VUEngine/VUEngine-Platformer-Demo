@@ -29,10 +29,10 @@
 #include <Prototypes.h>
 
 #include "SawBlade.h"
-#include "SawBladeIdle.h"
-#include "SawBladeMoving.h"
-#include "../enemy/EnemyDead.h"
-#include "../Hero/Hero.h"
+#include "states/SawBladeIdle.h"
+#include "states/SawBladeMoving.h"
+#include "../states/EnemyDead.h"
+#include "../../Hero/Hero.h"
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -28,9 +28,9 @@
 
 #include "SawBladeMoving.h"
 #include "SawBladeIdle.h"
-#include "../enemy/EnemyDead.h"
-#include "SawBlade.h"
-#include "../hero/Hero.h"
+#include "../../states/EnemyDead.h"
+#include "../SawBlade.h"
+#include "../../../hero/Hero.h"
 
 
 //---------------------------------------------------------------------------------------------------------

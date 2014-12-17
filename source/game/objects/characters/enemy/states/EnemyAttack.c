@@ -18,60 +18,70 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef HEROMOVING_H_
-#define HEROMOVING_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StateMachine.h>
-#include <PlatformerLevelState.h>
+#include "EnemyAttack.h"
+#include "../Enemy.h"
+#include "../../hero/Hero.h"
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+// 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define HeroMoving_METHODS														\
-	State_METHODS;									
 
-// declare the virtual methods which are redefined
-#define HeroMoving_SET_VTABLE(ClassName)										\
-	State_SET_VTABLE(ClassName)													\
-	__VIRTUAL_SET(ClassName, HeroMoving, enter);								\
-	__VIRTUAL_SET(ClassName, HeroMoving, execute);								\
-	__VIRTUAL_SET(ClassName, HeroMoving, exit);									\
-	__VIRTUAL_SET(ClassName, HeroMoving, handleMessage);						\
+//---------------------------------------------------------------------------------------------------------
+// 											CLASS'S DEFINITION
+//---------------------------------------------------------------------------------------------------------
 
-#define HeroMoving_ATTRIBUTES													\
-																				\
-	/* inherits */																\
-	State_ATTRIBUTES															\
-																				\
-	/* check direction flag */													\
-	u8 mustCheckDirection;														\
-																				\
-	/* flag to allow jump on bouncing */										\
-	u8 bouncing;																\
-
- __CLASS(HeroMoving);
+__CLASS_DEFINITION(EnemyAttack);
+__SINGLETON(EnemyAttack);
 
 
-enum HeroMovingMessages
+//---------------------------------------------------------------------------------------------------------
+// 												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
+
+// class's constructor
+void EnemyAttack_constructor(EnemyAttack this)
 {
-	 kDisallowJumpOnBouncing = kLastPlatformerMessage + 1,
-};
+	// construct base
+	__CONSTRUCT_BASE(State);
+}
 
+// class's destructor
+void EnemyAttack_destructor(EnemyAttack this)
+{
+	// destroy base
+	__SINGLETON_DESTROY(State);
+}
 
-//---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
+// state's enter
+void EnemyAttack_enter(EnemyAttack this, void* owner)
+{
+	// do not move
+//	Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);
+}
 
-// setup the init focus screen
-HeroMoving HeroMoving_getInstance();
+// state's execute
+void EnemyAttack_execute(EnemyAttack this, void* owner)
+{
+//	if (HERO_TIME_TO_DIE < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
+// {
+		// change state
+		StateMachine_popState(Actor_getStateMachine((Actor)owner));
+//	}
+}
 
+// state's exit
+void EnemyAttack_exit(EnemyAttack this, void* owner)
+{
+}
 
-#endif
+// state's on message
+u16 EnemyAttack_handleMessage(EnemyAttack this, void* owner, Telegram telegram)
+{
+	return false;
+}
