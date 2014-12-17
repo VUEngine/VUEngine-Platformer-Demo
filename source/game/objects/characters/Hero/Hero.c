@@ -454,8 +454,6 @@ int Hero_stopMovingOnAxis(Hero this, int axis)
 // check direction
 void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 {
-	int previousDirection = this->direction.x;
-	
 	if ((K_LR & pressedKey) && __RIGHT != this->direction.x)
     {
 		this->direction.x = __RIGHT;

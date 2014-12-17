@@ -23,7 +23,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
-#include <InvisibleInGameEntity.h>
 #include <macros.h>
 
 //---------------------------------------------------------------------------------------------------------
@@ -136,8 +135,16 @@ InanimatedInGameEntityROMDef FLOOR_16x8_BG =
         // in game type
         kSolid,
 
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+        0,
+        
+        // height
+        0,
+        
         // deep
-        20,
+        20
     },
 
     // friction FTOFIX19_13
@@ -150,113 +157,110 @@ InanimatedInGameEntityROMDef FLOOR_16x8_BG =
     true,
 };
 
-InvisibleInGameEntityROMDef FLOOR_48x2x48 =
+InanimatedInGameEntityROMDef FLOOR_48x2x48 =
 {
-	{
-	    {
-	        {
-	            __TYPE(InvisibleInGameEntity),
-	            NULL,
-	        },
-	
-	        // collision detection gap (up, down, left, right)
-	        {0, 0, 0, 0},
-	
-	        // in game type
-	        kSolid,
-	
-	        // deep
-	        0,
-	    },
-	
-	    // friction FTOFIX19_13
-	    FTOFIX19_13(0.5f),
-	
-	    // elasticity FTOFIX19_13
-	    FTOFIX19_13(1.0f),
-	
-	    // register shape
-	    true,
-	},
-	
-	// width
-	48 * 8,
-	// height
-	2 * 8,
-	// deep
-	48 * 8,
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kSolid,
+
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+    	48 * 8,
+
+    	// height
+    	2 * 8,
+    	
+    	// deep
+    	48 * 8
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.5f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
 };
 
-InvisibleInGameEntityROMDef FLOOR_2x28x48 =
+InanimatedInGameEntityROMDef FLOOR_2x28x48 =
 {
-	{
-	    {
-	        {
-	            __TYPE(InvisibleInGameEntity),
-	            NULL,
-	        },
-	
-	        // collision detection gap (up, down, left, right)
-	        {0, 0, 0, 0},
-	
-	        // in game type
-	        kSolid,
-	
-	        // deep
-	        0,
-	    },
-	
-	    // friction FTOFIX19_13
-	    FTOFIX19_13(0.5f),
-	
-	    // elasticity FTOFIX19_13
-	    FTOFIX19_13(1.0f),
-	
-	    // register shape
-	    true,
-	},
-	
-	// width
-	2 * 8,
-	// height
-	28 * 8,
-	// deep
-	48 * 8,
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kSolid,
+
+        // if 0, width and height will be inferred from 
+        // the texture's size
+    	// width
+    	2 * 8,
+
+    	// height
+    	28 * 8,
+    	
+    	// deep
+    	48 * 8
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.5f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
 };
 
-InvisibleInGameEntityROMDef FLOOR_48x28x2 =
+InanimatedInGameEntityROMDef FLOOR_48x28x2 =
 {
-	{
-	    {
-	        {
-	            __TYPE(InvisibleInGameEntity),
-	            NULL,
-	        },
-	
-	        // collision detection gap (up, down, left, right)
-	        {0, 0, 0, 0},
-	
-	        // in game type
-	        kSolid,
-	
-	        // deep
-	        0,
-	    },
-	
-	    // friction FTOFIX19_13
-	    FTOFIX19_13(0.5f),
-	
-	    // elasticity FTOFIX19_13
-	    FTOFIX19_13(1.0f),
-	
-	    // register shape
-	    true,
-	},
-	
-	// width
-	48 * 8,
-	// height
-	28 * 8,
-	// deep
-	2 * 8,
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kSolid,
+        
+        // if 0, width and height will be inferred from 
+        // the texture's size
+    	// width
+    	48 * 8,
+    	
+    	// height
+    	28 * 8,
+    	
+    	// deep
+    	2 * 8
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.5f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true
 };

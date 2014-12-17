@@ -136,8 +136,16 @@ InanimatedInGameEntityROMDef FLOOR_2x2_BLOCK_BG =
         // in game type
         kSolid,
 
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+    	
         // deep
-        20,
+        20
     },
 
     // friction FTOFIX19_13

@@ -153,8 +153,16 @@ AnimatedInGameEntityROMDef COIN_MC =
         // in game type
         kCoin,
 
-        // deep
-        4,
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+    	
+    	// deep
+        4
     },
 
     // pointer to the animation definition for the item
