@@ -26,6 +26,12 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+//include project's characters
+#include "collisions/collisions.h"
+
+//include project's collisions
+#include "characters/characters.h"
+
 //include project's images
 #include "images/images.h"
 
@@ -34,9 +40,6 @@
 
 //include project's scroll backgrounds
 #include "backgrounds/backgrounds.h"
-
-//include project's characters
-#include "characters/characters.h"
 
 //include project's items
 #include "items/items.h"

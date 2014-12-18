@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef BACKGROUNDS_H_
-#define BACKGROUNDS_H_
+#ifndef COLLISIONS_H_
+#define COLLISIONS_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,18 +34,9 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition TREE_BG_FRONT_SB;
-extern EntityDefinition TREE_BG_BACK_SB;
-extern EntityDefinition VBJAENGINE_BG_SB;
-extern EntityDefinition CLOUDS_SB;
-
-extern EntityDefinition FLOOR_4x10_BG;
-extern EntityDefinition FLOOR_16x8_BG;
-extern EntityDefinition FLOOR_4x3_FLOAT_BG;
-extern EntityDefinition FLOOR_2x2_BLOCK_BG;
-
-extern EntityDefinition MOUND_1_IM;
-extern EntityDefinition MOUND_2_IM;
+extern EntityDefinition COLLISION_48x2x48;
+extern EntityDefinition COLLISION_2x28x48;
+extern EntityDefinition COLLISION_48x28x2;
 
 
 #endif

@@ -18,34 +18,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef BACKGROUNDS_H_
-#define BACKGROUNDS_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include "texture.h"
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition TREE_BG_FRONT_SB;
-extern EntityDefinition TREE_BG_BACK_SB;
-extern EntityDefinition VBJAENGINE_BG_SB;
-extern EntityDefinition CLOUDS_SB;
+InanimatedInGameEntityROMDef COLLISION_48x28x2 =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
 
-extern EntityDefinition FLOOR_4x10_BG;
-extern EntityDefinition FLOOR_16x8_BG;
-extern EntityDefinition FLOOR_4x3_FLOAT_BG;
-extern EntityDefinition FLOOR_2x2_BLOCK_BG;
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-extern EntityDefinition MOUND_1_IM;
-extern EntityDefinition MOUND_2_IM;
+        // in game type
+        kSolid,
 
+        // if 0, width and height will be inferred from the texture's size
+    	// width
+    	48 * 8,
 
-#endif
+    	// height
+    	28 * 8,
+
+    	// deep
+    	2 * 8
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.5f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true
+};
