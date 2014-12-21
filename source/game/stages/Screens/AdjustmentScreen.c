@@ -85,5 +85,11 @@ StageROMDef ADJUSTMENT_ST =
     ADJUSTMENT_ST_ENTITIES,
 
     //background music
-    NULL
+    NULL,
+
+    //identifier
+    NULL,
+
+    //name
+    NULL,
 };

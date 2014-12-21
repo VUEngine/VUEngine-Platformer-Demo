@@ -33,14 +33,18 @@
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
+#define LEVEL_X_SIZE 	    __SCREEN_WIDTH
+#define LEVEL_Y_SIZE 	    __SCREEN_HEIGHT
+#define LEVEL_Z_SIZE 	    __SCREEN_WIDTH
 
-#define LEVEL_X_SIZE 	__SCREEN_WIDTH
-#define LEVEL_Y_SIZE 	__SCREEN_HEIGHT
-#define LEVEL_Z_SIZE 	__SCREEN_WIDTH
+#define SCREEN_X_POSITION 	0
+#define SCREEN_Y_POSITION 	LEVEL_Y_SIZE - __SCREEN_HEIGHT
+#define SCREEN_Z_POSITION 	0
 
-#define SCREEN_X_POSITION 		0
-#define SCREEN_Y_POSITION 		LEVEL_Y_SIZE - __SCREEN_HEIGHT
-#define SCREEN_Z_POSITION 		0
+#define START_LAYER			0
+#define HERO_LAYER			START_LAYER + 32
+#define DOORS_LAYER			HERO_LAYER	+ 32
+#define END_LAYER			DOORS_LAYER + 16
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,27 +54,20 @@
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-#define START_LAYER			8
-#define HERO_LAYER			START_LAYER + 32
-#define DOORS_LAYER			HERO_LAYER	+ 32
-#define END_LAYER			DOORS_LAYER + 16
-
 PositionedEntityROMDef LEVEL_SELECTOR_ST_ENTITIES[] = {
 
-	// since these are always visible
-	// it doesn't matter that they are not logically
-	// placed in this definition
+	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&HERO_MC, 				{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + 60, HERO_LAYER}, NULL},
 	// bottom
-	{&COLLISION_48x2x48, 		{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, START_LAYER}, NULL},
-	//left
-	{&COLLISION_2x28x48, 		{SCREEN_X_POSITION + 16, SCREEN_Y_POSITION + __SCREEN_HEIGHT / 2, START_LAYER}, NULL},
+	{&COLLISION_48x2x48, 	{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, START_LAYER}, NULL},
+	// left
+	{&COLLISION_2x28x48, 	{SCREEN_X_POSITION + 16, SCREEN_Y_POSITION + __SCREEN_HEIGHT / 2, START_LAYER}, NULL},
 	// right
-	{&COLLISION_2x28x48, 		{SCREEN_X_POSITION + __SCREEN_WIDTH - 16, SCREEN_Y_POSITION + __SCREEN_HEIGHT / 2, START_LAYER}, NULL},
+	{&COLLISION_2x28x48, 	{SCREEN_X_POSITION + __SCREEN_WIDTH - 16, SCREEN_Y_POSITION + __SCREEN_HEIGHT / 2, START_LAYER}, NULL},
 	// front
-	{&COLLISION_48x28x2, 		{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, START_LAYER}, NULL},
+	{&COLLISION_48x28x2, 	{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, START_LAYER}, NULL},
 	// back
-	{&COLLISION_48x28x2, 		{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, END_LAYER}, NULL},
+	{&COLLISION_48x28x2, 	{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, END_LAYER}, NULL},
 
 	{&DOOR_MC,				{SCREEN_X_POSITION + __SCREEN_WIDTH / 2 - 64, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8 - 3 * 8, DOORS_LAYER}, LevelSelectorScreenState_goToLevel1_1},
 	{&DOOR_MC,				{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8  - 3 * 8, DOORS_LAYER}, LevelSelectorScreenState_goToLevel1_2},
@@ -128,6 +125,12 @@ StageROMDef LEVEL_SELECTOR_ST =
     LEVEL_SELECTOR_ST_ENTITIES,
 
     //background music
-    NULL
+    NULL,
     //(const u16 (*)[])WORLD_0_0_0_BGM,
+
+    //identifier
+    NULL,
+
+    //name
+    NULL,
 };

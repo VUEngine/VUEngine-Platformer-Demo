@@ -87,6 +87,13 @@ StageROMDef TITLE_ST =
     },
     //entities
     TITLE_ST_ENTITIES,
+
     //background music
-    NULL
+    NULL,
+
+    //identifier
+    NULL,
+
+    //name
+    NULL,
 };

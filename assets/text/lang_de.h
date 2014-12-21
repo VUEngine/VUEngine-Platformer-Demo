@@ -12,6 +12,9 @@ static char* Lang_DE[] =
 // STR_PRECAUTION
 "            Wichtig:\n\n  Lesen Sie vor dem Spielen die\n\nAnleitung und Sicherheitshinweise",
 
+// STR_LEVEL
+"Level",
+
 // STR_LEVEL_1_1_NAME
 "Woohoo-Berge",
 

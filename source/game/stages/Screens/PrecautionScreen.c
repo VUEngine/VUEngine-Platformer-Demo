@@ -81,5 +81,11 @@ StageROMDef PRECAUTION_ST =
     PRECAUTION_ST_ENTITIES,
 
     //background music
-    NULL
+    NULL,
+
+    //identifier
+    NULL,
+
+    //name
+    NULL,
 };

@@ -141,6 +141,11 @@ StageROMDef LEVEL_1_1_ROOM_2_ST =
     LEVEL_1_1_ROOM_2_ST_ENTITIES,
 
     //background music
-    NULL
-    //(const u16 (*)[])WORLD_0_0_0_BGM,
+    NULL,
+
+    //identifier
+    "1-1",
+
+    //name
+    "Woohoo Hills",
 };

@@ -155,6 +155,11 @@ StageROMDef LEVEL_1_3_ROOM_1_ST =
     LEVEL_1_3_ROOM_1_ST_ENTITIES,
 
     //background music
-    NULL
-    //(const u16 (*)[])WORLD_0_0_0_BGM,
+    NULL,
+
+    //identifier
+    "1-3",
+
+    //name
+    "Third Example Level",
 };

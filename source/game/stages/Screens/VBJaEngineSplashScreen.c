@@ -88,5 +88,11 @@ StageROMDef VBJAE_ST =
     VBJAE_ST_ENTITIES,
 
     //background music
-    NULL
+    NULL,
+
+    //identifier
+    NULL,
+
+    //name
+    NULL,
 };

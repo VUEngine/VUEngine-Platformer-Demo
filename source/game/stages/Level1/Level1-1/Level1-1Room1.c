@@ -26,6 +26,8 @@
 #include <objects.h>
 #include <macros.h>
 #include <PlatformerLevelState.h>
+#include <I18n.h>
+#include <text.h>
 
 #include "stages/textures.h"
 
@@ -201,6 +203,14 @@ StageROMDef LEVEL_1_1_ROOM_1_ST =
     LEVEL_1_1_ROOM_1_ST_ENTITIES,
 
     //background music
-    NULL
+    NULL,
     //(const u16 (*)[])WORLD_0_0_0_BGM,
+
+    //identifier
+    "1-1",
+
+    //name
+    // TODO: use translated string
+    // I18n_getText(I18n_getInstance(), STR_LEVEL_1_1_NAME)),
+    "Woohoo Hills",
 };
