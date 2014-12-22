@@ -23,6 +23,8 @@ extern TextureDefinition FLOOR_4x10_L_TX;
 extern TextureDefinition FLOOR_4x10_R_TX;
 extern TextureDefinition FLOOR_16x8_L_TX;
 extern TextureDefinition FLOOR_16x8_R_TX;
+extern TextureDefinition FLOOR_22x8_L_TX;
+extern TextureDefinition FLOOR_22x8_R_TX;
 extern TextureDefinition FLOOR_4x3_FLOAT_L_TX;
 extern TextureDefinition FLOOR_4x3_FLOAT_R_TX;
 extern TextureDefinition FLOOR_2x2_BLOCK_L_TX;

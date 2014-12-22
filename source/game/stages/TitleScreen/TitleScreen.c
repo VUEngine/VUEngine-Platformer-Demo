@@ -25,7 +25,7 @@
 #include <Stage.h>
 #include <objects.h>
 #include <macros.h>
-#include <LevelSelectorScreenState.h>
+#include <TitleScreenState.h>
 #include "stages/textures.h"
 
 
@@ -41,11 +41,6 @@
 #define SCREEN_Y_POSITION 	LEVEL_Y_SIZE - __SCREEN_HEIGHT
 #define SCREEN_Z_POSITION 	0
 
-#define START_LAYER			0
-#define HERO_LAYER			START_LAYER + 32
-#define DOORS_LAYER			HERO_LAYER	+ 32
-#define END_LAYER			DOORS_LAYER + 16
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
@@ -54,33 +49,47 @@
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-PositionedEntityROMDef LEVEL_SELECTOR_ST_ENTITIES[] = {
+PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] = {
 
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&HERO_MC, 				{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + 60, HERO_LAYER}, NULL},
-	// bottom
-	{&COLLISION_48x2x48, 	{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, START_LAYER}, NULL},
-	// left
-	{&COLLISION_2x28x48, 	{SCREEN_X_POSITION + 16, SCREEN_Y_POSITION + __SCREEN_HEIGHT / 2, START_LAYER}, NULL},
-	// right
-	{&COLLISION_2x28x48, 	{SCREEN_X_POSITION + __SCREEN_WIDTH - 16, SCREEN_Y_POSITION + __SCREEN_HEIGHT / 2, START_LAYER}, NULL},
-	// front
-	{&COLLISION_48x28x2, 	{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, START_LAYER}, NULL},
-	// back
-	{&COLLISION_48x28x2, 	{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8, END_LAYER}, NULL},
 
-	{&DOOR_MC,				{SCREEN_X_POSITION + __SCREEN_WIDTH / 2 - 64, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8 - 3 * 8, DOORS_LAYER}, LevelSelectorScreenState_goToLevel1_1},
-	{&DOOR_MC,				{SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8  - 3 * 8, DOORS_LAYER}, LevelSelectorScreenState_goToLevel1_2},
-	{&DOOR_MC,				{SCREEN_X_POSITION + __SCREEN_WIDTH / 2 + 64, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 2 * 8  - 3 * 8, DOORS_LAYER}, LevelSelectorScreenState_goToLevel1_3},
+	{&TREE_BG_BACK_SB,	 	{0, 116, LAYER_4}, NULL},
+	{&TREE_BG_FRONT_SB, 	{0, 224, LAYER_3}, NULL},
+
+	{&VBJAENGINE_IM, 	    {__SCREEN_WIDTH >> 1, 40, LAYER_0       }, NULL},
+	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 64, LAYER_0 - 16	}, NULL},
+	{&LOGO_IM, 			    {__SCREEN_WIDTH >> 1, 88, LAYER_0   	}, NULL},
+
+	{&MOUND_1_IM,			{-14, 174, LAYER_1}, NULL},
+	{&MOUND_1_IM,			{138, 182, LAYER_1}, NULL},
+	{&MOUND_2_IM,			{228, 182, LAYER_1}, NULL},
+	{&MOUND_2_IM,			{384, 192, LAYER_1}, NULL},
+
+	{&FLOOR_4x10_BG,		{16, 216, 2}, NULL},
+	{&FLOOR_4x10_BG,		{64, 208, 2}, NULL},
+	{&FLOOR_22x8_BG,		{__SCREEN_WIDTH >> 1, 216, 2}, NULL},
+	{&FLOOR_16x8_BG,		{372, 208, 2}, NULL},
+
+	{&HERO_MC, 				{168, 164, 0}, NULL},
+	//{&HERO_MC, 				{__SCREEN_WIDTH >> 1, 172, 0}, NULL},
+
+	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL},
+	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 88, __SCREEN_HEIGHT >> 1, 0}, NULL},
+
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, TitleScreenState_goToLevel1_1},
+	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, TitleScreenState_goToLevel1_2},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, TitleScreenState_goToLevel1_3},
+
 	{NULL, {0,0,0}, NULL},
 };
 
-PositionedEntityROMDef LEVEL_SELECTOR_ST_UI_ENTITIES[] =
+PositionedEntityROMDef TITLE_SCREEN_ST_UI_ENTITIES[] =
 {
+	{&GUI_BLANK_IM,			{__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT - 8, 0}, NULL},
 	{NULL, {0,0,0}, NULL}
 };
 
-TextureROMDef* LEVEL_SELECTOR_ST_TEXTURES[] =
+TextureROMDef* TITLE_SCREEN_ST_TEXTURES[] =
 {
 	NULL
 };
@@ -90,7 +99,7 @@ TextureROMDef* LEVEL_SELECTOR_ST_TEXTURES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef LEVEL_SELECTOR_ST =
+StageROMDef TITLE_SCREEN_ST =
 {
     // size
     {
@@ -113,24 +122,24 @@ StageROMDef LEVEL_SELECTOR_ST =
     },
 
     //textures to preload
-    (TextureDefinition**)LEVEL_SELECTOR_ST_TEXTURES,
+    (TextureDefinition**)TITLE_SCREEN_ST_TEXTURES,
 
     //UI
     {
-        LEVEL_SELECTOR_ST_UI_ENTITIES,
+        TITLE_SCREEN_ST_UI_ENTITIES,
         __TYPE(UI),
     },
 
     //entities
-    LEVEL_SELECTOR_ST_ENTITIES,
+    TITLE_SCREEN_ST_ENTITIES,
 
     //background music
     NULL,
     //(const u16 (*)[])WORLD_0_0_0_BGM,
 
     //identifier
-    NULL,
+    "",
 
     //name
-    NULL,
+    "",
 };

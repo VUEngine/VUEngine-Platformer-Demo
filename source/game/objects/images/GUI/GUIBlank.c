@@ -18,50 +18,70 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef LEVEL_SELECTOR_STATE_H_
-#define LEVEL_SELECTOR_STATE_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameState.h>
+#include <Image.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+// 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define LevelSelectorScreenState_METHODS										\
-	GameState_METHODS;											    			\
-
-// declare the virtual methods which are redefined
-#define LevelSelectorScreenState_SET_VTABLE(ClassName)							\
-	GameState_SET_VTABLE(ClassName)								    			\
-	__VIRTUAL_SET(ClassName, LevelSelectorScreenState, enter);					\
-	__VIRTUAL_SET(ClassName, LevelSelectorScreenState, exit);					\
-	__VIRTUAL_SET(ClassName, LevelSelectorScreenState, execute);				\
-	__VIRTUAL_SET(ClassName, LevelSelectorScreenState, handleMessage);			\
-
-
-__CLASS(LevelSelectorScreenState);
-
-#define LevelSelectorScreenState_ATTRIBUTES							        	\
-														            			\
-	/* inherits */																\
-	GameState_ATTRIBUTES														\
+extern BYTE GUIBlankTiles[];
+extern BYTE GUIBlankMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-LevelSelectorScreenState LevelSelectorScreenState_getInstance(void);
-void LevelSelectorScreenState_goToLevel1_1();
-void LevelSelectorScreenState_goToLevel1_2();
-void LevelSelectorScreenState_goToLevel1_3();
+TextureROMDef GUI_BLANK_TX =
+{
+    {
+        // number of chars
+        1,
 
+        // allocation type
+        __NO_ANIMATED,
 
-#endif
+        // char definition
+        GUIBlankTiles,
+    },
+
+    // bgmap definition
+    GUIBlankMap,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    2,
+
+    // palette number
+    1,
+};
+
+SpriteROMDef GUI_BLANK_IM_SPRITES[] =
+{
+	{
+		// texture definition
+		(TextureDefinition*)&GUI_BLANK_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+	},
+};
+
+ImageROMDef GUI_BLANK_IM =
+{
+	__TYPE(Image),
+	__SPRITE_ARRAY(GUI_BLANK_IM_SPRITES),
+};

@@ -266,13 +266,13 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
         {
         	(__XAXIS & axis)? __RIGHT == this->direction.x ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE: 0,
 			0,
-			(__ZAXIS & axis)? __FAR == this->direction.z ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE: 0,
+			0, //(__ZAXIS & axis)? __FAR == this->direction.z ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE: 0,
 		};
 
 		if (velocity.x || velocity.z || ( __XAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)) || ( __ZAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)))
         {
 			fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->direction.x? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
-			fix19_13 zForce = (__ZAXIS & axis)? __FAR == this->direction.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
+			fix19_13 zForce = 0; //(__ZAXIS & axis)? __FAR == this->direction.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
 			Force force =
             {
                 xForce,
@@ -384,7 +384,8 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 			
 			if (__ZAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration))
             {
-				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
+				//AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Walk");
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, __FAR == this->direction.z ? "Back" : "Front");
 				StateMachine_swapState(Actor_getStateMachine((Actor) this), (State) HeroMoving_getInstance());
 			}
 		}
@@ -476,6 +477,11 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 	if (animation && !(__YAXIS & movementState))
     {
 		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, animation);
+	}
+
+	if (K_LU & pressedKey)
+	{
+
 	}
 }
 
@@ -949,12 +955,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 								
 			case kDoor:
 
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kEnterDoor, NULL);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 		}
 	}
-	
+
 	for(node = VirtualList_begin(collidingObjectsToRemove); node; node = VirtualNode_getNext(node))
     {
 		// whenever you process some objects of a collisions list

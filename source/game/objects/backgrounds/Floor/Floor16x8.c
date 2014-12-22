@@ -25,6 +25,7 @@
 #include <InanimatedInGameEntity.h>
 #include <macros.h>
 
+
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
@@ -56,10 +57,10 @@ TextureROMDef FLOOR_16x8_L_TX =
     Floor16x8LMap,
 
     // cols (max 48)
-    17,
+    16 + 1,
 
     // rows (max 28)
-    9,
+    8 + 1,
 
     // palette number
     1,
@@ -82,10 +83,10 @@ TextureROMDef FLOOR_16x8_R_TX =
     Floor16x8RMap,
 
     // cols (max 48)
-    17,
+    16 + 1,
 
     // rows (max 28)
-    9,
+    8 + 1,
 
     // palette number
     1,

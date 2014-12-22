@@ -41,6 +41,7 @@ extern EntityDefinition CLOUDS_SB;
 
 extern EntityDefinition FLOOR_4x10_BG;
 extern EntityDefinition FLOOR_16x8_BG;
+extern EntityDefinition FLOOR_22x8_BG;
 extern EntityDefinition FLOOR_4x3_FLOAT_BG;
 extern EntityDefinition FLOOR_2x2_BLOCK_BG;
 

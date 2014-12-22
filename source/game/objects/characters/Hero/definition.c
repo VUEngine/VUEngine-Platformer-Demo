@@ -405,36 +405,3 @@ ActorROMDef HERO_MC =
     // initial animation
     NULL,
 };
-
-AnimatedInGameEntityROMDef HERO_IM =
-{
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            __SPRITE_ARRAY(HERO_SPRITES),
-        },
-
-        // collision detection gap (up, down, left, right)
-        {5, 1, 4, 4},
-
-        // in game type
-        kHero,
-
-        // if 0, width and height will be inferred from 
-        // the texture's size
-        // width
-    	0,
-
-    	// height
-    	0,
-    	
-    	// deep
-        8
-    },
-
-    // pointer to the animation definition for the character
-    (AnimationDescription*)&HERO_ANIM,
-
-    // initial animation
-    "Idle"
-};

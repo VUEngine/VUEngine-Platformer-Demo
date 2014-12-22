@@ -22,66 +22,138 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE AdjustmentScreenLogoTiles[];
-extern BYTE AdjustmentScreenLogoMap[];
+extern BYTE Floor22x8LTiles[];
+extern BYTE Floor22x8LMap[];
+extern BYTE Floor22x8RTiles[];
+extern BYTE Floor22x8RMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef ADJUSTMENT_SCREEN_LOGO_TX =
+TextureROMDef FLOOR_22x8_L_TX =
 {
     {
         // number of chars
-        66,
+        13,
 
         // allocation type
         __NO_ANIMATED,
 
         // char definition
-        AdjustmentScreenLogoTiles,
+        Floor22x8LTiles,
     },
 
-    // LOGOmap definition
-    AdjustmentScreenLogoMap,
+    // bgmap definition
+    Floor22x8LMap,
 
     // cols (max 48)
-    27,
+    22 + 1,
 
     // rows (max 28)
-    5,
+    8 + 1,
 
     // palette number
     1,
 };
 
-SpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITES[] =
+TextureROMDef FLOOR_22x8_R_TX =
+{
+    {
+        // number of chars
+        14,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        Floor22x8RTiles,
+    },
+
+    // bgmap definition
+    Floor22x8RMap,
+
+    // cols (max 48)
+    22 + 1,
+
+    // rows (max 28)
+    8 + 1,
+
+    // palette number
+    1,
+};
+
+SpriteROMDef FLOOR_22x8_BG_SPRITES[] =
 {
 	{
 		// texture definition
-		(TextureDefinition*)&ADJUSTMENT_SCREEN_LOGO_TX,
+		(TextureDefinition*)&FLOOR_22x8_L_TX,
 		
-		// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
-		WRLD_ON,
+		WRLD_LON,
+		
+		// parallax displacement
+		-1,
+	},
+	{
+		// texture definition
+		(TextureDefinition*)&FLOOR_22x8_R_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_RON,
 
 		// parallax displacement
-		0,
+		-1,
 	},
 };
 
-ImageROMDef ADJUSTMENT_SCREEN_LOGO_IM =
+InanimatedInGameEntityROMDef FLOOR_22x8_BG =
 {
-	__TYPE(Image),
-	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_LOGO_IM_SPRITES),
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            __SPRITE_ARRAY(FLOOR_22x8_BG_SPRITES),
+        },
+
+        // collision detection gap (up, down, left, right)
+        {6, 0, 4, 8},
+
+        // in game type
+        kSolid,
+
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+        0,
+        
+        // height
+        0,
+        
+        // deep
+        20
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.5f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
 };

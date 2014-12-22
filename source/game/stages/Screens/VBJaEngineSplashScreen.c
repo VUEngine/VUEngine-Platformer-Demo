@@ -91,8 +91,8 @@ StageROMDef VBJAE_ST =
     NULL,
 
     //identifier
-    NULL,
+    "",
 
     //name
-    NULL,
+    "",
 };

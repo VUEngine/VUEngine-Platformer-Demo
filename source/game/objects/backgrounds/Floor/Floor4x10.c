@@ -57,10 +57,10 @@ TextureROMDef FLOOR_4x10_L_TX =
     Floor4x10LMap,
 
     // cols (max 48)
-    5,
+    4 + 1,
 
     // rows (max 28)
-    11,
+    10 + 1,
 
     // palette number
     1,
@@ -83,10 +83,10 @@ TextureROMDef FLOOR_4x10_R_TX =
     Floor4x10RMap,
 
     // cols (max 48)
-    5,
+    4 + 1,
 
     // rows (max 28)
-    11,
+    10 + 1,
 
     // palette number
     1,

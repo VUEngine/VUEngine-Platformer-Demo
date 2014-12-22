@@ -36,8 +36,7 @@
 extern StageROMDef ADJUSTMENT_ST;
 extern StageROMDef PRECAUTION_ST;
 extern StageROMDef VBJAE_ST;
-extern StageROMDef TITLE_ST;
-extern StageROMDef LEVEL_SELECTOR_ST;
+extern StageROMDef TITLE_SCREEN_ST;
 
 extern StageROMDef LEVEL_1_1_ROOM_1_ST;
 extern StageROMDef LEVEL_1_1_ROOM_2_ST;

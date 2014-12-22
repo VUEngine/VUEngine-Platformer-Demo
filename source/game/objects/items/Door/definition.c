@@ -151,7 +151,7 @@ AnimatedInGameEntityROMDef DOOR_MC =
         },
 
         // collision detection gap (up, down, left, right)
-        {3, 0, 3, 3},
+        {6, 0, 6, 6},
 
         // in game type
         kDoor,

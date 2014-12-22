@@ -14,6 +14,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern TextureDefinition GUI_TX;
+extern TextureDefinition GUI_BLANK_TX;
 
 extern TextureDefinition LOGO_LEFT_TX;
 extern TextureDefinition LOGO_RIGHT_TX;

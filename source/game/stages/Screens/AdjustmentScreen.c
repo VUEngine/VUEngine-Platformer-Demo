@@ -88,8 +88,8 @@ StageROMDef ADJUSTMENT_ST =
     NULL,
 
     //identifier
-    NULL,
+    "",
 
     //name
-    NULL,
+    "",
 };

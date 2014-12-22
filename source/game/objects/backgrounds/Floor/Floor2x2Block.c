@@ -57,10 +57,10 @@ TextureROMDef FLOOR_2x2_BLOCK_L_TX =
     Floor2x2BlockLMap,
 
     // cols (max 48)
-    3,
+    2 + 1,
 
     // rows (max 28)
-    3,
+    2 + 1,
 
     // palette number
     1,
@@ -83,10 +83,10 @@ TextureROMDef FLOOR_2x2_BLOCK_R_TX =
     Floor2x2BlockRMap,
 
     // cols (max 48)
-    3,
+    2 + 1,
 
     // rows (max 28)
-    3,
+    2 + 1,
 
     // palette number
     1,
