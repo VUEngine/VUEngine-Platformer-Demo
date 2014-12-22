@@ -27,6 +27,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Actor.h>
+#include <Door.h>
 #include <macros.h>
 
 
@@ -36,7 +37,6 @@
 
 #define Hero_METHODS															\
 	Actor_METHODS;
-	
 
 #define Hero_SET_VTABLE(ClassName)												\
 	Actor_SET_VTABLE(ClassName);												\
@@ -121,6 +121,8 @@ void Hero_moveOnWin(Hero this);
 void Hero_collectCoin(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getLifes(Hero this);
+Door Hero_getDoorLastPassed(Hero this);
+void Hero_setDoorLastPassed(Hero this, Door door);
 int Hero_processCollision(Hero this, Telegram telegram);
 int Hero_doMessage(Hero this, int message);
 

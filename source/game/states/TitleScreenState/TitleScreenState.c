@@ -49,6 +49,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner);
 static void TitleScreenState_execute(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
 static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
+void TitleScreenState_printLevelSelectMessage(TitleScreenState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -91,15 +92,46 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 
 	// reset clock
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
-
-	// print text
-	char* strSelectLevel = I18n_getText(I18n_getInstance(), STR_SELECT_LEVEL);
-	Printing_text(strSelectLevel, (48 - strlen(strSelectLevel)) >> 1, 26);
 }
 
 // state's execute
 static void TitleScreenState_execute(TitleScreenState this, void* owner)
 {
+    Door doorLastPassed = Hero_getDoorLastPassed(Hero_getInstance());
+
+    // display level name if in front of a door
+    if (
+        (doorLastPassed != NULL) &&
+        __VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)Hero_getInstance()), __ARGUMENTS(Entity_getShape((Entity)doorLastPassed)))
+    )
+    {
+        /*
+        StageDefinition stageDefiniton = (StageDefinition)Door_getExtraInfo(doorLastPassed);
+        char* strLevelName = stageDefiniton.name;
+        Printing_text("                                                ", 0, 26);
+        Printing_text(strLevelName, (48 - strlen(strLevelName)) >> 1, 26);
+        */
+
+        // print level name
+        // TODO: use stageDefinition
+        char* strLevelIdentifier = &LEVEL_1_1_ROOM_1_ST.identifier;
+        char* strLevelName = &LEVEL_1_1_ROOM_1_ST.name;
+        int levelIdentifierLength = strlen(strLevelIdentifier);
+        int levelNameLength = strlen(strLevelName);
+        int levelNameTotalLength = levelIdentifierLength + levelNameLength + 4;
+        int printingStart = (48 - levelNameTotalLength) >> 1;
+
+        Printing_text("                                                ", 0, 26);
+        Printing_text(strLevelIdentifier, printingStart, 26);
+        Printing_text(": \"", printingStart + levelIdentifierLength, 26);
+        Printing_text(strLevelName, printingStart + levelIdentifierLength + 3, 26);
+        Printing_text("\"", printingStart + levelNameTotalLength - 1, 26);
+    }
+    else
+    {
+        TitleScreenState_printLevelSelectMessage(this);
+    }
+
 	// call base
 	GameState_execute((GameState)this, owner);
 }
@@ -176,24 +208,10 @@ static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Te
 	return false;
 }
 
-// go to level
-void TitleScreenState_goToLevel1_1()
+// print the "please select a leve" text
+void TitleScreenState_printLevelSelectMessage(TitleScreenState this)
 {
-	PlatformerLevelState_setStage(PlatformerLevelState_getInstance(), &LEVEL_1_1_ROOM_1_ST);
-	Game_changeState(Game_getInstance(), (State)PlatformerLevelState_getInstance());
+    char* strSelectLevel = I18n_getText(I18n_getInstance(), STR_SELECT_LEVEL);
+    Printing_text("                                                ", 0, 26);
+    Printing_text(strSelectLevel, (48 - strlen(strSelectLevel)) >> 1, 26);
 }
-
-// go to level
-void TitleScreenState_goToLevel1_2()
-{
-	PlatformerLevelState_setStage(PlatformerLevelState_getInstance(), &LEVEL_1_2_ROOM_1_ST);
-	Game_changeState(Game_getInstance(), (State)PlatformerLevelState_getInstance());
-}
-
-// go to level
-void TitleScreenState_goToLevel1_3()
-{
-	PlatformerLevelState_setStage(PlatformerLevelState_getInstance(), &LEVEL_1_3_ROOM_1_ST);
-	Game_changeState(Game_getInstance(), (State)PlatformerLevelState_getInstance());
-}
-

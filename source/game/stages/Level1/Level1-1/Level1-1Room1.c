@@ -33,6 +33,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 											    PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+StageROMDef LEVEL_1_1_ROOM_2_ST;
+
+
+//---------------------------------------------------------------------------------------------------------
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
@@ -99,7 +106,7 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] = {
 	{&SAW_BLADE_LANE_V_6_IM,{1198, SCREEN_Y_POSITION + LAYER_0_FLOOR - 62, PLAYABLE_LAYER_0 + 1}, NULL},
 	{&SAW_BLADE_MC, 		{1198, SCREEN_Y_POSITION + LAYER_0_FLOOR - 40, PLAYABLE_LAYER_0}, NULL},
 	{&FLOOR_4x3_FLOAT_BG,	{1236, SCREEN_Y_POSITION + LAYER_0_FLOOR - 56, PLAYABLE_LAYER_0 + 2}, NULL},
-	{&DOOR_MC,				{1238, SCREEN_Y_POSITION + LAYER_0_FLOOR - 86, PLAYABLE_LAYER_0 + 1}, PlatformerLevelState_goToLevel1_1Room2},
+	{&DOOR_MC,				{1238, SCREEN_Y_POSITION + LAYER_0_FLOOR - 86, PLAYABLE_LAYER_0 + 1}, &LEVEL_1_1_ROOM_2_ST},
 	{&FLOOR_16x8_BG,		{1368, SCREEN_Y_POSITION + LAYER_0_FLOOR - 8, PLAYABLE_LAYER_0 + 2}, NULL},
 	{&MOUND_2_IM,			{1376, SCREEN_Y_POSITION + LAYER_0_FLOOR - 32, LAYER_1}, NULL},
 	{&FLOOR_2x2_BLOCK_BG,	{1496, SCREEN_Y_POSITION + LAYER_0_FLOOR - 76, PLAYABLE_LAYER_0 + 2}, NULL},

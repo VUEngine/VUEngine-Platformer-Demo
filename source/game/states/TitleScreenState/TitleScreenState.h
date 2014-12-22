@@ -59,9 +59,6 @@ __CLASS(TitleScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 TitleScreenState TitleScreenState_getInstance(void);
-void TitleScreenState_goToLevel1_1();
-void TitleScreenState_goToLevel1_2();
-void TitleScreenState_goToLevel1_3();
 
 
 #endif

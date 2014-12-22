@@ -945,6 +945,18 @@ u8 Hero_getLifes(Hero this)
 	return this->lifes;
 }
 
+// get last passed door
+Door Hero_getDoorLastPassed(Hero this)
+{
+	return this->doorLastPassed;
+}
+
+// set last passed door
+void Hero_setDoorLastPassed(Hero this, Door door)
+{
+	this->doorLastPassed = door;
+}
+
 // process collisions
 int Hero_processCollision(Hero this, Telegram telegram)
 {

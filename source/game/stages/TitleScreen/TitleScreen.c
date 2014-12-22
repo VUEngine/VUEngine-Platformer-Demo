@@ -30,6 +30,15 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 											    PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+StageROMDef LEVEL_1_1_ROOM_1_ST;
+StageROMDef LEVEL_1_2_ROOM_1_ST;
+StageROMDef LEVEL_1_3_ROOM_1_ST;
+
+
+//---------------------------------------------------------------------------------------------------------
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
@@ -76,9 +85,9 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] = {
 	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL},
 	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 88, __SCREEN_HEIGHT >> 1, 0}, NULL},
 
-	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, TitleScreenState_goToLevel1_1},
-	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, TitleScreenState_goToLevel1_2},
-	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, TitleScreenState_goToLevel1_3},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, &LEVEL_1_1_ROOM_1_ST},
+	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, &LEVEL_1_2_ROOM_1_ST},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, &LEVEL_1_3_ROOM_1_ST},
 
 	{NULL, {0,0,0}, NULL},
 };

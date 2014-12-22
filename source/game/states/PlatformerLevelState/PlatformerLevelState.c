@@ -257,30 +257,9 @@ void PlatformerLevelState_setStage(PlatformerLevelState this, StageROMDef* stage
 	this->stageDefinition = stageDefinition;
 }
 
-void PlatformerLevelState_goToLevel1_1Room1() 
+void PlatformerLevelState_goToLevel(StageROMDef* stageDefinition)
 {
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
-	this->stageDefinition = &LEVEL_1_1_ROOM_1_ST;
-	Game_changeState(Game_getInstance(), (State)this);
-}
-
-void PlatformerLevelState_goToLevel1_1Room2() 
-{
-	PlatformerLevelState this = PlatformerLevelState_getInstance();
-	this->stageDefinition = &LEVEL_1_1_ROOM_2_ST;
-	Game_changeState(Game_getInstance(), (State)this);
-}
-
-void PlatformerLevelState_goToLevel1_2Room1() 
-{
-	PlatformerLevelState this = PlatformerLevelState_getInstance();
-	this->stageDefinition = &LEVEL_1_2_ROOM_1_ST;
-	Game_changeState(Game_getInstance(), (State)this);
-}
-
-void PlatformerLevelState_goToLevel1_3Room1() 
-{
-	PlatformerLevelState this = PlatformerLevelState_getInstance();
-	this->stageDefinition = &LEVEL_1_3_ROOM_1_ST;
+	this->stageDefinition = stageDefinition;
 	Game_changeState(Game_getInstance(), (State)this);
 }

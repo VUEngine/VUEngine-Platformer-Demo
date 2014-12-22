@@ -71,7 +71,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
 
-	this->action = NULL;
+	this->destination = NULL;
 }
 
 // class's destructor
@@ -81,12 +81,20 @@ void Door_destructor(Door this)
 	__DESTROY_BASE(AnimatedInGameEntity);
 }
 
-// set action
-void Door_setExtraInfo(Door this, void* extraInfo)
+// get destination
+void* Door_getExtraInfo(Door this)
 {
 	ASSERT(this, "Door::setExtraInfo: null this");
 	
-	this->action = (void (*)(void))extraInfo;
+	return this->destination;
+}
+
+// set destination
+void Door_setExtraInfo(Door this, void* extraInfo)
+{
+	ASSERT(this, "Door::setExtraInfo: null this");
+
+	this->destination = (void (*)(void))extraInfo;
 }
 
 // state's on message
@@ -96,9 +104,9 @@ u16 Door_handleMessage(Door this, Telegram telegram)
     {
 		case kEnterDoor:
 
-			if(this->action)
+			if(this->destination)
 			{
-				this->action();
+				PlatformerLevelState_goToLevel(this->destination);
 				return true;
 			}
 			break;

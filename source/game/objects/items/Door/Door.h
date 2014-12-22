@@ -51,8 +51,8 @@ __CLASS(Door);
 	/* it is derivated from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
 																				\
-	/* function to call */														\
-	void (*action)(void)														\
+	/* destination of door */													\
+	void (*destination)(void)													\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,6 +63,7 @@ __CLASS_NEW_DECLARE(Door, __PARAMETERS(AnimatedInGameEntityDefinition* animatedE
 
 void Door_constructor(Door this, AnimatedInGameEntityDefinition* definition, int ID);
 void Door_destructor(Door this);
+void* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);
 u16 Door_handleMessage(Door this, Telegram telegram);
 
