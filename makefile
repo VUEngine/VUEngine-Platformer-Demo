@@ -94,7 +94,6 @@ $(TARGET).vb: main.elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary main.elf $@
 	@echo $(TARGET).vb done
-	@$(VBJAENGINE)/lib/utilities/padder $@
 #	@echo Generating assembler code
 #	@$(OBJDUMP) -t main.elf > sections.txt
 #	@$(OBJDUMP) -S main.elf > machine.asm
