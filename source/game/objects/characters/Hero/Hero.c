@@ -149,7 +149,10 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 		
 		Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	}
-	
+
+    // no door passed yet
+    this->doorLastPassed = NULL;
+
 	// I'm not holding anything
 	this->holdObject = NULL;
 	
@@ -479,9 +482,21 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, animation);
 	}
 
+    // when the user presses up, check if the hero is still overlapping the last passed door
 	if (K_LU & pressedKey)
 	{
+	    // have we passed a door at all yet?
+        if (this->doorLastPassed != NULL)
+        {
+            // check if shapes still overlap
+            if (__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)this), __ARGUMENTS(Entity_getShape((Entity)this->doorLastPassed))))
+            {
+				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->doorLastPassed, kEnterDoor, NULL);
+            }
 
+            // reset last passed door
+            this->doorLastPassed = NULL;
+        }
 	}
 }
 
@@ -681,7 +696,7 @@ void Hero_setAnimationDelta(Hero this, int delta)
 	
 	for(; node; node = VirtualNode_getNext(node))
 	{
-		AnimatedSprite_setFrameDelayDelta((AnimatedSprite)VirtualNode_getData(node), this->boost? -2: -1);
+		AnimatedSprite_setFrameDelayDelta((AnimatedSprite)VirtualNode_getData(node), this->boost ? -2 : -1);
 	}
 }
 
@@ -955,7 +970,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 								
 			case kDoor:
 
-				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kEnterDoor, NULL);
+                this->doorLastPassed = (Door)inGameEntity;
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 		}
