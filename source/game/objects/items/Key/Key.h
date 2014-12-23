@@ -18,30 +18,48 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef ITEMS_H_
-#define ITEMS_H_
+#ifndef KEY_H_
+#define KEY_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Coin/Coin.h"
-#include "Door/Door.h"
+#include <AnimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COIN_MC;
-extern EntityDefinition DOOR_MC;
-extern EntityDefinition KEY_MC;
+#define Key_METHODS															\
+	AnimatedInGameEntity_METHODS;
+	
+
+#define Key_SET_VTABLE(ClassName)												\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
+	__VIRTUAL_SET(ClassName, Key, handleMessage);
+
+__CLASS(Key);
+
+#define Key_ATTRIBUTES															\
+																				\
+	/* it is derivated from */													\
+	AnimatedInGameEntity_ATTRIBUTES												\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												ASSETS
+// 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
+
+__CLASS_NEW_DECLARE(Key, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID));
+
+void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, int ID);
+void Key_destructor(Key this);
+u16 Key_handleMessage(Key this, Telegram telegram);
+void Key_removeFromStage(Key this);
 
 
 #endif

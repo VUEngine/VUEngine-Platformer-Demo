@@ -72,6 +72,9 @@ __CLASS(Hero);
 	/* number of collected coins */												\
 	u8 coins;																	\
 																				\
+	/* number of collected keys */												\
+	u8 keys;																	\
+																				\
 	/* number of lifes */														\
 	u8 lifes;																	\
 																				\
@@ -118,6 +121,8 @@ void Hero_determineLayer(Hero this);
 void Hero_resetActionTime(Hero this);
 void Hero_win(Hero this);
 void Hero_moveOnWin(Hero this);
+void Hero_collectKey(Hero this);
+u8 Hero_getKeys(Hero this);
 void Hero_collectCoin(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getLifes(Hero this);

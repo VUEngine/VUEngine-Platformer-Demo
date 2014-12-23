@@ -18,30 +18,40 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef ITEMS_H_
-#define ITEMS_H_
+#ifndef KEY_MANAGER_H_
+#define KEY_MANAGER_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Coin/Coin.h"
-#include "Door/Door.h"
+#include <Object.h>
+#include <Key.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COIN_MC;
-extern EntityDefinition DOOR_MC;
-extern EntityDefinition KEY_MC;
+#define KeyManager_METHODS														\
+	Object_METHODS;																\
+	
+#define KeyManager_SET_VTABLE(ClassName)										\
+	Object_SET_VTABLE(ClassName);												\
+
+__CLASS(KeyManager);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												ASSETS
+// 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
+
+KeyManager KeyManager_getInstance();
+
+void KeyManager_destructor(KeyManager this);
+void KeyManager_registerKey(KeyManager this, Key key);
+void KeyManager_removeKey(KeyManager this, Key key);
 
 
 #endif

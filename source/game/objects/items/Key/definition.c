@@ -22,39 +22,75 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <libgccvb.h>
+#include "Key.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GUITiles[];
-extern BYTE GUIMap[];
+extern BYTE KeyTiles[];
+extern BYTE KeyMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef GUI_TX =
+// a function which defines the frames to play
+AnimationFunctionROMDef KEY_SPIN_ANIM =
+{
+	// number of frames of this animation function
+	8,
+	
+	// frames to play in animation
+	{0,1,2,3,4,5,6,7},
+	
+	// number of cycles a frame of animation is displayed
+	10 * __FPS_ANIM_FACTOR,
+	
+	// whether to play it in loop or not
+	true,
+	
+	// method to call on function completion
+	NULL,
+	
+	// function's name
+	"Spin",
+};
+
+// an animation definition
+AnimationDescriptionROMDef KEY_ANIM =
+{
+	// number of animation frames
+	8,
+	
+	// animation functions
+	{
+		(AnimationFunction*)&KEY_SPIN_ANIM,
+		NULL,
+	}
+};
+
+TextureROMDef KEY_TX =
 {
     {
         // number of chars
-        25,
+        33,
 
         // allocation type
-        __NO_ANIMATED,
+        __ANIMATED_SHARED,
 
         // char definition
-        GUITiles,
+        KeyTiles,
     },
 
     // bgmap definition
-    GUIMap,
+    KeyMap,
 
     // cols (max 48)
-    48,
+    2,
 
     // rows (max 28)
     2,
@@ -63,14 +99,14 @@ TextureROMDef GUI_TX =
     1,
 };
 
-SpriteROMDef GUI_IM_SPRITES[] =
+SpriteROMDef KEY_SPRITES[] =
 {
 	{
 		// texture definition
-		(TextureDefinition*)&GUI_TX,
+		(TextureDefinition*)&KEY_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
+		WRLD_AFFINE,
 		
 		// display mode
 		WRLD_ON,
@@ -80,8 +116,35 @@ SpriteROMDef GUI_IM_SPRITES[] =
 	},
 };
 
-ImageROMDef GUI_IM =
+AnimatedInGameEntityROMDef KEY_MC =
 {
-	__TYPE(Image),
-	__SPRITE_ARRAY(GUI_IM_SPRITES),
+    {
+        {
+            __TYPE(Key),
+            __SPRITE_ARRAY(KEY_SPRITES),
+        },
+
+        // collision detection gap (up, down, left, right)
+        {1, 1, 1, 2},
+
+        // in game type
+        kKey,
+
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+    	
+    	// deep
+        4
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&KEY_ANIM,
+
+    // initial animation
+    "Spin",
 };

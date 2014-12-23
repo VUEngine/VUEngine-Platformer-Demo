@@ -41,6 +41,7 @@ enum HeroVbTypes{
 	kFloor,
 	kDoor,
 	kCoin,
+	kKey,
 };
 
 

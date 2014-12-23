@@ -11,8 +11,9 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern TextureDefinition HERO_TX;
 extern TextureDefinition COIN_TX;
+extern TextureDefinition HERO_TX;
+extern TextureDefinition KEY_TX;
 extern TextureDefinition SAW_BLADE_TX;
 extern TextureDefinition SAW_BLADE_LANE_V_6_TX;
 

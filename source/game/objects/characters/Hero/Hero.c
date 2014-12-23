@@ -134,6 +134,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->lifes = 3;
 	this->energy = 1;
 	this->coins = 0;
+	this->keys = 0;
 
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
@@ -926,6 +927,19 @@ static void Hero_onKeyHold(Hero this)
 	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyHold, &holdKey);
 }
 
+// collect a key
+void Hero_collectKey(Hero this)
+{
+	this->keys++;
+	Object_fireEvent((Object)PlatformerLevelState_getInstance(), EVENT_KEY_TAKEN);
+}
+
+// get number of collected keys
+u8 Hero_getKeys(Hero this)
+{
+	return this->keys;
+}
+
 // collect a coin
 void Hero_collectCoin(Hero this)
 {
@@ -933,7 +947,7 @@ void Hero_collectCoin(Hero this)
 	Object_fireEvent((Object)PlatformerLevelState_getInstance(), EVENT_COIN_TAKEN);
 }
 
-// get number of coins
+// get number of collected coins
 u8 Hero_getCoins(Hero this)
 {
 	return this->coins;
@@ -977,6 +991,13 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 				Hero_collectCoin(this);
 				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeCoin, NULL);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+
+			case kKey:
+
+				Hero_collectKey(this);
+				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeKey, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 								

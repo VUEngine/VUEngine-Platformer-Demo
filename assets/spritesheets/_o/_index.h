@@ -2,5 +2,6 @@
 #include "Door.c"  
 #include "Font.c"  
 #include "Hero.c"  
+#include "Key.c"  
 #include "SawBlade.c"  
 #include "SawBladeHalf.c"  

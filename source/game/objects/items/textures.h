@@ -13,6 +13,7 @@
 
 extern TextureDefinition COIN_TX;
 extern TextureDefinition DOOR_TX;
+extern TextureDefinition KEY_TX;
 
 
 #endif

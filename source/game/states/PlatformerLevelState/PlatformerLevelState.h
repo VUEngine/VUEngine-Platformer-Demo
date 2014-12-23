@@ -63,13 +63,14 @@ __CLASS(PlatformerLevelState);
 	
 enum PlatformerLevelStateMessageTypes
 {
-	kHeroDied = kLastEngineMessage + 1, // 16
-	kHeroFall,				//17
-	kSetUpLevel,			//18
-	kStartLevel,			//19
-	kHideLevelMessage, 		//20
-	kTakeCoin, 				//21
-	kEnterDoor, 			//22
+	kHeroDied = kLastEngineMessage + 1,
+	kHeroFall,
+	kSetUpLevel,
+	kStartLevel,
+	kHideLevelMessage,
+	kTakeCoin,
+	kTakeKey,
+	kEnterDoor,
 	
 	// don't remove me
 	kLastPlatformerMessage
@@ -83,7 +84,9 @@ enum PlatformerLevelStateMessageTypes
 #define EVENT_KEY_PRESSED		"keyPressed"
 #define EVENT_KEY_RELEASED		"keyReleased"
 #define EVENT_KEY_HOLD			"keyHold"
+
 #define EVENT_COIN_TAKEN		"CoinTaken"
+#define EVENT_KEY_TAKEN			"KeyTaken"
 
 
 //---------------------------------------------------------------------------------------------------------

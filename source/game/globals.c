@@ -51,11 +51,12 @@ const ClassSizeData _userClassesSizeData[] =
 const UserObject _userObjects[] =
 {
 
-	{&HERO_MC, "Hero"},
 	{&COIN_MC, "Coin"},
+	{&DOOR_MC, "Door"},
+	{&HERO_MC, "Hero"},
+	{&KEY_MC, "Key"},
 	{&SAW_BLADE_MC, "SawBlade"},
 	{&SAW_BLADE_LANE_V_6_IM, "SawBlade Lane V6"},
-	{&DOOR_MC, "Door"},
 	{NULL, ""},
 };
 #endif
@@ -64,10 +65,11 @@ const UserObject _userObjects[] =
 const UserActor _userActors[] =
 {
 		
-	{(ActorDefinition*)&HERO_MC, "Hero"},
 	{(ActorDefinition*)&COIN_MC, "Coin"},
-	{(ActorDefinition*)&SAW_BLADE_MC, "SawBlade"},
 	{(ActorDefinition*)&DOOR_MC, "Door"},
+	{(ActorDefinition*)&HERO_MC, "Hero"},
+	{(ActorDefinition*)&KEY_MC, "Key"},
+	{(ActorDefinition*)&SAW_BLADE_MC, "SawBlade"},
 	{NULL, ""},
 };
 #endif

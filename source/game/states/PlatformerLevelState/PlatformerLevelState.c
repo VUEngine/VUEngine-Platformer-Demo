@@ -52,6 +52,11 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner) 
 static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this);
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this);
+static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this);
+void PlatformerLevelState_printLifes(PlatformerLevelState this);
+void PlatformerLevelState_printCoins(PlatformerLevelState this);
+void PlatformerLevelState_printKeys(PlatformerLevelState this);
+void PlatformerLevelState_printLevel(PlatformerLevelState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -102,9 +107,10 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26);
 	
 	// render gui values
-	Printing_int(Hero_getLifes(Hero_getInstance()), 4, 26);
-	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26);
-	Printing_text("1-1", 35, 26);
+	PlatformerLevelState_printLifes(this);
+	PlatformerLevelState_printCoins(this);
+	PlatformerLevelState_printKeys(this);
+	PlatformerLevelState_printLevel(this);
 }
 
 // state's execute
@@ -119,6 +125,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
 	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
 	Object_removeEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
+	Object_removeEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
@@ -186,7 +193,8 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			
 			// add events
 			Object_addEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
-			
+			Object_addEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
+
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
 
@@ -249,7 +257,38 @@ static void PlatformerLevelState_onSecondChange(PlatformerLevelState this)
 // handle event
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this)
 {
+	PlatformerLevelState_printCoins(this);
+}
+
+// handle event
+static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this)
+{
+	PlatformerLevelState_printKeys(this);
+}
+
+// print number of lifes to gui
+void PlatformerLevelState_printLifes(PlatformerLevelState this)
+{
+	Printing_int(Hero_getLifes(Hero_getInstance()), 4, 26);
+}
+
+// print number of coins to gui
+void PlatformerLevelState_printCoins(PlatformerLevelState this)
+{
 	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26);
+}
+
+// print number of keys to gui
+void PlatformerLevelState_printKeys(PlatformerLevelState this)
+{
+	Printing_int(Hero_getKeys(Hero_getInstance()), 16, 26);
+}
+
+// print current level to gui
+void PlatformerLevelState_printLevel(PlatformerLevelState this)
+{
+    //TODO: use this->stageDefinition
+	Printing_text("1-1", 35, 26);
 }
 
 // set the next state to load
@@ -258,6 +297,7 @@ void PlatformerLevelState_setStage(PlatformerLevelState this, StageROMDef* stage
 	this->stageDefinition = stageDefinition;
 }
 
+// start a given level
 void PlatformerLevelState_goToLevel(StageROMDef* stageDefinition)
 {
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
