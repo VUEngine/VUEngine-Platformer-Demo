@@ -138,12 +138,13 @@ static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* o
 			// make a little bit of physical simulations so each entity is placed at the floor
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 
-			// print level descriptor
-			char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
+			// print level name
 			// TODO: use this->stageDefinition
-			//char* strLevelName = this->stageDefinition.name;
-			char* strLevelName = &LEVEL_1_1_ROOM_1_ST.name;
-			char* strLevelIdentifier = &LEVEL_1_1_ROOM_1_ST.identifier;
+            //StageROMDef stageDefinition = this->stageDefinition;
+            StageROMDef stageDefinition = LEVEL_1_1_ROOM_1_ST;
+			char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
+			char* strLevelIdentifier = stageDefinition.identifier;
+			char* strLevelName = stageDefinition.name;
 
 			Printing_text(strLevel, 20, 5);
 			Printing_text(strLevelIdentifier, 21 + strlen(strLevel), 5);

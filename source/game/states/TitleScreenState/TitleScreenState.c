@@ -49,7 +49,6 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner);
 static void TitleScreenState_execute(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
 static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
-void TitleScreenState_printLevelSelectMessage(TitleScreenState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -67,6 +66,8 @@ __SINGLETON_DYNAMIC(TitleScreenState);
 // class's constructor
 static void TitleScreenState_constructor(TitleScreenState this)
 {
+    this->lastLevelSelectLabel = "";
+
 	__CONSTRUCT_BASE(GameState);
 }
 
@@ -100,36 +101,28 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
     Door doorLastPassed = Hero_getDoorLastPassed(Hero_getInstance());
 
     // display level name if in front of a door
+    char* strLevelSelectLabel = I18n_getText(I18n_getInstance(), STR_SELECT_LEVEL);
     if (
         (doorLastPassed != NULL) &&
         __VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)Hero_getInstance()), __ARGUMENTS(Entity_getShape((Entity)doorLastPassed)))
     )
     {
-        /*
-        StageDefinition stageDefiniton = (StageDefinition)Door_getExtraInfo(doorLastPassed);
-        char* strLevelName = stageDefiniton.name;
-        Printing_text("                                                ", 0, 26);
-        Printing_text(strLevelName, (48 - strlen(strLevelName)) >> 1, 26);
-        */
+        // TODO: use stageDefinition in Door_getExtraInfo
+        //StageROMDef* stageDefinition = Door_getExtraInfo(doorLastPassed);
+        StageROMDef stageDefinition = LEVEL_1_1_ROOM_1_ST;
 
-        // print level name
-        // TODO: use stageDefinition
-        char* strLevelIdentifier = &LEVEL_1_1_ROOM_1_ST.identifier;
-        char* strLevelName = &LEVEL_1_1_ROOM_1_ST.name;
-        int levelIdentifierLength = strlen(strLevelIdentifier);
-        int levelNameLength = strlen(strLevelName);
-        int levelNameTotalLength = levelIdentifierLength + levelNameLength + 4;
-        int printingStart = (48 - levelNameTotalLength) >> 1;
+        char* strLevelIdentifier = stageDefinition.identifier;
+        char* strLevelName = stageDefinition.name;
 
-        Printing_text("                                                ", 0, 26);
-        Printing_text(strLevelIdentifier, printingStart, 26);
-        Printing_text(": \"", printingStart + levelIdentifierLength, 26);
-        Printing_text(strLevelName, printingStart + levelIdentifierLength + 3, 26);
-        Printing_text("\"", printingStart + levelNameTotalLength - 1, 26);
+        strLevelSelectLabel = strncat(strLevelIdentifier, ": \"", 3);
+        strLevelSelectLabel = strncat(strLevelIdentifier, strLevelName, strlen(strLevelName));
+        strLevelSelectLabel = strncat(strLevelIdentifier, "\"", 1);
     }
-    else
+
+    if (0 != strcmp(this->lastLevelSelectLabel, strLevelSelectLabel))
     {
-        TitleScreenState_printLevelSelectMessage(this);
+        Printing_text("                                                ", 0, 26);
+        Printing_text(strLevelSelectLabel, (48 - strlen(strLevelSelectLabel)) >> 1, 26);
     }
 
 	// call base
@@ -206,12 +199,4 @@ static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Te
 	}
 
 	return false;
-}
-
-// print the "please select a leve" text
-void TitleScreenState_printLevelSelectMessage(TitleScreenState this)
-{
-    char* strSelectLevel = I18n_getText(I18n_getInstance(), STR_SELECT_LEVEL);
-    Printing_text("                                                ", 0, 26);
-    Printing_text(strSelectLevel, (48 - strlen(strSelectLevel)) >> 1, 26);
 }

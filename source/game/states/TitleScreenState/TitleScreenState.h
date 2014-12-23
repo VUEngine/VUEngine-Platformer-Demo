@@ -34,24 +34,26 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define TitleScreenState_METHODS										\
+#define TitleScreenState_METHODS												\
 	GameState_METHODS;											    			\
 
 // declare the virtual methods which are redefined
-#define TitleScreenState_SET_VTABLE(ClassName)							\
+#define TitleScreenState_SET_VTABLE(ClassName)									\
 	GameState_SET_VTABLE(ClassName)								    			\
-	__VIRTUAL_SET(ClassName, TitleScreenState, enter);					\
-	__VIRTUAL_SET(ClassName, TitleScreenState, exit);					\
-	__VIRTUAL_SET(ClassName, TitleScreenState, execute);				\
-	__VIRTUAL_SET(ClassName, TitleScreenState, handleMessage);			\
+	__VIRTUAL_SET(ClassName, TitleScreenState, enter);							\
+	__VIRTUAL_SET(ClassName, TitleScreenState, exit);							\
+	__VIRTUAL_SET(ClassName, TitleScreenState, execute);						\
+	__VIRTUAL_SET(ClassName, TitleScreenState, handleMessage);					\
 
 
 __CLASS(TitleScreenState);
 
-#define TitleScreenState_ATTRIBUTES							        	\
+#define TitleScreenState_ATTRIBUTES							        			\
 														            			\
 	/* inherits */																\
 	GameState_ATTRIBUTES														\
+																				\
+	char* lastLevelSelectLabel;													\
 
 
 //---------------------------------------------------------------------------------------------------------
