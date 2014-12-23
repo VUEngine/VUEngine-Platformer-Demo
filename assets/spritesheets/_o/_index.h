@@ -1,4 +1,4 @@
-#include "CoinL.c"  
+#include "Coin.c"  
 #include "Door.c"  
 #include "Font.c"  
 #include "Hero.c"  

@@ -52,8 +52,6 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
 // 											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern const u16 FontTiles[];
-
 enum Screens
 {
 	kAdjustmentScreen = 0,
@@ -101,8 +99,6 @@ static void SplashScreenState_destructor(SplashScreenState this)
 // state's enter
 static void SplashScreenState_enter(SplashScreenState this, void* owner)
 {
-	Printing_setFontDefinition((const u16*)FontTiles);
-	
 	GameState_loadStage((GameState)this, (StageDefinition*)&ADJUSTMENT_ST, false, true);
 
 	this->currentScreen = kAdjustmentScreen;

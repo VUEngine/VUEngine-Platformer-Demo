@@ -89,7 +89,9 @@ CREDITS
 		* Level designer
 		* Debugging and testing
 		* Documentation
-	
+
+Graphics based on open source sprites by Kenney (http://www.kenney.nl)
+
 ==================
 
 V810 is a trade mark of NEC.

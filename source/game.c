@@ -32,7 +32,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										GAME'S MAIN LOOP
+// 											DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern const u16 FontTiles[];
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										  GAME'S MAIN LOOP
 //---------------------------------------------------------------------------------------------------------
 
 // Main game algorithm
@@ -43,6 +50,9 @@ int main(void)
 	I18n_registerLanguage(I18n_getInstance(), Lang_EN);
 	I18n_registerLanguage(I18n_getInstance(), Lang_DE);
 	I18n_setLanguage(I18n_getInstance(), LANG_EN);
+
+	// load custom font
+	Printing_setFontDefinition((const u16*)FontTiles);
 
     // start the game
 	// Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());

@@ -30,8 +30,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CoinLTiles[];
-extern BYTE CoinLMap[];
+extern BYTE CoinTiles[];
+extern BYTE CoinMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -106,11 +106,11 @@ TextureROMDef COIN_TX =
         __ANIMATED_SHARED,
 
         // char definition
-        CoinLTiles,
+        CoinTiles,
     },
 
     // bgmap definition
-    CoinLMap,
+    CoinMap,
 
     // cols (max 48)
     2,
