@@ -95,7 +95,7 @@
 // and multiply by this factor
 #define __FPS_ANIM_FACTOR 	(__TARGET_FPS / (float)__OPTIMUM_FPS)
 
-//seconds that must elapse to call rest state... in seconds (15 minutes)
+// seconds that must elapse to call rest state... in seconds (15 minutes)
 #define __REST_DELAY 		900
 
 
@@ -155,6 +155,7 @@
 // 										SPRITE MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
+// total number of layers
 // basically the number of WORLDS
 #define __TOTAL_LAYERS			32
 
@@ -163,10 +164,10 @@
 // 										TEXTURE MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
-//bgmaps to use (leave 2 bgmaps to allocate param table)
+// bgmaps to use (leave 2 bgmaps to allocate param table)
 #define __NUM_BGMAPS 					10
 
-//number of bgmap definitions in each bgmap segment
+// number of bgmap definitions in each bgmap segment
 #define __NUM_MAPS_PER_SEG 				16
 
 // printing area

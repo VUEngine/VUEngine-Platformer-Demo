@@ -41,7 +41,7 @@ TextureROMDef GUI_TX =
 {
     {
         // number of chars
-        25,
+        26,
 
         // allocation type
         __NO_ANIMATED,
