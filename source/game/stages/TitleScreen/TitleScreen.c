@@ -58,8 +58,8 @@ StageROMDef LEVEL_1_3_ROOM_1_ST;
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] = {
-
+PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
+{
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
 	{&TREE_BG_BACK_SB,	 	{0, 116, LAYER_4}, NULL},
@@ -83,11 +83,17 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] = {
 	//{&HERO_MC, 				{__SCREEN_WIDTH >> 1, 172, 0}, NULL},
 
 	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL},
-	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 88, __SCREEN_HEIGHT >> 1, 0}, NULL},
+	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 92, __SCREEN_HEIGHT >> 1, 0}, NULL},
 
 	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, &LEVEL_1_1_ROOM_1_ST},
 	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, &LEVEL_1_2_ROOM_1_ST},
 	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, &LEVEL_1_3_ROOM_1_ST},
+
+/*
+	{&FLOOR_16x8_BG,		{-32, 174, PLAYABLE_LAYER_2 + 2}, NULL},
+	{&FLOOR_16x8_BG,		{142, 182, PLAYABLE_LAYER_2 + 2}, NULL},
+	{&FLOOR_22x8_BG,		{398, 182, PLAYABLE_LAYER_2 + 2}, NULL},
+*/
 
 	{NULL, {0,0,0}, NULL},
 };

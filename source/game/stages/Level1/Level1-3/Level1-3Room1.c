@@ -54,8 +54,8 @@
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] = {
-
+PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
+{
 	// since these are always visible
 	// it doesn't matter that they are not logically
 	// placed in this definition

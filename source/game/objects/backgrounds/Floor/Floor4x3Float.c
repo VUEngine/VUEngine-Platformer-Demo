@@ -99,11 +99,24 @@ SpriteROMDef FLOOR_4x3_FLOAT_BG_SPRITES[] =
 		(TextureDefinition*)&FLOOR_4x3_FLOAT_L_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
+		WRLD_AFFINE,
 		
 		// display mode
-		WRLD_LON,
+		WRLD_ON,
 		
+		// parallax displacement
+		0,
+	},
+	/*{
+		// texture definition
+		(TextureDefinition*)&FLOOR_4x3_FLOAT_L_TX,
+
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+
+		// display mode
+		WRLD_LON,
+
 		// parallax displacement
 		-1,
 	},
@@ -119,7 +132,7 @@ SpriteROMDef FLOOR_4x3_FLOAT_BG_SPRITES[] =
 
 		// parallax displacement
 		-1,
-	},
+	},*/
 };
 
 InanimatedInGameEntityROMDef FLOOR_4x3_FLOAT_BG =
