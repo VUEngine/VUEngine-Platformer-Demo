@@ -67,6 +67,9 @@ TextureROMDef PRECAUTION_SCREEN_JAPANESE_TX =
 SpriteROMDef PRECAUTION_SCREEN_JAPANESE_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&PRECAUTION_SCREEN_JAPANESE_TX,
 		
@@ -79,10 +82,11 @@ SpriteROMDef PRECAUTION_SCREEN_JAPANESE_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef PRECAUTION_SCREEN_JAPANESE_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(PRECAUTION_SCREEN_JAPANESE_IM_SPRITES),
+	PRECAUTION_SCREEN_JAPANESE_IM_SPRITES,
 };

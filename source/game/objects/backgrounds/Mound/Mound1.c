@@ -66,6 +66,9 @@ TextureROMDef MOUND_1_TX =
 SpriteROMDef MOUND_1_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&MOUND_1_TX,
 		
@@ -79,6 +82,9 @@ SpriteROMDef MOUND_1_IM_SPRITES[] =
 		0,
 	},
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&MOUND_1_TX,
 		
@@ -91,10 +97,11 @@ SpriteROMDef MOUND_1_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef MOUND_1_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(MOUND_1_IM_SPRITES),
+	MOUND_1_IM_SPRITES,
 };

@@ -66,6 +66,9 @@ TextureROMDef VBJAENGINE_BG_TX =
 SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&VBJAENGINE_BG_TX,
 		
@@ -79,6 +82,9 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] =
 		0,
 	},
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&VBJAENGINE_BG_TX,
 		
@@ -91,10 +97,11 @@ SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ScrollBackgroundROMDef VBJAENGINE_BG_SB =
 {
 	__TYPE(ScrollBackground),
-	__SPRITE_ARRAY(VBJAENGINE_BG_SB_SPRITES),
+	VBJAENGINE_BG_SB_SPRITES,
 };

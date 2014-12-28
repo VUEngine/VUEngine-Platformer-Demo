@@ -102,6 +102,9 @@ TextureROMDef KEY_TX =
 SpriteROMDef KEY_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&KEY_TX,
 		
@@ -114,6 +117,7 @@ SpriteROMDef KEY_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 AnimatedInGameEntityROMDef KEY_MC =
@@ -121,7 +125,7 @@ AnimatedInGameEntityROMDef KEY_MC =
     {
         {
             __TYPE(Key),
-            __SPRITE_ARRAY(KEY_SPRITES),
+            KEY_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

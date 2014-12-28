@@ -66,6 +66,9 @@ TextureROMDef GUI_TX =
 SpriteROMDef GUI_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&GUI_TX,
 		
@@ -78,10 +81,11 @@ SpriteROMDef GUI_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef GUI_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(GUI_IM_SPRITES),
+	GUI_IM_SPRITES,
 };

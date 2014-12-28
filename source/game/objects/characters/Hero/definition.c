@@ -358,6 +358,9 @@ TextureROMDef HERO_TX =
 SpriteROMDef HERO_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(AnimatedSprite),
+
 		// texture definition
 		(TextureDefinition*)&HERO_TX,
 		
@@ -371,6 +374,7 @@ SpriteROMDef HERO_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ActorROMDef HERO_MC =
@@ -378,7 +382,7 @@ ActorROMDef HERO_MC =
     {
         {
             __TYPE(Hero),
-            __SPRITE_ARRAY(HERO_SPRITES),
+            HERO_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

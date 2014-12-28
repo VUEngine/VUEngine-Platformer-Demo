@@ -66,6 +66,9 @@ TextureROMDef ADJUSTMENT_SCREEN_BG_TX =
 SpriteROMDef ADJUSTMENT_SCREEN_BG_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&ADJUSTMENT_SCREEN_BG_TX,
 		
@@ -77,12 +80,12 @@ SpriteROMDef ADJUSTMENT_SCREEN_BG_IM_SPRITES[] =
 
 		// parallax displacement
 		0,
-
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_BG_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_BG_IM_SPRITES),
+	ADJUSTMENT_SCREEN_BG_IM_SPRITES,
 };

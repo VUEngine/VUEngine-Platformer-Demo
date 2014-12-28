@@ -34,6 +34,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition TEST_BG;
+
 extern EntityDefinition TREE_BG_FRONT_SB;
 extern EntityDefinition TREE_BG_BACK_SB;
 extern EntityDefinition VBJAENGINE_BG_SB;
@@ -47,6 +49,5 @@ extern EntityDefinition FLOOR_2x2_BLOCK_BG;
 
 extern EntityDefinition MOUND_1_IM;
 extern EntityDefinition MOUND_2_IM;
-
 
 #endif

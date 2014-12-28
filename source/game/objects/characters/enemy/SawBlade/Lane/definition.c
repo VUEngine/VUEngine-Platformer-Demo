@@ -66,6 +66,9 @@ TextureROMDef SAW_BLADE_LANE_V_6_TX =
 SpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&SAW_BLADE_LANE_V_6_TX,
 		
@@ -78,10 +81,11 @@ SpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef SAW_BLADE_LANE_V_6_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(SAW_BLADE_LANE_V_6_IM_SPRITES),
+	SAW_BLADE_LANE_V_6_IM_SPRITES,
 };

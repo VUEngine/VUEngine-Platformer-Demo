@@ -98,6 +98,9 @@ TextureROMDef LOGO_RIGHT_TX =
 SpriteROMDef LOGO_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&LOGO_LEFT_TX,
 		
@@ -110,8 +113,10 @@ SpriteROMDef LOGO_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
-
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&LOGO_RIGHT_TX,
 		
@@ -124,12 +129,13 @@ SpriteROMDef LOGO_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef LOGO_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(LOGO_IM_SPRITES),
+	LOGO_IM_SPRITES,
 };
 
 
@@ -161,8 +167,10 @@ TextureROMDef SUPER_AWESOME_TX =
 
 SpriteROMDef SUPER_AWESOME_IM_SPRITES[] =
 {
-
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&SUPER_AWESOME_TX,
 		
@@ -175,8 +183,10 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
-
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&SUPER_AWESOME_TX,
 		
@@ -186,12 +196,13 @@ SpriteROMDef SUPER_AWESOME_IM_SPRITES[] =
 		// display mode
 		WRLD_RON,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef SUPER_AWESOME_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(SUPER_AWESOME_IM_SPRITES),
+	SUPER_AWESOME_IM_SPRITES,
 };
 
 
@@ -224,6 +235,9 @@ TextureROMDef VBJAENGINE_TX =
 SpriteROMDef VBJAENGINE_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&VBJAENGINE_TX,
 		
@@ -234,6 +248,9 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] =
 		WRLD_LON,
 	},
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&VBJAENGINE_TX,
 		
@@ -243,10 +260,11 @@ SpriteROMDef VBJAENGINE_IM_SPRITES[] =
 		// display mode
 		WRLD_RON,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef VBJAENGINE_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(VBJAENGINE_IM_SPRITES),
+	VBJAENGINE_IM_SPRITES,
 };

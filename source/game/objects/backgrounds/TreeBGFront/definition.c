@@ -67,6 +67,9 @@ TextureROMDef TREE_BG_FRONT_TX =
 SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&TREE_BG_FRONT_TX,
 		
@@ -81,6 +84,9 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] =
 
 	},
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&TREE_BG_FRONT_TX,
 		
@@ -93,10 +99,11 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ScrollBackgroundROMDef TREE_BG_FRONT_SB =
 {
 	__TYPE(ScrollBackground),
-	__SPRITE_ARRAY(TREE_BG_FRONT_SB_SPRITES),
+	TREE_BG_FRONT_SB_SPRITES,
 };

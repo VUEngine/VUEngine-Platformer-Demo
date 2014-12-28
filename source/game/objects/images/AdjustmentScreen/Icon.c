@@ -66,6 +66,9 @@ TextureROMDef ADJUSTMENT_SCREEN_ICON_TX =
 SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
 		
@@ -78,11 +81,15 @@ SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
 		
@@ -95,16 +102,17 @@ SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_L =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES),
+	ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES,
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_R =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES),
+	ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES,
 };

@@ -95,6 +95,9 @@ TextureROMDef FLOOR_22x8_R_TX =
 SpriteROMDef FLOOR_22x8_BG_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&FLOOR_22x8_L_TX,
 		
@@ -108,6 +111,9 @@ SpriteROMDef FLOOR_22x8_BG_SPRITES[] =
 		-1,
 	},
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&FLOOR_22x8_R_TX,
 		
@@ -120,6 +126,7 @@ SpriteROMDef FLOOR_22x8_BG_SPRITES[] =
 		// parallax displacement
 		-1,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 InanimatedInGameEntityROMDef FLOOR_22x8_BG =
@@ -127,7 +134,7 @@ InanimatedInGameEntityROMDef FLOOR_22x8_BG =
     {
         {
             __TYPE(InanimatedInGameEntity),
-            __SPRITE_ARRAY(FLOOR_22x8_BG_SPRITES),
+            FLOOR_22x8_BG_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

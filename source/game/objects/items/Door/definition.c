@@ -127,6 +127,9 @@ TextureROMDef DOOR_TX =
 SpriteROMDef DOOR_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(AnimatedSprite),
+
 		// texture definition
 		(TextureDefinition*)&DOOR_TX,
 		
@@ -139,7 +142,7 @@ SpriteROMDef DOOR_SPRITES[] =
 		// parallax displacement
 		1,
 	},
-
+	{NULL, NULL, 0, 0, 0}
 };
 
 AnimatedInGameEntityROMDef DOOR_MC =
@@ -147,7 +150,7 @@ AnimatedInGameEntityROMDef DOOR_MC =
     {
         {
             __TYPE(Door),
-            __SPRITE_ARRAY(DOOR_SPRITES),
+            DOOR_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

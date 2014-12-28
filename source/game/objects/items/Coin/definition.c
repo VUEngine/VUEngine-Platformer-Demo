@@ -125,6 +125,9 @@ TextureROMDef COIN_TX =
 SpriteROMDef COIN_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(AnimatedSprite),
+
 		// texture definition
 		(TextureDefinition*)&COIN_TX,
 		
@@ -137,6 +140,7 @@ SpriteROMDef COIN_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 AnimatedInGameEntityROMDef COIN_MC =
@@ -144,7 +148,7 @@ AnimatedInGameEntityROMDef COIN_MC =
     {
         {
             __TYPE(Coin),
-            __SPRITE_ARRAY(COIN_SPRITES),
+            COIN_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

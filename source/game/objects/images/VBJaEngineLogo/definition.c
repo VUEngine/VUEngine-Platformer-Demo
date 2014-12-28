@@ -94,6 +94,9 @@ TextureROMDef VBJAENGINE_LOGO_R_TX =
 SpriteROMDef VBJAENGINE_LOGO_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&VBJAENGINE_LOGO_L_TX,
 		
@@ -107,6 +110,9 @@ SpriteROMDef VBJAENGINE_LOGO_IM_SPRITES[] =
 		0,
 	},
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&VBJAENGINE_LOGO_R_TX,
 		
@@ -119,10 +125,11 @@ SpriteROMDef VBJAENGINE_LOGO_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef VBJAENGINE_LOGO_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(VBJAENGINE_LOGO_IM_SPRITES),
+	VBJAENGINE_LOGO_IM_SPRITES,
 };

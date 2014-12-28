@@ -101,6 +101,9 @@ TextureDefinition SAW_BLADE_TX =
 SpriteROMDef SAW_BLADE_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(AnimatedSprite),
+
 		// texture definition
 		(TextureDefinition*)&SAW_BLADE_TX,
 		
@@ -112,7 +115,8 @@ SpriteROMDef SAW_BLADE_SPRITES[] =
 
 		// parallax displacement
 		0,
-	}
+	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 
@@ -122,7 +126,7 @@ SawBladeDefinition SAW_BLADE_MC =
         {
             {
                 __TYPE(SawBlade),
-                __SPRITE_ARRAY(SAW_BLADE_SPRITES),
+                SAW_BLADE_SPRITES,
             },
 
             // collision detection gap (up, down, left, right)

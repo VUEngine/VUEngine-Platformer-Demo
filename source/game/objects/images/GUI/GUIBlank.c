@@ -66,6 +66,9 @@ TextureROMDef GUI_BLANK_TX =
 SpriteROMDef GUI_BLANK_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&GUI_BLANK_TX,
 		
@@ -78,10 +81,11 @@ SpriteROMDef GUI_BLANK_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef GUI_BLANK_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(GUI_BLANK_IM_SPRITES),
+	GUI_BLANK_IM_SPRITES,
 };

@@ -94,6 +94,9 @@ TextureROMDef CLOUDS_B_TX =
 SpriteROMDef CLOUDS_SB_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&CLOUDS_A_TX,
 		
@@ -108,6 +111,9 @@ SpriteROMDef CLOUDS_SB_SPRITES[] =
 
 	},
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&CLOUDS_B_TX,
 
@@ -120,10 +126,11 @@ SpriteROMDef CLOUDS_SB_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ScrollBackgroundROMDef CLOUDS_SB =
 {
 	__TYPE(ScrollBackground),
-	__SPRITE_ARRAY(CLOUDS_SB_SPRITES),
+	CLOUDS_SB_SPRITES,
 };
