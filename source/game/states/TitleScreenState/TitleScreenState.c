@@ -143,7 +143,7 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
 {
 	// process message
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kSetUpLevel:
 

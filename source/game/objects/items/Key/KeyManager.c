@@ -105,7 +105,7 @@ void KeyManager_registerKey(KeyManager this, Key key)
 				VirtualNode node = VirtualList_begin(keySprites);
 				
 				
-				for(; node; node = VirtualNode_getNext(node))
+				for (; node; node = VirtualNode_getNext(node))
 				{
 					AnimatedSprite keySprite = (AnimatedSprite)VirtualNode_getData(node);
 					AnimatedSprite_setActualFrame(keySprite, currentFrame);

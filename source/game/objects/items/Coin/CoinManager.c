@@ -105,7 +105,7 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 				VirtualNode node = VirtualList_begin(coinSprites);
 				
 				
-				for(; node; node = VirtualNode_getNext(node))
+				for (; node; node = VirtualNode_getNext(node))
 				{
 					AnimatedSprite coinSprite = (AnimatedSprite)VirtualNode_getData(node);
 					AnimatedSprite_setActualFrame(coinSprite, currentFrame);

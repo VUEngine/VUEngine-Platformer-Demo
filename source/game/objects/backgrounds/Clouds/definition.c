@@ -43,7 +43,7 @@ TextureROMDef CLOUDS_A_TX =
 {
     {
         // number of chars
-        22,
+        28,
 
         // allocation type
         __NO_ANIMATED,

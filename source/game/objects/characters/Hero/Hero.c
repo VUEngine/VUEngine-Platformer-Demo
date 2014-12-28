@@ -695,7 +695,7 @@ void Hero_setAnimationDelta(Hero this, int delta)
 
 	VirtualNode node = VirtualList_begin(this->sprites);
 	
-	for(; node; node = VirtualNode_getNext(node))
+	for (; node; node = VirtualNode_getNext(node))
 	{
 		AnimatedSprite_setFrameDelayDelta((AnimatedSprite)VirtualNode_getData(node), this->boost ? -2 : -1);
 	}
@@ -865,7 +865,7 @@ void Hero_die(Hero this)
 void Hero_determineLayer(Hero this)
 {
 	int i = 0;
-	for(i = 0; i < TOTAL_GAME_LAYERS; i++)
+	for (i = 0; i < TOTAL_GAME_LAYERS; i++)
     {
 		if ((u16)this->transform.globalPosition.z > gameLayers[i] - HERO_INPUT_FORCE && (unsigned)this->transform.globalPosition.z < gameLayers[i] + HERO_INPUT_FORCE)
         {
@@ -981,11 +981,11 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 	VirtualList collidingObjectsToRemove = __NEW(VirtualList);
 
-	for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
+	for (node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
     {
 		InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
 		
-		switch(InGameEntity_getInGameType(inGameEntity))
+		switch (InGameEntity_getInGameType(inGameEntity))
         {
 			case kCoin:
 
@@ -1000,7 +1000,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeKey, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
-								
+
 			case kDoor:
 
                 this->doorLastPassed = (Door)inGameEntity;
@@ -1009,7 +1009,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 		}
 	}
 
-	for(node = VirtualList_begin(collidingObjectsToRemove); node; node = VirtualNode_getNext(node))
+	for (node = VirtualList_begin(collidingObjectsToRemove); node; node = VirtualNode_getNext(node))
     {
 		// whenever you process some objects of a collisions list
 		// remove them and leave the Actor handle the ones you don't
@@ -1025,7 +1025,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 // process message
 int Hero_doMessage(Hero this, int message)
 {
-	switch(message)
+	switch (message)
 	{
 		case kSetUpLevel:
 			{

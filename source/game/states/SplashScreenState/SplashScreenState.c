@@ -137,11 +137,11 @@ static void SplashScreenState_exit(SplashScreenState this, void* owner)
 static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram)
 {
 	// process message
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
 
-			switch(this->currentScreen)
+			switch (this->currentScreen)
             {
 				case kAdjustmentScreen:
 
@@ -180,7 +180,7 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
 	GameState_loadStage((GameState)this, stageDefinition, false, true);
 
 	// do screen-specific preparations
-	switch(this->currentScreen)
+	switch (this->currentScreen)
     {
 		case kPrecautionScreen:
 

@@ -138,7 +138,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)
 {
 	// process message
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kSetUpLevel:
 

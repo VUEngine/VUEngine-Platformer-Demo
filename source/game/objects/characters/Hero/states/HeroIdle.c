@@ -140,7 +140,7 @@ void HeroIdle_exit(HeroIdle this, void* owner)
 // state's on message
 bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kCollision:
 

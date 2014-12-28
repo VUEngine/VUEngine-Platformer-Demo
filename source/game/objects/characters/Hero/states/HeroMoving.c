@@ -98,7 +98,7 @@ void HeroMoving_exit(HeroMoving this, void* owner)
 // state's on message
 bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
 
