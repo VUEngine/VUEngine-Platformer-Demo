@@ -1,10 +1,14 @@
 #ifndef MACROS_H_
 #define MACROS_H_
 
-//delay to don't allow the player to bypass logo's screen
-#define SHOWDELAY	2000
 
-/* */
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINES
+//---------------------------------------------------------------------------------------------------------
+
+// delay to not allow the player to bypass logo screen
+#define SHOWDELAY		2000
+
 #define FADE_DELAY		15
 
 #define LAYER_INCREMENT					50
@@ -25,7 +29,6 @@
 #define LAYER_5 (LAYER_4 + LAYER_INCREMENT)
 
 #define TOTAL_GAME_LAYERS 	6
-
 
 #define SCREEN_CENTER_X		384/2
 #define SCREEN_CENTER_Y		224/2
