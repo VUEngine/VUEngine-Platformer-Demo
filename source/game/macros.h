@@ -35,7 +35,8 @@
 #define DEAD_VELOCITY_Z			ITOFIX19_13(20)
 #define DEAD_ACCELERATION_Z		ITOFIX19_13(10)
 
-enum HeroVbTypes{
+enum PlatformerTypes
+{
 	kHero = 1,
 	kSawBlade,
 	kSolid,
@@ -45,8 +46,7 @@ enum HeroVbTypes{
 	kKey,
 };
 
-
-#define GAMEWORLD_MODES		4
+#define GAMEWORLD_MODES 4
 
 enum GameWorldModes
 {
