@@ -29,45 +29,45 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Mound2Tiles[];
-extern BYTE Mound2Map[];
+extern BYTE BackgroundMoundCastleTiles[];
+extern BYTE BackgroundMoundCastleMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef MOUND_2_TX =
+TextureROMDef MOUND_BG_CASTLE_TX =
 {
     {
         // number of chars
-        7,
+        35,
 
         // allocation type
         __NO_ANIMATED,
 
         // char definition
-        Mound2Tiles,
+        BackgroundMoundCastleTiles,
     },
 
     // bgmap definition
-    Mound2Map,
+    BackgroundMoundCastleMap,
 
     // cols (max 48)
     11,
 
     // rows (max 28)
-    12,
+    6,
 
     // palette number
-    0,
+    2,
 };
 
-SpriteROMDef MOUND_2_IM_SPRITES[] =
+SpriteROMDef MOUND_BG_CASTLE_IM_SPRITES[] =
 {
 	{
 		// texture definition
-		(TextureDefinition*)&MOUND_2_TX,
+		(TextureDefinition*)&MOUND_BG_CASTLE_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
@@ -80,8 +80,8 @@ SpriteROMDef MOUND_2_IM_SPRITES[] =
 	},
 };
 
-ImageROMDef MOUND_2_IM =
+ImageROMDef MOUND_BG_CASTLE_IM =
 {
 	__TYPE(Image),
-	__SPRITE_ARRAY(MOUND_2_IM_SPRITES),
+	__SPRITE_ARRAY(MOUND_BG_CASTLE_IM_SPRITES),
 };

@@ -14,8 +14,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern TextureDefinition VBJAENGINE_BG_TX;
-extern TextureDefinition TREE_BG_FRONT_TX;
-extern TextureDefinition TREE_BG_BACK_TX;
+extern TextureDefinition MOUND_BG_BACK_TX;
+extern TextureDefinition MOUND_BG_MIDDLE_TX;
+extern TextureDefinition MOUND_BG_FRONT_TX;
+extern TextureDefinition MOUND_BG_CASTLE_TX;
 extern TextureDefinition CLOUDS_A_TX;
 extern TextureDefinition CLOUDS_B_TX;
 

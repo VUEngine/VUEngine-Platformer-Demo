@@ -66,12 +66,12 @@ StageROMDef LEVEL_1_1_ROOM_2_ST;
 
 PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 {
-	// since these are always visible
-	// it doesn't matter that they are not logically
-	// placed in this definition
-	{&TREE_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION, LAYER_4}, NULL},
-	{&TREE_BG_FRONT_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 88, LAYER_3}, NULL},
-	{&CLOUDS_SB, 			{SCREEN_X_POSITION, SCREEN_Y_POSITION - 32, LAYER_2}, NULL},
+	// since these are always visible it doesn't matter that they are not logically placed in this definition
+	{&MOUND_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 16, LAYER_5}, NULL},
+	{&MOUND_BG_MIDDLE_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 96, LAYER_4}, NULL},
+	{&MOUND_BG_FRONT_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 184, LAYER_3}, NULL},
+	{&MOUND_BG_CASTLE_IM, 	{SCREEN_X_POSITION + 946, SCREEN_Y_POSITION + 104, LAYER_3}, NULL},
+	{&CLOUDS_SB, 			{SCREEN_X_POSITION, SCREEN_Y_POSITION - 96, LAYER_4}, NULL},
 	{&HERO_MC, 				{SCREEN_X_POSITION + 32, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
@@ -164,8 +164,9 @@ TextureROMDef* LEVEL_1_1_ROOM_1_ST_TEXTURES[] =
 {
 	&CLOUDS_A_TX,
 	&CLOUDS_B_TX,
-	&TREE_BG_FRONT_TX,
-	&TREE_BG_BACK_TX,
+	&MOUND_BG_BACK_TX,
+	&MOUND_BG_MIDDLE_TX,
+	&MOUND_BG_FRONT_TX,
 	&COIN_TX,
 	&SAW_BLADE_TX,
 	&SAW_BLADE_LANE_V_6_TX,

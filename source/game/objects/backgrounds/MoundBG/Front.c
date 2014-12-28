@@ -22,52 +22,67 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <ScrollBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Mound2Tiles[];
-extern BYTE Mound2Map[];
+extern BYTE BackgroundMoundFrontTiles[];
+extern BYTE BackgroundMoundFrontMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef MOUND_2_TX =
+
+TextureROMDef MOUND_BG_FRONT_TX =
 {
     {
         // number of chars
-        7,
+        18,
 
         // allocation type
         __NO_ANIMATED,
 
         // char definition
-        Mound2Tiles,
+        BackgroundMoundFrontTiles,
     },
 
     // bgmap definition
-    Mound2Map,
+    BackgroundMoundFrontMap,
 
     // cols (max 48)
-    11,
+    48,
 
     // rows (max 28)
-    12,
+    16,
 
     // palette number
-    0,
+    2,
 };
 
-SpriteROMDef MOUND_2_IM_SPRITES[] =
+SpriteROMDef MOUND_BG_FRONT_SB_SPRITES[] =
 {
 	{
 		// texture definition
-		(TextureDefinition*)&MOUND_2_TX,
+		(TextureDefinition*)&MOUND_BG_FRONT_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+
+	},
+	{
+		// texture definition
+		(TextureDefinition*)&MOUND_BG_FRONT_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
@@ -80,8 +95,8 @@ SpriteROMDef MOUND_2_IM_SPRITES[] =
 	},
 };
 
-ImageROMDef MOUND_2_IM =
+ScrollBackgroundROMDef MOUND_BG_FRONT_SB =
 {
-	__TYPE(Image),
-	__SPRITE_ARRAY(MOUND_2_IM_SPRITES),
+	__TYPE(ScrollBackground),
+	__SPRITE_ARRAY(MOUND_BG_FRONT_SB_SPRITES),
 };

@@ -61,9 +61,9 @@ StageROMDef LEVEL_1_3_ROOM_1_ST;
 PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-
-	{&TREE_BG_BACK_SB,	 	{0, 20, LAYER_4}, NULL},
-	{&TREE_BG_FRONT_SB, 	{0, 104, LAYER_3}, NULL},
+	{&MOUND_BG_BACK_SB,	 	{0, 16, LAYER_5}, NULL},
+	{&MOUND_BG_MIDDLE_SB, 	{0, 96, LAYER_4}, NULL},
+	{&MOUND_BG_FRONT_SB, 	{0, 184, LAYER_3 + 1}, NULL},
 
 	{&VBJAENGINE_IM, 	    {__SCREEN_WIDTH >> 1, 40, LAYER_0       }, NULL},
 	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 64, LAYER_0 - 16	}, NULL},
