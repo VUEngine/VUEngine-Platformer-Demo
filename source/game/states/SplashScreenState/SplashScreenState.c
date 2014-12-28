@@ -44,7 +44,7 @@ static void SplashScreenState_constructor(SplashScreenState this);
 static void SplashScreenState_enter(SplashScreenState this, void* owner);
 static void SplashScreenState_execute(SplashScreenState this, void* owner);
 static void SplashScreenState_exit(SplashScreenState this, void* owner);
-static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram);
+static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram);
 static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition* stageDefinition);
 
 
@@ -134,14 +134,14 @@ static void SplashScreenState_exit(SplashScreenState this, void* owner)
 }
 
 // state's on message
-static int SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram)
+static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram)
 {
 	// process message
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
 
-			switch(this->currentScreen)
+			switch (this->currentScreen)
             {
 				case kAdjustmentScreen:
 
@@ -180,7 +180,7 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
 	GameState_loadStage((GameState)this, stageDefinition, false, true);
 
 	// do screen-specific preparations
-	switch(this->currentScreen)
+	switch (this->currentScreen)
     {
 		case kPrecautionScreen:
 

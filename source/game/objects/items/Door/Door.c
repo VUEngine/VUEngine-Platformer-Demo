@@ -51,8 +51,6 @@ __CLASS_DEFINITION(Door);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Door_removeFromStage(Door this);
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
@@ -98,7 +96,7 @@ void Door_setExtraInfo(Door this, void* extraInfo)
 }
 
 // state's on message
-u16 Door_handleMessage(Door this, Telegram telegram)
+bool Door_handleMessage(Door this, Telegram telegram)
 {
 	switch (Telegram_getMessage(telegram))
     {

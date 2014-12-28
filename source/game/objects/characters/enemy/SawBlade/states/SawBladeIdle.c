@@ -39,7 +39,7 @@ void SawBladeIdle_destructor(SawBladeIdle this);
 void SawBladeIdle_enter(SawBladeIdle this, void* owner);
 void SawBladeIdle_execute(SawBladeIdle this, void* owner);
 void SawBladeIdle_exit(SawBladeIdle this, void* owner);
-u16 SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram);
+bool SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ void SawBladeIdle_exit(SawBladeIdle this, void* owner)
 }
 
 // state's on message
-u16 SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram)
+bool SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram)
 {
 	return false;
 }

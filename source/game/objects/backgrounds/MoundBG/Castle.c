@@ -22,94 +22,55 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
-#include "Key.h"
+#include <Image.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE KeyTiles[];
-extern BYTE KeyMap[];
+extern BYTE BackgroundMoundCastleTiles[];
+extern BYTE BackgroundMoundCastleMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMDef KEY_SPIN_ANIM =
-{
-	// number of frames of this animation function
-	8,
-	
-	// frames to play in animation
-	{0,1,2,3,4,5,6,7},
-	
-	// number of cycles a frame of animation is displayed
-	10 * __FPS_ANIM_FACTOR,
-	
-	// whether to play it in loop or not
-	true,
-	
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"Spin",
-};
-
-// an animation definition
-AnimationDescriptionROMDef KEY_ANIM =
-{
-	// number of animation frames
-	8,
-	
-	// animation functions
-	{
-		(AnimationFunction*)&KEY_SPIN_ANIM,
-		NULL,
-	}
-};
-
-TextureROMDef KEY_TX =
+TextureROMDef MOUND_BG_CASTLE_TX =
 {
     {
         // number of chars
-        33,
+        35,
 
         // allocation type
-        __ANIMATED_SHARED,
+        __NO_ANIMATED,
 
         // char definition
-        KeyTiles,
+        BackgroundMoundCastleTiles,
     },
 
     // bgmap definition
-    KeyMap,
+    BackgroundMoundCastleMap,
 
     // cols (max 48)
-    2,
+    11,
 
     // rows (max 28)
-    2,
+    6,
 
     // palette number
-    1,
+    2,
 };
 
-SpriteROMDef KEY_SPRITES[] =
+SpriteROMDef MOUND_BG_CASTLE_IM_SPRITES[] =
 {
 	{
-		// sprite's type
-		__TYPE(AnimatedSprite),
-
 		// texture definition
-		(TextureDefinition*)&KEY_TX,
+		(TextureDefinition*)&MOUND_BG_CASTLE_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_AFFINE,
+		WRLD_BGMAP,
 		
 		// display mode
 		WRLD_ON,
@@ -117,38 +78,10 @@ SpriteROMDef KEY_SPRITES[] =
 		// parallax displacement
 		0,
 	},
-	{NULL, NULL, 0, 0, 0}
 };
 
-AnimatedInGameEntityROMDef KEY_MC =
+ImageROMDef MOUND_BG_CASTLE_IM =
 {
-    {
-        {
-            __TYPE(Key),
-            KEY_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {1, 1, 1, 2},
-
-        // in game type
-        kKey,
-
-        // if 0, width and height will be inferred from 
-        // the texture's size
-        // width
-    	0,
-
-    	// height
-    	0,
-    	
-    	// deep
-        4
-    },
-
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&KEY_ANIM,
-
-    // initial animation
-    "Spin",
+	__TYPE(Image),
+	MOUND_BG_CASTLE_IM_SPRITES,
 };

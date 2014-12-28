@@ -55,12 +55,12 @@
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-PositionedEntityROMDef LEVEL_1_2_ROOM_1_ST_ENTITIES[] = {
-
+PositionedEntityROMDef LEVEL_1_2_ROOM_1_ST_ENTITIES[] =
+{
 	// since these are always visible
 	// it doesn't matter that they are not logically
 	// placed in this definition
-	{&TREE_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
+	{&MOUND_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
 	{&HERO_MC, 				{SCREEN_X_POSITION + 32, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
@@ -88,8 +88,9 @@ TextureROMDef* LEVEL_1_2_ROOM_1_ST_TEXTURES[] =
 {
 	&CLOUDS_A_TX,
 	&CLOUDS_B_TX,
-	&TREE_BG_FRONT_TX,
-	&TREE_BG_BACK_TX,
+	&MOUND_BG_BACK_TX,
+	&MOUND_BG_MIDDLE_TX,
+	&MOUND_BG_FRONT_TX,
 	&COIN_TX,
 	&SAW_BLADE_TX,
 	&SAW_BLADE_LANE_V_6_TX,

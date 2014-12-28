@@ -81,22 +81,6 @@ SpriteROMDef MOUND_1_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
-
-		// texture definition
-		(TextureDefinition*)&MOUND_1_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-
-		// parallax displacement
-		0,
-	},
 	{NULL, NULL, 0, 0, 0}
 };
 

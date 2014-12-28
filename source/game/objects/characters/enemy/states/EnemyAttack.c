@@ -81,7 +81,7 @@ void EnemyAttack_exit(EnemyAttack this, void* owner)
 }
 
 // state's on message
-u16 EnemyAttack_handleMessage(EnemyAttack this, void* owner, Telegram telegram)
+bool EnemyAttack_handleMessage(EnemyAttack this, void* owner, Telegram telegram)
 {
 	return false;
 }

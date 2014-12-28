@@ -1,10 +1,14 @@
 #ifndef MACROS_H_
 #define MACROS_H_
 
-//delay to don't allow the player to bypass logo's screen
-#define SHOWDELAY	2000
 
-/* */
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINES
+//---------------------------------------------------------------------------------------------------------
+
+// delay to not allow the player to bypass logo screen
+#define SHOWDELAY		2000
+
 #define FADE_DELAY		15
 
 #define LAYER_INCREMENT					50
@@ -22,9 +26,9 @@
 #define PLAYABLE_LAYER_3 (LAYER_3 + PLAYABLE_LAYER_INCREMENT)
 #define BACKGROUND_LAYER_3 (PLAYABLE_LAYER_3 + PLAYABLE_LAYER_INCREMENT)
 #define LAYER_4 (LAYER_3 + LAYER_INCREMENT)
+#define LAYER_5 (LAYER_4 + LAYER_INCREMENT)
 
-#define TOTAL_GAME_LAYERS 	5
-
+#define TOTAL_GAME_LAYERS 	6
 
 #define SCREEN_CENTER_X		384/2
 #define SCREEN_CENTER_Y		224/2
@@ -34,7 +38,8 @@
 #define DEAD_VELOCITY_Z			ITOFIX19_13(20)
 #define DEAD_ACCELERATION_Z		ITOFIX19_13(10)
 
-enum HeroVbTypes{
+enum PlatformerTypes
+{
 	kHero = 1,
 	kSawBlade,
 	kSolid,
@@ -44,8 +49,7 @@ enum HeroVbTypes{
 	kKey,
 };
 
-
-#define GAMEWORLD_MODES		4
+#define GAMEWORLD_MODES 4
 
 enum GameWorldModes
 {

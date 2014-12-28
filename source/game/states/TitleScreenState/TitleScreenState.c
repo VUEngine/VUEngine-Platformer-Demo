@@ -48,7 +48,7 @@ static void TitleScreenState_constructor(TitleScreenState this);
 static void TitleScreenState_enter(TitleScreenState this, void* owner);
 static void TitleScreenState_execute(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
-static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
+static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -140,10 +140,10 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 }
 
 // state's on message
-static int TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
+static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
 {
 	// process message
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kSetUpLevel:
 

@@ -29,8 +29,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TreeBGFrontTiles[];
-extern BYTE TreeBGFrontMap[];
+extern BYTE BackgroundMoundMiddleTiles[];
+extern BYTE BackgroundMoundMiddleMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ extern BYTE TreeBGFrontMap[];
 //---------------------------------------------------------------------------------------------------------
 
 
-TextureROMDef TREE_BG_FRONT_TX =
+TextureROMDef MOUND_BG_MIDDLE_TX =
 {
     {
         // number of chars
@@ -48,30 +48,30 @@ TextureROMDef TREE_BG_FRONT_TX =
         __NO_ANIMATED,
 
         // char definition
-        TreeBGFrontTiles,
+        BackgroundMoundMiddleTiles,
     },
 
     // bgmap definition
-    TreeBGFrontMap,
+    BackgroundMoundMiddleMap,
 
     // cols (max 48)
     48,
 
     // rows (max 28)
-    28,
+    16,
 
     // palette number
     0,
 };
 
-SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] =
+SpriteROMDef MOUND_BG_MIDDLE_SB_SPRITES[] =
 {
 	{
 		// sprite's type
 		__TYPE(Sprite),
 
 		// texture definition
-		(TextureDefinition*)&TREE_BG_FRONT_TX,
+		(TextureDefinition*)&MOUND_BG_MIDDLE_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
@@ -88,7 +88,7 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] =
 		__TYPE(Sprite),
 
 		// texture definition
-		(TextureDefinition*)&TREE_BG_FRONT_TX,
+		(TextureDefinition*)&MOUND_BG_MIDDLE_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
@@ -102,8 +102,8 @@ SpriteROMDef TREE_BG_FRONT_SB_SPRITES[] =
 	{NULL, NULL, 0, 0, 0}
 };
 
-ScrollBackgroundROMDef TREE_BG_FRONT_SB =
+ScrollBackgroundROMDef MOUND_BG_MIDDLE_SB =
 {
 	__TYPE(ScrollBackground),
-	TREE_BG_FRONT_SB_SPRITES,
+	MOUND_BG_MIDDLE_SB_SPRITES,
 };

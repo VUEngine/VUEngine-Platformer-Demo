@@ -39,7 +39,7 @@ void HeroMoving_destructor(HeroMoving this);
 void HeroMoving_enter(HeroMoving this, void* owner);
 void HeroMoving_execute(HeroMoving this, void* owner);
 void HeroMoving_exit(HeroMoving this, void* owner);
-u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram);
+bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -96,9 +96,9 @@ void HeroMoving_exit(HeroMoving this, void* owner)
 }
 
 // state's on message
-u16 HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
+bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
 

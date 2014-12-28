@@ -40,7 +40,7 @@ void HeroIdle_destructor(HeroIdle this);
 void HeroIdle_enter(HeroIdle this, void* owner);
 void HeroIdle_execute(HeroIdle this, void* owner);
 void HeroIdle_exit(HeroIdle this, void* owner);
-u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram);
+bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -138,9 +138,9 @@ void HeroIdle_exit(HeroIdle this, void* owner)
 }
 
 // state's on message
-u16 HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
+bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch (Telegram_getMessage(telegram))
     {
 		case kCollision:
 

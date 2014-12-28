@@ -58,7 +58,7 @@ __CLASS_NEW_DECLARE(Key, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEn
 
 void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, int ID);
 void Key_destructor(Key this);
-u16 Key_handleMessage(Key this, Telegram telegram);
+bool Key_handleMessage(Key this, Telegram telegram);
 void Key_removeFromStage(Key this);
 
 

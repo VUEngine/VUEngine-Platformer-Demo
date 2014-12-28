@@ -85,7 +85,7 @@ void Coin_destructor(Coin this)
 }
 
 // state's on message
-u16 Coin_handleMessage(Coin this, Telegram telegram)
+bool Coin_handleMessage(Coin this, Telegram telegram)
 {
 	switch (Telegram_getMessage(telegram))
     {

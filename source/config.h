@@ -89,7 +89,7 @@
 // target frames per second
 #define __MINIMUM_GOOD_FPS 				(__TARGET_FPS - 0)
 
-#define __MILISECONDS_IN_SECOND			1000
+#define __MILLISECONDS_IN_SECOND			1000
 
 // set animation delays as if they are 60 FPS,
 // and multiply by this factor
@@ -117,7 +117,7 @@
 #define __BLOCK_28B 		28		// Virtual nodes are 24 bytes long so a 32b block is too much
 #define __BLOCK_16B 		16
 #define __POOL_512B_SIZE 	(__BLOCK_512B * 0)
-#define __POOL_256B_SIZE 	(__BLOCK_256B * 0)
+#define __POOL_256B_SIZE 	(__BLOCK_256B * 1)
 #define __POOL_192B_SIZE 	(__BLOCK_192B * 10)
 #define __POOL_128B_SIZE 	(__BLOCK_128B * 24)
 #define __POOL_100B_SIZE 	(__BLOCK_100B * 64)

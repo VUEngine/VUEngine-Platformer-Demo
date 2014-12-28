@@ -91,7 +91,7 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 #define HERO_SPEED_MULTIPLIER_Y	FTOFIX19_13(1.2f)
 
 // time to wait after a hit, to die
-#define HERO_TIME_TO_DIE		500	// miliseconds
+#define HERO_TIME_TO_DIE		500	// milliseconds
 
 #define HERO_HOLD_OBJECT_X		10
 #define HERO_HOLD_OBJECT_Y		0
@@ -397,7 +397,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	}
 	else
 	{
-		int movementState = Body_isMoving(this->body);
+		bool movementState = Body_isMoving(this->body);
 
 		if ((__XAXIS & axis)  && !(__YAXIS & movementState))
         {
@@ -417,9 +417,9 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 }
 
 // stop moving over axis
-int Hero_stopMovingOnAxis(Hero this, int axis)
+bool Hero_stopMovingOnAxis(Hero this, int axis)
 {
-	int movementState = Body_isMoving(this->body);
+	bool movementState = Body_isMoving(this->body);
 
 	if ((__XAXIS & axis) && !(__YAXIS & movementState))
     {
@@ -476,7 +476,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 		this->direction.z = __NEAR;
 	}
 
-	int movementState = Body_isMoving(this->body);
+	bool movementState = Body_isMoving(this->body);
 
 	if (animation && !(__YAXIS & movementState))
     {
@@ -553,7 +553,7 @@ void Hero_takeHitFrom(Hero this, Actor other)
 }
 
 /*
-int Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
+bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 {
 	ASSERT(enemy, "Hero::isHitByEnemy: null enemy");
 
@@ -695,7 +695,7 @@ void Hero_setAnimationDelta(Hero this, int delta)
 
 	VirtualNode node = VirtualList_begin(this->sprites);
 	
-	for(; node; node = VirtualNode_getNext(node))
+	for (; node; node = VirtualNode_getNext(node))
 	{
 		AnimatedSprite_setFrameDelayDelta((AnimatedSprite)VirtualNode_getData(node), this->boost ? -2 : -1);
 	}
@@ -759,7 +759,7 @@ void Hero_pickupObject(Hero this, Actor object)
 	*/
 }
 
-int Hero_checkIfZJump(Hero this)
+bool Hero_checkIfZJump(Hero this)
 {
 	return false;
 }
@@ -772,7 +772,7 @@ void Hero_fallDead(Hero this)
 }
 
 // was jumping over z?
-int  Hero_isMovingOverZ(Hero this)
+bool Hero_isMovingOverZ(Hero this)
 {
 	return this->movingOverZ;
 }
@@ -865,7 +865,7 @@ void Hero_die(Hero this)
 void Hero_determineLayer(Hero this)
 {
 	int i = 0;
-	for(i = 0; i < TOTAL_GAME_LAYERS; i++)
+	for (i = 0; i < TOTAL_GAME_LAYERS; i++)
     {
 		if ((u16)this->transform.globalPosition.z > gameLayers[i] - HERO_INPUT_FORCE && (unsigned)this->transform.globalPosition.z < gameLayers[i] + HERO_INPUT_FORCE)
         {
@@ -981,11 +981,13 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 	VirtualList collidingObjectsToRemove = __NEW(VirtualList);
 
-	for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
+	for (node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
     {
 		InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
 		
-		switch(InGameEntity_getInGameType(inGameEntity))
+		Printing_int(kDoor, 1, 10);
+		Printing_int(InGameEntity_getInGameType(inGameEntity), 1, 11);
+		switch (InGameEntity_getInGameType(inGameEntity))
         {
 			case kCoin:
 
@@ -1000,7 +1002,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)inGameEntity, kTakeKey, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
-								
+
 			case kDoor:
 
                 this->doorLastPassed = (Door)inGameEntity;
@@ -1009,7 +1011,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 		}
 	}
 
-	for(node = VirtualList_begin(collidingObjectsToRemove); node; node = VirtualNode_getNext(node))
+	for (node = VirtualList_begin(collidingObjectsToRemove); node; node = VirtualNode_getNext(node))
     {
 		// whenever you process some objects of a collisions list
 		// remove them and leave the Actor handle the ones you don't
@@ -1025,7 +1027,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 // process message
 int Hero_doMessage(Hero this, int message)
 {
-	switch(message)
+	switch (message)
 	{
 		case kSetUpLevel:
 			{

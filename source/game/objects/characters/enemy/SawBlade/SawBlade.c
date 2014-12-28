@@ -75,7 +75,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	// set movement direction;
 	this->movementDirection = sawBladeDefinition->direction;
 	
-	switch(this->axis)
+	switch (this->axis)
     {
 		case __XAXIS:
 
@@ -115,7 +115,7 @@ void SawBlade_unregisterShape(SawBlade this)
 }
 
 // process a collision
-u8 SawBlade_processCollision(SawBlade this, Telegram telegram)
+bool SawBlade_processCollision(SawBlade this, Telegram telegram)
 {
 	int message = Telegram_getMessage(telegram);
 	InGameEntity inGameEntity = (InGameEntity) Telegram_getExtraInfo(telegram);
@@ -124,7 +124,7 @@ u8 SawBlade_processCollision(SawBlade this, Telegram telegram)
     {
 		case kCollision:
 			
-			switch(InGameEntity_getInGameType(inGameEntity))
+			switch (InGameEntity_getInGameType(inGameEntity))
             {
 				case kHero:
 
@@ -159,7 +159,7 @@ void SawBlade_setLocalPosition(SawBlade this, VBVec3D position)
 	Actor_setLocalPosition((Actor)this, position);
 	
 	// save initial position
-	switch(this->axis)
+	switch (this->axis)
     {
 		case __XAXIS:
 
@@ -185,7 +185,7 @@ void SawBlade_move(SawBlade this)
 	int displacement = ITOFIX19_13(44);
 	
 	// update position
-	switch(this->axis)
+	switch (this->axis)
     {
 		case __XAXIS:
 
@@ -193,7 +193,7 @@ void SawBlade_move(SawBlade this)
 			
 		case __YAXIS:
 			
-			switch(this->direction.y)
+			switch (this->direction.y)
             {
 				case __UP:
 
@@ -261,7 +261,7 @@ void SawBlade_move(SawBlade this)
 // start moving
 void SawBlade_startMovement(SawBlade this)
 {
-	switch(this->axis)
+	switch (this->axis)
     {
 		case __XAXIS:
 

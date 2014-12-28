@@ -102,11 +102,24 @@ SpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITES[] =
 		(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
+		WRLD_AFFINE,
 		
 		// display mode
-		WRLD_LON,
+		WRLD_ON,
 		
+		// parallax displacement
+		0,
+	},/*
+	{
+		// texture definition
+		(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
+
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+
+		// display mode
+		WRLD_LON,
+
 		// parallax displacement
 		0,
 	},
@@ -125,7 +138,7 @@ SpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITES[] =
 
 		// parallax displacement
 		0,
-	},
+	},*/
 	{NULL, NULL, 0, 0, 0}
 };
 

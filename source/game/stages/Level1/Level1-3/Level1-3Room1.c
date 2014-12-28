@@ -54,8 +54,8 @@
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] = {
-
+PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
+{
 	// since these are always visible
 	// it doesn't matter that they are not logically
 	// placed in this definition
@@ -97,8 +97,9 @@ TextureROMDef* LEVEL_1_3_ROOM_1_ST_TEXTURES[] =
 {
 	&CLOUDS_A_TX,
 	&CLOUDS_B_TX,
-	&TREE_BG_FRONT_TX,
-	&TREE_BG_BACK_TX,
+	&MOUND_BG_BACK_TX,
+	&MOUND_BG_MIDDLE_TX,
+	&MOUND_BG_FRONT_TX,
 	&COIN_TX,
 	&SAW_BLADE_TX,
 	&SAW_BLADE_LANE_V_6_TX,

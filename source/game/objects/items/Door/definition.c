@@ -145,7 +145,7 @@ SpriteROMDef DOOR_SPRITES[] =
 	{NULL, NULL, 0, 0, 0}
 };
 
-AnimatedInGameEntityROMDef DOOR_MC =
+AnimatedInGameEntityDefinition DOOR_MC =
 {
     {
         {
