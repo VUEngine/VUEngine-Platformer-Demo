@@ -70,20 +70,11 @@ __CLASS(Enemy);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-//class's constructor
 void Enemy_constructor(Enemy this, ActorDefinition* definition, int ID);
-
-// class's constructor
 void Enemy_destructor(Enemy this);
-
-// get time in which certain action did
 u32 Enemy_getActionTime(Enemy this);
-
-// tell whether it is ready to attack hero
-int Enemy_canAttack(Enemy this);
-
-// tells if I'm on the edge of the object below me
-int Enemy_onPlatformEdge(Enemy this);
+bool Enemy_canAttack(Enemy this);
+bool Enemy_onPlatformEdge(Enemy this);
 
 
 #endif

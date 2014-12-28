@@ -64,10 +64,10 @@ __CLASS(Hero);
 	u8 layer;																	\
 																				\
 	/* Am I jumping over z */													\
-	u8 movingOverZ;																\
+	bool movingOverZ;																\
 																				\
 	/* boost flag */															\
-	u8 boost;																	\
+	bool boost;																	\
 																				\
 	/* number of collected coins */												\
 	u8 coins;																	\
@@ -95,7 +95,7 @@ void Hero_destructor(Hero this);
 void Hero_addForce(Hero this, int changedDirection, int axis);
 void Hero_stopMovement(Hero this);
 void Hero_startedMovingOnAxis(Hero this, int axis);
-int Hero_stopMovingOnAxis(Hero this, int axis);
+bool Hero_stopMovingOnAxis(Hero this, int axis);
 void Hero_move(Hero this);
 void Hero_jump(Hero this, int changeState, int checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
@@ -106,9 +106,9 @@ void Hero_enableBoost(Hero this);
 void Hero_setActionTime(Hero this, u32 time);
 u32 Hero_getActionTime(Hero this);
 void Hero_pickupObject(Hero this, Actor object);
-int Hero_checkIfZJump(Hero this);
+bool Hero_checkIfZJump(Hero this);
 void Hero_fallDead(Hero this);
-int  Hero_isMovingOverZ(Hero this);
+bool Hero_isMovingOverZ(Hero this);
 void Hero_setMovingOverZ(Hero this, int  state);
 void Hero_updateHoldObjectPosition(Hero this);
 void Hero_lookFront(Hero this);

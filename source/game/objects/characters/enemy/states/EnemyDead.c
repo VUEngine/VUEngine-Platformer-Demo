@@ -37,7 +37,7 @@ void EnemyDead_destructor(EnemyDead this);
 void EnemyDead_enter(EnemyDead this, void* owner);
 void EnemyDead_execute(EnemyDead this, void* owner);
 void EnemyDead_exit(EnemyDead this, void* owner);
-u16 EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram);
+bool EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -98,17 +98,14 @@ void EnemyDead_exit(EnemyDead this, void* owner)
 }
 
 // state's on message
-u16 EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram)
+bool EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram)
 {
-
 	// if the botton of the screen has been reached
 	if (kFloorReached == Telegram_getMessage(telegram))
-{
+    {
 		// inform the game that I'm dead
 		//Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)owner, kDead);
-
 	}
 
 	return false;
 }
-

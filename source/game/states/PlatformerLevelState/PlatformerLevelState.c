@@ -49,7 +49,7 @@ static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner)
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner) {}
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner) {}
-static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
+static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this);
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this);
 static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this);
@@ -135,7 +135,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 }
 
 // state's on message
-static int PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)
+static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

@@ -115,7 +115,7 @@ void SawBlade_unregisterShape(SawBlade this)
 }
 
 // process a collision
-u8 SawBlade_processCollision(SawBlade this, Telegram telegram)
+bool SawBlade_processCollision(SawBlade this, Telegram telegram)
 {
 	int message = Telegram_getMessage(telegram);
 	InGameEntity inGameEntity = (InGameEntity) Telegram_getExtraInfo(telegram);

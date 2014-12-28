@@ -85,7 +85,7 @@ void Key_destructor(Key this)
 }
 
 // state's on message
-u16 Key_handleMessage(Key this, Telegram telegram)
+bool Key_handleMessage(Key this, Telegram telegram)
 {
 	switch (Telegram_getMessage(telegram))
     {

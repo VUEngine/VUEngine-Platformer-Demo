@@ -80,7 +80,6 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{&FLOOR_16x8_BG,		{372, 208, 2}, NULL},
 
 	{&HERO_MC, 				{168, 164, 0}, NULL},
-	//{&HERO_MC, 				{__SCREEN_WIDTH >> 1, 172, 0}, NULL},
 
 	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL},
 	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 92, __SCREEN_HEIGHT >> 1, 0}, NULL},

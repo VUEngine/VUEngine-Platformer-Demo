@@ -106,7 +106,7 @@ void SawBlade_registerShape(SawBlade this);
 void SawBlade_unregisterShape(SawBlade this);
 
 // process a collision
-u8 SawBlade_processCollision(SawBlade this, Telegram telegram);
+bool SawBlade_processCollision(SawBlade this, Telegram telegram);
 
 // tell me I've been hit
 void SawBlade_takeHit(SawBlade this, int axis, s8 direction);

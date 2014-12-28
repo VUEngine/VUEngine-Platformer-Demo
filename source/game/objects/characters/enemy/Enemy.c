@@ -74,13 +74,13 @@ u32 Enemy_getActionTime(Enemy this)
 }
 
 // tell whether it is ready to attack hero
-int Enemy_canAttack(Enemy this)
+bool Enemy_canAttack(Enemy this)
 {
 	return true;
 }
 
 // tells if I'm on the edge of the object below me
-int Enemy_onPlatformEdge(Enemy this)
+bool Enemy_onPlatformEdge(Enemy this)
 {
 	/*
 	// first check if I'm over something

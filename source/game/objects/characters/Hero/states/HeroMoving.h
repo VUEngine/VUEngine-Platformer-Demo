@@ -52,10 +52,10 @@
 	State_ATTRIBUTES															\
 																				\
 	/* check direction flag */													\
-	u8 mustCheckDirection;														\
+	bool mustCheckDirection;														\
 																				\
 	/* flag to allow jump on bouncing */										\
-	u8 bouncing;																\
+	bool bouncing;																\
 
  __CLASS(HeroMoving);
 

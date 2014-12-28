@@ -65,7 +65,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* definition, int
 void Door_destructor(Door this);
 void* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);
-u16 Door_handleMessage(Door this, Telegram telegram);
+bool Door_handleMessage(Door this, Telegram telegram);
 
 
 #endif

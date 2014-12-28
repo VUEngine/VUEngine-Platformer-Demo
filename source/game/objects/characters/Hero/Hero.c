@@ -91,7 +91,7 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 #define HERO_SPEED_MULTIPLIER_Y	FTOFIX19_13(1.2f)
 
 // time to wait after a hit, to die
-#define HERO_TIME_TO_DIE		500	// miliseconds
+#define HERO_TIME_TO_DIE		500	// milliseconds
 
 #define HERO_HOLD_OBJECT_X		10
 #define HERO_HOLD_OBJECT_Y		0
@@ -397,7 +397,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	}
 	else
 	{
-		int movementState = Body_isMoving(this->body);
+		bool movementState = Body_isMoving(this->body);
 
 		if ((__XAXIS & axis)  && !(__YAXIS & movementState))
         {
@@ -417,9 +417,9 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 }
 
 // stop moving over axis
-int Hero_stopMovingOnAxis(Hero this, int axis)
+bool Hero_stopMovingOnAxis(Hero this, int axis)
 {
-	int movementState = Body_isMoving(this->body);
+	bool movementState = Body_isMoving(this->body);
 
 	if ((__XAXIS & axis) && !(__YAXIS & movementState))
     {
@@ -476,7 +476,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 		this->direction.z = __NEAR;
 	}
 
-	int movementState = Body_isMoving(this->body);
+	bool movementState = Body_isMoving(this->body);
 
 	if (animation && !(__YAXIS & movementState))
     {
@@ -553,7 +553,7 @@ void Hero_takeHitFrom(Hero this, Actor other)
 }
 
 /*
-int Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
+bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 {
 	ASSERT(enemy, "Hero::isHitByEnemy: null enemy");
 
@@ -759,7 +759,7 @@ void Hero_pickupObject(Hero this, Actor object)
 	*/
 }
 
-int Hero_checkIfZJump(Hero this)
+bool Hero_checkIfZJump(Hero this)
 {
 	return false;
 }
@@ -772,7 +772,7 @@ void Hero_fallDead(Hero this)
 }
 
 // was jumping over z?
-int  Hero_isMovingOverZ(Hero this)
+bool Hero_isMovingOverZ(Hero this)
 {
 	return this->movingOverZ;
 }
