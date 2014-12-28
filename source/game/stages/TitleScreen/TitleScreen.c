@@ -62,8 +62,8 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
-	{&TREE_BG_BACK_SB,	 	{0, 116, LAYER_4}, NULL},
-	{&TREE_BG_FRONT_SB, 	{0, 224, LAYER_3}, NULL},
+	{&TREE_BG_BACK_SB,	 	{0, 20, LAYER_4}, NULL},
+	{&TREE_BG_FRONT_SB, 	{0, 104, LAYER_3}, NULL},
 
 	{&VBJAENGINE_IM, 	    {__SCREEN_WIDTH >> 1, 40, LAYER_0       }, NULL},
 	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 64, LAYER_0 - 16	}, NULL},

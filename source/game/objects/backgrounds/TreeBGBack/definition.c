@@ -58,7 +58,7 @@ TextureROMDef TREE_BG_BACK_TX =
     48,
 
     // rows (max 28)
-    28,
+    12,
 
     // palette number
     0,

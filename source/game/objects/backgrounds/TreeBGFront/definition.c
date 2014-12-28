@@ -42,7 +42,7 @@ TextureROMDef TREE_BG_FRONT_TX =
 {
     {
         // number of chars
-        71,
+        85,
 
         // allocation type
         __NO_ANIMATED,
@@ -58,7 +58,7 @@ TextureROMDef TREE_BG_FRONT_TX =
     48,
 
     // rows (max 28)
-    28,
+    12,
 
     // palette number
     0,
