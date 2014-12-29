@@ -985,8 +985,6 @@ int Hero_processCollision(Hero this, Telegram telegram)
     {
 		InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
 		
-		Printing_int(kDoor, 1, 10);
-		Printing_int(InGameEntity_getInGameType(inGameEntity), 1, 11);
 		switch (InGameEntity_getInGameType(inGameEntity))
         {
 			case kCoin:
