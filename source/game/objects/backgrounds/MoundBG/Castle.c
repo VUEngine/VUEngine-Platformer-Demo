@@ -66,6 +66,9 @@ TextureROMDef MOUND_BG_CASTLE_TX =
 SpriteROMDef MOUND_BG_CASTLE_IM_SPRITES[] =
 {
 	{
+		// sprite's type
+		__TYPE(Sprite),
+
 		// texture definition
 		(TextureDefinition*)&MOUND_BG_CASTLE_TX,
 		
@@ -78,6 +81,7 @@ SpriteROMDef MOUND_BG_CASTLE_IM_SPRITES[] =
 		// parallax displacement
 		0,
 	},
+	{NULL, NULL, 0, 0, 0}
 };
 
 ImageROMDef MOUND_BG_CASTLE_IM =
