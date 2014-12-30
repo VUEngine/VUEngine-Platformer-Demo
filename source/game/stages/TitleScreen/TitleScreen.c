@@ -61,45 +61,45 @@ StageROMDef LEVEL_1_3_ROOM_1_ST;
 PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&MOUND_BG_BACK_SB,	 	{0, 16, LAYER_5}, NULL},
-	{&MOUND_BG_MIDDLE_SB, 	{0, 96, LAYER_4}, NULL},
-	{&MOUND_BG_FRONT_SB, 	{0, 184, LAYER_3 + 1}, NULL},
+	{&MOUND_BG_BACK_SB,	 	{0, 16, LAYER_5}, NULL, NULL},
+	{&MOUND_BG_MIDDLE_SB, 	{0, 96, LAYER_4}, NULL, NULL},
+	{&MOUND_BG_FRONT_SB, 	{0, 184, LAYER_3 + 1}, NULL, NULL},
 
-	{&VBJAENGINE_IM, 	    {__SCREEN_WIDTH >> 1, 40, LAYER_0       }, NULL},
-	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 64, LAYER_0 - 16	}, NULL},
-	{&LOGO_IM, 			    {__SCREEN_WIDTH >> 1, 88, LAYER_0   	}, NULL},
+	{&VBJAENGINE_IM, 	    {__SCREEN_WIDTH >> 1, 40, LAYER_0       }, NULL, NULL},
+	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 64, LAYER_0 - 16	}, NULL, NULL},
+	{&LOGO_IM, 			    {__SCREEN_WIDTH >> 1, 88, LAYER_0   	}, NULL, NULL},
 
-	{&MOUND_1_IM,			{-14, 174, LAYER_1}, NULL},
-	{&MOUND_1_IM,			{138, 182, LAYER_1}, NULL},
-	{&MOUND_2_IM,			{228, 182, LAYER_1}, NULL},
-	{&MOUND_2_IM,			{384, 192, LAYER_1}, NULL},
+	{&MOUND_1_IM,			{-14, 174, LAYER_1}, NULL, NULL},
+	{&MOUND_1_IM,			{138, 182, LAYER_1}, NULL, NULL},
+	{&MOUND_2_IM,			{228, 182, LAYER_1}, NULL, NULL},
+	{&MOUND_2_IM,			{384, 192, LAYER_1}, NULL, NULL},
 
-	{&FLOOR_4x10_BG,		{16, 216, 2}, NULL},
-	{&FLOOR_4x10_BG,		{64, 208, 2}, NULL},
-	{&FLOOR_22x8_BG,		{__SCREEN_WIDTH >> 1, 216, 2}, NULL},
-	{&FLOOR_16x8_BG,		{372, 208, 2}, NULL},
+	{&FLOOR_4x10_BG,		{16, 216, 2}, NULL, NULL},
+	{&FLOOR_4x10_BG,		{64, 208, 2}, NULL, NULL},
+	{&FLOOR_22x8_BG,		{__SCREEN_WIDTH >> 1, 216, 2}, NULL, NULL},
+	{&FLOOR_16x8_BG,		{372, 208, 2}, NULL, NULL},
 
-	{&HERO_MC, 				{168, 164, 0}, NULL},
+	{&HERO_MC, 				{168, 164, 0}, NULL, NULL},
 
-	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL},
-	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 92, __SCREEN_HEIGHT >> 1, 0}, NULL},
+	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL, NULL},
+	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 92, __SCREEN_HEIGHT >> 1, 0}, NULL, NULL},
 
-	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, &LEVEL_1_1_ROOM_1_ST},
-	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, &LEVEL_1_2_ROOM_1_ST},
-	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, &LEVEL_1_3_ROOM_1_ST},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, NULL, &LEVEL_1_1_ROOM_1_ST},
+	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, NULL, &LEVEL_1_2_ROOM_1_ST},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, NULL, &LEVEL_1_3_ROOM_1_ST},
 
 /*
-	{&FLOOR_16x8_BG,		{-32, 174, PLAYABLE_LAYER_2 + 2}, NULL},
-	{&FLOOR_16x8_BG,		{142, 182, PLAYABLE_LAYER_2 + 2}, NULL},
-	{&FLOOR_22x8_BG,		{398, 182, PLAYABLE_LAYER_2 + 2}, NULL},
+	{&FLOOR_16x8_BG,		{-32, 174, PLAYABLE_LAYER_2 + 2}, NULL, NULL},
+	{&FLOOR_16x8_BG,		{142, 182, PLAYABLE_LAYER_2 + 2}, NULL, NULL},
+	{&FLOOR_22x8_BG,		{398, 182, PLAYABLE_LAYER_2 + 2}, NULL, NULL},
 */
 
-	{NULL, {0,0,0}, NULL},
+	{NULL, {0,0,0}, NULL, NULL},
 };
 
 PositionedEntityROMDef TITLE_SCREEN_ST_UI_ENTITIES[] =
 {
-	{&GUI_BLANK_IM,			{__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT - 8, 0}, NULL},
+	{&GUI_BLANK_IM,			{__SCREEN_WIDTH >> 1, __SCREEN_HEIGHT - 8, 0}, NULL, NULL},
 	{NULL, {0,0,0}, NULL}
 };
 
