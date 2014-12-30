@@ -65,9 +65,16 @@ StageROMDef LEVEL_1_1_ROOM_2_ST;
  */
 
 // TODO: remove me, I exist only for testing
+PositionedEntityROMDef HERO_COIN_CHILDREN_ENTITIES[] =
+{
+	{&KEY_MC, 				{0, -25, 0}, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL},
+};
+
+// TODO: remove me, I exist only for testing
 PositionedEntityROMDef HERO_CHILDREN_ENTITIES[] =
 {
-	{&COIN_MC, 				{25, 0, 0}, NULL, NULL},
+	{&COIN_MC, 				{25, 0, 0}, HERO_COIN_CHILDREN_ENTITIES, NULL},
 	{NULL, {0,0,0}, NULL, NULL},
 };
 
