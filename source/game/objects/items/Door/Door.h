@@ -51,7 +51,7 @@ __CLASS(Door);
 	AnimatedInGameEntity_ATTRIBUTES												\
 																				\
 	/* destination of door */													\
-	void (*destination)(void)													\
+	void (*destination)(void);													\
 
 
 //---------------------------------------------------------------------------------------------------------

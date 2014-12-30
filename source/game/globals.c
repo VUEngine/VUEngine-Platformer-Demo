@@ -43,6 +43,8 @@ const ClassSizeData _userClassesSizeData[] =
 	{&Hero_getObjectSize, "Hero"},
 	{&Coin_getObjectSize, "Coin"},
 	{&SawBlade_getObjectSize, "SawBlade"},
+	{&Door_getObjectSize, "Door"},
+	{&Key_getObjectSize, "Door"},
 	{NULL, ""},
 };
 #endif
