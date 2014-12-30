@@ -36,7 +36,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern const u16 FontTiles[];
-
+FontROMDef PLATFORMER_DEFAULT_FONT =
+{
+    FontTiles,
+    kFont8x8,
+    "Default",
+};
 
 //---------------------------------------------------------------------------------------------------------
 // 										  GAME'S MAIN LOOP
@@ -51,8 +56,8 @@ int main(void)
 	I18n_registerLanguage(I18n_getInstance(), Lang_DE);
 	I18n_setLanguage(I18n_getInstance(), LANG_EN);
 
-	// load custom font
-	Printing_setFontDefinition((const u16*)FontTiles);
+	// register fonts
+	Printing_registerFont(&PLATFORMER_DEFAULT_FONT, true);
 
     // start the game
 	Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());
