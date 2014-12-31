@@ -39,6 +39,8 @@ extern const u16 FontTiles[];
 FontROMDef PLATFORMER_DEFAULT_FONT =
 {
     FontTiles,
+    256,
+    0,
     kFont8x8,
     "Default",
 };
