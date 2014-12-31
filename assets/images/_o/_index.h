@@ -24,6 +24,7 @@
 #include "PlatformerDemoLogoL.c"  
 #include "PlatformerDemoLogoR.c"  
 #include "PrecautionScreenJapanese.c"  
+#include "PrecautionScreenJapaneseShadow.c"  
 #include "SuperAwesome.c"  
 #include "VBJaEngineBG.c"  
 #include "VBJaEngineBGDark.c"  

@@ -29,8 +29,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PrecautionScreenJapaneseTiles[];
-extern BYTE PrecautionScreenJapaneseMap[];
+extern BYTE PrecautionScreenJapaneseShadowTiles[];
+extern BYTE PrecautionScreenJapaneseShadowMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,17 +42,17 @@ TextureROMDef PRECAUTION_SCREEN_JAPANESE_TX =
 {
     {
         // number of chars
-        34,
+        47,
 
         // allocation type
         __NO_ANIMATED,
 
         // char definition
-        PrecautionScreenJapaneseTiles,
+        PrecautionScreenJapaneseShadowTiles,
     },
 
     // bgmap definition
-    PrecautionScreenJapaneseMap,
+    PrecautionScreenJapaneseShadowMap,
 
     // cols (max 48)
     25,
