@@ -271,19 +271,19 @@ static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this)
 // print number of lifes to gui
 void PlatformerLevelState_printLifes(PlatformerLevelState this)
 {
-	Printing_int(Hero_getLifes(Hero_getInstance()), 4, 26, NULL);
+	Printing_int(Hero_getLifes(Hero_getInstance()), 4, 26, "8x16");
 }
 
 // print number of coins to gui
 void PlatformerLevelState_printCoins(PlatformerLevelState this)
 {
-	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26, NULL);
+	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26, "8x16");
 }
 
 // print number of keys to gui
 void PlatformerLevelState_printKeys(PlatformerLevelState this)
 {
-	Printing_int(Hero_getKeys(Hero_getInstance()), 16, 26, NULL);
+	Printing_int(Hero_getKeys(Hero_getInstance()), 16, 26, "8x16");
 }
 
 // print current level to gui

@@ -22,6 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <fonts.h>
 #include <I18n.h>
 #include <text.h>
 #include <lang_de.h>
@@ -30,20 +31,6 @@
 // include the game's states
 #include <states.h>
 
-
-//---------------------------------------------------------------------------------------------------------
-// 											DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern const u16 FontTiles[];
-FontROMDef PLATFORMER_DEFAULT_FONT =
-{
-    FontTiles,
-    256,
-    0,
-    kFont8x8,
-    "Default",
-};
 
 //---------------------------------------------------------------------------------------------------------
 // 										  GAME'S MAIN LOOP
@@ -60,6 +47,7 @@ int main(void)
 
 	// register fonts
 	Printing_registerFont(&PLATFORMER_DEFAULT_FONT, true);
+	Printing_registerFont(&PLATFORMER_8X16_FONT, false);
 
     // start the game
 	Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());
