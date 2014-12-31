@@ -105,7 +105,7 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 	Hero_setGap((Hero)owner);
 	
 #ifdef __DEBUG
-	Printing_text("HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2);
+	Printing_text("HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
 }
 
