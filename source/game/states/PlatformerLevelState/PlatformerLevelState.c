@@ -291,9 +291,6 @@ void PlatformerLevelState_printLevel(PlatformerLevelState this)
 {
     //TODO: use this->stageDefinition
 	Printing_text("1-1", 35, 26, "GUIFont");
-
-
-	Printing_text("WooHoo Deine Mudda", 10, 10, "GUIFont");
 }
 
 // set the next state to load

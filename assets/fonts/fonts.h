@@ -30,10 +30,10 @@ FontROMDef PLATFORMER_8X16_FONT =
     Font8x16Tiles,
 
 	// number of characters in font
-    128,//96,
+    96,
 
 	// at which character number the font starts
-    0,//32,
+    32,
 
 	// size of a single character (in chars) ({width, height})
     {1, 2},
