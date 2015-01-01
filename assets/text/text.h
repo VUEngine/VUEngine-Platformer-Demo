@@ -1,3 +1,7 @@
+#ifndef TEXT_H_
+#define TEXT_H_
+
+
 enum
 {
 	STR_LANGUAGE_NAME,
@@ -12,3 +16,6 @@ enum
     LANG_EN,
     LANG_DE
 };
+
+
+#endif

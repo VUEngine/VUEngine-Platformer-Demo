@@ -121,8 +121,8 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
 
     if (0 != strcmp(this->lastLevelSelectLabel, strLevelSelectLabel))
     {
-        Printing_text("                                                ", 0, 26, NULL);
-        Printing_text(strLevelSelectLabel, (48 - strlen(strLevelSelectLabel)) >> 1, 26, NULL);
+        Printing_text("                                                ", 0, 26, "GUIFont");
+        Printing_text(strLevelSelectLabel, (48 - strlen(strLevelSelectLabel)) >> 1, 26, "GUIFont");
     }
 
 	// call base
