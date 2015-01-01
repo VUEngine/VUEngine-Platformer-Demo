@@ -106,7 +106,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 	// reset clock and render time
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "8x16");
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
 	
 	// render gui values
 	PlatformerLevelState_printLifes(this);
@@ -253,7 +253,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 // handle event
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this)
 {
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "8x16");
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
 }
 
 // handle event
@@ -271,26 +271,29 @@ static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this)
 // print number of lifes to gui
 void PlatformerLevelState_printLifes(PlatformerLevelState this)
 {
-	Printing_int(Hero_getLifes(Hero_getInstance()), 4, 26, "8x16");
+	Printing_int(Hero_getLifes(Hero_getInstance()), 4, 26, "GUIFont");
 }
 
 // print number of coins to gui
 void PlatformerLevelState_printCoins(PlatformerLevelState this)
 {
-	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26, "8x16");
+	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26, "GUIFont");
 }
 
 // print number of keys to gui
 void PlatformerLevelState_printKeys(PlatformerLevelState this)
 {
-	Printing_int(Hero_getKeys(Hero_getInstance()), 16, 26, "8x16");
+	Printing_int(Hero_getKeys(Hero_getInstance()), 16, 26, "GUIFont");
 }
 
 // print current level to gui
 void PlatformerLevelState_printLevel(PlatformerLevelState this)
 {
     //TODO: use this->stageDefinition
-	Printing_text("1-1", 35, 26, "8x16");
+	Printing_text("1-1", 35, 26, "GUIFont");
+
+
+	Printing_text("WooHoo Deine Mudda", 10, 10, "GUIFont");
 }
 
 // set the next state to load

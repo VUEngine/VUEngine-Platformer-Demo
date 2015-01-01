@@ -17,11 +17,11 @@ FontROMDef PLATFORMER_DEFAULT_FONT =
 	// at which character number the font starts
     0,
 
-	// size of a single character
-    kFont8x8,
+	// size of a single character (in chars) ({width, height})
+    {1, 1},
 
 	// font's name
-    "Default",
+    "DefaultFont",
 };
 
 FontROMDef PLATFORMER_8X16_FONT =
@@ -30,16 +30,16 @@ FontROMDef PLATFORMER_8X16_FONT =
     Font8x16Tiles,
 
 	// number of characters in font
-    96,
+    128,//96,
 
 	// at which character number the font starts
-    32,
+    0,//32,
 
-	// size of a single character
-    kFont8x16,
+	// size of a single character (in chars) ({width, height})
+    {1, 2},
 
 	// font's name
-    "8x16",
+    "GUIFont",
 };
 
 
