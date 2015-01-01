@@ -1,24 +1,29 @@
-/*
- * GERMAN LANGUAGE FILE
- * Ensure this file is encoded in ANSI for umlauts to work.
- */
+#ifndef LANG_DE_H_
+#define LANG_DE_H_
 
-static char* Lang_DE[] =
+
+// Ensure this file is encoded in ANSI for umlauts to work.
+
+LangROMDef LANG_DE =
 {
+    // Language Name
+    "Deutsch",
 
-// STR_LANGUAGE_NAME
-"Deutsch",
+    {
+        // STR_PRECAUTION
+        "            Wichtig:\n\n  Lesen Sie vor dem Spielen die\n\nAnleitung und Sicherheitshinweise",
 
-// STR_PRECAUTION
-"            Wichtig:\n\n  Lesen Sie vor dem Spielen die\n\nAnleitung und Sicherheitshinweise",
+        // STR_SELECT_LEVEL
+        "Bitte wähle einen Level",
 
-// STR_SELECT_LEVEL
-"Bitte wähle einen Level",
+        // STR_LEVEL
+        "Level",
 
-// STR_LEVEL
-"Level",
+        // STR_LEVEL_1_1_NAME
+        "Woohoo-Berge",
 
-// STR_LEVEL_1_1_NAME
-"Woohoo-Berge",
-
+    },
 };
+
+
+#endif

@@ -1,24 +1,26 @@
-/*
- * ENGLISH LANGUAGE FILE
- * Ensure this file is encoded in ANSI for umlauts to work.
- */
+#ifndef LANG_EN_H_
+#define LANG_EN_H_
 
-static char* Lang_EN[] =
+
+LangROMDef LANG_EN =
 {
+    // Language Name
+    "English",
 
-// STR_LANGUAGE_NAME
-"English",
+    {
+        // STR_PRECAUTION
+        "           Important:\n\nRead Instruction and Precaution\n\n   Booklets before operating",
 
-// STR_PRECAUTION
-"           Important:\n\nRead Instruction and Precaution\n\n   Booklets before operating",
+        // STR_SELECT_LEVEL
+        "Please select a level",
 
-// STR_SELECT_LEVEL
-"Please select a level",
+        // STR_LEVEL
+        "Level",
 
-// STR_LEVEL
-"Level",
-
-// STR_LEVEL_1_1_NAME
-"Woohoo Hills",
-
+        // STR_LEVEL_1_1_NAME
+        "Woohoo Hills",
+    },
 };
+
+
+#endif

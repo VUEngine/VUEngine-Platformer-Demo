@@ -1,19 +1,19 @@
 
-//{{BLOCK(Font8x16)
+//{{BLOCK(FontGUI)
 
 //======================================================================
 //
-//	Font8x16, 256x48@2, 
+//	FontGUI, 256x48@2, 
 //	+ 192 tiles not compressed
 //	Total size: 3072 = 3072
 //
-//	Time-stamp: 2015-01-01, 15:40:49
+//	Time-stamp: 2015-01-01, 17:34:19
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-const unsigned int Font8x16Tiles[768] __attribute__((aligned(4)))=
+const unsigned int FontGUITiles[768] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x03E003E0,0x03E003E0,0x03E003E0,
 	0x00000000,0x3E3E3E3E,0x3E3E3E3E,0x3E3E3E3E,0x00000000,0x3EF83EF8,0xFFFEFFFE,0x3EF83EF8,
@@ -124,4 +124,4 @@ const unsigned int Font8x16Tiles[768] __attribute__((aligned(4)))=
 	0x03F803F8,0x03E003E0,0x03800380,0x00000000,0x0FE00FE0,0x03E003E0,0x00E000E0,0x00000000,
 };
 
-//}}BLOCK(Font8x16)
+//}}BLOCK(FontGUI)

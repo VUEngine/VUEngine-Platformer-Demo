@@ -3,9 +3,6 @@
 
 
 extern const u16 FontDefaultTiles[];
-extern const u16 Font8x16Tiles[];
-
-
 FontROMDef PLATFORMER_DEFAULT_FONT =
 {
     // font chars definition pointer
@@ -24,10 +21,11 @@ FontROMDef PLATFORMER_DEFAULT_FONT =
     "DefaultFont",
 };
 
-FontROMDef PLATFORMER_8X16_FONT =
+extern const u16 FontGUITiles[];
+FontROMDef PLATFORMER_GUI_FONT =
 {
     // font chars definition pointer
-    Font8x16Tiles,
+    FontGUITiles,
 
 	// number of characters in font
     96,
@@ -40,6 +38,25 @@ FontROMDef PLATFORMER_8X16_FONT =
 
 	// font's name
     "GUIFont",
+};
+
+extern const u16 FontLargeTiles[];
+FontROMDef PLATFORMER_LARGE_FONT =
+{
+    // font chars definition pointer
+    FontLargeTiles,
+
+	// number of characters in font
+    64,
+
+	// at which character number the font starts
+    32,
+
+	// size of a single character (in chars) ({width, height})
+    {2, 2},
+
+	// font's name
+    "LargeFont",
 };
 
 
