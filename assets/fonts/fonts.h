@@ -2,7 +2,7 @@
 #define FONTS_H_
 
 
-extern const u16 FontDefaultTiles[];
+extern BYTE FontDefaultTiles[];
 FontROMDef PLATFORMER_DEFAULT_FONT =
 {
     // font chars definition pointer
@@ -21,7 +21,7 @@ FontROMDef PLATFORMER_DEFAULT_FONT =
     "DefaultFont",
 };
 
-extern const u16 FontGUITiles[];
+extern BYTE FontGUITiles[];
 FontROMDef PLATFORMER_GUI_FONT =
 {
     // font chars definition pointer
@@ -40,7 +40,7 @@ FontROMDef PLATFORMER_GUI_FONT =
     "GUIFont",
 };
 
-extern const u16 FontLargeTiles[];
+extern BYTE FontLargeTiles[];
 FontROMDef PLATFORMER_LARGE_FONT =
 {
     // font chars definition pointer

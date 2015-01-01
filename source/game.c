@@ -46,9 +46,9 @@ int main(void)
 	I18n_setLanguage(I18n_getInstance(), "English");
 
 	// register fonts
-	Printing_registerFont(&PLATFORMER_DEFAULT_FONT);
-	Printing_registerFont(&PLATFORMER_GUI_FONT);
-	//Printing_registerFont(&PLATFORMER_LARGE_FONT);
+	Printing_registerFont(Printing_getInstance(), &PLATFORMER_DEFAULT_FONT);
+	Printing_registerFont(Printing_getInstance(), &PLATFORMER_GUI_FONT);
+	//Printing_registerFont(Printing_getInstance(), &PLATFORMER_LARGE_FONT);
 
     // start the game
 	Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());

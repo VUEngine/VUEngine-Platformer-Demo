@@ -184,7 +184,7 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
     {
 		case kPrecautionScreen:
 
-			Printing_text(I18n_getText(I18n_getInstance(), STR_PRECAUTION), 8, 6, NULL);
+			Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION), 8, 6, NULL);
 			break;
 	}
 

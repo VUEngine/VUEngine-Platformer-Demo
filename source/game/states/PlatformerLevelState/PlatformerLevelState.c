@@ -155,12 +155,12 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			char* strLevelIdentifier = stageDefinition.identifier;
 			char* strLevelName = stageDefinition.name;
 
-			Printing_text(strLevel, 20, 5, NULL);
-			Printing_text(strLevelIdentifier, 21 + strlen(strLevel), 5, NULL);
+			Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
+			Printing_text(Printing_getInstance(), strLevelIdentifier, 21 + strlen(strLevel), 5, NULL);
 
-			Printing_text("\"", 17, 6, NULL);
-			Printing_text(strLevelName, 18, 6, NULL);
-			Printing_text("\"", 18 + strlen(strLevelName), 6, NULL);
+			Printing_text(Printing_getInstance(), "\"", 17, 6, NULL);
+			Printing_text(Printing_getInstance(), strLevelName, 18, 6, NULL);
+			Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, NULL);
 
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
@@ -208,8 +208,8 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 		case kHideLevelMessage:
 
-			Printing_text("                                                ", 0, 5, NULL);
-			Printing_text("                                                ", 0, 6, NULL);
+			Printing_text(Printing_getInstance(), "                                                ", 0, 5, NULL);
+			Printing_text(Printing_getInstance(), "                                                ", 0, 6, NULL);
 
 			break;
 			
@@ -271,26 +271,26 @@ static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this)
 // print number of lifes to gui
 void PlatformerLevelState_printLifes(PlatformerLevelState this)
 {
-	Printing_int(Hero_getLifes(Hero_getInstance()), 4, 26, "GUIFont");
+	Printing_int(Printing_getInstance(), Hero_getLifes(Hero_getInstance()), 4, 26, "GUIFont");
 }
 
 // print number of coins to gui
 void PlatformerLevelState_printCoins(PlatformerLevelState this)
 {
-	Printing_int(Hero_getCoins(Hero_getInstance()), 10, 26, "GUIFont");
+	Printing_int(Printing_getInstance(), Hero_getCoins(Hero_getInstance()), 10, 26, "GUIFont");
 }
 
 // print number of keys to gui
 void PlatformerLevelState_printKeys(PlatformerLevelState this)
 {
-	Printing_int(Hero_getKeys(Hero_getInstance()), 16, 26, "GUIFont");
+	Printing_int(Printing_getInstance(), Hero_getKeys(Hero_getInstance()), 16, 26, "GUIFont");
 }
 
 // print current level to gui
 void PlatformerLevelState_printLevel(PlatformerLevelState this)
 {
     //TODO: use this->stageDefinition
-	Printing_text("1-1", 35, 26, "GUIFont");
+	Printing_text(Printing_getInstance(), "1-1", 35, 26, "GUIFont");
 }
 
 // set the next state to load
