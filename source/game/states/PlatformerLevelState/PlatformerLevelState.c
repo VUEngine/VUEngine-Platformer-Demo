@@ -106,7 +106,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 	// reset clock and render time
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26);
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "8x16");
 	
 	// render gui values
 	PlatformerLevelState_printLifes(this);
@@ -253,7 +253,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 // handle event
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this)
 {
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26);
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "8x16");
 }
 
 // handle event
@@ -290,7 +290,7 @@ void PlatformerLevelState_printKeys(PlatformerLevelState this)
 void PlatformerLevelState_printLevel(PlatformerLevelState this)
 {
     //TODO: use this->stageDefinition
-	Printing_text("1-1", 35, 26, NULL);
+	Printing_text("1-1", 35, 26, "8x16");
 }
 
 // set the next state to load
