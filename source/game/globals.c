@@ -22,7 +22,6 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-// include VBJaEngine's Game class
 #include <Game.h>
 #include <Debug.h>
 #include <StageEditor.h>
@@ -39,7 +38,6 @@
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] =
 {
-		
 	{&Hero_getObjectSize, "Hero"},
 	{&Coin_getObjectSize, "Coin"},
 	{&SawBlade_getObjectSize, "SawBlade"},
@@ -52,7 +50,6 @@ const ClassSizeData _userClassesSizeData[] =
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
-
 	{&COIN_MC, "Coin"},
 	{&DOOR_MC, "Door"},
 	{&HERO_MC, "Hero"},
@@ -66,7 +63,6 @@ const UserObject _userObjects[] =
 #ifdef __ANIMATION_EDITOR
 const UserActor _userActors[] =
 {
-		
 	{(ActorDefinition*)&COIN_MC, "Coin"},
 	{(ActorDefinition*)&DOOR_MC, "Door"},
 	{(ActorDefinition*)&HERO_MC, "Hero"},

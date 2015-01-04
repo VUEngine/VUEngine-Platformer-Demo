@@ -11,8 +11,8 @@ LangROMDef LANG_EN =
         // STR_PRECAUTION
         "           Important:\n\nRead Instruction and Precaution\n\n   Booklets before operating",
 
-        // STR_SELECT_LEVEL
-        "Please select a level",
+        // STR_LANGUAGE_SELECT
+        "Language Selection",
 
         // STR_LEVEL
         "Level",

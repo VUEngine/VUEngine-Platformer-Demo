@@ -31,7 +31,6 @@
 #include <I18n.h>
 #include <PhysicalWorld.h>
 #include <TitleScreenState.h>
-#include <TitleScreenState.h>
 #include <Hero.h>
 #include "../stages/stages.h"
 #include <macros.h>
@@ -99,9 +98,9 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 static void TitleScreenState_execute(TitleScreenState this, void* owner)
 {
     Door doorLastPassed = Hero_getDoorLastPassed(Hero_getInstance());
+    char* strLevelSelectLabel = "";
 
     // display level name if in front of a door
-    char* strLevelSelectLabel = I18n_getText(I18n_getInstance(), STR_SELECT_LEVEL);
     if (
         (doorLastPassed != NULL) &&
         __VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)Hero_getInstance()), __ARGUMENTS(Entity_getShape((Entity)doorLastPassed)))
@@ -123,6 +122,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
     {
         Printing_text(Printing_getInstance(), "                                                ", 0, 26, "GUIFont");
         Printing_text(Printing_getInstance(), strLevelSelectLabel, (48 - strlen(strLevelSelectLabel)) >> 1, 26, "GUIFont");
+        this->lastLevelSelectLabel = strLevelSelectLabel;
     }
 
 	// call base
@@ -132,7 +132,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
 // state's exit
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
-	// make a fade in
+	// make a fade out
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
 
 	// destroy the state

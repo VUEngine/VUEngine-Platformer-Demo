@@ -33,6 +33,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern StageROMDef EMPTY_ST;
+
 extern StageROMDef ADJUSTMENT_ST;
 extern StageROMDef PRECAUTION_ST;
 extern StageROMDef VBJAE_ST;

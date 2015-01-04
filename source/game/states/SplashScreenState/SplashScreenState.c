@@ -32,7 +32,7 @@
 #include <macros.h>
 #include <text.h>
 #include "stages.h"
-#include "TitleScreenState.h"
+#include <LanguageSelectionState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -126,7 +126,7 @@ static void SplashScreenState_execute(SplashScreenState this, void* owner)
 // state's exit
 static void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
-	// make a fade in
+	// make a fade out
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
 
 	// destroy the state
@@ -158,7 +158,7 @@ static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner,
 				case kVbJaeScreen:
 				
 					this->currentScreen = kSplashExitScreen;
-					Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance());
+					Game_changeState(Game_getInstance(), (State)LanguageSelectionState_getInstance());
 					break;
 			}
 

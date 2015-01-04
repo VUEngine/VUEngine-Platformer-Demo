@@ -43,7 +43,7 @@ int main(void)
 	// register languages
 	I18n_registerLanguage(I18n_getInstance(), &LANG_EN);
 	I18n_registerLanguage(I18n_getInstance(), &LANG_DE);
-	I18n_setLanguage(I18n_getInstance(), "English");
+	I18n_setLanguageByName(I18n_getInstance(), "English");
 
 	// register fonts
 	Printing_registerFont(Printing_getInstance(), &PLATFORMER_DEFAULT_FONT);
@@ -51,8 +51,9 @@ int main(void)
 	//Printing_registerFont(Printing_getInstance(), &PLATFORMER_LARGE_FONT);
 
     // start the game
-	Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());
+	//Game_start(Game_getInstance(), (State)SplashScreenState_getInstance());
 	// for quick level testing comment the line above and uncomment the line below
+	Game_start(Game_getInstance(), (State)LanguageSelectionState_getInstance());
 	//Game_start(Game_getInstance(), (State)TitleScreenState_getInstance());
 	//Game_start(Game_getInstance(), (State)PlatformerLevelState_getInstance());
 		

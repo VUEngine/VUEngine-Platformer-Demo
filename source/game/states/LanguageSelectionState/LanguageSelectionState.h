@@ -18,25 +18,50 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef STATES_H_
-#define STATES_H_
+#ifndef TITLE_SCREEN_STATE_H_
+#define TITLE_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <SplashScreenState.h>
-#include <LanguageSelectionState.h>
-#include <TitleScreenState.h>
-#include <PlatformerLevelState.h>
-
-#include "stages.h"
+#include <GameState.h>
+#include <OptionsSelector.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
+
+// declare the virtual methods
+#define LanguageSelectionState_METHODS											\
+	GameState_METHODS;											    			\
+
+// declare the virtual methods which are redefined
+#define LanguageSelectionState_SET_VTABLE(ClassName)							\
+	GameState_SET_VTABLE(ClassName)								    			\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, enter);					\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, exit);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, execute);					\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, handleMessage);			\
+
+
+__CLASS(LanguageSelectionState);
+
+#define LanguageSelectionState_ATTRIBUTES							   			\
+														            			\
+	/* inherits */																\
+	GameState_ATTRIBUTES														\
+																				\
+	OptionsSelector languageSelector;											\
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+LanguageSelectionState LanguageSelectionState_getInstance(void);
 
 
 #endif

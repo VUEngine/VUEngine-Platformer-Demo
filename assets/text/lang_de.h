@@ -13,8 +13,8 @@ LangROMDef LANG_DE =
         // STR_PRECAUTION
         "            Wichtig:\n\n  Lesen Sie vor dem Spielen die\n\nAnleitung und Sicherheitshinweise",
 
-        // STR_SELECT_LEVEL
-        "Bitte wähle einen Level",
+        // STR_LANGUAGE_SELECT
+        "Sprachauswahl",
 
         // STR_LEVEL
         "Level",
