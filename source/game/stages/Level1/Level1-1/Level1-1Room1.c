@@ -244,7 +244,5 @@ StageROMDef LEVEL_1_1_ROOM_1_ST =
     "1-1",
 
     //name
-    // TODO: use translated string
-    // I18n_getText(I18n_getInstance(), STR_LEVEL_1_1_NAME)),
     "Woohoo Hills",
 };

@@ -134,7 +134,5 @@ StageROMDef TEST_LEVEL_ST =
     "0-0",
 
     //name
-    // TODO: use translated string
-    // I18n_getText(I18n_getInstance(), STR_LEVEL_1_1_NAME)),
     "Test Level",
 };

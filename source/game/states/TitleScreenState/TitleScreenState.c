@@ -106,16 +106,8 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
         __VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)Hero_getInstance()), __ARGUMENTS(Entity_getShape((Entity)doorLastPassed)))
     )
     {
-        // TODO: use stageDefinition in Door_getExtraInfo
-        //StageROMDef* stageDefinition = Door_getExtraInfo(doorLastPassed);
-        StageROMDef stageDefinition = LEVEL_1_1_ROOM_1_ST;
-
-        char* strLevelIdentifier = stageDefinition.identifier;
-        char* strLevelName = stageDefinition.name;
-
-        strLevelSelectLabel = strncat(strLevelIdentifier, ": \"", 3);
-        strLevelSelectLabel = strncat(strLevelIdentifier, strLevelName, strlen(strLevelName));
-        strLevelSelectLabel = strncat(strLevelIdentifier, "\"", 1);
+        StageDefinition* stageDefinition = Door_getExtraInfo(doorLastPassed);
+        strLevelSelectLabel = (*stageDefinition).name;
     }
 
     if (0 != strcmp(this->lastLevelSelectLabel, strLevelSelectLabel))

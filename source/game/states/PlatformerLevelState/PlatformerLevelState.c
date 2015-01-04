@@ -148,12 +148,10 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 
 			// print level name
-			// TODO: use this->stageDefinition
-            //StageROMDef stageDefinition = this->stageDefinition;
-            StageROMDef stageDefinition = LEVEL_1_1_ROOM_1_ST;
+            StageDefinition* stageDefinition = this->stageDefinition;
 			char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-			char* strLevelIdentifier = stageDefinition.identifier;
-			char* strLevelName = stageDefinition.name;
+			char* strLevelIdentifier = (*stageDefinition).identifier;
+			char* strLevelName = (*stageDefinition).name;
 
 			Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
 			Printing_text(Printing_getInstance(), strLevelIdentifier, 21 + strlen(strLevel), 5, NULL);
@@ -289,18 +287,17 @@ void PlatformerLevelState_printKeys(PlatformerLevelState this)
 // print current level to gui
 void PlatformerLevelState_printLevel(PlatformerLevelState this)
 {
-    //TODO: use this->stageDefinition
-	Printing_text(Printing_getInstance(), "1-1", 35, 26, "GUIFont");
+	Printing_text(Printing_getInstance(), (*this->stageDefinition).identifier, 35, 26, "GUIFont");
 }
 
 // set the next state to load
-void PlatformerLevelState_setStage(PlatformerLevelState this, StageROMDef* stageDefinition)
+void PlatformerLevelState_setStage(PlatformerLevelState this, StageDefinition* stageDefinition)
 {
 	this->stageDefinition = stageDefinition;
 }
 
 // start a given level
-void PlatformerLevelState_goToLevel(StageROMDef* stageDefinition)
+void PlatformerLevelState_goToLevel(StageDefinition* stageDefinition)
 {
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
 	this->stageDefinition = stageDefinition;

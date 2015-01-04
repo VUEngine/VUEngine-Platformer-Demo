@@ -56,7 +56,7 @@ __CLASS(PlatformerLevelState);
 	GameState_ATTRIBUTES														\
 																				\
 	/* the stage to load */														\
-	StageROMDef* stageDefinition;												\
+	StageDefinition* stageDefinition;											\
 																				\
 	/* to allow moving the screen */											\
 	u8 mode: 4;																	\
@@ -95,8 +95,8 @@ enum PlatformerLevelStateMessageTypes
 
 // setup the init focus screen
 PlatformerLevelState PlatformerLevelState_getInstance(void);
-void PlatformerLevelState_setStage(PlatformerLevelState this, StageROMDef* stageDefinition);
-void PlatformerLevelState_goToLevel();
+void PlatformerLevelState_setStage(PlatformerLevelState this, StageDefinition* stageDefinition);
+void PlatformerLevelState_goToLevel(StageDefinition* stageDefinition);
 
 
 #endif
