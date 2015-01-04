@@ -26,7 +26,6 @@
 #include <objects.h>
 #include <macros.h>
 #include <PlatformerLevelState.h>
-#include <I18n.h>
 #include <text.h>
 
 #include "stages/textures.h"
@@ -244,5 +243,5 @@ StageROMDef LEVEL_1_1_ROOM_1_ST =
     "1-1",
 
     //name
-    "Woohoo Hills",
+    (void*)STR_LEVEL_1_1_NAME,
 };

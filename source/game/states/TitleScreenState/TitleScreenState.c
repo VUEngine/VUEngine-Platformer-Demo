@@ -107,7 +107,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
     )
     {
         StageDefinition* stageDefinition = Door_getExtraInfo(doorLastPassed);
-        strLevelSelectLabel = (*stageDefinition).name;
+        strLevelSelectLabel = I18n_getText(I18n_getInstance(), (int)(*stageDefinition).name);
     }
 
     if (0 != strcmp(this->lastLevelSelectLabel, strLevelSelectLabel))

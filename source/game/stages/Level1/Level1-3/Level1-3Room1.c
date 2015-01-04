@@ -26,6 +26,7 @@
 #include <objects.h>
 #include <macros.h>
 #include <PlatformerLevelState.h>
+#include <text.h>
 
 #include "stages/textures.h"
 
@@ -162,5 +163,5 @@ StageROMDef LEVEL_1_3_ROOM_1_ST =
     "1-3",
 
     //name
-    "Third Example Level",
+    (void*)STR_LEVEL_1_3_NAME,
 };

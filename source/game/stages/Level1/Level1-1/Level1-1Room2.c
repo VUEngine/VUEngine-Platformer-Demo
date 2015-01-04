@@ -150,8 +150,8 @@ StageROMDef LEVEL_1_1_ROOM_2_ST =
     NULL,
 
     //identifier
-    "1-1",
+    NULL,
 
     //name
-    "Woohoo Hills",
+    NULL,
 };

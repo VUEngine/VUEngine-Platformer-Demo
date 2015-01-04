@@ -149,16 +149,22 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			// print level name
             StageDefinition* stageDefinition = this->stageDefinition;
-			char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-			char* strLevelIdentifier = (*stageDefinition).identifier;
-			char* strLevelName = (*stageDefinition).name;
 
-			Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
-			Printing_text(Printing_getInstance(), strLevelIdentifier, 21 + strlen(strLevel), 5, NULL);
+            if ((*stageDefinition).identifier)
+            {
+			    char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
+			    char* strLevelName = (*stageDefinition).identifier;
+                Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
+                Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
+            }
 
-			Printing_text(Printing_getInstance(), "\"", 17, 6, NULL);
-			Printing_text(Printing_getInstance(), strLevelName, 18, 6, NULL);
-			Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, NULL);
+            if ((*stageDefinition).name)
+            {
+			    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*stageDefinition).name);
+                Printing_text(Printing_getInstance(), "\"", 17, 6, NULL);
+                Printing_text(Printing_getInstance(), strLevelName, 18, 6, NULL);
+                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, NULL);
+            }
 
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
