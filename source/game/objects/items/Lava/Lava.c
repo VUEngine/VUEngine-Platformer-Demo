@@ -18,33 +18,74 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef ITEMS_H_
-#define ITEMS_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Coin/Coin.h"
-#include "Door/Door.h"
-#include "Key/Key.h"
+#include <Image.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COIN_MC;
-extern EntityDefinition DOOR_MC;
-extern EntityDefinition KEY_MC;
-extern EntityDefinition LAVA_IM;
-extern EntityDefinition LAVA_TOP_MC;
+extern BYTE LavaTiles[];
+extern BYTE LavaMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												ASSETS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+TextureROMDef LAVA_TX =
+{
+    {
+        // number of chars
+        15,
 
-#endif
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        LavaTiles,
+    },
+
+    // bgmap definition
+    LavaMap,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    28,
+
+    // palette number
+    0,
+};
+
+SpriteROMDef LAVA_IM_SPRITES[] =
+{
+	{
+		// sprite's type
+		__TYPE(Sprite),
+
+		// texture definition
+		(TextureDefinition*)&LAVA_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		-2,
+	},
+	{NULL, NULL, 0, 0, 0}
+};
+
+ImageROMDef LAVA_IM =
+{
+	__TYPE(Image),
+	LAVA_IM_SPRITES,
+};

@@ -26,7 +26,7 @@ LangROMDef LANG_DE =
         "2. Demo Level",
 
         // STR_LEVEL_1_3_NAME
-        "Dritter Demo Level",
+        "Aufwärtsspirale",
     },
 };
 

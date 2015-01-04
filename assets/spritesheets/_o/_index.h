@@ -2,5 +2,8 @@
 #include "Door.c"  
 #include "Hero.c"  
 #include "Key.c"  
+#include "LavaSingle.c"  
+#include "LavaTop.c"  
+#include "LavaTop192.c"  
 #include "SawBlade.c"  
 #include "SawBladeHalf.c"  

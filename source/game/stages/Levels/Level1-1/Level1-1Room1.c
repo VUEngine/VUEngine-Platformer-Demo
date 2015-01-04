@@ -63,20 +63,6 @@ StageROMDef LEVEL_1_1_ROOM_2_ST;
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-// TODO: remove me, I exist only for testing
-PositionedEntityROMDef HERO_COIN_CHILDREN_ENTITIES[] =
-{
-	{&KEY_MC, 				{0, -25, 0}, NULL, NULL},
-	{NULL, {0,0,0}, NULL, NULL},
-};
-
-// TODO: remove me, I exist only for testing
-PositionedEntityROMDef HERO_CHILDREN_ENTITIES[] =
-{
-	{&COIN_MC, 				{25, 0, 0}, HERO_COIN_CHILDREN_ENTITIES, NULL},
-	{NULL, {0,0,0}, NULL, NULL},
-};
-
 PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
@@ -85,7 +71,7 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 	{&MOUND_BG_FRONT_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 184, LAYER_3}, NULL, NULL},
 	{&MOUND_BG_CASTLE_IM, 	{SCREEN_X_POSITION + 946, SCREEN_Y_POSITION + 104, LAYER_3}, NULL, NULL},
 	{&CLOUDS_SB, 			{SCREEN_X_POSITION, SCREEN_Y_POSITION - 96, LAYER_4}, NULL, NULL},
-	{&HERO_MC, 				{SCREEN_X_POSITION + 32, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, HERO_CHILDREN_ENTITIES, NULL},
+	{&HERO_MC, 				{SCREEN_X_POSITION + 32, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly

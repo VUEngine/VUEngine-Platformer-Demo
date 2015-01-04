@@ -1006,6 +1006,11 @@ int Hero_processCollision(Hero this, Telegram telegram)
                 this->doorLastPassed = (Door)inGameEntity;
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
+
+			case kLavaTop:
+
+                //die!
+				break;
 		}
 	}
 

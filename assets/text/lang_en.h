@@ -24,7 +24,7 @@ LangROMDef LANG_EN =
         "2nd Example Level",
 
         // STR_LEVEL_1_3_NAME
-        "Third Example Level",
+        "Upwards Spiral",
     },
 };
 

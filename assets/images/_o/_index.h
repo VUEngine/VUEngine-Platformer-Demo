@@ -19,6 +19,7 @@
 #include "Floor4x3FloatR.c"  
 #include "GUI.c"  
 #include "GUIBlank.c"  
+#include "Lava.c"  
 #include "Mound1.c"  
 #include "Mound2.c"  
 #include "PlatformerDemoLogoL.c"  

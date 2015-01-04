@@ -47,6 +47,7 @@ enum PlatformerTypes
 	kDoor,
 	kCoin,
 	kKey,
+	kLavaTop,
 };
 
 #define GAMEWORLD_MODES 4
