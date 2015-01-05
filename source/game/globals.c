@@ -68,6 +68,7 @@ const UserActor _userActors[] =
 	{(ActorDefinition*)&HERO_MC, "Hero"},
 	{(ActorDefinition*)&KEY_MC, "Key"},
 	{(ActorDefinition*)&SAW_BLADE_MC, "SawBlade"},
+	{(ActorDefinition*)&LAVA_TOP_MC, "Lava top"},
 	{NULL, ""},
 };
 #endif

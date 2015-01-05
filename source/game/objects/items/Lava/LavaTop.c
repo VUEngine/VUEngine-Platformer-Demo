@@ -79,7 +79,7 @@ TextureROMDef LAVA_TOP_TX =
 {
     {
         // number of chars
-        145,
+        16,
 
         // allocation type
         __ANIMATED,
