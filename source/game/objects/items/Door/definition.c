@@ -65,16 +65,16 @@ AnimationFunctionROMDef DOOR_OPEN_ANIM =
 {
 	// number of frames of this animation function
 	4,
-	
+
 	// frames to play in animation
 	{0,1,2,3},
-	
+
 	// number of cycles a frame of animation is displayed
 	10 * __FPS_ANIM_FACTOR,
-	
+
 	// whether to play it in loop or not
-	true,
-	
+	false,
+
 	// method to call on function completion
 	NULL,
 	

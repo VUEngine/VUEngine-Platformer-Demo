@@ -18,47 +18,92 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef BACKGROUNDS_H_
-#define BACKGROUNDS_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include "texture.h"
+#include <ScrollBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition TEST_BG;
-
-extern EntityDefinition TREE_BG_FRONT_SB;
-extern EntityDefinition TREE_BG_BACK_SB;
-extern EntityDefinition MOUND_BG_BACK_SB;
-extern EntityDefinition MOUND_BG_MIDDLE_SB;
-extern EntityDefinition MOUND_BG_FRONT_SB;
-extern EntityDefinition MOUND_BG_CASTLE_IM;
-extern EntityDefinition VBJAENGINE_BG_SB;
-extern EntityDefinition CLOUDS_SB;
-
-extern EntityDefinition LEVEL1_3_PART1_IM;
-extern EntityDefinition STONE_BG_SB;
-
-extern EntityDefinition FLOOR_4x10_BG;
-extern EntityDefinition FLOOR_16x8_BG;
-extern EntityDefinition FLOOR_22x8_BG;
-extern EntityDefinition FLOOR_4x3_FLOAT_BG;
-extern EntityDefinition FLOOR_2x2_BLOCK_BG;
-
-extern EntityDefinition MOUND_1_IM;
-extern EntityDefinition MOUND_2_IM;
-
-extern EntityDefinition LAVA_BG;
-extern EntityDefinition LAVA_TOP_MC;
+extern BYTE StoneBGTiles[];
+extern BYTE StoneBGMap[];
 
 
-#endif
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+
+TextureROMDef STONE_BG_TX =
+{
+    {
+        // number of chars
+        5,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        StoneBGTiles,
+    },
+
+    // bgmap definition
+    StoneBGMap,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    24,
+
+    // palette number
+    0,
+};
+
+SpriteROMDef STONE_BG_SB_SPRITES[] =
+{
+	{
+		// sprite's type
+		__TYPE(Sprite),
+
+		// texture definition
+		(TextureDefinition*)&STONE_BG_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+
+	},
+	{
+		// sprite's type
+		__TYPE(Sprite),
+
+		// texture definition
+		(TextureDefinition*)&STONE_BG_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+	},
+	{NULL, NULL, 0, 0, 0}
+};
+
+ScrollBackgroundROMDef STONE_BG_SB =
+{
+	__TYPE(ScrollBackground),
+	STONE_BG_SB_SPRITES,
+};

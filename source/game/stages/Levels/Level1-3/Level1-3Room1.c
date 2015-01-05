@@ -48,6 +48,7 @@
 #define SCREEN_Y_POSITION 	LEVEL_Y_SIZE - __SCREEN_HEIGHT
 #define SCREEN_Z_POSITION 	0
 
+
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
 // ---------------------------------------------------------------------------------------------------------
@@ -57,6 +58,7 @@
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
+	{&LAVA_TOP_MC, {48, -120, LAYER_1 - 16}, NULL, NULL},
 	{&LAVA_TOP_MC, {0, -118, -1}, NULL, NULL},
     {NULL, {0,0,0}, NULL, NULL},
 };
@@ -64,13 +66,17 @@ PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&HERO_MC, 				{SCREEN_X_POSITION + 32, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL, NULL},
+	{&HERO_MC, 				{32, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL, NULL},
+	{&LEVEL1_3_PART1_IM,    {192, SCREEN_Y_POSITION + (__SCREEN_HEIGHT >> 1), PLAYABLE_LAYER_0 + 2}, NULL, NULL},
+	{&STONE_BG_SB,	        {192, SCREEN_Y_POSITION - 24 + (__SCREEN_HEIGHT >> 1), LAYER_1 + 2}, NULL, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
 	{&LAVA_BG,		        {192, SCREEN_Y_POSITION + LAYER_0_FLOOR + 112, PLAYABLE_LAYER_0 - 2}, LAVA_CHILD_ENTITIES, NULL},
-	{&FLOOR_16x8_BG,		{72, SCREEN_Y_POSITION + LAYER_0_FLOOR, PLAYABLE_LAYER_0 + 2}, NULL, NULL},
+	{&COLLISION_48x2x48,	{192, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 64, PLAYABLE_LAYER_0}, NULL, NULL},
+	{&COLLISION_2x28x48,	{4, SCREEN_Y_POSITION + (__SCREEN_HEIGHT >> 1), PLAYABLE_LAYER_0}, NULL, NULL},
+	{&COLLISION_2x28x48,	{__SCREEN_WIDTH, SCREEN_Y_POSITION + (__SCREEN_HEIGHT >> 1), PLAYABLE_LAYER_0}, NULL, NULL},
 };
 
 PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_UI_ENTITIES[] =

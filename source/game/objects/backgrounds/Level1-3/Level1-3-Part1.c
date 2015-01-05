@@ -18,47 +18,74 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef BACKGROUNDS_H_
-#define BACKGROUNDS_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include "texture.h"
+#include <Image.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition TEST_BG;
-
-extern EntityDefinition TREE_BG_FRONT_SB;
-extern EntityDefinition TREE_BG_BACK_SB;
-extern EntityDefinition MOUND_BG_BACK_SB;
-extern EntityDefinition MOUND_BG_MIDDLE_SB;
-extern EntityDefinition MOUND_BG_FRONT_SB;
-extern EntityDefinition MOUND_BG_CASTLE_IM;
-extern EntityDefinition VBJAENGINE_BG_SB;
-extern EntityDefinition CLOUDS_SB;
-
-extern EntityDefinition LEVEL1_3_PART1_IM;
-extern EntityDefinition STONE_BG_SB;
-
-extern EntityDefinition FLOOR_4x10_BG;
-extern EntityDefinition FLOOR_16x8_BG;
-extern EntityDefinition FLOOR_22x8_BG;
-extern EntityDefinition FLOOR_4x3_FLOAT_BG;
-extern EntityDefinition FLOOR_2x2_BLOCK_BG;
-
-extern EntityDefinition MOUND_1_IM;
-extern EntityDefinition MOUND_2_IM;
-
-extern EntityDefinition LAVA_BG;
-extern EntityDefinition LAVA_TOP_MC;
+extern BYTE Level1_3_Part1_LTiles[];
+extern BYTE Level1_3_Part1_LMap[];
 
 
-#endif
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+TextureROMDef LEVEL1_3_PART1_L_TX =
+{
+    {
+        // number of chars
+        17,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        Level1_3_Part1_LTiles,
+    },
+
+    // bgmap definition
+    Level1_3_Part1_LMap,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    28,
+
+    // palette number
+    1,
+};
+
+SpriteROMDef LEVEL1_3_PART1_IM_SPRITES[] =
+{
+	{
+		// sprite's type
+		__TYPE(Sprite),
+
+		// texture definition
+		(TextureDefinition*)&LEVEL1_3_PART1_L_TX,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		-1,
+	},
+	{NULL, NULL, 0, 0, 0}
+};
+
+ImageROMDef LEVEL1_3_PART1_IM =
+{
+	__TYPE(Image),
+	LEVEL1_3_PART1_IM_SPRITES,
+};
