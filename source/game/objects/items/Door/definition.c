@@ -58,42 +58,63 @@ AnimationFunctionROMDef DOOR_CLOSED_ANIM =
 	
 	// function's name
 	"Closed",
-	
 };
 
 // a function which defines the frames to play
 AnimationFunctionROMDef DOOR_OPEN_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	4,
 	
 	// frames to play in animation
-	{1},
+	{0,1,2,3},
 	
 	// number of cycles a frame of animation is displayed
-	0,
+	10 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
-	false,
+	true,
 	
 	// method to call on function completion
 	NULL,
 	
 	// function's name
-	"Open",
-	
+	"Opening",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef DOOR_OPENED_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{3},
+
+	// number of cycles a frame of animation is displayed
+	0,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Opened",
 };
 
 // an animation definition
 AnimationDescriptionROMDef DOOR_ANIM =
 {
 	// number of animation frames
-	2,
+	4,
 	
 	// animation functions
 	{
 		(AnimationFunction*)&DOOR_CLOSED_ANIM,
 		(AnimationFunction*)&DOOR_OPEN_ANIM,
+		(AnimationFunction*)&DOOR_OPENED_ANIM,
 		NULL,
 	}
 };
@@ -102,7 +123,7 @@ TextureROMDef DOOR_TX =
 {
     {
         // number of chars
-        12,
+        49,
 
         // allocation type
         __ANIMATED_SHARED,
@@ -175,5 +196,5 @@ AnimatedInGameEntityROMDef DOOR_MC =
     (AnimationDescription*)&DOOR_ANIM,
 
     // initial animation
-    "Closed",
+    "Opening",
 };

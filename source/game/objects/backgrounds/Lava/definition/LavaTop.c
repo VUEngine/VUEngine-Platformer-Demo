@@ -79,7 +79,7 @@ TextureROMDef LAVA_TOP_TX =
 {
     {
         // number of chars
-        24,
+        48,
 
         // allocation type
         __ANIMATED,
@@ -92,7 +92,7 @@ TextureROMDef LAVA_TOP_TX =
     LavaTopMap,
 
     // cols (max 48)
-    24,
+    48,
 
     // rows (max 28)
     1,

@@ -57,8 +57,7 @@
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	{&LAVA_TOP_MC, {-96, -118, -1}, NULL, NULL},
-	{&LAVA_TOP_MC, {96, -118, -1}, NULL, NULL},
+	{&LAVA_TOP_MC, {0, -118, -1}, NULL, NULL},
     {NULL, {0,0,0}, NULL, NULL},
 };
 
