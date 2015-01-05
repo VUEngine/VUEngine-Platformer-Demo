@@ -135,8 +135,14 @@ SawBladeDefinition SAW_BLADE_MC =
             // in game type
             kSawBlade,
 
+            // width
+            0,
+            
+            // height
+            0,
+            
             // deep
-            10,
+            10
         },
 
         // pointer to the animation definition for the character

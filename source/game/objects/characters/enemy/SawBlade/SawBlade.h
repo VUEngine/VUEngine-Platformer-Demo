@@ -43,33 +43,31 @@
 
 #define SAW_BLADE_WAIT_DELAY		150
 
-#define SawBlade_METHODS											\
+#define SawBlade_METHODS															\
 	Enemy_METHODS;
-	
-	
 
-#define SawBlade_SET_VTABLE(ClassName)								\
-	Enemy_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, SawBlade, die);						\
-	__VIRTUAL_SET(ClassName, SawBlade, takeHit);					\
-	__VIRTUAL_SET(ClassName, SawBlade, setLocalPosition);			\
-	__VIRTUAL_SET(ClassName, SawBlade, getAxisFreeForMovement);
-
+#define SawBlade_SET_VTABLE(ClassName)												\
+	Enemy_SET_VTABLE(ClassName);													\
+	__VIRTUAL_SET(ClassName, SawBlade, die);										\
+	__VIRTUAL_SET(ClassName, SawBlade, takeHit);									\
+	__VIRTUAL_SET(ClassName, SawBlade, setLocalPosition);							\
+	__VIRTUAL_SET(ClassName, SawBlade, getAxisFreeForMovement);						\
+	
 __CLASS(SawBlade);
 
-#define SawBlade_ATTRIBUTES											\
-																	\
-	/* it is derivated from */										\
-	Enemy_ATTRIBUTES												\
-																	\
-	/* save my initial position */									\
-	int initialPosition;											\
-																	\
-	/* movement axis */												\
-	u8 axis: 4;														\
-																	\
-	/* movement direction */										\
-	s8 movementDirection: 2;
+#define SawBlade_ATTRIBUTES															\
+																					\
+	/* it is derivated from */														\
+	Enemy_ATTRIBUTES																\
+																					\
+	/* save my initial position */													\
+	int initialPosition;															\
+																					\
+	/* movement axis */																\
+	u8 axis: 4;																		\
+																					\
+	/* movement direction */														\
+	s8 movementDirection: 2;														\
 
 // definition in ROM memory
 typedef const struct SawBladeDefinition
@@ -125,6 +123,5 @@ void SawBlade_move(SawBlade this);
 
 // start moving
 void SawBlade_startMovement(SawBlade this);
-
 
 #endif

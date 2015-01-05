@@ -109,11 +109,10 @@ void SawBladeMoving_exit(SawBladeMoving this, void* owner)
 bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram telegram)
 {
 	int message = Telegram_getMessage(telegram);
-	
+
 	switch (message)
     {
 		case kCollision:
-
 		{
 			VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
 			ASSERT(collidingObjects, "SawBladeMoving::handleMessage: null collidingObjects");
@@ -131,7 +130,6 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
 					
 						// ok, i hit him
 						//Hero_takeHit((Hero)inGameEntity, Entity_getPosition((Entity)owner));
-							
 						return true;
 						break;
 						
