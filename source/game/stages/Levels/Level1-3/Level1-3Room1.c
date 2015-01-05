@@ -44,9 +44,9 @@
 #define LEVEL_Y_SIZE 	2000
 #define LEVEL_Z_SIZE 	64
 
-#define SCREEN_X_POSITION 		0
-#define SCREEN_Y_POSITION 		LEVEL_Y_SIZE - __SCREEN_HEIGHT
-#define SCREEN_Z_POSITION 		0
+#define SCREEN_X_POSITION 	0
+#define SCREEN_Y_POSITION 	LEVEL_Y_SIZE - __SCREEN_HEIGHT
+#define SCREEN_Z_POSITION 	0
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
@@ -57,9 +57,8 @@
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	{&LAVA_TOP_MC, {-128, -118, -1}, NULL, NULL},
-	{&LAVA_TOP_MC, {0, -118, -1}, NULL, NULL},
-	{&LAVA_TOP_MC, {128, -118, -1}, NULL, NULL},
+	{&LAVA_TOP_MC, {-96, -118, -1}, NULL, NULL},
+	{&LAVA_TOP_MC, {96, -118, -1}, NULL, NULL},
     {NULL, {0,0,0}, NULL, NULL},
 };
 
@@ -71,7 +70,7 @@ PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
-	{&LAVA_IM,		        {192, SCREEN_Y_POSITION + LAYER_0_FLOOR + 112, PLAYABLE_LAYER_0 - 2}, LAVA_CHILD_ENTITIES, NULL},
+	{&LAVA_BG,		        {192, SCREEN_Y_POSITION + LAYER_0_FLOOR + 112, PLAYABLE_LAYER_0 - 2}, LAVA_CHILD_ENTITIES, NULL},
 	{&FLOOR_16x8_BG,		{72, SCREEN_Y_POSITION + LAYER_0_FLOOR, PLAYABLE_LAYER_0 + 2}, NULL, NULL},
 };
 

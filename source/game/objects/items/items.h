@@ -38,8 +38,6 @@
 extern EntityDefinition COIN_MC;
 extern EntityDefinition DOOR_MC;
 extern EntityDefinition KEY_MC;
-extern EntityDefinition LAVA_IM;
-extern EntityDefinition LAVA_TOP_MC;
 
 
 //---------------------------------------------------------------------------------------------------------

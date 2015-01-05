@@ -49,7 +49,7 @@ AnimationFunctionROMDef LAVA_TOP_ANIM_1 =
 	{0,1,2,3,4,5,6,7,8},
 	
 	// number of cycles a frame of animation is displayed
-	10 * __FPS_ANIM_FACTOR,
+	8 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	true,
@@ -79,7 +79,7 @@ TextureROMDef LAVA_TOP_TX =
 {
     {
         // number of chars
-        16,
+        24,
 
         // allocation type
         __ANIMATED,
@@ -92,7 +92,7 @@ TextureROMDef LAVA_TOP_TX =
     LavaTopMap,
 
     // cols (max 48)
-    16,
+    24,
 
     // rows (max 28)
     1,
@@ -134,7 +134,7 @@ AnimatedInGameEntityROMDef LAVA_TOP_MC =
         {6, 0, 0, 0},
 
         // in game type
-        kLavaTop,
+        kSolid,
 
         // if 0, width and height will be inferred from the texture's size
         // width

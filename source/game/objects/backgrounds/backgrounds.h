@@ -54,4 +54,8 @@ extern EntityDefinition FLOOR_2x2_BLOCK_BG;
 extern EntityDefinition MOUND_1_IM;
 extern EntityDefinition MOUND_2_IM;
 
+extern EntityDefinition LAVA_BG;
+extern EntityDefinition LAVA_TOP_MC;
+
+
 #endif

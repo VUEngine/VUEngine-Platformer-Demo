@@ -269,7 +269,7 @@ void SawBlade_startMovement(SawBlade this)
 			
 		case __YAXIS:
 			
-			{	
+			{
 				Velocity velocity =
                 {
 					0,

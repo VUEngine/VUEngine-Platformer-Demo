@@ -23,6 +23,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
+#include <InAnimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,7 +65,7 @@ TextureROMDef LAVA_TX =
     0,
 };
 
-SpriteROMDef LAVA_IM_SPRITES[] =
+SpriteROMDef LAVA_BG_SPRITES[] =
 {
 	{
 		// sprite's type
@@ -84,8 +86,38 @@ SpriteROMDef LAVA_IM_SPRITES[] =
 	{NULL, NULL, 0, 0, 0}
 };
 
-ImageROMDef LAVA_IM =
+InanimatedInGameEntityROMDef LAVA_BG =
 {
-	__TYPE(Image),
-	LAVA_IM_SPRITES,
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            LAVA_BG_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kLava,
+
+        // if 0, width and height will be inferred from
+        // the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+
+        // deep
+        20
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
 };

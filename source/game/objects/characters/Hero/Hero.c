@@ -842,7 +842,7 @@ void Hero_die(Hero this)
     /*
 	// go to dead state
 	StateMachine_swapState(this->stateMachine, (State)HeroDead_getInstance());
-	
+
 	// if I have something being hold
 	if (this->holdObject)
     {
@@ -1007,9 +1007,10 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
-			case kLavaTop:
+			case kLava:
 
-                //die!
+				Hero_die(this);
+//				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 		}
 	}
@@ -1023,7 +1024,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	}
 	
 	__DELETE(collidingObjectsToRemove);
-	
+
 	return !VirtualList_getSize(collidingObjects);
 }
 

@@ -35,5 +35,8 @@ extern TextureDefinition FLOOR_2x2_BLOCK_R_TX;
 extern TextureDefinition MOUND_1_TX;
 extern TextureDefinition MOUND_2_TX;
 
+extern TextureDefinition LAVA_TX;
+extern TextureDefinition LAVA_TOP_TX;
+
 
 #endif
