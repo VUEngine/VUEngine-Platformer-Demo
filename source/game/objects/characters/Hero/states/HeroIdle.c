@@ -112,24 +112,9 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 // state's execute
 void HeroIdle_execute(HeroIdle this, void* owner)
 {
-	/*
-	if (!Hero_isMovingOverZ((Hero)owner))
-    {
-		// if up key pressed
-		if (!((K_LU | K_LD) & vbKeyPressed()))
-        {
-			// make hero to look to the side
-			Hero_lookSide((Hero)owner);
-		}
+	if (!Hero_isOverlappingDoor((Hero)owner)) {
+		Hero_resetCurrentlyOverlappingDoor((Hero)owner);
 	}
-	
-	if (!(K_B & vbKeyPressed()))
-    {
-		// check if must thrown an object
-		//Hero_throwObject((Hero)owner);
-	}
-	*/
-	
 }
 
 // state's exit
@@ -189,7 +174,14 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                     return true;
                     break;
 				}
-	
+
+				// check if in front of door and possibly enter it
+				if (K_LU & pressedKey)
+                {
+					if (Hero_isOverlappingDoor((Hero)owner)) {
+						Hero_enterDoor((Hero)owner);
+					}
+				}
 			}
 			break;
 	}

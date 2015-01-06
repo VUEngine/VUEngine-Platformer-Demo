@@ -87,6 +87,9 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 // state's execute
 void HeroMoving_execute(HeroMoving this, void* owner)
 {
+	if (!Hero_isOverlappingDoor((Hero)owner)) {
+		Hero_resetCurrentlyOverlappingDoor((Hero)owner);
+	}
 }
 
 // state's exit
@@ -115,13 +118,20 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					Hero_checkDirection((Hero)owner, pressedKey, "Walk");					
 				}
 
-				
 				// check if jump
 				if (K_A & pressedKey)
                 {
 					Hero_jump((Hero)owner, false, !this->bouncing);			
 				}
-			}		
+
+				// check if in front of door and possibly enter it
+				if (K_LU & pressedKey)
+                {
+					if (Hero_isOverlappingDoor((Hero)owner)) {
+						Hero_enterDoor((Hero)owner);
+					}
+				}
+			}
 
 			return true;
 			break;

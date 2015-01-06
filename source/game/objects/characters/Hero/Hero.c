@@ -30,6 +30,7 @@
 #include <PhysicalWorld.h>
 #include <KeypadManager.h>
 
+#include <Printing.h>
 #include <objects.h>
 #include "Hero.h"
 #include "states/HeroIdle.h"
@@ -57,6 +58,8 @@ __CLASS_DEFINITION(Hero);
 static void Hero_onKeyPressed(Hero this);
 static void Hero_onKeyReleased(Hero this);
 static void Hero_onKeyHold(Hero this);
+void Hero_enterDoor(Hero this);
+void Hero_hideHint(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -163,8 +166,8 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 		Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	}
 
-    // no door passed yet
-    this->doorLastPassed = NULL;
+    // no door overlapping at start
+    this->currentlyOverlappingDoor = NULL;
 
 	// I'm not holding anything
 	this->holdObject = NULL;
@@ -494,23 +497,6 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
     {
 		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, animation);
 	}
-
-    // when the user presses up, check if the hero is still overlapping the last passed door
-	if (K_LU & pressedKey)
-	{
-	    // have we passed a door at all yet?
-        if (this->doorLastPassed != NULL)
-        {
-            // check if shapes still overlap
-            if (__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)this), __ARGUMENTS(Entity_getShape((Entity)this->doorLastPassed))))
-            {
-				MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->doorLastPassed, kEnterDoor, NULL);
-            }
-
-            // reset last passed door
-            this->doorLastPassed = NULL;
-        }
-	}
 }
 
 void Hero_takeHitFrom(Hero this, Actor other)
@@ -771,9 +757,58 @@ void Hero_pickupObject(Hero this, Actor object)
 	*/
 }
 
-bool Hero_checkIfZJump(Hero this)
+// check if the hero is overlapping a door
+bool Hero_isOverlappingDoor(Hero this)
 {
-	return false;
+	bool isOverlapping = false;
+
+	// check if hero recently passed a door and is still doing so
+	if (
+		(this->currentlyOverlappingDoor != NULL) &&
+		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)this), __ARGUMENTS(Entity_getShape((Entity)this->currentlyOverlappingDoor)))
+	)
+	{
+		isOverlapping = true;
+	}
+
+	return isOverlapping;
+}
+
+void Hero_resetCurrentlyOverlappingDoor(Hero this)
+{
+	// reset currently overlapping door
+	this->currentlyOverlappingDoor = NULL;
+
+	// remove door enter hint
+	Hero_hideHint(this);
+}
+
+void Hero_enterDoor(Hero this)
+{
+	// inform the door entity
+	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->currentlyOverlappingDoor, kEnterDoor, NULL);
+
+	// reset currently overlapping door
+	Hero_resetCurrentlyOverlappingDoor(this);
+}
+
+void Hero_showEnterHint(Hero this)
+{
+	if (!this->isShowingHint)
+	{
+		Transformation environmentTransform = Container_getEnvironmentTransform((Container)this);
+		Entity_addChildren((Entity)this, HERO_HINT_ENTER_ENTITIES, &environmentTransform);
+		this->isShowingHint = true;
+	}
+}
+
+void Hero_hideHint(Hero this)
+{
+	if (this->isShowingHint)
+	{
+		// TODO: remove hint child entities
+		this->isShowingHint = false;
+	}
 }
 
 void Hero_fallDead(Hero this)
@@ -971,16 +1006,16 @@ u8 Hero_getLifes(Hero this)
 	return this->lifes;
 }
 
-// get last passed door
-Door Hero_getDoorLastPassed(Hero this)
+// get door the hero is currently overlapping
+Door Hero_getCurrentlyOverlappingDoor(Hero this)
 {
-	return this->doorLastPassed;
+	return this->currentlyOverlappingDoor;
 }
 
-// set last passed door
-void Hero_setDoorLastPassed(Hero this, Door door)
+// set door the hero is currently overlapping
+void Hero_setCurrentlyOverlappingDoor(Hero this, Door door)
 {
-	this->doorLastPassed = door;
+	this->currentlyOverlappingDoor = door;
 }
 
 // process collisions
@@ -988,8 +1023,6 @@ int Hero_processCollision(Hero this, Telegram telegram)
 {
 	VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
 	ASSERT(collidingObjects, "HeroMoving::handleMessage: null collidingObjects");
-
-	Transformation environmentTransform = Container_getEnvironmentTransform((Container)this);
 
 	VirtualNode node = NULL;
 
@@ -1017,13 +1050,8 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kDoor:
 
-				if (!this->isShowingHint)
-				{
-					Entity_addChildren((Entity)this, HERO_HINT_ENTER_ENTITIES, &environmentTransform);
-					this->isShowingHint = true;
-				}
-
-                this->doorLastPassed = (Door)inGameEntity;
+				Hero_showEnterHint(this);
+                this->currentlyOverlappingDoor = (Door)inGameEntity;
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 

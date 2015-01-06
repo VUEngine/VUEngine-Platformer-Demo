@@ -97,16 +97,13 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 // state's execute
 static void TitleScreenState_execute(TitleScreenState this, void* owner)
 {
-    Door doorLastPassed = Hero_getDoorLastPassed(Hero_getInstance());
+    Door currentlyOverlappingDoor = Hero_getCurrentlyOverlappingDoor(Hero_getInstance());
     char* strLevelSelectLabel = "";
 
     // display level name if in front of a door
-    if (
-        (doorLastPassed != NULL) &&
-        __VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)Hero_getInstance()), __ARGUMENTS(Entity_getShape((Entity)doorLastPassed)))
-    )
+    if (currentlyOverlappingDoor != NULL)
     {
-        StageDefinition* stageDefinition = Door_getExtraInfo(doorLastPassed);
+        StageDefinition* stageDefinition = Door_getExtraInfo(currentlyOverlappingDoor);
         strLevelSelectLabel = I18n_getText(I18n_getInstance(), (int)(*stageDefinition).name);
     }
 

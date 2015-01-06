@@ -79,7 +79,7 @@ __CLASS(Hero);
 	u8 lifes;																	\
 																				\
 	/* a reference to the last door the hero passed */    						\
-	Door doorLastPassed;														\
+	Door currentlyOverlappingDoor;														\
 																				\
 	/* flag for hint currently shown */											\
 	bool isShowingHint;															\
@@ -109,7 +109,11 @@ void Hero_enableBoost(Hero this);
 void Hero_setActionTime(Hero this, u32 time);
 u32 Hero_getActionTime(Hero this);
 void Hero_pickupObject(Hero this, Actor object);
-bool Hero_checkIfZJump(Hero this);
+bool Hero_isOverlappingDoor(Hero this);
+void Hero_resetCurrentlyOverlappingDoor(Hero this);
+void Hero_enterDoor(Hero this);
+void Hero_showEnterHint(Hero this);
+void Hero_hideHint(Hero this);
 void Hero_fallDead(Hero this);
 bool Hero_isMovingOverZ(Hero this);
 void Hero_setMovingOverZ(Hero this, int  state);
@@ -129,8 +133,8 @@ u8 Hero_getKeys(Hero this);
 void Hero_collectCoin(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getLifes(Hero this);
-Door Hero_getDoorLastPassed(Hero this);
-void Hero_setDoorLastPassed(Hero this, Door door);
+Door Hero_getCurrentlyOverlappingDoor(Hero this);
+void Hero_setCurrentlyOverlappingDoor(Hero this, Door door);
 int Hero_processCollision(Hero this, Telegram telegram);
 int Hero_doMessage(Hero this, int message);
 
