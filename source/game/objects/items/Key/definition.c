@@ -63,7 +63,7 @@ AnimationFunctionROMDef KEY_SPIN_ANIM =
 // an animation definition
 AnimationDescriptionROMDef KEY_ANIM =
 {
-	// number of animation frames
+	// total number of animation frames
 	8,
 	
 	// animation functions
@@ -76,7 +76,10 @@ AnimationDescriptionROMDef KEY_ANIM =
 TextureROMDef KEY_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         33,
 
         // allocation type

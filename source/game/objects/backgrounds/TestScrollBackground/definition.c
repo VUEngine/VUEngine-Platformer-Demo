@@ -48,7 +48,10 @@ extern BYTE TestBG8Map[];
 TextureROMDef TEST_BG_1_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         71,
 
         // allocation type
@@ -74,7 +77,10 @@ TextureROMDef TEST_BG_1_TX =
 TextureROMDef TEST_BG_2_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         71,
 
         // allocation type
@@ -100,7 +106,10 @@ TextureROMDef TEST_BG_2_TX =
 TextureROMDef TEST_BG_3_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         71,
 
         // allocation type
@@ -126,7 +135,10 @@ TextureROMDef TEST_BG_3_TX =
 TextureROMDef TEST_BG_4_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         71,
 
         // allocation type
@@ -152,7 +164,10 @@ TextureROMDef TEST_BG_4_TX =
 TextureROMDef TEST_BG_5_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         71,
 
         // allocation type
@@ -178,7 +193,10 @@ TextureROMDef TEST_BG_5_TX =
 TextureROMDef TEST_BG_6_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         71,
 
         // allocation type
@@ -204,7 +222,10 @@ TextureROMDef TEST_BG_6_TX =
 TextureROMDef TEST_BG_7_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         71,
 
         // allocation type
@@ -230,7 +251,10 @@ TextureROMDef TEST_BG_7_TX =
 TextureROMDef TEST_BG_8_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         71,
 
         // allocation type

@@ -40,7 +40,10 @@ extern BYTE GUIBlankMap[];
 TextureROMDef GUI_BLANK_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         1,
 
         // allocation type

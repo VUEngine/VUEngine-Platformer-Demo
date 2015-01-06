@@ -43,7 +43,10 @@ extern BYTE Floor2x2BlockRMap[];
 TextureROMDef FLOOR_2x2_BLOCK_L_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         10,
 
         // allocation type
@@ -69,7 +72,10 @@ TextureROMDef FLOOR_2x2_BLOCK_L_TX =
 TextureROMDef FLOOR_2x2_BLOCK_R_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         10,
 
         // allocation type

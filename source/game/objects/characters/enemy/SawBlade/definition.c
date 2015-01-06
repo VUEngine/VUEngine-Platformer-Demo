@@ -62,7 +62,7 @@ AnimationFunction SAW_BLADE_SPIN_ANIM =
 // an animation definition
 AnimationDescription SAW_BLADE_ANIM =
 {
-	// number of animation frames
+	// total number of animation frames
 	2,
 	
 	// animation functions
@@ -75,7 +75,10 @@ AnimationDescription SAW_BLADE_ANIM =
 TextureDefinition SAW_BLADE_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         18,
 
         // allocation type

@@ -43,7 +43,10 @@ extern BYTE Floor4x3FloatRMap[];
 TextureROMDef FLOOR_4x3_FLOAT_L_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         16,
 
         // allocation type
@@ -69,7 +72,10 @@ TextureROMDef FLOOR_4x3_FLOAT_L_TX =
 TextureROMDef FLOOR_4x3_FLOAT_R_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         17,
 
         // allocation type

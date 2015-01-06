@@ -46,7 +46,10 @@ extern BYTE PlatformerDemoLogoRMap[];
 TextureROMDef LOGO_LEFT_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         166,
 
         // allocation type
@@ -72,7 +75,10 @@ TextureROMDef LOGO_LEFT_TX =
 TextureROMDef LOGO_RIGHT_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         166,
 
         // allocation type
@@ -142,7 +148,10 @@ ImageROMDef LOGO_IM =
 TextureROMDef SUPER_AWESOME_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         39,
 
         // allocation type
@@ -209,7 +218,10 @@ ImageROMDef SUPER_AWESOME_IM =
 TextureROMDef VBJAENGINE_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         56,
 
         // allocation type

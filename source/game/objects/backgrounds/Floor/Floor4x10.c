@@ -43,7 +43,10 @@ extern BYTE Floor4x10RMap[];
 TextureROMDef FLOOR_4x10_L_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         13,
 
         // allocation type
@@ -69,7 +72,10 @@ TextureROMDef FLOOR_4x10_L_TX =
 TextureROMDef FLOOR_4x10_R_TX =
 {
     {
-        // number of chars
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
         14,
 
         // allocation type
