@@ -30,7 +30,6 @@
 #include <PhysicalWorld.h>
 #include <KeypadManager.h>
 
-#include <Printing.h>
 #include <objects.h>
 #include "Hero.h"
 #include "states/HeroIdle.h"
@@ -60,6 +59,7 @@ static void Hero_onKeyReleased(Hero this);
 static void Hero_onKeyHold(Hero this);
 void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
+void Hero_resetCurrentlyOverlappingDoor(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -167,7 +167,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	}
 
     // no door overlapping at start
-    this->currentlyOverlappingDoor = NULL;
+	Hero_setCurrentlyOverlappingDoor(this, NULL);
 
 	// I'm not holding anything
 	this->holdObject = NULL;
@@ -764,8 +764,8 @@ bool Hero_isOverlappingDoor(Hero this)
 
 	// check if hero recently passed a door and is still doing so
 	if (
-		(this->currentlyOverlappingDoor != NULL) &&
-		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)this), __ARGUMENTS(Entity_getShape((Entity)this->currentlyOverlappingDoor)))
+		(Hero_getCurrentlyOverlappingDoor(this) != NULL) &&
+		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)this), __ARGUMENTS(Entity_getShape((Entity)Hero_getCurrentlyOverlappingDoor(this))))
 	)
 	{
 		isOverlapping = true;
@@ -774,19 +774,10 @@ bool Hero_isOverlappingDoor(Hero this)
 	return isOverlapping;
 }
 
-void Hero_resetCurrentlyOverlappingDoor(Hero this)
-{
-	// reset currently overlapping door
-	this->currentlyOverlappingDoor = NULL;
-
-	// remove door enter hint
-	Hero_hideHint(this);
-}
-
 void Hero_enterDoor(Hero this)
 {
 	// inform the door entity
-	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->currentlyOverlappingDoor, kEnterDoor, NULL);
+	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Hero_getCurrentlyOverlappingDoor(this), kEnterDoor, NULL);
 
 	// reset currently overlapping door
 	Hero_resetCurrentlyOverlappingDoor(this);
@@ -1018,6 +1009,15 @@ void Hero_setCurrentlyOverlappingDoor(Hero this, Door door)
 	this->currentlyOverlappingDoor = door;
 }
 
+void Hero_resetCurrentlyOverlappingDoor(Hero this)
+{
+	// reset currently overlapping door
+	Hero_setCurrentlyOverlappingDoor(this, NULL);
+
+	// remove door enter hint
+	Hero_hideHint(this);
+}
+
 // process collisions
 int Hero_processCollision(Hero this, Telegram telegram)
 {
@@ -1051,7 +1051,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kDoor:
 
 				Hero_showEnterHint(this);
-                this->currentlyOverlappingDoor = (Door)inGameEntity;
+                Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 

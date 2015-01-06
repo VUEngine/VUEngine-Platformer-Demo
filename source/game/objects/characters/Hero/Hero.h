@@ -110,7 +110,6 @@ void Hero_setActionTime(Hero this, u32 time);
 u32 Hero_getActionTime(Hero this);
 void Hero_pickupObject(Hero this, Actor object);
 bool Hero_isOverlappingDoor(Hero this);
-void Hero_resetCurrentlyOverlappingDoor(Hero this);
 void Hero_enterDoor(Hero this);
 void Hero_showEnterHint(Hero this);
 void Hero_hideHint(Hero this);
@@ -135,6 +134,7 @@ u8 Hero_getCoins(Hero this);
 u8 Hero_getLifes(Hero this);
 Door Hero_getCurrentlyOverlappingDoor(Hero this);
 void Hero_setCurrentlyOverlappingDoor(Hero this, Door door);
+void Hero_resetCurrentlyOverlappingDoor(Hero this);
 int Hero_processCollision(Hero this, Telegram telegram);
 int Hero_doMessage(Hero this, int message);
 
