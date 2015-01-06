@@ -74,6 +74,7 @@ PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
 	{&LAVA_BG,		        {192, SCREEN_Y_POSITION + LAYER_0_FLOOR + 112, PLAYABLE_LAYER_0 - 2}, LAVA_CHILD_ENTITIES, NULL},
+	// TODO: define collision shapes as child entities of LEVEL1_3_PART1_IM
 	{&COLLISION_48x2x48,	{192, SCREEN_Y_POSITION + __SCREEN_HEIGHT - 64, PLAYABLE_LAYER_0}, NULL, NULL},
 	{&COLLISION_2x28x48,	{4, SCREEN_Y_POSITION + (__SCREEN_HEIGHT >> 1), PLAYABLE_LAYER_0}, NULL, NULL},
 	{&COLLISION_2x28x48,	{__SCREEN_WIDTH, SCREEN_Y_POSITION + (__SCREEN_HEIGHT >> 1), PLAYABLE_LAYER_0}, NULL, NULL},

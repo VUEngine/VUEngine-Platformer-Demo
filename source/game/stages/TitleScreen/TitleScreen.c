@@ -58,6 +58,12 @@ StageROMDef LEVEL_1_3_ROOM_1_ST;
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
+PositionedEntityROMDef HERO_TEST_ENTITIES[] =
+{
+	{&HINT_PICK_UP_MC,		{28, -20, 0}, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL},
+};
+
 PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
@@ -79,7 +85,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{&FLOOR_22x8_BG,		{__SCREEN_WIDTH >> 1, 216, 2}, NULL, NULL},
 	{&FLOOR_16x8_BG,		{372, 208, 2}, NULL, NULL},
 
-	{&HERO_MC, 				{168, 164, 0}, NULL, NULL},
+	{&HERO_MC, 				{168, 164, 0}, HERO_TEST_ENTITIES, NULL},
 
 	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL, NULL},
 	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 92, __SCREEN_HEIGHT >> 1, 0}, NULL, NULL},

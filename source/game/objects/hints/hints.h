@@ -18,21 +18,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef OBJECTS_DEFINITIONS_H_
-#define OBJECTS_DEFINITIONS_H_
+#ifndef HINTS_H_
+#define HINTS_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "collisions/collisions.h"
-#include "characters/characters.h"
-#include "hints/hints.h"
-#include "images/images.h"
-#include "sound/sound.h"
-#include "backgrounds/backgrounds.h"
-#include "items/items.h"
+#include <Entity.h>
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern EntityDefinition HINT_PICK_UP_MC;
 
 
 #endif
