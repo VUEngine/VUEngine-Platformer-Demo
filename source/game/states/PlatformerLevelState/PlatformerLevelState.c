@@ -76,7 +76,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE(GameState);
 
-	this->stageDefinition = &LEVEL_1_1_ROOM_1_ST;
+	this->stageDefinition = &LEVEL_1_3_ROOM_1_ST;
 
 //	this->stageDefinition = &TEST_LEVEL_ST;
 }
