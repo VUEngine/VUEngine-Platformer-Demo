@@ -33,6 +33,7 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition HINT_ENTER_MC;
 extern EntityDefinition HINT_PICK_UP_MC;
 
 

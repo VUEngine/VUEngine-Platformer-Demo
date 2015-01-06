@@ -80,6 +80,9 @@ __CLASS(Hero);
 																				\
 	/* a reference to the last door the hero passed */    						\
 	Door doorLastPassed;														\
+																				\
+	/* flag for hint currently shown */											\
+	bool isShowingHint;															\
 
 
 //---------------------------------------------------------------------------------------------------------

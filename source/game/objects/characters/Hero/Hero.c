@@ -90,7 +90,6 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 #define HERO_SPEED_MULTIPLIER_X	FTOFIX19_13(1.5f)
 #define HERO_SPEED_MULTIPLIER_Y	FTOFIX19_13(1.2f)
 
-// time to wait after a hit, to die
 #define HERO_TIME_TO_DIE		500	// milliseconds
 
 #define HERO_HOLD_OBJECT_X		10
@@ -99,6 +98,18 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 
 #define HERO_WIN_DELAY			1800
 #define HERO_BLINK_DELAY		2000
+
+PositionedEntityROMDef HERO_HINT_ENTER_ENTITIES[] =
+{
+	{&HINT_ENTER_MC, {24, -18, 0}, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL},
+};
+
+PositionedEntityROMDef HERO_HINT_PICK_UP_ENTITIES[] =
+{
+	{&HINT_PICK_UP_MC, {16, -18, 0}, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL},
+};
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -135,6 +146,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->energy = 1;
 	this->coins = 0;
 	this->keys = 0;
+	this->isShowingHint = false;
 
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
@@ -977,6 +989,8 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
 	ASSERT(collidingObjects, "HeroMoving::handleMessage: null collidingObjects");
 
+	Transformation environmentTransform = Container_getEnvironmentTransform((Container)this);
+
 	VirtualNode node = NULL;
 
 	VirtualList collidingObjectsToRemove = __NEW(VirtualList);
@@ -1002,6 +1016,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				break;
 
 			case kDoor:
+
+				if (!this->isShowingHint)
+				{
+					Entity_addChildren((Entity)this, HERO_HINT_ENTER_ENTITIES, &environmentTransform);
+					this->isShowingHint = true;
+				}
 
                 this->doorLastPassed = (Door)inGameEntity;
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);

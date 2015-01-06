@@ -1,6 +1,7 @@
 #include "Coin.c"  
 #include "Door.c"  
 #include "Hero.c"  
+#include "HintEnter.c"  
 #include "HintPickUp.c"  
 #include "key.c"  
 #include "LavaTop.c"  

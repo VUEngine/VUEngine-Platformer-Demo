@@ -31,8 +31,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HintPickUpTiles[];
-extern BYTE HintPickUpMap[];
+extern BYTE HintEnterTiles[];
+extern BYTE HintEnterMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ extern BYTE HintPickUpMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
+AnimationFunctionROMDef HINT_ENTER_ENGLISH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -62,7 +62,7 @@ AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
+AnimationFunctionROMDef HINT_ENTER_DEUTSCH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -84,37 +84,37 @@ AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 };
 
 // an animation definition
-AnimationDescriptionROMDef HINT_PICK_UP_ANIM =
+AnimationDescriptionROMDef HINT_ENTER_ANIM =
 {
 	// number of animation frames
 	4,
 	
 	// animation functions
 	{
-		(AnimationFunction*)&HINT_PICK_UP_ENGLISH_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_DEUTSCH_ANIM,
+		(AnimationFunction*)&HINT_ENTER_ENGLISH_ANIM,
+		(AnimationFunction*)&HINT_ENTER_DEUTSCH_ANIM,
 		NULL,
 	}
 };
 
-TextureROMDef HINT_PICK_UP_TX =
+TextureROMDef HINT_ENTER_TX =
 {
     {
         // number of chars
-        97,
+        73,
 
         // allocation type
         __ANIMATED_SHARED,
 
         // char definition
-        HintPickUpTiles,
+        HintEnterTiles,
     },
 
     // bgmap definition
-    HintPickUpMap,
+    HintEnterMap,
 
     // cols (max 48)
-    8,
+    6,
 
     // rows (max 28)
     3,
@@ -123,14 +123,14 @@ TextureROMDef HINT_PICK_UP_TX =
     1,
 };
 
-SpriteROMDef HINT_PICK_UP_SPRITES[] =
+SpriteROMDef HINT_ENTER_SPRITES[] =
 {
 	{
 		// sprite's type
 		__TYPE(AnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&HINT_PICK_UP_TX,
+		(TextureDefinition*)&HINT_ENTER_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_AFFINE,
@@ -144,12 +144,12 @@ SpriteROMDef HINT_PICK_UP_SPRITES[] =
 	{NULL, NULL, 0, 0, 0}
 };
 
-AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
+AnimatedInGameEntityROMDef HINT_ENTER_MC =
 {
     {
         {
             __TYPE(AnimatedInGameEntity),
-            HINT_PICK_UP_SPRITES,
+            HINT_ENTER_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -171,7 +171,7 @@ AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
     },
 
     // pointer to the animation definition for the item
-    (AnimationDescription*)&HINT_PICK_UP_ANIM,
+    (AnimationDescription*)&HINT_ENTER_ANIM,
 
     // initial animation
     "English",

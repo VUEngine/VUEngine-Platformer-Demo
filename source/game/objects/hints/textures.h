@@ -13,6 +13,7 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern TextureDefinition HINT_ENTER_TX;
 extern TextureDefinition HINT_PICK_UP_TX;
 
 
