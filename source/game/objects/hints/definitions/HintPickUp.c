@@ -25,6 +25,7 @@
 #include <AnimatedInGameEntity.h>
 #include <libgccvb.h>
 #include <macros.h>
+#include <Hint.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,23 +41,45 @@ extern BYTE HintPickUpMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
+AnimationFunctionROMDef HINT_PICK_UP_OPEN_ANIM =
+{
+	// number of frames of this animation function
+	5,
+	
+	// frames to play in animation
+	{0,1,2,3,4},
+
+	// number of cycles a frame of animation is displayed
+	__FPS_ANIM_FACTOR,
+	
+	// whether to play it in loop or not
+	false,
+	
+	// method to call on function completion
+	&Hint_playActiveLanguageHint,
+	
+	// function's name
+	"Open",
+};
+
+// a function which defines the frames to play
 AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
-	{0,1},
-	
+	{5,6},
+
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"English",
 };
@@ -68,7 +91,7 @@ AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 	2,
 	
 	// frames to play in animation
-	{2,3},
+	{7,8},
 	
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -83,16 +106,40 @@ AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 	"Deutsch",
 };
 
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_PICK_UP_CLOSE_ANIM =
+{
+	// number of frames of this animation function
+	5,
+
+	// frames to play in animation
+	{4,3,2,1,0},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	&Hint_removeFromStage,
+
+	// function's name
+	"Close",
+};
+
 // an animation definition
 AnimationDescriptionROMDef HINT_PICK_UP_ANIM =
 {
 	// total number of animation frames
-	4,
+	9,
 	
 	// animation functions
 	{
+		(AnimationFunction*)&HINT_PICK_UP_OPEN_ANIM,
 		(AnimationFunction*)&HINT_PICK_UP_ENGLISH_ANIM,
 		(AnimationFunction*)&HINT_PICK_UP_DEUTSCH_ANIM,
+		(AnimationFunction*)&HINT_PICK_UP_CLOSE_ANIM,
 		NULL,
 	}
 };
@@ -104,7 +151,7 @@ TextureROMDef HINT_PICK_UP_TX =
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        97,
+        217,
 
         // allocation type
         __ANIMATED_SHARED,
@@ -151,7 +198,7 @@ AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
 {
     {
         {
-            __TYPE(AnimatedInGameEntity),
+            __TYPE(Hint),
             HINT_PICK_UP_SPRITES,
         },
 
@@ -177,5 +224,5 @@ AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
     (AnimationDescription*)&HINT_PICK_UP_ANIM,
 
     // initial animation
-    "English",
+    "Open",
 };

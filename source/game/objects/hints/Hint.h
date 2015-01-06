@@ -18,24 +18,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef HINTS_H_
-#define HINTS_H_
+#ifndef HINT_H_
+#define HINT_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include "Hint.h"
+#include <AnimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition HINT_ENTER_MC;
-extern EntityDefinition HINT_PICK_UP_MC;
+#define Hint_METHODS															\
+	AnimatedInGameEntity_METHODS;
+	
+
+#define Hint_SET_VTABLE(ClassName)												\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
+	__VIRTUAL_SET(ClassName, Hint, handleMessage);
+
+__CLASS(Hint);
+
+#define Hint_ATTRIBUTES															\
+																				\
+	/* it is derivated from */													\
+	AnimatedInGameEntity_ATTRIBUTES												\
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+__CLASS_NEW_DECLARE(Hint, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID));
+
+void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, int ID);
+void Hint_destructor(Hint this);
+bool Hint_handleMessage(Hint this, Telegram telegram);
+void Hint_removeFromStage(Hint this);
+void Hint_playActiveLanguageHint(Hint this);
 
 
 #endif

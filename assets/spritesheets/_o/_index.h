@@ -3,7 +3,7 @@
 #include "Hero.c"  
 #include "HintEnter.c"  
 #include "HintPickUp.c"  
-#include "key.c"  
+#include "Key.c"  
 #include "LavaTop.c"  
 #include "SawBlade.c"  
 #include "SawBladeHalf.c"  
