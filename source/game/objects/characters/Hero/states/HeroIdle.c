@@ -77,26 +77,9 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 	
 	// reset timer for blinking
 	Hero_resetActionTime((Hero)owner);
-	
-	if (Hero_isMovingOverZ((Hero)owner))
-    {
-		if (__NEAR == InGameEntity_getDirection((InGameEntity)owner).z)
-        {
-			// show animation
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Front");
-		}
-		else
-		{
-			// show animation
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Back");
-			
-		}
-	}
-	else
-	{
-		// show animation
-		AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
-	}
+
+    // show animation
+    AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
 	
 	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
 

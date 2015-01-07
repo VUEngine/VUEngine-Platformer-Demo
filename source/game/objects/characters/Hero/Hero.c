@@ -35,6 +35,7 @@
 #include "states/HeroIdle.h"
 #include "states/HeroMoving.h"
 
+#include <Hint.h>
 #include <PlatformerLevelState.h>
 
 
@@ -102,18 +103,6 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 #define HERO_WIN_DELAY			1800
 #define HERO_BLINK_DELAY		2000
 
-PositionedEntityROMDef HERO_HINT_ENTER_ENTITIES[] =
-{
-	{&HINT_ENTER_MC, {24, -18, 0}, NULL, NULL},
-	{NULL, {0,0,0}, NULL, NULL},
-};
-
-PositionedEntityROMDef HERO_HINT_PICK_UP_ENTITIES[] =
-{
-	{&HINT_PICK_UP_MC, {16, -18, 0}, NULL, NULL},
-	{NULL, {0,0,0}, NULL, NULL},
-};
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
@@ -149,7 +138,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->energy = 1;
 	this->coins = 0;
 	this->keys = 0;
-	this->isShowingHint = false;
+	this->currentHint = NULL;
 
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, (State)HeroIdle_getInstance());
@@ -174,9 +163,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	
 	// I always start in the first layer
 	this->layer = 0;
-	
-	this->movingOverZ = false;
-	
+
 	this->actionTime = 0;
 	
 	this->boost = false;
@@ -610,20 +597,13 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 		}
 
 		// tell enemy I've hit him
-		if (this->movingOverZ)
-        {
-			__VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __ARGUMENTS(__ZAXIS, this->direction.z));
-		}
-		else
-		{
-			__VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __ARGUMENTS(__XAXIS, this->direction.x));
-		}
+        __VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __ARGUMENTS(__XAXIS, this->direction.x));
 			
 		return false;
 	}
 
-	// if I'm holding something and facing to the side
-	if (this->holdObject && !this->movingOverZ)
+	// if I'm holding something
+	if (this->holdObject)
     {
 		// if I'm facing the enemy
 		if ((this->transform.globalPosition.x <  Entity_getPosition((Entity)enemy).x && __RIGHT == this->direction.x)
@@ -783,22 +763,49 @@ void Hero_enterDoor(Hero this)
 	Hero_resetCurrentlyOverlappingDoor(this);
 }
 
-void Hero_showEnterHint(Hero this)
+void Hero_showHint(Hero this, u8 type)
 {
-	if (!this->isShowingHint)
+    const EntityDefinition* hintEntityDefinition;
+
+    // check if a hint is already being shown at the moment
+	if (this->currentHint == NULL)
 	{
-		Transformation environmentTransform = Container_getEnvironmentTransform((Container)this);
-		Entity_addChildren((Entity)this, HERO_HINT_ENTER_ENTITIES, &environmentTransform);
-		this->isShowingHint = true;
+	    // determine entity type for hint
+	    switch (type)
+	    {
+	        default:
+	        case kEnterHint:
+
+	            hintEntityDefinition  = &HINT_ENTER_MC;
+	            break;
+	    }
+
+        // create the hint entity and add it to the hero as a child entity
+        VBVec3D enterHintPosition =
+        {
+            ITOFIX19_13(2),
+            ITOFIX19_13(-30),
+            0,
+        };
+    	Entity enterHint = Entity_load(hintEntityDefinition, -1, NULL);
+        __VIRTUAL_CALL(void, Entity, setLocalPosition, enterHint, __ARGUMENTS(enterHintPosition));
+	    __VIRTUAL_CALL(void, Container, addChild, (Container)this, __ARGUMENTS(enterHint));
+
+	    // save the hint entity, so we can remove it later
+		this->currentHint = enterHint;
 	}
 }
 
 void Hero_hideHint(Hero this)
 {
-	if (this->isShowingHint)
+    // check if a hint is being shown at the moment
+	if (this->currentHint != NULL)
 	{
-		// TODO: remove hint child entities
-		this->isShowingHint = false;
+	    // play the closing animation (the hint will delete itself afterwards)
+		Hint_close((Hint)this->currentHint);
+
+		// clear the saved entity
+		this->currentHint = NULL;
 	}
 }
 
@@ -807,18 +814,6 @@ void Hero_fallDead(Hero this)
 	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "HitFront");
 	
 	Hero_die(this);
-}
-
-// was jumping over z?
-bool Hero_isMovingOverZ(Hero this)
-{
-	return this->movingOverZ;
-}
-
-// set jumping over z status
-void Hero_setMovingOverZ(Hero this, int  state)
-{
-	this->movingOverZ = state;
 }
 
 // set hold object's position
@@ -1050,7 +1045,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kDoor:
 
-				Hero_showEnterHint(this);
+				Hero_showHint(this, kEnterHint);
                 Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;

@@ -116,13 +116,13 @@ AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 	{4,3,2,1,0},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__FPS_ANIM_FACTOR,
 
 	// whether to play it in loop or not
 	false,
 
 	// method to call on function completion
-	&Hint_removeFromStage,
+	&Hint_delete,
 
 	// function's name
 	"Close",

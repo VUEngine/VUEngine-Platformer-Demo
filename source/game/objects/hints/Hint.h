@@ -31,6 +31,17 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 											DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+enum HintTypes
+{
+	kEnterHint = 0,
+	kPickUpHint
+};
+
+
+//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
@@ -59,7 +70,8 @@ __CLASS_NEW_DECLARE(Hint, __PARAMETERS(AnimatedInGameEntityDefinition* animatedE
 void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, int ID);
 void Hint_destructor(Hint this);
 bool Hint_handleMessage(Hint this, Telegram telegram);
-void Hint_removeFromStage(Hint this);
+void Hint_close(Hint this);
+void Hint_delete(Hint this);
 void Hint_playActiveLanguageHint(Hint this);
 
 

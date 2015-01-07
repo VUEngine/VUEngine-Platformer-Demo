@@ -63,9 +63,6 @@ __CLASS(Hero);
 	/* which layer I'm */														\
 	u8 layer;																	\
 																				\
-	/* Am I jumping over z */													\
-	bool movingOverZ;																\
-																				\
 	/* boost flag */															\
 	bool boost;																	\
 																				\
@@ -79,10 +76,10 @@ __CLASS(Hero);
 	u8 lifes;																	\
 																				\
 	/* a reference to the last door the hero passed */    						\
-	Door currentlyOverlappingDoor;														\
+	Door currentlyOverlappingDoor;												\
 																				\
-	/* flag for hint currently shown */											\
-	bool isShowingHint;															\
+	/* the currently shown hint entity */										\
+	Entity currentHint;															\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -111,11 +108,9 @@ u32 Hero_getActionTime(Hero this);
 void Hero_pickupObject(Hero this, Actor object);
 bool Hero_isOverlappingDoor(Hero this);
 void Hero_enterDoor(Hero this);
-void Hero_showEnterHint(Hero this);
+void Hero_showHint(Hero this, u8 type);
 void Hero_hideHint(Hero this);
 void Hero_fallDead(Hero this);
-bool Hero_isMovingOverZ(Hero this);
-void Hero_setMovingOverZ(Hero this, int  state);
 void Hero_updateHoldObjectPosition(Hero this);
 void Hero_lookFront(Hero this);
 void Hero_lookBack(Hero this);

@@ -52,7 +52,7 @@ __CLASS_DEFINITION(Hint);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Hint_removeFromStage(Hint this);
+void Hint_delete(Hint this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -88,9 +88,10 @@ void Hint_close(Hint this)
     AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Close");
 }
 
-void Hint_removeFromStage(Hint this)
+void Hint_delete(Hint this)
 {
-	Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
+    __DELETE(this);
+	//Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
 }
 
 void Hint_playActiveLanguageHint(Hint this)
