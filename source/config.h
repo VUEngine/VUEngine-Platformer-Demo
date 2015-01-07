@@ -290,7 +290,7 @@
 
 // position of battery indicator
 #define __LOWBAT_POS_X	    45
-#define __LOWBAT_POS_Y	    0
+#define __LOWBAT_POS_Y	    1
 
 
 //---------------------------------------------------------------------------------------------------------
