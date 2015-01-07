@@ -87,9 +87,6 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 // state's execute
 void HeroMoving_execute(HeroMoving this, void* owner)
 {
-	if (!Hero_isOverlappingDoor((Hero)owner)) {
-		Hero_resetCurrentlyOverlappingDoor((Hero)owner);
-	}
 }
 
 // state's exit
@@ -234,6 +231,18 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 			return Hero_processCollision((Hero)owner, telegram);
 			break;
+
+        case kCheckForOverlappingDoor:
+
+            if (!Hero_isOverlappingDoor((Hero)owner)) {
+                Hero_resetCurrentlyOverlappingDoor((Hero)owner);
+            }
+            else
+            {
+                // remind hero to check again in 100 milliseconds
+                MessageDispatcher_dispatchMessage(100, (Object)owner, (Object)owner, kCheckForOverlappingDoor, NULL);
+            }
+            break;
 	}
 	return false;
 }

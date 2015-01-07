@@ -47,7 +47,7 @@
 	
 __CLASS(HeroIdle);
 
-#define HeroIdle_ATTRIBUTES			\
+#define HeroIdle_ATTRIBUTES				\
 										\
 	/* inherits */						\
 	State_ATTRIBUTES

@@ -26,6 +26,9 @@
 #include "HeroMoving.h"
 #include "../Hero.h"
 
+#include <PlatformerLevelState.h>
+#include <MessageDispatcher.h>
+
 #ifdef __DEBUG
 //#include "../../levels/game/GameLevel.h"
 #endif
@@ -80,8 +83,6 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 
     // show animation
     AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
-	
-	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
 
 	Hero_resetActionTime((Hero)owner);
 
@@ -95,9 +96,6 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 // state's execute
 void HeroIdle_execute(HeroIdle this, void* owner)
 {
-	if (!Hero_isOverlappingDoor((Hero)owner)) {
-		Hero_resetCurrentlyOverlappingDoor((Hero)owner);
-	}
 }
 
 // state's exit
@@ -172,6 +170,18 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 				}
 			}
 			break;
+
+        case kCheckForOverlappingDoor:
+
+            if (!Hero_isOverlappingDoor((Hero)owner)) {
+                Hero_resetCurrentlyOverlappingDoor((Hero)owner);
+            }
+            else
+            {
+                // remind hero to check again in 100 milliseconds
+                MessageDispatcher_dispatchMessage(100, (Object)owner, (Object)owner, kCheckForOverlappingDoor, NULL);
+            }
+            break;
 	}
 	return false;
 }

@@ -71,7 +71,8 @@ enum PlatformerLevelStateMessageTypes
 	kTakeCoin,
 	kTakeKey,
 	kEnterDoor,
-	
+    kCheckForOverlappingDoor,
+
 	// don't remove me
 	kLastPlatformerMessage
 };

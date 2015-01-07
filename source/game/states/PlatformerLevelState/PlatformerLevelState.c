@@ -214,7 +214,6 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			Printing_text(Printing_getInstance(), "                                                ", 0, 5, NULL);
 			Printing_text(Printing_getInstance(), "                                                ", 0, 6, NULL);
-
 			break;
 			
 		case kKeyPressed:
@@ -248,7 +247,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			
 			Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance());
 			return true;
-			break;			
+			break;
 	}
 
 	return false;

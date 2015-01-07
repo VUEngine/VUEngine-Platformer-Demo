@@ -52,7 +52,7 @@
 	State_ATTRIBUTES															\
 																				\
 	/* check direction flag */													\
-	bool mustCheckDirection;														\
+	bool mustCheckDirection;													\
 																				\
 	/* flag to allow jump on bouncing */										\
 	bool bouncing;																\

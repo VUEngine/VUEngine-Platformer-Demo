@@ -938,7 +938,7 @@ static void Hero_onKeyPressed(Hero this)
 {
 	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
 	
-	// inform my current states about the key pressed		
+	// inform my current states about the key pressed
 	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->stateMachine, kKeyPressed, &pressedKey);
 }
 
@@ -1045,8 +1045,15 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kDoor:
 
-				Hero_showHint(this, kEnterHint);
-                Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);
+                // first contact with a door?
+				if (Hero_getCurrentlyOverlappingDoor(this) == NULL)
+				{
+				    Hero_showHint(this, kEnterHint);
+                    Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);
+
+                    // remind hero to check is door is still overlapping in 100 milliseconds
+                    MessageDispatcher_dispatchMessage(100, (Object)this, (Object)this, kCheckForOverlappingDoor, NULL);
+				}
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1081,7 +1088,7 @@ int Hero_doMessage(Hero this, int message)
 				// then set myself as the focus
 				Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
 
-				// I'm the focus actor
+				// set focus on the hero
 				VBVec3D screenDisplacement =
 				{
 	                0,
@@ -1095,6 +1102,6 @@ int Hero_doMessage(Hero this, int message)
 			}
 			break;
 	}
-	
+
 	return false;
 }
