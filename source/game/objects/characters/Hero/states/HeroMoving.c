@@ -122,12 +122,17 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				}
 
 				// check if in front of door and possibly enter it
+				
+				// TODO: should only be able to enter the door when idle right?
+				/*
 				if (K_LU & pressedKey)
                 {
-					if (Hero_isOverlappingDoor((Hero)owner)) {
+					if (Hero_isOverlappingDoor((Hero)owner)) 
+					{
 						Hero_enterDoor((Hero)owner);
 					}
 				}
+				*/
 			}
 
 			return true;
