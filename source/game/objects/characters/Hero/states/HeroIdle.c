@@ -128,7 +128,8 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 				// check if in front of door and possibly enter it
 				if (K_LU & pressedKey)
 				{
-					if (Hero_isOverlappingDoor(Hero_getInstance())) {
+					if (Hero_isOverlappingDoor(Hero_getInstance())) 
+					{
 						Hero_enterDoor(Hero_getInstance());
 					}
 				}

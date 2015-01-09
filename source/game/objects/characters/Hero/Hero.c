@@ -1001,7 +1001,19 @@ Door Hero_getCurrentlyOverlappingDoor(Hero this)
 // set door the hero is currently overlapping
 void Hero_setCurrentlyOverlappingDoor(Hero this, Door door)
 {
+	if(door) 
+	{
+		// open the door
+		MessageDispatcher_dispatchMessage(0, (Object)this, (Object)door, kOpenDoor, NULL);
+	}
+	else if(this->currentlyOverlappingDoor)
+	{
+		// close the door
+		MessageDispatcher_dispatchMessage(0, (Object)this, (Object)this->currentlyOverlappingDoor, kCloseDoor, NULL);
+	}
+	
 	this->currentlyOverlappingDoor = door;
+
 }
 
 void Hero_resetCurrentlyOverlappingDoor(Hero this)

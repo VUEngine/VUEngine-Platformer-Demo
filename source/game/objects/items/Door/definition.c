@@ -39,29 +39,7 @@ extern BYTE DoorMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef DOOR_CLOSED_ANIM =
-{
-	// number of frames of this animation function
-	1,
-	
-	// frames to play in animation
-	{0},
-	
-	// number of cycles a frame of animation is displayed
-	0,
-	
-	// whether to play it in loop or not
-	false,
-	
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"Closed",
-};
-
-// a function which defines the frames to play
-AnimationFunctionROMDef DOOR_OPEN_ANIM =
+AnimationFunctionROMDef DOOR_OPENINIG_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -80,6 +58,28 @@ AnimationFunctionROMDef DOOR_OPEN_ANIM =
 	
 	// function's name
 	"Opening",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef DOOR_CLOSING_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{3, 2, 1, 0},
+
+	// number of cycles a frame of animation is displayed
+	10 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+	
+	// function's name
+	"Closing",
 };
 
 // a function which defines the frames to play
@@ -104,6 +104,28 @@ AnimationFunctionROMDef DOOR_OPENED_ANIM =
 	"Opened",
 };
 
+// a function which defines the frames to play
+AnimationFunctionROMDef DOOR_CLOSED_ANIM =
+{
+	// number of frames of this animation function
+	1,
+	
+	// frames to play in animation
+	{0},
+	
+	// number of cycles a frame of animation is displayed
+	0,
+	
+	// whether to play it in loop or not
+	false,
+	
+	// method to call on function completion
+	NULL,
+	
+	// function's name
+	"Closed",
+};
+
 // an animation definition
 AnimationDescriptionROMDef DOOR_ANIM =
 {
@@ -112,9 +134,10 @@ AnimationDescriptionROMDef DOOR_ANIM =
 	
 	// animation functions
 	{
-		(AnimationFunction*)&DOOR_CLOSED_ANIM,
-		(AnimationFunction*)&DOOR_OPEN_ANIM,
+		(AnimationFunction*)&DOOR_OPENINIG_ANIM,
+		(AnimationFunction*)&DOOR_CLOSING_ANIM,
 		(AnimationFunction*)&DOOR_OPENED_ANIM,
+		(AnimationFunction*)&DOOR_CLOSED_ANIM,
 		NULL,
 	}
 };
@@ -199,5 +222,5 @@ AnimatedInGameEntityROMDef DOOR_MC =
     (AnimationDescription*)&DOOR_ANIM,
 
     // initial animation
-    "Opening",
+    "Closed",
 };

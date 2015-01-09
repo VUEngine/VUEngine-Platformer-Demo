@@ -108,6 +108,16 @@ bool Door_handleMessage(Door this, Telegram telegram)
 				return true;
 			}
 			break;
+
+		case kOpenDoor:
+
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Opening");
+			break;
+			
+		case kCloseDoor:
+
+			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Closing");
+			break;
 	}
 	
 	return false;
