@@ -788,7 +788,7 @@ void Hero_showHint(Hero this, u8 type)
     		};
 
 		    // save the hint entity, so we can remove it later
-	    	this->currentHint = (Entity)Entity_addChildFromDefinition(this, hintEntityDefinition, -1, &position, -1, NULL);
+	    	this->currentHint = (Entity)Entity_addChildFromDefinition((Entity)this, hintEntityDefinition, -1, &position, NULL);
 	    }
 	}
 }
