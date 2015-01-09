@@ -765,10 +765,10 @@ void Hero_enterDoor(Hero this)
 
 void Hero_showHint(Hero this, u8 type)
 {
-    const EntityDefinition* hintEntityDefinition;
+    const EntityDefinition* hintEntityDefinition = NULL;
 
     // check if a hint is already being shown at the moment
-	if (this->currentHint == NULL)
+	if (NULL == this->currentHint)
 	{
 	    // determine entity type for hint
 	    switch (type)
@@ -779,20 +779,17 @@ void Hero_showHint(Hero this, u8 type)
 	            hintEntityDefinition  = &HINT_ENTER_MC;
 	            break;
 	    }
+	    
+	    if(hintEntityDefinition)
+	    {
+	    	VBVec3DReal position = 
+    		{
+    			25, -20, 0
+    		};
 
-        // create the hint entity and add it to the hero as a child entity
-        VBVec3D enterHintPosition =
-        {
-            ITOFIX19_13(2),
-            ITOFIX19_13(-30),
-            0,
-        };
-    	Entity enterHint = Entity_load(hintEntityDefinition, -1, NULL);
-        __VIRTUAL_CALL(void, Entity, setLocalPosition, enterHint, __ARGUMENTS(enterHintPosition));
-	    __VIRTUAL_CALL(void, Container, addChild, (Container)this, __ARGUMENTS(enterHint));
-
-	    // save the hint entity, so we can remove it later
-		this->currentHint = enterHint;
+		    // save the hint entity, so we can remove it later
+	    	this->currentHint = (Entity)Entity_addChildFromDefinition(this, hintEntityDefinition, -1, &position, -1, NULL);
+	    }
 	}
 }
 
@@ -1058,7 +1055,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kDoor:
 
                 // first contact with a door?
-				if (Hero_getCurrentlyOverlappingDoor(this) == NULL)
+				if (Hero_getCurrentlyOverlappingDoor(this) == NULL && Door_hasDestination((Door)inGameEntity))
 				{
 				    Hero_showHint(this, kEnterHint);
                     Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);

@@ -111,14 +111,25 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 		case kOpenDoor:
 
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Opening");
+			if(this->destination) 
+			{
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Opening");
+			}
 			break;
 			
 		case kCloseDoor:
 
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Closing");
+			if(this->destination) 
+			{
+				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Closing");
+			}
 			break;
 	}
 	
 	return false;
+}
+
+bool Door_hasDestination(Door this)
+{
+	return NULL != this->destination;
 }
