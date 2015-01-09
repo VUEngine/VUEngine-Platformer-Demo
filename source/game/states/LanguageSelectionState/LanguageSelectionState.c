@@ -66,12 +66,12 @@ static void LanguageSelectionState_constructor(LanguageSelectionState this)
 	this->languageSelector = __NEW(OptionsSelector, __ARGUMENTS(1, 8, "\x10", kString));
 
 	VirtualList languageNames = __NEW(VirtualList);
-	LangDefinition* languages = I18n_getLanguages(I18n_getInstance());
+
 	int i = 0;
 	for (;  i < I18n_getLanguageCount(I18n_getInstance()); i++)
 	{
-	    // TODO: Something's not working correctly here...
-		VirtualList_pushBack(languageNames, languages[i].name);
+		I18n_setLanguage(I18n_getInstance(), i);
+		VirtualList_pushBack(languageNames, I18n_getActiveLanguageName(I18n_getInstance()));
 	}
 
     OptionsSelector_setOptions(this->languageSelector, languageNames);
