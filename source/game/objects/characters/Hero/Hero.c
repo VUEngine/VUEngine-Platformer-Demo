@@ -242,7 +242,14 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
     {
         Velocity velocity = Body_getVelocity(this->body);
 
-		if (!checkIfYMovement || !velocity.y)
+		Acceleration acceleration =
+        {
+        	0,
+			ITOFIX19_13(1),
+			0
+		};
+
+		if ((!checkIfYMovement || !velocity.y) && !(__YAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)))
         {
 			Force force =
             {
@@ -250,6 +257,7 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
                 this->boost ? HERO_BOOST_JUMP_HERO_INPUT_FORCE : HERO_NORMAL_JUMP_HERO_INPUT_FORCE,
                 0
             };
+			
 			Body_addForce(this->body, &force);
 			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Jump");
 		}
@@ -275,19 +283,17 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 			0, //(__ZAXIS & axis)? __FAR == this->direction.z ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE: 0,
 		};
 
-		if (velocity.x || velocity.z || ( __XAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)) || ( __ZAXIS & Actor_canMoveOverAxis((Actor)this, &acceleration)))
+		fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->direction.x? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
+		fix19_13 zForce = 0; //(__ZAXIS & axis)? __FAR == this->direction.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
+		Force force =
         {
-			fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->direction.x? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
-			fix19_13 zForce = 0; //(__ZAXIS & axis)? __FAR == this->direction.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
-			Force force =
-            {
-                xForce,
-                0,
-                zForce
-            };
-			Body_addForce(this->body, &force);
-			movementType = __ACCELERATED_MOVEMENT;
-		}
+            xForce,
+            0,
+            zForce
+        };
+			
+		Actor_addForce((this), &force);
+		movementType = __ACCELERATED_MOVEMENT;
 		
 		if (AnimatedInGameEntity_isAnimationLoaded((AnimatedInGameEntity)this, "Slide"))
         {
@@ -790,6 +796,10 @@ void Hero_showHint(Hero this, u8 type)
 		    // save the hint entity, so we can remove it later
 	    	this->currentHint = (Entity)Entity_addChildFromDefinition((Entity)this, hintEntityDefinition, -1, &position, NULL);
 	    }
+	}
+	else
+	{
+		Hint_open(this->currentHint);
 	}
 }
 

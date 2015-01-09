@@ -83,6 +83,11 @@ bool Hint_handleMessage(Hint this, Telegram telegram)
 	return false;
 }
 
+void Hint_open(Hint this)
+{
+    AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Open");
+}
+
 void Hint_close(Hint this)
 {
     AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Close");
@@ -91,7 +96,6 @@ void Hint_close(Hint this)
 void Hint_delete(Hint this)
 {
     __DELETE(this);
-	//Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
 }
 
 void Hint_playActiveLanguageHint(Hint this)

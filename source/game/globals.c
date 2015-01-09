@@ -66,6 +66,7 @@ const UserActor _userActors[] =
 	{(ActorDefinition*)&COIN_MC, "Coin"},
 	{(ActorDefinition*)&DOOR_MC, "Door"},
 	{(ActorDefinition*)&HERO_MC, "Hero"},
+	{(ActorDefinition*)&HINT_ENTER_MC, "Hint enter"},
 	{(ActorDefinition*)&KEY_MC, "Key"},
 	{(ActorDefinition*)&SAW_BLADE_MC, "SawBlade"},
 	{(ActorDefinition*)&LAVA_TOP_MC, "Lava top"},
