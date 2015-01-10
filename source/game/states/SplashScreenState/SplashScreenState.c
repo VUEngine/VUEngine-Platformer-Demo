@@ -158,7 +158,7 @@ static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner,
 				case kVbJaeScreen:
 				
 					this->currentScreen = kSplashExitScreen;
-					Game_changeState(Game_getInstance(), (State)LanguageSelectionState_getInstance());
+					Game_changeState(Game_getInstance(), (State)AutomaticPauseSelectionState_getInstance());
 					break;
 			}
 

@@ -43,7 +43,7 @@ int main(void)
 	// register languages
 	I18n_registerLanguage(I18n_getInstance(), &LANG_EN);
 	I18n_registerLanguage(I18n_getInstance(), &LANG_DE);
-	I18n_setLanguageByName(I18n_getInstance(), "English");
+	I18n_setActiveLanguageByName(I18n_getInstance(), "English");
 
 	// register fonts
 	Printing_registerFont(Printing_getInstance(), &PLATFORMER_DEFAULT_FONT);
