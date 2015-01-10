@@ -18,80 +18,46 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
+#ifndef PAUSE_SCREEN_STATE_H_
+#define PAUSE_SCREEN_STATE_H_
+
+
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Stage.h>
-#include <objects.h>
-#include <macros.h>
+#include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												ASSETS
-// ---------------------------------------------------------------------------------------------------------
-/* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
- * know that it must stop reading the stage's/ui's textures ante enties.
- */
+// 											CLASS'S DECLARATION
+//---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef VBJAE_ST_UI_ENTITIES[] =
-{
-	{&VBJAENGINE_LOGO_3D_IM, {(__SCREEN_WIDTH >> 1) - 8, (__SCREEN_HEIGHT >> 1) - 4, LAYER_0}, NULL, NULL, NULL},
-	{&VBJAENGINE_LOGO_OUTLINE_IM, {(__SCREEN_WIDTH >> 1) + 5, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL, NULL, NULL},
-	{NULL,{0,0,0}, NULL, NULL, NULL},
-};
+// declare the virtual methods
+#define PauseScreenState_METHODS													\
+	GameState_METHODS;												    			\
 
-PositionedEntityROMDef VBJAE_ST_ENTITIES[] =
-{
-	{&VBJAENGINE_BG_SB, {0, __SCREEN_HEIGHT >> 1, LAYER_0 + 32}, NULL, NULL, NULL},
-	{NULL,{0,0,0}, NULL, NULL, NULL},
-};
+// declare the virtual methods which are redefined
+#define PauseScreenState_SET_VTABLE(ClassName)										\
+	GameState_SET_VTABLE(ClassName)								    				\
+	__VIRTUAL_SET(ClassName, PauseScreenState, enter);								\
+	__VIRTUAL_SET(ClassName, PauseScreenState, exit);								\
+	__VIRTUAL_SET(ClassName, PauseScreenState, execute);							\
+	__VIRTUAL_SET(ClassName, PauseScreenState, handleMessage);						\
+
+__CLASS(PauseScreenState);
+
+#define PauseScreenState_ATTRIBUTES							        				\
+														            				\
+	/* inherits */																	\
+	GameState_ATTRIBUTES															\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											STAGE DEFINITION
+// 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef VBJAE_ST =
-{
-    // size
-    {
-        // x
-        __SCREEN_WIDTH,
-        // y
-        __SCREEN_HEIGHT,
-        // z
-        1
-    },
+PauseScreenState PauseScreenState_getInstance(void);
 
-    //initial screen position
-    {
-        // x
-        ITOFIX19_13(0),
-        // y
-        ITOFIX19_13(0),
-        //z
-        ITOFIX19_13(__ZZERO)
-    },
 
-    //textures
-    NULL,
-
-    //UI entities
-    {
-        VBJAE_ST_UI_ENTITIES,
-        __TYPE(UI),
-    },
-
-    //entities
-    VBJAE_ST_ENTITIES,
-
-    //background music
-    NULL,
-
-    //identifier
-    "",
-
-    //name
-    "",
-};
+#endif

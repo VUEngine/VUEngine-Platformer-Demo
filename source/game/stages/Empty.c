@@ -48,12 +48,12 @@ StageROMDef EMPTY_ST;
 
 PositionedEntityROMDef EMPTY_ST_ENTITIES[] =
 {
-	{NULL, {0,0,0}, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
 PositionedEntityROMDef EMPTY_ST_UI_ENTITIES[] =
 {
-	{NULL, {0,0,0}, NULL, NULL}
+	{NULL, {0,0,0}, NULL, NULL, NULL}
 };
 
 TextureROMDef* EMPTY_ST_TEXTURES[] =

@@ -238,6 +238,8 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 {
 	Hero_startedMovingOnAxis(this, __YAXIS);
 
+	Hero myself = (Hero)Container_getChildByName((Container)GameState_getStage(Game_getCurrentState(Game_getInstance())), "john hero");
+
 	if (this->body)
     {
         Velocity velocity = Body_getVelocity(this->body);
@@ -276,13 +278,6 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 	
 	if (changedDirection || ((__XAXIS & axis) && maxVelocity > fabs(velocity.x)) || ((__ZAXIS & axis) && maxVelocity > fabs(velocity.z)) || Actor_changedDirection((Actor)this, __XAXIS) || Actor_changedDirection((Actor)this, __ZAXIS))
     {
-		Acceleration acceleration =
-        {
-        	(__XAXIS & axis)? __RIGHT == this->direction.x ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE: 0,
-			0,
-			0, //(__ZAXIS & axis)? __FAR == this->direction.z ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE: 0,
-		};
-
 		fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->direction.x? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
 		fix19_13 zForce = 0; //(__ZAXIS & axis)? __FAR == this->direction.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
 		Force force =
@@ -292,7 +287,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
             zForce
         };
 			
-		Actor_addForce((this), &force);
+		Actor_addForce((Actor)this, &force);
 		movementType = __ACCELERATED_MOVEMENT;
 		
 		if (AnimatedInGameEntity_isAnimationLoaded((AnimatedInGameEntity)this, "Slide"))
@@ -794,12 +789,12 @@ void Hero_showHint(Hero this, u8 type)
     		};
 
 		    // save the hint entity, so we can remove it later
-	    	this->currentHint = (Entity)Entity_addChildFromDefinition((Entity)this, hintEntityDefinition, -1, &position, NULL);
+	    	this->currentHint = (Entity)Entity_addChildFromDefinition((Entity)this, hintEntityDefinition, -1, "enterHint", &position, NULL);
 	    }
 	}
 	else
 	{
-		Hint_open(this->currentHint);
+		Hint_open((Hint)this->currentHint);
 	}
 }
 

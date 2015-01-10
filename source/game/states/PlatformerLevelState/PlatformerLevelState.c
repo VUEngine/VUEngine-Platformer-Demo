@@ -32,6 +32,7 @@
 #include <PhysicalWorld.h>
 #include <PlatformerLevelState.h>
 #include <TitleScreenState.h>
+#include <PauseScreenState.h>
 #include <Hero.h>
 #include "../stages/stages.h"
 #include <macros.h>
@@ -47,8 +48,8 @@ static void PlatformerLevelState_destructor(PlatformerLevelState this);
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
-static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner) {}
-static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner) {}
+static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner);
+static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer);
@@ -134,6 +135,16 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 	
 	// call base
 	GameState_exit((GameState)this, owner);
+}
+
+static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner)
+{
+	GameState_pause((GameState)this, owner);
+}
+
+static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
+{
+	GameState_resume((GameState)this, owner);
 }
 
 // state's on message
@@ -229,6 +240,15 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			if (kPlaying == this->mode)
             {
+				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
+	
+				// check direction
+				if (K_STA & releasedKey)
+				{
+				//	Game_pause(Game_getInstance(), (GameState)PauseScreenState_getInstance());
+					break;
+            	}
+
 				Object_fireEvent((Object)this, EVENT_KEY_RELEASED);
 			}
 			return true;

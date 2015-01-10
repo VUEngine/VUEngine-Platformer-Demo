@@ -25,6 +25,26 @@
 #include <Stage.h>
 #include <objects.h>
 #include <macros.h>
+#include <PauseScreenState.h>
+#include "stages/textures.h"
+
+
+//---------------------------------------------------------------------------------------------------------
+// 											    PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINES
+//---------------------------------------------------------------------------------------------------------
+
+#define LEVEL_X_SIZE 	    __SCREEN_WIDTH
+#define LEVEL_Y_SIZE 	    __SCREEN_HEIGHT
+#define LEVEL_Z_SIZE 	    __SCREEN_WIDTH
+
+#define SCREEN_X_POSITION 	0
+#define SCREEN_Y_POSITION 	0
+#define SCREEN_Z_POSITION 	0
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,17 +54,20 @@
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-PositionedEntityROMDef VBJAE_ST_UI_ENTITIES[] =
+PositionedEntityROMDef PAUSE_SCREEN_ST_ENTITIES[] =
 {
-	{&VBJAENGINE_LOGO_3D_IM, {(__SCREEN_WIDTH >> 1) - 8, (__SCREEN_HEIGHT >> 1) - 4, LAYER_0}, NULL, NULL, NULL},
-	{&VBJAENGINE_LOGO_OUTLINE_IM, {(__SCREEN_WIDTH >> 1) + 5, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL, NULL, NULL},
-	{NULL,{0,0,0}, NULL, NULL, NULL},
+	// since these are always visible it doesn't matter that they are not logically placed in this definition
+	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
-PositionedEntityROMDef VBJAE_ST_ENTITIES[] =
+PositionedEntityROMDef PAUSE_SCREEN_ST_UI_ENTITIES[] =
 {
-	{&VBJAENGINE_BG_SB, {0, __SCREEN_HEIGHT >> 1, LAYER_0 + 32}, NULL, NULL, NULL},
-	{NULL,{0,0,0}, NULL, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL, NULL},
+};
+
+TextureROMDef* PAUSE_SCREEN_ST_TEXTURES[] =
+{
+	NULL
 };
 
 
@@ -52,42 +75,43 @@ PositionedEntityROMDef VBJAE_ST_ENTITIES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef VBJAE_ST =
+StageROMDef PAUSE_SCREEN_ST =
 {
     // size
     {
         // x
-        __SCREEN_WIDTH,
+        LEVEL_X_SIZE,
         // y
-        __SCREEN_HEIGHT,
+        LEVEL_Y_SIZE,
         // z
-        1
+        LEVEL_Z_SIZE
     },
 
     //initial screen position
     {
         // x
-        ITOFIX19_13(0),
+        ITOFIX19_13(SCREEN_X_POSITION),
         // y
-        ITOFIX19_13(0),
-        //z
-        ITOFIX19_13(__ZZERO)
+        ITOFIX19_13(SCREEN_Y_POSITION),
+        // z
+        ITOFIX19_13(SCREEN_Z_POSITION)
     },
 
-    //textures
-    NULL,
+    //textures to preload
+    (TextureDefinition**)PAUSE_SCREEN_ST_TEXTURES,
 
-    //UI entities
+    //UI
     {
-        VBJAE_ST_UI_ENTITIES,
+        PAUSE_SCREEN_ST_UI_ENTITIES,
         __TYPE(UI),
     },
 
     //entities
-    VBJAE_ST_ENTITIES,
+    PAUSE_SCREEN_ST_ENTITIES,
 
     //background music
     NULL,
+    //(const u16 (*)[])WORLD_0_0_0_BGM,
 
     //identifier
     "",

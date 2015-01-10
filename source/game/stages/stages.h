@@ -39,6 +39,7 @@ extern StageROMDef ADJUSTMENT_ST;
 extern StageROMDef PRECAUTION_ST;
 extern StageROMDef VBJAE_ST;
 extern StageROMDef TITLE_SCREEN_ST;
+extern StageROMDef PAUSE_SCREEN_ST;
 
 extern StageROMDef TEST_LEVEL_ST;
 

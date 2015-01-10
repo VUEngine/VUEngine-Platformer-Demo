@@ -69,10 +69,8 @@ PositionedEntityROMDef TEST_LEVEL_ST_ENTITIES[] = {
 	// since these are always visible
 	// it doesn't matter that they are not logically
 	// placed in this definition
-	//{&TREE_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 102, LAYER_4}, NULL},
-	//{&TREE_BG_FRONT_SB, 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 168, LAYER_3}, NULL},
-	{&TEST_BG,		{SCREEN_X_POSITION + 72, SCREEN_Y_POSITION + LAYER_0_FLOOR, PLAYABLE_LAYER_0 + 2}, NULL, NULL},
-	{NULL, {0,0,0}, NULL, NULL},
+	{&TEST_BG,		{SCREEN_X_POSITION + 72, SCREEN_Y_POSITION + LAYER_0_FLOOR, PLAYABLE_LAYER_0 + 2}, NULL, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
 PositionedEntityROMDef TEST_LEVEL_ST_UI_ENTITIES[] =
