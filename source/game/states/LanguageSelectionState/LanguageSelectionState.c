@@ -63,6 +63,7 @@ __SINGLETON_DYNAMIC(LanguageSelectionState);
 // class's constructor
 static void LanguageSelectionState_constructor(LanguageSelectionState this)
 {
+    u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
 	this->languageSelector = __NEW(OptionsSelector, __ARGUMENTS(1, 8, "\x10", kString));
 
 	VirtualList languageNames = __NEW(VirtualList);
@@ -70,9 +71,11 @@ static void LanguageSelectionState_constructor(LanguageSelectionState this)
 	int i = 0;
 	for (;  i < I18n_getLanguageCount(I18n_getInstance()); i++)
 	{
-		I18n_setLanguage(I18n_getInstance(), i);
+		I18n_setActiveLanguage(I18n_getInstance(), i);
 		VirtualList_pushBack(languageNames, I18n_getActiveLanguageName(I18n_getInstance()));
 	}
+
+	I18n_setActiveLanguage(I18n_getInstance(), activeLanguage);
 
     OptionsSelector_setOptions(this->languageSelector, languageNames);
 	__DELETE(languageNames);
@@ -152,7 +155,7 @@ static void LanguageSelectionState_processInput(LanguageSelectionState this, u16
 	}
 	else if (pressedKey & K_A)
 	{
-	    I18n_setLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
+	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
 	    Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance());
 	}
 }

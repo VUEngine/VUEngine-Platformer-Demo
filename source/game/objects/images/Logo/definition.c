@@ -50,7 +50,7 @@ TextureROMDef LOGO_LEFT_TX =
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        166,
+        175,
 
         // allocation type
         __NO_ANIMATED,
@@ -63,7 +63,7 @@ TextureROMDef LOGO_LEFT_TX =
     PlatformerDemoLogoLMap,
 
     // cols (max 48)
-    42,
+    34,
 
     // rows (max 28)
     7,
@@ -79,7 +79,7 @@ TextureROMDef LOGO_RIGHT_TX =
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        166,
+        174,
 
         // allocation type
         __NO_ANIMATED,
@@ -92,7 +92,7 @@ TextureROMDef LOGO_RIGHT_TX =
     PlatformerDemoLogoRMap,
 
     // cols (max 48)
-    42,
+    34,
 
     // rows (max 28)
     7,
