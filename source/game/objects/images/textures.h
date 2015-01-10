@@ -22,8 +22,8 @@ extern TextureDefinition LOGO_RIGHT_TX;
 extern TextureDefinition SUPER_AWESOME_TX;
 
 extern TextureDefinition VBJAENGINE_TX;
-extern TextureDefinition VBJAENGINE_LOGO_L_TX;
-extern TextureDefinition VBJAENGINE_LOGO_R_TX;
+extern TextureDefinition VBJAENGINE_LOGO_3D_TX;
+extern TextureDefinition VBJAENGINE_LOGO_OUTLINE_TX;
 
 
 #endif

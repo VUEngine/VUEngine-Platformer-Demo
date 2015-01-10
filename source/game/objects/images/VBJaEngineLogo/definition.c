@@ -29,37 +29,37 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE VBJaEngineLogoLTiles[];
-extern BYTE VBJaEngineLogoRTiles[];
-extern BYTE VBJaEngineLogoLMap[];
-extern BYTE VBJaEngineLogoRMap[];
+extern BYTE VBJaEngine3DLogoTiles[];
+extern BYTE VBJaEngine3DLogoMap[];
+extern BYTE VBJaEngineLogoOutlineTiles[];
+extern BYTE VBJaEngineLogoOutlineMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef VBJAENGINE_LOGO_L_TX =
+TextureROMDef VBJAENGINE_LOGO_3D_TX =
 {
     {
         // number of chars, depending on allocation type:
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        69,
+        52,
 
         // allocation type
         __NO_ANIMATED,
 
         // char definition
-        VBJaEngineLogoLTiles,
+        VBJaEngine3DLogoTiles,
     },
 
     // bgmap definition
-    VBJaEngineLogoLMap,
+    VBJaEngine3DLogoMap,
 
     // cols (max 48)
-    17,
+    8,
 
     // rows (max 28)
     9,
@@ -68,27 +68,27 @@ TextureROMDef VBJAENGINE_LOGO_L_TX =
     0,
 };
 
-TextureROMDef VBJAENGINE_LOGO_R_TX =
+TextureROMDef VBJAENGINE_LOGO_OUTLINE_TX =
 {
     {
         // number of chars, depending on allocation type:
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        68,
+        63,
 
         // allocation type
         __NO_ANIMATED,
 
         // char definition
-        VBJaEngineLogoRTiles,
+        VBJaEngineLogoOutlineTiles,
     },
 
     // bgmap definition
-    VBJaEngineLogoRMap,
+    VBJaEngineLogoOutlineMap,
 
     // cols (max 48)
-    17,
+    19,
 
     // rows (max 28)
     9,
@@ -97,36 +97,20 @@ TextureROMDef VBJAENGINE_LOGO_R_TX =
     0,
 };
 
-SpriteROMDef VBJAENGINE_LOGO_IM_SPRITES[] =
+SpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITES[] =
 {
 	{
 		// sprite's type
 		__TYPE(Sprite),
 
 		// texture definition
-		(TextureDefinition*)&VBJAENGINE_LOGO_L_TX,
+		(TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
 		
 		// bgmap mode (BGMAP, AFFINE or H-BIAS)
 		WRLD_BGMAP,
 		
 		// display mode
-		WRLD_LON,
-
-		// parallax displacement
-		0,
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
-
-		// texture definition
-		(TextureDefinition*)&VBJAENGINE_LOGO_R_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_RON,
+		WRLD_ON,
 
 		// parallax displacement
 		0,
@@ -134,8 +118,35 @@ SpriteROMDef VBJAENGINE_LOGO_IM_SPRITES[] =
 	{NULL, NULL, 0, 0, 0}
 };
 
-ImageROMDef VBJAENGINE_LOGO_IM =
+SpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITES[] =
+{
+	{
+		// sprite's type
+		__TYPE(Sprite),
+
+		// texture definition
+		(TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
+
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+	},
+	{NULL, NULL, 0, 0, 0}
+};
+
+ImageROMDef VBJAENGINE_LOGO_3D_IM =
 {
 	__TYPE(Image),
-	VBJAENGINE_LOGO_IM_SPRITES,
+	VBJAENGINE_LOGO_3D_IM_SPRITES,
+};
+
+ImageROMDef VBJAENGINE_LOGO_OUTLINE_IM =
+{
+	__TYPE(Image),
+	VBJAENGINE_LOGO_OUTLINE_IM_SPRITES,
 };
