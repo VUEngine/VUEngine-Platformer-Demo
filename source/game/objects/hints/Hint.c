@@ -52,7 +52,7 @@ __CLASS_DEFINITION(Hint);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Hint_delete(Hint this);
+void Hint_delete(Hint this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -93,12 +93,12 @@ void Hint_close(Hint this)
     AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Close");
 }
 
-void Hint_delete(Hint this)
+void Hint_delete(Hint this, Object eventFirer)
 {
-    __DELETE(this);
+	Container_deleteMyself((Container)this);
 }
 
-void Hint_playActiveLanguageHint(Hint this)
+void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
 {
     AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, I18n_getActiveLanguageName(I18n_getInstance()));
 }

@@ -55,9 +55,9 @@ __CLASS_DEFINITION(Hero);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void Hero_onKeyPressed(Hero this);
-static void Hero_onKeyReleased(Hero this);
-static void Hero_onKeyHold(Hero this);
+static void Hero_onKeyPressed(Hero this, Object eventFirer);
+static void Hero_onKeyReleased(Hero this, Object eventFirer);
+static void Hero_onKeyHold(Hero this, Object eventFirer);
 void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
@@ -941,7 +941,7 @@ void Hero_moveOnWin(Hero this)
 }
 
 // process user input
-static void Hero_onKeyPressed(Hero this)
+static void Hero_onKeyPressed(Hero this, Object eventFirer)
 {
 	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
 	
@@ -950,7 +950,7 @@ static void Hero_onKeyPressed(Hero this)
 }
 
 // process user input
-static void Hero_onKeyReleased(Hero this)
+static void Hero_onKeyReleased(Hero this, Object eventFirer)
 {
 	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
@@ -959,7 +959,7 @@ static void Hero_onKeyReleased(Hero this)
 }
 
 // process user input
-static void Hero_onKeyHold(Hero this)
+static void Hero_onKeyHold(Hero this, Object eventFirer)
 {
 	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 

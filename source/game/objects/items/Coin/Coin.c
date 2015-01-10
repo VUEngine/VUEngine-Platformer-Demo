@@ -52,7 +52,7 @@ __CLASS_DEFINITION(Coin);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Coin_removeFromStage(Coin this);
+void Coin_removeFromStage(Coin this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 	return false;
 }
 
-void Coin_removeFromStage(Coin this)
+void Coin_removeFromStage(Coin this, Object eventFirer)
 {
 	Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
 }

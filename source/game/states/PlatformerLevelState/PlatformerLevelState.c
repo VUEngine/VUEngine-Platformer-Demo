@@ -50,9 +50,9 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner) {}
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner) {}
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
-static void PlatformerLevelState_onSecondChange(PlatformerLevelState this);
-static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this);
-static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this);
+static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_printLifes(PlatformerLevelState this);
 void PlatformerLevelState_printCoins(PlatformerLevelState this);
 void PlatformerLevelState_printKeys(PlatformerLevelState this);
@@ -254,19 +254,19 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 }
 
 // handle event
-static void PlatformerLevelState_onSecondChange(PlatformerLevelState this)
+static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer)
 {
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
 }
 
 // handle event
-static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this)
+static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer)
 {
 	PlatformerLevelState_printCoins(this);
 }
 
 // handle event
-static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this)
+static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer)
 {
 	PlatformerLevelState_printKeys(this);
 }
