@@ -163,7 +163,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // bgmaps to use (leave 2 bgmaps to allocate param table)
-#define __NUM_BGMAPS 					10
+#define __NUM_BGMAPS 					6
 
 // number of bgmap definitions in each bgmap segment
 #define __NUM_MAPS_PER_SEG 				16

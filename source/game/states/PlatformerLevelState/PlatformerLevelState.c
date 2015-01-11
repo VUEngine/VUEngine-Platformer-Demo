@@ -109,6 +109,10 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
 	
+	// make a little bit of physical simulations so each entity is placed at the floor
+	Clock_start(Game_getInGameClock(Game_getInstance()));
+	PhysicalWorld_start(PhysicalWorld_getInstance());
+
 	// render gui values
 	PlatformerLevelState_printLifes(this);
 	PlatformerLevelState_printCoins(this);
@@ -121,6 +125,7 @@ static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner)
 {
 	// call base
 	GameState_execute((GameState)this, owner);
+//	SpriteManager_print(SpriteManager_getInstance(), 1, 7);
 }
 
 // state's exit
@@ -139,12 +144,69 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 
 static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner)
 {
+	// pause physical simulations
+	Clock_pause(Game_getInGameClock(Game_getInstance()), true);
+
+#ifdef __DEBUG_TOOLS
+	if (!Game_isEnteringSpecialMode(Game_getInstance()))
+#endif
+#ifdef __STAGE_EDITOR
+	if (!Game_isEnteringSpecialMode(Game_getInstance()))
+#endif
+#ifdef __ANIMATION_EDITOR
+	if (!Game_isEnteringSpecialMode(Game_getInstance()))
+#endif
+	// make a fade in
+	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY >> 1);
+
 	GameState_pause((GameState)this, owner);
 }
 
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 {
 	GameState_resume((GameState)this, owner);
+
+#ifdef __DEBUG_TOOLS
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __STAGE_EDITOR
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __ANIMATION_EDITOR
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+	
+	// reprint info
+	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
+	
+	// render gui values
+	PlatformerLevelState_printLifes(this);
+	PlatformerLevelState_printCoins(this);
+	PlatformerLevelState_printKeys(this);
+	PlatformerLevelState_printLevel(this);
+
+	// make a fade in
+	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
+	
+	// tell any interested entity
+	GameState_propagateMessage((GameState)this, kResumeLevel);
+#ifdef __DEBUG_TOOLS
+	}
+#endif
+#ifdef __STAGE_EDITOR
+	}
+#endif
+#ifdef __ANIMATION_EDITOR
+	}
+#endif
+	
+	// pause physical simulations
+	Clock_pause(Game_getInGameClock(Game_getInstance()), false);
+	
+	this->mode = kPlaying;
 }
 
 // state's on message
@@ -155,44 +217,38 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
     {
 		case kSetUpLevel:
 
-			// make a little bit of physical simulations so each entity is placed at the floor
-			Clock_start(Game_getInGameClock(Game_getInstance()));
-
-			// print level name
-            StageDefinition* stageDefinition = this->stageDefinition;
-
-            if ((*stageDefinition).identifier)
-            {
-			    char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-			    char* strLevelName = (*stageDefinition).identifier;
-                Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
-                Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
-            }
-
-            if ((*stageDefinition).name)
-            {
-			    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*stageDefinition).name);
-                Printing_text(Printing_getInstance(), "\"", 17, 6, NULL);
-                Printing_text(Printing_getInstance(), strLevelName, 18, 6, NULL);
-                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, NULL);
-            }
-
-			// start physical simulation again
-			PhysicalWorld_start(PhysicalWorld_getInstance());
-
-			// pause physical simulations
-			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
-
-			// tell any interested entity
-			GameState_propagateMessage((GameState)this, kSetUpLevel);
-
-			// account for any entity's tranform modification during their initialization
-			GameState_transform((GameState)this);
-			
-			// show level after 0.5 second
-			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
-
-			this->mode = kShowingUp;
+			{
+				// print level name
+	            StageDefinition* stageDefinition = this->stageDefinition;
+	
+	            if ((*stageDefinition).identifier)
+	            {
+				    char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
+				    char* strLevelName = (*stageDefinition).identifier;
+	                Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
+	                Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
+	            }
+	
+	            if ((*stageDefinition).name)
+	            {
+				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*stageDefinition).name);
+	                Printing_text(Printing_getInstance(), "\"", 17, 6, NULL);
+	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, NULL);
+	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, NULL);
+	            }
+	
+	
+				// tell any interested entity
+				GameState_propagateMessage((GameState)this, kSetUpLevel);
+	
+				// account for any entity's tranform modification during their initialization
+				GameState_transform((GameState)this);
+				
+				// show level after 0.5 second
+				MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
+	
+				this->mode = kShowingUp;
+			}
 			break;
 
 		case kStartLevel:
@@ -206,6 +262,8 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			// reset clock and restart
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
 			Clock_start(Game_getInGameClock(Game_getInstance()));
+			
+			// want to know when the second has changed
 			Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
 			
 			// add events
@@ -217,6 +275,11 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			// tell any interested entity
 			GameState_propagateMessage((GameState)this, kStartLevel);
+
+			// restart clock
+			// pause physical simulations
+			Clock_reset(Game_getInGameClock(Game_getInstance()));
+			Clock_start(Game_getInGameClock(Game_getInstance()));
 
 			this->mode = kPlaying;
 			break;
@@ -245,7 +308,8 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				// check direction
 				if (K_STA & releasedKey)
 				{
-				//	Game_pause(Game_getInstance(), (GameState)PauseScreenState_getInstance());
+					this->mode = kPaused;
+					Game_pause(Game_getInstance(), (GameState)PauseScreenState_getInstance());
 					break;
             	}
 

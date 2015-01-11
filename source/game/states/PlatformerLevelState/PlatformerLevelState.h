@@ -67,6 +67,7 @@ enum PlatformerLevelStateMessageTypes
 	kHeroFall,
 	kSetUpLevel,
 	kStartLevel,
+	kResumeLevel,
 	kHideLevelMessage,
 	kTakeCoin,
 	kTakeKey,

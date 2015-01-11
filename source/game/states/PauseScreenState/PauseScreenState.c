@@ -86,10 +86,12 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner)
 	GameState_loadStage((GameState)this, (StageDefinition*)&PAUSE_SCREEN_ST, true, true);
 
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(10000, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
 
     Printing_text(Printing_getInstance(), "                                                ", 0, 26, "GUIFont");
-    Printing_text(Printing_getInstance(), "PAUSE", 0, 26, "GUIFont");
+    Printing_text(Printing_getInstance(), "PAUSED", ((__SCREEN_WIDTH >> 3) >> 1) - 3, 20, "GUIFont");
+
+	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
 }
 
 // state's execute
@@ -101,7 +103,7 @@ static void PauseScreenState_execute(PauseScreenState this, void* owner)
 static void PauseScreenState_exit(PauseScreenState this, void* owner)
 {
 	// make a fade out
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
+	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY >> 1);
 
 	// destroy the state
 	__DELETE(this);
@@ -120,7 +122,7 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 				// check direction
 				if (K_STA & pressedKey)
 				{
-					Game_unpause(Game_getInstance(), (GameState)this);
+					//Game_unpause(Game_getInstance(), (GameState)this);
 				}
 			}
 			return true;

@@ -1097,6 +1097,7 @@ int Hero_doMessage(Hero this, int message)
 {
 	switch (message)
 	{
+		case kResumeLevel:
 		case kSetUpLevel:
 			{
 				// then set myself as the focus
