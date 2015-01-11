@@ -125,7 +125,7 @@ static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner)
 {
 	// call base
 	GameState_execute((GameState)this, owner);
-//	SpriteManager_print(SpriteManager_getInstance(), 1, 7);
+	//SpriteManager_print(SpriteManager_getInstance(), 1, 7);
 }
 
 // state's exit

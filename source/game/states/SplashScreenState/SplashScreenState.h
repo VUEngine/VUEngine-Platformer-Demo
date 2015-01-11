@@ -34,16 +34,17 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define SplashScreenState_METHODS									\
+#define SplashScreenState_METHODS													\
 	GameState_METHODS;									
 
 // declare the virtual methods which are redefined
-#define SplashScreenState_SET_VTABLE(ClassName)						\
-	GameState_SET_VTABLE(ClassName)									\
-	__VIRTUAL_SET(ClassName, SplashScreenState, enter);				\
-	__VIRTUAL_SET(ClassName, SplashScreenState, execute);			\
-	__VIRTUAL_SET(ClassName, SplashScreenState, exit);				\
-	__VIRTUAL_SET(ClassName, SplashScreenState, handleMessage);		\
+#define SplashScreenState_SET_VTABLE(ClassName)										\
+	GameState_SET_VTABLE(ClassName)													\
+	__VIRTUAL_SET(ClassName, SplashScreenState, enter);								\
+	__VIRTUAL_SET(ClassName, SplashScreenState, execute);							\
+	__VIRTUAL_SET(ClassName, SplashScreenState, exit);								\
+	__VIRTUAL_SET(ClassName, SplashScreenState, resume);							\
+	__VIRTUAL_SET(ClassName, SplashScreenState, handleMessage);						\
 
 __CLASS(SplashScreenState);
 

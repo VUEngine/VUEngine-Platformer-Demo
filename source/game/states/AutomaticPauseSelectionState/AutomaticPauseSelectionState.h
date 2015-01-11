@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef TITLE_SCREEN_STATE_H_
-#define TITLE_SCREEN_STATE_H_
+#ifndef AUTOMATIC_PAUSE_SCREEN_STATE_H_
+#define AUTOMATIC_PAUSE_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,26 +34,27 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define AutomaticPauseSelectionState_METHODS											\
-	GameState_METHODS;											    			\
+#define AutomaticPauseSelectionState_METHODS										\
+	GameState_METHODS;											    				\
 
 // declare the virtual methods which are redefined
 #define AutomaticPauseSelectionState_SET_VTABLE(ClassName)							\
-	GameState_SET_VTABLE(ClassName)								    			\
+	GameState_SET_VTABLE(ClassName)								    				\
 	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, enter);					\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, exit);						\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, execute);					\
+	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, exit);					\
+	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, execute);				\
+	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, resume);					\
 	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, handleMessage);			\
 
 
 __CLASS(AutomaticPauseSelectionState);
 
 #define AutomaticPauseSelectionState_ATTRIBUTES							   			\
-														            			\
-	/* inherits */																\
-	GameState_ATTRIBUTES														\
-																				\
-	bool selection;																\
+														            				\
+	/* inherits */																	\
+	GameState_ATTRIBUTES															\
+																					\
+	bool selection;																	\
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -33,6 +33,7 @@
 #include <text.h>
 #include "stages.h"
 #include <LanguageSelectionState.h>
+#include <AutomaticPauseSelectionState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,8 +45,10 @@ static void SplashScreenState_constructor(SplashScreenState this);
 static void SplashScreenState_enter(SplashScreenState this, void* owner);
 static void SplashScreenState_execute(SplashScreenState this, void* owner);
 static void SplashScreenState_exit(SplashScreenState this, void* owner);
+static void SplashScreenState_resume(SplashScreenState this, void* owner);
 static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram);
 static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition* stageDefinition);
+static void SplashScreenState_print(SplashScreenState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -133,6 +136,14 @@ static void SplashScreenState_exit(SplashScreenState this, void* owner)
 	__DELETE(this);
 }
 
+// state's resume
+static void SplashScreenState_resume(SplashScreenState this, void* owner)
+{
+	GameState_resume((GameState)this, owner);
+
+	SplashScreenState_print(this);
+}
+
 // state's on message
 static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram)
 {
@@ -179,6 +190,14 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
 
 	GameState_loadStage((GameState)this, stageDefinition, false, true);
 
+	SplashScreenState_print(this);
+
+	// make a fade in
+	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+}
+
+static void SplashScreenState_print(SplashScreenState this)
+{
 	// do screen-specific preparations
 	switch (this->currentScreen)
     {
@@ -187,7 +206,4 @@ static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition*
 			Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION), 8, 6, NULL);
 			break;
 	}
-
-	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 }

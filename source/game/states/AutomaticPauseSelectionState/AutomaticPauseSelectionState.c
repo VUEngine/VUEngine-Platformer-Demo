@@ -29,6 +29,7 @@
 #include <Printing.h>
 #include <MessageDispatcher.h>
 #include <AutomaticPauseSelectionState.h>
+#include <LanguageSelectionState.h>
 #include <stages.h>
 #include <macros.h>
 #include <I18n.h>
@@ -44,7 +45,9 @@ static void AutomaticPauseSelectionState_constructor(AutomaticPauseSelectionStat
 static void AutomaticPauseSelectionState_enter(AutomaticPauseSelectionState this, void* owner);
 static void AutomaticPauseSelectionState_execute(AutomaticPauseSelectionState this, void* owner);
 static void AutomaticPauseSelectionState_exit(AutomaticPauseSelectionState this, void* owner);
+static void AutomaticPauseSelectionState_resume(AutomaticPauseSelectionState this, void* owner);
 static bool AutomaticPauseSelectionState_handleMessage(AutomaticPauseSelectionState this, void* owner, Telegram telegram);
+static void AutomaticPauseSelectionState_print(AutomaticPauseSelectionState this);
 static void AutomaticPauseSelectionState_renderSelection(AutomaticPauseSelectionState this);
 static void AutomaticPauseSelectionState_processInput(AutomaticPauseSelectionState this, u16 pressedKey);
 
@@ -80,13 +83,7 @@ static void AutomaticPauseSelectionState_enter(AutomaticPauseSelectionState this
 {
 	GameState_loadStage((GameState)this, (StageDefinition*)&EMPTY_ST, true, true);
 
-    char* strHeader = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
-    u8 strHeaderXPos = (48 - strlen(strHeader)) >> 1;
-    Printing_text(Printing_getInstance(), strHeader, strHeaderXPos, 8, "GUIFont");
-
-    Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION), 8, 11, NULL);
-
-    AutomaticPauseSelectionState_renderSelection(this);
+	AutomaticPauseSelectionState_print(this);
 
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 }
@@ -107,6 +104,14 @@ static void AutomaticPauseSelectionState_exit(AutomaticPauseSelectionState this,
 	__DELETE(this);
 }
 
+// state's resume
+static void AutomaticPauseSelectionState_resume(AutomaticPauseSelectionState this, void* owner)
+{
+	GameState_resume((GameState)this, owner);
+	
+	AutomaticPauseSelectionState_print(this);
+}
+
 // state's on message
 static bool AutomaticPauseSelectionState_handleMessage(AutomaticPauseSelectionState this, void* owner, Telegram telegram)
 {
@@ -122,6 +127,17 @@ static bool AutomaticPauseSelectionState_handleMessage(AutomaticPauseSelectionSt
 	}
 
 	return false;
+}
+
+static void AutomaticPauseSelectionState_print(AutomaticPauseSelectionState this)
+{
+    char* strHeader = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
+    u8 strHeaderXPos = (48 - strlen(strHeader)) >> 1;
+    Printing_text(Printing_getInstance(), strHeader, strHeaderXPos, 8, "GUIFont");
+
+    Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION), 8, 11, NULL);
+
+    AutomaticPauseSelectionState_renderSelection(this);
 }
 
 static void AutomaticPauseSelectionState_renderSelection(AutomaticPauseSelectionState this)

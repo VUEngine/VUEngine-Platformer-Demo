@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef TITLE_SCREEN_STATE_H_
-#define TITLE_SCREEN_STATE_H_
+#ifndef LANGUAGE_SELECTION_SCREEN_STATE_H_
+#define LANGUAGE_SELECTION_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,26 +35,27 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define LanguageSelectionState_METHODS											\
-	GameState_METHODS;											    			\
+#define LanguageSelectionState_METHODS												\
+	GameState_METHODS;											    				\
 
 // declare the virtual methods which are redefined
-#define LanguageSelectionState_SET_VTABLE(ClassName)							\
-	GameState_SET_VTABLE(ClassName)								    			\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, enter);					\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, exit);						\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, execute);					\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, handleMessage);			\
+#define LanguageSelectionState_SET_VTABLE(ClassName)								\
+	GameState_SET_VTABLE(ClassName)								    				\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, enter);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, exit);							\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, execute);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, resume);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionState, handleMessage);				\
 
 
 __CLASS(LanguageSelectionState);
 
-#define LanguageSelectionState_ATTRIBUTES							   			\
-														            			\
-	/* inherits */																\
-	GameState_ATTRIBUTES														\
-																				\
-	OptionsSelector languageSelector;											\
+#define LanguageSelectionState_ATTRIBUTES								   			\
+														            				\
+	/* inherits */																	\
+	GameState_ATTRIBUTES															\
+																					\
+	OptionsSelector languageSelector;												\
 
 
 //---------------------------------------------------------------------------------------------------------

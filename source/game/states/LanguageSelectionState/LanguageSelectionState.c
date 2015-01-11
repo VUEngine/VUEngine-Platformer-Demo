@@ -29,6 +29,7 @@
 #include <Printing.h>
 #include <MessageDispatcher.h>
 #include <LanguageSelectionState.h>
+#include <TitleScreenState.h>
 #include <stages.h>
 #include <macros.h>
 #include <I18n.h>
@@ -44,8 +45,10 @@ static void LanguageSelectionState_constructor(LanguageSelectionState this);
 static void LanguageSelectionState_enter(LanguageSelectionState this, void* owner);
 static void LanguageSelectionState_execute(LanguageSelectionState this, void* owner);
 static void LanguageSelectionState_exit(LanguageSelectionState this, void* owner);
+static void LanguageSelectionState_resume(LanguageSelectionState this, void* owner);
 static bool LanguageSelectionState_handleMessage(LanguageSelectionState this, void* owner, Telegram telegram);
 static void LanguageSelectionState_processInput(LanguageSelectionState this, u16 pressedKey);
+static void LanguageSelectionState_print(LanguageSelectionState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -100,13 +103,8 @@ static void LanguageSelectionState_enter(LanguageSelectionState this, void* owne
 {
 	GameState_loadStage((GameState)this, (StageDefinition*)&EMPTY_ST, true, true);
 
-    char* strHeader = I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT);
-    u8 strHeaderXPos = (48 - strlen(strHeader)) >> 1;
-
-    Printing_text(Printing_getInstance(), strHeader, strHeaderXPos, 8, "GUIFont");
-
-	OptionsSelector_showOptions(this->languageSelector, strHeaderXPos, 11);
-
+	LanguageSelectionState_print(this);
+	
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 }
 
@@ -124,6 +122,14 @@ static void LanguageSelectionState_exit(LanguageSelectionState this, void* owner
 
 	// destroy the state
 	__DELETE(this);
+}
+
+// state's resume
+static void LanguageSelectionState_resume(LanguageSelectionState this, void* owner)
+{
+	GameState_resume((GameState)this, owner);
+	
+	LanguageSelectionState_print(this);
 }
 
 // state's on message
@@ -158,4 +164,14 @@ static void LanguageSelectionState_processInput(LanguageSelectionState this, u16
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
 	    Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance());
 	}
+}
+
+static void LanguageSelectionState_print(LanguageSelectionState this)
+{
+    char* strHeader = I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT);
+    u8 strHeaderXPos = (48 - strlen(strHeader)) >> 1;
+
+    Printing_text(Printing_getInstance(), strHeader, strHeaderXPos, 8, "GUIFont");
+
+	OptionsSelector_showOptions(this->languageSelector, strHeaderXPos, 11);
 }

@@ -87,6 +87,10 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	//load stage
 	GameState_loadStage((GameState)this, (StageDefinition*)&TITLE_SCREEN_ST, true, true);
 
+	// make a little bit of physical simulations so each entity is placed at the floor
+	Clock_start(Game_getInGameClock(Game_getInstance()));
+	PhysicalWorld_start(PhysicalWorld_getInstance());
+
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
 
