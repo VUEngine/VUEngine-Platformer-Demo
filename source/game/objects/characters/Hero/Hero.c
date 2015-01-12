@@ -182,9 +182,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 		PhysicalWorld_setFriction(PhysicalWorld_getInstance(), FTOFIX19_13(FRICTION));
 	}
 	
-	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_addEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 }
 
 // class's destructor
@@ -197,9 +197,9 @@ void Hero_destructor(Hero this)
 
 	hero = NULL;
 	
-	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_removeEventListener((Object)Game_getCurrentState(Game_getInstance()), (Object)this, (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
@@ -237,8 +237,6 @@ void Hero_addMomentumToJump(Hero this)
 void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 {
 	Hero_startedMovingOnAxis(this, __YAXIS);
-
-	Hero myself = (Hero)Container_getChildByName((Container)GameState_getStage(Game_getCurrentState(Game_getInstance())), "john hero");
 
 	if (this->body)
     {
