@@ -805,7 +805,7 @@ void Hero_hideHint(Hero this)
 		Hint_close((Hint)this->currentHint);
 
 		// clear the saved entity
-		this->currentHint = NULL;
+		//this->currentHint = NULL;
 	}
 }
 

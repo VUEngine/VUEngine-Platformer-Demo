@@ -122,7 +122,7 @@ AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 	false,
 
 	// method to call on function completion
-	&Hint_delete,
+	&Hint_onCloseDone,
 
 	// function's name
 	"Close",

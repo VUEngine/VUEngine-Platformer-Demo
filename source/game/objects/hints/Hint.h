@@ -72,7 +72,7 @@ void Hint_destructor(Hint this);
 bool Hint_handleMessage(Hint this, Telegram telegram);
 void Hint_open(Hint this);
 void Hint_close(Hint this);
-void Hint_delete(Hint this, Object eventFirer);
+void Hint_onCloseDone(Hint this, Object eventFirer);
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer);
 
 

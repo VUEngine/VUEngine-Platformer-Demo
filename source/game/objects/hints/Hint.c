@@ -52,8 +52,6 @@ __CLASS_DEFINITION(Hint);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Hint_delete(Hint this, Object eventFirer);
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
@@ -85,6 +83,11 @@ bool Hint_handleMessage(Hint this, Telegram telegram)
 
 void Hint_open(Hint this)
 {
+	if(!this->sprites)
+	{
+		__VIRTUAL_CALL(void, Container, resume, (Container)this);
+	}
+	
     AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Open");
 }
 
@@ -93,9 +96,9 @@ void Hint_close(Hint this)
     AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Close");
 }
 
-void Hint_delete(Hint this, Object eventFirer)
+void Hint_onCloseDone(Hint this, Object eventFirer)
 {
-	Container_deleteMyself((Container)this);
+	__VIRTUAL_CALL(void, Container, suspend, (Container)this);
 }
 
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer)

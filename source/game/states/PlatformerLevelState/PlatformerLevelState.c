@@ -125,15 +125,14 @@ static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner)
 {
 	// call base
 	GameState_execute((GameState)this, owner);
-	//SpriteManager_print(SpriteManager_getInstance(), 1, 7);
 }
 
 // state's exit
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
-	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
-	Object_removeEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
-	Object_removeEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
+	Object_removeEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_removeEventListener((Object)this, (Object)this, (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
+	Object_removeEventListener((Object)this, (Object)this, (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
@@ -193,6 +192,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	
 	// tell any interested entity
 	GameState_propagateMessage((GameState)this, kResumeLevel);
+
 #ifdef __DEBUG_TOOLS
 	}
 #endif
@@ -264,11 +264,11 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 			
 			// want to know when the second has changed
-			Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
+			Object_addEventListener((Object)Game_getInGameClock(Game_getInstance()), (Object)this, (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
 			
 			// add events
-			Object_addEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
-			Object_addEventListener((Object)this, (Object)this, (void (*)(Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
+			Object_addEventListener((Object)this, (Object)this, (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
+			Object_addEventListener((Object)this, (Object)this, (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
