@@ -83,13 +83,16 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 # first build the engine
 ENGINE = libvbjae.a
 
+pad: $(TARGET).vb
+	@echo "Padding " $(TARGET).vb
+	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb
+
 all: $(TARGET).vb
 
 $(ENGINE):
 	@rm -f $(ENGINE)
 	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJANEGINE_CONFIG_FILE)
 
-	
 $(TARGET).vb: main.elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary main.elf $@
