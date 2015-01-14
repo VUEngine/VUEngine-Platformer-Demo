@@ -239,7 +239,8 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
         case kCheckForOverlappingDoor:
 
-            if (!Hero_isOverlappingDoor((Hero)owner)) {
+            if (!Hero_isOverlappingDoor((Hero)owner)) 
+            {
                 Hero_resetCurrentlyOverlappingDoor((Hero)owner);
             }
             else

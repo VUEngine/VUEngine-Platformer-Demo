@@ -129,6 +129,32 @@ static void LanguageSelectionState_resume(LanguageSelectionState this, void* own
 {
 	GameState_resume((GameState)this, owner);
 	
+#ifdef __DEBUG_TOOLS
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __STAGE_EDITOR
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __ANIMATION_EDITOR
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+	
+	// make a fade in
+	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
+
+#ifdef __DEBUG_TOOLS
+	}
+#endif
+#ifdef __STAGE_EDITOR
+	}
+#endif
+#ifdef __ANIMATION_EDITOR
+	}
+#endif
+	
 	LanguageSelectionState_print(this);
 }
 
@@ -162,7 +188,7 @@ static void LanguageSelectionState_processInput(LanguageSelectionState this, u16
 	else if (pressedKey & K_A)
 	{
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
-	    Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance());
+	    Game_changeState(Game_getInstance(), (GameState)TitleScreenState_getInstance());
 	}
 }
 

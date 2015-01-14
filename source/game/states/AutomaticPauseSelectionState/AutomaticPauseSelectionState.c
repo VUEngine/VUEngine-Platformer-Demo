@@ -179,6 +179,7 @@ static void AutomaticPauseSelectionState_processInput(AutomaticPauseSelectionSta
 	}
 	else if ((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-	    Game_changeState(Game_getInstance(), (State)LanguageSelectionState_getInstance());
+		Game_setAutomaticPauseState(Game_getInstance(), this->selection? (GameState)AutomaticPauseScreenState_getInstance(): NULL);
+	    Game_changeState(Game_getInstance(), (GameState)LanguageSelectionState_getInstance());
 	}
 }

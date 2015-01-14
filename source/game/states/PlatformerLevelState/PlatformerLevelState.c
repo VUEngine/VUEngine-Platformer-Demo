@@ -329,7 +329,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 		case kHeroDied:	
 			
-			Game_changeState(Game_getInstance(), (State)TitleScreenState_getInstance());
+			Game_changeState(Game_getInstance(), (GameState)TitleScreenState_getInstance());
 			return true;
 			break;
 	}
@@ -390,5 +390,5 @@ void PlatformerLevelState_goToLevel(StageDefinition* stageDefinition)
 {
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
 	this->stageDefinition = stageDefinition;
-	Game_changeState(Game_getInstance(), (State)this);
+	Game_changeState(Game_getInstance(), (GameState)this);
 }

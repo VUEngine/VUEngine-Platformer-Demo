@@ -30,6 +30,7 @@
 #include <LanguageSelectionState.h>
 #include <TitleScreenState.h>
 #include <PlatformerLevelState.h>
+#include <AutomaticPauseScreenState.h>
 
 #include "stages.h"
 

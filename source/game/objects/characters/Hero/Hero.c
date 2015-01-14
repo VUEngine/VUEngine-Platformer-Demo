@@ -1063,7 +1063,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				    Hero_showHint(this, kEnterHint);
                     Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);
 
-                    // remind hero to check is door is still overlapping in 100 milliseconds
+                    // remind hero to check if door is still overlapping in 100 milliseconds
                     MessageDispatcher_dispatchMessage(100, (Object)this, (Object)this, kCheckForOverlappingDoor, NULL);
 				}
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
@@ -1111,6 +1111,11 @@ int Hero_doMessage(Hero this, int message)
 				
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 				
+				if(Hero_getCurrentlyOverlappingDoor(this))
+				{
+                    // remind hero to check if door is still overlapping in 100 milliseconds
+                    MessageDispatcher_dispatchMessage(100, (Object)this, (Object)this, kCheckForOverlappingDoor, NULL);
+				}
 				return true;
 			}
 			break;

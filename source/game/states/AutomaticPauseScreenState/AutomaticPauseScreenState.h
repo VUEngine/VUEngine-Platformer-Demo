@@ -18,35 +18,45 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef STAGES_H_
-#define STAGES_H_
+#ifndef AUTOMATIC_PAUSE_SCREEN_STATE_H_
+#define AUTOMATIC_PAUSE_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Stage.h>
+#include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef EMPTY_ST;
+// declare the virtual methods
+#define AutomaticPauseScreenState_METHODS											\
+	GameState_METHODS;												    			\
 
-extern StageROMDef ADJUSTMENT_ST;
-extern StageROMDef PRECAUTION_ST;
-extern StageROMDef VBJAE_ST;
-extern StageROMDef AUTOMATIC_PAUSE_SCREEN_ST;
-extern StageROMDef TITLE_SCREEN_ST;
-extern StageROMDef PAUSE_SCREEN_ST;
+// declare the virtual methods which are redefined
+#define AutomaticPauseScreenState_SET_VTABLE(ClassName)								\
+	GameState_SET_VTABLE(ClassName)								    				\
+	__VIRTUAL_SET(ClassName, AutomaticPauseScreenState, enter);						\
+	__VIRTUAL_SET(ClassName, AutomaticPauseScreenState, exit);						\
+	__VIRTUAL_SET(ClassName, AutomaticPauseScreenState, handleMessage);				\
 
-extern StageROMDef TEST_LEVEL_ST;
+__CLASS(AutomaticPauseScreenState);
 
-extern StageROMDef LEVEL_1_1_ROOM_1_ST;
-extern StageROMDef LEVEL_1_1_ROOM_2_ST;
-extern StageROMDef LEVEL_1_2_ROOM_1_ST;
-extern StageROMDef LEVEL_1_3_ROOM_1_ST;
+#define AutomaticPauseScreenState_ATTRIBUTES							        			\
+														            				\
+	/* inherits */																	\
+	GameState_ATTRIBUTES															\
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+AutomaticPauseScreenState AutomaticPauseScreenState_getInstance(void);
+
 
 #endif

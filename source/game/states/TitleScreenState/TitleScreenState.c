@@ -47,6 +47,7 @@ static void TitleScreenState_constructor(TitleScreenState this);
 static void TitleScreenState_enter(TitleScreenState this, void* owner);
 static void TitleScreenState_execute(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
+static void TitleScreenState_resume(TitleScreenState this, void* owner);
 static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
 
 
@@ -130,6 +131,41 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 
 	// destroy the state
 	__DELETE(this);
+}
+
+// state's resume
+static void TitleScreenState_resume(TitleScreenState this, void* owner)
+{
+	GameState_resume((GameState)this, owner);
+
+#ifdef __DEBUG_TOOLS
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __STAGE_EDITOR
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __ANIMATION_EDITOR
+	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+	
+	// tell any interested entity
+	GameState_propagateMessage((GameState)this, kResumeLevel);
+
+	// make a fade in
+	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
+
+#ifdef __DEBUG_TOOLS
+	}
+#endif
+#ifdef __STAGE_EDITOR
+	}
+#endif
+#ifdef __ANIMATION_EDITOR
+	}
+#endif
 }
 
 // state's on message
