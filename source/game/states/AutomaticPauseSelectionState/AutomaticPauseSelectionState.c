@@ -29,6 +29,7 @@
 #include <Printing.h>
 #include <MessageDispatcher.h>
 #include <AutomaticPauseSelectionState.h>
+#include <AutomaticPauseScreenState.h>
 #include <LanguageSelectionState.h>
 #include <stages.h>
 #include <macros.h>

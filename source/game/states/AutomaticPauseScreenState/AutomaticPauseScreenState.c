@@ -45,7 +45,6 @@
 static void AutomaticPauseScreenState_destructor(AutomaticPauseScreenState this);
 static void AutomaticPauseScreenState_constructor(AutomaticPauseScreenState this);
 static void AutomaticPauseScreenState_enter(AutomaticPauseScreenState this, void* owner);
-static void AutomaticPauseScreenState_execute(AutomaticPauseScreenState this, void* owner);
 static void AutomaticPauseScreenState_exit(AutomaticPauseScreenState this, void* owner);
 static bool AutomaticPauseScreenState_handleMessage(AutomaticPauseScreenState this, void* owner, Telegram telegram);
 
