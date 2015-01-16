@@ -66,25 +66,28 @@ TextureROMDef ADJUSTMENT_SCREEN_LOGO_TX =
     1,
 };
 
-SpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITES[] =
+SpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&ADJUSTMENT_SCREEN_LOGO_TX,
-		
-		// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&ADJUSTMENT_SCREEN_LOGO_TX,
+	
+	// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* ADJUSTMENT_SCREEN_LOGO_IM_SPRITES[] =
+{
+	&ADJUSTMENT_SCREEN_LOGO_IM_SPRITE,
+	NULL
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_LOGO_IM =

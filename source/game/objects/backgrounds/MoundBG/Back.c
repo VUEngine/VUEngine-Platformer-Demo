@@ -67,41 +67,28 @@ TextureROMDef MOUND_BG_BACK_TX =
     0,
 };
 
-SpriteROMDef MOUND_BG_BACK_SB_SPRITES[] =
+SpriteROMDef MOUND_BG_BACK_SB_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&MOUND_BG_BACK_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&MOUND_BG_BACK_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// parallax displacement
+	0		
+};
 
-		// texture definition
-		(TextureDefinition*)&MOUND_BG_BACK_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+SpriteROMDef* MOUND_BG_BACK_SB_SPRITES[] =
+{
+	&MOUND_BG_BACK_SB_SPRITE,
+	NULL
 };
 
 ScrollBackgroundROMDef MOUND_BG_BACK_SB =

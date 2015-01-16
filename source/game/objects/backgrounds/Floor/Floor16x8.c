@@ -98,54 +98,60 @@ TextureROMDef FLOOR_16x8_R_TX =
     1,
 };
 
-SpriteROMDef FLOOR_16x8_BG_SPRITES[] =
+SpriteROMDef FLOOR_16x8_BG_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&FLOOR_16x8_L_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_AFFINE,
+	// texture definition
+	(TextureDefinition*)&FLOOR_16x8_L_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
 
-		// display mode
-		WRLD_ON,
-		
-		// parallax displacement
-		0,
-	},
-	/*{
-		// texture definition
-		(TextureDefinition*)&FLOOR_16x8_L_TX,
+	// display mode
+	WRLD_ON,
+	
+	// parallax displacement
+	0	
+};
 
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
+/*
+SpriteROMDef FLOOR_16x8_BG_SPRITE_LEFT =
+{
+	// texture definition
+	(TextureDefinition*)&FLOOR_16x8_L_TX,
 
-		// display mode
-		WRLD_LON,
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
 
-		// parallax displacement
-		-1,
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// display mode
+	WRLD_LON,
 
-		// texture definition
-		(TextureDefinition*)&FLOOR_16x8_R_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_RON,
+	// parallax displacement
+	-1
+};
 
-		// parallax displacement
-		-1,
-	},*/
-	{NULL, NULL, 0, 0, 0}
+SpriteROMDef FLOOR_16x8_BG_SPRITE_RIGHT =
+{
+	// texture definition
+	(TextureDefinition*)&FLOOR_16x8_L_TX,
+
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+
+	// display mode
+	WRLD_RON,
+
+	// parallax displacement
+	-1
+};
+*/
+
+SpriteROMDef* FLOOR_16x8_BG_SPRITES[] =
+{
+	&FLOOR_16x8_BG_SPRITE,
+	NULL
 };
 
 InanimatedInGameEntityROMDef FLOOR_16x8_BG =

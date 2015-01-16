@@ -104,25 +104,28 @@ TextureROMDef LAVA_TOP_TX =
     0
 };
 
-SpriteROMDef LAVA_TOP_SPRITES[] =
+SpriteROMDef LAVA_TOP_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(AnimatedSprite),
+	// sprite's type
+	__TYPE(AnimatedSprite),
 
-		// texture definition
-		(TextureDefinition*)&LAVA_TOP_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&LAVA_TOP_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		-2,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	-2		
+};
+
+SpriteROMDef* LAVA_TOP_SPRITES[] =
+{
+	&LAVA_TOP_SPRITE,
+	NULL
 };
 
 AnimatedInGameEntityROMDef LAVA_TOP_MC =

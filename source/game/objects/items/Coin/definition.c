@@ -125,25 +125,28 @@ TextureROMDef COIN_TX =
     1,
 };
 
-SpriteROMDef COIN_SPRITES[] =
+SpriteROMDef COIN_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(AnimatedSprite),
+	// sprite's type
+	__TYPE(AnimatedSprite),
 
-		// texture definition
-		(TextureDefinition*)&COIN_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_AFFINE,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&COIN_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* COIN_SPRITES[] =
+{
+	&COIN_SPRITE,
+	NULL
 };
 
 AnimatedInGameEntityROMDef COIN_MC =

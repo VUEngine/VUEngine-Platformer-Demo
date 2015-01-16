@@ -74,7 +74,7 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_2_ST_ENTITIES[] =
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
 	{&FLOOR_16x8_BG,		{SCREEN_X_POSITION + 72, SCREEN_Y_POSITION + LAYER_0_FLOOR, PLAYABLE_LAYER_0 + 2}, NULL, NULL, NULL},
-	{&DOOR_MC,				{SCREEN_X_POSITION + 128, SCREEN_Y_POSITION + LAYER_0_FLOOR - 86, PLAYABLE_LAYER_0 + 1}, NULL, NULL, &LEVEL_1_1_ROOM_1_ST},
+	{&DOOR_MC,				{SCREEN_X_POSITION + 128, SCREEN_Y_POSITION + LAYER_0_FLOOR - 86, PLAYABLE_LAYER_0 + 1}, NULL, NULL, (void*)&LEVEL_1_1_ROOM_1_ST},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 

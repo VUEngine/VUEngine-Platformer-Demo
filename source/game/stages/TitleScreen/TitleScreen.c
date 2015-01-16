@@ -84,9 +84,9 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL, NULL, NULL},
 	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 92, __SCREEN_HEIGHT >> 1, 0}, NULL, NULL, NULL},
 
-	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, NULL, NULL, &LEVEL_1_1_ROOM_1_ST},
-	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, NULL, NULL, &LEVEL_1_2_ROOM_1_ST},
-	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, NULL, NULL, &LEVEL_1_3_ROOM_1_ST},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, NULL, NULL, (void*)&LEVEL_1_1_ROOM_1_ST},
+	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, NULL, NULL, (void*)&LEVEL_1_2_ROOM_1_ST},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, NULL, NULL, (void*)&LEVEL_1_3_ROOM_1_ST},
 
 /*
 	{&FLOOR_16x8_BG,		{-32, 174, PLAYABLE_LAYER_2 + 2}, NULL, NULL, NULL},

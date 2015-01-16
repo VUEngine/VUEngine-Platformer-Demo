@@ -102,25 +102,28 @@ TextureROMDef KEY_TX =
     1,
 };
 
-SpriteROMDef KEY_SPRITES[] =
+SpriteROMDef KEY_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(AnimatedSprite),
+	// sprite's type
+	__TYPE(AnimatedSprite),
 
-		// texture definition
-		(TextureDefinition*)&KEY_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_AFFINE,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&KEY_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0	
+};
+
+SpriteROMDef* KEY_SPRITES[] =
+{
+	&KEY_SPRITE,
+	NULL
 };
 
 AnimatedInGameEntityROMDef KEY_MC =

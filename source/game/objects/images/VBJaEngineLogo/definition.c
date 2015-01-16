@@ -97,46 +97,52 @@ TextureROMDef VBJAENGINE_LOGO_OUTLINE_TX =
     0,
 };
 
-SpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITES[] =
+SpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0		
 };
 
-SpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITES[] =
+SpriteROMDef* VBJAENGINE_LOGO_3D_IM_SPRITES[] =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	&VBJAENGINE_LOGO_3D_IM_SPRITE,
+	NULL
+};
 
-		// texture definition
-		(TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
+SpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
 
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
+	// texture definition
+	(TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
 
-		// display mode
-		WRLD_ON,
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* VBJAENGINE_LOGO_OUTLINE_IM_SPRITES[] =
+{
+	&VBJAENGINE_LOGO_OUTLINE_IM_SPRITE,
+	NULL
 };
 
 ImageROMDef VBJAENGINE_LOGO_3D_IM =

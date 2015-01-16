@@ -63,46 +63,53 @@ TextureROMDef ADJUSTMENT_SCREEN_ICON_TX =
     0,
 };
 
-SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
+SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
-		
-		// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_LON,
+	// texture definition
+	(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
+	
+	// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_LON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0		
 };
 
-SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] =
+SpriteROMDef* ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	&ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE,
+	NULL
+};
 
-		// texture definition
-		(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
-		
-		// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_RON,
+SpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// texture definition
+	(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
+	
+	// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_RON,
+
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] =
+{
+	&ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE,
+	NULL
+
 };
 
 ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_L =

@@ -67,25 +67,28 @@ TextureROMDef PRECAUTION_SCREEN_JAPANESE_TX =
     0,
 };
 
-SpriteROMDef PRECAUTION_SCREEN_JAPANESE_IM_SPRITES[] =
+SpriteROMDef PRECAUTION_SCREEN_JAPANESE_IM_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&PRECAUTION_SCREEN_JAPANESE_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&PRECAUTION_SCREEN_JAPANESE_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* PRECAUTION_SCREEN_JAPANESE_IM_SPRITES[] =
+{
+	&PRECAUTION_SCREEN_JAPANESE_IM_SPRITE,
+	NULL
 };
 
 ImageROMDef PRECAUTION_SCREEN_JAPANESE_IM =

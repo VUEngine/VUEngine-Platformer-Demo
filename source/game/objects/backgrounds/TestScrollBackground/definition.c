@@ -290,32 +290,35 @@ TextureROMDef* TEST_BG_TEXTURES[] =
 	NULL
 };
 
-MSpriteROMDef TEST_BG_SPRITES[] =
+MSpriteROMDef TEST_BG_SPRITE =
 {
 	{
-		{
-			// sprite's type
-			__TYPE(MSprite),
-	
-			// texture definition
-			NULL,
-			
-			// bgmap mode (BGMAP, AFFINE or H-BIAS)
-			WRLD_BGMAP,
-			
-			// display mode
-			WRLD_ON,
-	
-			// parallax displacement
-			0,
-		},
+		// sprite's type
+		__TYPE(MSprite),
+
+		// texture definition
+		NULL,
 		
-		(TextureDefinition**)TEST_BG_TEXTURES,
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
 		
-		// SCX/SCY
-		WRLD_1x2,
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
 	},
-	{{NULL, NULL, 0, 0, 0}, NULL, 0}
+	
+	(TextureDefinition**)TEST_BG_TEXTURES,
+	
+	// SCX/SCY
+	WRLD_1x2,
+};
+
+SpriteROMDef* TEST_BG_SPRITES[] =
+{
+	(SpriteROMDef*)&TEST_BG_SPRITE,
+	NULL
 };
 
 MBackgroundROMDef TEST_BG =

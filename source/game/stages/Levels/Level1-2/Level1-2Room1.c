@@ -62,7 +62,7 @@ PositionedEntityROMDef LEVEL_1_2_ROOM_1_ST_ENTITIES[] =
 	// it doesn't matter that they are not logically
 	// placed in this definition
 	{&MOUND_BG_BACK_SB,	 	{SCREEN_X_POSITION, SCREEN_Y_POSITION + 102, LAYER_4}, NULL, NULL, NULL},
-	{&HERO_MC, 				{SCREEN_X_POSITION + 32, SCREEN_Y_POSITION + 60, PLAYABLE_LAYER_0}, NULL, NULL, NULL},
+	{&HERO_MC, 				{SCREEN_X_POSITION + 32, SCREEN_Y_POSITION + 30, PLAYABLE_LAYER_0}, NULL, NULL, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly

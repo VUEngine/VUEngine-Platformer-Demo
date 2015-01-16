@@ -358,26 +358,29 @@ TextureROMDef HERO_TX =
     1,
 };
 
-SpriteROMDef HERO_SPRITES[] =
+SpriteROMDef HERO_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(AnimatedSprite),
+	// sprite's type
+	__TYPE(AnimatedSprite),
 
-		// texture definition
-		(TextureDefinition*)&HERO_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_AFFINE,
-		//WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&HERO_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	//WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0
+};
+
+SpriteROMDef* HERO_SPRITES[] =
+{
+	&HERO_SPRITE,
+	NULL
 };
 
 ActorROMDef HERO_MC =

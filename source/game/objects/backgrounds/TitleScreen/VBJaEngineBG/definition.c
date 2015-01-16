@@ -66,41 +66,29 @@ TextureROMDef VBJAENGINE_BG_TX =
     0,
 };
 
-SpriteROMDef VBJAENGINE_BG_SB_SPRITES[] =
+SpriteROMDef VBJAENGINE_BG_SB_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&VBJAENGINE_BG_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&VBJAENGINE_BG_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// parallax displacement
+	0		
+};
 
-		// texture definition
-		(TextureDefinition*)&VBJAENGINE_BG_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+SpriteROMDef* VBJAENGINE_BG_SB_SPRITES[] =
+{
+	&VBJAENGINE_BG_SB_SPRITE,
+	&VBJAENGINE_BG_SB_SPRITE,
+	NULL
 };
 
 ScrollBackgroundROMDef VBJAENGINE_BG_SB =

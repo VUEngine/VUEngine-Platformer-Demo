@@ -101,41 +101,47 @@ TextureROMDef LOGO_RIGHT_TX =
     0,
 };
 
-SpriteROMDef LOGO_IM_SPRITES[] =
+SpriteROMDef LOGO_IM_L_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&LOGO_LEFT_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_LON,
+	// texture definition
+	(TextureDefinition*)&LOGO_LEFT_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_LON,
 
-		// parallax displacement
-		0,
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// parallax displacement
+	0		
+};
 
-		// texture definition
-		(TextureDefinition*)&LOGO_RIGHT_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_RON,
+SpriteROMDef LOGO_IM_R_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// texture definition
+	(TextureDefinition*)&LOGO_RIGHT_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_RON,
+
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* LOGO_IM_SPRITES[] =
+{
+	&LOGO_IM_L_SPRITE,
+	&LOGO_IM_R_SPRITE,
+	NULL
 };
 
 ImageROMDef LOGO_IM =
@@ -174,38 +180,47 @@ TextureROMDef SUPER_AWESOME_TX =
     0,
 };
 
-SpriteROMDef SUPER_AWESOME_IM_SPRITES[] =
+SpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&SUPER_AWESOME_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_LON,
+	// texture definition
+	(TextureDefinition*)&SUPER_AWESOME_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_LON,
 
-		// parallax displacement
-		0,
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// parallax displacement
+	0		
+};
 
-		// texture definition
-		(TextureDefinition*)&SUPER_AWESOME_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_RON,
-	},
-	{NULL, NULL, 0, 0, 0}
+SpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
+
+	// texture definition
+	(TextureDefinition*)&SUPER_AWESOME_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_RON,
+
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* SUPER_AWESOME_IM_SPRITES[] =
+{
+	&SUPER_AWESOME_IM_L_SPRITE,
+	&SUPER_AWESOME_IM_R_SPRITE,
+	NULL
 };
 
 ImageROMDef SUPER_AWESOME_IM =
@@ -244,35 +259,47 @@ TextureROMDef VBJAENGINE_TX =
     0,
 };
 
-SpriteROMDef VBJAENGINE_IM_SPRITES[] =
+SpriteROMDef VBJAENGINE_IM_L_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&VBJAENGINE_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_LON,
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// texture definition
+	(TextureDefinition*)&VBJAENGINE_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_LON,
 
-		// texture definition
-		(TextureDefinition*)&VBJAENGINE_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_RON,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef VBJAENGINE_IM_R_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
+
+	// texture definition
+	(TextureDefinition*)&VBJAENGINE_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_RON,
+
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* VBJAENGINE_IM_SPRITES[] =
+{
+	&VBJAENGINE_IM_L_SPRITE,
+	&VBJAENGINE_IM_R_SPRITE,
+	NULL
 };
 
 ImageROMDef VBJAENGINE_IM =

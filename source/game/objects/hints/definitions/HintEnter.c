@@ -173,25 +173,28 @@ TextureROMDef HINT_ENTER_TX =
     1,
 };
 
-SpriteROMDef HINT_ENTER_SPRITES[] =
+SpriteROMDef HINT_ENTER_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(AnimatedSprite),
+	// sprite's type
+	__TYPE(AnimatedSprite),
 
-		// texture definition
-		(TextureDefinition*)&HINT_ENTER_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_AFFINE,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&HINT_ENTER_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0		
+};
+	
+SpriteROMDef* HINT_ENTER_SPRITES[] =
+{
+	&HINT_ENTER_SPRITE,
+	NULL
 };
 
 AnimatedInGameEntityROMDef HINT_ENTER_MC =

@@ -66,25 +66,28 @@ TextureROMDef GUI_TX =
     1,
 };
 
-SpriteROMDef GUI_IM_SPRITES[] =
+SpriteROMDef GUI_IM_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&GUI_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&GUI_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* GUI_IM_SPRITES[] =
+{
+	&GUI_IM_SPRITE,
+	NULL
 };
 
 ImageROMDef GUI_IM =

@@ -66,25 +66,28 @@ TextureROMDef LEVEL1_3_PART1_L_TX =
     1,
 };
 
-SpriteROMDef LEVEL1_3_PART1_IM_SPRITES[] =
+SpriteROMDef LEVEL1_3_PART1_IM_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&LEVEL1_3_PART1_L_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&LEVEL1_3_PART1_L_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		-1,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	-1	
+};
+
+SpriteROMDef* LEVEL1_3_PART1_IM_SPRITES[] =
+{
+	&LEVEL1_3_PART1_IM_SPRITE,
+	NULL
 };
 
 ImageROMDef LEVEL1_3_PART1_IM =

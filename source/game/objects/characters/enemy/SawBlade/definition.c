@@ -101,25 +101,28 @@ TextureDefinition SAW_BLADE_TX =
     1,
 };
 
-SpriteROMDef SAW_BLADE_SPRITES[] =
+SpriteROMDef SAW_BLADE_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(AnimatedSprite),
+	// sprite's type
+	__TYPE(AnimatedSprite),
 
-		// texture definition
-		(TextureDefinition*)&SAW_BLADE_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_AFFINE,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&SAW_BLADE_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0
+};
+
+SpriteROMDef* SAW_BLADE_SPRITES[] =
+{
+	&SAW_BLADE_SPRITE,
+	NULL
 };
 
 

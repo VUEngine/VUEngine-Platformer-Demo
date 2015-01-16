@@ -67,42 +67,29 @@ TextureROMDef STONE_BG_TX =
     0,
 };
 
-SpriteROMDef STONE_BG_SB_SPRITES[] =
+SpriteROMDef STONE_BG_SB_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&STONE_BG_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&STONE_BG_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
+	// parallax displacement
+	0		
+};
 
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
-
-		// texture definition
-		(TextureDefinition*)&STONE_BG_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
-
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+SpriteROMDef* STONE_BG_SB_SPRITES[] =
+{
+	&STONE_BG_SB_SPRITE,
+	&STONE_BG_SB_SPRITE,
+	NULL
 };
 
 ScrollBackgroundROMDef STONE_BG_SB =

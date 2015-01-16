@@ -97,42 +97,47 @@ TextureROMDef CLOUDS_B_TX =
     0,
 };
 
-SpriteROMDef CLOUDS_SB_SPRITES[] =
+SpriteROMDef CLOUDS_SB_SPRITE_1 =
 {
-	{
-		// sprite's type
-		__TYPE(Sprite),
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&CLOUDS_A_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&CLOUDS_A_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
+	// parallax displacement
+	0
+};
 
-	},
-	{
-		// sprite's type
-		__TYPE(Sprite),
+SpriteROMDef CLOUDS_SB_SPRITE_2 =
+{
+	// sprite's type
+	__TYPE(Sprite),
 
-		// texture definition
-		(TextureDefinition*)&CLOUDS_B_TX,
+	// texture definition
+	(TextureDefinition*)&CLOUDS_B_TX,
 
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_BGMAP,
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
 
-		// display mode
-		WRLD_ON,
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		0,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	0,
+};
+
+SpriteROMDef* CLOUDS_SB_SPRITES[] =
+{
+	&CLOUDS_SB_SPRITE_1,
+	&CLOUDS_SB_SPRITE_2,
+	NULL
 };
 
 ScrollBackgroundROMDef CLOUDS_SB =

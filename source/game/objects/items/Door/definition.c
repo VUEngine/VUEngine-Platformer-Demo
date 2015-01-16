@@ -171,25 +171,28 @@ TextureROMDef DOOR_TX =
     1
 };
 
-SpriteROMDef DOOR_SPRITES[] =
+SpriteROMDef DOOR_SPRITE =
 {
-	{
-		// sprite's type
-		__TYPE(AnimatedSprite),
+	// sprite's type
+	__TYPE(AnimatedSprite),
 
-		// texture definition
-		(TextureDefinition*)&DOOR_TX,
-		
-		// bgmap mode (BGMAP, AFFINE or H-BIAS)
-		WRLD_AFFINE,
-		
-		// display mode
-		WRLD_ON,
+	// texture definition
+	(TextureDefinition*)&DOOR_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
 
-		// parallax displacement
-		1,
-	},
-	{NULL, NULL, 0, 0, 0}
+	// parallax displacement
+	1		
+};
+
+SpriteROMDef* DOOR_SPRITES[] =
+{
+	&DOOR_SPRITE,
+	NULL
 };
 
 AnimatedInGameEntityROMDef DOOR_MC =
