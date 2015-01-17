@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ScrollBackground.h>
+#include <MBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -67,33 +67,51 @@ TextureROMDef MOUND_BG_MIDDLE_TX =
     0,
 };
 
-SpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
+TextureROMDef* MOUND_BG_MIDDLE_SB_TEXTURES[] = 
 {
-	// sprite's type
-	__TYPE(Sprite),
-
-	// texture definition
 	(TextureDefinition*)&MOUND_BG_MIDDLE_TX,
-	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_BGMAP,
-	
-	// display mode
-	WRLD_ON,
+	NULL
+};
 
-	// parallax displacement
-	0		
+MSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(MSprite),
+
+		// texture definition
+		NULL,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+	},
+	
+	(TextureDefinition**)MOUND_BG_MIDDLE_SB_TEXTURES,
+	
+	// SCX/SCY
+	WRLD_1x1,
+
+	// x loop
+	true,
+	
+	// y loop
+	false
 };
 
 SpriteROMDef* MOUND_BG_MIDDLE_SB_SPRITES[] =
 {
 	&MOUND_BG_MIDDLE_SB_SPRITE,
-	&MOUND_BG_MIDDLE_SB_SPRITE,
 	NULL
 };
 
-ScrollBackgroundROMDef MOUND_BG_MIDDLE_SB =
+MBackgroundROMDef MOUND_BG_MIDDLE_SB =
 {
-	__TYPE(ScrollBackground),
+	__TYPE(MBackground),
 	MOUND_BG_MIDDLE_SB_SPRITES,
 };

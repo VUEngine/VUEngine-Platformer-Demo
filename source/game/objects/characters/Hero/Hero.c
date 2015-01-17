@@ -191,7 +191,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 void Hero_destructor(Hero this)
 {
 	// free the instance pointer
-	ASSERT(hero == this, "Hero::destructor: more than on instance");
+	ASSERT(this, "Hero::destructor: null this");
+	ASSERT(hero, "Hero::destructor: already deleted");
+	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
 	MessageDispatcher_dispatchMessage(0, (Object)this, (Object)Game_getInstance(), kHeroDied, NULL);
 

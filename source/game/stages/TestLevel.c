@@ -53,7 +53,7 @@ StageROMDef TEST_LEVEL_ST;
 #define LEVEL_Z_SIZE 	2000
 
 #define SCREEN_X_POSITION 		0
-#define SCREEN_Y_POSITION 		LEVEL_Y_SIZE - __SCREEN_HEIGHT
+#define SCREEN_Y_POSITION 		LEVEL_Y_SIZE / 2 - __SCREEN_HEIGHT
 #define SCREEN_Z_POSITION 		0
 
 
@@ -78,10 +78,26 @@ PositionedEntityROMDef TEST_LEVEL_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL}
 };
 
+extern TextureROMDef TEST_BG_1_TX;
+extern TextureROMDef TEST_BG_2_TX;
+extern TextureROMDef TEST_BG_3_TX;
+extern TextureROMDef TEST_BG_4_TX;
+extern TextureROMDef TEST_BG_5_TX;
+extern TextureROMDef TEST_BG_6_TX;
+extern TextureROMDef TEST_BG_7_TX;
+extern TextureROMDef TEST_BG_8_TX;
+
 TextureROMDef* TEST_LEVEL_ST_TEXTURES[] =
-{
-	//&TREE_BG_FRONT_TX,
-	//&TREE_BG_BACK_TX,
+{	
+	NULL,
+	&TEST_BG_1_TX,
+	&TEST_BG_2_TX,
+	&TEST_BG_3_TX,
+	&TEST_BG_4_TX,
+	&TEST_BG_5_TX,
+	&TEST_BG_6_TX,
+	&TEST_BG_7_TX,
+	&TEST_BG_8_TX,
 	NULL
 };
 

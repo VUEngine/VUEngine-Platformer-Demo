@@ -78,6 +78,15 @@ void Hint_destructor(Hint this)
 // state's on message
 bool Hint_handleMessage(Hint this, Telegram telegram)
 {
+	switch(Telegram_getMessage(telegram))
+	{
+		case kSuspend:
+			
+			__VIRTUAL_CALL(void, Container, suspend, (Container)this);
+			return true;
+			break;
+	}
+	
 	return false;
 }
 
@@ -98,7 +107,9 @@ void Hint_close(Hint this)
 
 void Hint_onCloseDone(Hint this, Object eventFirer)
 {
-	__VIRTUAL_CALL(void, Container, suspend, (Container)this);
+	// cannot suspend right away because it is not safe,
+	// but a delayed message always is
+	MessageDispatcher_dispatchMessage(1, (Object)this, (Object)this, kSuspend, NULL);
 }
 
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer)

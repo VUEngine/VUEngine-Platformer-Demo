@@ -75,7 +75,8 @@ enum PlatformerLevelStateMessageTypes
 	kOpenDoor,
 	kCloseDoor,
     kCheckForOverlappingDoor,
-
+    kSuspend,
+    
 	// don't remove me
 	kLastPlatformerMessage
 };

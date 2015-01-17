@@ -312,7 +312,13 @@ MSpriteROMDef TEST_BG_SPRITE =
 	(TextureDefinition**)TEST_BG_TEXTURES,
 	
 	// SCX/SCY
-	WRLD_1x2,
+	WRLD_1x1,
+
+	// x loop
+	false,
+	
+	// y loop
+	false
 };
 
 SpriteROMDef* TEST_BG_SPRITES[] =
