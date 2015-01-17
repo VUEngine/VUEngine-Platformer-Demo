@@ -102,7 +102,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
     {
 		case kEnterDoor:
 
-			if(this->destination)
+			if (Door_hasDestination(this))
 			{
 				PlatformerLevelState_goToLevel((StageDefinition*)this->destination);
 				return true;
@@ -111,7 +111,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 		case kOpenDoor:
 
-			if(this->destination) 
+			if (Door_hasDestination(this))
 			{
 				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Opening");
 			}
@@ -119,7 +119,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 			
 		case kCloseDoor:
 
-			if(this->destination) 
+			if (Door_hasDestination(this))
 			{
 				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Closing");
 			}
