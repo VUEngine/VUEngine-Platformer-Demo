@@ -65,6 +65,9 @@ TextureROMDef FLOOR_22x8_L_TX =
     // rows (max 28)
     8 + 1,
 
+    // number of frames
+    1,
+
     // palette number
     1,
 };
@@ -93,6 +96,9 @@ TextureROMDef FLOOR_22x8_R_TX =
 
     // rows (max 28)
     8 + 1,
+
+    // number of frames
+    1,
 
     // palette number
     1,

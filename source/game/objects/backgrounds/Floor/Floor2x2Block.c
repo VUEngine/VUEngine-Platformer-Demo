@@ -65,6 +65,9 @@ TextureROMDef FLOOR_2x2_BLOCK_L_TX =
     // rows (max 28)
     2 + 1,
 
+    // number of frames
+    1,
+
     // palette number
     1,
 };
@@ -93,6 +96,9 @@ TextureROMDef FLOOR_2x2_BLOCK_R_TX =
 
     // rows (max 28)
     2 + 1,
+
+    // number of frames
+    1,
 
     // palette number
     1,

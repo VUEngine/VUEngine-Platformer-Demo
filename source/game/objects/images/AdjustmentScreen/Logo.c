@@ -62,6 +62,9 @@ TextureROMDef ADJUSTMENT_SCREEN_LOGO_TX =
     // rows (max 28)
     5,
 
+    // number of frames
+    1,
+
     // palette number
     1,
 };

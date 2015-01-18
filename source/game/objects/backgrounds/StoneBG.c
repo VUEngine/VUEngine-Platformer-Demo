@@ -63,6 +63,9 @@ TextureROMDef STONE_BG_TX =
     // rows (max 28)
     24,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };

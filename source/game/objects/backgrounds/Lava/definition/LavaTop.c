@@ -65,9 +65,6 @@ AnimationFunctionROMDef LAVA_TOP_ANIM_1 =
 // an animation definition
 AnimationDescriptionROMDef LAVA_TOP_ANIM =
 {
-	// total number of animation frames
-	9,
-	
 	// animation functions
 	{
 		(AnimationFunction*)&LAVA_TOP_ANIM_1,
@@ -98,6 +95,9 @@ TextureROMDef LAVA_TOP_TX =
     48,
 
     // rows (max 28)
+    1,
+
+    // number of frames
     1,
 
     // palette number

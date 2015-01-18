@@ -63,9 +63,6 @@ AnimationFunctionROMDef KEY_SPIN_ANIM =
 // an animation definition
 AnimationDescriptionROMDef KEY_ANIM =
 {
-	// total number of animation frames
-	8,
-	
 	// animation functions
 	{
 		(AnimationFunction*)&KEY_SPIN_ANIM,
@@ -97,6 +94,9 @@ TextureROMDef KEY_TX =
 
     // rows (max 28)
     2,
+
+    // number of frames
+    8,
 
     // palette number
     1,

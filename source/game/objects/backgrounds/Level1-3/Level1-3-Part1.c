@@ -62,6 +62,9 @@ TextureROMDef LEVEL1_3_PART1_L_TX =
     // rows (max 28)
     28,
 
+    // number of frames
+    1,
+
     // palette number
     1,
 };

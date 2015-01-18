@@ -59,6 +59,9 @@ TextureROMDef ADJUSTMENT_SCREEN_ICON_TX =
     // rows (max 28)
     2,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };

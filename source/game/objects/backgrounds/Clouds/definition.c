@@ -64,6 +64,9 @@ TextureROMDef CLOUDS_A_TX =
     // rows (max 28)
     7,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };
@@ -92,6 +95,9 @@ TextureROMDef CLOUDS_B_TX =
 
     // rows (max 28)
     7,
+
+    // number of frames
+    1,
 
     // palette number
     0,

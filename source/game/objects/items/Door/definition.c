@@ -129,9 +129,6 @@ AnimationFunctionROMDef DOOR_CLOSED_ANIM =
 // an animation definition
 AnimationDescriptionROMDef DOOR_ANIM =
 {
-	// total number of animation frames
-	4,
-	
 	// animation functions
 	{
 		(AnimationFunction*)&DOOR_OPENINIG_ANIM,
@@ -165,6 +162,9 @@ TextureROMDef DOOR_TX =
     3,
 
     // rows (max 28)
+    4,
+
+    // number of frames
     4,
 
     // palette number

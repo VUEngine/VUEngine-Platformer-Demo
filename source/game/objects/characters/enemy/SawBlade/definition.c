@@ -97,6 +97,9 @@ TextureDefinition SAW_BLADE_TX =
     // rows (max 28)
     3,
 
+    // number of frames
+    2,
+
     // palette number
     1,
 };

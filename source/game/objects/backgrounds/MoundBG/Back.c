@@ -63,6 +63,9 @@ TextureROMDef MOUND_BG_BACK_TX =
     // rows (max 28)
     16,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };

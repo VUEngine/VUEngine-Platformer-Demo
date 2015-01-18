@@ -62,6 +62,9 @@ TextureROMDef SAW_BLADE_LANE_V_6_TX =
     // rows (max 28)
     6,
 
+    // number of frames
+    1,
+
     // palette number
     1,
 };

@@ -68,7 +68,10 @@ TextureROMDef LOGO_LEFT_TX =
     // rows (max 28)
     7,
 
-    // palette number
+    // number of frames
+    1,
+
+   // palette number
     0,
 };
 
@@ -96,6 +99,9 @@ TextureROMDef LOGO_RIGHT_TX =
 
     // rows (max 28)
     7,
+
+    // number of frames
+    1,
 
     // palette number
     0,
@@ -176,6 +182,9 @@ TextureROMDef SUPER_AWESOME_TX =
     // rows (max 28)
     2,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };
@@ -254,6 +263,9 @@ TextureROMDef VBJAENGINE_TX =
 
     // rows (max 28)
     4,
+
+    // number of frames
+    1,
 
     // palette number
     0,

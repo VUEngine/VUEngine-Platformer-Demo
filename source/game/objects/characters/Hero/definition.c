@@ -309,9 +309,6 @@ AnimationFunctionROMDef HERO_BACK_ANIM =
 // an animation definition
 AnimationDescriptionROMDef HERO_ANIM =
 {
-	// total number of animation frames
-	15,
-	
 	// animation functions
 	{
 		(AnimationFunction*)&HERO_IDLE_ANIM,
@@ -353,6 +350,9 @@ TextureROMDef HERO_TX =
 
     // rows (max 28)
     3,
+
+    // number of frames
+    1,
 
     // palette number
     1,

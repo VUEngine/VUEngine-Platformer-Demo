@@ -62,6 +62,9 @@ TextureROMDef VBJAENGINE_BG_TX =
     // rows (max 28)
     28,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };

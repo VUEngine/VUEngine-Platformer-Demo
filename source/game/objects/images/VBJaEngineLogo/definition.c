@@ -64,7 +64,10 @@ TextureROMDef VBJAENGINE_LOGO_3D_TX =
     // rows (max 28)
     9,
 
-    // palette number
+    // number of frames
+    1,
+
+   // palette number
     0,
 };
 
@@ -92,6 +95,9 @@ TextureROMDef VBJAENGINE_LOGO_OUTLINE_TX =
 
     // rows (max 28)
     9,
+
+    // number of frames
+    1,
 
     // palette number
     0,

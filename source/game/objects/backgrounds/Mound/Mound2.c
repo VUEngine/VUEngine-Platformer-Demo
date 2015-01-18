@@ -62,6 +62,9 @@ TextureROMDef MOUND_2_TX =
     // rows (max 28)
     12,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };

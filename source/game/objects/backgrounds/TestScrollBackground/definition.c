@@ -70,6 +70,9 @@ TextureROMDef TEST_BG_1_TX =
     // rows (max 28)
     64,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };
@@ -98,6 +101,9 @@ TextureROMDef TEST_BG_2_TX =
 
     // rows (max 28)
     64,
+
+    // number of frames
+    1,
 
     // palette number
     0,
@@ -128,6 +134,9 @@ TextureROMDef TEST_BG_3_TX =
     // rows (max 28)
     64,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };
@@ -156,6 +165,9 @@ TextureROMDef TEST_BG_4_TX =
 
     // rows (max 28)
     64,
+
+    // number of frames
+    1,
 
     // palette number
     0,
@@ -186,6 +198,9 @@ TextureROMDef TEST_BG_5_TX =
     // rows (max 28)
     64,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };
@@ -214,6 +229,9 @@ TextureROMDef TEST_BG_6_TX =
 
     // rows (max 28)
     64,
+
+    // number of frames
+    1,
 
     // palette number
     0,
@@ -244,6 +262,9 @@ TextureROMDef TEST_BG_7_TX =
     // rows (max 28)
     64,
 
+    // number of frames
+    1,
+
     // palette number
     0,
 };
@@ -272,6 +293,9 @@ TextureROMDef TEST_BG_8_TX =
 
     // rows (max 28)
     64,
+
+    // number of frames
+    1,
 
     // palette number
     0,

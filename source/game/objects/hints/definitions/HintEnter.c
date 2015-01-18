@@ -131,9 +131,6 @@ AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 // an animation definition
 AnimationDescriptionROMDef HINT_ENTER_ANIM =
 {
-	// total number of animation frames
-	9,
-	
 	// animation functions
 	{
 		(AnimationFunction*)&HINT_ENTER_OPEN_ANIM,
@@ -168,6 +165,9 @@ TextureROMDef HINT_ENTER_TX =
 
     // rows (max 28)
     3,
+
+    // number of frames
+    9,
 
     // palette number
     1,

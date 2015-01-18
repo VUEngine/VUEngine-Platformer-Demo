@@ -85,9 +85,6 @@ AnimationFunctionROMDef COIN_TAKEN_ANIM =
 // an animation definition
 AnimationDescriptionROMDef COIN_ANIM =
 {
-	// total number of animation frames
-	7,
-	
 	// animation functions
 	{
 		(AnimationFunction*)&COIN_SPIN_ANIM,
@@ -120,6 +117,9 @@ TextureROMDef COIN_TX =
 
     // rows (max 28)
     2,
+
+    // number of frames
+    7,
 
     // palette number
     1,
