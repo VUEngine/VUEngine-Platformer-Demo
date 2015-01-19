@@ -62,9 +62,6 @@ AnimationFunction SAW_BLADE_SPIN_ANIM =
 // an animation definition
 AnimationDescription SAW_BLADE_ANIM =
 {
-	// total number of animation frames
-	2,
-	
 	// animation functions
 	{
 		&SAW_BLADE_SPIN_ANIM,
