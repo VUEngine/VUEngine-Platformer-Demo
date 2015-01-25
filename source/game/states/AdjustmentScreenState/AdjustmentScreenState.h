@@ -18,26 +18,48 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef STATES_H_
-#define STATES_H_
+#ifndef ADJUSTMENT_SCREEN_STATE_H_
+#define ADJUSTMENT_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <SplashScreenState.h>
-#include <AdjustmentScreenState.h>
-#include <TitleScreenState.h>
-#include <PlatformerLevelState.h>
-#include <AutomaticPauseScreenState.h>
-
-#include "stages.h"
+#include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
+
+// declare the virtual methods
+#define AdjustmentScreenState_METHODS													\
+	GameState_METHODS;											    					\
+
+// declare the virtual methods which are redefined
+#define AdjustmentScreenState_SET_VTABLE(ClassName)										\
+	GameState_SET_VTABLE(ClassName)								    					\
+	__VIRTUAL_SET(ClassName, AdjustmentScreenState, enter);								\
+	__VIRTUAL_SET(ClassName, AdjustmentScreenState, exit);								\
+	__VIRTUAL_SET(ClassName, AdjustmentScreenState, execute);							\
+	__VIRTUAL_SET(ClassName, AdjustmentScreenState, resume);							\
+	__VIRTUAL_SET(ClassName, AdjustmentScreenState, handleMessage);						\
+
+
+__CLASS(AdjustmentScreenState);
+
+#define AdjustmentScreenState_ATTRIBUTES								   				\
+														            					\
+	/* inherits */																		\
+	GameState_ATTRIBUTES																\
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+AdjustmentScreenState AdjustmentScreenState_getInstance(void);
 
 
 #endif

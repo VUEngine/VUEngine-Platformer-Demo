@@ -35,22 +35,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define LanguageSelectionState_METHODS												\
+#define LanguageSelectionScreenState_METHODS												\
 	GameState_METHODS;											    				\
 
 // declare the virtual methods which are redefined
-#define LanguageSelectionState_SET_VTABLE(ClassName)								\
+#define LanguageSelectionScreenState_SET_VTABLE(ClassName)								\
 	GameState_SET_VTABLE(ClassName)								    				\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, enter);						\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, exit);							\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, execute);						\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, resume);						\
-	__VIRTUAL_SET(ClassName, LanguageSelectionState, handleMessage);				\
+	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, enter);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, exit);							\
+	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, execute);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, resume);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, handleMessage);				\
 
 
-__CLASS(LanguageSelectionState);
+__CLASS(LanguageSelectionScreenState);
 
-#define LanguageSelectionState_ATTRIBUTES								   			\
+#define LanguageSelectionScreenState_ATTRIBUTES								   			\
 														            				\
 	/* inherits */																	\
 	GameState_ATTRIBUTES															\
@@ -62,7 +62,7 @@ __CLASS(LanguageSelectionState);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-LanguageSelectionState LanguageSelectionState_getInstance(void);
+LanguageSelectionScreenState LanguageSelectionScreenState_getInstance(void);
 
 
 #endif

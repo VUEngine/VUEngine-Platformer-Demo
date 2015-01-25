@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
+#include <GameState.h>
 #include <Screen.h>
 #include <I18n.h>
 #include <Printing.h>
@@ -32,8 +33,11 @@
 #include <macros.h>
 #include <text.h>
 #include "stages.h"
-#include <LanguageSelectionState.h>
-#include <AutomaticPauseSelectionState.h>
+
+#include <AdjustmentScreenState.h>
+#include <PrecautionScreenState.h>
+#include <AutomaticPauseSelectionScreenState.h>
+#include <LanguageSelectionScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,25 +47,7 @@
 static void SplashScreenState_destructor(SplashScreenState this);
 static void SplashScreenState_constructor(SplashScreenState this);
 static void SplashScreenState_enter(SplashScreenState this, void* owner);
-static void SplashScreenState_execute(SplashScreenState this, void* owner);
 static void SplashScreenState_exit(SplashScreenState this, void* owner);
-static void SplashScreenState_resume(SplashScreenState this, void* owner);
-static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram);
-static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition* stageDefinition);
-static void SplashScreenState_print(SplashScreenState this);
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-enum Screens
-{
-	kAdjustmentScreen = 0,
-	kPrecautionScreen,
-	kVbJaeScreen,
-	kSplashExitScreen
-};
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -73,8 +59,11 @@ enum Screens
 	/* inherits */																\
 	GameState_ATTRIBUTES														\
 																				\
-	/* screen */																\
+	/* currently active screen */												\
 	u8 currentScreen;															\
+																				\
+	/* screens */																\
+	GameState screens[];														\
 
 __CLASS_DEFINITION(SplashScreenState);
 __SINGLETON_DYNAMIC(SplashScreenState);
@@ -90,6 +79,9 @@ static void SplashScreenState_constructor(SplashScreenState this)
 	__CONSTRUCT_BASE(GameState);
 	
 	this->currentScreen = 0;
+	this->screens[0] = (GameState)AdjustmentScreenState_getInstance();
+	this->screens[1] = (GameState)PrecautionScreenState_getInstance();
+	this->screens[2] = (GameState)AutomaticPauseSelectionScreenState_getInstance();
 }
 
 // class's destructor
@@ -102,108 +94,18 @@ static void SplashScreenState_destructor(SplashScreenState this)
 // state's enter
 static void SplashScreenState_enter(SplashScreenState this, void* owner)
 {
-	GameState_loadStage((GameState)this, (StageDefinition*)&ADJUSTMENT_ST, false, true);
-
-	this->currentScreen = kAdjustmentScreen;
-	
-	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
-}
-
-// state's execute
-static void SplashScreenState_execute(SplashScreenState this, void* owner)
-{
-	if (this->currentScreen == kVbJaeScreen)
-    {
-		VBVec3D translation =
-        {
-			ITOFIX19_13(1),
-			ITOFIX19_13(0),
-			ITOFIX19_13(0)
-		};
-
-		Screen_move(Screen_getInstance(), translation, false);
-	}
+    Game_changeState(Game_getInstance(), (GameState)AdjustmentScreenState_getInstance());
+    //Game_changeState(Game_getInstance(), (GameState)this->screens[this->currentScreen]);
 }
 
 // state's exit
 static void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
-	// make a fade out
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
-
-	// destroy the state
-	__DELETE(this);
-}
-
-// state's resume
-static void SplashScreenState_resume(SplashScreenState this, void* owner)
-{
-	GameState_resume((GameState)this, owner);
-
-	SplashScreenState_print(this);
-}
-
-// state's on message
-static bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram)
-{
-	// process message
-	switch (Telegram_getMessage(telegram))
+    // TODO: check if last state reached
+    // sizeof(this->screens)/sizeof(this->screens[0])
+    if (true)
     {
-		case kKeyPressed:
-
-			switch (this->currentScreen)
-            {
-				case kAdjustmentScreen:
-
-					this->currentScreen = kPrecautionScreen;
-					SplashScreenState_loadStage(this, (StageDefinition*)&PRECAUTION_ST);
-					break;
-						
-				case kPrecautionScreen:
-
-					this->currentScreen = kVbJaeScreen;
-					SplashScreenState_loadStage(this, (StageDefinition*)&VBJAE_ST);
-					break;
-						
-				case kVbJaeScreen:
-				
-					this->currentScreen = kSplashExitScreen;
-					Game_changeState(Game_getInstance(), (GameState)AutomaticPauseSelectionState_getInstance());
-					break;
-			}
-
-			break;
-	}
-
-	return true;
-}
-
-// load stage
-static void SplashScreenState_loadStage(SplashScreenState this, StageDefinition* stageDefinition)
-{
-	// make a fade out
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
-	
-	// turn back the background
-	VIP_REGS[BKCOL] = 0x00;
-
-	GameState_loadStage((GameState)this, stageDefinition, false, true);
-
-	SplashScreenState_print(this);
-
-	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
-}
-
-static void SplashScreenState_print(SplashScreenState this)
-{
-	// do screen-specific preparations
-	switch (this->currentScreen)
-    {
-		case kPrecautionScreen:
-
-			Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION), 8, 6, NULL);
-			break;
-	}
+        // destroy the state
+        __DELETE(this);
+    }
 }

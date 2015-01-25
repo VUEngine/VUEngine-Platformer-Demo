@@ -34,7 +34,7 @@
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-PositionedEntityROMDef PRECAUTION_ST_ENTITIES[] =
+PositionedEntityROMDef PRECAUTION_SCREEN_ST_ENTITIES[] =
 {
 	{&PRECAUTION_SCREEN_JAPANESE_IM, {__SCREEN_WIDTH >> 1, 142, LAYER_0}, NULL, NULL, NULL},
 	{NULL,{0,0,0}, NULL, NULL, NULL},
@@ -45,7 +45,7 @@ PositionedEntityROMDef PRECAUTION_ST_ENTITIES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef PRECAUTION_ST =
+StageROMDef PRECAUTION_SCREEN_ST =
 {
     // size
     {
@@ -77,7 +77,7 @@ StageROMDef PRECAUTION_ST =
     },
 
     //entities
-    PRECAUTION_ST_ENTITIES,
+    PRECAUTION_SCREEN_ST_ENTITIES,
 
     //background music
     NULL,

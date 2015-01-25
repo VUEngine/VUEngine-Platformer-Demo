@@ -17,7 +17,7 @@ LangROMDef LANG_DE =
         "Automatische Pause",
 
 	    //STR_AUTOMATIC_PAUSE_EXPLANATION
-        " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
+        " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren.",
 
         // STR_LANGUAGE_SELECT
         "Sprachauswahl",

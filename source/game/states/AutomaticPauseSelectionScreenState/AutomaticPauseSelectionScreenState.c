@@ -28,9 +28,9 @@
 #include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
-#include <AutomaticPauseSelectionState.h>
+#include <AutomaticPauseSelectionScreenState.h>
 #include <AutomaticPauseScreenState.h>
-#include <LanguageSelectionState.h>
+#include <LanguageSelectionScreenState.h>
 #include <stages.h>
 #include <macros.h>
 #include <I18n.h>
@@ -41,24 +41,24 @@
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void AutomaticPauseSelectionState_destructor(AutomaticPauseSelectionState this);
-static void AutomaticPauseSelectionState_constructor(AutomaticPauseSelectionState this);
-static void AutomaticPauseSelectionState_enter(AutomaticPauseSelectionState this, void* owner);
-static void AutomaticPauseSelectionState_execute(AutomaticPauseSelectionState this, void* owner);
-static void AutomaticPauseSelectionState_exit(AutomaticPauseSelectionState this, void* owner);
-static void AutomaticPauseSelectionState_resume(AutomaticPauseSelectionState this, void* owner);
-static bool AutomaticPauseSelectionState_handleMessage(AutomaticPauseSelectionState this, void* owner, Telegram telegram);
-static void AutomaticPauseSelectionState_print(AutomaticPauseSelectionState this);
-static void AutomaticPauseSelectionState_renderSelection(AutomaticPauseSelectionState this);
-static void AutomaticPauseSelectionState_processInput(AutomaticPauseSelectionState this, u16 pressedKey);
+static void AutomaticPauseSelectionScreenState_destructor(AutomaticPauseSelectionScreenState this);
+static void AutomaticPauseSelectionScreenState_constructor(AutomaticPauseSelectionScreenState this);
+static void AutomaticPauseSelectionScreenState_enter(AutomaticPauseSelectionScreenState this, void* owner);
+static void AutomaticPauseSelectionScreenState_execute(AutomaticPauseSelectionScreenState this, void* owner);
+static void AutomaticPauseSelectionScreenState_exit(AutomaticPauseSelectionScreenState this, void* owner);
+static void AutomaticPauseSelectionScreenState_resume(AutomaticPauseSelectionScreenState this, void* owner);
+static bool AutomaticPauseSelectionScreenState_handleMessage(AutomaticPauseSelectionScreenState this, void* owner, Telegram telegram);
+static void AutomaticPauseSelectionScreenState_print(AutomaticPauseSelectionScreenState this);
+static void AutomaticPauseSelectionScreenState_renderSelection(AutomaticPauseSelectionScreenState this);
+static void AutomaticPauseSelectionScreenState_processInput(AutomaticPauseSelectionScreenState this, u16 pressedKey);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(AutomaticPauseSelectionState);
-__SINGLETON_DYNAMIC(AutomaticPauseSelectionState);
+__CLASS_DEFINITION(AutomaticPauseSelectionScreenState);
+__SINGLETON_DYNAMIC(AutomaticPauseSelectionScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ __SINGLETON_DYNAMIC(AutomaticPauseSelectionState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void AutomaticPauseSelectionState_constructor(AutomaticPauseSelectionState this)
+static void AutomaticPauseSelectionScreenState_constructor(AutomaticPauseSelectionScreenState this)
 {
     this->selection = true;
 
@@ -74,30 +74,30 @@ static void AutomaticPauseSelectionState_constructor(AutomaticPauseSelectionStat
 }
 
 // class's destructor
-static void AutomaticPauseSelectionState_destructor(AutomaticPauseSelectionState this)
+static void AutomaticPauseSelectionScreenState_destructor(AutomaticPauseSelectionScreenState this)
 {	// destroy base
 	__SINGLETON_DESTROY(GameState);
 }
 
 // state's enter
-static void AutomaticPauseSelectionState_enter(AutomaticPauseSelectionState this, void* owner)
+static void AutomaticPauseSelectionScreenState_enter(AutomaticPauseSelectionScreenState this, void* owner)
 {
 	GameState_loadStage((GameState)this, (StageDefinition*)&EMPTY_ST, true, true);
 
-	AutomaticPauseSelectionState_print(this);
+	AutomaticPauseSelectionScreenState_print(this);
 
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 }
 
 // state's execute
-static void AutomaticPauseSelectionState_execute(AutomaticPauseSelectionState this, void* owner)
+static void AutomaticPauseSelectionScreenState_execute(AutomaticPauseSelectionScreenState this, void* owner)
 {
  	// call base
 	GameState_execute((GameState)this, owner);
 }
 
 // state's exit
-static void AutomaticPauseSelectionState_exit(AutomaticPauseSelectionState this, void* owner)
+static void AutomaticPauseSelectionScreenState_exit(AutomaticPauseSelectionScreenState this, void* owner)
 {
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
 
@@ -106,15 +106,15 @@ static void AutomaticPauseSelectionState_exit(AutomaticPauseSelectionState this,
 }
 
 // state's resume
-static void AutomaticPauseSelectionState_resume(AutomaticPauseSelectionState this, void* owner)
+static void AutomaticPauseSelectionScreenState_resume(AutomaticPauseSelectionScreenState this, void* owner)
 {
 	GameState_resume((GameState)this, owner);
 	
-	AutomaticPauseSelectionState_print(this);
+	AutomaticPauseSelectionScreenState_print(this);
 }
 
 // state's on message
-static bool AutomaticPauseSelectionState_handleMessage(AutomaticPauseSelectionState this, void* owner, Telegram telegram)
+static bool AutomaticPauseSelectionScreenState_handleMessage(AutomaticPauseSelectionScreenState this, void* owner, Telegram telegram)
 {
 	switch (Telegram_getMessage(telegram))
 	{
@@ -122,7 +122,7 @@ static bool AutomaticPauseSelectionState_handleMessage(AutomaticPauseSelectionSt
 		{
             u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-            AutomaticPauseSelectionState_processInput(AutomaticPauseSelectionState_getInstance(), pressedKey);
+            AutomaticPauseSelectionScreenState_processInput(AutomaticPauseSelectionScreenState_getInstance(), pressedKey);
         }
         break;
 	}
@@ -130,7 +130,7 @@ static bool AutomaticPauseSelectionState_handleMessage(AutomaticPauseSelectionSt
 	return false;
 }
 
-static void AutomaticPauseSelectionState_print(AutomaticPauseSelectionState this)
+static void AutomaticPauseSelectionScreenState_print(AutomaticPauseSelectionScreenState this)
 {
     char* strHeader = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
     u8 strHeaderXPos = (48 - strlen(strHeader)) >> 1;
@@ -138,10 +138,10 @@ static void AutomaticPauseSelectionState_print(AutomaticPauseSelectionState this
 
     Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION), 8, 11, NULL);
 
-    AutomaticPauseSelectionState_renderSelection(this);
+    AutomaticPauseSelectionScreenState_renderSelection(this);
 }
 
-static void AutomaticPauseSelectionState_renderSelection(AutomaticPauseSelectionState this)
+static void AutomaticPauseSelectionScreenState_renderSelection(AutomaticPauseSelectionScreenState this)
 {
     // get strings and determine lengths
     char* strOn = I18n_getText(I18n_getInstance(), STR_ON);
@@ -171,16 +171,16 @@ static void AutomaticPauseSelectionState_renderSelection(AutomaticPauseSelection
     Printing_text(Printing_getInstance(), "\x05               ", optionEnd, 18, NULL);
 }
 
-static void AutomaticPauseSelectionState_processInput(AutomaticPauseSelectionState this, u16 pressedKey)
+static void AutomaticPauseSelectionScreenState_processInput(AutomaticPauseSelectionScreenState this, u16 pressedKey)
 {
 	if ((pressedKey & K_LL) || (pressedKey & K_LR))
 	{
 	    this->selection = !this->selection;
-	    AutomaticPauseSelectionState_renderSelection(this);
+	    AutomaticPauseSelectionScreenState_renderSelection(this);
 	}
 	else if ((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-		Game_setAutomaticPauseState(Game_getInstance(), this->selection? (GameState)AutomaticPauseScreenState_getInstance(): NULL);
-	    Game_changeState(Game_getInstance(), (GameState)LanguageSelectionState_getInstance());
+		Game_setAutomaticPauseState(Game_getInstance(), this->selection ? (GameState)AutomaticPauseScreenState_getInstance() : NULL);
+	    Game_changeState(Game_getInstance(), (GameState)LanguageSelectionScreenState_getInstance());
 	}
 }

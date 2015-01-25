@@ -51,7 +51,7 @@ int main(void)
 	//Printing_registerFont(Printing_getInstance(), &PLATFORMER_LARGE_FONT);
 
     // start the game
-	Game_start(Game_getInstance(), (GameState)SplashScreenState_getInstance());
+	Game_start(Game_getInstance(), (GameState)AdjustmentScreenState_getInstance());
 	// for quick level testing comment the line above and uncomment the line below
 	// Game_start(Game_getInstance(), (GameState)TitleScreenState_getInstance());
 	// Game_start(Game_getInstance(), (GameState)PlatformerLevelState_getInstance());

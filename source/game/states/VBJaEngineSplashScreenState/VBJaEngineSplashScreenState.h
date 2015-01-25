@@ -18,78 +18,48 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
+#ifndef VBJAENGINE_SPLASH_SCREEN_STATE_H_
+#define VBJAENGINE_SPLASH_SCREEN_STATE_H_
+
+
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Stage.h>
-#include <objects.h>
-#include <macros.h>
+#include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												ASSETS
-//---------------------------------------------------------------------------------------------------------
-/* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
- * know that it must stop reading the stage's/ui's textures ante enties.
- */
-
-PositionedEntityROMDef ADJUSTMENT_SCREEN_ST_ENTITIES[] =
-{
-	{&ADJUSTMENT_SCREEN_BG_IM, 		{ __SCREEN_WIDTH >> 1,   __SCREEN_HEIGHT >> 1, 	LAYER_1}, NULL, NULL, NULL},
-	{&ADJUSTMENT_SCREEN_LOGO_IM,	{ __SCREEN_WIDTH >> 1,   				  100, 	LAYER_0}, NULL, NULL, NULL},
-	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{					8,						8, 	LAYER_0}, NULL, NULL, NULL},
-	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{   __SCREEN_WIDTH -8,	  __SCREEN_HEIGHT - 8, 	LAYER_0}, NULL, NULL, NULL},
-	{&ADJUSTMENT_SCREEN_ICON_IM_R,	{   __SCREEN_WIDTH -8,						8, 	LAYER_0}, NULL, NULL, NULL},
-	{&ADJUSTMENT_SCREEN_ICON_IM_R,	{					8,	  __SCREEN_HEIGHT - 8, 	LAYER_0}, NULL, NULL, NULL},
-	{NULL,{0,0,0}, NULL, NULL, NULL},
-};
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											STAGE DEFINITION
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef ADJUSTMENT_SCREEN_ST =
-{
-    // size
-    {
-        // x
-        __SCREEN_WIDTH,
-        // y
-        __SCREEN_HEIGHT,
-        // z
-        1
-    },
+// declare the virtual methods
+#define VBJaEngineSplashScreenState_METHODS													\
+	GameState_METHODS;											    					\
 
-    //initial screen position
-    {
-        // x
-        ITOFIX19_13(0),
-        // y
-        ITOFIX19_13(0),
-        //z
-        ITOFIX19_13(__ZZERO)
-    },
+// declare the virtual methods which are redefined
+#define VBJaEngineSplashScreenState_SET_VTABLE(ClassName)										\
+	GameState_SET_VTABLE(ClassName)								    					\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, enter);								\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, exit);								\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, execute);							\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, resume);							\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, handleMessage);						\
 
-    //textures
-    NULL,
 
-    //UI entities
-    {
-        NULL,
-        NULL
-    },
+__CLASS(VBJaEngineSplashScreenState);
 
-    //entities
-    ADJUSTMENT_SCREEN_ST_ENTITIES,
+#define VBJaEngineSplashScreenState_ATTRIBUTES								   				\
+														            					\
+	/* inherits */																		\
+	GameState_ATTRIBUTES																\
 
-    //background music
-    NULL,
 
-    //identifier
-    "",
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
 
-    //name
-    "",
-};
+VBJaEngineSplashScreenState VBJaEngineSplashScreenState_getInstance(void);
+
+
+#endif

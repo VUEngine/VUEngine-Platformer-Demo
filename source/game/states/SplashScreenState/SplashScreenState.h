@@ -41,10 +41,7 @@
 #define SplashScreenState_SET_VTABLE(ClassName)										\
 	GameState_SET_VTABLE(ClassName)													\
 	__VIRTUAL_SET(ClassName, SplashScreenState, enter);								\
-	__VIRTUAL_SET(ClassName, SplashScreenState, execute);							\
 	__VIRTUAL_SET(ClassName, SplashScreenState, exit);								\
-	__VIRTUAL_SET(ClassName, SplashScreenState, resume);							\
-	__VIRTUAL_SET(ClassName, SplashScreenState, handleMessage);						\
 
 __CLASS(SplashScreenState);
 

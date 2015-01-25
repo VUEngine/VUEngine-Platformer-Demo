@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef AUTOMATIC_PAUSE_SELECTION_STATE_H_
-#define AUTOMATIC_PAUSE_SELECTION_STATE_H_
+#ifndef PRECAUTION_SCREEN_STATE_H_
+#define PRECAUTION_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,34 +34,32 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define AutomaticPauseSelectionState_METHODS										\
-	GameState_METHODS;											    				\
+#define PrecautionScreenState_METHODS													\
+	GameState_METHODS;											    					\
 
 // declare the virtual methods which are redefined
-#define AutomaticPauseSelectionState_SET_VTABLE(ClassName)							\
-	GameState_SET_VTABLE(ClassName)								    				\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, enter);					\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, exit);					\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, execute);				\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, resume);					\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionState, handleMessage);			\
+#define PrecautionScreenState_SET_VTABLE(ClassName)										\
+	GameState_SET_VTABLE(ClassName)								    					\
+	__VIRTUAL_SET(ClassName, PrecautionScreenState, enter);								\
+	__VIRTUAL_SET(ClassName, PrecautionScreenState, exit);								\
+	__VIRTUAL_SET(ClassName, PrecautionScreenState, execute);							\
+	__VIRTUAL_SET(ClassName, PrecautionScreenState, resume);							\
+	__VIRTUAL_SET(ClassName, PrecautionScreenState, handleMessage);						\
 
 
-__CLASS(AutomaticPauseSelectionState);
+__CLASS(PrecautionScreenState);
 
-#define AutomaticPauseSelectionState_ATTRIBUTES							   			\
-														            				\
-	/* inherits */																	\
-	GameState_ATTRIBUTES															\
-																					\
-	bool selection;																	\
+#define PrecautionScreenState_ATTRIBUTES								   				\
+														            					\
+	/* inherits */																		\
+	GameState_ATTRIBUTES																\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-AutomaticPauseSelectionState AutomaticPauseSelectionState_getInstance(void);
+PrecautionScreenState PrecautionScreenState_getInstance(void);
 
 
 #endif

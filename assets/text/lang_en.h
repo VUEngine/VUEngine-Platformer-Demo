@@ -15,7 +15,7 @@ LangROMDef LANG_EN =
         "Automatic Pause",
 
 	    //STR_AUTOMATIC_PAUSE_EXPLANATION
-        "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
+        "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes.",
 
         // STR_LANGUAGE_SELECT
         "Language Selection",

@@ -34,14 +34,14 @@
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-PositionedEntityROMDef VBJAE_ST_UI_ENTITIES[] =
+PositionedEntityROMDef VBJAENGINE_SPLASH_SCREEN_ST_UI_ENTITIES[] =
 {
 	{&VBJAENGINE_LOGO_3D_IM, {(__SCREEN_WIDTH >> 1) - 8, (__SCREEN_HEIGHT >> 1) - 4, LAYER_0}, NULL, NULL, NULL},
 	{&VBJAENGINE_LOGO_OUTLINE_IM, {(__SCREEN_WIDTH >> 1) + 5, __SCREEN_HEIGHT >> 1, LAYER_0}, NULL, NULL, NULL},
 	{NULL,{0,0,0}, NULL, NULL, NULL},
 };
 
-PositionedEntityROMDef VBJAE_ST_ENTITIES[] =
+PositionedEntityROMDef VBJAENGINE_SPLASH_SCREEN_ST_ENTITIES[] =
 {
 	{&VBJAENGINE_BG_SB, {0, __SCREEN_HEIGHT >> 1, LAYER_0 + 32}, NULL, NULL, NULL},
 	{NULL,{0,0,0}, NULL, NULL, NULL},
@@ -52,7 +52,7 @@ PositionedEntityROMDef VBJAE_ST_ENTITIES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef VBJAE_ST =
+StageROMDef VBJAENGINE_SPLASH_SCREEN_ST =
 {
     // size
     {
@@ -79,12 +79,12 @@ StageROMDef VBJAE_ST =
 
     //UI entities
     {
-        VBJAE_ST_UI_ENTITIES,
+        VBJAENGINE_SPLASH_SCREEN_ST_UI_ENTITIES,
         __TYPE(UI),
     },
 
     //entities
-    VBJAE_ST_ENTITIES,
+    VBJAENGINE_SPLASH_SCREEN_ST_ENTITIES,
 
     //background music
     NULL,

@@ -28,8 +28,8 @@
 #include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
-#include <LanguageSelectionState.h>
-#include <TitleScreenState.h>
+#include <LanguageSelectionScreenState.h>
+#include <VBJaEngineSplashScreenState.h>
 #include <stages.h>
 #include <macros.h>
 #include <I18n.h>
@@ -40,23 +40,23 @@
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void LanguageSelectionState_destructor(LanguageSelectionState this);
-static void LanguageSelectionState_constructor(LanguageSelectionState this);
-static void LanguageSelectionState_enter(LanguageSelectionState this, void* owner);
-static void LanguageSelectionState_execute(LanguageSelectionState this, void* owner);
-static void LanguageSelectionState_exit(LanguageSelectionState this, void* owner);
-static void LanguageSelectionState_resume(LanguageSelectionState this, void* owner);
-static bool LanguageSelectionState_handleMessage(LanguageSelectionState this, void* owner, Telegram telegram);
-static void LanguageSelectionState_processInput(LanguageSelectionState this, u16 pressedKey);
-static void LanguageSelectionState_print(LanguageSelectionState this);
+static void LanguageSelectionScreenState_destructor(LanguageSelectionScreenState this);
+static void LanguageSelectionScreenState_constructor(LanguageSelectionScreenState this);
+static void LanguageSelectionScreenState_enter(LanguageSelectionScreenState this, void* owner);
+static void LanguageSelectionScreenState_execute(LanguageSelectionScreenState this, void* owner);
+static void LanguageSelectionScreenState_exit(LanguageSelectionScreenState this, void* owner);
+static void LanguageSelectionScreenState_resume(LanguageSelectionScreenState this, void* owner);
+static bool LanguageSelectionScreenState_handleMessage(LanguageSelectionScreenState this, void* owner, Telegram telegram);
+static void LanguageSelectionScreenState_processInput(LanguageSelectionScreenState this, u16 pressedKey);
+static void LanguageSelectionScreenState_print(LanguageSelectionScreenState this);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(LanguageSelectionState);
-__SINGLETON_DYNAMIC(LanguageSelectionState);
+__CLASS_DEFINITION(LanguageSelectionScreenState);
+__SINGLETON_DYNAMIC(LanguageSelectionScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ __SINGLETON_DYNAMIC(LanguageSelectionState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void LanguageSelectionState_constructor(LanguageSelectionState this)
+static void LanguageSelectionScreenState_constructor(LanguageSelectionScreenState this)
 {
     u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
 	this->languageSelector = __NEW(OptionsSelector, __ARGUMENTS(1, 8, "\x10", kString));
@@ -87,7 +87,7 @@ static void LanguageSelectionState_constructor(LanguageSelectionState this)
 }
 
 // class's destructor
-static void LanguageSelectionState_destructor(LanguageSelectionState this)
+static void LanguageSelectionScreenState_destructor(LanguageSelectionScreenState this)
 {
 	if (this->languageSelector)
 	{
@@ -99,24 +99,24 @@ static void LanguageSelectionState_destructor(LanguageSelectionState this)
 }
 
 // state's enter
-static void LanguageSelectionState_enter(LanguageSelectionState this, void* owner)
+static void LanguageSelectionScreenState_enter(LanguageSelectionScreenState this, void* owner)
 {
 	GameState_loadStage((GameState)this, (StageDefinition*)&EMPTY_ST, true, true);
 
-	LanguageSelectionState_print(this);
+	LanguageSelectionScreenState_print(this);
 	
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 }
 
 // state's execute
-static void LanguageSelectionState_execute(LanguageSelectionState this, void* owner)
+static void LanguageSelectionScreenState_execute(LanguageSelectionScreenState this, void* owner)
 {
  	// call base
 	GameState_execute((GameState)this, owner);
 }
 
 // state's exit
-static void LanguageSelectionState_exit(LanguageSelectionState this, void* owner)
+static void LanguageSelectionScreenState_exit(LanguageSelectionScreenState this, void* owner)
 {
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
 
@@ -125,7 +125,7 @@ static void LanguageSelectionState_exit(LanguageSelectionState this, void* owner
 }
 
 // state's resume
-static void LanguageSelectionState_resume(LanguageSelectionState this, void* owner)
+static void LanguageSelectionScreenState_resume(LanguageSelectionScreenState this, void* owner)
 {
 	GameState_resume((GameState)this, owner);
 	
@@ -155,11 +155,11 @@ static void LanguageSelectionState_resume(LanguageSelectionState this, void* own
 	}
 #endif
 	
-	LanguageSelectionState_print(this);
+	LanguageSelectionScreenState_print(this);
 }
 
 // state's on message
-static bool LanguageSelectionState_handleMessage(LanguageSelectionState this, void* owner, Telegram telegram)
+static bool LanguageSelectionScreenState_handleMessage(LanguageSelectionScreenState this, void* owner, Telegram telegram)
 {
 	switch (Telegram_getMessage(telegram))
 	{
@@ -167,7 +167,7 @@ static bool LanguageSelectionState_handleMessage(LanguageSelectionState this, vo
 		{
             u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-            LanguageSelectionState_processInput(LanguageSelectionState_getInstance(), pressedKey);
+            LanguageSelectionScreenState_processInput(LanguageSelectionScreenState_getInstance(), pressedKey);
         }
         break;
 	}
@@ -175,7 +175,7 @@ static bool LanguageSelectionState_handleMessage(LanguageSelectionState this, vo
 	return false;
 }
 
-static void LanguageSelectionState_processInput(LanguageSelectionState this, u16 pressedKey)
+static void LanguageSelectionScreenState_processInput(LanguageSelectionScreenState this, u16 pressedKey)
 {
 	if (pressedKey & K_LU)
 	{
@@ -188,11 +188,11 @@ static void LanguageSelectionState_processInput(LanguageSelectionState this, u16
 	else if (pressedKey & K_A)
 	{
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
-	    Game_changeState(Game_getInstance(), (GameState)TitleScreenState_getInstance());
+	    Game_changeState(Game_getInstance(), (GameState)VBJaEngineSplashScreenState_getInstance());
 	}
 }
 
-static void LanguageSelectionState_print(LanguageSelectionState this)
+static void LanguageSelectionScreenState_print(LanguageSelectionScreenState this)
 {
     char* strHeader = I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT);
     u8 strHeaderXPos = (48 - strlen(strHeader)) >> 1;
