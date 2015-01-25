@@ -87,7 +87,7 @@ static void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
 
     PrecautionScreenState_print(this);
 
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+	Screen_FXFadeIn(Screen_getInstance(), 16);
 }
 
 // state's execute
@@ -100,7 +100,7 @@ static void PrecautionScreenState_execute(PrecautionScreenState this, void* owne
 // state's exit
 static void PrecautionScreenState_exit(PrecautionScreenState this, void* owner)
 {
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
+	Screen_FXFadeOut(Screen_getInstance(), 16);
 
 	// destroy the state
 	__DELETE(this);
@@ -125,7 +125,7 @@ static void PrecautionScreenState_resume(PrecautionScreenState this, void* owner
 #endif
 	
 	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
+	Screen_FXFadeIn(Screen_getInstance(), 16 >> 1);
 
 #ifdef __DEBUG_TOOLS
 	}

@@ -42,7 +42,6 @@ extern EntityDefinition MOUND_BG_BACK_SB;
 extern EntityDefinition MOUND_BG_MIDDLE_SB;
 extern EntityDefinition MOUND_BG_FRONT_SB;
 extern EntityDefinition MOUND_BG_CASTLE_IM;
-extern EntityDefinition VBJAENGINE_BG_SB;
 extern EntityDefinition CLOUDS_SB;
 
 extern EntityDefinition LEVEL1_3_PART1_IM;

@@ -88,7 +88,7 @@ static void AutomaticPauseSelectionScreenState_enter(AutomaticPauseSelectionScre
 
 	AutomaticPauseSelectionScreenState_print(this);
 
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+	Screen_FXFadeIn(Screen_getInstance(), 16);
 }
 
 // state's execute
@@ -101,7 +101,7 @@ static void AutomaticPauseSelectionScreenState_execute(AutomaticPauseSelectionSc
 // state's exit
 static void AutomaticPauseSelectionScreenState_exit(AutomaticPauseSelectionScreenState this, void* owner)
 {
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
+	Screen_FXFadeOut(Screen_getInstance(), 16);
 
 	// destroy the state
 	__DELETE(this);

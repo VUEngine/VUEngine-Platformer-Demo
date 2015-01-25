@@ -47,10 +47,11 @@ int main(void)
 	//Printing_registerFont(Printing_getInstance(), &PLATFORMER_LARGE_FONT);
 
     // define splash screen order
-	VBJaEngineSplashScreenState_setNextstate(VBJaEngineSplashScreenState_getInstance(), (GameState)TitleScreenState_getInstance());
+	VBJaEngineDefaultAdjustmentScreenState_setNextstate(VBJaEngineDefaultAdjustmentScreenState_getInstance(), (GameState)PrecautionScreenState_getInstance());
+	VBJaEngineDefaultSplashScreenState_setNextstate(VBJaEngineDefaultSplashScreenState_getInstance(), (GameState)TitleScreenState_getInstance());
 
     // start the game
-	Game_start(Game_getInstance(), (GameState)AdjustmentScreenState_getInstance());
+	Game_start(Game_getInstance(), (GameState)VBJaEngineDefaultAdjustmentScreenState_getInstance());
 	// for quick level testing comment the line above and uncomment the line below
 	// Game_start(Game_getInstance(), (GameState)TitleScreenState_getInstance());
 	// Game_start(Game_getInstance(), (GameState)PlatformerLevelState_getInstance());

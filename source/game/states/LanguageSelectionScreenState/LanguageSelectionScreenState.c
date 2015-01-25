@@ -29,7 +29,7 @@
 #include <Printing.h>
 #include <MessageDispatcher.h>
 #include <LanguageSelectionScreenState.h>
-#include <VBJaEngineSplashScreenState.h>
+#include <VBJaEngineDefaultSplashScreenState.h>
 #include <stages.h>
 #include <macros.h>
 #include <I18n.h>
@@ -66,7 +66,7 @@ __SINGLETON_DYNAMIC(LanguageSelectionScreenState);
 // class's constructor
 static void LanguageSelectionScreenState_constructor(LanguageSelectionScreenState this)
 {
-	LanguageSelectionScreenState_setNextstate(this, (GameState)VBJaEngineSplashScreenState_getInstance());
+	LanguageSelectionScreenState_setNextstate(this, (GameState)VBJaEngineDefaultSplashScreenState_getInstance());
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
 
     u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
@@ -108,7 +108,7 @@ static void LanguageSelectionScreenState_enter(LanguageSelectionScreenState this
 
 	LanguageSelectionScreenState_print(this);
 	
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+	Screen_FXFadeIn(Screen_getInstance(), 16);
 }
 
 // state's execute
@@ -121,7 +121,7 @@ static void LanguageSelectionScreenState_execute(LanguageSelectionScreenState th
 // state's exit
 static void LanguageSelectionScreenState_exit(LanguageSelectionScreenState this, void* owner)
 {
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
+	Screen_FXFadeOut(Screen_getInstance(), 16);
 
 	// destroy the state
 	__DELETE(this);
@@ -146,7 +146,7 @@ static void LanguageSelectionScreenState_resume(LanguageSelectionScreenState thi
 #endif
 	
 	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
+	Screen_FXFadeIn(Screen_getInstance(), 16 >> 1);
 
 #ifdef __DEBUG_TOOLS
 	}

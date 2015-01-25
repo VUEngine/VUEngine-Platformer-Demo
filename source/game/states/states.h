@@ -26,8 +26,9 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AdjustmentScreenState.h>
-#include <VBJaEngineSplashScreenState.h>
+#include <VBJaEngineDefaultAdjustmentScreenState.h>
+#include <PrecautionScreenState.h>
+#include <VBJaEngineDefaultSplashScreenState.h>
 
 #include <TitleScreenState.h>
 
