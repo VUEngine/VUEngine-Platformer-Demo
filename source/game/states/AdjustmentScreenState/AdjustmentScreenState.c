@@ -45,6 +45,7 @@ static void AdjustmentScreenState_exit(AdjustmentScreenState this, void* owner);
 static void AdjustmentScreenState_resume(AdjustmentScreenState this, void* owner);
 static bool AdjustmentScreenState_handleMessage(AdjustmentScreenState this, void* owner, Telegram telegram);
 static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u16 pressedKey);
+void AdjustmentScreenState_setNextstate(AdjustmentScreenState this, GameState nextState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -62,6 +63,9 @@ __SINGLETON_DYNAMIC(AdjustmentScreenState);
 // class's constructor
 static void AdjustmentScreenState_constructor(AdjustmentScreenState this)
 {
+	AdjustmentScreenState_setNextstate(this, (GameState)PrecautionScreenState_getInstance());
+	this->stageDefinition = (StageDefinition*)&ADJUSTMENT_SCREEN_ST;
+
 	__CONSTRUCT_BASE(GameState);
 }
 
@@ -75,7 +79,7 @@ static void AdjustmentScreenState_destructor(AdjustmentScreenState this)
 // state's enter
 static void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner)
 {
-	GameState_loadStage((GameState)this, (StageDefinition*)&ADJUSTMENT_SCREEN_ST, true, true);
+	GameState_loadStage((GameState)this, this->stageDefinition, true, true);
 
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 }
@@ -147,5 +151,10 @@ static bool AdjustmentScreenState_handleMessage(AdjustmentScreenState this, void
 
 static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u16 pressedKey)
 {
-	Game_changeState(Game_getInstance(), (GameState)PrecautionScreenState_getInstance());
+	Game_changeState(Game_getInstance(), this->nextState);
+}
+
+void AdjustmentScreenState_setNextstate(AdjustmentScreenState this, GameState nextState)
+{
+	this->nextState = nextState;
 }

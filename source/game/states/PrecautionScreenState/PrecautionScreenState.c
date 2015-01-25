@@ -49,6 +49,7 @@ static void PrecautionScreenState_resume(PrecautionScreenState this, void* owner
 static bool PrecautionScreenState_handleMessage(PrecautionScreenState this, void* owner, Telegram telegram);
 static void PrecautionScreenState_processInput(PrecautionScreenState this, u16 pressedKey);
 static void PrecautionScreenState_print(PrecautionScreenState this);
+void PrecautionScreenState_setNextstate(PrecautionScreenState this, GameState nextState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -66,6 +67,9 @@ __SINGLETON_DYNAMIC(PrecautionScreenState);
 // class's constructor
 static void PrecautionScreenState_constructor(PrecautionScreenState this)
 {
+	PrecautionScreenState_setNextstate(this, (GameState)AutomaticPauseSelectionScreenState_getInstance());
+	this->stageDefinition = (StageDefinition*)&PRECAUTION_SCREEN_ST;
+
 	__CONSTRUCT_BASE(GameState);
 }
 
@@ -79,7 +83,7 @@ static void PrecautionScreenState_destructor(PrecautionScreenState this)
 // state's enter
 static void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
 {
-	GameState_loadStage((GameState)this, (StageDefinition*)&PRECAUTION_SCREEN_ST, true, true);
+	GameState_loadStage((GameState)this, this->stageDefinition, true, true);
 
     PrecautionScreenState_print(this);
 
@@ -155,10 +159,15 @@ static bool PrecautionScreenState_handleMessage(PrecautionScreenState this, void
 
 static void PrecautionScreenState_processInput(PrecautionScreenState this, u16 pressedKey)
 {
-	Game_changeState(Game_getInstance(), (GameState)AutomaticPauseSelectionScreenState_getInstance());
+	Game_changeState(Game_getInstance(), this->nextState);
 }
 
 static void PrecautionScreenState_print(PrecautionScreenState this)
 {
     Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION), 8, 6, NULL);
+}
+
+void PrecautionScreenState_setNextstate(PrecautionScreenState this, GameState nextState)
+{
+	this->nextState = nextState;
 }

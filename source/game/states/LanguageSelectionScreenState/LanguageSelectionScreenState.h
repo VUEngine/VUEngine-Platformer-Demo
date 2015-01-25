@@ -35,15 +35,15 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define LanguageSelectionScreenState_METHODS												\
-	GameState_METHODS;											    				\
+#define LanguageSelectionScreenState_METHODS											\
+	GameState_METHODS;											    					\
 
 // declare the virtual methods which are redefined
 #define LanguageSelectionScreenState_SET_VTABLE(ClassName)								\
-	GameState_SET_VTABLE(ClassName)								    				\
+	GameState_SET_VTABLE(ClassName)								    					\
 	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, enter);						\
-	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, exit);							\
-	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, execute);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, exit);						\
+	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, execute);					\
 	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, resume);						\
 	__VIRTUAL_SET(ClassName, LanguageSelectionScreenState, handleMessage);				\
 
@@ -51,11 +51,17 @@
 __CLASS(LanguageSelectionScreenState);
 
 #define LanguageSelectionScreenState_ATTRIBUTES								   			\
-														            				\
-	/* inherits */																	\
-	GameState_ATTRIBUTES															\
-																					\
-	OptionsSelector languageSelector;												\
+														            					\
+	/* inherits */																		\
+	GameState_ATTRIBUTES																\
+														            					\
+	/* state to enter after this one */													\
+	GameState nextState;																\
+														            					\
+	/* definition of screen's stage */													\
+	StageDefinition* stageDefinition;													\
+																						\
+	OptionsSelector languageSelector;													\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,6 +69,8 @@ __CLASS(LanguageSelectionScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 LanguageSelectionScreenState LanguageSelectionScreenState_getInstance(void);
+
+void LanguageSelectionScreenState_setNextstate(LanguageSelectionScreenState this, GameState nextState);
 
 
 #endif

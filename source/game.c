@@ -27,8 +27,6 @@
 #include <lang.h>
 #include <lang_de.h>
 #include <lang_en.h>
-
-// include the game's states
 #include <states.h>
 
 
@@ -36,8 +34,6 @@
 // 										  GAME'S MAIN LOOP
 //---------------------------------------------------------------------------------------------------------
 
-// Main game algorithm
-// There should be no need to modify this.
 int main(void)
 {
 	// register languages
@@ -49,6 +45,9 @@ int main(void)
 	Printing_registerFont(Printing_getInstance(), &PLATFORMER_DEFAULT_FONT);
 	Printing_registerFont(Printing_getInstance(), &PLATFORMER_GUI_FONT);
 	//Printing_registerFont(Printing_getInstance(), &PLATFORMER_LARGE_FONT);
+
+    // define splash screen order
+	VBJaEngineSplashScreenState_setNextstate(VBJaEngineSplashScreenState_getInstance(), (GameState)TitleScreenState_getInstance());
 
     // start the game
 	Game_start(Game_getInstance(), (GameState)AdjustmentScreenState_getInstance());

@@ -35,26 +35,32 @@
 
 // declare the virtual methods
 #define AutomaticPauseSelectionScreenState_METHODS										\
-	GameState_METHODS;											    				\
+	GameState_METHODS;											    					\
 
 // declare the virtual methods which are redefined
-#define AutomaticPauseSelectionScreenState_SET_VTABLE(ClassName)							\
-	GameState_SET_VTABLE(ClassName)								    				\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionScreenState, enter);					\
+#define AutomaticPauseSelectionScreenState_SET_VTABLE(ClassName)						\
+	GameState_SET_VTABLE(ClassName)								    					\
+	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionScreenState, enter);				\
 	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionScreenState, exit);					\
 	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionScreenState, execute);				\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionScreenState, resume);					\
-	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionScreenState, handleMessage);			\
+	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionScreenState, resume);				\
+	__VIRTUAL_SET(ClassName, AutomaticPauseSelectionScreenState, handleMessage);		\
 
 
 __CLASS(AutomaticPauseSelectionScreenState);
 
-#define AutomaticPauseSelectionScreenState_ATTRIBUTES							   			\
-														            				\
-	/* inherits */																	\
-	GameState_ATTRIBUTES															\
-																					\
-	bool selection;																	\
+#define AutomaticPauseSelectionScreenState_ATTRIBUTES							   		\
+														            					\
+	/* inherits */																		\
+	GameState_ATTRIBUTES																\
+														            					\
+	/* state to enter after this one */													\
+	GameState nextState;																\
+														            					\
+	/* definition of screen's stage */													\
+	StageDefinition* stageDefinition;													\
+																						\
+	bool selection;																		\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -62,6 +68,8 @@ __CLASS(AutomaticPauseSelectionScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 AutomaticPauseSelectionScreenState AutomaticPauseSelectionScreenState_getInstance(void);
+
+void AutomaticPauseSelectionScreenState_setNextstate(AutomaticPauseSelectionScreenState this, GameState nextState);
 
 
 #endif

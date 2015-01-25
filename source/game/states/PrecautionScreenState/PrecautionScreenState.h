@@ -53,6 +53,12 @@ __CLASS(PrecautionScreenState);
 														            					\
 	/* inherits */																		\
 	GameState_ATTRIBUTES																\
+														            					\
+	/* state to enter after this one */													\
+	GameState nextState;																\
+														            					\
+	/* definition of screen's stage */													\
+	StageDefinition* stageDefinition;													\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,6 +66,8 @@ __CLASS(PrecautionScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 PrecautionScreenState PrecautionScreenState_getInstance(void);
+
+void PrecautionScreenState_setNextstate(PrecautionScreenState this, GameState nextState);
 
 
 #endif

@@ -66,6 +66,9 @@ __SINGLETON_DYNAMIC(LanguageSelectionScreenState);
 // class's constructor
 static void LanguageSelectionScreenState_constructor(LanguageSelectionScreenState this)
 {
+	LanguageSelectionScreenState_setNextstate(this, (GameState)VBJaEngineSplashScreenState_getInstance());
+	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
+
     u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
 	this->languageSelector = __NEW(OptionsSelector, __ARGUMENTS(1, 8, "\x10", kString));
 
@@ -101,7 +104,7 @@ static void LanguageSelectionScreenState_destructor(LanguageSelectionScreenState
 // state's enter
 static void LanguageSelectionScreenState_enter(LanguageSelectionScreenState this, void* owner)
 {
-	GameState_loadStage((GameState)this, (StageDefinition*)&EMPTY_ST, true, true);
+	GameState_loadStage((GameState)this, this->stageDefinition, true, true);
 
 	LanguageSelectionScreenState_print(this);
 	
@@ -188,7 +191,7 @@ static void LanguageSelectionScreenState_processInput(LanguageSelectionScreenSta
 	else if (pressedKey & K_A)
 	{
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
-	    Game_changeState(Game_getInstance(), (GameState)VBJaEngineSplashScreenState_getInstance());
+	    Game_changeState(Game_getInstance(), (GameState)this->nextState);
 	}
 }
 
@@ -200,4 +203,9 @@ static void LanguageSelectionScreenState_print(LanguageSelectionScreenState this
     Printing_text(Printing_getInstance(), strHeader, strHeaderXPos, 8, "GUIFont");
 
 	OptionsSelector_showOptions(this->languageSelector, strHeaderXPos, 11);
+}
+
+void LanguageSelectionScreenState_setNextstate(LanguageSelectionScreenState this, GameState nextState)
+{
+    this->nextState = nextState;
 }

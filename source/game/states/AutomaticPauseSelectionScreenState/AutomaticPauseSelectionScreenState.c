@@ -68,6 +68,8 @@ __SINGLETON_DYNAMIC(AutomaticPauseSelectionScreenState);
 // class's constructor
 static void AutomaticPauseSelectionScreenState_constructor(AutomaticPauseSelectionScreenState this)
 {
+	AutomaticPauseSelectionScreenState_setNextstate(this, (GameState)LanguageSelectionScreenState_getInstance());
+	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
     this->selection = true;
 
 	__CONSTRUCT_BASE(GameState);
@@ -82,7 +84,7 @@ static void AutomaticPauseSelectionScreenState_destructor(AutomaticPauseSelectio
 // state's enter
 static void AutomaticPauseSelectionScreenState_enter(AutomaticPauseSelectionScreenState this, void* owner)
 {
-	GameState_loadStage((GameState)this, (StageDefinition*)&EMPTY_ST, true, true);
+	GameState_loadStage((GameState)this, this->stageDefinition, true, true);
 
 	AutomaticPauseSelectionScreenState_print(this);
 
@@ -181,6 +183,11 @@ static void AutomaticPauseSelectionScreenState_processInput(AutomaticPauseSelect
 	else if ((pressedKey & K_A) || (pressedKey & K_STA))
 	{
 		Game_setAutomaticPauseState(Game_getInstance(), this->selection ? (GameState)AutomaticPauseScreenState_getInstance() : NULL);
-	    Game_changeState(Game_getInstance(), (GameState)LanguageSelectionScreenState_getInstance());
+	    Game_changeState(Game_getInstance(), this->nextState);
 	}
+}
+
+void AutomaticPauseSelectionScreenState_setNextstate(AutomaticPauseSelectionScreenState this, GameState nextState)
+{
+    this->nextState = nextState;
 }

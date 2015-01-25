@@ -62,6 +62,8 @@ __SINGLETON_DYNAMIC(VBJaEngineSplashScreenState);
 // class's constructor
 static void VBJaEngineSplashScreenState_constructor(VBJaEngineSplashScreenState this)
 {
+	this->stageDefinition = (StageDefinition*)&VBJAENGINE_SPLASH_SCREEN_ST;
+
 	__CONSTRUCT_BASE(GameState);
 }
 
@@ -75,7 +77,7 @@ static void VBJaEngineSplashScreenState_destructor(VBJaEngineSplashScreenState t
 // state's enter
 static void VBJaEngineSplashScreenState_enter(VBJaEngineSplashScreenState this, void* owner)
 {
-	GameState_loadStage((GameState)this, (StageDefinition*)&VBJAENGINE_SPLASH_SCREEN_ST, true, true);
+	GameState_loadStage((GameState)this, this->stageDefinition, true, true);
 
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 }
@@ -156,5 +158,10 @@ static bool VBJaEngineSplashScreenState_handleMessage(VBJaEngineSplashScreenStat
 
 static void VBJaEngineSplashScreenState_processInput(VBJaEngineSplashScreenState this, u16 pressedKey)
 {
-	Game_changeState(Game_getInstance(), (GameState)TitleScreenState_getInstance());
+	Game_changeState(Game_getInstance(), (GameState)this->nextState);
+}
+
+void VBJaEngineSplashScreenState_setNextstate(VBJaEngineSplashScreenState this, GameState nextState)
+{
+    this->nextState = nextState;
 }

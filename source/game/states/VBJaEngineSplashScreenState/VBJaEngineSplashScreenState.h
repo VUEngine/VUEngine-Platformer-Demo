@@ -34,25 +34,31 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define VBJaEngineSplashScreenState_METHODS													\
+#define VBJaEngineSplashScreenState_METHODS												\
 	GameState_METHODS;											    					\
 
 // declare the virtual methods which are redefined
-#define VBJaEngineSplashScreenState_SET_VTABLE(ClassName)										\
+#define VBJaEngineSplashScreenState_SET_VTABLE(ClassName)								\
 	GameState_SET_VTABLE(ClassName)								    					\
-	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, enter);								\
-	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, exit);								\
-	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, execute);							\
-	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, resume);							\
-	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, handleMessage);						\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, enter);						\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, exit);						\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, execute);						\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, resume);						\
+	__VIRTUAL_SET(ClassName, VBJaEngineSplashScreenState, handleMessage);				\
 
 
 __CLASS(VBJaEngineSplashScreenState);
 
-#define VBJaEngineSplashScreenState_ATTRIBUTES								   				\
+#define VBJaEngineSplashScreenState_ATTRIBUTES								   			\
 														            					\
 	/* inherits */																		\
 	GameState_ATTRIBUTES																\
+														            					\
+	/* state to enter after this one */													\
+	GameState nextState;																\
+														            					\
+	/* definition of screen's stage */													\
+	StageDefinition* stageDefinition;													\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,6 +66,8 @@ __CLASS(VBJaEngineSplashScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 VBJaEngineSplashScreenState VBJaEngineSplashScreenState_getInstance(void);
+
+void VBJaEngineSplashScreenState_setNextstate(VBJaEngineSplashScreenState this, GameState nextState);
 
 
 #endif

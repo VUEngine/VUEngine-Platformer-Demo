@@ -53,6 +53,12 @@ __CLASS(AdjustmentScreenState);
 														            					\
 	/* inherits */																		\
 	GameState_ATTRIBUTES																\
+														            					\
+	/* state to enter after this one */													\
+	GameState nextState;																\
+														            					\
+	/* definition of screen's stage */													\
+	StageDefinition* stageDefinition;													\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -61,5 +67,6 @@ __CLASS(AdjustmentScreenState);
 
 AdjustmentScreenState AdjustmentScreenState_getInstance(void);
 
+void AdjustmentScreenState_setNextstate(AdjustmentScreenState this, GameState nextState);
 
 #endif
