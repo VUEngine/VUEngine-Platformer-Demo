@@ -31,7 +31,7 @@
 #include "SplashScreenState.h"
 #include <objects.h>
 #include <macros.h>
-#include <text.h>
+#include <lang.h>
 #include "stages.h"
 
 #include <AdjustmentScreenState.h>

@@ -36,7 +36,7 @@
 #include <Hero.h>
 #include "../stages/stages.h"
 #include <macros.h>
-#include <text.h>
+#include <lang.h>
 
 
 //---------------------------------------------------------------------------------------------------------

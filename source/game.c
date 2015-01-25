@@ -24,7 +24,7 @@
 
 #include <fonts.h>
 #include <I18n.h>
-#include <text.h>
+#include <lang.h>
 #include <lang_de.h>
 #include <lang_en.h>
 
