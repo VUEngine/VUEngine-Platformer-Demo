@@ -46,8 +46,13 @@ int main(void)
 	Printing_registerFont(Printing_getInstance(), &PLATFORMER_GUI_FONT);
 	//Printing_registerFont(Printing_getInstance(), &PLATFORMER_LARGE_FONT);
 
-    // define splash screen order
-	VBJaEngineDefaultAdjustmentScreenState_setNextstate(VBJaEngineDefaultAdjustmentScreenState_getInstance(), (GameState)PrecautionScreenState_getInstance());
+    // redefine splash screens
+    VBJaEngineDefaultPrecautionScreenState_setPrecautionString(VBJaEngineDefaultPrecautionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION));
+    VBJaEngineDefaultLanguageSelectionScreenState_setTitleString(VBJaEngineDefaultLanguageSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT));
+    VBJaEngineDefaultAutomaticPauseSelectionScreenState_setExplanationString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION));
+    VBJaEngineDefaultAutomaticPauseSelectionScreenState_setTitleString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE));
+    VBJaEngineDefaultAutomaticPauseSelectionScreenState_setOnString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_ON));
+    VBJaEngineDefaultAutomaticPauseSelectionScreenState_setOffString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_OFF));
 	VBJaEngineDefaultSplashScreenState_setNextstate(VBJaEngineDefaultSplashScreenState_getInstance(), (GameState)TitleScreenState_getInstance());
 
     // start the game

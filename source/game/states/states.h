@@ -27,12 +27,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <VBJaEngineDefaultAdjustmentScreenState.h>
-#include <PrecautionScreenState.h>
+#include <VBJaEngineDefaultPrecautionScreenState.h>
+#include <VBJaEngineDefaultLanguageSelectionScreenState.h>
 #include <VBJaEngineDefaultSplashScreenState.h>
+#include <VBJaEngineDefaultAutomaticPauseSelectionScreenState.h>
+#include <VBJaEngineDefaultAutomaticPauseScreenState.h>
 
 #include <TitleScreenState.h>
 
-#include <AutomaticPauseScreenState.h>
 #include <PlatformerLevelState.h>
 
 #include "stages.h"

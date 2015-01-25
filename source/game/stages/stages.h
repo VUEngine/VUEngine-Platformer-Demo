@@ -35,8 +35,6 @@
 
 extern StageROMDef EMPTY_ST;
 
-extern StageROMDef PRECAUTION_SCREEN_ST;
-extern StageROMDef AUTOMATIC_PAUSE_SCREEN_ST;
 extern StageROMDef TITLE_SCREEN_ST;
 extern StageROMDef PAUSE_SCREEN_ST;
 
