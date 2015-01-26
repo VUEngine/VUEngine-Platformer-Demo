@@ -17,10 +17,6 @@
 #define __ANIMATION_EDITOR
 
 
-#undef __DEBUG_TOOLS
-#undef __STAGE_EDITOR
-#undef __ANIMATION_EDITOR
-
 //---------------------------------------------------------------------------------------------------------
 // 										OPTICS / PROJECTION
 //---------------------------------------------------------------------------------------------------------
@@ -120,7 +116,7 @@
 #define __POOL_128B_SIZE 	(__BLOCK_128B * 24)
 #define __POOL_100B_SIZE 	(__BLOCK_100B * 64)
 #define __POOL_80B_SIZE 	(__BLOCK_80B * 48)
-#define __POOL_48B_SIZE 	(__BLOCK_48B * 16)
+#define __POOL_48B_SIZE 	(__BLOCK_48B * 32)
 #define __POOL_32B_SIZE 	(__BLOCK_32B * 64)
 
 #ifndef __DEBUG_TOOLS
@@ -195,11 +191,13 @@
 //---------------------------------------------------------------------------------------------------------
 
 // param table for affine and hbias render
-#define __PARAM_TABLE_END 			0x0003D800
+#define __PARAM_TABLE_END 							0x0003D800
 
 // maximum possible scale: affects param table allocation space
-#define __MAXIMUM_SCALE				2
+#define __MAXIMUM_SCALE								2
 
+// maximum number of rows to write on each call to affine calculation functions
+#define __MAXIMUM_AFFINE_ROWS_PER_CALL				16
 
 //---------------------------------------------------------------------------------------------------------
 // 										WORLD'S CAPACITY
