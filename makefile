@@ -99,7 +99,7 @@ $(TARGET).vb: main.elf
 	@echo $(TARGET).vb done
 #	@echo Generating assembler code
 #	@$(OBJDUMP) -t main.elf > sections.txt
-#	@$(OBJDUMP) -S main.elf > machine.asm
+	@$(OBJDUMP) -S main.elf > machine.asm
 	
 tryLinkingAgain:
 	@echo Error linking, deleting library
