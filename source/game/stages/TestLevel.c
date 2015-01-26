@@ -27,7 +27,7 @@
 #include <macros.h>
 #include <PlatformerLevelState.h>
 #include <I18n.h>
-#include <text.h>
+#include <lang.h>
 
 #include "stages/textures.h"
 

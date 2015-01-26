@@ -45,7 +45,7 @@ TextureROMDef MOUND_BG_BACK_TX =
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        64,
+        84,
 
         // allocation type
         __NO_ANIMATED,
@@ -57,10 +57,10 @@ TextureROMDef MOUND_BG_BACK_TX =
     // bgmap definition
     BackgroundMoundBackMap,
 
-    // cols (max 48)
-    48,
+    // cols (max 64)
+    64,
 
-    // rows (max 28)
+    // rows (max 64)
     16,
 
     // number of frames

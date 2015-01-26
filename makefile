@@ -20,7 +20,7 @@ DLIBS =
 
 # Obligatory headers
 VBJAENGINE = $(VBDE)/libs/vbjaengine
-VBJANEGINE_CONFIG_FILE = $(shell pwd)/source/config.h
+VBJANEGINE_CONFIG_FILE = $(shell pwd)/config.h
 GAME_ESSENTIALS = 	-include $(VBJANEGINE_CONFIG_FILE) \
 					-include $(VBJAENGINE)/libvbjae.h
 						

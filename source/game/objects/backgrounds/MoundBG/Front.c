@@ -57,10 +57,10 @@ TextureROMDef MOUND_BG_FRONT_TX =
     // bgmap definition
     BackgroundMoundFrontMap,
 
-    // cols (max 48)
-    48,
+    // cols (max 64)
+    64,
 
-    // rows (max 28)
+    // rows (max 64)
     16,
 
     // number of frames
@@ -109,7 +109,7 @@ MSpriteROMDef MOUND_BG_FRONT_SB_SPRITE =
 
 SpriteROMDef* MOUND_BG_FRONT_SB_SPRITES[] =
 {
-	&MOUND_BG_FRONT_SB_SPRITE,
+	(SpriteROMDef*)&MOUND_BG_FRONT_SB_SPRITE,
 	NULL
 };
 

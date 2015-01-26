@@ -13,7 +13,6 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern TextureDefinition VBJAENGINE_BG_TX;
 extern TextureDefinition MOUND_BG_BACK_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
 extern TextureDefinition MOUND_BG_FRONT_TX;

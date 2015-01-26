@@ -26,11 +26,16 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <SplashScreenState.h>
-#include <LanguageSelectionState.h>
+#include <VBJaEngineDefaultAdjustmentScreenState.h>
+#include <VBJaEngineDefaultPrecautionScreenState.h>
+#include <VBJaEngineDefaultLanguageSelectionScreenState.h>
+#include <VBJaEngineDefaultSplashScreenState.h>
+#include <VBJaEngineDefaultAutomaticPauseSelectionScreenState.h>
+#include <VBJaEngineDefaultAutomaticPauseScreenState.h>
+
 #include <TitleScreenState.h>
+
 #include <PlatformerLevelState.h>
-#include <AutomaticPauseScreenState.h>
 
 #include "stages.h"
 
