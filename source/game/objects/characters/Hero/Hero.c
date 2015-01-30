@@ -48,7 +48,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Hero);
+__CLASS_DEFINITION(Hero, Actor);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -125,14 +125,14 @@ void Hero_setInstance(Hero instance)
 }
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hero, __PARAMETERS(ActorDefinition* actorDefinition, int ID))
-__CLASS_NEW_END(Hero, __ARGUMENTS(actorDefinition, ID));
+__CLASS_NEW_DEFINITION(Hero, ActorDefinition* actorDefinition, int ID)
+__CLASS_NEW_END(Hero, actorDefinition, ID);
 
 // class's constructor
 void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 {
 	// construct base
-	__CONSTRUCT_BASE(Actor, __ARGUMENTS(actorDefinition, ID));
+	__CONSTRUCT_BASE(actorDefinition, ID);
 
 	this->lifes = 3;
 	this->energy = 1;
@@ -206,7 +206,7 @@ void Hero_destructor(Hero this)
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
 	// delete the super object
-	__DESTROY_BASE(Actor);
+	__DESTROY_BASE;
 }
 
 // keep adding force to jump
@@ -598,7 +598,7 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 		}
 
 		// tell enemy I've hit him
-        __VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __ARGUMENTS(__XAXIS, this->direction.x));
+        __VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __XAXIS, this->direction.x);
 			
 		return false;
 	}
@@ -645,7 +645,7 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 		Actor_alignTo((Actor)this, (InGameEntity)enemy, __XAXIS, 1);
 
 		// tell enemy to begin bouncing
-		__VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __ARGUMENTS(__XAXIS, this->direction.x));
+		__VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __XAXIS, this->direction.x);
 
 		// I will bounce
 		Actor_jump((Actor)this, FIX19_13_DIV(HERO_VELOCITY_Y, ITOFIX19_13(2)), HERO_ACCELERATION_Y);
@@ -726,7 +726,7 @@ void Hero_pickupObject(Hero this, Actor object)
     };
 	Entity child = Entity_load(&FLOOR1_BG, &position, 1, NULL);
 
-	__VIRTUAL_CALL(void, Container, addChild, (Container)this, __ARGUMENTS(child));
+	__VIRTUAL_CALL(void, Container, addChild, (Container)this, child);
 
 	this->holdObject = object;
 	
@@ -746,7 +746,7 @@ bool Hero_isOverlappingDoor(Hero this)
 	// check if hero recently passed a door and is still doing so
 	if (
 		(Hero_getCurrentlyOverlappingDoor(this) != NULL) &&
-		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)this), __ARGUMENTS(Entity_getShape((Entity)Hero_getCurrentlyOverlappingDoor(this))))
+		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape((Entity)this), Entity_getShape((Entity)Hero_getCurrentlyOverlappingDoor(this)))
 	)
 	{
 		isOverlapping = true;

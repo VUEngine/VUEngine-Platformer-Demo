@@ -54,7 +54,7 @@ __CLASS(Coin);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Coin, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID));
+__CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
 
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int ID);
 void Coin_destructor(Coin this);

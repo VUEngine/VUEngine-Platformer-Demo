@@ -95,7 +95,7 @@ __CLASS(Hero);
 
 Hero Hero_getInstance();
 
-__CLASS_NEW_DECLARE(Hero, __PARAMETERS(ActorDefinition* animatedEntityDefinition, int ID));
+__CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, int ID);
 
 void Hero_constructor(Hero this, ActorDefinition* definition, int ID);
 void Hero_destructor(Hero this);

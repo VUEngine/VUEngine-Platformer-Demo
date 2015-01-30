@@ -46,7 +46,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram);
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(HeroMoving);
+__CLASS_DEFINITION(HeroMoving, State);
 __SINGLETON(HeroMoving);
 
 
@@ -58,7 +58,7 @@ __SINGLETON(HeroMoving);
 void HeroMoving_constructor(HeroMoving this)
 {
 	// construct base
-	__CONSTRUCT_BASE(State);
+	__CONSTRUCT_BASE();
 	
 	this->mustCheckDirection = false;
 	this->bouncing = false;
@@ -68,7 +68,7 @@ void HeroMoving_constructor(HeroMoving this)
 void HeroMoving_destructor(HeroMoving this)
 {
 	// destroy base
-	__SINGLETON_DESTROY(State);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

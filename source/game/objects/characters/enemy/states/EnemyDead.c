@@ -44,7 +44,7 @@ bool EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram);
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(EnemyDead);
+__CLASS_DEFINITION(EnemyDead, State);
 __SINGLETON(EnemyDead);
 
 
@@ -56,14 +56,14 @@ __SINGLETON(EnemyDead);
 void EnemyDead_constructor(EnemyDead this)
 {
 	// construct base
-	__CONSTRUCT_BASE(State);
+	__CONSTRUCT_BASE();
 }
 
 // class's destructor
 void EnemyDead_destructor(EnemyDead this)
 {
 	// destroy base
-	__SINGLETON_DESTROY(State);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

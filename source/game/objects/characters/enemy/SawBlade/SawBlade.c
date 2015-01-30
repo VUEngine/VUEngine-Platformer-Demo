@@ -39,7 +39,7 @@
 // 											 CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(SawBlade);
+__CLASS_DEFINITION(SawBlade, Enemy);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,14 +52,14 @@ __CLASS_DEFINITION(SawBlade);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(SawBlade, __PARAMETERS(SawBladeDefinition* sawBladeDefinition, int ID))
-__CLASS_NEW_END(SawBlade, __ARGUMENTS(sawBladeDefinition, ID));
+__CLASS_NEW_DEFINITION(SawBlade, SawBladeDefinition* sawBladeDefinition, int ID)
+__CLASS_NEW_END(SawBlade, sawBladeDefinition, ID);
 
 // class's constructor
 void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int ID)
 {
 	// construct base
-	__CONSTRUCT_BASE(Enemy, __ARGUMENTS((ActorDefinition*)&sawBladeDefinition->actorDefinition, ID));
+	__CONSTRUCT_BASE((ActorDefinition*)&sawBladeDefinition->actorDefinition, ID);
 
 	// register a shape for collision detection
 	SawBlade_registerShape(this);
@@ -95,7 +95,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 void SawBlade_destructor(SawBlade this)
 {
 	// delete the super object
-	__DESTROY_BASE(Enemy);
+	__DESTROY_BASE;
 }
 
 // register a shape with the collision detection system

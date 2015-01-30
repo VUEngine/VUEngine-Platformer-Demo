@@ -64,7 +64,7 @@ void PlatformerLevelState_printLevel(PlatformerLevelState this);
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(PlatformerLevelState);
+__CLASS_DEFINITION(PlatformerLevelState, GameState);
 __SINGLETON(PlatformerLevelState);
 
 
@@ -75,7 +75,7 @@ __SINGLETON(PlatformerLevelState);
 // class's constructor
 static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
-	__CONSTRUCT_BASE(GameState);
+	__CONSTRUCT_BASE();
 
 	this->stageDefinition = (StageDefinition*)&LEVEL_1_1_ROOM_1_ST;
 
@@ -86,7 +86,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 static void PlatformerLevelState_destructor(PlatformerLevelState this)
 {
 	// destroy base
-	__SINGLETON_DESTROY(GameState);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

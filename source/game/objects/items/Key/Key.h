@@ -54,7 +54,7 @@ __CLASS(Key);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Key, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID));
+__CLASS_NEW_DECLARE(Key, AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
 
 void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, int ID);
 void Key_destructor(Key this);

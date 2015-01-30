@@ -65,7 +65,7 @@ __CLASS(Hint);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Hint, __PARAMETERS(AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID));
+__CLASS_NEW_DECLARE(Hint, AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
 
 void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, int ID);
 void Hint_destructor(Hint this);

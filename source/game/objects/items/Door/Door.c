@@ -44,7 +44,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Door);
+__CLASS_DEFINITION(Door, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -57,14 +57,14 @@ __CLASS_DEFINITION(Door);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Door, __PARAMETERS(AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID))
-__CLASS_NEW_END(Door, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+__CLASS_NEW_DEFINITION(Door, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+__CLASS_NEW_END(Door, animatedInGameEntityDefinition, ID);
 
 // class's constructor
 void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
@@ -76,7 +76,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 void Door_destructor(Door this)
 {
 	// delete the super object
-	__DESTROY_BASE(AnimatedInGameEntity);
+	__DESTROY_BASE;
 }
 
 // get destination

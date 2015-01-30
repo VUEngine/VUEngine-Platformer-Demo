@@ -38,7 +38,7 @@
 	/* allocated sprites */														\
 	VirtualList keys;															\
 
-__CLASS_DEFINITION(KeyManager);
+__CLASS_DEFINITION(KeyManager, Object);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ __SINGLETON(KeyManager);
 //class constructor
 static void KeyManager_constructor(KeyManager this)
 {
-	__CONSTRUCT_BASE(Object);
+	__CONSTRUCT_BASE();
 
 	this->keys = __NEW(VirtualList);
 }
@@ -77,7 +77,7 @@ void KeyManager_destructor(KeyManager this)
 	}
 	
 	// allow a new construct
-	__SINGLETON_DESTROY(Object);
+	__SINGLETON_DESTROY;
 }
 
 // register key

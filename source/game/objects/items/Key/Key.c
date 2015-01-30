@@ -45,7 +45,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Key);
+__CLASS_DEFINITION(Key, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,14 +60,14 @@ void Key_removeFromStage(Key this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Key, __PARAMETERS(AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID))
-__CLASS_NEW_END(Key, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+__CLASS_NEW_DEFINITION(Key, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+__CLASS_NEW_END(Key, animatedInGameEntityDefinition, ID);
 
 // class's constructor
 void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
@@ -81,7 +81,7 @@ void Key_destructor(Key this)
 	KeyManager_removeKey(KeyManager_getInstance(), this);
 
 	// delete the super object
-	__DESTROY_BASE(AnimatedInGameEntity);
+	__DESTROY_BASE;
 }
 
 // state's on message

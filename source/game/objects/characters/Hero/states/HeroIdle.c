@@ -50,7 +50,7 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram);
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(HeroIdle);
+__CLASS_DEFINITION(HeroIdle, State);
 __SINGLETON(HeroIdle);
 
 
@@ -62,14 +62,14 @@ __SINGLETON(HeroIdle);
 void HeroIdle_constructor(HeroIdle this)
 {
 	// construct base
-	__CONSTRUCT_BASE(State);
+	__CONSTRUCT_BASE();
 }
 
 // class's destructor
 void HeroIdle_destructor(HeroIdle this)
 {
 	// destroy base
-//	__SINGLETON_DESTROY(State);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

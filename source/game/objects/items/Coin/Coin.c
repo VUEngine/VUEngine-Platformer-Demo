@@ -45,7 +45,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Coin);
+__CLASS_DEFINITION(Coin, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,14 +60,14 @@ void Coin_removeFromStage(Coin this, Object eventFirer);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Coin, __PARAMETERS(AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID))
-__CLASS_NEW_END(Coin, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+__CLASS_NEW_DEFINITION(Coin, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+__CLASS_NEW_END(Coin, animatedInGameEntityDefinition, ID);
 
 // class's constructor
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
@@ -81,7 +81,7 @@ void Coin_destructor(Coin this)
 	CoinManager_removeCoin(CoinManager_getInstance(), this);
 
 	// delete the super object
-	__DESTROY_BASE(AnimatedInGameEntity);
+	__DESTROY_BASE;
 }
 
 // state's on message

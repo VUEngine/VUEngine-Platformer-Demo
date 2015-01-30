@@ -49,7 +49,7 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(SawBladeMoving);
+__CLASS_DEFINITION(SawBladeMoving, State);
 __SINGLETON(SawBladeMoving);
 
 
@@ -61,14 +61,14 @@ __SINGLETON(SawBladeMoving);
 void SawBladeMoving_constructor(SawBladeMoving this)
 {
 	// construct base
-	__CONSTRUCT_BASE(State);
+	__CONSTRUCT_BASE();
 }
 
 // class's destructor
 void SawBladeMoving_destructor(SawBladeMoving this)
 {
 	// destroy base
-	__SINGLETON_DESTROY(State);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

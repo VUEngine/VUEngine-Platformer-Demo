@@ -38,7 +38,7 @@
 	/* allocated sprites */														\
 	VirtualList coins;															\
 
-__CLASS_DEFINITION(CoinManager);
+__CLASS_DEFINITION(CoinManager, Object);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ __SINGLETON(CoinManager);
 //class constructor
 static void CoinManager_constructor(CoinManager this)
 {
-	__CONSTRUCT_BASE(Object);
+	__CONSTRUCT_BASE();
 
 	this->coins = __NEW(VirtualList);
 }
@@ -77,7 +77,7 @@ void CoinManager_destructor(CoinManager this)
 	}
 	
 	// allow a new construct
-	__SINGLETON_DESTROY(Object);
+	__SINGLETON_DESTROY;
 }
 
 // register coin

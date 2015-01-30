@@ -45,7 +45,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Hint);
+__CLASS_DEFINITION(Hint, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -58,21 +58,21 @@ __CLASS_DEFINITION(Hint);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hint, __PARAMETERS(AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID))
-__CLASS_NEW_END(Hint, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+__CLASS_NEW_DEFINITION(Hint, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+__CLASS_NEW_END(Hint, animatedInGameEntityDefinition, ID);
 
 // class's constructor
 void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, __ARGUMENTS(animatedInGameEntityDefinition, ID));
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 }
 
 // class's destructor
 void Hint_destructor(Hint this)
 {
 	// delete the super object
-	__DESTROY_BASE(AnimatedInGameEntity);
+	__DESTROY_BASE;
 }
 
 // state's on message

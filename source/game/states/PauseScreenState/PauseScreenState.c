@@ -54,7 +54,7 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(PauseScreenState);
+__CLASS_DEFINITION(PauseScreenState, GameState);
 __SINGLETON_DYNAMIC(PauseScreenState);
 
 
@@ -65,14 +65,14 @@ __SINGLETON_DYNAMIC(PauseScreenState);
 // class's constructor
 static void PauseScreenState_constructor(PauseScreenState this)
 {
-	__CONSTRUCT_BASE(GameState);
+	__CONSTRUCT_BASE();
 }
 
 // class's destructor
 static void PauseScreenState_destructor(PauseScreenState this)
 {
 	// destroy base
-	__SINGLETON_DESTROY(GameState);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

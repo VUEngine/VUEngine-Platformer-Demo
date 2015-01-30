@@ -28,7 +28,7 @@ GAME_ESSENTIALS = 	-include $(VBJANEGINE_CONFIG_FILE) \
 # The next blocks change some variables depending on the build type
 ifeq ($(TYPE),debug)
 LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O -Wall $(GAME_ESSENTIALS)
+CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall $(GAME_ESSENTIALS)
 MACROS = __DEBUG
 endif
 
@@ -99,7 +99,7 @@ $(TARGET).vb: main.elf
 	@echo $(TARGET).vb done
 #	@echo Generating assembler code
 #	@$(OBJDUMP) -t main.elf > sections.txt
-	@$(OBJDUMP) -S main.elf > machine.asm
+#	@$(OBJDUMP) -S main.elf > machine.asm
 	
 tryLinkingAgain:
 	@echo Error linking, deleting library

@@ -46,7 +46,7 @@ bool SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegra
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(SawBladeIdle);
+__CLASS_DEFINITION(SawBladeIdle, State);
 __SINGLETON(SawBladeIdle);
 
 
@@ -58,14 +58,14 @@ __SINGLETON(SawBladeIdle);
 void SawBladeIdle_constructor(SawBladeIdle this)
 {
 	// construct base
-	__CONSTRUCT_BASE(State);
+	__CONSTRUCT_BASE();
 }
 
 // class's destructor
 void SawBladeIdle_destructor(SawBladeIdle this)
 {
 	// destroy base
-	__SINGLETON_DESTROY(State);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

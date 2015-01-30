@@ -55,7 +55,7 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(TitleScreenState);
+__CLASS_DEFINITION(TitleScreenState, GameState);
 __SINGLETON_DYNAMIC(TitleScreenState);
 
 
@@ -66,16 +66,16 @@ __SINGLETON_DYNAMIC(TitleScreenState);
 // class's constructor
 static void TitleScreenState_constructor(TitleScreenState this)
 {
-    this->lastLevelSelectLabel = "";
+	__CONSTRUCT_BASE();
 
-	__CONSTRUCT_BASE(GameState);
+	this->lastLevelSelectLabel = "";
 }
 
 // class's destructor
 static void TitleScreenState_destructor(TitleScreenState this)
 {
 	// destroy base
-	__SINGLETON_DESTROY(GameState);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

@@ -36,7 +36,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(EnemyAttack);
+__CLASS_DEFINITION(EnemyAttack, State);
 __SINGLETON(EnemyAttack);
 
 
@@ -48,14 +48,14 @@ __SINGLETON(EnemyAttack);
 void EnemyAttack_constructor(EnemyAttack this)
 {
 	// construct base
-	__CONSTRUCT_BASE(State);
+	__CONSTRUCT_BASE();
 }
 
 // class's destructor
 void EnemyAttack_destructor(EnemyAttack this)
 {
 	// destroy base
-	__SINGLETON_DESTROY(State);
+	__SINGLETON_DESTROY;
 }
 
 // state's enter

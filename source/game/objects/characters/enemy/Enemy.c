@@ -31,7 +31,7 @@
 // 											 CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Enemy);
+__CLASS_DEFINITION(Enemy, Actor);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,12 +46,8 @@ __CLASS_DEFINITION(Enemy);
 // class's constructor
 void Enemy_constructor(Enemy this, ActorDefinition* characterDefinition, int inGameIndex)
 {
-	// this is an abstract class so must initialize the vtable here
-	// since this class does not have an allocator
-	__SET_CLASS(Enemy);
-	
 	// call base
-	__CONSTRUCT_BASE(Actor, __ARGUMENTS(characterDefinition, inGameIndex));
+	__CONSTRUCT_BASE(characterDefinition, inGameIndex);
 
 	// no register time
 	this->actionTime = 0;
@@ -64,7 +60,7 @@ void Enemy_constructor(Enemy this, ActorDefinition* characterDefinition, int inG
 void Enemy_destructor(Enemy this)
 {
 	// delete the super object
-	__DESTROY_BASE(Actor);
+	__DESTROY_BASE;
 }
 
 // get time in which certain action did
