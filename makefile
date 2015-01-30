@@ -89,8 +89,10 @@ pad: $(TARGET).vb
 
 all: $(TARGET).vb
 
-$(ENGINE):
-	@rm -f $(ENGINE)
+deleteEngine:
+		@rm -f $(ENGINE)
+
+$(ENGINE): deleteEngine
 	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJANEGINE_CONFIG_FILE)
 
 $(TARGET).vb: main.elf
@@ -110,7 +112,6 @@ main.elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET).
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
 			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB))
-		@rm -f $(ENGINE)
 
 
 

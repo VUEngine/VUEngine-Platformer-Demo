@@ -254,6 +254,7 @@
 
 
 
+
 <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
 <buildTargets>
 <target name="Debug" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
@@ -267,7 +268,7 @@
 <target name="Preprocessor" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 <buildCommand>make</buildCommand>
 <buildArguments>-e TYPE=preprocessor</buildArguments>
-<buildTarget>all</buildTarget>
+<buildTarget>main.elf</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 <runAllBuilders>true</runAllBuilders>
