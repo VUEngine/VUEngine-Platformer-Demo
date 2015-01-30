@@ -103,11 +103,6 @@ $(TARGET).vb: main.elf
 #	@$(OBJDUMP) -t main.elf > sections.txt
 #	@$(OBJDUMP) -S main.elf > machine.asm
 	
-tryLinkingAgain:
-	@echo Error linking, deleting library
-	@rm -f $(ENGINE)
-	@make all
-
 main.elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET).
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
