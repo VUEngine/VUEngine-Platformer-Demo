@@ -148,7 +148,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 
 	{
 		// register a body for physics
-		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), (Actor)this, ITOFIX19_13(HERO_WEIGHT));
+		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(Entity, this), ITOFIX19_13(HERO_WEIGHT));
 		
 		Body_setElasticity(this->body, FTOFIX19_13(0.0f));
 		
@@ -726,7 +726,7 @@ void Hero_pickupObject(Hero this, Actor object)
     };
 	Entity child = Entity_load(&FLOOR1_BG, &position, 1, NULL);
 
-	__VIRTUAL_CALL(void, Container, addChild, (Container)this, child);
+	__VIRTUAL_CALL(void, Container, addChild, __UPCAST(Container, this), child);
 
 	this->holdObject = object;
 	

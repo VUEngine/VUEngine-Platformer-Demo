@@ -81,8 +81,8 @@ bool Hint_handleMessage(Hint this, Telegram telegram)
 	switch(Telegram_getMessage(telegram))
 	{
 		case kSuspend:
-			
-			__VIRTUAL_CALL(void, Container, suspend, (Container)this);
+
+			__VIRTUAL_CALL(void, Container, suspend, this);
 			return true;
 			break;
 	}
@@ -92,9 +92,10 @@ bool Hint_handleMessage(Hint this, Telegram telegram)
 
 void Hint_open(Hint this)
 {
+
 	if(!this->sprites)
 	{
-		__VIRTUAL_CALL(void, Container, resume, (Container)this);
+		__VIRTUAL_CALL(void, Container, resume, this);
 	}
 	
     AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Open");
