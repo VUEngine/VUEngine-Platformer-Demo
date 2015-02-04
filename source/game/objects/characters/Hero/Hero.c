@@ -567,7 +567,7 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
     )
     {
 		// align to the colliding object
-		Actor_alignTo((Actor)this, (InGameEntity)enemy, __XAXIS, 2);
+		Actor_alignTo((Actor)this, __UPCAST(InGameEntity, enemy), __XAXIS, 2);
 		
 		//check if player wants to jump over z axis
 		if (!Hero_checkIfZJump(this))
@@ -642,7 +642,7 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 		Actor_stopMovement((Actor)this, __XAXIS);
 
 		// align to the colliding object
-		Actor_alignTo((Actor)this, (InGameEntity)enemy, __XAXIS, 1);
+		Actor_alignTo((Actor)this, __UPCAST(InGameEntity, enemy), __XAXIS, 1);
 
 		// tell enemy to begin bouncing
 		__VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __XAXIS, this->direction.x);
@@ -676,7 +676,7 @@ void Hero_setAnimationDelta(Hero this, int delta)
 	
 	for (; node; node = VirtualNode_getNext(node))
 	{
-		AnimatedSprite_setFrameDelayDelta((AnimatedSprite)VirtualNode_getData(node), this->boost ? -2 : -1);
+		AnimatedSprite_setFrameDelayDelta(__UPCAST(AnimatedSprite, VirtualNode_getData(node)), this->boost ? -2 : -1);
 	}
 }
 
@@ -734,7 +734,7 @@ void Hero_pickupObject(Hero this, Actor object)
 	Hero_updateHoldObjectPosition(this);
 	
 	// remove from collision detection system
-	InGameEntity_setShapeState((InGameEntity)this->holdObject, false);
+	InGameEntity_setShapeState(__UPCAST(InGameEntity, this->holdObject), false);
 	*/
 }
 
@@ -1030,7 +1030,7 @@ void Hero_resetCurrentlyOverlappingDoor(Hero this)
 // process collisions
 int Hero_processCollision(Hero this, Telegram telegram)
 {
-	VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
+	VirtualList collidingObjects = __UPCAST(VirtualList, Telegram_getExtraInfo(telegram));
 	ASSERT(collidingObjects, "HeroMoving::handleMessage: null collidingObjects");
 
 	VirtualNode node = NULL;
@@ -1039,7 +1039,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 	for (node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
     {
-		InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
+		InGameEntity inGameEntity = __UPCAST(InGameEntity, VirtualNode_getData(node));
 		
 		switch (InGameEntity_getInGameType(inGameEntity))
         {
@@ -1101,7 +1101,7 @@ int Hero_doMessage(Hero this, int message)
 		case kSetUpLevel:
 			{
 				// then set myself as the focus
-				Screen_setFocusInGameEntity(Screen_getInstance(), (InGameEntity)this);
+				Screen_setFocusInGameEntity(Screen_getInstance(), __UPCAST(InGameEntity, this));
 
 				// set focus on the hero
 				VBVec3D screenDisplacement =

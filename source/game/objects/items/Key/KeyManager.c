@@ -93,7 +93,7 @@ void KeyManager_registerKey(KeyManager this, Key key)
 		{
 			VirtualList firstKeySprites = Entity_getSprites(__UPCAST(Entity, firstKey));
 			
-			AnimatedSprite firstKeySprite = (AnimatedSprite)VirtualList_front(firstKeySprites);
+			AnimatedSprite firstKeySprite = __UPCAST(AnimatedSprite, VirtualList_front(firstKeySprites));
 	
 			if(firstKeySprite)
 			{			
@@ -107,7 +107,7 @@ void KeyManager_registerKey(KeyManager this, Key key)
 				
 				for (; node; node = VirtualNode_getNext(node))
 				{
-					AnimatedSprite keySprite = (AnimatedSprite)VirtualNode_getData(node);
+					AnimatedSprite keySprite = __UPCAST(AnimatedSprite, VirtualNode_getData(node));
 					AnimatedSprite_setActualFrame(keySprite, currentFrame);
 					AnimatedSprite_setFrameDelay(keySprite, frameDelay);
 	 			}

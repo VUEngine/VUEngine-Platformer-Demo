@@ -69,9 +69,9 @@ void EnemyDead_destructor(EnemyDead this)
 // state's enter
 void EnemyDead_enter(EnemyDead this, void* owner)
 {
-	Direction direction = InGameEntity_getDirection((InGameEntity)owner);
+	Direction direction = InGameEntity_getDirection(__UPCAST(InGameEntity, owner));
 	direction.z = __NEAR;
-	InGameEntity_setDirection((InGameEntity)owner, direction);
+	InGameEntity_setDirection(__UPCAST(InGameEntity, owner), direction);
 	
 	// stop movement
 /*	Actor_stopMovement((Actor)owner, __XAXIS | __YAXIS | __ZAXIS);

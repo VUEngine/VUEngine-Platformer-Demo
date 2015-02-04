@@ -114,7 +114,7 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
     {
 		case kCollision:
 		{
-			VirtualList collidingObjects = (VirtualList)Telegram_getExtraInfo(telegram);
+			VirtualList collidingObjects = __UPCAST(VirtualList, Telegram_getExtraInfo(telegram));
 			ASSERT(collidingObjects, "SawBladeMoving::handleMessage: null collidingObjects");
 
 			VirtualNode node = NULL;
@@ -122,7 +122,7 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
 			// this will place the shape in the owner's position
 			for (node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
             {
-				InGameEntity inGameEntity = (InGameEntity)VirtualNode_getData(node);
+				InGameEntity inGameEntity = __UPCAST(InGameEntity, VirtualNode_getData(node));
 				
 				switch (InGameEntity_getInGameType(inGameEntity))
                 {
