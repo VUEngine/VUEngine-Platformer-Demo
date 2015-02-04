@@ -255,6 +255,7 @@
 
 
 
+
 <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
 <buildTargets>
 <target name="Debug" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
@@ -293,6 +294,14 @@
 <buildCommand>make</buildCommand>
 <buildArguments/>
 <buildTarget>pad</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+<runAllBuilders>true</runAllBuilders>
+</target>
+<target name="Assembly" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+<buildCommand>make</buildCommand>
+<buildArguments>-e TYPE=debug</buildArguments>
+<buildTarget>asm</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 <runAllBuilders>true</runAllBuilders>

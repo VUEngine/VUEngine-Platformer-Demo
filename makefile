@@ -99,8 +99,10 @@ $(TARGET).vb: main.elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary main.elf $@
 	@echo $(TARGET).vb done
+
+asm: $(TARGET).vb
 	@echo Generating assembler code...
-#	@$(OBJDUMP) -t main.elf > sections.txt
+	@$(OBJDUMP) -t main.elf > sections.txt
 	@$(OBJDUMP) -S main.elf > machine.asm
 	@echo machine.asm done
 	
