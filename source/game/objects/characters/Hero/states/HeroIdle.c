@@ -174,13 +174,14 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
         case kCheckForOverlappingDoor:
 
-            if (!Hero_isOverlappingDoor((Hero)owner)) {
+            if (!Hero_isOverlappingDoor((Hero)owner)) 
+            {
                 Hero_resetCurrentlyOverlappingDoor((Hero)owner);
             }
             else
             {
                 // remind hero to check again in 100 milliseconds
-                MessageDispatcher_dispatchMessage(100, (Object)owner, (Object)owner, kCheckForOverlappingDoor, NULL);
+                MessageDispatcher_dispatchMessage(100, __UPCAST(Object, owner), __UPCAST(Object, owner), kCheckForOverlappingDoor, NULL);
             }
             break;
 	}

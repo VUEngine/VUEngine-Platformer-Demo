@@ -53,13 +53,13 @@ int main(void)
     VBJaEngineDefaultAutomaticPauseSelectionScreenState_setTitleString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE));
     VBJaEngineDefaultAutomaticPauseSelectionScreenState_setOnString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_ON));
     VBJaEngineDefaultAutomaticPauseSelectionScreenState_setOffString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_OFF));
-	VBJaEngineDefaultSplashScreenState_setNextstate(VBJaEngineDefaultSplashScreenState_getInstance(), (GameState)TitleScreenState_getInstance());
+	VBJaEngineDefaultSplashScreenState_setNextstate(VBJaEngineDefaultSplashScreenState_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
 
     // start the game
-	Game_start(Game_getInstance(), (GameState)VBJaEngineDefaultAdjustmentScreenState_getInstance());
+	Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEngineDefaultAdjustmentScreenState_getInstance()));
 	// for quick level testing comment the line above and uncomment the line below
-	// Game_start(Game_getInstance(), (GameState)TitleScreenState_getInstance());
-	// Game_start(Game_getInstance(), (GameState)PlatformerLevelState_getInstance());
+	// Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
+	// Game_start(Game_getInstance(), __UPCAST(GameState, PlatformerLevelState_getInstance()));
 
 	// end program
 	return true;

@@ -129,7 +129,7 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
 					case kHero:
 					
 						// ok, i hit him
-						//Hero_takeHit((Hero)inGameEntity, Entity_getPosition((Entity)owner));
+						//Hero_takeHit((Hero)inGameEntity, Entity_getPosition(__UPCAST(Entity, owner)));
 						return true;
 						break;
 						

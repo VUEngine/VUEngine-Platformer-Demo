@@ -70,7 +70,7 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
 
 	CoinManager_registerCoin(CoinManager_getInstance(), this);
 }
@@ -101,5 +101,5 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 
 void Coin_removeFromStage(Coin this, Object eventFirer)
 {
-	Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
+	Stage_removeEntity(Game_getStage(Game_getInstance()), __UPCAST(Entity, this), true);
 }

@@ -86,14 +86,14 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	Game_setOptical(Game_getInstance(), optical);
 
 	//load stage
-	GameState_loadStage((GameState)this, (StageDefinition*)&TITLE_SCREEN_ST, true, true);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, true, true);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Clock_start(Game_getInGameClock(Game_getInstance()));
 	PhysicalWorld_start(PhysicalWorld_getInstance());
 
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1000, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(1000, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
 	// reset clock
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
@@ -120,7 +120,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
     }
 
 	// call base
-	GameState_execute((GameState)this, owner);
+	GameState_execute(__UPCAST(GameState, this), owner);
 }
 
 // state's exit
@@ -136,7 +136,7 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 // state's resume
 static void TitleScreenState_resume(TitleScreenState this, void* owner)
 {
-	GameState_resume((GameState)this, owner);
+	GameState_resume(__UPCAST(GameState, this), owner);
 
 #ifdef __DEBUG_TOOLS
 	if (!Game_isExitingSpecialMode(Game_getInstance()))
@@ -152,7 +152,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 #endif
 	
 	// tell any interested entity
-	GameState_propagateMessage((GameState)this, kResumeLevel);
+	GameState_propagateMessage(__UPCAST(GameState, this), kResumeLevel);
 
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
@@ -186,10 +186,10 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 
 			// account for any entity's tranform modification during their initialization
-			GameState_transform((GameState)this);
+			GameState_transform(__UPCAST(GameState, this));
 			
 			// show level after 0.5 second
-			MessageDispatcher_dispatchMessage(500, (Object)this, (Object)Game_getInstance(), kStartLevel, NULL);
+			MessageDispatcher_dispatchMessage(500, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kStartLevel, NULL);
 			break;
 
 		case kStartLevel:
@@ -205,24 +205,24 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			PhysicalWorld_start(PhysicalWorld_getInstance());
 
 			// tell any interested entity
-			GameState_propagateMessage((GameState)this, kStartLevel);
+			GameState_propagateMessage(__UPCAST(GameState, this), kStartLevel);
 			break;
 
 		case kKeyPressed:
 
-			Object_fireEvent((Object)this, EVENT_KEY_PRESSED);
+			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_PRESSED);
 			return true;
 			break;
 
 		case kKeyUp:
 
-			Object_fireEvent((Object)this, EVENT_KEY_RELEASED);
+			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_RELEASED);
 			return true;
 			break;
 			
 		case kKeyHold:
 			
-			Object_fireEvent((Object)this, EVENT_KEY_HOLD);
+			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_HOLD);
 			return true;
 			break;
 	}

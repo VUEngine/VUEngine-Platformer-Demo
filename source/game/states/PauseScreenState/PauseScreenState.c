@@ -83,10 +83,10 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner)
 	Game_setOptical(Game_getInstance(), optical);
 
 	//load stage
-	GameState_loadStage((GameState)this, (StageDefinition*)&PAUSE_SCREEN_ST, true, true);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, true, true);
 
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(10000, (Object)this, (Object)Game_getInstance(), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(10000, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
     Printing_text(Printing_getInstance(), "                                                ", 0, 26, "GUIFont");
     Printing_text(Printing_getInstance(), "PAUSED", ((__SCREEN_WIDTH >> 3) >> 1) - 3, 20, "GUIFont");
@@ -122,7 +122,7 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 				// check direction
 				if (K_STA & pressedKey)
 				{
-					//Game_unpause(Game_getInstance(), (GameState)this);
+					//Game_unpause(Game_getInstance(), __UPCAST(GameState, this));
 				}
 			}
 			return true;
@@ -135,7 +135,7 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 				// check direction
 				if (K_STA & releasedKey)
 				{
-					Game_unpause(Game_getInstance(), (GameState)this);
+					Game_unpause(Game_getInstance(), __UPCAST(GameState, this));
 				}
 			}
 			return true;

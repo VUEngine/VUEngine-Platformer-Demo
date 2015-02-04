@@ -110,7 +110,7 @@ void Hint_onCloseDone(Hint this, Object eventFirer)
 {
 	// cannot suspend right away because it is not safe,
 	// but a delayed message always is
-	MessageDispatcher_dispatchMessage(1, (Object)this, (Object)this, kSuspend, NULL);
+	MessageDispatcher_dispatchMessage(1, __UPCAST(Object, this), __UPCAST(Object, this), kSuspend, NULL);
 }
 
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer)

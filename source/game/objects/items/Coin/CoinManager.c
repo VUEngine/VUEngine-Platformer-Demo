@@ -91,7 +91,7 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 		
 		if(firstCoin)
 		{
-			VirtualList firstCoinSprites = Entity_getSprites((Entity)firstCoin);
+			VirtualList firstCoinSprites = Entity_getSprites(__UPCAST(Entity, firstCoin));
 			
 			AnimatedSprite firstCoinSprite = (AnimatedSprite)VirtualList_front(firstCoinSprites);
 	
@@ -100,7 +100,7 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 				s8 currentFrame = AnimatedSprite_getActualFrame(firstCoinSprite);
 				s8 frameDelay = AnimatedSprite_getFrameDelay(firstCoinSprite);
 				
-				VirtualList coinSprites = Entity_getSprites((Entity)coin);
+				VirtualList coinSprites = Entity_getSprites(__UPCAST(Entity, coin));
 				
 				VirtualNode node = VirtualList_begin(coinSprites);
 				

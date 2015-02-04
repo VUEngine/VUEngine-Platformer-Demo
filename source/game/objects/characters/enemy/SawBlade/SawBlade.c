@@ -88,7 +88,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 			break;			
 	}
 
-	StateMachine_swapState(this->stateMachine, (State)SawBladeMoving_getInstance());
+	StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeMoving_getInstance()));
 }
 
 // class's constructor
@@ -102,7 +102,7 @@ void SawBlade_destructor(SawBlade this)
 void SawBlade_registerShape(SawBlade this)
 {
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
 	
 	// don't check collisions agains other objects
 	Shape_setCheckForCollisions(this->shape, false);
@@ -149,7 +149,7 @@ void SawBlade_die(SawBlade this)
 	Shape_setActive(this->shape, false);
 
 	// now change state to dead
-	StateMachine_swapState(this->stateMachine, (State)EnemyDead_getInstance());
+	StateMachine_swapState(this->stateMachine, __UPCAST(State, EnemyDead_getInstance()));
 }
 
 // set  position
@@ -249,10 +249,10 @@ void SawBlade_move(SawBlade this)
         {
 			// check if hero distance to the plant is out of range
 			if (SAW_BLADE_ATTACK_DISTANCE < Optics_lengthSquared3D(
-					Entity_getPosition((Entity)this), Entity_getPosition((Entity)Hero_getInstance()))
+					Entity_getPosition(__UPCAST(Entity, this)), Entity_getPosition(__UPCAST(Entity, Hero_getInstance())))
 			)
             {
-				StateMachine_swapState(this->stateMachine, (State)SawBladeIdle_getInstance());
+				StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeIdle_getInstance()));
 			}
 		}
 	}

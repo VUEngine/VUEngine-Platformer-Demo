@@ -70,7 +70,7 @@ void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), (Entity)this, kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
 
 	KeyManager_registerKey(KeyManager_getInstance(), this);
 }
@@ -100,5 +100,5 @@ bool Key_handleMessage(Key this, Telegram telegram)
 
 void Key_removeFromStage(Key this)
 {
-	Stage_removeEntity(Game_getStage(Game_getInstance()), (Entity)this, true);
+	Stage_removeEntity(Game_getStage(Game_getInstance()), __UPCAST(Entity, this), true);
 }

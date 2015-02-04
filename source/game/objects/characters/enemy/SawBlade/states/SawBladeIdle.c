@@ -82,10 +82,10 @@ void SawBladeIdle_execute(SawBladeIdle this, void* owner)
 {
 	// check if Hero's distance to the plant is within range
 	if (SAW_BLADE_ATTACK_DISTANCE > Optics_lengthSquared3D(
-			Entity_getPosition((Entity)owner), Entity_getPosition((Entity)Hero_getInstance()))
+			Entity_getPosition(__UPCAST(Entity, owner)), Entity_getPosition(__UPCAST(Entity, Hero_getInstance())))
 	)
     {
-		StateMachine_swapState(Actor_getStateMachine((Actor)owner), (State)SawBladeMoving_getInstance());
+		StateMachine_swapState(Actor_getStateMachine((Actor)owner), __UPCAST(State, SawBladeMoving_getInstance()));
 	}
 }
 

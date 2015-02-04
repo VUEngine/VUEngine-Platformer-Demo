@@ -152,7 +152,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					}
 					else
                     {
-						StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)HeroIdle_getInstance());					
+						StateMachine_swapState(Actor_getStateMachine((Actor) owner), __UPCAST(State, HeroIdle_getInstance()));
 					}
 				}
 
@@ -166,7 +166,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					}
 					else
                     {
-						StateMachine_swapState(Actor_getStateMachine((Actor) owner), (State)HeroIdle_getInstance());					
+						StateMachine_swapState(Actor_getStateMachine((Actor) owner), __UPCAST(State, HeroIdle_getInstance()));
 					}
 				}
 
@@ -223,7 +223,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			
 			this->mustCheckDirection = true;
 			this->bouncing = true;
-			MessageDispatcher_dispatchMessage(100, (Object)this, (Object)owner, kDisallowJumpOnBouncing, NULL);
+			MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, owner), kDisallowJumpOnBouncing, NULL);
 			return true;
 			break;
 			
@@ -246,7 +246,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
             else
             {
                 // remind hero to check again in 100 milliseconds
-                MessageDispatcher_dispatchMessage(100, (Object)owner, (Object)owner, kCheckForOverlappingDoor, NULL);
+                MessageDispatcher_dispatchMessage(100, __UPCAST(Object, owner), __UPCAST(Object, owner), kCheckForOverlappingDoor, NULL);
             }
             break;
 	}

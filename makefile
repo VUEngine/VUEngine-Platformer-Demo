@@ -99,9 +99,10 @@ $(TARGET).vb: main.elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary main.elf $@
 	@echo $(TARGET).vb done
-#	@echo Generating assembler code
+	@echo Generating assembler code...
 #	@$(OBJDUMP) -t main.elf > sections.txt
-#	@$(OBJDUMP) -S main.elf > machine.asm
+	@$(OBJDUMP) -S main.elf > machine.asm
+	@echo machine.asm done
 	
 main.elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET).
