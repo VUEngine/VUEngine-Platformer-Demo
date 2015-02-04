@@ -98,12 +98,12 @@ void Hint_open(Hint this)
 		__VIRTUAL_CALL(void, Container, resume, this);
 	}
 	
-    AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Open");
+    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Open");
 }
 
 void Hint_close(Hint this)
 {
-    AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Close");
+    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Close");
 }
 
 void Hint_onCloseDone(Hint this, Object eventFirer)
@@ -115,5 +115,5 @@ void Hint_onCloseDone(Hint this, Object eventFirer)
 
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
 {
-    AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, I18n_getActiveLanguageName(I18n_getInstance()));
+    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), I18n_getActiveLanguageName(I18n_getInstance()));
 }

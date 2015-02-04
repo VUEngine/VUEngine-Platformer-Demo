@@ -76,7 +76,7 @@ void SawBladeMoving_enter(SawBladeMoving this, void* owner)
 {
 	SawBlade_startMovement((SawBlade)owner);
 	
-	AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Spin");
+	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, owner), "Spin");
 }
 
 // state's execute

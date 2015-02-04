@@ -144,7 +144,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 				if ((K_LL | K_LR) & releasedKey)
                 {
-					Velocity velocity = Body_getVelocity(Actor_getBody((Actor)owner));
+					Velocity velocity = Body_getVelocity(Actor_getBody(__UPCAST(Actor, owner)));
 					
 					if (0 < abs(velocity.x))
                     {
@@ -152,13 +152,13 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					}
 					else
                     {
-						StateMachine_swapState(Actor_getStateMachine((Actor) owner), __UPCAST(State, HeroIdle_getInstance()));
+						StateMachine_swapState(Actor_getStateMachine(__UPCAST(Actor, owner)), __UPCAST(State, HeroIdle_getInstance()));
 					}
 				}
 
 				if ((K_LU | K_LD) & releasedKey)
                 {
-					Velocity velocity = Body_getVelocity(Actor_getBody((Actor)owner));
+					Velocity velocity = Body_getVelocity(Actor_getBody(__UPCAST(Actor, owner)));
 					
 					if (0 < abs(velocity.z))
                     {
@@ -166,7 +166,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					}
 					else
                     {
-						StateMachine_swapState(Actor_getStateMachine((Actor) owner), __UPCAST(State, HeroIdle_getInstance()));
+						StateMachine_swapState(Actor_getStateMachine(__UPCAST(Actor, owner)), __UPCAST(State, HeroIdle_getInstance()));
 					}
 				}
 

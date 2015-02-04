@@ -91,7 +91,7 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
     {
 		case kTakeCoin:
 
-			AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Taken");
+			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Taken");
 			Shape_setActive(this->shape, false);
 			break;
 	}

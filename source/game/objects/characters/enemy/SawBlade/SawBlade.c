@@ -156,7 +156,7 @@ void SawBlade_die(SawBlade this)
 void SawBlade_setLocalPosition(SawBlade this, VBVec3D position)
 {
 	// set my position
-	Actor_setLocalPosition((Actor)this, position);
+	Actor_setLocalPosition(__UPCAST(Actor, this), position);
 	
 	// save initial position
 	switch (this->axis)
@@ -202,7 +202,7 @@ void SawBlade_move(SawBlade this)
 						if (this->transform.globalPosition.y < this->initialPosition - displacement)
                         {
 							// stop moving
-							Actor_stopMovement((Actor)this);
+							Actor_stopMovement(__UPCAST(Actor, this));
 							
 							// change direction
 							this->direction.y = __DOWN;
@@ -223,7 +223,7 @@ void SawBlade_move(SawBlade this)
 						if (this->transform.globalPosition.y > this->initialPosition)
                         {
 							// stop moving
-							Actor_stopMovement((Actor)this);
+							Actor_stopMovement(__UPCAST(Actor, this));
 							
 							// change direction
 							this->direction.y = __UP;
@@ -242,7 +242,7 @@ void SawBlade_move(SawBlade this)
 	}
 
 	// if I've been stopped
-	if (false && !(this->axis & Actor_isMoving((Actor)this)))
+	if (false && !(this->axis & Actor_isMoving(__UPCAST(Actor, this))))
     {
 		// check if must stop go idle
 		if (!displacement)

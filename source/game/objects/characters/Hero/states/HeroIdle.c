@@ -76,13 +76,13 @@ void HeroIdle_destructor(HeroIdle this)
 void HeroIdle_enter(HeroIdle this, void* owner)
 {
 	// make sure it's not moving anymore
-	Actor_stopMovement((Actor)owner);
+	Actor_stopMovement(__UPCAST(Actor, owner));
 	
 	// reset timer for blinking
 	Hero_resetActionTime((Hero)owner);
 
     // show animation
-    AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)owner, "Idle");
+    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, owner), "Idle");
 
 	Hero_resetActionTime((Hero)owner);
 

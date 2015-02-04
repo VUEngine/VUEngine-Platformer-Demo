@@ -113,7 +113,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 			if (Door_hasDestination(this))
 			{
-				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Opening");
+				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Opening");
 			}
 			break;
 			
@@ -121,7 +121,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 			if (Door_hasDestination(this))
 			{
-				AnimatedInGameEntity_playAnimation((AnimatedInGameEntity)this, "Closing");
+				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Closing");
 			}
 			break;
 	}
