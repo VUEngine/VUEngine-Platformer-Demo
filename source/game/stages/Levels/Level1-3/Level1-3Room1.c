@@ -58,31 +58,31 @@
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	{&LAVA_TOP_MC, {48, -120, LAYER_1 - 16}, NULL, NULL, NULL},
+	//{&LAVA_TOP_MC, {48, -120, LAYER_1 - 16}, NULL, NULL, NULL},
 	{&LAVA_TOP_MC, {0, -118, -1}, NULL, NULL, NULL},
     {NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
-PositionedEntityROMDef LEVEL_1_3_PART_1_ENTITIES[] =
+PositionedEntityROMDef LEVEL_1_3_PART_1_CHILD_ENTITIES[] =
 {
-	{&COLLISION_48x2x48,	{0, 46, 0}, NULL, NULL, NULL},
-	{&COLLISION_2x28x48,	{-186, 0, 0}, NULL, NULL, NULL},
-	{&COLLISION_2x28x48,	{190, 0, 0}, NULL, NULL, NULL},
-	{&DOOR_MC,	{-144, 20, 0}, NULL, NULL, NULL},
+	{&COLLISION_48x2x48,	{-56, 182, 0}, NULL, NULL, NULL},
+	{&COLLISION_2x28x48,	{-186, 64, 0}, NULL, NULL, NULL},
+	{&COLLISION_2x28x48,	{190, 64, 0}, NULL, NULL, NULL},
+	{&DOOR_MC,	{-144, 158, 0}, NULL, NULL, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
 PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&HERO_MC, 				{SCREEN_X_POSITION + (__SCREEN_WIDTH >> 1), SCREEN_Y_POSITION + 20, PLAYABLE_LAYER_0}, NULL, NULL, NULL},
-	{&STONE_BG_SB,	        {SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION - 24 + (__SCREEN_HEIGHT >> 1), LAYER_1 + 2}, NULL, NULL, NULL},
-	{&LAVA_BG,		        {SCREEN_X_POSITION + __SCREEN_WIDTH / 2, SCREEN_Y_POSITION + __SCREEN_HEIGHT + __SCREEN_HEIGHT / 3, PLAYABLE_LAYER_0 - 2}, NULL, LAVA_CHILD_ENTITIES, NULL},
+	{&HERO_MC, 				{72, 114, PLAYABLE_LAYER_0}, NULL, NULL, NULL},
+	{&STONE_BG_SB,	        {192, 112, LAYER_1 + 2}, NULL, NULL, NULL},
+	{&LAVA_BG,		        {192, 314, PLAYABLE_LAYER_0 - 2}, NULL, LAVA_CHILD_ENTITIES, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
-	{&LEVEL1_3_PART1_IM,    {192, SCREEN_Y_POSITION + (__SCREEN_HEIGHT >> 1), PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_ENTITIES, NULL},
+	{&LEVEL1_3_PART1_IM,    {192, -48, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
@@ -100,7 +100,7 @@ TextureROMDef* LEVEL_1_3_ROOM_1_ST_TEXTURES[] =
 	&FLOOR_16x8_R_TX,
 	&LAVA_TX,
 	&LAVA_TOP_TX,
-	&LEVEL1_3_PART1_L_TX,
+	&LEVEL1_3_PART1_TX,
 	&STONE_BG_TX,
 	NULL
 };

@@ -56,9 +56,9 @@ int main(void)
 	VBJaEngineDefaultSplashScreenState_setNextstate(VBJaEngineDefaultSplashScreenState_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
 
     // start the game
-	Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEngineDefaultAdjustmentScreenState_getInstance()));
+	//Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEngineDefaultAdjustmentScreenState_getInstance()));
 	// for quick level testing comment the line above and uncomment the line below
-	// Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
+	Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
 	// Game_start(Game_getInstance(), __UPCAST(GameState, PlatformerLevelState_getInstance()));
 
 	// end program

@@ -29,38 +29,38 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1_3_Part1_LTiles[];
-extern BYTE Level1_3_Part1_LMap[];
+extern BYTE Level1_3_Part1Tiles[];
+extern BYTE Level1_3_Part1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL1_3_PART1_L_TX =
+TextureROMDef LEVEL1_3_PART1_TX =
 {
     {
         // number of chars, depending on allocation type:
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        17,
+        51,
 
         // allocation type
         __NO_ANIMATED,
 
         // char definition
-        Level1_3_Part1_LTiles,
+        Level1_3_Part1Tiles,
     },
 
     // bgmap definition
-    Level1_3_Part1_LMap,
+    Level1_3_Part1Map,
 
     // cols (max 48)
     48,
 
     // rows (max 28)
-    28,
+    64,
 
     // number of frames
     1,
@@ -75,7 +75,7 @@ SpriteROMDef LEVEL1_3_PART1_IM_SPRITE =
 	__TYPE(Sprite),
 
 	// texture definition
-	(TextureDefinition*)&LEVEL1_3_PART1_L_TX,
+	(TextureDefinition*)&LEVEL1_3_PART1_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,
@@ -84,7 +84,7 @@ SpriteROMDef LEVEL1_3_PART1_IM_SPRITE =
 	WRLD_ON,
 
 	// parallax displacement
-	-1	
+	0
 };
 
 SpriteROMDef* LEVEL1_3_PART1_IM_SPRITES[] =

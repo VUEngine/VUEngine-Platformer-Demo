@@ -21,9 +21,7 @@ extern TextureDefinition CLOUDS_A_TX;
 extern TextureDefinition CLOUDS_B_TX;
 
 extern TextureDefinition LEVEL1_3_PART1_TX;
-extern TextureDefinition LEVEL1_3_PART1_L_TX;
 extern TextureDefinition STONE_BG_TX;
-
 
 extern TextureDefinition FLOOR_4x10_L_TX;
 extern TextureDefinition FLOOR_4x10_R_TX;
