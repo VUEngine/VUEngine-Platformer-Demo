@@ -41,7 +41,7 @@
 #define LAYER_3_FLOOR	196 - 64
 
 #define LEVEL_X_SIZE 	384
-#define LEVEL_Y_SIZE 	224
+#define LEVEL_Y_SIZE 	224*4
 #define LEVEL_Z_SIZE 	64
 
 #define SCREEN_X_POSITION 	0
@@ -75,14 +75,14 @@ PositionedEntityROMDef LEVEL_1_3_PART_1_CHILD_ENTITIES[] =
 PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&HERO_MC, 				{72, 114, PLAYABLE_LAYER_0}, NULL, NULL, NULL},
-	{&STONE_BG_SB,	        {192, 112, LAYER_1 + 2}, NULL, NULL, NULL},
-	{&LAVA_BG,		        {192, 314, PLAYABLE_LAYER_0 - 2}, NULL, LAVA_CHILD_ENTITIES, NULL},
+	{&HERO_MC, 				{72, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 114, PLAYABLE_LAYER_0}, NULL, NULL, NULL},
+	{&STONE_BG_SB,	        {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112, LAYER_1 + 2}, NULL, NULL, NULL},
+	{&LAVA_BG,		        {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 314, PLAYABLE_LAYER_0 - 2}, NULL, LAVA_CHILD_ENTITIES, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
-	{&LEVEL1_3_PART1_IM,    {192, -48, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	{&LEVEL1_3_PART1_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
