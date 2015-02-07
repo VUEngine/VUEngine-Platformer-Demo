@@ -40,8 +40,8 @@
 #define LAYER_2_FLOOR	196 - 32
 #define LAYER_3_FLOOR	196 - 64
 
-#define LEVEL_X_SIZE 	384
-#define LEVEL_Y_SIZE 	224*4
+#define LEVEL_X_SIZE 	5000
+#define LEVEL_Y_SIZE 	5000
 #define LEVEL_Z_SIZE 	64
 
 #define SCREEN_X_POSITION 	0
@@ -83,6 +83,8 @@ PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
 	{&LEVEL1_3_PART1_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	{&LEVEL1_3_PART2_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	{&LEVEL1_3_PART3_IM,    {192 + 48*8, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
@@ -101,6 +103,7 @@ TextureROMDef* LEVEL_1_3_ROOM_1_ST_TEXTURES[] =
 	&LAVA_TX,
 	&LAVA_TOP_TX,
 	&LEVEL1_3_PART1_TX,
+	&LEVEL1_3_PART2_TX,
 	&STONE_BG_TX,
 	NULL
 };

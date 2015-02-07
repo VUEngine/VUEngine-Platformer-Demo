@@ -45,6 +45,8 @@ extern EntityDefinition MOUND_BG_CASTLE_IM;
 extern EntityDefinition CLOUDS_SB;
 
 extern EntityDefinition LEVEL1_3_PART1_IM;
+extern EntityDefinition LEVEL1_3_PART2_IM;
+extern EntityDefinition LEVEL1_3_PART3_IM;
 extern EntityDefinition STONE_BG_SB;
 
 extern EntityDefinition FLOOR_4x10_BG;

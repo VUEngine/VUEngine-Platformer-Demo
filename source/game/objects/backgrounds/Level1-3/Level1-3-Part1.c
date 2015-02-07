@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <MBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -31,6 +31,8 @@
 
 extern BYTE Level1_3_Part1Tiles[];
 extern BYTE Level1_3_Part1Map[];
+extern BYTE Level1_3_Part2Map[];
+extern BYTE Level1_3_Part3Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -93,8 +95,136 @@ SpriteROMDef* LEVEL1_3_PART1_IM_SPRITES[] =
 	NULL
 };
 
-ImageROMDef LEVEL1_3_PART1_IM =
+MBackgroundROMDef LEVEL1_3_PART1_IM =
 {
-	__TYPE(Image),
+	__TYPE(MBackground),
 	LEVEL1_3_PART1_IM_SPRITES,
+};
+
+/////////////////////////////////////////////////////////////////////////////////////
+TextureROMDef LEVEL1_3_PART2_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
+        51,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        Level1_3_Part1Tiles,
+    },
+
+    // bgmap definition
+    Level1_3_Part2Map,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    64,
+
+    // number of frames
+    1,
+
+    // palette number
+    1,
+};
+
+SpriteROMDef LEVEL1_3_PART2_IM_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
+
+	// texture definition
+	(TextureDefinition*)&LEVEL1_3_PART2_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	0
+};
+
+SpriteROMDef* LEVEL1_3_PART2_IM_SPRITES[] =
+{
+	&LEVEL1_3_PART2_IM_SPRITE,
+	NULL
+};
+
+MBackgroundROMDef LEVEL1_3_PART2_IM =
+{
+	__TYPE(MBackground),
+	LEVEL1_3_PART2_IM_SPRITES,
+};
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+TextureROMDef LEVEL1_3_PART3_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
+        51,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        Level1_3_Part1Tiles,
+    },
+
+    // bgmap definition
+    Level1_3_Part3Map,
+
+    // cols (max 48)
+    48,
+
+    // rows (max 28)
+    64,
+
+    // number of frames
+    1,
+
+    // palette number
+    1,
+};
+
+SpriteROMDef LEVEL1_3_PART3_IM_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
+
+	// texture definition
+	(TextureDefinition*)&LEVEL1_3_PART3_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	0
+};
+
+SpriteROMDef* LEVEL1_3_PART3_IM_SPRITES[] =
+{
+	&LEVEL1_3_PART3_IM_SPRITE,
+	NULL
+};
+
+MBackgroundROMDef LEVEL1_3_PART3_IM =
+{
+	__TYPE(MBackground),
+	LEVEL1_3_PART2_IM_SPRITES,
 };

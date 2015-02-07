@@ -22,7 +22,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBackground.h>
+#include <Image.h>
+#include <MSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -351,8 +352,8 @@ SpriteROMDef* TEST_BG_SPRITES[] =
 	NULL
 };
 
-MBackgroundROMDef TEST_BG =
+ImageROMDef TEST_BG =
 {
-	__TYPE(MBackground),
+	__TYPE(Image),
 	TEST_BG_SPRITES,
 };

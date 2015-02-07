@@ -22,7 +22,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBackground.h>
+#include <Image.h>
+#include <MSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -113,8 +114,8 @@ SpriteROMDef* MOUND_BG_MIDDLE_SB_SPRITES[] =
 	NULL
 };
 
-MBackgroundROMDef MOUND_BG_MIDDLE_SB =
+ImageROMDef MOUND_BG_MIDDLE_SB =
 {
-	__TYPE(MBackground),
+	__TYPE(Image),
 	MOUND_BG_MIDDLE_SB_SPRITES,
 };
