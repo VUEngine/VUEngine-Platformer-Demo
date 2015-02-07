@@ -22,7 +22,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ScrollBackground.h>
+#include <Image.h>
+#include <MSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -58,10 +59,10 @@ TextureROMDef STONE_BG_TX =
     StoneBGMap,
 
     // cols (max 48)
-    48,
+    64,
 
     // rows (max 28)
-    24,
+    64,
 
     // number of frames
     1,
@@ -70,33 +71,52 @@ TextureROMDef STONE_BG_TX =
     1,
 };
 
-SpriteROMDef STONE_BG_SB_SPRITE =
+TextureROMDef* STONE_BG_SB_TEXTURES[] = 
 {
-	// sprite's type
-	__TYPE(Sprite),
-
-	// texture definition
 	(TextureDefinition*)&STONE_BG_TX,
-	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_BGMAP,
-	
-	// display mode
-	WRLD_ON,
+	NULL
+};
 
-	// parallax displacement
-	0		
+
+MSpriteROMDef STONE_BG_SB_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(MSprite),
+
+		// texture definition
+		NULL,
+		
+		// bgmap mode (BGMAP, AFFINE or H-BIAS)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+	},
+	
+	(TextureDefinition**)STONE_BG_SB_TEXTURES,
+	
+	// SCX/SCY
+	WRLD_1x1,
+
+	// x loop
+	true,
+	
+	// y loop
+	true
 };
 
 SpriteROMDef* STONE_BG_SB_SPRITES[] =
 {
-	&STONE_BG_SB_SPRITE,
-	&STONE_BG_SB_SPRITE,
+	(SpriteROMDef*)&STONE_BG_SB_SPRITE,
 	NULL
 };
 
-ScrollBackgroundROMDef STONE_BG_SB =
+ImageROMDef STONE_BG_SB =
 {
-	__TYPE(ScrollBackground),
+	__TYPE(Image),
 	STONE_BG_SB_SPRITES,
 };
