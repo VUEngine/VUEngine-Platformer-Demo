@@ -27,6 +27,7 @@
 #include <macros.h>
 #include <PlatformerLevelState.h>
 #include <lang.h>
+#include <ManagedEntity.h>
 
 #include "stages/textures.h"
 
@@ -63,6 +64,21 @@ StageROMDef LEVEL_1_1_ROOM_2_ST;
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
+
+PositionedEntityROMDef MANAGED_FLOOR_1_ENTITIES[] =
+{
+	{&FLOOR_16x8_BG,		{60, 0, 0}, NULL, NULL, NULL},
+	{&FLOOR_4x10_BG,		{140, -9, - 0.01f}, NULL, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL, NULL},
+};
+
+
+ManagedEntityROMDef MANAGED_FLOOR_1 =
+{
+    __TYPE(ManagedEntity),
+    NULL
+};
+
 PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
@@ -77,9 +93,10 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
 	{&COLLISION_2x28x48, 	{-12, SCREEN_Y_POSITION + 116, PLAYABLE_LAYER_0}, NULL, NULL, NULL},
-	{&FLOOR_16x8_BG,		{60, SCREEN_Y_POSITION + LAYER_0_FLOOR + 16, PLAYABLE_LAYER_0 + 2}, NULL, NULL, NULL},
+	{&MANAGED_FLOOR_1,		{0, SCREEN_Y_POSITION + LAYER_0_FLOOR + 16, PLAYABLE_LAYER_0 + 2}, NULL, MANAGED_FLOOR_1_ENTITIES, NULL},
+	//{&FLOOR_16x8_BG,		{60, SCREEN_Y_POSITION + LAYER_0_FLOOR + 16, PLAYABLE_LAYER_0 + 2}, NULL, NULL, NULL},
 	{&MOUND_1_IM,			{84, SCREEN_Y_POSITION + LAYER_0_FLOOR - 16, LAYER_1}, NULL, NULL, NULL},
-	{&FLOOR_4x10_BG,		{140, SCREEN_Y_POSITION + LAYER_0_FLOOR + 8, PLAYABLE_LAYER_0 + 2 - 0.01f}, NULL, NULL, NULL},
+	//{&FLOOR_4x10_BG,		{140, SCREEN_Y_POSITION + LAYER_0_FLOOR + 8, PLAYABLE_LAYER_0 + 2 - 0.01f}, NULL, NULL, NULL},
 	{&COIN_MC, 				{132, SCREEN_Y_POSITION + LAYER_0_FLOOR - 40, PLAYABLE_LAYER_0 + 1}, NULL, NULL, NULL},
 	{&COIN_MC, 				{148, SCREEN_Y_POSITION + LAYER_0_FLOOR - 40, PLAYABLE_LAYER_0 + 1}, NULL, NULL, NULL},
 	{&SAW_BLADE_LANE_V_6_IM,{198, SCREEN_Y_POSITION + LAYER_0_FLOOR - 36, PLAYABLE_LAYER_0 + 1}, NULL, NULL, NULL},
