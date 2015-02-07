@@ -40,7 +40,7 @@
 #define LAYER_2_FLOOR	196 - 32
 #define LAYER_3_FLOOR	196 - 64
 
-#define LEVEL_X_SIZE 	5000
+#define LEVEL_X_SIZE 	384
 #define LEVEL_Y_SIZE 	5000
 #define LEVEL_Z_SIZE 	64
 
@@ -58,7 +58,7 @@
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	//{&LAVA_TOP_MC, {48, -120, LAYER_1 - 16}, NULL, NULL, NULL},
+	{&LAVA_TOP_MC, {32, -119, LAYER_1 - 16}, NULL, NULL, NULL},
 	{&LAVA_TOP_MC, {0, -118, -1}, NULL, NULL, NULL},
     {NULL, {0,0,0}, NULL, NULL, NULL},
 };
