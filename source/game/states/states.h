@@ -26,12 +26,12 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <VBJaEngineDefaultAdjustmentScreenState.h>
-#include <VBJaEngineDefaultPrecautionScreenState.h>
-#include <VBJaEngineDefaultLanguageSelectionScreenState.h>
-#include <VBJaEngineDefaultSplashScreenState.h>
-#include <VBJaEngineDefaultAutomaticPauseSelectionScreenState.h>
-#include <VBJaEngineDefaultAutomaticPauseScreenState.h>
+#include <VBJaEAdjustmentScreenState.h>
+#include <VBJaEPrecautionScreenState.h>
+#include <VBJaELanguageSelectionScreenState.h>
+#include <VBJaESplashScreenState.h>
+#include <VBJaEAutomaticPauseSelectionScreenState.h>
+#include <VBJaEAutomaticPauseScreenState.h>
 
 #include <TitleScreenState.h>
 

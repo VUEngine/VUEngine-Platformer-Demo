@@ -47,16 +47,16 @@ int main(void)
 	//Printing_registerFont(Printing_getInstance(), &PLATFORMER_LARGE_FONT);
 
     // redefine splash screens
-    VBJaEngineDefaultPrecautionScreenState_setPrecautionString(VBJaEngineDefaultPrecautionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION));
-    VBJaEngineDefaultLanguageSelectionScreenState_setTitleString(VBJaEngineDefaultLanguageSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT));
-    VBJaEngineDefaultAutomaticPauseSelectionScreenState_setExplanationString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION));
-    VBJaEngineDefaultAutomaticPauseSelectionScreenState_setTitleString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE));
-    VBJaEngineDefaultAutomaticPauseSelectionScreenState_setOnString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_ON));
-    VBJaEngineDefaultAutomaticPauseSelectionScreenState_setOffString(VBJaEngineDefaultAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_OFF));
-	VBJaEngineDefaultSplashScreenState_setNextstate(VBJaEngineDefaultSplashScreenState_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
+    VBJaEPrecautionScreenState_setPrecautionString(VBJaEPrecautionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION));
+    VBJaELanguageSelectionScreenState_setTitleString(VBJaELanguageSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT));
+    VBJaEAutomaticPauseSelectionScreenState_setExplanationString(VBJaEAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION));
+    VBJaEAutomaticPauseSelectionScreenState_setTitleString(VBJaEAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE));
+    VBJaEAutomaticPauseSelectionScreenState_setOnString(VBJaEAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_ON));
+    VBJaEAutomaticPauseSelectionScreenState_setOffString(VBJaEAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_OFF));
+	VBJaESplashScreenState_setNextstate(VBJaESplashScreenState_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
 
     // start the game
-	//Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEngineDefaultAdjustmentScreenState_getInstance()));
+	//Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
 	// for quick level testing comment the line above and uncomment the line below
 	Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
 	// Game_start(Game_getInstance(), __UPCAST(GameState, PlatformerLevelState_getInstance()));
