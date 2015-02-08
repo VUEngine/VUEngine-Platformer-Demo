@@ -18,27 +18,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef COLLISIONS_H_
-#define COLLISIONS_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include "texture.h"
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COLLISION_48x2x48;
-extern EntityDefinition COLLISION_2x28x48;
-extern EntityDefinition COLLISION_48x28x2;
-extern EntityDefinition COLLISION_48x3x2;
-extern EntityDefinition COLLISION_3x2x2;
+InanimatedInGameEntityROMDef COLLISION_3x2x2 =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
 
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-#endif
+        // in game type
+        kSolid,
+
+        // if 0, width and height will be inferred from the texture's size
+    	// width
+    	3 * 8,
+
+    	// height
+    	2 * 8,
+
+    	// deep
+    	2 * 8
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.5f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
+};
