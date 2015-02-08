@@ -56,10 +56,10 @@ TextureROMDef GUI_BLANK_TX =
     // bgmap definition
     GUIBlankMap,
 
-    // cols (max 48)
+    // cols (max 64)
     48,
 
-    // rows (max 28)
+    // rows (max 64)
     2,
 
     // number of frames

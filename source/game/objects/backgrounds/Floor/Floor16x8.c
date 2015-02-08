@@ -59,10 +59,10 @@ TextureROMDef FLOOR_16x8_L_TX =
     // bgmap definition
     Floor16x8LMap,
 
-    // cols (max 48)
+    // cols (max 64)
     16 + 1,
 
-    // rows (max 28)
+    // rows (max 64)
     8 + 1,
 
     // number of frames
@@ -91,10 +91,10 @@ TextureROMDef FLOOR_16x8_R_TX =
     // bgmap definition
     Floor16x8RMap,
 
-    // cols (max 48)
+    // cols (max 64)
     16 + 1,
 
-    // rows (max 28)
+    // rows (max 64)
     8 + 1,
 
     // number of frames

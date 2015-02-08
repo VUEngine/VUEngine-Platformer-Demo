@@ -158,10 +158,10 @@ TextureROMDef DOOR_TX =
     // bgmap definition
     DoorMap,
 
-    // cols (max 48)
+    // cols (max 64)
     3,
 
-    // rows (max 28)
+    // rows (max 64)
     4,
 
     // number of frames

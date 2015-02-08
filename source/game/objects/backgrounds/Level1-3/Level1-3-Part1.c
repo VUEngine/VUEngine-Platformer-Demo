@@ -58,10 +58,10 @@ TextureROMDef LEVEL1_3_PART1_TX =
     // bgmap definition
     Level1_3_Part1Map,
 
-    // cols (max 48)
+    // cols (max 64)
     48,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -121,10 +121,10 @@ TextureROMDef LEVEL1_3_PART2_TX =
     // bgmap definition
     Level1_3_Part2Map,
 
-    // cols (max 48)
+    // cols (max 64)
     48,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -186,10 +186,10 @@ TextureROMDef LEVEL1_3_PART3_TX =
     // bgmap definition
     Level1_3_Part3Map,
 
-    // cols (max 48)
+    // cols (max 64)
     48,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames

@@ -89,10 +89,10 @@ TextureROMDef KEY_TX =
     // bgmap definition
     KeyMap,
 
-    // cols (max 48)
+    // cols (max 64)
     2,
 
-    // rows (max 28)
+    // rows (max 64)
     2,
 
     // number of frames

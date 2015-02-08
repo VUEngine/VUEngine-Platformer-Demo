@@ -59,10 +59,10 @@ TextureROMDef FLOOR_4x10_L_TX =
     // bgmap definition
     Floor4x10LMap,
 
-    // cols (max 48)
+    // cols (max 64)
     4 + 1,
 
-    // rows (max 28)
+    // rows (max 64)
     10 + 1,
 
     // number of frames
@@ -91,10 +91,10 @@ TextureROMDef FLOOR_4x10_R_TX =
     // bgmap definition
     Floor4x10RMap,
 
-    // cols (max 48)
+    // cols (max 64)
     4 + 1,
 
-    // rows (max 28)
+    // rows (max 64)
     10 + 1,
 
     // number of frames

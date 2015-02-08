@@ -56,10 +56,10 @@ TextureROMDef MOUND_BG_CASTLE_TX =
     // bgmap definition
     BackgroundMoundCastleMap,
 
-    // cols (max 48)
+    // cols (max 64)
     11,
 
-    // rows (max 28)
+    // rows (max 64)
     6,
 
     // number of frames

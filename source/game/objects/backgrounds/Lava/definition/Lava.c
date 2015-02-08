@@ -58,10 +58,10 @@ TextureROMDef LAVA_TX =
     // bgmap definition
     LavaMap,
 
-    // cols (max 48)
+    // cols (max 64)
     48,
 
-    // rows (max 28)
+    // rows (max 64)
     28,
 
     // number of frames

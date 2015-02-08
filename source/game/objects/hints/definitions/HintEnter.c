@@ -160,10 +160,10 @@ TextureROMDef HINT_ENTER_TX =
     // bgmap definition
     HintEnterMap,
 
-    // cols (max 48)
+    // cols (max 64)
     6,
 
-    // rows (max 28)
+    // rows (max 64)
     3,
 
     // number of frames

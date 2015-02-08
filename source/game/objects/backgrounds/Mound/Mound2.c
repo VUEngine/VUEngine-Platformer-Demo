@@ -56,10 +56,10 @@ TextureROMDef MOUND_2_TX =
     // bgmap definition
     Mound2Map,
 
-    // cols (max 48)
+    // cols (max 64)
     11,
 
-    // rows (max 28)
+    // rows (max 64)
     12,
 
     // number of frames

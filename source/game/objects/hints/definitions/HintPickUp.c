@@ -160,10 +160,10 @@ TextureROMDef HINT_PICK_UP_TX =
     // bgmap definition
     HintPickUpMap,
 
-    // cols (max 48)
+    // cols (max 64)
     8,
 
-    // rows (max 28)
+    // rows (max 64)
     3,
 
     // number of frames
