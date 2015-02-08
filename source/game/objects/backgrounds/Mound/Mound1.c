@@ -56,10 +56,10 @@ TextureROMDef MOUND_1_TX =
     // bgmap definition
     Mound1Map,
 
-    // cols (max 48)
+    // cols (max 64)
     6,
 
-    // rows (max 28)
+    // rows (max 64)
     9,
 
     // number of frames

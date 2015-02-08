@@ -58,10 +58,10 @@ TextureROMDef CLOUDS_A_TX =
     // bgmap definition
     CloudsAMap,
 
-    // cols (max 48)
+    // cols (max 64)
     48,
 
-    // rows (max 28)
+    // rows (max 64)
     7,
 
     // number of frames
@@ -90,10 +90,10 @@ TextureROMDef CLOUDS_B_TX =
     // bgmap definition
     CloudsBMap,
 
-    // cols (max 48)
+    // cols (max 64)
     48,
 
-    // rows (max 28)
+    // rows (max 64)
     7,
 
     // number of frames

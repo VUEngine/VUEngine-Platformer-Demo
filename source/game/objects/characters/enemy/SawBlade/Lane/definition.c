@@ -56,10 +56,10 @@ TextureROMDef SAW_BLADE_LANE_V_6_TX =
     // bgmap definition
     SAW_BLADE_LANE_V_6_MP,
 
-    // cols (max 48)
+    // cols (max 64)
     1,
 
-    // rows (max 28)
+    // rows (max 64)
     6,
 
     // number of frames

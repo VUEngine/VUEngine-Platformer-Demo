@@ -62,10 +62,10 @@ TextureROMDef LOGO_LEFT_TX =
     // bgmap definition
     PlatformerDemoLogoLMap,
 
-    // cols (max 48)
+    // cols (max 64)
     34,
 
-    // rows (max 28)
+    // rows (max 64)
     7,
 
     // number of frames
@@ -94,10 +94,10 @@ TextureROMDef LOGO_RIGHT_TX =
     // bgmap definition
     PlatformerDemoLogoRMap,
 
-    // cols (max 48)
+    // cols (max 64)
     34,
 
-    // rows (max 28)
+    // rows (max 64)
     7,
 
     // number of frames
@@ -176,10 +176,10 @@ TextureROMDef SUPER_AWESOME_TX =
     // bgmap definition
     SuperAwesomeMap,
 
-    // cols (max 48)
+    // cols (max 64)
     19,
 
-    // rows (max 28)
+    // rows (max 64)
     2,
 
     // number of frames
@@ -258,10 +258,10 @@ TextureROMDef VBJAENGINE_TX =
     // bgmap definition
     VBJaEngineLogoMap,
 
-    // cols (max 48)
+    // cols (max 64)
     16,
 
-    // rows (max 28)
+    // rows (max 64)
     4,
 
     // number of frames

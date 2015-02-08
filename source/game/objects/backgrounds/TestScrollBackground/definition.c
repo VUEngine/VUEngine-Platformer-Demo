@@ -65,10 +65,10 @@ TextureROMDef TEST_BG_1_TX =
     // bgmap definition
     TestBG1Map,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -97,10 +97,10 @@ TextureROMDef TEST_BG_2_TX =
     // bgmap definition
     TestBG2Map,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -129,10 +129,10 @@ TextureROMDef TEST_BG_3_TX =
     // bgmap definition
     TestBG3Map,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -161,10 +161,10 @@ TextureROMDef TEST_BG_4_TX =
     // bgmap definition
     TestBG4Map,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -193,10 +193,10 @@ TextureROMDef TEST_BG_5_TX =
     // bgmap definition
     TestBG5Map,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -225,10 +225,10 @@ TextureROMDef TEST_BG_6_TX =
     // bgmap definition
     TestBG6Map,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -257,10 +257,10 @@ TextureROMDef TEST_BG_7_TX =
     // bgmap definition
     TestBG7Map,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames
@@ -289,10 +289,10 @@ TextureROMDef TEST_BG_8_TX =
     // bgmap definition
     TestBG8Map,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames

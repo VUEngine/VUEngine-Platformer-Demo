@@ -59,10 +59,10 @@ TextureROMDef FLOOR_2x2_BLOCK_L_TX =
     // bgmap definition
     Floor2x2BlockLMap,
 
-    // cols (max 48)
+    // cols (max 64)
     2 + 1,
 
-    // rows (max 28)
+    // rows (max 64)
     2 + 1,
 
     // number of frames
@@ -91,10 +91,10 @@ TextureROMDef FLOOR_2x2_BLOCK_R_TX =
     // bgmap definition
     Floor2x2BlockRMap,
 
-    // cols (max 48)
+    // cols (max 64)
     2 + 1,
 
-    // rows (max 28)
+    // rows (max 64)
     2 + 1,
 
     // number of frames

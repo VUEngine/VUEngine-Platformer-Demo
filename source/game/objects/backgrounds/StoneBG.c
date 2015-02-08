@@ -58,10 +58,10 @@ TextureROMDef STONE_BG_TX =
     // bgmap definition
     StoneBGMap,
 
-    // cols (max 48)
+    // cols (max 64)
     64,
 
-    // rows (max 28)
+    // rows (max 64)
     64,
 
     // number of frames

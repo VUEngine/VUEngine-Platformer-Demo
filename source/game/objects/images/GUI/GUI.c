@@ -56,10 +56,10 @@ TextureROMDef GUI_TX =
     // bgmap definition
     GUIMap,
 
-    // cols (max 48)
+    // cols (max 64)
     48,
 
-    // rows (max 28)
+    // rows (max 64)
     2,
 
     // number of frames
