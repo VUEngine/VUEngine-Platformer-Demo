@@ -761,7 +761,13 @@ void Hero_enterDoor(Hero this)
 	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, Hero_getCurrentlyOverlappingDoor(this)), kEnterDoor, NULL);
 
 	// reset currently overlapping door
-	Hero_resetCurrentlyOverlappingDoor(this);
+	Hero_setCurrentlyOverlappingDoor(this, NULL);
+	
+	// hide hint inmediately
+	if (this->currentHint != NULL)
+	{
+		Entity_hide(__UPCAST(Entity, this->currentHint));
+	}
 }
 
 void Hero_showHint(Hero this, u8 type)
