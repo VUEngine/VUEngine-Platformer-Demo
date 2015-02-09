@@ -101,6 +101,7 @@ MBackgroundROMDef LEVEL1_3_PART1_IM =
 	LEVEL1_3_PART1_IM_SPRITES,
 };
 
+/*
 /////////////////////////////////////////////////////////////////////////////////////
 TextureROMDef LEVEL1_3_PART2_TX =
 {
@@ -228,3 +229,4 @@ MBackgroundROMDef LEVEL1_3_PART3_IM =
 	__TYPE(MBackground),
 	LEVEL1_3_PART2_IM_SPRITES,
 };
+*/
