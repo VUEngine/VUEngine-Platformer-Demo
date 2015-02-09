@@ -78,8 +78,6 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 	__CONSTRUCT_BASE();
 
 	this->stageDefinition = (StageDefinition*)&LEVEL_1_1_ROOM_1_ST;
-
-//	this->stageDefinition = (StageDefinition*)&TEST_LEVEL_ST;
 }
 
 // class's destructor
