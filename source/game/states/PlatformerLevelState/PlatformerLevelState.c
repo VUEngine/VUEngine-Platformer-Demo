@@ -311,6 +311,15 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 					break;
             	}
 
+				if (K_LT & releasedKey)
+				{
+				    Screen_FXShakeStart(Screen_getInstance(), 3000);
+            	}
+				if (K_RT & releasedKey)
+				{
+				    Screen_FXShakeStop(Screen_getInstance());
+            	}
+
 				Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_RELEASED);
 			}
 			return true;
