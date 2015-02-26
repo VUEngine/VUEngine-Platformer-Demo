@@ -48,15 +48,15 @@ int main(void)
 
     // redefine splash screens
     VBJaEPrecautionScreenState_setPrecautionString(VBJaEPrecautionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION));
-    VBJaELanguageSelectionScreenState_setTitleString(VBJaELanguageSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT));
-    VBJaEAutomaticPauseSelectionScreenState_setExplanationString(VBJaEAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION));
-    VBJaEAutomaticPauseSelectionScreenState_setTitleString(VBJaEAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE));
-    VBJaEAutomaticPauseSelectionScreenState_setOnString(VBJaEAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_ON));
-    VBJaEAutomaticPauseSelectionScreenState_setOffString(VBJaEAutomaticPauseSelectionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_OFF));
+    VBJaELangSelectScreenState_setTitleString(VBJaELangSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT));
+    VBJaEAutoPauseSelectScreenState_setExplanationString(VBJaEAutoPauseSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION));
+    VBJaEAutoPauseSelectScreenState_setTitleString(VBJaEAutoPauseSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE));
+    VBJaEAutoPauseSelectScreenState_setOnString(VBJaEAutoPauseSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_ON));
+    VBJaEAutoPauseSelectScreenState_setOffString(VBJaEAutoPauseSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_OFF));
 	VBJaESplashScreenState_setNextstate(VBJaESplashScreenState_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
 
     // start the game
-	// Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
+	Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEPrecautionScreenState_getInstance()));
 	// for quick level testing comment the line above and uncomment the line below
 	// Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
 	Game_start(Game_getInstance(), __UPCAST(GameState, PlatformerLevelState_getInstance()));

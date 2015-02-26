@@ -28,10 +28,10 @@
 
 #include <VBJaEAdjustmentScreenState.h>
 #include <VBJaEPrecautionScreenState.h>
-#include <VBJaELanguageSelectionScreenState.h>
+#include <VBJaELangSelectScreenState.h>
 #include <VBJaESplashScreenState.h>
-#include <VBJaEAutomaticPauseSelectionScreenState.h>
-#include <VBJaEAutomaticPauseScreenState.h>
+#include <VBJaEAutoPauseSelectScreenState.h>
+#include <VBJaEAutoPauseScreenState.h>
 
 #include <TitleScreenState.h>
 
