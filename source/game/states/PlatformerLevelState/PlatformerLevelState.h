@@ -71,6 +71,7 @@ enum PlatformerLevelStateMessageTypes
 	kHideLevelMessage,
 	kTakeCoin,
 	kTakeKey,
+	kLavaMove,
 	kEnterDoor,
 	kOpenDoor,
 	kCloseDoor,

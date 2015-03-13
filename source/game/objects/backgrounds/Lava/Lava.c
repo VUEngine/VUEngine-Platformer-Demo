@@ -28,12 +28,18 @@
 #include <Screen.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
-#include <I18n.h>
 
 #include <objects.h>
-#include "Hint.h"
+#include "Lava.h"
 
 #include <PlatformerLevelState.h>
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+#define LAVA_MOVE_DELAY 300
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,12 +51,14 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Hint, AnimatedInGameEntity);
+__CLASS_DEFINITION(Lava, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
+
+void Lava_moveUpwards(Lava this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -58,61 +66,56 @@ __CLASS_DEFINITION(Hint, AnimatedInGameEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hint, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(Hint, animatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(Lava, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+__CLASS_NEW_END(Lava, animatedInGameEntityDefinition, ID);
 
 // class's constructor
-void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void Lava_constructor(Lava this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
+
+	// register a shape for collision detection
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
+
+	// start moving
+	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
 }
 
 // class's destructor
-void Hint_destructor(Hint this)
+void Lava_destructor(Lava this)
 {
+    // discard pending moving messages
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kLavaMove);
+
 	// delete the super object
 	__DESTROY_BASE;
 }
 
 // state's on message
-bool Hint_handleMessage(Hint this, Telegram telegram)
+bool Lava_handleMessage(Lava this, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
-	{
-		case kSuspend:
+	switch (Telegram_getMessage(telegram))
+    {
+		case kLavaMove:
 
-			__VIRTUAL_CALL(void, Container, suspend, this);
-			return true;
+            Lava_moveUpwards(this);
 			break;
 	}
 	
 	return false;
 }
 
-void Hint_open(Hint this)
+// move lava up
+void Lava_moveUpwards(Lava this)
 {
+    // get local position of lava and substract 1 from y value
+    VBVec3D offset = Entity_getLocalPosition(__UPCAST(Entity, this));
+    offset.y -= ITOFIX19_13(1);
 
-	if(!this->sprites)
-	{
-		__VIRTUAL_CALL(void, Container, resume, this);
-	}
-	
-    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Open");
-}
+    // update lava's position
+    Entity_setLocalPosition(__UPCAST(Entity, this), offset);
 
-void Hint_close(Hint this)
-{
-    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Close");
-}
-
-void Hint_onCloseDone(Hint this, Object eventFirer)
-{
-	// cannot suspend right away because it is not safe, but a delayed message always is
-	MessageDispatcher_dispatchMessage(1, __UPCAST(Object, this), __UPCAST(Object, this), kSuspend, NULL);
-}
-
-void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
-{
-    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), I18n_getActiveLanguageName(I18n_getInstance()));
+    // send delayed message to itself to trigger next movement
+    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
 }

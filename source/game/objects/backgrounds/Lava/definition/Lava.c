@@ -25,6 +25,7 @@
 #include <Image.h>
 #include <InAnimatedInGameEntity.h>
 #include <macros.h>
+#include <Lava.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -99,7 +100,7 @@ InanimatedInGameEntityROMDef LAVA_BG =
 {
     {
         {
-            __TYPE(InanimatedInGameEntity),
+            __TYPE(Lava),
             LAVA_BG_SPRITES,
         },
 
@@ -122,10 +123,10 @@ InanimatedInGameEntityROMDef LAVA_BG =
     },
 
     // friction FTOFIX19_13
-    FTOFIX19_13(1.0f),
+    FTOFIX19_13(0.0f),
 
     // elasticity FTOFIX19_13
-    FTOFIX19_13(1.0f),
+    FTOFIX19_13(0.0f),
 
     // register shape
     true,

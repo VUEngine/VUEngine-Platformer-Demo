@@ -18,49 +18,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef BACKGROUNDS_H_
-#define BACKGROUNDS_H_
+#ifndef LAVA_H_
+#define LAVA_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Lava/Lava.h"
-#include <Entity.h>
-#include "texture.h"
+#include <AnimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition TEST_BG;
+#define Lava_METHODS															\
+	AnimatedInGameEntity_METHODS;
+	
 
-extern EntityDefinition TREE_BG_FRONT_SB;
-extern EntityDefinition TREE_BG_BACK_SB;
-extern EntityDefinition MOUND_BG_BACK_SB;
-extern EntityDefinition MOUND_BG_MIDDLE_SB;
-extern EntityDefinition MOUND_BG_FRONT_SB;
-extern EntityDefinition MOUND_BG_CASTLE_IM;
-extern EntityDefinition CLOUDS_SB;
+#define Lava_SET_VTABLE(ClassName)												\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
+	__VIRTUAL_SET(ClassName, Lava, handleMessage);
 
-extern EntityDefinition LEVEL1_3_PART1_IM;
-extern EntityDefinition LEVEL1_3_PART2_IM;
-extern EntityDefinition LEVEL1_3_PART3_IM;
-extern EntityDefinition STONE_BG_SB;
+__CLASS(Lava);
 
-extern EntityDefinition FLOOR_4x10_BG;
-extern EntityDefinition FLOOR_16x8_BG;
-extern EntityDefinition FLOOR_22x8_BG;
-extern EntityDefinition FLOOR_4x3_FLOAT_BG;
-extern EntityDefinition FLOOR_2x2_BLOCK_BG;
+#define Lava_ATTRIBUTES															\
+																				\
+	/* it is derivated from */													\
+	AnimatedInGameEntity_ATTRIBUTES												\
 
-extern EntityDefinition MOUND_1_IM;
-extern EntityDefinition MOUND_2_IM;
 
-extern EntityDefinition LAVA_BG;
-extern EntityDefinition LAVA_TOP_MC;
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+__CLASS_NEW_DECLARE(Lava, AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+
+void Lava_constructor(Lava this, AnimatedInGameEntityDefinition* definition, int ID);
+void Lava_destructor(Lava this);
+bool Lava_handleMessage(Lava this, Telegram telegram);
 
 
 #endif
