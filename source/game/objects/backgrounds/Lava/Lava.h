@@ -40,7 +40,8 @@
 
 #define Lava_SET_VTABLE(ClassName)												\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Lava, handleMessage);
+	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
+    __VIRTUAL_SET(ClassName, Lava, isVisible);									\
 
 __CLASS(Lava);
 
@@ -59,6 +60,7 @@ __CLASS_NEW_DECLARE(Lava, AnimatedInGameEntityDefinition* animatedEntityDefiniti
 void Lava_constructor(Lava this, AnimatedInGameEntityDefinition* definition, int ID);
 void Lava_destructor(Lava this);
 bool Lava_handleMessage(Lava this, Telegram telegram);
+bool Lava_isVisible(Lava this, int pad);
 
 
 #endif

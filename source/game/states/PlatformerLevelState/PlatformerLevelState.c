@@ -230,9 +230,9 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	            if ((*stageDefinition).name)
 	            {
 				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*stageDefinition).name);
-	                Printing_text(Printing_getInstance(), "\"", 17, 6, NULL);
-	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, NULL);
-	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, NULL);
+	                Printing_text(Printing_getInstance(), "\"", 17, 6, "GUIFont");
+	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GUIFont");
+	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GUIFont");
 	            }
 	
 	
@@ -286,6 +286,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			Printing_text(Printing_getInstance(), "                                                ", 0, 5, NULL);
 			Printing_text(Printing_getInstance(), "                                                ", 0, 6, NULL);
+			Printing_text(Printing_getInstance(), "                                                ", 0, 7, NULL);
 			break;
 			
 		case kKeyPressed:

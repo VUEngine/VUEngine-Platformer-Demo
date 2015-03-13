@@ -92,6 +92,15 @@ void Lava_destructor(Lava this)
 	__DESTROY_BASE;
 }
 
+// whether it is visible
+bool Lava_isVisible(Lava this, int pad)
+{
+	ASSERT(this, "Lava::isVisible: null this");
+
+    // always return true so the Lava is never unloaded from the stage when it is not visible on screen
+	return true;
+}
+
 // state's on message
 bool Lava_handleMessage(Lava this, Telegram telegram)
 {
