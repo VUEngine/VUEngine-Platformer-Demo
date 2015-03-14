@@ -61,13 +61,17 @@ StageROMDef LEVEL_1_3_ROOM_1_ST;
 PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&MOUND_BG_BACK_SB,	 	{0, 16, LAYER_5}, NULL, NULL, NULL},
-	{&MOUND_BG_MIDDLE_SB, 	{0, 96, LAYER_4}, NULL, NULL, NULL},
+	{&MOUND_BG_BACK_SB,	 	{0, 112, LAYER_5}, NULL, NULL, NULL},
+	{&MOUND_BG_MIDDLE_SB, 	{0, 136, LAYER_4}, NULL, NULL, NULL},
 	{&MOUND_BG_FRONT_SB, 	{0, 184, LAYER_3 + 1}, NULL, NULL, NULL},
 
-	{&VBJAENGINE_IM, 	    {__SCREEN_WIDTH >> 1, 24, LAYER_0 + 32  }, NULL, NULL, NULL},
+/*
+	{&VBJAENGINE_IM, 	    {__SCREEN_WIDTH >> 1, 16, LAYER_0 + 32  }, NULL, NULL, NULL},
 	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 42, LAYER_0 + 16	}, NULL, NULL, NULL},
-	{&LOGO_IM, 			    {__SCREEN_WIDTH >> 1, 88, LAYER_0   	}, NULL, NULL, NULL},
+	{&LOGO_IM, 			    {__SCREEN_WIDTH >> 1, 80, LAYER_0   	}, NULL, NULL, NULL},
+*/
+	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 34, LAYER_0 + 16	}, NULL, NULL, NULL},
+	{&LOGO_IM, 			    {__SCREEN_WIDTH >> 1, 66, LAYER_0   	}, NULL, NULL, NULL},
 
 	{&MOUND_1_IM,			{-14, 174, LAYER_1}, NULL, NULL, NULL},
 	{&MOUND_1_IM,			{138, 182, LAYER_1}, NULL, NULL, NULL},
@@ -88,12 +92,6 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, NULL, NULL, (void*)&LEVEL_1_2_ROOM_1_ST},
 	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, NULL, NULL, (void*)&LEVEL_1_3_ROOM_1_ST},
 
-/*
-	{&FLOOR_16x8_BG,		{-32, 174, PLAYABLE_LAYER_2 + 2}, NULL, NULL, NULL},
-	{&FLOOR_16x8_BG,		{142, 182, PLAYABLE_LAYER_2 + 2}, NULL, NULL, NULL},
-	{&FLOOR_22x8_BG,		{398, 182, PLAYABLE_LAYER_2 + 2}, NULL, NULL, NULL},
-*/
-
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
@@ -110,8 +108,10 @@ TextureROMDef* TITLE_SCREEN_ST_TEXTURES[] =
 	&MOUND_BG_FRONT_TX,
 	&SUPER_AWESOME_TX,
 	&VBJAENGINE_TX,
-	&LOGO_LEFT_TX,
-	&LOGO_RIGHT_TX,
+	&LOGO_L_TX,
+	&LOGO_R_TX,
+	&LOGO_OUTLINE_L_TX,
+	&LOGO_OUTLINE_R_TX,
 	&MOUND_1_TX,
 	&MOUND_2_TX,
 	&GUI_BLANK_TX,

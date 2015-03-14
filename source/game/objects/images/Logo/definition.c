@@ -37,20 +37,24 @@ extern BYTE PlatformerDemoLogoLTiles[];
 extern BYTE PlatformerDemoLogoLMap[];
 extern BYTE PlatformerDemoLogoRTiles[];
 extern BYTE PlatformerDemoLogoRMap[];
+extern BYTE PlatformerDemoLogoOutlineLTiles[];
+extern BYTE PlatformerDemoLogoOutlineLMap[];
+extern BYTE PlatformerDemoLogoOutlineRTiles[];
+extern BYTE PlatformerDemoLogoOutlineRMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LOGO_LEFT_TX =
+TextureROMDef LOGO_L_TX =
 {
     {
         // number of chars, depending on allocation type:
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        175,
+        168,
 
         // allocation type
         __NO_ANIMATED,
@@ -63,7 +67,7 @@ TextureROMDef LOGO_LEFT_TX =
     PlatformerDemoLogoLMap,
 
     // cols (max 64)
-    34,
+    36,
 
     // rows (max 64)
     7,
@@ -75,14 +79,14 @@ TextureROMDef LOGO_LEFT_TX =
     0,
 };
 
-TextureROMDef LOGO_RIGHT_TX =
+TextureROMDef LOGO_R_TX =
 {
     {
         // number of chars, depending on allocation type:
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        174,
+        165,
 
         // allocation type
         __NO_ANIMATED,
@@ -95,7 +99,7 @@ TextureROMDef LOGO_RIGHT_TX =
     PlatformerDemoLogoRMap,
 
     // cols (max 64)
-    34,
+    36,
 
     // rows (max 64)
     7,
@@ -107,13 +111,77 @@ TextureROMDef LOGO_RIGHT_TX =
     0,
 };
 
-SpriteROMDef LOGO_IM_L_SPRITE =
+TextureROMDef LOGO_OUTLINE_L_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
+        90,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        PlatformerDemoLogoOutlineLTiles,
+    },
+
+    // bgmap definition
+    PlatformerDemoLogoOutlineLMap,
+
+    // cols (max 64)
+    36,
+
+    // rows (max 64)
+    7,
+
+    // number of frames
+    1,
+
+   // palette number
+    1,
+};
+
+TextureROMDef LOGO_OUTLINE_R_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SHARED: sum of chars of all animation frames
+        // __NO_ANIMATED: number of chars of whole image
+        91,
+
+        // allocation type
+        __NO_ANIMATED,
+
+        // char definition
+        PlatformerDemoLogoOutlineRTiles,
+    },
+
+    // bgmap definition
+    PlatformerDemoLogoOutlineRMap,
+
+    // cols (max 64)
+    36,
+
+    // rows (max 64)
+    7,
+
+    // number of frames
+    1,
+
+    // palette number
+    1,
+};
+
+SpriteROMDef LOGO_L_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(Sprite),
 
 	// texture definition
-	(TextureDefinition*)&LOGO_LEFT_TX,
+	(TextureDefinition*)&LOGO_L_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,
@@ -125,13 +193,49 @@ SpriteROMDef LOGO_IM_L_SPRITE =
 	0		
 };
 
-SpriteROMDef LOGO_IM_R_SPRITE =
+SpriteROMDef LOGO_R_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(Sprite),
 
 	// texture definition
-	(TextureDefinition*)&LOGO_RIGHT_TX,
+	(TextureDefinition*)&LOGO_R_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_RON,
+
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
+
+	// texture definition
+	(TextureDefinition*)&LOGO_OUTLINE_L_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_LON,
+
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
+
+	// texture definition
+	(TextureDefinition*)&LOGO_OUTLINE_R_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,
@@ -145,8 +249,10 @@ SpriteROMDef LOGO_IM_R_SPRITE =
 
 SpriteROMDef* LOGO_IM_SPRITES[] =
 {
-	&LOGO_IM_L_SPRITE,
-	&LOGO_IM_R_SPRITE,
+	&LOGO_OUTLINE_L_IM_SPRITE,
+	&LOGO_OUTLINE_R_IM_SPRITE,
+	&LOGO_L_IM_SPRITE,
+	&LOGO_R_IM_SPRITE,
 	NULL
 };
 
@@ -164,7 +270,7 @@ TextureROMDef SUPER_AWESOME_TX =
         // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_SHARED: sum of chars of all animation frames
         // __NO_ANIMATED: number of chars of whole image
-        39,
+        38,
 
         // allocation type
         __NO_ANIMATED,
@@ -186,7 +292,7 @@ TextureROMDef SUPER_AWESOME_TX =
     1,
 
     // palette number
-    0,
+    1,
 };
 
 SpriteROMDef SUPER_AWESOME_IM_L_SPRITE =

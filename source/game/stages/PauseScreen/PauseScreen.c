@@ -59,7 +59,7 @@ PositionedEntityROMDef PAUSE_SCREEN_ST_ENTITIES[] =
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
 	{&VBJAENGINE_IM, 	    {__SCREEN_WIDTH >> 1, 40, LAYER_0       }, NULL, NULL, NULL},
-	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 64, LAYER_0 - 16	}, NULL, NULL, NULL},
+	{&SUPER_AWESOME_IM,     {__SCREEN_WIDTH >> 1, 72, LAYER_0 - 16	}, NULL, NULL, NULL},
 	{&LOGO_IM, 			    {__SCREEN_WIDTH >> 1, 88, LAYER_0   	}, NULL, NULL, NULL},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL},
@@ -72,7 +72,12 @@ PositionedEntityROMDef PAUSE_SCREEN_ST_UI_ENTITIES[] =
 
 TextureROMDef* PAUSE_SCREEN_ST_TEXTURES[] =
 {
-	NULL
+	&SUPER_AWESOME_TX,
+	&VBJAENGINE_TX,
+	&LOGO_L_TX,
+	&LOGO_R_TX,
+	&LOGO_OUTLINE_L_TX,
+	&LOGO_OUTLINE_R_TX,
 };
 
 
