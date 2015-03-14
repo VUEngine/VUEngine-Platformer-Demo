@@ -34,7 +34,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 StageROMDef LEVEL_1_1_ROOM_1_ST;
-StageROMDef LEVEL_1_2_ROOM_1_ST;
 StageROMDef LEVEL_1_3_ROOM_1_ST;
 
 
@@ -83,14 +82,13 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{&FLOOR_22x8_BG,		{__SCREEN_WIDTH >> 1, 216, 2}, NULL, NULL, NULL},
 	{&FLOOR_16x8_BG,		{372, 208, 2}, NULL, NULL, NULL},
 
-	{&HERO_MC, 				{168, 164, 0}, HERO_NAME, NULL, NULL},
+	{&HERO_MC, 				{__SCREEN_WIDTH >> 1, 164, 0}, HERO_NAME, NULL, NULL},
 
 	{&COLLISION_2x28x48, 	{88,__SCREEN_HEIGHT >> 1, 0}, NULL, NULL, NULL},
 	{&COLLISION_2x28x48, 	{__SCREEN_WIDTH - 92, __SCREEN_HEIGHT >> 1, 0}, NULL, NULL, NULL},
 
-	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 48,   164,    1}, NULL, NULL, (void*)&LEVEL_1_1_ROOM_1_ST},
-	{&DOOR_MC,				{__SCREEN_WIDTH >> 1,          164,    1}, NULL, NULL, (void*)&LEVEL_1_2_ROOM_1_ST},
-	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 48,   164,    1}, NULL, NULL, (void*)&LEVEL_1_3_ROOM_1_ST},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) - 40,   164,    1}, NULL, NULL, (void*)&LEVEL_1_1_ROOM_1_ST},
+	{&DOOR_MC,				{(__SCREEN_WIDTH >> 1) + 40,   164,    1}, NULL, NULL, (void*)&LEVEL_1_3_ROOM_1_ST},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };

@@ -40,7 +40,6 @@ extern StageROMDef PAUSE_SCREEN_ST;
 
 extern StageROMDef LEVEL_1_1_ROOM_1_ST;
 extern StageROMDef LEVEL_1_1_ROOM_2_ST;
-extern StageROMDef LEVEL_1_2_ROOM_1_ST;
 extern StageROMDef LEVEL_1_3_ROOM_1_ST;
 
 #endif

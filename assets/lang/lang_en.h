@@ -32,9 +32,6 @@ LangROMDef LANG_EN =
         // STR_LEVEL_1_1_NAME
         "Woohoo Hills",
 
-        // STR_LEVEL_1_2_NAME
-        "2nd Example Level",
-
         // STR_LEVEL_1_3_NAME
         "Upwards Spiral",
     },

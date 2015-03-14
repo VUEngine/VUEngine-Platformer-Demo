@@ -12,7 +12,6 @@ enum
     STR_OFF,
     STR_LEVEL,
     STR_LEVEL_1_1_NAME,
-    STR_LEVEL_1_2_NAME,
     STR_LEVEL_1_3_NAME,
 };
 
