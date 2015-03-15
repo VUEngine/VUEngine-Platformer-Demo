@@ -40,12 +40,12 @@
 #define __DISTANCE_EYE_SCREEN					384
 
 // maximum view distance (deep)
-#define __MAX_VIEW_DISTANCE						512
+#define __MAX_VIEW_DISTANCE						256
 // always use a power of 2 as the maximum view distance, and update
 // the number of bits to make projection faster
-#define __MAX_VIEW_DISTANCE_POW					9
+#define __MAX_VIEW_DISTANCE_POW					8
 
-//distance between eyes
+// distance between eyes
 #define __BASE_FACTOR							768
 
 // player's eyes's horizontal position

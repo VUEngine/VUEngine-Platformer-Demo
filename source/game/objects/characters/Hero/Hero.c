@@ -1114,7 +1114,7 @@ int Hero_doMessage(Hero this, int message)
 				{
 	                0,
 	                ITOFIX19_13(0),
-	                ITOFIX19_13(-PLAYABLE_LAYER_0),
+	                ITOFIX19_13(-LAYER_0),
 				};
 				
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
