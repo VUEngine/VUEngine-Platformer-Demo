@@ -352,7 +352,7 @@ TextureROMDef HERO_TX =
     3,
 
     // number of frames
-    1,
+    15,
 
     // palette number
     1,
