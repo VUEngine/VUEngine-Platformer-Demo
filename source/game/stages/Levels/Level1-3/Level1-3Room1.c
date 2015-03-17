@@ -58,8 +58,7 @@
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	//{&LAVA_TOP_MC, {32, -119, LAYER_1 - 16}, NULL, NULL, NULL},
-	{&LAVA_TOP_MC, {0, -118, -1}, NULL, NULL, NULL},
+	{&LAVA_TOP_MC, {0, -119, -1}, NULL, NULL, NULL},
     {NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
@@ -79,18 +78,18 @@ PositionedEntityROMDef LEVEL_1_3_PART_1_CHILD_ENTITIES[] =
 PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&HERO_MC, 				{72, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 114, PLAYABLE_LAYER_0}, NULL, NULL, NULL},
+	{&HERO_MC, 				{72, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 114, LAYER_0}, NULL, NULL, NULL},
 	{&STONE_BG_SB,	        {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112, LAYER_1 + 2}, NULL, NULL, NULL},
-	{&LAVA_BG,		        {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 314, PLAYABLE_LAYER_0 - 2}, NULL, (PositionedEntity*)LAVA_CHILD_ENTITIES, NULL},
+	{&LAVA_BG,		        {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 314, LAYER_0 - 2}, NULL, (PositionedEntity*)LAVA_CHILD_ENTITIES, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
-	{&LEVEL1_3_PART1_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48, PLAYABLE_LAYER_0 + 2}, NULL, (PositionedEntity*)LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
-	//{&LEVEL1_3_PART2_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
-	//{&LEVEL1_3_PART3_IM,    {192 + 48*8, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
-	//{&COIN_MC,    {312, 4856, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
-	//{&COIN_MC,    {328, 4856, PLAYABLE_LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	{&LEVEL1_3_PART1_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48, LAYER_0 + 2}, NULL, (PositionedEntity*)LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	//{&LEVEL1_3_PART2_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	//{&LEVEL1_3_PART3_IM,    {192 + 48*8, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	//{&COIN_MC,    {312, 4856, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	//{&COIN_MC,    {328, 4856, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
