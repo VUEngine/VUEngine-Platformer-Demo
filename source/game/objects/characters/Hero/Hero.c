@@ -351,52 +351,18 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
     {
  		if (__XAXIS & axis)
         {
-			Acceleration acceleration =
-            {
-                __RIGHT == this->direction.x ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE,
-                0,
-                0
-			};
-			
-			if ( __XAXIS & Actor_canMoveOverAxis(__UPCAST(Actor, this), &acceleration))
-            {
-				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
-				StateMachine_swapState(Actor_getStateMachine(__UPCAST(Actor,  this)), __UPCAST(State,  HeroMoving_getInstance()));
-			}
+			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
 		}
-		if (__YAXIS & axis)
+ 		else if (__YAXIS & axis)
         {
-			Acceleration acceleration =
-            {
-        		0,
-                __DOWN == this->direction.x ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE,
-                0
-			};
-			
-			if ( __YAXIS & Actor_canMoveOverAxis(__UPCAST(Actor, this), &acceleration))
-            {
-				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Fall");
-				StateMachine_swapState(this->stateMachine, __UPCAST(State,  HeroMoving_getInstance()));
-			}
+			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Fall");
+		}
+ 		else if (__ZAXIS & axis)
+        {
+			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), __FAR == this->direction.z ? "Back" : "Front");
 		}
 
-		if (__ZAXIS & axis)
-        {
-			Acceleration acceleration =
-            {
-            	0,
-                0,
-                __FAR == this->direction.z ? HERO_INPUT_FORCE : -HERO_INPUT_FORCE
-			};
-			
-			if (__ZAXIS & Actor_canMoveOverAxis(__UPCAST(Actor, this), &acceleration))
-            {
-				//AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
-				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), __FAR == this->direction.z ? "Back" : "Front");
-				StateMachine_swapState(this->stateMachine, __UPCAST(State,  HeroMoving_getInstance()));
-			}
-		}
-
+		StateMachine_swapState(Actor_getStateMachine(__UPCAST(Actor,  this)), __UPCAST(State,  HeroMoving_getInstance()));
 	}
 	else
 	{
