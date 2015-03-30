@@ -383,7 +383,7 @@ SpriteROMDef* HERO_SPRITES[] =
 	NULL
 };
 
-ActorROMDef HERO_MC =
+ActorROMDef HERO_AC =
 {
     {
         {

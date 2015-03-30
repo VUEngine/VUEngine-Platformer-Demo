@@ -128,7 +128,7 @@ SpriteROMDef* LAVA_TOP_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef LAVA_TOP_MC =
+AnimatedInGameEntityROMDef LAVA_TOP_AG =
 {
     {
         {

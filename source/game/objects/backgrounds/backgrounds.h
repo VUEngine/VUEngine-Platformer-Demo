@@ -37,30 +37,35 @@
 
 extern EntityDefinition TEST_BG;
 
-extern EntityDefinition TREE_BG_FRONT_SB;
-extern EntityDefinition TREE_BG_BACK_SB;
-extern EntityDefinition MOUND_BG_BACK_SB;
-extern EntityDefinition MOUND_BG_MIDDLE_SB;
-extern EntityDefinition MOUND_BG_FRONT_SB;
+extern EntityDefinition MOUND_BG_BACK_IM;
+extern EntityDefinition MOUND_BG_MIDDLE_IM;
+extern EntityDefinition MOUND_BG_FRONT_IM;
 extern EntityDefinition MOUND_BG_CASTLE_IM;
 extern EntityDefinition CLOUDS_SB;
 
 extern EntityDefinition LEVEL1_3_PART1_IM;
 extern EntityDefinition LEVEL1_3_PART2_IM;
 extern EntityDefinition LEVEL1_3_PART3_IM;
-extern EntityDefinition STONE_BG_SB;
+extern EntityDefinition STONE_BG_IM;
 
-extern EntityDefinition FLOOR_4x10_BG;
-extern EntityDefinition FLOOR_16x8_BG;
-extern EntityDefinition FLOOR_22x8_BG;
-extern EntityDefinition FLOOR_4x3_FLOAT_BG;
-extern EntityDefinition FLOOR_2x2_BLOCK_BG;
+extern EntityDefinition FLOOR_4x10_IG;
+extern EntityDefinition FLOOR_16x8_IG;
+extern EntityDefinition FLOOR_22x8_IG;
+extern EntityDefinition FLOOR_4x3_FLOAT_IG;
+extern EntityDefinition FLOOR_2x2_BLOCK_IG;
+
+extern EntityDefinition AFFINE_FLOOR_4x10_IG;
+extern EntityDefinition AFFINE_FLOOR_16x8_IG;
+extern EntityDefinition AFFINE_FLOOR_22x8_IG;
+extern EntityDefinition AFFINE_FLOOR_4x3_FLOAT_IG;
+extern EntityDefinition AFFINE_FLOOR_2x2_BLOCK_IG;
+
 
 extern EntityDefinition MOUND_1_IM;
 extern EntityDefinition MOUND_2_IM;
 
-extern EntityDefinition LAVA_BG;
-extern EntityDefinition LAVA_TOP_MC;
+extern EntityDefinition LAVA_IG;
+extern EntityDefinition LAVA_TOP_AG;
 
 
 #endif

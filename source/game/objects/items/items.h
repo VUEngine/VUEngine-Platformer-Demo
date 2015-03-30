@@ -35,10 +35,13 @@
 // 											  DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COIN_MC;
-extern EntityDefinition DOOR_MC;
-extern EntityDefinition KEY_MC;
+extern EntityDefinition COIN_AG;
+extern EntityDefinition DOOR_AG;
+extern EntityDefinition KEY_AG;
 
+extern EntityDefinition AFFINE_COIN_AG;
+extern EntityDefinition AFFINE_DOOR_AG;
+extern EntityDefinition AFFINE_KEY_AG;
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS

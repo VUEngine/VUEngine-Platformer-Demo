@@ -180,7 +180,7 @@ SpriteROMDef DOOR_SPRITE =
 	(TextureDefinition*)&DOOR_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_AFFINE,
+	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
@@ -195,12 +195,69 @@ SpriteROMDef* DOOR_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef DOOR_MC =
+AnimatedInGameEntityROMDef DOOR_AG =
 {
     {
         {
             __TYPE(Door),
             DOOR_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {6, 0, 6, 6},
+
+        // in game type
+        kDoor,
+
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+    	
+    	// deep
+        4
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&DOOR_ANIM,
+
+    // initial animation
+    "Closed",
+};
+
+SpriteROMDef AFFINE_DOOR_SPRITE =
+{
+	// sprite's type
+	__TYPE(AnimatedSprite),
+
+	// texture definition
+	(TextureDefinition*)&DOOR_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	1		
+};
+
+SpriteROMDef* AFFINE_DOOR_SPRITES[] =
+{
+	&AFFINE_DOOR_SPRITE,
+	NULL
+};
+
+AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
+{
+    {
+        {
+            __TYPE(Door),
+            AFFINE_DOOR_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

@@ -115,7 +115,7 @@ SpriteROMDef* STONE_BG_SB_SPRITES[] =
 	NULL
 };
 
-ImageROMDef STONE_BG_SB =
+ImageROMDef STONE_BG_IM =
 {
 	__TYPE(Image),
 	STONE_BG_SB_SPRITES,

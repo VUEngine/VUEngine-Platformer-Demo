@@ -113,7 +113,7 @@ SpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE =
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_AFFINE,
+	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
@@ -161,12 +161,75 @@ SpriteROMDef* FLOOR_2x2_BLOCK_BG_SPRITES[] =
 	NULL
 };
 
-InanimatedInGameEntityROMDef FLOOR_2x2_BLOCK_BG =
+InanimatedInGameEntityROMDef FLOOR_2x2_BLOCK_IG =
 {
     {
         {
             __TYPE(InanimatedInGameEntity),
             FLOOR_2x2_BLOCK_BG_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {7, 0, 0, 8},
+
+        // in game type
+        kSolid,
+
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+    	
+        // deep
+        20
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
+};
+
+
+SpriteROMDef AFFINE_FLOOR_2x2_BLOCK_BG_SPRITE =
+{
+	// sprite's type
+	__TYPE(Sprite),
+
+	// texture definition
+	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
+	
+	// parallax displacement
+	0		
+};
+
+
+
+SpriteROMDef* AFFINE_FLOOR_2x2_BLOCK_BG_SPRITES[] =
+{
+	&AFFINE_FLOOR_2x2_BLOCK_BG_SPRITE,
+	NULL
+};
+
+InanimatedInGameEntityROMDef AFFINE_FLOOR_2x2_BLOCK_IG =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            AFFINE_FLOOR_2x2_BLOCK_BG_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

@@ -126,7 +126,7 @@ SpriteROMDef* KEY_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef KEY_MC =
+AnimatedInGameEntityROMDef KEY_AG =
 {
     {
         {

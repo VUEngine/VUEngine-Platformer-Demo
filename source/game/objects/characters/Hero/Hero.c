@@ -755,9 +755,9 @@ void Hero_showHint(Hero this, u8 type)
 	    
 	    if(hintEntityDefinition)
 	    {
-	    	VBVec3DReal position = 
+	    	VBVec3D position = 
     		{
-    			25, -20, 0
+    			FTOFIX19_13(25), FTOFIX19_13(-20), FTOFIX19_13(0)
     		};
 
 		    // save the hint entity, so we can remove it later

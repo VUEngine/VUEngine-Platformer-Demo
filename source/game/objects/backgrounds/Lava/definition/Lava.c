@@ -96,7 +96,7 @@ SpriteROMDef* LAVA_BG_SPRITES[] =
 	NULL
 };
 
-InanimatedInGameEntityROMDef LAVA_BG =
+InanimatedInGameEntityROMDef LAVA_IG =
 {
     {
         {

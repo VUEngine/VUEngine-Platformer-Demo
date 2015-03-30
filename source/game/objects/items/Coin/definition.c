@@ -134,7 +134,7 @@ SpriteROMDef COIN_SPRITE =
 	(TextureDefinition*)&COIN_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_AFFINE,
+	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
@@ -149,12 +149,70 @@ SpriteROMDef* COIN_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef COIN_MC =
+AnimatedInGameEntityROMDef COIN_AG =
 {
     {
         {
             __TYPE(Coin),
             COIN_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {4, 4, 4, 4},
+
+        // in game type
+        kCoin,
+
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+    	
+    	// deep
+        4
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&COIN_ANIM,
+
+    // initial animation
+    "Spin",
+};
+
+
+SpriteROMDef AFFINE_COIN_SPRITE =
+{
+	// sprite's type
+	__TYPE(AnimatedSprite),
+
+	// texture definition
+	(TextureDefinition*)&COIN_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	0		
+};
+
+SpriteROMDef* AFFINE_COIN_SPRITES[] =
+{
+	&AFFINE_COIN_SPRITE,
+	NULL
+};
+
+AnimatedInGameEntityROMDef AFFINE_COIN_AG =
+{
+    {
+        {
+            __TYPE(Coin),
+            AFFINE_COIN_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

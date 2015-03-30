@@ -50,11 +50,11 @@ const ClassSizeData _userClassesSizeData[] =
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
-	{&COIN_MC, "Coin"},
-	{&DOOR_MC, "Door"},
-	{&HERO_MC, "Hero"},
-	{&KEY_MC, "Key"},
-	{&SAW_BLADE_MC, "SawBlade"},
+	{&COIN_AG, "Coin"},
+	{&DOOR_AG, "Door"},
+	{&HERO_AC, "Hero"},
+	{&KEY_AG, "Key"},
+	{&SAW_BLADE_AC, "SawBlade"},
 	{&SAW_BLADE_LANE_V_6_IM, "SawBlade Lane V6"},
 	{NULL, ""},
 };
@@ -63,13 +63,13 @@ const UserObject _userObjects[] =
 #ifdef __ANIMATION_EDITOR
 const UserActor _userActors[] =
 {
-	{(ActorDefinition*)&COIN_MC, "Coin"},
-	{(ActorDefinition*)&DOOR_MC, "Door"},
-	{(ActorDefinition*)&HERO_MC, "Hero"},
+	{(ActorDefinition*)&COIN_AG, "Coin"},
+	{(ActorDefinition*)&DOOR_AG, "Door"},
+	{(ActorDefinition*)&HERO_AC, "Hero"},
 	{(ActorDefinition*)&HINT_ENTER_MC, "Hint enter"},
-	{(ActorDefinition*)&KEY_MC, "Key"},
-	{(ActorDefinition*)&SAW_BLADE_MC, "SawBlade"},
-	{(ActorDefinition*)&LAVA_TOP_MC, "Lava top"},
+	{(ActorDefinition*)&KEY_AG, "Key"},
+	{(ActorDefinition*)&SAW_BLADE_AC, "SawBlade"},
+	{(ActorDefinition*)&LAVA_TOP_AG, "Lava top"},
 	{NULL, ""},
 };
 #endif

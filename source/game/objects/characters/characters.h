@@ -28,8 +28,9 @@
 
 /*------------------------------DECLARATIONS--------------------------------*/
 
-extern EntityDefinition HERO_MC;
-extern EntityDefinition SAW_BLADE_MC;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition SAW_BLADE_AC;
+extern EntityDefinition AFFINE_SAW_BLADE_AC;
 extern EntityDefinition SAW_BLADE_LANE_V_6_IM;
 
 

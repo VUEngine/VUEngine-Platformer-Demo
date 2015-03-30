@@ -240,7 +240,7 @@ void SawBlade_move(SawBlade this)
 			}
 			break;			
 	}
-
+/*
 	// if I've been stopped
 	if (false && !(this->axis & Actor_isMoving(__UPCAST(Actor, this))))
     {
@@ -256,6 +256,7 @@ void SawBlade_move(SawBlade this)
 			}
 		}
 	}
+	*/
 }
 
 // start moving

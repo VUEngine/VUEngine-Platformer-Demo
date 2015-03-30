@@ -110,7 +110,7 @@ SpriteROMDef SAW_BLADE_SPRITE =
 	(TextureDefinition*)&SAW_BLADE_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_AFFINE,
+	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
@@ -126,13 +126,78 @@ SpriteROMDef* SAW_BLADE_SPRITES[] =
 };
 
 
-SawBladeDefinition SAW_BLADE_MC =
+SawBladeDefinition SAW_BLADE_AC =
 {
     {
         {
             {
                 __TYPE(SawBlade),
                 SAW_BLADE_SPRITES,
+            },
+
+            // collision detection gap (up, down, left, right)
+            {1, 2, 2, 1},
+
+            // in game type
+            kSawBlade,
+
+            // width
+            0,
+            
+            // height
+            0,
+            
+            // deep
+            10
+        },
+
+        // pointer to the animation definition for the character
+        &SAW_BLADE_ANIM,
+
+        // initial animation
+        NULL
+    },
+
+    // axis
+    __YAXIS,
+
+    // direction
+    __UP
+};
+
+
+SpriteROMDef AFFINE_SAW_BLADE_SPRITE =
+{
+	// sprite's type
+	__TYPE(AnimatedSprite),
+
+	// texture definition
+	(TextureDefinition*)&SAW_BLADE_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	0
+};
+
+SpriteROMDef* AFFINE_SAW_BLADE_SPRITES[] =
+{
+	&AFFINE_SAW_BLADE_SPRITE,
+	NULL
+};
+
+
+SawBladeDefinition AFFINE_SAW_BLADE_AC =
+{
+    {
+        {
+            {
+                __TYPE(SawBlade),
+                AFFINE_SAW_BLADE_SPRITES,
             },
 
             // collision detection gap (up, down, left, right)

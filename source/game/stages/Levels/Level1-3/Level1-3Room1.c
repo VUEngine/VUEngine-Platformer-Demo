@@ -58,36 +58,36 @@
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	{&LAVA_TOP_MC, {0, -119, -1}, NULL, NULL, NULL},
+	{&LAVA_TOP_AG, {FTOFIX19_13(0), FTOFIX19_13(-116), FTOFIX19_13(-1)}, NULL, NULL, NULL},
     {NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
 PositionedEntityROMDef LEVEL_1_3_PART_1_CHILD_ENTITIES[] =
 {
-	{&COLLISION_2x28x48,	{-182, 64, 0}, NULL, NULL, NULL}, // outer left wall
-	{&COLLISION_2x28x48,	{192, 64, 0}, NULL, NULL, NULL}, // outer right wall
-	{&COLLISION_48x28x2,	{-120, 286, 0}, NULL, NULL, NULL}, // bottom left floor
-	{&COLLISION_48x28x2,	{304, 254, 0}, NULL, NULL, NULL}, // bottom right floor
-	{&COLLISION_3x2x2,		{180, 100, 0}, NULL, NULL, NULL}, // step stone bottom right
-	{&COLLISION_3x2x2,		{96, 74, 0}, NULL, NULL, NULL}, // floating stone bottom right
-	{&COLLISION_48x3x2,		{-168, 54, 0}, NULL, NULL, NULL}, // 2nd level floor left
-	{&DOOR_MC,	            {-144, 158, 0}, NULL, NULL, NULL},
+	{&COLLISION_2x28x48,	{FTOFIX19_13(-182), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL}, // outer left wall
+	{&COLLISION_2x28x48,	{FTOFIX19_13(192), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL}, // outer right wall
+	{&COLLISION_48x28x2,	{FTOFIX19_13(-120), FTOFIX19_13(286), FTOFIX19_13(0)}, NULL, NULL, NULL}, // bottom left floor
+	{&COLLISION_48x28x2,	{FTOFIX19_13(304), FTOFIX19_13(254), FTOFIX19_13(0)}, NULL, NULL, NULL}, // bottom right floor
+	{&COLLISION_3x2x2,		{FTOFIX19_13(180), FTOFIX19_13(100), FTOFIX19_13(0)}, NULL, NULL, NULL}, // step stone bottom right
+	{&COLLISION_3x2x2,		{FTOFIX19_13(96), FTOFIX19_13(74), FTOFIX19_13(0)}, NULL, NULL, NULL}, // floating stone bottom right
+	{&COLLISION_48x3x2,		{FTOFIX19_13(-168), FTOFIX19_13(54), FTOFIX19_13(0)}, NULL, NULL, NULL}, // 2nd level floor left
+	{&DOOR_AG,	            {FTOFIX19_13(-144), FTOFIX19_13(158), FTOFIX19_13(0)}, NULL, NULL, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
 PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&HERO_MC, 				{72, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 114, LAYER_0}, NULL, NULL, NULL},
-	{&STONE_BG_SB,	        {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112, LAYER_1 + 2}, NULL, NULL, NULL},
-	{&LAVA_BG,		        {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT + 314, LAYER_0 - 2}, NULL, (PositionedEntity*)LAVA_CHILD_ENTITIES, NULL},
+	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 114), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL},
+	{&STONE_BG_IM,	        {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112), FTOFIX19_13(LAYER_1 + 2)}, NULL, NULL, NULL},
+	{&LAVA_IG,		        {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 314), FTOFIX19_13(LAYER_0 - 2)}, NULL, (PositionedEntity*)LAVA_CHILD_ENTITIES, NULL},
 
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
-	{&LEVEL1_3_PART1_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48, LAYER_0 + 2}, NULL, (PositionedEntity*)LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
-	//{&LEVEL1_3_PART2_IM,    {192, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
-	//{&LEVEL1_3_PART3_IM,    {192 + 48*8, LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	{&LEVEL1_3_PART1_IM,    {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48), FTOFIX19_13(LAYER_0 + 2)}, NULL, (PositionedEntity*)LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	//{&LEVEL1_3_PART2_IM,    {192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	//{&LEVEL1_3_PART3_IM,    {192 + 48*8), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	//{&COIN_MC,    {312, 4856, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	//{&COIN_MC,    {328, 4856, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
