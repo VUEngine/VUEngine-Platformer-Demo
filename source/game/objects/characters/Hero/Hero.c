@@ -430,19 +430,19 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 {
 	if ((K_LR & pressedKey) && __RIGHT != this->direction.x)
     {
-		this->direction.x = __RIGHT;
+		InGameEntity_setDirectionOnAxis(__UPCAST(InGameEntity, this), __XAXIS, __RIGHT);
 	}
 	else if ((K_LL & pressedKey) && __LEFT != this->direction.x)
     {
-		this->direction.x = __LEFT;
+		InGameEntity_setDirectionOnAxis(__UPCAST(InGameEntity, this), __XAXIS, __LEFT);
 	}
 	else if ((K_LU & pressedKey) && __FAR != this->direction.z)
     {
-		this->direction.z = __FAR;
+		InGameEntity_setDirectionOnAxis(__UPCAST(InGameEntity, this), __ZAXIS, __FAR);
 	}
 	else if ((K_LD & pressedKey) && __NEAR != this->direction.z)
     {
-		this->direction.z = __NEAR;
+		InGameEntity_setDirectionOnAxis(__UPCAST(InGameEntity, this), __ZAXIS, __NEAR);
 	}
 
 	bool movementState = Body_isMoving(this->body);
