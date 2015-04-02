@@ -3,11 +3,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 							  VBJAENGINE'S CUSTOM CONFIGURATION
-//---------------------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------------------
 // 										DEBUGGING TOOLS
 //---------------------------------------------------------------------------------------------------------
 
@@ -19,6 +14,7 @@
 #undef __DEBUG_TOOLS
 #undef __STAGE_EDITOR
 #undef __ANIMATION_EDITOR
+
 
 //---------------------------------------------------------------------------------------------------------
 // 										OPTICS / PROJECTION
@@ -122,7 +118,6 @@
 #define __POOL_28B_SIZE 	(__BLOCK_28B * 640)
 #define __POOL_16B_SIZE 	(__BLOCK_16B * 256)
 
-
 #define __MIN_BLOCK 		__BLOCK_16B
 
 
@@ -194,15 +189,29 @@
 // maximum number of rows to write on each call to affine calculation functions
 #define __MAXIMUM_AFFINE_ROWS_PER_CALL				16
 
+
 //---------------------------------------------------------------------------------------------------------
-// 										WORLD'S CAPACITY
+// 										    STREAMING
 //---------------------------------------------------------------------------------------------------------
 
-// padd to determine if a character must be loaded/unloaded load pad must always be lower than unload pad!
-// too close values will put under heavy load the streaming!
-#define __ENTITY_LOAD_PAD 			48
-#define __ENTITY_UNLOAD_PAD 		(__ENTITY_LOAD_PAD + 24)
+// the number of total calls to the streaming method which completes a cycle
+// there are 4 parts for the streaming algorithm:
+// 1) unload entities
+// 2) select the next entity to load
+// 3) create the selected entity
+// 4) initialize the loaded entity
+// if __STREAM_CYCLE_DURATION = 20 and __TARGET_FPS = 50, each one of the previous items will be called
+// called every 100 milliseconds
+#define __STREAM_CYCLE_DURATION	(20)
 
+// pad to determine if an entity must be loaded/unloaded 
+// load pad must always be lower than unload pad!
+// too close values will put under heavy usage the streaming!
+#define __ENTITY_LOAD_PAD 			196
+#define __ENTITY_UNLOAD_PAD 		(__ENTITY_LOAD_PAD + 32)
+
+// the number of entities in the stage's definition to check for streaming in on each 
+// preload cycle
 // since there are 32 layers, that's the theoretical limit of entities to display
 #define __STREAMING_AMPLITUDE		32
 
