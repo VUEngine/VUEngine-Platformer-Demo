@@ -120,7 +120,7 @@ SpriteROMDef KEY_SPRITE =
 	0	
 };
 
-SpriteROMDef* KEY_SPRITES[] =
+SpriteROMDef* const KEY_SPRITES[] =
 {
 	&KEY_SPRITE,
 	NULL

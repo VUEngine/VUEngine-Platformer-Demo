@@ -87,7 +87,7 @@ SpriteROMDef GUI_BLANK_IM_SPRITE =
 	0		
 };
 
-SpriteROMDef* GUI_BLANK_IM_SPRITES[] =
+SpriteROMDef* const GUI_BLANK_IM_SPRITES[] =
 {
 	&GUI_BLANK_IM_SPRITE,
 	NULL

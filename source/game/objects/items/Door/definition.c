@@ -189,7 +189,7 @@ SpriteROMDef DOOR_SPRITE =
 	1		
 };
 
-SpriteROMDef* DOOR_SPRITES[] =
+SpriteROMDef* const DOOR_SPRITES[] =
 {
 	&DOOR_SPRITE,
 	NULL
@@ -246,7 +246,7 @@ SpriteROMDef AFFINE_DOOR_SPRITE =
 	1		
 };
 
-SpriteROMDef* AFFINE_DOOR_SPRITES[] =
+SpriteROMDef* const AFFINE_DOOR_SPRITES[] =
 {
 	&AFFINE_DOOR_SPRITE,
 	NULL

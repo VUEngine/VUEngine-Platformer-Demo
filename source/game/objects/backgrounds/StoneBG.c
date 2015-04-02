@@ -109,7 +109,7 @@ MSpriteROMDef STONE_BG_SB_SPRITE =
 	true
 };
 
-SpriteROMDef* STONE_BG_SB_SPRITES[] =
+SpriteROMDef* const STONE_BG_SB_SPRITES[] =
 {
 	(SpriteROMDef*)&STONE_BG_SB_SPRITE,
 	NULL

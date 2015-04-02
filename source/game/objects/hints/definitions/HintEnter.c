@@ -191,7 +191,7 @@ SpriteROMDef HINT_ENTER_SPRITE =
 	0		
 };
 	
-SpriteROMDef* HINT_ENTER_SPRITES[] =
+SpriteROMDef* const HINT_ENTER_SPRITES[] =
 {
 	&HINT_ENTER_SPRITE,
 	NULL

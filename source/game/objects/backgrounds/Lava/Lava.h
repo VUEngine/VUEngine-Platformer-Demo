@@ -40,6 +40,7 @@
 
 #define Lava_SET_VTABLE(ClassName)												\
 	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
+	__VIRTUAL_SET(ClassName, Lava, initialize);									\
 	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
     __VIRTUAL_SET(ClassName, Lava, isVisible);									\
 

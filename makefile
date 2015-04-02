@@ -97,7 +97,9 @@ $(ENGINE): deleteEngine
 
 $(TARGET).vb: main.elf
 	@echo Creating $@
+	@$(OBJDUMP) -t main.elf > sections.txt
 	@$(OBJCOPY) -O binary main.elf $@
+	@$(OBJDUMP) -S main.elf > machine.asm
 	@echo $(TARGET).vb done
 
 asm: $(TARGET).vb

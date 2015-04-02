@@ -154,7 +154,7 @@ SpriteROMDef FLOOR_22x8_BG_SPRITE_RIGHT =
 	// parallax displacement
 	-1};
 
-SpriteROMDef* FLOOR_22x8_BG_SPRITES[] =
+SpriteROMDef* const FLOOR_22x8_BG_SPRITES[] =
 {
 	&FLOOR_22x8_BG_SPRITE,
 	NULL
@@ -217,7 +217,7 @@ SpriteROMDef AFFINE_FLOOR_22x8_BG_SPRITE =
 	0		
 };
 
-SpriteROMDef* AFFINE_FLOOR_22x8_BG_SPRITES[] =
+SpriteROMDef* const AFFINE_FLOOR_22x8_BG_SPRITES[] =
 {
 	&AFFINE_FLOOR_22x8_BG_SPRITE,
 	NULL

@@ -377,7 +377,7 @@ SpriteROMDef HERO_SPRITE =
 	0
 };
 
-SpriteROMDef* HERO_SPRITES[] =
+SpriteROMDef* const HERO_SPRITES[] =
 {
 	&HERO_SPRITE,
 	NULL

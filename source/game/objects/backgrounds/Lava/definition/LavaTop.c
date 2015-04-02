@@ -122,7 +122,7 @@ SpriteROMDef LAVA_TOP_SPRITE =
 	-2		
 };
 
-SpriteROMDef* LAVA_TOP_SPRITES[] =
+SpriteROMDef* const LAVA_TOP_SPRITES[] =
 {
 	&LAVA_TOP_SPRITE,
 	NULL

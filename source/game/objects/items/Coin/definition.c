@@ -143,7 +143,7 @@ SpriteROMDef COIN_SPRITE =
 	0		
 };
 
-SpriteROMDef* COIN_SPRITES[] =
+SpriteROMDef* const COIN_SPRITES[] =
 {
 	&COIN_SPRITE,
 	NULL
@@ -201,7 +201,7 @@ SpriteROMDef AFFINE_COIN_SPRITE =
 	0		
 };
 
-SpriteROMDef* AFFINE_COIN_SPRITES[] =
+SpriteROMDef* const AFFINE_COIN_SPRITES[] =
 {
 	&AFFINE_COIN_SPRITE,
 	NULL

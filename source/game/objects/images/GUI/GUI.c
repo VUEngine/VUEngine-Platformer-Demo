@@ -87,7 +87,7 @@ SpriteROMDef GUI_IM_SPRITE =
 	0		
 };
 
-SpriteROMDef* GUI_IM_SPRITES[] =
+SpriteROMDef* const GUI_IM_SPRITES[] =
 {
 	&GUI_IM_SPRITE,
 	NULL

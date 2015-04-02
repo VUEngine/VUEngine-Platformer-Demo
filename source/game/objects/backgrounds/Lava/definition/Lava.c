@@ -90,7 +90,7 @@ SpriteROMDef LAVA_BG_SPRITE =
 	-2		
 };
 
-SpriteROMDef* LAVA_BG_SPRITES[] =
+SpriteROMDef* const LAVA_BG_SPRITES[] =
 {
 	&LAVA_BG_SPRITE,
 	NULL

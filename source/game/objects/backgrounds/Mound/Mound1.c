@@ -87,7 +87,7 @@ SpriteROMDef MOUND_1_IM_SPRITE =
 	0		
 };
 
-SpriteROMDef* MOUND_1_IM_SPRITES[] =
+SpriteROMDef* const MOUND_1_IM_SPRITES[] =
 {
 	&MOUND_1_IM_SPRITE,
 	NULL
