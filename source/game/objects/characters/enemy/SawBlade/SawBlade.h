@@ -99,7 +99,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 void SawBlade_destructor(SawBlade this);
 
 // initialize method
-void SawBlade_initialize(SawBlade this, const PositionedEntity* positionedEntity);
+void SawBlade_initialize(SawBlade this);
 
 // register a shape with the collision detection system
 void SawBlade_registerShape(SawBlade this);

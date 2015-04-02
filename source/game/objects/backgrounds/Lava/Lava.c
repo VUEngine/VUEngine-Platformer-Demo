@@ -51,7 +51,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Lava, AnimatedInGameEntity);
+__CLASS_DEFINITION(Lava, InanimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -66,20 +66,17 @@ void Lava_moveUpwards(Lava this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Lava, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 __CLASS_NEW_END(Lava, animatedInGameEntityDefinition, ID);
 
 // class's constructor
-void Lava_constructor(Lava this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
-
-	// start moving
-	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
 }
 
 // class's destructor
@@ -90,6 +87,15 @@ void Lava_destructor(Lava this)
 
 	// delete the super object
 	__DESTROY_BASE;
+}
+
+// initialize method
+void Lava_initialize(Lava this)
+{
+	Entity_initialize(__UPCAST(Entity, this));
+	
+	// start moving
+	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
 }
 
 // whether it is visible

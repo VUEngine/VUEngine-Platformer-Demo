@@ -16,6 +16,9 @@
 #define __STAGE_EDITOR
 #define __ANIMATION_EDITOR
 
+#undef __DEBUG_TOOLS
+#undef __STAGE_EDITOR
+#undef __ANIMATION_EDITOR
 
 //---------------------------------------------------------------------------------------------------------
 // 										OPTICS / PROJECTION

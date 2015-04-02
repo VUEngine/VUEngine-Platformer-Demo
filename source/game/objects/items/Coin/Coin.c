@@ -83,9 +83,9 @@ void Coin_destructor(Coin this)
 }
 
 // initialize method
-void Coin_initialize(Coin this, const PositionedEntity* positionedEntity)
+void Coin_initialize(Coin this)
 {
-	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this), positionedEntity);
+	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
 
 	CoinManager_registerCoin(CoinManager_getInstance(), this);
 }

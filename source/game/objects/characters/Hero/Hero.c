@@ -140,9 +140,6 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->keys = 0;
 	this->currentHint = NULL;
 
-	// initialize me as idle
-	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroIdle_getInstance()));
-
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
 
@@ -208,6 +205,16 @@ void Hero_destructor(Hero this)
 	// delete the super object
 	__DESTROY_BASE;
 }
+
+// initialize method
+void Hero_initialize(Hero this)
+{
+	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
+	
+	// initialize me as idle
+	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroIdle_getInstance()));
+}
+
 
 // keep adding force to jump
 void Hero_addMomentumToJump(Hero this)

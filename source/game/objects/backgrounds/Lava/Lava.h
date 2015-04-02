@@ -26,7 +26,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <InanimatedInGameEntity.h>
 #include <macros.h>
 
 
@@ -35,11 +35,11 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Lava_METHODS															\
-	AnimatedInGameEntity_METHODS;
+	InanimatedInGameEntity_METHODS;
 	
 
 #define Lava_SET_VTABLE(ClassName)												\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
+	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
 	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
     __VIRTUAL_SET(ClassName, Lava, isVisible);									\
 
@@ -48,17 +48,18 @@ __CLASS(Lava);
 #define Lava_ATTRIBUTES															\
 																				\
 	/* it is derivated from */													\
-	AnimatedInGameEntity_ATTRIBUTES												\
+	InanimatedInGameEntity_ATTRIBUTES											\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Lava, AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
 
-void Lava_constructor(Lava this, AnimatedInGameEntityDefinition* definition, int ID);
+void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, int ID);
 void Lava_destructor(Lava this);
+void Lava_initialize(Lava this);
 bool Lava_handleMessage(Lava this, Telegram telegram);
 bool Lava_isVisible(Lava this, int pad);
 

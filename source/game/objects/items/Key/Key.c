@@ -83,9 +83,9 @@ void Key_destructor(Key this)
 }
 
 // initialize method
-void Key_initialize(Key this, const PositionedEntity* positionedEntity)
+void Key_initialize(Key this)
 {
-	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this), positionedEntity);
+	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
 
 	KeyManager_registerKey(KeyManager_getInstance(), this);
 }

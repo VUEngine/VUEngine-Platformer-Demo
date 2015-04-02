@@ -47,6 +47,7 @@
 
 #define Hero_SET_VTABLE(ClassName)												\
 	Actor_SET_VTABLE(ClassName);												\
+	__VIRTUAL_SET(ClassName, Hero, initialize);									\
 	__VIRTUAL_SET(ClassName, Hero, die);										\
 	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);								\
 	__VIRTUAL_SET(ClassName, Hero, doMessage);									\
@@ -99,6 +100,7 @@ __CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, int ID);
 
 void Hero_constructor(Hero this, ActorDefinition* definition, int ID);
 void Hero_destructor(Hero this);
+void Hero_initialize(Hero this);
 void Hero_addForce(Hero this, int changedDirection, int axis);
 void Hero_stopMovement(Hero this);
 void Hero_startedMovingOnAxis(Hero this, int axis);

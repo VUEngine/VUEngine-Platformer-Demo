@@ -97,9 +97,9 @@ void SawBlade_destructor(SawBlade this)
 }
 
 // initialize method
-void SawBlade_initialize(SawBlade this, const PositionedEntity* positionedEntity)
+void SawBlade_initialize(SawBlade this)
 {
-	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this), positionedEntity);
+	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
 	
 	StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeMoving_getInstance()));
 }
