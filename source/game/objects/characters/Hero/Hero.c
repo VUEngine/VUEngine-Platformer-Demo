@@ -430,19 +430,19 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 {
 	if ((K_LR & pressedKey) && __RIGHT != this->direction.x)
     {
-		InGameEntity_setDirectionOnAxis(__UPCAST(InGameEntity, this), __XAXIS, __RIGHT);
+		this->direction.x = __RIGHT;
 	}
 	else if ((K_LL & pressedKey) && __LEFT != this->direction.x)
     {
-		InGameEntity_setDirectionOnAxis(__UPCAST(InGameEntity, this), __XAXIS, __LEFT);
+		this->direction.x = __LEFT;
 	}
 	else if ((K_LU & pressedKey) && __FAR != this->direction.z)
     {
-		InGameEntity_setDirectionOnAxis(__UPCAST(InGameEntity, this), __ZAXIS, __FAR);
+		this->direction.z = __FAR;
 	}
 	else if ((K_LD & pressedKey) && __NEAR != this->direction.z)
     {
-		InGameEntity_setDirectionOnAxis(__UPCAST(InGameEntity, this), __ZAXIS, __NEAR);
+		this->direction.z = __NEAR;
 	}
 
 	bool movementState = Body_isMoving(this->body);
@@ -777,9 +777,6 @@ void Hero_hideHint(Hero this)
 	{
 	    // play the closing animation (the hint will delete itself afterwards)
 		Hint_close((Hint)this->currentHint);
-
-		// clear the saved entity
-		//this->currentHint = NULL;
 	}
 }
 

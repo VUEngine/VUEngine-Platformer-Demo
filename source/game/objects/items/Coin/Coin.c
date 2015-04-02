@@ -71,8 +71,6 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
-
-	CoinManager_registerCoin(CoinManager_getInstance(), this);
 }
 
 // class's destructor
@@ -82,6 +80,14 @@ void Coin_destructor(Coin this)
 
 	// delete the super object
 	__DESTROY_BASE;
+}
+
+// initialize method
+void Coin_initialize(Coin this, const PositionedEntity* positionedEntity)
+{
+	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this), positionedEntity);
+
+	CoinManager_registerCoin(CoinManager_getInstance(), this);
 }
 
 // state's on message

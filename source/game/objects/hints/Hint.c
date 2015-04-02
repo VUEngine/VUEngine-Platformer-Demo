@@ -92,27 +92,34 @@ bool Hint_handleMessage(Hint this, Telegram telegram)
 
 void Hint_open(Hint this)
 {
-
+	// this wastes a WORLD, but makes things smoother
+	Entity_show(__UPCAST(Entity, this));
+	/*
 	if(!this->sprites)
 	{
 		__VIRTUAL_CALL(void, Container, resume, this);
 	}
+	*/
 	
     AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Open");
 }
 
 void Hint_close(Hint this)
 {
-    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Close");
+	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Close");
 }
 
 void Hint_onCloseDone(Hint this, Object eventFirer)
 {
+	// this wastes a WORLD, but makes things smoother
+	Entity_hide(__UPCAST(Entity, this));
 	// cannot suspend right away because it is not safe, but a delayed message always is
+	/*
 	MessageDispatcher_dispatchMessage(1, __UPCAST(Object, this), __UPCAST(Object, this), kSuspend, NULL);
+	*/
 }
 
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
 {
-    AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), I18n_getActiveLanguageName(I18n_getInstance()));
+	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), I18n_getActiveLanguageName(I18n_getInstance()));
 }

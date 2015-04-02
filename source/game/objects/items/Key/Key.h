@@ -40,7 +40,8 @@
 
 #define Key_SET_VTABLE(ClassName)												\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Key, handleMessage);
+	__VIRTUAL_SET(ClassName, Key, handleMessage);								\
+	__VIRTUAL_SET(ClassName, Key, initialize);									\
 
 __CLASS(Key);
 
@@ -58,6 +59,7 @@ __CLASS_NEW_DECLARE(Key, AnimatedInGameEntityDefinition* animatedEntityDefinitio
 
 void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, int ID);
 void Key_destructor(Key this);
+void Key_initialize(Key this, const PositionedEntity* positionedEntity);
 bool Key_handleMessage(Key this, Telegram telegram);
 void Key_removeFromStage(Key this);
 

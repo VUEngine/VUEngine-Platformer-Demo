@@ -50,7 +50,7 @@ AnimationFunctionROMDef HINT_ENTER_OPEN_ANIM =
 	{0,1,2,3,4},
 	
 	// number of cycles a frame of animation is displayed
-	__FPS_ANIM_FACTOR,
+	2 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	false,
@@ -116,7 +116,7 @@ AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 	{4,3,2,1,0},
 
 	// number of cycles a frame of animation is displayed
-	__FPS_ANIM_FACTOR,
+	2 * __FPS_ANIM_FACTOR,
 
 	// whether to play it in loop or not
 	false,

@@ -87,8 +87,6 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 			this->direction.y = sawBladeDefinition->direction;
 			break;			
 	}
-
-	StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeMoving_getInstance()));
 }
 
 // class's constructor
@@ -96,6 +94,14 @@ void SawBlade_destructor(SawBlade this)
 {
 	// delete the super object
 	__DESTROY_BASE;
+}
+
+// initialize method
+void SawBlade_initialize(SawBlade this, const PositionedEntity* positionedEntity)
+{
+	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this), positionedEntity);
+	
+	StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeMoving_getInstance()));
 }
 
 // register a shape with the collision detection system

@@ -52,6 +52,7 @@
 	__VIRTUAL_SET(ClassName, SawBlade, takeHit);									\
 	__VIRTUAL_SET(ClassName, SawBlade, setLocalPosition);							\
 	__VIRTUAL_SET(ClassName, SawBlade, getAxisFreeForMovement);						\
+	__VIRTUAL_SET(ClassName, SawBlade, initialize);									\
 	
 __CLASS(SawBlade);
 
@@ -96,6 +97,9 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 
 // class's constructor
 void SawBlade_destructor(SawBlade this);
+
+// initialize method
+void SawBlade_initialize(SawBlade this, const PositionedEntity* positionedEntity);
 
 // register a shape with the collision detection system
 void SawBlade_registerShape(SawBlade this);

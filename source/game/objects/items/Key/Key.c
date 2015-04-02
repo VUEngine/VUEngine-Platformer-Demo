@@ -71,8 +71,6 @@ void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEnt
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
-
-	KeyManager_registerKey(KeyManager_getInstance(), this);
 }
 
 // class's destructor
@@ -82,6 +80,14 @@ void Key_destructor(Key this)
 
 	// delete the super object
 	__DESTROY_BASE;
+}
+
+// initialize method
+void Key_initialize(Key this, const PositionedEntity* positionedEntity)
+{
+	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this), positionedEntity);
+
+	KeyManager_registerKey(KeyManager_getInstance(), this);
 }
 
 // state's on message

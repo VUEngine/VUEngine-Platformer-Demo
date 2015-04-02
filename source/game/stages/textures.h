@@ -9,6 +9,7 @@
 #include "backgrounds/textures.h"
 #include "characters/textures.h"
 #include "items/textures.h"
+#include "hints/textures.h"
 #include "images/textures.h"
 
 

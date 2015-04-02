@@ -69,7 +69,7 @@
 #define __CAP_FPS						1
 
 // clock resolution
-#define __TIMER_RESOLUTION				10
+#define __TIMER_RESOLUTION				1
 
 // target frames per second
 // must be a muliple of 50 to being able to use a timer resolution greater than 1
@@ -116,16 +116,8 @@
 #define __POOL_80B_SIZE 	(__BLOCK_80B * 48)
 #define __POOL_48B_SIZE 	(__BLOCK_48B * 32)
 #define __POOL_32B_SIZE 	(__BLOCK_32B * 128)
-
-#ifndef __DEBUG_TOOLS
-#define __POOL_28B_SIZE 	(__BLOCK_28B * 512)
-// make sure that the n value in  __BLOCK_16B * n is greater than the number
-// of entities in your biggest stage's definition
-#define __POOL_16B_SIZE 	(__BLOCK_16B * 128)
-#else
 #define __POOL_28B_SIZE 	(__BLOCK_28B * 640)
 #define __POOL_16B_SIZE 	(__BLOCK_16B * 256)
-#endif
 
 
 #define __MIN_BLOCK 		__BLOCK_16B
