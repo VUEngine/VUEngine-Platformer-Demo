@@ -154,7 +154,7 @@ AnimatedInGameEntityROMDef COIN_AG =
     {
         {
             __TYPE(Coin),
-            COIN_SPRITES,
+            (SpriteROMDef**)COIN_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -212,7 +212,7 @@ AnimatedInGameEntityROMDef AFFINE_COIN_AG =
     {
         {
             __TYPE(Coin),
-            AFFINE_COIN_SPRITES,
+            (SpriteROMDef**)AFFINE_COIN_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

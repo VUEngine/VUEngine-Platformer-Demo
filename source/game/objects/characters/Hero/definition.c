@@ -388,7 +388,7 @@ ActorROMDef HERO_AC =
     {
         {
             __TYPE(Hero),
-            HERO_SPRITES,
+            (SpriteROMDef**)HERO_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

@@ -166,7 +166,7 @@ InanimatedInGameEntityROMDef FLOOR_4x10_IG =
     {
         {
             __TYPE(InanimatedInGameEntity),
-            FLOOR_4x10_BG_SPRITES,
+            (SpriteROMDef**)FLOOR_4x10_BG_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -226,7 +226,7 @@ InanimatedInGameEntityROMDef AFFINE_FLOOR_4x10_IG =
     {
         {
             __TYPE(InanimatedInGameEntity),
-            AFFINE_FLOOR_4x10_BG_SPRITES,
+            (SpriteROMDef**)AFFINE_FLOOR_4x10_BG_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

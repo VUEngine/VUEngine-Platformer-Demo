@@ -133,7 +133,7 @@ AnimatedInGameEntityROMDef LAVA_TOP_AG =
     {
         {
             __TYPE(AnimatedInGameEntity),
-            LAVA_TOP_SPRITES,
+            (SpriteROMDef**)LAVA_TOP_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

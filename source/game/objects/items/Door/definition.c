@@ -200,7 +200,7 @@ AnimatedInGameEntityROMDef DOOR_AG =
     {
         {
             __TYPE(Door),
-            DOOR_SPRITES,
+            (SpriteROMDef**)DOOR_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -257,7 +257,7 @@ AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
     {
         {
             __TYPE(Door),
-            AFFINE_DOOR_SPRITES,
+            (SpriteROMDef**)AFFINE_DOOR_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

@@ -43,6 +43,7 @@
 	__VIRTUAL_SET(ClassName, Lava, initialize);									\
 	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
     __VIRTUAL_SET(ClassName, Lava, isVisible);									\
+    __VIRTUAL_SET(ClassName, Lava, resume);										\
 
 __CLASS(Lava);
 
@@ -63,6 +64,7 @@ void Lava_destructor(Lava this);
 void Lava_initialize(Lava this);
 bool Lava_handleMessage(Lava this, Telegram telegram);
 bool Lava_isVisible(Lava this, int pad);
+void Lava_resume(Lava this);
 
 
 #endif

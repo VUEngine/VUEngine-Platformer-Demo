@@ -101,7 +101,7 @@ InanimatedInGameEntityROMDef LAVA_IG =
     {
         {
             __TYPE(Lava),
-            LAVA_BG_SPRITES,
+            (SpriteROMDef**)LAVA_BG_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

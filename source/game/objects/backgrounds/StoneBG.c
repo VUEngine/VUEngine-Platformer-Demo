@@ -118,5 +118,5 @@ SpriteROMDef* const STONE_BG_SB_SPRITES[] =
 ImageROMDef STONE_BG_IM =
 {
 	__TYPE(Image),
-	STONE_BG_SB_SPRITES,
+	(SpriteROMDef**)STONE_BG_SB_SPRITES,
 };

@@ -96,5 +96,5 @@ SpriteROMDef* const MOUND_1_IM_SPRITES[] =
 ImageROMDef MOUND_1_IM =
 {
 	__TYPE(Image),
-	MOUND_1_IM_SPRITES,
+	(SpriteROMDef**)MOUND_1_IM_SPRITES,
 };

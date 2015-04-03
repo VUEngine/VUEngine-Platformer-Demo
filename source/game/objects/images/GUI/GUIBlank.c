@@ -96,5 +96,5 @@ SpriteROMDef* const GUI_BLANK_IM_SPRITES[] =
 ImageROMDef GUI_BLANK_IM =
 {
 	__TYPE(Image),
-	GUI_BLANK_IM_SPRITES,
+	(SpriteROMDef**)GUI_BLANK_IM_SPRITES,
 };

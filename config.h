@@ -6,14 +6,12 @@
 // 										DEBUGGING TOOLS
 //---------------------------------------------------------------------------------------------------------
 
+#ifdef __DEBUG
 #define __PRINT_FRAMERATE
 #define __DEBUG_TOOLS
 #define __STAGE_EDITOR
 #define __ANIMATION_EDITOR
-
-#undef __DEBUG_TOOLS
-#undef __STAGE_EDITOR
-#undef __ANIMATION_EDITOR
+#endif
 
 
 //---------------------------------------------------------------------------------------------------------

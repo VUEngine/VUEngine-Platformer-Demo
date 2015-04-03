@@ -202,7 +202,7 @@ AnimatedInGameEntityROMDef HINT_ENTER_MC =
     {
         {
             __TYPE(Hint),
-            HINT_ENTER_SPRITES,
+            (SpriteROMDef**)HINT_ENTER_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

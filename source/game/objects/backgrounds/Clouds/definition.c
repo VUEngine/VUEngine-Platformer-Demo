@@ -149,5 +149,5 @@ SpriteROMDef* const CLOUDS_SB_SPRITES[] =
 ScrollBackgroundROMDef CLOUDS_SB =
 {
 	__TYPE(ScrollBackground),
-	CLOUDS_SB_SPRITES,
+	(SpriteROMDef**)CLOUDS_SB_SPRITES,
 };

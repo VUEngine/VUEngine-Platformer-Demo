@@ -96,5 +96,5 @@ SpriteROMDef* const GUI_IM_SPRITES[] =
 ImageROMDef GUI_IM =
 {
 	__TYPE(Image),
-	GUI_IM_SPRITES,
+	(SpriteROMDef**)GUI_IM_SPRITES,
 };

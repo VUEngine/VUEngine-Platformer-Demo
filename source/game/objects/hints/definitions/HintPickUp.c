@@ -202,7 +202,7 @@ AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
     {
         {
             __TYPE(Hint),
-            HINT_PICK_UP_SPRITES,
+            (SpriteROMDef**)HINT_PICK_UP_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

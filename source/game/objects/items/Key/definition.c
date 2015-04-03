@@ -131,7 +131,7 @@ AnimatedInGameEntityROMDef KEY_AG =
     {
         {
             __TYPE(Key),
-            KEY_SPRITES,
+            (SpriteROMDef**)KEY_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

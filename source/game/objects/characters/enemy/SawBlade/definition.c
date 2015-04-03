@@ -132,7 +132,7 @@ SawBladeDefinition SAW_BLADE_AC =
         {
             {
                 __TYPE(SawBlade),
-                SAW_BLADE_SPRITES,
+                (SpriteROMDef**)SAW_BLADE_SPRITES,
             },
 
             // collision detection gap (up, down, left, right)
@@ -197,7 +197,7 @@ SawBladeDefinition AFFINE_SAW_BLADE_AC =
         {
             {
                 __TYPE(SawBlade),
-                AFFINE_SAW_BLADE_SPRITES,
+                (SpriteROMDef**)AFFINE_SAW_BLADE_SPRITES,
             },
 
             // collision detection gap (up, down, left, right)

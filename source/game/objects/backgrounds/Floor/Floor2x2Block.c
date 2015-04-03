@@ -166,7 +166,7 @@ InanimatedInGameEntityROMDef FLOOR_2x2_BLOCK_IG =
     {
         {
             __TYPE(InanimatedInGameEntity),
-            FLOOR_2x2_BLOCK_BG_SPRITES,
+            (SpriteROMDef**)FLOOR_2x2_BLOCK_BG_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -229,7 +229,7 @@ InanimatedInGameEntityROMDef AFFINE_FLOOR_2x2_BLOCK_IG =
     {
         {
             __TYPE(InanimatedInGameEntity),
-            AFFINE_FLOOR_2x2_BLOCK_BG_SPRITES,
+            (SpriteROMDef**)AFFINE_FLOOR_2x2_BLOCK_BG_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)

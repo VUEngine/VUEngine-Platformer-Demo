@@ -134,3 +134,14 @@ void Lava_moveUpwards(Lava this)
     // send delayed message to itself to trigger next movement
     MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
 }
+
+// resume after pause
+void Lava_resume(Lava this)
+{
+	ASSERT(this, "Entity::resume: null this");
+
+	Entity_resume(__UPCAST(Entity, this));
+
+    // send delayed message to itself to trigger next movement
+    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
+}

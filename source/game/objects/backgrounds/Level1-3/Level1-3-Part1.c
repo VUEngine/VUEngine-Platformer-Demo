@@ -98,7 +98,7 @@ SpriteROMDef* const LEVEL1_3_PART1_IM_SPRITES[] =
 MBackgroundROMDef LEVEL1_3_PART1_IM =
 {
 	__TYPE(MBackground),
-	LEVEL1_3_PART1_IM_SPRITES,
+	(SpriteROMDef**)LEVEL1_3_PART1_IM_SPRITES,
 };
 
 /*

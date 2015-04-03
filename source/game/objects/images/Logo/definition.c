@@ -259,7 +259,7 @@ SpriteROMDef* const LOGO_IM_SPRITES[] =
 ImageROMDef LOGO_IM =
 {
 	__TYPE(Image),
-	LOGO_IM_SPRITES,
+	(SpriteROMDef**)LOGO_IM_SPRITES,
 };
 
 
@@ -341,7 +341,7 @@ SpriteROMDef* const SUPER_AWESOME_IM_SPRITES[] =
 ImageROMDef SUPER_AWESOME_IM =
 {
 	__TYPE(Image),
-	SUPER_AWESOME_IM_SPRITES,
+	(SpriteROMDef**)SUPER_AWESOME_IM_SPRITES,
 };
 
 
@@ -423,5 +423,5 @@ SpriteROMDef* const VBJAENGINE_IM_SPRITES[] =
 ImageROMDef VBJAENGINE_IM =
 {
 	__TYPE(Image),
-	VBJAENGINE_IM_SPRITES,
+	(SpriteROMDef**)VBJAENGINE_IM_SPRITES,
 };
