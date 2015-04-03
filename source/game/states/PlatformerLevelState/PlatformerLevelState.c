@@ -46,7 +46,6 @@
 static void PlatformerLevelState_constructor(PlatformerLevelState this);
 static void PlatformerLevelState_destructor(PlatformerLevelState this);
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
-static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
@@ -95,7 +94,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Game_setOptical(Game_getInstance(), optical);
 
 	//load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, true, true);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, true, false);
 
 	// playing by default
 	this->mode = kPaused;
@@ -116,13 +115,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_printCoins(this);
 	PlatformerLevelState_printKeys(this);
 	PlatformerLevelState_printLevel(this);
-}
-
-// state's execute
-static void PlatformerLevelState_execute(PlatformerLevelState this, void* owner)
-{
-	// call base
-	GameState_execute(__UPCAST(GameState, this), owner);
 }
 
 // state's exit

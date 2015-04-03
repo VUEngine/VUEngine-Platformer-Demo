@@ -68,7 +68,7 @@
 #define __CAP_FPS						1
 
 // clock resolution
-#define __TIMER_RESOLUTION				1
+#define __TIMER_RESOLUTION				10
 
 // target frames per second
 // must be a muliple of 50 to being able to use a timer resolution greater than 1
