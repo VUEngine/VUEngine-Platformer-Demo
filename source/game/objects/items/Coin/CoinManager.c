@@ -122,7 +122,6 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 void CoinManager_removeCoin(CoinManager this, Coin coin)
 {
 	ASSERT(this, "CoinManager::removeCoin: null this");
-	ASSERT(VirtualList_find(this->coins, coin), "CoinManager::removeCoin: coin not found");
 
 	VirtualList_removeElement(this->coins, coin);
 }

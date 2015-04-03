@@ -75,6 +75,16 @@ void Hint_destructor(Hint this)
 	__DESTROY_BASE;
 }
 
+void Hint_resume(Hint this)
+{
+	ASSERT(this, "Entity::resume: null this");
+
+	Entity_resume(__UPCAST(Entity, this));
+	
+	// this wastes a WORLD, but makes things smoother
+	Entity_hide(__UPCAST(Entity, this));
+}
+
 // state's on message
 bool Hint_handleMessage(Hint this, Telegram telegram)
 {

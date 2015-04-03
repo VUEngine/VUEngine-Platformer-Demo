@@ -122,7 +122,6 @@ void KeyManager_registerKey(KeyManager this, Key key)
 void KeyManager_removeKey(KeyManager this, Key key)
 {
 	ASSERT(this, "KeyManager::removeKey: null this");
-	ASSERT(VirtualList_find(this->keys, key), "KeyManager::removeKey: key not found");
 
 	VirtualList_removeElement(this->keys, key);
 }
