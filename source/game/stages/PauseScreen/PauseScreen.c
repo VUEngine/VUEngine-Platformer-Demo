@@ -57,8 +57,8 @@
 PositionedEntityROMDef PAUSE_SCREEN_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&VBJAENGINE_IM, 	    {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(40), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL},
 	{&LOGO_IM, 			    {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(88), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL},
+	{&VBJAENGINE_IM, 	    {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(40), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL},
 	{&SUPER_AWESOME_IM,     {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(72), FTOFIX19_13(LAYER_0 - 16)}, NULL, NULL, NULL},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL},

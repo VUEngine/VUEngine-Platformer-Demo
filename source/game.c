@@ -57,9 +57,9 @@ int main(void)
 
     // start the game
 	//Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEPrecautionScreenState_getInstance()));
-    //Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
-    Game_start(Game_getInstance(), __UPCAST(GameState, PlatformerLevelState_getInstance()));
-
+    Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
+    // Game_start(Game_getInstance(), __UPCAST(GameState, PlatformerLevelState_getInstance()));
+    
 	// end program
 	return true;
 }

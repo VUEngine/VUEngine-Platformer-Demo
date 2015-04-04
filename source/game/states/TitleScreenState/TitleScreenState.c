@@ -86,7 +86,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	Game_setOptical(Game_getInstance(), optical);
 
 	//load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, true, true);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, false, false);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Clock_start(Game_getInGameClock(Game_getInstance()));
