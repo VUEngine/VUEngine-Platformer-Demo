@@ -80,12 +80,12 @@ PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 114), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL},
 	{&STONE_BG_IM,	        {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112), FTOFIX19_13(LAYER_1 + 2)}, NULL, NULL, NULL},
-	{&LAVA_IG,		        {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 314), FTOFIX19_13(LAYER_0 - 2)}, NULL, (PositionedEntity*)LAVA_CHILD_ENTITIES, NULL},
+	{&LAVA_IG,		        {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 314), FTOFIX19_13(LAYER_0 - 2)}, NULL, (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL},
 	
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
-	{&LEVEL1_3_PART1_IM,    {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48), FTOFIX19_13(LAYER_0 + 2)}, NULL, (PositionedEntity*)LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
+	{&LEVEL1_3_PART1_IM,    {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48), FTOFIX19_13(LAYER_0 + 2)}, NULL, (struct PositionedEntity*)LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	//{&LEVEL1_3_PART2_IM,    {192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	//{&LEVEL1_3_PART3_IM,    {192 + 48*8), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
 	//{&COIN_MC,    {312, 4856, LAYER_0 + 2}, NULL, LEVEL_1_3_PART_1_CHILD_ENTITIES, NULL},
