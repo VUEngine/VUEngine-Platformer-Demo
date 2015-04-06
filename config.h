@@ -306,7 +306,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // when this is defined, custom fonts are being used by the Printing class instead of the default ones
-//#define __CUSTOM_FONTS
+#define __CUSTOM_FONTS
 
 
 //---------------------------------------------------------------------------------------------------------
