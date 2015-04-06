@@ -73,7 +73,7 @@
 // target frames per second
 // must be a muliple of 50 to being able to use a timer resolution greater than 1
 // if finer control is needed, change timer resolution to 1
-#define __TARGET_FPS 					50
+#define __TARGET_FPS 					60
 
 // target frames per second
 #define __OPTIMUM_FPS 					__TARGET_FPS
@@ -202,7 +202,7 @@
 // 4) initialize the loaded entity
 // if __STREAM_CYCLE_DURATION = 20 and __TARGET_FPS = 50, each one of the previous items will be called
 // called every 100 milliseconds
-#define __STREAM_CYCLE_DURATION	(1000 / 50) / (50 / __TARGET_FPS)
+#define __STREAM_CYCLE_DURATION	(1000 / 50) / (50.0f / __TARGET_FPS)
 
 // pad to determine if an entity must be loaded/unloaded 
 // load pad must always be lower than unload pad!
