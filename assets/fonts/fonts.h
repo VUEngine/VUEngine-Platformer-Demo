@@ -24,7 +24,7 @@ FontROMDef PLATFORMER_DEFAULT_FONT =
 	// number of characters in font
     256,
 
-	// at which character number the font starts
+    // character number at which the font starts, allows you to skip the control characters for example
     0,
 
 	// size of a single character (in chars) ({width, height})
@@ -42,7 +42,7 @@ FontROMDef PLATFORMER_GUI_FONT =
 	// number of characters in font
     96,
 
-	// at which character number the font starts
+    // character number at which the font starts, allows you to skip the control characters for example
     32,
 
 	// size of a single character (in chars) ({width, height})
@@ -60,7 +60,7 @@ const FontROMDef PLATFORMER_LARGE_FONT =
 	// number of characters in font
     64,
 
-	// at which character number the font starts
+    // character number at which the font starts, allows you to skip the control characters for example
     32,
 
 	// size of a single character (in chars) ({width, height})
