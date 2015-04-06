@@ -94,7 +94,7 @@
 // 										MEMORY POOL
 //---------------------------------------------------------------------------------------------------------
 
-#define __MEMORY_POOLS	9
+#define __MEMORY_POOLS		9
 
 //each block size
 #define __BLOCK_512B 		512
@@ -126,7 +126,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // the fourth segment is used for text allocation
-// chaging this value to 4 may cause text corruption
+// changing this value to 4 may cause text corruption
 #define __CHAR_SEGMENTS					3
 
 // number of charsets per char segment
@@ -210,8 +210,7 @@
 #define __ENTITY_LOAD_PAD 			196
 #define __ENTITY_UNLOAD_PAD 		(__ENTITY_LOAD_PAD + 32)
 
-// the number of entities in the stage's definition to check for streaming in on each 
-// preload cycle
+// the number of entities in the stage's definition to check for streaming in on each preload cycle
 // since there are 32 layers, that's the theoretical limit of entities to display
 #define __STREAMING_AMPLITUDE		32
 
@@ -300,6 +299,14 @@
 // the automatic pause state is not pushed until there is only one state in the game's stack.
 // the following defines the time between checks whether the condition is met (in milliseconds)
 #define __AUTO_PAUSE_RECHECK_DELAY	(60 * 1000)
+
+
+//---------------------------------------------------------------------------------------------------------
+// 											FONTS
+//---------------------------------------------------------------------------------------------------------
+
+// when this is defined, custom fonts are being used by the Printing class instead of the default ones
+//#define __CUSTOM_FONTS
 
 
 //---------------------------------------------------------------------------------------------------------

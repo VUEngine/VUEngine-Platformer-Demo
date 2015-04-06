@@ -41,11 +41,6 @@ int main(void)
 	I18n_registerLanguage(I18n_getInstance(), &LANG_DE);
 	I18n_setActiveLanguageByName(I18n_getInstance(), "English");
 
-	// register fonts
-	Printing_registerFont(Printing_getInstance(), &PLATFORMER_DEFAULT_FONT);
-	Printing_registerFont(Printing_getInstance(), &PLATFORMER_GUI_FONT);
-	//Printing_registerFont(Printing_getInstance(), &PLATFORMER_LARGE_FONT);
-
     // redefine splash screens
     VBJaEPrecautionScreenState_setPrecautionString(VBJaEPrecautionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION));
     VBJaELangSelectScreenState_setTitleString(VBJaELangSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT));

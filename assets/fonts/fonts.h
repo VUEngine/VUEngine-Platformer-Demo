@@ -1,8 +1,21 @@
+#ifdef __CUSTOM_FONTS
 #ifndef FONTS_H_
 #define FONTS_H_
 
 
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
 extern BYTE FontDefaultTiles[];
+extern BYTE FontGUITiles[];
+extern BYTE FontLargeTiles[];
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
 FontROMDef PLATFORMER_DEFAULT_FONT =
 {
     // font chars definition pointer
@@ -21,7 +34,6 @@ FontROMDef PLATFORMER_DEFAULT_FONT =
     "DefaultFont",
 };
 
-extern BYTE FontGUITiles[];
 FontROMDef PLATFORMER_GUI_FONT =
 {
     // font chars definition pointer
@@ -40,8 +52,7 @@ FontROMDef PLATFORMER_GUI_FONT =
     "GUIFont",
 };
 
-extern BYTE FontLargeTiles[];
-FontROMDef PLATFORMER_LARGE_FONT =
+const FontROMDef PLATFORMER_LARGE_FONT =
 {
     // font chars definition pointer
     FontLargeTiles,
@@ -59,5 +70,14 @@ FontROMDef PLATFORMER_LARGE_FONT =
     "LargeFont",
 };
 
+const FontROMDef* __FONTS[] =
+{
+    &PLATFORMER_DEFAULT_FONT,
+    &PLATFORMER_GUI_FONT,
+    &PLATFORMER_LARGE_FONT,
+    NULL
+};
 
+
+#endif
 #endif

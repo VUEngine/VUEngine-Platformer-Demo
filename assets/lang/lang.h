@@ -2,7 +2,7 @@
 #define LANG_H_
 
 
-enum
+enum LanguageStrings
 {
 	STR_PRECAUTION,
 	STR_AUTOMATIC_PAUSE,
