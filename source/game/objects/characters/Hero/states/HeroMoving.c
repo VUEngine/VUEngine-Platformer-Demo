@@ -96,6 +96,7 @@ void HeroMoving_exit(HeroMoving this, void* owner)
 	Hero_disableBoost((Hero)owner);
 }
 
+
 // state's on message
 bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 {
@@ -109,14 +110,13 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				// check direction
 				if ((K_LL | K_LR ) & pressedKey)
                 {
-					Hero_checkDirection((Hero)owner, pressedKey, "Walk");					
+					Hero_checkDirection((Hero)owner, pressedKey, "Walk");	
 				}
 				else if ((K_LU | K_LD ) & pressedKey)
                 {
 					Hero_checkDirection((Hero)owner, pressedKey, "Walk");					
 				}
 
-				// check if jump
 				if (K_A & pressedKey)
                 {
 					Hero_jump((Hero)owner, false, !this->bouncing);			
@@ -156,7 +156,12 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 						StateMachine_swapState(Actor_getStateMachine(__UPCAST(Actor, owner)), __UPCAST(State, HeroIdle_getInstance()));
 					}
 				}
+				else if (K_B & releasedKey)
+                {
+					Hero_disableBoost((Hero)owner);
+				}
 
+				/*
 				if ((K_LU | K_LD) & releasedKey)
                 {
 					Velocity velocity = Body_getVelocity(Actor_getBody(__UPCAST(Actor, owner)));
@@ -170,11 +175,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 						StateMachine_swapState(Actor_getStateMachine(__UPCAST(Actor, owner)), __UPCAST(State, HeroIdle_getInstance()));
 					}
 				}
-
-				if (K_B & releasedKey)
-                {
-					Hero_disableBoost((Hero)owner);
-				}
+				*/
 			}
 			break;
 	
@@ -195,8 +196,8 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				}
 				else if ((K_LU | K_LD ) & holdKey)
                 {
-					Hero_addForce((Hero)owner, this->mustCheckDirection, __ZAXIS);					
-					this->mustCheckDirection = false;
+					//Hero_addForce((Hero)owner, this->mustCheckDirection, __ZAXIS);					
+					//this->mustCheckDirection = false;
 				}
 			}
 			break;

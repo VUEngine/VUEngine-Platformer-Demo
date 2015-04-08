@@ -29,7 +29,6 @@
 #include <Printing.h>
 #include <MessageDispatcher.h>
 #include <I18n.h>
-#include <PhysicalWorld.h>
 #include <PlatformerLevelState.h>
 #include <TitleScreenState.h>
 #include <PauseScreenState.h>
@@ -86,15 +85,19 @@ static void PlatformerLevelState_destructor(PlatformerLevelState this)
 	__SINGLETON_DESTROY;
 }
 
+ int superFlag = false;
+
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
+	 superFlag = true;
+
 	Optical optical = Game_getOptical(Game_getInstance());
 	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
 	Game_setOptical(Game_getInstance(), optical);
 
 	//load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, true);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, false);
 
 	// playing by default
 	this->mode = kPaused;
@@ -107,8 +110,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
 	
 	// make a little bit of physical simulations so each entity is placed at the floor
-	Clock_start(Game_getInGameClock(Game_getInstance()));
-	PhysicalWorld_start(PhysicalWorld_getInstance());
+//	Clock_start(Game_getInGameClock(Game_getInstance()));
 
 	// render gui values
 	PlatformerLevelState_printLifes(this);
@@ -251,7 +253,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			
 			// reset clock and restart
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_start(Game_getInGameClock(Game_getInstance()));
+			//Clock_start(Game_getInGameClock(Game_getInstance()));
 			
 			// want to know when the second has changed
 			Object_addEventListener(__UPCAST(Object, Game_getInGameClock(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
@@ -260,16 +262,13 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			Object_addEventListener(__UPCAST(Object, this), __UPCAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
 			Object_addEventListener(__UPCAST(Object, this), __UPCAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
-			// start physical simulation again
-			PhysicalWorld_start(PhysicalWorld_getInstance());
-
 			// tell any interested entity
 			GameState_propagateMessage(__UPCAST(GameState, this), kStartLevel);
 
 			// restart clock
 			// pause physical simulations
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_start(Game_getInGameClock(Game_getInstance()));
+			//Clock_start(Game_getInGameClock(Game_getInstance()));
 
 			this->mode = kPlaying;
 			break;
