@@ -88,6 +88,8 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 // state's execute
 void HeroMoving_execute(HeroMoving this, void* owner)
 {
+	Hero_synchronizeDirectionWithVelocity(__UPCAST(Hero, owner));
+//	Body_printPhysics(Actor_getBody(owner), 1, 7);
 }
 
 // state's exit
@@ -112,10 +114,17 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
                 {
 					Hero_checkDirection((Hero)owner, pressedKey, "Walk");	
 				}
-				else if ((K_LU | K_LD ) & pressedKey)
-                {
-					Hero_checkDirection((Hero)owner, pressedKey, "Walk");					
+				else if (K_LU & pressedKey)
+				{
+					if (Hero_isOverlappingDoor(Hero_getInstance())) 
+					{
+						Hero_enterDoor(Hero_getInstance());
+						return true;
+					}
 				}
+
+				//	Hero_checkDirection((Hero)owner, pressedKey, "Walk");
+				//}
 
 				if (K_A & pressedKey)
                 {

@@ -96,6 +96,7 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 // state's execute
 void HeroIdle_execute(HeroIdle this, void* owner)
 {
+//	Body_printPhysics(Actor_getBody(owner), 1, 7);
 }
 
 // state's exit

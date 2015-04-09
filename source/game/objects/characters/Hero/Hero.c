@@ -78,7 +78,8 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 	ITOFIX19_13(LAYER_4),
 };
 
-#define HERO_INPUT_FORCE 						ITOFIX19_13(10)
+#define HERO_INPUT_FORCE 						ITOFIX19_13(20)
+#define HERO_WHILE_JUMPIN_INPUT_FORCE			ITOFIX19_13(4)
 #define HERO_WEIGHT								(10)
 #define FRICTION 								0.01f
 
@@ -89,6 +90,7 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 #define HERO_ACCELERATION_Y						ITOFIX19_13(0)
 #define HERO_ACCELERATION_Z						ITOFIX19_13(0)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(9)
+#define HERO_STEERING_VELOCITY_X				FTOFIX19_13(3)
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-380)
 #define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-455)
 
@@ -181,6 +183,8 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
 	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+
+	this->inputDirection = this->direction;
 }
 
 // class's destructor
@@ -255,14 +259,15 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 	
 	Velocity velocity = Body_getVelocity(this->body);
 	
-	if (this->direction.x != this->previousDirection.x || 
+	if (this->direction.x != this->inputDirection.x || 
 			((__XAXIS & axis) && maxVelocity > fabs(velocity.x)) || 
 			((__ZAXIS & axis) && maxVelocity > fabs(velocity.z)) || 
 			Actor_changedDirection(__UPCAST(Actor, this), __XAXIS) || 
 			Actor_changedDirection(__UPCAST(Actor, this), __ZAXIS))
     {
-		fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->direction.x? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
-		fix19_13 zForce = 0; //(__ZAXIS & axis)? __FAR == this->direction.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
+		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body)? HERO_WHILE_JUMPIN_INPUT_FORCE: HERO_INPUT_FORCE;
+		fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->inputDirection.x? inputForce: -inputForce: 0;
+		fix19_13 zForce = 0; //(__ZAXIS & axis)? __FAR == this->inputDirection.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
 		Force force =
         {
             xForce,
@@ -277,9 +282,9 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
     {
 		Velocity newVelocity =
         {
-        	(__XAXIS & axis)? ((int)maxVelocity * this->direction.x): 0,
+        	(__XAXIS & axis)? ((int)maxVelocity * this->inputDirection.x): 0,
 			0,
-			(__ZAXIS & axis)? ((int)maxVelocity * this->direction.z): 0,
+			(__ZAXIS & axis)? ((int)maxVelocity * this->inputDirection.z): 0,
 		};
 		
 		if (__UNIFORM_MOVEMENT != movementType || (abs(velocity.x) > maxVelocity && !(__YAXIS & Body_isMoving(this->body))))
@@ -293,7 +298,6 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
     {
 		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
 	}			
-
 }
 
 // start movement
@@ -398,28 +402,43 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 // check direction
 void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 {
-	if ((K_LR & pressedKey) && __RIGHT != this->direction.x)
-    {
-		this->direction.x = __RIGHT;
-	}
-	else if ((K_LL & pressedKey) && __LEFT != this->direction.x)
-    {
-		this->direction.x = __LEFT;
-	}
-	else if ((K_LU & pressedKey) && __FAR != this->direction.z)
-    {
-		this->direction.z = __FAR;
-	}
-	else if ((K_LD & pressedKey) && __NEAR != this->direction.z)
-    {
-		this->direction.z = __NEAR;
-	}
-
 	bool movementState = Body_isMoving(this->body);
+
+	if (K_LR & pressedKey)
+    {
+		this->inputDirection.x = __RIGHT;
+	}
+	else if (K_LL & pressedKey)
+    {
+		this->inputDirection.x = __LEFT;
+	}
+	else if (K_LU & pressedKey)
+    {
+		this->inputDirection.z = __FAR;
+	}
+	else if (K_LD & pressedKey)
+    {
+		this->inputDirection.z = __NEAR;
+	}
 
 	if (animation && !(__YAXIS & movementState))
     {
 		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), animation);
+	}
+}
+
+// check direction
+void Hero_synchronizeDirectionWithVelocity(Hero this)
+{
+    Velocity velocity = Body_getVelocity(this->body);
+
+	if (0 < velocity.x)
+    {
+		this->direction.x = __RIGHT;
+	}
+	else if (0 > velocity.x)
+    {
+		this->direction.x = __LEFT;
 	}
 }
 
@@ -693,6 +712,13 @@ bool Hero_isOverlappingDoor(Hero this)
 
 void Hero_enterDoor(Hero this)
 {
+	Hero_lookBack(this);
+
+	if ((__YAXIS | __ZAXIS) & Body_isMoving(this->body)) 
+	{
+		return;
+	}
+
 	// inform the door entity
 	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, Hero_getCurrentlyOverlappingDoor(this)), kEnterDoor, NULL);
 

@@ -65,6 +65,18 @@ __CLASS(Hero);
 	/* hold object */															\
 	Actor holdObject;															\
 																				\
+	/* number of lifes */														\
+	u8 lifes;																	\
+																				\
+	/* a reference to the last door the hero passed */    						\
+	Door currentlyOverlappingDoor;												\
+																				\
+	/* the currently shown hint entity */										\
+	Entity currentHint;															\
+																				\
+	/* used to know if gap must be changed */									\
+	Direction inputDirection;													\
+																				\
 	/* hero has energy	*/														\
 	s8 energy;																	\
 																				\
@@ -79,15 +91,6 @@ __CLASS(Hero);
 																				\
 	/* number of collected keys */												\
 	u8 keys;																	\
-																				\
-	/* number of lifes */														\
-	u8 lifes;																	\
-																				\
-	/* a reference to the last door the hero passed */    						\
-	Door currentlyOverlappingDoor;												\
-																				\
-	/* the currently shown hint entity */										\
-	Entity currentHint;															\
 
 
 //---------------------------------------------------------------------------------------------------------
