@@ -80,7 +80,7 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 
 #define HERO_INPUT_FORCE 						ITOFIX19_13(20)
 #define HERO_WHILE_JUMPIN_INPUT_FORCE			ITOFIX19_13(4)
-#define HERO_WEIGHT								(10)
+#define HERO_MASS								(10)
 #define FRICTION 								0.01f
 
 #define HERO_VELOCITY_X							ITOFIX19_13(6)
@@ -145,7 +145,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 
 	{
 		// register a body for physics
-		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(Entity, this), ITOFIX19_13(HERO_WEIGHT));
+		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(Entity, this), ITOFIX19_13(HERO_MASS));
 		
 		Body_setElasticity(this->body, FTOFIX19_13(0.0f));
 		
