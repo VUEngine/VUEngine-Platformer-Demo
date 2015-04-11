@@ -35,6 +35,7 @@
 #include "../stages/stages.h"
 #include <macros.h>
 #include <PlatformerLevelState.h>
+#include <VBJaEAdjustmentScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -214,11 +215,21 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			break;
 
 		case kKeyUp:
+		{
+            u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
+
+            if (K_SEL & releasedKey)
+            {
+                // adjustment screen
+                VBJaEAdjustmentScreenState_setNextstate(VBJaEAdjustmentScreenState_getInstance(), NULL);
+                Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
+                break;
+            }
 
 			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_RELEASED);
 			return true;
 			break;
-			
+		}
 		case kKeyHold:
 			
 			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_HOLD);
