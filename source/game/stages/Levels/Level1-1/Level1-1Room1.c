@@ -26,7 +26,7 @@
 #include <objects.h>
 #include <macros.h>
 #include <PlatformerLevelState.h>
-#include <lang.h>
+#include <Languages.h>
 #include <ManagedEntity.h>
 
 #include "stages/textures.h"
@@ -64,14 +64,12 @@ StageROMDef LEVEL_1_1_ROOM_2_ST;
  * know that it must stop reading the stage's/ui's textures ante enties.
  */
 
-
 PositionedEntityROMDef MANAGED_FLOOR_1_ENTITIES[] =
 {
 	{&FLOOR_16x8_IG,		{FTOFIX19_13(-32), FTOFIX19_13(9), FTOFIX19_13(0.01f)}, NULL, NULL, NULL},
 	{&FLOOR_4x10_IG,		{FTOFIX19_13(48), FTOFIX19_13(0), FTOFIX19_13(0)}, NULL, NULL, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
-
 
 ManagedEntityROMDef MANAGED_FLOOR_1 =
 {

@@ -22,11 +22,6 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <fonts.h>
-#include <I18n.h>
-#include <lang.h>
-#include <lang_de.h>
-#include <lang_en.h>
 #include <states.h>
 
 
@@ -36,18 +31,7 @@
 
 int main(void)
 {
-	// register languages
-	I18n_registerLanguage(I18n_getInstance(), &LANG_EN);
-	I18n_registerLanguage(I18n_getInstance(), &LANG_DE);
-	I18n_setActiveLanguageByName(I18n_getInstance(), "English");
-
     // redefine splash screens
-    VBJaEPrecautionScreenState_setPrecautionString(VBJaEPrecautionScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_PRECAUTION));
-    VBJaELangSelectScreenState_setTitleString(VBJaELangSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT));
-    VBJaEAutoPauseSelectScreenState_setExplanationString(VBJaEAutoPauseSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION));
-    VBJaEAutoPauseSelectScreenState_setTitleString(VBJaEAutoPauseSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE));
-    VBJaEAutoPauseSelectScreenState_setOnString(VBJaEAutoPauseSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_ON));
-    VBJaEAutoPauseSelectScreenState_setOffString(VBJaEAutoPauseSelectScreenState_getInstance(), I18n_getText(I18n_getInstance(), STR_OFF));
 	VBJaESplashScreenState_setNextstate(VBJaESplashScreenState_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
 
     // start the game
