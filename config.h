@@ -13,8 +13,6 @@
 #define __ANIMATION_EDITOR
 #endif
 
-#define __PRINT_FRAMERATE
-
 
 //---------------------------------------------------------------------------------------------------------
 // 										OPTICS / PROJECTION
@@ -307,10 +305,18 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 									INTERNATIONALIZATION (I18n)
+//---------------------------------------------------------------------------------------------------------
+
+// when this is defined, custom language files are loaded instead of the default ones
+#define __CUSTOM_LANGUAGES
+
+
+//---------------------------------------------------------------------------------------------------------
 // 											FONTS
 //---------------------------------------------------------------------------------------------------------
 
-// when this is defined, custom fonts are being used by the Printing class instead of the default ones
+// when this is defined, custom fonts are loaded instead of the default ones
 #define __CUSTOM_FONTS
 
 

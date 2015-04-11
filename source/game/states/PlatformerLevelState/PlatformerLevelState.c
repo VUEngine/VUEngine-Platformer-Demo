@@ -35,7 +35,7 @@
 #include <Hero.h>
 #include "../stages/stages.h"
 #include <macros.h>
-#include <lang.h>
+#include <Languages.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -228,7 +228,6 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GUIFont");
 	            }
-	
 	
 				// tell any interested entity
 				GameState_propagateMessage(__UPCAST(GameState, this), kSetUpLevel);

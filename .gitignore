@@ -2,6 +2,10 @@
 /.idea/
 /.settings/
 /old/
+.cdtproject
+.cproject
+.project
+cproject
 *.a
 *.vb
 *.elf
