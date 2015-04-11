@@ -229,7 +229,6 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GUIFont");
 	            }
 	
-	
 				// tell any interested entity
 				GameState_propagateMessage(__UPCAST(GameState, this), kSetUpLevel);
 	

@@ -48,9 +48,10 @@ const LangROMDef LANGUAGE_EN =
         "     Important:\n\nRead Instruction and\n\nPrecaution Booklets\n\n  before operating", //STR_PRECAUTION_SCREEN
         "Automatic Pause", //STR_AUTOMATIC_PAUSE
         "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes", //STR_AUTOMATIC_PAUSE_EXPLANATION
-        "Language Select", //STR_LANGUAGE_SELECT
+        "Please take a rest!", //STR_AUTOMATIC_PAUSE_TEXT
         "On", //STR_ON
         "Off", //STR_OFF
+        "Language Select", //STR_LANGUAGE_SELECT
 
         /* Level Names */
         "Level", //STR_LEVEL
