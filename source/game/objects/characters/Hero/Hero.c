@@ -79,7 +79,7 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 };
 
 #define HERO_INPUT_FORCE 						ITOFIX19_13(20)
-#define HERO_WHILE_JUMPIN_INPUT_FORCE			ITOFIX19_13(4)
+#define HERO_WHILE_JUMPIN_INPUT_FORCE			ITOFIX19_13(5)
 #define HERO_MASS								(10)
 #define FRICTION 								0.01f
 
