@@ -30,6 +30,7 @@
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <PlatformerLevelState.h>
+#include <VBJaEAdjustmentScreenState.h>
 #include <TitleScreenState.h>
 #include <PauseScreenState.h>
 #include <Hero.h>
@@ -293,23 +294,22 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			if (kPlaying == this->mode)
             {
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
-	
-				// check direction
-				if (K_STA & releasedKey)
+
+				if (K_SEL & releasedKey)
 				{
+    				// adjustment screen
 					this->mode = kPaused;
-					Game_pause(Game_getInstance(), __UPCAST(GameState, PauseScreenState_getInstance()));
+					VBJaEAdjustmentScreenState_setNextstate(VBJaEAdjustmentScreenState_getInstance(), NULL);
+					Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
 					break;
             	}
-
-				if (K_LT & releasedKey)
-				{
-				    Screen_FXShakeStart(Screen_getInstance(), 3000);
-            	}
-				if (K_RT & releasedKey)
-				{
-				    Screen_FXShakeStop(Screen_getInstance());
-            	}
+				else if (K_STA & releasedKey)
+                {
+                    // pause screen
+                    this->mode = kPaused;
+                    Game_pause(Game_getInstance(), __UPCAST(GameState, PauseScreenState_getInstance()));
+                    break;
+                }
 
 				Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_RELEASED);
 			}

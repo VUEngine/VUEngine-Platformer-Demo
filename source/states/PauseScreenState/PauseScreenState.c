@@ -81,7 +81,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner)
 	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
 	Game_setOptical(Game_getInstance(), optical);
 
-	//load stage
+	// load stage
 	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, false);
 
 	// show up level after a little bit
@@ -114,19 +114,6 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 	// process message
 	switch (Telegram_getMessage(telegram))
     {
-		case kKeyPressed:
-			{
-				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-	
-				// check direction
-				if (K_STA & pressedKey)
-				{
-					//Game_unpause(Game_getInstance(), __UPCAST(GameState, this));
-				}
-			}
-			return true;
-			break;
-
 		case kKeyUp:
 			{
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
@@ -139,7 +126,6 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 			}
 			return true;
 			break;
-			
 	}
 
 	return false;
