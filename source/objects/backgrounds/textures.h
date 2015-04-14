@@ -42,5 +42,8 @@ extern TextureDefinition MOUND_2_TX;
 extern TextureDefinition LAVA_TX;
 extern TextureDefinition LAVA_TOP_TX;
 
+extern TextureDefinition TITLESCREEN_MIDDLE_TX;
+extern TextureDefinition TITLESCREEN_FRONT_TX;
+
 
 #endif

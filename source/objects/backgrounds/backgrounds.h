@@ -66,5 +66,8 @@ extern EntityDefinition MOUND_2_IM;
 extern EntityDefinition LAVA_IG;
 extern EntityDefinition LAVA_TOP_AG;
 
+extern EntityDefinition TITLESCREEN_MIDDLE_IM;
+extern EntityDefinition TITLESCREEN_FRONT_IM;
+
 
 #endif
