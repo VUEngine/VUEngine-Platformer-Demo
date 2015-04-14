@@ -289,7 +289,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			return true;
 			break;
 
-		case kKeyUp:
+		case kKeyReleased:
 
 			if (kPlaying == this->mode)
             {

@@ -114,7 +114,7 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 	// process message
 	switch (Telegram_getMessage(telegram))
     {
-		case kKeyUp:
+		case kKeyReleased:
 			{
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
 		

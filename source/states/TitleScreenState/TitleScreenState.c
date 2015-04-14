@@ -214,7 +214,7 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			return true;
 			break;
 
-		case kKeyUp:
+		case kKeyReleased:
 		{
             u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
 

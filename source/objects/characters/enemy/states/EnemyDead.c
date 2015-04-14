@@ -101,11 +101,6 @@ void EnemyDead_exit(EnemyDead this, void* owner)
 bool EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram)
 {
 	// if the botton of the screen has been reached
-	if (kFloorReached == Telegram_getMessage(telegram))
-    {
-		// inform the game that I'm dead
-		//Stage_removeEntity(Game_getStage(Game_getInstance()), __UPCAST(Entity, owner), kDead);
-	}
 
 	return false;
 }

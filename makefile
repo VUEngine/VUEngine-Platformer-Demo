@@ -111,8 +111,6 @@ main.elf: $(ENGINE) dirs $(OBJECTS)
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
 			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB))
 
-
-
 # Rule for creating object file and .d file, the sed magic is to add
 # the object path at the start of the file because the files gcc
 # outputs assume it will be in the same dir as the source file.

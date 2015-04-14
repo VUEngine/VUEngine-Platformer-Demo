@@ -915,7 +915,7 @@ static void Hero_onKeyReleased(Hero this, Object eventFirer)
 	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
 	// inform my current states about the key up		
-	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, this->stateMachine), kKeyUp, &releasedKey);
+	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, this->stateMachine), kKeyReleased, &releasedKey);
 }
 
 // process user input

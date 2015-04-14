@@ -148,7 +148,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			return true;
 			break;
 			
-		case kKeyUp:
+		case kKeyReleased:
 			{
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
