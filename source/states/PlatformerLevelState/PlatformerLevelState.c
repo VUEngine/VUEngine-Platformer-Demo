@@ -284,6 +284,24 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			if (kPlaying == this->mode)
             {
+				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+
+				if (K_SEL & pressedKey)
+				{
+    				// adjustment screen
+					this->mode = kPaused;
+					SplashScreenState_setNextstate(__UPCAST(SplashScreenState, VBJaEAdjustmentScreenState_getInstance()), NULL);
+					Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
+					break;
+            	}
+				else if (K_STA & pressedKey)
+                {
+                    // pause screen
+                    this->mode = kPaused;
+                    Game_pause(Game_getInstance(), __UPCAST(GameState, PauseScreenState_getInstance()));
+                    break;
+                }
+				
 				Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_PRESSED);
 			}
 			return true;
@@ -293,24 +311,6 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			if (kPlaying == this->mode)
             {
-				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-				if (K_SEL & releasedKey)
-				{
-    				// adjustment screen
-					this->mode = kPaused;
-					VBJaEAdjustmentScreenState_setNextstate(VBJaEAdjustmentScreenState_getInstance(), NULL);
-					Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
-					break;
-            	}
-				else if (K_STA & releasedKey)
-                {
-                    // pause screen
-                    this->mode = kPaused;
-                    Game_pause(Game_getInstance(), __UPCAST(GameState, PauseScreenState_getInstance()));
-                    break;
-                }
-
 				Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_RELEASED);
 			}
 			return true;

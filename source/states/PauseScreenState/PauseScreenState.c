@@ -114,12 +114,12 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 	// process message
 	switch (Telegram_getMessage(telegram))
     {
-		case kKeyReleased:
+		case kKeyPressed:
 			{
-				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
+				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 		
 				// check direction
-				if (K_STA & releasedKey)
+				if (K_STA & pressedKey)
 				{
 					Game_unpause(Game_getInstance(), __UPCAST(GameState, this));
 				}

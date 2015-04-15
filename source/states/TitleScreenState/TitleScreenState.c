@@ -209,27 +209,28 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			break;
 
 		case kKeyPressed:
-
+			{
+	            u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+	
+	            if (K_SEL & pressedKey)
+	            {
+	                // adjustment screen
+					SplashScreenState_setNextstate(__UPCAST(SplashScreenState, VBJaEAdjustmentScreenState_getInstance()), NULL);
+	                Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
+	                break;
+	            }
+			}
+			
 			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_PRESSED);
 			return true;
 			break;
 
 		case kKeyReleased:
-		{
-            u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-            if (K_SEL & releasedKey)
-            {
-                // adjustment screen
-                VBJaEAdjustmentScreenState_setNextstate(VBJaEAdjustmentScreenState_getInstance(), NULL);
-                Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
-                break;
-            }
-
+		
 			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_RELEASED);
 			return true;
 			break;
-		}
+
 		case kKeyHold:
 			
 			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_HOLD);
