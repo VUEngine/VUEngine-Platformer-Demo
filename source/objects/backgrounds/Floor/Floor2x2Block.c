@@ -188,7 +188,7 @@ InanimatedInGameEntityROMDef FLOOR_2x2_BLOCK_IG =
     },
 
     // friction FTOFIX19_13
-    FTOFIX19_13(1.0f),
+    FTOFIX19_13(50),
 
     // elasticity FTOFIX19_13
     FTOFIX19_13(1.0f),

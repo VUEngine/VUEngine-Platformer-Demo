@@ -78,21 +78,21 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 	ITOFIX19_13(LAYER_4),
 };
 
-#define HERO_INPUT_FORCE 						ITOFIX19_13(20)
-#define HERO_WHILE_JUMPIN_INPUT_FORCE			ITOFIX19_13(5)
+#define HERO_INPUT_FORCE 						ITOFIX19_13(750)
+#define HERO_WHILE_JUMPIN_INPUT_FORCE			ITOFIX19_13(400)
 #define HERO_MASS								(10)
 #define FRICTION 								0.01f
 
-#define HERO_VELOCITY_X							ITOFIX19_13(6)
-#define HERO_VELOCITY_Y							ITOFIX19_13(-6)
-#define HERO_VELOCITY_Z							ITOFIX19_13(6)
-#define HERO_ACCELERATION_X						ITOFIX19_13(10)
+#define HERO_VELOCITY_X							ITOFIX19_13(60)
+#define HERO_VELOCITY_Y							ITOFIX19_13(-60)
+#define HERO_VELOCITY_Z							ITOFIX19_13(60)
+#define HERO_ACCELERATION_X						ITOFIX19_13(100)
 #define HERO_ACCELERATION_Y						ITOFIX19_13(0)
 #define HERO_ACCELERATION_Z						ITOFIX19_13(0)
-#define HERO_BOOST_VELOCITY_X					FTOFIX19_13(9)
-#define HERO_STEERING_VELOCITY_X				FTOFIX19_13(3)
-#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-380)
-#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-455)
+#define HERO_BOOST_VELOCITY_X					FTOFIX19_13(85)
+#define HERO_STEERING_VELOCITY_X				FTOFIX19_13(30)
+#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-18000)
+#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-21000)
 
 #define HERO_TIME_TO_DIE		500	// milliseconds
 
@@ -171,9 +171,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	{
 		Acceleration gravity =
         {
-            FTOFIX19_13(0),
-            FTOFIX19_13(9.0f),
-            FTOFIX19_13(0)
+            ITOFIX19_13(0),
+            ITOFIX19_13(4000),
+            ITOFIX19_13(0)
         };
 		
 		PhysicalWorld_setGravity(PhysicalWorld_getInstance(), gravity);
