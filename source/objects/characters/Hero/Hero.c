@@ -267,7 +267,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
     {
 		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body)? HERO_WHILE_JUMPIN_INPUT_FORCE: HERO_INPUT_FORCE;
 		fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->inputDirection.x? inputForce: -inputForce: 0;
-		fix19_13 zForce = 0; //(__ZAXIS & axis)? __FAR == this->inputDirection.z? HERO_INPUT_FORCE: -HERO_INPUT_FORCE: 0;
+		fix19_13 zForce = 0; //(__ZAXIS & axis)? __FAR == this->inputDirection.z? inputForce: -inputForce: 0;
 		Force force =
         {
             xForce,

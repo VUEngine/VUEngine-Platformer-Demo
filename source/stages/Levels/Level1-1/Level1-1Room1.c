@@ -27,7 +27,6 @@
 #include <macros.h>
 #include <PlatformerLevelState.h>
 #include <Languages.h>
-#include <ManagedEntity.h>
 
 #include "stages/textures.h"
 
@@ -71,12 +70,6 @@ PositionedEntityROMDef MANAGED_FLOOR_1_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
-ManagedEntityROMDef MANAGED_FLOOR_1 =
-{
-    __TYPE(ManagedEntity),
-    NULL
-};
-
 PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
@@ -84,14 +77,14 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 	{&MOUND_BG_MIDDLE_IM, 	{FTOFIX19_13(SCREEN_X_POSITION), FTOFIX19_13(SCREEN_Y_POSITION + 98), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL},
 	{&MOUND_BG_FRONT_IM, 	{FTOFIX19_13(SCREEN_X_POSITION), FTOFIX19_13(SCREEN_Y_POSITION + 152), FTOFIX19_13(LAYER_3 + 0.1f)}, NULL, NULL, NULL},
 	{&MOUND_BG_CASTLE_IM, 	{FTOFIX19_13(SCREEN_X_POSITION + 1118), FTOFIX19_13(852), FTOFIX19_13(LAYER_3- 0.1f)}, NULL, NULL, NULL},
-//	{&CLOUDS_SB, 			{FTOFIX19_13(SCREEN_X_POSITION), FTOFIX19_13(SCREEN_Y_POSITION - 80), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL},
+	{&CLOUDS_SB, 			{FTOFIX19_13(SCREEN_X_POSITION), FTOFIX19_13(SCREEN_Y_POSITION - 80), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL},
 	{&HERO_AC, 				{FTOFIX19_13(SCREEN_X_POSITION + 32), FTOFIX19_13(SCREEN_Y_POSITION + 110), FTOFIX19_13(LAYER_0 - 2)}, HERO_NAME, NULL, NULL},
 	
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
 	{&COLLISION_2x28x48, 	{FTOFIX19_13(-12), FTOFIX19_13(SCREEN_Y_POSITION + 116), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL},
-	{(ManagedEntityDefinition*)&MANAGED_FLOOR_1,		{FTOFIX19_13(96), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR + 8), FTOFIX19_13(LAYER_0 + 2 + 0.01f)}, NULL, (struct PositionedEntity*)MANAGED_FLOOR_1_ENTITIES, NULL},
+	{(ManagedEntityDefinition*)&MANAGED_ENTITY,		{FTOFIX19_13(96), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR + 8), FTOFIX19_13(LAYER_0 + 2 + 0.01f)}, NULL, (struct PositionedEntity*)MANAGED_FLOOR_1_ENTITIES, NULL},
 	{&MOUND_1_IM,			{FTOFIX19_13(84), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 16), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL},
 	{&COIN_AG, 				{FTOFIX19_13(132), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL},
 	{&COIN_AG, 				{FTOFIX19_13(148), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL},

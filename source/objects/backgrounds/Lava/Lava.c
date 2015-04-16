@@ -74,9 +74,11 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* animatedInGam
 {
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
+	
+	if(this->shape)
+	{
+		Shape_setCheckForCollisions(__UPCAST(Shape, this->shape), false);
+	}
 }
 
 // class's destructor
@@ -96,6 +98,12 @@ void Lava_initialize(Lava this)
 	
 	// start moving
 	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
+	
+	// must make sure that the shape is updated
+	if(this->shape)
+	{
+		CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
+	}
 }
 
 // whether it is visible
@@ -124,12 +132,14 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
 // move lava up
 void Lava_moveUpwards(Lava this)
 {
+	Entity entityToMove = __GET_CAST(ManagedEntity, this->parent)? __UPCAST(Entity, this->parent): __UPCAST(Entity, this);
+	
     // get local position of lava and substract 1 from y value
-    VBVec3D offset = Entity_getLocalPosition(__UPCAST(Entity, this));
+    VBVec3D offset = Entity_getLocalPosition(entityToMove);
     offset.y -= ITOFIX19_13(1);
 
     // update lava's position
-    Entity_setLocalPosition(__UPCAST(Entity, this), offset);
+    Entity_setLocalPosition(entityToMove, offset);
 
     // send delayed message to itself to trigger next movement
     MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
@@ -145,3 +155,12 @@ void Lava_resume(Lava this)
     // send delayed message to itself to trigger next movement
     MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
 }
+
+// does it moves?
+bool Lava_moves(Lava this)
+{
+	ASSERT(this, "Lava::moves: null this");
+
+	return true;
+}
+

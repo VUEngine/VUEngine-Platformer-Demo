@@ -26,6 +26,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <ManagedEntity.h>
+
 #include "collisions/collisions.h"
 #include "characters/characters.h"
 #include "hints/hints.h"
@@ -34,5 +36,8 @@
 #include "backgrounds/backgrounds.h"
 #include "items/items.h"
 
+
+// declare global
+extern ManagedEntityROMDef MANAGED_ENTITY;
 
 #endif
