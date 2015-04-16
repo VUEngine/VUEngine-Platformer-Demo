@@ -36,7 +36,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // only need to define one for all managed entities
-ManagedEntityROMDef MANAGED_ENTITY =
+const ManagedEntityROMDef MANAGED_ENTITY =
 {
     __TYPE(ManagedEntity),
     NULL
