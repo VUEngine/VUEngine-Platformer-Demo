@@ -132,14 +132,12 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
 // move lava up
 void Lava_moveUpwards(Lava this)
 {
-	Entity entityToMove = __GET_CAST(ManagedEntity, this->parent)? __UPCAST(Entity, this->parent): __UPCAST(Entity, this);
-	
     // get local position of lava and substract 1 from y value
-    VBVec3D offset = Entity_getLocalPosition(entityToMove);
+    VBVec3D offset = Entity_getLocalPosition(__UPCAST(Entity, this));
     offset.y -= ITOFIX19_13(1);
 
     // update lava's position
-    Entity_setLocalPosition(entityToMove, offset);
+    Entity_setLocalPosition(__UPCAST(Entity, this), offset);
 
     // send delayed message to itself to trigger next movement
     MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
