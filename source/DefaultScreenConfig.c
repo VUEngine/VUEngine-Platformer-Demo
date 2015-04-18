@@ -77,3 +77,10 @@ const char*                       __LANGUAGE_SELECT_SCREEN_TITLE_FONT =         
 // VBJaEngine splash screen
 TitleScreenState                (*__VBJAENGINE_SPLASH_SCREEN_NEXT_STATE)() =    TitleScreenState_getInstance;
 const StageROMDef*                __VBJAENGINE_SPLASH_SCREEN_STAGE =            &VBJAENGINE_SPLASH_SCREEN_ST;
+
+// Auto Pause screen
+const StageROMDef*                __AUTO_PAUSE_SCREEN_STAGE =                   &EMPTY_ST;
+const int                         __AUTO_PAUSE_SCREEN_TITLE =                   STR_AUTOMATIC_PAUSE;
+const char*                       __AUTO_PAUSE_SCREEN_TITLE_FONT =              "GUIFont";
+const int                         __AUTO_PAUSE_SCREEN_TEXT =                    STR_AUTOMATIC_PAUSE_TEXT;
+const char*                       __AUTO_PAUSE_SCREEN_TEXT_FONT =               NULL;
