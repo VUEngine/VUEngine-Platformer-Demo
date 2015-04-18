@@ -31,12 +31,9 @@
 
 int main(void)
 {
-    // reroute splash screens
-	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, VBJaESplashScreenState_getInstance()), __UPCAST(GameState, TitleScreenState_getInstance()));
-
     // start the game
-	//Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEPrecautionScreenState_getInstance()));
-    Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
+	Game_start(Game_getInstance(), __UPCAST(GameState, VBJaEPrecautionScreenState_getInstance()));
+    //Game_start(Game_getInstance(), __UPCAST(GameState, TitleScreenState_getInstance()));
     //Game_start(Game_getInstance(), __UPCAST(GameState, PlatformerLevelState_getInstance()));
     
 	// end program
