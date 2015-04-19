@@ -21,8 +21,8 @@
 #ifdef __CUSTOM_LANGUAGES
 
 /*
- * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to enable usage
- * of the full extended ASCII character including special characters of European languages.
+ * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
+ * of the full extended ASCII character set including special characters of European languages.
  */
 
 
@@ -45,7 +45,7 @@ const LangROMDef LANGUAGE_EN =
     // Strings
     {
         /* Splash Screens */
-        "     Important:\n\nRead Instruction and\n\nPrecaution Booklets\n\n  before operating", //STR_PRECAUTION_SCREEN
+        "     Important:\nRead Instruction and\nPrecaution Booklets\n  before operating", //STR_PRECAUTION_SCREEN
         "Automatic Pause", //STR_AUTOMATIC_PAUSE
         "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes", //STR_AUTOMATIC_PAUSE_EXPLANATION
         "Please take a rest!", //STR_AUTOMATIC_PAUSE_TEXT

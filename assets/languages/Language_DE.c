@@ -21,8 +21,8 @@
 #ifdef __CUSTOM_LANGUAGES
 
 /*
- * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to enable usage
- * of the full extended ASCII character including special characters of European languages.
+ * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
+ * of the full extended ASCII character set including special characters of European languages.
  */
 
 
@@ -45,7 +45,7 @@ const LangROMDef LANGUAGE_DE =
     // Strings
     {
         /* Splash Screens */
-        "            Wichtig:\n\n  Lesen Sie vor dem Spielen die\n\nAnleitung und Sicherheitshinweise", //STR_PRECAUTION_SCREEN
+        "            Wichtig:\n  Lesen Sie vor dem Spielen die\nAnleitung und Sicherheitshinweise", //STR_PRECAUTION_SCREEN
         "Automatische Pause", //STR_AUTOMATIC_PAUSE
         " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren", //STR_AUTOMATIC_PAUSE_EXPLANATION
         "Bitte mache eine Pause!", //STR_AUTOMATIC_PAUSE_TEXT
