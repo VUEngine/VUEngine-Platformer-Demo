@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
+#include <BAnimatedSprite.h>
 #include <libgccvb.h>
 #include <macros.h>
 #include <Hint.h>
@@ -173,10 +174,10 @@ TextureROMDef HINT_ENTER_TX =
     1,
 };
 
-SpriteROMDef HINT_ENTER_SPRITE =
+BSpriteROMDef HINT_ENTER_SPRITE =
 {
 	// sprite's type
-	__TYPE(AnimatedSprite),
+	__TYPE(BAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&HINT_ENTER_TX,
@@ -191,7 +192,7 @@ SpriteROMDef HINT_ENTER_SPRITE =
 	0		
 };
 	
-SpriteROMDef* const HINT_ENTER_SPRITES[] =
+BSpriteROMDef* const HINT_ENTER_SPRITES[] =
 {
 	&HINT_ENTER_SPRITE,
 	NULL

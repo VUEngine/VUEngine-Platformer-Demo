@@ -66,6 +66,8 @@ __CLASS_NEW_END(Key, animatedInGameEntityDefinition, ID);
 // class's constructor
 void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
+	ASSERT(this, "Key::constructor: null this");
+
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
@@ -76,6 +78,8 @@ void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEnt
 // class's destructor
 void Key_destructor(Key this)
 {
+	ASSERT(this, "Key::destructor: null this");
+
 	KeyManager_removeKey(KeyManager_getInstance(), this);
 
 	// delete the super object
@@ -85,6 +89,8 @@ void Key_destructor(Key this)
 // initialize method
 void Key_initialize(Key this)
 {
+	ASSERT(this, "Key::initialize: null this");
+
 	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
 
 	KeyManager_registerKey(KeyManager_getInstance(), this);
@@ -93,6 +99,8 @@ void Key_initialize(Key this)
 // state's on message
 bool Key_handleMessage(Key this, Telegram telegram)
 {
+	ASSERT(this, "Key::handleMessage: null this");
+
 	switch (Telegram_getMessage(telegram))
     {
 		case kTakeKey:
@@ -106,5 +114,7 @@ bool Key_handleMessage(Key this, Telegram telegram)
 
 void Key_removeFromStage(Key this)
 {
+	ASSERT(this, "Key::removeFromStage: null this");
+
 	Stage_removeEntity(Game_getStage(Game_getInstance()), __UPCAST(Entity, this), true);
 }

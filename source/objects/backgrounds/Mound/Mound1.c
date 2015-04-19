@@ -69,10 +69,10 @@ TextureROMDef MOUND_1_TX =
     0,
 };
 
-SpriteROMDef MOUND_1_IM_SPRITE =
+BSpriteROMDef MOUND_1_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(Sprite),
+	__TYPE(BSprite),
 
 	// texture definition
 	(TextureDefinition*)&MOUND_1_TX,
@@ -87,7 +87,7 @@ SpriteROMDef MOUND_1_IM_SPRITE =
 	0		
 };
 
-SpriteROMDef* const MOUND_1_IM_SPRITES[] =
+BSpriteROMDef* const MOUND_1_IM_SPRITES[] =
 {
 	&MOUND_1_IM_SPRITE,
 	NULL

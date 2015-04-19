@@ -69,10 +69,10 @@ TextureROMDef SAW_BLADE_LANE_V_6_TX =
     1,
 };
 
-SpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITE =
+BSpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(Sprite),
+	__TYPE(BSprite),
 
 	// texture definition
 	(TextureDefinition*)&SAW_BLADE_LANE_V_6_TX,
@@ -87,7 +87,7 @@ SpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITE =
 	0	
 };
 
-SpriteROMDef* const SAW_BLADE_LANE_V_6_IM_SPRITES[] =
+BSpriteROMDef* const SAW_BLADE_LANE_V_6_IM_SPRITES[] =
 {
 	&SAW_BLADE_LANE_V_6_IM_SPRITE,
 	NULL
@@ -99,10 +99,10 @@ ImageROMDef SAW_BLADE_LANE_V_6_IM =
 	(SpriteROMDef**)SAW_BLADE_LANE_V_6_IM_SPRITES,
 };
 
-SpriteROMDef AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITE =
+BSpriteROMDef AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(Sprite),
+	__TYPE(BSprite),
 
 	// texture definition
 	(TextureDefinition*)&SAW_BLADE_LANE_V_6_TX,
@@ -117,7 +117,7 @@ SpriteROMDef AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITE =
 	0	
 };
 
-SpriteROMDef* const AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITES[] =
+BSpriteROMDef* const AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITES[] =
 {
 	&AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITE,
 	NULL

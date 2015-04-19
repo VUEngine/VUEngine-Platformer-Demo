@@ -346,9 +346,9 @@ MSpriteROMDef TEST_BG_SPRITE =
 	false
 };
 
-SpriteROMDef* TEST_BG_SPRITES[] =
+BSpriteROMDef* TEST_BG_SPRITES[] =
 {
-	(SpriteROMDef*)&TEST_BG_SPRITE,
+	(BSpriteROMDef*)&TEST_BG_SPRITE,
 	NULL
 };
 

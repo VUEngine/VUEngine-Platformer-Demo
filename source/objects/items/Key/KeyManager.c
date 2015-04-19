@@ -59,6 +59,8 @@ __SINGLETON(KeyManager);
 //class constructor
 static void KeyManager_constructor(KeyManager this)
 {
+	ASSERT(this, "KeyManager::removeFromStage: null this");
+
 	__CONSTRUCT_BASE();
 
 	this->keys = __NEW(VirtualList);
@@ -93,12 +95,12 @@ void KeyManager_registerKey(KeyManager this, Key key)
 		{
 			VirtualList firstKeySprites = Entity_getSprites(__UPCAST(Entity, firstKey));
 			
-			AnimatedSprite firstKeySprite = __UPCAST(AnimatedSprite, VirtualList_front(firstKeySprites));
+			Sprite firstKeySprite = __UPCAST(Sprite, VirtualList_front(firstKeySprites));
 	
 			if(firstKeySprite)
 			{			
-				s8 currentFrame = AnimatedSprite_getActualFrame(firstKeySprite);
-				s8 frameDelay = AnimatedSprite_getFrameDelay(firstKeySprite);
+				s8 currentFrame = Sprite_getActualFrame(firstKeySprite);
+				s8 frameDelay = Sprite_getFrameDelay(firstKeySprite);
 				
 				VirtualList keySprites = Entity_getSprites(__UPCAST(Entity, key));
 				
@@ -107,9 +109,9 @@ void KeyManager_registerKey(KeyManager this, Key key)
 				
 				for (; node; node = VirtualNode_getNext(node))
 				{
-					AnimatedSprite keySprite = __UPCAST(AnimatedSprite, VirtualNode_getData(node));
-					AnimatedSprite_setActualFrame(keySprite, currentFrame);
-					AnimatedSprite_setFrameDelay(keySprite, frameDelay);
+					Sprite keySprite = __UPCAST(Sprite, VirtualNode_getData(node));
+					Sprite_setActualFrame(keySprite, currentFrame);
+					Sprite_setFrameDelay(keySprite, frameDelay);
 	 			}
 			}
 		}

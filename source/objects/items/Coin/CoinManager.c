@@ -59,6 +59,8 @@ __SINGLETON(CoinManager);
 //class constructor
 static void CoinManager_constructor(CoinManager this)
 {
+	ASSERT(this, "CoinManager::constructor: null this");
+
 	__CONSTRUCT_BASE();
 
 	this->coins = __NEW(VirtualList);
@@ -93,12 +95,12 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 		{
 			VirtualList firstCoinSprites = Entity_getSprites(__UPCAST(Entity, firstCoin));
 			
-			AnimatedSprite firstCoinSprite = __UPCAST(AnimatedSprite, VirtualList_front(firstCoinSprites));
+			Sprite firstCoinSprite = __UPCAST(Sprite, VirtualList_front(firstCoinSprites));
 	
 			if(firstCoinSprite) 
 			{			
-				s8 currentFrame = AnimatedSprite_getActualFrame(firstCoinSprite);
-				s8 frameDelay = AnimatedSprite_getFrameDelay(firstCoinSprite);
+				s8 currentFrame = Sprite_getActualFrame(firstCoinSprite);
+				s8 frameDelay = Sprite_getFrameDelay(firstCoinSprite);
 				
 				VirtualList coinSprites = Entity_getSprites(__UPCAST(Entity, coin));
 				
@@ -106,9 +108,9 @@ void CoinManager_registerCoin(CoinManager this, Coin coin)
 				
 				for (; node; node = VirtualNode_getNext(node))
 				{
-					AnimatedSprite coinSprite = __UPCAST(AnimatedSprite, VirtualNode_getData(node));
-					AnimatedSprite_setActualFrame(coinSprite, currentFrame);
-					AnimatedSprite_setFrameDelay(coinSprite, frameDelay);
+					Sprite coinSprite = __UPCAST(Sprite, VirtualNode_getData(node));
+					Sprite_setActualFrame(coinSprite, currentFrame);
+					Sprite_setFrameDelay(coinSprite, frameDelay);
 	 			}
 			}
 		}

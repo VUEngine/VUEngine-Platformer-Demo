@@ -131,6 +131,8 @@ __CLASS_NEW_END(Hero, actorDefinition, ID);
 // class's constructor
 void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 {
+	ASSERT(this, "Hero::constructor: null this");
+
 	// construct base
 	__CONSTRUCT_BASE(actorDefinition, ID);
 
@@ -212,6 +214,8 @@ void Hero_destructor(Hero this)
 // initialize method
 void Hero_initialize(Hero this)
 {
+	ASSERT(this, "Hero::initialize: null this");
+
 	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
 	
 	// initialize me as idle
@@ -221,6 +225,8 @@ void Hero_initialize(Hero this)
 // make him jump
 void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 {
+	ASSERT(this, "Hero::jump: null this");
+
 	Hero_startedMovingOnAxis(this, __YAXIS);
 
 	if (this->body)
@@ -252,7 +258,8 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 // keep movement
 void Hero_addForce(Hero this, int changedDirection, int axis)
 {
-	ASSERT(this->body, "Hero::keepMoving: no body");
+	ASSERT(this, "Hero::addForce: null this");
+
 	static int movementType = 0;
 
 	fix19_13 maxVelocity = this->boost? HERO_BOOST_VELOCITY_X: HERO_VELOCITY_X;
@@ -303,6 +310,8 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 // start movement
 void Hero_stopMovement(Hero this)
 {
+	ASSERT(this, "Hero::stopMovement: null this");
+
 	Velocity velocity = Body_getVelocity(this->body);
 
 	if (!(__YAXIS & Body_isMoving(this->body)))
@@ -363,6 +372,8 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 // stop moving over axis
 bool Hero_stopMovingOnAxis(Hero this, int axis)
 {
+	ASSERT(this, "Hero::stopMovingOnAxis: null this");
+
 	bool movementState = Body_isMoving(this->body);
 
 	if ((__XAXIS & axis) && !(__YAXIS & movementState))
@@ -402,6 +413,8 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 // check direction
 void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 {
+	ASSERT(this, "Hero::checkDirection: null this");
+
 	bool movementState = Body_isMoving(this->body);
 
 	if (K_LR & pressedKey)
@@ -430,6 +443,8 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 // check direction
 void Hero_synchronizeDirectionWithVelocity(Hero this)
 {
+	ASSERT(this, "Hero::synchronizeDirectionWithVelocity: null this");
+
     Velocity velocity = Body_getVelocity(this->body);
 
 	if (0 < velocity.x)
@@ -625,19 +640,23 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 // set animation delta
 void Hero_setAnimationDelta(Hero this, int delta)
 {
+	ASSERT(this, "Hero::setAnimationDelta: null this");
+
 	ASSERT(this->sprites, "Hero::setAnimationDelta: null sprites");
 
 	VirtualNode node = VirtualList_begin(this->sprites);
 	
 	for (; node; node = VirtualNode_getNext(node))
 	{
-		AnimatedSprite_setFrameDelayDelta(__UPCAST(AnimatedSprite, VirtualNode_getData(node)), this->boost ? -2 : -1);
+		Sprite_setFrameDelayDelta(__UPCAST(Sprite, VirtualNode_getData(node)), this->boost ? -2 : -1);
 	}
 }
 
 // disable boost
 void Hero_disableBoost(Hero this)
 {
+	ASSERT(this, "Hero::disableBoost: null this");
+
 	if (this->boost)
     {
 		this->boost = false;
@@ -696,6 +715,8 @@ void Hero_pickupObject(Hero this, Actor object)
 // check if the hero is overlapping a door
 bool Hero_isOverlappingDoor(Hero this)
 {
+	ASSERT(this, "Hero::isOverlappingDoor: null this");
+
 	bool isOverlapping = false;
 
 	// check if hero recently passed a door and is still doing so
@@ -712,6 +733,8 @@ bool Hero_isOverlappingDoor(Hero this)
 
 void Hero_enterDoor(Hero this)
 {
+	ASSERT(this, "Hero::enterDoor: null this");
+
 	Hero_lookBack(this);
 
 	if ((__YAXIS | __ZAXIS) & Body_isMoving(this->body)) 
@@ -734,6 +757,8 @@ void Hero_enterDoor(Hero this)
 
 void Hero_showHint(Hero this, u8 type)
 {
+	ASSERT(this, "Hero::showHint: null this");
+	
     const EntityDefinition* hintEntityDefinition = NULL;
 
     // check if a hint is already being shown at the moment

@@ -108,9 +108,9 @@ MSpriteROMDef MOUND_BG_BACK_SB_SPRITE =
 	false
 };
 
-SpriteROMDef* const MOUND_BG_BACK_SB_SPRITES[] =
+BSpriteROMDef* const MOUND_BG_BACK_SB_SPRITES[] =
 {
-	(SpriteROMDef*)&MOUND_BG_BACK_SB_SPRITE,
+	(BSpriteROMDef*)&MOUND_BG_BACK_SB_SPRITE,
 	NULL
 };
 

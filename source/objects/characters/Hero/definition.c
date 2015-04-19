@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
+#include <BAnimatedSprite.h>
 #include "Hero.h"
 
 
@@ -358,10 +359,10 @@ TextureROMDef HERO_TX =
     1,
 };
 
-SpriteROMDef HERO_SPRITE =
+BSpriteROMDef HERO_SPRITE =
 {
 	// sprite's type
-	__TYPE(AnimatedSprite),
+	__TYPE(BAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&HERO_TX,
@@ -377,7 +378,7 @@ SpriteROMDef HERO_SPRITE =
 	0
 };
 
-SpriteROMDef* const HERO_SPRITES[] =
+BSpriteROMDef* const HERO_SPRITES[] =
 {
 	&HERO_SPRITE,
 	NULL

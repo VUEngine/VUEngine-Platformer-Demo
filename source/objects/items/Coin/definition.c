@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
+#include <BAnimatedSprite.h>
 #include "Coin.h"
 
 
@@ -125,10 +126,10 @@ TextureROMDef COIN_TX =
     1,
 };
 
-SpriteROMDef COIN_SPRITE =
+BSpriteROMDef COIN_SPRITE =
 {
 	// sprite's type
-	__TYPE(AnimatedSprite),
+	__TYPE(BAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&COIN_TX,
@@ -143,7 +144,7 @@ SpriteROMDef COIN_SPRITE =
 	0		
 };
 
-SpriteROMDef* const COIN_SPRITES[] =
+BSpriteROMDef* const COIN_SPRITES[] =
 {
 	&COIN_SPRITE,
 	NULL
@@ -183,10 +184,10 @@ AnimatedInGameEntityROMDef COIN_AG =
 };
 
 
-SpriteROMDef AFFINE_COIN_SPRITE =
+BSpriteROMDef AFFINE_COIN_SPRITE =
 {
 	// sprite's type
-	__TYPE(AnimatedSprite),
+	__TYPE(BAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&COIN_TX,
@@ -201,7 +202,7 @@ SpriteROMDef AFFINE_COIN_SPRITE =
 	0		
 };
 
-SpriteROMDef* const AFFINE_COIN_SPRITES[] =
+BSpriteROMDef* const AFFINE_COIN_SPRITES[] =
 {
 	&AFFINE_COIN_SPRITE,
 	NULL

@@ -64,6 +64,8 @@ __CLASS_NEW_END(Hint, animatedInGameEntityDefinition, ID);
 // class's constructor
 void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
+	ASSERT(this, "Hint::constructor: null this");
+
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 }
@@ -71,13 +73,15 @@ void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameE
 // class's destructor
 void Hint_destructor(Hint this)
 {
+	ASSERT(this, "Hint::destructor: null this");
+
 	// delete the super object
 	__DESTROY_BASE;
 }
 
 void Hint_resume(Hint this)
 {
-	ASSERT(this, "Entity::resume: null this");
+	ASSERT(this, "Hint::resume: null this");
 
 	Entity_resume(__UPCAST(Entity, this));
 	
@@ -88,6 +92,8 @@ void Hint_resume(Hint this)
 // state's on message
 bool Hint_handleMessage(Hint this, Telegram telegram)
 {
+	ASSERT(this, "Hint::handleMessage: null this");
+
 	switch(Telegram_getMessage(telegram))
 	{
 		case kSuspend:
@@ -102,34 +108,32 @@ bool Hint_handleMessage(Hint this, Telegram telegram)
 
 void Hint_open(Hint this)
 {
+	ASSERT(this, "Hint::open: null this");
+
 	// this wastes a WORLD, but makes things smoother
 	Entity_show(__UPCAST(Entity, this));
-	/*
-	if(!this->sprites)
-	{
-		__VIRTUAL_CALL(void, Container, resume, this);
-	}
-	*/
 	
     AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Open");
 }
 
 void Hint_close(Hint this)
 {
+	ASSERT(this, "Hint::close: null this");
+
 	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Close");
 }
 
 void Hint_onCloseDone(Hint this, Object eventFirer)
 {
+	ASSERT(this, "Hint::onCloseDone: null this");
+
 	// this wastes a WORLD, but makes things smoother
 	Entity_hide(__UPCAST(Entity, this));
-	// cannot suspend right away because it is not safe, but a delayed message always is
-	/*
-	MessageDispatcher_dispatchMessage(1, __UPCAST(Object, this), __UPCAST(Object, this), kSuspend, NULL);
-	*/
 }
 
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
 {
+	ASSERT(this, "Hint::playActiveLanguageHint: null this");
+
 	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), I18n_getActiveLanguageName(I18n_getInstance()));
 }

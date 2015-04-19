@@ -112,6 +112,7 @@ void Hero_move(Hero this);
 void Hero_jump(Hero this, int changeState, int checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u16 currentPressedKey, char * animation);
+void Hero_synchronizeDirectionWithVelocity(Hero this);
 void Hero_takeHitFrom(Hero this, Actor other);
 void Hero_disableBoost(Hero this);
 void Hero_enableBoost(Hero this);

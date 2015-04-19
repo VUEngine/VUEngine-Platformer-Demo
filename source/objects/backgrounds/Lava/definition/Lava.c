@@ -72,10 +72,10 @@ TextureROMDef LAVA_TX =
     0,
 };
 
-SpriteROMDef LAVA_BG_SPRITE =
+BSpriteROMDef LAVA_BG_SPRITE =
 {
 	// sprite's type
-	__TYPE(Sprite),
+	__TYPE(BSprite),
 
 	// texture definition
 	(TextureDefinition*)&LAVA_TX,
@@ -90,7 +90,7 @@ SpriteROMDef LAVA_BG_SPRITE =
 	-2		
 };
 
-SpriteROMDef* const LAVA_BG_SPRITES[] =
+BSpriteROMDef* const LAVA_BG_SPRITES[] =
 {
 	&LAVA_BG_SPRITE,
 	NULL

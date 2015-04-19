@@ -58,6 +58,8 @@ __CLASS_NEW_END(SawBlade, sawBladeDefinition, ID);
 // class's constructor
 void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int ID)
 {
+	ASSERT(this, "SawBlade::constructor: null this");
+
 	// construct base
 	__CONSTRUCT_BASE((ActorDefinition*)&sawBladeDefinition->actorDefinition, ID);
 
@@ -92,6 +94,8 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 // class's constructor
 void SawBlade_destructor(SawBlade this)
 {
+	ASSERT(this, "SawBlade::destructor: null this");
+
 	// delete the super object
 	__DESTROY_BASE;
 }
@@ -99,6 +103,8 @@ void SawBlade_destructor(SawBlade this)
 // initialize method
 void SawBlade_initialize(SawBlade this)
 {
+	ASSERT(this, "SawBlade::initialize: null this");
+
 	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
 	
 	StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeMoving_getInstance()));
@@ -107,6 +113,8 @@ void SawBlade_initialize(SawBlade this)
 // register a shape with the collision detection system
 void SawBlade_registerShape(SawBlade this)
 {
+	ASSERT(this, "SawBlade::registerShape: null this");
+
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
 	
@@ -117,12 +125,16 @@ void SawBlade_registerShape(SawBlade this)
 // unregister the shape with the collision detection system
 void SawBlade_unregisterShape(SawBlade this)
 {
+	ASSERT(this, "SawBlade::unregisterShape: null this");
+
 	Shape_setActive(this->shape, false);
 }
 
 // process a collision
 bool SawBlade_processCollision(SawBlade this, Telegram telegram)
 {
+	ASSERT(this, "SawBlade::processCollision: null this");
+
 	int message = Telegram_getMessage(telegram);
 	InGameEntity inGameEntity = __UPCAST(InGameEntity,  Telegram_getExtraInfo(telegram));
 	

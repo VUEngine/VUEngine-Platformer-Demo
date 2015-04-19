@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
+#include <BAnimatedSprite.h>
 #include "Door.h"
 
 
@@ -171,10 +172,10 @@ TextureROMDef DOOR_TX =
     1
 };
 
-SpriteROMDef DOOR_SPRITE =
+BSpriteROMDef DOOR_SPRITE =
 {
 	// sprite's type
-	__TYPE(AnimatedSprite),
+	__TYPE(BAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&DOOR_TX,
@@ -189,7 +190,7 @@ SpriteROMDef DOOR_SPRITE =
 	1		
 };
 
-SpriteROMDef* const DOOR_SPRITES[] =
+BSpriteROMDef* const DOOR_SPRITES[] =
 {
 	&DOOR_SPRITE,
 	NULL
@@ -228,10 +229,10 @@ AnimatedInGameEntityROMDef DOOR_AG =
     "Closed",
 };
 
-SpriteROMDef AFFINE_DOOR_SPRITE =
+BSpriteROMDef AFFINE_DOOR_SPRITE =
 {
 	// sprite's type
-	__TYPE(AnimatedSprite),
+	__TYPE(BAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&DOOR_TX,
@@ -246,7 +247,7 @@ SpriteROMDef AFFINE_DOOR_SPRITE =
 	1		
 };
 
-SpriteROMDef* const AFFINE_DOOR_SPRITES[] =
+BSpriteROMDef* const AFFINE_DOOR_SPRITES[] =
 {
 	&AFFINE_DOOR_SPRITE,
 	NULL

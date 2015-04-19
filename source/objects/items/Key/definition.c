@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
+#include <BAnimatedSprite.h>
 #include "Key.h"
 
 
@@ -102,10 +103,10 @@ TextureROMDef KEY_TX =
     1,
 };
 
-SpriteROMDef KEY_SPRITE =
+BSpriteROMDef KEY_SPRITE =
 {
 	// sprite's type
-	__TYPE(AnimatedSprite),
+	__TYPE(BAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&KEY_TX,
@@ -120,7 +121,7 @@ SpriteROMDef KEY_SPRITE =
 	0	
 };
 
-SpriteROMDef* const KEY_SPRITES[] =
+BSpriteROMDef* const KEY_SPRITES[] =
 {
 	&KEY_SPRITE,
 	NULL

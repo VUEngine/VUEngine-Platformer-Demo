@@ -104,10 +104,10 @@ TextureROMDef FLOOR_22x8_R_TX =
     1,
 };
 
-SpriteROMDef FLOOR_22x8_BG_SPRITE =
+BSpriteROMDef FLOOR_22x8_BG_SPRITE =
 {
 	// sprite's type
-	__TYPE(Sprite),
+	__TYPE(BSprite),
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_22x8_L_TX,
@@ -122,7 +122,7 @@ SpriteROMDef FLOOR_22x8_BG_SPRITE =
 	0		
 };
 
-SpriteROMDef FLOOR_22x8_BG_SPRITE_LEFT =
+BSpriteROMDef FLOOR_22x8_BG_SPRITE_LEFT =
 {
 	// texture definition
 	(TextureDefinition*)&FLOOR_22x8_L_TX,
@@ -137,10 +137,10 @@ SpriteROMDef FLOOR_22x8_BG_SPRITE_LEFT =
 	-1	
 };
 
-SpriteROMDef FLOOR_22x8_BG_SPRITE_RIGHT =
+BSpriteROMDef FLOOR_22x8_BG_SPRITE_RIGHT =
 {
 	// sprite's type
-	__TYPE(Sprite),
+	__TYPE(BSprite),
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_22x8_R_TX,
@@ -154,7 +154,7 @@ SpriteROMDef FLOOR_22x8_BG_SPRITE_RIGHT =
 	// parallax displacement
 	-1};
 
-SpriteROMDef* const FLOOR_22x8_BG_SPRITES[] =
+BSpriteROMDef* const FLOOR_22x8_BG_SPRITES[] =
 {
 	&FLOOR_22x8_BG_SPRITE,
 	NULL
@@ -199,10 +199,10 @@ InanimatedInGameEntityROMDef FLOOR_22x8_IG =
 
 
 
-SpriteROMDef AFFINE_FLOOR_22x8_BG_SPRITE =
+BSpriteROMDef AFFINE_FLOOR_22x8_BG_SPRITE =
 {
 	// sprite's type
-	__TYPE(Sprite),
+	__TYPE(BSprite),
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_22x8_L_TX,
@@ -217,7 +217,7 @@ SpriteROMDef AFFINE_FLOOR_22x8_BG_SPRITE =
 	0		
 };
 
-SpriteROMDef* const AFFINE_FLOOR_22x8_BG_SPRITES[] =
+BSpriteROMDef* const AFFINE_FLOOR_22x8_BG_SPRITES[] =
 {
 	&AFFINE_FLOOR_22x8_BG_SPRITE,
 	NULL
