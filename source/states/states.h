@@ -26,17 +26,9 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <VBJaEAdjustmentScreenState.h>
-#include <VBJaEPrecautionScreenState.h>
-#include <VBJaELangSelectScreenState.h>
-#include <VBJaESplashScreenState.h>
-#include <VBJaEAutoPauseSelectScreenState.h>
-#include <VBJaEAutoPauseScreenState.h>
-
+#include <DefaultScreenConfig.h>
 #include <TitleScreenState.h>
-
 #include <PlatformerLevelState.h>
-
 #include "stages.h"
 
 
