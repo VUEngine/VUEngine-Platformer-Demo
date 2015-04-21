@@ -45,18 +45,32 @@ const LangROMDef LANGUAGE_DE =
     // Strings
     {
         /* Splash Screens */
-        "            Wichtig:\n  Lesen Sie vor dem Spielen die\nAnleitung und Sicherheitshinweise", //STR_PRECAUTION_SCREEN
-        "Automatische Pause", //STR_AUTOMATIC_PAUSE
-        " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren", //STR_AUTOMATIC_PAUSE_EXPLANATION
-        "Bitte mache eine Pause!", //STR_AUTOMATIC_PAUSE_TEXT
-        "An", //STR_ON
-        "Aus", //STR_OFF
-        "Sprachauswahl", //STR_LANGUAGE_SELECT
+
+        //STR_PRECAUTION_SCREEN_TITLE:
+        "Wichtig:",
+        //STR_PRECAUTION_SCREEN_TEXT:
+        "Lesen Sie vor dem Spielen\n    die Anleitung und\n   Sicherheitshinweise",
+        //STR_AUTOMATIC_PAUSE:
+        "Automatische Pause",
+        //STR_AUTOMATIC_PAUSE_EXPLANATION:
+        " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
+        //STR_AUTOMATIC_PAUSE_TEXT:
+        "Bitte mache eine Pause!",
+        //STR_ON:
+        "An",
+        //STR_OFF:
+        "Aus",
+        //STR_LANGUAGE_SELECT:
+        "Sprachauswahl",
 
         /* Level Names */
-        "Level", //STR_LEVEL
-        "Woohoo-Berge", //STR_LEVEL_1_1_NAME
-        "Aufwï¿½rtsspirale", //STR_LEVEL_1_3_NAME
+
+        //STR_LEVEL:
+        "Level",
+        //STR_LEVEL_1_1_NAME:
+        "Woohoo-Berge",
+        //STR_LEVEL_1_3_NAME:
+        "Aufwärtsspirale",
     },
 };
 

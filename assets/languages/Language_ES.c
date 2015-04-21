@@ -37,36 +37,36 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const LangROMDef LANGUAGE_EN =
+const LangROMDef LANGUAGE_ES =
 {
     // Language Name
-    "English",
+    "Español",
 
     // Strings
     {
         /* Splash Screens */
 
         //STR_PRECAUTION_SCREEN_TITLE:
-        "Important:",
+        "Importante:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        "Read Instruction and\n\nPrecaution Booklets\n\n  before operating",
+        "     Lee los libros de\nInstrucciones y precauciones\n       antes de jugar",
         //STR_AUTOMATIC_PAUSE:
-        "Automatic Pause",
+        "Pausa Automatica",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
-        "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
+        " La función automática de pausa le\nrecordará que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
         //STR_AUTOMATIC_PAUSE_TEXT:
-        "Please take a rest!",
+        "Por favor, tómese un descanso!",
         //STR_ON:
-        "On",
+        "Encendido",
         //STR_OFF:
-        "Off",
+        "Apagado",
         //STR_LANGUAGE_SELECT:
-        "Language Select",
+        "Seleccionar Idioma",
 
         /* Level Names */
 
         //STR_LEVEL:
-        "Level",
+        "Nivel",
         //STR_LEVEL_1_1_NAME:
         "Woohoo Hills",
         //STR_LEVEL_1_3_NAME:
