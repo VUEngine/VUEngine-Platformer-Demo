@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
+#include <OSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -72,13 +73,14 @@ TextureROMDef MOUND_1_TX =
 BSpriteROMDef MOUND_1_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(OSprite),
 
 	// texture definition
 	(TextureDefinition*)&MOUND_1_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_BGMAP,
+	//WRLD_BGMAP,
+	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,

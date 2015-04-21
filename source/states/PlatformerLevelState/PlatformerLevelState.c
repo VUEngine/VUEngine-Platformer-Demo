@@ -28,6 +28,7 @@
 #include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
+#include <PhysicalWorld.h>
 #include <I18n.h>
 #include <PlatformerLevelState.h>
 #include <VBJaEAdjustmentScreenState.h>
@@ -111,8 +112,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
 	
 	// make a little bit of physical simulations so each entity is placed at the floor
-//	Clock_start(Game_getInGameClock(Game_getInstance()));
-
+	Clock_start(Game_getInGameClock(Game_getInstance()));
+	PhysicalWorld_start(PhysicalWorld_getInstance());
+	
 	// render gui values
 	PlatformerLevelState_printLifes(this);
 	PlatformerLevelState_printCoins(this);

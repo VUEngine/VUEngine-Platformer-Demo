@@ -24,6 +24,7 @@
 
 #include <libgccvb.h>
 #include <BAnimatedSprite.h>
+#include <OAnimatedSprite.h>
 #include "Coin.h"
 
 
@@ -129,13 +130,14 @@ TextureROMDef COIN_TX =
 BSpriteROMDef COIN_SPRITE =
 {
 	// sprite's type
-	__TYPE(BAnimatedSprite),
+	__TYPE(OAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&COIN_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_BGMAP,
+	//WRLD_BGMAP,
+	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
