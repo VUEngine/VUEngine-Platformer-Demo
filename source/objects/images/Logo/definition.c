@@ -51,13 +51,13 @@ TextureROMDef LOGO_L_TX =
 {
     {
         // number of chars, depending on allocation type:
-        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_SHARED: sum of chars of all animation frames
-        // __NO_ANIMATED: number of chars of whole image
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __NOT_ANIMATED: number of chars of whole image
         168,
 
         // allocation type
-        __NO_ANIMATED,
+        __NOT_ANIMATED,
 
         // char definition
         PlatformerDemoLogoLTiles,
@@ -83,13 +83,13 @@ TextureROMDef LOGO_R_TX =
 {
     {
         // number of chars, depending on allocation type:
-        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_SHARED: sum of chars of all animation frames
-        // __NO_ANIMATED: number of chars of whole image
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __NOT_ANIMATED: number of chars of whole image
         165,
 
         // allocation type
-        __NO_ANIMATED,
+        __NOT_ANIMATED,
 
         // char definition
         PlatformerDemoLogoRTiles,
@@ -115,13 +115,13 @@ TextureROMDef LOGO_OUTLINE_L_TX =
 {
     {
         // number of chars, depending on allocation type:
-        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_SHARED: sum of chars of all animation frames
-        // __NO_ANIMATED: number of chars of whole image
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __NOT_ANIMATED: number of chars of whole image
         90,
 
         // allocation type
-        __NO_ANIMATED,
+        __NOT_ANIMATED,
 
         // char definition
         PlatformerDemoLogoOutlineLTiles,
@@ -147,13 +147,13 @@ TextureROMDef LOGO_OUTLINE_R_TX =
 {
     {
         // number of chars, depending on allocation type:
-        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_SHARED: sum of chars of all animation frames
-        // __NO_ANIMATED: number of chars of whole image
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __NOT_ANIMATED: number of chars of whole image
         91,
 
         // allocation type
-        __NO_ANIMATED,
+        __NOT_ANIMATED,
 
         // char definition
         PlatformerDemoLogoOutlineRTiles,
@@ -267,13 +267,13 @@ TextureROMDef SUPER_AWESOME_TX =
 {
     {
         // number of chars, depending on allocation type:
-        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_SHARED: sum of chars of all animation frames
-        // __NO_ANIMATED: number of chars of whole image
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __NOT_ANIMATED: number of chars of whole image
         38,
 
         // allocation type
-        __NO_ANIMATED,
+        __NOT_ANIMATED,
 
         // char definition
         SuperAwesomeTiles,
@@ -349,13 +349,13 @@ TextureROMDef VBJAENGINE_TX =
 {
     {
         // number of chars, depending on allocation type:
-        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_SHARED: sum of chars of all animation frames
-        // __NO_ANIMATED: number of chars of whole image
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __NOT_ANIMATED: number of chars of whole image
         56,
 
         // allocation type
-        __NO_ANIMATED,
+        __NOT_ANIMATED,
 
         // char definition
         VBJaEngineLogoTiles,

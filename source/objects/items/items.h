@@ -39,7 +39,9 @@ extern EntityDefinition COIN_AG;
 extern EntityDefinition DOOR_AG;
 extern EntityDefinition KEY_AG;
 
+extern EntityDefinition BGMAP_COIN_AG;
 extern EntityDefinition AFFINE_COIN_AG;
+extern EntityDefinition OBJECT_COIN_AG;
 extern EntityDefinition AFFINE_DOOR_AG;
 extern EntityDefinition AFFINE_KEY_AG;
 

@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include "Hero.h"
 
 
@@ -31,8 +31,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HeroTiles[];
-extern BYTE HeroMap[];
+extern BYTE DummyHeroTiles[];
+extern BYTE DummyHeroMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ extern BYTE HeroMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_IDLE_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_IDLE_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -63,7 +63,7 @@ AnimationFunctionROMDef HERO_IDLE_ANIM =
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_WALKING_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_WALKING_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -85,7 +85,7 @@ AnimationFunctionROMDef HERO_WALKING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_JUMPING_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_JUMPING_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -107,7 +107,7 @@ AnimationFunctionROMDef HERO_JUMPING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_FALLING_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_FALLING_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -129,7 +129,7 @@ AnimationFunctionROMDef HERO_FALLING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_SLIDING_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_SLIDING_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -151,7 +151,7 @@ AnimationFunctionROMDef HERO_SLIDING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_HIT_FRONT_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_HIT_FRONT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -173,7 +173,7 @@ AnimationFunctionROMDef HERO_HIT_FRONT_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_HIT_BEHIND_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -195,7 +195,7 @@ AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_HIT_FIRE_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_HIT_FIRE_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -218,7 +218,7 @@ AnimationFunctionROMDef HERO_HIT_FIRE_ANIM =
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_JUMP_BACK_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_JUMP_BACK_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -240,7 +240,7 @@ AnimationFunctionROMDef HERO_JUMP_BACK_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_JUMP_FRONT_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_JUMP_FRONT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -263,7 +263,7 @@ AnimationFunctionROMDef HERO_JUMP_FRONT_ANIM =
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_FRONT_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_FRONT_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -285,7 +285,7 @@ AnimationFunctionROMDef HERO_FRONT_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_BACK_ANIM =
+AnimationFunctionROMDef DUMMY_HERO_BACK_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -308,26 +308,26 @@ AnimationFunctionROMDef HERO_BACK_ANIM =
 
 
 // an animation definition
-AnimationDescriptionROMDef HERO_ANIM =
+AnimationDescriptionROMDef DUMMY_HERO_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HERO_IDLE_ANIM,
-		(AnimationFunction*)&HERO_WALKING_ANIM,
-		(AnimationFunction*)&HERO_JUMPING_ANIM,
-		(AnimationFunction*)&HERO_FALLING_ANIM,
-		(AnimationFunction*)&HERO_SLIDING_ANIM,
-		(AnimationFunction*)&HERO_HIT_FRONT_ANIM,
-		(AnimationFunction*)&HERO_HIT_BEHIND_ANIM,
-		(AnimationFunction*)&HERO_JUMP_BACK_ANIM,
-		(AnimationFunction*)&HERO_JUMP_FRONT_ANIM,
-		(AnimationFunction*)&HERO_FRONT_ANIM,
-		(AnimationFunction*)&HERO_BACK_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_IDLE_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_WALKING_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_JUMPING_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_FALLING_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_SLIDING_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_HIT_FRONT_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_HIT_BEHIND_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_JUMP_BACK_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_JUMP_FRONT_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_FRONT_ANIM,
+		(AnimationFunction*)&DUMMY_HERO_BACK_ANIM,
 		NULL,
 	}
 };
 
-TextureROMDef HERO_TX =
+TextureROMDef DUMMY_HERO_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -337,14 +337,14 @@ TextureROMDef HERO_TX =
         9,
 
         // allocation type
-        __ANIMATED_SINGLE,
+        __ANIMATED_SHARED,
 
         // char definition
-        HeroTiles,
+        DummyHeroTiles,
     },
 
     // bgmap definition
-    HeroMap,
+    DummyHeroMap,
 
     // cols (max 64)
     3,
@@ -359,16 +359,16 @@ TextureROMDef HERO_TX =
     1,
 };
 
-BgmapSpriteROMDef HERO_SPRITE =
+ObjectSpriteROMDef DUMMY_HERO_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&HERO_TX,
+	(TextureDefinition*)&DUMMY_HERO_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_AFFINE,
+	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
@@ -377,18 +377,18 @@ BgmapSpriteROMDef HERO_SPRITE =
 	0
 };
 
-BgmapSpriteROMDef* const HERO_SPRITES[] =
+ObjectSpriteROMDef* const DUMMY_HERO_SPRITES[] =
 {
-	&HERO_SPRITE,
+	&DUMMY_HERO_SPRITE,
 	NULL
 };
 
-ActorROMDef HERO_AC =
+AnimatedInGameEntityROMDef DUMMY_HERO_AC =
 {
     {
         {
-            __TYPE(Hero),
-            (SpriteROMDef**)HERO_SPRITES,
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)DUMMY_HERO_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -410,7 +410,7 @@ ActorROMDef HERO_AC =
     },
 
     // pointer to the animation definition for the character
-    (AnimationDescription*)&HERO_ANIM,
+    (AnimationDescription*)&DUMMY_HERO_ANIM,
 
     // initial animation
     NULL,

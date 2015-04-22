@@ -95,18 +95,19 @@ AnimationDescriptionROMDef COIN_ANIM =
 	}
 };
 
-TextureROMDef COIN_TX =
+TextureROMDef OBJECT_COIN_TX =
 {
     {
         // number of chars, depending on allocation type:
-        // __ANIMATED: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_SHARED: sum of chars of all animation frames
-        // __NO_ANIMATED: number of chars of whole image
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __NOT_ANIMATED: number of chars of whole image
         28,
 
         // allocation type
-        __ANIMATED_SHARED,
-
+		__ANIMATED_MULTI,
+        
         // char definition
         CoinTiles,
     },
@@ -127,13 +128,49 @@ TextureROMDef COIN_TX =
     1,
 };
 
-BgmapSpriteROMDef COIN_SPRITE =
+TextureROMDef BGMAP_COIN_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __NOT_ANIMATED: number of chars of whole image
+        28,
+
+        // allocation type
+        __ANIMATED_MULTI,
+        
+        // char definition
+        CoinTiles,
+    },
+
+    // bgmap definition
+    CoinMap,
+
+    // cols (max 64)
+    2,
+
+    // rows (max 64)
+    2,
+
+    // number of frames
+    7,
+
+    // palette number
+    1,
+};
+
+//---------------------------------------------------------------------------------------------------------
+// 										  OBJECT COIN
+//---------------------------------------------------------------------------------------------------------
+
+ObjectSpriteROMDef OBJECT_COIN_SPRITE =
 {
 	// sprite's type
 	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&COIN_TX,
+	(TextureDefinition*)&OBJECT_COIN_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	//WRLD_BGMAP,
@@ -146,18 +183,79 @@ BgmapSpriteROMDef COIN_SPRITE =
 	0		
 };
 
-BgmapSpriteROMDef* const COIN_SPRITES[] =
+ObjectSpriteROMDef* const OBJECT_COIN_SPRITES[] =
 {
-	&COIN_SPRITE,
+	&OBJECT_COIN_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef COIN_AG =
+AnimatedInGameEntityROMDef OBJECT_COIN_AG =
 {
     {
         {
             __TYPE(Coin),
-            (SpriteROMDef**)COIN_SPRITES,
+            (SpriteROMDef**)OBJECT_COIN_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {4, 4, 4, 4},
+
+        // in game type
+        kCoin,
+
+        // if 0, width and height will be inferred from 
+        // the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+    	
+    	// deep
+        4
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&COIN_ANIM,
+
+    // initial animation
+    "Spin",
+};
+
+//---------------------------------------------------------------------------------------------------------
+// 										  BGMAP COIN
+//---------------------------------------------------------------------------------------------------------
+
+ObjectSpriteROMDef BGMAP_COIN_SPRITE =
+{
+	// sprite's type
+	__TYPE(BgmapAnimatedSprite),
+
+	// texture definition
+	(TextureDefinition*)&BGMAP_COIN_TX,
+	
+	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	WRLD_BGMAP,
+	
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	0		
+};
+
+ObjectSpriteROMDef* const BGMAP_COIN_SPRITES[] =
+{
+	&BGMAP_COIN_SPRITE,
+	NULL
+};
+
+AnimatedInGameEntityROMDef BGMAP_COIN_AG =
+{
+    {
+        {
+            __TYPE(Coin),
+            (SpriteROMDef**)BGMAP_COIN_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -186,13 +284,16 @@ AnimatedInGameEntityROMDef COIN_AG =
 };
 
 
-BgmapSpriteROMDef AFFINE_COIN_SPRITE =
+//---------------------------------------------------------------------------------------------------------
+// 										  AFFINE COIN
+//---------------------------------------------------------------------------------------------------------
+ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&COIN_TX,
+	(TextureDefinition*)&BGMAP_COIN_TX,
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_AFFINE,
@@ -204,7 +305,7 @@ BgmapSpriteROMDef AFFINE_COIN_SPRITE =
 	0		
 };
 
-BgmapSpriteROMDef* const AFFINE_COIN_SPRITES[] =
+ObjectSpriteROMDef* const AFFINE_COIN_SPRITES[] =
 {
 	&AFFINE_COIN_SPRITE,
 	NULL

@@ -58,7 +58,7 @@ const ClassSizeData _userClassesSizeData[] =
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
-	{&COIN_AG, "Coin"},
+	{&BGMAP_COIN_AG, "Coin"},
 	{&DOOR_AG, "Door"},
 	{&HERO_AC, "Hero"},
 	{&KEY_AG, "Key"},
@@ -71,7 +71,7 @@ const UserObject _userObjects[] =
 #ifdef __ANIMATION_EDITOR
 const UserActor _userActors[] =
 {
-	{(ActorDefinition*)&COIN_AG, "Coin"},
+	{(ActorDefinition*)&BGMAP_COIN_AG, "Coin"},
 	{(ActorDefinition*)&DOOR_AG, "Door"},
 	{(ActorDefinition*)&HERO_AC, "Hero"},
 	{(ActorDefinition*)&HINT_ENTER_MC, "Hint enter"},

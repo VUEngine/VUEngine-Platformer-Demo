@@ -113,7 +113,7 @@
 #define __BLOCK_16B 		16
 #define __POOL_512B_SIZE 	(__BLOCK_512B * 0)
 #define __POOL_256B_SIZE 	(__BLOCK_256B * 1)
-#define __POOL_192B_SIZE 	(__BLOCK_192B * 10)
+#define __POOL_192B_SIZE 	(__BLOCK_192B * 12)
 #define __POOL_128B_SIZE 	(__BLOCK_128B * 24)
 #define __POOL_100B_SIZE 	(__BLOCK_100B * 64)
 #define __POOL_80B_SIZE 	(__BLOCK_80B * 48)
