@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <MSprite.h>
+#include <MBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -77,11 +77,11 @@ TextureROMDef* MOUND_BG_FRONT_SB_TEXTURES[] =
 	NULL
 };
 
-MSpriteROMDef MOUND_BG_FRONT_SB_SPRITE =
+MBgmapSpriteROMDef MOUND_BG_FRONT_SB_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(MSprite),
+		__TYPE(MBgmapSprite),
 
 		// texture definition
 		NULL,
@@ -108,9 +108,9 @@ MSpriteROMDef MOUND_BG_FRONT_SB_SPRITE =
 	false
 };
 
-BSpriteROMDef* const MOUND_BG_FRONT_SB_SPRITES[] =
+BgmapSpriteROMDef* const MOUND_BG_FRONT_SB_SPRITES[] =
 {
-	(BSpriteROMDef*)&MOUND_BG_FRONT_SB_SPRITE,
+	(BgmapSpriteROMDef*)&MOUND_BG_FRONT_SB_SPRITE,
 	NULL
 };
 

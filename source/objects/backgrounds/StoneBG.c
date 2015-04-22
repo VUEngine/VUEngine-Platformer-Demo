@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <MSprite.h>
+#include <MBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -78,11 +78,11 @@ TextureROMDef* STONE_BG_SB_TEXTURES[] =
 };
 
 
-MSpriteROMDef STONE_BG_SB_SPRITE =
+MBgmapSpriteROMDef STONE_BG_SB_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(MSprite),
+		__TYPE(MBgmapSprite),
 
 		// texture definition
 		NULL,
@@ -109,9 +109,9 @@ MSpriteROMDef STONE_BG_SB_SPRITE =
 	true
 };
 
-BSpriteROMDef* const STONE_BG_SB_SPRITES[] =
+BgmapSpriteROMDef* const STONE_BG_SB_SPRITES[] =
 {
-	(BSpriteROMDef*)&STONE_BG_SB_SPRITE,
+	(BgmapSpriteROMDef*)&STONE_BG_SB_SPRITE,
 	NULL
 };
 

@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <BAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include "Door.h"
 
 
@@ -172,10 +172,10 @@ TextureROMDef DOOR_TX =
     1
 };
 
-BSpriteROMDef DOOR_SPRITE =
+BgmapSpriteROMDef DOOR_SPRITE =
 {
 	// sprite's type
-	__TYPE(BAnimatedSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&DOOR_TX,
@@ -190,7 +190,7 @@ BSpriteROMDef DOOR_SPRITE =
 	1		
 };
 
-BSpriteROMDef* const DOOR_SPRITES[] =
+BgmapSpriteROMDef* const DOOR_SPRITES[] =
 {
 	&DOOR_SPRITE,
 	NULL
@@ -229,10 +229,10 @@ AnimatedInGameEntityROMDef DOOR_AG =
     "Closed",
 };
 
-BSpriteROMDef AFFINE_DOOR_SPRITE =
+BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 {
 	// sprite's type
-	__TYPE(BAnimatedSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&DOOR_TX,
@@ -247,7 +247,7 @@ BSpriteROMDef AFFINE_DOOR_SPRITE =
 	1		
 };
 
-BSpriteROMDef* const AFFINE_DOOR_SPRITES[] =
+BgmapSpriteROMDef* const AFFINE_DOOR_SPRITES[] =
 {
 	&AFFINE_DOOR_SPRITE,
 	NULL

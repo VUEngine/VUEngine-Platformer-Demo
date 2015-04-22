@@ -103,10 +103,10 @@ TextureROMDef CLOUDS_B_TX =
     0,
 };
 
-BSpriteROMDef CLOUDS_SB_SPRITE_1 =
+BgmapSpriteROMDef CLOUDS_SB_SPRITE_1 =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&CLOUDS_A_TX,
@@ -121,10 +121,10 @@ BSpriteROMDef CLOUDS_SB_SPRITE_1 =
 	0
 };
 
-BSpriteROMDef CLOUDS_SB_SPRITE_2 =
+BgmapSpriteROMDef CLOUDS_SB_SPRITE_2 =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&CLOUDS_B_TX,
@@ -139,7 +139,7 @@ BSpriteROMDef CLOUDS_SB_SPRITE_2 =
 	0,
 };
 
-BSpriteROMDef* const CLOUDS_SB_SPRITES[] =
+BgmapSpriteROMDef* const CLOUDS_SB_SPRITES[] =
 {
 	&CLOUDS_SB_SPRITE_1,
 	&CLOUDS_SB_SPRITE_2,

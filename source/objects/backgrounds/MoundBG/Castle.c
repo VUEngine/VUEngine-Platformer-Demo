@@ -69,10 +69,10 @@ TextureROMDef MOUND_BG_CASTLE_TX =
     2,
 };
 
-BSpriteROMDef MOUND_BG_CASTLE_IM_SPRITE =
+BgmapSpriteROMDef MOUND_BG_CASTLE_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&MOUND_BG_CASTLE_TX,
@@ -87,7 +87,7 @@ BSpriteROMDef MOUND_BG_CASTLE_IM_SPRITE =
 	0	
 };
 
-BSpriteROMDef* const MOUND_BG_CASTLE_IM_SPRITES[] =
+BgmapSpriteROMDef* const MOUND_BG_CASTLE_IM_SPRITES[] =
 {
 	&MOUND_BG_CASTLE_IM_SPRITE,
 	NULL

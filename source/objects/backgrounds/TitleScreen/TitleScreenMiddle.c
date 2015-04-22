@@ -69,10 +69,10 @@ TextureROMDef TITLESCREEN_MIDDLE_TX =
     1,
 };
 
-BSpriteROMDef TITLESCREEN_MIDDLE_IM_SPRITE =
+BgmapSpriteROMDef TITLESCREEN_MIDDLE_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&TITLESCREEN_MIDDLE_TX,
@@ -87,7 +87,7 @@ BSpriteROMDef TITLESCREEN_MIDDLE_IM_SPRITE =
 	0
 };
 
-BSpriteROMDef* const TITLESCREEN_MIDDLE_IM_SPRITES[] =
+BgmapSpriteROMDef* const TITLESCREEN_MIDDLE_IM_SPRITES[] =
 {
 	&TITLESCREEN_MIDDLE_IM_SPRITE,
 	NULL

@@ -175,10 +175,10 @@ TextureROMDef LOGO_OUTLINE_R_TX =
     1,
 };
 
-BSpriteROMDef LOGO_L_IM_SPRITE =
+BgmapSpriteROMDef LOGO_L_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&LOGO_L_TX,
@@ -193,10 +193,10 @@ BSpriteROMDef LOGO_L_IM_SPRITE =
 	0		
 };
 
-BSpriteROMDef LOGO_R_IM_SPRITE =
+BgmapSpriteROMDef LOGO_R_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&LOGO_R_TX,
@@ -211,10 +211,10 @@ BSpriteROMDef LOGO_R_IM_SPRITE =
 	0		
 };
 
-BSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
+BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&LOGO_OUTLINE_L_TX,
@@ -229,10 +229,10 @@ BSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 	0		
 };
 
-BSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
+BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&LOGO_OUTLINE_R_TX,
@@ -247,7 +247,7 @@ BSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 	0		
 };
 
-BSpriteROMDef* const LOGO_IM_SPRITES[] =
+BgmapSpriteROMDef* const LOGO_IM_SPRITES[] =
 {
 	&LOGO_OUTLINE_L_IM_SPRITE,
 	&LOGO_OUTLINE_R_IM_SPRITE,
@@ -295,10 +295,10 @@ TextureROMDef SUPER_AWESOME_TX =
     1,
 };
 
-BSpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
+BgmapSpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&SUPER_AWESOME_TX,
@@ -313,10 +313,10 @@ BSpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
 	0		
 };
 
-BSpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
+BgmapSpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&SUPER_AWESOME_TX,
@@ -331,7 +331,7 @@ BSpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
 	0		
 };
 
-BSpriteROMDef* const SUPER_AWESOME_IM_SPRITES[] =
+BgmapSpriteROMDef* const SUPER_AWESOME_IM_SPRITES[] =
 {
 	&SUPER_AWESOME_IM_L_SPRITE,
 	&SUPER_AWESOME_IM_R_SPRITE,
@@ -377,10 +377,10 @@ TextureROMDef VBJAENGINE_TX =
     0,
 };
 
-BSpriteROMDef VBJAENGINE_IM_L_SPRITE =
+BgmapSpriteROMDef VBJAENGINE_IM_L_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_TX,
@@ -395,10 +395,10 @@ BSpriteROMDef VBJAENGINE_IM_L_SPRITE =
 	0		
 };
 
-BSpriteROMDef VBJAENGINE_IM_R_SPRITE =
+BgmapSpriteROMDef VBJAENGINE_IM_R_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_TX,
@@ -413,7 +413,7 @@ BSpriteROMDef VBJAENGINE_IM_R_SPRITE =
 	0		
 };
 
-BSpriteROMDef* const VBJAENGINE_IM_SPRITES[] =
+BgmapSpriteROMDef* const VBJAENGINE_IM_SPRITES[] =
 {
 	&VBJAENGINE_IM_L_SPRITE,
 	&VBJAENGINE_IM_R_SPRITE,

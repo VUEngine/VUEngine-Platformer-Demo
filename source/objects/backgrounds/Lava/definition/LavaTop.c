@@ -24,7 +24,7 @@
 
 #include <libgccvb.h>
 #include <AnimatedInGameEntity.h>
-#include <BAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include <macros.h>
 
 
@@ -105,10 +105,10 @@ TextureROMDef LAVA_TOP_TX =
     0
 };
 
-BSpriteROMDef LAVA_TOP_SPRITE =
+BgmapSpriteROMDef LAVA_TOP_SPRITE =
 {
 	// sprite's type
-	__TYPE(BAnimatedSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&LAVA_TOP_TX,
@@ -123,7 +123,7 @@ BSpriteROMDef LAVA_TOP_SPRITE =
 	-2		
 };
 
-BSpriteROMDef* const LAVA_TOP_SPRITES[] =
+BgmapSpriteROMDef* const LAVA_TOP_SPRITES[] =
 {
 	&LAVA_TOP_SPRITE,
 	NULL

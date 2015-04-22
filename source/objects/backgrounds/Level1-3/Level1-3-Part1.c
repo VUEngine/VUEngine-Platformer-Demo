@@ -71,10 +71,10 @@ TextureROMDef LEVEL1_3_PART1_TX =
     1,
 };
 
-BSpriteROMDef LEVEL1_3_PART1_IM_SPRITE =
+BgmapSpriteROMDef LEVEL1_3_PART1_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&LEVEL1_3_PART1_TX,
@@ -89,7 +89,7 @@ BSpriteROMDef LEVEL1_3_PART1_IM_SPRITE =
 	0
 };
 
-BSpriteROMDef* const LEVEL1_3_PART1_IM_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL1_3_PART1_IM_SPRITES[] =
 {
 	&LEVEL1_3_PART1_IM_SPRITE,
 	NULL
@@ -135,10 +135,10 @@ TextureROMDef LEVEL1_3_PART2_TX =
     1,
 };
 
-BSpriteROMDef LEVEL1_3_PART2_IM_SPRITE =
+BgmapSpriteROMDef LEVEL1_3_PART2_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&LEVEL1_3_PART2_TX,
@@ -153,7 +153,7 @@ BSpriteROMDef LEVEL1_3_PART2_IM_SPRITE =
 	0
 };
 
-BSpriteROMDef* const LEVEL1_3_PART2_IM_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL1_3_PART2_IM_SPRITES[] =
 {
 	&LEVEL1_3_PART2_IM_SPRITE,
 	NULL
@@ -200,10 +200,10 @@ TextureROMDef LEVEL1_3_PART3_TX =
     1,
 };
 
-BSpriteROMDef LEVEL1_3_PART3_IM_SPRITE =
+BgmapSpriteROMDef LEVEL1_3_PART3_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&LEVEL1_3_PART3_TX,
@@ -218,7 +218,7 @@ BSpriteROMDef LEVEL1_3_PART3_IM_SPRITE =
 	0
 };
 
-BSpriteROMDef* const LEVEL1_3_PART3_IM_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL1_3_PART3_IM_SPRITES[] =
 {
 	&LEVEL1_3_PART3_IM_SPRITE,
 	NULL

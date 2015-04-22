@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include "SawBlade.h"
 
 
@@ -101,10 +101,10 @@ TextureDefinition SAW_BLADE_TX =
     1,
 };
 
-BSpriteROMDef SAW_BLADE_SPRITE =
+BgmapSpriteROMDef SAW_BLADE_SPRITE =
 {
 	// sprite's type
-	__TYPE(BAnimatedSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&SAW_BLADE_TX,
@@ -119,7 +119,7 @@ BSpriteROMDef SAW_BLADE_SPRITE =
 	0
 };
 
-BSpriteROMDef* const SAW_BLADE_SPRITES[] =
+BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 {
 	&SAW_BLADE_SPRITE,
 	NULL
@@ -166,10 +166,10 @@ SawBladeDefinition SAW_BLADE_AC =
 };
 
 
-BSpriteROMDef AFFINE_SAW_BLADE_SPRITE =
+BgmapSpriteROMDef AFFINE_SAW_BLADE_SPRITE =
 {
 	// sprite's type
-	__TYPE(BAnimatedSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&SAW_BLADE_TX,
@@ -184,7 +184,7 @@ BSpriteROMDef AFFINE_SAW_BLADE_SPRITE =
 	0
 };
 
-BSpriteROMDef* const AFFINE_SAW_BLADE_SPRITES[] =
+BgmapSpriteROMDef* const AFFINE_SAW_BLADE_SPRITES[] =
 {
 	&AFFINE_SAW_BLADE_SPRITE,
 	NULL

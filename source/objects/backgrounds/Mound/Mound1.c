@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <OSprite.h>
+#include <ObjectSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -70,10 +70,10 @@ TextureROMDef MOUND_1_TX =
     0,
 };
 
-BSpriteROMDef MOUND_1_IM_SPRITE =
+BgmapSpriteROMDef MOUND_1_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(OSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
 	(TextureDefinition*)&MOUND_1_TX,
@@ -89,7 +89,7 @@ BSpriteROMDef MOUND_1_IM_SPRITE =
 	0		
 };
 
-BSpriteROMDef* const MOUND_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const MOUND_1_IM_SPRITES[] =
 {
 	&MOUND_1_IM_SPRITE,
 	NULL

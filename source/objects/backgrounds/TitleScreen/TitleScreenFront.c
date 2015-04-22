@@ -69,10 +69,10 @@ TextureROMDef TITLESCREEN_FRONT_TX =
     1,
 };
 
-BSpriteROMDef TITLESCREEN_FRONT_IM_SPRITE =
+BgmapSpriteROMDef TITLESCREEN_FRONT_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&TITLESCREEN_FRONT_TX,
@@ -87,7 +87,7 @@ BSpriteROMDef TITLESCREEN_FRONT_IM_SPRITE =
 	0
 };
 
-BSpriteROMDef* const TITLESCREEN_FRONT_IM_SPRITES[] =
+BgmapSpriteROMDef* const TITLESCREEN_FRONT_IM_SPRITES[] =
 {
 	&TITLESCREEN_FRONT_IM_SPRITE,
 	NULL

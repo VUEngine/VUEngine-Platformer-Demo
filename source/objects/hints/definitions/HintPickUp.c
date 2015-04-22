@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
-#include <BAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include <libgccvb.h>
 #include <macros.h>
 #include <Hint.h>
@@ -174,10 +174,10 @@ TextureROMDef HINT_PICK_UP_TX =
     1,
 };
 
-BSpriteROMDef HINT_PICK_UP_SPRITE =
+BgmapSpriteROMDef HINT_PICK_UP_SPRITE =
 {
 	// sprite's type
-	__TYPE(BAnimatedSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&HINT_PICK_UP_TX,
@@ -192,7 +192,7 @@ BSpriteROMDef HINT_PICK_UP_SPRITE =
 	0
 };
 
-BSpriteROMDef* const HINT_PICK_UP_SPRITES[] =
+BgmapSpriteROMDef* const HINT_PICK_UP_SPRITES[] =
 {
 	&HINT_PICK_UP_SPRITE,
 	NULL

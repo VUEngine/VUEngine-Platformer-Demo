@@ -69,10 +69,10 @@ TextureROMDef GUI_TX =
     1,
 };
 
-BSpriteROMDef GUI_IM_SPRITE =
+BgmapSpriteROMDef GUI_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&GUI_TX,
@@ -87,7 +87,7 @@ BSpriteROMDef GUI_IM_SPRITE =
 	0		
 };
 
-BSpriteROMDef* const GUI_IM_SPRITES[] =
+BgmapSpriteROMDef* const GUI_IM_SPRITES[] =
 {
 	&GUI_IM_SPRITE,
 	NULL
