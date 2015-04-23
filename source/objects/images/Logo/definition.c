@@ -226,7 +226,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 	WRLD_LON,
 
 	// parallax displacement
-	0		
+	1		
 };
 
 BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
@@ -244,7 +244,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 	WRLD_RON,
 
 	// parallax displacement
-	0		
+	1		
 };
 
 BgmapSpriteROMDef* const LOGO_IM_SPRITES[] =
