@@ -146,7 +146,7 @@ StageROMDef TITLE_SCREEN_ST =
     	ITOFIX19_13(0), 
 		ITOFIX19_13(0), 
 		ITOFIX19_13(0), 
-		ITOFIX19_13(30)
+		ITOFIX19_13(0)
     },
 
     //initial screen position
