@@ -141,6 +141,14 @@ StageROMDef TITLE_SCREEN_ST =
         LEVEL_Z_SIZE
     },
 
+	// OBJs segments z coordinates (SPT0 to SPT3)
+    {
+    	ITOFIX19_13(0), 
+		ITOFIX19_13(0), 
+		ITOFIX19_13(0), 
+		ITOFIX19_13(30)
+    },
+
     //initial screen position
     {
         // x

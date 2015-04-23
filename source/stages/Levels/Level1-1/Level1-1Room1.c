@@ -208,6 +208,14 @@ StageROMDef LEVEL_1_1_ROOM_1_ST =
         LEVEL_Z_SIZE
     },
 
+	// OBJs segments z coordinates (SPT0 to SPT3)
+    {
+    	ITOFIX19_13(0), 
+		ITOFIX19_13(0), 
+		ITOFIX19_13(0), 
+		ITOFIX19_13(20)
+    },
+
     //initial screen position
     {
         // x
