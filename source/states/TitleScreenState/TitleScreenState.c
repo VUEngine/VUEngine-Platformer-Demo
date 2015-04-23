@@ -95,10 +95,6 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	{
 		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, Container_getChildByName(__UPCAST(Container, this->stage), "DummyHero")), "Idle");
 	}
-	else
-	{
-		ASSERT(false, "error");
-	}
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Clock_start(Game_getInGameClock(Game_getInstance()));
