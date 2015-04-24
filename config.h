@@ -266,15 +266,15 @@
 
 #define __PRINTING_PALETTE		3
 
-#define __GPLT0VALUE  			0xE4	// 11 10 01 00
-#define __GPLT1VALUE  			0xE0	// 11 10 00 00
-#define __GPLT2VALUE  			0xD0	// 11 01 00 00
-#define __GPLT3VALUE  			0xE0	// 11 10 00 00
+#define __GPLT0_VALUE  			0xE4	// 11 10 01 00
+#define __GPLT1_VALUE  			0xE0	// 11 10 00 00
+#define __GPLT2_VALUE  			0xD0	// 11 01 00 00
+#define __GPLT3_VALUE  			0xE0	// 11 10 00 00
 
-#define __JPLT0VALUE  			0xE4	// 11 10 01 00
-#define __JPLT1VALUE  			0xE4	// 11 10 01 00
-#define __JPLT2VALUE  			0xE4	// 11 10 01 00
-#define __JPLT3VALUE  			0xE4	// 11 10 01 00
+#define __JPLT0_VALUE  			0xE4	// 11 10 01 00
+#define __JPLT1_VALUE  			0xE0	// 11 10 00 00
+#define __JPLT2_VALUE  			0xD0	// 11 01 00 00
+#define __JPLT3_VALUE  			0xE0	// 11 10 00 00
 
 #define	__BKCOL					0x00
 
