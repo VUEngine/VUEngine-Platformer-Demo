@@ -143,11 +143,11 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->currentHint = NULL;
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(SpatialObject, this), kCuboid);
 
 	{
 		// register a body for physics
-		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(Entity, this), ITOFIX19_13(HERO_MASS));
+		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), ITOFIX19_13(HERO_MASS));
 		
 		Body_setElasticity(this->body, FTOFIX19_13(0.0f));
 		

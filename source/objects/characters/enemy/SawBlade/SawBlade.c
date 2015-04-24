@@ -67,7 +67,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	SawBlade_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(Entity, this), 0);
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), 0);
 
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	
@@ -116,7 +116,7 @@ void SawBlade_registerShape(SawBlade this)
 	ASSERT(this, "SawBlade::registerShape: null this");
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(Entity, this), kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(SpatialObject, this), kCuboid);
 	
 	// don't check collisions agains other objects
 	Shape_setCheckForCollisions(this->shape, false);
