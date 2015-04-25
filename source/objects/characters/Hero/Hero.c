@@ -238,7 +238,10 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
             };
 			
 			Actor_addForce(__UPCAST(Actor, this), &force);
+			
+			extern const u16 FIRE_SND[];
 			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Jump");
+			SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 		}
 	}
 }

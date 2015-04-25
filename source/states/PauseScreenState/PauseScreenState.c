@@ -82,7 +82,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner)
 	Game_setOptical(Game_getInstance(), optical);
 
 	// load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, false);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, NULL, false);
 
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(10000, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kSetUpLevel, NULL);

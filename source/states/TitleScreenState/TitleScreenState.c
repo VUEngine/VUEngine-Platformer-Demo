@@ -85,9 +85,17 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
 	Game_setOptical(Game_getInstance(), optical);
 
+	const char* name1 = "IgnoreMeDoor";
+	const char* name2 = "IgnoreMeCoin";
+	VirtualList entityNamesToIgnore = __NEW(VirtualList);
+	VirtualList_pushBack(entityNamesToIgnore, name1);
+	VirtualList_pushBack(entityNamesToIgnore, name2);
+	
 	//load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, false);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, false);
 
+	__DELETE(entityNamesToIgnore);
+	
 	// sample code to show how to animate multiple sprites at the same time
 	// buy just playing an animation in a single entity when varios share
 	// the same __ANIMATED_SHARED CharSet

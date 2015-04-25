@@ -99,7 +99,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Game_setOptical(Game_getInstance(), optical);
 
 	//load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, false);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, NULL, false);
 
 	// playing by default
 	this->mode = kPaused;
