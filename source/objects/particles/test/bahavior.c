@@ -43,6 +43,4 @@
 void testParticleBehavior(Particle particle)
 {
 	ASSERT(particle, "testParticleBehavior: null particle");
-	
-	Printing_int(Printing_getInstance(), Clock_getTime(Game_getInGameClock(Game_getInstance())), 1, 12, NULL);
 }

@@ -153,7 +153,7 @@ ParticleROMDef TEST_PARTICLE =
 	FTOFIX19_13(20.0f),
 	
 	// function pointer to control particle's behavior
-	NULL,
+	(void (*)(Particle))&testParticleBehavior,
 
 	// animation description
 	// used onlu if sprite is animated
