@@ -187,7 +187,7 @@ BgmapSpriteROMDef LOGO_L_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LOGO_L_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -205,7 +205,7 @@ BgmapSpriteROMDef LOGO_R_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LOGO_R_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -223,7 +223,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LOGO_OUTLINE_L_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -241,7 +241,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LOGO_OUTLINE_R_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -308,7 +308,7 @@ BgmapSpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
 	// texture definition
 	(TextureDefinition*)&SUPER_AWESOME_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -326,7 +326,7 @@ BgmapSpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
 	// texture definition
 	(TextureDefinition*)&SUPER_AWESOME_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -391,7 +391,7 @@ BgmapSpriteROMDef VBJAENGINE_IM_L_SPRITE =
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -409,7 +409,7 @@ BgmapSpriteROMDef VBJAENGINE_IM_R_SPRITE =
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode

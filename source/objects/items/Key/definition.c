@@ -112,7 +112,7 @@ BgmapSpriteROMDef KEY_SPRITE =
 	// texture definition
 	(TextureDefinition*)&KEY_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode

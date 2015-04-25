@@ -368,7 +368,7 @@ ObjectSpriteROMDef DUMMY_HERO_SPRITE =
 	// texture definition
 	(TextureDefinition*)&DUMMY_HERO_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 	
 	// display mode

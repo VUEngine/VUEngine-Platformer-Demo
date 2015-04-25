@@ -62,35 +62,12 @@ AnimationFunctionROMDef COIN_SPIN_ANIM =
 	"Spin",
 };
 
-// a function which defines the frames to play
-AnimationFunctionROMDef COIN_TAKEN_ANIM =
-{
-	// number of frames of this animation function
-	3,
-	
-	// frames to play in animation
-	{4,5,6},
-	
-	// number of cycles a frame of animation is displayed
-	10 * __FPS_ANIM_FACTOR,
-	
-	// whether to play it in loop or not
-	false,
-	
-	// method to call on function completion
-	&Coin_removeFromStage,
-	
-	// function's name
-	"Taken",
-};
-
 // an animation definition
 AnimationDescriptionROMDef COIN_ANIM =
 {
 	// animation functions
 	{
 		(AnimationFunction*)&COIN_SPIN_ANIM,
-		(AnimationFunction*)&COIN_TAKEN_ANIM,
 		NULL,
 	}
 };
@@ -122,7 +99,7 @@ TextureROMDef OBJECT_COIN_TX =
     2,
 
     // number of frames
-    7,
+    4,
 
     // palette number
     1,
@@ -136,7 +113,7 @@ TextureROMDef BGMAP_COIN_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        28,
+        16,
 
         // allocation type
         __ANIMATED_MULTI,
@@ -155,7 +132,7 @@ TextureROMDef BGMAP_COIN_TX =
     2,
 
     // number of frames
-    7,
+    4,
 
     // palette number
     1,
@@ -173,7 +150,7 @@ ObjectSpriteROMDef OBJECT_COIN_SPRITE =
 	// texture definition
 	(TextureDefinition*)&OBJECT_COIN_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	//WRLD_BGMAP,
 	WRLD_OBJ,
 	
@@ -235,7 +212,7 @@ ObjectSpriteROMDef BGMAP_COIN_SPRITE =
 	// texture definition
 	(TextureDefinition*)&BGMAP_COIN_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -296,7 +273,7 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 	// texture definition
 	(TextureDefinition*)&BGMAP_COIN_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode

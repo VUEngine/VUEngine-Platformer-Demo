@@ -114,7 +114,7 @@ BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -129,7 +129,7 @@ BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE_LEFT =
 	// texture definition
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
 
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode
@@ -147,7 +147,7 @@ BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE_RIGHT =
 	// texture definition
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_R_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -208,7 +208,7 @@ BgmapSpriteROMDef AFFINE_FLOOR_2x2_BLOCK_BG_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode

@@ -80,7 +80,7 @@ BgmapSpriteROMDef LEVEL1_3_PART1_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LEVEL1_3_PART1_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -145,7 +145,7 @@ BgmapSpriteROMDef LEVEL1_3_PART2_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LEVEL1_3_PART2_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -211,7 +211,7 @@ BgmapSpriteROMDef LEVEL1_3_PART3_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LEVEL1_3_PART3_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode

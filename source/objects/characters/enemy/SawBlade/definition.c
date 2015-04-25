@@ -110,7 +110,7 @@ BgmapSpriteROMDef SAW_BLADE_SPRITE =
 	// texture definition
 	(TextureDefinition*)&SAW_BLADE_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -175,7 +175,7 @@ BgmapSpriteROMDef AFFINE_SAW_BLADE_SPRITE =
 	// texture definition
 	(TextureDefinition*)&SAW_BLADE_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode

@@ -79,7 +79,7 @@ BgmapSpriteROMDef MOUND_1_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&MOUND_1_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	//WRLD_BGMAP,
 	WRLD_OBJ,
 	

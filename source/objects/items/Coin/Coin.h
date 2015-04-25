@@ -61,7 +61,7 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int
 void Coin_destructor(Coin this);
 void Coin_initialize(Coin this);
 bool Coin_handleMessage(Coin this, Telegram telegram);
-void Coin_removeFromStage(Coin this, Object eventFirer);
+void Coin_removeFromStage(Coin this);
 
 
 #endif
