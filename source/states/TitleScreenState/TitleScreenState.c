@@ -99,6 +99,14 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Clock_start(Game_getInGameClock(Game_getInstance()));
 	PhysicalWorld_start(PhysicalWorld_getInstance());
+	PhysicalWorld_setFriction(PhysicalWorld_getInstance(), FTOFIX19_13(0.01f));
+	Acceleration gravity =
+    {
+        ITOFIX19_13(0),
+        ITOFIX19_13(4000),
+        ITOFIX19_13(0)
+    };
+	PhysicalWorld_setGravity(PhysicalWorld_getInstance(), gravity);
 
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1000, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kSetUpLevel, NULL);

@@ -170,18 +170,6 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	
 	Hero_setInstance(this);
 
-	{
-		Acceleration gravity =
-        {
-            ITOFIX19_13(0),
-            ITOFIX19_13(4000),
-            ITOFIX19_13(0)
-        };
-		
-		PhysicalWorld_setGravity(PhysicalWorld_getInstance(), gravity);
-		PhysicalWorld_setFriction(PhysicalWorld_getInstance(), FTOFIX19_13(FRICTION));
-	}
-	
 	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
 	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);

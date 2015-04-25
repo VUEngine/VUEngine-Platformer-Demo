@@ -35,6 +35,7 @@
 #include "sound/sound.h"
 #include "backgrounds/backgrounds.h"
 #include "items/items.h"
+#include "particles/particles.h"
 
 
 // declare global

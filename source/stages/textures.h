@@ -11,6 +11,7 @@
 #include "items/textures.h"
 #include "hints/textures.h"
 #include "images/textures.h"
+#include "particles/textures.h"
 
 
 //---------------------------------------------------------------------------------------------------------
