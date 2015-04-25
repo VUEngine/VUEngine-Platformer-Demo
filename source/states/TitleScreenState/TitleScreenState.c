@@ -199,7 +199,7 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			PhysicalWorld_start(PhysicalWorld_getInstance());
 
 			// pause physical simulations
-			Clock_pause(Game_getInGameClock(Game_getInstance()), true);
+			//Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 
 			// account for any entity's tranform modification during their initialization
 			GameState_transform(__UPCAST(GameState, this));
