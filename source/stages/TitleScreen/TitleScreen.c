@@ -80,9 +80,10 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 
 	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1) - 40), FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_1_ROOM_1_ST},
 	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1) + 40), FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_3_ROOM_1_ST},
-/*
+
 	{&OBJECT_COIN_AG, 		{FTOFIX19_13(57), FTOFIX19_13(138), FTOFIX19_13(0)}, NULL, NULL, NULL},
 	{&OBJECT_COIN_AG, 		{FTOFIX19_13(71), FTOFIX19_13(138), FTOFIX19_13(0)}, NULL, NULL, NULL},
+/*
 	{&BGMAP_COIN_AG, 		{FTOFIX19_13(316), FTOFIX19_13(146), FTOFIX19_13(0)}, NULL, NULL, NULL},
 	{&BGMAP_COIN_AG, 		{FTOFIX19_13(330), FTOFIX19_13(146), FTOFIX19_13(0)}, NULL, NULL, NULL},
 	{&AFFINE_COIN_AG, 		{FTOFIX19_13(299), FTOFIX19_13(98), FTOFIX19_13(LAYER_3)}, NULL, NULL, NULL},
@@ -99,14 +100,13 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 
 PositionedEntityROMDef TITLE_SCREEN_ST_UI_ENTITIES[] =
 {
-//	{&GUI_BLANK_IM,			{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(__SCREEN_HEIGHT - 8), FTOFIX19_13(0)}, NULL, NULL, NULL},
+	{&GUI_BLANK_IM,			{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(__SCREEN_HEIGHT - 8), FTOFIX19_13(0)}, NULL, NULL, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL},
 };
 
 TextureROMDef* TITLE_SCREEN_ST_TEXTURES[] =
 {
 	&OBJECT_TEST_PARTICLE_TX,
-	NULL,
 	&CLOUDS_A_TX,
 	&CLOUDS_B_TX,
 	&MOUND_BG_BACK_TX,
@@ -119,7 +119,7 @@ TextureROMDef* TITLE_SCREEN_ST_TEXTURES[] =
 	&LOGO_OUTLINE_R_TX,
 	&GUI_BLANK_TX,
 	&DOOR_TX,
-	&BGMAP_COIN_TX,
+	&OBJECT_COIN_TX,
 	&TITLESCREEN_MIDDLE_TX,
 	&TITLESCREEN_FRONT_TX,
 	NULL
@@ -143,15 +143,21 @@ StageROMDef TITLE_SCREEN_ST =
         LEVEL_Z_SIZE
     },
 
-	// OBJs segments z coordinates (SPT0 to SPT3)
+	// OBJs segments z coordinates
+	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
     {
-    	ITOFIX19_13(0), 
-		ITOFIX19_13(0), 
-		ITOFIX19_13(0), 
-		ITOFIX19_13(0)
+        // SPT0
+		ITOFIX19_13(0),
+        // SPT1
+		ITOFIX19_13(0),
+        // SPT2
+		ITOFIX19_13(0),
+        // SPT3
+    	ITOFIX19_13(0),
     },
 
-    //initial screen position
+    // initial screen position
     {
         // x
         ITOFIX19_13(SCREEN_X_POSITION),
@@ -161,25 +167,25 @@ StageROMDef TITLE_SCREEN_ST =
         ITOFIX19_13(SCREEN_Z_POSITION)
     },
 
-    //textures to preload
+    // textures to preload
     (TextureDefinition**)TITLE_SCREEN_ST_TEXTURES,
 
-    //UI
+    // UI
     {
         TITLE_SCREEN_ST_UI_ENTITIES,
         __TYPE(UI),
     },
 
-    //entities
+    // entities
     TITLE_SCREEN_ST_ENTITIES,
 
-    //background music
+    // background music
     NULL,
     //(const u16 (*)[])WORLD_0_0_0_BGM,
 
-    //identifier
+    // identifier
     "",
 
-    //name
+    // name
     "",
 };
