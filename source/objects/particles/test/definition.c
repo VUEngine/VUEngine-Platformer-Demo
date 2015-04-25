@@ -175,13 +175,13 @@ ParticleSystemROMDef TEST_PS =
     },
 
 	// minimun generation delay in miliseconds
-	50,
-
-	// maximum generation delay in miliseconds
 	150,
 
+	// maximum generation delay in miliseconds
+	350,
+
 	// maximum total particles
-	30,
+	15,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)OBJECT_TEST_PARTICLE_SPRITES,
@@ -193,13 +193,13 @@ ParticleSystemROMDef TEST_PS =
 	(ParticleDefinition*)&TEST_PARTICLE,
 	
 	// minimum random distance from the center of the system for spawn
-	{ITOFIX19_13(5), ITOFIX19_13(-5), ITOFIX19_13(0)},
+	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(5), ITOFIX19_13(5), ITOFIX19_13(0)},
+	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(0), ITOFIX19_13(10), ITOFIX19_13(30)},
+	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 	
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
