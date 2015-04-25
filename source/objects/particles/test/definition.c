@@ -141,16 +141,19 @@ ParticleROMDef TEST_PARTICLE =
     __TYPE(Particle),
 
 	// particle's minimum life span in miliseconds
-	500,
-
-	// particle's maximum life span in miliseconds
 	1000,
 
+	// particle's maximum life span in miliseconds
+	2000,
+
 	// particle's minimum mass
-	FTOFIX19_13(10.0f),
+	FTOFIX19_13(5.0f),
 
 	// particle's maximum mass
-	FTOFIX19_13(20.0f),
+	FTOFIX19_13(10.0f),
+	
+	// axis subject to gravity
+	__YAXIS,
 	
 	// function pointer to control particle's behavior
 	(void (*)(Particle))&testParticleBehavior,
@@ -199,9 +202,9 @@ ParticleSystemROMDef TEST_PS =
 	
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5000), (-18000), (0)},
+	{(-5000), (-20000), (0)},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(5000), (-12000), (0)},
+	{(5000), (-16000), (0)},
 };
