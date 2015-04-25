@@ -214,8 +214,8 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
 
 			// reset clock and restart
-			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			Clock_start(Game_getInGameClock(Game_getInstance()));
+//			Clock_reset(Game_getInGameClock(Game_getInstance()));
+//			Clock_start(Game_getInGameClock(Game_getInstance()));
 			
 			// start physical simulation again
 			PhysicalWorld_start(PhysicalWorld_getInstance());
