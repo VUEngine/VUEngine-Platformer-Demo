@@ -96,15 +96,21 @@ StageROMDef PAUSE_SCREEN_ST =
         LEVEL_Z_SIZE
     },
 
-	// OBJs segments z coordinates (SPT0 to SPT3)
+	// OBJs segments z coordinates
+	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
     {
-    	ITOFIX19_13(0), 
-		ITOFIX19_13(0), 
-		ITOFIX19_13(0), 
-		ITOFIX19_13(0)
+        // SPT0
+		ITOFIX19_13(0),
+        // SPT1
+		ITOFIX19_13(0),
+        // SPT2
+		ITOFIX19_13(0),
+        // SPT3
+    	ITOFIX19_13(0),
     },
 
-    //initial screen position
+    // initial screen position
     {
         // x
         ITOFIX19_13(SCREEN_X_POSITION),
@@ -114,25 +120,25 @@ StageROMDef PAUSE_SCREEN_ST =
         ITOFIX19_13(SCREEN_Z_POSITION)
     },
 
-    //textures to preload
+    // textures to preload
     (TextureDefinition**)PAUSE_SCREEN_ST_TEXTURES,
 
-    //UI
+    // UI
     {
         PAUSE_SCREEN_ST_UI_ENTITIES,
         __TYPE(UI),
     },
 
-    //entities
+    // entities
     PAUSE_SCREEN_ST_ENTITIES,
 
-    //background music
+    // background music
     NULL,
     //(const u16 (*)[])WORLD_0_0_0_BGM,
 
-    //identifier
+    // identifier
     "",
 
-    //name
+    // name
     "",
 };

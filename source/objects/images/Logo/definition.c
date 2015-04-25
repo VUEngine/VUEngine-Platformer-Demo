@@ -53,6 +53,7 @@ TextureROMDef LOGO_L_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         168,
 
@@ -85,6 +86,7 @@ TextureROMDef LOGO_R_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         165,
 
@@ -117,6 +119,7 @@ TextureROMDef LOGO_OUTLINE_L_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         90,
 
@@ -149,6 +152,7 @@ TextureROMDef LOGO_OUTLINE_R_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         91,
 
@@ -183,7 +187,7 @@ BgmapSpriteROMDef LOGO_L_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LOGO_L_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -201,7 +205,7 @@ BgmapSpriteROMDef LOGO_R_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LOGO_R_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -219,7 +223,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LOGO_OUTLINE_L_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -237,7 +241,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LOGO_OUTLINE_R_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -269,6 +273,7 @@ TextureROMDef SUPER_AWESOME_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         38,
 
@@ -303,7 +308,7 @@ BgmapSpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
 	// texture definition
 	(TextureDefinition*)&SUPER_AWESOME_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -321,7 +326,7 @@ BgmapSpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
 	// texture definition
 	(TextureDefinition*)&SUPER_AWESOME_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -351,6 +356,7 @@ TextureROMDef VBJAENGINE_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         56,
 
@@ -385,7 +391,7 @@ BgmapSpriteROMDef VBJAENGINE_IM_L_SPRITE =
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -403,7 +409,7 @@ BgmapSpriteROMDef VBJAENGINE_IM_R_SPRITE =
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode

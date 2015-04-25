@@ -45,6 +45,7 @@ TextureROMDef CLOUDS_A_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         28,
 
@@ -77,6 +78,7 @@ TextureROMDef CLOUDS_B_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         27,
 
@@ -111,7 +113,7 @@ BgmapSpriteROMDef CLOUDS_SB_SPRITE_1 =
 	// texture definition
 	(TextureDefinition*)&CLOUDS_A_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -129,7 +131,7 @@ BgmapSpriteROMDef CLOUDS_SB_SPRITE_2 =
 	// texture definition
 	(TextureDefinition*)&CLOUDS_B_TX,
 
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode

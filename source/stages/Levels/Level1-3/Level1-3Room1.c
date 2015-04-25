@@ -136,16 +136,22 @@ StageROMDef LEVEL_1_3_ROOM_1_ST =
         // z
         LEVEL_Z_SIZE
     },
-    
-	// OBJs segments z coordinates (SPT0 to SPT3)
+
+	// OBJs segments z coordinates
+	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
     {
-    	ITOFIX19_13(0), 
-		ITOFIX19_13(0), 
-		ITOFIX19_13(0), 
-		ITOFIX19_13(20)
+        // SPT0
+		ITOFIX19_13(0),
+        // SPT1
+		ITOFIX19_13(0),
+        // SPT2
+		ITOFIX19_13(0),
+        // SPT3
+    	ITOFIX19_13(20),
     },
 
-    //initial screen position
+    // initial screen position
     {
         // x
         ITOFIX19_13(SCREEN_X_POSITION),
@@ -155,24 +161,24 @@ StageROMDef LEVEL_1_3_ROOM_1_ST =
         ITOFIX19_13(SCREEN_Z_POSITION)
     },
 
-    //textures to preload
+    // textures to preload
     (TextureDefinition**)LEVEL_1_3_ROOM_1_ST_TEXTURES,
 
-    //UI
+    // UI
     {
         LEVEL_1_3_ROOM_1_ST_UI_ENTITIES,
         __TYPE(UI),
     },
 
-    //entities
+    // entities
     LEVEL_1_3_ROOM_1_ST_ENTITIES,
 
-    //background music
+    // background music
     NULL,
 
-    //identifier
+    // identifier
     "1-3",
 
-    //name
+    // name
     (void*)STR_LEVEL_1_3_NAME,
 };

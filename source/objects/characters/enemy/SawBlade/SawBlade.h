@@ -82,7 +82,7 @@ typedef const struct SawBladeDefinition
 	// movement direction
 	s8 direction;
 	
-}SawBladeDefinition;
+} SawBladeDefinition;
 
 
 //---------------------------------------------------------------------------------------------------------

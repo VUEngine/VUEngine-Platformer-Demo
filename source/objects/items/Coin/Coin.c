@@ -52,7 +52,7 @@ __CLASS_DEFINITION(Coin, AnimatedInGameEntity);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Coin_removeFromStage(Coin this, Object eventFirer);
+void Coin_removeFromStage(Coin this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -97,15 +97,15 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
     {
 		case kTakeCoin:
 
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Taken");
-			Shape_setActive(this->shape, false);
+			Coin_removeFromStage(this);
 			break;
 	}
 	
 	return false;
 }
 
-void Coin_removeFromStage(Coin this, Object eventFirer)
+void Coin_removeFromStage(Coin this)
 {
 	Stage_removeEntity(Game_getStage(Game_getInstance()), __UPCAST(Entity, this), true);
+    Shape_setActive(this->shape, false);
 }

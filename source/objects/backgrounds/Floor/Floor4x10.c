@@ -46,6 +46,7 @@ TextureROMDef FLOOR_4x10_L_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         13,
 
@@ -78,6 +79,7 @@ TextureROMDef FLOOR_4x10_R_TX =
         // number of chars, depending on allocation type:
         // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
         // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
         14,
 
@@ -112,7 +114,7 @@ BgmapSpriteROMDef FLOOR_4x10_BG_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FLOOR_4x10_L_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -127,7 +129,7 @@ BgmapSpriteROMDef FLOOR_4x10_BG_SPRITE_LEFT =
 	// texture definition
 	(TextureDefinition*)&FLOOR_4x10_L_TX,
 
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode
@@ -145,7 +147,7 @@ BgmapSpriteROMDef FLOOR_4x10_BG_SPRITE_RIGHT =
 	// texture definition
 	(TextureDefinition*)&FLOOR_4x10_R_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
@@ -205,7 +207,7 @@ BgmapSpriteROMDef AFFINE_FLOOR_4x10_BG_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FLOOR_4x10_L_TX,
 	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
