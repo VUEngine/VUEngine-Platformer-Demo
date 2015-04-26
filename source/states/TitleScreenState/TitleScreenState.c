@@ -34,6 +34,7 @@
 #include <Hero.h>
 #include "../stages/stages.h"
 #include <macros.h>
+#include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
 #include <VBJaEAdjustmentScreenState.h>
 
@@ -241,6 +242,23 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 	                // adjustment screen
 					SplashScreenState_setNextstate(__UPCAST(SplashScreenState, VBJaEAdjustmentScreenState_getInstance()), NULL);
 	                Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
+	                break;
+	            }
+
+	            if (K_RL & pressedKey)
+	            {
+	                // pause test particle system
+                    Printing_text(Printing_getInstance(), "PAUSE DUST_PS", 34, 0, NULL);
+	                ParticleSystem particleSystem = (ParticleSystem)Container_getChildByName(__UPCAST(Container, this->stage), "TestPS");
+	                ParticleSystem_pause(particleSystem);
+	                break;
+	            }
+	            if (K_RR & pressedKey)
+	            {
+	                // start test particle system
+                    Printing_text(Printing_getInstance(), "START DUST_PS", 34, 0, NULL);
+	                ParticleSystem particleSystem = (ParticleSystem)Container_getChildByName(__UPCAST(Container, this->stage), "TestPS");
+	                ParticleSystem_start(particleSystem);
 	                break;
 	            }
 			}
