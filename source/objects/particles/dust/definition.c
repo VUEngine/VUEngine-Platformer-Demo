@@ -32,8 +32,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CoinTiles[];
-extern BYTE CoinMap[];
+extern BYTE DustParticleTiles[];
+extern BYTE DustParticleMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ extern BYTE CoinMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef TEST_PARTICLE_SPIN_ANIM =
+AnimationFunctionROMDef DUST_PARTICLE_SWIRL_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -50,7 +50,7 @@ AnimationFunctionROMDef TEST_PARTICLE_SPIN_ANIM =
 	{0,1,2,3},
 	
 	// number of cycles a frame of animation is displayed
-	2 * __FPS_ANIM_FACTOR,
+	10 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	true,
@@ -59,20 +59,20 @@ AnimationFunctionROMDef TEST_PARTICLE_SPIN_ANIM =
 	NULL,
 	
 	// function's name
-	"Spin",
+	"Swirl",
 };
 
 // an animation definition
-AnimationDescriptionROMDef TEST_PARTICLE_ANIM =
+AnimationDescriptionROMDef DUST_PARTICLE_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&TEST_PARTICLE_SPIN_ANIM,
+		(AnimationFunction*)&DUST_PARTICLE_SWIRL_ANIM,
 		NULL,
 	}
 };
 
-TextureROMDef OBJECT_TEST_PARTICLE_TX =
+TextureROMDef OBJECT_DUST_PARTICLE_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -80,26 +80,26 @@ TextureROMDef OBJECT_TEST_PARTICLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        28,
+        4,
 
         // allocation type
 		__ANIMATED_MULTI,
         
         // char definition
-        CoinTiles,
+        DustParticleTiles,
     },
 
     // bgmap definition
-    CoinMap,
+    DustParticleMap,
 
     // cols (max 64)
-    2,
+    1,
 
     // rows (max 64)
-    2,
+    1,
 
     // number of frames
-    7,
+    4,
 
     // palette number
     1,
@@ -107,16 +107,16 @@ TextureROMDef OBJECT_TEST_PARTICLE_TX =
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										  OBJECT TEST_PARTICLE
+// 										  OBJECT DUST_PARTICLE
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMDef OBJECT_TEST_PARTICLE_SPRITE =
+ObjectSpriteROMDef OBJECT_DUST_PARTICLE_SPRITE =
 {
 	// sprite's type
 	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&OBJECT_TEST_PARTICLE_TX,
+	(TextureDefinition*)&OBJECT_DUST_PARTICLE_TX,
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
@@ -128,14 +128,14 @@ ObjectSpriteROMDef OBJECT_TEST_PARTICLE_SPRITE =
 	0		
 };
 
-ObjectSpriteROMDef* const OBJECT_TEST_PARTICLE_SPRITES[] =
+ObjectSpriteROMDef* const OBJECT_DUST_PARTICLE_SPRITES[] =
 {
-	&OBJECT_TEST_PARTICLE_SPRITE,
+	&OBJECT_DUST_PARTICLE_SPRITE,
 	NULL
 };
 
 // particle's definition
-ParticleROMDef TEST_PARTICLE =
+ParticleROMDef DUST_PARTICLE =
 {
 	// allocator
     __TYPE(Particle),
@@ -144,29 +144,29 @@ ParticleROMDef TEST_PARTICLE =
 	1000,
 
 	// particle's maximum life span in milliseconds
-	2000,
+	1500,
 
 	// particle's minimum mass
-	FTOFIX19_13(5.0f),
+	FTOFIX19_13(0.0f),
 
 	// particle's maximum mass
-	FTOFIX19_13(10.0f),
+	FTOFIX19_13(0.1f),
 	
 	// axis subject to gravity (false to disable)
-	__YAXIS,
+	false,
 	
 	// function pointer to control particle's behavior
 	(void (*)(Particle))&testParticleBehavior,
 
 	// animation description
 	// used only if sprite is animated
-	(AnimationDescription*)&TEST_PARTICLE_ANIM,
+	(AnimationDescription*)&DUST_PARTICLE_ANIM,
 	
 	// animation's name to play 
-	"Spin"
+	"Swirl"
 };
 
-ParticleSystemROMDef TEST_PS =
+ParticleSystemROMDef DUST_PS =
 {
     {
         __TYPE(ParticleSystem),
@@ -180,31 +180,31 @@ ParticleSystemROMDef TEST_PS =
 	350,
 
 	// maximum total particles
-	15,
+	5,
 
 	// array of textures
-	(const ObjectSpriteDefinition**)OBJECT_TEST_PARTICLE_SPRITES,
+	(const ObjectSpriteDefinition**)OBJECT_DUST_PARTICLE_SPRITES,
 
 	// auto start
 	true,
 	
 	// particle definition
-	(ParticleDefinition*)&TEST_PARTICLE,
+	(ParticleDefinition*)&DUST_PARTICLE,
 	
 	// minimum random distance from the center of the system for spawn
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(-6), ITOFIX19_13(-1), ITOFIX19_13(-1)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
-	
+	{ITOFIX19_13(6), ITOFIX19_13(1), ITOFIX19_13(1)},
+
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5000), (-20000), (0)},
+	{(0), (0), (0)},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(5000), (-16000), (0)},
+	{(1), (1), (0)},
 };

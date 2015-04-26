@@ -60,7 +60,7 @@ StageROMDef LEVEL_1_1_ROOM_2_ST;
 // 												ASSETS
 // ---------------------------------------------------------------------------------------------------------
 /* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
- * know that it must stop reading the stage's/ui's textures ante enties.
+ * know that it must stop reading the stage's/ui's textures and entities.
  */
 
 PositionedEntityROMDef MANAGED_FLOOR_1_ENTITIES[] =

@@ -54,10 +54,17 @@ StageROMDef LEVEL_1_3_ROOM_1_ST;
 // 												ASSETS
 // ---------------------------------------------------------------------------------------------------------
 /* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
- * know that it must stop reading the stage's/ui's textures ante enties.
+ * know that it must stop reading the stage's/ui's textures and entities.
  */
 
 extern AnimatedInGameEntityROMDef HERO_DUMMY_AC;
+
+
+PositionedEntityROMDef HERO_CHILD_ENTITIES[] =
+{
+	//{&DUST_PS, 				{FTOFIX19_13(0), FTOFIX19_13(19), FTOFIX19_13(0)}, NULL, NULL, NULL},
+    {NULL, {0,0,0}, NULL, NULL, NULL},
+};
 
 PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 {
@@ -71,7 +78,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{&DUMMY_HERO_AC, 		{FTOFIX19_13(352), FTOFIX19_13(140), FTOFIX19_13(0)}, NULL, NULL, NULL},
 	{&DUMMY_HERO_AC, 		{FTOFIX19_13(352 + 18), FTOFIX19_13(140), FTOFIX19_13(0)}, NULL, NULL, NULL},
 
-	{&HERO_AC, 				{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(148), FTOFIX19_13(0)}, HERO_NAME, NULL, NULL},
+	{&HERO_AC, 				{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(148), FTOFIX19_13(0)}, HERO_NAME, (struct PositionedEntity*)HERO_CHILD_ENTITIES, NULL},
 //	{&TEST_PS, 				{FTOFIX19_13(__SCREEN_WIDTH - 30), FTOFIX19_13(10), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL},
 	
 	{&COLLISION_48x2x48, 	{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(177), FTOFIX19_13(0)}, NULL, NULL, NULL},
@@ -110,6 +117,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_UI_ENTITIES[] =
 TextureROMDef* TITLE_SCREEN_ST_TEXTURES[] =
 {
 	&OBJECT_TEST_PARTICLE_TX,
+	&OBJECT_DUST_PARTICLE_TX,
 	&CLOUDS_A_TX,
 	&CLOUDS_B_TX,
 	&MOUND_BG_BACK_TX,
