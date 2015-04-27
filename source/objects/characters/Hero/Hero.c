@@ -64,6 +64,8 @@ void Hero_resetCurrentlyOverlappingDoor(Hero this);
 static void Hero_addHints(Hero this);
 static void Hero_addFeetDust(Hero this);
 static void Hero_slide(Hero this);
+static void Hero_showDust(Hero this);
+static void Hero_hideDust(Hero this);
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -244,6 +246,7 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 			
 			Actor_addForce(__UPCAST(Actor, this), &force);
 			
+	    	Hero_hideDust(this);
 			
 			extern const u16 FIRE_SND[];
 			extern const u16 JUMP_SND[];
@@ -309,11 +312,21 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 static void Hero_slide(Hero this)
 {
 	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Slide");
+	
+	Hero_showDust(this);
+}
 
+static void Hero_showDust(Hero this)
+{
 	ParticleSystem_start(this->feetDust);
 
 	// stop the dust after some time
     MessageDispatcher_dispatchMessage(200, __UPCAST(Object, this), __UPCAST(Object, this), kStopFeetDust, NULL);
+}
+
+static void Hero_hideDust(Hero this)
+{
+	ParticleSystem_pause(this->feetDust);
 }
 
 // start movement
@@ -397,6 +410,8 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		if (__UNIFORM_MOVEMENT == movementType.x)
         {
 			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
+			
+			Hero_showDust(this);
 		}
 		else
         {
@@ -1137,7 +1152,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
         
     case kStopFeetDust:
     	
-		ParticleSystem_pause(this->feetDust);
+    	Hero_hideDust(this);
 		return true;
     	break;
     }
