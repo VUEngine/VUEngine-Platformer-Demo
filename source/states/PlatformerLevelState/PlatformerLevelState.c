@@ -48,7 +48,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this);
 static void PlatformerLevelState_destructor(PlatformerLevelState this);
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
-static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner);
+static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer);
@@ -136,7 +136,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 	GameState_exit(__UPCAST(GameState, this), owner);
 }
 
-static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner)
+static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 {
 	// pause physical simulations
 	Clock_pause(Game_getInGameClock(Game_getInstance()), true);
@@ -153,7 +153,7 @@ static void PlatformerLevelState_pause(PlatformerLevelState this, void* owner)
 	// make a fade in
 	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY >> 1);
 
-	GameState_pause(__UPCAST(GameState, this), owner);
+	GameState_suspend(__UPCAST(GameState, this), owner);
 }
 
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)

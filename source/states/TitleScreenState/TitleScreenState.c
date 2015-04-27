@@ -49,7 +49,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner);
 static void TitleScreenState_execute(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
 static void TitleScreenState_resume(TitleScreenState this, void* owner);
-static void TitleScreenState_pause(TitleScreenState this, void* owner);
+static void TitleScreenState_suspend(TitleScreenState this, void* owner);
 static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
 
 
@@ -197,10 +197,10 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 #endif
 }
 
-// state's exit
-static void TitleScreenState_pause(TitleScreenState this, void* owner)
+// state's suspend
+static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 {
-	GameState_pause(__UPCAST(GameState, this), owner);
+	GameState_suspend(__UPCAST(GameState, this), owner);
 
 	// pause physical simulations
 	Clock_pause(Game_getInGameClock(Game_getInstance()), true);

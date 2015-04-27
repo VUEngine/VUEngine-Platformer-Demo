@@ -31,8 +31,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DummyHeroTiles[];
-extern BYTE DummyHeroMap[];
+extern BYTE HeroTiles[];
+extern BYTE HeroMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,42 +44,41 @@ AnimationFunctionROMDef DUMMY_HERO_IDLE_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{4,5},
-	
+
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Idle",
 };
-
 
 // a function which defines the frames to play
 AnimationFunctionROMDef DUMMY_HERO_WALKING_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{13, 14},
-	
+
 	// number of cycles a frame of animation is displayed
 	9 * __FPS_ANIM_FACTOR,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Walk",
 };
@@ -341,11 +340,11 @@ TextureROMDef DUMMY_HERO_TX =
         __ANIMATED_SHARED,
 
         // char definition
-        DummyHeroTiles,
+        HeroTiles,
     },
 
     // bgmap definition
-    DummyHeroMap,
+    HeroMap,
 
     // cols (max 64)
     3,
