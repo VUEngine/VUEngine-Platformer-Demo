@@ -100,12 +100,12 @@ void SawBlade_destructor(SawBlade this)
 	__DESTROY_BASE;
 }
 
-// initialize method
-void SawBlade_initialize(SawBlade this)
+// ready method
+void SawBlade_ready(SawBlade this)
 {
-	ASSERT(this, "SawBlade::initialize: null this");
+	ASSERT(this, "SawBlade::ready: null this");
 
-	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
+	Entity_ready(__UPCAST(Entity, this));
 	
 	StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeMoving_getInstance()));
 }

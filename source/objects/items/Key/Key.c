@@ -86,12 +86,12 @@ void Key_destructor(Key this)
 	__DESTROY_BASE;
 }
 
-// initialize method
-void Key_initialize(Key this)
+// ready method
+void Key_ready(Key this)
 {
 	ASSERT(this, "Key::initialize: null this");
 
-	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
+	Entity_ready(__UPCAST(Entity, this));
 
 	KeyManager_registerKey(KeyManager_getInstance(), this);
 }

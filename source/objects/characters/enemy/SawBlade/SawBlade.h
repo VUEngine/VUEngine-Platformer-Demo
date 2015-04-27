@@ -52,7 +52,7 @@
 	__VIRTUAL_SET(ClassName, SawBlade, takeHit);									\
 	__VIRTUAL_SET(ClassName, SawBlade, setLocalPosition);							\
 	__VIRTUAL_SET(ClassName, SawBlade, getAxisFreeForMovement);						\
-	__VIRTUAL_SET(ClassName, SawBlade, initialize);									\
+	__VIRTUAL_SET(ClassName, SawBlade, ready);										\
 	
 __CLASS(SawBlade);
 
@@ -92,40 +92,18 @@ typedef const struct SawBladeDefinition
 // allocator
 __CLASS_NEW_DECLARE(SawBlade , SawBladeDefinition* sawBladeDefinition, int ID);
 
-//class's constructor
 void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int ID);
-
-// class's constructor
 void SawBlade_destructor(SawBlade this);
-
-// initialize method
-void SawBlade_initialize(SawBlade this);
-
-// register a shape with the collision detection system
+void SawBlade_ready(SawBlade this);
 void SawBlade_registerShape(SawBlade this);
-
-// unregister the shape with the collision detection system
 void SawBlade_unregisterShape(SawBlade this);
-
-// process a collision
 bool SawBlade_processCollision(SawBlade this, Telegram telegram);
-
-// tell me I've been hit
 void SawBlade_takeHit(SawBlade this, int axis, s8 direction);
-
-// die
 void SawBlade_die(SawBlade this);
-
-// set  position
 void SawBlade_setLocalPosition(SawBlade this, VBVec3D position);
-
-// retrieve axis free for movement
 int SawBlade_getAxisFreeForMovement(SawBlade this);
-
-// update movement
 void SawBlade_move(SawBlade this);
-
-// start moving
 void SawBlade_startMovement(SawBlade this);
+
 
 #endif

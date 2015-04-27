@@ -41,7 +41,7 @@
 #define Coin_SET_VTABLE(ClassName)												\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
 	__VIRTUAL_SET(ClassName, Coin, handleMessage);								\
-	__VIRTUAL_SET(ClassName, Coin, initialize);									\
+	__VIRTUAL_SET(ClassName, Coin, ready);										\
 
 __CLASS(Coin);
 
@@ -59,7 +59,7 @@ __CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefiniti
 
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int ID);
 void Coin_destructor(Coin this);
-void Coin_initialize(Coin this);
+void Coin_ready(Coin this);
 bool Coin_handleMessage(Coin this, Telegram telegram);
 void Coin_removeFromStage(Coin this);
 

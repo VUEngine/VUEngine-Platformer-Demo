@@ -49,6 +49,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner);
 static void TitleScreenState_execute(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
 static void TitleScreenState_resume(TitleScreenState this, void* owner);
+static void TitleScreenState_pause(TitleScreenState this, void* owner);
 static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
 
 
@@ -182,6 +183,9 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 	// make a fade in
 	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
 
+	// pause physical simulations
+	Clock_pause(Game_getInGameClock(Game_getInstance()), false);
+
 #ifdef __DEBUG_TOOLS
 	}
 #endif
@@ -191,6 +195,15 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 #ifdef __ANIMATION_EDITOR
 	}
 #endif
+}
+
+// state's exit
+static void TitleScreenState_pause(TitleScreenState this, void* owner)
+{
+	GameState_pause(__UPCAST(GameState, this), owner);
+
+	// pause physical simulations
+	Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 }
 
 // state's on message

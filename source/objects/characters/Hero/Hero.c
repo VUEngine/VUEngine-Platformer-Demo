@@ -61,7 +61,9 @@ static void Hero_onKeyHold(Hero this, Object eventFirer);
 void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
+static void Hero_addHints(Hero this);
 static void Hero_addFeetDust(Hero this);
+static void Hero_slide(Hero this);
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -200,15 +202,17 @@ void Hero_destructor(Hero this)
 	__DESTROY_BASE;
 }
 
-// initialize method
-void Hero_initialize(Hero this)
+void Hero_ready(Hero this)
 {
-	ASSERT(this, "Hero::initialize: null this");
+	ASSERT(this, "HeroMoving::ready: null this");
 
-	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
-	
+	Entity_ready(__UPCAST(Entity, this));
+
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroIdle_getInstance()));
+
+	Hero_addHints(this);
+	Hero_addFeetDust(this);
 }
 
 // make him jump
@@ -302,6 +306,16 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 	}			
 }
 
+static void Hero_slide(Hero this)
+{
+	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Slide");
+
+	ParticleSystem_start(this->feetDust);
+
+	// stop the dust after some time
+    MessageDispatcher_dispatchMessage(200, __UPCAST(Object, this), __UPCAST(Object, this), kStopFeetDust, NULL);
+}
+
 // start movement
 void Hero_stopMovement(Hero this)
 {
@@ -311,7 +325,7 @@ void Hero_stopMovement(Hero this)
 
 	if (!(__YAXIS & Body_isMoving(this->body)))
     {
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Slide");
+		Hero_slide(this);
 	}
 	else if (!AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "Fall"))
     {
@@ -386,7 +400,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		}
 		else
         {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Slide");
+			Hero_slide(this);
 		}
 	}
 
@@ -415,10 +429,18 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 	if (K_LR & pressedKey)
     {
 		this->inputDirection.x = __RIGHT;
+
+		VBVec3D position = Container_getLocalPosition(__UPCAST(Container, this->feetDust));
+		position.x = abs(position.x) * -1;
+		Container_setLocalPosition(__UPCAST(Container, this->feetDust), position);
 	}
 	else if (K_LL & pressedKey)
     {
 		this->inputDirection.x = __LEFT;
+
+		VBVec3D position = Container_getLocalPosition(__UPCAST(Container, this->feetDust));
+		position.x = abs(position.x);
+		Container_setLocalPosition(__UPCAST(Container, this->feetDust), position);
 	}
 	else if (K_LU & pressedKey)
     {
@@ -750,6 +772,24 @@ void Hero_enterDoor(Hero this)
 	}
 }
 
+static void Hero_addHints(Hero this)
+{
+	ASSERT(this, "Hero::addHints: null this");
+
+    const EntityDefinition* hintEntityDefinition = &HINT_ENTER_MC;
+
+	VBVec3D position = 
+	{
+		FTOFIX19_13(25), FTOFIX19_13(-20), FTOFIX19_13(0)
+	};
+
+    // save the hint entity, so we can remove it later
+	this->currentHint = Entity_addChildFromDefinition(__UPCAST(Entity, this), hintEntityDefinition, -1, "enterHint", &position, NULL);
+	
+	// turn it off
+	Hero_hideHint(this);
+}
+
 static void Hero_addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
@@ -767,49 +807,27 @@ static void Hero_addFeetDust(Hero this)
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 }
 
-void Hero_showHint(Hero this, u8 type)
+void Hero_showHint(Hero this, char* hintName)
 {
 	ASSERT(this, "Hero::showHint: null this");
 	
-    const EntityDefinition* hintEntityDefinition = NULL;
+	// close any previous opened hint
+	Hero_hideHint(this);
 
-    // check if a hint is already being shown at the moment
-	if (NULL == this->currentHint)
-	{
-	    // determine entity type for hint
-	    switch (type)
-	    {
-	        default:
-	        case kEnterHint:
+	this->currentHint = __UPCAST(Entity, Container_getChildByName(__UPCAST(Container, this), hintName));
+    
+	ASSERT(this->currentHint, "Hero::showHint: null currentHint");
 
-	            hintEntityDefinition  = &HINT_ENTER_MC;
-	            break;
-	    }
-	    
-	    if(hintEntityDefinition)
-	    {
-	    	VBVec3D position = 
-    		{
-    			FTOFIX19_13(25), FTOFIX19_13(-20), FTOFIX19_13(0)
-    		};
-
-		    // save the hint entity, so we can remove it later
-	    	this->currentHint = Entity_addChildFromDefinition(__UPCAST(Entity, this), hintEntityDefinition, -1, "enterHint", &position, NULL);
-	    }
-	}
-	else
-	{
-		Hint_open((Hint)this->currentHint);
-	}
+	Hint_open((Hint)this->currentHint);
 }
 
 void Hero_hideHint(Hero this)
 {
     // check if a hint is being shown at the moment
-	if (this->currentHint != NULL)
+	if (this->currentHint)
 	{
 	    // play the closing animation (the hint will delete itself afterwards)
-		Hint_close((Hint)this->currentHint);
+		Hint_close(__UPCAST(Hint, this->currentHint));
 	}
 }
 
@@ -1032,8 +1050,9 @@ void Hero_resetCurrentlyOverlappingDoor(Hero this)
 // process collisions
 int Hero_processCollision(Hero this, Telegram telegram)
 {
+	ASSERT(this, "HeroMoving::processCollision: null this");
 	VirtualList collidingObjects = __UPCAST(VirtualList, Telegram_getExtraInfo(telegram));
-	ASSERT(collidingObjects, "HeroMoving::handleMessage: null collidingObjects");
+	ASSERT(collidingObjects, "HeroMoving::processCollision: null collidingObjects");
 
 	VirtualNode node = NULL;
 
@@ -1064,7 +1083,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
                 // first contact with a door?
 				if (Hero_getCurrentlyOverlappingDoor(this) == NULL && Door_hasDestination((Door)inGameEntity))
 				{
-				    Hero_showHint(this, kEnterHint);
+				    Hero_showHint(this, "enterHint");
                     Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);
 
                     // remind hero to check if door is still overlapping in 100 milliseconds
@@ -1078,32 +1097,6 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				Hero_die(this);
 //				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
-				
-			case kSolid:
-				{
-					VBVec3D displacement = Body_getLastDisplacement(this->body);
-					
-					// if was falling
-					if(0 < displacement.y)
-					{
-						// and axis of collision was y
-						if(__YAXIS & __VIRTUAL_CALL(int, Shape, getAxisOfCollision, this->shape, inGameEntity, displacement))
-						{
-							if(!this->feetDust)
-							{
-								Hero_addFeetDust(this);
-							}
-							
-							ParticleSystem_start(this->feetDust);
-
-							// stop the dust after some time
-			                MessageDispatcher_dispatchMessage(200, __UPCAST(Object, this), __UPCAST(Object, this), kStopFeetDust, NULL);
-						}
-					}
-				}
-				
-				break;
-
 		}
 	}
 
@@ -1122,6 +1115,8 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 bool Hero_handleMessage(Hero this, Telegram telegram)
 {
+	ASSERT(this, "HeroMoving::handleMessage: null this");
+
 	// handle messages that any state would handle here
 	switch (Telegram_getMessage(telegram))
     {
@@ -1153,6 +1148,8 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 // process message
 int Hero_doMessage(Hero this, int message)
 {
+	ASSERT(this, "HeroMoving::doMessage: null this");
+
 	switch (message)
 	{
 		case kResumeLevel:
@@ -1185,4 +1182,13 @@ int Hero_doMessage(Hero this, int message)
 	}
 
 	return false;
+}
+
+void Hero_suspend(Hero this)
+{
+	ASSERT(this, "HeroMoving::suspend: null this");
+	
+	Entity_suspend(__UPCAST(Entity, this));
+	
+	ParticleSystem_pause(this->feetDust);
 }

@@ -82,10 +82,10 @@ void Coin_destructor(Coin this)
 	__DESTROY_BASE;
 }
 
-// initialize method
-void Coin_initialize(Coin this)
+// ready method
+void Coin_ready(Coin this)
 {
-	AnimatedInGameEntity_initialize(__UPCAST(AnimatedInGameEntity, this));
+	Entity_ready(__UPCAST(Entity, this));
 
 	CoinManager_registerCoin(CoinManager_getInstance(), this);
 }

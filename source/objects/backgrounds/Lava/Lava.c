@@ -91,10 +91,12 @@ void Lava_destructor(Lava this)
 	__DESTROY_BASE;
 }
 
-// initialize method
-void Lava_initialize(Lava this)
+// ready method
+void Lava_ready(Lava this)
 {
-	Entity_initialize(__UPCAST(Entity, this));
+	ASSERT(this, "Lava::ready: null this");
+
+	Entity_ready(__UPCAST(Entity, this));
 	
 	// start moving
 	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);

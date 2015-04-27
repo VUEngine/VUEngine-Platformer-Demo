@@ -48,11 +48,12 @@
 
 #define Hero_SET_VTABLE(ClassName)												\
 	Actor_SET_VTABLE(ClassName);												\
-	__VIRTUAL_SET(ClassName, Hero, initialize);									\
+	__VIRTUAL_SET(ClassName, Hero, ready);										\
 	__VIRTUAL_SET(ClassName, Hero, die);										\
 	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);								\
 	__VIRTUAL_SET(ClassName, Hero, doMessage);									\
 	__VIRTUAL_SET(ClassName, Hero, handleMessage);								\
+	__VIRTUAL_SET(ClassName, Hero, suspend);									\
 
 __CLASS(Hero);
 
@@ -108,7 +109,7 @@ __CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, int ID);
 
 void Hero_constructor(Hero this, ActorDefinition* definition, int ID);
 void Hero_destructor(Hero this);
-void Hero_initialize(Hero this);
+void Hero_ready(Hero this);
 void Hero_addForce(Hero this, int changedDirection, int axis);
 void Hero_stopMovement(Hero this);
 void Hero_startedMovingOnAxis(Hero this, int axis);
@@ -126,7 +127,7 @@ u32 Hero_getActionTime(Hero this);
 void Hero_pickupObject(Hero this, Actor object);
 bool Hero_isOverlappingDoor(Hero this);
 void Hero_enterDoor(Hero this);
-void Hero_showHint(Hero this, u8 type);
+void Hero_showHint(Hero this, char* hintName);
 void Hero_hideHint(Hero this);
 void Hero_fallDead(Hero this);
 void Hero_updateHoldObjectPosition(Hero this);
@@ -151,6 +152,7 @@ void Hero_resetCurrentlyOverlappingDoor(Hero this);
 int Hero_processCollision(Hero this, Telegram telegram);
 bool Hero_handleMessage(Hero this, Telegram telegram);
 int Hero_doMessage(Hero this, int message);
+void Hero_suspend(Hero this);
 
 
 #endif
