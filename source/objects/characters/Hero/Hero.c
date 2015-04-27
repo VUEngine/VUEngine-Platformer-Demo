@@ -61,7 +61,7 @@ static void Hero_onKeyHold(Hero this, Object eventFirer);
 void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
-
+static void Hero_addFeetDust(Hero this);
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -141,7 +141,8 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->coins = 0;
 	this->keys = 0;
 	this->currentHint = NULL;
-
+	this->feetDust = NULL;
+	
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(SpatialObject, this), kCuboid);
 
@@ -208,6 +209,8 @@ void Hero_initialize(Hero this)
 	
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroIdle_getInstance()));
+	
+	Hero_addFeetDust(this);
 }
 
 // make him jump
@@ -747,6 +750,25 @@ void Hero_enterDoor(Hero this)
 	{
 		Entity_hide(__UPCAST(Entity, this->currentHint));
 	}
+}
+
+static void Hero_addFeetDust(Hero this)
+{
+	ASSERT(this, "Hero::addFeetDust: null this");
+
+	extern EntityDefinition DUST_PS;
+    const EntityDefinition* feetDustDefinition = &DUST_PS;
+
+	VBVec3D position = 
+	{
+		FTOFIX19_13(0), FTOFIX19_13(19), FTOFIX19_13(0)
+	};
+
+	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), feetDustDefinition, -1, "feetDust", &position, NULL));
+
+	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
+
+	ParticleSystem_start(this->feetDust);
 }
 
 void Hero_showHint(Hero this, u8 type)

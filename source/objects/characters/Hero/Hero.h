@@ -28,6 +28,7 @@
 
 #include <Actor.h>
 #include <Door.h>
+#include <ParticleSystem.h>
 #include <macros.h>
 
 
@@ -73,6 +74,9 @@ __CLASS(Hero);
 																				\
 	/* the currently shown hint entity */										\
 	Entity currentHint;															\
+																				\
+	/* feet dust */																\
+	ParticleSystem feetDust;													\
 																				\
 	/* used to know if gap must be changed */									\
 	Direction inputDirection;													\

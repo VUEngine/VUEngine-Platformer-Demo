@@ -186,7 +186,7 @@ ParticleSystemROMDef DUST_PS =
 	(const ObjectSpriteDefinition**)OBJECT_DUST_PARTICLE_SPRITES,
 
 	// auto start
-	true,
+	false,
 	
 	// particle definition
 	(ParticleDefinition*)&DUST_PARTICLE,
