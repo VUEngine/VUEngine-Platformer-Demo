@@ -44,7 +44,7 @@
 	__VIRTUAL_SET(ClassName, TitleScreenState, exit);							\
 	__VIRTUAL_SET(ClassName, TitleScreenState, execute);						\
 	__VIRTUAL_SET(ClassName, TitleScreenState, resume);							\
-	__VIRTUAL_SET(ClassName, TitleScreenState, pause);							\
+	__VIRTUAL_SET(ClassName, TitleScreenState, suspend);						\
 	__VIRTUAL_SET(ClassName, TitleScreenState, handleMessage);					\
 
 

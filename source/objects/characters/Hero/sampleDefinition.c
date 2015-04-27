@@ -61,7 +61,6 @@ AnimationFunctionROMDef DUMMY_HERO_IDLE_ANIM =
 	"Idle",
 };
 
-
 // a function which defines the frames to play
 AnimationFunctionROMDef DUMMY_HERO_WALKING_ANIM =
 {
