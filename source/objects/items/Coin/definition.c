@@ -189,7 +189,7 @@ AnimatedInGameEntityROMDef OBJECT_COIN_AG =
     	// height
     	0,
     	
-    	// deep
+    	// Depth
         4
     },
 
@@ -250,7 +250,7 @@ AnimatedInGameEntityROMDef BGMAP_COIN_AG =
     	// height
     	0,
     	
-    	// deep
+    	// Depth
         4
     },
 
@@ -311,7 +311,7 @@ AnimatedInGameEntityROMDef AFFINE_COIN_AG =
     	// height
     	0,
     	
-    	// deep
+    	// Depth
         4
     },
 

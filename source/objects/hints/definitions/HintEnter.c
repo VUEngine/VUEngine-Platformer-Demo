@@ -221,7 +221,7 @@ AnimatedInGameEntityROMDef HINT_ENTER_MC =
     	// height
     	0,
 
-    	// deep
+    	// Depth
         0,
     },
 

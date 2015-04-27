@@ -150,7 +150,7 @@ AnimatedInGameEntityROMDef KEY_AG =
     	// height
     	0,
     	
-    	// deep
+    	// Depth
         4
     },
 

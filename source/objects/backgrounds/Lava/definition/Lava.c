@@ -119,7 +119,7 @@ InanimatedInGameEntityROMDef LAVA_IG =
     	// height
     	0,
 
-        // deep
+        // Depth
         20
     },
 

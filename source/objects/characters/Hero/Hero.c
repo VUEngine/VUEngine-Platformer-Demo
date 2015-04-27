@@ -209,8 +209,6 @@ void Hero_initialize(Hero this)
 	
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroIdle_getInstance()));
-	
-	Hero_addFeetDust(this);
 }
 
 // make him jump
@@ -761,7 +759,7 @@ static void Hero_addFeetDust(Hero this)
 
 	VBVec3D position = 
 	{
-		FTOFIX19_13(-5), FTOFIX19_13(10), FTOFIX19_13(-1)
+		FTOFIX19_13(-5), FTOFIX19_13(10), FTOFIX19_13(5)
 	};
 
 	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), feetDustDefinition, -1, "feetDust", &position, NULL));
@@ -1091,6 +1089,11 @@ int Hero_processCollision(Hero this, Telegram telegram)
 						// and axis of collision was y
 						if(__YAXIS & __VIRTUAL_CALL(int, Shape, getAxisOfCollision, this->shape, inGameEntity, displacement))
 						{
+							if(!this->feetDust)
+							{
+								Hero_addFeetDust(this);
+							}
+							
 							ParticleSystem_start(this->feetDust);
 
 							// stop the dust after some time
@@ -1167,7 +1170,10 @@ int Hero_doMessage(Hero this, int message)
 				};
 				
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
-				
+
+				// move the screen to its previous position
+				Screen_positione(Screen_getInstance(), false);
+
 				if(Hero_getCurrentlyOverlappingDoor(this))
 				{
                     // remind hero to check if door is still overlapping in 100 milliseconds

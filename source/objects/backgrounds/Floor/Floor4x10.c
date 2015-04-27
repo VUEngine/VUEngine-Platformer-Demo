@@ -185,7 +185,7 @@ InanimatedInGameEntityROMDef FLOOR_4x10_IG =
     	// height
     	0,
     	
-        // deep
+        // Depth
         20
     },
 
@@ -245,7 +245,7 @@ InanimatedInGameEntityROMDef AFFINE_FLOOR_4x10_IG =
     	// height
     	0,
     	
-        // deep
+        // Depth
         20
     },
 

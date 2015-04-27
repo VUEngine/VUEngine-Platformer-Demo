@@ -25,6 +25,9 @@
 // screen height in pixels
 #define __SCREEN_HEIGHT							224
 
+// screen depth in pixels
+#define __SCREEN_DEPTH							0
+
 // z position of the screen
 #define __ZZERO									0
 
@@ -37,7 +40,7 @@
 // distance from player's eyes to the virtual screen
 #define __DISTANCE_EYE_SCREEN					384
 
-// maximum view distance (deep)
+// maximum view distance (Depth)
 #define __MAX_VIEW_DISTANCE						256
 // always use a power of 2 as the maximum view distance, and update
 // the number of bits to make projection faster

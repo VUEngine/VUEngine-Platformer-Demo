@@ -219,7 +219,7 @@ AnimatedInGameEntityROMDef DOOR_AG =
     	// height
     	0,
     	
-    	// deep
+    	// Depth
         4
     },
 
@@ -276,7 +276,7 @@ AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
     	// height
     	0,
     	
-    	// deep
+    	// Depth
         4
     },
 

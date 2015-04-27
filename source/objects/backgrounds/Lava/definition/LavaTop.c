@@ -151,7 +151,7 @@ AnimatedInGameEntityROMDef LAVA_TOP_AG =
     	// height
     	0,
     	
-    	// deep
+    	// Depth
         16
     },
 

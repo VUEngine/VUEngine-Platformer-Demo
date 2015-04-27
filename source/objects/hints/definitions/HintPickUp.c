@@ -221,7 +221,7 @@ AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
     	// height
     	0,
 
-    	// deep
+    	// Depth
         0,
     },
 

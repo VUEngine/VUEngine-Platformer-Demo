@@ -51,7 +51,7 @@ InanimatedInGameEntityROMDef COLLISION_48x3x2 =
     	// height
     	3 * 8,
 
-    	// deep
+    	// Depth
     	2 * 8
     },
 
