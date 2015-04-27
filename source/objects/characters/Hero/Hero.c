@@ -761,14 +761,12 @@ static void Hero_addFeetDust(Hero this)
 
 	VBVec3D position = 
 	{
-		FTOFIX19_13(0), FTOFIX19_13(19), FTOFIX19_13(0)
+		FTOFIX19_13(-5), FTOFIX19_13(10), FTOFIX19_13(-1)
 	};
 
 	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), feetDustDefinition, -1, "feetDust", &position, NULL));
 
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
-
-	ParticleSystem_start(this->feetDust);
 }
 
 void Hero_showHint(Hero this, u8 type)
@@ -1082,6 +1080,27 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				Hero_die(this);
 //				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
+				
+			case kSolid:
+				{
+					VBVec3D displacement = Body_getLastDisplacement(this->body);
+					
+					// if was falling
+					if(0 < displacement.y)
+					{
+						// and axis of collision was y
+						if(__YAXIS & __VIRTUAL_CALL(int, Shape, getAxisOfCollision, this->shape, inGameEntity, displacement))
+						{
+							ParticleSystem_start(this->feetDust);
+
+							// stop the dust after some time
+			                MessageDispatcher_dispatchMessage(200, __UPCAST(Object, this), __UPCAST(Object, this), kStopFeetDust, NULL);
+						}
+					}
+				}
+				
+				break;
+
 		}
 	}
 
@@ -1096,6 +1115,36 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	__DELETE(collidingObjectsToRemove);
 
 	return !VirtualList_getSize(collidingObjects);
+}
+
+bool Hero_handleMessage(Hero this, Telegram telegram)
+{
+	// handle messages that any state would handle here
+	switch (Telegram_getMessage(telegram))
+    {
+    case kCheckForOverlappingDoor:
+
+        if (!Hero_isOverlappingDoor(this))
+        {
+            Hero_resetCurrentlyOverlappingDoor(this);
+        }
+        else
+        {
+            // remind hero to check again in 100 milliseconds
+            MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, this), kCheckForOverlappingDoor, NULL);
+        }
+        
+        return true;
+        break;
+        
+    case kStopFeetDust:
+    	
+		ParticleSystem_pause(this->feetDust);
+		return true;
+    	break;
+    }
+
+	return Actor_handleMessage(__UPCAST(Actor, this), telegram);
 }
 
 // process message

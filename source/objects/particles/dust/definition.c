@@ -141,10 +141,10 @@ ParticleROMDef DUST_PARTICLE =
     __TYPE(Particle),
 
 	// particle's minimum life span in milliseconds
-	1000,
+	100,
 
 	// particle's maximum life span in milliseconds
-	1500,
+	200,
 
 	// particle's minimum mass
 	FTOFIX19_13(0.0f),
@@ -174,13 +174,13 @@ ParticleSystemROMDef DUST_PS =
     },
 
 	// minimum generation delay in milliseconds
-	150,
+	20,
 
 	// maximum generation delay in milliseconds
-	350,
+	80,
 
 	// maximum total particles
-	5,
+	10,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)OBJECT_DUST_PARTICLE_SPRITES,

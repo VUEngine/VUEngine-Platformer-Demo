@@ -52,6 +52,7 @@
 	__VIRTUAL_SET(ClassName, Hero, die);										\
 	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);								\
 	__VIRTUAL_SET(ClassName, Hero, doMessage);									\
+	__VIRTUAL_SET(ClassName, Hero, handleMessage);								\
 
 __CLASS(Hero);
 
@@ -148,6 +149,7 @@ Door Hero_getCurrentlyOverlappingDoor(Hero this);
 void Hero_setCurrentlyOverlappingDoor(Hero this, Door door);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
 int Hero_processCollision(Hero this, Telegram telegram);
+bool Hero_handleMessage(Hero this, Telegram telegram);
 int Hero_doMessage(Hero this, int message);
 
 

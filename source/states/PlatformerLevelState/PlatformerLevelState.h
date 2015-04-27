@@ -75,6 +75,7 @@ enum PlatformerLevelStateMessageTypes
 	kOpenDoor,
 	kCloseDoor,
     kCheckForOverlappingDoor,
+    kStopFeetDust,
     kSuspend,
     
 	// don't remove me
