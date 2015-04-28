@@ -45,7 +45,7 @@ CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESS
 ifeq ($(TOOLS),1)
 MACROS = __DEBUG_TOOLS __STAGE_EDITOR __ANIMATION_EDITOR
 else
-MACROS = NDEBUG
+MACROS =
 endif
 endif
 
@@ -108,7 +108,7 @@ deleteEngine:
 		@rm -f $(ENGINE)
 
 $(ENGINE): deleteEngine
-	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJANEGINE_CONFIG_FILE)
+	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJANEGINE_CONFIG_FILE) -e TOOLS=$(TOOLS)
 
 $(TARGET).vb: main.elf
 	@echo Creating $@
