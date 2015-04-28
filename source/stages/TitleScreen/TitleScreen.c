@@ -155,6 +155,16 @@ StageROMDef TITLE_SCREEN_ST =
         LEVEL_Z_SIZE
     },
 
+    // gravity
+    {
+	    ITOFIX19_13(0),
+	    ITOFIX19_13(4200),
+	    ITOFIX19_13(0)
+    },
+
+    // friction
+    FTOFIX19_13(0.01f),
+
 	// OBJs segments z coordinates
 	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
 	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)

@@ -166,8 +166,8 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_UI_ENTITIES[] =
 
 TextureROMDef* LEVEL_1_1_ROOM_1_ST_TEXTURES[] =
 {
-	&OBJECT_COIN_TX,
-	&OBJECT_DUST_PARTICLE_TX,
+//	&OBJECT_COIN_TX,
+//	&OBJECT_DUST_PARTICLE_TX,
 	&CLOUDS_A_TX,
 	&CLOUDS_B_TX,
 	&MOUND_BG_BACK_TX,
@@ -210,6 +210,16 @@ StageROMDef LEVEL_1_1_ROOM_1_ST =
         LEVEL_Z_SIZE
     },
 
+    // gravity
+    {
+	    ITOFIX19_13(0),
+	    ITOFIX19_13(4000),
+	    ITOFIX19_13(0)
+    },
+
+    // friction
+    FTOFIX19_13(0.01f),
+    
 	// OBJs segments z coordinates
 	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
 	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
