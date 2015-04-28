@@ -69,15 +69,15 @@ const UserObject _userObjects[] =
 #endif
 
 #ifdef __ANIMATION_EDITOR
-const UserActor _userActors[] =
+const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
 {
-	{(ActorDefinition*)&BGMAP_COIN_AG, "Coin"},
-	{(ActorDefinition*)&DOOR_AG, "Door"},
-	{(ActorDefinition*)&HERO_AC, "Hero"},
-	{(ActorDefinition*)&HINT_ENTER_MC, "Hint enter"},
-	{(ActorDefinition*)&KEY_AG, "Key"},
-	{(ActorDefinition*)&SAW_BLADE_AC, "SawBlade"},
-	{(ActorDefinition*)&LAVA_TOP_AG, "Lava top"},
+	{(AnimatedInGameEntityDefinition*)&BGMAP_COIN_AG, "Coin"},
+	{(AnimatedInGameEntityDefinition*)&DOOR_AG, "Door"},
+	{(AnimatedInGameEntityDefinition*)&HERO_AC, "Hero"},
+	{(AnimatedInGameEntityDefinition*)&HINT_ENTER_MC, "Hint enter"},
+	{(AnimatedInGameEntityDefinition*)&KEY_AG, "Key"},
+	{(AnimatedInGameEntityDefinition*)&SAW_BLADE_AC, "SawBlade"},
+	{(AnimatedInGameEntityDefinition*)&LAVA_TOP_AG, "Lava top"},
 	{NULL, ""},
 };
 #endif
