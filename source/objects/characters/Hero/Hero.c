@@ -64,7 +64,7 @@ void Hero_resetCurrentlyOverlappingDoor(Hero this);
 static void Hero_addHints(Hero this);
 static void Hero_addFeetDust(Hero this);
 static void Hero_slide(Hero this);
-static void Hero_showDust(Hero this);
+static void Hero_showDust(Hero this, bool autoHideDust);
 static void Hero_hideDust(Hero this);
 
 //---------------------------------------------------------------------------------------------------------
@@ -313,15 +313,18 @@ static void Hero_slide(Hero this)
 {
 	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Slide");
 	
-	Hero_showDust(this);
+	Hero_showDust(this, false);
 }
 
-static void Hero_showDust(Hero this)
+static void Hero_showDust(Hero this, bool autoHideDust)
 {
 	ParticleSystem_start(this->feetDust);
 
-	// stop the dust after some time
-    MessageDispatcher_dispatchMessage(200, __UPCAST(Object, this), __UPCAST(Object, this), kStopFeetDust, NULL);
+	if(autoHideDust)
+	{
+		// stop the dust after some time
+	    MessageDispatcher_dispatchMessage(200, __UPCAST(Object, this), __UPCAST(Object, this), kStopFeetDust, NULL);
+	}
 }
 
 static void Hero_hideDust(Hero this)
@@ -401,7 +404,9 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 	if ((__XAXIS & axis) && !(__YAXIS & movementState))
     {
 		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Idle");
-	}
+
+    	Hero_hideDust(this);
+    }
 
 	if (__YAXIS & axis)
     {
@@ -411,7 +416,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
         {
 			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
 			
-			Hero_showDust(this);
+			Hero_showDust(this, true);
 		}
 		else
         {
@@ -441,6 +446,8 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 
 	bool movementState = Body_isMoving(this->body);
 
+	Hero_hideDust(this);
+	
 	if (K_LR & pressedKey)
     {
 		this->inputDirection.x = __RIGHT;
