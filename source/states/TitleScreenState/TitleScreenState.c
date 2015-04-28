@@ -94,7 +94,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	VirtualList_pushBack(entityNamesToIgnore, name2);
 	
 	//load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, false);
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore);
 
 	__DELETE(entityNamesToIgnore);
 	
