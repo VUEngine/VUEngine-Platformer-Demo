@@ -77,10 +77,6 @@ static void PauseScreenState_destructor(PauseScreenState this)
 // state's enter
 static void PauseScreenState_enter(PauseScreenState this, void* owner)
 {
-	Optical optical = Game_getOptical(Game_getInstance());
-	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
-	Game_setOptical(Game_getInstance(), optical);
-
 	// load stage
 	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, NULL);
 

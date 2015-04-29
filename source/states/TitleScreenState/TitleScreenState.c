@@ -83,10 +83,6 @@ static void TitleScreenState_destructor(TitleScreenState this)
 // state's enter
 static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
-	Optical optical = Game_getOptical(Game_getInstance());
-	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
-	Game_setOptical(Game_getInstance(), optical);
-
 	const char* name1 = "IgnoreMeDoor";
 	const char* name2 = "IgnoreMeCoin";
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);

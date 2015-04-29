@@ -152,9 +152,8 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 
 	{
 		// register a body for physics
-		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), ITOFIX19_13(HERO_MASS));
-		
-		Body_setElasticity(this->body, FTOFIX19_13(0.0f));
+		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), actorDefinition->mass);
+		Body_setElasticity(this->body, actorDefinition->elasticity);
 		
 		Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	}

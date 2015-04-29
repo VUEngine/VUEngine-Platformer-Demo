@@ -94,11 +94,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
 	 superFlag = true;
 
-	Optical optical = Game_getOptical(Game_getInstance());
-	optical.verticalViewPointCenter = ITOFIX19_13(112 + 112/2);
-	Game_setOptical(Game_getInstance(), optical);
-
-	//load stage
+	 //load stage
 	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, NULL);
 
 	// playing by default

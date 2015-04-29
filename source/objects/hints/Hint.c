@@ -25,7 +25,6 @@
 #include <Game.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
-#include <Screen.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <I18n.h>

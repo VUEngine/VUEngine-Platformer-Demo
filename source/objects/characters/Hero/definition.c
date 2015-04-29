@@ -386,33 +386,44 @@ BgmapSpriteROMDef* const HERO_SPRITES[] =
 
 ActorROMDef HERO_AC =
 {
-    {
-        {
-            __TYPE(Hero),
-            (SpriteROMDef**)HERO_SPRITES,
-        },
+	{
+	    {
+	        {
+	            __TYPE(Hero),
+	            (SpriteROMDef**)HERO_SPRITES,
+	        },
+	
+	        // collision detection gap (up, down, left, right)
+	        {5, 1, 4, 4},
+	
+	        // in game type
+	        kHero,
+	
+	        // if 0, width and height will be inferred from 
+	        // the texture's size
+	        // width
+	    	0,
+	
+	    	// height
+	    	0,
+	    	
+	    	// Depth
+	        8
+	    },
+	
+	    // pointer to the animation definition for the character
+	    (AnimationDescription*)&HERO_ANIM,
+	
+	    // initial animation
+	    NULL,
+	},
+	
+	// friction for physics
+	ITOFIX19_13(0),
 
-        // collision detection gap (up, down, left, right)
-        {5, 1, 4, 4},
-
-        // in game type
-        kHero,
-
-        // if 0, width and height will be inferred from 
-        // the texture's size
-        // width
-    	0,
-
-    	// height
-    	0,
-    	
-    	// Depth
-        8
-    },
-
-    // pointer to the animation definition for the character
-    (AnimationDescription*)&HERO_ANIM,
-
-    // initial animation
-    NULL,
+	// elasticity for physics
+	ITOFIX19_13(1),
+	
+	// mass
+	ITOFIX19_13(10)
 };

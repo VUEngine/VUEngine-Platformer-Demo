@@ -129,36 +129,47 @@ BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 
 SawBladeDefinition SAW_BLADE_AC =
 {
-    {
-        {
-            {
-                __TYPE(SawBlade),
-                (SpriteROMDef**)SAW_BLADE_SPRITES,
-            },
+	{
+	    {
+	        {
+	            {
+	                __TYPE(SawBlade),
+	                (SpriteROMDef**)SAW_BLADE_SPRITES,
+	            },
+	
+	            // collision detection gap (up, down, left, right)
+	            {1, 2, 2, 1},
+	
+	            // in game type
+	            kSawBlade,
+	
+	            // width
+	            0,
+	            
+	            // height
+	            0,
+	            
+	            // Depth
+	            10
+	        },
+	
+	        // pointer to the animation definition for the character
+	        &SAW_BLADE_ANIM,
+	
+	        // initial animation
+	        NULL
+	    },
+	    
+		// friction for physics
+		ITOFIX19_13(0),
 
-            // collision detection gap (up, down, left, right)
-            {1, 2, 2, 1},
-
-            // in game type
-            kSawBlade,
-
-            // width
-            0,
-            
-            // height
-            0,
-            
-            // Depth
-            10
-        },
-
-        // pointer to the animation definition for the character
-        &SAW_BLADE_ANIM,
-
-        // initial animation
-        NULL
-    },
-
+		// elasticity for physics
+		ITOFIX19_13(1),
+		
+		// mass
+		ITOFIX19_13(10)	
+	},
+	
     // axis
     __YAXIS,
 
@@ -194,35 +205,46 @@ BgmapSpriteROMDef* const AFFINE_SAW_BLADE_SPRITES[] =
 
 SawBladeDefinition AFFINE_SAW_BLADE_AC =
 {
-    {
-        {
-            {
-                __TYPE(SawBlade),
-                (SpriteROMDef**)AFFINE_SAW_BLADE_SPRITES,
-            },
+	{
+	    {
+	        {
+	            {
+	                __TYPE(SawBlade),
+	                (SpriteROMDef**)AFFINE_SAW_BLADE_SPRITES,
+	            },
+	
+	            // collision detection gap (up, down, left, right)
+	            {1, 2, 2, 1},
+	
+	            // in game type
+	            kSawBlade,
+	
+	            // width
+	            0,
+	            
+	            // height
+	            0,
+	            
+	            // Depth
+	            10
+	        },
+	
+	        // pointer to the animation definition for the character
+	        &SAW_BLADE_ANIM,
+	
+	        // initial animation
+	        NULL
+	    },
 
-            // collision detection gap (up, down, left, right)
-            {1, 2, 2, 1},
+	    // friction for physics
+		ITOFIX19_13(0),
 
-            // in game type
-            kSawBlade,
-
-            // width
-            0,
-            
-            // height
-            0,
-            
-            // Depth
-            10
-        },
-
-        // pointer to the animation definition for the character
-        &SAW_BLADE_ANIM,
-
-        // initial animation
-        NULL
-    },
+		// elasticity for physics
+		ITOFIX19_13(1),
+	  
+	    // mass
+	    0,
+	},
 
     // axis
     __YAXIS,

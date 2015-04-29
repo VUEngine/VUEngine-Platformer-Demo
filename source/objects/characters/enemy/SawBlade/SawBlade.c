@@ -67,7 +67,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	SawBlade_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), 0);
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), sawBladeDefinition->actorDefinition.mass);
 
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	

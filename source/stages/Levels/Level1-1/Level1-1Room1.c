@@ -244,6 +244,20 @@ StageROMDef LEVEL_1_1_ROOM_1_ST =
         ITOFIX19_13(SCREEN_Z_POSITION)
     },
 
+    // optical configuration values
+    {
+		// distance of the eyes to the screen
+    	ITOFIX19_13(__DISTANCE_EYE_SCREEN),
+		// maximum view distance into the horizont
+		ITOFIX19_13(__MAXIMUM_VIEW_DISTANCE),
+		// distance from left to right eye (depth sensation)
+		ITOFIX19_13(__BASE_FACTOR),
+		// horizontal View point center
+		ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+		// vertical View point center
+		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
+    },
+    
     // textures to preload
     (TextureDefinition**)LEVEL_1_1_ROOM_1_ST_TEXTURES,
 
