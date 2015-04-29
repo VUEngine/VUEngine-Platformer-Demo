@@ -218,7 +218,7 @@ StageROMDef LEVEL_1_1_ROOM_1_ST =
     },
 
     // friction
-    FTOFIX19_13(0.01f),
+    FTOFIX19_13(0.1f),
     
 	// OBJs segments z coordinates
 	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
