@@ -46,7 +46,7 @@ extern EntityDefinition CLOUDS_SB;
 extern EntityDefinition LEVEL1_3_PART1_IM;
 extern EntityDefinition LEVEL1_3_PART2_IM;
 extern EntityDefinition LEVEL1_3_PART3_IM;
-extern EntityDefinition STONE_BG_IM;
+extern EntityDefinition PLATE_BG_IM;
 
 extern EntityDefinition FLOOR_4x10_IG;
 extern EntityDefinition FLOOR_16x8_IG;
@@ -65,9 +65,12 @@ extern EntityDefinition MOUND_2_IM;
 
 extern EntityDefinition LAVA_IG;
 extern EntityDefinition LAVA_TOP_AG;
+extern EntityDefinition LAVA_TRIGGER_IG;
 
 extern EntityDefinition TITLESCREEN_MIDDLE_IM;
 extern EntityDefinition TITLESCREEN_FRONT_IM;
+
+extern EntityDefinition COG_WHEEL_IG;
 
 
 #endif

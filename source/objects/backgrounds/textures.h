@@ -23,7 +23,7 @@ extern TextureDefinition CLOUDS_B_TX;
 extern TextureDefinition LEVEL1_3_PART1_TX;
 extern TextureDefinition LEVEL1_3_PART2_TX;
 extern TextureDefinition LEVEL1_3_PART3_TX;
-extern TextureDefinition STONE_BG_TX;
+extern TextureDefinition PLATE_BG_TX;
 
 extern TextureDefinition FLOOR_4x10_L_TX;
 extern TextureDefinition FLOOR_4x10_R_TX;
@@ -44,6 +44,8 @@ extern TextureDefinition LAVA_TOP_TX;
 
 extern TextureDefinition TITLESCREEN_MIDDLE_TX;
 extern TextureDefinition TITLESCREEN_FRONT_TX;
+
+extern TextureDefinition COG_WHEEL_TX;
 
 
 #endif

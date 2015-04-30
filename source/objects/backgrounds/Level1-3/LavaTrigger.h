@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef LAVA_H_
-#define LAVA_H_
+#ifndef LAVA_TRIGGER_H_
+#define LAVA_TRIGGER_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,38 +34,31 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Lava_METHODS															\
+#define LavaTrigger_METHODS																\
 	InanimatedInGameEntity_METHODS;
 	
 
-#define Lava_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
-	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
-    __VIRTUAL_SET(ClassName, Lava, isVisible);									\
-    __VIRTUAL_SET(ClassName, Lava, resume);										\
-	__VIRTUAL_SET(ClassName, Lava, moves);										\
+#define LavaTrigger_SET_VTABLE(ClassName)												\
+	InanimatedInGameEntity_SET_VTABLE(ClassName);										\
+	__VIRTUAL_SET(ClassName, LavaTrigger, handleMessage);								\
 
-__CLASS(Lava);
+__CLASS(LavaTrigger);
 
-#define Lava_ATTRIBUTES															\
-																				\
-	/* it is derivated from */													\
-	InanimatedInGameEntity_ATTRIBUTES											\
+#define LavaTrigger_ATTRIBUTES															\
+																						\
+	/* it is derivated from */															\
+	InanimatedInGameEntity_ATTRIBUTES													\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(LavaTrigger, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
 
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, int ID);
-void Lava_destructor(Lava this);
-void Lava_startMoving(Lava this);
-bool Lava_handleMessage(Lava this, Telegram telegram);
-bool Lava_isVisible(Lava this, int pad);
-void Lava_resume(Lava this);
-bool Lava_moves(Lava this);
+void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition* definition, int ID);
+void LavaTrigger_destructor(LavaTrigger this);
+bool LavaTrigger_handleMessage(LavaTrigger this, Telegram telegram);
 
 
 #endif

@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef LAVA_H_
-#define LAVA_H_
+#ifndef COG_WHEEL_H_
+#define COG_WHEEL_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,38 +34,37 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Lava_METHODS															\
+#define CogWheel_METHODS															\
 	InanimatedInGameEntity_METHODS;
 	
 
-#define Lava_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
-	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
-    __VIRTUAL_SET(ClassName, Lava, isVisible);									\
-    __VIRTUAL_SET(ClassName, Lava, resume);										\
-	__VIRTUAL_SET(ClassName, Lava, moves);										\
+#define CogWheel_SET_VTABLE(ClassName)												\
+	InanimatedInGameEntity_SET_VTABLE(ClassName);									\
+	__VIRTUAL_SET(ClassName, CogWheel, ready);										\
+	__VIRTUAL_SET(ClassName, CogWheel, handleMessage);								\
+    __VIRTUAL_SET(ClassName, CogWheel, resume);										\
+	__VIRTUAL_SET(ClassName, CogWheel, moves);										\
 
-__CLASS(Lava);
+__CLASS(CogWheel);
 
-#define Lava_ATTRIBUTES															\
-																				\
-	/* it is derivated from */													\
-	InanimatedInGameEntity_ATTRIBUTES											\
+#define CogWheel_ATTRIBUTES															\
+																					\
+	/* it is derivated from */														\
+	InanimatedInGameEntity_ATTRIBUTES												\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(CogWheel, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
 
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, int ID);
-void Lava_destructor(Lava this);
-void Lava_startMoving(Lava this);
-bool Lava_handleMessage(Lava this, Telegram telegram);
-bool Lava_isVisible(Lava this, int pad);
-void Lava_resume(Lava this);
-bool Lava_moves(Lava this);
+void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* definition, int ID);
+void CogWheel_destructor(CogWheel this);
+void CogWheel_ready(CogWheel this);
+bool CogWheel_handleMessage(CogWheel this, Telegram telegram);
+void CogWheel_resume(CogWheel this);
+bool CogWheel_moves(CogWheel this);
 
 
 #endif

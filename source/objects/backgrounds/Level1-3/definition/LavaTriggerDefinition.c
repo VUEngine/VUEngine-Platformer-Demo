@@ -18,54 +18,50 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef LAVA_H_
-#define LAVA_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
+#include <LavaTrigger.h>
 #include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define Lava_METHODS															\
-	InanimatedInGameEntity_METHODS;
-	
+InanimatedInGameEntityROMDef LAVA_TRIGGER_IG =
+{
+    {
+        {
+            __TYPE(LavaTrigger),
+            NULL,
+        },
 
-#define Lava_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
-	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
-    __VIRTUAL_SET(ClassName, Lava, isVisible);									\
-    __VIRTUAL_SET(ClassName, Lava, resume);										\
-	__VIRTUAL_SET(ClassName, Lava, moves);										\
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-__CLASS(Lava);
+        // in game type
+        kLavaTrigger,
 
-#define Lava_ATTRIBUTES															\
-																				\
-	/* it is derivated from */													\
-	InanimatedInGameEntity_ATTRIBUTES											\
+        // if 0, width and height will be inferred from the texture's size
+    	// width
+    	2 * 8,
 
+    	// height
+    	12 * 8,
 
-//---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
+    	// Depth
+    	2 * 8
+    },
 
-__CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+    // friction FTOFIX19_13
+    FTOFIX19_13(0),
 
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, int ID);
-void Lava_destructor(Lava this);
-void Lava_startMoving(Lava this);
-bool Lava_handleMessage(Lava this, Telegram telegram);
-bool Lava_isVisible(Lava this, int pad);
-void Lava_resume(Lava this);
-bool Lava_moves(Lava this);
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
 
-
-#endif
+    // register shape
+    true,
+};

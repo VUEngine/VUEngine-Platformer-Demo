@@ -243,12 +243,11 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 			Actor_addForce(__UPCAST(Actor, this), &force);
 			
 	    	Hero_hideDust(this);
-			
-			extern const u16 FIRE_SND[];
-			extern const u16 JUMP_SND[];
+
 			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Jump");
+
+			extern const u16 JUMP_SND[];
 			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transform.globalPosition);
-			SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 		}
 	}
 }
@@ -344,7 +343,7 @@ void Hero_stopMovement(Hero this)
 		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Fall");
 	}
 
-	// begin to desaccelerate
+	// begin to decelerate
 	int axisOfDeacceleartion = 0;
 	axisOfDeacceleartion |= velocity.x? __XAXIS: 0;
 	axisOfDeacceleartion |= velocity.z? __ZAXIS: 0;
@@ -788,6 +787,9 @@ void Hero_enterDoor(Hero this)
 	{
 		Entity_hide(__UPCAST(Entity, this->currentHint));
 	}
+
+    extern const u16 FIRE_SND[];
+    SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 }
 
 static void Hero_addHints(Hero this)
@@ -817,7 +819,7 @@ static void Hero_addFeetDust(Hero this)
 
 	VBVec3D position = 
 	{
-		FTOFIX19_13(-5), FTOFIX19_13(10), FTOFIX19_13(5)
+		FTOFIX19_13(-4), FTOFIX19_13(9), FTOFIX19_13(0)
 	};
 
 	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), feetDustDefinition, -1, "feetDust", &position, NULL));
@@ -832,7 +834,7 @@ void Hero_showHint(Hero this, char* hintName)
 	// close any previous opened hint
 	Hero_hideHint(this);
 
-	this->currentHint = __UPCAST(Entity, Container_getChildByName(__UPCAST(Container, this), hintName));
+	this->currentHint = __UPCAST(Entity, Container_getChildByName(__UPCAST(Container, this), hintName, false));
     
 	ASSERT(this->currentHint, "Hero::showHint: null currentHint");
 
@@ -1115,6 +1117,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				Hero_die(this);
 //				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
+
+			case kLavaTrigger:
+
+				MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, inGameEntity), kLavaTriggerStart, NULL);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
 		}
 	}
 
@@ -1138,26 +1146,26 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch (Telegram_getMessage(telegram))
     {
-    case kCheckForOverlappingDoor:
+        case kCheckForOverlappingDoor:
 
-        if (!Hero_isOverlappingDoor(this))
-        {
-            Hero_resetCurrentlyOverlappingDoor(this);
-        }
-        else
-        {
-            // remind hero to check again in 100 milliseconds
-            MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, this), kCheckForOverlappingDoor, NULL);
-        }
-        
-        return true;
-        break;
-        
-    case kStopFeetDust:
-    	
-    	Hero_hideDust(this);
-		return true;
-    	break;
+            if (!Hero_isOverlappingDoor(this))
+            {
+                Hero_resetCurrentlyOverlappingDoor(this);
+            }
+            else
+            {
+                // remind hero to check again in 100 milliseconds
+                MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, this), kCheckForOverlappingDoor, NULL);
+            }
+
+            return true;
+            break;
+
+        case kStopFeetDust:
+
+            Hero_hideDust(this);
+            return true;
+            break;
     }
 
 	return Actor_handleMessage(__UPCAST(Actor, this), telegram);

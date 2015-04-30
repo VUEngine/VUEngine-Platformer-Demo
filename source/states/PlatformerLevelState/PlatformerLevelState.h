@@ -70,7 +70,10 @@ enum PlatformerLevelStateMessageTypes
 	kHideLevelMessage,
 	kTakeCoin,
 	kTakeKey,
+	kLavaTriggerStart,
+	kLavaTriggerEnd,
 	kLavaMove,
+	kCogWheelMove,
 	kEnterDoor,
 	kOpenDoor,
 	kCloseDoor,
@@ -87,8 +90,8 @@ enum PlatformerLevelStateMessageTypes
 // 										   MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EVENT_KEY_PRESSED			"keyDown"
-#define EVENT_KEY_RELEASED			"keyUp"
+#define EVENT_KEY_PRESSED		"keyDown"
+#define EVENT_KEY_RELEASED		"keyUp"
 #define EVENT_KEY_HOLD			"keyHold"
 
 #define EVENT_COIN_TAKEN		"CoinTaken"
@@ -103,6 +106,8 @@ enum PlatformerLevelStateMessageTypes
 PlatformerLevelState PlatformerLevelState_getInstance(void);
 void PlatformerLevelState_setStage(PlatformerLevelState this, StageDefinition* stageDefinition);
 void PlatformerLevelState_goToLevel(StageDefinition* stageDefinition);
+void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
+void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
 
 #endif

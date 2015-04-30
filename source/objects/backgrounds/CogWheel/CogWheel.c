@@ -29,7 +29,7 @@
 #include <PhysicalWorld.h>
 
 #include <objects.h>
-#include "Lava.h"
+#include "CogWheel.h"
 
 #include <PlatformerLevelState.h>
 
@@ -38,21 +38,21 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define LAVA_MOVE_DELAY 300
+#define COG_WHEEL_ROTATION_DELAY 300
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Lava, InanimatedInGameEntity);
+__CLASS_DEFINITION(CogWheel, InanimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Lava_moveUpwards(Lava this);
+void CogWheel_rotate(CogWheel this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,11 +60,11 @@ void Lava_moveUpwards(Lava this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(Lava, inanimatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(CogWheel, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
+__CLASS_NEW_END(CogWheel, inanimatedInGameEntityDefinition, ID);
 
 // class's constructor
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
+void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
 {
 	// construct base
 	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, ID);
@@ -76,22 +76,24 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInG
 }
 
 // class's destructor
-void Lava_destructor(Lava this)
+void CogWheel_destructor(CogWheel this)
 {
     // discard pending moving messages
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kLavaMove);
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kCogWheelMove);
 
 	// delete the super object
 	__DESTROY_BASE;
 }
 
-// start moving
-void Lava_startMoving(Lava this)
+// ready method
+void CogWheel_ready(CogWheel this)
 {
-	ASSERT(this, "Lava::startMoving: null this");
+	ASSERT(this, "CogWheel::ready: null this");
 
+	Entity_ready(__UPCAST(Entity, this));
+	
 	// start moving
-	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
+	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kCogWheelMove, NULL);
 	
 	// must make sure that the shape is updated
 	if(this->shape)
@@ -100,59 +102,44 @@ void Lava_startMoving(Lava this)
 	}
 }
 
-// whether it is visible
-bool Lava_isVisible(Lava this, int pad)
-{
-	ASSERT(this, "Lava::isVisible: null this");
-
-    // always return true so the Lava is never unloaded from the stage when it is not visible on screen
-	return true;
-}
-
 // state's on message
-bool Lava_handleMessage(Lava this, Telegram telegram)
+bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 {
 	switch (Telegram_getMessage(telegram))
     {
-		case kLavaMove:
+		case kCogWheelMove:
 
-            Lava_moveUpwards(this);
+            CogWheel_rotate(this);
 			break;
 	}
 	
 	return false;
 }
 
-// move lava up
-void Lava_moveUpwards(Lava this)
+// rotate cogwheel
+void CogWheel_rotate(CogWheel this)
 {
-    // get local position of lava and substract 1 from y value
-    VBVec3D offset = Entity_getLocalPosition(__UPCAST(Entity, this));
-    offset.y -= ITOFIX19_13(1);
-
-    // update lava's position
-    Entity_setLocalPosition(__UPCAST(Entity, this), offset);
+    //BgmapSprite_rotate(this->inGameEntityDefinition->entityDefinition->spritesDefinitions, 15);
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kCogWheelMove, NULL);
 }
 
 // resume after pause
-void Lava_resume(Lava this)
+void CogWheel_resume(CogWheel this)
 {
 	ASSERT(this, "Entity::resume: null this");
 
 	Entity_resume(__UPCAST(Entity, this));
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kCogWheelMove, NULL);
 }
 
 // does it move?
-bool Lava_moves(Lava this)
+bool CogWheel_moves(CogWheel this)
 {
-	ASSERT(this, "Lava::moves: null this");
+	ASSERT(this, "CogWheel::moves: null this");
 
 	return true;
 }
-

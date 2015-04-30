@@ -97,9 +97,9 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	// sample code to show how to animate multiple sprites at the same time
 	// buy just playing an animation in a single entity when varios share
 	// the same __ANIMATED_SHARED CharSet
-	if(Container_getChildByName(__UPCAST(Container, this->stage), "DummyHero"))
+	if(Container_getChildByName(__UPCAST(Container, this->stage), "DummyHero", true))
 	{
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, Container_getChildByName(__UPCAST(Container, this->stage), "DummyHero")), "Idle");
+		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, Container_getChildByName(__UPCAST(Container, this->stage), "DummyHero", true)), "Idle");
 	}
 
 	// make a little bit of physical simulations so each entity is placed at the floor
@@ -243,23 +243,6 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 	                // adjustment screen
 					SplashScreenState_setNextstate(__UPCAST(SplashScreenState, VBJaEAdjustmentScreenState_getInstance()), NULL);
 	                Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
-	                break;
-	            }
-
-	            if (K_RL & pressedKey)
-	            {
-	                // pause test particle system
-                    Printing_text(Printing_getInstance(), "PAUSE DUST_PS", 34, 0, NULL);
-	                ParticleSystem particleSystem = (ParticleSystem)Container_getChildByName(__UPCAST(Container, this->stage), "TestPS");
-	                ParticleSystem_pause(particleSystem);
-	                break;
-	            }
-	            if (K_RR & pressedKey)
-	            {
-	                // start test particle system
-                    Printing_text(Printing_getInstance(), "START DUST_PS", 34, 0, NULL);
-	                ParticleSystem particleSystem = (ParticleSystem)Container_getChildByName(__UPCAST(Container, this->stage), "TestPS");
-	                ParticleSystem_start(particleSystem);
 	                break;
 	            }
 			}

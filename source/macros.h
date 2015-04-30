@@ -39,6 +39,8 @@ enum PlatformerTypes
 	kCoin,
 	kKey,
 	kLava,
+	kLavaTrigger,
+	kCogWheel,
 };
 
 #define GAMEWORLD_MODES 4

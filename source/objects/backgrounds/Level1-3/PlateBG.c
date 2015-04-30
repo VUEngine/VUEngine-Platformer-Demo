@@ -18,54 +18,106 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef LAVA_H_
-#define LAVA_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
-#include <macros.h>
+#include <Image.h>
+#include <MBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+// 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define Lava_METHODS															\
-	InanimatedInGameEntity_METHODS;
+extern BYTE PlateBGTiles[];
+extern BYTE PlateBGMap[];
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+
+TextureROMDef PLATE_BG_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+        // __NOT_ANIMATED: number of chars of whole image
+        14,
+
+        // allocation type
+        __NOT_ANIMATED,
+
+        // char definition
+        PlateBGTiles,
+    },
+
+    // bgmap definition
+    PlateBGMap,
+
+    // cols (max 64)
+    64,
+
+    // rows (max 64)
+    64,
+
+    // number of frames
+    1,
+
+    // palette number
+    0,
+};
+
+TextureROMDef* PLATE_BG_SB_TEXTURES[] =
+{
+	(TextureDefinition*)&PLATE_BG_TX,
+	NULL
+};
+
+
+MBgmapSpriteROMDef PLATE_BG_SB_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(MBgmapSprite),
+
+		// texture definition
+		NULL,
+		
+		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+		WRLD_BGMAP,
+		
+		// display mode
+		WRLD_ON,
+
+		// parallax displacement
+		0,
+	},
 	
+	(TextureDefinition**)PLATE_BG_SB_TEXTURES,
+	
+	// SCX/SCY
+	WRLD_1x1,
 
-#define Lava_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
-	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
-    __VIRTUAL_SET(ClassName, Lava, isVisible);									\
-    __VIRTUAL_SET(ClassName, Lava, resume);										\
-	__VIRTUAL_SET(ClassName, Lava, moves);										\
+	// x loop
+	true,
+	
+	// y loop
+	true
+};
 
-__CLASS(Lava);
+BgmapSpriteROMDef* const PLATE_BG_SB_SPRITES[] =
+{
+	(BgmapSpriteROMDef*)&PLATE_BG_SB_SPRITE,
+	NULL
+};
 
-#define Lava_ATTRIBUTES															\
-																				\
-	/* it is derivated from */													\
-	InanimatedInGameEntity_ATTRIBUTES											\
-
-
-//---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
-
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, int ID);
-void Lava_destructor(Lava this);
-void Lava_startMoving(Lava this);
-bool Lava_handleMessage(Lava this, Telegram telegram);
-bool Lava_isVisible(Lava this, int pad);
-void Lava_resume(Lava this);
-bool Lava_moves(Lava this);
-
-
-#endif
+ImageROMDef PLATE_BG_IM =
+{
+	__TYPE(Image),
+	(SpriteROMDef**)PLATE_BG_SB_SPRITES,
+};

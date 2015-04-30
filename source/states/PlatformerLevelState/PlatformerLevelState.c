@@ -58,6 +58,8 @@ void PlatformerLevelState_printLifes(PlatformerLevelState this);
 void PlatformerLevelState_printCoins(PlatformerLevelState this);
 void PlatformerLevelState_printKeys(PlatformerLevelState this);
 void PlatformerLevelState_printLevel(PlatformerLevelState this);
+void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
+void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -98,7 +100,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, NULL);
 
 	// playing by default
-	this->mode = kPaused;
+	PlatformerLevelState_setModeToPaused(this);
 	
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1000, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kSetUpLevel, NULL);
@@ -196,8 +198,8 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	
 	// pause physical simulations
 	Clock_pause(Game_getInGameClock(Game_getInstance()), false);
-	
-	this->mode = kPlaying;
+
+	PlatformerLevelState_setModeToPlaying(this);
 }
 
 // state's on message
@@ -268,7 +270,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
 			//Clock_start(Game_getInGameClock(Game_getInstance()));
 
-			this->mode = kPlaying;
+        	PlatformerLevelState_setModeToPlaying(this);
 			break;
 
 		case kHideLevelMessage:
@@ -287,7 +289,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				if (K_SEL & pressedKey)
 				{
     				// adjustment screen
-					this->mode = kPaused;
+	                PlatformerLevelState_setModeToPaused(this);
 					SplashScreenState_setNextstate(__UPCAST(SplashScreenState, VBJaEAdjustmentScreenState_getInstance()), NULL);
 					Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
 					break;
@@ -295,7 +297,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				else if (K_STA & pressedKey)
                 {
                     // pause screen
-                    this->mode = kPaused;
+					PlatformerLevelState_setModeToPaused(this);
                     Game_pause(Game_getInstance(), __UPCAST(GameState, PauseScreenState_getInstance()));
                     break;
                 }
@@ -387,4 +389,16 @@ void PlatformerLevelState_goToLevel(StageDefinition* stageDefinition)
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
 	this->stageDefinition = stageDefinition;
 	Game_changeState(Game_getInstance(), __UPCAST(GameState, this));
+}
+
+// set kpaused mode
+void PlatformerLevelState_setModeToPaused(PlatformerLevelState this)
+{
+	this->mode = kPaused;
+}
+
+// set kplaying mode
+void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this)
+{
+	this->mode = kPlaying;
 }
