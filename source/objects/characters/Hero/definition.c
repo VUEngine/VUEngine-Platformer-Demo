@@ -422,7 +422,7 @@ ActorROMDef HERO_AC =
 	ITOFIX19_13(0),
 
 	// elasticity for physics
-	ITOFIX19_13(1),
+	ITOFIX19_13(0),
 	
 	// mass
 	ITOFIX19_13(10)

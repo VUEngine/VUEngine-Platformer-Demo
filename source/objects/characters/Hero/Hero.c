@@ -150,14 +150,12 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(SpatialObject, this), kCuboid);
 
-	{
-		// register a body for physics
-		this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), actorDefinition->mass);
-		Body_setElasticity(this->body, actorDefinition->elasticity);
+	// register a body for physics
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), actorDefinition->mass);
+	Body_setElasticity(this->body, actorDefinition->elasticity);
+	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
+	this->collisionSolver = __NEW(CollisionSolver, __UPCAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.localPosition);
 		
-		Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
-	}
-
     // no door overlapping at start
 	Hero_setCurrentlyOverlappingDoor(this, NULL);
 
@@ -170,7 +168,6 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->actionTime = 0;
 	
 	this->boost = false;
-	this->sensibleToFriction.y = false;
 	
 	Hero_setInstance(this);
 
