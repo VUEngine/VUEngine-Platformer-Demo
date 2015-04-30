@@ -23,21 +23,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
+#include <ObjectSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleScreenMiddleTiles[];
-extern BYTE TitleScreenMiddleMap[];
+extern BYTE FenceTiles[];
+extern BYTE FenceMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef TITLESCREEN_MIDDLE_TX =
+TextureROMDef FENCE_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -45,23 +46,23 @@ TextureROMDef TITLESCREEN_MIDDLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        17,
+        4,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        TitleScreenMiddleTiles,
+        FenceTiles,
     },
 
     // bgmap definition
-    TitleScreenMiddleMap,
+    FenceMap,
 
     // cols (max 64)
-    50,
+    3,
 
     // rows (max 64)
-    10,
+    2,
 
     // number of frames
     1,
@@ -70,16 +71,16 @@ TextureROMDef TITLESCREEN_MIDDLE_TX =
     1,
 };
 
-BgmapSpriteROMDef TITLESCREEN_MIDDLE_IM_SPRITE =
+ObjectSpriteROMDef FENCE_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&TITLESCREEN_MIDDLE_TX,
+	(TextureDefinition*)&FENCE_TX,
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
+	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
@@ -88,14 +89,14 @@ BgmapSpriteROMDef TITLESCREEN_MIDDLE_IM_SPRITE =
 	0
 };
 
-BgmapSpriteROMDef* const TITLESCREEN_MIDDLE_IM_SPRITES[] =
+ObjectSpriteROMDef* const FENCE_IM_SPRITES[] =
 {
-	&TITLESCREEN_MIDDLE_IM_SPRITE,
+	&FENCE_IM_SPRITE,
 	NULL
 };
 
-ImageROMDef TITLESCREEN_MIDDLE_IM =
+ImageROMDef FENCE_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)TITLESCREEN_MIDDLE_IM_SPRITES,
+	(SpriteROMDef**)FENCE_IM_SPRITES,
 };

@@ -22,22 +22,80 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <libgccvb.h>
+#include <AnimatedInGameEntity.h>
+#include <ObjectAnimatedSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleScreenMiddleTiles[];
-extern BYTE TitleScreenMiddleMap[];
+extern BYTE GrassTiles[];
+extern BYTE GrassMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef TITLESCREEN_MIDDLE_TX =
+// a function which defines the frames to play
+AnimationFunctionROMDef GRASS_STILL_ANIM =
+{
+	// number of frames of this animation function
+	1,
+	
+	// frames to play in animation
+	{0},
+	
+	// number of cycles a frame of animation is displayed
+	0,
+	
+	// whether to play it in loop or not
+	false,
+	
+	// method to call on function completion
+	NULL,
+	
+	// function's name
+	"Still",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef GRASS_WINDY_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{0,1},
+
+	// number of cycles a frame of animation is displayed
+	15 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Windy",
+};
+
+// an animation definition
+AnimationDescriptionROMDef GRASS_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&GRASS_STILL_ANIM,
+		(AnimationFunction*)&GRASS_WINDY_ANIM,
+		NULL,
+	}
+};
+
+TextureROMDef GRASS_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -45,41 +103,41 @@ TextureROMDef TITLESCREEN_MIDDLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        17,
+        4,
 
         // allocation type
-        __NOT_ANIMATED,
+        __ANIMATED_SHARED,
 
         // char definition
-        TitleScreenMiddleTiles,
+        GrassTiles,
     },
 
     // bgmap definition
-    TitleScreenMiddleMap,
+    GrassMap,
 
     // cols (max 64)
-    50,
+    2,
 
     // rows (max 64)
-    10,
+    2,
 
     // number of frames
-    1,
+    2,
 
     // palette number
-    1,
+    1
 };
 
-BgmapSpriteROMDef TITLESCREEN_MIDDLE_IM_SPRITE =
+ObjectSpriteROMDef GRASS_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&TITLESCREEN_MIDDLE_TX,
+	(TextureDefinition*)&GRASS_TX,
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
+	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
@@ -88,14 +146,40 @@ BgmapSpriteROMDef TITLESCREEN_MIDDLE_IM_SPRITE =
 	0
 };
 
-BgmapSpriteROMDef* const TITLESCREEN_MIDDLE_IM_SPRITES[] =
+ObjectSpriteROMDef* const GRASS_SPRITES[] =
 {
-	&TITLESCREEN_MIDDLE_IM_SPRITE,
+	&GRASS_SPRITE,
 	NULL
 };
 
-ImageROMDef TITLESCREEN_MIDDLE_IM =
+AnimatedInGameEntityROMDef GRASS_AG =
 {
-	__TYPE(Image),
-	(SpriteROMDef**)TITLESCREEN_MIDDLE_IM_SPRITES,
+    {
+        {
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)GRASS_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kBackground,
+
+        // if 0, width and height will be inferred from the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+    	
+    	// Depth
+        1
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&GRASS_ANIM,
+
+    // initial animation
+    "Windy",
 };

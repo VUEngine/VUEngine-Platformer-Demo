@@ -72,5 +72,9 @@ extern EntityDefinition TITLESCREEN_FRONT_IM;
 
 extern EntityDefinition COG_WHEEL_IG;
 
+extern EntityDefinition GRASS_AG;
+extern EntityDefinition BUSH_AG;
+extern EntityDefinition FENCE_IM;
+
 
 #endif

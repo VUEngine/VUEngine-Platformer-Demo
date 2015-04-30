@@ -47,5 +47,9 @@ extern TextureDefinition TITLESCREEN_FRONT_TX;
 
 extern TextureDefinition COG_WHEEL_TX;
 
+extern TextureDefinition GRASS_TX;
+extern TextureDefinition BUSH_TX;
+extern TextureDefinition FENCE_TX;
+
 
 #endif

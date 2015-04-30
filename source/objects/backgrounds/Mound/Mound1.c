@@ -71,7 +71,7 @@ TextureROMDef MOUND_1_TX =
     0,
 };
 
-BgmapSpriteROMDef MOUND_1_IM_SPRITE =
+ObjectSpriteROMDef MOUND_1_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(ObjectSprite),
@@ -90,7 +90,7 @@ BgmapSpriteROMDef MOUND_1_IM_SPRITE =
 	0		
 };
 
-BgmapSpriteROMDef* const MOUND_1_IM_SPRITES[] =
+ObjectSpriteROMDef* const MOUND_1_IM_SPRITES[] =
 {
 	&MOUND_1_IM_SPRITE,
 	NULL
