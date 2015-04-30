@@ -34,11 +34,14 @@ enum PlatformerTypes
 	kHero = 1,
 	kSawBlade,
 	kSolid,
+	kBackground,
 	kFloor,
 	kDoor,
 	kCoin,
 	kKey,
 	kLava,
+	kLavaTrigger,
+	kCogWheel,
 };
 
 #define GAMEWORLD_MODES 4

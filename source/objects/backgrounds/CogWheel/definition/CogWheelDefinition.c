@@ -23,23 +23,24 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <MBgmapSprite.h>
+#include <InAnimatedInGameEntity.h>
+#include <macros.h>
+#include <CogWheel.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE StoneBGTiles[];
-extern BYTE StoneBGMap[];
+extern BYTE CogWheelTiles[];
+extern BYTE CogWheelMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
-TextureROMDef STONE_BG_TX =
+TextureROMDef COG_WHEEL_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -47,23 +48,23 @@ TextureROMDef STONE_BG_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        13,
+        367,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        StoneBGTiles,
+        CogWheelTiles,
     },
 
     // bgmap definition
-    StoneBGMap,
+    CogWheelMap,
 
     // cols (max 64)
-    64,
+    42,
 
     // rows (max 64)
-    64,
+    42,
 
     // number of frames
     1,
@@ -72,52 +73,62 @@ TextureROMDef STONE_BG_TX =
     1,
 };
 
-TextureROMDef* STONE_BG_SB_TEXTURES[] = 
+BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =
 {
-	(TextureDefinition*)&STONE_BG_TX,
+	// sprite's type
+	__TYPE(BgmapSprite),
+
+	// texture definition
+	(TextureDefinition*)&COG_WHEEL_TX,
+	
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	WRLD_AFFINE,
+	
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	-2		
+};
+
+BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =
+{
+	&COG_WHEEL_BG_SPRITE,
 	NULL
 };
 
-
-MBgmapSpriteROMDef STONE_BG_SB_SPRITE =
+InanimatedInGameEntityROMDef COG_WHEEL_IG =
 {
-	{
-		// sprite's type
-		__TYPE(MBgmapSprite),
+    {
+        {
+            __TYPE(CogWheel),
+            (SpriteROMDef**)COG_WHEEL_BG_SPRITES,
+        },
 
-		// texture definition
-		NULL,
-		
-		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-		WRLD_BGMAP,
-		
-		// display mode
-		WRLD_ON,
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-		// parallax displacement
-		0,
-	},
-	
-	(TextureDefinition**)STONE_BG_SB_TEXTURES,
-	
-	// SCX/SCY
-	WRLD_1x1,
+        // in game type
+        kCogWheel,
 
-	// x loop
-	true,
-	
-	// y loop
-	true
-};
+        // if 0, width and height will be inferred from
+        // the texture's size
+        // width
+    	0,
 
-BgmapSpriteROMDef* const STONE_BG_SB_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&STONE_BG_SB_SPRITE,
-	NULL
-};
+    	// height
+    	0,
 
-ImageROMDef STONE_BG_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)STONE_BG_SB_SPRITES,
+        // Depth
+        1
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.0f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(0.0f),
+
+    // register shape
+    false,
 };

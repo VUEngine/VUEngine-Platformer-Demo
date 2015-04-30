@@ -140,10 +140,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	// construct base
 	__CONSTRUCT_BASE(actorDefinition, ID);
 
-	this->lifes = 3;
-	this->energy = 1;
+	this->energy = 3;
 	this->coins = 0;
-	this->keys = 0;
+	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
 	
@@ -243,12 +242,11 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 			Actor_addForce(__UPCAST(Actor, this), &force);
 			
 	    	Hero_hideDust(this);
-			
-			extern const u16 FIRE_SND[];
-			extern const u16 JUMP_SND[];
+
 			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Jump");
+
+			extern const u16 JUMP_SND[];
 			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transform.globalPosition);
-			SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 		}
 	}
 }
@@ -344,7 +342,7 @@ void Hero_stopMovement(Hero this)
 		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Fall");
 	}
 
-	// begin to desaccelerate
+	// begin to decelerate
 	int axisOfDeacceleartion = 0;
 	axisOfDeacceleartion |= velocity.x? __XAXIS: 0;
 	axisOfDeacceleartion |= velocity.z? __ZAXIS: 0;
@@ -494,6 +492,8 @@ void Hero_synchronizeDirectionWithVelocity(Hero this)
 
 void Hero_takeHitFrom(Hero this, Actor other)
 {
+	this->energy--;
+
 	//VBVec3D position = Entity_getPosition(__UPCAST(Entity, other));
 	/*
 	// first stop all movement
@@ -788,6 +788,9 @@ void Hero_enterDoor(Hero this)
 	{
 		Entity_hide(__UPCAST(Entity, this->currentHint));
 	}
+
+    extern const u16 FIRE_SND[];
+    SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 }
 
 static void Hero_addHints(Hero this)
@@ -817,7 +820,7 @@ static void Hero_addFeetDust(Hero this)
 
 	VBVec3D position = 
 	{
-		FTOFIX19_13(-5), FTOFIX19_13(10), FTOFIX19_13(5)
+		FTOFIX19_13(-4), FTOFIX19_13(9), FTOFIX19_13(1)
 	};
 
 	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), feetDustDefinition, -1, "feetDust", &position, NULL));
@@ -832,7 +835,7 @@ void Hero_showHint(Hero this, char* hintName)
 	// close any previous opened hint
 	Hero_hideHint(this);
 
-	this->currentHint = __UPCAST(Entity, Container_getChildByName(__UPCAST(Container, this), hintName));
+	this->currentHint = __UPCAST(Entity, Container_getChildByName(__UPCAST(Container, this), hintName, false));
     
 	ASSERT(this->currentHint, "Hero::showHint: null currentHint");
 
@@ -910,8 +913,6 @@ void Hero_throwObject(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
-	this->lifes--;
-
     /*
 	// go to dead state
 	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroDead_getInstance()));
@@ -1003,14 +1004,14 @@ static void Hero_onKeyHold(Hero this, Object eventFirer)
 // collect a key
 void Hero_collectKey(Hero this)
 {
-	this->keys++;
+	this->hasKey = true;
 	Object_fireEvent(__UPCAST(Object, PlatformerLevelState_getInstance()), EVENT_KEY_TAKEN);
 }
 
-// get number of collected keys
-u8 Hero_getKeys(Hero this)
+// does the hero have a key?
+bool Hero_hasKey(Hero this)
 {
-	return this->keys;
+	return this->hasKey;
 }
 
 // collect a coin
@@ -1026,10 +1027,10 @@ u8 Hero_getCoins(Hero this)
 	return this->coins;
 }
 
-// get number of lifes
-u8 Hero_getLifes(Hero this)
+// get energy
+u8 Hero_getEnergy(Hero this)
 {
-	return this->lifes;
+	return this->energy;
 }
 
 // get door the hero is currently overlapping
@@ -1115,6 +1116,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				Hero_die(this);
 //				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
+
+			case kLavaTrigger:
+
+				MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, inGameEntity), kLavaTriggerStart, NULL);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
 		}
 	}
 
@@ -1138,26 +1145,26 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch (Telegram_getMessage(telegram))
     {
-    case kCheckForOverlappingDoor:
+        case kCheckForOverlappingDoor:
 
-        if (!Hero_isOverlappingDoor(this))
-        {
-            Hero_resetCurrentlyOverlappingDoor(this);
-        }
-        else
-        {
-            // remind hero to check again in 100 milliseconds
-            MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, this), kCheckForOverlappingDoor, NULL);
-        }
-        
-        return true;
-        break;
-        
-    case kStopFeetDust:
-    	
-    	Hero_hideDust(this);
-		return true;
-    	break;
+            if (!Hero_isOverlappingDoor(this))
+            {
+                Hero_resetCurrentlyOverlappingDoor(this);
+            }
+            else
+            {
+                // remind hero to check again in 100 milliseconds
+                MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, this), kCheckForOverlappingDoor, NULL);
+            }
+
+            return true;
+            break;
+
+        case kStopFeetDust:
+
+            Hero_hideDust(this);
+            return true;
+            break;
     }
 
 	return Actor_handleMessage(__UPCAST(Actor, this), telegram);

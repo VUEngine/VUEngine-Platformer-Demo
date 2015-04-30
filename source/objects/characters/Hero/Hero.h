@@ -68,9 +68,6 @@ __CLASS(Hero);
 	/* hold object */															\
 	Actor holdObject;															\
 																				\
-	/* number of lifes */														\
-	u8 lifes;																	\
-																				\
 	/* a reference to the last door the hero passed */    						\
 	Door currentlyOverlappingDoor;												\
 																				\
@@ -95,8 +92,8 @@ __CLASS(Hero);
 	/* number of collected coins */												\
 	u8 coins;																	\
 																				\
-	/* number of collected keys */												\
-	u8 keys;																	\
+	/* flag for collected key */												\
+	bool hasKey;																\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -142,10 +139,10 @@ void Hero_resetActionTime(Hero this);
 void Hero_win(Hero this);
 void Hero_moveOnWin(Hero this);
 void Hero_collectKey(Hero this);
-u8 Hero_getKeys(Hero this);
+bool Hero_hasKey(Hero this);
 void Hero_collectCoin(Hero this);
 u8 Hero_getCoins(Hero this);
-u8 Hero_getLifes(Hero this);
+u8 Hero_getEnergy(Hero this);
 Door Hero_getCurrentlyOverlappingDoor(Hero this);
 void Hero_setCurrentlyOverlappingDoor(Hero this, Door door);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);

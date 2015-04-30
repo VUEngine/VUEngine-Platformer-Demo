@@ -42,11 +42,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S MACROS
-//---------------------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
@@ -65,14 +60,14 @@ void Lava_moveUpwards(Lava this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(Lava, animatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
+__CLASS_NEW_END(Lava, inanimatedInGameEntityDefinition, ID);
 
 // class's constructor
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
 {
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
+	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, ID);
 	
 	if(this->shape)
 	{
@@ -90,13 +85,11 @@ void Lava_destructor(Lava this)
 	__DESTROY_BASE;
 }
 
-// ready method
-void Lava_ready(Lava this)
+// start moving
+void Lava_startMoving(Lava this)
 {
-	ASSERT(this, "Lava::ready: null this");
+	ASSERT(this, "Lava::startMoving: null this");
 
-	Entity_ready(__UPCAST(Entity, this));
-	
 	// start moving
 	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
 	
@@ -155,7 +148,7 @@ void Lava_resume(Lava this)
     MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
 }
 
-// does it moves?
+// does it move?
 bool Lava_moves(Lava this)
 {
 	ASSERT(this, "Lava::moves: null this");

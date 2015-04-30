@@ -24,7 +24,7 @@
 
 #include <libgccvb.h>
 #include <ParticleSystem.h>
-#include <ObjectAnimatedSprite.h>
+#include <ObjectSprite.h>
 #include "../behaviors.h"
 
 
@@ -32,47 +32,17 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DustParticleTiles[];
-extern BYTE DustParticleMap[];
+extern BYTE DustParticleSmallTiles[];
+extern BYTE DustParticleSmallMap[];
+extern BYTE DustParticleLargeTiles[];
+extern BYTE DustParticleLargeMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMDef DUST_PARTICLE_SWIRL_ANIM =
-{
-	// number of frames of this animation function
-	4,
-	
-	// frames to play in animation
-	{0,1,2,3},
-	
-	// number of cycles a frame of animation is displayed
-	10 * __FPS_ANIM_FACTOR,
-	
-	// whether to play it in loop or not
-	true,
-	
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"Swirl",
-};
-
-// an animation definition
-AnimationDescriptionROMDef DUST_PARTICLE_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&DUST_PARTICLE_SWIRL_ANIM,
-		NULL,
-	}
-};
-
-TextureROMDef OBJECT_DUST_PARTICLE_TX =
+TextureROMDef DUST_PARTICLE_SMALL_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -80,17 +50,17 @@ TextureROMDef OBJECT_DUST_PARTICLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        4,
+        1,
 
         // allocation type
-		__ANIMATED_MULTI,
-        
+        __NOT_ANIMATED,
+
         // char definition
-        DustParticleTiles,
+        DustParticleSmallTiles,
     },
 
     // bgmap definition
-    DustParticleMap,
+    DustParticleSmallMap,
 
     // cols (max 64)
     1,
@@ -99,40 +69,93 @@ TextureROMDef OBJECT_DUST_PARTICLE_TX =
     1,
 
     // number of frames
-    4,
+    1,
 
     // palette number
-    1,
+    0,
 };
+
+ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
+{
+	// sprite's type
+	__TYPE(ObjectSprite),
+
+	// texture definition
+	(TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	WRLD_OBJ,
+
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	0
+};
+/*
+TextureROMDef DUST_PARTICLE_LARGE_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+        // __NOT_ANIMATED: number of chars of whole image
+        1,
+
+        // allocation type
+        __NOT_ANIMATED,
+
+        // char definition
+        DustParticleLargeTiles,
+    },
+
+    // bgmap definition
+    DustParticleLargeMap,
+
+    // cols (max 64)
+    1,
+
+    // rows (max 64)
+    1,
+
+    // number of frames
+    1,
+
+    // palette number
+    0,
+};
+
+ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =
+{
+	// sprite's type
+	__TYPE(ObjectSprite),
+
+	// texture definition
+	(TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	WRLD_OBJ,
+
+	// display mode
+	WRLD_ON,
+
+	// parallax displacement
+	0
+};
+*/
+ObjectSpriteROMDef* const DUST_PARTICLE_IM_SPRITES[] =
+{
+	&DUST_PARTICLE_SMALL_IM_SPRITE,
+	//&DUST_PARTICLE_LARGE_IM_SPRITE,
+	NULL
+};
+
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										  OBJECT DUST_PARTICLE
 //---------------------------------------------------------------------------------------------------------
-
-ObjectSpriteROMDef OBJECT_DUST_PARTICLE_SPRITE =
-{
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
-
-	// texture definition
-	(TextureDefinition*)&OBJECT_DUST_PARTICLE_TX,
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
-	
-	// display mode
-	WRLD_ON,
-
-	// parallax displacement
-	0		
-};
-
-ObjectSpriteROMDef* const OBJECT_DUST_PARTICLE_SPRITES[] =
-{
-	&OBJECT_DUST_PARTICLE_SPRITE,
-	NULL
-};
 
 // particle's definition
 ParticleROMDef DUST_PARTICLE =
@@ -160,10 +183,10 @@ ParticleROMDef DUST_PARTICLE =
 
 	// animation description
 	// used only if sprite is animated
-	(AnimationDescription*)&DUST_PARTICLE_ANIM,
+	NULL,
 	
 	// animation's name to play 
-	"Swirl"
+	NULL
 };
 
 ParticleSystemROMDef DUST_PS =
@@ -183,7 +206,7 @@ ParticleSystemROMDef DUST_PS =
 	10,
 
 	// array of textures
-	(const ObjectSpriteDefinition**)OBJECT_DUST_PARTICLE_SPRITES,
+	(const ObjectSpriteDefinition**)DUST_PARTICLE_IM_SPRITES,
 
 	// auto start
 	false,
@@ -195,10 +218,10 @@ ParticleSystemROMDef DUST_PS =
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(-6), ITOFIX19_13(-1), ITOFIX19_13(-1)},
+	{ITOFIX19_13(-6), ITOFIX19_13(-1), ITOFIX19_13(0)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(6), ITOFIX19_13(1), ITOFIX19_13(1)},
+	{ITOFIX19_13(6), ITOFIX19_13(1), ITOFIX19_13(0)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
