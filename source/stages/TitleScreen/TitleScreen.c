@@ -68,6 +68,10 @@ PositionedEntityROMDef HERO_CHILD_ENTITIES[] =
 
 PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 {
+//	{&HERO_AC, 				{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(148), FTOFIX19_13(0)}, HERO_NAME, (struct PositionedEntity*)HERO_CHILD_ENTITIES, NULL},
+//	{&COLLISION_48x2x48, 	{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(177), FTOFIX19_13(0)}, NULL, NULL, NULL},
+//	{NULL, {0,0,0}, NULL, NULL, NULL},
+
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 //	{&CLOUDS_SB, 			{FTOFIX19_13(-32), FTOFIX19_13(-112), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL},
     {&MOUND_BG_BACK_IM,	 	{FTOFIX19_13(-32), FTOFIX19_13(0), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL},
