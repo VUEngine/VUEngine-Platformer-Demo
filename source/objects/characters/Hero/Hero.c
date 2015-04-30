@@ -819,7 +819,7 @@ static void Hero_addFeetDust(Hero this)
 
 	VBVec3D position = 
 	{
-		FTOFIX19_13(-4), FTOFIX19_13(9), FTOFIX19_13(0)
+		FTOFIX19_13(-4), FTOFIX19_13(9), FTOFIX19_13(1)
 	};
 
 	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), feetDustDefinition, -1, "feetDust", &position, NULL));
