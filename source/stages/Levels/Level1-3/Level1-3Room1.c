@@ -140,7 +140,7 @@ StageROMDef LEVEL_1_3_ROOM_1_ST =
     // gravity
     {
 	    ITOFIX19_13(0),
-	    ITOFIX19_13(4000),
+	    ITOFIX19_13(__GRAVITY / 2),
 	    ITOFIX19_13(0)
     },
 

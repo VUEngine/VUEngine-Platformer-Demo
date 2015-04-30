@@ -223,15 +223,12 @@
 // 										PHYSICS
 //---------------------------------------------------------------------------------------------------------
 
-// define it to make the collision system inform your entities if they can fall
-#define __GRAVITY_WORLD
-
 // physical friction
 #define __NO_FRICTION 				0.0f
 #define __FLOOR_FRICTION 			10.0f
 #define __AIR_FRICTION 				50.0f
 
-#define __GRAVITY					980
+#define __GRAVITY					9800
 
 #define __MAX_SHAPES_PER_LEVEL		32
 #define __MAX_BODIES_PER_LEVEL		32
