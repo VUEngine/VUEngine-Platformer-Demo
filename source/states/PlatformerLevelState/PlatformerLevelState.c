@@ -56,7 +56,7 @@ static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object e
 static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_printLifes(PlatformerLevelState this);
 void PlatformerLevelState_printCoins(PlatformerLevelState this);
-void PlatformerLevelState_printKeys(PlatformerLevelState this);
+void PlatformerLevelState_printKey(PlatformerLevelState this);
 void PlatformerLevelState_printLevel(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
@@ -116,7 +116,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// render gui values
 	PlatformerLevelState_printLifes(this);
 	PlatformerLevelState_printCoins(this);
-	PlatformerLevelState_printKeys(this);
+	PlatformerLevelState_printKey(this);
 	PlatformerLevelState_printLevel(this);
 }
 
@@ -177,7 +177,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	// render gui values
 	PlatformerLevelState_printLifes(this);
 	PlatformerLevelState_printCoins(this);
-	PlatformerLevelState_printKeys(this);
+	PlatformerLevelState_printKey(this);
 	PlatformerLevelState_printLevel(this);
 
 	// make a fade in
@@ -350,25 +350,47 @@ static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object e
 // handle event
 static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer)
 {
-	PlatformerLevelState_printKeys(this);
+	PlatformerLevelState_printKey(this);
 }
 
 // print number of lifes to gui
 void PlatformerLevelState_printLifes(PlatformerLevelState this)
 {
-	Printing_int(Printing_getInstance(), Hero_getLifes(Hero_getInstance()), 4, 26, "GUIFont");
+	Printing_text(Printing_getInstance(), "\x7B\x7B\x7B", 4, 26, "GUIFont");
+    u8 i;
+	for (i=0; i < Hero_getEnergy(Hero_getInstance()); i++)
+	{
+    	Printing_text(Printing_getInstance(), "\x60", 4+i, 26, "GUIFont");
+	}
 }
 
 // print number of coins to gui
 void PlatformerLevelState_printCoins(PlatformerLevelState this)
 {
-	Printing_int(Printing_getInstance(), Hero_getCoins(Hero_getInstance()), 10, 26, "GUIFont");
+    u8 coins = Hero_getCoins(Hero_getInstance());
+    u8 printPos = 13;
+	Printing_text(Printing_getInstance(), "000/100", 11, 26, "GUIFont");
+    if (coins >= 10)
+    {
+        printPos--;
+    }
+    if (coins >= 100)
+    {
+        printPos--;
+    }
+    Printing_int(Printing_getInstance(), coins, printPos, 26, "GUIFont");
 }
 
-// print number of keys to gui
-void PlatformerLevelState_printKeys(PlatformerLevelState this)
+// print keys icon to gui
+void PlatformerLevelState_printKey(PlatformerLevelState this)
 {
-	Printing_int(Printing_getInstance(), Hero_getKeys(Hero_getInstance()), 16, 26, "GUIFont");
+    if (Hero_hasKey(Hero_getInstance())) {
+	    Printing_text(Printing_getInstance(), "\x7E\x7F", 24, 26, "GUIFont");
+    }
+    else
+    {
+	    Printing_text(Printing_getInstance(), "  ", 24, 26, "GUIFont");
+    }
 }
 
 // print current level to gui

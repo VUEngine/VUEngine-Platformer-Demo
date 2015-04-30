@@ -140,10 +140,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	// construct base
 	__CONSTRUCT_BASE(actorDefinition, ID);
 
-	this->lifes = 3;
-	this->energy = 1;
+	this->energy = 3;
 	this->coins = 0;
-	this->keys = 0;
+	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
 	
@@ -493,6 +492,8 @@ void Hero_synchronizeDirectionWithVelocity(Hero this)
 
 void Hero_takeHitFrom(Hero this, Actor other)
 {
+	this->energy--;
+
 	//VBVec3D position = Entity_getPosition(__UPCAST(Entity, other));
 	/*
 	// first stop all movement
@@ -912,8 +913,6 @@ void Hero_throwObject(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
-	this->lifes--;
-
     /*
 	// go to dead state
 	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroDead_getInstance()));
@@ -1005,14 +1004,14 @@ static void Hero_onKeyHold(Hero this, Object eventFirer)
 // collect a key
 void Hero_collectKey(Hero this)
 {
-	this->keys++;
+	this->hasKey = true;
 	Object_fireEvent(__UPCAST(Object, PlatformerLevelState_getInstance()), EVENT_KEY_TAKEN);
 }
 
-// get number of collected keys
-u8 Hero_getKeys(Hero this)
+// does the hero have a key?
+bool Hero_hasKey(Hero this)
 {
-	return this->keys;
+	return this->hasKey;
 }
 
 // collect a coin
@@ -1028,10 +1027,10 @@ u8 Hero_getCoins(Hero this)
 	return this->coins;
 }
 
-// get number of lifes
-u8 Hero_getLifes(Hero this)
+// get energy
+u8 Hero_getEnergy(Hero this)
 {
-	return this->lifes;
+	return this->energy;
 }
 
 // get door the hero is currently overlapping
