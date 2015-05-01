@@ -1019,6 +1019,9 @@ void Hero_collectCoin(Hero this)
 {
 	this->coins++;
 	Object_fireEvent(__UPCAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
+
+    extern const u16 FIRE1_SND[];
+    SoundManager_playFxSound(SoundManager_getInstance(), FIRE1_SND, this->transform.globalPosition);
 }
 
 // get number of collected coins

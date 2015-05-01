@@ -18,24 +18,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef SFX_H_
-#define SFX_H_
+const u16 FIRE_SND[] =
+{
+//songlength
+		2,
+//stdwait
+		0x15,
+//stdSxLRV
+		0xFF,
+//stdSxEV0
+		0xF1,
+//stdSxEV1
+		0x01,
+//stdSxRAM
+		0x00,
+//stdS5SWP
+		//0x00,
+//song's notes
+		F_4,
+		F_5,
+		NONE,
+		NONE,
+		NONE,
+		C_3,
+		D_3,
+		NONE,
+		NONE,
+		NONE,
+		C_3,
+		D_3,
+		NONE,
+		NONE,
+		NONE,
+		C_3,
+		D_3,
+		NONE,
+		NONE,
+		NONE,
+		C_3,
+		D_3,
+		NONE,
+		NONE,
+		NONE,
 
-
-//---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
-//---------------------------------------------------------------------------------------------------------
-
-#include <libgccvb.h>
-
-extern const u16 JUMP_SND[];
-extern const u16 FIRE_SND[];
-extern const u16 FIRE1_SND[];
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												ASSETS
-//---------------------------------------------------------------------------------------------------------
-
-
-#endif
+};

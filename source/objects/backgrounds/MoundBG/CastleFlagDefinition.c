@@ -22,22 +22,57 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <libgccvb.h>
+#include <AnimatedInGameEntity.h>
+#include <ObjectAnimatedSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BackgroundMoundCastleTiles[];
-extern BYTE BackgroundMoundCastleMap[];
+extern BYTE BackgroundMoundCastleFlagTiles[];
+extern BYTE BackgroundMoundCastleFlagMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef MOUND_BG_CASTLE_TX =
+// a function which defines the frames to play
+AnimationFunctionROMDef MOUND_BG_CASTLE_FLAG_WAVE_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{0,1},
+
+	// number of cycles a frame of animation is displayed
+	10 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Wave",
+};
+
+// an animation definition
+AnimationDescriptionROMDef MOUND_BG_CASTLE_FLAG_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&MOUND_BG_CASTLE_FLAG_WAVE_ANIM,
+		NULL,
+	}
+};
+
+TextureROMDef MOUND_BG_CASTLE_FLAG_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -45,57 +80,83 @@ TextureROMDef MOUND_BG_CASTLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        34,
+        1,
 
         // allocation type
-        __NOT_ANIMATED,
+        __ANIMATED_SHARED,
 
         // char definition
-        BackgroundMoundCastleTiles,
+        BackgroundMoundCastleFlagTiles,
     },
 
     // bgmap definition
-    BackgroundMoundCastleMap,
+    BackgroundMoundCastleFlagMap,
 
     // cols (max 64)
-    11,
-
-    // rows (max 64)
-    6,
-
-    // number of frames
     1,
 
-    // palette number
+    // rows (max 64)
+    1,
+
+    // number of frames
     2,
+
+    // palette number
+    1
 };
 
-BgmapSpriteROMDef MOUND_BG_CASTLE_IM_SPRITE =
+ObjectSpriteROMDef MOUND_BG_CASTLE_FLAG_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&MOUND_BG_CASTLE_TX,
+	(TextureDefinition*)&MOUND_BG_CASTLE_FLAG_TX,
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
+	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
 
 	// parallax displacement
-	0	
+	0
 };
 
-BgmapSpriteROMDef* const MOUND_BG_CASTLE_IM_SPRITES[] =
+ObjectSpriteROMDef* const MOUND_BG_CASTLE_FLAG_SPRITES[] =
 {
-	&MOUND_BG_CASTLE_IM_SPRITE,
+	&MOUND_BG_CASTLE_FLAG_SPRITE,
 	NULL
 };
 
-ImageROMDef MOUND_BG_CASTLE_IM =
+AnimatedInGameEntityROMDef MOUND_BG_CASTLE_FLAG_AG =
 {
-	__TYPE(Image),
-	(SpriteROMDef**)MOUND_BG_CASTLE_IM_SPRITES,
+    {
+        {
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)MOUND_BG_CASTLE_FLAG_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kBackground,
+
+        // if 0, width and height will be inferred from the texture's size
+        // width
+    	0,
+
+    	// height
+    	0,
+
+    	// Depth
+        1
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&MOUND_BG_CASTLE_FLAG_ANIM,
+
+    // initial animation
+    "Wave",
 };

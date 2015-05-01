@@ -49,7 +49,7 @@ const LangROMDef LANGUAGE_EN =
         //STR_PRECAUTION_SCREEN_TITLE:
         "Important:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        "Read Instruction and\n\nPrecaution Booklets\n\n  before operating",
+        "Read Instruction and\nPrecaution Booklets\n  before operating",
         //STR_AUTOMATIC_PAUSE:
         "Automatic Pause",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:

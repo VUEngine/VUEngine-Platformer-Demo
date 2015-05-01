@@ -41,6 +41,7 @@ extern EntityDefinition MOUND_BG_BACK_IM;
 extern EntityDefinition MOUND_BG_MIDDLE_IM;
 extern EntityDefinition MOUND_BG_FRONT_IM;
 extern EntityDefinition MOUND_BG_CASTLE_IM;
+extern EntityDefinition MOUND_BG_CASTLE_FLAG_AG;
 extern EntityDefinition CLOUDS_SB;
 
 extern EntityDefinition LEVEL1_3_PART1_IM;
