@@ -96,12 +96,6 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 // state's execute
 void HeroIdle_execute(HeroIdle this, void* owner)
 {
-	// how to rotate sample
-	/*
-	Rotation localRotation = Container_getLocalRotation(owner);
-	localRotation.z += 1;
-	Container_setLocalRotation(owner, localRotation);
-	*/
 //	Body_printPhysics(Actor_getBody(owner), 1, 7);
 }
 
