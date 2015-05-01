@@ -85,7 +85,7 @@ PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 104), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL},
-	{&PLATE_BG_IM,	        {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112), FTOFIX19_13(LAYER_1 + 2)}, NULL, NULL, NULL},
+	{&PLATE_BG_IM,	        {FTOFIX19_13(256), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112), FTOFIX19_13(LAYER_1 + 2)}, NULL, NULL, NULL},
 	{(ManagedEntityDefinition*)&MANAGED_ENTITY,		{FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT / 2), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL},
 	
 	// the following entities must be placed in logical (spatial) order,
