@@ -103,7 +103,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 			if (Door_hasDestination(this))
 			{
-				PlatformerLevelState_goToLevel((StageDefinition*)this->destination);
+				PlatformerLevelState_goToLevel((PlatformerStageDefinition*)this->destination);
 				return true;
 			}
 			break;

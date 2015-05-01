@@ -158,11 +158,5 @@ StageROMDef PAUSE_SCREEN_ST =
 
     // background music
     NULL,
-    //(const u16 (*)[])WORLD_0_0_0_BGM,
-
-    // identifier
-    "",
-
-    // name
-    "",
+    //(const u16 (*)[])WORLD_0_0_0_BGM
 };

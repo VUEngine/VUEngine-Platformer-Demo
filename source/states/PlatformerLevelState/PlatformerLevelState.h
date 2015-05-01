@@ -55,11 +55,45 @@ __CLASS(PlatformerLevelState);
 	GameState_ATTRIBUTES														\
 																				\
 	/* the stage to load */														\
-	StageDefinition* stageDefinition;											\
+	PlatformerStageDefinition* platformerStageDefinition;						\
 																				\
 	/* to allow moving the screen */											\
 	u8 mode: 4;																	\
-	
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										   MACROS
+//---------------------------------------------------------------------------------------------------------
+
+#define EVENT_KEY_PRESSED		"keyDown"
+#define EVENT_KEY_RELEASED		"keyUp"
+#define EVENT_KEY_HOLD			"keyHold"
+
+#define EVENT_COIN_TAKEN		"CoinTaken"
+#define EVENT_KEY_TAKEN			"KeyTaken"
+
+
+//---------------------------------------------------------------------------------------------------------
+// 											CLASS'S ROM DECLARATION
+//---------------------------------------------------------------------------------------------------------
+
+// defines a game world in ROM memory
+typedef struct PlatformerStageDefinition
+{
+	// stage's definition
+	StageDefinition stageDefinition;
+
+	// stages's identifier
+	void* identifier;
+
+	// stages's name
+	void* name;
+
+} PlatformerStageDefinition;
+
+typedef const PlatformerStageDefinition PlatformerStageROMDef;
+
+
 enum PlatformerLevelStateMessageTypes
 {
 	kHeroDied = kLastEngineMessage + 1,
@@ -80,22 +114,10 @@ enum PlatformerLevelStateMessageTypes
     kCheckForOverlappingDoor,
     kStopFeetDust,
     kSuspend,
-    
+
 	// don't remove me
 	kLastPlatformerMessage
 };
-
-
-//---------------------------------------------------------------------------------------------------------
-// 										   MACROS
-//---------------------------------------------------------------------------------------------------------
-
-#define EVENT_KEY_PRESSED		"keyDown"
-#define EVENT_KEY_RELEASED		"keyUp"
-#define EVENT_KEY_HOLD			"keyHold"
-
-#define EVENT_COIN_TAKEN		"CoinTaken"
-#define EVENT_KEY_TAKEN			"KeyTaken"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -104,8 +126,8 @@ enum PlatformerLevelStateMessageTypes
 
 // setup the init focus screen
 PlatformerLevelState PlatformerLevelState_getInstance(void);
-void PlatformerLevelState_setStage(PlatformerLevelState this, StageDefinition* stageDefinition);
-void PlatformerLevelState_goToLevel(StageDefinition* stageDefinition);
+void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageDefinition* platformerStageDefinition);
+void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDefinition);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
