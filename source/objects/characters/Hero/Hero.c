@@ -296,11 +296,6 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 			Body_moveUniformly(this->body, newVelocity);
 		}
 	}
-	
-	if (!(__YAXIS & Body_isMoving(this->body)) && AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "Slide"))
-    {
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
-	}			
 }
 
 static void Hero_slide(Hero this)
@@ -335,7 +330,18 @@ void Hero_stopMovement(Hero this)
 
 	if (!(__YAXIS & Body_isMoving(this->body)))
     {
-		Hero_slide(this);
+		MovementType movementType = Body_getMovementType(this->body);
+		
+		if (__UNIFORM_MOVEMENT == movementType.x)
+        {
+			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
+			
+			Hero_showDust(this, true);
+		}
+		else
+        {
+			Hero_slide(this);
+		}
 	}
 	else if (!AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "Fall"))
     {
@@ -404,17 +410,20 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 	if (__YAXIS & axis)
     {
-		MovementType movementType = Body_getMovementType(this->body);
-		
-		if (__UNIFORM_MOVEMENT == movementType.x)
-        {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
+		if(__XAXIS && Body_isMoving(this->body))
+		{
+			MovementType movementType = Body_getMovementType(this->body);
 			
-			Hero_showDust(this, true);
-		}
-		else
-        {
-			Hero_slide(this);
+			if (__UNIFORM_MOVEMENT == movementType.x)
+	        {
+				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
+				
+				Hero_showDust(this, true);
+			}
+			else
+	        {
+				Hero_slide(this);
+			}
 		}
 	}
 

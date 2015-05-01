@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <ObjectSprite.h>
+#include <BgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -74,14 +74,13 @@ TextureROMDef MOUND_1_TX =
 ObjectSpriteROMDef MOUND_1_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&MOUND_1_TX,
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	//WRLD_BGMAP,
-	WRLD_OBJ,
+	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
@@ -90,7 +89,7 @@ ObjectSpriteROMDef MOUND_1_IM_SPRITE =
 	0		
 };
 
-ObjectSpriteROMDef* const MOUND_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const MOUND_1_IM_SPRITES[] =
 {
 	&MOUND_1_IM_SPRITE,
 	NULL
