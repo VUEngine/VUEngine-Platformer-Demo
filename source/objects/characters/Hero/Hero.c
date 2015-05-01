@@ -1123,6 +1123,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 				MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, inGameEntity), kLavaTriggerStart, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				Hero_stopMovement(this);		
 				break;
 		}
 	}

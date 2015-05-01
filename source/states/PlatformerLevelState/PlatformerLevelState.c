@@ -124,7 +124,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 	Object_removeEventListener(__UPCAST(Object, this), __UPCAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
 	// make a fade in
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 	
 	// call base
 	GameState_exit(__UPCAST(GameState, this), owner);
@@ -145,7 +145,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 	if (!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
 	// make a fade in
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY >> 1);
+    Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	GameState_suspend(__UPCAST(GameState, this), owner);
 }
@@ -177,7 +177,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_printLevel(this);
 
 	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY >> 1);
 	
 	// tell any interested entity
 	GameState_propagateMessage(__UPCAST(GameState, this), kResumeLevel);
@@ -242,7 +242,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 		case kStartLevel:
 
 			// fade screen
-			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 			// erase message in 1 second
 			MessageDispatcher_dispatchMessage(2000, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kHideLevelMessage, NULL);

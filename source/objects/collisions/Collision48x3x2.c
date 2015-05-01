@@ -56,7 +56,7 @@ InanimatedInGameEntityROMDef COLLISION_48x3x2 =
     },
 
     // friction FTOFIX19_13
-    FTOFIX19_13(0),
+    FTOFIX19_13(40),
 
     // elasticity FTOFIX19_13
     FTOFIX19_13(1.0f),

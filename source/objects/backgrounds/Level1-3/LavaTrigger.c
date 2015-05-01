@@ -31,6 +31,7 @@
 #include <Screen.h>
 #include <PhysicalWorld.h>
 #include <Lava.h>
+#include <CustomScreenMovementManager.h>
 
 #include <objects.h>
 #include "LavaTrigger.h"
@@ -101,7 +102,7 @@ void LavaTrigger_triggerEventStart(LavaTrigger this)
     PlatformerLevelState_setModeToPaused(platformerState);
 
     // initialize a dramatic screen shake effect
-    Screen_FXShakeStart(Screen_getInstance(), 4000);
+    Screen_startEffect(Screen_getInstance(), kShake, 4000);
 
     // TODO: play rumble BGM
 

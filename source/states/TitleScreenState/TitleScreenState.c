@@ -37,6 +37,7 @@
 #include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
 #include <VBJaEAdjustmentScreenState.h>
+#include <CustomScreenMovementManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -71,6 +72,9 @@ static void TitleScreenState_constructor(TitleScreenState this)
 	__CONSTRUCT_BASE();
 
 	this->lastLevelSelectLabel = "";
+	
+	// set the custom movement screen manager now
+	Screen_setScreenMovementManager(Screen_getInstance(), CustomScreenMovementManager_getInstance());
 }
 
 // class's destructor
@@ -141,7 +145,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
 	// make a fade out
-	Screen_FXFadeOut(Screen_getInstance(), FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	// destroy the state
 	__DELETE(this);
@@ -169,7 +173,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 	GameState_propagateMessage(__UPCAST(GameState, this), kResumeLevel);
 
 	// make a fade in
-	Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY >> 1);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 	// pause physical simulations
 	Clock_pause(Game_getInGameClock(Game_getInstance()), false);
@@ -221,7 +225,7 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 		case kStartLevel:
 
 			// fade screen
-			Screen_FXFadeIn(Screen_getInstance(), FADE_DELAY);
+		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 			// reset clock and restart
 //			Clock_reset(Game_getInGameClock(Game_getInstance()));
