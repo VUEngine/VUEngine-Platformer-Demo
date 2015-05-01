@@ -92,7 +92,7 @@ ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
 	// parallax displacement
 	0
 };
-/*
+
 TextureROMDef DUST_PARTICLE_LARGE_TX =
 {
     {
@@ -143,11 +143,11 @@ ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =
 	// parallax displacement
 	0
 };
-*/
+
 ObjectSpriteROMDef* const DUST_PARTICLE_IM_SPRITES[] =
 {
 	&DUST_PARTICLE_SMALL_IM_SPRITE,
-	//&DUST_PARTICLE_LARGE_IM_SPRITE,
+	&DUST_PARTICLE_LARGE_IM_SPRITE,
 	NULL
 };
 

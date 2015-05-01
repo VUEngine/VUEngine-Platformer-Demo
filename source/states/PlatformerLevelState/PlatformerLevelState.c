@@ -79,7 +79,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE();
 
-	this->stageDefinition = (StageDefinition*)&LEVEL_1_1_ROOM_1_ST;
+	this->platformerStageDefinition = (PlatformerStageDefinition*)&LEVEL_1_1_ROOM_1_ST;
 }
 
 // class's destructor
@@ -89,15 +89,11 @@ static void PlatformerLevelState_destructor(PlatformerLevelState this)
 	__SINGLETON_DESTROY;
 }
 
- int superFlag = false;
-
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
-	 superFlag = true;
-
-	 //load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)this->stageDefinition, NULL);
+    //load stage
+	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), NULL);
 
 	// playing by default
 	PlatformerLevelState_setModeToPaused(this);
@@ -212,19 +208,19 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			{
 				// print level name
-	            StageDefinition* stageDefinition = this->stageDefinition;
+	            PlatformerStageDefinition* platformerStageDefinition = this->platformerStageDefinition;
 	
-	            if ((*stageDefinition).identifier)
+	            if ((*platformerStageDefinition).identifier)
 	            {
 				    char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-				    char* strLevelName = (*stageDefinition).identifier;
+				    char* strLevelName = (*platformerStageDefinition).identifier;
 	                Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
 	                Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
 	            }
 	
-	            if ((*stageDefinition).name)
+	            if ((*platformerStageDefinition).name)
 	            {
-				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*stageDefinition).name);
+				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*platformerStageDefinition).name);
 	                Printing_text(Printing_getInstance(), "\"", 17, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GUIFont");
@@ -396,20 +392,20 @@ void PlatformerLevelState_printKey(PlatformerLevelState this)
 // print current level to gui
 void PlatformerLevelState_printLevel(PlatformerLevelState this)
 {
-	Printing_text(Printing_getInstance(), (*this->stageDefinition).identifier, 35, 26, "GUIFont");
+	Printing_text(Printing_getInstance(), (*this->platformerStageDefinition).identifier, 35, 26, "GUIFont");
 }
 
 // set the next state to load
-void PlatformerLevelState_setStage(PlatformerLevelState this, StageDefinition* stageDefinition)
+void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageDefinition* platformerStageDefinition)
 {
-	this->stageDefinition = stageDefinition;
+	this->platformerStageDefinition = platformerStageDefinition;
 }
 
 // start a given level
-void PlatformerLevelState_goToLevel(StageDefinition* stageDefinition)
+void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDefinition)
 {
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
-	this->stageDefinition = stageDefinition;
+	this->platformerStageDefinition = platformerStageDefinition;
 	Game_changeState(Game_getInstance(), __UPCAST(GameState, this));
 }
 

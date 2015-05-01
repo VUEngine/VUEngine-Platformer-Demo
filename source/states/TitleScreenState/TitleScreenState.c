@@ -122,8 +122,8 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
     // display level name if in front of a door
     if (currentlyOverlappingDoor != NULL)
     {
-        StageDefinition* stageDefinition = Door_getExtraInfo(currentlyOverlappingDoor);
-        strLevelSelectLabel = I18n_getText(I18n_getInstance(), (int)(*stageDefinition).name);
+        PlatformerStageDefinition* platformerStageDefinition = Door_getExtraInfo(currentlyOverlappingDoor);
+        strLevelSelectLabel = I18n_getText(I18n_getInstance(), (int)(*platformerStageDefinition).name);
     }
 
     if (0 != strcmp(this->lastLevelSelectLabel, strLevelSelectLabel))

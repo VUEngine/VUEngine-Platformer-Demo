@@ -216,12 +216,6 @@ StageROMDef TITLE_SCREEN_ST =
     // entities
     TITLE_SCREEN_ST_ENTITIES,
 
-    //background music
-    (const u16 (*)[])WORLD_0_0_0_BGM,
-
-    // identifier
-    "",
-
-    // name
-    "",
+    // background music
+    (const u16 (*)[])WORLD_0_0_0_BGM
 };

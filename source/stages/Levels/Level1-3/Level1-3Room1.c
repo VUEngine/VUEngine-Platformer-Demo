@@ -85,7 +85,7 @@ PositionedEntityROMDef LEVEL_1_3_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 104), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL},
-	{&PLATE_BG_IM,	        {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112), FTOFIX19_13(LAYER_1 + 2)}, NULL, NULL, NULL},
+	{&PLATE_BG_IM,	        {FTOFIX19_13(256), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112), FTOFIX19_13(LAYER_1 + 2)}, NULL, NULL, NULL},
 	{(ManagedEntityDefinition*)&MANAGED_ENTITY,		{FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT / 2), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL},
 	
 	// the following entities must be placed in logical (spatial) order,
@@ -128,80 +128,82 @@ TextureROMDef* LEVEL_1_3_ROOM_1_ST_TEXTURES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef LEVEL_1_3_ROOM_1_ST =
+PlatformerStageROMDef LEVEL_1_3_ROOM_1_ST =
 {
-    // size
     {
-        // x
-        LEVEL_X_SIZE,
-        // y
-        LEVEL_Y_SIZE,
-        // z
-        LEVEL_Z_SIZE
+        // size
+        {
+            // x
+            LEVEL_X_SIZE,
+            // y
+            LEVEL_Y_SIZE,
+            // z
+            LEVEL_Z_SIZE
+        },
+
+        // gravity
+        {
+            ITOFIX19_13(0),
+            ITOFIX19_13(__GRAVITY / 2),
+            ITOFIX19_13(0)
+        },
+
+        // friction
+        FTOFIX19_13(0.1f),
+
+        // OBJs segments z coordinates
+        // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+        // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
+        {
+            // SPT0
+            ITOFIX19_13(0),
+            // SPT1
+            ITOFIX19_13(0),
+            // SPT2
+            ITOFIX19_13(0),
+            // SPT3
+            ITOFIX19_13(20),
+        },
+
+        // initial screen position
+        {
+            // x
+            ITOFIX19_13(SCREEN_X_POSITION),
+            // y
+            ITOFIX19_13(SCREEN_Y_POSITION),
+            // z
+            ITOFIX19_13(SCREEN_Z_POSITION)
+        },
+
+        // optical configuration values
+        {
+            // distance of the eyes to the screen
+            ITOFIX19_13(__DISTANCE_EYE_SCREEN),
+            // maximum view distance into the horizont
+            ITOFIX19_13(__MAXIMUM_VIEW_DISTANCE),
+            // distance from left to right eye (depth sensation)
+            ITOFIX19_13(__BASE_FACTOR),
+            // horizontal View point center
+            ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+            // vertical View point center
+            ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
+        },
+
+        // textures to preload
+        (TextureDefinition**)LEVEL_1_3_ROOM_1_ST_TEXTURES,
+
+        // UI
+        {
+            LEVEL_1_3_ROOM_1_ST_UI_ENTITIES,
+            __TYPE(UI),
+        },
+
+        // entities
+        LEVEL_1_3_ROOM_1_ST_ENTITIES,
+
+        // background music
+        NULL
     },
-
-    // gravity
-    {
-	    ITOFIX19_13(0),
-	    ITOFIX19_13(__GRAVITY / 2),
-	    ITOFIX19_13(0)
-    },
-
-    // friction
-    FTOFIX19_13(0.1f),
-
-    // OBJs segments z coordinates
-	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
-	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
-    {
-        // SPT0
-		ITOFIX19_13(0),
-        // SPT1
-		ITOFIX19_13(0),
-        // SPT2
-		ITOFIX19_13(0),
-        // SPT3
-    	ITOFIX19_13(20),
-    },
-
-    // initial screen position
-    {
-        // x
-        ITOFIX19_13(SCREEN_X_POSITION),
-        // y
-        ITOFIX19_13(SCREEN_Y_POSITION),
-        // z
-        ITOFIX19_13(SCREEN_Z_POSITION)
-    },
-
-    // optical configuration values
-    {
-		// distance of the eyes to the screen
-    	ITOFIX19_13(__DISTANCE_EYE_SCREEN),
-		// maximum view distance into the horizont
-		ITOFIX19_13(__MAXIMUM_VIEW_DISTANCE),
-		// distance from left to right eye (depth sensation)
-		ITOFIX19_13(__BASE_FACTOR),
-		// horizontal View point center
-		ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
-		// vertical View point center
-		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
-    },
-
-    // textures to preload
-    (TextureDefinition**)LEVEL_1_3_ROOM_1_ST_TEXTURES,
-
-    // UI
-    {
-        LEVEL_1_3_ROOM_1_ST_UI_ENTITIES,
-        __TYPE(UI),
-    },
-
-    // entities
-    LEVEL_1_3_ROOM_1_ST_ENTITIES,
-
-    // background music
-    NULL,
 
     // identifier
     "1-3",
