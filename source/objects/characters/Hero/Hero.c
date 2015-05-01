@@ -95,8 +95,8 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 #define HERO_ACCELERATION_Z						ITOFIX19_13(0)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(90)
 #define HERO_STEERING_VELOCITY_X				FTOFIX19_13(30)
-#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-11000)
-#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-13000)
+#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-14000)
+#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-16000)
 
 #define HERO_TIME_TO_DIE		500	// milliseconds
 
@@ -797,7 +797,7 @@ static void Hero_addHints(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
-    const EntityDefinition* hintEntityDefinition = &HINT_ENTER_MC;
+	extern EntityDefinition HINT_ENTER_MC;
 
 	VBVec3D position = 
 	{
@@ -805,7 +805,7 @@ static void Hero_addHints(Hero this)
 	};
 
     // save the hint entity, so we can remove it later
-	this->currentHint = Entity_addChildFromDefinition(__UPCAST(Entity, this), hintEntityDefinition, -1, "enterHint", &position, NULL);
+	this->currentHint = Entity_addChildFromDefinition(__UPCAST(Entity, this), &HINT_ENTER_MC, -1, "enterHint", &position, NULL);
 	
 	// turn it off
 	Hero_hideHint(this);
@@ -816,14 +816,13 @@ static void Hero_addFeetDust(Hero this)
 	ASSERT(this, "Hero::addFeetDust: null this");
 
 	extern EntityDefinition DUST_PS;
-    const EntityDefinition* feetDustDefinition = &DUST_PS;
 
 	VBVec3D position = 
 	{
 		FTOFIX19_13(-4), FTOFIX19_13(9), FTOFIX19_13(1)
 	};
 
-	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), feetDustDefinition, -1, "feetDust", &position, NULL));
+	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 }
