@@ -83,7 +83,7 @@ TextureROMDef OBJECT_COIN_TX =
         4,
 
         // allocation type
-		__ANIMATED_SHARED,
+        __ANIMATED_SHARED_COORDINATED,
         
         // char definition
         CoinTiles,
