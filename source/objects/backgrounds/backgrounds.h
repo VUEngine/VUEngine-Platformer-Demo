@@ -28,7 +28,7 @@
 
 #include "Lava/Lava.h"
 #include <Entity.h>
-#include "texture.h"
+#include "textures.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -67,9 +67,6 @@ extern EntityDefinition MOUND_2_IM;
 extern EntityDefinition LAVA_IG;
 extern EntityDefinition LAVA_TOP_AG;
 extern EntityDefinition LAVA_TRIGGER_IG;
-
-extern EntityDefinition TITLESCREEN_MIDDLE_IM;
-extern EntityDefinition TITLESCREEN_FRONT_IM;
 
 extern EntityDefinition COG_WHEEL_IG;
 

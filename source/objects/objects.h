@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef OBJECTS_DEFINITIONS_H_
-#define OBJECTS_DEFINITIONS_H_
+#ifndef OBJECTS_H_
+#define OBJECTS_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -28,17 +28,20 @@
 
 #include <ManagedEntity.h>
 
-#include "collisions/collisions.h"
+#include "backgrounds/backgrounds.h"
 #include "characters/characters.h"
+#include "collisions/collisions.h"
 #include "hints/hints.h"
 #include "images/images.h"
-#include "sound/sound.h"
-#include "backgrounds/backgrounds.h"
 #include "items/items.h"
 #include "particles/particles.h"
 
 
-// declare global
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
 extern ManagedEntityROMDef MANAGED_ENTITY;
+
 
 #endif

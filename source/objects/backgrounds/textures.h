@@ -43,9 +43,6 @@ extern TextureDefinition MOUND_2_TX;
 extern TextureDefinition LAVA_TX;
 extern TextureDefinition LAVA_TOP_TX;
 
-extern TextureDefinition TITLESCREEN_MIDDLE_TX;
-extern TextureDefinition TITLESCREEN_FRONT_TX;
-
 extern TextureDefinition COG_WHEEL_TX;
 
 extern TextureDefinition GRASS_TX;

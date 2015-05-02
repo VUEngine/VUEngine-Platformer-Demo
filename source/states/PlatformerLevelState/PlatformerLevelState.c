@@ -31,7 +31,7 @@
 #include <PhysicalWorld.h>
 #include <I18n.h>
 #include <PlatformerLevelState.h>
-#include <VBJaEAdjustmentScreenState.h>
+#include <AdjustmentScreenState.h>
 #include <TitleScreenState.h>
 #include <PauseScreenState.h>
 #include <Hero.h>
@@ -286,8 +286,8 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				{
     				// adjustment screen
 	                PlatformerLevelState_setModeToPaused(this);
-					SplashScreenState_setNextstate(__UPCAST(SplashScreenState, VBJaEAdjustmentScreenState_getInstance()), NULL);
-					Game_pause(Game_getInstance(), __UPCAST(GameState, VBJaEAdjustmentScreenState_getInstance()));
+					SplashScreenState_setNextstate(__UPCAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
+					Game_pause(Game_getInstance(), __UPCAST(GameState, AdjustmentScreenState_getInstance()));
 					break;
             	}
 				else if (K_STA & pressedKey)

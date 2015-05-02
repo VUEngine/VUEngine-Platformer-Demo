@@ -29,6 +29,7 @@
 #include "Coin/Coin.h"
 #include "Door/Door.h"
 #include "Key/Key.h"
+#include "textures.h"
 
 
 //---------------------------------------------------------------------------------------------------------

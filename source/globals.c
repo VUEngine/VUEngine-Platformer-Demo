@@ -27,8 +27,9 @@
 #include <StageEditor.h>
 #include <AnimationEditor.h>
 
-// include the Game's objects
 #include <objects.h>
+#include <screens.h>
+#include <sound.h>
 
 
 //---------------------------------------------------------------------------------------------------------

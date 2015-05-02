@@ -13,7 +13,7 @@
 
 extern TextureDefinition OBJECT_TEST_PARTICLE_TX;
 extern TextureDefinition DUST_PARTICLE_SMALL_TX;
-//extern TextureDefinition DUST_PARTICLE_LARGE_TX;
+extern TextureDefinition DUST_PARTICLE_LARGE_TX;
 
 
 #endif
