@@ -332,16 +332,7 @@ void Hero_stopMovement(Hero this)
     {
 		MovementType movementType = Body_getMovementType(this->body);
 		
-		if (__UNIFORM_MOVEMENT == movementType.x)
-        {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
-			
-			Hero_showDust(this, true);
-		}
-		else
-        {
-			Hero_slide(this);
-		}
+		Hero_slide(this);
 	}
 	else if (!AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "Fall"))
     {
@@ -359,6 +350,11 @@ void Hero_stopMovement(Hero this)
 // started moving over axis
 void Hero_startedMovingOnAxis(Hero this, int axis)
 {
+	if(__YAXIS & axis)
+	{
+		Hero_hideDust(this);
+	}
+	
 	// start movement
 	if (__UPCAST(State, HeroMoving_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
     {
@@ -595,7 +591,6 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 			else{
 				
 				// play animation
-				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Jump");
 			}
 		}
 
@@ -603,7 +598,6 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 		if (K_A & vbKeyPressed())
         {
 			// I will bounce
-			Actor_jump(__UPCAST(Actor, this), FIX19_13_MULT(HERO_VELOCITY_Y, HERO_SPEED_MULTIPLIER_Y), HERO_ACCELERATION_Y);
 		}
 		else
 		{
@@ -672,7 +666,6 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 		else
 		{
 			// play animation
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Jump");
 		}
 		return false;
 	}
