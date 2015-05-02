@@ -74,7 +74,7 @@ static void TitleScreenState_constructor(TitleScreenState this)
 	this->lastLevelSelectLabel = "";
 	
 	// set the custom movement screen manager now
-	Screen_setScreenMovementManager(Screen_getInstance(), CustomScreenMovementManager_getInstance());
+	Screen_setScreenMovementManager(Screen_getInstance(), __UPCAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 }
 
 // class's destructor

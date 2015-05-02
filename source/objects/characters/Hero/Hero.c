@@ -330,8 +330,6 @@ void Hero_stopMovement(Hero this)
 
 	if (!(__YAXIS & Body_isMoving(this->body)))
     {
-		MovementType movementType = Body_getMovementType(this->body);
-		
 		Hero_slide(this);
 	}
 	else if (!AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "Fall"))

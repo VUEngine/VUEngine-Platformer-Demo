@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <ObjectAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include "Hero.h"
 
 
@@ -337,7 +337,7 @@ TextureROMDef DUMMY_HERO_TX =
         9,
 
         // allocation type
-        __ANIMATED_SHARED,
+        __ANIMATED_SHARED_COORDINATED,
 
         // char definition
         HeroTiles,
@@ -368,7 +368,7 @@ ObjectSpriteROMDef DUMMY_HERO_SPRITE =
 	(TextureDefinition*)&DUMMY_HERO_TX,
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
+	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,

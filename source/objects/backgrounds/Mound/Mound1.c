@@ -71,7 +71,7 @@ TextureROMDef MOUND_1_TX =
     0,
 };
 
-ObjectSpriteROMDef MOUND_1_IM_SPRITE =
+BgmapSpriteROMDef MOUND_1_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),

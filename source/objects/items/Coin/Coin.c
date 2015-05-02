@@ -30,7 +30,6 @@
 
 #include <objects.h>
 #include "Coin.h"
-#include "CoinManager.h"
 
 #include <PlatformerLevelState.h>
 
@@ -75,18 +74,8 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 // class's destructor
 void Coin_destructor(Coin this)
 {
-	CoinManager_removeCoin(CoinManager_getInstance(), this);
-
 	// delete the super object
 	__DESTROY_BASE;
-}
-
-// ready method
-void Coin_ready(Coin this)
-{
-	Entity_ready(__UPCAST(Entity, this));
-
-	CoinManager_registerCoin(CoinManager_getInstance(), this);
 }
 
 // state's on message
