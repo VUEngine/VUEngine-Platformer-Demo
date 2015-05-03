@@ -18,14 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifdef __CUSTOM_LANGUAGES
-
-/*
- * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
- * of the full extended ASCII character set including special characters of European languages.
- */
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
@@ -36,6 +28,11 @@
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
+
+/*
+ * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
+ * of the full extended ASCII character set including special characters of European languages.
+ */
 
 const LangROMDef LANGUAGE_ES =
 {
@@ -73,6 +70,3 @@ const LangROMDef LANGUAGE_ES =
         "Upwards Spiral",
     },
 };
-
-
-#endif

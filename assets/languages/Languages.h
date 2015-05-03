@@ -1,4 +1,3 @@
-#ifdef __CUSTOM_LANGUAGES
 #ifndef LANGUAGES_H_
 #define LANGUAGES_H_
 
@@ -26,5 +25,4 @@ enum LanguageStrings
 };
 
 
-#endif
 #endif
