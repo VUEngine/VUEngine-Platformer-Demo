@@ -91,7 +91,7 @@ static void PrecautionScreenState_print(PrecautionScreenState this)
 {
     char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TITLE);
     char* strPrecautionText = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TEXT);
-    Size titleSize = Printing_getTextSize(Printing_getInstance(), strPrecautionTitle, "GUIFont");
+    Size titleSize = Printing_getTextSize(Printing_getInstance(), strPrecautionTitle, NULL);
     Size textSize = Printing_getTextSize(Printing_getInstance(), strPrecautionText, NULL);
 
     u8 totalHeight = titleSize.y + 1 + textSize.y;
@@ -101,7 +101,7 @@ static void PrecautionScreenState_print(PrecautionScreenState this)
         strPrecautionTitle,
         (__SCREEN_WIDTH >> 4) - (titleSize.x >> 1),
         (__SCREEN_HEIGHT >> 4) - (totalHeight >> 1),
-        "GUIFont"
+        NULL
     );
 
     Printing_text(

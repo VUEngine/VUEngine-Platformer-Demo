@@ -28,7 +28,7 @@
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <LangSelectScreenState.h>
-#include <VBJaEngineScreenState.h>
+#include <TitleScreenState.h>
 #include <Languages.h>
 
 
@@ -67,7 +67,7 @@ static void LangSelectScreenState_constructor(LangSelectScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, this), __UPCAST(GameState, VBJaEngineScreenState_getInstance()));
+	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, this), __UPCAST(GameState, TitleScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
 
     u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());

@@ -46,11 +46,11 @@ const LangROMDef LANGUAGE_FR =
         //STR_PRECAUTION_SCREEN_TITLE:
         "Important:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        " Prenez conaissance\n de la notice et des\nprécautions a prendre\n   avant de jouer",
+        "Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
         //STR_AUTOMATIC_PAUSE:
         "Pause Automatique",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
-        "  La fonction Pause automatique va\n vous rappelerez de prendre une pause\nde jeu chaque 30 minutes environ",
+        "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
         //STR_AUTOMATIC_PAUSE_TEXT:
         "Se il vous plaît, prendre un repos!",
         //STR_ON:
