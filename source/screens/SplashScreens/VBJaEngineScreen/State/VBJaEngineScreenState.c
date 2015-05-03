@@ -26,7 +26,7 @@
 #include <Screen.h>
 #include <MessageDispatcher.h>
 #include <VBJaEngineScreenState.h>
-#include <TitleScreenState.h>
+#include <LangSelectScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ static void VBJaEngineScreenState_constructor(VBJaEngineScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, this), __UPCAST(GameState, TitleScreenState_getInstance()));
+	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, this), __UPCAST(GameState, LangSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&VBJAENGINE_SCREEN_ST;
 }
 

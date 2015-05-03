@@ -30,7 +30,7 @@
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <AutoPauseSelectScreenState.h>
-#include <LangSelectScreenState.h>
+#include <VBJaEngineScreenState.h>
 #include <AutoPauseScreenState.h>
 #include <Languages.h>
 
@@ -70,7 +70,7 @@ static void AutoPauseSelectScreenState_constructor(AutoPauseSelectScreenState th
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, this), __UPCAST(GameState, LangSelectScreenState_getInstance()));
+	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, this), __UPCAST(GameState, VBJaEngineScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
     this->selection = true;
 }
