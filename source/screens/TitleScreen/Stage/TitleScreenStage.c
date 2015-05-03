@@ -1,3 +1,4 @@
+
 /* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
  *
  * Copyright (C) 2007 Jorge Eremiev
@@ -35,8 +36,8 @@
 // 											    PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef LEVEL_1_1_ROOM_1_ST;
-StageROMDef LEVEL_1_3_ROOM_1_ST;
+extern StageROMDef LEVEL_1_1_ROOM_1_ST;
+extern StageROMDef LEVEL_1_3_ROOM_1_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
