@@ -322,11 +322,16 @@ static void Hero_hideDust(Hero this)
 }
 
 // start movement
-void Hero_stopMovement(Hero this)
+void Hero_stopAddingForce(Hero this)
 {
 	ASSERT(this, "Hero::stopMovement: null this");
 
 	Velocity velocity = Body_getVelocity(this->body);
+
+	// no input
+	this->inputDirection.x = 0;
+	this->inputDirection.y = 0;
+	this->inputDirection.z = 0;
 
 	if (!(__YAXIS & Body_isMoving(this->body)))
     {
@@ -406,9 +411,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
     {
 		if(__XAXIS && Body_isMoving(this->body))
 		{
-			MovementType movementType = Body_getMovementType(this->body);
-			
-			if (__UNIFORM_MOVEMENT == movementType.x)
+			if (this->inputDirection.x)
 	        {
 				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
 				
@@ -1123,7 +1126,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 				MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, inGameEntity), kLavaTriggerStart, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-				Hero_stopMovement(this);		
+				Hero_stopAddingForce(this);		
 				break;
 		}
 	}

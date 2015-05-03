@@ -108,7 +108,7 @@ void Hero_constructor(Hero this, ActorDefinition* definition, int ID);
 void Hero_destructor(Hero this);
 void Hero_ready(Hero this);
 void Hero_addForce(Hero this, int changedDirection, int axis);
-void Hero_stopMovement(Hero this);
+void Hero_stopAddingForce(Hero this);
 void Hero_startedMovingOnAxis(Hero this, int axis);
 bool Hero_stopMovingOnAxis(Hero this, int axis);
 void Hero_move(Hero this);

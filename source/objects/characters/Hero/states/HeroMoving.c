@@ -145,7 +145,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					
 					if (0 < abs(velocity.x))
                     {
-						Hero_stopMovement((Hero)owner);		
+						Hero_stopAddingForce((Hero)owner);		
 					}
 					else
                     {
