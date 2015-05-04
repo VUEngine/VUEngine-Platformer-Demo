@@ -95,7 +95,7 @@
 // otherwise, it is read on each pass of the Game's main update loop, ensuring
 // that no user's input is lost, but introducing a considerable lost of loop's 
 // passes because of the delay needed to read the keypad
-#undef __POLL_USER_INPUT_ONLY_ON_LOGIC_CYCLE
+#define __POLL_USER_INPUT_ONLY_ON_LOGIC_CYCLE
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -179,7 +179,8 @@ ParticleROMDef DUST_PARTICLE =
 	false,
 	
 	// function pointer to control particle's behavior
-	(void (*)(Particle))&testParticleBehavior,
+	//(void (*)(Particle))&testParticleBehavior,
+	NULL,
 
 	// animation description
 	// used only if sprite is animated
