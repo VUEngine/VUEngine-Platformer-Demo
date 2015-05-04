@@ -230,5 +230,5 @@ ParticleSystemROMDef DUST_PS =
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(1), (1), (0)},
+	{(0), (0), (0)},
 };
