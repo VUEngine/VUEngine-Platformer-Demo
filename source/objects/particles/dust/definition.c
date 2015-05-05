@@ -170,10 +170,10 @@ ParticleROMDef DUST_PARTICLE =
 	200,
 
 	// particle's minimum mass
-	FTOFIX19_13(0.0f),
+	FTOFIX19_13(0),
 
 	// particle's maximum mass
-	FTOFIX19_13(0.1f),
+	FTOFIX19_13(0),
 	
 	// axis subject to gravity (false to disable)
 	false,
