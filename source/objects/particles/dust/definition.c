@@ -204,7 +204,7 @@ ParticleSystemROMDef DUST_PS =
 	80,
 
 	// maximum total particles
-	10,
+	20,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)DUST_PARTICLE_IM_SPRITES,
@@ -219,10 +219,10 @@ ParticleSystemROMDef DUST_PS =
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(-6), ITOFIX19_13(-1), ITOFIX19_13(0)},
+	{ITOFIX19_13(-1), ITOFIX19_13(-1), ITOFIX19_13(0)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(6), ITOFIX19_13(1), ITOFIX19_13(0)},
+	{ITOFIX19_13(1), ITOFIX19_13(1), ITOFIX19_13(0)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
