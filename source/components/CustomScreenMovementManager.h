@@ -35,8 +35,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 // delay between screen movements during shaking effect (in ms)
-#define MINIMUM_SHAKE_DELAY		50
-#define MAXIMUM_SHAKE_DELAY		150
+#define MINIMUM_SHAKE_DELAY		80
+#define SHAKE_DELAY_DELTA		130
 
 enum CustomScreenFX
 {

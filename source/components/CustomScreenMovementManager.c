@@ -207,6 +207,11 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
 {
 	ASSERT(this, "Screen::FXShakeStart: null this");
 
+	// don't follow the focus entity while shaking
+	Screen screen = Screen_getInstance();
+    this->tempFocusInGameEntity = Screen_getFocusInGameEntity(screen);
+	Screen_unsetFocusInGameEntity(screen);
+
     // set desired fx duration
     this->shakeTimeLeft = duration;
 
@@ -250,7 +255,7 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
     
 	long seed = Utilities_randomSeed();
 
-    u16 nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, abs(MAXIMUM_SHAKE_DELAY - MINIMUM_SHAKE_DELAY));
+    u16 nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, abs(SHAKE_DELAY_DELTA));
 
     // substract time until next shake
     this->shakeTimeLeft = (this->shakeTimeLeft <= nextShakeDelay) ? 0 : this->shakeTimeLeft - nextShakeDelay;
@@ -258,9 +263,6 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
     // new offset
     // TODO: use random number(s) or pre-defined shaking pattern
     this->lastShakeOffset.x = -this->lastShakeOffset.x;
-
-    this->tempFocusInGameEntity = Screen_getFocusInGameEntity(screen);
-	Screen_unsetFocusInGameEntity(screen);
 
     // move screen a bit
     Screen_move(screen, this->lastShakeOffset, false);

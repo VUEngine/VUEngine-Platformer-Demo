@@ -166,13 +166,13 @@ ParticleROMDef DUST_PARTICLE =
 	// particle's minimum life span in milliseconds
 	100,
 
-	// particle's maximum life span in milliseconds
-	200,
+	// particle's life span delta in miliseconds
+	100,
 
 	// particle's minimum mass
 	FTOFIX19_13(0),
 
-	// particle's maximum mass
+	// particle's mass delta
 	FTOFIX19_13(0),
 	
 	// axis subject to gravity (false to disable)
@@ -203,8 +203,8 @@ ParticleSystemROMDef DUST_PS =
 	// minimum generation delay in milliseconds
 	20,
 
-	// maximum generation delay in milliseconds
-	80,
+	// generation delay delta in miliseconds
+	60,
 
 	// maximum total particles
 	5,
