@@ -197,6 +197,9 @@ ParticleSystemROMDef DUST_PS =
         NULL,
     },
 
+	// whether to delete or reuse expired particles
+    true,
+    
 	// minimum generation delay in milliseconds
 	20,
 
@@ -204,7 +207,7 @@ ParticleSystemROMDef DUST_PS =
 	80,
 
 	// maximum total particles
-	20,
+	5,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)DUST_PARTICLE_IM_SPRITES,
