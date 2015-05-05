@@ -210,6 +210,8 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
     // set desired fx duration
     this->shakeTimeLeft = duration;
 
+    this->lastShakeOffset.x = ITOFIX19_13(2);
+
     // discard pending screen shake messages from previously started shake fx
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kScreenShake);
 
@@ -245,33 +247,28 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
 
         return;
     }
+    
+	long seed = Utilities_randomSeed();
+
+    u16 nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, abs(MAXIMUM_SHAKE_DELAY - MINIMUM_SHAKE_DELAY));
 
     // substract time until next shake
-    this->shakeTimeLeft = (this->shakeTimeLeft <= SHAKE_DELAY) ? 0 : this->shakeTimeLeft - SHAKE_DELAY;
+    this->shakeTimeLeft = (this->shakeTimeLeft <= nextShakeDelay) ? 0 : this->shakeTimeLeft - nextShakeDelay;
 
-    if (this->lastShakeOffset.x == 0 && this->lastShakeOffset.y == 0)
-    {
-        // new offset
-        // TODO: use random number(s) or pre-defined shaking pattern
-        this->lastShakeOffset.x = ITOFIX19_13(2);
+    // new offset
+    // TODO: use random number(s) or pre-defined shaking pattern
+    this->lastShakeOffset.x = -this->lastShakeOffset.x;
 
-        this->tempFocusInGameEntity = Screen_getFocusInGameEntity(screen);
-		Screen_unsetFocusInGameEntity(screen);
+    this->tempFocusInGameEntity = Screen_getFocusInGameEntity(screen);
+	Screen_unsetFocusInGameEntity(screen);
 
-        // move screen a bit
-        Screen_move(screen, this->lastShakeOffset, false);
-    }
-    else
-    {
-        // undo last offset
-        Screen_setFocusInGameEntity(screen, this->tempFocusInGameEntity);
-        this->lastShakeOffset.x = 0;
-    }
+    // move screen a bit
+    Screen_move(screen, this->lastShakeOffset, false);
 
     // apply screen offset
     GameState_transform(__UPCAST(GameState, StateMachine_getCurrentState(Game_getStateMachine(Game_getInstance()))));
 
     // send message for next screen movement
-	MessageDispatcher_dispatchMessage(SHAKE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kScreenShake, NULL);
+	MessageDispatcher_dispatchMessage(nextShakeDelay, __UPCAST(Object, this), __UPCAST(Object, this), kScreenShake, NULL);
 }
 
