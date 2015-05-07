@@ -127,11 +127,11 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
 void Lava_moveUpwards(Lava this)
 {
     // get local position of lava and substract 1 from y value
-    VBVec3D offset = Container_getLocalPosition(__UPCAST(Container, this));
+    VBVec3D offset = *Container_getLocalPosition(__UPCAST(Container, this));
     offset.y -= ITOFIX19_13(1);
 
     // update lava's position
-    Container_setLocalPosition(__UPCAST(Container, this), offset);
+    Container_setLocalPosition(__UPCAST(Container, this), &offset);
 
     // send delayed message to itself to trigger next movement
     MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);

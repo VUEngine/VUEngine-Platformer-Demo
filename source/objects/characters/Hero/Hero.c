@@ -452,17 +452,17 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
     {
 		this->inputDirection.x = __RIGHT;
 
-		VBVec3D position = Container_getLocalPosition(__UPCAST(Container, this->feetDust));
+		VBVec3D position = *Container_getLocalPosition(__UPCAST(Container, this->feetDust));
 		position.x = abs(position.x) * -1;
-		Container_setLocalPosition(__UPCAST(Container, this->feetDust), position);
+		Container_setLocalPosition(__UPCAST(Container, this->feetDust), &position);
 	}
 	else if (K_LL & pressedKey)
     {
 		this->inputDirection.x = __LEFT;
 
-		VBVec3D position = Container_getLocalPosition(__UPCAST(Container, this->feetDust));
+		VBVec3D position = *Container_getLocalPosition(__UPCAST(Container, this->feetDust));
 		position.x = abs(position.x);
-		Container_setLocalPosition(__UPCAST(Container, this->feetDust), position);
+		Container_setLocalPosition(__UPCAST(Container, this->feetDust), &position);
 	}
 	else if (K_LU & pressedKey)
     {

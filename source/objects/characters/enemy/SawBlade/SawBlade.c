@@ -171,7 +171,7 @@ void SawBlade_die(SawBlade this)
 }
 
 // set  position
-void SawBlade_setLocalPosition(SawBlade this, VBVec3D position)
+void SawBlade_setLocalPosition(SawBlade this, const VBVec3D* position)
 {
 	// set my position
 	Actor_setLocalPosition(__UPCAST(Actor, this), position);
@@ -181,12 +181,12 @@ void SawBlade_setLocalPosition(SawBlade this, VBVec3D position)
     {
 		case __XAXIS:
 
-			this->initialPosition = position.x;
+			this->initialPosition = position->x;
 			break;
 			
 		case __YAXIS:
 			
-			this->initialPosition = position.y;
+			this->initialPosition = position->y;
 			break;			
 	}
 }

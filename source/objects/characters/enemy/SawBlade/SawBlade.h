@@ -100,7 +100,7 @@ void SawBlade_unregisterShape(SawBlade this);
 bool SawBlade_processCollision(SawBlade this, Telegram telegram);
 void SawBlade_takeHit(SawBlade this, int axis, s8 direction);
 void SawBlade_die(SawBlade this);
-void SawBlade_setLocalPosition(SawBlade this, VBVec3D position);
+void SawBlade_setLocalPosition(SawBlade this, const VBVec3D* position);
 int SawBlade_getAxisFreeForMovement(SawBlade this);
 void SawBlade_move(SawBlade this);
 void SawBlade_startMovement(SawBlade this);

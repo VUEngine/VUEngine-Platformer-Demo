@@ -119,9 +119,8 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 // rotate cogwheel
 static void CogWheel_rotate(CogWheel this)
 {
-	Rotation localRotation = Container_getLocalRotation(__UPCAST(Container, this));
-	localRotation.z += 1;
-	Container_setLocalRotation(__UPCAST(Container, this), localRotation);
+	this->transform.localRotation.z += 1;
+	Container_setLocalRotation(__UPCAST(Container, this), &this->transform.localRotation);
 
     // send delayed message to itself to trigger next movement
     MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kCogWheelMove, NULL);
