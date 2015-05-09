@@ -121,32 +121,35 @@
 // 										MEMORY POOL
 //---------------------------------------------------------------------------------------------------------
 
-#define __MEMORY_POOLS		9
+#define __MEMORY_POOLS		11
 
 #define __MEMORY_POOL_ARRAYS													\
-	__BLOCK_DEFINITION(256, 1)													\
 	__BLOCK_DEFINITION(192, 1)													\
-	__BLOCK_DEFINITION(160, 48)													\
-	__BLOCK_DEFINITION(132, 24)													\
-	__BLOCK_DEFINITION(100, 24)													\
-	__BLOCK_DEFINITION(84, 80)													\
-	__BLOCK_DEFINITION(36, 64)													\
-	__BLOCK_DEFINITION(28, 784)													\
-	__BLOCK_DEFINITION(24, 192)													\
+	__BLOCK_DEFINITION(164, 4)													\
+	__BLOCK_DEFINITION(136, 48)													\
+	__BLOCK_DEFINITION(96, 48)													\
+	__BLOCK_DEFINITION(80, 32)													\
+	__BLOCK_DEFINITION(72, 64)													\
+	__BLOCK_DEFINITION(64, 32)													\
+	__BLOCK_DEFINITION(32, 64)													\
+	__BLOCK_DEFINITION(28, 256)													\
+	__BLOCK_DEFINITION(24, 640)													\
+	__BLOCK_DEFINITION(20, 256)													\
 
 #define __SET_MEMORY_POOL_ARRAYS												\
-	__SET_MEMORY_POOL_ARRAY(256)												\
 	__SET_MEMORY_POOL_ARRAY(192)												\
-	__SET_MEMORY_POOL_ARRAY(160)												\
-	__SET_MEMORY_POOL_ARRAY(132)												\
-	__SET_MEMORY_POOL_ARRAY(100)												\
-	__SET_MEMORY_POOL_ARRAY(84)													\
-	__SET_MEMORY_POOL_ARRAY(36)													\
+	__SET_MEMORY_POOL_ARRAY(164)												\
+	__SET_MEMORY_POOL_ARRAY(136)												\
+	__SET_MEMORY_POOL_ARRAY(96)													\
+	__SET_MEMORY_POOL_ARRAY(80)													\
+	__SET_MEMORY_POOL_ARRAY(72)													\
+	__SET_MEMORY_POOL_ARRAY(64)													\
+	__SET_MEMORY_POOL_ARRAY(32)													\
 	__SET_MEMORY_POOL_ARRAY(28)													\
 	__SET_MEMORY_POOL_ARRAY(24)													\
+	__SET_MEMORY_POOL_ARRAY(20)													\
 
-
-#define __MIN_BLOCK 		24
+#define __MIN_BLOCK 		20
 
 
 //---------------------------------------------------------------------------------------------------------

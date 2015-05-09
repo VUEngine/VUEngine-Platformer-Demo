@@ -141,10 +141,10 @@ ParticleROMDef TEST_PARTICLE =
     __TYPE(Particle),
 
 	// particle's minimum life span in milliseconds
-	1000,
+	300,
 
 	// particle's maximum life span in milliseconds
-	2000,
+	1500,
 
 	// particle's minimum mass
 	FTOFIX19_13(5.0f),
@@ -174,16 +174,16 @@ ParticleSystemROMDef TEST_PS =
     },
 
 	// whether to delete or reuse expired particles
-    true,
+    false,
 
     // minimum generation delay in milliseconds
-	150,
+	50,
 
 	// maximum generation delay in milliseconds
-	350,
+	100,
 
 	// maximum total particles
-	15,
+	30,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)OBJECT_TEST_PARTICLE_SPRITES,
