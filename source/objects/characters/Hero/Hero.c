@@ -145,6 +145,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
+	this->currentlyOverlappingDoor = NULL;
 	
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(SpatialObject, this), kCuboid);
@@ -185,6 +186,9 @@ void Hero_destructor(Hero this)
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
+	this->feetDust = NULL;
+	this->currentHint = NULL;
+	
 	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kHeroDied, NULL);
 
 	hero = NULL;
@@ -1059,7 +1063,6 @@ void Hero_setCurrentlyOverlappingDoor(Hero this, Door door)
 	}
 	
 	this->currentlyOverlappingDoor = door;
-
 }
 
 void Hero_resetCurrentlyOverlappingDoor(Hero this)

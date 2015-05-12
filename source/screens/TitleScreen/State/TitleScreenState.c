@@ -108,7 +108,6 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Clock_start(Game_getInGameClock(Game_getInstance()));
-	PhysicalWorld_start(PhysicalWorld_getInstance());
 
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1000, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kSetUpLevel, NULL);
@@ -209,9 +208,6 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			// make a little bit of physical simulations so each entity is placed at the floor
 			Clock_start(Game_getInGameClock(Game_getInstance()));
 	
-			// start physical simulation again
-			PhysicalWorld_start(PhysicalWorld_getInstance());
-
 			// pause physical simulations
 			//Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 
@@ -231,9 +227,6 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 //			Clock_reset(Game_getInGameClock(Game_getInstance()));
 //			Clock_start(Game_getInGameClock(Game_getInstance()));
 			
-			// start physical simulation again
-			PhysicalWorld_start(PhysicalWorld_getInstance());
-
 			// tell any interested entity
 			GameState_propagateMessage(__UPCAST(GameState, this), kStartLevel);
 			break;

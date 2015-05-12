@@ -107,7 +107,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Clock_start(Game_getInGameClock(Game_getInstance()));
-	PhysicalWorld_start(PhysicalWorld_getInstance());
 		
 	// render gui values
 	PlatformerLevelState_printLifes(this);

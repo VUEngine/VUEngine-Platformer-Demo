@@ -210,7 +210,7 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
 	// don't follow the focus entity while shaking
 	Screen screen = Screen_getInstance();
     this->tempFocusInGameEntity = Screen_getFocusInGameEntity(screen);
-	Screen_unsetFocusInGameEntity(screen);
+	//Screen_unsetFocusInGameEntity(screen);
 
     // set desired fx duration
     this->shakeTimeLeft = duration;
@@ -245,7 +245,7 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
         // if needed, undo last offset
         if (this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
         {
-            Screen_setFocusInGameEntity(screen, this->tempFocusInGameEntity);
+            //Screen_setFocusInGameEntity(screen, this->tempFocusInGameEntity);
             this->lastShakeOffset.x = 0;
             GameState_transform(__UPCAST(GameState, Game_getCurrentState(Game_getInstance())));
         }
