@@ -71,7 +71,7 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInG
 	
 	if(this->shape)
 	{
-		Shape_setCheckForCollisions(__UPCAST(Shape, this->shape), false);
+		Shape_setCheckForCollisions(__GET_CAST(Shape, this->shape), false);
 	}
 }
 
@@ -91,7 +91,7 @@ void Lava_startMoving(Lava this)
 	ASSERT(this, "Lava::startMoving: null this");
 
 	// start moving
-	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
+	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kLavaMove, NULL);
 	
 	// must make sure that the shape is updated
 	if(this->shape)
@@ -127,14 +127,14 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
 void Lava_moveUpwards(Lava this)
 {
     // get local position of lava and substract 1 from y value
-    VBVec3D offset = *Container_getLocalPosition(__UPCAST(Container, this));
+    VBVec3D offset = *Container_getLocalPosition(__GET_CAST(Container, this));
     offset.y -= ITOFIX19_13(1);
 
     // update lava's position
-    Container_setLocalPosition(__UPCAST(Container, this), &offset);
+    Container_setLocalPosition(__GET_CAST(Container, this), &offset);
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
+    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kLavaMove, NULL);
 }
 
 // resume after pause
@@ -142,10 +142,10 @@ void Lava_resume(Lava this)
 {
 	ASSERT(this, "Entity::resume: null this");
 
-	Entity_resume(__UPCAST(Entity, this));
+	Entity_resume(__GET_CAST(Entity, this));
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __UPCAST(Object, this), __UPCAST(Object, this), kLavaMove, NULL);
+    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kLavaMove, NULL);
 }
 
 // does it move?

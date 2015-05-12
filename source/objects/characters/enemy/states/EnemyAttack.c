@@ -62,7 +62,7 @@ void EnemyAttack_destructor(EnemyAttack this)
 void EnemyAttack_enter(EnemyAttack this, void* owner)
 {
 	// do not move
-//	Actor_stopMovement(__UPCAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
+//	Actor_stopMovement(__GET_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
 }
 
 // state's execute
@@ -71,7 +71,7 @@ void EnemyAttack_execute(EnemyAttack this, void* owner)
 //	if (HERO_TIME_TO_DIE < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
 // {
 		// change state
-		StateMachine_popState(Actor_getStateMachine(__UPCAST(Actor, owner)));
+		StateMachine_popState(Actor_getStateMachine(__GET_CAST(Actor, owner)));
 //	}
 }
 

@@ -67,7 +67,7 @@ static void LangSelectScreenState_constructor(LangSelectScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, this), __UPCAST(GameState, TitleScreenState_getInstance()));
+	SplashScreenState_setNextstate(__GET_CAST(SplashScreenState, this), __GET_CAST(GameState, TitleScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
 
     u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
@@ -113,7 +113,7 @@ void LangSelectScreenState_processInput(LangSelectScreenState this, u16 released
 	else if ((releasedKey & K_A) || (releasedKey & K_STA))
 	{
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
-	    Game_changeState(Game_getInstance(), __UPCAST(GameState, this->nextState));
+	    Game_changeState(Game_getInstance(), __GET_CAST(GameState, this->nextState));
 	}
 }
 

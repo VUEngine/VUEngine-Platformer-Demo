@@ -148,13 +148,13 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	this->currentlyOverlappingDoor = NULL;
 	
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), actorDefinition->mass);
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __GET_CAST(SpatialObject, this), actorDefinition->mass);
 	Body_setElasticity(this->body, actorDefinition->elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
-	this->collisionSolver = __NEW(CollisionSolver, __UPCAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.localPosition);
+	this->collisionSolver = __NEW(CollisionSolver, __GET_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.localPosition);
 		
     // no door overlapping at start
 	Hero_setCurrentlyOverlappingDoor(this, NULL);
@@ -171,9 +171,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
 	
 	Hero_setInstance(this);
 
-	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_addEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_addEventListener(__GET_CAST(Object, Game_getCurrentState(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_addEventListener(__GET_CAST(Object, Game_getCurrentState(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_addEventListener(__GET_CAST(Object, Game_getCurrentState(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
 	this->inputDirection = this->direction;
 }
@@ -189,13 +189,13 @@ void Hero_destructor(Hero this)
 	this->feetDust = NULL;
 	this->currentHint = NULL;
 	
-	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kHeroDied, NULL);
+	MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kHeroDied, NULL);
 
 	hero = NULL;
 	
-	Object_removeEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_removeEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_removeEventListener(__UPCAST(Object, Game_getCurrentState(Game_getInstance())), __UPCAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_removeEventListener(__GET_CAST(Object, Game_getCurrentState(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_removeEventListener(__GET_CAST(Object, Game_getCurrentState(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_removeEventListener(__GET_CAST(Object, Game_getCurrentState(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
@@ -207,10 +207,10 @@ void Hero_ready(Hero this)
 {
 	ASSERT(this, "HeroMoving::ready: null this");
 
-	Entity_ready(__UPCAST(Entity, this));
+	Entity_ready(__GET_CAST(Entity, this));
 
 	// initialize me as idle
-	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroIdle_getInstance()));
+	StateMachine_swapState(this->stateMachine, __GET_CAST(State, HeroIdle_getInstance()));
 
 	Hero_addHints(this);
 	Hero_addFeetDust(this);
@@ -234,7 +234,7 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 			0
 		};
 
-		if ((!checkIfYMovement || !velocity.y) && !(__YAXIS & Actor_canMoveOverAxis(__UPCAST(Actor, this), &acceleration)))
+		if ((!checkIfYMovement || !velocity.y) && !(__YAXIS & Actor_canMoveOverAxis(__GET_CAST(Actor, this), &acceleration)))
         {
 			Force force =
             {
@@ -243,11 +243,11 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
                 0
             };
 			
-			Actor_addForce(__UPCAST(Actor, this), &force);
+			Actor_addForce(__GET_CAST(Actor, this), &force);
 			
 	    	Hero_hideDust(this);
 
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Jump");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Jump");
 
 			extern const u16 JUMP_SND[];
 			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transform.globalPosition);
@@ -269,8 +269,8 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 	if (this->direction.x != this->inputDirection.x || 
 			((__XAXIS & axis) && maxVelocity > fabs(velocity.x)) || 
 			((__ZAXIS & axis) && maxVelocity > fabs(velocity.z)) || 
-			Actor_changedDirection(__UPCAST(Actor, this), __XAXIS) || 
-			Actor_changedDirection(__UPCAST(Actor, this), __ZAXIS))
+			Actor_changedDirection(__GET_CAST(Actor, this), __XAXIS) || 
+			Actor_changedDirection(__GET_CAST(Actor, this), __ZAXIS))
     {
 		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body)? HERO_WHILE_JUMPIN_INPUT_FORCE: HERO_INPUT_FORCE;
 		fix19_13 xForce = (__XAXIS & axis)? __RIGHT == this->inputDirection.x? inputForce: -inputForce: 0;
@@ -282,7 +282,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
             zForce
         };
 
-		Actor_addForce(__UPCAST(Actor, this), &force);
+		Actor_addForce(__GET_CAST(Actor, this), &force);
 		movementType = __ACCELERATED_MOVEMENT;
 	}
 	else
@@ -304,7 +304,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 
 static void Hero_slide(Hero this)
 {
-	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Slide");
+	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Slide");
 	
 	Hero_showDust(this, false);
 }
@@ -316,7 +316,7 @@ static void Hero_showDust(Hero this, bool autoHideDust)
 	if(autoHideDust)
 	{
 		// stop the dust after some time
-	    MessageDispatcher_dispatchMessage(200, __UPCAST(Object, this), __UPCAST(Object, this), kStopFeetDust, NULL);
+	    MessageDispatcher_dispatchMessage(200, __GET_CAST(Object, this), __GET_CAST(Object, this), kStopFeetDust, NULL);
 	}
 }
 
@@ -341,9 +341,9 @@ void Hero_stopAddingForce(Hero this)
     {
 		Hero_slide(this);
 	}
-	else if (!AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "Fall"))
+	else if (!AnimatedInGameEntity_isAnimationLoaded(__GET_CAST(AnimatedInGameEntity, this), "Fall"))
     {
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Fall");
+		AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Fall");
 	}
 
 	// begin to decelerate
@@ -363,18 +363,18 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	}
 	
 	// start movement
-	if (__UPCAST(State, HeroMoving_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+	if (__GET_CAST(State, HeroMoving_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
     {
  		if (__XAXIS & axis)
         {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Walk");
 		}
  		else if (__YAXIS & axis)
         {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Fall");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Fall");
 		}
 
-		StateMachine_swapState(Actor_getStateMachine(__UPCAST(Actor,  this)), __UPCAST(State,  HeroMoving_getInstance()));
+		StateMachine_swapState(Actor_getStateMachine(__GET_CAST(Actor,  this)), __GET_CAST(State,  HeroMoving_getInstance()));
 	}
 	else
 	{
@@ -382,17 +382,17 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 
 		if ((__XAXIS & axis)  && !(__YAXIS & movementState))
         {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Walk");
 		}
 
 		if (__YAXIS & axis)
         {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Fall");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Fall");
 		}
 
 		if (__ZAXIS & axis)
         {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Walk");
 		}
 	}
 }
@@ -406,7 +406,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 	if ((__XAXIS & axis) && !(__YAXIS & movementState))
     {
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Idle");
+		AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Idle");
 
     	Hero_hideDust(this);
     }
@@ -417,7 +417,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		{
 			if (this->inputDirection.x)
 	        {
-				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Walk");
+				AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Walk");
 				
 				Hero_showDust(this, true);
 			}
@@ -430,14 +430,14 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 	if (__ZAXIS & axis)
     {
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Idle");
-		StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroIdle_getInstance()));					
+		AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Idle");
+		StateMachine_swapState(this->stateMachine, __GET_CAST(State, HeroIdle_getInstance()));					
 		return true;
 	}
 
-	if (!Body_isMoving(Actor_getBody(__UPCAST(Actor, this))) && __UPCAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+	if (!Body_isMoving(Actor_getBody(__GET_CAST(Actor, this))) && __GET_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
     {
-		StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroIdle_getInstance()));					
+		StateMachine_swapState(this->stateMachine, __GET_CAST(State, HeroIdle_getInstance()));					
 	}
 	
 	return false;
@@ -456,17 +456,17 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
     {
 		this->inputDirection.x = __RIGHT;
 
-		VBVec3D position = *Container_getLocalPosition(__UPCAST(Container, this->feetDust));
+		VBVec3D position = *Container_getLocalPosition(__GET_CAST(Container, this->feetDust));
 		position.x = abs(position.x) * -1;
-		Container_setLocalPosition(__UPCAST(Container, this->feetDust), &position);
+		Container_setLocalPosition(__GET_CAST(Container, this->feetDust), &position);
 	}
 	else if (K_LL & pressedKey)
     {
 		this->inputDirection.x = __LEFT;
 
-		VBVec3D position = *Container_getLocalPosition(__UPCAST(Container, this->feetDust));
+		VBVec3D position = *Container_getLocalPosition(__GET_CAST(Container, this->feetDust));
 		position.x = abs(position.x);
-		Container_setLocalPosition(__UPCAST(Container, this->feetDust), &position);
+		Container_setLocalPosition(__GET_CAST(Container, this->feetDust), &position);
 	}
 	else if (K_LU & pressedKey)
     {
@@ -479,7 +479,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 
 	if (animation && !(__YAXIS & movementState))
     {
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), animation);
+		AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), animation);
 	}
 }
 
@@ -504,10 +504,10 @@ void Hero_takeHitFrom(Hero this, Actor other)
 {
 	this->energy--;
 
-	//VBVec3D position = Entity_getPosition(__UPCAST(Entity, other));
+	//VBVec3D position = Entity_getPosition(__GET_CAST(Entity, other));
 	/*
 	// first stop all movement
-	Actor_stopMovement(__UPCAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
+	Actor_stopMovement(__GET_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
 	
 	// reduce energy
 	if (--this->energy)
@@ -527,21 +527,21 @@ void Hero_takeHitFrom(Hero this, Actor other)
     {
 		if (__RIGHT == this->direction.x)
         {
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "HitFront");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitFront");
 		}
 		else{
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "HitBehind");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitBehind");
 		}
 	}
 	else
 	{
 		if (__LEFT == this->direction.x)
 		{
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "HitFront");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitFront");
 		}
 		else
 		{
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "HitBehind");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitBehind");
 		}							
 	}
 	
@@ -560,13 +560,13 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 
 	
 	// if enemy is already dead
-	if (kDead == Actor_getInGameState(__UPCAST(Actor, enemy)))
+	if (kDead == Actor_getInGameState(__GET_CAST(Actor, enemy)))
     {
 		return false;
 	}
 	
 	// if it is the holdobject which wants to hit me
-	if (this->holdObject == __UPCAST(Actor, enemy))
+	if (this->holdObject == __GET_CAST(Actor, enemy))
     {
 		this->holdObject = NULL;
 		return true;
@@ -576,13 +576,13 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 	// check if I'm over the enemy
 	if ((this->velocity.y && __DOWN == this->direction.y) &&
 	    (
-    		this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__UPCAST(Entity, this)) >> 2) <
-    		Entity_getPosition(__UPCAST(Entity, enemy)).y
+    		this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__GET_CAST(Entity, this)) >> 2) <
+    		Entity_getPosition(__GET_CAST(Entity, enemy)).y
     	)
     )
     {
 		// align to the colliding object
-		Actor_alignTo(__UPCAST(Actor, this), __UPCAST(InGameEntity, enemy), __XAXIS, 2);
+		Actor_alignTo(__GET_CAST(Actor, this), __GET_CAST(InGameEntity, enemy), __XAXIS, 2);
 		
 		//check if player wants to jump over z axis
 		if (!Hero_checkIfZJump(this))
@@ -591,7 +591,7 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 			if (this->holdObject)
             {
 				// play animation
-				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "JumpHolding");
+				AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "JumpHolding");
 			}
 			else{
 				
@@ -607,7 +607,7 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 		else
 		{
 			// I will bounce
-			Actor_jump(__UPCAST(Actor, this), HERO_VELOCITY_Y , HERO_ACCELERATION_Y);
+			Actor_jump(__GET_CAST(Actor, this), HERO_VELOCITY_Y , HERO_ACCELERATION_Y);
 		}
 
 		// tell enemy I've hit him
@@ -620,16 +620,16 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
 	if (this->holdObject)
     {
 		// if I'm facing the enemy
-		if ((this->transform.globalPosition.x <  Entity_getPosition(__UPCAST(Entity, enemy)).x && __RIGHT == this->direction.x)
+		if ((this->transform.globalPosition.x <  Entity_getPosition(__GET_CAST(Entity, enemy)).x && __RIGHT == this->direction.x)
 			||
-			(this->transform.globalPosition.x >  Entity_getPosition(__UPCAST(Entity, enemy)).x && __LEFT == this->direction.x)
+			(this->transform.globalPosition.x >  Entity_getPosition(__GET_CAST(Entity, enemy)).x && __LEFT == this->direction.x)
 			)
         {
 			// tell enemy to die
-			__VIRTUAL_CALL(void, Actor, die, __UPCAST(Actor, enemy));
+			__VIRTUAL_CALL(void, Actor, die, __GET_CAST(Actor, enemy));
 			
 			// hold object must be destroyed
-			__VIRTUAL_CALL(void, Actor, die, __UPCAST(Actor, this->holdObject));
+			__VIRTUAL_CALL(void, Actor, die, __GET_CAST(Actor, this->holdObject));
 			
 			// holding nothing now
 			this->holdObject = NULL;
@@ -646,27 +646,27 @@ bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
         {
 			if (!this->holdObject)
             {
-				Hero_pickupObject(this, __UPCAST(Actor, enemy));
+				Hero_pickupObject(this, __GET_CAST(Actor, enemy));
 				return false;
 			}
 		}
 		
 		// stop my movement
-		Actor_stopMovement(__UPCAST(Actor, this), __XAXIS);
+		Actor_stopMovement(__GET_CAST(Actor, this), __XAXIS);
 
 		// align to the colliding object
-		Actor_alignTo(__UPCAST(Actor, this), __UPCAST(InGameEntity, enemy), __XAXIS, 1);
+		Actor_alignTo(__GET_CAST(Actor, this), __GET_CAST(InGameEntity, enemy), __XAXIS, 1);
 
 		// tell enemy to begin bouncing
 		__VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __XAXIS, this->direction.x);
 
 		// I will bounce
-		Actor_jump(__UPCAST(Actor, this), FIX19_13_DIV(HERO_VELOCITY_Y, ITOFIX19_13(2)), HERO_ACCELERATION_Y);
+		Actor_jump(__GET_CAST(Actor, this), FIX19_13_DIV(HERO_VELOCITY_Y, ITOFIX19_13(2)), HERO_ACCELERATION_Y);
 		
 		if (this->holdObject)
         {
 			// play animation
-			AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "JumpHolding");
+			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "JumpHolding");
 		}
 		else
 		{
@@ -690,7 +690,7 @@ void Hero_setAnimationDelta(Hero this, int delta)
 	
 	for (; node; node = VirtualNode_getNext(node))
 	{
-		Sprite_setFrameDelayDelta(__UPCAST(Sprite, VirtualNode_getData(node)), this->boost ? -2 : -1);
+		Sprite_setFrameDelayDelta(__GET_CAST(Sprite, VirtualNode_getData(node)), this->boost ? -2 : -1);
 	}
 }
 
@@ -742,7 +742,7 @@ void Hero_pickupObject(Hero this, Actor object)
     };
 	Entity child = Entity_load(&FLOOR1_BG, &position, 1, NULL);
 
-	__VIRTUAL_CALL(void, Container, addChild, __UPCAST(Container, this), child);
+	__VIRTUAL_CALL(void, Container, addChild, __GET_CAST(Container, this), child);
 
 	this->holdObject = object;
 	
@@ -750,7 +750,7 @@ void Hero_pickupObject(Hero this, Actor object)
 	Hero_updateHoldObjectPosition(this);
 	
 	// remove from collision detection system
-	InGameEntity_setShapeState(__UPCAST(InGameEntity, this->holdObject), false);
+	InGameEntity_setShapeState(__GET_CAST(InGameEntity, this->holdObject), false);
 	*/
 }
 
@@ -764,7 +764,7 @@ bool Hero_isOverlappingDoor(Hero this)
 	// check if hero recently passed a door and is still doing so
 	if (
 		(Hero_getCurrentlyOverlappingDoor(this) != NULL) &&
-		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__UPCAST(Entity, this)), Entity_getShape(__UPCAST(Entity, Hero_getCurrentlyOverlappingDoor(this))))
+		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__GET_CAST(Entity, this)), Entity_getShape(__GET_CAST(Entity, Hero_getCurrentlyOverlappingDoor(this))))
 	)
 	{
 		isOverlapping = true;
@@ -785,7 +785,7 @@ void Hero_enterDoor(Hero this)
 	}
 
 	// inform the door entity
-	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, Hero_getCurrentlyOverlappingDoor(this)), kEnterDoor, NULL);
+	MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, Hero_getCurrentlyOverlappingDoor(this)), kEnterDoor, NULL);
 
 	// reset currently overlapping door
 	Hero_setCurrentlyOverlappingDoor(this, NULL);
@@ -793,7 +793,7 @@ void Hero_enterDoor(Hero this)
 	// hide hint inmediately
 	if (this->currentHint != NULL)
 	{
-		Entity_hide(__UPCAST(Entity, this->currentHint));
+		Entity_hide(__GET_CAST(Entity, this->currentHint));
 	}
 
     extern const u16 FIRE_SND[];
@@ -812,7 +812,7 @@ static void Hero_addHints(Hero this)
 	};
 
     // save the hint entity, so we can remove it later
-	this->currentHint = Entity_addChildFromDefinition(__UPCAST(Entity, this), &HINT_ENTER_MC, -1, "enterHint", &position, NULL);
+	this->currentHint = Entity_addChildFromDefinition(__GET_CAST(Entity, this), &HINT_ENTER_MC, -1, "enterHint", &position, NULL);
 	
 	// turn it off
 	Hero_hideHint(this);
@@ -829,7 +829,7 @@ static void Hero_addFeetDust(Hero this)
 		FTOFIX19_13(-6), FTOFIX19_13(11), FTOFIX19_13(1)
 	};
 
-	this->feetDust = __UPCAST(ParticleSystem, Entity_addChildFromDefinition(__UPCAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
+	this->feetDust = __GET_CAST(ParticleSystem, Entity_addChildFromDefinition(__GET_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 }
@@ -841,7 +841,7 @@ void Hero_showHint(Hero this, char* hintName)
 	// close any previous opened hint
 	Hero_hideHint(this);
 
-	this->currentHint = __UPCAST(Entity, Container_getChildByName(__UPCAST(Container, this), hintName, false));
+	this->currentHint = __GET_CAST(Entity, Container_getChildByName(__GET_CAST(Container, this), hintName, false));
     
 	ASSERT(this->currentHint, "Hero::showHint: null currentHint");
 
@@ -854,13 +854,13 @@ void Hero_hideHint(Hero this)
 	if (this->currentHint)
 	{
 	    // play the closing animation (the hint will delete itself afterwards)
-		Hint_close(__UPCAST(Hint, this->currentHint));
+		Hint_close(__GET_CAST(Hint, this->currentHint));
 	}
 }
 
 void Hero_fallDead(Hero this)
 {
-	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "HitFront");
+	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitFront");
 	
 	Hero_die(this);
 }
@@ -874,10 +874,10 @@ void Hero_updateHoldObjectPosition(Hero this)
 void Hero_lookFront(Hero this)
 {
 	// if already not playing
-	if (!AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "Front"))
+	if (!AnimatedInGameEntity_isAnimationLoaded(__GET_CAST(AnimatedInGameEntity, this), "Front"))
     {
 		// play animation
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Front");
+		AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Front");
 	}
 }
 
@@ -885,10 +885,10 @@ void Hero_lookFront(Hero this)
 void Hero_lookBack(Hero this)
 {
 	// if already not playing
-	if (!AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "Back"))
+	if (!AnimatedInGameEntity_isAnimationLoaded(__GET_CAST(AnimatedInGameEntity, this), "Back"))
     {
 		// play animation
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Back");
+		AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Back");
 	}
 }
 
@@ -898,7 +898,7 @@ void Hero_setGap(Hero this)
 	this->gap = this->inGameEntityDefinition->gap;
 	
 	// if I'm not in the edge, return ROM gap
-	if (AnimatedInGameEntity_isAnimationLoaded(__UPCAST(AnimatedInGameEntity, this), "OnEdge"))
+	if (AnimatedInGameEntity_isAnimationLoaded(__GET_CAST(AnimatedInGameEntity, this), "OnEdge"))
     {
 		// this is texture specific
 		this->gap.left += 4;
@@ -921,13 +921,13 @@ void Hero_die(Hero this)
 {
     /*
 	// go to dead state
-	StateMachine_swapState(this->stateMachine, __UPCAST(State, HeroDead_getInstance()));
+	StateMachine_swapState(this->stateMachine, __GET_CAST(State, HeroDead_getInstance()));
 
 	// if I have something being hold
 	if (this->holdObject)
     {
 		// hold object must be destroyed
-		__VIRTUAL_CALL(void, Actor, die, __UPCAST(Actor, this->holdObject));
+		__VIRTUAL_CALL(void, Actor, die, __GET_CAST(Actor, this->holdObject));
 	}
 
 	// register time
@@ -967,9 +967,9 @@ void Hero_win(Hero this)
 	/*
 	this->direction.z = __FAR;
 	
-	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "WalkBack");
+	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "WalkBack");
 	
-	Actor_startMovement(__UPCAST(Actor, this), __ZAXIS, __UNIFORMMOVE, FIX19_13_DIV(HERO_VELOCITY_Z, ITOFIX19_13(4)), 0);
+	Actor_startMovement(__GET_CAST(Actor, this), __ZAXIS, __UNIFORMMOVE, FIX19_13_DIV(HERO_VELOCITY_Z, ITOFIX19_13(4)), 0);
 	
 	this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
 	*/
@@ -986,7 +986,7 @@ static void Hero_onKeyPressed(Hero this, Object eventFirer)
 	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
 	
 	// inform my current states about the key pressed
-	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, this->stateMachine), kKeyPressed, &pressedKey);
+	MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this->stateMachine), kKeyPressed, &pressedKey);
 }
 
 // process user input
@@ -995,7 +995,7 @@ static void Hero_onKeyReleased(Hero this, Object eventFirer)
 	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
 	// inform my current states about the key up		
-	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, this->stateMachine), kKeyReleased, &releasedKey);
+	MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this->stateMachine), kKeyReleased, &releasedKey);
 }
 
 // process user input
@@ -1004,14 +1004,14 @@ static void Hero_onKeyHold(Hero this, Object eventFirer)
 	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
 	// inform my current states about the key hold		
-	MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, this->stateMachine), kKeyHold, &holdKey);
+	MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this->stateMachine), kKeyHold, &holdKey);
 }
 
 // collect a key
 void Hero_collectKey(Hero this)
 {
 	this->hasKey = true;
-	Object_fireEvent(__UPCAST(Object, PlatformerLevelState_getInstance()), EVENT_KEY_TAKEN);
+	Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_KEY_TAKEN);
 }
 
 // does the hero have a key?
@@ -1024,7 +1024,7 @@ bool Hero_hasKey(Hero this)
 void Hero_collectCoin(Hero this)
 {
 	this->coins++;
-	Object_fireEvent(__UPCAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
+	Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
 
     extern const u16 FIRE1_SND[];
     SoundManager_playFxSound(SoundManager_getInstance(), FIRE1_SND, this->transform.globalPosition);
@@ -1054,12 +1054,12 @@ void Hero_setCurrentlyOverlappingDoor(Hero this, Door door)
 	if(door) 
 	{
 		// open the door
-		MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, door), kOpenDoor, NULL);
+		MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, door), kOpenDoor, NULL);
 	}
 	else if(this->currentlyOverlappingDoor)
 	{
 		// close the door
-		MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, this->currentlyOverlappingDoor), kCloseDoor, NULL);
+		MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this->currentlyOverlappingDoor), kCloseDoor, NULL);
 	}
 	
 	this->currentlyOverlappingDoor = door;
@@ -1078,7 +1078,7 @@ void Hero_resetCurrentlyOverlappingDoor(Hero this)
 int Hero_processCollision(Hero this, Telegram telegram)
 {
 	ASSERT(this, "HeroMoving::processCollision: null this");
-	VirtualList collidingObjects = __UPCAST(VirtualList, Telegram_getExtraInfo(telegram));
+	VirtualList collidingObjects = __GET_CAST(VirtualList, Telegram_getExtraInfo(telegram));
 	ASSERT(collidingObjects, "HeroMoving::processCollision: null collidingObjects");
 
 	VirtualNode node = NULL;
@@ -1087,21 +1087,21 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 	for (node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
     {
-		InGameEntity inGameEntity = __UPCAST(InGameEntity, VirtualNode_getData(node));
+		InGameEntity inGameEntity = __GET_CAST(InGameEntity, VirtualNode_getData(node));
 		
 		switch (InGameEntity_getInGameType(inGameEntity))
         {
 			case kCoin:
 
 				Hero_collectCoin(this);
-				MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, inGameEntity), kTakeCoin, NULL);
+				MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, inGameEntity), kTakeCoin, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kKey:
 
 				Hero_collectKey(this);
-				MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, inGameEntity), kTakeKey, NULL);
+				MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, inGameEntity), kTakeKey, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1114,7 +1114,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
                     Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);
 
                     // remind hero to check if door is still overlapping in 100 milliseconds
-                    MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, this), kCheckForOverlappingDoor, NULL);
+                    MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, this), kCheckForOverlappingDoor, NULL);
 				}
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
@@ -1127,7 +1127,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kLavaTrigger:
 
-				MessageDispatcher_dispatchMessage(0, __UPCAST(Object, this), __UPCAST(Object, inGameEntity), kLavaTriggerStart, NULL);
+				MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, inGameEntity), kLavaTriggerStart, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				Hero_stopAddingForce(this);		
 				break;
@@ -1163,7 +1163,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             else
             {
                 // remind hero to check again in 100 milliseconds
-                MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, this), kCheckForOverlappingDoor, NULL);
+                MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, this), kCheckForOverlappingDoor, NULL);
             }
 
             return true;
@@ -1176,7 +1176,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             break;
     }
 
-	return Actor_handleMessage(__UPCAST(Actor, this), telegram);
+	return Actor_handleMessage(__GET_CAST(Actor, this), telegram);
 }
 
 // process message
@@ -1190,7 +1190,7 @@ int Hero_doMessage(Hero this, int message)
 		case kSetUpLevel:
 			{
 				// then set myself as the focus
-				Screen_setFocusInGameEntity(Screen_getInstance(), __UPCAST(InGameEntity, this));
+				Screen_setFocusInGameEntity(Screen_getInstance(), __GET_CAST(InGameEntity, this));
 
 				// set focus on the hero
 				VBVec3D screenDisplacement =
@@ -1208,7 +1208,7 @@ int Hero_doMessage(Hero this, int message)
 				if(Hero_getCurrentlyOverlappingDoor(this))
 				{
                     // remind hero to check if door is still overlapping in 100 milliseconds
-                    MessageDispatcher_dispatchMessage(100, __UPCAST(Object, this), __UPCAST(Object, this), kCheckForOverlappingDoor, NULL);
+                    MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, this), kCheckForOverlappingDoor, NULL);
 				}
 				return true;
 			}
@@ -1222,7 +1222,7 @@ void Hero_suspend(Hero this)
 {
 	ASSERT(this, "HeroMoving::suspend: null this");
 	
-	Entity_suspend(__UPCAST(Entity, this));
+	Entity_suspend(__GET_CAST(Entity, this));
 	
 	ParticleSystem_pause(this->feetDust);
 }

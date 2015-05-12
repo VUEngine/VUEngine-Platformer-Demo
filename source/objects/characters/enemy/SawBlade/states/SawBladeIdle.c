@@ -72,9 +72,9 @@ void SawBladeIdle_destructor(SawBladeIdle this)
 void SawBladeIdle_enter(SawBladeIdle this, void* owner)
 {
 	// do not move
-    // Actor_stopMovement(__UPCAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
+    // Actor_stopMovement(__GET_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
 
-	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, owner), "Idle");
+	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, owner), "Idle");
 }
 
 // state's execute
@@ -82,11 +82,11 @@ void SawBladeIdle_execute(SawBladeIdle this, void* owner)
 {
 	// check if Hero's distance to the plant is within range
 /*	if (SAW_BLADE_ATTACK_DISTANCE > Optics_lengthSquared3D(
-			Entity_getPosition(__UPCAST(Entity, owner)), Entity_getPosition(__UPCAST(Entity, Hero_getInstance())))
+			Entity_getPosition(__GET_CAST(Entity, owner)), Entity_getPosition(__GET_CAST(Entity, Hero_getInstance())))
 	)
 */    {
     
-		StateMachine_swapState(Actor_getStateMachine(__UPCAST(Actor, owner)), __UPCAST(State, SawBladeMoving_getInstance()));
+		StateMachine_swapState(Actor_getStateMachine(__GET_CAST(Actor, owner)), __GET_CAST(State, SawBladeMoving_getInstance()));
 	}
 }
 

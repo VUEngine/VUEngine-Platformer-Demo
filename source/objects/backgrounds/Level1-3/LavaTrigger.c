@@ -107,7 +107,7 @@ void LavaTrigger_triggerEventStart(LavaTrigger this)
     // TODO: play rumble BGM
 
     // remind myself to stop the trigger event soon
-    MessageDispatcher_dispatchMessage(3000, __UPCAST(Object, this), __UPCAST(Object, this), kLavaTriggerEnd, NULL);
+    MessageDispatcher_dispatchMessage(3000, __GET_CAST(Object, this), __GET_CAST(Object, this), kLavaTriggerEnd, NULL);
 
     // deactivate shape so I won't get triggered again
     Shape_setActive(this->shape, false);
@@ -119,7 +119,7 @@ void LavaTrigger_triggerEventEnd(LavaTrigger this)
     // TODO: start rotating cogwheel
 
     // get lava entity from stage and start its movement
-    Lava lava = (Lava)Container_getChildByName(__UPCAST(Container, Game_getStage(Game_getInstance())), "Lava", true);
+    Lava lava = (Lava)Container_getChildByName(__GET_CAST(Container, Game_getStage(Game_getInstance())), "Lava", true);
     Lava_startMoving(lava);
 
     // release player
@@ -127,5 +127,5 @@ void LavaTrigger_triggerEventEnd(LavaTrigger this)
     PlatformerLevelState_setModeToPlaying(platformerState);
     
     // remove me from stage so I don't waste resources
-    Stage_removeEntity(Game_getStage(Game_getInstance()), __UPCAST(Entity, this), true);
+    Stage_removeEntity(Game_getStage(Game_getInstance()), __GET_CAST(Entity, this), true);
 }

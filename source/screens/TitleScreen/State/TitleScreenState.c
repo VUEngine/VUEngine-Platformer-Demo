@@ -74,7 +74,7 @@ static void TitleScreenState_constructor(TitleScreenState this)
 	this->lastLevelSelectLabel = "";
 	
 	// set the custom movement screen manager now
-	Screen_setScreenMovementManager(Screen_getInstance(), __UPCAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
+	Screen_setScreenMovementManager(Screen_getInstance(), __GET_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 }
 
 // class's destructor
@@ -94,23 +94,23 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	VirtualList_pushBack(entityNamesToIgnore, name2);
 	
 	//load stage
-	GameState_loadStage(__UPCAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore);
+	GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore);
 
 	__DELETE(entityNamesToIgnore);
 	
 	// sample code to show how to animate multiple sprites at the same time
 	// buy just playing an animation in a single entity when varios share
 	// the same __ANIMATED_SHARED CharSet
-	if(Container_getChildByName(__UPCAST(Container, this->stage), "DummyHero", true))
+	if(Container_getChildByName(__GET_CAST(Container, this->stage), "DummyHero", true))
 	{
-		AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, Container_getChildByName(__UPCAST(Container, this->stage), "DummyHero", true)), "Idle");
+		AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, Container_getChildByName(__GET_CAST(Container, this->stage), "DummyHero", true)), "Idle");
 	}
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Clock_start(Game_getInGameClock(Game_getInstance()));
 
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1000, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(1000, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
 	// reset clock
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
@@ -137,7 +137,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
     }
 
 	// call base
-	GameState_execute(__UPCAST(GameState, this), owner);
+	GameState_execute(__GET_CAST(GameState, this), owner);
 }
 
 // state's exit
@@ -153,7 +153,7 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 // state's resume
 static void TitleScreenState_resume(TitleScreenState this, void* owner)
 {
-	GameState_resume(__UPCAST(GameState, this), owner);
+	GameState_resume(__GET_CAST(GameState, this), owner);
 
 #ifdef __DEBUG_TOOLS
 	if (!Game_isExitingSpecialMode(Game_getInstance()))
@@ -169,7 +169,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 #endif
 	
 	// tell any interested entity
-	GameState_propagateMessage(__UPCAST(GameState, this), kResumeLevel);
+	GameState_propagateMessage(__GET_CAST(GameState, this), kResumeLevel);
 
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
@@ -191,7 +191,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 // state's suspend
 static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 {
-	GameState_suspend(__UPCAST(GameState, this), owner);
+	GameState_suspend(__GET_CAST(GameState, this), owner);
 
 	// pause physical simulations
 	Clock_pause(Game_getInGameClock(Game_getInstance()), true);
@@ -212,10 +212,10 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			//Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 
 			// account for any entity's tranform modification during their initialization
-			GameState_transform(__UPCAST(GameState, this));
+			GameState_transform(__GET_CAST(GameState, this));
 			
 			// show level after 0.5 second
-			MessageDispatcher_dispatchMessage(500, __UPCAST(Object, this), __UPCAST(Object, Game_getInstance()), kStartLevel, NULL);
+			MessageDispatcher_dispatchMessage(500, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kStartLevel, NULL);
 			break;
 
 		case kStartLevel:
@@ -228,7 +228,7 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 //			Clock_start(Game_getInGameClock(Game_getInstance()));
 			
 			// tell any interested entity
-			GameState_propagateMessage(__UPCAST(GameState, this), kStartLevel);
+			GameState_propagateMessage(__GET_CAST(GameState, this), kStartLevel);
 			break;
 
 		case kKeyPressed:
@@ -238,25 +238,25 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 	            if (K_SEL & pressedKey)
 	            {
 	                // adjustment screen
-					SplashScreenState_setNextstate(__UPCAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
-	                Game_pause(Game_getInstance(), __UPCAST(GameState, AdjustmentScreenState_getInstance()));
+					SplashScreenState_setNextstate(__GET_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
+	                Game_pause(Game_getInstance(), __GET_CAST(GameState, AdjustmentScreenState_getInstance()));
 	                break;
 	            }
 			}
 			
-			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_PRESSED);
+			Object_fireEvent(__GET_CAST(Object, this), EVENT_KEY_PRESSED);
 			return true;
 			break;
 
 		case kKeyReleased:
 		
-			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_RELEASED);
+			Object_fireEvent(__GET_CAST(Object, this), EVENT_KEY_RELEASED);
 			return true;
 			break;
 
 		case kKeyHold:
 			
-			Object_fireEvent(__UPCAST(Object, this), EVENT_KEY_HOLD);
+			Object_fireEvent(__GET_CAST(Object, this), EVENT_KEY_HOLD);
 			return true;
 			break;
 	}

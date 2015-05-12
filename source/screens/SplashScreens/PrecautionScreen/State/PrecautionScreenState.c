@@ -66,7 +66,7 @@ static void PrecautionScreenState_constructor(PrecautionScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__UPCAST(SplashScreenState, this), __UPCAST(GameState, AdjustmentScreenState_getInstance()));
+	SplashScreenState_setNextstate(__GET_CAST(SplashScreenState, this), __GET_CAST(GameState, AdjustmentScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
 }
 
@@ -80,7 +80,7 @@ static void PrecautionScreenState_destructor(PrecautionScreenState this)
 // state's enter
 static void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
 {
-    SplashScreenState_enter(__UPCAST(SplashScreenState, this), owner);
+    SplashScreenState_enter(__GET_CAST(SplashScreenState, this), owner);
 
     // show this screen for at least 2 seconds, as defined by Nintendo in the official development manual
 	Clock_delay(Game_getClock(Game_getInstance()), 2000);

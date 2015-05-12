@@ -66,7 +66,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
 
 	this->destination = NULL;
 }
@@ -112,7 +112,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 			if (Door_hasDestination(this))
 			{
-				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Opening");
+				AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Opening");
 			}
 			break;
 			
@@ -120,7 +120,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 			if (Door_hasDestination(this))
 			{
-				AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, this), "Closing");
+				AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Closing");
 			}
 			break;
 	}

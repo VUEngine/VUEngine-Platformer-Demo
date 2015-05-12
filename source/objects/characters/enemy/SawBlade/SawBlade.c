@@ -67,7 +67,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	SawBlade_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __UPCAST(SpatialObject, this), sawBladeDefinition->actorDefinition.mass);
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __GET_CAST(SpatialObject, this), sawBladeDefinition->actorDefinition.mass);
 
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	
@@ -105,9 +105,9 @@ void SawBlade_ready(SawBlade this)
 {
 	ASSERT(this, "SawBlade::ready: null this");
 
-	Entity_ready(__UPCAST(Entity, this));
+	Entity_ready(__GET_CAST(Entity, this));
 	
-	StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeMoving_getInstance()));
+	StateMachine_swapState(this->stateMachine, __GET_CAST(State, SawBladeMoving_getInstance()));
 }
 
 // register a shape with the collision detection system
@@ -116,7 +116,7 @@ void SawBlade_registerShape(SawBlade this)
 	ASSERT(this, "SawBlade::registerShape: null this");
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __UPCAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
 	
 	// don't check collisions agains other objects
 	Shape_setCheckForCollisions(this->shape, false);
@@ -136,7 +136,7 @@ bool SawBlade_processCollision(SawBlade this, Telegram telegram)
 	ASSERT(this, "SawBlade::processCollision: null this");
 
 	int message = Telegram_getMessage(telegram);
-	InGameEntity inGameEntity = __UPCAST(InGameEntity,  Telegram_getExtraInfo(telegram));
+	InGameEntity inGameEntity = __GET_CAST(InGameEntity,  Telegram_getExtraInfo(telegram));
 	
 	switch (message)
     {
@@ -167,14 +167,14 @@ void SawBlade_die(SawBlade this)
 	Shape_setActive(this->shape, false);
 
 	// now change state to dead
-	StateMachine_swapState(this->stateMachine, __UPCAST(State, EnemyDead_getInstance()));
+	StateMachine_swapState(this->stateMachine, __GET_CAST(State, EnemyDead_getInstance()));
 }
 
 // set  position
 void SawBlade_setLocalPosition(SawBlade this, const VBVec3D* position)
 {
 	// set my position
-	Actor_setLocalPosition(__UPCAST(Actor, this), position);
+	Actor_setLocalPosition(__GET_CAST(Actor, this), position);
 	
 	// save initial position
 	switch (this->axis)
@@ -220,7 +220,7 @@ void SawBlade_move(SawBlade this)
 						if (this->transform.globalPosition.y < this->initialPosition - displacement)
                         {
 							// stop moving
-							Actor_stopMovement(__UPCAST(Actor, this));
+							Actor_stopMovement(__GET_CAST(Actor, this));
 							
 							// change direction
 							this->direction.y = __DOWN;
@@ -241,7 +241,7 @@ void SawBlade_move(SawBlade this)
 						if (this->transform.globalPosition.y > this->initialPosition)
                         {
 							// stop moving
-							Actor_stopMovement(__UPCAST(Actor, this));
+							Actor_stopMovement(__GET_CAST(Actor, this));
 							
 							// change direction
 							this->direction.y = __UP;
@@ -260,17 +260,17 @@ void SawBlade_move(SawBlade this)
 	}
 /*
 	// if I've been stopped
-	if (false && !(this->axis & Actor_isMoving(__UPCAST(Actor, this))))
+	if (false && !(this->axis & Actor_isMoving(__GET_CAST(Actor, this))))
     {
 		// check if must stop go idle
 		if (!displacement)
         {
 			// check if hero distance to the plant is out of range
 			if (SAW_BLADE_ATTACK_DISTANCE < Optics_lengthSquared3D(
-					Entity_getPosition(__UPCAST(Entity, this)), Entity_getPosition(__UPCAST(Entity, Hero_getInstance())))
+					Entity_getPosition(__GET_CAST(Entity, this)), Entity_getPosition(__GET_CAST(Entity, Hero_getInstance())))
 			)
             {
-				StateMachine_swapState(this->stateMachine, __UPCAST(State, SawBladeIdle_getInstance()));
+				StateMachine_swapState(this->stateMachine, __GET_CAST(State, SawBladeIdle_getInstance()));
 			}
 		}
 	}

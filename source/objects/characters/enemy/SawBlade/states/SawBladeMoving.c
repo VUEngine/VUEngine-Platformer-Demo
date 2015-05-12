@@ -76,7 +76,7 @@ void SawBladeMoving_enter(SawBladeMoving this, void* owner)
 {
 	SawBlade_startMovement((SawBlade)owner);
 	
-	AnimatedInGameEntity_playAnimation(__UPCAST(AnimatedInGameEntity, owner), "Spin");
+	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, owner), "Spin");
 }
 
 // state's execute
@@ -114,7 +114,7 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
     {
 		case kCollision:
 		{
-			VirtualList collidingObjects = __UPCAST(VirtualList, Telegram_getExtraInfo(telegram));
+			VirtualList collidingObjects = __GET_CAST(VirtualList, Telegram_getExtraInfo(telegram));
 			ASSERT(collidingObjects, "SawBladeMoving::handleMessage: null collidingObjects");
 
 			VirtualNode node = NULL;
@@ -122,14 +122,14 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
 			// this will place the shape in the owner's position
 			for (node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
             {
-				InGameEntity inGameEntity = __UPCAST(InGameEntity, VirtualNode_getData(node));
+				InGameEntity inGameEntity = __GET_CAST(InGameEntity, VirtualNode_getData(node));
 				
 				switch (InGameEntity_getInGameType(inGameEntity))
                 {
 					case kHero:
 					
 						// ok, i hit him
-						//Hero_takeHit((Hero)inGameEntity, Entity_getPosition(__UPCAST(Entity, owner)));
+						//Hero_takeHit((Hero)inGameEntity, Entity_getPosition(__GET_CAST(Entity, owner)));
 						return true;
 						break;
 						

@@ -59,7 +59,7 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 {
 	if(this->stageDefinition)
 	{
-		GameState_loadStage(__UPCAST(GameState, this), this->stageDefinition, NULL);
+		GameState_loadStage(__GET_CAST(GameState, this), this->stageDefinition, NULL);
 	}
 
     __VIRTUAL_CALL(void, SplashScreenState, print, this);
@@ -71,7 +71,7 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 void SplashScreenState_execute(SplashScreenState this, void* owner)
 {
  	// call base
-	GameState_execute(__UPCAST(GameState, this), owner);
+	GameState_execute(__GET_CAST(GameState, this), owner);
 }
 
 // state's exit
@@ -86,7 +86,7 @@ void SplashScreenState_exit(SplashScreenState this, void* owner)
 // state's resume
 void SplashScreenState_resume(SplashScreenState this, void* owner)
 {
-	GameState_resume(__UPCAST(GameState, this), owner);
+	GameState_resume(__GET_CAST(GameState, this), owner);
 
 	__VIRTUAL_CALL(void, SplashScreenState, print, this);
 	
