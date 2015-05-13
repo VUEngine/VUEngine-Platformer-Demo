@@ -38,6 +38,7 @@ extern EntityDefinition COLLISION_48x2x48;
 extern EntityDefinition COLLISION_2x28x48;
 extern EntityDefinition COLLISION_48x28x2;
 extern EntityDefinition COLLISION_48x3x2;
+extern EntityDefinition COLLISION_12x12x2;
 extern EntityDefinition COLLISION_3x2x2;
 
 

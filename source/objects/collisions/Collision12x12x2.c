@@ -18,27 +18,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef STAGES_H_
-#define STAGES_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Stage.h>
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef EMPTY_ST;
+InanimatedInGameEntityROMDef COLLISION_12x12x2 =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
 
-extern StageROMDef LEVEL_1_1_ROOM_1_ST;
-extern StageROMDef LEVEL_1_1_COIN_ROOM_ST;
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-extern StageROMDef LEVEL_1_3_ROOM_1_ST;
+        // in game type
+        kSolid,
 
+        // if 0, width and height will be inferred from the texture's size
+    	// width
+    	12 * 8,
 
-#endif
+    	// height
+    	12 * 8,
+
+    	// Depth
+    	2 * 8
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(40),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
+};

@@ -44,6 +44,11 @@ extern EntityDefinition MOUND_BG_CASTLE_IM;
 extern EntityDefinition MOUND_BG_CASTLE_FLAG_AG;
 extern EntityDefinition CLOUDS_SB;
 
+extern EntityDefinition LEVEL1_1_COIN_ROOM_FRONT_IM;
+extern EntityDefinition LEVEL1_1_COIN_ROOM_FRONT_SHADOWS_IM;
+extern EntityDefinition LEVEL1_1_COIN_ROOM_FRONT_PLATFORMS_IM;
+extern EntityDefinition LEVEL1_1_COIN_ROOM_MIDDLE_IM;
+
 extern EntityDefinition LEVEL1_3_PART1_IM;
 extern EntityDefinition LEVEL1_3_PART2_IM;
 extern EntityDefinition LEVEL1_3_PART3_IM;
@@ -73,6 +78,7 @@ extern EntityDefinition COG_WHEEL_IG;
 extern EntityDefinition GRASS_AG;
 extern EntityDefinition BUSH_AG;
 extern EntityDefinition FENCE_IM;
+extern EntityDefinition TORCH_AG;
 
 
 #endif
