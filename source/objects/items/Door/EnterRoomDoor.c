@@ -29,8 +29,7 @@
 #include <PhysicalWorld.h>
 
 #include <objects.h>
-#include "Key.h"
-#include "KeyManager.h"
+#include "EnterRoomDoor.h"
 
 #include <PlatformerLevelState.h>
 
@@ -44,14 +43,12 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Key, AnimatedInGameEntity);
+__CLASS_DEFINITION(EnterRoomDoor, Door);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
-
-void Key_removeFromStage(Key this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,61 +56,37 @@ void Key_removeFromStage(Key this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Key, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(Key, animatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(EnterRoomDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+__CLASS_NEW_END(EnterRoomDoor, animatedInGameEntityDefinition, ID);
 
 // class's constructor
-void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void EnterRoomDoor_constructor(EnterRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
-	ASSERT(this, "Key::constructor: null this");
-
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
 }
 
 // class's destructor
-void Key_destructor(Key this)
+void EnterRoomDoor_destructor(EnterRoomDoor this)
 {
-	ASSERT(this, "Key::destructor: null this");
-
-	KeyManager_removeKey(KeyManager_getInstance(), this);
-
 	// delete the super object
 	__DESTROY_BASE;
 }
 
-// ready method
-void Key_ready(Key this)
-{
-	ASSERT(this, "Key::initialize: null this");
-
-	Entity_ready(__GET_CAST(Entity, this));
-
-	KeyManager_registerKey(KeyManager_getInstance(), this);
-}
-
 // state's on message
-bool Key_handleMessage(Key this, Telegram telegram)
+bool EnterRoomDoor_handleMessage(EnterRoomDoor this, Telegram telegram)
 {
-	ASSERT(this, "Key::handleMessage: null this");
-
 	switch (Telegram_getMessage(telegram))
     {
-		case kTakeKey:
+		case kEnterDoor:
 
-			Key_removeFromStage(this);
+			if (this->destination)
+			{
+				PlatformerLevelState_enterRoom((PlatformerStageDefinition*)this->destination);
+				return true;
+			}
 			break;
 	}
 	
-	return false;
-}
-
-void Key_removeFromStage(Key this)
-{
-	ASSERT(this, "Key::removeFromStage: null this");
-
-	Container_deleteMyself(__GET_CAST(Container, this));
+	return Door_handleMessage(__GET_CAST(Door, this), telegram);
 }

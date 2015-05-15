@@ -26,6 +26,7 @@
 
 #include <Game.h>
 #include <Screen.h>
+#include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
 #include <PhysicalWorld.h>
@@ -38,6 +39,9 @@
 #include "../stages/stages.h"
 #include <macros.h>
 #include <Languages.h>
+#include <objects.h>
+#include <UserDataManager.h>
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -51,6 +55,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
+static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this, VirtualList entityNamesToIgnore);
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer);
@@ -80,6 +85,12 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 	__CONSTRUCT_BASE();
 
 	this->platformerStageDefinition = (PlatformerStageDefinition*)&LEVEL_1_1_ROOM_1_ST;
+
+	this->heroLastPosition.x = 0;
+	this->heroLastPosition.y = 0;
+	this->heroLastPosition.z = 0;
+	
+	this->isExitingRoom = false;
 }
 
 // class's destructor
@@ -89,11 +100,77 @@ static void PlatformerLevelState_destructor(PlatformerLevelState this)
 	__SINGLETON_DESTROY;
 }
 
+static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this, VirtualList entityNamesToIgnore)
+{
+	ASSERT(entityNamesToIgnore, "PlatformerLevelState::getEntityNamesToIngnore: null entityNamesToIgnore");
+
+	int i = 0;
+	for (;this->platformerStageDefinition->stageDefinition.entities[i].entityDefinition; i++)
+	{
+		if(UserDataManager_getCoinStatus(UserDataManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
+		{
+			VirtualList_pushBack(entityNamesToIgnore, this->platformerStageDefinition->stageDefinition.entities[i].name);
+		}
+	}
+}
+
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
-    //load stage
-	GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), NULL);
+	VirtualList entityNamesToIgnore = __NEW(VirtualList);
+	PlatformerLevelState_getEntityNamesToIngnore (this, entityNamesToIgnore);
+	
+	// check if exiting room
+	if(this->isExitingRoom)
+	{
+		VBVec3D screenPosition = 
+		{
+			this->heroLastPosition.x - ITOFIX19_13(__SCREEN_WIDTH >> 1),
+			this->heroLastPosition.y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
+			this->heroLastPosition.z
+		};
+		
+		// set world's limits
+		Screen_setStageSize(Screen_getInstance(), this->platformerStageDefinition->stageDefinition.size);
+
+		// must set the screen's position before loading the stage
+		Screen_setPosition(Screen_getInstance(), screenPosition);
+	    
+		//load stage
+		GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
+
+		Container hero = Container_getChildByName(__GET_CAST(Container, this->stage), HERO_NAME, true);
+
+		if(!hero)
+		{
+			PositionedEntity positionedEntity =
+			{
+				&HERO_AC, 				
+				{
+					this->heroLastPosition.x, 
+					this->heroLastPosition.y, 
+					this->heroLastPosition.z
+				}, 
+				HERO_NAME, 
+				NULL, 
+				NULL
+			};
+
+			Stage_addPositionedEntity(this->stage, &positionedEntity, true);
+		}
+		else
+		{
+			Actor_setPosition(__GET_CAST(Actor, hero), &this->heroLastPosition);
+		}
+		
+		this->isExitingRoom = false;
+	}
+	else
+	{
+		GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, true);
+	}
+	
+	__DELETE(entityNamesToIgnore);
 
 	// playing by default
 	PlatformerLevelState_setModeToPaused(this);
@@ -408,7 +485,36 @@ void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDe
 	Game_changeState(Game_getInstance(), __GET_CAST(GameState, this));
 }
 
-// set kpaused mode
+// start a given room
+void PlatformerLevelState_enterRoom(PlatformerStageDefinition* platformerStageDefinition)
+{
+	PlatformerLevelState this = PlatformerLevelState_getInstance();
+
+	// save hero's actual position
+	Hero hero = __GET_CAST(Hero, Container_getChildByName(__GET_CAST(Container, this->stage), HERO_NAME, false));
+	ASSERT(hero, "PlatformerLevelState::enterRoom: hero not found");
+
+	if(hero)
+	{
+		this->heroLastPosition = *Container_getGlobalPosition(__GET_CAST(Container, hero));
+		this->isExitingRoom = false;
+	}
+
+	this->platformerStageDefinition = platformerStageDefinition;
+	
+	Game_changeState(Game_getInstance(), __GET_CAST(GameState, this));
+}
+
+// exit a given room
+void PlatformerLevelState_exitRoom(PlatformerStageDefinition* platformerStageDefinition)
+{
+	PlatformerLevelState this = PlatformerLevelState_getInstance();
+	this->platformerStageDefinition = platformerStageDefinition;
+	this->isExitingRoom = true;
+	Game_changeState(Game_getInstance(), __GET_CAST(GameState, this));
+}
+
+// set paused mode
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this)
 {
 	this->mode = kPaused;

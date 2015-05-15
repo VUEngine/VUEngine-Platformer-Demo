@@ -38,6 +38,7 @@
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
 #include <CustomScreenMovementManager.h>
+#include <UserDataManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -94,7 +95,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	VirtualList_pushBack(entityNamesToIgnore, name2);
 	
 	//load stage
-	GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore);
+	GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, true);
 
 	__DELETE(entityNamesToIgnore);
 	

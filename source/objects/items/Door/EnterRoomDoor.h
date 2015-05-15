@@ -18,39 +18,46 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef ITEMS_H_
-#define ITEMS_H_
+#ifndef ENTER_DOOR_H_
+#define ENTER_DOOR_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Coin/Coin.h"
-#include "Door/Door.h"
-#include "Key/Key.h"
-#include "textures.h"
+#include <Door.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COIN_AG;
-extern EntityDefinition DOOR_AG;
-extern EntityDefinition ENTER_ROOM_DOOR_AG;
-extern EntityDefinition EXIT_ROOM_DOOR_AG;
-extern EntityDefinition KEY_AG;
+#define EnterRoomDoor_METHODS													\
+	Door_METHODS;
+	
 
-extern EntityDefinition BGMAP_COIN_AG;
-extern EntityDefinition AFFINE_COIN_AG;
-extern EntityDefinition OBJECT_COIN_AG;
-extern EntityDefinition AFFINE_DOOR_AG;
-extern EntityDefinition AFFINE_KEY_AG;
+#define EnterRoomDoor_SET_VTABLE(ClassName)										\
+	Door_SET_VTABLE(ClassName);													\
+	__VIRTUAL_SET(ClassName, EnterRoomDoor, handleMessage);
+
+__CLASS(EnterRoomDoor);
+
+#define EnterRoomDoor_ATTRIBUTES												\
+																				\
+	/* it is derivated from */													\
+	Door_ATTRIBUTES																\
+
 
 //---------------------------------------------------------------------------------------------------------
-// 												ASSETS
+// 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
+__CLASS_NEW_DECLARE(EnterRoomDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID);
+
+void EnterRoomDoor_constructor(EnterRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID);
+void EnterRoomDoor_destructor(EnterRoomDoor this);
+bool EnterRoomDoor_handleMessage(EnterRoomDoor this, Telegram telegram);
 
 #endif

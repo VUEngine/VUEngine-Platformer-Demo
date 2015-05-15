@@ -127,5 +127,5 @@ void LavaTrigger_triggerEventEnd(LavaTrigger this)
     PlatformerLevelState_setModeToPlaying(platformerState);
     
     // remove me from stage so I don't waste resources
-    Stage_removeEntity(Game_getStage(Game_getInstance()), __GET_CAST(Entity, this), true);
+	Container_deleteMyself(__GET_CAST(Container, this));
 }

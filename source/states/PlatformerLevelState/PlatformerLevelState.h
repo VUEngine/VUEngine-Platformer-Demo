@@ -57,6 +57,12 @@ __CLASS(PlatformerLevelState);
 	/* the stage to load */														\
 	PlatformerStageDefinition* platformerStageDefinition;						\
 																				\
+	/* hero's last position for when exiting a room */							\
+	VBVec3D heroLastPosition;													\
+																				\
+	/* flag to know if exiting a room */										\
+	bool isExitingRoom;															\
+																				\
 	/* to allow moving the screen */											\
 	u8 mode: 4;																	\
 

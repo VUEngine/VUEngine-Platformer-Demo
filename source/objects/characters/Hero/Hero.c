@@ -34,6 +34,7 @@
 #include "Hero.h"
 #include "states/HeroIdle.h"
 #include "states/HeroMoving.h"
+#include <UserDataManager.h>
 
 #include <Hint.h>
 #include <PlatformerLevelState.h>
@@ -1021,9 +1022,12 @@ bool Hero_hasKey(Hero this)
 }
 
 // collect a coin
-void Hero_collectCoin(Hero this)
+void Hero_collectCoin(Hero this, Coin coin)
 {
-	this->coins++;
+	int numberOfCollectedCoins = UserDataManager_getNumberOfCollectedCoins(UserDataManager_getInstance());
+	numberOfCollectedCoins++;
+	UserDataManager_setNumberOfCollectedCoins(UserDataManager_getInstance(), numberOfCollectedCoins);
+	UserDataManager_setCoinStatus(UserDataManager_getInstance(), Container_getName(__GET_CAST(Container, coin)), true);
 	Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
 
     extern const u16 FIRE1_SND[];
@@ -1033,7 +1037,7 @@ void Hero_collectCoin(Hero this)
 // get number of collected coins
 u8 Hero_getCoins(Hero this)
 {
-	return this->coins;
+	return UserDataManager_getNumberOfCollectedCoins(UserDataManager_getInstance());
 }
 
 // get energy
@@ -1093,7 +1097,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
         {
 			case kCoin:
 
-				Hero_collectCoin(this);
+				Hero_collectCoin(this, __GET_CAST(Coin, inGameEntity));
 				MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, inGameEntity), kTakeCoin, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;

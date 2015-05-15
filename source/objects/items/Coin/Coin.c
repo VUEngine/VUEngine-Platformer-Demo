@@ -94,6 +94,6 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 
 void Coin_removeFromStage(Coin this)
 {
-	Stage_removeEntity(Game_getStage(Game_getInstance()), __GET_CAST(Entity, this), true);
+	Container_deleteMyself(__GET_CAST(Container, this));
     Shape_setActive(this->shape, false);
 }

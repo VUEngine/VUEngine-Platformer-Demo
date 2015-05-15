@@ -140,7 +140,6 @@ void Hero_win(Hero this);
 void Hero_moveOnWin(Hero this);
 void Hero_collectKey(Hero this);
 bool Hero_hasKey(Hero this);
-void Hero_collectCoin(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getEnergy(Hero this);
 Door Hero_getCurrentlyOverlappingDoor(Hero this);

@@ -78,7 +78,7 @@ static void PauseScreenState_destructor(PauseScreenState this)
 static void PauseScreenState_enter(PauseScreenState this, void* owner)
 {
 	// load stage
-	GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, NULL);
+	GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, NULL, true);
 
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(10000, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
