@@ -31,12 +31,12 @@
 
 PositionedEntityROMDef EMPTY_ST_ENTITIES[] =
 {
-	{NULL, {0,0,0}, NULL, NULL, NULL},
+	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef EMPTY_ST_UI_ENTITIES[] =
 {
-	{NULL, {0,0,0}, NULL, NULL, NULL}
+	{NULL, {0,0,0}, NULL, NULL, NULL, false}
 };
 
 TextureROMDef* EMPTY_ST_TEXTURES[] =

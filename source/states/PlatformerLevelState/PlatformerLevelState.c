@@ -153,7 +153,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 				}, 
 				HERO_NAME, 
 				NULL, 
-				NULL
+				NULL,
+				false
 			};
 
 			hero = __GET_CAST(Container, Stage_addPositionedEntity(this->stage, &positionedEntity, true));
