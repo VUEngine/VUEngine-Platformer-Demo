@@ -156,7 +156,10 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 				NULL
 			};
 
-			Stage_addPositionedEntity(this->stage, &positionedEntity, true);
+			hero = __GET_CAST(Container, Stage_addPositionedEntity(this->stage, &positionedEntity, true));
+			
+			//make sure that the streaming doens't load the hero again
+			Stage_registerEntityId(this->stage, Container_getId(hero), &HERO_AC);
 		}
 		else
 		{
