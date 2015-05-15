@@ -118,7 +118,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
-	PlatformerLevelState_getEntityNamesToIngnore (this, entityNamesToIgnore);
+	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
 	
 	// check if exiting room
 	if(this->isExitingRoom)
@@ -496,7 +496,7 @@ void PlatformerLevelState_enterRoom(PlatformerStageDefinition* platformerStageDe
 
 	if(hero)
 	{
-		this->heroLastPosition = *Container_getGlobalPosition(__GET_CAST(Container, hero));
+		this->heroLastPosition = *Container_getLocalPosition(__GET_CAST(Container, hero));
 		this->isExitingRoom = false;
 	}
 

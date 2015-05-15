@@ -128,7 +128,6 @@ void UserDataManager_setNumberOfCollectedCoins(UserDataManager this, int numberO
 bool UserDataManager_getCoinStatus(UserDataManager this, const char* coinName)
 {
 	ASSERT(this, "UserDataManager::getCoinStatus: null this");
-
 	
 	int coin = 1;
 	for(; coin <= TOTAL_COINS_IN_GAME; coin++)
@@ -136,7 +135,7 @@ bool UserDataManager_getCoinStatus(UserDataManager this, const char* coinName)
 		CoinStatus coinStatus;
 		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
 		
-		if(!strncmp(coinStatus.name, coinName, COIN_NAME_LENGTH))
+		if(coinName && !strncmp(coinStatus.name, coinName, COIN_NAME_LENGTH))
 		{
 			return coinStatus.taken;
 		}
