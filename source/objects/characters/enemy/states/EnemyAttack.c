@@ -68,7 +68,7 @@ void EnemyAttack_enter(EnemyAttack this, void* owner)
 // state's execute
 void EnemyAttack_execute(EnemyAttack this, void* owner)
 {
-//	if (HERO_TIME_TO_DIE < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
+//	if(HERO_TIME_TO_DIE < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
 // {
 		// change state
 		StateMachine_popState(Actor_getStateMachine(__GET_CAST(Actor, owner)));

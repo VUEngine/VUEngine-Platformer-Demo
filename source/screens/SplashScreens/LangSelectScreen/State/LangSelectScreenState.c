@@ -76,7 +76,7 @@ static void LangSelectScreenState_constructor(LangSelectScreenState this)
 	VirtualList languageNames = VirtualList_new();
 
 	int i = 0;
-	for (; __LANGUAGES[i]; i++)
+	for(; __LANGUAGES[i]; i++)
 	{
 		I18n_setActiveLanguage(I18n_getInstance(), i);
 		VirtualList_pushBack(languageNames, I18n_getActiveLanguageName(I18n_getInstance()));
@@ -91,7 +91,7 @@ static void LangSelectScreenState_constructor(LangSelectScreenState this)
 // class's destructor
 static void LangSelectScreenState_destructor(LangSelectScreenState this)
 {
-	if (this->languageSelector)
+	if(this->languageSelector)
 	{
 		__DELETE(this->languageSelector);
 	}
@@ -102,15 +102,15 @@ static void LangSelectScreenState_destructor(LangSelectScreenState this)
 
 void LangSelectScreenState_processInput(LangSelectScreenState this, u16 releasedKey)
 {
-	if ((releasedKey & K_LU) || (releasedKey & K_RU))
+	if((releasedKey & K_LU) || (releasedKey & K_RU))
 	{
 		OptionsSelector_selectPrevious(this->languageSelector);
 	}
-    else if ((releasedKey & K_LD) || (releasedKey & K_RD))
+    else if((releasedKey & K_LD) || (releasedKey & K_RD))
 	{
 		OptionsSelector_selectNext(this->languageSelector);
 	}
-	else if ((releasedKey & K_A) || (releasedKey & K_STA))
+	else if((releasedKey & K_A) || (releasedKey & K_STA))
 	{
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
 	    Game_changeState(Game_getInstance(), __GET_CAST(GameState, this->nextState));

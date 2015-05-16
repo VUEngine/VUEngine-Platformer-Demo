@@ -107,7 +107,7 @@ void HeroIdle_exit(HeroIdle this, void* owner)
 // state's on message
 bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 {
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kCollision:
 
@@ -127,22 +127,22 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
 				// check if in front of door and possibly enter it
-				if (K_LU & pressedKey)
+				if(K_LU & pressedKey)
 				{
-					if (Hero_isOverlappingDoor(Hero_getInstance())) 
+					if(Hero_isOverlappingDoor(Hero_getInstance()))
 					{
 						Hero_enterDoor(Hero_getInstance());
 						return true;
 					}
 				}
 
-				if ((K_LL | K_LR | K_A) & pressedKey)
+				if((K_LL | K_LR | K_A) & pressedKey)
                 {
                     Hero_checkDirection((Hero)owner, pressedKey, "Idle");
 
                     Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
 
-    				if (K_A & pressedKey)
+    				if(K_A & pressedKey)
                     {
                         Hero_jump((Hero)owner, true, true);
     				}
@@ -152,7 +152,7 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 				}
 
 
-				if (K_LU & pressedKey)
+				if(K_LU & pressedKey)
                 {
                     Hero_checkDirection((Hero)owner, pressedKey, "Back");
 
@@ -160,7 +160,7 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                     break;
 				}				
 
-				if (K_LD & pressedKey)
+				if(K_LD & pressedKey)
                 {
                     Hero_checkDirection((Hero)owner, pressedKey, "Front");
 
@@ -174,7 +174,7 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 			{
 				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-				if ((K_LL | K_LR) & holdKey)
+				if((K_LL | K_LR) & holdKey)
                 {
                     Hero_checkDirection((Hero)owner, holdKey, "Idle");
 

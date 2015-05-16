@@ -76,11 +76,11 @@ void EnterRoomDoor_destructor(EnterRoomDoor this)
 // state's on message
 bool EnterRoomDoor_handleMessage(EnterRoomDoor this, Telegram telegram)
 {
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kEnterDoor:
 
-			if (this->destination)
+			if(this->destination)
 			{
 				PlatformerLevelState_enterRoom((PlatformerStageDefinition*)this->destination);
 				return true;

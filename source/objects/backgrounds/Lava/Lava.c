@@ -112,7 +112,7 @@ bool Lava_isVisible(Lava this, int pad)
 // state's on message
 bool Lava_handleMessage(Lava this, Telegram telegram)
 {
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kLavaMove:
 

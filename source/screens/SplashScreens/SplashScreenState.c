@@ -91,15 +91,15 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 	__VIRTUAL_CALL(void, SplashScreenState, print, this);
 	
 #ifdef __DEBUG_TOOLS
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_EDITOR
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 
@@ -120,7 +120,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 // state's on message
 bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram)
 {
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
 	{
 		case kKeyPressed:
 		{

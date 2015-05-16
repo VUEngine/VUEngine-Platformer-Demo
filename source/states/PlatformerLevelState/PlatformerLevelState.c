@@ -106,7 +106,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 
 	int i = 0;
 	/*
-	for (;this->platformerStageDefinition->stageDefinition.entities[i].entityDefinition; i++)
+	for(;this->platformerStageDefinition->stageDefinition.entities[i].entityDefinition; i++)
 	{
 		if(UserDataManager_getCoinStatus(UserDataManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
 		{
@@ -218,13 +218,13 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 	Clock_pause(Game_getInGameClock(Game_getInstance()), true);
 
 #ifdef __DEBUG_TOOLS
-	if (!Game_isEnteringSpecialMode(Game_getInstance()))
+	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
 #ifdef __STAGE_EDITOR
-	if (!Game_isEnteringSpecialMode(Game_getInstance()))
+	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
 #ifdef __ANIMATION_EDITOR
-	if (!Game_isEnteringSpecialMode(Game_getInstance()))
+	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
@@ -237,15 +237,15 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	GameState_resume(__GET_CAST(GameState, this), owner);
 
 #ifdef __DEBUG_TOOLS
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_EDITOR
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 	
@@ -284,7 +284,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)
 {
 	// process message
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kSetUpLevel:
 
@@ -292,7 +292,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				// print level name
 	            PlatformerStageDefinition* platformerStageDefinition = this->platformerStageDefinition;
 	
-	            if ((*platformerStageDefinition).identifier)
+	            if((*platformerStageDefinition).identifier)
 	            {
 				    char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
 				    char* strLevelName = (*platformerStageDefinition).identifier;
@@ -300,7 +300,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	                Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
 	            }
 	
-	            if ((*platformerStageDefinition).name)
+	            if((*platformerStageDefinition).name)
 	            {
 				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*platformerStageDefinition).name);
 	                Printing_text(Printing_getInstance(), "\"", 17, 6, "GUIFont");
@@ -360,11 +360,11 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			
 		case kKeyPressed:
 
-			if (kPlaying == this->mode)
+			if(kPlaying == this->mode)
             {
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-				if (K_SEL & pressedKey)
+				if(K_SEL & pressedKey)
 				{
     				// adjustment screen
 	                PlatformerLevelState_setModeToPaused(this);
@@ -372,7 +372,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 					Game_pause(Game_getInstance(), __GET_CAST(GameState, AdjustmentScreenState_getInstance()));
 					break;
             	}
-				else if (K_STA & pressedKey)
+				else if(K_STA & pressedKey)
                 {
                     // pause screen
 					PlatformerLevelState_setModeToPaused(this);
@@ -387,7 +387,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 		case kKeyReleased:
 
-			if (kPlaying == this->mode)
+			if(kPlaying == this->mode)
             {
 				Object_fireEvent(__GET_CAST(Object, this), EVENT_KEY_RELEASED);
 			}
@@ -396,7 +396,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			
 		case kKeyHold:
 			
-			if (kPlaying == this->mode)
+			if(kPlaying == this->mode)
             {
 				Object_fireEvent(__GET_CAST(Object, this), EVENT_KEY_HOLD);
 			}
@@ -436,7 +436,7 @@ void PlatformerLevelState_printLifes(PlatformerLevelState this)
 {
 	Printing_text(Printing_getInstance(), "\x7B\x7B\x7B", 4, 26, "GUIFont");
     u8 i;
-	for (i=0; i < Hero_getEnergy(Hero_getInstance()); i++)
+	for(i=0; i < Hero_getEnergy(Hero_getInstance()); i++)
 	{
     	Printing_text(Printing_getInstance(), "\x60", 4+i, 26, "GUIFont");
 	}
@@ -448,11 +448,11 @@ void PlatformerLevelState_printCoins(PlatformerLevelState this)
     u8 coins = Hero_getCoins(Hero_getInstance());
     u8 printPos = 13;
 	Printing_text(Printing_getInstance(), "000/100", 11, 26, "GUIFont");
-    if (coins >= 10)
+    if(coins >= 10)
     {
         printPos--;
     }
-    if (coins >= 100)
+    if(coins >= 100)
     {
         printPos--;
     }
@@ -462,7 +462,7 @@ void PlatformerLevelState_printCoins(PlatformerLevelState this)
 // print keys icon to gui
 void PlatformerLevelState_printKey(PlatformerLevelState this)
 {
-    if (Hero_hasKey(Hero_getInstance())) {
+    if(Hero_hasKey(Hero_getInstance())) {
 	    Printing_text(Printing_getInstance(), "\x7E\x7F", 24, 26, "GUIFont");
     }
     else

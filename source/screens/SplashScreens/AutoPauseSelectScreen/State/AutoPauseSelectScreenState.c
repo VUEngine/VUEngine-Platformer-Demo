@@ -113,11 +113,11 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
     Printing_text(Printing_getInstance(), "                                                ", 0, 16, NULL);
     Printing_text(Printing_getInstance(), "                                                ", 0, 17, NULL);
     Printing_text(Printing_getInstance(), "                                                ", 0, 18, NULL);
-    if (strOnSize.y > 1) {
+    if(strOnSize.y > 1) {
         Printing_text(Printing_getInstance(), "                                                ", 0, 19, NULL);
-        if (strOnSize.y > 2) {
+        if(strOnSize.y > 2) {
             Printing_text(Printing_getInstance(), "                                                ", 0, 20, NULL);
-            if (strOnSize.y > 3) {
+            if(strOnSize.y > 3) {
                 Printing_text(Printing_getInstance(), "                                                ", 0, 21, NULL);
             }
         }
@@ -134,13 +134,13 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
     Printing_text(Printing_getInstance(), "\x04               ", optionEnd, 16, NULL);
     Printing_text(Printing_getInstance(), "\x07", optionStart, 17, NULL);
     Printing_text(Printing_getInstance(), "\x07", optionEnd, 17, NULL);
-    if (strOnSize.y > 1) {
+    if(strOnSize.y > 1) {
         Printing_text(Printing_getInstance(), "\x07", optionStart, 18, NULL);
         Printing_text(Printing_getInstance(), "\x07", optionEnd, 18, NULL);
-        if (strOnSize.y > 2) {
+        if(strOnSize.y > 2) {
             Printing_text(Printing_getInstance(), "\x07", optionStart, 19, NULL);
             Printing_text(Printing_getInstance(), "\x07", optionEnd, 19, NULL);
-            if (strOnSize.y > 3) {
+            if(strOnSize.y > 3) {
                 Printing_text(Printing_getInstance(), "\x07", optionStart, 20, NULL);
                 Printing_text(Printing_getInstance(), "\x07", optionEnd, 20, NULL);
             }
@@ -152,12 +152,12 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
 
 void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u16 releasedKey)
 {
-	if ((releasedKey & K_LL) || (releasedKey & K_LR))
+	if((releasedKey & K_LL) || (releasedKey & K_LR))
 	{
 	    this->selection = !this->selection;
 	    AutoPauseSelectScreenState_renderSelection(this);
 	}
-	else if ((releasedKey & K_A) || (releasedKey & K_STA))
+	else if((releasedKey & K_A) || (releasedKey & K_STA))
 	{
 		Game_setAutomaticPauseState(Game_getInstance(), this->selection ? __GET_CAST(GameState, AutoPauseScreenState_getInstance()): NULL);
 	    Game_changeState(Game_getInstance(), this->nextState);

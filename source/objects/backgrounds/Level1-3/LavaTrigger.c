@@ -79,7 +79,7 @@ void LavaTrigger_destructor(LavaTrigger this)
 // state's on message
 bool LavaTrigger_handleMessage(LavaTrigger this, Telegram telegram)
 {
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kLavaTriggerStart:
 

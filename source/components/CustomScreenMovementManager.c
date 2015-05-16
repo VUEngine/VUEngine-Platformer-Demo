@@ -95,7 +95,7 @@ void CustomScreenMovementManager_positione(CustomScreenMovementManager this, u8 
 	Screen screen = Screen_getInstance();
 	
 	// if focusInGameEntity is defined
-	if (screen && screen->focusInGameEntity)
+	if(screen && screen->focusInGameEntity)
 	{
 		Container focusInGameEntityParent = Container_getParent(__GET_CAST(Container, screen->focusInGameEntity));
 		
@@ -108,7 +108,7 @@ void CustomScreenMovementManager_positione(CustomScreenMovementManager this, u8 
 			__VIRTUAL_CALL(void, Container, transform, screen->focusInGameEntity, &environmentTransform);
 	
 			// get focusInGameEntity is moving
-			if (__VIRTUAL_CALL(bool, InGameEntity, isMoving, screen->focusInGameEntity) || !checkIfFocusEntityIsMoving)
+			if(__VIRTUAL_CALL(bool, InGameEntity, isMoving, screen->focusInGameEntity) || !checkIfFocusEntityIsMoving)
 			{
 				// save last position
 				screen->lastDisplacement = screen->position;
@@ -120,20 +120,20 @@ void CustomScreenMovementManager_positione(CustomScreenMovementManager this, u8 
 				screen->position.y += screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT >> 1);
 				screen->position.z += screen->focusEntityPositionDisplacement.z - ITOFIX19_13(__SCREEN_DEPTH >> 1);
 	
-				if (0 > screen->position.x)
+				if(0 > screen->position.x)
 				{
 					screen->position.x = 0;
 				}
-				else if (ITOFIX19_13(screen->stageSize.x) < screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+				else if(ITOFIX19_13(screen->stageSize.x) < screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
 				{
 					screen->position.x = ITOFIX19_13(screen->stageSize.x - __SCREEN_WIDTH);
 				}
 	
-				if (0 > screen->position.y)
+				if(0 > screen->position.y)
 				{
 					screen->position.y = 0;
 				}
-				else if (ITOFIX19_13(screen->stageSize.y) < screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
+				else if(ITOFIX19_13(screen->stageSize.y) < screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
 				{
 					screen->position.y = ITOFIX19_13(screen->stageSize.y - __SCREEN_HEIGHT);
 				}
@@ -191,7 +191,7 @@ void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, in
 
 bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram)
 {
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
 	{
 		case kScreenShake:
 			
@@ -240,10 +240,10 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
 	Screen screen = Screen_getInstance();
 	
     // stop if no shaking time left
-    if (this->shakeTimeLeft == 0)
+    if(this->shakeTimeLeft == 0)
     {
         // if needed, undo last offset
-        if (this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
+        if(this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
         {
             //Screen_setFocusInGameEntity(screen, this->tempFocusInGameEntity);
             this->lastShakeOffset.x = 0;

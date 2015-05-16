@@ -102,7 +102,7 @@ void HeroMoving_exit(HeroMoving this, void* owner)
 // state's on message
 bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 {
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
 
@@ -110,13 +110,13 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
 				// check direction
-				if ((K_LL | K_LR ) & pressedKey)
+				if((K_LL | K_LR ) & pressedKey)
                 {
 					Hero_checkDirection((Hero)owner, pressedKey, "Walk");	
 				}
-				else if (K_LU & pressedKey)
+				else if(K_LU & pressedKey)
 				{
-					if (Hero_isOverlappingDoor(Hero_getInstance())) 
+					if(Hero_isOverlappingDoor(Hero_getInstance()))
 					{
 						Hero_enterDoor(Hero_getInstance());
 						return true;
@@ -126,7 +126,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				//	Hero_checkDirection((Hero)owner, pressedKey, "Walk");
 				//}
 
-				if (K_A & pressedKey)
+				if(K_A & pressedKey)
                 {
 					Hero_jump((Hero)owner, false, !this->bouncing);			
 				}
@@ -139,11 +139,11 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			{
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-				if ((K_LL | K_LR) & releasedKey)
+				if((K_LL | K_LR) & releasedKey)
                 {
 					Velocity velocity = Body_getVelocity(Actor_getBody(__GET_CAST(Actor, owner)));
 					
-					if (0 < abs(velocity.x))
+					if(0 < abs(velocity.x))
                     {
 						Hero_stopAddingForce((Hero)owner);		
 					}
@@ -152,17 +152,17 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 						StateMachine_swapState(Actor_getStateMachine(__GET_CAST(Actor, owner)), __GET_CAST(State, HeroIdle_getInstance()));
 					}
 				}
-				else if (K_B & releasedKey)
+				else if(K_B & releasedKey)
                 {
 					Hero_disableBoost((Hero)owner);
 				}
 
 				/*
-				if ((K_LU | K_LD) & releasedKey)
+				if((K_LU | K_LD) & releasedKey)
                 {
 					Velocity velocity = Body_getVelocity(Actor_getBody(__GET_CAST(Actor, owner)));
 					
-					if (0 < abs(velocity.z))
+					if(0 < abs(velocity.z))
                     {
 						Hero_stopMovement((Hero)owner);		
 					}
@@ -179,18 +179,18 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			{
 				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
 
-				if (K_B & holdKey)
+				if(K_B & holdKey)
                 {
 					Hero_enableBoost((Hero)owner);
 				}
 
 				// check direction
-				if ((K_LL | K_LR ) & holdKey)
+				if((K_LL | K_LR ) & holdKey)
                 {
 					Hero_addForce((Hero)owner, this->mustCheckDirection, __XAXIS);					
 					this->mustCheckDirection = false;
 				}
-				else if ((K_LU | K_LD ) & holdKey)
+				else if((K_LU | K_LD ) & holdKey)
                 {
 					//Hero_addForce((Hero)owner, this->mustCheckDirection, __ZAXIS);					
 					//this->mustCheckDirection = false;
