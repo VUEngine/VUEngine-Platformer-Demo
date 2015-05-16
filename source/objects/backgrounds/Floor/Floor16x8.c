@@ -176,8 +176,7 @@ InanimatedInGameEntityROMDef FLOOR_16x8_IG =
         // in game type
         kSolid,
 
-        // if 0, width and height will be inferred from 
-        // the texture's size
+        // if 0, width and height will be inferred from the texture's size
         // width
         0,
         
@@ -237,8 +236,7 @@ InanimatedInGameEntityROMDef AFFINE_FLOOR_16x8_IG =
         // in game type
         kSolid,
 
-        // if 0, width and height will be inferred from 
-        // the texture's size
+        // if 0, width and height will be inferred from the texture's size
         // width
         0,
         

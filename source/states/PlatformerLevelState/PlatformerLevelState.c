@@ -105,6 +105,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 	ASSERT(entityNamesToIgnore, "PlatformerLevelState::getEntityNamesToIngnore: null entityNamesToIgnore");
 
 	int i = 0;
+	/*
 	for (;this->platformerStageDefinition->stageDefinition.entities[i].entityDefinition; i++)
 	{
 		if(UserDataManager_getCoinStatus(UserDataManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
@@ -112,6 +113,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 			VirtualList_pushBack(entityNamesToIgnore, this->platformerStageDefinition->stageDefinition.entities[i].name);
 		}
 	}
+	*/
 }
 
 // state's enter

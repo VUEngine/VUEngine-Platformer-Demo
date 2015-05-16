@@ -71,7 +71,7 @@ typedef struct UserData
 	// flag to know if there is data saved
 	u32 saveStamp[SAVE_STAMP_LENGTH];
 	
-	// number of lifes
+	// number of coins
 	int numberOfCollectedCoins;
 	CoinStatus coinStatus[TOTAL_COINS_IN_GAME];
 	
