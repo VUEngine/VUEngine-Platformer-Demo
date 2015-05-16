@@ -122,5 +122,5 @@ void Coin_removeFromStage(Coin this)
     Shape_setActive(this->shape, false);
     
     // TODO: check if not too heavy on hardware
-	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (AnimatedInGameEntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG, this->name, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
+	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG, this->name, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
 }
