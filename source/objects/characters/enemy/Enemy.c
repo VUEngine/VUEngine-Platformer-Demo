@@ -44,10 +44,10 @@ __CLASS_DEFINITION(Enemy, Actor);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Enemy_constructor(Enemy this, ActorDefinition* characterDefinition, int inGameIndex)
+void Enemy_constructor(Enemy this, ActorDefinition* characterDefinition, int id, const char* const name)
 {
 	// call base
-	__CONSTRUCT_BASE(characterDefinition, inGameIndex);
+	__CONSTRUCT_BASE(characterDefinition, id, name);
 
 	// no register time
 	this->actionTime = 0;

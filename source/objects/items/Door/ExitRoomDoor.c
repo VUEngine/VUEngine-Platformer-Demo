@@ -56,14 +56,14 @@ __CLASS_DEFINITION(ExitRoomDoor, Door);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(ExitRoomDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(ExitRoomDoor, animatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(ExitRoomDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(ExitRoomDoor, animatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void ExitRoomDoor_constructor(ExitRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void ExitRoomDoor_constructor(ExitRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -80,7 +80,7 @@ bool ExitRoomDoor_handleMessage(ExitRoomDoor this, Telegram telegram)
     {
 		case kEnterDoor:
 
-			if (Door_hasDestination(this))
+			if (this->destination)
 			{
 				PlatformerLevelState_exitRoom((PlatformerStageDefinition*)this->destination);
 				return true;

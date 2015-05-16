@@ -130,16 +130,16 @@ void Hero_setInstance(Hero instance)
 }
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hero, ActorDefinition* actorDefinition, int ID)
-__CLASS_NEW_END(Hero, actorDefinition, ID);
+__CLASS_NEW_DEFINITION(Hero, ActorDefinition* actorDefinition, int id, const char* const name)
+__CLASS_NEW_END(Hero, actorDefinition, id, name);
 
 // class's constructor
-void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int ID)
+void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const char* const name)
 {
 	ASSERT(this, "Hero::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(actorDefinition, ID);
+	__CONSTRUCT_BASE(actorDefinition, id, name);
 
 	this->energy = 3;
 	this->coins = 0;

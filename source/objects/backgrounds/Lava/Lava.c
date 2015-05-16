@@ -60,14 +60,14 @@ void Lava_moveUpwards(Lava this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(Lava, inanimatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(Lava, inanimatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
+void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, ID);
+	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
 	
 	if(this->shape)
 	{

@@ -58,9 +58,9 @@ __CLASS(Door);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Door, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(Door, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 
-void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID);
+void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void Door_destructor(Door this);
 void* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);

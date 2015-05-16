@@ -58,14 +58,14 @@ void Coin_removeFromStage(Coin this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Coin, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(Coin, animatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(Coin, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);

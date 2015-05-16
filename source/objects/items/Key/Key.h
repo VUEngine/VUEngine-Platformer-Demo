@@ -55,9 +55,9 @@ __CLASS(Key);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Key, AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(Key, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
 
-void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, int ID);
+void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Key_destructor(Key this);
 void Key_ready(Key this);
 bool Key_handleMessage(Key this, Telegram telegram);

@@ -136,6 +136,8 @@ void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageDef
 void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDefinition);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
+void PlatformerLevelState_enterRoom(PlatformerStageDefinition* platformerStageDefinition);
+void PlatformerLevelState_exitRoom(PlatformerStageDefinition* platformerStageDefinition);
 
 
 #endif

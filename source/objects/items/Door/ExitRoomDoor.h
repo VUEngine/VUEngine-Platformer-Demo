@@ -54,9 +54,9 @@ __CLASS(ExitRoomDoor);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(ExitRoomDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(ExitRoomDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 
-void ExitRoomDoor_constructor(ExitRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID);
+void ExitRoomDoor_constructor(ExitRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void ExitRoomDoor_destructor(ExitRoomDoor this);
 bool ExitRoomDoor_handleMessage(ExitRoomDoor this, Telegram telegram);
 

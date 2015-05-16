@@ -60,14 +60,14 @@ static void CogWheel_rotate(CogWheel this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CogWheel, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(CogWheel, inanimatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(CogWheel, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(CogWheel, inanimatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int ID)
+void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, ID);
+	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
 	
 	if(this->shape)
 	{

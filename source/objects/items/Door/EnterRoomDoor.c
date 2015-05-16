@@ -56,14 +56,14 @@ __CLASS_DEFINITION(EnterRoomDoor, Door);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(EnterRoomDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(EnterRoomDoor, animatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(EnterRoomDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(EnterRoomDoor, animatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void EnterRoomDoor_constructor(EnterRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void EnterRoomDoor_constructor(EnterRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor

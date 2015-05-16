@@ -57,16 +57,16 @@ __CLASS_DEFINITION(Hint, AnimatedInGameEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hint, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(Hint, animatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(Hint, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(Hint, animatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	ASSERT(this, "Hint::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor

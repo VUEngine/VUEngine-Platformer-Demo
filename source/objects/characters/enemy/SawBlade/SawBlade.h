@@ -90,9 +90,9 @@ typedef const struct SawBladeDefinition
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(SawBlade , SawBladeDefinition* sawBladeDefinition, int ID);
+__CLASS_NEW_DECLARE(SawBlade , SawBladeDefinition* sawBladeDefinition, int id, const char* const name);
 
-void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int ID);
+void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int id, const char* const name);
 void SawBlade_destructor(SawBlade this);
 void SawBlade_ready(SawBlade this);
 void SawBlade_registerShape(SawBlade this);

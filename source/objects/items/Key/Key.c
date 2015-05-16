@@ -59,16 +59,16 @@ void Key_removeFromStage(Key this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Key, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
-__CLASS_NEW_END(Key, animatedInGameEntityDefinition, ID);
+__CLASS_NEW_DEFINITION(Key, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(Key, animatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
+void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	ASSERT(this, "Key::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
+	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);

@@ -57,9 +57,9 @@ __CLASS(CogWheel);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(CogWheel, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(CogWheel, InanimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
 
-void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* definition, int ID);
+void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* definition, int id, const char* const name);
 void CogWheel_destructor(CogWheel this);
 void CogWheel_ready(CogWheel this);
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram);

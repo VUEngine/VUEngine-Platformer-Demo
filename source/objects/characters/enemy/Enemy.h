@@ -70,7 +70,7 @@ __CLASS(Enemy);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-void Enemy_constructor(Enemy this, ActorDefinition* definition, int ID);
+void Enemy_constructor(Enemy this, ActorDefinition* definition, int id, const char* const name);
 void Enemy_destructor(Enemy this);
 u32 Enemy_getActionTime(Enemy this);
 bool Enemy_canAttack(Enemy this);

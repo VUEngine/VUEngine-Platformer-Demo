@@ -54,9 +54,9 @@ __CLASS(Coin);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
 
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int ID);
+void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Coin_destructor(Coin this);
 bool Coin_handleMessage(Coin this, Telegram telegram);
 void Coin_removeFromStage(Coin this);

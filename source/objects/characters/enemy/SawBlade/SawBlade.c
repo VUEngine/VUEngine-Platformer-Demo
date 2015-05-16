@@ -52,16 +52,16 @@ __CLASS_DEFINITION(SawBlade, Enemy);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(SawBlade, SawBladeDefinition* sawBladeDefinition, int ID)
-__CLASS_NEW_END(SawBlade, sawBladeDefinition, ID);
+__CLASS_NEW_DEFINITION(SawBlade, SawBladeDefinition* sawBladeDefinition, int id, const char* const name)
+__CLASS_NEW_END(SawBlade, sawBladeDefinition, id, name);
 
 // class's constructor
-void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int ID)
+void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int id, const char* const name)
 {
 	ASSERT(this, "SawBlade::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE((ActorDefinition*)&sawBladeDefinition->actorDefinition, ID);
+	__CONSTRUCT_BASE((ActorDefinition*)&sawBladeDefinition->actorDefinition, id, name);
 
 	// register a shape for collision detection
 	SawBlade_registerShape(this);

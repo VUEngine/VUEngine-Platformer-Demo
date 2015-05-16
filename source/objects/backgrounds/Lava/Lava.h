@@ -57,9 +57,9 @@ __CLASS(Lava);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
 
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, int ID);
+void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Lava_destructor(Lava this);
 void Lava_startMoving(Lava this);
 bool Lava_handleMessage(Lava this, Telegram telegram);

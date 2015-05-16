@@ -66,9 +66,9 @@ __CLASS(Hint);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Hint, AnimatedInGameEntityDefinition* animatedEntityDefinition, int ID);
+__CLASS_NEW_DECLARE(Hint, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
 
-void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, int ID);
+void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Hint_destructor(Hint this);
 void Hint_resume(Hint this);
 bool Hint_handleMessage(Hint this, Telegram telegram);
