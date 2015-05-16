@@ -213,8 +213,7 @@ AnimatedInGameEntityROMDef DOOR_AG =
         // in game type
         kDoor,
 
-        // if 0, width and height will be inferred from 
-        // the texture's size
+        // if 0, width and height will be inferred from the texture's size
         // width
     	0,
 
@@ -246,8 +245,7 @@ AnimatedInGameEntityROMDef ENTER_ROOM_DOOR_AG =
         // in game type
         kDoor,
 
-        // if 0, width and height will be inferred from 
-        // the texture's size
+        // if 0, width and height will be inferred from the texture's size
         // width
     	0,
 
@@ -279,8 +277,7 @@ AnimatedInGameEntityROMDef EXIT_ROOM_DOOR_AG =
         // in game type
         kDoor,
 
-        // if 0, width and height will be inferred from 
-        // the texture's size
+        // if 0, width and height will be inferred from the texture's size
         // width
     	0,
 
@@ -337,8 +334,7 @@ AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
         // in game type
         kDoor,
 
-        // if 0, width and height will be inferred from 
-        // the texture's size
+        // if 0, width and height will be inferred from the texture's size
         // width
     	0,
 

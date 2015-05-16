@@ -96,7 +96,7 @@ static void UserDataManager_initialize(UserDataManager this)
 	
 		int numberOfCollectedCoins = 0;
 		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)&(_userData->numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
-		
+
 		int coin = 1;
 		for(; coin <= TOTAL_COINS_IN_GAME; coin++)
 		{

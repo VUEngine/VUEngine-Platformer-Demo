@@ -142,8 +142,7 @@ AnimatedInGameEntityROMDef KEY_AG =
         // in game type
         kKey,
 
-        // if 0, width and height will be inferred from 
-        // the texture's size
+        // if 0, width and height will be inferred from the texture's size
         // width
     	0,
 

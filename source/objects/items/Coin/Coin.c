@@ -27,6 +27,8 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <UserDataManager.h>
+#include <Container.h>
 
 #include <objects.h>
 #include "Coin.h"
@@ -37,6 +39,8 @@
 //---------------------------------------------------------------------------------------------------------
 // 											 CLASS'S MACROS
 //---------------------------------------------------------------------------------------------------------
+
+extern AnimatedInGameEntityROMDef OBJECT_COIN_SILHOUETTE_AG;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -64,11 +68,24 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, ID);
 // class's constructor
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int ID)
 {
+    if (UserDataManager_getCoinStatus(UserDataManager_getInstance(), "Coin 001"))
+    {
+        animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG;
+        this->taken = true;
+    }
+    else
+    {
+        this->taken = false;
+    }
+
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, ID);
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+	if(!this->taken)
+	{
+	    this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+    }
 }
 
 // class's destructor
@@ -81,6 +98,8 @@ void Coin_destructor(Coin this)
 // state's on message
 bool Coin_handleMessage(Coin this, Telegram telegram)
 {
+	ASSERT(this, "Coin::handleMessage: null this");
+
 	switch (Telegram_getMessage(telegram))
     {
 		case kTakeCoin:
@@ -92,8 +111,21 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 	return false;
 }
 
+void Coin_initialize(Coin this)
+{
+	ASSERT(this, "Coin::initialize: null this");
+
+    //if (UserDataManager_getCoinStatus(UserDataManager_getInstance(), "Coin 001"))
+    //{
+    //}
+
+	AnimatedInGameEntity_initialize(__GET_CAST(AnimatedInGameEntity, this));
+}
+
 void Coin_removeFromStage(Coin this)
 {
+	ASSERT(this, "Coin::removeFromStage: null this");
+
 	Container_deleteMyself(__GET_CAST(Container, this));
     Shape_setActive(this->shape, false);
 }
