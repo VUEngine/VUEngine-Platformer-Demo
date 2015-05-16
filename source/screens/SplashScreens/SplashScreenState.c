@@ -134,7 +134,7 @@ bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegr
 	return false;
 }
 
-void SplashScreenState_processInput(SplashScreenState this, u16 releasedKey)
+void SplashScreenState_processInput(SplashScreenState this, u16 pressedKey)
 {
 	Game_changeState(Game_getInstance(), this->nextState);
 }

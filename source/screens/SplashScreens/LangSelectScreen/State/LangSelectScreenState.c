@@ -46,7 +46,7 @@ extern LangROMDef* __LANGUAGES[];
 
 static void LangSelectScreenState_destructor(LangSelectScreenState this);
 static void LangSelectScreenState_constructor(LangSelectScreenState this);
-static void LangSelectScreenState_processInput(LangSelectScreenState this, u16 releasedKey);
+static void LangSelectScreenState_processInput(LangSelectScreenState this, u16 pressedKey);
 static void LangSelectScreenState_print(LangSelectScreenState this);
 
 
@@ -100,17 +100,17 @@ static void LangSelectScreenState_destructor(LangSelectScreenState this)
 	__SINGLETON_DESTROY;
 }
 
-void LangSelectScreenState_processInput(LangSelectScreenState this, u16 releasedKey)
+void LangSelectScreenState_processInput(LangSelectScreenState this, u16 pressedKey)
 {
-	if ((releasedKey & K_LU) || (releasedKey & K_RU))
+	if ((pressedKey & K_LU) || (pressedKey & K_RU))
 	{
 		OptionsSelector_selectPrevious(this->languageSelector);
 	}
-    else if ((releasedKey & K_LD) || (releasedKey & K_RD))
+    else if ((pressedKey & K_LD) || (pressedKey & K_RD))
 	{
 		OptionsSelector_selectNext(this->languageSelector);
 	}
-	else if ((releasedKey & K_A) || (releasedKey & K_STA))
+	else if ((pressedKey & K_A) || (pressedKey & K_STA))
 	{
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
 	    Game_changeState(Game_getInstance(), __GET_CAST(GameState, this->nextState));
