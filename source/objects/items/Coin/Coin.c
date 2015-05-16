@@ -68,7 +68,7 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 // class's constructor
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
-    if (UserDataManager_getCoinStatus(UserDataManager_getInstance(), "Coin 001"))
+    if (UserDataManager_getCoinStatus(UserDataManager_getInstance(), name))
     {
         animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG;
         this->taken = true;
@@ -115,10 +115,6 @@ void Coin_initialize(Coin this)
 {
 	ASSERT(this, "Coin::initialize: null this");
 
-    //if (UserDataManager_getCoinStatus(UserDataManager_getInstance(), "Coin 001"))
-    //{
-    //}
-
 	AnimatedInGameEntity_initialize(__GET_CAST(AnimatedInGameEntity, this));
 }
 
@@ -128,4 +124,5 @@ void Coin_removeFromStage(Coin this)
 
 	Container_deleteMyself(__GET_CAST(Container, this));
     Shape_setActive(this->shape, false);
+	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), &OBJECT_COIN_SILHOUETTE_AG, this->name, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
 }

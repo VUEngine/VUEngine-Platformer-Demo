@@ -129,15 +129,18 @@ bool UserDataManager_getCoinStatus(UserDataManager this, const char* coinName)
 {
 	ASSERT(this, "UserDataManager::getCoinStatus: null this");
 	
-	int coin = 1;
-	for(; coin <= TOTAL_COINS_IN_GAME; coin++)
+	if(coinName)
 	{
-		CoinStatus coinStatus;
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
-		
-		if(coinName && !strncmp(coinStatus.name, coinName, COIN_NAME_LENGTH))
+		int coin = 1;
+		for(; coin <= TOTAL_COINS_IN_GAME; coin++)
 		{
-			return coinStatus.taken;
+			CoinStatus coinStatus;
+			SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
+			
+			if(coinName && !strncmp(coinStatus.name, coinName, COIN_NAME_LENGTH))
+			{
+				return coinStatus.taken;
+			}
 		}
 	}
 	
