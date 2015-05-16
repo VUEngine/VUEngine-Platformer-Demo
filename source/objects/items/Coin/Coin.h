@@ -49,9 +49,6 @@ __CLASS(Coin);
 																				\
 	/* it is derivated from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
-																				\
-	/* flags if the player already collected this coin in a previous run */		\
-	bool taken;																	\
 
 
 //---------------------------------------------------------------------------------------------------------
