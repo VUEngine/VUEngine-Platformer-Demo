@@ -84,11 +84,9 @@ static void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
     SplashScreenState_enter(__GET_CAST(SplashScreenState, this), owner);
 
     // show this screen for at least 2 seconds, as defined by Nintendo in the official development manual
-	KeypadManager_flush(KeypadManager_getInstance());
 	Clock_delay(Game_getClock(Game_getInstance()), 2000);
 	KeypadManager_flush(KeypadManager_getInstance());
 }
-
 
 static void PrecautionScreenState_print(PrecautionScreenState this)
 {

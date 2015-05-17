@@ -114,6 +114,7 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
 
     // UI entities
     {
+        NULL,
         NULL
     },
 
