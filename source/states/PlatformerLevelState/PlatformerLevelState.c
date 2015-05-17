@@ -104,8 +104,8 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 {
 	ASSERT(entityNamesToIgnore, "PlatformerLevelState::getEntityNamesToIngnore: null entityNamesToIgnore");
 
-	int i = 0;
 	/*
+	int i = 0;
 	for(;this->platformerStageDefinition->stageDefinition.entities[i].entityDefinition; i++)
 	{
 		if(UserDataManager_getCoinStatus(UserDataManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
@@ -138,7 +138,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 		// must set the screen's position before loading the stage
 		Screen_setPosition(Screen_getInstance(), screenPosition);
 	    
-		//load stage
+		// load stage
 		GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
 
 		Container hero = Container_getChildByName(__GET_CAST(Container, this->stage), HERO_NAME, true);
@@ -161,7 +161,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 			hero = __GET_CAST(Container, Stage_addPositionedEntity(this->stage, &positionedEntity, true));
 			
-			//make sure that the streaming doens't load the hero again
+			// make sure that the streaming doesn't load the hero again
 			Stage_registerEntityId(this->stage, Container_getId(hero), &HERO_AC);
 		}
 		else
