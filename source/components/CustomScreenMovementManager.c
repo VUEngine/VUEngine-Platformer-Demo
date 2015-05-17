@@ -193,7 +193,7 @@ bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this,
 {
 	switch(Telegram_getMessage(telegram))
 	{
-		case kScreenShake:
+		case kShake:
 			
 			CustomScreenMovementManager_onScreenShake(this);
             break;
@@ -218,10 +218,10 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
     this->lastShakeOffset.x = ITOFIX19_13(2);
 
     // discard pending screen shake messages from previously started shake fx
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kScreenShake);
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kShake);
 
     // instantly send shake message to myself to start fx
-    MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this), kScreenShake, NULL);
+    MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this), kShake, NULL);
 }
 
 // stop shaking the screen
@@ -261,7 +261,6 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
     this->shakeTimeLeft = (this->shakeTimeLeft <= nextShakeDelay) ? 0 : this->shakeTimeLeft - nextShakeDelay;
 
     // new offset
-    // TODO: use random number(s) or pre-defined shaking pattern
     this->lastShakeOffset.x = -this->lastShakeOffset.x;
 
     // move screen a bit
@@ -271,6 +270,5 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
     GameState_transform(__GET_CAST(GameState, StateMachine_getCurrentState(Game_getStateMachine(Game_getInstance()))));
 
     // send message for next screen movement
-	MessageDispatcher_dispatchMessage(nextShakeDelay, __GET_CAST(Object, this), __GET_CAST(Object, this), kScreenShake, NULL);
+	MessageDispatcher_dispatchMessage(nextShakeDelay, __GET_CAST(Object, this), __GET_CAST(Object, this), kShake, NULL);
 }
-
