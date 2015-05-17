@@ -100,7 +100,7 @@ bool Key_handleMessage(Key this, Telegram telegram)
 {
 	ASSERT(this, "Key::handleMessage: null this");
 
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kTakeKey:
 

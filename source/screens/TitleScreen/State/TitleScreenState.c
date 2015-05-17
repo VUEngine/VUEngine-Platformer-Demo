@@ -124,13 +124,13 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
     char* strLevelSelectLabel = "";
 
     // display level name if in front of a door
-    if (currentlyOverlappingDoor != NULL)
+    if(currentlyOverlappingDoor != NULL)
     {
         PlatformerStageDefinition* platformerStageDefinition = Door_getExtraInfo(currentlyOverlappingDoor);
         strLevelSelectLabel = I18n_getText(I18n_getInstance(), (int)(*platformerStageDefinition).name);
     }
 
-    if (0 != strcmp(this->lastLevelSelectLabel, strLevelSelectLabel))
+    if(0 != strcmp(this->lastLevelSelectLabel, strLevelSelectLabel))
     {
         Printing_text(Printing_getInstance(), "                                                ", 0, 26, "GUIFont");
         Printing_text(Printing_getInstance(), strLevelSelectLabel, (48 - strlen(strLevelSelectLabel)) >> 1, 26, "GUIFont");
@@ -157,15 +157,15 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 	GameState_resume(__GET_CAST(GameState, this), owner);
 
 #ifdef __DEBUG_TOOLS
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_EDITOR
-	if (!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
 	
@@ -202,7 +202,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
 {
 	// process message
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kSetUpLevel:
 
@@ -236,7 +236,7 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			{
 	            u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 	
-	            if (K_SEL & pressedKey)
+	            if(K_SEL & pressedKey)
 	            {
 	                // adjustment screen
 					SplashScreenState_setNextstate(__GET_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);

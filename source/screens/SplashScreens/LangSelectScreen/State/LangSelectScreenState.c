@@ -76,7 +76,7 @@ static void LangSelectScreenState_constructor(LangSelectScreenState this)
 	VirtualList languageNames = VirtualList_new();
 
 	int i = 0;
-	for (; __LANGUAGES[i]; i++)
+	for(; __LANGUAGES[i]; i++)
 	{
 		I18n_setActiveLanguage(I18n_getInstance(), i);
 		VirtualList_pushBack(languageNames, I18n_getActiveLanguageName(I18n_getInstance()));
@@ -91,7 +91,7 @@ static void LangSelectScreenState_constructor(LangSelectScreenState this)
 // class's destructor
 static void LangSelectScreenState_destructor(LangSelectScreenState this)
 {
-	if (this->languageSelector)
+	if(this->languageSelector)
 	{
 		__DELETE(this->languageSelector);
 	}

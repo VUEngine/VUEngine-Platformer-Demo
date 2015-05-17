@@ -83,7 +83,7 @@ void SawBladeMoving_enter(SawBladeMoving this, void* owner)
 void SawBladeMoving_execute(SawBladeMoving this, void* owner)
 {	
 	// if not waiting
-	if (!Enemy_getActionTime((Enemy)owner))
+	if(!Enemy_getActionTime((Enemy)owner))
     {
 		// update movement
 		SawBlade_move((SawBlade)owner);		
@@ -91,7 +91,7 @@ void SawBladeMoving_execute(SawBladeMoving this, void* owner)
 	else
     {
 		// if wait time elapsed
-		if (SAW_BLADE_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
+		if(SAW_BLADE_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
 		{
 			// start movement in opposite direction
 			SawBlade_startMovement((SawBlade)owner);
@@ -110,7 +110,7 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
 {
 	int message = Telegram_getMessage(telegram);
 
-	switch (message)
+	switch(message)
     {
 		case kCollision:
 		{
@@ -120,11 +120,11 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
 			VirtualNode node = NULL;
 			
 			// this will place the shape in the owner's position
-			for (node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
+			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
             {
 				InGameEntity inGameEntity = __GET_CAST(InGameEntity, VirtualNode_getData(node));
 				
-				switch (InGameEntity_getInGameType(inGameEntity))
+				switch(InGameEntity_getInGameType(inGameEntity))
                 {
 					case kHero:
 					

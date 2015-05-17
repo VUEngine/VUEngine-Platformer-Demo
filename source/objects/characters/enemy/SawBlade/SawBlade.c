@@ -77,7 +77,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	// set movement direction;
 	this->movementDirection = sawBladeDefinition->direction;
 	
-	switch (this->axis)
+	switch(this->axis)
     {
 		case __XAXIS:
 
@@ -138,11 +138,11 @@ bool SawBlade_processCollision(SawBlade this, Telegram telegram)
 	int message = Telegram_getMessage(telegram);
 	InGameEntity inGameEntity = __GET_CAST(InGameEntity,  Telegram_getExtraInfo(telegram));
 	
-	switch (message)
+	switch(message)
     {
 		case kCollision:
 			
-			switch (InGameEntity_getInGameType(inGameEntity))
+			switch(InGameEntity_getInGameType(inGameEntity))
             {
 				case kHero:
 
@@ -177,7 +177,7 @@ void SawBlade_setLocalPosition(SawBlade this, const VBVec3D* position)
 	Actor_setLocalPosition(__GET_CAST(Actor, this), position);
 	
 	// save initial position
-	switch (this->axis)
+	switch(this->axis)
     {
 		case __XAXIS:
 
@@ -203,7 +203,7 @@ void SawBlade_move(SawBlade this)
 	int displacement = ITOFIX19_13(44);
 	
 	// update position
-	switch (this->axis)
+	switch(this->axis)
     {
 		case __XAXIS:
 
@@ -211,13 +211,13 @@ void SawBlade_move(SawBlade this)
 			
 		case __YAXIS:
 			
-			switch (this->direction.y)
+			switch(this->direction.y)
             {
 				case __UP:
 
 					{	
 						// check position
-						if (this->transform.globalPosition.y < this->initialPosition - displacement)
+						if(this->transform.globalPosition.y < this->initialPosition - displacement)
                         {
 							// stop moving
 							Actor_stopMovement(__GET_CAST(Actor, this));
@@ -238,7 +238,7 @@ void SawBlade_move(SawBlade this)
 
 					{
 						// check position
-						if (this->transform.globalPosition.y > this->initialPosition)
+						if(this->transform.globalPosition.y > this->initialPosition)
                         {
 							// stop moving
 							Actor_stopMovement(__GET_CAST(Actor, this));
@@ -260,13 +260,13 @@ void SawBlade_move(SawBlade this)
 	}
 /*
 	// if I've been stopped
-	if (false && !(this->axis & Actor_isMoving(__GET_CAST(Actor, this))))
+	if(false && !(this->axis & Actor_isMoving(__GET_CAST(Actor, this))))
     {
 		// check if must stop go idle
-		if (!displacement)
+		if(!displacement)
         {
 			// check if hero distance to the plant is out of range
-			if (SAW_BLADE_ATTACK_DISTANCE < Optics_lengthSquared3D(
+			if(SAW_BLADE_ATTACK_DISTANCE < Optics_lengthSquared3D(
 					Entity_getPosition(__GET_CAST(Entity, this)), Entity_getPosition(__GET_CAST(Entity, Hero_getInstance())))
 			)
             {
@@ -280,7 +280,7 @@ void SawBlade_move(SawBlade this)
 // start moving
 void SawBlade_startMovement(SawBlade this)
 {
-	switch (this->axis)
+	switch(this->axis)
     {
 		case __XAXIS:
 

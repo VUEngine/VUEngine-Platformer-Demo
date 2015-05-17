@@ -109,13 +109,13 @@ static void AutoPauseScreenState_exit(AutoPauseScreenState this, void* owner)
 static bool AutoPauseScreenState_handleMessage(AutoPauseScreenState this, void* owner, Telegram telegram)
 {
 	// process message
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 		
-				if (K_STA & pressedKey)
+				if(K_STA & pressedKey)
 				{
 					Game_unpause(Game_getInstance(), __GET_CAST(GameState, this));
 				}

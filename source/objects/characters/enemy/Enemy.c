@@ -80,7 +80,7 @@ bool Enemy_onPlatformEdge(Enemy this)
 {
 	/*
 	// first check if I'm over something
-	if (this->objectBelow)
+	if(this->objectBelow)
     {
 		VBVec3D position = Entity_getPosition(__GET_CAST(Entity, this->objectBelow));
 		int width = ITOFIX19_13(abs(Entity_getWidth(__GET_CAST(Entity, this->objectBelow)) - (Entity_getWidth(__GET_CAST(Entity, this)) >> 1)) >> 1) ;

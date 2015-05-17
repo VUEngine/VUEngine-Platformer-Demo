@@ -69,7 +69,7 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	bool taken = &OBJECT_COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || UserDataManager_getCoinStatus(UserDataManager_getInstance(), name);
-    if (taken)
+    if(taken)
     {
         animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG;
     }
@@ -96,7 +96,7 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 {
 	ASSERT(this, "Coin::handleMessage: null this");
 
-	switch (Telegram_getMessage(telegram))
+	switch(Telegram_getMessage(telegram))
     {
 		case kTakeCoin:
 
