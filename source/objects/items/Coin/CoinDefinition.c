@@ -137,7 +137,7 @@ TextureROMDef OBJECT_COIN_SILHOUETTE_TX =
     4,
 
     // palette number
-    0,
+    2,
 };
 
 TextureROMDef BGMAP_COIN_TX =
