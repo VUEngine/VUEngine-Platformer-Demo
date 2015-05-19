@@ -108,17 +108,16 @@ bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
 // move cannon ball
 void CannonBall_move(CannonBall this)
 {
-    // get global position of cannon ball
-    VBVec3D globalPosition = *Container_getGlobalPosition(__GET_CAST(Container, this));
+    // get local position of cannon ball
+    VBVec3D localPosition = *Container_getLocalPosition(__GET_CAST(Container, this));
 
-    if (FIX19_13TOI(globalPosition.z) < CANNON_BALL_MINIMUM_Z_POSITION)
+    if (FIX19_13TOI(localPosition.z) < CANNON_BALL_MINIMUM_Z_POSITION)
     {
         CannonBall_removeFromStage(this);
     }
     else
     {
-        // get local position of cannon ball and substract 1 from z value
-        VBVec3D localPosition = *Container_getLocalPosition(__GET_CAST(Container, this));
+        // substract offset from local position z value
         localPosition.z -= ITOFIX19_13(CANNON_BALL_Z_OFFSET_PER_CYCLE);
 
         // update cannon ball's position

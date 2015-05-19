@@ -119,11 +119,10 @@ void Cannon_spawnCannonBall(Cannon this)
     // spawn some smoke particles
     // TODO
 
+    // play boom sound
+    extern const u16 FIRE1_SND[];
+    SoundManager_playFxSound(SoundManager_getInstance(), FIRE1_SND, this->transform.globalPosition);
+
     // add cannon ball entity to stage
-	extern EntityDefinition CANNON_BALL_IG;
-	VBVec3D position =
-	{
-		FTOFIX19_13(-4), FTOFIX19_13(-4), FTOFIX19_13(0)
-	};
-    Entity_addChildFromDefinition(__GET_CAST(Entity, this), &CANNON_BALL_IG, -1, NULL, &position, NULL);
+	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_IG, NULL, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
 }
