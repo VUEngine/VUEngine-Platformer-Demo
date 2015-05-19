@@ -114,6 +114,8 @@ enum PlatformerLevelStateMessageTypes
 	kLavaTriggerEnd,
 	kLavaMove,
 	kCogWheelMove,
+	kCannonShoot,
+	kCannonBallMove,
 	kEnterDoor,
 	kOpenDoor,
 	kCloseDoor,

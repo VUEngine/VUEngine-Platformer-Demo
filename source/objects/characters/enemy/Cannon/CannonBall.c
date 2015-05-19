@@ -27,9 +27,11 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <UserDataManager.h>
+#include <Container.h>
 
 #include <objects.h>
-#include "Lava.h"
+#include "CannonBall.h"
 
 #include <PlatformerLevelState.h>
 
@@ -38,14 +40,14 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Lava, InanimatedInGameEntity);
+__CLASS_DEFINITION(CannonBall, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Lava_moveUpwards(Lava this);
+void CannonBall_move(CannonBall this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,99 +55,76 @@ void Lava_moveUpwards(Lava this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(Lava, inanimatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(CannonBall, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(CannonBall, inanimatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+void CannonBall_constructor(CannonBall this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
 	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
-	
-	if(this->shape)
-	{
-		Shape_setCheckForCollisions(__GET_CAST(Shape, this->shape), false);
-	}
+
+	// register a shape for collision detection
+    this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+
+	// must make sure that the shape is updated
+	CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
+
+	// start moving
+    CannonBall_move(this);
 }
 
 // class's destructor
-void Lava_destructor(Lava this)
+void CannonBall_destructor(CannonBall this)
 {
-    // discard pending moving messages
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kLavaMove);
-
 	// delete the super object
 	__DESTROY_BASE;
 }
 
-// start moving
-void Lava_startMoving(Lava this)
+void CannonBall_removeFromStage(CannonBall this)
 {
-	ASSERT(this, "Lava::startMoving: null this");
+	ASSERT(this, "CannonBall::removeFromStage: null this");
 
-	// start moving
-	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kLavaMove, NULL);
-	
-	// must make sure that the shape is updated
-	if(this->shape)
-	{
-		CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
-	}
-}
-
-// whether it is visible
-bool Lava_isVisible(Lava this, int pad)
-{
-	ASSERT(this, "Lava::isVisible: null this");
-
-    // always return true so the Lava is never unloaded from the stage when it is not visible on screen
-	return true;
+	Container_deleteMyself(__GET_CAST(Container, this));
+    Shape_setActive(this->shape, false);
 }
 
 // state's on message
-bool Lava_handleMessage(Lava this, Telegram telegram)
+bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
 {
+	ASSERT(this, "CannonBall::handleMessage: null this");
+
 	switch(Telegram_getMessage(telegram))
     {
-		case kLavaMove:
+		case kCannonBallMove:
 
-            Lava_moveUpwards(this);
+            CannonBall_move(this);
 			break;
 	}
 	
 	return false;
 }
 
-// move lava up
-void Lava_moveUpwards(Lava this)
+// move cannon ball
+void CannonBall_move(CannonBall this)
 {
-    // get local position of lava and substract 1 from y value
-    VBVec3D offset = *Container_getLocalPosition(__GET_CAST(Container, this));
-    offset.y -= ITOFIX19_13(1);
+    // get global position of cannon ball
+    VBVec3D globalPosition = *Container_getGlobalPosition(__GET_CAST(Container, this));
 
-    // update lava's position
-    Container_setLocalPosition(__GET_CAST(Container, this), &offset);
+    if (FIX19_13TOI(globalPosition.z) < CANNON_BALL_MINIMUM_Z_POSITION)
+    {
+        CannonBall_removeFromStage(this);
+    }
+    else
+    {
+        // get local position of cannon ball and substract 1 from z value
+        VBVec3D localPosition = *Container_getLocalPosition(__GET_CAST(Container, this));
+        localPosition.z -= ITOFIX19_13(CANNON_BALL_Z_OFFSET_PER_CYCLE);
 
-    // send delayed message to self to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kLavaMove, NULL);
+        // update cannon ball's position
+        Container_setLocalPosition(__GET_CAST(Container, this), &localPosition);
+
+        // send delayed message to self to trigger next movement
+        MessageDispatcher_dispatchMessage(CANNON_BALL_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonBallMove, NULL);
+    }
 }
-
-// resume after pause
-void Lava_resume(Lava this)
-{
-	ASSERT(this, "Entity::resume: null this");
-
-	Entity_resume(__GET_CAST(Entity, this));
-
-    // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kLavaMove, NULL);
-}
-
-// does it move?
-bool Lava_moves(Lava this)
-{
-	ASSERT(this, "Lava::moves: null this");
-
-	return true;
-}
-

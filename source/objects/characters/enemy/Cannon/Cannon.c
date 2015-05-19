@@ -29,32 +29,27 @@
 #include <PhysicalWorld.h>
 #include <UserDataManager.h>
 #include <Container.h>
+#include <Screen.h>
 
+#include <CustomScreenMovementManager.h>
 #include <objects.h>
-#include "Coin.h"
+#include "Cannon.h"
 
 #include <PlatformerLevelState.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S MACROS
-//---------------------------------------------------------------------------------------------------------
-
-extern AnimatedInGameEntityROMDef OBJECT_COIN_SILHOUETTE_AG;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Coin, AnimatedInGameEntity);
+__CLASS_DEFINITION(Cannon, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Coin_removeFromStage(Coin this);
+void Cannon_shoot(Cannon this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -62,58 +57,73 @@ void Coin_removeFromStage(Coin this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Coin, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(Cannon, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(Cannon, animatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
-	bool taken = &OBJECT_COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || UserDataManager_getCoinStatus(UserDataManager_getInstance(), name);
-    if(taken)
-    {
-        animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG;
-    }
-
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
-	if(!taken)
-	{
-	    this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
-    }
+    //this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+
+    // send delayed message to self to trigger first shot
+    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // class's destructor
-void Coin_destructor(Coin this)
+void Cannon_destructor(Cannon this)
 {
 	// delete the super object
 	__DESTROY_BASE;
 }
 
 // state's on message
-bool Coin_handleMessage(Coin this, Telegram telegram)
+bool Cannon_handleMessage(Cannon this, Telegram telegram)
 {
-	ASSERT(this, "Coin::handleMessage: null this");
+	ASSERT(this, "Cannon::handleMessage: null this");
 
 	switch(Telegram_getMessage(telegram))
     {
-		case kTakeCoin:
+		case kCannonShoot:
 
-			Coin_removeFromStage(this);
+            Cannon_shoot(this);
 			break;
 	}
 	
 	return false;
 }
 
-void Coin_removeFromStage(Coin this)
+// start shooting a cannon ball
+void Cannon_shoot(Cannon this)
 {
-	ASSERT(this, "Coin::removeFromStage: null this");
+	ASSERT(this, "Cannon::shoot: null this");
 
-	Container_deleteMyself(__GET_CAST(Container, this));
-    Shape_setActive(this->shape, false);
-    
-    // TODO: check if not too heavy on hardware
-	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG, this->name, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
+    // start shooting sequence
+	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Shoot");
+
+    // send delayed message to self to trigger next shot
+    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonShoot, NULL);
+}
+
+// spawn a cannon ball
+void Cannon_spawnCannonBall(Cannon this)
+{
+	ASSERT(this, "Cannon::spawnCannonBall: null this");
+
+    // start short screen shake
+    Screen_startEffect(Screen_getInstance(), kShake, 250);
+
+    // spawn some smoke particles
+    // TODO
+
+    // add cannon ball entity to stage
+	extern EntityDefinition CANNON_BALL_IG;
+	VBVec3D position =
+	{
+		FTOFIX19_13(-4), FTOFIX19_13(-4), FTOFIX19_13(0)
+	};
+    Entity_addChildFromDefinition(__GET_CAST(Entity, this), &CANNON_BALL_IG, -1, NULL, &position, NULL);
 }

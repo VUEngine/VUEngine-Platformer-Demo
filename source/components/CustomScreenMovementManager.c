@@ -220,7 +220,7 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
     // discard pending screen shake messages from previously started shake fx
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kShake);
 
-    // instantly send shake message to myself to start fx
+    // instantly send shake message to self to start fx
     MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this), kShake, NULL);
 }
 

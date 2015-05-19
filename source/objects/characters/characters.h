@@ -21,21 +21,26 @@
 #ifndef CHARACTERS_H_
 #define CHARACTERS_H_
 
-/*---------------------------------INCLUDES--------------------------------*/
+
+//---------------------------------------------------------------------------------------------------------
+// 												INCLUDES
+//---------------------------------------------------------------------------------------------------------
 
 #include "hero/Hero.h"
-#include "enemy/sawblade/SawBlade.h"
+#include "enemy/SawBlade/SawBlade.h"
 
-/*------------------------------DECLARATIONS--------------------------------*/
+
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
 
 extern EntityDefinition HERO_AC;
 extern EntityDefinition DUMMY_HERO_AC;
 extern EntityDefinition SAW_BLADE_AC;
 extern EntityDefinition AFFINE_SAW_BLADE_AC;
 extern EntityDefinition SAW_BLADE_LANE_V_6_IM;
-
-
-/*---------------------------------ASSETS----------------------------------*/
+extern EntityDefinition CANNON_AC;
+extern EntityDefinition CANNON_BALL_IG;
 
 
 #endif

@@ -29,6 +29,7 @@
 #include "Coin/Coin.h"
 #include "Door/Door.h"
 #include "Key/Key.h"
+
 #include "textures.h"
 
 
@@ -47,10 +48,6 @@ extern EntityDefinition AFFINE_COIN_AG;
 extern EntityDefinition OBJECT_COIN_AG;
 extern EntityDefinition AFFINE_DOOR_AG;
 extern EntityDefinition AFFINE_KEY_AG;
-
-//---------------------------------------------------------------------------------------------------------
-// 												ASSETS
-//---------------------------------------------------------------------------------------------------------
 
 
 #endif

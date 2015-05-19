@@ -18,52 +18,56 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef COG_WHEEL_H_
-#define COG_WHEEL_H_
+#ifndef CANNON_H_
+#define CANNON_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <AnimatedInGameEntity.h>
 #include <macros.h>
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+#define CANNON_SHOOT_DELAY 7500
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CogWheel_METHODS															\
-	InanimatedInGameEntity_METHODS;
+#define Cannon_METHODS															\
+	AnimatedInGameEntity_METHODS;
+	
 
-#define CogWheel_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, CogWheel, ready);										\
-	__VIRTUAL_SET(ClassName, CogWheel, handleMessage);								\
-    __VIRTUAL_SET(ClassName, CogWheel, resume);										\
-	__VIRTUAL_SET(ClassName, CogWheel, moves);										\
+#define Cannon_SET_VTABLE(ClassName)											\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
+	__VIRTUAL_SET(ClassName, Cannon, handleMessage);							\
 
-__CLASS(CogWheel);
+__CLASS(Cannon);
 
-#define CogWheel_ATTRIBUTES															\
-																					\
-	/* it is derivated from */														\
-	InanimatedInGameEntity_ATTRIBUTES												\
+#define Cannon_ATTRIBUTES														\
+																				\
+	/* it is derivated from */													\
+	AnimatedInGameEntity_ATTRIBUTES												\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(CogWheel, InanimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Cannon, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
 
-void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* definition, int id, const char* const name);
-void CogWheel_destructor(CogWheel this);
-void CogWheel_ready(CogWheel this);
-bool CogWheel_handleMessage(CogWheel this, Telegram telegram);
-void CogWheel_resume(CogWheel this);
-bool CogWheel_moves(CogWheel this);
+void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Cannon_destructor(Cannon this);
+bool Cannon_handleMessage(Cannon this, Telegram telegram);
+void Cannon_shoot(Cannon this);
+void Cannon_spawnCannonBall(Cannon this);
 
 
 #endif
