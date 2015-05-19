@@ -32,15 +32,15 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SmokeParticleMediumTiles[];
-extern BYTE SmokeParticleMediumllMap[];
+extern BYTE SmokeParticleSmallTiles[];
+extern BYTE SmokeParticleSmallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef SMOKE_PARTICLE_MEDIUM_TX =
+TextureROMDef SMOKE_PARTICLE_SMALL_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -54,11 +54,11 @@ TextureROMDef SMOKE_PARTICLE_MEDIUM_TX =
         __NOT_ANIMATED,
 
         // char definition
-        SmokeParticleMediumTiles,
+        SmokeParticleSmallTiles,
     },
 
     // bgmap definition
-    SmokeParticleMediumllMap,
+    SmokeParticleSmallMap,
 
     // cols (max 64)
     1,
@@ -73,13 +73,13 @@ TextureROMDef SMOKE_PARTICLE_MEDIUM_TX =
     0,
 };
 
-ObjectSpriteROMDef SMOKE_PARTICLE_MEDIUM_IM_SPRITE =
+ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&SMOKE_PARTICLE_MEDIUM_TX,
+	(TextureDefinition*)&SMOKE_PARTICLE_SMALL_TX,
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
@@ -93,7 +93,7 @@ ObjectSpriteROMDef SMOKE_PARTICLE_MEDIUM_IM_SPRITE =
 
 ObjectSpriteROMDef* const SMOKE_PARTICLE_IM_SPRITES[] =
 {
-	&SMOKE_PARTICLE_MEDIUM_IM_SPRITE,
+	&SMOKE_PARTICLE_SMALL_IM_SPRITE,
 	NULL
 };
 
@@ -110,10 +110,10 @@ ParticleROMDef SMOKE_PARTICLE =
     __TYPE(Particle),
 
 	// particle's minimum life span in milliseconds
-	100,
+	200,
 
 	// particle's life span delta in miliseconds
-	100,
+	200,
 
 	// particle's minimum mass
 	FTOFIX19_13(0),
@@ -125,7 +125,7 @@ ParticleROMDef SMOKE_PARTICLE =
 	false,
 	
 	// function pointer to control particle's behavior
-	//(void (*)(Particle))&testParticleBehavior,
+	//(void (*)(Particle))&smokeParticleBehavior,
 	NULL,
 
 	// animation description
@@ -136,24 +136,24 @@ ParticleROMDef SMOKE_PARTICLE =
 	NULL
 };
 
-ParticleSystemROMDef DUST_PS =
+ParticleSystemROMDef SMOKE_PS =
 {
     {
         __TYPE(ParticleSystem),
         NULL,
     },
 
-	// whether to delete or reuse expired particles
+	// reuse expired particles?
     true,
     
 	// minimum generation delay in milliseconds
-	20,
+	50,
 
 	// generation delay delta in miliseconds
-	60,
+	100,
 
 	// maximum total particles
-	5,
+	10,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)SMOKE_PARTICLE_IM_SPRITES,
@@ -165,13 +165,13 @@ ParticleSystemROMDef DUST_PS =
 	(ParticleDefinition*)&SMOKE_PARTICLE,
 	
 	// minimum random distance from the center of the system for spawn
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(8), ITOFIX19_13(8), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(-1), ITOFIX19_13(-1), ITOFIX19_13(0)},
+	{ITOFIX19_13(-16), ITOFIX19_13(-16), ITOFIX19_13(-1)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(1), ITOFIX19_13(1), ITOFIX19_13(0)},
+	{ITOFIX19_13(16), ITOFIX19_13(16), ITOFIX19_13(-1)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow

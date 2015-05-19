@@ -48,6 +48,8 @@
 #define Cannon_SET_VTABLE(ClassName)											\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
 	__VIRTUAL_SET(ClassName, Cannon, handleMessage);							\
+	__VIRTUAL_SET(ClassName, Cannon, ready);									\
+	__VIRTUAL_SET(ClassName, Cannon, suspend);									\
 
 __CLASS(Cannon);
 
@@ -55,6 +57,9 @@ __CLASS(Cannon);
 																				\
 	/* it is derivated from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
+																				\
+	/* smoke particle system */													\
+	ParticleSystem smokeParticleSystem;											\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -66,6 +71,8 @@ __CLASS_NEW_DECLARE(Cannon, AnimatedInGameEntityDefinition* animatedEntityDefini
 void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Cannon_destructor(Cannon this);
 bool Cannon_handleMessage(Cannon this, Telegram telegram);
+void Cannon_ready(Cannon this);
+void Cannon_suspend(Cannon this);
 void Cannon_shoot(Cannon this);
 void Cannon_spawnCannonBall(Cannon this);
 

@@ -179,7 +179,7 @@ ParticleROMDef DUST_PARTICLE =
 	false,
 	
 	// function pointer to control particle's behavior
-	//(void (*)(Particle))&testParticleBehavior,
+	//(void (*)(Particle))&dustParticleBehavior,
 	NULL,
 
 	// animation description
@@ -197,9 +197,9 @@ ParticleSystemROMDef DUST_PS =
         NULL,
     },
 
-	// whether to delete or reuse expired particles
+	// reuse expired particles?
     true,
-    
+
 	// minimum generation delay in milliseconds
 	20,
 
