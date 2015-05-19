@@ -235,12 +235,12 @@
 // 2) select the next entity to load
 // 3) create the selected entity
 // 4) initialize the loaded entity
-#define __STREAM_CYCLE_DURATION		12
+#define __STREAM_CYCLE_DURATION		24
 
 // pad to determine if an entity must be loaded/unloaded 
 // load pad must always be lower than unload pad!
 // too close values will put the streaming under heavy usage!
-#define __ENTITY_LOAD_PAD 			96
+#define __ENTITY_LOAD_PAD 			192
 #define __ENTITY_UNLOAD_PAD 		(__ENTITY_LOAD_PAD + 32)
 
 // the number of entities in the stage's definition to check for streaming in on each preload cycle
