@@ -73,9 +73,6 @@ void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInG
 
 	// register a shape for collision detection
     //this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
-
-    // send delayed message to self to trigger first shot
-    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // class's destructor
@@ -94,6 +91,9 @@ void Cannon_ready(Cannon this)
 	Entity_ready(__GET_CAST(Entity, this));
 
 	Cannon_addSmokeParticleSystem(this);
+	
+    // send delayed message to self to trigger first shot
+    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // state's on message
