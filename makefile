@@ -9,7 +9,7 @@ TYPE = release
 #TYPE = preprocessor
 
 # Don't build tools by default
-TOOLS = 1
+TOOLS = 0
 
 # Which directories contain source files
 DIRS := $(shell find * -type d -print)

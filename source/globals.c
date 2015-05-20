@@ -59,6 +59,7 @@ const ClassSizeData _userClassesSizeData[] =
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
+	{&CANNON_BALL_IG, "CannonBall"},
 	{&BGMAP_COIN_AG, "Coin"},
 	{&DOOR_AG, "Door"},
 	{&HERO_AC, "Hero"},
