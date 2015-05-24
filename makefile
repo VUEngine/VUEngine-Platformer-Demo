@@ -4,8 +4,8 @@
 TARGET = output
 
 # Default build type
-#TYPE = debug
-TYPE = release
+TYPE = debug
+#TYPE = release
 #TYPE = preprocessor
 
 # Don't build tools by default
