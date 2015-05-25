@@ -126,8 +126,7 @@ BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 	NULL
 };
 
-
-SawBladeDefinition SAW_BLADE_AC =
+SawBladeDefinition SAW_BLADE_VERTICAL_AC =
 {
 	{
 	    {
@@ -167,7 +166,7 @@ SawBladeDefinition SAW_BLADE_AC =
 		ITOFIX19_13(0),
 		
 		// mass
-		ITOFIX19_13(10)	
+		ITOFIX19_13(10)
 	},
 	
     // axis
@@ -177,78 +176,52 @@ SawBladeDefinition SAW_BLADE_AC =
     __UP
 };
 
-
-BgmapSpriteROMDef AFFINE_SAW_BLADE_SPRITE =
-{
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
-
-	// texture definition
-	(TextureDefinition*)&SAW_BLADE_TX,
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_AFFINE,
-	
-	// display mode
-	WRLD_ON,
-
-	// parallax displacement
-	0
-};
-
-BgmapSpriteROMDef* const AFFINE_SAW_BLADE_SPRITES[] =
-{
-	&AFFINE_SAW_BLADE_SPRITE,
-	NULL
-};
-
-
-SawBladeDefinition AFFINE_SAW_BLADE_AC =
+SawBladeDefinition SAW_BLADE_HORIZONTAL_AC =
 {
 	{
 	    {
 	        {
 	            {
 	                __TYPE(SawBlade),
-	                (SpriteROMDef**)AFFINE_SAW_BLADE_SPRITES,
+	                (SpriteROMDef**)SAW_BLADE_SPRITES,
 	            },
-	
+
 	            // collision detection gap (up, down, left, right)
 	            {1, 2, 2, 1},
-	
+
 	            // in game type
 	            kSawBlade,
-	
+
 	            // width
 	            0,
-	            
+
 	            // height
 	            0,
-	            
+
 	            // depth
 	            10
 	        },
-	
+
 	        // pointer to the animation definition for the character
 	        &SAW_BLADE_ANIM,
-	
+
 	        // initial animation
 	        NULL
 	    },
 
-	    // friction for physics
+		// friction for physics
 		ITOFIX19_13(0),
 
 		// elasticity for physics
-		ITOFIX19_13(1),
-	  
-	    // mass
-	    0,
+		ITOFIX19_13(0),
+
+		// mass
+		ITOFIX19_13(10)
 	},
 
     // axis
-    __YAXIS,
+    __XAXIS,
 
     // direction
-    __UP
+    __LEFT
 };

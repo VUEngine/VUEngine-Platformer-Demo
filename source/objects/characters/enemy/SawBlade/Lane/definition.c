@@ -99,33 +99,3 @@ ImageROMDef SAW_BLADE_LANE_V_6_IM =
 	__TYPE(Image),
 	(SpriteROMDef**)SAW_BLADE_LANE_V_6_IM_SPRITES,
 };
-
-BgmapSpriteROMDef AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITE =
-{
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&SAW_BLADE_LANE_V_6_TX,
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_AFFINE,
-	
-	// display mode
-	WRLD_ON,
-
-	// parallax displacement
-	0	
-};
-
-BgmapSpriteROMDef* const AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITES[] =
-{
-	&AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITE,
-	NULL
-};
-
-ImageROMDef AFFINE_SAW_BLADE_LANE_V_6_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)AFFINE_SAW_BLADE_LANE_V_6_IM_SPRITES,
-};

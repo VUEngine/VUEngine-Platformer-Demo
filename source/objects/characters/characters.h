@@ -36,8 +36,8 @@
 
 extern EntityDefinition HERO_AC;
 extern EntityDefinition DUMMY_HERO_AC;
-extern EntityDefinition SAW_BLADE_AC;
-extern EntityDefinition AFFINE_SAW_BLADE_AC;
+extern EntityDefinition SAW_BLADE_VERTICAL_AC;
+extern EntityDefinition SAW_BLADE_HORIZONTAL_AC;
 extern EntityDefinition SAW_BLADE_LANE_V_6_IM;
 extern EntityDefinition CANNON_AC;
 extern EntityDefinition CANNON_BALL_IG;

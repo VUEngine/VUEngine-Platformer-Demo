@@ -207,6 +207,51 @@ void SawBlade_move(SawBlade this)
     {
 		case __XAXIS:
 
+			switch(this->direction.x)
+            {
+				case __LEFT:
+
+					{
+						// check position
+						if(this->transform.globalPosition.x < this->initialPosition - displacement)
+                        {
+							// stop moving
+							Actor_stopMovement(__GET_CAST(Actor, this));
+
+							// change direction
+							this->direction.x = __RIGHT;
+
+							// start action time
+							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
+
+							// set position
+							this->transform.localPosition.x = this->initialPosition - displacement;
+						}
+					}
+					break;
+
+				case __RIGHT:
+
+					{
+						// check position
+						if(this->transform.globalPosition.x > this->initialPosition)
+                        {
+							// stop moving
+							Actor_stopMovement(__GET_CAST(Actor, this));
+
+							// change direction
+							this->direction.x = __LEFT;
+
+							// start action time
+							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
+
+							// set position
+							this->transform.localPosition.x = this->initialPosition;
+						}
+					}
+					break;
+
+			}
 			break;
 			
 		case __YAXIS:
@@ -284,6 +329,16 @@ void SawBlade_startMovement(SawBlade this)
     {
 		case __XAXIS:
 
+			{
+				Velocity velocity =
+                {
+					((int)ITOFIX19_13(10) * this->direction.x),
+					0,
+					0,
+				};
+
+				Body_moveUniformly(this->body, velocity);
+			}
 			break;
 			
 		case __YAXIS:
