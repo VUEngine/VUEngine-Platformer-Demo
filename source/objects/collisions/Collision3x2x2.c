@@ -44,14 +44,15 @@ InanimatedInGameEntityROMDef COLLISION_3x2x2 =
         // in game type
         kSolid,
 
-        // if 0, width and height will be inferred from the texture's size
     	// width
+        // if 0, width and height will be inferred from the texture's size
     	3 * 8,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	2 * 8,
 
-    	// Depth
+    	// depth
     	2 * 8
     },
 

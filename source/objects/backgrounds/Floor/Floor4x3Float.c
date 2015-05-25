@@ -177,14 +177,15 @@ InanimatedInGameEntityROMDef FLOOR_4x3_FLOAT_IG =
         // in game type
         kSolid,
 
-        // if 0, width and height will be inferred from the texture's size
         // width
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	0,
     	
-    	// Depth
+    	// depth
         20
     },
 
@@ -238,14 +239,15 @@ InanimatedInGameEntityROMDef AFFINE_FLOOR_4x3_FLOAT_IG =
         // in game type
         kSolid,
 
-        // if 0, width and height will be inferred from the texture's size
         // width
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	0,
     	
-    	// Depth
+    	// depth
         20
     },
 

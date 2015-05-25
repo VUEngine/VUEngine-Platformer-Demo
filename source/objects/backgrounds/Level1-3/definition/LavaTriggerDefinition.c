@@ -45,14 +45,15 @@ InanimatedInGameEntityROMDef LAVA_TRIGGER_IG =
         // in game type
         kLavaTrigger,
 
-        // if 0, width and height will be inferred from the texture's size
     	// width
+        // if 0, width and height will be inferred from the texture's size
     	2 * 8,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	12 * 8,
 
-    	// Depth
+    	// depth
     	2 * 8
     },
 

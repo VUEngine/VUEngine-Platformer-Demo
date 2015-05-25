@@ -143,14 +143,15 @@ AnimatedInGameEntityROMDef MOUND_BG_CASTLE_FLAG_AG =
         // in game type
         kBackground,
 
-        // if 0, width and height will be inferred from the texture's size
         // width
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
-    	// Depth
+    	// depth
         1
     },
 

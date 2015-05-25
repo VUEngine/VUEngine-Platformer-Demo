@@ -407,7 +407,7 @@ ActorROMDef HERO_AC =
 	    	// height
 	    	0,
 	    	
-	    	// Depth
+	    	// depth
 	        8
 	    },
 	

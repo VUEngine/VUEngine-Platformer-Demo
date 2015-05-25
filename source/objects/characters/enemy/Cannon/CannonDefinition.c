@@ -171,7 +171,7 @@ ActorROMDef CANNON_AC =
             // height
             0,
 
-            // Depth
+            // depth
             10
         },
 

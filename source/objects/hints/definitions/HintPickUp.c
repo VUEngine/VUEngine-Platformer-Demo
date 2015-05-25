@@ -213,15 +213,15 @@ AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
         // in game type
         kSolid,
 
-        // if 0, width and height will be inferred from
-        // the texture's size
         // width
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
-    	// Depth
+    	// depth
         0,
     },
 

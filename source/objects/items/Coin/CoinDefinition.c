@@ -239,14 +239,15 @@ AnimatedInGameEntityROMDef OBJECT_COIN_AG =
         // in game type
         kCoin,
 
-        // if 0, width and height will be inferred from the texture's size
         // width
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	0,
     	
-    	// Depth
+    	// depth
         4
     },
 
@@ -271,14 +272,15 @@ AnimatedInGameEntityROMDef OBJECT_COIN_SILHOUETTE_AG =
         // in game type
         kCoin,
 
-        // if 0, width and height will be inferred from the texture's size
         // width
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
-    	// Depth
+    	// depth
         4
     },
 
@@ -331,14 +333,15 @@ AnimatedInGameEntityROMDef BGMAP_COIN_AG =
         // in game type
         kCoin,
 
-        // if 0, width and height will be inferred from the texture's size
         // width
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	0,
     	
-    	// Depth
+    	// depth
         4
     },
 
@@ -391,14 +394,15 @@ AnimatedInGameEntityROMDef AFFINE_COIN_AG =
         // in game type
         kCoin,
 
-        // if 0, width and height will be inferred from the texture's size
         // width
+        // if 0, width and height will be inferred from the texture's size
     	0,
 
     	// height
+        // if 0, width and height will be inferred from the texture's size
     	0,
     	
-    	// Depth
+    	// depth
         4
     },
 

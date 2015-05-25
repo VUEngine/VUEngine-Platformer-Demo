@@ -149,7 +149,7 @@ SawBladeDefinition SAW_BLADE_AC =
 	            // height
 	            0,
 	            
-	            // Depth
+	            // depth
 	            10
 	        },
 	
@@ -225,7 +225,7 @@ SawBladeDefinition AFFINE_SAW_BLADE_AC =
 	            // height
 	            0,
 	            
-	            // Depth
+	            // depth
 	            10
 	        },
 	
