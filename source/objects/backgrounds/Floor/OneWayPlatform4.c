@@ -22,9 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
-#include <AnimatedInGameEntity.h>
-#include <ObjectAnimatedSprite.h>
+#include <InanimatedInGameEntity.h>
 #include <macros.h>
 
 
@@ -32,70 +30,15 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BushTiles[];
-extern BYTE BushMap[];
+extern BYTE OneWayPlatform4Tiles[];
+extern BYTE OneWayPlatform4Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMDef BUSH_STILL_ANIM =
-{
-	// number of frames of this animation function
-	1,
-	
-	// frames to play in animation
-	{0},
-	
-	// number of cycles a frame of animation is displayed
-	0,
-	
-	// whether to play it in loop or not
-	false,
-	
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"Still",
-};
-
-// a function which defines the frames to play
-AnimationFunctionROMDef BUSH_WINDY_ANIM =
-{
-	// number of frames of this animation function
-	2,
-
-	// frames to play in animation
-	{0,1},
-
-	// number of cycles a frame of animation is displayed
-	15 * __FPS_ANIM_FACTOR,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Windy",
-};
-
-// an animation definition
-AnimationDescriptionROMDef BUSH_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&BUSH_STILL_ANIM,
-		(AnimationFunction*)&BUSH_WINDY_ANIM,
-		NULL,
-	}
-};
-
-TextureROMDef BUSH_TX =
+TextureROMDef ONE_WAY_PLATFORM_4_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -103,68 +46,68 @@ TextureROMDef BUSH_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        3,
+        9,
 
         // allocation type
-        __ANIMATED_SHARED,
+        __NOT_ANIMATED,
 
         // char definition
-        BushTiles,
+        OneWayPlatform4Tiles,
     },
 
     // bgmap definition
-    BushMap,
+    OneWayPlatform4Map,
 
     // cols (max 64)
-    3,
+    4,
 
     // rows (max 64)
-    1,
-
-    // number of frames
     2,
 
+    // number of frames
+    1,
+
     // palette number
-    1
+    1,
 };
 
-ObjectSpriteROMDef BUSH_SPRITE =
+ObjectSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&BUSH_TX,
+	(TextureDefinition*)&ONE_WAY_PLATFORM_4_TX,
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
-
+	
 	// parallax displacement
 	0
 };
 
-ObjectSpriteROMDef* const BUSH_SPRITES[] =
+ObjectSpriteROMDef* const ONE_WAY_PLATFORM_4_SPRITES[] =
 {
-	&BUSH_SPRITE,
+	&ONE_WAY_PLATFORM_4_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef BUSH_AG =
+InanimatedInGameEntityROMDef ONE_WAY_PLATFORM_4_IG =
 {
     {
         {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)BUSH_SPRITES,
+            __TYPE(InanimatedInGameEntity),
+            (SpriteROMDef**)ONE_WAY_PLATFORM_4_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+        {4, 4, 2, 2},
 
         // in game type
-        kNotSolid,
+        kTopSolid,
 
         // width
         // if 0, width and height will be inferred from the texture's size
@@ -174,13 +117,16 @@ AnimatedInGameEntityROMDef BUSH_AG =
         // if 0, width and height will be inferred from the texture's size
     	0,
     	
-    	// depth
-        1
+        // depth
+        16
     },
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&BUSH_ANIM,
+    // friction FTOFIX19_13
+    FTOFIX19_13(40),
 
-    // initial animation
-    "Windy",
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
 };

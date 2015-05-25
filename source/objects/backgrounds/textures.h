@@ -42,6 +42,8 @@ extern TextureDefinition FLOOR_4x3_FLOAT_R_TX;
 extern TextureDefinition FLOOR_2x2_BLOCK_L_TX;
 extern TextureDefinition FLOOR_2x2_BLOCK_R_TX;
 
+extern TextureDefinition ONE_WAY_PLATFORM_4_TX;
+
 extern TextureDefinition MOUND_1_TX;
 extern TextureDefinition MOUND_2_TX;
 

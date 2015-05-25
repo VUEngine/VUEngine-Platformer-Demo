@@ -84,7 +84,7 @@ static u32 gameLayers[TOTAL_GAME_LAYERS] =
 };
 
 #define HERO_INPUT_FORCE 						ITOFIX19_13(750)
-#define HERO_WHILE_JUMPIN_INPUT_FORCE			ITOFIX19_13(400)
+#define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(400)
 #define HERO_MASS								(10)
 #define FRICTION 								0.01f
 
@@ -273,7 +273,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 			Actor_changedDirection(__GET_CAST(Actor, this), __XAXIS) || 
 			Actor_changedDirection(__GET_CAST(Actor, this), __ZAXIS))
     {
-		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body) ? HERO_WHILE_JUMPIN_INPUT_FORCE : HERO_INPUT_FORCE;
+		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body) ? HERO_JUMPING_INPUT_FORCE : HERO_INPUT_FORCE;
 		fix19_13 xForce = (__XAXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
 		fix19_13 zForce = 0; //(__ZAXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
@@ -1125,8 +1125,8 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kLava:
 
-				Hero_die(this);
-//				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+//				Hero_die(this);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kLavaTrigger:
@@ -1135,14 +1135,39 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				Hero_stopAddingForce(this);		
 				break;
+
+			case kTopSolid:
+            {
+                // get the axis of collision
+                u8 axisOfCollision = __VIRTUAL_CALL(
+                    int,
+                    Shape,
+                    getAxisOfCollision,
+                    this->shape,
+                    VirtualNode_getData(node),
+                    Body_getLastDisplacement(this->body),
+                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
+                );
+
+                // get positions of colliding entities
+                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__GET_CAST(Entity, this)) >> 2);
+                int collidingEntityTopPosition = Entity_getPosition(__GET_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__GET_CAST(Entity, inGameEntity)) >> 2);
+
+                // process collision only if axis of collision is y and if hero is above platform
+                if(!((__YAXIS & axisOfCollision) && (heroBottomPosition < collidingEntityTopPosition)))
+                {
+    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+                }
+
+				break;
+            }
 		}
 	}
 
 	for(node = VirtualList_begin(collidingObjectsToRemove); node; node = VirtualNode_getNext(node))
     {
-		// whenever you process some objects of a collisions list
-		// remove them and leave the Actor handle the ones you don't
-		// care, i.e.: in most cases, the ones which are solid
+		// whenever you process some objects of a collisions list remove them and leave the Actor handle
+		// the ones you don't care about, i.e.: in most cases, the ones which are solid
 		VirtualList_removeElement(collidingObjects, VirtualNode_getData(node));
 	}
 	

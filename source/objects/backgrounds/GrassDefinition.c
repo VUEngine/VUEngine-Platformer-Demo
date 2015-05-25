@@ -164,7 +164,7 @@ AnimatedInGameEntityROMDef GRASS_AG =
         {0, 0, 0, 0},
 
         // in game type
-        kBackground,
+        kNotSolid,
 
         // width
         // if 0, width and height will be inferred from the texture's size

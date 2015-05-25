@@ -54,7 +54,8 @@ enum PlatformerTypes
 	kHero = 1,
 	kSawBlade,
 	kSolid,
-	kBackground,
+	kTopSolid,
+	kNotSolid,
 	kFloor,
 	kDoor,
 	kCoin,
@@ -70,10 +71,7 @@ enum GameWorldModes
 {
 	kPlaying = 1,
 	kShowingUp,
-	kStartPlaying,
 	kPaused,
-	kMovingScreen,
-	kMovingPerspective,
 };
 
 
