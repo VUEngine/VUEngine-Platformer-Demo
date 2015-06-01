@@ -25,6 +25,7 @@
 #include <Stage.h>
 #include <macros.h>
 #include <TitleScreenState.h>
+#include <VPUManager.h>
 
 #include <objects.h>
 #include <screens.h>
@@ -219,5 +220,8 @@ StageROMDef TITLE_SCREEN_ST =
     TITLE_SCREEN_ST_ENTITIES,
 
     // background music
-    (const u16 (*)[])WORLD_0_0_0_BGM
+    (const u16 (*)[])WORLD_0_0_0_BGM,
+
+    // background color
+     __COLOR_MEDIUM_RED,
 };
