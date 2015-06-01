@@ -77,15 +77,15 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_BG_IM_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)& ADJUSTMENT_SCREEN_BG_TX,
-	
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0		
 };
 
 BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_BG_IM_SPRITES[] =

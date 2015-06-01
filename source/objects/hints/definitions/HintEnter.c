@@ -182,15 +182,15 @@ BgmapSpriteROMDef HINT_ENTER_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&HINT_ENTER_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0		
 };
 	
 BgmapSpriteROMDef* const HINT_ENTER_SPRITES[] =

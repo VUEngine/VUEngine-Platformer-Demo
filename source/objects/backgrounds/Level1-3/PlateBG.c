@@ -87,15 +87,15 @@ MBgmapSpriteROMDef PLATE_BG_SB_SPRITE =
 
 		// texture definition
 		NULL,
+
+        // displacement (x, y, z) (in pixels)
+        {0, 0, 0},
 		
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 		WRLD_BGMAP,
 		
 		// display mode
 		WRLD_ON,
-
-		// parallax displacement
-		0,
 	},
 	
 	(TextureDefinition**)PLATE_BG_SB_TEXTURES,

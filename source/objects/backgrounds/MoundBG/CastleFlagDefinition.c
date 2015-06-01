@@ -112,15 +112,15 @@ ObjectSpriteROMDef MOUND_BG_CASTLE_FLAG_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&MOUND_BG_CASTLE_FLAG_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0
 };
 
 ObjectSpriteROMDef* const MOUND_BG_CASTLE_FLAG_SPRITES[] =

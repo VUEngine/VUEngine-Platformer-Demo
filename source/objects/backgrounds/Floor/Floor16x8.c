@@ -113,15 +113,15 @@ BgmapSpriteROMDef FLOOR_16x8_BG_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_16x8_L_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode
 	WRLD_ON,
-	
-	// parallax displacement
-	0	
 };
 
 /*
@@ -130,14 +130,14 @@ BgmapSpriteROMDef FLOOR_16x8_BG_SPRITE_LEFT =
 	// texture definition
 	(TextureDefinition*)&FLOOR_16x8_L_TX,
 
+	// displacement (x, y, z) (in pixels)
+	{0, 0, -1},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode
 	WRLD_LON,
-
-	// parallax displacement
-	-1
 };
 
 BgmapSpriteROMDef FLOOR_16x8_BG_SPRITE_RIGHT =
@@ -145,14 +145,14 @@ BgmapSpriteROMDef FLOOR_16x8_BG_SPRITE_RIGHT =
 	// texture definition
 	(TextureDefinition*)&FLOOR_16x8_L_TX,
 
+	// displacement (x, y, z) (in pixels)
+	{0, 0, -1},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode
 	WRLD_RON,
-
-	// parallax displacement
-	-1
 };
 */
 
@@ -206,15 +206,15 @@ BgmapSpriteROMDef AFFINE_FLOOR_16x8_BG_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_16x8_L_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 
 	// display mode
 	WRLD_ON,
-	
-	// parallax displacement
-	0	
 };
 
 BgmapSpriteROMDef* const AFFINE_FLOOR_16x8_BG_SPRITES[] =

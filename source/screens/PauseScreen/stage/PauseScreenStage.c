@@ -27,6 +27,7 @@
 #include <macros.h>
 #include <PauseScreenState.h>
 #include <screens.h>
+#include <VPUManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -154,5 +155,8 @@ StageROMDef PAUSE_SCREEN_ST =
 
     // background music
     NULL,
-    //(const u16 (*)[])WORLD_0_0_0_BGM
+    //(const u16 (*)[])WORLD_0_0_0_BGM,
+
+    // background color
+    __COLOR_BLACK,
 };

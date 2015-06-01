@@ -80,15 +80,15 @@ BgmapSpriteROMDef CANNON_BALL_BG_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&CANNON_BALL_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0
 };
 
 BgmapSpriteROMDef* const CANNON_BALL_BG_SPRITES[] =

@@ -77,15 +77,15 @@ BgmapSpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&SAW_BLADE_LANE_V_6_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0	
 };
 
 BgmapSpriteROMDef* const SAW_BLADE_LANE_V_6_IM_SPRITES[] =

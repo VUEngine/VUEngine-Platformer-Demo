@@ -83,14 +83,14 @@ ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
 
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0
 };
 
 TextureROMDef DUST_PARTICLE_LARGE_TX =
@@ -134,14 +134,14 @@ ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
 
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0
 };
 
 ObjectSpriteROMDef* const DUST_PARTICLE_IM_SPRITES[] =

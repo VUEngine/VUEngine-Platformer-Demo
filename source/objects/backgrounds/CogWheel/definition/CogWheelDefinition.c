@@ -80,15 +80,15 @@ BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&COG_WHEEL_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, -2},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	-2		
 };
 
 BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =

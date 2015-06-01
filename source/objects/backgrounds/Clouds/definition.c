@@ -112,15 +112,15 @@ BgmapSpriteROMDef CLOUDS_SB_SPRITE_1 =
 
 	// texture definition
 	(TextureDefinition*)&CLOUDS_A_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0
 };
 
 BgmapSpriteROMDef CLOUDS_SB_SPRITE_2 =
@@ -131,14 +131,14 @@ BgmapSpriteROMDef CLOUDS_SB_SPRITE_2 =
 	// texture definition
 	(TextureDefinition*)&CLOUDS_B_TX,
 
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0,
 };
 
 BgmapSpriteROMDef* const CLOUDS_SB_SPRITES[] =

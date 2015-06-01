@@ -184,15 +184,15 @@ ObjectSpriteROMDef OBJECT_COIN_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&OBJECT_COIN_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0		
 };
 
 ObjectSpriteROMDef* const OBJECT_COIN_SPRITES[] =
@@ -209,14 +209,14 @@ ObjectSpriteROMDef OBJECT_COIN_SILHOUETTE_SPRITE =
 	// texture definition
 	(TextureDefinition*)&OBJECT_COIN_SILHOUETTE_TX,
 
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0
 };
 
 ObjectSpriteROMDef* const OBJECT_COIN_SILHOUETTE_SPRITES[] =
@@ -302,15 +302,15 @@ ObjectSpriteROMDef BGMAP_COIN_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&BGMAP_COIN_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0		
 };
 
 ObjectSpriteROMDef* const BGMAP_COIN_SPRITES[] =
@@ -363,15 +363,15 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&BGMAP_COIN_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0		
 };
 
 ObjectSpriteROMDef* const AFFINE_COIN_SPRITES[] =

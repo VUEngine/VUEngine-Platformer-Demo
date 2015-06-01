@@ -78,14 +78,14 @@ BgmapSpriteROMDef TITLESCREEN_FRONT_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&TITLESCREEN_FRONT_TX,
 
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0
 };
 
 BgmapSpriteROMDef* const TITLESCREEN_FRONT_IM_SPRITES[] =

@@ -77,15 +77,15 @@ BgmapSpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&SUPER_AWESOME_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_LON,
-
-	// parallax displacement
-	0		
 };
 
 BgmapSpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
@@ -95,15 +95,15 @@ BgmapSpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&SUPER_AWESOME_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_RON,
-
-	// parallax displacement
-	0		
 };
 
 BgmapSpriteROMDef* const SUPER_AWESOME_IM_SPRITES[] =
