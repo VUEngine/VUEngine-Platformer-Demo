@@ -113,7 +113,7 @@ void CannonBall_move(CannonBall this)
 
     if (FIX19_13TOI(localPosition.z) < CANNON_BALL_MINIMUM_Z_POSITION)
     {
-        CannonBall_removeFromStage(this);
+        //CannonBall_removeFromStage(this);
     }
     else
     {
