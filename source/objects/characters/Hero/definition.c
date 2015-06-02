@@ -367,15 +367,15 @@ BgmapSpriteROMDef HERO_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&HERO_TX,
-	
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0
 };
 
 BgmapSpriteROMDef* const HERO_SPRITES[] =

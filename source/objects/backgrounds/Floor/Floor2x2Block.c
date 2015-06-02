@@ -113,30 +113,33 @@ BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
-	
-	// parallax displacement
-	0		
 };
 
 BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE_LEFT =
 {
+	// sprite's type
+	__TYPE(BgmapSprite),
+
 	// texture definition
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
 	// display mode
 	WRLD_LON,
-
-	// parallax displacement
-	0		
 };
 
 BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE_RIGHT =
@@ -146,15 +149,15 @@ BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE_RIGHT =
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_R_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_RON,
-
-	// parallax displacement
-	0		
 };
 
 BgmapSpriteROMDef* const FLOOR_2x2_BLOCK_BG_SPRITES[] =
@@ -207,15 +210,15 @@ BgmapSpriteROMDef AFFINE_FLOOR_2x2_BLOCK_BG_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
-	
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
 	WRLD_ON,
-	
-	// parallax displacement
-	0		
 };
 
 

@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Stage.h>
+#include <VPUManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -122,5 +123,8 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
     ADJUSTMENT_SCREEN_ST_ENTITIES,
 
     // background music
-    NULL
+    NULL,
+
+    // background color
+    __COLOR_BLACK,
 };

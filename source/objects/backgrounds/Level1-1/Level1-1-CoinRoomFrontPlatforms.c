@@ -77,15 +77,15 @@ BgmapSpriteROMDef LEVEL1_1_COIN_ROOM_FRONT_PLATFORMS_IM_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&LEVEL1_1_COIN_ROOM_FRONT_PLATFORMS_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, -1},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	-1
 };
 
 BgmapSpriteROMDef* const LEVEL1_1_COIN_ROOM_FRONT_PLATFORMS_IM_SPRITES[] =

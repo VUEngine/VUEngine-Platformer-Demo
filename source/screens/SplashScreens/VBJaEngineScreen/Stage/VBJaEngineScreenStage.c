@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Stage.h>
+#include <VPUManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -127,5 +128,8 @@ StageROMDef VBJAENGINE_SCREEN_ST =
     VBJAENGINE_SCREEN_ST_ENTITIES,
 
     // background music
-    NULL
+    NULL,
+
+    // background color
+    __COLOR_BLACK,
 };

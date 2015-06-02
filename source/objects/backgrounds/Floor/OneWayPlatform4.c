@@ -78,15 +78,15 @@ ObjectSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&ONE_WAY_PLATFORM_4_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 	
 	// display mode
 	WRLD_ON,
-	
-	// parallax displacement
-	0
 };
 
 ObjectSpriteROMDef* const ONE_WAY_PLATFORM_4_SPRITES[] =

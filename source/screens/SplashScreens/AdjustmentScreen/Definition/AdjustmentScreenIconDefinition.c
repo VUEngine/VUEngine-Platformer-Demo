@@ -72,15 +72,15 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)& ADJUSTMENT_SCREEN_ICON_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_LON,
-
-	// parallax displacement
-	0		
 };
 
 BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
@@ -96,15 +96,15 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)& ADJUSTMENT_SCREEN_ICON_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_RON,
-
-	// parallax displacement
-	0		
 };
 
 BgmapSpriteROMDef* ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] =

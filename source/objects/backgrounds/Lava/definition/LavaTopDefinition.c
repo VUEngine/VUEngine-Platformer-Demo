@@ -113,15 +113,15 @@ BgmapSpriteROMDef LAVA_TOP_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&LAVA_TOP_TX,
-	
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, -2},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	-2		
 };
 
 BgmapSpriteROMDef* const LAVA_TOP_SPRITES[] =

@@ -26,6 +26,7 @@
 #include <macros.h>
 #include <PlatformerLevelState.h>
 #include <Languages.h>
+#include <VPUManager.h>
 
 #include <objects.h>
 #include <sound.h>
@@ -202,6 +203,9 @@ PlatformerStageROMDef LEVEL_1_1_COIN_ROOM_ST =
 
         // background music
         (const u16 (*)[])KRISSE_BGM,
+
+        // background color
+        __COLOR_BLACK,
     },
 
     // identifier

@@ -182,15 +182,15 @@ BgmapSpriteROMDef DOOR_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&DOOR_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 1},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	1		
 };
 
 BgmapSpriteROMDef* const DOOR_SPRITES[] =
@@ -306,15 +306,15 @@ BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&DOOR_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 1},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	1		
 };
 
 BgmapSpriteROMDef* const AFFINE_DOOR_SPRITES[] =

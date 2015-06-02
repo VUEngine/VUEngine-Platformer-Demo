@@ -111,15 +111,15 @@ BgmapSpriteROMDef KEY_SPRITE =
 
 	// texture definition
 	(TextureDefinition*)&KEY_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
 	// display mode
 	WRLD_ON,
-
-	// parallax displacement
-	0	
 };
 
 BgmapSpriteROMDef* const KEY_SPRITES[] =
