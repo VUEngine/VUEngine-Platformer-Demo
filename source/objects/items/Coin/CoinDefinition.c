@@ -191,7 +191,7 @@ ObjectSpriteROMDef OBJECT_COIN_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 	
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
@@ -215,7 +215,7 @@ ObjectSpriteROMDef OBJECT_COIN_SILHOUETTE_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
@@ -309,7 +309,7 @@ ObjectSpriteROMDef BGMAP_COIN_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
@@ -370,7 +370,7 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 

@@ -120,7 +120,7 @@ BgmapSpriteROMDef FLOOR_16x8_BG_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
@@ -136,7 +136,7 @@ BgmapSpriteROMDef FLOOR_16x8_BG_SPRITE_LEFT =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_LON,
 };
 
@@ -151,7 +151,7 @@ BgmapSpriteROMDef FLOOR_16x8_BG_SPRITE_RIGHT =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_RON,
 };
 */
@@ -213,7 +213,7 @@ BgmapSpriteROMDef AFFINE_FLOOR_16x8_BG_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 

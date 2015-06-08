@@ -87,7 +87,7 @@ ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_IM_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
 
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 

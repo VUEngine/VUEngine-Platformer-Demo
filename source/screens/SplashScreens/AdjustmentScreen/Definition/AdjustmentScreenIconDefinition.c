@@ -79,7 +79,7 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
 	// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
 	WRLD_BGMAP,
 	
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_LON,
 };
 
@@ -103,7 +103,7 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
 	// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
 	WRLD_BGMAP,
 	
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_RON,
 };
 

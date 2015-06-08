@@ -84,7 +84,7 @@ BgmapSpriteROMDef VBJAENGINE_BG_SB_SPRITE =
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,
 	
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 

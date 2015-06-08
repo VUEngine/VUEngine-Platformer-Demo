@@ -140,7 +140,7 @@ BgmapSpriteROMDef CANNON_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
-	// display mode
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON) (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
@@ -160,7 +160,7 @@ ActorROMDef CANNON_AC =
             },
 
             // collision detection gap (up, down, left, right)
-            {1, 2, 2, 1},
+            {2, 2, 2, 2},
 
             // in game type
             kSolid,
