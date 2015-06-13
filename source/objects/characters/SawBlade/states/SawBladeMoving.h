@@ -18,29 +18,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef CHARACTERS_H_
-#define CHARACTERS_H_
+#ifndef SAW_BLADE_MOVING_H_
+#define SAW_BLADE_MOVING_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "hero/Hero.h"
-#include "SawBlade/SawBlade.h"
+#include <StateMachine.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition HERO_AC;
-extern EntityDefinition DUMMY_HERO_AC;
-extern EntityDefinition SAW_BLADE_VERTICAL_AC;
-extern EntityDefinition SAW_BLADE_HORIZONTAL_AC;
-extern EntityDefinition SAW_BLADE_LANE_V_6_IM;
-extern EntityDefinition CANNON_AC;
-extern EntityDefinition CANNON_BALL_IG;
+// declare the virtual methods
+#define SawBladeMoving_METHODS									\
+	State_METHODS;									
+
+// declare the virtual methods which are redefined
+#define SawBladeMoving_SET_VTABLE(ClassName)					\
+	State_SET_VTABLE(ClassName)									\
+	__VIRTUAL_SET(ClassName, SawBladeMoving, enter);			\
+	__VIRTUAL_SET(ClassName, SawBladeMoving, execute);			\
+	__VIRTUAL_SET(ClassName, SawBladeMoving, exit);				\
+	__VIRTUAL_SET(ClassName, SawBladeMoving, handleMessage);	\
+
+__CLASS(SawBladeMoving);
+
+#define SawBladeMoving_ATTRIBUTES								\
+																\
+	/* inherits */												\
+	State_ATTRIBUTES
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+// setup the init focus screen
+SawBladeMoving SawBladeMoving_getInstance();
 
 
 #endif

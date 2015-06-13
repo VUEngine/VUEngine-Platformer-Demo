@@ -18,29 +18,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef CHARACTERS_H_
-#define CHARACTERS_H_
+#ifndef SAW_BLADE_IDLE_H_
+#define SAW_BLADE_IDLE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "hero/Hero.h"
-#include "SawBlade/SawBlade.h"
+#include <StateMachine.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition HERO_AC;
-extern EntityDefinition DUMMY_HERO_AC;
-extern EntityDefinition SAW_BLADE_VERTICAL_AC;
-extern EntityDefinition SAW_BLADE_HORIZONTAL_AC;
-extern EntityDefinition SAW_BLADE_LANE_V_6_IM;
-extern EntityDefinition CANNON_AC;
-extern EntityDefinition CANNON_BALL_IG;
+// declare the virtual methods
+#define SawBladeIdle_METHODS									\
+	State_METHODS;									
+
+// declare the virtual methods which are redefined
+#define SawBladeIdle_SET_VTABLE(ClassName)						\
+State_SET_VTABLE(ClassName)										\
+	__VIRTUAL_SET(ClassName, SawBladeIdle, enter);				\
+	__VIRTUAL_SET(ClassName, SawBladeIdle, execute);			\
+	__VIRTUAL_SET(ClassName, SawBladeIdle, exit);				\
+	__VIRTUAL_SET(ClassName, SawBladeIdle, handleMessage);		\
+	
+__CLASS(SawBladeIdle);
+
+#define SawBladeIdle_ATTRIBUTES									\
+																\
+	/* inherits */												\
+	State_ATTRIBUTES
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+// setup the init focus screen
+SawBladeIdle SawBladeIdle_getInstance();
 
 
 #endif
