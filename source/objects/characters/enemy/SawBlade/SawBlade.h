@@ -36,6 +36,8 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
+#define SAW_BLADE_WAIT_DELAY 1000
+
 #define SawBlade_METHODS															\
 	Enemy_METHODS;
 
