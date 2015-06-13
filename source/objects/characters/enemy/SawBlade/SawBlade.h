@@ -29,16 +29,12 @@
 #include <Actor.h>
 
 #include <macros.h>
-#include "../Enemy.h"
+#include <Enemy.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
-
-#define SAW_BLADE_ATTACK_DISTANCE	6400
-
-#define SAW_BLADE_WAIT_DELAY		1000
 
 #define SawBlade_METHODS															\
 	Enemy_METHODS;
@@ -61,6 +57,9 @@ __CLASS(SawBlade);
 	/* save my initial position */													\
 	int initialPosition;															\
 																					\
+	/* movement radius */															\
+    int radius;																		\
+																					\
 	/* movement axis */																\
 	u8 axis: 4;																		\
 																					\
@@ -68,10 +67,13 @@ __CLASS(SawBlade);
 	s8 movementDirection: 2;														\
 
 // definition in ROM memory
-typedef const struct SawBladeDefinition
+typedef struct SawBladeDefinition
 {
 	// It has a Character in the beginning
 	ActorDefinition actorDefinition;
+
+	// movement radius
+	int radius;
 	
 	// on which axis it moves
 	u8 axis;
@@ -80,6 +82,8 @@ typedef const struct SawBladeDefinition
 	s8 direction;
 	
 } SawBladeDefinition;
+
+typedef const SawBladeDefinition SawBladeROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------

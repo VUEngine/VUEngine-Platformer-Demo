@@ -126,7 +126,7 @@ BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 	NULL
 };
 
-SawBladeDefinition SAW_BLADE_VERTICAL_AC =
+SawBladeROMDef SAW_BLADE_VERTICAL_AC =
 {
 	{
 	    {
@@ -169,6 +169,9 @@ SawBladeDefinition SAW_BLADE_VERTICAL_AC =
 		ITOFIX19_13(10)
 	},
 	
+    // radius
+    ITOFIX19_13(22),
+
     // axis
     __YAXIS,
 
@@ -176,7 +179,7 @@ SawBladeDefinition SAW_BLADE_VERTICAL_AC =
     __UP
 };
 
-SawBladeDefinition SAW_BLADE_HORIZONTAL_AC =
+SawBladeROMDef SAW_BLADE_HORIZONTAL_AC =
 {
 	{
 	    {
@@ -218,6 +221,9 @@ SawBladeDefinition SAW_BLADE_HORIZONTAL_AC =
 		// mass
 		ITOFIX19_13(10)
 	},
+
+    // radius
+    ITOFIX19_13(22),
 
     // axis
     __XAXIS,

@@ -91,7 +91,7 @@ void SawBladeMoving_execute(SawBladeMoving this, void* owner)
 	else
     {
 		// if wait time elapsed
-		if(SAW_BLADE_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
+		if(1000 < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
 		{
 			// start movement in opposite direction
 			SawBlade_startMovement((SawBlade)owner);
