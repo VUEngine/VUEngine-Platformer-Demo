@@ -1,21 +1,17 @@
 /* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev
- * jorgech3@gmail.com
+ * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License as published by the Free Software Foundation; either version 2 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+ * License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * You should have received a copy of the GNU General Public License along with this program; if not,
+ * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
 //---------------------------------------------------------------------------------------------------------
@@ -89,12 +85,6 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 
 	{&OBJECT_COIN_AG, 		{FTOFIX19_13(57), FTOFIX19_13(138), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{&OBJECT_COIN_AG, 		{FTOFIX19_13(71), FTOFIX19_13(138), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-/*
-	{&BGMAP_COIN_AG, 		{FTOFIX19_13(316), FTOFIX19_13(146), FTOFIX19_13(0)}, NULL, NULL, NULL},
-	{&BGMAP_COIN_AG, 		{FTOFIX19_13(330), FTOFIX19_13(146), FTOFIX19_13(0)}, NULL, NULL, NULL},
-	{&AFFINE_COIN_AG, 		{FTOFIX19_13(299), FTOFIX19_13(98), FTOFIX19_13(LAYER_3)}, NULL, NULL, NULL},
-	{&AFFINE_COIN_AG,		{FTOFIX19_13(313), FTOFIX19_13(98), FTOFIX19_13(LAYER_3)}, NULL, NULL, NULL},
-*/
 
     {&TITLESCREEN_MIDDLE_IM,{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(184), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
     {&TITLESCREEN_FRONT_IM, {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(165), FTOFIX19_13(-10)}, NULL, NULL, NULL, true},
