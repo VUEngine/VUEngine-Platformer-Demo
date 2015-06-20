@@ -1,21 +1,17 @@
 /* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev
- * jorgech3@gmail.com
+ * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License as published by the Free Software Foundation; either version 2 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+ * License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * You should have received a copy of the GNU General Public License along with this program; if not,
+ * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
 #ifndef SAW_BLADE_H_
@@ -29,16 +25,14 @@
 #include <Actor.h>
 
 #include <macros.h>
-#include "../Enemy.h"
+#include <Enemy.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define SAW_BLADE_ATTACK_DISTANCE	6400
-
-#define SAW_BLADE_WAIT_DELAY		1000
+#define SAW_BLADE_WAIT_DELAY 1000
 
 #define SawBlade_METHODS															\
 	Enemy_METHODS;
@@ -61,6 +55,9 @@ __CLASS(SawBlade);
 	/* save my initial position */													\
 	int initialPosition;															\
 																					\
+	/* movement radius */															\
+    int radius;																		\
+																					\
 	/* movement axis */																\
 	u8 axis: 4;																		\
 																					\
@@ -68,10 +65,13 @@ __CLASS(SawBlade);
 	s8 movementDirection: 2;														\
 
 // definition in ROM memory
-typedef const struct SawBladeDefinition
+typedef struct SawBladeDefinition
 {
 	// It has a Character in the beginning
 	ActorDefinition actorDefinition;
+
+	// movement radius
+	int radius;
 	
 	// on which axis it moves
 	u8 axis;
@@ -80,6 +80,8 @@ typedef const struct SawBladeDefinition
 	s8 direction;
 	
 } SawBladeDefinition;
+
+typedef const SawBladeDefinition SawBladeROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------

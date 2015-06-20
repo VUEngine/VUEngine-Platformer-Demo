@@ -1,21 +1,17 @@
 /* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev
- * jorgech3@gmail.com
+ * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License as published by the Free Software Foundation; either version 2 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+ * License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * You should have received a copy of the GNU General Public License along with this program; if not,
+ * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
 //---------------------------------------------------------------------------------------------------------
@@ -100,7 +96,7 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 	{&OBJECT_COIN_AG, 		{FTOFIX19_13(148), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, "Coin 002", NULL, NULL, false},
 	{&ONE_WAY_PLATFORM_4_IG,{FTOFIX19_13(140), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 80), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{&SAW_BLADE_LANE_V_6_IM,{FTOFIX19_13(198), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 36), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, false},
-	{&SAW_BLADE_VERTICAL_AC,{FTOFIX19_13(198), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 16), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&SAW_BLADE_VERTICAL_AC,{FTOFIX19_13(198), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 36), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&FLOOR_4x3_FLOAT_IG,	{FTOFIX19_13(236), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, NULL, false},
 	{&ENTER_ROOM_DOOR_AG,	{FTOFIX19_13(238), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 70), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, (void*)&LEVEL_1_1_COIN_ROOM_ST, false},
 	{&FLOOR_22x8_IG,		{FTOFIX19_13(384), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR + 8), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, NULL, false},

@@ -1,21 +1,17 @@
 /* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev
- * jorgech3@gmail.com
+ * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License as published by the Free Software Foundation; either version 2 of the License,
+ * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+ * License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * You should have received a copy of the GNU General Public License along with this program; if not,
+ * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
 //---------------------------------------------------------------------------------------------------------
@@ -28,11 +24,12 @@
 #include <PhysicalWorld.h>
 #include <Prototypes.h>
 
+#include <EnemyDead.h>
+#include <Hero.h>
+
 #include "SawBlade.h"
 #include "states/SawBladeIdle.h"
 #include "states/SawBladeMoving.h"
-#include "../states/EnemyDead.h"
-#include "../../Hero/Hero.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,6 +73,9 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	
 	// set movement direction;
 	this->movementDirection = sawBladeDefinition->direction;
+
+	// set movement radius;
+	this->radius = sawBladeDefinition->radius;
 	
 	switch(this->axis)
     {
@@ -137,11 +137,11 @@ bool SawBlade_processCollision(SawBlade this, Telegram telegram)
 
 	int message = Telegram_getMessage(telegram);
 	InGameEntity inGameEntity = __GET_CAST(InGameEntity,  Telegram_getExtraInfo(telegram));
-	
+
 	switch(message)
     {
 		case kCollision:
-			
+
 			switch(InGameEntity_getInGameType(inGameEntity))
             {
 				case kHero:
@@ -200,8 +200,8 @@ int SawBlade_getAxisFreeForMovement(SawBlade this)
 // update movement
 void SawBlade_move(SawBlade this)
 {
-	int displacement = ITOFIX19_13(44);
-	
+	int displacement = this->radius;
+
 	// update position
 	switch(this->axis)
     {
@@ -234,7 +234,7 @@ void SawBlade_move(SawBlade this)
 
 					{
 						// check position
-						if(this->transform.globalPosition.x > this->initialPosition)
+						if(this->transform.globalPosition.x > this->initialPosition + displacement)
                         {
 							// stop moving
 							Actor_stopMovement(__GET_CAST(Actor, this));
@@ -266,13 +266,13 @@ void SawBlade_move(SawBlade this)
                         {
 							// stop moving
 							Actor_stopMovement(__GET_CAST(Actor, this));
-							
+
 							// change direction
 							this->direction.y = __DOWN;
-							
+
 							// start action time
 							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-							
+
 							// set position
 							this->transform.localPosition.y = this->initialPosition - displacement;
 						}
@@ -283,7 +283,7 @@ void SawBlade_move(SawBlade this)
 
 					{
 						// check position
-						if(this->transform.globalPosition.y > this->initialPosition)
+						if(this->transform.globalPosition.y > this->initialPosition + displacement)
                         {
 							// stop moving
 							Actor_stopMovement(__GET_CAST(Actor, this));
@@ -303,23 +303,6 @@ void SawBlade_move(SawBlade this)
 			}
 			break;			
 	}
-/*
-	// if I've been stopped
-	if(false && !(this->axis & Actor_isMoving(__GET_CAST(Actor, this))))
-    {
-		// check if must stop go idle
-		if(!displacement)
-        {
-			// check if hero distance to the plant is out of range
-			if(SAW_BLADE_ATTACK_DISTANCE < Optics_lengthSquared3D(
-					Entity_getPosition(__GET_CAST(Entity, this)), Entity_getPosition(__GET_CAST(Entity, Hero_getInstance())))
-			)
-            {
-				StateMachine_swapState(this->stateMachine, __GET_CAST(State, SawBladeIdle_getInstance()));
-			}
-		}
-	}
-	*/
 }
 
 // start moving
