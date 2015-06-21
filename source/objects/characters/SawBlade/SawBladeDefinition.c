@@ -122,7 +122,7 @@ BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 	NULL
 };
 
-SawBladeROMDef SAW_BLADE_VERTICAL_AC =
+SawBladeROMDef SAW_BLADE_V3_AC =
 {
 	{
 	    {
@@ -166,7 +166,7 @@ SawBladeROMDef SAW_BLADE_VERTICAL_AC =
 	},
 	
     // radius
-    ITOFIX19_13(22),
+    ITOFIX19_13(24),
 
     // axis
     __YAXIS,
@@ -175,7 +175,7 @@ SawBladeROMDef SAW_BLADE_VERTICAL_AC =
     __UP
 };
 
-SawBladeROMDef SAW_BLADE_HORIZONTAL_AC =
+SawBladeROMDef SAW_BLADE_H3_AC =
 {
 	{
 	    {
@@ -219,7 +219,60 @@ SawBladeROMDef SAW_BLADE_HORIZONTAL_AC =
 	},
 
     // radius
-    ITOFIX19_13(22),
+    ITOFIX19_13(24),
+
+    // axis
+    __XAXIS,
+
+    // direction
+    __LEFT
+};
+
+SawBladeROMDef SAW_BLADE_H8_AC =
+{
+	{
+	    {
+	        {
+	            {
+	                __TYPE(SawBlade),
+	                (SpriteROMDef**)SAW_BLADE_SPRITES,
+	            },
+
+	            // collision detection gap (up, down, left, right)
+	            {1, 2, 2, 1},
+
+	            // in game type
+	            kSawBlade,
+
+	            // width
+	            0,
+
+	            // height
+	            0,
+
+	            // depth
+	            10
+	        },
+
+	        // pointer to the animation definition for the character
+	        &SAW_BLADE_ANIM,
+
+	        // initial animation
+	        NULL
+	    },
+
+		// friction for physics
+		ITOFIX19_13(0),
+
+		// elasticity for physics
+		ITOFIX19_13(0),
+
+		// mass
+		ITOFIX19_13(10)
+	},
+
+    // radius
+    ITOFIX19_13(64),
 
     // axis
     __XAXIS,

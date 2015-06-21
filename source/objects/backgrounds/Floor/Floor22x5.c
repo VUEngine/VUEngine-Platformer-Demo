@@ -29,9 +29,6 @@
 extern BYTE Floor22x12Tiles[];
 extern BYTE Floor22x12Map[];
 
-extern BYTE Floor22TopTiles[];
-extern BYTE Floor22TopMap[];
-
 extern TextureROMDef FLOOR_22_TOP_TX;
 
 
@@ -47,7 +44,7 @@ TextureROMDef FLOOR_22x5_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        11,
+        16,
 
         // allocation type
         __NOT_ANIMATED,

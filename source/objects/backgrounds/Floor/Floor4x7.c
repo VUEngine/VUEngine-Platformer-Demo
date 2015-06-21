@@ -26,17 +26,17 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Floor2x2BlockLTiles[];
-extern BYTE Floor2x2BlockLMap[];
-extern BYTE Floor2x2BlockRTiles[];
-extern BYTE Floor2x2BlockRMap[];
+extern BYTE Floor4x12Tiles[];
+extern BYTE Floor4x12Map[];
+
+extern TextureROMDef FLOOR_4_TOP_TX;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef FLOOR_2x2_BLOCK_L_TX =
+TextureROMDef FLOOR_4x7_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -44,23 +44,23 @@ TextureROMDef FLOOR_2x2_BLOCK_L_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        10,
+        16,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        Floor2x2BlockLTiles,
+        Floor4x12Tiles,
     },
 
     // bgmap definition
-    Floor2x2BlockLMap,
+    Floor4x12Map,
 
     // cols (max 64)
-    2 + 1,
+    4 + 2,
 
     // rows (max 64)
-    2 + 1,
+    7,
 
     // number of frames
     1,
@@ -69,190 +69,77 @@ TextureROMDef FLOOR_2x2_BLOCK_L_TX =
     1,
 };
 
-TextureROMDef FLOOR_2x2_BLOCK_R_TX =
-{
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        10,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor2x2BlockRTiles,
-    },
-
-    // bgmap definition
-    Floor2x2BlockRMap,
-
-    // cols (max 64)
-    2 + 1,
-
-    // rows (max 64)
-    2 + 1,
-
-    // number of frames
-    1,
-
-    // palette number
-    1,
-};
-
-BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE =
+ObjectSpriteROMDef FLOOR_4x7_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
+	(TextureDefinition*)&FLOOR_4x7_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-	
+	WRLD_OBJ,
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE_LEFT =
+ObjectSpriteROMDef FLOOR_4x7_TOP_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
+	(TextureDefinition*)&FLOOR_4_TOP_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+	{0, -24, -1},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
+	WRLD_OBJ,
 
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_LON,
+	WRLD_ON,
 };
 
-BgmapSpriteROMDef FLOOR_2x2_BLOCK_BG_SPRITE_RIGHT =
+ObjectSpriteROMDef* const FLOOR_4x7_SPRITES[] =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&FLOOR_2x2_BLOCK_R_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_RON,
-};
-
-BgmapSpriteROMDef* const FLOOR_2x2_BLOCK_BG_SPRITES[] =
-{
-	&FLOOR_2x2_BLOCK_BG_SPRITE,
+	&FLOOR_4x7_SPRITE,
+	&FLOOR_4x7_TOP_SPRITE,
 	NULL
 };
 
-InanimatedInGameEntityROMDef FLOOR_2x2_BLOCK_IG =
+InanimatedInGameEntityROMDef FLOOR_4x7_IG =
 {
     {
         {
             __TYPE(InanimatedInGameEntity),
-            (SpriteROMDef**)FLOOR_2x2_BLOCK_BG_SPRITES,
+            (SpriteROMDef**)FLOOR_4x7_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
-        {7, 0, 0, 8},
+        {1, 0, 8, 8},
 
         // in game type
         kSolid,
 
         // width
         // if 0, width and height will be inferred from the texture's size
-    	0,
+        0,
 
-    	// height
+        // height
         // if 0, width and height will be inferred from the texture's size
-    	0,
-    	
+        0,
+        
         // depth
-        20
+        16
     },
 
     // friction FTOFIX19_13
-    FTOFIX19_13(50),
-
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(1.0f),
-
-    // register shape
-    true,
-};
-
-
-BgmapSpriteROMDef AFFINE_FLOOR_2x2_BLOCK_BG_SPRITE =
-{
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&FLOOR_2x2_BLOCK_L_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
-
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_AFFINE,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
-};
-
-
-
-BgmapSpriteROMDef* const AFFINE_FLOOR_2x2_BLOCK_BG_SPRITES[] =
-{
-	&AFFINE_FLOOR_2x2_BLOCK_BG_SPRITE,
-	NULL
-};
-
-InanimatedInGameEntityROMDef AFFINE_FLOOR_2x2_BLOCK_IG =
-{
-    {
-        {
-            __TYPE(InanimatedInGameEntity),
-            (SpriteROMDef**)AFFINE_FLOOR_2x2_BLOCK_BG_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {7, 0, 0, 8},
-
-        // in game type
-        kSolid,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-    	
-        // depth
-        20
-    },
-
-    // friction FTOFIX19_13
-    FTOFIX19_13(1.0f),
+    FTOFIX19_13(40),
 
     // elasticity FTOFIX19_13
     FTOFIX19_13(1.0f),

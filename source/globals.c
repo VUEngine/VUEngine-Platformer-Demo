@@ -60,10 +60,9 @@ const UserObject _userObjects[] =
 	{&DOOR_AG, "Door"},
 	{&HERO_AC, "Hero"},
 	{&KEY_AG, "Key"},
-	{&SAW_BLADE_VERTICAL_AC, "SawBlade V"},
-	{&SAW_BLADE_HORIZONTAL_AC, "SawBlade H"},
+	{&SAW_BLADE_V3_AC, "SawBlade V3"},
+	{&SAW_BLADE_H3_AC, "SawBlade H3"},
 	{&SAW_BLADE_LANE_V_6_IM, "SawBlade Lane V6"},
-	{&AFFINE_FLOOR_16x8_IG, "Floor 16x8 (Affine)"},
 	{NULL, ""},
 };
 #endif
@@ -76,7 +75,7 @@ const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
 	{(AnimatedInGameEntityDefinition*)&HERO_AC, "Hero"},
 	{(AnimatedInGameEntityDefinition*)&HINT_ENTER_MC, "Hint enter"},
 	{(AnimatedInGameEntityDefinition*)&KEY_AG, "Key"},
-	{(AnimatedInGameEntityDefinition*)&SAW_BLADE_VERTICAL_AC, "SawBlade"},
+	{(AnimatedInGameEntityDefinition*)&SAW_BLADE_V3_AC, "SawBlade"},
 	{(AnimatedInGameEntityDefinition*)&LAVA_TOP_AG, "Lava top"},
 	{NULL, ""},
 };
