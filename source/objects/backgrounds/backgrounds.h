@@ -62,6 +62,11 @@ extern EntityDefinition AFFINE_FLOOR_22x8_IG;
 extern EntityDefinition AFFINE_FLOOR_4x3_FLOAT_IG;
 extern EntityDefinition AFFINE_FLOOR_2x2_BLOCK_IG;
 
+extern EntityDefinition FLOOR_22x12_IG;
+extern EntityDefinition FLOOR_22x5_IG;
+extern EntityDefinition FLOOR_16x12_IG;
+extern EntityDefinition FLOOR_4x12_IG;
+
 extern EntityDefinition ONE_WAY_PLATFORM_4_IG;
 
 extern EntityDefinition MOUND_1_IM;

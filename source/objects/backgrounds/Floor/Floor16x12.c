@@ -18,22 +18,26 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleScreenMiddleTiles[];
-extern BYTE TitleScreenMiddleMap[];
+extern BYTE Floor16x12Tiles[];
+extern BYTE Floor16x12Map[];
+
+extern BYTE Floor16TopTiles[];
+extern BYTE Floor16TopMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef TITLESCREEN_MIDDLE_TX =
+TextureROMDef FLOOR_16x12_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -41,23 +45,23 @@ TextureROMDef TITLESCREEN_MIDDLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        17,
+        11,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        TitleScreenMiddleTiles,
+        Floor16x12Tiles,
     },
 
     // bgmap definition
-    TitleScreenMiddleMap,
+    Floor16x12Map,
 
     // cols (max 64)
-    50,
+    16 + 2,
 
     // rows (max 64)
-    10,
+    12,
 
     // number of frames
     1,
@@ -66,32 +70,113 @@ TextureROMDef TITLESCREEN_MIDDLE_TX =
     1,
 };
 
-BgmapSpriteROMDef TITLESCREEN_MIDDLE_IM_SPRITE =
+ObjectSpriteROMDef FLOOR_16x12_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&TITLESCREEN_MIDDLE_TX,
+	(TextureDefinition*)&FLOOR_16x12_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-	
+	WRLD_OBJ,
+
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+	WRLD_ON,
+};
+TextureROMDef FLOOR_16_TOP_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+        // __NOT_ANIMATED: number of chars of whole image
+        7,
+
+        // allocation type
+        __NOT_ANIMATED,
+
+        // char definition
+        Floor16TopTiles,
+    },
+
+    // bgmap definition
+    Floor16TopMap,
+
+    // cols (max 64)
+    16 + 2,
+
+    // rows (max 64)
+    2,
+
+    // number of frames
+    1,
+
+    // palette number
+    1,
+};
+
+ObjectSpriteROMDef FLOOR_16x12_TOP_SPRITE =
+{
+	// sprite's type
+	__TYPE(ObjectSprite),
+
+	// texture definition
+	(TextureDefinition*)&FLOOR_16_TOP_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, -40, -1},
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	WRLD_OBJ,
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const TITLESCREEN_MIDDLE_IM_SPRITES[] =
+ObjectSpriteROMDef* const FLOOR_16x12_SPRITES[] =
 {
-	&TITLESCREEN_MIDDLE_IM_SPRITE,
+	&FLOOR_16x12_SPRITE,
+	&FLOOR_16x12_TOP_SPRITE,
 	NULL
 };
 
-ImageROMDef TITLESCREEN_MIDDLE_IM =
+InanimatedInGameEntityROMDef FLOOR_16x12_IG =
 {
-	__TYPE(Image),
-	(SpriteROMDef**)TITLESCREEN_MIDDLE_IM_SPRITES,
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            (SpriteROMDef**)FLOOR_16x12_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {1, 0, 8, 8},
+
+        // in game type
+        kSolid,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+        0,
+        
+        // height
+        // if 0, width and height will be inferred from the texture's size
+        0,
+        
+        // depth
+        16
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(40),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
 };

@@ -34,8 +34,9 @@ extern EntityDefinition LOGO_IM;
 extern EntityDefinition SUPER_AWESOME_IM;
 extern EntityDefinition VBJAENGINE_IM;
 
-extern EntityDefinition TITLESCREEN_MIDDLE_IM;
-extern EntityDefinition TITLESCREEN_FRONT_IM;
+extern EntityDefinition FLOOR_22x5_IG;
+extern EntityDefinition FLOOR_16x12_IG;
+extern EntityDefinition FLOOR_4x12_IG;
 
 
 #endif
