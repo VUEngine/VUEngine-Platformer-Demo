@@ -23,8 +23,12 @@ extern TextureDefinition LOGO_OUTLINE_R_TX;
 extern TextureDefinition SUPER_AWESOME_TX;
 extern TextureDefinition VBJAENGINE_TX;
 
-extern TextureDefinition TITLESCREEN_MIDDLE_TX;
-extern TextureDefinition TITLESCREEN_FRONT_TX;
+extern TextureDefinition FLOOR_22x5_TX;
+extern TextureDefinition FLOOR_22_TOP_TX;
+extern TextureDefinition FLOOR_16x12_TX;
+extern TextureDefinition FLOOR_16_TOP_TX;
+extern TextureDefinition FLOOR_4x12_TX;
+extern TextureDefinition FLOOR_4_TOP_TX;
 
 
 #endif

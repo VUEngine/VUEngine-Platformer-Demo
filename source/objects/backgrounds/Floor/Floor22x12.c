@@ -18,22 +18,26 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleScreenFrontTiles[];
-extern BYTE TitleScreenFrontMap[];
+extern BYTE Floor22x12Tiles[];
+extern BYTE Floor22x12Map[];
+
+extern BYTE Floor22TopTiles[];
+extern BYTE Floor22TopMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef TITLESCREEN_FRONT_TX =
+TextureROMDef FLOOR_22x12_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -47,17 +51,17 @@ TextureROMDef TITLESCREEN_FRONT_TX =
         __NOT_ANIMATED,
 
         // char definition
-        TitleScreenFrontTiles,
+        Floor22x12Tiles,
     },
 
     // bgmap definition
-    TitleScreenFrontMap,
+    Floor22x12Map,
 
     // cols (max 64)
-    50,
+    22 + 2,
 
     // rows (max 64)
-    5,
+    12,
 
     // number of frames
     1,
@@ -66,32 +70,113 @@ TextureROMDef TITLESCREEN_FRONT_TX =
     1,
 };
 
-BgmapSpriteROMDef TITLESCREEN_FRONT_IM_SPRITE =
+ObjectSpriteROMDef FLOOR_22x12_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&TITLESCREEN_FRONT_TX,
+	(TextureDefinition*)&FLOOR_22x12_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
+	
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	WRLD_OBJ,
+
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+	WRLD_ON,
+};
+TextureROMDef FLOOR_22_TOP_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+        // __NOT_ANIMATED: number of chars of whole image
+        7,
+
+        // allocation type
+        __NOT_ANIMATED,
+
+        // char definition
+        Floor22TopTiles,
+    },
+
+    // bgmap definition
+    Floor22TopMap,
+
+    // cols (max 64)
+    22 + 2,
+
+    // rows (max 64)
+    2,
+
+    // number of frames
+    1,
+
+    // palette number
+    1,
+};
+
+ObjectSpriteROMDef FLOOR_22x12_TOP_SPRITE =
+{
+	// sprite's type
+	__TYPE(ObjectSprite),
+
+	// texture definition
+	(TextureDefinition*)&FLOOR_22_TOP_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, -40, -1},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
+	WRLD_OBJ,
 
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const TITLESCREEN_FRONT_IM_SPRITES[] =
+ObjectSpriteROMDef* const FLOOR_22x12_SPRITES[] =
 {
-	&TITLESCREEN_FRONT_IM_SPRITE,
+	&FLOOR_22x12_SPRITE,
+	&FLOOR_22x12_TOP_SPRITE,
 	NULL
 };
 
-ImageROMDef TITLESCREEN_FRONT_IM =
+InanimatedInGameEntityROMDef FLOOR_22x12_IG =
 {
-	__TYPE(Image),
-	(SpriteROMDef**)TITLESCREEN_FRONT_IM_SPRITES,
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            (SpriteROMDef**)FLOOR_22x12_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {1, 0, 8, 8},
+
+        // in game type
+        kSolid,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+        0,
+        
+        // height
+        // if 0, width and height will be inferred from the texture's size
+        0,
+        
+        // depth
+        16
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(40),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true,
 };

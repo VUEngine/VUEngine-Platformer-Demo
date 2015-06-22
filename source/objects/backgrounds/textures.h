@@ -31,16 +31,14 @@ extern TextureDefinition LEVEL1_3_PART2_TX;
 extern TextureDefinition LEVEL1_3_PART3_TX;
 extern TextureDefinition PLATE_BG_TX;
 
-extern TextureDefinition FLOOR_4x10_L_TX;
-extern TextureDefinition FLOOR_4x10_R_TX;
-extern TextureDefinition FLOOR_16x8_L_TX;
-extern TextureDefinition FLOOR_16x8_R_TX;
-extern TextureDefinition FLOOR_22x8_L_TX;
-extern TextureDefinition FLOOR_22x8_R_TX;
-extern TextureDefinition FLOOR_4x3_FLOAT_L_TX;
-extern TextureDefinition FLOOR_4x3_FLOAT_R_TX;
-extern TextureDefinition FLOOR_2x2_BLOCK_L_TX;
-extern TextureDefinition FLOOR_2x2_BLOCK_R_TX;
+extern TextureDefinition FLOOR_22x12_TX;
+extern TextureDefinition FLOOR_22x5_TX;
+extern TextureDefinition FLOOR_22_TOP_TX;
+extern TextureDefinition FLOOR_16x12_TX;
+extern TextureDefinition FLOOR_16_TOP_TX;
+extern TextureDefinition FLOOR_4x12_TX;
+extern TextureDefinition FLOOR_4x7_TX;
+extern TextureDefinition FLOOR_4_TOP_TX;
 
 extern TextureDefinition ONE_WAY_PLATFORM_4_TX;
 

@@ -26,17 +26,18 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Floor22x8LTiles[];
-extern BYTE Floor22x8LMap[];
-extern BYTE Floor22x8RTiles[];
-extern BYTE Floor22x8RMap[];
+extern BYTE Floor16x12Tiles[];
+extern BYTE Floor16x12Map[];
+
+extern BYTE Floor16TopTiles[];
+extern BYTE Floor16TopMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef FLOOR_22x8_L_TX =
+TextureROMDef FLOOR_16x12_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -44,23 +45,23 @@ TextureROMDef FLOOR_22x8_L_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        13,
+        16,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        Floor22x8LTiles,
+        Floor16x12Tiles,
     },
 
     // bgmap definition
-    Floor22x8LMap,
+    Floor16x12Map,
 
     // cols (max 64)
-    22 + 1,
+    16 + 2,
 
     // rows (max 64)
-    8 + 1,
+    12,
 
     // number of frames
     1,
@@ -69,109 +70,91 @@ TextureROMDef FLOOR_22x8_L_TX =
     1,
 };
 
-TextureROMDef FLOOR_22x8_R_TX =
-{
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        14,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor22x8RTiles,
-    },
-
-    // bgmap definition
-    Floor22x8RMap,
-
-    // cols (max 64)
-    22 + 1,
-
-    // rows (max 64)
-    8 + 1,
-
-    // number of frames
-    1,
-
-    // palette number
-    1,
-};
-
-BgmapSpriteROMDef FLOOR_22x8_BG_SPRITE =
+ObjectSpriteROMDef FLOOR_16x12_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&FLOOR_22x8_L_TX,
+	(TextureDefinition*)&FLOOR_16x12_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-	
+	WRLD_OBJ,
+
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+	WRLD_ON,
+};
+TextureROMDef FLOOR_16_TOP_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+        // __NOT_ANIMATED: number of chars of whole image
+        7,
+
+        // allocation type
+        __NOT_ANIMATED,
+
+        // char definition
+        Floor16TopTiles,
+    },
+
+    // bgmap definition
+    Floor16TopMap,
+
+    // cols (max 64)
+    16 + 2,
+
+    // rows (max 64)
+    2,
+
+    // number of frames
+    1,
+
+    // palette number
+    1,
+};
+
+ObjectSpriteROMDef FLOOR_16x12_TOP_SPRITE =
+{
+	// sprite's type
+	__TYPE(ObjectSprite),
+
+	// texture definition
+	(TextureDefinition*)&FLOOR_16_TOP_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, -40, -1},
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	WRLD_OBJ,
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef FLOOR_22x8_BG_SPRITE_LEFT =
+ObjectSpriteROMDef* const FLOOR_16x12_SPRITES[] =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&FLOOR_22x8_L_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, -1},
-
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_LON,
-};
-
-BgmapSpriteROMDef FLOOR_22x8_BG_SPRITE_RIGHT =
-{
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&FLOOR_22x8_R_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, -1},
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_RON,
-};
-
-BgmapSpriteROMDef* const FLOOR_22x8_BG_SPRITES[] =
-{
-	&FLOOR_22x8_BG_SPRITE,
+	&FLOOR_16x12_SPRITE,
+	&FLOOR_16x12_TOP_SPRITE,
 	NULL
 };
 
-InanimatedInGameEntityROMDef FLOOR_22x8_IG =
+InanimatedInGameEntityROMDef FLOOR_16x12_IG =
 {
     {
         {
             __TYPE(InanimatedInGameEntity),
-            (SpriteROMDef**)FLOOR_22x8_BG_SPRITES,
+            (SpriteROMDef**)FLOOR_16x12_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
-        {6, 0, 4, 8},
+        {1, 0, 8, 8},
 
         // in game type
         kSolid,
@@ -185,71 +168,11 @@ InanimatedInGameEntityROMDef FLOOR_22x8_IG =
         0,
         
         // depth
-        20
+        16
     },
 
     // friction FTOFIX19_13
     FTOFIX19_13(40),
-
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(1.0f),
-
-    // register shape
-    true,
-};
-
-BgmapSpriteROMDef AFFINE_FLOOR_22x8_BG_SPRITE =
-{
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&FLOOR_22x8_L_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_AFFINE,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
-};
-
-BgmapSpriteROMDef* const AFFINE_FLOOR_22x8_BG_SPRITES[] =
-{
-	&AFFINE_FLOOR_22x8_BG_SPRITE,
-	NULL
-};
-
-InanimatedInGameEntityROMDef AFFINE_FLOOR_22x8_IG =
-{
-    {
-        {
-            __TYPE(InanimatedInGameEntity),
-            (SpriteROMDef**)AFFINE_FLOOR_22x8_BG_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {6, 0, 4, 8},
-
-        // in game type
-        kSolid,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-        0,
-        
-        // height
-        // if 0, width and height will be inferred from the texture's size
-        0,
-        
-        // depth
-        20
-    },
-
-    // friction FTOFIX19_13
-    FTOFIX19_13(0.5f),
 
     // elasticity FTOFIX19_13
     FTOFIX19_13(1.0f),
