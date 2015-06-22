@@ -159,6 +159,37 @@ PlatformerStageROMDef LEVEL_1_3_ROOM_1_ST =
         // friction
         FTOFIX19_13(0.1f),
 
+        // Palette's config
+        {
+        	// background color
+        	__COLOR_BLACK,
+        	
+        	{
+        		0xE4,
+        		0xE0,
+        		0xD0,
+        		0xE0,
+        	},
+        	{
+        		0xE4,
+        		0xE0,
+        		0xD0,
+        		0xE0,
+        	} 
+        },
+
+    	// OBJs segments sizes (must total 1024)
+        {
+            // SPT0
+        	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+            // SPT1
+        	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+            // SPT2
+        	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+            // SPT3
+        	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+        },
+        
         // OBJs segments z coordinates
         // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
         // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
@@ -211,9 +242,6 @@ PlatformerStageROMDef LEVEL_1_3_ROOM_1_ST =
 
         // background music
         NULL,
-
-        // background color
-        __COLOR_BLACK,
     },
 
     // identifier

@@ -102,6 +102,38 @@ StageROMDef PAUSE_SCREEN_ST =
 
     // friction
     ITOFIX19_13(0),
+    
+    // Palette's config
+    {
+    	// background color
+    	__COLOR_BLACK,
+    	
+    	{
+    		0xE4,
+    		0xE0,
+    		0xD0,
+    		0xE0,
+    	},
+    	{
+    		0xE4,
+    		0xE0,
+    		0xD0,
+    		0xE0,
+    	} 
+    },
+
+	// OBJs segments sizes (must total 1024)
+    {
+        // SPT0
+    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+        // SPT1
+    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+        // SPT2
+    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+        // SPT3
+    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+    },
+
 
 	// OBJs segments z coordinates
 	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
@@ -156,7 +188,4 @@ StageROMDef PAUSE_SCREEN_ST =
     // background music
     NULL,
     //(const u16 (*)[])WORLD_0_0_0_BGM,
-
-    // background color
-    __COLOR_BLACK,
 };
