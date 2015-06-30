@@ -96,7 +96,7 @@ ObjectSpriteROMDef FLOOR_22x5_TOP_SPRITE =
 	(TextureDefinition*)&FLOOR_22_TOP_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, -20, -1},
+	{0, -12, -1},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
@@ -124,7 +124,7 @@ InanimatedInGameEntityROMDef FLOOR_22x5_IG =
         {1, 0, 8, 8},
 
         // in game type
-        kSolid,
+        kTopSolid,
 
         // width
         // if 0, width and height will be inferred from the texture's size

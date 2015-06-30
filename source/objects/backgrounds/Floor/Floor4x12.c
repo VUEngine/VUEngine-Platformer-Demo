@@ -157,7 +157,7 @@ InanimatedInGameEntityROMDef FLOOR_4x12_IG =
         {1, 0, 8, 8},
 
         // in game type
-        kSolid,
+        kTopSolid,
 
         // width
         // if 0, width and height will be inferred from the texture's size
