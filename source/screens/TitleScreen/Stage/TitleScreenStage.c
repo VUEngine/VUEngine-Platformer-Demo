@@ -218,10 +218,10 @@ StageROMDef TITLE_SCREEN_ST =
 
     // optical configuration values
     {
+		// maximum view distance's power into the horizont
+		__MAXIMUM_VIEW_DISTANCE_POWER,
 		// distance of the eyes to the screen
     	ITOFIX19_13(__DISTANCE_EYE_SCREEN),
-		// maximum view distance into the horizont
-		ITOFIX19_13(__MAXIMUM_VIEW_DISTANCE),
 		// distance from left to right eye (depth sensation)
 		ITOFIX19_13(__BASE_FACTOR),
 		// horizontal View point center
