@@ -183,13 +183,13 @@ StageROMDef TITLE_SCREEN_ST =
 	// OBJs segments sizes (must total 1024)
     {
         // SPT0
-    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+    	__AVAILABLE_CHAR_OBJECTS,
         // SPT1
-    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+    	0,
         // SPT2
-    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+    	0,
         // SPT3
-    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+    	0,
     },
 
 	// OBJs segments z coordinates
