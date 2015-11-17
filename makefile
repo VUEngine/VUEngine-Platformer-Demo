@@ -4,16 +4,13 @@
 TARGET = output
 
 # Default build type
-TYPE = debug
-#TYPE = release
+#TYPE = debug
+TYPE = release
 #TYPE = preprocessor
-
-# Don't build tools by default
-TOOLS = 0
 
 # Which directories contain source files
 DIRS := $(shell find * -type d -print)
-		
+
 # Which libraries are linked
 LIBS =
 ROMHEADER=lib/vb.hdr
@@ -26,37 +23,31 @@ VBJAENGINE = $(VBDE)/libs/vbjaengine
 VBJANEGINE_CONFIG_FILE = $(shell pwd)/config.h
 GAME_ESSENTIALS = 	-include $(VBJANEGINE_CONFIG_FILE) \
 					-include $(VBJAENGINE)/libvbjae.h
-						
+
 
 # The next blocks change some variables depending on the build type
 ifeq ($(TYPE),debug)
 LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall $(GAME_ESSENTIALS)
-ifeq ($(TOOLS),1)
 MACROS = __DEBUG __DEBUG_TOOLS __STAGE_EDITOR __ANIMATION_EDITOR
-else
-MACROS = __DEBUG
-endif
 endif
 
 ifeq ($(TYPE), release)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESSENTIALS)
-ifeq ($(TOOLS),1)
-MACROS = __DEBUG_TOOLS __STAGE_EDITOR __ANIMATION_EDITOR
-else
 MACROS =
 endif
+
+ifeq ($(TYPE), release-tools)
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESSENTIALS)
+MACROS = __DEBUG_TOOLS __STAGE_EDITOR __ANIMATION_EDITOR
 endif
 
 ifeq ($(TYPE),preprocessor)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline $(GAME_ESSENTIALS) -E
-ifeq ($(TOOLS),1)
 MACROS = __DEBUG __DEBUG_TOOLS __STAGE_EDITOR __ANIMATION_EDITOR
-else
-MACROS = __DEBUG
-endif
 endif
 
 
@@ -108,7 +99,7 @@ deleteEngine:
 		@rm -f $(ENGINE)
 
 $(ENGINE): deleteEngine
-	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJANEGINE_CONFIG_FILE) -e TOOLS=$(TOOLS)
+	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJANEGINE_CONFIG_FILE)
 
 $(TARGET).vb: main.elf
 	@echo Creating $@

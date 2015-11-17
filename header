@@ -1,14 +1,14 @@
-###VIRTUAL BOY GAME HEADER FILE
-###more info at http://www.planetvb.com/modules/dokuwiki/doku.php?id=info_at_the_end_of_the_rom
+# VIRTUAL BOY GAME HEADER FILE
+# more info at http://www.planetvb.com/modules/dokuwiki/doku.php?id=info_at_the_end_of_the_rom
 
-###GAME TITLE, up to 20 characters:
+#################### GAME TITLE
 VBJAENGINE PROJECT
 
-###PUBLISHER ID, 2 characters:
+## PUBLISHER ID
 ??
 
-###GAME ID, 4 characters:
+#### GAME ID
 V??E
 
-###REVISION, 1 digit:
+# REVISION
 0
