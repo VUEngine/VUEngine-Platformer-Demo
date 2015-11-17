@@ -3,16 +3,17 @@
  * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 2 of the License,
+ * General Public License as published by the Free Software Foundation; either version 3 of the License,
  * or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
  * License for more details.
  *
- * You should have received a copy of the GNU General Public License along with this program; if not,
- * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * You should have received a copy of the GNU General Public License along with this program. If not,
+ * see <http://www.gnu.org/licenses/>.
  */
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
@@ -33,7 +34,7 @@
 const LangROMDef LANGUAGE_FR =
 {
     // Language Name
-    "Français",
+    "Franï¿½ais",
 
     // Strings
     {
@@ -42,17 +43,17 @@ const LangROMDef LANGUAGE_FR =
         //STR_PRECAUTION_SCREEN_TITLE:
         "Important:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        "Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
+        "Prenez conaissance de la\n\nnotice et des prï¿½cautions\n\na prendre avant de jouer",
         //STR_AUTOMATIC_PAUSE:
         "Pause Automatique",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
         "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
         //STR_AUTOMATIC_PAUSE_TEXT:
-        "Se il vous plaît, prendre un repos!",
+        "Se il vous plaï¿½t, prendre un repos!",
         //STR_ON:
-        "Activé",
+        "Activï¿½",
         //STR_OFF:
-        "Desactivé",
+        "Desactivï¿½",
         //STR_LANGUAGE_SELECT:
         "Choix de la langue",
 

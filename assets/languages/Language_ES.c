@@ -3,16 +3,17 @@
  * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 2 of the License,
+ * General Public License as published by the Free Software Foundation; either version 3 of the License,
  * or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
  * License for more details.
  *
- * You should have received a copy of the GNU General Public License along with this program; if not,
- * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * You should have received a copy of the GNU General Public License along with this program. If not,
+ * see <http://www.gnu.org/licenses/>.
  */
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
@@ -33,7 +34,7 @@
 const LangROMDef LANGUAGE_ES =
 {
     // Language Name
-    "Español",
+    "Espaï¿½ol",
 
     // Strings
     {
@@ -44,11 +45,11 @@ const LangROMDef LANGUAGE_ES =
         //STR_PRECAUTION_SCREEN_TEXT:
         "     Lea los libros de\n\nInstrucciones y precauciones\n\n       antes de jugar",
         //STR_AUTOMATIC_PAUSE:
-        "Pausa Automática",
+        "Pausa Automï¿½tica",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
-        " La función automática de pausa le\nrecordará que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
+        " La funciï¿½n automï¿½tica de pausa le\nrecordarï¿½ que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
         //STR_AUTOMATIC_PAUSE_TEXT:
-        "¡Por favor, tómese un descanso!",
+        "ï¿½Por favor, tï¿½mese un descanso!",
         //STR_ON:
         "Encendido",
         //STR_OFF:

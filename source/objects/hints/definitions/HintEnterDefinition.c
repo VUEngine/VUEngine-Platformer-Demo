@@ -3,16 +3,17 @@
  * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 2 of the License,
+ * General Public License as published by the Free Software Foundation; either version 3 of the License,
  * or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
  * License for more details.
  *
- * You should have received a copy of the GNU General Public License along with this program; if not,
- * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * You should have received a copy of the GNU General Public License along with this program. If not,
+ * see <http://www.gnu.org/licenses/>.
  */
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
@@ -29,8 +30,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HintPickUpTiles[];
-extern BYTE HintPickUpMap[];
+extern BYTE HintEnterTiles[];
+extern BYTE HintEnterMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -38,16 +39,16 @@ extern BYTE HintPickUpMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_OPEN_ANIM =
+AnimationFunctionROMDef HINT_ENTER_OPEN_ANIM =
 {
 	// number of frames of this animation function
 	5,
 	
 	// frames to play in animation
 	{0,1,2,3,4},
-
+	
 	// number of cycles a frame of animation is displayed
-	__FPS_ANIM_FACTOR,
+	2 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	false,
@@ -60,7 +61,7 @@ AnimationFunctionROMDef HINT_PICK_UP_OPEN_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
+AnimationFunctionROMDef HINT_ENTER_ENGLISH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -82,7 +83,7 @@ AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
+AnimationFunctionROMDef HINT_ENTER_DEUTSCH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -104,7 +105,7 @@ AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_CLOSE_ANIM =
+AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 {
 	// number of frames of this animation function
 	5,
@@ -113,7 +114,7 @@ AnimationFunctionROMDef HINT_PICK_UP_CLOSE_ANIM =
 	{4,3,2,1,0},
 
 	// number of cycles a frame of animation is displayed
-	__FPS_ANIM_FACTOR,
+	2 * __FPS_ANIM_FACTOR,
 
 	// whether to play it in loop or not
 	false,
@@ -126,19 +127,19 @@ AnimationFunctionROMDef HINT_PICK_UP_CLOSE_ANIM =
 };
 
 // an animation definition
-AnimationDescriptionROMDef HINT_PICK_UP_ANIM =
+AnimationDescriptionROMDef HINT_ENTER_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HINT_PICK_UP_OPEN_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_ENGLISH_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_DEUTSCH_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_CLOSE_ANIM,
+		(AnimationFunction*)&HINT_ENTER_OPEN_ANIM,
+		(AnimationFunction*)&HINT_ENTER_ENGLISH_ANIM,
+		(AnimationFunction*)&HINT_ENTER_DEUTSCH_ANIM,
+		(AnimationFunction*)&HINT_ENTER_CLOSE_ANIM,
 		NULL,
 	}
 };
 
-TextureROMDef HINT_PICK_UP_TX =
+TextureROMDef HINT_ENTER_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -146,20 +147,20 @@ TextureROMDef HINT_PICK_UP_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        217,
+        163,
 
         // allocation type
         __ANIMATED_MULTI,
 
         // char definition
-        HintPickUpTiles,
+        HintEnterTiles,
     },
 
     // bgmap definition
-    HintPickUpMap,
+    HintEnterMap,
 
     // cols (max 64)
-    8,
+    6,
 
     // rows (max 64)
     3,
@@ -171,13 +172,13 @@ TextureROMDef HINT_PICK_UP_TX =
     1,
 };
 
-BgmapSpriteROMDef HINT_PICK_UP_SPRITE =
+BgmapSpriteROMDef HINT_ENTER_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&HINT_PICK_UP_TX,
+	(TextureDefinition*)&HINT_ENTER_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
@@ -188,19 +189,19 @@ BgmapSpriteROMDef HINT_PICK_UP_SPRITE =
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
-
-BgmapSpriteROMDef* const HINT_PICK_UP_SPRITES[] =
+	
+BgmapSpriteROMDef* const HINT_ENTER_SPRITES[] =
 {
-	&HINT_PICK_UP_SPRITE,
+	&HINT_ENTER_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
+AnimatedInGameEntityROMDef HINT_ENTER_MC =
 {
     {
         {
             __TYPE(Hint),
-            (SpriteROMDef**)HINT_PICK_UP_SPRITES,
+            (SpriteROMDef**)HINT_ENTER_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -222,7 +223,7 @@ AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
     },
 
     // pointer to the animation definition for the item
-    (AnimationDescription*)&HINT_PICK_UP_ANIM,
+    (AnimationDescription*)&HINT_ENTER_ANIM,
 
     // initial animation
     "Open",

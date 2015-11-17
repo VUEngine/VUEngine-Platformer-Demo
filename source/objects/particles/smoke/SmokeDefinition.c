@@ -3,16 +3,17 @@
  * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 2 of the License,
+ * General Public License as published by the Free Software Foundation; either version 3 of the License,
  * or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
  * License for more details.
  *
- * You should have received a copy of the GNU General Public License along with this program; if not,
- * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ * You should have received a copy of the GNU General Public License along with this program. If not,
+ * see <http://www.gnu.org/licenses/>.
  */
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
@@ -20,7 +21,7 @@
 
 #include <libgccvb.h>
 #include <ParticleSystem.h>
-#include <ObjectAnimatedSprite.h>
+#include <ObjectSprite.h>
 #include "../behaviors.h"
 
 
@@ -28,47 +29,15 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CoinTiles[];
-extern BYTE CoinMap[];
+extern BYTE SmokeParticleSmallTiles[];
+extern BYTE SmokeParticleSmallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMDef TEST_PARTICLE_SPIN_ANIM =
-{
-	// number of frames of this animation function
-	4,
-	
-	// frames to play in animation
-	{0,1,2,3},
-	
-	// number of cycles a frame of animation is displayed
-	2 * __FPS_ANIM_FACTOR,
-	
-	// whether to play it in loop or not
-	true,
-	
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"Spin",
-};
-
-// an animation definition
-AnimationDescriptionROMDef TEST_PARTICLE_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&TEST_PARTICLE_SPIN_ANIM,
-		NULL,
-	}
-};
-
-TextureROMDef OBJECT_TEST_PARTICLE_TX =
+TextureROMDef SMOKE_PARTICLE_SMALL_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -76,93 +45,95 @@ TextureROMDef OBJECT_TEST_PARTICLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        28,
+        1,
 
         // allocation type
-		__ANIMATED_MULTI,
-        
+        __NOT_ANIMATED,
+
         // char definition
-        CoinTiles,
+        SmokeParticleSmallTiles,
     },
 
     // bgmap definition
-    CoinMap,
+    SmokeParticleSmallMap,
 
     // cols (max 64)
-    2,
+    1,
 
     // rows (max 64)
-    2,
+    1,
 
     // number of frames
-    7,
+    1,
 
     // palette number
-    1,
+    0,
 };
 
-
-//---------------------------------------------------------------------------------------------------------
-// 										  OBJECT TEST_PARTICLE
-//---------------------------------------------------------------------------------------------------------
-
-ObjectSpriteROMDef OBJECT_TEST_PARTICLE_SPRITE =
+ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_IM_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+	__TYPE(ObjectSprite),
 
 	// texture definition
-	(TextureDefinition*)&OBJECT_TEST_PARTICLE_TX,
+	(TextureDefinition*)&SMOKE_PARTICLE_SMALL_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef* const OBJECT_TEST_PARTICLE_SPRITES[] =
+ObjectSpriteROMDef* const SMOKE_PARTICLE_IM_SPRITES[] =
 {
-	&OBJECT_TEST_PARTICLE_SPRITE,
+	&SMOKE_PARTICLE_SMALL_IM_SPRITE,
 	NULL
 };
 
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										  OBJECT SMOKE_PARTICLE
+//---------------------------------------------------------------------------------------------------------
+
 // particle's definition
-ParticleROMDef TEST_PARTICLE =
+ParticleROMDef SMOKE_PARTICLE =
 {
 	// allocator
     __TYPE(Particle),
 
 	// particle's minimum life span in milliseconds
-	300,
+	200,
 
-	// particle's maximum life span in milliseconds
-	1500,
+	// particle's life span delta in miliseconds
+	200,
 
 	// particle's minimum mass
-	FTOFIX19_13(5.0f),
+	FTOFIX19_13(0),
 
-	// particle's maximum mass
-	FTOFIX19_13(10.0f),
+	// particle's mass delta
+	FTOFIX19_13(0),
 	
 	// axis subject to gravity (false to disable)
-	__YAXIS,
+	false,
 	
 	// function pointer to control particle's behavior
-	(void (*)(Particle))&testParticleBehavior,
+	//(void (*)(Particle))&smokeParticleBehavior,
+	NULL,
 
 	// animation description
 	// used only if sprite is animated
-	(AnimationDescription*)&TEST_PARTICLE_ANIM,
+	NULL,
 	
 	// animation's name to play 
-	"Spin"
+	NULL
 };
 
-ParticleSystemROMDef TEST_PS =
+ParticleSystemROMDef SMOKE_PS =
 {
     {
         __TYPE(ParticleSystem),
@@ -170,40 +141,40 @@ ParticleSystemROMDef TEST_PS =
     },
 
 	// reuse expired particles?
-    false,
-
-    // minimum generation delay in milliseconds
+    true,
+    
+	// minimum generation delay in milliseconds
 	50,
 
-	// maximum generation delay in milliseconds
+	// generation delay delta in miliseconds
 	100,
 
 	// maximum total particles
-	30,
+	10,
 
 	// array of textures
-	(const ObjectSpriteDefinition**)OBJECT_TEST_PARTICLE_SPRITES,
+	(const ObjectSpriteDefinition**)SMOKE_PARTICLE_IM_SPRITES,
 
 	// auto start
-	true,
+	false,
 	
 	// particle definition
-	(ParticleDefinition*)&TEST_PARTICLE,
+	(ParticleDefinition*)&SMOKE_PARTICLE,
 	
 	// minimum random distance from the center of the system for spawn
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(8), ITOFIX19_13(8), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(-16), ITOFIX19_13(-16), ITOFIX19_13(-1)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
-	
+	{ITOFIX19_13(16), ITOFIX19_13(16), ITOFIX19_13(-1)},
+
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5000), (-20000), (0)},
+	{(0), (0), (0)},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(5000), (-16000), (0)},
+	{(0), (0), (0)},
 };
