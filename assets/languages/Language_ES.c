@@ -29,12 +29,15 @@
 /*
  * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
  * of the full extended ASCII character set including special characters of European languages.
+ *
+ * The following character is meant to prevent editors to load this file as UTF-8, since it doesn't
+ * form part of a valid UTF-8 byte sequence: £
  */
 
 const LangROMDef LANGUAGE_ES =
 {
     // Language Name
-    "Espaï¿½ol",
+    "Español",
 
     // Strings
     {
@@ -45,11 +48,11 @@ const LangROMDef LANGUAGE_ES =
         //STR_PRECAUTION_SCREEN_TEXT:
         "     Lea los libros de\n\nInstrucciones y precauciones\n\n       antes de jugar",
         //STR_AUTOMATIC_PAUSE:
-        "Pausa Automï¿½tica",
+        "Pausa Automática",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
-        " La funciï¿½n automï¿½tica de pausa le\nrecordarï¿½ que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
+        " La función automática de pausa le\nrecordará que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
         //STR_AUTOMATIC_PAUSE_TEXT:
-        "ï¿½Por favor, tï¿½mese un descanso!",
+        "¡Por favor, tómese un descanso!",
         //STR_ON:
         "Encendido",
         //STR_OFF:

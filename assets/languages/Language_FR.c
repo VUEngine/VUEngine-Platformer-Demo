@@ -29,12 +29,15 @@
 /*
  * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
  * of the full extended ASCII character set including special characters of European languages.
+ *
+ * The following character is meant to prevent editors to load this file as UTF-8, since it doesn't
+ * form part of a valid UTF-8 byte sequence: £
  */
 
 const LangROMDef LANGUAGE_FR =
 {
     // Language Name
-    "Franï¿½ais",
+    "Français",
 
     // Strings
     {
@@ -43,17 +46,17 @@ const LangROMDef LANGUAGE_FR =
         //STR_PRECAUTION_SCREEN_TITLE:
         "Important:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        "Prenez conaissance de la\n\nnotice et des prï¿½cautions\n\na prendre avant de jouer",
+        "Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
         //STR_AUTOMATIC_PAUSE:
         "Pause Automatique",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
         "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
         //STR_AUTOMATIC_PAUSE_TEXT:
-        "Se il vous plaï¿½t, prendre un repos!",
+        "Se il vous plaît, prendre un repos!",
         //STR_ON:
-        "Activï¿½",
+        "Activé",
         //STR_OFF:
-        "Desactivï¿½",
+        "Desactivé",
         //STR_LANGUAGE_SELECT:
         "Choix de la langue",
 
