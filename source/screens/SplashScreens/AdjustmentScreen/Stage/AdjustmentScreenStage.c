@@ -126,7 +126,7 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
     
     // optical configuration values
     {
-		// maximum view distance's power into the horizont
+		// maximum view distance's power into the horizon
 		__MAXIMUM_VIEW_DISTANCE_POWER,
 		// distance of the eyes to the screen
     	ITOFIX19_13(__DISTANCE_EYE_SCREEN),
