@@ -56,8 +56,9 @@ const ClassSizeData _userClassesSizeData[] =
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
+	{&LEVEL1_1_ROOM_1_HOUSE_IM, "House"},
 	{&CANNON_BALL_IG, "CannonBall"},
-	{&BGMAP_COIN_AG, "Coin"},
+	{&COIN_AG, "Coin"},
 	{&DOOR_AG, "Door"},
 	{&HERO_AC, "Hero"},
 	{&KEY_AG, "Key"},
@@ -71,7 +72,7 @@ const UserObject _userObjects[] =
 #ifdef __ANIMATION_EDITOR
 const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
 {
-	{(AnimatedInGameEntityDefinition*)&BGMAP_COIN_AG, "Coin"},
+	{(AnimatedInGameEntityDefinition*)&COIN_AG, "Coin"},
 	{(AnimatedInGameEntityDefinition*)&DOOR_AG, "Door"},
 	{(AnimatedInGameEntityDefinition*)&HERO_AC, "Hero"},
 	{(AnimatedInGameEntityDefinition*)&HINT_ENTER_MC, "Hint enter"},

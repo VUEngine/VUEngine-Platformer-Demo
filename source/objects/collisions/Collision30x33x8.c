@@ -14,35 +14,51 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ITEMS_H_
-#define ITEMS_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Coin/Coin.h"
-#include "Door/Door.h"
-#include "Key/Key.h"
-
-#include "textures.h"
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COIN_AG;
-extern EntityDefinition DOOR_AG;
-extern EntityDefinition ENTER_ROOM_DOOR_AG;
-extern EntityDefinition EXIT_ROOM_DOOR_AG;
-extern EntityDefinition KEY_AG;
+InanimatedInGameEntityROMDef COLLISION_30x33x8 =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
 
-extern EntityDefinition COIN_AG;
-extern EntityDefinition AFFINE_COIN_AG;
-extern EntityDefinition AFFINE_DOOR_AG;
-extern EntityDefinition AFFINE_KEY_AG;
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
+        // in game type
+        kSolid,
 
-#endif
+    	// width
+        // if 0, width and height will be inferred from the texture's size
+    	30 * 8,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	33 * 8,
+
+    	// depth
+    	8 * 8
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(40),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true
+};

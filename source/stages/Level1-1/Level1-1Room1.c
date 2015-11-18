@@ -38,38 +38,11 @@ extern StageROMDef LEVEL_1_1_COIN_ROOM_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINES
-//---------------------------------------------------------------------------------------------------------
-
-#define LAYER_0_FLOOR	196
-#define LAYER_1_FLOOR	196 - 16
-#define LAYER_2_FLOOR	196 - 32
-#define LAYER_3_FLOOR	196 - 64
-
-#define LEVEL_X_SIZE 	3000
-#define LEVEL_Y_SIZE 	1000
-#define LEVEL_Z_SIZE 	300
-
-#define SCREEN_X_POSITION 	0
-#define SCREEN_Y_POSITION 	LEVEL_Y_SIZE - __SCREEN_HEIGHT
-#define SCREEN_Z_POSITION 	LAYER_0
-
-
-//---------------------------------------------------------------------------------------------------------
 // 												ASSETS
 // ---------------------------------------------------------------------------------------------------------
 /* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
  * know that it must stop reading the stage's/ui's textures and entities.
  */
-
-PositionedEntityROMDef MANAGED_FLOOR_1_ENTITIES[] =
-{
-	{&FLOOR_22x5_IG,    {FTOFIX19_13(-104),  FTOFIX19_13(8), FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-	{&FLOOR_4x7_IG,	    {FTOFIX19_13(1),     FTOFIX19_13(0), FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-	{&FLOOR_22x5_IG,	{FTOFIX19_13(105),   FTOFIX19_13(8), FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-	{&FLOOR_4x7_IG,	    {FTOFIX19_13(210),   FTOFIX19_13(0), FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
-};
 
 PositionedEntityROMDef CASTLE_CHILD_ENTITIES[] =
 {
@@ -82,35 +55,25 @@ PositionedEntityROMDef CASTLE_CHILD_ENTITIES[] =
 PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&MOUND_BG_BACK_IM,	 	{FTOFIX19_13(SCREEN_X_POSITION), FTOFIX19_13(SCREEN_Y_POSITION + 88), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
-	{&MOUND_BG_MIDDLE_IM, 	{FTOFIX19_13(SCREEN_X_POSITION), FTOFIX19_13(SCREEN_Y_POSITION + 120), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
-	{&MOUND_BG_FRONT_IM, 	{FTOFIX19_13(SCREEN_X_POSITION), FTOFIX19_13(SCREEN_Y_POSITION + 152), FTOFIX19_13(LAYER_3 + 0.1f)}, NULL, NULL, NULL, true},
-	{&MOUND_BG_CASTLE_IM, 	{FTOFIX19_13(SCREEN_X_POSITION + 396), FTOFIX19_13(851), FTOFIX19_13(LAYER_3 - 0.1f)}, NULL, (struct PositionedEntity*)CASTLE_CHILD_ENTITIES, NULL, false},
-	{&CLOUDS_SB, 			{FTOFIX19_13(SCREEN_X_POSITION), FTOFIX19_13(SCREEN_Y_POSITION - 64), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
-	{&HERO_AC, 				{FTOFIX19_13(SCREEN_X_POSITION + 32), FTOFIX19_13(SCREEN_Y_POSITION + 110), FTOFIX19_13(LAYER_0 - 2)}, HERO_NAME, NULL, NULL, false},
+	{&MOUND_BG_BACK_IM,	 	{FTOFIX19_13(0),    FTOFIX19_13(152), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
+	{&MOUND_BG_MIDDLE_IM, 	{FTOFIX19_13(0),    FTOFIX19_13(184), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
+	{&MOUND_BG_FRONT_IM, 	{FTOFIX19_13(0),    FTOFIX19_13(216), FTOFIX19_13(LAYER_3 + 0.1f)}, NULL, NULL, NULL, true},
+	{&MOUND_BG_CASTLE_IM, 	{FTOFIX19_13(396),  FTOFIX19_13(139), FTOFIX19_13(LAYER_3 - 0.1f)}, NULL, (struct PositionedEntity*)CASTLE_CHILD_ENTITIES, NULL, false},
+	{&CLOUDS_SB, 			{FTOFIX19_13(0),    FTOFIX19_13(32), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
+	{&HERO_AC, 				{FTOFIX19_13(64),   FTOFIX19_13(288), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
 	
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
-	{&COLLISION_2x28x48, 	    {FTOFIX19_13(-12),  FTOFIX19_13(SCREEN_Y_POSITION + 116), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-	{(ManagedEntityDefinition*)&MANAGED_ENTITY,	{FTOFIX19_13(192), FTOFIX19_13(SCREEN_Y_POSITION + 184), FTOFIX19_13(LAYER_0 + 2 + 0.01f)}, NULL, (struct PositionedEntity*)MANAGED_FLOOR_1_ENTITIES, NULL, false},
-    {&SAW_BLADE_H8_AC,      {FTOFIX19_13(298), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 25), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-	{&OBJECT_COIN_AG, 		{FTOFIX19_13(184), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 52), FTOFIX19_13(LAYER_0 + 1)}, "Coin 001", NULL, NULL, false},
-	{&OBJECT_COIN_AG, 		{FTOFIX19_13(200), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 52), FTOFIX19_13(LAYER_0 + 1)}, "Coin 002", NULL, NULL, false},
 
-	/*
-	{&MOUND_1_IM,			{FTOFIX19_13(84), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 16), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
-	{&OBJECT_COIN_AG, 		{FTOFIX19_13(132), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, "Coin 001", NULL, NULL, false},
-	{&OBJECT_COIN_AG, 		{FTOFIX19_13(148), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, "Coin 002", NULL, NULL, false},
-	{&ONE_WAY_PLATFORM_4_IG,{FTOFIX19_13(140), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 80), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&SAW_BLADE_LANE_V_6_IM,{FTOFIX19_13(198), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 36), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, false},
-	{&SAW_BLADE_V3_AC,{FTOFIX19_13(198), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 36), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-	{&FLOOR_4x3_FLOAT_IG,	{FTOFIX19_13(236), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, NULL, false},
-	{&ENTER_ROOM_DOOR_AG,	{FTOFIX19_13(238), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 70), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, (void*)&LEVEL_1_1_COIN_ROOM_ST, false},
-	{&FLOOR_22x8_IG,		{FTOFIX19_13(384), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR + 8), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, NULL, false},
-	{&MOUND_2_IM,			{FTOFIX19_13(392), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 16), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+	{&COLLISION_2x28x48,    {FTOFIX19_13(-12),  FTOFIX19_13(116), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-	{&CANNON_AC,		    {FTOFIX19_13(344), FTOFIX19_13(SCREEN_Y_POSITION + LAYER_0_FLOOR - 64), FTOFIX19_13(LAYER_2 + 2)}, NULL, NULL, NULL, false},
-    */
+	{&LEVEL1_1_MAIN_1_IM, 	    {FTOFIX19_13(256),  FTOFIX19_13(360), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&LEVEL1_1_TOP_1_IM, 	    {FTOFIX19_13(256),  FTOFIX19_13(256), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&LEVEL1_1_ROOM_1_HOUSE_IM, {FTOFIX19_13(112),  FTOFIX19_13(192), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COLLISION_30x33x8,        {FTOFIX19_13(116),  FTOFIX19_13(369), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COLLISION_34x30x8,        {FTOFIX19_13(368),  FTOFIX19_13(381), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COIN_AG,                  {FTOFIX19_13(216),  FTOFIX19_13(225), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COIN_AG,                  {FTOFIX19_13(232),  FTOFIX19_13(225), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -123,17 +86,18 @@ PositionedEntityROMDef LEVEL_1_1_ROOM_1_ST_UI_ENTITIES[] =
 
 TextureROMDef* LEVEL_1_1_ROOM_1_ST_TEXTURES[] =
 {
+	&HERO_TX,
 	&CLOUDS_A_TX,
 	&CLOUDS_B_TX,
-	&CANNON_TX,
-	&CANNON_BALL_TX,
 	&MOUND_BG_BACK_TX,
 	&MOUND_BG_MIDDLE_TX,
 	&MOUND_BG_FRONT_TX,
 	&MOUND_BG_CASTLE_TX,
 	&MOUND_BG_CASTLE_FLAG_TX,
-	&FLOOR_22x5_TX,
-	&FLOOR_4x7_TX,
+	&LEVEL1_1_MAIN_1_TX,
+	&LEVEL1_1_TOP_1_TX,
+	&LEVEL1_1_ROOM_1_HOUSE_TX,
+	&COIN_TX,
 	NULL
 };
 
@@ -148,11 +112,11 @@ PlatformerStageROMDef LEVEL_1_1_ROOM_1_ST =
         // size
         {
             // x
-            LEVEL_X_SIZE,
+            2048,
             // y
-            LEVEL_Y_SIZE,
+            512,
             // z
-            LEVEL_Z_SIZE
+            256,
         },
 
         // gravity
@@ -213,11 +177,11 @@ PlatformerStageROMDef LEVEL_1_1_ROOM_1_ST =
         // initial screen position
         {
             // x
-            ITOFIX19_13(SCREEN_X_POSITION),
+            ITOFIX19_13(0),
             // y
-            ITOFIX19_13(SCREEN_Y_POSITION),
+            ITOFIX19_13(96),
             // z
-            ITOFIX19_13(SCREEN_Z_POSITION)
+            ITOFIX19_13(0)
         },
 
         // optical configuration values

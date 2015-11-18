@@ -4,8 +4,8 @@
 TARGET = output
 
 # Default build type
-#TYPE = debug
-TYPE = release
+TYPE = debug
+#TYPE = release
 #TYPE = preprocessor
 
 # Which directories contain source files
@@ -29,7 +29,7 @@ GAME_ESSENTIALS = 	-include $(VBJANEGINE_CONFIG_FILE) \
 ifeq ($(TYPE),debug)
 LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall $(GAME_ESSENTIALS)
-MACROS = __DEBUG __DEBUG_TOOLS __STAGE_EDITOR __ANIMATION_EDITOR
+MACROS = __DEBUG
 endif
 
 ifeq ($(TYPE), release)
@@ -47,7 +47,7 @@ endif
 ifeq ($(TYPE),preprocessor)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline $(GAME_ESSENTIALS) -E
-MACROS = __DEBUG __DEBUG_TOOLS __STAGE_EDITOR __ANIMATION_EDITOR
+MACROS = __DEBUG
 endif
 
 

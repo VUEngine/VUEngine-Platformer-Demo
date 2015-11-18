@@ -30,12 +30,14 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COLLISION_48x2x48;
-extern EntityDefinition COLLISION_2x28x48;
 extern EntityDefinition COLLISION_48x28x2;
 extern EntityDefinition COLLISION_48x3x2;
+extern EntityDefinition COLLISION_48x2x48;
+extern EntityDefinition COLLISION_34x30x8;
+extern EntityDefinition COLLISION_30x33x8;
 extern EntityDefinition COLLISION_12x12x2;
 extern EntityDefinition COLLISION_3x2x2;
+extern EntityDefinition COLLISION_2x28x48;
 
 
 #endif

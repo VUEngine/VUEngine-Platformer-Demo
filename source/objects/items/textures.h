@@ -23,8 +23,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern TextureDefinition COIN_TX;
-extern TextureDefinition BGMAP_COIN_TX;
-extern TextureDefinition OBJECT_COIN_TX;
+extern TextureDefinition AFFINE_COIN_TX;
+extern TextureDefinition COIN_TX;
 extern TextureDefinition DOOR_TX;
 extern TextureDefinition KEY_TX;
 

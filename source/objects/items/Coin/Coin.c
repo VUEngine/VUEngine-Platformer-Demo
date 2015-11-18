@@ -37,7 +37,7 @@
 // 											 CLASS'S MACROS
 //---------------------------------------------------------------------------------------------------------
 
-extern AnimatedInGameEntityROMDef OBJECT_COIN_SILHOUETTE_AG;
+extern AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -65,10 +65,10 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 // class's constructor
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
-	bool taken = &OBJECT_COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || UserDataManager_getCoinStatus(UserDataManager_getInstance(), name);
+	bool taken = &COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || UserDataManager_getCoinStatus(UserDataManager_getInstance(), name);
     if(taken)
     {
-        animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG;
+        animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
     }
 
 	// construct base
@@ -112,5 +112,5 @@ void Coin_removeFromStage(Coin this)
     Shape_setActive(this->shape, false);
     
     // TODO: check if not too heavy on hardware
-	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&OBJECT_COIN_SILHOUETTE_AG, this->name, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
+	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&COIN_SILHOUETTE_AG, this->name, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
 }
