@@ -391,7 +391,7 @@ ActorROMDef HERO_AC =
 	        },
 
 	        // collision detection gap (up, down, left, right)
-	        {5, 1, 4, 4},
+	        {5, 1, 6, 6},
 
 	        // in game type
 	        kHero,

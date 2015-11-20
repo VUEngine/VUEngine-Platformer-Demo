@@ -48,6 +48,12 @@ extern EntityDefinition LEVEL1_1_COIN_ROOM_MIDDLE_IM;
 extern EntityDefinition LEVEL1_1_MAIN_1_IM;
 extern EntityDefinition LEVEL1_1_TOP_1_IM;
 extern EntityDefinition LEVEL1_1_ROOM_1_HOUSE_IM;
+extern EntityDefinition LEVEL1_1_MAIN_2_IM;
+extern EntityDefinition LEVEL1_1_TOP_2_IM;
+extern EntityDefinition LEVEL1_1_BACK_2_IM;
+extern EntityDefinition LEVEL1_1_MAIN_3_IM;
+extern EntityDefinition LEVEL1_1_TOP_3_IM;
+extern EntityDefinition LEVEL1_1_BACK_3_IM;
 
 extern EntityDefinition LEVEL1_3_PART1_IM;
 extern EntityDefinition LEVEL1_3_PART2_IM;
