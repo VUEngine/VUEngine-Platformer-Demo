@@ -31,7 +31,6 @@
 
 extern EntityDefinition GUI_BLANK_IM;
 extern EntityDefinition LOGO_IM;
-extern EntityDefinition SUPER_AWESOME_IM;
 extern EntityDefinition VBJAENGINE_IM;
 
 extern EntityDefinition FLOOR_22x5_IG;

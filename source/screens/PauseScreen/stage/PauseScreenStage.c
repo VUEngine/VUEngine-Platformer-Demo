@@ -49,10 +49,8 @@
 
 PositionedEntityROMDef PAUSE_SCREEN_ST_ENTITIES[] =
 {
-	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&LOGO_IM, 			    {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(88), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&VBJAENGINE_IM, 	    {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(40), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&SUPER_AWESOME_IM,     {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(72), FTOFIX19_13(LAYER_0 - 16)}, NULL, NULL, NULL, true},
+	{&VBJAENGINE_IM,        {FTOFIX19_13(192), FTOFIX19_13(10), FTOFIX19_13(LAYER_0 + 32)}, NULL, NULL, NULL, true},
+	{&LOGO_IM, 			    {FTOFIX19_13(192), FTOFIX19_13(64), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -64,7 +62,6 @@ PositionedEntityROMDef PAUSE_SCREEN_ST_UI_ENTITIES[] =
 
 TextureROMDef* PAUSE_SCREEN_ST_TEXTURES[] =
 {
-	&SUPER_AWESOME_TX,
 	&VBJAENGINE_TX,
 	&LOGO_L_TX,
 	&LOGO_R_TX,
@@ -184,5 +181,4 @@ StageROMDef PAUSE_SCREEN_ST =
 
     // background music
     NULL,
-    //(const u16 (*)[])WORLD_0_0_0_BGM,
 };

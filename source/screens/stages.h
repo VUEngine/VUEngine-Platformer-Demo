@@ -31,6 +31,7 @@
 
 extern StageROMDef TITLE_SCREEN_ST;
 extern StageROMDef PAUSE_SCREEN_ST;
+extern StageROMDef EMPTY_ST;
 
 
 #endif
