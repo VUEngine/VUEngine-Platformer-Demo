@@ -80,8 +80,6 @@ void Hint_resume(Hint this)
 	ASSERT(this, "Hint::resume: null this");
 
 	Entity_resume(__GET_CAST(Entity, this));
-	
-	// this wastes a WORLD, but makes things smoother
 	Entity_hide(__GET_CAST(Entity, this));
 }
 
@@ -106,7 +104,6 @@ void Hint_open(Hint this)
 {
 	ASSERT(this, "Hint::open: null this");
 
-	// this wastes a WORLD, but makes things smoother
 	Entity_show(__GET_CAST(Entity, this));
 	
     AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Open");
@@ -123,7 +120,6 @@ void Hint_onCloseDone(Hint this, Object eventFirer)
 {
 	ASSERT(this, "Hint::onCloseDone: null this");
 
-	// this wastes a WORLD, but makes things smoother
 	Entity_hide(__GET_CAST(Entity, this));
 }
 
@@ -131,5 +127,27 @@ void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
 {
 	ASSERT(this, "Hint::playActiveLanguageHint: null this");
 
-	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), I18n_getActiveLanguageName(I18n_getInstance()));
+    char* LanguageAnimName;
+
+    switch(I18n_getActiveLanguage(I18n_getInstance()))
+    {
+        default:
+        case 0:
+            LanguageAnimName = "English";
+            break;
+
+        case 1:
+            LanguageAnimName = "Deutsch";
+            break;
+
+        case 2:
+            LanguageAnimName = "Espanol";
+            break;
+
+        case 3:
+            LanguageAnimName = "Francais";
+            break;
+    }
+
+	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), LanguageAnimName);
 }

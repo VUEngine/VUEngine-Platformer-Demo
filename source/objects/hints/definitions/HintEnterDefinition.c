@@ -48,7 +48,7 @@ AnimationFunctionROMDef HINT_ENTER_OPEN_ANIM =
 	{0,1,2,3,4},
 	
 	// number of cycles a frame of animation is displayed
-	2 * __FPS_ANIM_FACTOR,
+	1 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	false,
@@ -105,6 +105,50 @@ AnimationFunctionROMDef HINT_ENTER_DEUTSCH_ANIM =
 };
 
 // a function which defines the frames to play
+AnimationFunctionROMDef HINT_ENTER_ESPANOL_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{9,10},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Espanol",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_ENTER_FRANCAIS_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{11,12},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Francais",
+};
+
+// a function which defines the frames to play
 AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 {
 	// number of frames of this animation function
@@ -114,7 +158,7 @@ AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 	{4,3,2,1,0},
 
 	// number of cycles a frame of animation is displayed
-	2 * __FPS_ANIM_FACTOR,
+	1 * __FPS_ANIM_FACTOR,
 
 	// whether to play it in loop or not
 	false,
@@ -134,6 +178,8 @@ AnimationDescriptionROMDef HINT_ENTER_ANIM =
 		(AnimationFunction*)&HINT_ENTER_OPEN_ANIM,
 		(AnimationFunction*)&HINT_ENTER_ENGLISH_ANIM,
 		(AnimationFunction*)&HINT_ENTER_DEUTSCH_ANIM,
+		(AnimationFunction*)&HINT_ENTER_ESPANOL_ANIM,
+		(AnimationFunction*)&HINT_ENTER_FRANCAIS_ANIM,
 		(AnimationFunction*)&HINT_ENTER_CLOSE_ANIM,
 		NULL,
 	}
@@ -147,10 +193,10 @@ TextureROMDef HINT_ENTER_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        163,
+        18,
 
         // allocation type
-        __ANIMATED_MULTI,
+        __ANIMATED_SINGLE,
 
         // char definition
         HintEnterTiles,
@@ -166,7 +212,7 @@ TextureROMDef HINT_ENTER_TX =
     3,
 
     // number of frames
-    9,
+    13,
 
     // palette number
     1,
