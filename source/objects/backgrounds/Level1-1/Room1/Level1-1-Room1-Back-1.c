@@ -26,15 +26,15 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SuperAwesomeTiles[];
-extern BYTE SuperAwesomeMap[];
+extern BYTE Level1_1_Back_1Tiles[];
+extern BYTE Level1_1_Back_1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef SUPER_AWESOME_TX =
+TextureROMDef LEVEL1_1_BACK_1_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -42,23 +42,23 @@ TextureROMDef SUPER_AWESOME_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        38,
+        35,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        SuperAwesomeTiles,
+        Level1_1_Back_1Tiles,
     },
 
     // bgmap definition
-    SuperAwesomeMap,
+    Level1_1_Back_1Map,
 
     // cols (max 64)
-    19,
+    18,
 
     // rows (max 64)
-    2,
+    8,
 
     // number of frames
     1,
@@ -67,13 +67,13 @@ TextureROMDef SUPER_AWESOME_TX =
     1,
 };
 
-BgmapSpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
+BgmapSpriteROMDef LEVEL1_1_BACK_1_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)&SUPER_AWESOME_TX,
+	(TextureDefinition*)&LEVEL1_1_BACK_1_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
@@ -82,36 +82,17 @@ BgmapSpriteROMDef SUPER_AWESOME_IM_L_SPRITE =
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_LON,
+	WRLD_ON,
 };
 
-BgmapSpriteROMDef SUPER_AWESOME_IM_R_SPRITE =
+BgmapSpriteROMDef* const LEVEL1_1_BACK_1_IM_SPRITES[] =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&SUPER_AWESOME_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_RON,
-};
-
-BgmapSpriteROMDef* const SUPER_AWESOME_IM_SPRITES[] =
-{
-	&SUPER_AWESOME_IM_L_SPRITE,
-	&SUPER_AWESOME_IM_R_SPRITE,
+	&LEVEL1_1_BACK_1_IM_SPRITE,
 	NULL
 };
 
-ImageROMDef SUPER_AWESOME_IM =
+ImageROMDef LEVEL1_1_BACK_1_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)SUPER_AWESOME_IM_SPRITES,
+	(SpriteROMDef**)LEVEL1_1_BACK_1_IM_SPRITES,
 };

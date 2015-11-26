@@ -42,7 +42,7 @@ TextureROMDef LEVEL1_1_ROOM_1_HOUSE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        60,
+        55,
 
         // allocation type
         __NOT_ANIMATED,

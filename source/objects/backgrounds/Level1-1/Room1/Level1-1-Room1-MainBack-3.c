@@ -42,7 +42,7 @@ TextureROMDef LEVEL1_1_BACK_3_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        45,
+        47,
 
         // allocation type
         __NOT_ANIMATED,
@@ -55,10 +55,10 @@ TextureROMDef LEVEL1_1_BACK_3_TX =
     Level1_1_Back_3Map,
 
     // cols (max 64)
-    37,
+    48,
 
     // rows (max 64)
-    8,
+    41,
 
     // number of frames
     1,

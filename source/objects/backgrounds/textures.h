@@ -45,6 +45,7 @@ extern TextureDefinition LEVEL1_1_COIN_ROOM_MIDDLE_TX;
 extern TextureDefinition LEVEL1_1_MAIN_1_TX;
 extern TextureDefinition LEVEL1_1_TOP_1_TX;
 extern TextureDefinition LEVEL1_1_ROOM_1_HOUSE_TX;
+extern TextureDefinition LEVEL1_1_BACK_1_TX;
 extern TextureDefinition LEVEL1_1_MAIN_2_TX;
 extern TextureDefinition LEVEL1_1_TOP_2_TX;
 extern TextureDefinition LEVEL1_1_BACK_2_TX;
