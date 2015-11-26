@@ -20,92 +20,25 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
+#include <macros.h>
 #include <BgmapAnimatedSprite.h>
-#include "Door.h"
-#include "EnterRoomDoor.h"
-#include "ExitRoomDoor.h"
+#include <AnimatedInGameEntity.h>
+#include "HideLayer.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DoorTiles[];
-extern BYTE DoorMap[];
+extern BYTE HideLayer10x7Tiles[];
+extern BYTE HideLayer10x7Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMDef DOOR_OPENING_ANIM =
-{
-	// number of frames of this animation function
-	4,
-
-	// frames to play in animation
-	{0,1,2,3},
-
-	// number of cycles a frame of animation is displayed
-	3 * __FPS_ANIM_FACTOR,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"Opening",
-};
-
-// a function which defines the frames to play
-AnimationFunctionROMDef DOOR_CLOSING_ANIM =
-{
-	// number of frames of this animation function
-	4,
-
-	// frames to play in animation
-	{3, 2, 1, 0},
-
-	// number of cycles a frame of animation is displayed
-	3 * __FPS_ANIM_FACTOR,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"Closing",
-};
-
-// a function which defines the frames to play
-AnimationFunctionROMDef DOOR_OPENED_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{3},
-
-	// number of cycles a frame of animation is displayed
-	0,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Opened",
-};
-
-// a function which defines the frames to play
-AnimationFunctionROMDef DOOR_CLOSED_ANIM =
+AnimationFunctionROMDef HIDE_LAYER_10x7_SOLID_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -123,23 +56,86 @@ AnimationFunctionROMDef DOOR_CLOSED_ANIM =
 	NULL,
 	
 	// function's name
-	"Closed",
+	"Solid",
+};
+
+AnimationFunctionROMDef HIDE_LAYER_10x7_TRANSPARENT_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{4},
+
+	// number of cycles a frame of animation is displayed
+	0,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Transparent",
+};
+
+AnimationFunctionROMDef HIDE_LAYER_10x7_TO_SOLID_ANIM =
+{
+	// number of frames of this animation function
+	5,
+
+	// frames to play in animation
+	{4,3,2,1,0},
+
+	// number of cycles a frame of animation is displayed
+	3 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"ToSolid",
+};
+
+AnimationFunctionROMDef HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
+{
+	// number of frames of this animation function
+	5,
+
+	// frames to play in animation
+	{0,1,2,3,4},
+
+	// number of cycles a frame of animation is displayed
+	3 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"ToTransparent",
 };
 
 // an animation definition
-AnimationDescriptionROMDef DOOR_ANIM =
+AnimationDescriptionROMDef HIDE_LAYER_10x7_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&DOOR_OPENING_ANIM,
-		(AnimationFunction*)&DOOR_CLOSING_ANIM,
-		(AnimationFunction*)&DOOR_OPENED_ANIM,
-		(AnimationFunction*)&DOOR_CLOSED_ANIM,
+		(AnimationFunction*)&HIDE_LAYER_10x7_SOLID_ANIM,
+		(AnimationFunction*)&HIDE_LAYER_10x7_TRANSPARENT_ANIM,
+		(AnimationFunction*)&HIDE_LAYER_10x7_TO_SOLID_ANIM,
+		(AnimationFunction*)&HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM,
 		NULL,
 	}
 };
 
-TextureROMDef DOOR_TX =
+TextureROMDef HIDE_LAYER_10x7_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -147,41 +143,41 @@ TextureROMDef DOOR_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        49,
+        70,
 
         // allocation type
-        __ANIMATED_MULTI,
-
+        __ANIMATED_SINGLE,
+        
         // char definition
-        DoorTiles,
+        HideLayer10x7Tiles,
     },
 
     // bgmap definition
-    DoorMap,
+    HideLayer10x7Map,
 
     // cols (max 64)
-    3,
+    10,
 
     // rows (max 64)
-    4,
+    7,
 
     // number of frames
-    4,
+    2,
 
     // palette number
-    1
+    1,
 };
 
-BgmapSpriteROMDef DOOR_SPRITE =
+BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&DOOR_TX,
+	(TextureDefinition*)&HIDE_LAYER_10x7_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 1},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
@@ -190,25 +186,25 @@ BgmapSpriteROMDef DOOR_SPRITE =
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const DOOR_SPRITES[] =
+BgmapSpriteROMDef* const HIDE_LAYER_10x7_SPRITES[] =
 {
-	&DOOR_SPRITE,
+	&HIDE_LAYER_10x7_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef DOOR_AG =
+AnimatedInGameEntityROMDef HIDE_LAYER_10x7_AG =
 {
     {
         {
-            __TYPE(Door),
-            (SpriteROMDef**)DOOR_SPRITES,
+            __TYPE(HideLayer),
+            (SpriteROMDef**)HIDE_LAYER_10x7_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
+        {8, 8, 8, 8},
 
         // in game type
-        kDoor,
+        kHideLayer,
 
         // width
         // if 0, width and height will be inferred from the texture's size
@@ -219,136 +215,12 @@ AnimatedInGameEntityROMDef DOOR_AG =
     	0,
     	
     	// depth
-        4
+        8
     },
 
     // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
+    (AnimationDescription*)&HIDE_LAYER_10x7_ANIM,
 
     // initial animation
-    "Closed",
-};
-
-AnimatedInGameEntityROMDef ENTER_ROOM_DOOR_AG =
-{
-    {
-        {
-            __TYPE(EnterRoomDoor),
-            (SpriteROMDef**)DOOR_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
-
-        // in game type
-        kDoor,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-    	
-    	// depth
-        4
-    },
-
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
-
-    // initial animation
-    "Closed",
-};
-
-AnimatedInGameEntityROMDef EXIT_ROOM_DOOR_AG =
-{
-    {
-        {
-            __TYPE(ExitRoomDoor),
-            (SpriteROMDef**)DOOR_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
-
-        // in game type
-        kDoor,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-    	
-    	// depth
-        4
-    },
-
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
-
-    // initial animation
-    "Closed",
-};
-
-
-BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
-{
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
-
-	// texture definition
-	(TextureDefinition*)&DOOR_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, 1},
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_AFFINE,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
-};
-
-BgmapSpriteROMDef* const AFFINE_DOOR_SPRITES[] =
-{
-	&AFFINE_DOOR_SPRITE,
-	NULL
-};
-
-AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
-{
-    {
-        {
-            __TYPE(Door),
-            (SpriteROMDef**)AFFINE_DOOR_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
-
-        // in game type
-        kDoor,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-    	
-    	// depth
-        4
-    },
-
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
-
-    // initial animation
-    "Closed",
+    "Solid",
 };

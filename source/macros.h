@@ -48,16 +48,17 @@
 enum PlatformerTypes
 {
 	kHero = 1,
-	kSawBlade,
 	kSolid,
 	kTopSolid,
 	kNotSolid,
+	kHideLayer,
 	kFloor,
 	kDoor,
 	kCoin,
 	kKey,
 	kLava,
 	kLavaTrigger,
+	kSawBlade,
 	kCogWheel,
 };
 

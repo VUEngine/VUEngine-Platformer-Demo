@@ -24,8 +24,8 @@
 
 extern TextureDefinition COIN_TX;
 extern TextureDefinition AFFINE_COIN_TX;
-extern TextureDefinition COIN_TX;
 extern TextureDefinition DOOR_TX;
+extern TextureDefinition HIDE_LAYER_10x7_TX;
 extern TextureDefinition KEY_TX;
 
 

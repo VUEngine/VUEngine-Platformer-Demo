@@ -1089,7 +1089,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
     {
 		InGameEntity inGameEntity = __GET_CAST(InGameEntity, VirtualNode_getData(node));
-		
+
 		switch(InGameEntity_getInGameType(inGameEntity))
         {
 			case kCoin:
@@ -1103,6 +1103,16 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 				Hero_collectKey(this);
 				MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, inGameEntity), kTakeKey, NULL);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+
+			case kHideLayer:
+
+                if(!HideLayer_isTransparent(__GET_CAST(HideLayer, inGameEntity)))
+                {
+                    AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, inGameEntity), "ToTransparent");
+                    HideLayer_setTransparent(__GET_CAST(HideLayer, inGameEntity));
+                }
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 

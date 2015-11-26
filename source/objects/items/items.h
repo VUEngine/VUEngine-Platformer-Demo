@@ -24,6 +24,7 @@
 
 #include "Coin/Coin.h"
 #include "Door/Door.h"
+#include "HideLayer/HideLayer.h"
 #include "Key/Key.h"
 
 #include "textures.h"
@@ -43,6 +44,8 @@ extern EntityDefinition COIN_AG;
 extern EntityDefinition AFFINE_COIN_AG;
 extern EntityDefinition AFFINE_DOOR_AG;
 extern EntityDefinition AFFINE_KEY_AG;
+
+extern EntityDefinition HIDE_LAYER_10x7_AG;
 
 
 #endif

@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DOOR_H_
-#define DOOR_H_
+#ifndef HIDE_LAYER_H_
+#define HIDE_LAYER_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,38 +30,36 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Door_METHODS															\
+#define HideLayer_METHODS															\
 	AnimatedInGameEntity_METHODS;
-	
 
-#define Door_SET_VTABLE(ClassName)												\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Door, setExtraInfo);								\
-	__VIRTUAL_SET(ClassName, Door, handleMessage);
 
-__CLASS(Door);
+#define HideLayer_SET_VTABLE(ClassName)												\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);									    \
+	__VIRTUAL_SET(ClassName, HideLayer, handleMessage);
 
-#define Door_ATTRIBUTES															\
-																				\
-	/* it is derivated from */													\
-	AnimatedInGameEntity_ATTRIBUTES												\
-																				\
-	/* destination of door */													\
-	void (*destination)(void);													\
+__CLASS(HideLayer);
+
+#define HideLayer_ATTRIBUTES														\
+																				    \
+	/* it is derivated from */													    \
+	AnimatedInGameEntity_ATTRIBUTES												    \
+																				    \
+	/* is it transparent? */													    \
+	bool transparent;													            \
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Door, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(HideLayer, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 
-void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
-void Door_destructor(Door this);
-void* Door_getExtraInfo(Door this);
-void Door_setExtraInfo(Door this, void* extraInfo);
-bool Door_handleMessage(Door this, Telegram telegram);
-bool Door_hasDestination(Door this);
+void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+void HideLayer_destructor(HideLayer this);
+bool HideLayer_isTransparent(HideLayer this);
+void HideLayer_setTransparent(HideLayer this);
+bool HideLayer_handleMessage(HideLayer this, Telegram telegram);
 
 
 #endif
