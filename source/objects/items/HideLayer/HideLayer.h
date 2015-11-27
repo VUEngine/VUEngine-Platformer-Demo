@@ -36,7 +36,6 @@
 
 #define HideLayer_SET_VTABLE(ClassName)												\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);									    \
-	__VIRTUAL_SET(ClassName, HideLayer, handleMessage);
 
 __CLASS(HideLayer);
 
@@ -44,9 +43,6 @@ __CLASS(HideLayer);
 																				    \
 	/* it is derivated from */													    \
 	AnimatedInGameEntity_ATTRIBUTES												    \
-																				    \
-	/* is it transparent? */													    \
-	bool transparent;													            \
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -57,9 +53,6 @@ __CLASS_NEW_DECLARE(HideLayer, AnimatedInGameEntityDefinition* animatedInGameEnt
 
 void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void HideLayer_destructor(HideLayer this);
-bool HideLayer_isTransparent(HideLayer this);
-void HideLayer_setTransparent(HideLayer this);
-bool HideLayer_handleMessage(HideLayer this, Telegram telegram);
 
 
 #endif

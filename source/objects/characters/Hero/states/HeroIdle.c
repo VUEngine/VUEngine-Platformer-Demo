@@ -74,16 +74,9 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 {
 	// make sure it's not moving anymore
 	Actor_stopMovement(__GET_CAST(Actor, owner));
-	
-	// reset timer for blinking
-	Hero_resetActionTime((Hero)owner);
 
     // show animation
     AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, owner), "Idle");
-
-	Hero_resetActionTime((Hero)owner);
-
-	Hero_setGap((Hero)owner);
 	
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
@@ -93,7 +86,6 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 // state's execute
 void HeroIdle_execute(HeroIdle this, void* owner)
 {
-//	Body_printPhysics(Actor_getBody(owner), 1, 7);
 }
 
 // state's exit

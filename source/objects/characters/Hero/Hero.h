@@ -24,6 +24,7 @@
 
 #include <Actor.h>
 #include <Door.h>
+#include <HideLayer.h>
 #include <ParticleSystem.h>
 #include <macros.h>
 
@@ -58,14 +59,11 @@ __CLASS(Hero);
 	/* it is derivated from */													\
 	Actor_ATTRIBUTES															\
 																				\
-	/* time when an event ocurred*/												\
-	u32 actionTime;																\
-																				\
-	/* hold object */															\
-	Actor holdObject;															\
-																				\
 	/* a reference to the last door the hero passed */    						\
 	Door currentlyOverlappingDoor;												\
+	                                                                            \
+	/* a reference to the last hide layer the hero passed */    				\
+	HideLayer currentlyOverlappingHideLayer;									\
 																				\
 	/* the currently shown hint entity */										\
 	Entity currentHint;															\
@@ -78,9 +76,6 @@ __CLASS(Hero);
 																				\
 	/* hero has energy	*/														\
 	s8 energy;																	\
-																				\
-	/* which layer I'm */														\
-	u8 layer;																	\
 																				\
 	/* boost flag */															\
 	bool boost;																	\
@@ -115,32 +110,24 @@ void Hero_synchronizeDirectionWithVelocity(Hero this);
 void Hero_takeHitFrom(Hero this, Actor other);
 void Hero_disableBoost(Hero this);
 void Hero_enableBoost(Hero this);
-void Hero_setActionTime(Hero this, u32 time);
-u32 Hero_getActionTime(Hero this);
-void Hero_pickupObject(Hero this, Actor object);
 bool Hero_isOverlappingDoor(Hero this);
+bool Hero_isOverlappingHideLayer(Hero this);
 void Hero_enterDoor(Hero this);
 void Hero_showHint(Hero this, char* hintName);
 void Hero_hideHint(Hero this);
-void Hero_fallDead(Hero this);
-void Hero_updateHoldObjectPosition(Hero this);
 void Hero_lookFront(Hero this);
 void Hero_lookBack(Hero this);
-void Hero_setGap(Hero this);
-void Hero_lookSide(Hero this);
-void Hero_throwObject(Hero this);
 void Hero_die(Hero this);
-void Hero_determineLayer(Hero this);
-void Hero_resetActionTime(Hero this);
-void Hero_win(Hero this);
-void Hero_moveOnWin(Hero this);
 void Hero_collectKey(Hero this);
 bool Hero_hasKey(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getEnergy(Hero this);
 Door Hero_getCurrentlyOverlappingDoor(Hero this);
+HideLayer Hero_getCurrentlyOverlappingHideLayer(Hero this);
 void Hero_setCurrentlyOverlappingDoor(Hero this, Door door);
+void Hero_setCurrentlyOverlappingHideLayer(Hero this, HideLayer hideLayer);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
+void Hero_resetCurrentlyOverlappingHideLayer(Hero this);
 int Hero_processCollision(Hero this, Telegram telegram);
 bool Hero_handleMessage(Hero this, Telegram telegram);
 int Hero_doMessage(Hero this, int message);

@@ -59,11 +59,13 @@ static void Hero_onKeyHold(Hero this, Object eventFirer);
 void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
+void Hero_resetCurrentlyOverlappingHideLayer(Hero this);
 static void Hero_addHints(Hero this);
 static void Hero_addFeetDust(Hero this);
 static void Hero_slide(Hero this);
 static void Hero_showDust(Hero this, bool autoHideDust);
 static void Hero_hideDust(Hero this);
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -71,39 +73,15 @@ static void Hero_hideDust(Hero this);
 
 extern double fabs (double);
 
-static u32 gameLayers[TOTAL_GAME_LAYERS] =
-{
-	ITOFIX19_13(LAYER_0),
-	ITOFIX19_13(LAYER_1),
-	ITOFIX19_13(LAYER_2),
-	ITOFIX19_13(LAYER_3),
-	ITOFIX19_13(LAYER_4),
-};
-
 #define HERO_INPUT_FORCE 						ITOFIX19_13(750)
 #define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(400)
-#define HERO_MASS								(10)
-#define FRICTION 								0.01f
 
 #define HERO_VELOCITY_X							ITOFIX19_13(60)
 #define HERO_VELOCITY_Y							ITOFIX19_13(-60)
 #define HERO_VELOCITY_Z							ITOFIX19_13(60)
-#define HERO_ACCELERATION_X						ITOFIX19_13(100)
-#define HERO_ACCELERATION_Y						ITOFIX19_13(0)
-#define HERO_ACCELERATION_Z						ITOFIX19_13(0)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(90)
-#define HERO_STEERING_VELOCITY_X				FTOFIX19_13(30)
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-14000)
 #define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-15500)
-
-#define HERO_TIME_TO_DIE		500	// milliseconds
-
-#define HERO_HOLD_OBJECT_X		10
-#define HERO_HOLD_OBJECT_Y		0
-#define HERO_HOLD_OBJECT_Z		1
-
-#define HERO_WIN_DELAY			1800
-#define HERO_BLINK_DELAY		2000
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -157,13 +135,8 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
     // no door overlapping at start
 	Hero_setCurrentlyOverlappingDoor(this, NULL);
 
-	// I'm not holding anything
-	this->holdObject = NULL;
-	
-	// I always start in the first layer
-	this->layer = 0;
-
-	this->actionTime = 0;
+    // no hide layer overlapping at start
+	Hero_resetCurrentlyOverlappingHideLayer(this);
 	
 	this->boost = false;
 	
@@ -500,13 +473,11 @@ void Hero_synchronizeDirectionWithVelocity(Hero this)
 
 void Hero_takeHitFrom(Hero this, Actor other)
 {
-	this->energy--;
-
-	//VBVec3D position = Entity_getPosition(__GET_CAST(Entity, other));
-	/*
 	// first stop all movement
-	Actor_stopMovement(__GET_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
+	// Actor_stopMovement(__GET_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
 	
+	Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_HIT_TAKEN);
+
 	// reduce energy
 	if(--this->energy)
     {
@@ -514,168 +485,13 @@ void Hero_takeHitFrom(Hero this, Actor other)
 	}
 	else
 	{
-		// now die
 		Hero_die(this);
 	}
-	
-	// determine which animation to play
-	// based on my position relative to the
-	// enemy position
-	if(position.x > this->transform.globalPosition.x)
-    {
-		if(__RIGHT == this->direction.x)
-        {
-			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitFront");
-		}
-		else{
-			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitBehind");
-		}
-	}
-	else
-	{
-		if(__LEFT == this->direction.x)
-		{
-			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitFront");
-		}
-		else
-		{
-			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitBehind");
-		}							
-	}
-	
-	// register time
-	this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-	
+
+
 	// must unregister the shape for collision detections
-	Shape_setActive(this->shape, false);
-	*/
+	// Shape_setActive(this->shape, false);
 }
-
-/*
-bool Hero_isHitByEnemy(Hero this, Enemy enemy, int axis)
-{
-	ASSERT(enemy, "Hero::isHitByEnemy: null enemy");
-
-	
-	// if enemy is already dead
-	if(kDead == Actor_getInGameState(__GET_CAST(Actor, enemy)))
-    {
-		return false;
-	}
-	
-	// if it is the holdobject which wants to hit me
-	if(this->holdObject == __GET_CAST(Actor, enemy))
-    {
-		this->holdObject = NULL;
-		return true;
-	}
-	
-
-	// check if I'm over the enemy
-	if((this->velocity.y && __DOWN == this->direction.y) &&
-	    (
-    		this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__GET_CAST(Entity, this)) >> 2) <
-    		Entity_getPosition(__GET_CAST(Entity, enemy)).y
-    	)
-    )
-    {
-		// align to the colliding object
-		Actor_alignTo(__GET_CAST(Actor, this), __GET_CAST(InGameEntity, enemy), __XAXIS, 2);
-		
-		//check if player wants to jump over z axis
-		if(!Hero_checkIfZJump(this))
-        {
-			
-			if(this->holdObject)
-            {
-				// play animation
-				AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "JumpHolding");
-			}
-			else{
-				
-				// play animation
-			}
-		}
-
-		// if A button is pressed boost the y velocity
-		if(K_A & vbKeyPressed())
-        {
-			// I will bounce
-		}
-		else
-		{
-			// I will bounce
-			Actor_jump(__GET_CAST(Actor, this), HERO_VELOCITY_Y , HERO_ACCELERATION_Y);
-		}
-
-		// tell enemy I've hit him
-        __VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __XAXIS, this->direction.x);
-			
-		return false;
-	}
-
-	// if I'm holding something
-	if(this->holdObject)
-    {
-		// if I'm facing the enemy
-		if((this->transform.globalPosition.x <  Entity_getPosition(__GET_CAST(Entity, enemy)).x && __RIGHT == this->direction.x)
-			||
-			(this->transform.globalPosition.x >  Entity_getPosition(__GET_CAST(Entity, enemy)).x && __LEFT == this->direction.x)
-			)
-        {
-			// tell enemy to die
-			__VIRTUAL_CALL(void, Actor, die, __GET_CAST(Actor, enemy));
-			
-			// hold object must be destroyed
-			__VIRTUAL_CALL(void, Actor, die, __GET_CAST(Actor, this->holdObject));
-			
-			// holding nothing now
-			this->holdObject = NULL;
-			
-			return false;
-		}
-	}
-
-	// if collision was over x axis
-	if(kCollisionX == axis && !(__VIRTUAL_CALL(int, Enemy, canAttack, enemy) ||	this->holdObject))
-    {
-		// if B button is pressed, pick up
-		if(K_B & vbKeyPressed())
-        {
-			if(!this->holdObject)
-            {
-				Hero_pickupObject(this, __GET_CAST(Actor, enemy));
-				return false;
-			}
-		}
-		
-		// stop my movement
-		Actor_stopMovement(__GET_CAST(Actor, this), __XAXIS);
-
-		// align to the colliding object
-		Actor_alignTo(__GET_CAST(Actor, this), __GET_CAST(InGameEntity, enemy), __XAXIS, 1);
-
-		// tell enemy to begin bouncing
-		__VIRTUAL_CALL(void, Enemy, takeHit, (Enemy)enemy, __XAXIS, this->direction.x);
-
-		// I will bounce
-		Actor_jump(__GET_CAST(Actor, this), FIX19_13_DIV(HERO_VELOCITY_Y, ITOFIX19_13(2)), HERO_ACCELERATION_Y);
-		
-		if(this->holdObject)
-        {
-			// play animation
-			AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "JumpHolding");
-		}
-		else
-		{
-			// play animation
-		}
-		return false;
-	}
-	// otherwise... I was hit by the enemy
-	return true;
-}
-*/
 
 // set animation delta
 void Hero_setAnimationDelta(Hero this, int delta)
@@ -715,43 +531,6 @@ void Hero_enableBoost(Hero this)
 	}
 }
 
-// set action time
-void Hero_setActionTime(Hero this, u32 time)
-{
-	//this->actionTime = time;
-}
-
-// retrieve action time
-u32 Hero_getActionTime(Hero this)
-{
-	return 0;
-//	return this->actionTime;
-}
-
-// pickup an object
-void Hero_pickupObject(Hero this, Actor object)
-{
-	/*
-	VBVec3D position =
-    {
-        ITOFIX19_13(-25),
-        ITOFIX19_13(-10),
-        0
-    };
-	Entity child = Entity_load(&FLOOR1_BG, &position, 1, NULL);
-
-	__VIRTUAL_CALL(void, Container, addChild, __GET_CAST(Container, this), child);
-
-	this->holdObject = object;
-	
-	// set hold object's position
-	Hero_updateHoldObjectPosition(this);
-	
-	// remove from collision detection system
-	InGameEntity_setShapeState(__GET_CAST(InGameEntity, this->holdObject), false);
-	*/
-}
-
 // check if the hero is overlapping a door
 bool Hero_isOverlappingDoor(Hero this)
 {
@@ -763,6 +542,25 @@ bool Hero_isOverlappingDoor(Hero this)
 	if(
 		(Hero_getCurrentlyOverlappingDoor(this) != NULL) &&
 		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__GET_CAST(Entity, this)), Entity_getShape(__GET_CAST(Entity, Hero_getCurrentlyOverlappingDoor(this))))
+	)
+	{
+		isOverlapping = true;
+	}
+
+	return isOverlapping;
+}
+
+// check if the hero is overlapping a hide layer
+bool Hero_isOverlappingHideLayer(Hero this)
+{
+	ASSERT(this, "Hero::isOverlappingHideLayer: null this");
+
+	bool isOverlapping = false;
+
+	// check if hero recently passed a hide layer and is still doing so
+	if(
+		(Hero_getCurrentlyOverlappingHideLayer(this) != NULL) &&
+		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__GET_CAST(Entity, this)), Entity_getShape(__GET_CAST(Entity, Hero_getCurrentlyOverlappingHideLayer(this))))
 	)
 	{
 		isOverlapping = true;
@@ -856,18 +654,6 @@ void Hero_hideHint(Hero this)
 	}
 }
 
-void Hero_fallDead(Hero this)
-{
-	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "HitFront");
-	
-	Hero_die(this);
-}
-
-// set hold object's position
-void Hero_updateHoldObjectPosition(Hero this)
-{
-}
-
 // make hero to look to the player
 void Hero_lookFront(Hero this)
 {
@@ -879,7 +665,7 @@ void Hero_lookFront(Hero this)
 	}
 }
 
-// make hero to look away the player
+// make hero to look away from the player
 void Hero_lookBack(Hero this)
 {
 	// if already not playing
@@ -890,30 +676,6 @@ void Hero_lookBack(Hero this)
 	}
 }
 
-// set  graphical gap
-void Hero_setGap(Hero this)
-{
-	this->gap = this->inGameEntityDefinition->gap;
-	
-	// if I'm not in the edge, return ROM gap
-	if(AnimatedInGameEntity_isAnimationLoaded(__GET_CAST(AnimatedInGameEntity, this), "OnEdge"))
-    {
-		// this is texture specific
-		this->gap.left += 4;
-		this->gap.right += 4;
-	}
-}
-
-// make hero to look to the side
-void Hero_lookSide(Hero this)
-{
-}
-
-// check if must thrown an object
-void Hero_throwObject(Hero this)
-{
-}
-
 // die hero
 void Hero_die(Hero this)
 {
@@ -921,61 +683,12 @@ void Hero_die(Hero this)
 	// go to dead state
 	StateMachine_swapState(this->stateMachine, __GET_CAST(State, HeroDead_getInstance()));
 
-	// if I have something being hold
-	if(this->holdObject)
-    {
-		// hold object must be destroyed
-		__VIRTUAL_CALL(void, Actor, die, __GET_CAST(Actor, this->holdObject));
-	}
-
-	// register time
-	this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-	
 	// must unregister the shape for collision detections
 	Shape_setActive(this->shape, false);
 
 	// change in game state
 	this->inGameState = kDead;
 	*/
-}
-
-// determine which layer I'm
-void Hero_determineLayer(Hero this)
-{
-	int i = 0;
-	for(i = 0; i < TOTAL_GAME_LAYERS; i++)
-    {
-		if((u16)this->transform.globalPosition.z > gameLayers[i] - HERO_INPUT_FORCE && (unsigned)this->transform.globalPosition.z < gameLayers[i] + HERO_INPUT_FORCE)
-        {
-			this->layer = (int )i;
-			return;
-		}
-	}
-}
-
-// clear the actionTime
-void Hero_resetActionTime(Hero this)
-{
-	//this->actionTime = Clock_getTime(Game_getClock(Game_getInstance()));
-}
-
-// goal reached
-void Hero_win(Hero this)
-{
-	/*
-	this->direction.z = __FAR;
-	
-	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "WalkBack");
-	
-	Actor_startMovement(__GET_CAST(Actor, this), __ZAXIS, __UNIFORMMOVE, FIX19_13_DIV(HERO_VELOCITY_Z, ITOFIX19_13(4)), 0);
-	
-	this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-	*/
-}
-
-// goal reached
-void Hero_moveOnWin(Hero this)
-{
 }
 
 // process user input
@@ -1049,6 +762,12 @@ Door Hero_getCurrentlyOverlappingDoor(Hero this)
 	return this->currentlyOverlappingDoor;
 }
 
+// get hide layer the hero is currently overlapping
+HideLayer Hero_getCurrentlyOverlappingHideLayer(Hero this)
+{
+	return this->currentlyOverlappingHideLayer;
+}
+
 // set door the hero is currently overlapping
 void Hero_setCurrentlyOverlappingDoor(Hero this, Door door)
 {
@@ -1066,6 +785,17 @@ void Hero_setCurrentlyOverlappingDoor(Hero this, Door door)
 	this->currentlyOverlappingDoor = door;
 }
 
+// set hide layer the hero is currently overlapping
+void Hero_setCurrentlyOverlappingHideLayer(Hero this, HideLayer hideLayer)
+{
+	if(hideLayer)
+	{
+        AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, hideLayer), "ToTransparent");
+	}
+
+	this->currentlyOverlappingHideLayer = hideLayer;
+}
+
 void Hero_resetCurrentlyOverlappingDoor(Hero this)
 {
 	// reset currently overlapping door
@@ -1073,6 +803,17 @@ void Hero_resetCurrentlyOverlappingDoor(Hero this)
 
 	// remove door enter hint
 	Hero_hideHint(this);
+}
+
+void Hero_resetCurrentlyOverlappingHideLayer(Hero this)
+{
+    if(this->currentlyOverlappingHideLayer)
+    {
+        AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this->currentlyOverlappingHideLayer), "ToSolid");
+    }
+
+	// reset currently overlapping hide layer
+	Hero_setCurrentlyOverlappingHideLayer(this, NULL);
 }
 
 // process collisions
@@ -1108,21 +849,28 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kHideLayer:
 
-                if(!HideLayer_isTransparent(__GET_CAST(HideLayer, inGameEntity)))
-                {
-                    AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, inGameEntity), "ToTransparent");
-                    HideLayer_setTransparent(__GET_CAST(HideLayer, inGameEntity));
-                }
+			    // TODO: let the overlapping entities handle overlapping logic
+
+                // first contact with hide layer?
+				if(Hero_getCurrentlyOverlappingHideLayer(this) == NULL)
+				{
+                    Hero_setCurrentlyOverlappingHideLayer(this, __GET_CAST(HideLayer, inGameEntity));
+
+                    // remind hero to check if hide layer is still overlapping in 100 milliseconds
+                    MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, this), kCheckForOverlappingHideLayer, NULL);
+				}
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kDoor:
 
-                // first contact with a door?
+			    // TODO: let the overlapping entities handle overlapping logic
+
+                // first contact with door?
 				if(Hero_getCurrentlyOverlappingDoor(this) == NULL && Door_hasDestination((Door)inGameEntity))
 				{
 				    Hero_showHint(this, "enterHint");
-                    Hero_setCurrentlyOverlappingDoor(this, (Door)inGameEntity);
+                    Hero_setCurrentlyOverlappingDoor(this, __GET_CAST(Door, inGameEntity));
 
                     // remind hero to check if door is still overlapping in 100 milliseconds
                     MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, this), kCheckForOverlappingDoor, NULL);
@@ -1133,6 +881,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kLava:
 
 //				Hero_die(this);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+
+			case kSawBlade:
+
+                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity));
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1205,6 +959,21 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             return true;
             break;
 
+        case kCheckForOverlappingHideLayer:
+
+            if(!Hero_isOverlappingHideLayer(this))
+            {
+                Hero_resetCurrentlyOverlappingHideLayer(this);
+            }
+            else
+            {
+                // remind hero to check again in 100 milliseconds
+                MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, this), kCheckForOverlappingHideLayer, NULL);
+            }
+
+            return true;
+            break;
+
         case kStopFeetDust:
 
             Hero_hideDust(this);
@@ -1245,6 +1014,12 @@ int Hero_doMessage(Hero this, int message)
 				{
                     // remind hero to check if door is still overlapping in 100 milliseconds
                     MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, this), kCheckForOverlappingDoor, NULL);
+				}
+
+				if(Hero_getCurrentlyOverlappingHideLayer(this))
+				{
+                    // remind hero to check if hide layer is still overlapping in 100 milliseconds
+                    MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, this), kCheckForOverlappingHideLayer, NULL);
 				}
 				return true;
 			}

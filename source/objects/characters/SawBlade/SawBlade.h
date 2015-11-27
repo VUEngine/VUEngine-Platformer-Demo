@@ -96,7 +96,6 @@ void SawBlade_destructor(SawBlade this);
 void SawBlade_ready(SawBlade this);
 void SawBlade_registerShape(SawBlade this);
 void SawBlade_unregisterShape(SawBlade this);
-bool SawBlade_processCollision(SawBlade this, Telegram telegram);
 void SawBlade_takeHit(SawBlade this, int axis, s8 direction);
 void SawBlade_die(SawBlade this);
 void SawBlade_setLocalPosition(SawBlade this, const VBVec3D* position);

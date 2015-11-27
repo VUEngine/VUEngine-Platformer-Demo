@@ -21,7 +21,6 @@
 
 #include <Game.h>
 #include <CollisionManager.h>
-#include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 
@@ -64,8 +63,6 @@ void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* anima
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
-
-	this->transparent = false;
 }
 
 // class's destructor
@@ -73,50 +70,4 @@ void HideLayer_destructor(HideLayer this)
 {
 	// delete the super object
 	__DESTROY_BASE;
-}
-
-bool HideLayer_isTransparent(HideLayer this)
-{
-    return this->transparent;
-}
-
-void HideLayer_setTransparent(HideLayer this)
-{
-    this->transparent = true;
-}
-
-// state's on message
-bool HideLayer_handleMessage(HideLayer this, Telegram telegram)
-{
-    /*
-	switch(Telegram_getMessage(telegram))
-    {
-		case kEnterHideLayer:
-
-			if(HideLayer_hasDestination(this))
-			{
-				PlatformerLevelState_goToLevel((PlatformerStageDefinition*)this->destination);
-				return true;
-			}
-			break;
-
-		case kOpenHideLayer:
-
-			if(HideLayer_hasDestination(this))
-			{
-				AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Opening");
-			}
-			break;
-			
-		case kCloseHideLayer:
-
-			if(HideLayer_hasDestination(this))
-			{
-				AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Closing");
-			}
-			break;
-	}
-			*/
-
-	return false;
 }

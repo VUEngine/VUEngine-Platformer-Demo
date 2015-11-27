@@ -131,31 +131,6 @@ void SawBlade_unregisterShape(SawBlade this)
 	Shape_setActive(this->shape, false);
 }
 
-// process a collision
-bool SawBlade_processCollision(SawBlade this, Telegram telegram)
-{
-	ASSERT(this, "SawBlade::processCollision: null this");
-
-	int message = Telegram_getMessage(telegram);
-	InGameEntity inGameEntity = __GET_CAST(InGameEntity,  Telegram_getExtraInfo(telegram));
-
-	switch(message)
-    {
-		case kCollision:
-
-			switch(InGameEntity_getInGameType(inGameEntity))
-            {
-				case kHero:
-
-					// tell hero to take a hit
-					//Hero_takeHit((Hero)inGameEntity, this->transform.globalPosition);
-					break;
-			}
-	}
-
-	return false;
-}
-
 // tell me I've been hit
 void SawBlade_takeHit(SawBlade this, int axis, s8 direction)
 {

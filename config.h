@@ -154,7 +154,7 @@
 	__BLOCK_DEFINITION(68, 80)													\
 	__BLOCK_DEFINITION(28, 280)													\
 	__BLOCK_DEFINITION(20, 512)													\
-	__BLOCK_DEFINITION(16, 256)													\
+	__BLOCK_DEFINITION(16, 512)													\
 
 #define __SET_MEMORY_POOL_ARRAYS												\
 	__SET_MEMORY_POOL_ARRAY(180)												\
@@ -253,8 +253,8 @@
 // pad to determine if an entity must be loaded/unloaded 
 // load pad must always be lower than unload pad!
 // too close values will put the streaming under heavy usage!
-#define __ENTITY_LOAD_PAD 			192
-#define __ENTITY_UNLOAD_PAD 		(__ENTITY_LOAD_PAD + 32)
+#define __ENTITY_LOAD_PAD 			256
+#define __ENTITY_UNLOAD_PAD 		(__ENTITY_LOAD_PAD + 56)
 
 // the number of entities in the stage's definition to check for streaming in on each preload cycle
 // since there are 32 layers, that's the theoretical limit of entities to display

@@ -54,9 +54,10 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this, VirtualList entityNamesToIgnore);
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onHitTaken(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer);
-void PlatformerLevelState_printLifes(PlatformerLevelState this);
+void PlatformerLevelState_printEnergy(PlatformerLevelState this);
 void PlatformerLevelState_printCoins(PlatformerLevelState this);
 void PlatformerLevelState_printKey(PlatformerLevelState this);
 void PlatformerLevelState_printLevel(PlatformerLevelState this);
@@ -189,7 +190,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Clock_start(Game_getInGameClock(Game_getInstance()));
 		
 	// render gui values
-	PlatformerLevelState_printLifes(this);
+	PlatformerLevelState_printEnergy(this);
 	PlatformerLevelState_printCoins(this);
 	PlatformerLevelState_printKey(this);
 	PlatformerLevelState_printLevel(this);
@@ -199,6 +200,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
 	Object_removeEventListener(__GET_CAST(Object, Game_getInGameClock(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_removeEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onHitTaken, EVENT_HIT_TAKEN);
 	Object_removeEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
 	Object_removeEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
@@ -250,7 +252,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
 	
 	// render gui values
-	PlatformerLevelState_printLifes(this);
+	PlatformerLevelState_printEnergy(this);
 	PlatformerLevelState_printCoins(this);
 	PlatformerLevelState_printKey(this);
 	PlatformerLevelState_printLevel(this);
@@ -334,6 +336,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			Object_addEventListener(__GET_CAST(Object, Game_getInGameClock(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
 			
 			// add events
+			Object_addEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onHitTaken, EVENT_HIT_TAKEN);
 			Object_addEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
 			Object_addEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
@@ -417,6 +420,12 @@ static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Objec
 }
 
 // handle event
+static void PlatformerLevelState_onHitTaken(PlatformerLevelState this, Object eventFirer)
+{
+	PlatformerLevelState_printEnergy(this);
+}
+
+// handle event
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer)
 {
 	PlatformerLevelState_printCoins(this);
@@ -428,8 +437,8 @@ static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object ev
 	PlatformerLevelState_printKey(this);
 }
 
-// print number of lifes to gui
-void PlatformerLevelState_printLifes(PlatformerLevelState this)
+// print hero's energy to gui
+void PlatformerLevelState_printEnergy(PlatformerLevelState this)
 {
 	Printing_text(Printing_getInstance(), "\x7B\x7B\x7B", 4, 26, "GUIFont");
     u8 i;

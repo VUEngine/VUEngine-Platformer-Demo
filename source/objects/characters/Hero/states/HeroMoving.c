@@ -71,10 +71,6 @@ void HeroMoving_destructor(HeroMoving this)
 // state's enter
 void HeroMoving_enter(HeroMoving this, void* owner)
 {
-	// start moving (animations, etc)
-	// correct gap accorging to animation
-	Hero_setGap((Hero)owner);
-
 	this->mustCheckDirection = false;
 
 #ifdef __DEBUG
