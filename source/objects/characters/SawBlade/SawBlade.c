@@ -291,7 +291,7 @@ void SawBlade_startMovement(SawBlade this)
 			{
 				Velocity velocity =
                 {
-					((int)ITOFIX19_13(10) * this->direction.x),
+					((int)ITOFIX19_13(20) * this->direction.x),
 					0,
 					0,
 				};

@@ -479,9 +479,9 @@ void Hero_takeHitFrom(Hero this, Actor other)
 	Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_HIT_TAKEN);
 
 	// reduce energy
-	if(--this->energy)
+	if(this->energy > 0)
     {
-
+        this->energy--;
 	}
 	else
 	{
