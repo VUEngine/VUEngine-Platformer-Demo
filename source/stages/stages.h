@@ -31,10 +31,10 @@
 
 extern StageROMDef EMPTY_ST;
 
-extern StageROMDef LEVEL_1_1_ROOM_1_ST;
-extern StageROMDef LEVEL_1_1_COIN_ROOM_ST;
+extern StageROMDef LEVEL_1_MAIN_1_MAIN_1_ST;
+extern StageROMDef LEVEL_1_COIN_ROOM_ST;
 
-extern StageROMDef LEVEL_1_3_ROOM_1_ST;
+extern StageROMDef LEVEL_2_ROOM_1_ST;
 
 
 #endif

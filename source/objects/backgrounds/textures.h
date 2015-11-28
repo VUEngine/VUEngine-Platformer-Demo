@@ -37,25 +37,25 @@ extern TextureDefinition MOUND_BG_CASTLE_FLAG_TX;
 extern TextureDefinition CLOUDS_A_TX;
 extern TextureDefinition CLOUDS_B_TX;
 
-extern TextureDefinition LEVEL1_1_COIN_ROOM_FRONT_TX;
-extern TextureDefinition LEVEL1_1_COIN_ROOM_FRONT_SHADOWS_TX;
-extern TextureDefinition LEVEL1_1_COIN_ROOM_FRONT_PLATFORMS_TX;
-extern TextureDefinition LEVEL1_1_COIN_ROOM_MIDDLE_TX;
+extern TextureDefinition LEVEL_1_COIN_ROOM_FRONT_TX;
+extern TextureDefinition LEVEL_1_COIN_ROOM_FRONT_SHADOWS_TX;
+extern TextureDefinition LEVEL_1_COIN_ROOM_FRONT_PLATFORMS_TX;
+extern TextureDefinition LEVEL_1_COIN_ROOM_MIDDLE_TX;
 
-extern TextureDefinition LEVEL1_1_MAIN_1_TX;
-extern TextureDefinition LEVEL1_1_TOP_1_TX;
-extern TextureDefinition LEVEL1_1_ROOM_1_HOUSE_TX;
-extern TextureDefinition LEVEL1_1_BACK_1_TX;
-extern TextureDefinition LEVEL1_1_MAIN_2_TX;
-extern TextureDefinition LEVEL1_1_TOP_2_TX;
-extern TextureDefinition LEVEL1_1_BACK_2_TX;
-extern TextureDefinition LEVEL1_1_MAIN_3_TX;
-extern TextureDefinition LEVEL1_1_TOP_3_TX;
-extern TextureDefinition LEVEL1_1_BACK_3_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_1_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_1_TX;
+extern TextureDefinition LEVEL_1_HOUSE_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_BACK_1_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_2_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_FRONT_2_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_2_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_3_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_FRONT_3_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_3_TX;
 
-extern TextureDefinition LEVEL1_3_PART1_TX;
-extern TextureDefinition LEVEL1_3_PART2_TX;
-extern TextureDefinition LEVEL1_3_PART3_TX;
+extern TextureDefinition LEVEL_2_PART1_TX;
+extern TextureDefinition LEVEL_2_PART2_TX;
+extern TextureDefinition LEVEL_2_PART3_TX;
 extern TextureDefinition PLATE_BG_TX;
 
 extern TextureDefinition FLOOR_22x12_TX;

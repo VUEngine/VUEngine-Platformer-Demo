@@ -64,9 +64,9 @@ const LangROMDef LANGUAGE_DE =
 
         //STR_LEVEL:
         "Level",
-        //STR_LEVEL_1_1_NAME:
+        //STR_LEVEL_1_NAME:
         "Woohoo-Berge",
-        //STR_LEVEL_1_3_NAME:
+        //STR_LEVEL_2_NAME:
         "Aufwärtsspirale",
     },
 };

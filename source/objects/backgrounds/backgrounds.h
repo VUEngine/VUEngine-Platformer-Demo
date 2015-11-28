@@ -40,25 +40,25 @@ extern EntityDefinition MOUND_BG_CASTLE_IM;
 extern EntityDefinition MOUND_BG_CASTLE_FLAG_AG;
 extern EntityDefinition CLOUDS_SB;
 
-extern EntityDefinition LEVEL1_1_COIN_ROOM_FRONT_IM;
-extern EntityDefinition LEVEL1_1_COIN_ROOM_FRONT_SHADOWS_IM;
-extern EntityDefinition LEVEL1_1_COIN_ROOM_FRONT_PLATFORMS_IM;
-extern EntityDefinition LEVEL1_1_COIN_ROOM_MIDDLE_IM;
+extern EntityDefinition LEVEL_1_COIN_ROOM_FRONT_IM;
+extern EntityDefinition LEVEL_1_COIN_ROOM_FRONT_SHADOWS_IM;
+extern EntityDefinition LEVEL_1_COIN_ROOM_FRONT_PLATFORMS_IM;
+extern EntityDefinition LEVEL_1_COIN_ROOM_MIDDLE_IM;
 
-extern EntityDefinition LEVEL1_1_MAIN_1_IM;
-extern EntityDefinition LEVEL1_1_TOP_1_IM;
-extern EntityDefinition LEVEL1_1_ROOM_1_HOUSE_IM;
-extern EntityDefinition LEVEL1_1_BACK_1_IM;
-extern EntityDefinition LEVEL1_1_MAIN_2_IM;
-extern EntityDefinition LEVEL1_1_TOP_2_IM;
-extern EntityDefinition LEVEL1_1_BACK_2_IM;
-extern EntityDefinition LEVEL1_1_MAIN_3_IM;
-extern EntityDefinition LEVEL1_1_TOP_3_IM;
-extern EntityDefinition LEVEL1_1_BACK_3_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_1_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_1_IM;
+extern EntityDefinition LEVEL_1_HOUSE_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_BACK_1_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_2_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_FRONT_2_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_BACK_2_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_3_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_FRONT_3_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_BACK_3_IM;
 
-extern EntityDefinition LEVEL1_3_PART1_IM;
-extern EntityDefinition LEVEL1_3_PART2_IM;
-extern EntityDefinition LEVEL1_3_PART3_IM;
+extern EntityDefinition LEVEL_2_PART1_IM;
+extern EntityDefinition LEVEL_2_PART2_IM;
+extern EntityDefinition LEVEL_2_PART3_IM;
 extern EntityDefinition PLATE_BG_IM;
 
 extern EntityDefinition FLOOR_22x12_IG;

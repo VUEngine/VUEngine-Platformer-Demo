@@ -64,9 +64,9 @@ const LangROMDef LANGUAGE_EN =
 
         //STR_LEVEL:
         "Level",
-        //STR_LEVEL_1_1_NAME:
+        //STR_LEVEL_1_NAME:
         "Woohoo Hills",
-        //STR_LEVEL_1_3_NAME:
+        //STR_LEVEL_2_NAME:
         "Upwards Spiral",
     },
 };

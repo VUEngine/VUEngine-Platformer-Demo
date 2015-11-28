@@ -82,7 +82,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE();
 
-	this->platformerStageDefinition = (PlatformerStageDefinition*)&LEVEL_1_1_ROOM_1_ST;
+	this->platformerStageDefinition = (PlatformerStageDefinition*)&LEVEL_1_MAIN_1_MAIN_1_ST;
 
 	this->heroLastPosition.x = 0;
 	this->heroLastPosition.y = 0;

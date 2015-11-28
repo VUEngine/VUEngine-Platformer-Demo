@@ -56,7 +56,7 @@ const ClassSizeData _userClassesSizeData[] =
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
-	{&LEVEL1_1_ROOM_1_HOUSE_IM, "House"},
+	{&LEVEL_1_HOUSE_IM, "House"},
 	{&CANNON_BALL_IG, "CannonBall"},
 	{&COIN_AG, "Coin"},
 	{&DOOR_AG, "Door"},

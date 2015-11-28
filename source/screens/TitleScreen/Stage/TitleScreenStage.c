@@ -33,8 +33,8 @@
 // 											    PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef LEVEL_1_1_ROOM_1_ST;
-extern StageROMDef LEVEL_1_3_ROOM_1_ST;
+extern StageROMDef LEVEL_1_MAIN_1_MAIN_1_ST;
+extern StageROMDef LEVEL_2_ROOM_1_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,8 +76,8 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{&COLLISION_2x28x48, 	{FTOFIX19_13(90), FTOFIX19_13(__SCREEN_HEIGHT >> 1), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{&COLLISION_2x28x48, 	{FTOFIX19_13(__SCREEN_WIDTH - 92), FTOFIX19_13(__SCREEN_HEIGHT >> 1), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 
-	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1) - 40), FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_1_ROOM_1_ST, true},
-	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1) + 40), FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_3_ROOM_1_ST, true},
+	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1) - 40), FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_MAIN_1_MAIN_1_ST, true},
+	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1) + 40), FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_2_ROOM_1_ST, true},
 
 	{&GRASS_AG,      	    {FTOFIX19_13(34), FTOFIX19_13(153), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
 	{&BUSH_AG,      	    {FTOFIX19_13(366), FTOFIX19_13(148), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
