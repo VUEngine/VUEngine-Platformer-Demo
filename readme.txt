@@ -90,7 +90,8 @@ CREDITS
 		* Debugging and testing
 		* Documentation
 
-Graphics based on open source sprites by Kenney (http://www.kenney.nl)
+Some graphics are based on open source sprites by Kenney
+(http://www.kenney.nl)
 
 ==================
 

@@ -16,10 +16,11 @@
 
 const u16 FIRE_SND[] =
 {
+		
 //songlength
-		2,
+		10,
 //stdwait
-		0x15,
+		0x01,
 //stdSxLRV
 		0xFF,
 //stdSxEV0
@@ -31,30 +32,27 @@ const u16 FIRE_SND[] =
 //stdS5SWP
 		//0x00,
 //song's notes
-		F_4,
-		F_5,
-		NONE,
-		NONE,
-		NONE,
-		C_3,
-		D_3,
-		NONE,
-		NONE,
-		NONE,
-		C_3,
-		D_3,
-		NONE,
-		NONE,
-		NONE,
-		C_3,
-		D_3,
-		NONE,
-		NONE,
-		NONE,
-		C_3,
-		D_3,
-		NONE,
-		NONE,
-		NONE,
-
+		
+		A_2,
+		GS2,
+		G_2,
+		GS2,
+		0x12,
+		0x0F,
+		//0x00,
+		//0x00,
+		0x3C,
+		0x3C,
+		0x3C,
+		0x3C,
+		0x3C,
+		0x3C,
+		0x3C,
+		0x3C,
+		0x3C,
+		0x31,
+		0x31,
+		0x31,
 };
+
+

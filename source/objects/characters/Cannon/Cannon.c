@@ -129,8 +129,8 @@ void Cannon_spawnCannonBall(Cannon this)
     Screen_startEffect(Screen_getInstance(), kShake, 250);
 
     // play boom sound
-    extern const u16 FIRE1_SND[];
-    SoundManager_playFxSound(SoundManager_getInstance(), FIRE1_SND, this->transform.globalPosition);
+    extern const u16 FIRE_SND[];
+    SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
     // add cannon ball entity to stage
 	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_IG, NULL, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);

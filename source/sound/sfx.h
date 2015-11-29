@@ -25,8 +25,8 @@
 #include <libgccvb.h>
 
 extern const u16 JUMP_SND[];
+extern const u16 COLLECT_SND[];
 extern const u16 FIRE_SND[];
-extern const u16 FIRE1_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------

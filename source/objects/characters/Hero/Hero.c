@@ -31,6 +31,7 @@
 #include "Hero.h"
 #include "states/HeroIdle.h"
 #include "states/HeroMoving.h"
+#include <CustomScreenMovementManager.h>
 #include <UserDataManager.h>
 
 #include <Hint.h>
@@ -478,10 +479,17 @@ void Hero_takeHitFrom(Hero this, Actor other)
 	
 	Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_HIT_TAKEN);
 
-	// reduce energy
 	if(this->energy > 0)
     {
+        // reduce energy
         this->energy--;
+
+        // start short screen shake
+        //Screen_startEffect(Screen_getInstance(), kShake, 200);
+
+        // play hit sound
+        //extern const u16 FIRE_SND[];
+        //SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 	}
 	else
 	{
@@ -592,8 +600,8 @@ void Hero_enterDoor(Hero this)
 		Entity_hide(__GET_CAST(Entity, this->currentHint));
 	}
 
-    extern const u16 FIRE_SND[];
-    SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
+    extern const u16 COLLECT_SND[];
+    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
 static void Hero_addHints(Hero this)
@@ -742,8 +750,8 @@ void Hero_collectCoin(Hero this, Coin coin)
         UserDataManager_setCoinStatus(UserDataManager_getInstance(), Container_getName(__GET_CAST(Container, coin)), true);
         Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
 
-        extern const u16 FIRE1_SND[];
-        SoundManager_playFxSound(SoundManager_getInstance(), FIRE1_SND, this->transform.globalPosition);
+        extern const u16 COLLECT_SND[];
+        SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
     }
 }
 
