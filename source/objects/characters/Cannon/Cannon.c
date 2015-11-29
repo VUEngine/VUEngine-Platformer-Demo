@@ -47,8 +47,6 @@ __CLASS_DEFINITION(Cannon, AnimatedInGameEntity);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Cannon_addSmokeParticleSystem(Cannon this);
-static void Cannon_hideSmoke(Cannon this);
 void Cannon_shoot(Cannon this);
 
 
@@ -66,8 +64,6 @@ void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInG
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 
-    this->smokeParticleSystem = NULL;
-
 	// register a shape for collision detection
     //this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
 }
@@ -75,8 +71,6 @@ void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInG
 // class's destructor
 void Cannon_destructor(Cannon this)
 {
-    this->smokeParticleSystem = NULL;
-
 	// delete the super object
 	__DESTROY_BASE;
 }
@@ -86,8 +80,6 @@ void Cannon_ready(Cannon this)
 	ASSERT(this, "Cannon::ready: null this");
 
 	Entity_ready(__GET_CAST(Entity, this));
-
-	Cannon_addSmokeParticleSystem(this);
 	
     // send delayed message to self to trigger first shot
     MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonShoot, NULL);
@@ -104,11 +96,6 @@ bool Cannon_handleMessage(Cannon this, Telegram telegram)
 
             Cannon_shoot(this);
 			break;
-
-		case kCannonHideSmoke:
-
-            Cannon_hideSmoke(this);
-			break;
 	}
 	
 	return false;
@@ -119,8 +106,6 @@ void Cannon_suspend(Cannon this)
 	ASSERT(this, "Cannon::suspend: null this");
 
 	Entity_suspend(__GET_CAST(Entity, this));
-
-	ParticleSystem_pause(this->smokeParticleSystem);
 }
 
 // start shooting a cannon ball
@@ -135,27 +120,6 @@ void Cannon_shoot(Cannon this)
     MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonShoot, NULL);
 }
 
-void Cannon_addSmokeParticleSystem(Cannon this)
-{
-	ASSERT(this, "Cannon::addSmokeParticleSystem: null this");
-
-	extern EntityDefinition SMOKE_PS;
-
-	VBVec3D position =
-	{
-		FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0)
-	};
-
-	this->smokeParticleSystem = __GET_CAST(ParticleSystem, Entity_addChildFromDefinition(__GET_CAST(Entity, this), &SMOKE_PS, -1, NULL, &position, NULL));
-
-	ASSERT(this->smokeParticleSystem, "Cannon::addSmokeParticleSystem: null smokeParticleSystem");
-}
-
-static void Cannon_hideSmoke(Cannon this)
-{
-	ParticleSystem_pause(this->smokeParticleSystem);
-}
-
 // spawn a cannon ball
 void Cannon_spawnCannonBall(Cannon this)
 {
@@ -163,12 +127,6 @@ void Cannon_spawnCannonBall(Cannon this)
 
     // start short screen shake
     Screen_startEffect(Screen_getInstance(), kShake, 250);
-
-    // spawn some smoke particles
-	ParticleSystem_start(this->smokeParticleSystem);
-
-	// stop the smoke after some time
-	MessageDispatcher_dispatchMessage(1000, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonHideSmoke, NULL);
 
     // play boom sound
     extern const u16 FIRE1_SND[];

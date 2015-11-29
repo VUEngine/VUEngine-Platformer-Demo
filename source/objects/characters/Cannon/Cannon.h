@@ -53,9 +53,6 @@ __CLASS(Cannon);
 																				\
 	/* it is derivated from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
-																				\
-	/* smoke particle system */													\
-	ParticleSystem smokeParticleSystem;											\
 
 
 //---------------------------------------------------------------------------------------------------------
