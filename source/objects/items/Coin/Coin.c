@@ -65,8 +65,9 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 // class's constructor
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
-	bool taken = &COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || UserDataManager_getCoinStatus(UserDataManager_getInstance(), name);
-    if(taken)
+    // if coin has already been collected, only show silhouette representation
+	this->taken = &COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || UserDataManager_getCoinStatus(UserDataManager_getInstance(), name);
+    if(this->taken)
     {
         animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
     }
@@ -75,10 +76,7 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
-	if(!taken)
-	{
-	    this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
-    }
+    this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
 }
 
 // class's destructor
@@ -110,7 +108,11 @@ void Coin_removeFromStage(Coin this)
 
 	Container_deleteMyself(__GET_CAST(Container, this));
     Shape_setActive(this->shape, false);
-    
-    // TODO: check if not too heavy on hardware
-	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&COIN_SILHOUETTE_AG, this->name, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
+}
+
+bool Coin_taken(Coin this)
+{
+	ASSERT(this, "Coin::Coin_taken: null this");
+
+	return this->taken;
 }

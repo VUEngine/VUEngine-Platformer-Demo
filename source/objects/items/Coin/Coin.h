@@ -44,6 +44,9 @@ __CLASS(Coin);
 																				\
 	/* it is derivated from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
+																				\
+	/* have I been collected yet? */											\
+	bool taken;												                    \
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,6 +59,7 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int
 void Coin_destructor(Coin this);
 bool Coin_handleMessage(Coin this, Telegram telegram);
 void Coin_removeFromStage(Coin this);
+bool Coin_taken(Coin this);
 
 
 #endif

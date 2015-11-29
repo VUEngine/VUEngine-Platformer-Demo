@@ -734,14 +734,17 @@ bool Hero_hasKey(Hero this)
 // collect a coin
 void Hero_collectCoin(Hero this, Coin coin)
 {
-	int numberOfCollectedCoins = UserDataManager_getNumberOfCollectedCoins(UserDataManager_getInstance());
-	numberOfCollectedCoins++;
-	UserDataManager_setNumberOfCollectedCoins(UserDataManager_getInstance(), numberOfCollectedCoins);
-	UserDataManager_setCoinStatus(UserDataManager_getInstance(), Container_getName(__GET_CAST(Container, coin)), true);
-	Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
+    if(!Coin_taken(coin))
+    {
+        int numberOfCollectedCoins = UserDataManager_getNumberOfCollectedCoins(UserDataManager_getInstance());
+        numberOfCollectedCoins++;
+        UserDataManager_setNumberOfCollectedCoins(UserDataManager_getInstance(), numberOfCollectedCoins);
+        UserDataManager_setCoinStatus(UserDataManager_getInstance(), Container_getName(__GET_CAST(Container, coin)), true);
+        Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
 
-    extern const u16 FIRE1_SND[];
-    SoundManager_playFxSound(SoundManager_getInstance(), FIRE1_SND, this->transform.globalPosition);
+        extern const u16 FIRE1_SND[];
+        SoundManager_playFxSound(SoundManager_getInstance(), FIRE1_SND, this->transform.globalPosition);
+    }
 }
 
 // get number of collected coins
