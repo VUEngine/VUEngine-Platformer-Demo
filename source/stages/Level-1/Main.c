@@ -79,7 +79,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{&LEVEL_1_MAIN_1_MAIN_1_IM, 	    {FTOFIX19_13(256),  FTOFIX19_13(360), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_FRONT_1_IM, 	{FTOFIX19_13(256),  FTOFIX19_13(256), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
     {&LEVEL_1_HOUSE_IM,                 {FTOFIX19_13(104),  FTOFIX19_13(192), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-    {&SMOKE_PS,                         {FTOFIX19_13(101),  FTOFIX19_13(152), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, false},
+    //{&SMOKE_PS,                         {FTOFIX19_13(101),  FTOFIX19_13(152), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, false},
 	{&COLLISION_30x33x8,                {FTOFIX19_13(118),  FTOFIX19_13(369), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COLLISION_34x30x8,                {FTOFIX19_13(366),  FTOFIX19_13(381), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(216),  FTOFIX19_13(225), FTOFIX19_13(LAYER_0)}, "Coin 001", NULL, NULL, false},
@@ -218,13 +218,13 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
         {
             // SPT0
-            ITOFIX19_13(LAYER_0 + 1),
+            ITOFIX19_13(LAYER_0),
             // SPT1
-            ITOFIX19_13(LAYER_0 + 1),
+            ITOFIX19_13(LAYER_0),
             // SPT2
-            ITOFIX19_13(LAYER_0 + 1),
+            ITOFIX19_13(LAYER_0),
             // SPT3
-            ITOFIX19_13(LAYER_0 + 1),
+            ITOFIX19_13(LAYER_0),
         },
 
         // initial screen position

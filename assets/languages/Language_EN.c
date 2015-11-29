@@ -53,6 +53,8 @@ const LangROMDef LANGUAGE_EN =
         "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
         //STR_AUTOMATIC_PAUSE_TEXT:
         "Please take a rest!",
+        //STR_PAUSE:
+        "Pause",
         //STR_ON:
         "On",
         //STR_OFF:

@@ -32,6 +32,7 @@
 #include <screens.h>
 #include <macros.h>
 #include <PlatformerLevelState.h>
+#include <Languages.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -80,7 +81,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner)
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
-    Printing_text(Printing_getInstance(), "PAUSE", 21, 13, "GUIFont");
+    Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_PAUSE), 21, 16, "GUIFont");
 
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY >> 1);
 }

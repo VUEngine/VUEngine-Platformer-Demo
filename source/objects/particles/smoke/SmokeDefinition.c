@@ -110,7 +110,7 @@ ParticleROMDef SMOKE_PARTICLE =
 	3000,
 
 	// particle's life span delta in milliseconds
-	3000,
+	0,
 
 	// particle's minimum mass
 	FTOFIX19_13(0),
@@ -144,13 +144,13 @@ ParticleSystemROMDef SMOKE_PS =
     true,
     
 	// minimum generation delay in milliseconds
-	50,
-
-	// generation delay delta in milliseconds
 	100,
 
+	// generation delay delta in milliseconds
+	200,
+
 	// maximum total particles
-	24,
+	16,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)SMOKE_PARTICLE_IM_SPRITES,
@@ -172,9 +172,9 @@ ParticleSystemROMDef SMOKE_PS =
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{(-20), (-20), (0)},
+	{(-10), (-10), (0)},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(-10), (-40), (0)},
+	{(-5), (-20), (0)},
 };
