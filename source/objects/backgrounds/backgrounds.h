@@ -45,6 +45,9 @@ extern EntityDefinition LEVEL_1_COIN_ROOM_FRONT_SHADOWS_IM;
 extern EntityDefinition LEVEL_1_COIN_ROOM_FRONT_PLATFORMS_IM;
 extern EntityDefinition LEVEL_1_COIN_ROOM_MIDDLE_IM;
 
+extern EntityDefinition LEVEL_1_SMALL_ROOM_FRONT_IM;
+extern EntityDefinition LEVEL_1_SMALL_ROOM_PLATFORMS_IM;
+
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_1_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_1_IM;
 extern EntityDefinition LEVEL_1_HOUSE_IM;

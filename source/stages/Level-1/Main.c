@@ -35,6 +35,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef LEVEL_1_COIN_ROOM_ST;
+extern StageROMDef LEVEL_1_SMALL_ROOM_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -127,7 +128,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{&COLLISION_14x6x8,		            {FTOFIX19_13(1120), FTOFIX19_13(505), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COLLISION_14x6x8,		            {FTOFIX19_13(1280), FTOFIX19_13(505), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COLLISION_14x6x8,		            {FTOFIX19_13(1360), FTOFIX19_13(473), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-	{&DOOR_AG,				            {FTOFIX19_13(1074), FTOFIX19_13(208), FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_COIN_ROOM_ST, false},
+	{&DOOR_AG,				            {FTOFIX19_13(1074), FTOFIX19_13(208), FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_SMALL_ROOM_ST, false},
     {&HIDE_LAYER_10x7_AG,               {FTOFIX19_13(1072), FTOFIX19_13(197), FTOFIX19_13(LAYER_0 - 0.1f)}, NULL, NULL, NULL, false},
 	{&DOOR_AG,				            {FTOFIX19_13(1377), FTOFIX19_13(208), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&HIDE_LAYER_10x7_AG,               {FTOFIX19_13(1376), FTOFIX19_13(197), FTOFIX19_13(LAYER_0 - 0.1f)}, NULL, NULL, NULL, false},
