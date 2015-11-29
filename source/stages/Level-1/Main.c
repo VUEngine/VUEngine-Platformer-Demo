@@ -63,14 +63,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_IM_COLLISIONS[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef CASTLE_CHILD_ENTITIES[] =
-{
-	{&MOUND_BG_CASTLE_FLAG_AG, 	{FTOFIX19_13(-34),  FTOFIX19_13(-26), FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-	{&MOUND_BG_CASTLE_FLAG_AG, 	{FTOFIX19_13(6),    FTOFIX19_13(-13), FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-	{&MOUND_BG_CASTLE_FLAG_AG, 	{FTOFIX19_13(45),   FTOFIX19_13(-26), FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
-};
-
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
@@ -107,8 +99,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	//{&CANNON_AC,                        {FTOFIX19_13(708),  FTOFIX19_13(208), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
 	//{&CANNON_AC,                        {FTOFIX19_13(764),  FTOFIX19_13(208), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
 	{&DOOR_AG,				            {FTOFIX19_13(802),  FTOFIX19_13(400), FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_COIN_ROOM_ST, false},
-
-	//{&MOUND_BG_CASTLE_IM, 	            {FTOFIX19_13(900),  FTOFIX19_13(155), FTOFIX19_13(LAYER_3 - 0.1f)}, NULL, (struct PositionedEntity*)CASTLE_CHILD_ENTITIES, NULL, false},
 
 	{&LEVEL_1_MAIN_1_MAIN_3_IM, 	            {FTOFIX19_13(1232), FTOFIX19_13(240), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_IM_COLLISIONS, NULL, false},
 	{&LEVEL_1_MAIN_1_FRONT_3_IM, 	            {FTOFIX19_13(1200), FTOFIX19_13(360), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
