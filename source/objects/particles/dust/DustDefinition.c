@@ -163,7 +163,7 @@ ParticleROMDef DUST_PARTICLE =
 	// particle's minimum life span in milliseconds
 	100,
 
-	// particle's life span delta in miliseconds
+	// particle's life span delta in milliseconds
 	100,
 
 	// particle's minimum mass
@@ -200,7 +200,7 @@ ParticleSystemROMDef DUST_PS =
 	// minimum generation delay in milliseconds
 	20,
 
-	// generation delay delta in miliseconds
+	// generation delay delta in milliseconds
 	60,
 
 	// maximum total particles

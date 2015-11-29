@@ -79,7 +79,7 @@ ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_IM_SPRITE =
 	(TextureDefinition*)&SMOKE_PARTICLE_SMALL_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+	{0, 0, 2},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
@@ -107,10 +107,10 @@ ParticleROMDef SMOKE_PARTICLE =
     __TYPE(Particle),
 
 	// particle's minimum life span in milliseconds
-	200,
+	3000,
 
-	// particle's life span delta in miliseconds
-	200,
+	// particle's life span delta in milliseconds
+	3000,
 
 	// particle's minimum mass
 	FTOFIX19_13(0),
@@ -146,35 +146,35 @@ ParticleSystemROMDef SMOKE_PS =
 	// minimum generation delay in milliseconds
 	50,
 
-	// generation delay delta in miliseconds
+	// generation delay delta in milliseconds
 	100,
 
 	// maximum total particles
-	10,
+	24,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)SMOKE_PARTICLE_IM_SPRITES,
 
 	// auto start
-	false,
+	true,
 	
 	// particle definition
 	(ParticleDefinition*)&SMOKE_PARTICLE,
 	
 	// minimum random distance from the center of the system for spawn
-	{ITOFIX19_13(8), ITOFIX19_13(8), ITOFIX19_13(0)},
+	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(-16), ITOFIX19_13(-16), ITOFIX19_13(-1)},
+	{ITOFIX19_13(-2), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(16), ITOFIX19_13(16), ITOFIX19_13(-1)},
+	{ITOFIX19_13(2), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{(0), (0), (0)},
+	{(-20), (-20), (0)},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(0), (0), (0)},
+	{(-10), (-40), (0)},
 };

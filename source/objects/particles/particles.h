@@ -31,6 +31,7 @@
 
 extern EntityDefinition TEST_PS;
 extern EntityDefinition DUST_PS;
+extern EntityDefinition SMOKE_PS;
 
 
 //---------------------------------------------------------------------------------------------------------
