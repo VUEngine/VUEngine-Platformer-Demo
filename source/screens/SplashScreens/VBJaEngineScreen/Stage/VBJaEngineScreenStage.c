@@ -86,16 +86,16 @@ StageROMDef VBJAENGINE_SCREEN_ST =
     	__COLOR_BLACK,
     	
     	{
-    		0xE4,
-    		0xE0,
-    		0xD0,
-    		0xE0,
+            __BGMAP_PALETTE_0,
+            __BGMAP_PALETTE_1,
+            __BGMAP_PALETTE_2,
+            __BGMAP_PALETTE_3,
     	},
     	{
-    		0xE4,
-    		0xE0,
-    		0xD0,
-    		0xE0,
+            __OBJECT_PALETTE_0,
+            __OBJECT_PALETTE_1,
+            __OBJECT_PALETTE_2,
+            __OBJECT_PALETTE_3,
     	} 
     },
 

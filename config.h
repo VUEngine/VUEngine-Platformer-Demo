@@ -270,7 +270,7 @@
 #define __FLOOR_FRICTION 			10.0f
 #define __AIR_FRICTION 				50.0f
 
-#define __GRAVITY					9800
+#define __GRAVITY					4900
 
 #define __MAX_SHAPES_PER_LEVEL		32
 #define __MAX_BODIES_PER_LEVEL		32
@@ -302,6 +302,18 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define __PRINTING_PALETTE		3
+
+// default palette values, actual values are set in stage definitions
+
+#define __BGMAP_PALETTE_0		0b11100100
+#define __BGMAP_PALETTE_1		0b11100000
+#define __BGMAP_PALETTE_2		0b11010000
+#define __BGMAP_PALETTE_3		0b11100000
+
+#define __OBJECT_PALETTE_0		0b11100100
+#define __OBJECT_PALETTE_1		0b11100000
+#define __OBJECT_PALETTE_2		0b11010000
+#define __OBJECT_PALETTE_3		0b11100000
 
 
 //---------------------------------------------------------------------------------------------------------
