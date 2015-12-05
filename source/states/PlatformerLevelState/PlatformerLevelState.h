@@ -119,6 +119,8 @@ enum PlatformerLevelStateMessageTypes
     kCheckForOverlappingDoor,
     kCheckForOverlappingHideLayer,
     kStopFeetDust,
+    kStopInvincibility,
+    kFlash,
     kSuspend,
 
 	// don't remove me

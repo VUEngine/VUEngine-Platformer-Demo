@@ -134,7 +134,7 @@ TextureROMDef COIN_SILHOUETTE_TX =
     4,
 
     // palette number
-    2,
+    1,
 };
 
 TextureROMDef AFFINE_COIN_TX =

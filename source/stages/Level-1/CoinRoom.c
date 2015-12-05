@@ -234,7 +234,7 @@ PlatformerStageROMDef LEVEL_1_COIN_ROOM_ST =
     },
 
     // identifier
-    "",
+    "1-1",
 
     // name
     NULL,

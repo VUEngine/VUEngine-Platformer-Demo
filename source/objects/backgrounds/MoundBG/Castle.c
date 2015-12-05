@@ -64,7 +64,7 @@ TextureROMDef MOUND_BG_CASTLE_TX =
     1,
 
     // palette number
-    2,
+    1,
 };
 
 BgmapSpriteROMDef MOUND_BG_CASTLE_IM_SPRITE =
