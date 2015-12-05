@@ -64,7 +64,7 @@ TextureROMDef LEVEL_1_COIN_ROOM_MIDDLE_TX =
     1,
 
     // palette number
-    2,
+    1,
 };
 
 BgmapSpriteROMDef LEVEL_1_COIN_ROOM_MIDDLE_IM_SPRITE =

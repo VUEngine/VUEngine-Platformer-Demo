@@ -291,20 +291,20 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				// print level name
 	            PlatformerStageDefinition* platformerStageDefinition = this->platformerStageDefinition;
 	
-	            if((*platformerStageDefinition).identifier)
-	            {
-				    char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-				    char* strLevelName = (*platformerStageDefinition).identifier;
-	                Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
-	                Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
-	            }
-	
 	            if((*platformerStageDefinition).name)
 	            {
 				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*platformerStageDefinition).name);
 	                Printing_text(Printing_getInstance(), "\"", 17, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GUIFont");
+
+                    if((*platformerStageDefinition).identifier)
+                    {
+                        char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
+                        char* strLevelName = (*platformerStageDefinition).identifier;
+                        Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
+                        Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
+                    }
 	            }
 	
 				// tell any interested entity

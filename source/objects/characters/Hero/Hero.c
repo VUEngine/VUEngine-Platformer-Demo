@@ -122,8 +122,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
-	this->currentlyOverlappingDoor = NULL;
-	
+
+	Hero_setInvincible(this, false);
+
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
 
@@ -474,31 +475,112 @@ void Hero_synchronizeDirectionWithVelocity(Hero this)
 
 void Hero_takeHitFrom(Hero this, Actor other)
 {
-	// first stop all movement
-	// Actor_stopMovement(__GET_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
-	
-	Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_HIT_TAKEN);
-
-	if(this->energy > 0)
+    if (!Hero_isInvincible(this))
     {
-        // reduce energy
-        this->energy--;
+        // first stop all movement
+        // Actor_stopMovement(__GET_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
 
-        // start short screen shake
-        //Screen_startEffect(Screen_getInstance(), kShake, 200);
+        if(this->energy > 0)
+        {
+            Hero_setInvincible(this, true);
 
-        // play hit sound
-        //extern const u16 FIRE_SND[];
-        //SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
-	}
-	else
-	{
-		Hero_die(this);
-	}
+            // reset invincible a bit later
+            MessageDispatcher_dispatchMessage(HERO_FLASH_DURATION, __GET_CAST(Object, this), __GET_CAST(Object, this), kStopInvincibility, NULL);
 
+            // start flashing of hero
+            MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this), kFlash, NULL);
 
-	// must unregister the shape for collision detections
-	// Shape_setActive(this->shape, false);
+            // reduce energy
+            this->energy--;
+
+            // start short screen shake
+            //Screen_startEffect(Screen_getInstance(), kShake, 200);
+
+            // play hit sound
+            extern const u16 FIRE_SND[];
+            SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
+        }
+        else
+        {
+            Hero_die(this);
+        }
+
+        // inform others to update ui etc
+        Object_fireEvent(__GET_CAST(Object, PlatformerLevelState_getInstance()), EVENT_HIT_TAKEN);
+
+        // must unregister the shape for collision detections
+        // Shape_setActive(this->shape, false);
+    }
+}
+
+// flash after being hit
+void Hero_flash(Hero this)
+{
+	ASSERT(this, "Hero::flash: null this");
+
+    // only flash as long as hero is invincible
+    if(Hero_isInvincible(this))
+    {
+        // toggle between original and flash palette
+        Hero_toggleFlashPalette(this);
+
+        // next flash state change after HERO_FLASH_INTERVAL milliseconds
+        MessageDispatcher_dispatchMessage(HERO_FLASH_INTERVAL, __GET_CAST(Object, this), __GET_CAST(Object, this), kFlash, NULL);
+    }
+    else
+    {
+        // set palette back to original
+        Hero_resetPalette(this);
+    }
+}
+
+void Hero_toggleFlashPalette(Hero this)
+{
+    // get all of the hero's sprites and loop through them
+    VirtualList sprites = Entity_getSprites(__GET_CAST(Entity, this));
+    VirtualNode node = VirtualList_begin(sprites);
+    for(; node; node = VirtualNode_getNext(node))
+    {
+        // get sprite's texture
+        Sprite sprite = __GET_CAST(Sprite, VirtualNode_getData(node));
+        Texture texture = Sprite_getTexture(sprite);
+
+        // get original palette
+        TextureDefinition* textureDefinition = Texture_getDefinition(texture);
+
+        // set new palette
+        if(Texture_getPalette(texture) == textureDefinition->palette)
+        {
+            Texture_setPalette(texture, HERO_FLASH_PALETTE);
+        }
+        else
+        {
+            Texture_setPalette(texture, textureDefinition->palette);
+        }
+
+        // rewrite sprite to bgmap to apply changed palette
+        Sprite_rewrite(sprite);
+    }
+}
+
+void Hero_resetPalette(Hero this)
+{
+    // get all of hero's sprites and loop through them
+    VirtualList sprites = Entity_getSprites(__GET_CAST(Entity, this));
+    VirtualNode node = VirtualList_begin(sprites);
+    for(; node; node = VirtualNode_getNext(node))
+    {
+        // get sprite's texture
+        Sprite sprite = __GET_CAST(Sprite, VirtualNode_getData(node));
+        Texture texture = Sprite_getTexture(sprite);
+
+        // get original palette and set it
+        TextureDefinition* textureDefinition = Texture_getDefinition(texture);
+        Texture_setPalette(texture, textureDefinition->palette);
+
+        // rewrite sprite to bgmap to apply changed palette
+        Sprite_rewrite(sprite);
+    }
 }
 
 // set animation delta
@@ -506,7 +588,7 @@ void Hero_setAnimationDelta(Hero this, int delta)
 {
 	ASSERT(this, "Hero::setAnimationDelta: null this");
 
-	ASSERT(this->sprites, "Hero::setAnimationDelta: null sprites");
+	ASSERT(sprites, "Hero::setAnimationDelta: null sprites");
 
 	VirtualNode node = VirtualList_begin(this->sprites);
 	
@@ -767,6 +849,18 @@ u8 Hero_getEnergy(Hero this)
 	return this->energy;
 }
 
+// set invincibility
+void Hero_setInvincible(Hero this, bool invincible)
+{
+	this->invincible = invincible;
+}
+
+// get invincibility
+bool Hero_isInvincible(Hero this)
+{
+	return this->invincible;
+}
+
 // get door the hero is currently overlapping
 Door Hero_getCurrentlyOverlappingDoor(Hero this)
 {
@@ -990,6 +1084,19 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             Hero_hideDust(this);
             return true;
             break;
+
+        case kStopInvincibility:
+
+            Hero_setInvincible(this, false);
+            return true;
+            break;
+
+        case kFlash:
+            {
+                Hero_flash(this);
+                return true;
+                break;
+            }
     }
 
 	return Actor_handleMessage(__GET_CAST(Actor, this), telegram);

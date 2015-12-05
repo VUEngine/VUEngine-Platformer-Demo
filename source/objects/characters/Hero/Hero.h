@@ -33,7 +33,10 @@
 // 												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define HERO_NAME "John Hero"
+#define HERO_NAME               "John Hero"
+#define HERO_FLASH_PALETTE      3
+#define HERO_FLASH_DURATION     3000
+#define HERO_FLASH_INTERVAL     100
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -85,6 +88,9 @@ __CLASS(Hero);
 																				\
 	/* flag for collected key */												\
 	bool hasKey;																\
+																				\
+	/* flag for invincible mode (after being hit) */							\
+	bool invincible;															\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -108,6 +114,9 @@ void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u16 currentPressedKey, char * animation);
 void Hero_synchronizeDirectionWithVelocity(Hero this);
 void Hero_takeHitFrom(Hero this, Actor other);
+void Hero_flash(Hero this);
+void Hero_toggleFlashPalette(Hero this);
+void Hero_resetPalette(Hero this);
 void Hero_disableBoost(Hero this);
 void Hero_enableBoost(Hero this);
 bool Hero_isOverlappingDoor(Hero this);
@@ -122,6 +131,8 @@ void Hero_collectKey(Hero this);
 bool Hero_hasKey(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getEnergy(Hero this);
+void Hero_setInvincible(Hero this, bool invincible);
+bool Hero_isInvincible(Hero this);
 Door Hero_getCurrentlyOverlappingDoor(Hero this);
 HideLayer Hero_getCurrentlyOverlappingHideLayer(Hero this);
 void Hero_setCurrentlyOverlappingDoor(Hero this, Door door);

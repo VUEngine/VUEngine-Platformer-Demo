@@ -66,7 +66,7 @@ TextureROMDef MOUND_BG_FRONT_TX =
     1,
 
     // palette number
-    2,
+    1,
 };
 
 TextureROMDef* MOUND_BG_FRONT_SB_TEXTURES[] = 
