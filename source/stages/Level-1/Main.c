@@ -202,7 +202,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         },
 
         // BGMAP segments configuration
-        // free segments
+        // number of segments reserved for dynamically allocated textures when preloading
         4,
 
     	// OBJs segments sizes (must total 1024)
