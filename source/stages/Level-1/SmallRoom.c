@@ -133,6 +133,10 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
             } 
         },
 
+        // BGMAP segments configuration
+        // free segments
+        1,
+
         // OBJs segments sizes (must total 1024)
         {
             // SPT0

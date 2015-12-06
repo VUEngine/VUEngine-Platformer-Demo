@@ -71,7 +71,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{&MOUND_BG_FRONT_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(232), FTOFIX19_13(LAYER_3 + 1)}, NULL, NULL, NULL, false},
 	{&CLOUDS_SB, 			            {FTOFIX19_13(0),    FTOFIX19_13(48),  FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, false},
 	{&HERO_AC, 				            {FTOFIX19_13(56),   FTOFIX19_13(288), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
-	
+
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
 	{&COLLISION_2x28x48,                {FTOFIX19_13(-12),  FTOFIX19_13(116), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
@@ -181,7 +181,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
 
         // friction
         FTOFIX19_13(0.1f),
-
+        
         // Palette's config
         {
         	// background color
@@ -200,6 +200,10 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         		__OBJECT_PALETTE_3,
         	} 
         },
+
+        // BGMAP segments configuration
+        // free segments
+        4,
 
     	// OBJs segments sizes (must total 1024)
         {

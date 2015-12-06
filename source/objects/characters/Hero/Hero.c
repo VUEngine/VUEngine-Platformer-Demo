@@ -588,7 +588,7 @@ void Hero_setAnimationDelta(Hero this, int delta)
 {
 	ASSERT(this, "Hero::setAnimationDelta: null this");
 
-	ASSERT(sprites, "Hero::setAnimationDelta: null sprites");
+	ASSERT(this->sprites, "Hero::setAnimationDelta: null sprites");
 
 	VirtualNode node = VirtualList_begin(this->sprites);
 	

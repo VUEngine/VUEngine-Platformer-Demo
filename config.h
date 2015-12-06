@@ -31,11 +31,18 @@
 #ifdef __DEBUG
 #define __PRINT_FRAMERATE
 #define __PRINT_MEMORY_POOL_STATUS
+#define __ALERT_STACK_OVERFLOW
 #define __DEBUG_TOOLS
 #define __STAGE_EDITOR
 #define __ANIMATION_EDITOR
-//#define __ALERT_STACK_OVERFLOW
 #endif
+
+#ifdef __DEBUG_TOOLS
+#define __PRINT_FRAMERATE
+#define __PRINT_MEMORY_POOL_STATUS
+#define __ALERT_STACK_OVERFLOW
+#endif
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -149,12 +156,12 @@
 	__BLOCK_DEFINITION(160, 2)													\
 	__BLOCK_DEFINITION(132, 44)													\
 	__BLOCK_DEFINITION(112, 32)													\
-	__BLOCK_DEFINITION(96, 56)													\
+	__BLOCK_DEFINITION(96, 54)													\
 	__BLOCK_DEFINITION(76, 24)													\
-	__BLOCK_DEFINITION(68, 80)													\
-	__BLOCK_DEFINITION(28, 280)													\
-	__BLOCK_DEFINITION(20, 512)													\
-	__BLOCK_DEFINITION(16, 512)													\
+	__BLOCK_DEFINITION(68, 76)													\
+	__BLOCK_DEFINITION(28, 272)													\
+	__BLOCK_DEFINITION(20, 496)													\
+	__BLOCK_DEFINITION(16, 496)													\
 
 #define __SET_MEMORY_POOL_ARRAYS												\
 	__SET_MEMORY_POOL_ARRAY(180)												\
@@ -205,9 +212,6 @@
 
 // number of bgmap definitions in each bgmap segment
 #define __NUM_BGMAPS_PER_SEGMENT 			16
-
-// number of bgmap segments for dynamically allocated textures when preloading
-#define __NUMBER_OF_BGMAPS_SEGMENTS_ROOM 	2
 
 // printing area
 #define __PRINTING_BGMAP_X_OFFSET			0
