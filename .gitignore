@@ -12,4 +12,4 @@ cproject
 *.ram
 *.lnk
 *.asm
-sections.txt
+sections*.txt
