@@ -168,7 +168,7 @@ PlatformerStageROMDef LEVEL_1_COIN_ROOM_ST =
         },
 
         // BGMAP segments configuration
-        // free segments
+        // number of segments reserved for dynamically allocated textures when preloading
         1,
 
         // OBJs segments sizes (must total 1024)
