@@ -102,7 +102,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 
 	// samples of ignored entities
 	{&COIN_AG, 		        {FTOFIX19_13(57), FTOFIX19_13(108), FTOFIX19_13(0)}, "IgnoreMeCoin", NULL, NULL, true},
-	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1)), FTOFIX19_13(152), FTOFIX19_13(1)}, "IgnoreMeDoor", NULL, NULL, true},
+	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1)), FTOFIX19_13(152), FTOFIX19_13(0)}, "IgnoreMeDoor", NULL, NULL, true},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };

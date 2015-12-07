@@ -191,7 +191,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			}
 			break;
 
-		case kBodyStoped:
+		case kBodyStopped:
 			
 			Hero_stopMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;

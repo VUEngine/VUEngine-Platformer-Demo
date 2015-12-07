@@ -70,8 +70,8 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_ENTITIES[] =
 
     {&HERO_AC,                              {FTOFIX19_13(44),  FTOFIX19_13(144), FTOFIX19_13(0)}, HERO_NAME, NULL, NULL, true},
 
-    {&ENTER_ROOM_DOOR_AG,                   {FTOFIX19_13(44),  FTOFIX19_13(144), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
-    {&DOOR_AG,                              {FTOFIX19_13(340), FTOFIX19_13(144), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_SMALL_ROOM_ST, true},
+    {&ENTER_ROOM_DOOR_AG,                   {FTOFIX19_13(44),  FTOFIX19_13(144), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+    {&DOOR_AG,                              {FTOFIX19_13(340), FTOFIX19_13(144), FTOFIX19_13(0)}, NULL, NULL, (void*)&LEVEL_1_SMALL_ROOM_ST, true},
 
     {&TORCH_AG,                             {FTOFIX19_13(44),  FTOFIX19_13(104), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
     {&TORCH_AG,                             {FTOFIX19_13(340), FTOFIX19_13(104), FTOFIX19_13(1)}, NULL, NULL, NULL, true},

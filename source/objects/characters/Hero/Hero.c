@@ -404,7 +404,6 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 	if(__ZAXIS & axis)
     {
-		AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Idle");
 		StateMachine_swapState(this->stateMachine, __GET_CAST(State, HeroIdle_getInstance()));					
 		return true;
 	}
