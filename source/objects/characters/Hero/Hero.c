@@ -135,6 +135,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->collisionSolver = __NEW(CollisionSolver, __GET_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.localPosition);
 		
     // no door overlapping at start
+	this->currentlyOverlappingDoor = NULL;
 	Hero_setCurrentlyOverlappingDoor(this, NULL);
 
     // no hide layer overlapping at start
