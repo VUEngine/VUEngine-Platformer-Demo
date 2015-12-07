@@ -64,7 +64,19 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
         // z
         1
     },
-    
+
+    // streaming
+	{
+		// delay per cycle
+		8,
+		// load padding
+		64,
+		// unload padding
+		16,
+		// streaming amplitude
+		16,
+	},
+
     // gravity
     {
 	    ITOFIX19_13(0),

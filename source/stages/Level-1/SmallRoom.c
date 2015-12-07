@@ -104,7 +104,19 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
             128
         },
 
-        // gravity
+        // streaming
+    	{
+    		// delay per cycle
+    		8,
+    		// load padding
+    		64,
+    		// unload padding
+    		16,
+    		// streaming amplitude
+    		16,
+    	},
+
+    	// gravity
         {
             ITOFIX19_13(0),
             ITOFIX19_13(__GRAVITY),

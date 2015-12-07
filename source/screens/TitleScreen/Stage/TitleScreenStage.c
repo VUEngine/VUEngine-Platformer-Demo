@@ -162,7 +162,19 @@ StageROMDef TITLE_SCREEN_ST =
         LEVEL_Z_SIZE
     },
 
-    // gravity
+    // streaming
+	{
+		// delay per cycle
+		8,
+		// load padding
+		64,
+		// unload padding
+		16,
+		// streaming amplitude
+		16,
+	},
+
+	// gravity
     {
 	    ITOFIX19_13(0),
 	    ITOFIX19_13(__GRAVITY),
