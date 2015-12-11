@@ -84,10 +84,12 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_MANAGED[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&MOUND_BG_BACK_IM,	 	            {FTOFIX19_13(0),    FTOFIX19_13(168), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
-	{&MOUND_BG_MIDDLE_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(198), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
-	{&MOUND_BG_FRONT_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(232), FTOFIX19_13(LAYER_3 + 1)}, NULL, NULL, NULL, true},
-	{&CLOUDS_SB, 			            {FTOFIX19_13(0),    FTOFIX19_13(48),  FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
+
+//	{&MOUND_BG_BACK_IM,	 	            {FTOFIX19_13(0),    FTOFIX19_13(168), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
+//	{&MOUND_BG_MIDDLE_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(198), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
+	{&MOUND_BG_FRONT_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(224), FTOFIX19_13(LAYER_3 + 1)}, NULL, NULL, NULL, true},
+	{&CLOUDS_SB, 			            {FTOFIX19_13(0),    FTOFIX19_13(24),  FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
+
 	{&HERO_AC, 				            {FTOFIX19_13(56),   FTOFIX19_13(288), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
@@ -103,12 +105,12 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{&COLLISION_34x30x8,                {FTOFIX19_13(366),  FTOFIX19_13(381), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(216),  FTOFIX19_13(225), FTOFIX19_13(LAYER_0)}, "Coin 001", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(232),  FTOFIX19_13(225), FTOFIX19_13(LAYER_0)}, "Coin 002", NULL, NULL, false},
-	{&LEVEL_1_MAIN_1_BACK_1_IM,         {FTOFIX19_13(360),  FTOFIX19_13(240), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_BACK_1_IM,         {FTOFIX19_13(360),  FTOFIX19_13(250), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(304),  FTOFIX19_13(248), FTOFIX19_13(LAYER_0)}, "Coin 003", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(320),  FTOFIX19_13(248), FTOFIX19_13(LAYER_0)}, "Coin 004", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(336),  FTOFIX19_13(248), FTOFIX19_13(LAYER_0)}, "Coin 005", NULL, NULL, false},
 	{&SAW_BLADE_H8_AC,                  {FTOFIX19_13(338),  FTOFIX19_13(260), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, false},
-	{&BUSH_AG,                          {FTOFIX19_13(472),  FTOFIX19_13(256), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+//	{&BUSH_AG,                          {FTOFIX19_13(472),  FTOFIX19_13(256), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_MAIN_1_MAIN_2_IM, 	    {FTOFIX19_13(768),  FTOFIX19_13(352), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_IM_COLLISIONS, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(532),  FTOFIX19_13(228), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},

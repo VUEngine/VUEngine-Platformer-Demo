@@ -147,25 +147,23 @@
 // only use for debugging, proper object's initialization must make this macro unnecessary
 #undef __MEMORY_POOL_CLEAN_UP
 
-#define __MEMORY_POOLS		11
+#define __MEMORY_POOLS		10
 
 #define __MEMORY_POOL_ARRAYS													\
 	__BLOCK_DEFINITION(180, 1)													\
 	__BLOCK_DEFINITION(164, 2)													\
-	__BLOCK_DEFINITION(160, 2)													\
-	__BLOCK_DEFINITION(132, 44)													\
-	__BLOCK_DEFINITION(112, 48)													\
+	__BLOCK_DEFINITION(132, 24)													\
+	__BLOCK_DEFINITION(112, 44)													\
 	__BLOCK_DEFINITION(96, 54)													\
 	__BLOCK_DEFINITION(76, 24)													\
 	__BLOCK_DEFINITION(68, 76)													\
-	__BLOCK_DEFINITION(28, 272)													\
-	__BLOCK_DEFINITION(20, 512)													\
-	__BLOCK_DEFINITION(16, 496)													\
+	__BLOCK_DEFINITION(28, 256)													\
+	__BLOCK_DEFINITION(20, 600)													\
+	__BLOCK_DEFINITION(16, 480)													\
 
 #define __SET_MEMORY_POOL_ARRAYS												\
 	__SET_MEMORY_POOL_ARRAY(180)												\
 	__SET_MEMORY_POOL_ARRAY(164)												\
-	__SET_MEMORY_POOL_ARRAY(160)												\
 	__SET_MEMORY_POOL_ARRAY(132)												\
 	__SET_MEMORY_POOL_ARRAY(112)												\
 	__SET_MEMORY_POOL_ARRAY(96)													\
