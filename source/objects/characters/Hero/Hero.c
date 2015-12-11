@@ -995,6 +995,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
+			case kHit:
+
+                Hero_takeHitFrom(this, NULL);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+
 			case kLavaTrigger:
 
 				MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, inGameEntity), kLavaTriggerStart, NULL);

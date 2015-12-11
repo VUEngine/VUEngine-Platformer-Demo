@@ -67,7 +67,7 @@ PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_2_PART_1_CHILD_ENTITIES[] =
+PositionedEntityROMDef TOWER_FRONT_1_CHILD_ENTITIES[] =
 {
 	{&COLLISION_2x28x48,	{FTOFIX19_13(-182), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // outer left wall
 	{&COLLISION_48x28x2,	{FTOFIX19_13(304), FTOFIX19_13(254), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // bottom right floor
@@ -80,11 +80,10 @@ PositionedEntityROMDef LEVEL_2_PART_1_CHILD_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_2_ROOM_1_ST_ENTITIES[] =
+PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 104), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&PLATE_BG_IM,	        {FTOFIX19_13(256), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 112), FTOFIX19_13(55)}, NULL, NULL, NULL, true},
 	{(ManagedEntityDefinition*)&MANAGED_ENTITY,		{FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT / 2), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, true},
 	
 	{&COIN_AG, 				{FTOFIX19_13(132), FTOFIX19_13(-48 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
@@ -100,33 +99,29 @@ PositionedEntityROMDef LEVEL_2_ROOM_1_ST_ENTITIES[] =
 	// the following entities must be placed in logical (spatial) order,
 	// according to the level's disposition, for the streaming to work properly
 	// beware of edge case scenarios!
-	{&LEVEL_2_PART1_IM,    {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48), FTOFIX19_13(LAYER_0 + 2)}, NULL, (struct PositionedEntity*)LEVEL_2_PART_1_CHILD_ENTITIES, NULL, true},
+	{&LEVEL_1_TOWER_FRONT_1_IM,     {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48), FTOFIX19_13(LAYER_0 + 2)}, NULL, (struct PositionedEntity*)TOWER_FRONT_1_CHILD_ENTITIES, NULL, true},
+	{&LEVEL_1_TOWER_PLATFORMS_1_IM, {FTOFIX19_13(197), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, NULL, true},
 	{&LAVA_TRIGGER_IG,  	{FTOFIX19_13(174), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 80), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 	{&COG_WHEEL_IG,	        {FTOFIX19_13(384), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT), FTOFIX19_13(50)}, NULL, NULL, NULL, true},
-	//{&LEVEL_2_PART2_IM,    {192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_2_PART_1_CHILD_ENTITIES, NULL},
-	//{&LEVEL_2_PART3_IM,    {192 + 48*8), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48 - 512, LAYER_0 + 2}, NULL, LEVEL_2_PART_1_CHILD_ENTITIES, NULL},
-	//{&COIN_MC,    {312, 4856, LAYER_0 + 2}, NULL, LEVEL_2_PART_1_CHILD_ENTITIES, NULL},
-	//{&COIN_MC,    {328, 4856, LAYER_0 + 2}, NULL, LEVEL_2_PART_1_CHILD_ENTITIES, NULL},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_2_ROOM_1_ST_UI_ENTITIES[] =
+PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_ENTITIES[] =
 {
 	{&GUI_IM, {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(__SCREEN_HEIGHT - 8), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-TextureROMDef* LEVEL_2_ROOM_1_ST_TEXTURES[] =
+TextureROMDef* LEVEL_1_TOWER_ST_TEXTURES[] =
 {
 	//&COIN_TX,
 	&DOOR_TX,
 	&GUI_TX,
 	&LAVA_TX,
 	&LAVA_TOP_TX,
-	&LEVEL_2_PART1_TX,
-	//&LEVEL_2_PART2_TX,
+	&LEVEL_1_TOWER_FRONT_1_TX,
+	&LEVEL_1_TOWER_PLATFORMS_1_TX,
 	&COG_WHEEL_TX,
-	&PLATE_BG_TX,
 	NULL
 };
 
@@ -135,7 +130,7 @@ TextureROMDef* LEVEL_2_ROOM_1_ST_TEXTURES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerStageROMDef LEVEL_2_ROOM_1_ST =
+PlatformerStageROMDef LEVEL_1_TOWER_ST =
 {
     {
         // size
@@ -244,24 +239,24 @@ PlatformerStageROMDef LEVEL_2_ROOM_1_ST =
         },
 
         // textures to preload
-        (TextureDefinition**)LEVEL_2_ROOM_1_ST_TEXTURES,
+        (TextureDefinition**)LEVEL_1_TOWER_ST_TEXTURES,
 
         // UI
         {
-            LEVEL_2_ROOM_1_ST_UI_ENTITIES,
+            LEVEL_1_TOWER_ST_UI_ENTITIES,
             __TYPE(UI),
         },
 
         // entities
-        LEVEL_2_ROOM_1_ST_ENTITIES,
+        LEVEL_1_TOWER_ST_ENTITIES,
 
         // background music
         NULL,
     },
 
     // identifier
-    "1-3",
+    "1-1",
 
     // name
-    (void*)STR_LEVEL_2_NAME,
+    NULL,
 };

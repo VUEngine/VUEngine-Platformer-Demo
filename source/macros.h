@@ -51,6 +51,7 @@ enum PlatformerTypes
 	kSolid,
 	kTopSolid,
 	kNotSolid,
+	kHit,
 	kHideLayer,
 	kFloor,
 	kDoor,
@@ -59,7 +60,6 @@ enum PlatformerTypes
 	kLava,
 	kLavaTrigger,
 	kSawBlade,
-	kCogWheel,
 };
 
 #define GAMEWORLD_MODES 4

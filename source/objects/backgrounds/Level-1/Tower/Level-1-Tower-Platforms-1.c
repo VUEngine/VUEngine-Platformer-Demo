@@ -19,24 +19,22 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <MBgmapSprite.h>
+#include <MBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PlateBGTiles[];
-extern BYTE PlateBGMap[];
+extern BYTE Level_1_Tower_Platforms_1Tiles[];
+extern BYTE Level_1_Tower_Platforms_1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
-TextureROMDef PLATE_BG_TX =
+TextureROMDef LEVEL_1_TOWER_PLATFORMS_1_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -44,20 +42,20 @@ TextureROMDef PLATE_BG_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        14,
+        7,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        PlateBGTiles,
+        Level_1_Tower_Platforms_1Tiles,
     },
 
     // bgmap definition
-    PlateBGMap,
+    Level_1_Tower_Platforms_1Map,
 
     // cols (max 64)
-    64,
+    43,
 
     // rows (max 64)
     64,
@@ -69,52 +67,32 @@ TextureROMDef PLATE_BG_TX =
     0,
 };
 
-TextureROMDef* PLATE_BG_SB_TEXTURES[] =
+BgmapSpriteROMDef LEVEL_1_TOWER_PLATFORMS_1_IM_SPRITE =
 {
-	(TextureDefinition*)&PLATE_BG_TX,
+	// sprite's type
+	__TYPE(BgmapSprite),
+
+	// texture definition
+	(TextureDefinition*)&LEVEL_1_TOWER_PLATFORMS_1_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, -1},
+	
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	WRLD_BGMAP,
+	
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+	WRLD_ON,
+};
+
+BgmapSpriteROMDef* const LEVEL_1_TOWER_PLATFORMS_1_IM_SPRITES[] =
+{
+	&LEVEL_1_TOWER_PLATFORMS_1_IM_SPRITE,
 	NULL
 };
 
-
-MBgmapSpriteROMDef PLATE_BG_SB_SPRITE =
+MBackgroundROMDef LEVEL_1_TOWER_PLATFORMS_1_IM =
 {
-	{
-		// sprite's type
-		__TYPE(MBgmapSprite),
-
-		// texture definition
-		NULL,
-
-        // displacement (x, y, z) (in pixels)
-        {0, 0, 0},
-		
-		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-		WRLD_BGMAP,
-		
-		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-		WRLD_ON,
-	},
-	
-	(TextureDefinition**)PLATE_BG_SB_TEXTURES,
-	
-	// SCX/SCY
-	WRLD_1x1,
-
-	// x loop
-	true,
-	
-	// y loop
-	true
-};
-
-BgmapSpriteROMDef* const PLATE_BG_SB_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&PLATE_BG_SB_SPRITE,
-	NULL
-};
-
-ImageROMDef PLATE_BG_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)PLATE_BG_SB_SPRITES,
+	__TYPE(MBackground),
+	(SpriteROMDef**)LEVEL_1_TOWER_PLATFORMS_1_IM_SPRITES,
 };

@@ -106,7 +106,7 @@ InanimatedInGameEntityROMDef COG_WHEEL_IG =
         {0, 0, 0, 0},
 
         // in game type
-        kCogWheel,
+        kNotSolid,
 
         // width
         // if 0, width and height will be inferred from the texture's size

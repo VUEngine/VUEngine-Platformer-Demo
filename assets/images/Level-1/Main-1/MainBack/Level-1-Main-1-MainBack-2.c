@@ -8,7 +8,7 @@
 //	+ regular map (flat), not compressed, 37x8 
 //	Total size: 720 + 592 = 1312
 //
-//	Time-stamp: 2015-11-28, 23:54:16
+//	Time-stamp: 2015-12-11, 10:45:27
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //

@@ -64,7 +64,7 @@ TextureROMDef LEVEL_1_MAIN_1_BACK_1_TX =
     1,
 
     // palette number
-    1,
+    2,
 };
 
 BgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_1_IM_SPRITE =

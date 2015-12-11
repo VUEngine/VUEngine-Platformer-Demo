@@ -37,15 +37,23 @@ extern EntityDefinition COLLISION_48x2x48;
 extern EntityDefinition COLLISION_42x18x8;
 extern EntityDefinition COLLISION_34x30x8;
 extern EntityDefinition COLLISION_32x16x8;
+extern EntityDefinition COLLISION_32x14x8;
 extern EntityDefinition COLLISION_30x33x8;
 extern EntityDefinition COLLISION_28x16x8;
+extern EntityDefinition COLLISION_20x32x8;
+extern EntityDefinition COLLISION_20x6x8;
 extern EntityDefinition COLLISION_18x6x8;
+extern EntityDefinition COLLISION_14x18x8;
 extern EntityDefinition COLLISION_14x6x8;
 extern EntityDefinition COLLISION_12x12x2;
+extern EntityDefinition COLLISION_12x4x8;
+extern EntityDefinition COLLISION_8x3x8;
 extern EntityDefinition COLLISION_3x2x2;
 extern EntityDefinition COLLISION_2x28x48;
 
 extern EntityDefinition COLLISION_ONEWAY_7x1x8;
+
+extern EntityDefinition HIT_COLLISION_20x1x8;
 
 
 #endif

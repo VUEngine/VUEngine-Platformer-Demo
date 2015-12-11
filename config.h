@@ -154,12 +154,12 @@
 	__BLOCK_DEFINITION(164, 2)													\
 	__BLOCK_DEFINITION(160, 2)													\
 	__BLOCK_DEFINITION(132, 44)													\
-	__BLOCK_DEFINITION(112, 32)													\
+	__BLOCK_DEFINITION(112, 48)													\
 	__BLOCK_DEFINITION(96, 54)													\
 	__BLOCK_DEFINITION(76, 24)													\
 	__BLOCK_DEFINITION(68, 76)													\
 	__BLOCK_DEFINITION(28, 272)													\
-	__BLOCK_DEFINITION(20, 496)													\
+	__BLOCK_DEFINITION(20, 512)													\
 	__BLOCK_DEFINITION(16, 496)													\
 
 #define __SET_MEMORY_POOL_ARRAYS												\
@@ -310,7 +310,7 @@
 
 #define __BGMAP_PALETTE_0		0b11100100 // normal progression
 #define __BGMAP_PALETTE_1		0b11100000 // show dark red as black
-#define __BGMAP_PALETTE_2		0b11010000
+#define __BGMAP_PALETTE_2		0b10010000 // background layer
 #define __BGMAP_PALETTE_3		0b11111000 // very light, used when getting hit
 
 #define __OBJECT_PALETTE_0		0b11100100

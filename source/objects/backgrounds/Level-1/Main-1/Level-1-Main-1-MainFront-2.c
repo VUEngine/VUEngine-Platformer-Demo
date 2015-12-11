@@ -58,7 +58,7 @@ TextureROMDef LEVEL_1_MAIN_1_FRONT_2_TX =
     50,
 
     // rows (max 64)
-    26,
+    28,
 
     // number of frames
     1,

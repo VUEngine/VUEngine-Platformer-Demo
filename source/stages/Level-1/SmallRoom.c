@@ -48,6 +48,7 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_ENTITIES[] =
 {
     // since these are always visible it doesn't matter that they are not logically placed in this definition
 
+    {&LEVEL_1_MAIN_1_MAIN_BACK_3_IM,        {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
     {&LEVEL_1_SMALL_ROOM_FRONT_IM,          {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
     {&LEVEL_1_SMALL_ROOM_PLATFORMS_IM,      {FTOFIX19_13(188),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
     {&COLLISION_48x2x48,                    {FTOFIX19_13(192),  FTOFIX19_13(168), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
@@ -60,8 +61,8 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_ENTITIES[] =
 
     {&HERO_AC,                              {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(0)}, HERO_NAME, NULL, NULL, true},
 
-    {&DOOR_AG,                              {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(1)}, NULL, NULL, NULL, true},
-    {&DOOR_AG,                              {FTOFIX19_13(122),  FTOFIX19_13(145), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
+    {&DOOR_AG,                              {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+    {&DOOR_AG,                              {FTOFIX19_13(122),  FTOFIX19_13(145), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 
     {&COIN_AG,                              {FTOFIX19_13(208),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0 + 2)}, "Coin 099", NULL, NULL, true},
     {&COIN_AG,                              {FTOFIX19_13(224),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0 + 2)}, "Coin 100", NULL, NULL, true},

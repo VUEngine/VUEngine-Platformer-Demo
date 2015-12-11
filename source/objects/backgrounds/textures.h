@@ -55,11 +55,17 @@ extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_2_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_3_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_FRONT_3_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_3_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_4_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_FRONT_4_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_5_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_FRONT_5_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_BACK_5_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_6_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_FRONT_6_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_6_TX;
 
-extern TextureDefinition LEVEL_2_PART1_TX;
-extern TextureDefinition LEVEL_2_PART2_TX;
-extern TextureDefinition LEVEL_2_PART3_TX;
-extern TextureDefinition PLATE_BG_TX;
+extern TextureDefinition LEVEL_1_TOWER_FRONT_1_TX;
+extern TextureDefinition LEVEL_1_TOWER_PLATFORMS_1_TX;
 
 extern TextureDefinition FLOOR_22x12_TX;
 extern TextureDefinition FLOOR_22x5_TX;

@@ -46,7 +46,6 @@ enum LanguageStrings
     /* Level Names */
     STR_LEVEL,
     STR_LEVEL_1_NAME,
-    STR_LEVEL_2_NAME,
 };
 
 
