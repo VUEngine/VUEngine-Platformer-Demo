@@ -44,7 +44,7 @@ TextureROMDef MOUND_BG_FRONT_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        18,
+        64,
 
         // allocation type
         __NOT_ANIMATED,
@@ -60,7 +60,7 @@ TextureROMDef MOUND_BG_FRONT_TX =
     64,
 
     // rows (max 64)
-    16,
+    10,
 
     // number of frames
     1,
