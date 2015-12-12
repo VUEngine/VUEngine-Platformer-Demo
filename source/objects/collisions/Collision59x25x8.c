@@ -14,47 +14,51 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef COLLISIONS_H_
-#define COLLISIONS_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include "textures.h"
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COLLISION_59x25x8;
-extern EntityDefinition COLLISION_48x28x2;
-extern EntityDefinition COLLISION_48x18x8;
-extern EntityDefinition COLLISION_48x3x2;
-extern EntityDefinition COLLISION_48x2x48;
-extern EntityDefinition COLLISION_42x18x8;
-extern EntityDefinition COLLISION_34x30x8;
-extern EntityDefinition COLLISION_32x16x8;
-extern EntityDefinition COLLISION_32x14x8;
-extern EntityDefinition COLLISION_30x33x8;
-extern EntityDefinition COLLISION_28x16x8;
-extern EntityDefinition COLLISION_20x32x8;
-extern EntityDefinition COLLISION_20x6x8;
-extern EntityDefinition COLLISION_18x6x8;
-extern EntityDefinition COLLISION_14x18x8;
-extern EntityDefinition COLLISION_14x6x8;
-extern EntityDefinition COLLISION_12x12x2;
-extern EntityDefinition COLLISION_12x4x8;
-extern EntityDefinition COLLISION_8x3x8;
-extern EntityDefinition COLLISION_3x2x2;
-extern EntityDefinition COLLISION_2x28x48;
+InanimatedInGameEntityROMDef COLLISION_59x25x8 =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
 
-extern EntityDefinition COLLISION_ONEWAY_7x1x8;
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-extern EntityDefinition HIT_COLLISION_20x1x8;
+        // in game type
+        kSolid,
 
+    	// width
+        // if 0, width and height will be inferred from the texture's size
+    	59 * 8,
 
-#endif
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	25 * 8,
+
+    	// depth
+    	8 * 8
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(40),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(1.0f),
+
+    // register shape
+    true
+};
