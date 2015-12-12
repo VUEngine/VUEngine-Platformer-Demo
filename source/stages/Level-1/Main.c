@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+
 #include <Stage.h>
 #include <macros.h>
 #include <PlatformerLevelState.h>
@@ -68,7 +69,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_MANAGED[] =
 	{&LEVEL_1_MAIN_1_MAIN_3_IM, 	    {FTOFIX19_13(0),    FTOFIX19_13(0),     FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_FRONT_3_IM, 	    {FTOFIX19_13(-32),  FTOFIX19_13(120),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_BACK_3_IM, 	{FTOFIX19_13(-7),   FTOFIX19_13(92),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-    {&HIDE_LAYER_10x7_AG,               {FTOFIX19_13(-162), FTOFIX19_13(-44),   FTOFIX19_13(-1)},   NULL, NULL, NULL, false},
+ //   {&HIDE_LAYER_10x7_AG,               {FTOFIX19_13(-162), FTOFIX19_13(-44),   FTOFIX19_13(-1)},   NULL, NULL, NULL, false},
 	{&COLLISION_ONEWAY_7x1x8, 	        {FTOFIX19_13(-226), FTOFIX19_13(-12),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_ONEWAY_7x1x8, 	        {FTOFIX19_13(-226), FTOFIX19_13(84),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_48x18x8, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-122),  FTOFIX19_13(0)},    NULL, NULL, NULL, false},
@@ -123,6 +124,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	//{&COIN_AG,                          {FTOFIX19_13(784),  FTOFIX19_13(196), FTOFIX19_13(LAYER_0)}, "Coin 011", NULL, NULL, false},
 	{&DOOR_AG,				            {FTOFIX19_13(802),  FTOFIX19_13(400), FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_COIN_ROOM_ST, false},
 
+	{&HIDE_LAYER_10x7_AG,               {FTOFIX19_13(1232-160), FTOFIX19_13(240-43),   FTOFIX19_13(-1)},   NULL, NULL, NULL, false},
     {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(1232), FTOFIX19_13(240), FTOFIX19_13(0)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_MANAGED, NULL, true},
 //	{&COIN_AG,                          {FTOFIX19_13(992),  FTOFIX19_13(212), FTOFIX19_13(LAYER_0)}, "Coin 011", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(992),  FTOFIX19_13(260), FTOFIX19_13(LAYER_0)}, "Coin 012", NULL, NULL, false},
@@ -150,7 +152,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 
 	{&LEVEL_1_MAIN_1_MAIN_5_IM, 	    {FTOFIX19_13(2212), FTOFIX19_13(392), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_FRONT_5_IM, 	    {FTOFIX19_13(2192), FTOFIX19_13(320), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-	{&LEVEL_1_MAIN_1_BACK_5_IM,         {FTOFIX19_13(2356), FTOFIX19_13(374), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_BACK_5_IM,         {FTOFIX19_13(2356), FTOFIX19_13(374), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2176), FTOFIX19_13(292), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2192), FTOFIX19_13(292), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
 //	{&CANNON_AC,                        {FTOFIX19_13(2184), FTOFIX19_13(276), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
@@ -215,11 +217,11 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         // size
         {
             // x
-            2992,
+            3992,
             // y
             512,
             // z
-            256,
+            512,
         },
 
         // streaming
@@ -299,8 +301,8 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
             //ITOFIX19_13(2509),
             ITOFIX19_13(56),
             // y
-            //ITOFIX19_13(305),
-            ITOFIX19_13(288),
+            ITOFIX19_13(305),
+            //ITOFIX19_13(288),
             // z
             ITOFIX19_13(0)
         },
@@ -308,7 +310,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         // optical configuration values
         {
     		// maximum view distance's power into the horizon
-    		__MAXIMUM_VIEW_DISTANCE_POWER,
+    		__MAXIMUM_VIEW_DISTANCE_POWER + 1,
             // distance of the eyes to the screen
             ITOFIX19_13(__DISTANCE_EYE_SCREEN),
             // distance from left to right eye (depth sensation)
