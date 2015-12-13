@@ -32,6 +32,8 @@
 
 extern BYTE DoorTiles[];
 extern BYTE DoorMap[];
+extern BYTE DoorBackTiles[];
+extern BYTE DoorBackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -344,6 +346,96 @@ AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
     	
     	// depth
         4
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&DOOR_ANIM,
+
+    // initial animation
+    "Closed",
+};
+
+TextureROMDef DOOR_BACK_TX =
+{
+    {
+        // number of chars, depending on allocation type:
+        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+        // __ANIMATED_MULTI: sum of chars of all animation frames
+        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+        // __NOT_ANIMATED: number of chars of whole image
+        25,
+
+        // allocation type
+        __ANIMATED_MULTI,
+
+        // char definition
+        DoorBackTiles,
+    },
+
+    // bgmap definition
+    DoorBackMap,
+
+    // cols (max 64)
+    2,
+
+    // rows (max 64)
+    3,
+
+    // number of frames
+    4,
+
+    // palette number
+    1
+};
+
+BgmapSpriteROMDef DOOR_BACK_SPRITE =
+{
+	// sprite's type
+	__TYPE(BgmapAnimatedSprite),
+
+	// texture definition
+	(TextureDefinition*)&DOOR_BACK_TX,
+
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	WRLD_BGMAP,
+
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+	WRLD_ON,
+};
+
+BgmapSpriteROMDef* const DOOR_BACK_SPRITES[] =
+{
+	&DOOR_BACK_SPRITE,
+	NULL
+};
+
+AnimatedInGameEntityROMDef DOOR_BACK_AG =
+{
+    {
+        {
+            __TYPE(Door),
+            (SpriteROMDef**)DOOR_BACK_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {5, 0, 2, 3},
+
+        // in game type
+        kDoor,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// depth
+        1
     },
 
     // pointer to the animation definition for the item

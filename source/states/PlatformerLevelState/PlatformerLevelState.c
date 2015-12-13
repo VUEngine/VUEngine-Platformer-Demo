@@ -190,6 +190,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Clock_start(Game_getInGameClock(Game_getInstance()));
 		
 	// render gui values
+	// TODO: these should be handled by a dedicated GUI class:
+	// PlatformerGui_print(PlatformerGui_getInstance());
 	PlatformerLevelState_printEnergy(this);
 	PlatformerLevelState_printCoins(this);
 	PlatformerLevelState_printKey(this);
