@@ -27,7 +27,7 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_8x3x8 =
+InanimatedInGameEntityROMDef COLLISION_ONEWAY_7x1x1 =
 {
     {
         {
@@ -36,21 +36,21 @@ InanimatedInGameEntityROMDef COLLISION_8x3x8 =
         },
 
         // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+        {0, 7, 0, 0},
 
         // in game type
-        kSolid,
+        kTopSolid,
 
-        // width
+    	// width
         // if 0, width and height will be inferred from the texture's size
-    	8 * 8,
+    	7 * 8,
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	3 * 8,
+    	1 * 8,
 
     	// depth
-    	8 * 8
+    	1 * 8
     },
 
     // friction FTOFIX19_13

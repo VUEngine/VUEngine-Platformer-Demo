@@ -1132,7 +1132,7 @@ int Hero_doMessage(Hero this, int message)
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 				// move the screen to its previous position
-				Screen_positione(Screen_getInstance(), false);
+				Screen_position(Screen_getInstance(), false);
 
 				if(Hero_getCurrentlyOverlappingDoor(this))
 				{

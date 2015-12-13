@@ -50,7 +50,7 @@ enum CustomScreenFX
 // declare the virtual methods which are redefined
 #define CustomScreenMovementManager_SET_VTABLE(ClassName)						\
     	ScreenMovementManager_SET_VTABLE(ClassName)								\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, positione);		\
+		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, position);		\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, startEffect);		\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, stopEffect);		\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, handleMessage);	\
@@ -80,7 +80,7 @@ __CLASS(CustomScreenMovementManager);
 CustomScreenMovementManager CustomScreenMovementManager_getInstance();
 
 void CustomScreenMovementManager_destructor(CustomScreenMovementManager this);
-void CustomScreenMovementManager_positione(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving);
+void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving);
 void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, int effect, int duration);
 void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, int effect);
 bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram);

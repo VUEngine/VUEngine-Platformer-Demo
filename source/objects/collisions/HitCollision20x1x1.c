@@ -27,7 +27,7 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef HIT_COLLISION_20x1x8 =
+InanimatedInGameEntityROMDef HIT_COLLISION_20x1x1 =
 {
     {
         {
@@ -50,7 +50,7 @@ InanimatedInGameEntityROMDef HIT_COLLISION_20x1x8 =
     	1 * 8,
 
     	// depth
-    	8 * 8
+    	1 * 8
     },
 
     // friction FTOFIX19_13
