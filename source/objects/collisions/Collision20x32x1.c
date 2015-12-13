@@ -27,7 +27,7 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_30x33x8 =
+InanimatedInGameEntityROMDef COLLISION_20x32x1 =
 {
     {
         {
@@ -43,14 +43,14 @@ InanimatedInGameEntityROMDef COLLISION_30x33x8 =
 
     	// width
         // if 0, width and height will be inferred from the texture's size
-    	30 * 8,
+    	20 * 8,
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	33 * 8,
+    	32 * 8,
 
     	// depth
-    	8 * 8
+    	1 * 8
     },
 
     // friction FTOFIX19_13

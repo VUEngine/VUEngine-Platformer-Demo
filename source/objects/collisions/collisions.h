@@ -30,31 +30,31 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COLLISION_59x25x8;
-extern EntityDefinition COLLISION_48x28x2;
-extern EntityDefinition COLLISION_48x18x8;
-extern EntityDefinition COLLISION_48x3x2;
-extern EntityDefinition COLLISION_48x2x48;
-extern EntityDefinition COLLISION_42x18x8;
-extern EntityDefinition COLLISION_34x30x8;
-extern EntityDefinition COLLISION_32x16x8;
-extern EntityDefinition COLLISION_32x14x8;
-extern EntityDefinition COLLISION_30x33x8;
-extern EntityDefinition COLLISION_28x16x8;
-extern EntityDefinition COLLISION_20x32x8;
-extern EntityDefinition COLLISION_20x6x8;
-extern EntityDefinition COLLISION_18x6x8;
-extern EntityDefinition COLLISION_14x18x8;
-extern EntityDefinition COLLISION_14x6x8;
-extern EntityDefinition COLLISION_12x12x2;
-extern EntityDefinition COLLISION_12x4x8;
-extern EntityDefinition COLLISION_8x3x8;
-extern EntityDefinition COLLISION_3x2x2;
-extern EntityDefinition COLLISION_2x28x48;
+extern EntityDefinition COLLISION_59x25x1;
+extern EntityDefinition COLLISION_48x28x1;
+extern EntityDefinition COLLISION_48x18x1;
+extern EntityDefinition COLLISION_48x3x1;
+extern EntityDefinition COLLISION_48x2x1;
+extern EntityDefinition COLLISION_42x18x1;
+extern EntityDefinition COLLISION_34x30x1;
+extern EntityDefinition COLLISION_32x16x1;
+extern EntityDefinition COLLISION_32x14x1;
+extern EntityDefinition COLLISION_30x33x1;
+extern EntityDefinition COLLISION_28x16x1;
+extern EntityDefinition COLLISION_20x32x1;
+extern EntityDefinition COLLISION_20x6x1;
+extern EntityDefinition COLLISION_18x6x1;
+extern EntityDefinition COLLISION_14x18x1;
+extern EntityDefinition COLLISION_14x6x1;
+extern EntityDefinition COLLISION_12x12x1;
+extern EntityDefinition COLLISION_12x4x1;
+extern EntityDefinition COLLISION_8x3x1;
+extern EntityDefinition COLLISION_3x2x1;
+extern EntityDefinition COLLISION_2x28x1;
 
-extern EntityDefinition COLLISION_ONEWAY_7x1x8;
+extern EntityDefinition COLLISION_ONEWAY_7x1x1;
 
-extern EntityDefinition HIT_COLLISION_20x1x8;
+extern EntityDefinition HIT_COLLISION_20x1x1;
 
 
 #endif

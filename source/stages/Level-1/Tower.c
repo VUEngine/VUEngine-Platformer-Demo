@@ -69,13 +69,13 @@ PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 
 PositionedEntityROMDef TOWER_FRONT_1_CHILD_ENTITIES[] =
 {
-	{&COLLISION_2x28x48,	{FTOFIX19_13(-182), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // outer left wall
-	{&COLLISION_48x28x2,	{FTOFIX19_13(304), FTOFIX19_13(254), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // bottom right floor
-	{&COLLISION_2x28x48,	{FTOFIX19_13(192), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // outer right wall
-	{&COLLISION_48x28x2,	{FTOFIX19_13(-120), FTOFIX19_13(286), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // bottom left floor
-	{&COLLISION_3x2x2,		{FTOFIX19_13(96), FTOFIX19_13(74), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // floating stone bottom right
-	{&COLLISION_3x2x2,		{FTOFIX19_13(180), FTOFIX19_13(100), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // step stone bottom right
-	{&COLLISION_48x3x2,		{FTOFIX19_13(-168), FTOFIX19_13(54), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // 2nd level floor left
+	{&COLLISION_2x28x1,	{FTOFIX19_13(-182), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // outer left wall
+	{&COLLISION_48x28x1,	{FTOFIX19_13(304), FTOFIX19_13(254), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // bottom right floor
+	{&COLLISION_2x28x1,	{FTOFIX19_13(192), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // outer right wall
+	{&COLLISION_48x28x1,	{FTOFIX19_13(-120), FTOFIX19_13(286), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // bottom left floor
+	{&COLLISION_3x2x1,		{FTOFIX19_13(96), FTOFIX19_13(74), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // floating stone bottom right
+	{&COLLISION_3x2x1,		{FTOFIX19_13(180), FTOFIX19_13(100), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // step stone bottom right
+	{&COLLISION_48x3x1,		{FTOFIX19_13(-168), FTOFIX19_13(54), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // 2nd level floor left
 	{&DOOR_AG,	            {FTOFIX19_13(-144), FTOFIX19_13(154), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };

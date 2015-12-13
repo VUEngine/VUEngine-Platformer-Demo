@@ -27,7 +27,7 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_34x30x8 =
+InanimatedInGameEntityROMDef COLLISION_8x3x1 =
 {
     {
         {
@@ -41,16 +41,16 @@ InanimatedInGameEntityROMDef COLLISION_34x30x8 =
         // in game type
         kSolid,
 
-    	// width
+        // width
         // if 0, width and height will be inferred from the texture's size
-    	34 * 8,
+    	8 * 8,
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	30 * 8,
+    	3 * 8,
 
     	// depth
-    	8 * 8
+    	1 * 8
     },
 
     // friction FTOFIX19_13
@@ -60,5 +60,5 @@ InanimatedInGameEntityROMDef COLLISION_34x30x8 =
     FTOFIX19_13(1.0f),
 
     // register shape
-    true
+    true,
 };

@@ -51,7 +51,7 @@ InanimatedInGameEntityROMDef LAVA_TRIGGER_IG =
     	12 * 8,
 
     	// depth
-    	2 * 8
+    	1 * 8
     },
 
     // friction FTOFIX19_13
