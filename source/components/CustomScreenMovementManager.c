@@ -23,6 +23,16 @@
 #include <Screen.h>
 #include <MessageDispatcher.h>
 
+
+//---------------------------------------------------------------------------------------------------------
+// 											CLASS'S MACROS
+//---------------------------------------------------------------------------------------------------------
+
+#define __SCREEN_EASING_DISPLACEMENT		3
+#define __SCREEN_HORIZONTAL_DISPLACEMENT 	30
+#define __SCREEN_VERTICAL_DISPLACEMENT 		(__SCREEN_HEIGHT / 2) + 30
+
+
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
@@ -103,19 +113,28 @@ void CustomScreenMovementManager_positione(CustomScreenMovementManager this, u8 
 			// apply transformations
 			__VIRTUAL_CALL(void, Container, transform, screen->focusInGameEntity, &environmentTransform);
 	
-			// get focusInGameEntity is moving
-			if(__VIRTUAL_CALL(bool, InGameEntity, isMoving, screen->focusInGameEntity) || !checkIfFocusEntityIsMoving)
+			int movementState = __VIRTUAL_CALL(u8, InGameEntity, getMovementState, screen->focusInGameEntity);
+	
+			Direction direction = InGameEntity_getDirection(__GET_CAST(InGameEntity, screen->focusInGameEntity));
 			{
-				// save last position
-				screen->lastDisplacement = screen->position;
-	
-				// get focusInGameEntity's position
-				screen->position = *Entity_getPosition(__GET_CAST(Entity, screen->focusInGameEntity));
-				
-				screen->position.x += screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH >> 1);
-				screen->position.y += screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT >> 1);
-				screen->position.z += screen->focusEntityPositionDisplacement.z - ITOFIX19_13(__SCREEN_DEPTH >> 1);
-	
+				// update vertical position
+				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__GET_CAST(Entity, screen->focusInGameEntity));
+
+				fix19_13 horizontalPosition = 0xFFFFE000 & screen->position.x;
+				fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT));
+				if(horizontalPosition + ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT*2) < horizontalTarget)
+				{
+					screen->position.x += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+				}
+				else if(horizontalPosition - ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT*2) > horizontalTarget)
+				{
+					screen->position.x -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+				}
+				else
+				{
+					screen->position.x = focusInGameEntityPosition->x + screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT);
+				}
+
 				if(0 > screen->position.x)
 				{
 					screen->position.x = 0;
@@ -125,6 +144,24 @@ void CustomScreenMovementManager_positione(CustomScreenMovementManager this, u8 
 					screen->position.x = ITOFIX19_13(screen->stageSize.x - __SCREEN_WIDTH);
 				}
 	
+				screen->lastDisplacement.x = (screen->position.x - screen->lastDisplacement.x);
+			}
+			
+			if(!(movementState & __YAXIS) || !checkIfFocusEntityIsMoving)
+			{
+				// update vertical position
+				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__GET_CAST(Entity, screen->focusInGameEntity));
+				fix19_13 verticalPosition = 0xFFFFE000 & screen->position.y;
+				fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_VERTICAL_DISPLACEMENT));
+				if(verticalPosition + ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) < verticalTarget)
+				{
+					screen->position.y += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+				}
+				else if(verticalPosition - ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) > verticalTarget)
+				{
+					screen->position.y -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+				}
+
 				if(0 > screen->position.y)
 				{
 					screen->position.y = 0;
@@ -133,17 +170,8 @@ void CustomScreenMovementManager_positione(CustomScreenMovementManager this, u8 
 				{
 					screen->position.y = ITOFIX19_13(screen->stageSize.y - __SCREEN_HEIGHT);
 				}
-	
-				screen->lastDisplacement.x = screen->position.x - screen->lastDisplacement.x;
-				screen->lastDisplacement.y = screen->position.y - screen->lastDisplacement.y;
-				screen->lastDisplacement.z = screen->position.z - screen->lastDisplacement.z;
-			}
-			else
-			{
-				// not moving
-				screen->lastDisplacement.x = 0;
-				screen->lastDisplacement.y = 0;
-				screen->lastDisplacement.z = 0;
+
+				screen->lastDisplacement.y = 0xFFFFE000 & (screen->position.y - screen->lastDisplacement.y);
 			}
 		}
 	}

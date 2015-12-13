@@ -90,7 +90,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{&MOUND_BG_FRONT_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(224), FTOFIX19_13(LAYER_3 + 0.000001f)}, NULL, NULL, NULL, true},
 	{&CLOUDS_SB, 			            {FTOFIX19_13(0),    FTOFIX19_13(24),  FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
 
-//	{&HERO_AC, 				            {FTOFIX19_13(56),   FTOFIX19_13(288), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
+	{&HERO_AC, 				            {FTOFIX19_13(56),   FTOFIX19_13(288), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
@@ -163,7 +163,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 //	{&CANNON_AC,                        {FTOFIX19_13(2408), FTOFIX19_13(290), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
 	{&COLLISION_8x3x8, 	                {FTOFIX19_13(2408), FTOFIX19_13(317), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-	{&HERO_AC, 				            {FTOFIX19_13(2509), FTOFIX19_13(305), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
+///	{&HERO_AC, 				            {FTOFIX19_13(2509), FTOFIX19_13(305), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
 
 	{&LEVEL_1_MAIN_1_MAIN_6_IM, 	    {FTOFIX19_13(2736), FTOFIX19_13(356), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_FRONT_6_IM, 	    {FTOFIX19_13(2736), FTOFIX19_13(284), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
@@ -298,10 +298,10 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         // initial screen position
         {
             // x
-            ITOFIX19_13(2509),
-            //ITOFIX19_13(56),
+            //ITOFIX19_13(2509),
+            ITOFIX19_13(56),
             // y
-            ITOFIX19_13(305),
+            ITOFIX19_13(200),
             // z
             ITOFIX19_13(0)
         },

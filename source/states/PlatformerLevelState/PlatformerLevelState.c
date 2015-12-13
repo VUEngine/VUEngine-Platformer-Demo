@@ -38,6 +38,7 @@
 #include <Languages.h>
 #include <objects.h>
 #include <UserDataManager.h>
+#include <CustomScreenMovementManager.h>
 
 
 
@@ -89,6 +90,9 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 	this->heroLastPosition.z = 0;
 	
 	this->isExitingRoom = false;
+	
+	// set the custom movement screen manager now
+	Screen_setScreenMovementManager(Screen_getInstance(), __GET_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 }
 
 // class's destructor
