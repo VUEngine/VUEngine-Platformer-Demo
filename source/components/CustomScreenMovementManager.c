@@ -122,11 +122,11 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 
 				fix19_13 horizontalPosition = 0xFFFFE000 & screen->position.x;
 				fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT));
-				if(horizontalPosition + ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT*2) < horizontalTarget)
+				if(horizontalPosition + ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) < horizontalTarget)
 				{
 					screen->position.x += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
 				}
-				else if(horizontalPosition - ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT*2) > horizontalTarget)
+				else if(horizontalPosition - ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) > horizontalTarget)
 				{
 					screen->position.x -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
 				}
