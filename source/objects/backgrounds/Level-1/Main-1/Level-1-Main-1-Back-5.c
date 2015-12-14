@@ -26,7 +26,7 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_Back_5Tiles[];
+extern BYTE Level_1_Main_1_BackTiles[];
 extern BYTE Level_1_Main_1_Back_5Map[];
 
 
@@ -42,13 +42,13 @@ TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        84,
+        122,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        Level_1_Main_1_Back_5Tiles,
+        Level_1_Main_1_BackTiles,
     },
 
     // bgmap definition

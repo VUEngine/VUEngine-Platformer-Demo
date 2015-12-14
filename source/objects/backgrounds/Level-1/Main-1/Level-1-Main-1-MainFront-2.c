@@ -26,7 +26,7 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainFront_2Tiles[];
+extern BYTE Level_1_Main_1_MainFrontTiles[];
 extern BYTE Level_1_Main_1_MainFront_2Map[];
 
 
@@ -34,7 +34,7 @@ extern BYTE Level_1_Main_1_MainFront_2Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL_1_MAIN_1_FRONT_2_TX =
+TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -48,7 +48,7 @@ TextureROMDef LEVEL_1_MAIN_1_FRONT_2_TX =
         __NOT_ANIMATED,
 
         // char definition
-        Level_1_Main_1_MainFront_2Tiles,
+        Level_1_Main_1_MainFrontTiles,
     },
 
     // bgmap definition
@@ -67,13 +67,13 @@ TextureROMDef LEVEL_1_MAIN_1_FRONT_2_TX =
     1,
 };
 
-BgmapSpriteROMDef LEVEL_1_MAIN_1_FRONT_2_IM_SPRITE =
+BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)&LEVEL_1_MAIN_1_FRONT_2_TX,
+	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_2_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, -1},
@@ -85,14 +85,14 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_FRONT_2_IM_SPRITE =
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_FRONT_2_IM_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITES[] =
 {
-	&LEVEL_1_MAIN_1_FRONT_2_IM_SPRITE,
+	&LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITE,
 	NULL
 };
 
-MBackgroundROMDef LEVEL_1_MAIN_1_FRONT_2_IM =
+MBackgroundROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2_IM =
 {
 	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_FRONT_2_IM_SPRITES,
+	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITES,
 };
