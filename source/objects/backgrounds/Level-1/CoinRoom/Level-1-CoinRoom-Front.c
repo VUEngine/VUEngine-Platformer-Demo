@@ -34,7 +34,7 @@ extern BYTE Level_1_CoinRoom_FrontMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL_1_COIN_ROOM_FRONT_CH =
+CharSetROMDef LEVEL_1_COIN_ROOM_FRONT_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)

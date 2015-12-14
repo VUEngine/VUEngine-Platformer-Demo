@@ -47,7 +47,7 @@ CharSetROMDef LEVEL_1_MAIN_1_MAIN_2_CH =
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_Main_1_Main_2Tiles,
+    Level_1_Main_1_MainTiles,
 };
 
 TextureROMDef LEVEL_1_MAIN_1_MAIN_2_TX =
