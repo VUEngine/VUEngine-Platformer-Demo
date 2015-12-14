@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef USER_DATA_MANAGER_H_
-#define USER_DATA_MANAGER_H_
+#ifndef GUI_MANAGER_H_
+#define GUI_MANAGER_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -26,70 +26,43 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												MACROS
-//---------------------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define UserDataManager_METHODS													\
-    	Object_METHODS															\
+#define GuiManager_METHODS																				\
+    	Object_METHODS																					\
 
 // declare the virtual methods which are redefined
-#define UserDataManager_SET_VTABLE(ClassName)									\
-    	Object_SET_VTABLE(ClassName)											\
+#define GuiManager_SET_VTABLE(ClassName)																\
+    	Object_SET_VTABLE(ClassName)																	\
 
-// declare a UserDataManager
-__CLASS(UserDataManager);
+// declare a GuiManager
+__CLASS(GuiManager);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define COIN_NAME_LENGTH		10
-#define STAGE_NAME_LENGTH		20
-#define SAVE_STAMP_LENGTH		20
-#define TOTAL_COINS_IN_GAME		100
-#define SAVE_STAMP				"GameSaved"
-
-typedef struct CoinStatus 
-{
-	char name[COIN_NAME_LENGTH];
-	bool taken;
-} CoinStatus;
-
-typedef struct UserData
-{
-	// flag to know if there is data saved
-	u32 saveStamp[SAVE_STAMP_LENGTH];
-	
-	// number of coins
-	int numberOfCollectedCoins;
-	CoinStatus coinStatus[TOTAL_COINS_IN_GAME];
-	
-	// current level status (for loading rooms within rooms)
-	VBVec3D heroLastPosition;
-	char lastStageName[STAGE_NAME_LENGTH];
-	bool isExitingRoom;
-	
-} UserData;
+#define GUI_FONT    "GUIFont"
+#define GUI_X_POS   0
+#define GUI_Y_POS   26
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-UserDataManager UserDataManager_getInstance();
+GuiManager GuiManager_getInstance();
 
-void UserDataManager_destructor(UserDataManager this);
-int UserDataManager_getNumberOfCollectedCoins(UserDataManager this);
-void UserDataManager_setNumberOfCollectedCoins(UserDataManager this, int numberOfCollectedCoins);
-bool UserDataManager_getCoinStatus(UserDataManager this, const char* coinName);
-bool UserDataManager_setCoinStatus(UserDataManager this, char* coinName, bool status);
+void GuiManager_destructor(GuiManager this);
+void GuiManager_printClock(GuiManager this);
+void GuiManager_printCoins(GuiManager this);
+void GuiManager_printEnergy(GuiManager this);
+void GuiManager_printKey(GuiManager this);
+void GuiManager_printLevel(GuiManager this);
+void GuiManager_printAll(GuiManager this);
 
 
 #endif

@@ -135,6 +135,7 @@ enum PlatformerLevelStateMessageTypes
 // setup the init focus screen
 PlatformerLevelState PlatformerLevelState_getInstance(void);
 void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageDefinition* platformerStageDefinition);
+PlatformerStageDefinition* PlatformerLevelState_getStage(PlatformerLevelState this);
 void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDefinition);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);

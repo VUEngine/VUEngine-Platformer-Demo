@@ -37,6 +37,7 @@
 #include <macros.h>
 #include <Languages.h>
 #include <objects.h>
+#include <GuiManager.h>
 #include <UserDataManager.h>
 #include <CustomScreenMovementManager.h>
 
@@ -58,10 +59,6 @@ static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Objec
 static void PlatformerLevelState_onHitTaken(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer);
-void PlatformerLevelState_printEnergy(PlatformerLevelState this);
-void PlatformerLevelState_printCoins(PlatformerLevelState this);
-void PlatformerLevelState_printKey(PlatformerLevelState this);
-void PlatformerLevelState_printLevel(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
@@ -186,20 +183,14 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1000, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
-	// reset clock and render time
+	// reset clock
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
 	
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Clock_start(Game_getInGameClock(Game_getInstance()));
 		
 	// render gui values
-	// TODO: these should be handled by a dedicated GUI class:
-	// PlatformerGui_print(PlatformerGui_getInstance());
-	PlatformerLevelState_printEnergy(this);
-	PlatformerLevelState_printCoins(this);
-	PlatformerLevelState_printKey(this);
-	PlatformerLevelState_printLevel(this);
+	GuiManager_printAll(GuiManager_getInstance());
 }
 
 // state's exit
@@ -253,15 +244,9 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-	
-	// reprint info
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
-	
+
 	// render gui values
-	PlatformerLevelState_printEnergy(this);
-	PlatformerLevelState_printCoins(this);
-	PlatformerLevelState_printKey(this);
-	PlatformerLevelState_printLevel(this);
+	GuiManager_printAll(GuiManager_getInstance());
 
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY >> 1);
@@ -422,77 +407,37 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 // handle event
 static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer)
 {
-	Clock_print(Game_getInGameClock(Game_getInstance()), 42, 26, "GUIFont");
+	GuiManager_printClock(GuiManager_getInstance());
 }
 
 // handle event
 static void PlatformerLevelState_onHitTaken(PlatformerLevelState this, Object eventFirer)
 {
-	PlatformerLevelState_printEnergy(this);
+	GuiManager_printEnergy(GuiManager_getInstance());
 }
 
 // handle event
 static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer)
 {
-	PlatformerLevelState_printCoins(this);
+	GuiManager_printCoins(GuiManager_getInstance());
 }
 
 // handle event
 static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer)
 {
-	PlatformerLevelState_printKey(this);
-}
-
-// print hero's energy to gui
-void PlatformerLevelState_printEnergy(PlatformerLevelState this)
-{
-	Printing_text(Printing_getInstance(), "\x7B\x7B\x7B", 4, 26, "GUIFont");
-    u8 i;
-	for(i=0; i < Hero_getEnergy(Hero_getInstance()); i++)
-	{
-    	Printing_text(Printing_getInstance(), "\x60", 4+i, 26, "GUIFont");
-	}
-}
-
-// print number of coins to gui
-void PlatformerLevelState_printCoins(PlatformerLevelState this)
-{
-    u8 coins = Hero_getCoins(Hero_getInstance());
-    u8 printPos = 13;
-	Printing_text(Printing_getInstance(), "000/100", 11, 26, "GUIFont");
-    if(coins >= 10)
-    {
-        printPos--;
-    }
-    if(coins >= 100)
-    {
-        printPos--;
-    }
-    Printing_int(Printing_getInstance(), coins, printPos, 26, "GUIFont");
-}
-
-// print keys icon to gui
-void PlatformerLevelState_printKey(PlatformerLevelState this)
-{
-    if(Hero_hasKey(Hero_getInstance())) {
-	    Printing_text(Printing_getInstance(), "\x7E\x7F", 24, 26, "GUIFont");
-    }
-    else
-    {
-	    Printing_text(Printing_getInstance(), "  ", 24, 26, "GUIFont");
-    }
-}
-
-// print current level to gui
-void PlatformerLevelState_printLevel(PlatformerLevelState this)
-{
-	Printing_text(Printing_getInstance(), (*this->platformerStageDefinition).identifier, 35, 26, "GUIFont");
+	GuiManager_printKey(GuiManager_getInstance());
 }
 
 // set the next state to load
 void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageDefinition* platformerStageDefinition)
 {
 	this->platformerStageDefinition = platformerStageDefinition;
+}
+
+// get current stage's definition
+PlatformerStageDefinition* PlatformerLevelState_getStage(PlatformerLevelState this)
+{
+	return this->platformerStageDefinition;
 }
 
 // start a given level
