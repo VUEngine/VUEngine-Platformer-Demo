@@ -200,6 +200,9 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
             ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
         },
 
+        // char sets to preload
+        (CharSetDefinition**)NULL,
+
         // textures to preload
         (TextureDefinition**)LEVEL_1_SMALL_ROOM_ST_TEXTURES,
 

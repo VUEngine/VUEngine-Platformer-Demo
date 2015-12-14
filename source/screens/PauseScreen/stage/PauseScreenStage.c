@@ -183,6 +183,9 @@ StageROMDef PAUSE_SCREEN_ST =
 		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
     },
     
+    // char sets to preload
+    (CharSetDefinition**)NULL,
+
     // textures to preload
     (TextureDefinition**)PAUSE_SCREEN_ST_TEXTURES,
 

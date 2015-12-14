@@ -31,6 +31,38 @@ extern BYTE CloudsBTiles[];
 extern BYTE CloudsAMap[];
 extern BYTE CloudsBMap[];
 
+CharSetROMDef CLOUDS_A_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    28,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    CloudsATiles,
+};
+
+CharSetROMDef CLOUDS_B_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    27,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    CloudsBTiles,
+};
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS

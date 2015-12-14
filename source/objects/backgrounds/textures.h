@@ -29,6 +29,13 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern CharSetDefinition CLOUDS_A_CH;
+extern CharSetDefinition CLOUDS_B_CH;
+
+extern CharSetDefinition LEVEL_1_COIN_ROOM_FRONT_CH;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_2_CH;
+
+
 extern TextureDefinition MOUND_BG_BACK_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
 extern TextureDefinition MOUND_BG_FRONT_TX;
