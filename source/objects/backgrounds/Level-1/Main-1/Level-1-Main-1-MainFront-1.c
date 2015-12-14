@@ -26,7 +26,7 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainFront_1Tiles[];
+extern BYTE Level_1_Main_1_MainFrontTiles[];
 extern BYTE Level_1_Main_1_MainFront_1Map[];
 
 
@@ -48,7 +48,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_TX =
         __NOT_ANIMATED,
 
         // char definition
-        Level_1_Main_1_MainFront_1Tiles,
+        Level_1_Main_1_MainFrontTiles,
     },
 
     // bgmap definition
