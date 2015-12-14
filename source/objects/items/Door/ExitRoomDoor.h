@@ -30,20 +30,20 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define ExitRoomDoor_METHODS													\
+#define ExitRoomDoor_METHODS																			\
 	Door_METHODS;
 	
 
-#define ExitRoomDoor_SET_VTABLE(ClassName)										\
-	Door_SET_VTABLE(ClassName);													\
+#define ExitRoomDoor_SET_VTABLE(ClassName)																\
+	Door_SET_VTABLE(ClassName);																			\
 	__VIRTUAL_SET(ClassName, ExitRoomDoor, handleMessage);
 
 __CLASS(ExitRoomDoor);
 
-#define ExitRoomDoor_ATTRIBUTES												\
-																				\
-	/* it is derivated from */													\
-	Door_ATTRIBUTES																\
+#define ExitRoomDoor_ATTRIBUTES																			\
+																										\
+	/* it is derivated from */																			\
+	Door_ATTRIBUTES																						\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,5 +55,6 @@ __CLASS_NEW_DECLARE(ExitRoomDoor, AnimatedInGameEntityDefinition* animatedInGame
 void ExitRoomDoor_constructor(ExitRoomDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void ExitRoomDoor_destructor(ExitRoomDoor this);
 bool ExitRoomDoor_handleMessage(ExitRoomDoor this, Telegram telegram);
+
 
 #endif

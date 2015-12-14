@@ -14,51 +14,47 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef LAYER_SWITCH_DOOR_H_
+#define LAYER_SWITCH_DOOR_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Door.h>
 #include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_41x2x1 =
-{
-    {
-        {
-            __TYPE(InanimatedInGameEntity),
-            NULL,
-        },
+#define LayerSwitchDoor_METHODS																			\
+	Door_METHODS;
+	
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+#define LayerSwitchDoor_SET_VTABLE(ClassName)															\
+	Door_SET_VTABLE(ClassName);																			\
+	__VIRTUAL_SET(ClassName, LayerSwitchDoor, handleMessage);
 
-        // in game type
-        kSolid,
+__CLASS(LayerSwitchDoor);
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	41 * 8,
+#define LayerSwitchDoor_ATTRIBUTES																		\
+																										\
+	/* it is derivated from */																			\
+	Door_ATTRIBUTES																						\
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	2 * 8,
 
-    	// depth
-    	1 * 8
-    },
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(40),
+__CLASS_NEW_DECLARE(LayerSwitchDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(1.0f),
+void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+void LayerSwitchDoor_destructor(LayerSwitchDoor this);
+bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram);
 
-    // register shape
-    true,
-};
+
+#endif
