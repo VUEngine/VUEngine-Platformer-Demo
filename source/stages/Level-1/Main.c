@@ -124,7 +124,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{&DOOR_AG,				            {FTOFIX19_13(802),  FTOFIX19_13(400), FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_COIN_ROOM_ST, false},
 
 //	{&HIDE_LAYER_10x7_AG,               {FTOFIX19_13(1072), FTOFIX19_13(196),   FTOFIX19_13(LAYER_0_FRONT)},   NULL, NULL, NULL, false},
-    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(1232), FTOFIX19_13(240), FTOFIX19_13(0)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_MANAGED, NULL, true},
+    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(1232), FTOFIX19_13(240), FTOFIX19_13(0)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_MANAGED, NULL, false},
 //	{&COIN_AG,                          {FTOFIX19_13(992),  FTOFIX19_13(212), FTOFIX19_13(LAYER_0)}, "Coin 011", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(992),  FTOFIX19_13(260), FTOFIX19_13(LAYER_0)}, "Coin 012", NULL, NULL, false},
 //	{&COIN_AG,                          {FTOFIX19_13(992),  FTOFIX19_13(308), FTOFIX19_13(LAYER_0)}, "Coin 013", NULL, NULL, false},
