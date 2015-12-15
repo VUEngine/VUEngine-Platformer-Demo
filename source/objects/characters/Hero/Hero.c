@@ -769,6 +769,8 @@ void Hero_lookBack(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
+	Container_deleteMyself(__GET_CAST(Container, this));
+
     /*
 	// go to dead state
 	StateMachine_swapState(this->stateMachine, __GET_CAST(State, HeroDead_getInstance()));

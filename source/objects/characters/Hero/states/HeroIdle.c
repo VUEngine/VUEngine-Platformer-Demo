@@ -100,14 +100,17 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
     {
 		case kCollision:
 
-			return false;
-			// process the collision
-//			return Hero_processCollision((Hero)owner, telegram);
+			return Hero_processCollision((Hero)owner, telegram);
 			break;
 
 		case kBodyStartedMoving:
 
 			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
+			break;
+
+		case kBodyStopped:
+			
+			return true;
 			break;
 
 		case kKeyPressed:
