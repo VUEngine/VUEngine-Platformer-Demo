@@ -93,7 +93,7 @@ bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
 
 	switch(Telegram_getMessage(telegram))
     {
-		case kCannonBallMove:
+		case kMove:
 
             CannonBall_move(this);
 			break;
@@ -121,6 +121,6 @@ void CannonBall_move(CannonBall this)
         Container_setLocalPosition(__GET_CAST(Container, this), &localPosition);
 
         // send delayed message to self to trigger next movement
-        MessageDispatcher_dispatchMessage(CANNON_BALL_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonBallMove, NULL);
+        MessageDispatcher_dispatchMessage(CANNON_BALL_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
     }
 }

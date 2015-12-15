@@ -76,7 +76,7 @@ void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* inani
 void CogWheel_destructor(CogWheel this)
 {
     // discard pending moving messages
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kCogWheelMove);
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kMove);
 
 	// delete the super object
 	__DESTROY_BASE;
@@ -90,7 +90,7 @@ void CogWheel_ready(CogWheel this)
 	Entity_ready(__GET_CAST(Entity, this));
 	
 	// start moving
-	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCogWheelMove, NULL);
+	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
 	
 	// must make sure that the shape is updated
 	if(this->shape)
@@ -104,7 +104,7 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
-		case kCogWheelMove:
+		case kMove:
 
             CogWheel_rotate(this);
 			break;
@@ -120,7 +120,7 @@ static void CogWheel_rotate(CogWheel this)
 	Container_setLocalRotation(__GET_CAST(Container, this), &this->transform.localRotation);
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCogWheelMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
 }
 
 // resume after pause
@@ -131,7 +131,7 @@ void CogWheel_resume(CogWheel this)
 	Entity_resume(__GET_CAST(Entity, this));
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCogWheelMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
 }
 
 // does it move?

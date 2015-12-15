@@ -19,8 +19,10 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <Clouds.h>
 #include <Image.h>
 #include <MBgmapSprite.h>
+#include <InanimatedInGameEntity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -116,4 +118,40 @@ ImageROMDef MOUND_BG_MIDDLE_IM =
 {
 	__TYPE(Image),
 	(SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
+};
+
+InanimatedInGameEntityROMDef MOUND_BG_MIDDLE_IG =
+{
+    {
+        {
+            __TYPE(Clouds),
+            (SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kNotSolid,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+        // depth
+        0
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.0f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(0.0f),
+
+    // register shape
+    false,
 };

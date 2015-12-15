@@ -26,7 +26,7 @@
 #include <PhysicalWorld.h>
 
 #include <objects.h>
-#include "Lava.h"
+#include "Clouds.h"
 
 #include <PlatformerLevelState.h>
 
@@ -35,14 +35,14 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Lava, InanimatedInGameEntity);
+__CLASS_DEFINITION(Clouds, InanimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Lava_moveUpwards(Lava this);
+void Clouds_move(Clouds this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,11 +50,11 @@ void Lava_moveUpwards(Lava this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(Lava, inanimatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(Clouds, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(Clouds, inanimatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+void Clouds_constructor(Clouds this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
 	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
@@ -63,10 +63,12 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInG
 	{
 		Shape_setCheckForCollisions(__GET_CAST(Shape, this->shape), false);
 	}
+
+	Clouds_startMoving(this);
 }
 
 // class's destructor
-void Lava_destructor(Lava this)
+void Clouds_destructor(Clouds this)
 {
     // discard pending moving messages
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kMove);
@@ -76,12 +78,12 @@ void Lava_destructor(Lava this)
 }
 
 // start moving
-void Lava_startMoving(Lava this)
+void Clouds_startMoving(Clouds this)
 {
-	ASSERT(this, "Lava::startMoving: null this");
+	ASSERT(this, "Clouds::startMoving: null this");
 
 	// start moving
-	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
+	MessageDispatcher_dispatchMessage(CLOUDS_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
 	
 	// must make sure that the shape is updated
 	if(this->shape)
@@ -91,57 +93,57 @@ void Lava_startMoving(Lava this)
 }
 
 // whether it is visible
-bool Lava_isVisible(Lava this, int pad)
+bool Clouds_isVisible(Clouds this, int pad)
 {
-	ASSERT(this, "Lava::isVisible: null this");
+	ASSERT(this, "Clouds::isVisible: null this");
 
-    // always return true so the Lava is never unloaded from the stage when it is not visible on screen
+    // always return true so the Clouds is never unloaded from the stage when it is not visible on screen
 	return true;
 }
 
 // state's on message
-bool Lava_handleMessage(Lava this, Telegram telegram)
+bool Clouds_handleMessage(Clouds this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
 		case kMove:
 
-            Lava_moveUpwards(this);
+            Clouds_move(this);
 			break;
 	}
 	
 	return false;
 }
 
-// move lava up
-void Lava_moveUpwards(Lava this)
+// move clouds to the left
+void Clouds_move(Clouds this)
 {
-    // get local position of lava and substract 1 from y value
+    // get local position of clouds and substract 1 from x value
     VBVec3D offset = *Container_getLocalPosition(__GET_CAST(Container, this));
-    offset.y -= ITOFIX19_13(1);
+    offset.x -= ITOFIX19_13(1);
 
-    // update lava's position
+    // update clouds's position
     Container_setLocalPosition(__GET_CAST(Container, this), &offset);
 
     // send delayed message to self to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
+    MessageDispatcher_dispatchMessage(CLOUDS_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
 }
 
 // resume after pause
-void Lava_resume(Lava this)
+void Clouds_resume(Clouds this)
 {
 	ASSERT(this, "Entity::resume: null this");
 
 	Entity_resume(__GET_CAST(Entity, this));
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
+    MessageDispatcher_dispatchMessage(CLOUDS_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
 }
 
 // does it move?
-bool Lava_moves(Lava this)
+bool Clouds_moves(Clouds this)
 {
-	ASSERT(this, "Lava::moves: null this");
+	ASSERT(this, "Clouds::moves: null this");
 
 	return true;
 }
