@@ -74,15 +74,15 @@ static void Hero_hideDust(Hero this);
 
 extern double fabs (double);
 
-#define HERO_INPUT_FORCE 						ITOFIX19_13(750)
-#define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(400)
+#define HERO_INPUT_FORCE 						ITOFIX19_13(5050)
+#define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(3800)
 
-#define HERO_VELOCITY_X							ITOFIX19_13(60)
-#define HERO_VELOCITY_Y							ITOFIX19_13(-60)
+#define HERO_VELOCITY_X							ITOFIX19_13(120)
+#define HERO_VELOCITY_Y							ITOFIX19_13(-200)
 #define HERO_VELOCITY_Z							ITOFIX19_13(60)
-#define HERO_BOOST_VELOCITY_X					FTOFIX19_13(90)
-#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-14000)
-#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-15500)
+#define HERO_BOOST_VELOCITY_X					FTOFIX19_13(170)
+#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-48000)
+#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-57000)
 
 
 //---------------------------------------------------------------------------------------------------------

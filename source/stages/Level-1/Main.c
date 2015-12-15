@@ -251,13 +251,13 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         // streaming
     	{
     		// delay per cycle
-    		32,
+    		20,
     		// load padding
     		96,
     		// unload padding
     		16,
     		// streaming amplitude
-    		24,
+    		20,
     	},
 
         // gravity

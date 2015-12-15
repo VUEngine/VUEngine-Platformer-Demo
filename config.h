@@ -268,10 +268,8 @@
 
 // physical friction
 #define __NO_FRICTION 				0.0f
-#define __FLOOR_FRICTION 			10.0f
-#define __AIR_FRICTION 				50.0f
 
-#define __GRAVITY					4900
+#define __GRAVITY					9800 * 4
 
 #define __MAX_SHAPES_PER_LEVEL		32
 #define __MAX_BODIES_PER_LEVEL		32
