@@ -31,6 +31,7 @@
 
 extern CharSetDefinition CLOUDS_A_CH;
 extern CharSetDefinition CLOUDS_B_CH;
+extern CharSetDefinition STAR_CH;
 
 extern CharSetDefinition LEVEL_1_COIN_ROOM_FRONT_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_1_CH;

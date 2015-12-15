@@ -19,22 +19,80 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <libgccvb.h>
+#include <AnimatedInGameEntity.h>
+#include <ObjectAnimatedSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_BackTiles[];
-extern BYTE Level_1_Main_1_Back_5Map[];
+extern BYTE BackgroundMoundStarTiles[];
+extern BYTE BackgroundMoundStarMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
+// a function which defines the frames to play
+AnimationFunctionROMDef STAR_STILL_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{1},
+
+	// number of cycles a frame of animation is displayed
+	0,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Still",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef STAR_FLASH_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{0,1,2,1},
+
+	// number of cycles a frame of animation is displayed
+	4 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Flash",
+};
+
+// an animation definition
+AnimationDescriptionROMDef STAR_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&STAR_STILL_ANIM,
+		(AnimationFunction*)&STAR_FLASH_ANIM,
+		NULL,
+	}
+};
+
+TextureROMDef STAR_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -42,57 +100,84 @@ TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        136,
+        4,
 
         // allocation type
-        __NOT_ANIMATED,
+        __ANIMATED_MULTI,
 
         // char definition
-        Level_1_Main_1_BackTiles,
+        BackgroundMoundStarTiles,
     },
 
     // bgmap definition
-    Level_1_Main_1_Back_5Map,
+    BackgroundMoundStarMap,
 
     // cols (max 64)
-    61,
-
-    // rows (max 64)
-    35,
-
-    // number of frames
     1,
 
+    // rows (max 64)
+    1,
+
+    // number of frames
+    3,
+
     // palette number
-    2,
+    0
 };
 
-BgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
+ObjectSpriteROMDef STAR_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&LEVEL_1_MAIN_1_BACK_5_TX,
+	(TextureDefinition*)&STAR_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-	
+	WRLD_OBJ,
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_SPRITES[] =
+ObjectSpriteROMDef* const STAR_SPRITES[] =
 {
-	&LEVEL_1_MAIN_1_BACK_5_IM_SPRITE,
+	&STAR_SPRITE,
 	NULL
 };
 
-ImageROMDef LEVEL_1_MAIN_1_BACK_5_IM =
+AnimatedInGameEntityROMDef STAR_AG =
 {
-	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_BACK_5_IM_SPRITES,
+    {
+        {
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)STAR_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kNotSolid,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// depth
+        1
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&STAR_ANIM,
+
+    // initial animation
+    "Flash",
 };

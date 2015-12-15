@@ -88,6 +88,7 @@ ObjectSpriteROMDef FLOOR_22x12_SPRITE =
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
+
 TextureROMDef FLOOR_22_TOP_TX =
 {
     {

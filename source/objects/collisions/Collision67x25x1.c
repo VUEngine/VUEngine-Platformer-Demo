@@ -27,7 +27,7 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_59x25x1 =
+InanimatedInGameEntityROMDef COLLISION_67x25x1 =
 {
     {
         {
@@ -43,7 +43,7 @@ InanimatedInGameEntityROMDef COLLISION_59x25x1 =
 
     	// width
         // if 0, width and height will be inferred from the texture's size
-    	59 * 8,
+    	67 * 8,
 
     	// height
         // if 0, width and height will be inferred from the texture's size
