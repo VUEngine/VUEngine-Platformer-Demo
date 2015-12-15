@@ -255,7 +255,7 @@ StageROMDef TITLE_SCREEN_ST =
     },
 
     // char sets to preload
-    (CharSetDefinition**)NULL,
+    NULL,
 
     // textures to preload
     (TextureDefinition**)TITLE_SCREEN_ST_TEXTURES,

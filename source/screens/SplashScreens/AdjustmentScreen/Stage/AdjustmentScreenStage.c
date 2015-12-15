@@ -154,6 +154,9 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
 		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
     },
 
+    // char sets to preload
+    NULL,
+
     // textures
     NULL,
 

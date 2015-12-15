@@ -58,6 +58,7 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
 // 												GLOBALS
 //---------------------------------------------------------------------------------------------------------
 
+static Screen _screen = NULL;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,6 +83,10 @@ static void CustomScreenMovementManager_constructor(CustomScreenMovementManager 
 	this->lastShakeOffset.z = 0;
 	
 	this->shakeTimeLeft = 0;
+	
+	_screen = Screen_getInstance();
+	
+	NM_ASSERT(_screen, "CustomScreenMovementManager::constructor: null _screen");
 }
 
 // class's destructor
@@ -93,17 +98,15 @@ void CustomScreenMovementManager_destructor(CustomScreenMovementManager this)
 	__SINGLETON_DESTROY;
 }
 
-// center world's screen in function of focus actor's position
+// center world's _screen in function of focus actor's position
 void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving)
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
-	Screen screen = Screen_getInstance();
-	
 	// if focusInGameEntity is defined
-	if(screen && screen->focusInGameEntity)
+	if(_screen->focusInGameEntity)
 	{
-		Container focusInGameEntityParent = Container_getParent(__GET_CAST(Container, screen->focusInGameEntity));
+		Container focusInGameEntityParent = Container_getParent(__GET_CAST(Container, _screen->focusInGameEntity));
 		
 		if(focusInGameEntityParent)
 		{
@@ -111,67 +114,67 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			Transformation environmentTransform = Container_getEnvironmentTransform(focusInGameEntityParent);
 
 			// apply transformations
-			__VIRTUAL_CALL(void, Container, transform, screen->focusInGameEntity, &environmentTransform);
+			__VIRTUAL_CALL(void, Container, transform, _screen->focusInGameEntity, &environmentTransform);
 	
-			int movementState = __VIRTUAL_CALL(u8, InGameEntity, getMovementState, screen->focusInGameEntity);
+			int movementState = __VIRTUAL_CALL(u8, InGameEntity, getMovementState, _screen->focusInGameEntity);
 	
-			Direction direction = InGameEntity_getDirection(__GET_CAST(InGameEntity, screen->focusInGameEntity));
+			Direction direction = InGameEntity_getDirection(__GET_CAST(InGameEntity, _screen->focusInGameEntity));
 			{
 				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__GET_CAST(Entity, screen->focusInGameEntity));
+				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__GET_CAST(Entity, _screen->focusInGameEntity));
 
-				fix19_13 horizontalPosition = 0xFFFFE000 & screen->position.x;
-				fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT));
+				fix19_13 horizontalPosition = 0xFFFFE000 & _screen->position.x;
+				fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT));
 				if(horizontalPosition + ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) < horizontalTarget)
 				{
-					screen->position.x += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+					_screen->position.x += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
 				}
 				else if(horizontalPosition - ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) > horizontalTarget)
 				{
-					screen->position.x -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+					_screen->position.x -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
 				}
 				else
 				{
-					screen->position.x = focusInGameEntityPosition->x + screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT);
+					_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT);
 				}
 
-				if(0 > screen->position.x)
+				if(0 > _screen->position.x)
 				{
-					screen->position.x = 0;
+					_screen->position.x = 0;
 				}
-				else if(ITOFIX19_13(screen->stageSize.x) < screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+				else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
 				{
-					screen->position.x = ITOFIX19_13(screen->stageSize.x - __SCREEN_WIDTH);
+					_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
 				}
-	
-				screen->lastDisplacement.x = (screen->position.x - screen->lastDisplacement.x);
+
+				_screen->lastDisplacement.x = (_screen->position.x - _screen->lastDisplacement.x);
 			}
 			
 			if(!(movementState & __YAXIS) || !checkIfFocusEntityIsMoving)
 			{
 				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__GET_CAST(Entity, screen->focusInGameEntity));
-				fix19_13 verticalPosition = 0xFFFFE000 & screen->position.y;
-				fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_VERTICAL_DISPLACEMENT));
+				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__GET_CAST(Entity, _screen->focusInGameEntity));
+				fix19_13 verticalPosition = 0xFFFFE000 & _screen->position.y;
+				fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_VERTICAL_DISPLACEMENT));
+
 				if(verticalPosition + ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) < verticalTarget)
 				{
-					screen->position.y += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+					_screen->position.y += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
 				}
 				else if(verticalPosition - ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) > verticalTarget)
 				{
-					screen->position.y -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+					_screen->position.y -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
 				}
 
-				if(0 > screen->position.y)
+				if(0 > _screen->position.y)
 				{
-					screen->position.y = 0;
+					_screen->position.y = 0;
 				}
-				else if(ITOFIX19_13(screen->stageSize.y) < screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
+				else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
 				{
-					screen->position.y = ITOFIX19_13(screen->stageSize.y - __SCREEN_HEIGHT);
+					_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
 				}
-
-				screen->lastDisplacement.y = 0xFFFFE000 & (screen->position.y - screen->lastDisplacement.y);
+				_screen->lastDisplacement.y = 0xFFFFE000 & (_screen->position.y - _screen->lastDisplacement.y);
 			}
 		}
 	}
@@ -232,23 +235,23 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
 	ASSERT(this, "Screen::FXShakeStart: null this");
 
 	// don't follow the focus entity while shaking
-	Screen screen = Screen_getInstance();
-    this->tempFocusInGameEntity = Screen_getFocusInGameEntity(screen);
-	//Screen_unsetFocusInGameEntity(screen);
+	Screen _screen = Screen_getInstance();
+    this->tempFocusInGameEntity = Screen_getFocusInGameEntity(_screen);
+	//Screen_unsetFocusInGameEntity(_screen);
 
     // set desired fx duration
     this->shakeTimeLeft = duration;
 
     this->lastShakeOffset.x = ITOFIX19_13(2);
 
-    // discard pending screen shake messages from previously started shake fx
+    // discard pending _screen shake messages from previously started shake fx
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kShake);
 
     // instantly send shake message to self to start fx
     MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this), kShake, NULL);
 }
 
-// stop shaking the screen
+// stop shaking the _screen
 void CustomScreenMovementManager_FXShakeStop(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::FXShakeStop: null this");
@@ -256,20 +259,18 @@ void CustomScreenMovementManager_FXShakeStop(CustomScreenMovementManager this)
     this->shakeTimeLeft = 0;
 }
 
-// shake the screen
+// shake the _screen
 static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManager this)
 {
 	ASSERT(this, "Screen::onScreenShake: null this");
 
-	Screen screen = Screen_getInstance();
-	
     // stop if no shaking time left
     if(this->shakeTimeLeft == 0)
     {
         // if needed, undo last offset
         if(this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
         {
-            //Screen_setFocusInGameEntity(screen, this->tempFocusInGameEntity);
+            //Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
             this->lastShakeOffset.x = 0;
             GameState_transform(__GET_CAST(GameState, Game_getCurrentState(Game_getInstance())));
         }
@@ -288,9 +289,9 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
     this->lastShakeOffset.x = -this->lastShakeOffset.x;
 
     // move screen a bit
-    Screen_move(screen, this->lastShakeOffset, false);
+    Screen_move(_screen, this->lastShakeOffset, false);
 
-    // apply screen offset
+    // apply _screen offset
     GameState_transform(__GET_CAST(GameState, StateMachine_getCurrentState(Game_getStateMachine(Game_getInstance()))));
 
     // send message for next screen movement
