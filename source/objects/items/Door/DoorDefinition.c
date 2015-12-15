@@ -184,7 +184,7 @@ BgmapSpriteROMDef DOOR_SPRITE =
 	(TextureDefinition*)&DOOR_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 1},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
@@ -341,7 +341,7 @@ BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 	(TextureDefinition*)&DOOR_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 1},
+	{0, 0, FTOFIX19_13(1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,

@@ -79,7 +79,7 @@ ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_IM_SPRITE =
 	(TextureDefinition*)&SMOKE_PARTICLE_SMALL_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 2},
+	{0, 0, FTOFIX19_13(2)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,

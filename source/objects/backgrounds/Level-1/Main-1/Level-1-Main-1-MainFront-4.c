@@ -76,7 +76,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE =
 	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_4_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, -1},
+	{ITOFIX19_13(-37), ITOFIX19_13(-32), FTOFIX19_13(-1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,

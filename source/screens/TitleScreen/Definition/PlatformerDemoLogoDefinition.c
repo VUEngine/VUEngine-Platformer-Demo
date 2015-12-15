@@ -217,7 +217,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 	(TextureDefinition*)&LOGO_OUTLINE_L_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 1},
+	{0, 0, FTOFIX19_13(1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
@@ -235,7 +235,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 	(TextureDefinition*)&LOGO_OUTLINE_R_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 1},
+	{0, 0, FTOFIX19_13(1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,

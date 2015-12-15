@@ -97,7 +97,7 @@ ObjectSpriteROMDef FLOOR_22x5_TOP_SPRITE =
 	(TextureDefinition*)&FLOOR_22_TOP_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, -12, -1},
+	{0, FTOFIX19_13(-12), FTOFIX19_13(-1)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,

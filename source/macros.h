@@ -26,8 +26,8 @@
 
 #define LAYER_INCREMENT		32
 #define LAYER_0 			0
-#define LAYER_0_BACK 		(LAYER_0 - 0.000001f)
-#define LAYER_0_FRONT 		(LAYER_0 + 0.000001f)
+#define LAYER_0_BACK 		(LAYER_0 + 0.001f)
+#define LAYER_0_FRONT 		(LAYER_0 - 0.001f)
 #define LAYER_1 			(LAYER_0 + LAYER_INCREMENT)
 #define LAYER_2 			(LAYER_1 + LAYER_INCREMENT)
 #define LAYER_3 			(LAYER_2 + LAYER_INCREMENT)
