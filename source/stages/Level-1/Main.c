@@ -97,8 +97,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_5_MANAGED[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-//	{&MOUND_BG_BACK_IM,	 	            {FTOFIX19_13(0),    FTOFIX19_13(168), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
-//	{&MOUND_BG_MIDDLE_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(198), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
+	{&MOUND_BG_BACK_IM,	 	            {FTOFIX19_13(0),    FTOFIX19_13(168), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
+	{&MOUND_BG_MIDDLE_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(198), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
 	{&MOUND_BG_FRONT_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(224), FTOFIX19_13(LAYER_3 + 0.000001f)}, NULL, NULL, NULL, true},
 	{&CLOUDS_SB, 			            {FTOFIX19_13(0),    FTOFIX19_13(24),  FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
 
@@ -251,13 +251,13 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         // streaming
     	{
     		// delay per cycle
-    		8,
+    		32,
     		// load padding
-    		64,
+    		80,
     		// unload padding
     		16,
     		// streaming amplitude
-    		16,
+    		24,
     	},
 
         // gravity
