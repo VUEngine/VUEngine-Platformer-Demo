@@ -1161,6 +1161,11 @@ int Hero_doMessage(Hero this, int message)
 
 	switch(message)
 	{
+		case kStartLevel:
+
+			Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+			break;
+		
 		case kResumeLevel:
 		case kSetUpLevel:
 			{
@@ -1175,7 +1180,7 @@ int Hero_doMessage(Hero this, int message)
 	                ITOFIX19_13(-LAYER_0),
 				};
 
-				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+			//	Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
 
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 

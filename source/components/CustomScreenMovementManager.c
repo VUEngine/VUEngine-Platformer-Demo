@@ -28,7 +28,8 @@
 // 											CLASS'S MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define __SCREEN_EASING_DISPLACEMENT		3
+#define __SCREEN_EASING_X_DISPLACEMENT		3
+#define __SCREEN_EASING_Y_DISPLACEMENT		4
 #define __SCREEN_HORIZONTAL_DISPLACEMENT 	30
 #define __SCREEN_VERTICAL_DISPLACEMENT 		(__SCREEN_HEIGHT / 2) + 30
 
@@ -125,13 +126,13 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 
 				fix19_13 horizontalPosition = 0xFFFFE000 & _screen->position.x;
 				fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT));
-				if(horizontalPosition + ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) < horizontalTarget)
+				if(horizontalPosition + ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT) < horizontalTarget)
 				{
-					_screen->position.x += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+					_screen->position.x += ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT);
 				}
-				else if(horizontalPosition - ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) > horizontalTarget)
+				else if(horizontalPosition - ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT) > horizontalTarget)
 				{
-					_screen->position.x -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+					_screen->position.x -= ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT);
 				}
 				else
 				{
@@ -157,13 +158,13 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				fix19_13 verticalPosition = 0xFFFFE000 & _screen->position.y;
 				fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_VERTICAL_DISPLACEMENT));
 
-				if(verticalPosition + ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) < verticalTarget)
+				if(verticalPosition + ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT) < verticalTarget)
 				{
-					_screen->position.y += ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+					_screen->position.y += ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT);
 				}
-				else if(verticalPosition - ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT) > verticalTarget)
+				else if(verticalPosition - ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT) > verticalTarget)
 				{
-					_screen->position.y -= ITOFIX19_13(__SCREEN_EASING_DISPLACEMENT);
+					_screen->position.y -= ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT);
 				}
 
 				if(0 > _screen->position.y)
