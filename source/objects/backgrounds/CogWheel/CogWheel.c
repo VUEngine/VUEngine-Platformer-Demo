@@ -68,7 +68,7 @@ void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* inani
 	
 	if(this->shape)
 	{
-		Shape_setCheckForCollisions(__GET_CAST(Shape, this->shape), false);
+		Shape_setCheckForCollisions(__SAFE_CAST(Shape, this->shape), false);
 	}
 }
 
@@ -87,10 +87,10 @@ void CogWheel_ready(CogWheel this)
 {
 	ASSERT(this, "CogWheel::ready: null this");
 
-	Entity_ready(__GET_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this));
 	
 	// start moving
-	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCogWheelMove, NULL);
+	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 	
 	// must make sure that the shape is updated
 	if(this->shape)
@@ -117,10 +117,10 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 static void CogWheel_rotate(CogWheel this)
 {
 	this->transform.localRotation.z += 1;
-	Container_setLocalRotation(__GET_CAST(Container, this), &this->transform.localRotation);
+	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCogWheelMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
 
 // resume after pause
@@ -128,10 +128,10 @@ void CogWheel_resume(CogWheel this)
 {
 	ASSERT(this, "Entity::resume: null this");
 
-	Entity_resume(__GET_CAST(Entity, this));
+	Entity_resume(__SAFE_CAST(Entity, this));
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCogWheelMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
 
 // does it move?

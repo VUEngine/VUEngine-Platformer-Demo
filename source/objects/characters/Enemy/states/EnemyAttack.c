@@ -59,14 +59,14 @@ void EnemyAttack_destructor(EnemyAttack this)
 void EnemyAttack_enter(EnemyAttack this, void* owner)
 {
 	// do not move
-//	Actor_stopMovement(__GET_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
+//	Actor_stopMovement(__SAFE_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
 }
 
 // state's execute
 void EnemyAttack_execute(EnemyAttack this, void* owner)
 {
     // change state
-    StateMachine_popState(Actor_getStateMachine(__GET_CAST(Actor, owner)));
+    StateMachine_popState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)));
 }
 
 // state's exit

@@ -65,7 +65,7 @@ void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition,
 	SawBlade_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __GET_CAST(SpatialObject, this), sawBladeDefinition->actorDefinition.mass);
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), sawBladeDefinition->actorDefinition.mass);
 
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	
@@ -106,9 +106,9 @@ void SawBlade_ready(SawBlade this)
 {
 	ASSERT(this, "SawBlade::ready: null this");
 
-	Entity_ready(__GET_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this));
 	
-	StateMachine_swapState(this->stateMachine, __GET_CAST(State, SawBladeMoving_getInstance()));
+	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, SawBladeMoving_getInstance()));
 }
 
 // register a shape with the collision detection system
@@ -117,7 +117,7 @@ void SawBlade_registerShape(SawBlade this)
 	ASSERT(this, "SawBlade::registerShape: null this");
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
 	
 	// don't check collisions agains other objects
 	Shape_setCheckForCollisions(this->shape, false);
@@ -143,14 +143,14 @@ void SawBlade_die(SawBlade this)
 	Shape_setActive(this->shape, false);
 
 	// now change state to dead
-	StateMachine_swapState(this->stateMachine, __GET_CAST(State, EnemyDead_getInstance()));
+	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, EnemyDead_getInstance()));
 }
 
 // set  position
 void SawBlade_setLocalPosition(SawBlade this, const VBVec3D* position)
 {
 	// set my position
-	Actor_setLocalPosition(__GET_CAST(Actor, this), position);
+	Actor_setLocalPosition(__SAFE_CAST(Actor, this), position);
 	
 	// save initial position
 	switch(this->axis)
@@ -192,7 +192,7 @@ void SawBlade_move(SawBlade this)
 						if(this->transform.globalPosition.x < this->initialPosition - displacement)
                         {
 							// stop moving
-							Actor_stopMovement(__GET_CAST(Actor, this));
+							Actor_stopMovement(__SAFE_CAST(Actor, this));
 
 							// change direction
 							this->direction.x = __RIGHT;
@@ -213,7 +213,7 @@ void SawBlade_move(SawBlade this)
 						if(this->transform.globalPosition.x > this->initialPosition + displacement)
                         {
 							// stop moving
-							Actor_stopMovement(__GET_CAST(Actor, this));
+							Actor_stopMovement(__SAFE_CAST(Actor, this));
 
 							// change direction
 							this->direction.x = __LEFT;
@@ -241,7 +241,7 @@ void SawBlade_move(SawBlade this)
 						if(this->transform.globalPosition.y < this->initialPosition - displacement)
                         {
 							// stop moving
-							Actor_stopMovement(__GET_CAST(Actor, this));
+							Actor_stopMovement(__SAFE_CAST(Actor, this));
 
 							// change direction
 							this->direction.y = __DOWN;
@@ -262,7 +262,7 @@ void SawBlade_move(SawBlade this)
 						if(this->transform.globalPosition.y > this->initialPosition + displacement)
                         {
 							// stop moving
-							Actor_stopMovement(__GET_CAST(Actor, this));
+							Actor_stopMovement(__SAFE_CAST(Actor, this));
 							
 							// change direction
 							this->direction.y = __UP;

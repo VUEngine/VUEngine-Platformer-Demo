@@ -106,7 +106,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	// if focusInGameEntity is defined
 	if(_screen->focusInGameEntity)
 	{
-		Container focusInGameEntityParent = Container_getParent(__GET_CAST(Container, _screen->focusInGameEntity));
+		Container focusInGameEntityParent = Container_getParent(__SAFE_CAST(Container, _screen->focusInGameEntity));
 		
 		if(focusInGameEntityParent)
 		{
@@ -118,10 +118,10 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	
 			int movementState = __VIRTUAL_CALL(u8, InGameEntity, getMovementState, _screen->focusInGameEntity);
 	
-			Direction direction = InGameEntity_getDirection(__GET_CAST(InGameEntity, _screen->focusInGameEntity));
+			Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
 			{
 				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__GET_CAST(Entity, _screen->focusInGameEntity));
+				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
 
 				fix19_13 horizontalPosition = 0xFFFFE000 & _screen->position.x;
 				fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT));
@@ -153,7 +153,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			if(!(movementState & __YAXIS) || !checkIfFocusEntityIsMoving)
 			{
 				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__GET_CAST(Entity, _screen->focusInGameEntity));
+				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
 				fix19_13 verticalPosition = 0xFFFFE000 & _screen->position.y;
 				fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_VERTICAL_DISPLACEMENT));
 
@@ -193,7 +193,7 @@ void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, i
 
 		default:
 			
-			ScreenMovementManager_startEffect(__GET_CAST(ScreenMovementManager, this), effect, duration);
+			ScreenMovementManager_startEffect(__SAFE_CAST(ScreenMovementManager, this), effect, duration);
 			break;
 	}
 }
@@ -211,7 +211,7 @@ void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, in
 
 		default:
 			
-			ScreenMovementManager_stopEffect(__GET_CAST(ScreenMovementManager, this), effect);
+			ScreenMovementManager_stopEffect(__SAFE_CAST(ScreenMovementManager, this), effect);
 			break;
 	}
 }
@@ -248,7 +248,7 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kShake);
 
     // instantly send shake message to self to start fx
-    MessageDispatcher_dispatchMessage(0, __GET_CAST(Object, this), __GET_CAST(Object, this), kShake, NULL);
+    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
 }
 
 // stop shaking the _screen
@@ -272,7 +272,7 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
         {
             //Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
             this->lastShakeOffset.x = 0;
-            GameState_transform(__GET_CAST(GameState, Game_getCurrentState(Game_getInstance())));
+            GameState_transform(__SAFE_CAST(GameState, Game_getCurrentState(Game_getInstance())));
         }
 
         return;
@@ -292,8 +292,8 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
     Screen_move(_screen, this->lastShakeOffset, false);
 
     // apply _screen offset
-    GameState_transform(__GET_CAST(GameState, StateMachine_getCurrentState(Game_getStateMachine(Game_getInstance()))));
+    GameState_transform(__SAFE_CAST(GameState, StateMachine_getCurrentState(Game_getStateMachine(Game_getInstance()))));
 
     // send message for next screen movement
-	MessageDispatcher_dispatchMessage(nextShakeDelay, __GET_CAST(Object, this), __GET_CAST(Object, this), kShake, NULL);
+	MessageDispatcher_dispatchMessage(nextShakeDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
 }

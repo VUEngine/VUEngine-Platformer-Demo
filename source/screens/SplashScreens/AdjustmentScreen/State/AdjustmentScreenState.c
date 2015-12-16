@@ -61,7 +61,7 @@ static void AdjustmentScreenState_constructor(AdjustmentScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__GET_CAST(SplashScreenState, this), __GET_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
+	SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)& ADJUSTMENT_SCREEN_ST;
 }
 
@@ -81,7 +81,7 @@ static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u16 p
     // TODO: replace this ugly hack with a proper Game_isPaused check or something similar
     if(this->nextState == NULL)
     {
-        Game_unpause(Game_getInstance(), __GET_CAST(GameState, this));
+        Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
     } 
     else 
     {

@@ -70,15 +70,15 @@ void SawBladeIdle_destructor(SawBladeIdle this)
 void SawBladeIdle_enter(SawBladeIdle this, void* owner)
 {
 	// do not move
-    // Actor_stopMovement(__GET_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
+    // Actor_stopMovement(__SAFE_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
 
-	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, owner), "Idle");
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 }
 
 // state's execute
 void SawBladeIdle_execute(SawBladeIdle this, void* owner)
 {
-    StateMachine_swapState(Actor_getStateMachine(__GET_CAST(Actor, owner)), __GET_CAST(State, SawBladeMoving_getInstance()));
+    StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, SawBladeMoving_getInstance()));
 }
 
 // state's exit

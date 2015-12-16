@@ -40,6 +40,7 @@ enum PlatformerTypes
 	kSolid,
 	kTopSolid,
 	kNotSolid,
+	kCameraTarget,
 	kHit,
 	kHideLayer,
 	kFloor,

@@ -62,7 +62,7 @@ void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* anima
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
 }
 
 // class's destructor

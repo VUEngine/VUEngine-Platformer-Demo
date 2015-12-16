@@ -31,6 +31,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntityDefinition HERO_AC;
+extern EntityDefinition CAMERA_BOUNDING_BOX_IG;
 extern EntityDefinition DUMMY_HERO_AC;
 extern EntityDefinition SAW_BLADE_V3_AC;
 extern EntityDefinition SAW_BLADE_H3_AC;

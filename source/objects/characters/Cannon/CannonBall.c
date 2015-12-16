@@ -62,7 +62,7 @@ void CannonBall_constructor(CannonBall this, InanimatedInGameEntityDefinition* i
 	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
-    this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+    this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
 
 	// must make sure that the shape is updated
 	CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
@@ -82,7 +82,7 @@ void CannonBall_removeFromStage(CannonBall this)
 {
 	ASSERT(this, "CannonBall::removeFromStage: null this");
 
-	Container_deleteMyself(__GET_CAST(Container, this));
+	Container_deleteMyself(__SAFE_CAST(Container, this));
     Shape_setActive(this->shape, false);
 }
 
@@ -106,7 +106,7 @@ bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
 void CannonBall_move(CannonBall this)
 {
     // get local position of cannon ball
-    VBVec3D localPosition = *Container_getLocalPosition(__GET_CAST(Container, this));
+    VBVec3D localPosition = *Container_getLocalPosition(__SAFE_CAST(Container, this));
 
     if (FIX19_13TOI(localPosition.z) < CANNON_BALL_MINIMUM_Z_POSITION)
     {
@@ -118,9 +118,9 @@ void CannonBall_move(CannonBall this)
         localPosition.z -= ITOFIX19_13(CANNON_BALL_Z_OFFSET_PER_CYCLE);
 
         // update cannon ball's position
-        Container_setLocalPosition(__GET_CAST(Container, this), &localPosition);
+        __VIRTUAL_CALL(void, Container, setLocalPosition, __SAFE_CAST(Container, this), &localPosition);
 
         // send delayed message to self to trigger next movement
-        MessageDispatcher_dispatchMessage(CANNON_BALL_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonBallMove, NULL);
+        MessageDispatcher_dispatchMessage(CANNON_BALL_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallMove, NULL);
     }
 }

@@ -60,7 +60,7 @@ static void VBJaEngineScreenState_constructor(VBJaEngineScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__GET_CAST(SplashScreenState, this), __GET_CAST(GameState, LangSelectScreenState_getInstance()));
+	SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, LangSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&VBJAENGINE_SCREEN_ST;
 }
 
@@ -88,5 +88,5 @@ static void VBJaEngineScreenState_execute(VBJaEngineScreenState this, void* owne
     Screen_move(Screen_getInstance(), translation, false);
 
  	// call base
-    SplashScreenState_execute(__GET_CAST(SplashScreenState, this), owner);
+    SplashScreenState_execute(__SAFE_CAST(SplashScreenState, this), owner);
 }

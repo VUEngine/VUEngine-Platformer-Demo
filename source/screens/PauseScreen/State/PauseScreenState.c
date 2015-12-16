@@ -76,10 +76,10 @@ static void PauseScreenState_destructor(PauseScreenState this)
 static void PauseScreenState_enter(PauseScreenState this, void* owner)
 {
 	// load stage
-	GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, NULL, true);
+	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, NULL, true);
 
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
     Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_PAUSE), 21, 16, "GUIFont");
 
@@ -114,7 +114,7 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 				// check direction
 				if(K_STA & pressedKey)
 				{
-					Game_unpause(Game_getInstance(), __GET_CAST(GameState, this));
+					Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
 				}
 			}
 			return true;

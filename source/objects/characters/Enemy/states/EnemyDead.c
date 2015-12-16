@@ -66,18 +66,18 @@ void EnemyDead_destructor(EnemyDead this)
 // state's enter
 void EnemyDead_enter(EnemyDead this, void* owner)
 {
-	Direction direction = InGameEntity_getDirection(__GET_CAST(InGameEntity, owner));
+	Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, owner));
 	direction.z = __NEAR;
-	InGameEntity_setDirection(__GET_CAST(InGameEntity, owner), direction);
+	InGameEntity_setDirection(__SAFE_CAST(InGameEntity, owner), direction);
 	
 	// stop movement
-/*	Actor_stopMovement(__GET_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
+/*	Actor_stopMovement(__SAFE_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
 	
 	// jump
-	Actor_jump(__GET_CAST(Actor, owner), DEAD_VELOCITY_Y, DEAD_ACCELERATION_Y);
+	Actor_jump(__SAFE_CAST(Actor, owner), DEAD_VELOCITY_Y, DEAD_ACCELERATION_Y);
 	
 	// move over z axis
-	Actor_startMovement(__GET_CAST(Actor, owner), __ZAXIS, ~(__ACCELMOVEX | __RETARMOVEX),
+	Actor_startMovement(__SAFE_CAST(Actor, owner), __ZAXIS, ~(__ACCELMOVEX | __RETARMOVEX),
 			DEAD_VELOCITY_Z, DEAD_ACCELERATION_Z);
 	*/
 }
@@ -86,7 +86,7 @@ void EnemyDead_enter(EnemyDead this, void* owner)
 void EnemyDead_execute(EnemyDead this, void* owner)
 {
 	// update movement
-//	Actor_move(__GET_CAST(Actor, owner));
+//	Actor_move(__SAFE_CAST(Actor, owner));
 }
 
 // state's exit

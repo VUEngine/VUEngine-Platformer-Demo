@@ -81,7 +81,7 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 // state's execute
 void HeroMoving_execute(HeroMoving this, void* owner)
 {
-	Hero_synchronizeDirectionWithVelocity(__GET_CAST(Hero, owner));
+	Hero_synchronizeDirectionWithVelocity(__SAFE_CAST(Hero, owner));
 //	Body_printPhysics(Actor_getBody(owner), 1, 7);
 }
 
@@ -134,7 +134,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 				if((K_LL | K_LR) & releasedKey)
                 {
-					Velocity velocity = Body_getVelocity(Actor_getBody(__GET_CAST(Actor, owner)));
+					Velocity velocity = Body_getVelocity(Actor_getBody(__SAFE_CAST(Actor, owner)));
 					
 					if(0 < abs(velocity.x))
                     {
@@ -142,7 +142,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					}
 					else
                     {
-						StateMachine_swapState(Actor_getStateMachine(__GET_CAST(Actor, owner)), __GET_CAST(State, HeroIdle_getInstance()));
+						StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, HeroIdle_getInstance()));
 					}
 				}
 				else if(K_B & releasedKey)
@@ -153,7 +153,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				/*
 				if((K_LU | K_LD) & releasedKey)
                 {
-					Velocity velocity = Body_getVelocity(Actor_getBody(__GET_CAST(Actor, owner)));
+					Velocity velocity = Body_getVelocity(Actor_getBody(__SAFE_CAST(Actor, owner)));
 					
 					if(0 < abs(velocity.z))
                     {
@@ -161,7 +161,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					}
 					else
                     {
-						StateMachine_swapState(Actor_getStateMachine(__GET_CAST(Actor, owner)), __GET_CAST(State, HeroIdle_getInstance()));
+						StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, HeroIdle_getInstance()));
 					}
 				}
 				*/
@@ -215,7 +215,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			
 			this->mustCheckDirection = true;
 			this->bouncing = true;
-			MessageDispatcher_dispatchMessage(100, __GET_CAST(Object, this), __GET_CAST(Object, owner), kDisallowJumpOnBouncing, NULL);
+			MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kDisallowJumpOnBouncing, NULL);
 			return true;
 			break;
 			

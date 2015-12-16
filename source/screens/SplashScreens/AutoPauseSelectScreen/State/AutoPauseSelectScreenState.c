@@ -67,7 +67,7 @@ static void AutoPauseSelectScreenState_constructor(AutoPauseSelectScreenState th
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__GET_CAST(SplashScreenState, this), __GET_CAST(GameState, VBJaEngineScreenState_getInstance()));
+	SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, VBJaEngineScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
     this->selection = true;
 }
@@ -156,7 +156,7 @@ void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u1
 	}
 	else if ((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-		Game_setAutomaticPauseState(Game_getInstance(), this->selection ? __GET_CAST(GameState, AutoPauseScreenState_getInstance()): NULL);
+		Game_setAutomaticPauseState(Game_getInstance(), this->selection ? __SAFE_CAST(GameState, AutoPauseScreenState_getInstance()): NULL);
 	    Game_changeState(Game_getInstance(), this->nextState);
 	}
 }

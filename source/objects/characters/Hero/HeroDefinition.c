@@ -21,6 +21,8 @@
 
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
+#include <TriggerEntity.h>
+
 #include "Hero.h"
 
 
@@ -423,4 +425,38 @@ ActorROMDef HERO_AC =
 
 	// mass
 	ITOFIX19_13(10)
+};
+
+
+TriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
+{
+    {
+        {
+            __TYPE(TriggerEntity),
+            NULL,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kCameraTarget,
+
+    	// width
+        // if 0, width and height will be inferred from the texture's size
+    	6 * 8,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	8 * 8,
+
+    	// depth
+    	4 * 8
+    },
+
+    // shape type
+    kInverseCuboid,
+    
+    // moves 
+    true
 };

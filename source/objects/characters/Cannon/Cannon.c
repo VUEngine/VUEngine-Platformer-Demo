@@ -65,7 +65,7 @@ void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInG
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
-    //this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+    //this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
 }
 
 // class's destructor
@@ -79,10 +79,10 @@ void Cannon_ready(Cannon this)
 {
 	ASSERT(this, "Cannon::ready: null this");
 
-	Entity_ready(__GET_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this));
 	
     // send delayed message to self to trigger first shot
-    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonShoot, NULL);
+    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // state's on message
@@ -105,7 +105,7 @@ void Cannon_suspend(Cannon this)
 {
 	ASSERT(this, "Cannon::suspend: null this");
 
-	Entity_suspend(__GET_CAST(Entity, this));
+	Entity_suspend(__SAFE_CAST(Entity, this));
 }
 
 // start shooting a cannon ball
@@ -114,10 +114,10 @@ void Cannon_shoot(Cannon this)
 	ASSERT(this, "Cannon::shoot: null this");
 
     // start shooting sequence
-	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Shoot");
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");
 
     // send delayed message to self to trigger next shot
-    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kCannonShoot, NULL);
+    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // spawn a cannon ball
@@ -133,5 +133,5 @@ void Cannon_spawnCannonBall(Cannon this)
     SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
     // add cannon ball entity to stage
-	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_IG, NULL, Container_getLocalPosition(__GET_CAST(Container, this)), NULL, false);
+	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_IG, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, false);
 }

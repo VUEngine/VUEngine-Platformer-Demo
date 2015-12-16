@@ -90,23 +90,23 @@ void KeyManager_registerKey(KeyManager this, Key key)
 		
 		if(firstKey)
 		{
-			VirtualList firstKeySprites = Entity_getSprites(__GET_CAST(Entity, firstKey));
+			VirtualList firstKeySprites = Entity_getSprites(__SAFE_CAST(Entity, firstKey));
 			
-			Sprite firstKeySprite = __GET_CAST(Sprite, VirtualList_front(firstKeySprites));
+			Sprite firstKeySprite = __SAFE_CAST(Sprite, VirtualList_front(firstKeySprites));
 	
 			if(firstKeySprite)
 			{			
 				s8 currentFrame = Sprite_getActualFrame(firstKeySprite);
 				s8 frameDelay = Sprite_getFrameDelay(firstKeySprite);
 				
-				VirtualList keySprites = Entity_getSprites(__GET_CAST(Entity, key));
+				VirtualList keySprites = Entity_getSprites(__SAFE_CAST(Entity, key));
 				
 				VirtualNode node = VirtualList_begin(keySprites);
 				
 				
 				for(; node; node = VirtualNode_getNext(node))
 				{
-					Sprite keySprite = __GET_CAST(Sprite, VirtualNode_getData(node));
+					Sprite keySprite = __SAFE_CAST(Sprite, VirtualNode_getData(node));
 					Sprite_setActualFrame(keySprite, currentFrame);
 					Sprite_setFrameDelay(keySprite, frameDelay);
 	 			}

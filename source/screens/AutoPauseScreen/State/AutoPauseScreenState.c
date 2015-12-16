@@ -78,7 +78,7 @@ static void AutoPauseScreenState_destructor(AutoPauseScreenState this)
 static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner)
 {
 	// load stage
-	GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&EMPTY_ST, NULL, true);
+	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&EMPTY_ST, NULL, true);
 
     // print text
     char* strAutomaticPause = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
@@ -114,7 +114,7 @@ static bool AutoPauseScreenState_handleMessage(AutoPauseScreenState this, void* 
 		
 				if(K_STA & pressedKey)
 				{
-					Game_unpause(Game_getInstance(), __GET_CAST(GameState, this));
+					Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
 				}
 			}
 			return true;

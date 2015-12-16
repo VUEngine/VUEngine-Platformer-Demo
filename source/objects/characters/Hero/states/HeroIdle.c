@@ -73,11 +73,12 @@ void HeroIdle_destructor(HeroIdle this)
 void HeroIdle_enter(HeroIdle this, void* owner)
 {
 	// make sure it's not moving anymore
-	Actor_stopMovement(__GET_CAST(Actor, owner));
+	Actor_stopMovement(__SAFE_CAST(Actor, owner));
 
     // show animation
-    AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, owner), "Idle");
+    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 	
+    Hero_setCameraTrigger(__SAFE_CAST(Hero, owner));
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif

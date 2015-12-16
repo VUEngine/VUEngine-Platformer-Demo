@@ -79,8 +79,8 @@ void Hint_resume(Hint this)
 {
 	ASSERT(this, "Hint::resume: null this");
 
-	Entity_resume(__GET_CAST(Entity, this));
-	Entity_hide(__GET_CAST(Entity, this));
+	Entity_resume(__SAFE_CAST(Entity, this));
+	Entity_hide(__SAFE_CAST(Entity, this));
 }
 
 // state's on message
@@ -104,23 +104,23 @@ void Hint_open(Hint this)
 {
 	ASSERT(this, "Hint::open: null this");
 
-	Entity_show(__GET_CAST(Entity, this));
+	Entity_show(__SAFE_CAST(Entity, this));
 	
-    AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Open");
+    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
 }
 
 void Hint_close(Hint this)
 {
 	ASSERT(this, "Hint::close: null this");
 
-	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), "Close");
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Close");
 }
 
 void Hint_onCloseDone(Hint this, Object eventFirer)
 {
 	ASSERT(this, "Hint::onCloseDone: null this");
 
-	Entity_hide(__GET_CAST(Entity, this));
+	Entity_hide(__SAFE_CAST(Entity, this));
 }
 
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
@@ -149,5 +149,5 @@ void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
             break;
     }
 
-	AnimatedInGameEntity_playAnimation(__GET_CAST(AnimatedInGameEntity, this), LanguageAnimName);
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), LanguageAnimName);
 }

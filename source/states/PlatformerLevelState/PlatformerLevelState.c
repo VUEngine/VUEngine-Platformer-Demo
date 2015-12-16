@@ -89,7 +89,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 	this->isExitingRoom = false;
 	
 	// set the custom movement screen manager now
-	Screen_setScreenMovementManager(Screen_getInstance(), __GET_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
+	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 }
 
 // class's destructor
@@ -138,9 +138,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 		Screen_setPosition(Screen_getInstance(), screenPosition);
 	    
 		// load stage
-		GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
+		GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
 
-		Container hero = Container_getChildByName(__GET_CAST(Container, this->stage), HERO_NAME, true);
+		Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
 
 		if(!hero)
 		{
@@ -158,21 +158,21 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 				false
 			};
 
-			hero = __GET_CAST(Container, Stage_addPositionedEntity(this->stage, &positionedEntity, true));
+			hero = __SAFE_CAST(Container, Stage_addPositionedEntity(this->stage, &positionedEntity, true));
 			
 			// make sure that the streaming doesn't load the hero again
 			Stage_registerEntityId(this->stage, Container_getId(hero), &HERO_AC);
 		}
 		else
 		{
-			Actor_setPosition(__GET_CAST(Actor, hero), &this->heroLastPosition);
+			Actor_setPosition(__SAFE_CAST(Actor, hero), &this->heroLastPosition);
 		}
 		
 		this->isExitingRoom = false;
 	}
 	else
 	{
-		GameState_loadStage(__GET_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, true);
+		GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, true);
 	}
 	
 	__DELETE(entityNamesToIgnore);
@@ -181,7 +181,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_setModeToPaused(this);
 	
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1000, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
 	// reset clock
 	Clock_reset(Game_getInGameClock(Game_getInstance()));
@@ -196,16 +196,16 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 // state's exit
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
-	Object_removeEventListener(__GET_CAST(Object, Game_getInGameClock(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
-	Object_removeEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onHitTaken, EVENT_HIT_TAKEN);
-	Object_removeEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
-	Object_removeEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_removeEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onHitTaken, EVENT_HIT_TAKEN);
+	Object_removeEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
+	Object_removeEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
 	// make a fade in
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 	
 	// call base
-	GameState_exit(__GET_CAST(GameState, this), owner);
+	GameState_exit(__SAFE_CAST(GameState, this), owner);
 }
 
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
@@ -225,12 +225,12 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
-	GameState_suspend(__GET_CAST(GameState, this), owner);
+	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
 
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 {
-	GameState_resume(__GET_CAST(GameState, this), owner);
+	GameState_resume(__SAFE_CAST(GameState, this), owner);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
@@ -252,7 +252,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY >> 1);
 	
 	// tell any interested entity
-	GameState_propagateMessage(__GET_CAST(GameState, this), kResumeLevel);
+	GameState_propagateMessage(__SAFE_CAST(GameState, this), kResumeLevel);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -299,13 +299,13 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	            }
 	
 				// tell any interested entity
-				GameState_propagateMessage(__GET_CAST(GameState, this), kSetUpLevel);
+				GameState_propagateMessage(__SAFE_CAST(GameState, this), kSetUpLevel);
 	
 				// account for any entity's tranform modification during their initialization
-				GameState_transform(__GET_CAST(GameState, this));
+				GameState_transform(__SAFE_CAST(GameState, this));
 				
 				// show level after 0.5 second
-				MessageDispatcher_dispatchMessage(500, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kStartLevel, NULL);
+				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kStartLevel, NULL);
 	
 				this->mode = kShowingUp;
 			}
@@ -317,22 +317,22 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 			// erase message in 1 second
-			MessageDispatcher_dispatchMessage(2000, __GET_CAST(Object, this), __GET_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
+			MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
 			
 			// reset clock and restart
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
 			//Clock_start(Game_getInGameClock(Game_getInstance()));
 			
 			// want to know when the second has changed
-			Object_addEventListener(__GET_CAST(Object, Game_getInGameClock(Game_getInstance())), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
+			Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
 			
 			// add events
-			Object_addEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onHitTaken, EVENT_HIT_TAKEN);
-			Object_addEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
-			Object_addEventListener(__GET_CAST(Object, this), __GET_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
+			Object_addEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onHitTaken, EVENT_HIT_TAKEN);
+			Object_addEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
+			Object_addEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
 			// tell any interested entity
-			GameState_propagateMessage(__GET_CAST(GameState, this), kStartLevel);
+			GameState_propagateMessage(__SAFE_CAST(GameState, this), kStartLevel);
 
 			// restart clock
 			// pause physical simulations
@@ -359,19 +359,19 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				{
     				// adjustment screen
 	                PlatformerLevelState_setModeToPaused(this);
-					SplashScreenState_setNextstate(__GET_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
-					Game_pause(Game_getInstance(), __GET_CAST(GameState, AdjustmentScreenState_getInstance()));
+					SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
+					Game_pause(Game_getInstance(), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
 					break;
             	}
 				else if(K_STA & pressedKey)
                 {
                     // pause screen
 					PlatformerLevelState_setModeToPaused(this);
-                    Game_pause(Game_getInstance(), __GET_CAST(GameState, PauseScreenState_getInstance()));
+                    Game_pause(Game_getInstance(), __SAFE_CAST(GameState, PauseScreenState_getInstance()));
                     break;
                 }
 				
-				Object_fireEvent(__GET_CAST(Object, this), EVENT_KEY_PRESSED);
+				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_PRESSED);
 			}
 			return true;
 			break;
@@ -380,7 +380,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			if(kPlaying == this->mode)
             {
-				Object_fireEvent(__GET_CAST(Object, this), EVENT_KEY_RELEASED);
+				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_RELEASED);
 			}
 			return true;
 			break;
@@ -389,14 +389,14 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			
 			if(kPlaying == this->mode)
             {
-				Object_fireEvent(__GET_CAST(Object, this), EVENT_KEY_HOLD);
+				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_HOLD);
 			}
 			return true;
 			break;
 
 		case kHeroDied:	
 			
-			Game_changeState(Game_getInstance(), __GET_CAST(GameState, TitleScreenState_getInstance()));
+			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
 			return true;
 			break;
 	}
@@ -445,7 +445,7 @@ void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDe
 {
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
 	this->platformerStageDefinition = platformerStageDefinition;
-	Game_changeState(Game_getInstance(), __GET_CAST(GameState, this));
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }
 
 // start a given room
@@ -454,18 +454,18 @@ void PlatformerLevelState_enterRoom(PlatformerStageDefinition* platformerStageDe
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
 
 	// save hero's actual position
-	Hero hero = __GET_CAST(Hero, Container_getChildByName(__GET_CAST(Container, this->stage), HERO_NAME, false));
+	Hero hero = __SAFE_CAST(Hero, Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, false));
 	ASSERT(hero, "PlatformerLevelState::enterRoom: hero not found");
 
 	if(hero)
 	{
-		this->heroLastPosition = *Container_getLocalPosition(__GET_CAST(Container, hero));
+		this->heroLastPosition = *Container_getLocalPosition(__SAFE_CAST(Container, hero));
 		this->isExitingRoom = false;
 	}
 
 	this->platformerStageDefinition = platformerStageDefinition;
 	
-	Game_changeState(Game_getInstance(), __GET_CAST(GameState, this));
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }
 
 // exit a given room
@@ -474,7 +474,7 @@ void PlatformerLevelState_exitRoom(PlatformerStageDefinition* platformerStageDef
 	PlatformerLevelState this = PlatformerLevelState_getInstance();
 	this->platformerStageDefinition = platformerStageDefinition;
 	this->isExitingRoom = true;
-	Game_changeState(Game_getInstance(), __GET_CAST(GameState, this));
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }
 
 // set paused mode

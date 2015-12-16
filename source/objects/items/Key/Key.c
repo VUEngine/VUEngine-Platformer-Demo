@@ -68,7 +68,7 @@ void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __GET_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
 }
 
 // class's destructor
@@ -87,7 +87,7 @@ void Key_ready(Key this)
 {
 	ASSERT(this, "Key::initialize: null this");
 
-	Entity_ready(__GET_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this));
 
 	KeyManager_registerKey(KeyManager_getInstance(), this);
 }
@@ -112,5 +112,5 @@ void Key_removeFromStage(Key this)
 {
 	ASSERT(this, "Key::removeFromStage: null this");
 
-	Container_deleteMyself(__GET_CAST(Container, this));
+	Container_deleteMyself(__SAFE_CAST(Container, this));
 }

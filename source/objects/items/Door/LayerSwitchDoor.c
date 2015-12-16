@@ -79,14 +79,14 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 
 			if(this->destination)
 			{
-                LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container_getChildByName(__GET_CAST(Container, Game_getStage(Game_getInstance())), (char *)this->destination, true);
-                VBVec3D destinationDoorPosition = *Container_getGlobalPosition(__GET_CAST(Container, destinationDoor));
+                LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), (char *)this->destination, true);
+                VBVec3D destinationDoorPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
                 destinationDoorPosition.z -= FTOFIX19_13(0.001f);
-                Actor_setLocalPosition(__GET_CAST(Actor, Hero_getInstance()), &destinationDoorPosition);
+                Actor_setLocalPosition(__SAFE_CAST(Actor, Hero_getInstance()), &destinationDoorPosition);
 				return true;
 			}
 			break;
 	}
 	
-	return Door_handleMessage(__GET_CAST(Door, this), telegram);
+	return Door_handleMessage(__SAFE_CAST(Door, this), telegram);
 }

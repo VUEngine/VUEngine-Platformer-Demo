@@ -85,5 +85,5 @@ bool ExitRoomDoor_handleMessage(ExitRoomDoor this, Telegram telegram)
 			break;
 	}
 	
-	return Door_handleMessage(__GET_CAST(Door, this), telegram);
+	return Door_handleMessage(__SAFE_CAST(Door, this), telegram);
 }
