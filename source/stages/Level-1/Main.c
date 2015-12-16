@@ -122,7 +122,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{&COIN_AG,                          {FTOFIX19_13(320),  FTOFIX19_13(248), FTOFIX19_13(LAYER_0)}, "Coin 004", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(336),  FTOFIX19_13(248), FTOFIX19_13(LAYER_0)}, "Coin 005", NULL, NULL, false},
 	{&SAW_BLADE_H8_AC,                  {FTOFIX19_13(338),  FTOFIX19_13(260), FTOFIX19_13(LAYER_0_BACK)}, NULL, NULL, NULL, false},
-//	{&BUSH_AG,                          {FTOFIX19_13(472),  FTOFIX19_13(256), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&BUSH_AG,                          {FTOFIX19_13(472),  FTOFIX19_13(256), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
 
 	{&LEVEL_1_MAIN_1_MAIN_2_IM, 	    {FTOFIX19_13(768),  FTOFIX19_13(352), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_IM_COLLISIONS, NULL, false},

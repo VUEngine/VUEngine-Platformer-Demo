@@ -74,6 +74,9 @@ __CLASS(Hero);
 	/* feet dust */																\
 	ParticleSystem feetDust;													\
 																				\
+	/* bounding box to control camera's movement */								\
+	Entity cameraBoudingBox;													\
+																				\
 	/* used to know if gap must be changed */									\
 	Direction inputDirection;													\
 																				\

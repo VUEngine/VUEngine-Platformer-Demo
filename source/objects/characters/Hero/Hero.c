@@ -67,8 +67,6 @@ static void Hero_slide(Hero this);
 static void Hero_showDust(Hero this, bool autoHideDust);
 static void Hero_hideDust(Hero this);
 
-static Entity cameraBoudingBox = NULL;
-
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
@@ -123,6 +121,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
+	this->cameraBoudingBox = NULL;
 
 	Hero_setInvincible(this, false);
 
@@ -376,19 +375,19 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 
 void Hero_setCameraTrigger(Hero this)
 {
-	if(cameraBoudingBox)
+	if(this->cameraBoudingBox)
 	{
 		Container stage = __SAFE_CAST(Container, GameState_getStage(Game_getCurrentState(Game_getInstance())));
 
-		Container_addChild(stage, __SAFE_CAST(Container, cameraBoudingBox));
-		__VIRTUAL_CALL(void, Container, setLocalPosition, cameraBoudingBox, Container_getGlobalPosition(__SAFE_CAST(Container, cameraBoudingBox)));
+		Container_addChild(stage, __SAFE_CAST(Container, this->cameraBoudingBox));
+		__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoudingBox, Container_getGlobalPosition(__SAFE_CAST(Container, this->cameraBoudingBox)));
 	
 		// transform focus entity
 		Transformation environmentTransform = Container_getEnvironmentTransform(stage);
-		__VIRTUAL_CALL(void, Container, transform, cameraBoudingBox, &environmentTransform);
+		__VIRTUAL_CALL(void, Container, transform, this->cameraBoudingBox, &environmentTransform);
 		
 		Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
-		CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, cameraBoudingBox)));
+		CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)));
 
 	}
 }
@@ -968,9 +967,9 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kCameraTarget:
 			
 				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
-				Shape_setActive(Entity_getShape(__SAFE_CAST(Entity, cameraBoudingBox)), false);
+				Shape_setActive(Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)), false);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-				Container_addChild(__SAFE_CAST(Container, this), __SAFE_CAST(Container, cameraBoudingBox));
+				Container_addChild(__SAFE_CAST(Container, this), __SAFE_CAST(Container, this->cameraBoudingBox));
 				
 				{
 					VBVec3D position =
@@ -980,7 +979,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 		                0,
 					};
 	
-					__VIRTUAL_CALL(void, Container, setLocalPosition, cameraBoudingBox, &position);
+					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoudingBox, &position);
 				}
 				return true;
 				
@@ -1169,8 +1168,8 @@ int Hero_doMessage(Hero this, int message)
 		case kResumeLevel:
 		case kSetUpLevel:
 			{
-				cameraBoudingBox = Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, true);
-				CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, cameraBoudingBox)));
+				this->cameraBoudingBox = Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, true);
+				CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)));
 
 				// set focus on the hero
 				VBVec3D screenDisplacement =
