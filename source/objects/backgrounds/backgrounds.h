@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include "Lava/Lava.h"
+#include "MoundBG/Clouds.h"
 #include <Entity.h>
 #include "textures.h"
 
@@ -35,10 +36,12 @@ extern EntityDefinition TEST_BG;
 
 extern EntityDefinition MOUND_BG_BACK_IM;
 extern EntityDefinition MOUND_BG_MIDDLE_IM;
+extern EntityDefinition MOUND_BG_MIDDLE_IG;
 extern EntityDefinition MOUND_BG_FRONT_IM;
 extern EntityDefinition MOUND_BG_CASTLE_IM;
 extern EntityDefinition MOUND_BG_CASTLE_FLAG_AG;
 extern EntityDefinition CLOUDS_SB;
+extern EntityDefinition STAR_AG;
 
 extern EntityDefinition LEVEL_1_COIN_ROOM_FRONT_IM;
 extern EntityDefinition LEVEL_1_COIN_ROOM_FRONT_SHADOWS_IM;

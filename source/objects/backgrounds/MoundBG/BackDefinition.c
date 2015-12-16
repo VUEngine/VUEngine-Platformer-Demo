@@ -27,8 +27,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BackgroundMoundMiddleTiles[];
-extern BYTE BackgroundMoundMiddleMap[];
+extern BYTE BackgroundMoundBackTiles[];
+extern BYTE BackgroundMoundBackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ extern BYTE BackgroundMoundMiddleMap[];
 //---------------------------------------------------------------------------------------------------------
 
 
-TextureROMDef MOUND_BG_MIDDLE_TX =
+TextureROMDef MOUND_BG_BACK_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -44,23 +44,23 @@ TextureROMDef MOUND_BG_MIDDLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        87,
+        73,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        BackgroundMoundMiddleTiles,
+        BackgroundMoundBackTiles,
     },
 
     // bgmap definition
-    BackgroundMoundMiddleMap,
+    BackgroundMoundBackMap,
 
     // cols (max 64)
     64,
 
     // rows (max 64)
-    16,
+    25,
 
     // number of frames
     1,
@@ -69,13 +69,13 @@ TextureROMDef MOUND_BG_MIDDLE_TX =
     0,
 };
 
-TextureROMDef* MOUND_BG_MIDDLE_SB_TEXTURES[] = 
+TextureROMDef* MOUND_BG_BACK_SB_TEXTURES[] = 
 {
-	(TextureDefinition*)&MOUND_BG_MIDDLE_TX,
+	(TextureDefinition*)&MOUND_BG_BACK_TX,
 	NULL
 };
 
-MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
+MBgmapSpriteROMDef MOUND_BG_BACK_SB_SPRITE =
 {
 	{
 		// sprite's type
@@ -94,7 +94,7 @@ MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
 		WRLD_ON,
 	},
 	
-	(TextureDefinition**)MOUND_BG_MIDDLE_SB_TEXTURES,
+	(TextureDefinition**)MOUND_BG_BACK_SB_TEXTURES,
 	
 	// SCX/SCY
 	WRLD_1x1,
@@ -106,14 +106,14 @@ MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
 	false
 };
 
-BgmapSpriteROMDef* const MOUND_BG_MIDDLE_SB_SPRITES[] =
+BgmapSpriteROMDef* const MOUND_BG_BACK_SB_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&MOUND_BG_MIDDLE_SB_SPRITE,
+	(BgmapSpriteROMDef*)&MOUND_BG_BACK_SB_SPRITE,
 	NULL
 };
 
-ImageROMDef MOUND_BG_MIDDLE_IM =
+ImageROMDef MOUND_BG_BACK_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
+	(SpriteROMDef**)MOUND_BG_BACK_SB_SPRITES,
 };

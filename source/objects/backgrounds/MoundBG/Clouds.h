@@ -14,85 +14,61 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef CLOUDS_H_
+#define CLOUDS_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_BackTiles[];
-extern BYTE Level_1_Main_1_Back_5Map[];
+#define CLOUDS_MOVE_DELAY 100
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
-{
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        136,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Level_1_Main_1_BackTiles,
-    },
-
-    // bgmap definition
-    Level_1_Main_1_Back_5Map,
-
-    // cols (max 64)
-    61,
-
-    // rows (max 64)
-    35,
-
-    // number of frames
-    1,
-
-    // palette number
-    2,
-};
-
-BgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
-{
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&LEVEL_1_MAIN_1_BACK_5_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+#define Clouds_METHODS															    \
+	InanimatedInGameEntity_METHODS;
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
-};
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_SPRITES[] =
-{
-	&LEVEL_1_MAIN_1_BACK_5_IM_SPRITE,
-	NULL
-};
+#define Clouds_SET_VTABLE(ClassName)												\
+	InanimatedInGameEntity_SET_VTABLE(ClassName);								    \
+	__VIRTUAL_SET(ClassName, Clouds, handleMessage);								\
+    __VIRTUAL_SET(ClassName, Clouds, isVisible);									\
+    __VIRTUAL_SET(ClassName, Clouds, resume);										\
+	__VIRTUAL_SET(ClassName, Clouds, moves);										\
 
-ImageROMDef LEVEL_1_MAIN_1_BACK_5_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_BACK_5_IM_SPRITES,
-};
+__CLASS(Clouds);
+
+#define Clouds_ATTRIBUTES															\
+																				    \
+	/* it is derivated from */													    \
+	InanimatedInGameEntity_ATTRIBUTES											    \
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+__CLASS_NEW_DECLARE(Clouds, InanimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+
+void Clouds_constructor(Clouds this, InanimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Clouds_destructor(Clouds this);
+void Clouds_startMoving(Clouds this);
+bool Clouds_handleMessage(Clouds this, Telegram telegram);
+bool Clouds_isVisible(Clouds this, int pad);
+void Clouds_resume(Clouds this);
+bool Clouds_moves(Clouds this);
+
+
+#endif

@@ -19,7 +19,9 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <libgccvb.h>
+#include <AnimatedInGameEntity.h>
+#include <ObjectAnimatedSprite.h>
 #include <macros.h>
 
 
@@ -27,18 +29,70 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Floor22x12Tiles[];
-extern BYTE Floor22x12Map[];
-
-extern BYTE Floor22TopTiles[];
-extern BYTE Floor22TopMap[];
+extern BYTE BackgroundMoundStarTiles[];
+extern BYTE BackgroundMoundStarMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef FLOOR_22x12_TX =
+// a function which defines the frames to play
+AnimationFunctionROMDef STAR_STILL_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{1},
+
+	// number of cycles a frame of animation is displayed
+	0,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Still",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef STAR_FLASH_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{0,1,2,1},
+
+	// number of cycles a frame of animation is displayed
+	4 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Flash",
+};
+
+// an animation definition
+AnimationDescriptionROMDef STAR_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&STAR_STILL_ANIM,
+		(AnimationFunction*)&STAR_FLASH_ANIM,
+		NULL,
+	}
+};
+
+TextureROMDef STAR_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -46,92 +100,41 @@ TextureROMDef FLOOR_22x12_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        16,
+        4,
 
         // allocation type
-        __NOT_ANIMATED,
+        __ANIMATED_MULTI,
 
         // char definition
-        Floor22x12Tiles,
+        BackgroundMoundStarTiles,
     },
 
     // bgmap definition
-    Floor22x12Map,
+    BackgroundMoundStarMap,
 
     // cols (max 64)
-    22 + 2,
+    1,
 
     // rows (max 64)
-    12,
+    1,
 
     // number of frames
-    1,
+    3,
 
     // palette number
-    1,
+    0
 };
 
-ObjectSpriteROMDef FLOOR_22x12_SPRITE =
+ObjectSpriteROMDef STAR_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&FLOOR_22x12_TX,
+	(TextureDefinition*)&STAR_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
-
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
-};
-
-TextureROMDef FLOOR_22_TOP_TX =
-{
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        7,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor22TopTiles,
-    },
-
-    // bgmap definition
-    Floor22TopMap,
-
-    // cols (max 64)
-    22 + 2,
-
-    // rows (max 64)
-    2,
-
-    // number of frames
-    1,
-
-    // palette number
-    1,
-};
-
-ObjectSpriteROMDef FLOOR_22x12_TOP_SPRITE =
-{
-	// sprite's type
-	__TYPE(ObjectSprite),
-
-	// texture definition
-	(TextureDefinition*)&FLOOR_22_TOP_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, FTOFIX19_13(-40), FTOFIX19_13(-1)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_OBJ,
@@ -140,45 +143,41 @@ ObjectSpriteROMDef FLOOR_22x12_TOP_SPRITE =
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef* const FLOOR_22x12_SPRITES[] =
+ObjectSpriteROMDef* const STAR_SPRITES[] =
 {
-	&FLOOR_22x12_SPRITE,
-//	&FLOOR_22x12_TOP_SPRITE,
+	&STAR_SPRITE,
 	NULL
 };
 
-InanimatedInGameEntityROMDef FLOOR_22x12_IG =
+AnimatedInGameEntityROMDef STAR_AG =
 {
     {
         {
-            __TYPE(InanimatedInGameEntity),
-            (SpriteROMDef**)FLOOR_22x12_SPRITES,
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)STAR_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
-        {1, 0, 8, 8},
+        {0, 0, 0, 0},
 
         // in game type
-        kTopSolid,
+        kNotSolid,
 
         // width
         // if 0, width and height will be inferred from the texture's size
-        0,
-        
-        // height
+    	0,
+
+    	// height
         // if 0, width and height will be inferred from the texture's size
-        0,
-        
-        // depth
-        16
+    	0,
+
+    	// depth
+        1
     },
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(40),
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&STAR_ANIM,
 
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(1.0f),
-
-    // register shape
-    true,
+    // initial animation
+    "Flash",
 };

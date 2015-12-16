@@ -19,16 +19,18 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <Clouds.h>
 #include <Image.h>
 #include <MBgmapSprite.h>
+#include <InanimatedInGameEntity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BackgroundMoundBackTiles[];
-extern BYTE BackgroundMoundBackMap[];
+extern BYTE BackgroundMoundMiddleTiles[];
+extern BYTE BackgroundMoundMiddleMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -36,7 +38,7 @@ extern BYTE BackgroundMoundBackMap[];
 //---------------------------------------------------------------------------------------------------------
 
 
-TextureROMDef MOUND_BG_BACK_TX =
+TextureROMDef MOUND_BG_MIDDLE_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -44,23 +46,23 @@ TextureROMDef MOUND_BG_BACK_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        84,
+        69,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        BackgroundMoundBackTiles,
+        BackgroundMoundMiddleTiles,
     },
 
     // bgmap definition
-    BackgroundMoundBackMap,
+    BackgroundMoundMiddleMap,
 
     // cols (max 64)
     64,
 
     // rows (max 64)
-    16,
+    7,
 
     // number of frames
     1,
@@ -69,13 +71,13 @@ TextureROMDef MOUND_BG_BACK_TX =
     0,
 };
 
-TextureROMDef* MOUND_BG_BACK_SB_TEXTURES[] = 
+TextureROMDef* MOUND_BG_MIDDLE_SB_TEXTURES[] = 
 {
-	(TextureDefinition*)&MOUND_BG_BACK_TX,
+	(TextureDefinition*)&MOUND_BG_MIDDLE_TX,
 	NULL
 };
 
-MBgmapSpriteROMDef MOUND_BG_BACK_SB_SPRITE =
+MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
 {
 	{
 		// sprite's type
@@ -94,7 +96,7 @@ MBgmapSpriteROMDef MOUND_BG_BACK_SB_SPRITE =
 		WRLD_ON,
 	},
 	
-	(TextureDefinition**)MOUND_BG_BACK_SB_TEXTURES,
+	(TextureDefinition**)MOUND_BG_MIDDLE_SB_TEXTURES,
 	
 	// SCX/SCY
 	WRLD_1x1,
@@ -106,14 +108,50 @@ MBgmapSpriteROMDef MOUND_BG_BACK_SB_SPRITE =
 	false
 };
 
-BgmapSpriteROMDef* const MOUND_BG_BACK_SB_SPRITES[] =
+BgmapSpriteROMDef* const MOUND_BG_MIDDLE_SB_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&MOUND_BG_BACK_SB_SPRITE,
+	(BgmapSpriteROMDef*)&MOUND_BG_MIDDLE_SB_SPRITE,
 	NULL
 };
 
-ImageROMDef MOUND_BG_BACK_IM =
+ImageROMDef MOUND_BG_MIDDLE_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)MOUND_BG_BACK_SB_SPRITES,
+	(SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
+};
+
+InanimatedInGameEntityROMDef MOUND_BG_MIDDLE_IG =
+{
+    {
+        {
+            __TYPE(Clouds),
+            (SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kNotSolid,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+        // depth
+        0
+    },
+
+    // friction FTOFIX19_13
+    FTOFIX19_13(0.0f),
+
+    // elasticity FTOFIX19_13
+    FTOFIX19_13(0.0f),
+
+    // register shape
+    false,
 };
