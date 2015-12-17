@@ -152,14 +152,14 @@
 #define __MEMORY_POOL_ARRAYS													\
 	__BLOCK_DEFINITION(184, 1)													\
 	__BLOCK_DEFINITION(164, 2)													\
-	__BLOCK_DEFINITION(132, 24)													\
-	__BLOCK_DEFINITION(112, 40)													\
+	__BLOCK_DEFINITION(132, 32)													\
+	__BLOCK_DEFINITION(112, 32)													\
 	__BLOCK_DEFINITION(96, 54)													\
-	__BLOCK_DEFINITION(76, 32)													\
+	__BLOCK_DEFINITION(76, 28)													\
 	__BLOCK_DEFINITION(68, 72)													\
 	__BLOCK_DEFINITION(28, 256)													\
-	__BLOCK_DEFINITION(20, 600)													\
-	__BLOCK_DEFINITION(16, 400)													\
+	__BLOCK_DEFINITION(20, 664)													\
+	__BLOCK_DEFINITION(16, 300)													\
 
 #define __SET_MEMORY_POOL_ARRAYS												\
 	__SET_MEMORY_POOL_ARRAY(184)												\

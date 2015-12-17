@@ -1165,23 +1165,25 @@ int Hero_doMessage(Hero this, int message)
 			Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
 			break;
 		
-		case kResumeLevel:
 		case kSetUpLevel:
+
+			this->cameraBoudingBox = Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, true);
+			CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)));
+
+			// set focus on the hero
+			VBVec3D screenDisplacement =
 			{
-				this->cameraBoudingBox = Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, true);
-				CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)));
+                0,
+                ITOFIX19_13(0),
+                ITOFIX19_13(-LAYER_0),
+			};
 
-				// set focus on the hero
-				VBVec3D screenDisplacement =
-				{
-	                0,
-	                ITOFIX19_13(0),
-	                ITOFIX19_13(-LAYER_0),
-				};
+		//	Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
 
-			//	Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
-				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
+		case kResumeLevel:
+			{
 
 				// move the screen to its previous position
 				Screen_position(Screen_getInstance(), false);
@@ -1207,9 +1209,36 @@ int Hero_doMessage(Hero this, int message)
 
 void Hero_suspend(Hero this)
 {
-	ASSERT(this, "HeroMoving::suspend: null this");
-	
+	ASSERT(this, "Hero::suspend: null this");
+
 	Entity_suspend(__SAFE_CAST(Entity, this));
 	
 	ParticleSystem_pause(this->feetDust);
+	
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kCheckForOverlappingDoor);
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kStopInvincibility);
+    
+	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
+	Hero_setCameraTrigger(this);
+}
+
+void Hero_resume(Hero this)
+{
+	ASSERT(this, "Hero::suspend: null this");
+
+	Entity_resume(__SAFE_CAST(Entity, this));
+
+    // only flash as long as hero is invincible
+    if(Hero_isInvincible(this))
+    {
+        // toggle between original and flash palette
+        Hero_toggleFlashPalette(this);
+
+        // next flash state change after HERO_FLASH_INTERVAL milliseconds
+        MessageDispatcher_dispatchMessage(HERO_FLASH_INTERVAL, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
+        
+        // TODO: fix this, it can be exploited to be invincible by pausing the game
+        MessageDispatcher_dispatchMessage(HERO_FLASH_DURATION / 2, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopInvincibility, NULL);
+    }
 }
