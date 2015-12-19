@@ -126,7 +126,7 @@ CloudsROMDef CLOUDS_IM =
 		__TYPE(Clouds),
 		(SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
 	},
-	
+
 	// displacement per cycle
-	FTOFIX19_13(0.08f),
+	FTOFIX19_13(0.02f),
 };

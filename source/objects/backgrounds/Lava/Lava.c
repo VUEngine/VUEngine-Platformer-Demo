@@ -145,4 +145,3 @@ bool Lava_moves(Lava this)
 
 	return true;
 }
-

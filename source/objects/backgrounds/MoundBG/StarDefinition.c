@@ -63,13 +63,13 @@ AnimationFunctionROMDef STAR_STILL_ANIM =
 AnimationFunctionROMDef STAR_FLASH_ANIM =
 {
 	// number of frames of this animation function
-	4,
+	6,
 
 	// frames to play in animation
-	{0,1,2,1},
+	{0,0,0,1,2,1},
 
 	// number of cycles a frame of animation is displayed
-	4 * __FPS_ANIM_FACTOR,
+	6 * __FPS_ANIM_FACTOR,
 
 	// whether to play it in loop or not
 	true,

@@ -23,7 +23,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Actor.h>
-
 #include <macros.h>
 
 
@@ -31,35 +30,28 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Enemy_METHODS						\
-	Actor_METHODS;							\
-	__VIRTUAL_DEC(canAttack);				\
+#define Enemy_METHODS																					\
+	Actor_METHODS;																						\
+	__VIRTUAL_DEC(canAttack);																			\
 	__VIRTUAL_DEC(takeHit);
-	
-	
 
-#define Enemy_SET_VTABLE(ClassName)					\
-	Actor_SET_VTABLE(ClassName);					\
+#define Enemy_SET_VTABLE(ClassName)																		\
+	Actor_SET_VTABLE(ClassName);																		\
 	__VIRTUAL_SET(ClassName, Enemy, canAttack);
-	
-	
 
 // Abstract class
 __CLASS(Enemy);
 
-#define Enemy_ATTRIBUTES							\
-													\
-	/* it is derivated from */						\
-	Actor_ATTRIBUTES								\
-													\
-	/* Enemy has energy	*/							\
-	u8 energy;										\
-													\
-	/* to know when a specific state begins */		\
+#define Enemy_ATTRIBUTES																				\
+																										\
+	/* it is derivated from */																			\
+	Actor_ATTRIBUTES																					\
+																										\
+	/* Enemy has energy	*/																				\
+	u8 energy;																							\
+																										\
+	/* to know when a specific state begins */															\
 	u32 actionTime;
-
-	
-
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -70,7 +62,6 @@ void Enemy_constructor(Enemy this, ActorDefinition* definition, int id, const ch
 void Enemy_destructor(Enemy this);
 u32 Enemy_getActionTime(Enemy this);
 bool Enemy_canAttack(Enemy this);
-bool Enemy_onPlatformEdge(Enemy this);
 
 
 #endif

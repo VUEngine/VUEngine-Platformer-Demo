@@ -26,15 +26,15 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_CoinRoom_MiddleTiles[];
-extern BYTE Level_1_CoinRoom_MiddleMap[];
+extern BYTE Level_1_CoinRoom_BackTiles[];
+extern BYTE Level_1_CoinRoom_BackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL_1_COIN_ROOM_MIDDLE_TX =
+TextureROMDef LEVEL_1_COIN_ROOM_BACK_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -42,20 +42,20 @@ TextureROMDef LEVEL_1_COIN_ROOM_MIDDLE_TX =
         // __ANIMATED_MULTI: sum of chars of all animation frames
         // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
         // __NOT_ANIMATED: number of chars of whole image
-        10,
+        50,
 
         // allocation type
         __NOT_ANIMATED,
 
         // char definition
-        Level_1_CoinRoom_MiddleTiles,
+        Level_1_CoinRoom_BackTiles,
     },
 
     // bgmap definition
-    Level_1_CoinRoom_MiddleMap,
+    Level_1_CoinRoom_BackMap,
 
     // cols (max 64)
-    10,
+    48,
 
     // rows (max 64)
     28,
@@ -64,19 +64,19 @@ TextureROMDef LEVEL_1_COIN_ROOM_MIDDLE_TX =
     1,
 
     // palette number
-    1,
+    0,
 };
 
-BgmapSpriteROMDef LEVEL_1_COIN_ROOM_MIDDLE_IM_SPRITE =
+BgmapSpriteROMDef LEVEL_1_COIN_ROOM_BACK_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)&LEVEL_1_COIN_ROOM_MIDDLE_TX,
+	(TextureDefinition*)&LEVEL_1_COIN_ROOM_BACK_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(1)},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
@@ -85,14 +85,14 @@ BgmapSpriteROMDef LEVEL_1_COIN_ROOM_MIDDLE_IM_SPRITE =
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_COIN_ROOM_MIDDLE_IM_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_COIN_ROOM_BACK_IM_SPRITES[] =
 {
-	&LEVEL_1_COIN_ROOM_MIDDLE_IM_SPRITE,
+	&LEVEL_1_COIN_ROOM_BACK_IM_SPRITE,
 	NULL
 };
 
-MBackgroundROMDef LEVEL_1_COIN_ROOM_MIDDLE_IM =
+MBackgroundROMDef LEVEL_1_COIN_ROOM_BACK_IM =
 {
 	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_COIN_ROOM_MIDDLE_IM_SPRITES,
+	(SpriteROMDef**)LEVEL_1_COIN_ROOM_BACK_IM_SPRITES,
 };

@@ -54,7 +54,7 @@ __CLASS(Clouds);
 	Image_ATTRIBUTES															    \
 																					\
 	/* displacement per cycle */												    \
-	fix19_13 displacement;															    \
+	fix19_13 displacement;															\
 
 
 typedef struct CloudsDefinition
@@ -68,6 +68,8 @@ typedef struct CloudsDefinition
 } CloudsDefinition;
 
 typedef const CloudsDefinition CloudsROMDef;
+
+
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------

@@ -33,12 +33,11 @@ extern CharSetDefinition CLOUDS_A_CH;
 extern CharSetDefinition CLOUDS_B_CH;
 extern CharSetDefinition STAR_CH;
 
-extern CharSetDefinition LEVEL_1_COIN_ROOM_FRONT_CH;
+extern CharSetDefinition LEVEL_1_COIN_ROOM_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_1_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_2_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_1_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2_CH;
-
 
 extern TextureDefinition MOUND_BG_BACK_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
@@ -48,10 +47,9 @@ extern TextureDefinition MOUND_BG_CASTLE_FLAG_TX;
 extern TextureDefinition CLOUDS_A_TX;
 extern TextureDefinition CLOUDS_B_TX;
 
-extern TextureDefinition LEVEL_1_COIN_ROOM_FRONT_TX;
-extern TextureDefinition LEVEL_1_COIN_ROOM_FRONT_SHADOWS_TX;
-extern TextureDefinition LEVEL_1_COIN_ROOM_FRONT_PLATFORMS_TX;
-extern TextureDefinition LEVEL_1_COIN_ROOM_MIDDLE_TX;
+extern TextureDefinition LEVEL_1_COIN_ROOM_MAIN_TX;
+extern TextureDefinition LEVEL_1_COIN_ROOM_MAIN_BACK_TX;
+extern TextureDefinition LEVEL_1_COIN_ROOM_BACK_TX;
 
 extern TextureDefinition LEVEL_1_SMALL_ROOM_FRONT_TX;
 extern TextureDefinition LEVEL_1_SMALL_ROOM_PLATFORMS_TX;
