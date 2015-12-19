@@ -98,7 +98,6 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 	switch(Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
-
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
@@ -131,11 +130,19 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 		case kKeyReleased:
 			{
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
+				u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
+				if((K_LL | K_LR) & holdKey)
+				{
+					Hero_checkDirection((Hero)owner, holdKey, "Walk");	
+					return;
+				}
+				
 				if((K_LL | K_LR) & releasedKey)
                 {
 					Velocity velocity = Body_getVelocity(Actor_getBody(__SAFE_CAST(Actor, owner)));
 					
+
 					if(0 < abs(velocity.x))
                     {
 						Hero_stopAddingForce((Hero)owner);		

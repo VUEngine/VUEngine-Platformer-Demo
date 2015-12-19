@@ -99,7 +99,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&MOUND_BG_BACK_IM,	 	            {FTOFIX19_13(0),    FTOFIX19_13(120), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
-	{&CLOUDS_IM, 	  			          {FTOFIX19_13(0),    FTOFIX19_13(232), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
+	{&CLOUDS_IM, 	  			        {FTOFIX19_13(0),    FTOFIX19_13(232), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
 	{&MOUND_BG_FRONT_IM, 	            {FTOFIX19_13(0),    FTOFIX19_13(256), FTOFIX19_13(LAYER_3)}, NULL, NULL, NULL, true},
 
 	{&HERO_AC, 				            {FTOFIX19_13(56),   FTOFIX19_13(288), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
