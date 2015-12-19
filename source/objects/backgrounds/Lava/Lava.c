@@ -121,7 +121,7 @@ void Lava_moveUpwards(Lava this)
     offset.y -= ITOFIX19_13(1);
 
     // update lava's position
-   __VIRTUAL_CALL(void, Container, setLocalPosition, (__SAFE_CAST(Container, this), &offset));
+   __VIRTUAL_CALL(void, Container, setLocalPosition, __SAFE_CAST(Container, this), &offset);
 
     // send delayed message to self to trigger next movement
     MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);

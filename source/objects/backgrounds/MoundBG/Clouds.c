@@ -20,22 +20,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
-#include <CollisionManager.h>
-#include <MessageDispatcher.h>
-#include <Cuboid.h>
-#include <PhysicalWorld.h>
-
-#include <objects.h>
 #include "Clouds.h"
-
-#include <PlatformerLevelState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Clouds, InanimatedInGameEntity);
+__CLASS_DEFINITION(Clouds, Image);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,46 +42,23 @@ void Clouds_move(Clouds this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Clouds, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(Clouds, inanimatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(Clouds, CloudsDefinition* cloudsDefinition, int id, const char* const name)
+__CLASS_NEW_END(Clouds, cloudsDefinition, id, name);
 
 // class's constructor
-void Clouds_constructor(Clouds this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(&cloudsDefinition->imageDefinition, id, name);
 	
-	if(this->shape)
-	{
-		Shape_setCheckForCollisions(__GET_CAST(Shape, this->shape), false);
-	}
-
-	Clouds_startMoving(this);
+	this->displacement = cloudsDefinition->displacement;
 }
 
 // class's destructor
 void Clouds_destructor(Clouds this)
 {
-    // discard pending moving messages
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kMove);
-
 	// delete the super object
 	__DESTROY_BASE;
-}
-
-// start moving
-void Clouds_startMoving(Clouds this)
-{
-	ASSERT(this, "Clouds::startMoving: null this");
-
-	// start moving
-	MessageDispatcher_dispatchMessage(CLOUDS_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
-	
-	// must make sure that the shape is updated
-	if(this->shape)
-	{
-		CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
-	}
 }
 
 // whether it is visible
@@ -102,42 +71,18 @@ bool Clouds_isVisible(Clouds this, int pad)
 }
 
 // state's on message
-bool Clouds_handleMessage(Clouds this, Telegram telegram)
+void Clouds_update(Clouds this)
 {
-	switch(Telegram_getMessage(telegram))
-    {
-		case kMove:
+	ASSERT(this, "Clouds::update: null this");
 
-            Clouds_move(this);
-			break;
-	}
-	
-	return false;
-}
+	Container_update(__SAFE_CAST(Container, this));
 
-// move clouds to the left
-void Clouds_move(Clouds this)
-{
     // get local position of clouds and substract 1 from x value
     VBVec3D offset = *Container_getLocalPosition(__GET_CAST(Container, this));
-    offset.x -= ITOFIX19_13(1);
+    offset.x -= FIX19_13_MULT(this->displacement, ITOFIX19_13(Clock_getElapsedTime(Game_getInGameClock(Game_getInstance()))));
 
     // update clouds's position
     Container_setLocalPosition(__GET_CAST(Container, this), &offset);
-
-    // send delayed message to self to trigger next movement
-    MessageDispatcher_dispatchMessage(CLOUDS_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
-}
-
-// resume after pause
-void Clouds_resume(Clouds this)
-{
-	ASSERT(this, "Entity::resume: null this");
-
-	Entity_resume(__GET_CAST(Entity, this));
-
-    // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(CLOUDS_MOVE_DELAY, __GET_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
 }
 
 // does it move?

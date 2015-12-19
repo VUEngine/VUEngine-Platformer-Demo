@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Image.h>
 #include <macros.h>
 
 
@@ -38,37 +38,46 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Clouds_METHODS															    \
-	InanimatedInGameEntity_METHODS;
+	Image_METHODS;
 	
 
 #define Clouds_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);								    \
-	__VIRTUAL_SET(ClassName, Clouds, handleMessage);								\
+	Image_SET_VTABLE(ClassName);								    				\
+	__VIRTUAL_SET(ClassName, Clouds, update);										\
     __VIRTUAL_SET(ClassName, Clouds, isVisible);									\
-    __VIRTUAL_SET(ClassName, Clouds, resume);										\
-	__VIRTUAL_SET(ClassName, Clouds, moves);										\
 
 __CLASS(Clouds);
 
 #define Clouds_ATTRIBUTES															\
 																				    \
 	/* it is derivated from */													    \
-	InanimatedInGameEntity_ATTRIBUTES											    \
+	Image_ATTRIBUTES															    \
+																					\
+	/* displacement per cycle */												    \
+	fix19_13 displacement;															    \
 
 
+typedef struct CloudsDefinition
+{
+	// it has an Image at the beginning
+	ImageDefinition imageDefinition;
+
+	// displacement per cycle
+	fix19_13 displacement;
+
+} CloudsDefinition;
+
+typedef const CloudsDefinition CloudsROMDef;
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Clouds, InanimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Clouds, CloudsDefinition* cloudsDefinition, int id, const char* const name);
 
-void Clouds_constructor(Clouds this, InanimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, int id, const char* const name);
 void Clouds_destructor(Clouds this);
-void Clouds_startMoving(Clouds this);
-bool Clouds_handleMessage(Clouds this, Telegram telegram);
+void Clouds_update(Clouds this);
 bool Clouds_isVisible(Clouds this, int pad);
-void Clouds_resume(Clouds this);
-bool Clouds_moves(Clouds this);
 
 
 #endif
