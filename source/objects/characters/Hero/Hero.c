@@ -35,7 +35,6 @@
 #include <UserDataManager.h>
 
 #include <Hint.h>
-#include <PlatformerLevelState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -550,7 +549,7 @@ void Hero_takeHitFrom(Hero this, Actor other)
         }
 
         // inform others to update ui etc
-        Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_HIT_TAKEN);
+        Object_fireEvent(__SAFE_CAST(Object, this), EVENT_HIT_TAKEN);
 
         // must unregister the shape for collision detections
         // Shape_setActive(this->shape, false);
@@ -853,7 +852,7 @@ static void Hero_onKeyHold(Hero this, Object eventFirer)
 void Hero_collectKey(Hero this)
 {
 	this->hasKey = true;
-	Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_KEY_TAKEN);
+	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_TAKEN);
 }
 
 // does the hero have a key?
@@ -866,19 +865,21 @@ bool Hero_hasKey(Hero this)
 void Hero_collectBandana(Hero this)
 {
 	this->hasBandana = true;
-	Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_BANDANA_TAKEN);
+	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_BANDANA_TAKEN);
 
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
-	
+
 	Game_pausePhysics(Game_getInstance(), true);
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+
+	// TODO: play "get bandana" animation
 }
 
 // lose a bandana
 void Hero_loseBandana(Hero this)
 {
 	this->hasBandana = false;
-	Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_BANDANA_LOST);
+	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_BANDANA_LOST);
 
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
 	Game_pausePhysics(Game_getInstance(), true);
@@ -900,7 +901,7 @@ void Hero_collectCoin(Hero this, Coin coin)
         numberOfCollectedCoins++;
         UserDataManager_setNumberOfCollectedCoins(UserDataManager_getInstance(), numberOfCollectedCoins);
         UserDataManager_setCoinStatus(UserDataManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
-        Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
+        Object_fireEvent(__SAFE_CAST(Object, this), EVENT_COIN_TAKEN);
 
         SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
     }
@@ -1196,9 +1197,9 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             Hero_flash(this);
             return true;
             break;
-            
+
         case kResumeGame:
-        	
+
         	Game_pausePhysics(Game_getInstance(), false);
         	break;
 

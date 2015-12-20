@@ -79,7 +79,7 @@ void Door_destructor(Door this)
 void* Door_getExtraInfo(Door this)
 {
 	ASSERT(this, "Door::setExtraInfo: null this");
-	
+
 	return this->destination;
 }
 
@@ -112,7 +112,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
 			}
 			break;
-			
+
 		case kCloseDoor:
 
 			if(Door_hasDestination(this))
@@ -121,7 +121,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 			}
 			break;
 	}
-	
+
 	return false;
 }
 

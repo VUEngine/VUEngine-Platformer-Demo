@@ -52,8 +52,6 @@
 //                                                 PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition GUI_IM;
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
@@ -115,7 +113,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_ENTITIES[] =
 {
-	{&GUI_IM, {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(__SCREEN_HEIGHT - 8), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
+	{&GUI_AG, {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(__SCREEN_HEIGHT - 8), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 

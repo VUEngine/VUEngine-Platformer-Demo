@@ -35,6 +35,8 @@
 // 											  DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition GUI_AG;
+
 extern EntityDefinition COIN_AG;
 extern EntityDefinition DOOR_AG;
 extern EntityDefinition DOOR_BACK_AG;

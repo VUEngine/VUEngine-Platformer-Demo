@@ -22,6 +22,7 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern TextureDefinition GUI_TX;
 extern TextureDefinition COIN_TX;
 extern TextureDefinition AFFINE_COIN_TX;
 extern TextureDefinition DOOR_TX;

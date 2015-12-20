@@ -37,7 +37,6 @@
 #include <macros.h>
 #include <Languages.h>
 #include <objects.h>
-#include <GuiManager.h>
 #include <UserDataManager.h>
 #include <CustomScreenMovementManager.h>
 
@@ -55,10 +54,6 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this, VirtualList entityNamesToIgnore);
-static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onHitTaken(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
@@ -188,18 +183,13 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
     Game_startPhysics(Game_getInstance());
 		
 	// render gui values
-	GuiManager_printAll(GuiManager_getInstance());
+	// TODO
 }
 
 // state's exit
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
-	Object_removeEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onHitTaken, EVENT_HIT_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
-
-	// make a fade in
+	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 	
 	// call base
@@ -245,7 +235,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 #endif
 
 	// render gui values
-	GuiManager_printAll(GuiManager_getInstance());
+	// TODO
 
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY >> 1);
@@ -322,14 +312,6 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			// reset clock and restart
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
 			//Clock_start(Game_getInGameClock(Game_getInstance()));
-			
-			// want to know when the second has changed
-			Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onSecondChange, __EVENT_SECOND_CHANGED);
-			
-			// add events
-			Object_addEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onHitTaken, EVENT_HIT_TAKEN);
-			Object_addEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onCoinTaken, EVENT_COIN_TAKEN);
-			Object_addEventListener(__SAFE_CAST(Object, this), __SAFE_CAST(Object, this), (void (*)(Object, Object))PlatformerLevelState_onKeyTaken, EVENT_KEY_TAKEN);
 
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kStartLevel);
@@ -401,30 +383,6 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	}
 
 	return false;
-}
-
-// handle event
-static void PlatformerLevelState_onSecondChange(PlatformerLevelState this, Object eventFirer)
-{
-	GuiManager_printClock(GuiManager_getInstance());
-}
-
-// handle event
-static void PlatformerLevelState_onHitTaken(PlatformerLevelState this, Object eventFirer)
-{
-	GuiManager_printEnergy(GuiManager_getInstance());
-}
-
-// handle event
-static void PlatformerLevelState_onCoinTaken(PlatformerLevelState this, Object eventFirer)
-{
-	GuiManager_printCoins(GuiManager_getInstance());
-}
-
-// handle event
-static void PlatformerLevelState_onKeyTaken(PlatformerLevelState this, Object eventFirer)
-{
-	GuiManager_printKey(GuiManager_getInstance());
 }
 
 // set the next state to load

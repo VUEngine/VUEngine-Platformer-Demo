@@ -37,7 +37,6 @@
 extern StageROMDef LEVEL_1_COIN_ROOM_ST;
 extern StageROMDef LEVEL_1_SMALL_ROOM_ST;
 extern StageROMDef LEVEL_1_TOWER_ST;
-extern EntityDefinition GUI_IM;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -200,7 +199,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_UI_ENTITIES[] =
 {
-	{&GUI_IM, {FTOFIX19_13(192), FTOFIX19_13(214), FTOFIX19_13(-8)}, NULL, NULL, NULL, true},
+	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(214), FTOFIX19_13(-8)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
