@@ -200,7 +200,7 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 	Hero_startedMovingOnAxis(this, __YAXIS);
 
 	// TODO: remove me
-	extern CharSetROMDef HERO_NINJA_CH;
+	extern CharSetDefinition HERO_NINJA_CH;
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_NINJA_CH);
 
 	if(this->body)
@@ -427,7 +427,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		}
 		
 		// TODO: remove me
-		extern CharSetROMDef HERO_CH;
+		extern CharSetDefinition HERO_CH;
 		CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
 	}
 
