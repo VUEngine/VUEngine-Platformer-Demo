@@ -538,15 +538,23 @@ void Hero_takeHitFrom(Hero this, Actor other)
                 this->energy--;
             }
 
+        	Game_pausePhysics(Game_getInstance(), true);
+        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+
             // start short screen shake
-            //Screen_startEffect(Screen_getInstance(), kShake, 200);
+            Screen_startEffect(Screen_getInstance(), kShake, 200);
 
             // play hit sound
             SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
         }
         else
         {
-            Hero_die(this);
+            Hero_setInvincible(this, true);
+
+            MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
+            Game_pausePhysics(Game_getInstance(), true);
+        	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
+        	return;
         }
 
         // inform others to update ui etc
@@ -808,6 +816,8 @@ void Hero_lookBack(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
+
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 
     /*
@@ -872,6 +882,7 @@ void Hero_collectBandana(Hero this)
 	
 	Game_pausePhysics(Game_getInstance(), true);
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
 }
 
 // lose a bandana
@@ -881,8 +892,6 @@ void Hero_loseBandana(Hero this)
 	Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_BANDANA_LOST);
 
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
-	Game_pausePhysics(Game_getInstance(), true);
-	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
 }
 
 // does the hero have a bandana?
@@ -1193,13 +1202,19 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             break;
 
         case kFlash:
-            Hero_flash(this);
+
+        	Hero_flash(this);
             return true;
             break;
             
         case kResumeGame:
         	
         	Game_pausePhysics(Game_getInstance(), false);
+        	break;
+
+        case kHeroDied:
+        	
+        	Hero_die(this);
         	break;
 
     }
