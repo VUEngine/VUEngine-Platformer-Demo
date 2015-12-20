@@ -545,6 +545,10 @@ void Hero_takeHitFrom(Hero this, Actor other)
 
             // play hit sound
             SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
+            
+        	//Game_disableKeyPad(GameInstance());
+        	KeypadManager_disable(KeypadManager_getInstance());
+
         }
         else
         {
@@ -1209,6 +1213,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
         case kResumeGame:
 
         	Game_pausePhysics(Game_getInstance(), false);
+        	KeypadManager_enable(KeypadManager_getInstance());
         	break;
 
         case kHeroDied:

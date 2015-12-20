@@ -34,7 +34,6 @@ extern BYTE GUITiles[];
 extern BYTE GUIBandanaTiles[];
 extern BYTE GUIMap[];
 
-
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
@@ -164,7 +163,7 @@ AnimatedInGameEntityROMDef GUI_AG =
 {
     {
         {
-            __TYPE(GUI),
+            __TYPE(AnimatedInGameEntity),
             (SpriteROMDef**)GUI_SPRITES,
         },
 
