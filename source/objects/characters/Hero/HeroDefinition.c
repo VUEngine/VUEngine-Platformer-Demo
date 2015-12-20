@@ -327,6 +327,22 @@ AnimationDescriptionROMDef HERO_ANIM =
 	}
 };
 
+CharSetROMDef HERO_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    9,
+
+    // allocation type
+    __ANIMATED_SINGLE,
+
+    // char definition
+    HeroTiles,
+};
+
 CharSetROMDef HERO_BANDANA_CH =
 {
     // number of chars, depending on allocation type:
@@ -343,38 +359,9 @@ CharSetROMDef HERO_BANDANA_CH =
     HeroBandanaTiles,
 };
 
-CharSetROMDef HERO_CH =
-{
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-    // __NOT_ANIMATED: number of chars of whole image
-    9,
-
-    // allocation type
-    __ANIMATED_SINGLE,
-
-    // char definition
-    HeroTiles,
-};
-	
 TextureROMDef HERO_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        9,
-
-        // allocation type
-        __ANIMATED_SINGLE,
-
-        // char definition
-        HeroTiles,
-    },
+    (CharSetDefinition*)&HERO_CH,
 
     // bgmap definition
     HeroMap,

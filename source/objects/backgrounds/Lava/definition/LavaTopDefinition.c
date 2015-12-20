@@ -70,22 +70,26 @@ AnimationDescriptionROMDef LAVA_TOP_ANIM =
 	}
 };
 
+CharSetROMDef LAVA_TOP_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    48,
+
+    // allocation type
+    __ANIMATED_SINGLE,
+
+    // char definition
+    LavaTopTiles,
+};
+
 TextureROMDef LAVA_TOP_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        48,
-
-        // allocation type
-        __ANIMATED_SINGLE,
-
-        // char definition
-        LavaTopTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&LAVA_TOP_CH,
 
     // bgmap definition
     LavaTopMap,

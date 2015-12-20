@@ -35,22 +35,26 @@ extern BYTE OneWayPlatform4Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef ONE_WAY_PLATFORM_4_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    9,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    OneWayPlatform4Tiles,
+};
+
 TextureROMDef ONE_WAY_PLATFORM_4_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        9,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        OneWayPlatform4Tiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&ONE_WAY_PLATFORM_4_CH,
 
     // bgmap definition
     OneWayPlatform4Map,

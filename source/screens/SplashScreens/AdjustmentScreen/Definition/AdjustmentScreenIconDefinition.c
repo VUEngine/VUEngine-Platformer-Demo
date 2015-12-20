@@ -33,20 +33,28 @@ extern BYTE AdjustmentScreenIconMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef ADJUSTMENT_SCREEN_ICON_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    5,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    AdjustmentScreenIconTiles,
+};
+
 TextureROMDef ADJUSTMENT_SCREEN_ICON_TX =
 {
-    {
-        // number of chars,
-        5,
+    // charset definition
+    (CharSetDefinition*)&ADJUSTMENT_SCREEN_ICON_CH,
 
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        AdjustmentScreenIconTiles,
-    },
-
-    // ICONmap definition
+    // bgmap definition
     AdjustmentScreenIconMap,
 
     // cols (max 64)
@@ -72,8 +80,8 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
-	
-	// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
@@ -96,8 +104,8 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
-	
-	// ICONmap mode ( ICONMAP, AFFINE, H-BIAS)
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)

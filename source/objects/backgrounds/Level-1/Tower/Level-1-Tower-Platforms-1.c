@@ -34,22 +34,26 @@ extern BYTE Level_1_Tower_Platforms_1Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef LEVEL_1_TOWER_PLATFORMS_1_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    7,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Level_1_Tower_Platforms_1Tiles,
+};
+
 TextureROMDef LEVEL_1_TOWER_PLATFORMS_1_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        7,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Level_1_Tower_Platforms_1Tiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&LEVEL_1_TOWER_PLATFORMS_1_CH,
 
     // bgmap definition
     Level_1_Tower_Platforms_1Map,

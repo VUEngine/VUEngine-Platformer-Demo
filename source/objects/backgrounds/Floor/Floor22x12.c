@@ -38,22 +38,26 @@ extern BYTE Floor22TopMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef FLOOR_22x12_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    16,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Floor22x12Tiles,
+};
+
 TextureROMDef FLOOR_22x12_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        16,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor22x12Tiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&FLOOR_22x12_CH,
 
     // bgmap definition
     Floor22x12Map,
@@ -89,22 +93,26 @@ ObjectSpriteROMDef FLOOR_22x12_SPRITE =
 	WRLD_ON,
 };
 
+CharSetROMDef FLOOR_22_TOP_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    7,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Floor22TopTiles,
+};
+
 TextureROMDef FLOOR_22_TOP_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        7,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor22TopTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&FLOOR_22_TOP_CH,
 
     // bgmap definition
     Floor22TopMap,

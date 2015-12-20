@@ -95,7 +95,8 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, true);
 
 	__DELETE(entityNamesToIgnore);
-	
+
+	/*
 	// sample code to show how to animate multiple sprites at the same time
 	// buy just playing an animation in a single entity when varios share
 	// the same __ANIMATED_SHARED CharSet
@@ -103,6 +104,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	{
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true)), "Idle");
 	}
+	*/
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	Game_startClocks(Game_getInstance());

@@ -71,22 +71,26 @@ AnimationDescriptionROMDef COIN_ANIM =
 	}
 };
 
+CharSetROMDef COIN_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    4,
+
+    // allocation type
+    __ANIMATED_SHARED_COORDINATED,
+
+    // char definition
+    CoinTiles,
+};
+
 TextureROMDef COIN_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        4,
-
-        // allocation type
-        __ANIMATED_SHARED_COORDINATED,
-        
-        // char definition
-        CoinTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&COIN_CH,
 
     // bgmap definition
     CoinMap,
@@ -104,22 +108,26 @@ TextureROMDef COIN_TX =
     1,
 };
 
+CharSetROMDef COIN_SILHOUETTE_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    4,
+
+    // allocation type
+    __ANIMATED_SHARED_COORDINATED,
+
+    // char definition
+    CoinSilhouetteTiles,
+};
+
 TextureROMDef COIN_SILHOUETTE_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        4,
-
-        // allocation type
-        __ANIMATED_SHARED_COORDINATED,
-
-        // char definition
-        CoinSilhouetteTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&COIN_SILHOUETTE_CH,
 
     // bgmap definition
     CoinSilhouetteMap,
@@ -137,22 +145,26 @@ TextureROMDef COIN_SILHOUETTE_TX =
     1,
 };
 
+CharSetROMDef AFFINE_COIN_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    16,
+
+    // allocation type
+    __ANIMATED_MULTI,
+
+    // char definition
+    CoinTiles,
+};
+
 TextureROMDef AFFINE_COIN_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        16,
-
-        // allocation type
-        __ANIMATED_MULTI,
-        
-        // char definition
-        CoinTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&AFFINE_COIN_CH,
 
     // bgmap definition
     CoinMap,

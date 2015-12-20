@@ -37,22 +37,26 @@ extern TextureROMDef FLOOR_4_TOP_TX;
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef FLOOR_4x7_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    16,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Floor4x12Tiles,
+};
+
 TextureROMDef FLOOR_4x7_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        16,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor4x12Tiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&FLOOR_4x7_CH,
 
     // bgmap definition
     Floor4x12Map,

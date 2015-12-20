@@ -56,8 +56,6 @@ extern StageROMDef LEVEL_1_MAIN_1_MAIN_1_ST;
  * know that it must stop reading the stage's/ui's textures and entities.
  */
 
-extern AnimatedInGameEntityROMDef HERO_DUMMY_AC;
-
 PositionedEntityROMDef CASTLE_CHILD_ENTITIES[] =
 {
 	{&MOUND_BG_CASTLE_FLAG_AG, 	{FTOFIX19_13(-38),  FTOFIX19_13(-29), FTOFIX19_13(0)}, NULL, NULL, NULL, true},

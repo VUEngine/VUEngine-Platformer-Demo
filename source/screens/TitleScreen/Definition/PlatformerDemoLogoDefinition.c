@@ -40,22 +40,26 @@ extern BYTE PlatformerDemoLogoOutlineRMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef LOGO_L_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    168,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    PlatformerDemoLogoLTiles,
+};
+
 TextureROMDef LOGO_L_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        168,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        PlatformerDemoLogoLTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&LOGO_L_CH,
 
     // bgmap definition
     PlatformerDemoLogoLMap,
@@ -73,22 +77,26 @@ TextureROMDef LOGO_L_TX =
     0,
 };
 
+CharSetROMDef LOGO_R_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    165,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    PlatformerDemoLogoRTiles,
+};
+
 TextureROMDef LOGO_R_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        165,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        PlatformerDemoLogoRTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&LOGO_R_CH,
 
     // bgmap definition
     PlatformerDemoLogoRMap,
@@ -106,22 +114,26 @@ TextureROMDef LOGO_R_TX =
     0,
 };
 
+CharSetROMDef LOGO_OUTLINE_L_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    90,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    PlatformerDemoLogoOutlineLTiles,
+};
+
 TextureROMDef LOGO_OUTLINE_L_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        90,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        PlatformerDemoLogoOutlineLTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&LOGO_OUTLINE_L_CH,
 
     // bgmap definition
     PlatformerDemoLogoOutlineLMap,
@@ -139,22 +151,26 @@ TextureROMDef LOGO_OUTLINE_L_TX =
     1,
 };
 
+CharSetROMDef LOGO_OUTLINE_R_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    91,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    PlatformerDemoLogoOutlineRTiles,
+};
+
 TextureROMDef LOGO_OUTLINE_R_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        91,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        PlatformerDemoLogoOutlineRTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&LOGO_OUTLINE_R_CH,
 
     // bgmap definition
     PlatformerDemoLogoOutlineRMap,
