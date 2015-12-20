@@ -184,10 +184,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
 	// reset clock
-	Clock_reset(Game_getInGameClock(Game_getInstance()));
-	
-	// make a little bit of physical simulations so each entity is placed at the floor
-	Clock_start(Game_getInGameClock(Game_getInstance()));
+    Game_startAnimations(Game_getInstance());
+    Game_startPhysics(Game_getInstance());
 		
 	// render gui values
 	GuiManager_printAll(GuiManager_getInstance());
@@ -211,7 +209,8 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 {
 	// pause physical simulations
-	Clock_pause(Game_getInGameClock(Game_getInstance()), true);
+	Game_pauseInGameClock(Game_getInstance(), true);
+	Game_pausePhysics(Game_getInstance(), true);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game_isEnteringSpecialMode(Game_getInstance()))
@@ -265,7 +264,8 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 #endif
 	
 	// pause physical simulations
-	Clock_pause(Game_getInGameClock(Game_getInstance()), false);
+	Game_pauseInGameClock(Game_getInstance(), false);
+	Game_pausePhysics(Game_getInstance(), false);
 
 	PlatformerLevelState_setModeToPlaying(this);
 }
@@ -336,8 +336,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			// restart clock
 			// pause physical simulations
-			Clock_reset(Game_getInGameClock(Game_getInstance()));
-			//Clock_start(Game_getInGameClock(Game_getInstance()));
+			Game_startInGameClock(Game_getInstance());
 
         	PlatformerLevelState_setModeToPlaying(this);
 			break;

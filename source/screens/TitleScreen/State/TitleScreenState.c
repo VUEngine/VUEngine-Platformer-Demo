@@ -105,13 +105,10 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	}
 
 	// make a little bit of physical simulations so each entity is placed at the floor
-	Clock_start(Game_getInGameClock(Game_getInstance()));
+	Game_startClocks(Game_getInstance());
 
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
-
-	// reset clock
-	Clock_reset(Game_getInGameClock(Game_getInstance()));
 }
 
 // state's execute
@@ -173,7 +170,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 	// pause physical simulations
-	Clock_pause(Game_getInGameClock(Game_getInstance()), false);
+    Game_pausePhysics(Game_getInstance(), true);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -192,7 +189,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 
 	// pause physical simulations
-	Clock_pause(Game_getInGameClock(Game_getInstance()), true);
+    Game_pauseClocks(Game_getInstance());
 }
 
 // state's on message
@@ -204,10 +201,7 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 		case kSetUpLevel:
 
 			// make a little bit of physical simulations so each entity is placed at the floor
-			Clock_start(Game_getInGameClock(Game_getInstance()));
-	
-			// pause physical simulations
-			//Clock_pause(Game_getInGameClock(Game_getInstance()), true);
+		    Game_startPhysics(Game_getInstance());
 
 			// account for any entity's tranform modification during their initialization
 			GameState_transform(__SAFE_CAST(GameState, this));
@@ -221,10 +215,6 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			// fade screen
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
-			// reset clock and restart
-//			Clock_reset(Game_getInGameClock(Game_getInstance()));
-//			Clock_start(Game_getInGameClock(Game_getInstance()));
-			
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kStartLevel);
 			break;
