@@ -135,7 +135,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				if((K_LL | K_LR) & holdKey)
 				{
 					Hero_checkDirection((Hero)owner, holdKey, "Walk");	
-					return;
+					return true;
 				}
 				
 				if((K_LL | K_LR) & releasedKey)

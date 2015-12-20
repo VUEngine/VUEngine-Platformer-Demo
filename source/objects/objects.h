@@ -28,7 +28,6 @@
 #include "characters/characters.h"
 #include "collisions/collisions.h"
 #include "hints/hints.h"
-#include "images/images.h"
 #include "items/items.h"
 #include "particles/particles.h"
 

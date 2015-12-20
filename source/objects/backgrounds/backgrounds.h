@@ -32,8 +32,6 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition TEST_BG;
-
 extern EntityDefinition MOUND_BG_BACK_IM;
 extern EntityDefinition MOUND_BG_MIDDLE_IM;
 extern EntityDefinition CLOUDS_IM;

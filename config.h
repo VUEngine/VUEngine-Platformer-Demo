@@ -307,7 +307,7 @@
 #define __BGMAP_PALETTE_0		0b11100100 // normal progression
 #define __BGMAP_PALETTE_1		0b11100000 // show dark red as black
 #define __BGMAP_PALETTE_2		0b10010000 // background layer
-#define __BGMAP_PALETTE_3		0b11111000 // very light, used when getting hit
+#define __BGMAP_PALETTE_3		0b01010000 // very dark, used when getting hit
 
 #define __OBJECT_PALETTE_0		0b11100100
 #define __OBJECT_PALETTE_1		0b11100000

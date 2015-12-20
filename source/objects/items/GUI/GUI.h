@@ -14,31 +14,34 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GUI_MANAGER_H_
-#define GUI_MANAGER_H_
+#ifndef GUI_H_
+#define GUI_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Object.h>
+#include <AnimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define GuiManager_METHODS																				\
-    	Object_METHODS																					\
+#define GUI_METHODS																						\
+	AnimatedInGameEntity_METHODS;
 
-// declare the virtual methods which are redefined
-#define GuiManager_SET_VTABLE(ClassName)																\
-    	Object_SET_VTABLE(ClassName)																	\
+#define GUI_SET_VTABLE(ClassName)																		\
+	AnimatedInGameEntity_SET_VTABLE(ClassName)															\
 
-// declare a GuiManager
-__CLASS(GuiManager);
+__CLASS(GUI);
+
+#define GUI_ATTRIBUTES																					\
+																										\
+	/* it is derivated from */																			\
+	AnimatedInGameEntity_ATTRIBUTES																		\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -54,15 +57,16 @@ __CLASS(GuiManager);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-GuiManager GuiManager_getInstance();
+__CLASS_NEW_DECLARE(GUI, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 
-void GuiManager_destructor(GuiManager this);
-void GuiManager_printClock(GuiManager this);
-void GuiManager_printCoins(GuiManager this);
-void GuiManager_printEnergy(GuiManager this);
-void GuiManager_printKey(GuiManager this);
-void GuiManager_printLevel(GuiManager this);
-void GuiManager_printAll(GuiManager this);
+void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+void GUI_destructor(GUI this);
+void GUI_printClock(GUI this);
+void GUI_printCoins(GUI this);
+void GUI_printEnergy(GUI this);
+void GUI_printKey(GUI this);
+void GUI_printLevel(GUI this);
+void GUI_printAll(GUI this);
 
 
 #endif
