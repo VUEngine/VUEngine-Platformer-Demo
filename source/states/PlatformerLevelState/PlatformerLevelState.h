@@ -123,6 +123,7 @@ enum PlatformerLevelStateMessageTypes
     kStopInvincibility,
     kFlash,
     kSuspend,
+	kResumeGame,
 
 	// don't remove me
 	kLastPlatformerMessage

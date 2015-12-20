@@ -869,6 +869,9 @@ void Hero_collectBandana(Hero this)
 	Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_BANDANA_TAKEN);
 
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
+	
+	Game_pausePhysics(Game_getInstance(), true);
+	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
 }
 
 // lose a bandana
@@ -878,6 +881,8 @@ void Hero_loseBandana(Hero this)
 	Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_BANDANA_LOST);
 
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
+	Game_pausePhysics(Game_getInstance(), true);
+	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
 }
 
 // does the hero have a bandana?
@@ -1188,11 +1193,15 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             break;
 
         case kFlash:
-            {
-                Hero_flash(this);
-                return true;
-                break;
-            }
+            Hero_flash(this);
+            return true;
+            break;
+            
+        case kResumeGame:
+        	
+        	Game_pausePhysics(Game_getInstance(), false);
+        	break;
+
     }
 
 	return Actor_handleMessage(__SAFE_CAST(Actor, this), telegram);
