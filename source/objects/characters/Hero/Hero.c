@@ -436,8 +436,6 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 				Hero_slide(this);
 			}
 		}
-
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
 	}
 	
 	if(__ZAXIS & axis)
