@@ -31,6 +31,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE HeroTiles[];
+extern BYTE HeroBandanaTiles[];
 extern BYTE HeroMap[];
 
 
@@ -326,10 +327,7 @@ AnimationDescriptionROMDef HERO_ANIM =
 	}
 };
 
-// TODO: remove me
-extern BYTE LavaTiles[];
-
-CharSetROMDef HERO_NINJA_CH =
+CharSetROMDef HERO_BANDANA_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
@@ -342,7 +340,7 @@ CharSetROMDef HERO_NINJA_CH =
     __ANIMATED_SINGLE,
 
     // char definition
-    LavaTiles,
+    HeroBandanaTiles,
 };
 
 CharSetROMDef HERO_CH =

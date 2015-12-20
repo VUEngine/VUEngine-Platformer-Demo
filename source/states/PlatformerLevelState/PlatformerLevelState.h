@@ -74,6 +74,8 @@ __CLASS(PlatformerLevelState);
 #define EVENT_HIT_TAKEN		    "HitTaken"
 #define EVENT_COIN_TAKEN		"CoinTaken"
 #define EVENT_KEY_TAKEN			"KeyTaken"
+#define EVENT_BANDANA_TAKEN		"BandanaTaken"
+#define EVENT_BANDANA_LOST		"BandanaLost"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -106,6 +108,7 @@ enum PlatformerLevelStateMessageTypes
 	kResumeLevel,
 	kHideLevelMessage,
 	kTakeCoin,
+	kTakeBandana,
 	kTakeKey,
 	kLavaTriggerStart,
 	kLavaTriggerEnd,

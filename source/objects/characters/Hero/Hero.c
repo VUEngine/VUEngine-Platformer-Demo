@@ -73,6 +73,14 @@ static void Hero_hideDust(Hero this);
 
 extern double fabs (double);
 
+extern const u16 COLLECT_SND[];
+extern const u16 FIRE_SND[];
+extern const u16 JUMP_SND[];
+extern CharSetDefinition HERO_CH;
+extern CharSetDefinition HERO_BANDANA_CH;
+extern EntityDefinition DUST_PS;
+extern EntityDefinition HINT_ENTER_MC;
+
 #define HERO_INPUT_FORCE 						ITOFIX19_13(5050)
 #define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(3800)
 
@@ -82,6 +90,13 @@ extern double fabs (double);
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(170)
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-48000)
 #define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-57000)
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+void Hero_loseBandana(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -118,6 +133,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 
 	this->energy = 3;
 	this->coins = 0;
+	this->hasBandana = false;
 	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
@@ -199,11 +215,6 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 
 	Hero_startedMovingOnAxis(this, __YAXIS);
 
-	// TODO: remove me
-	extern CharSetDefinition HERO_NINJA_CH;
-	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_NINJA_CH);
-	
-
 	if(this->body)
     {
         Velocity velocity = Body_getVelocity(this->body);
@@ -230,7 +241,6 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Jump");
 
-			extern const u16 JUMP_SND[];
 			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transform.globalPosition);
 		}
 	}
@@ -426,10 +436,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 				Hero_slide(this);
 			}
 		}
-		
-		// TODO: remove me
-		extern CharSetDefinition HERO_CH;
-		CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
+
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
 	}
 	
@@ -523,14 +530,20 @@ void Hero_takeHitFrom(Hero this, Actor other)
             // start flashing of hero
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
 
-            // reduce energy
-            this->energy--;
+            // lose power-up or reduce energy
+            if(Hero_hasBandana(this))
+            {
+                Hero_loseBandana(this);
+            }
+            else
+            {
+                this->energy--;
+            }
 
             // start short screen shake
             //Screen_startEffect(Screen_getInstance(), kShake, 200);
 
             // play hit sound
-            extern const u16 FIRE_SND[];
             SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
         }
         else
@@ -715,15 +728,12 @@ void Hero_enterDoor(Hero this)
 		Entity_hide(__SAFE_CAST(Entity, this->currentHint));
 	}
 
-    extern const u16 COLLECT_SND[];
     SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
 static void Hero_addHints(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
-
-	extern EntityDefinition HINT_ENTER_MC;
 
 	VBVec3D position = 
 	{
@@ -740,8 +750,6 @@ static void Hero_addHints(Hero this)
 static void Hero_addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
-
-	extern EntityDefinition DUST_PS;
 
 	VBVec3D position = 
 	{
@@ -856,6 +864,30 @@ bool Hero_hasKey(Hero this)
 	return this->hasKey;
 }
 
+// collect a bandana
+void Hero_collectBandana(Hero this)
+{
+	this->hasBandana = true;
+	Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_BANDANA_TAKEN);
+
+	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
+}
+
+// lose a bandana
+void Hero_loseBandana(Hero this)
+{
+	this->hasBandana = false;
+	Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_BANDANA_LOST);
+
+	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
+}
+
+// does the hero have a bandana?
+bool Hero_hasBandana(Hero this)
+{
+	return this->hasBandana;
+}
+
 // collect a coin
 void Hero_collectCoin(Hero this, Coin coin)
 {
@@ -867,7 +899,6 @@ void Hero_collectCoin(Hero this, Coin coin)
         UserDataManager_setCoinStatus(UserDataManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
         Object_fireEvent(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), EVENT_COIN_TAKEN);
 
-        extern const u16 COLLECT_SND[];
         SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
     }
 }
@@ -1003,6 +1034,13 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 				Hero_collectKey(this);
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTakeKey, NULL);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+
+			case kBandana:
+
+				Hero_collectBandana(this);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTakeBandana, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 

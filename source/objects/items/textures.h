@@ -28,6 +28,7 @@ extern TextureDefinition DOOR_TX;
 extern TextureDefinition DOOR_BACK_TX;
 extern TextureDefinition HIDE_LAYER_10x7_TX;
 extern TextureDefinition KEY_TX;
+extern TextureDefinition BANDANA_TX;
 
 
 #endif

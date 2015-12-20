@@ -47,6 +47,7 @@ enum PlatformerTypes
 	kFloor,
 	kDoor,
 	kCoin,
+	kBandana,
 	kKey,
 	kLava,
 	kLavaTrigger,

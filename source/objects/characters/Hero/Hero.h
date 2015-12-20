@@ -93,6 +93,9 @@ __CLASS(Hero);
 	/* flag for collected key */												\
 	bool hasKey;																\
 																				\
+	/* flag for collected bandana */											\
+	bool hasBandana;															\
+																				\
 	/* flag for invincible mode (after being hit) */							\
 	bool invincible;															\
 
@@ -133,6 +136,8 @@ void Hero_lookBack(Hero this);
 void Hero_die(Hero this);
 void Hero_collectKey(Hero this);
 bool Hero_hasKey(Hero this);
+void Hero_collectBandana(Hero this);
+bool Hero_hasBandana(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);

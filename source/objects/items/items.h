@@ -26,6 +26,7 @@
 #include "Door/Door.h"
 #include "HideLayer/HideLayer.h"
 #include "Key/Key.h"
+#include "Bandana/Bandana.h"
 
 #include "textures.h"
 
@@ -42,6 +43,7 @@ extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 extern EntityDefinition ENTER_ROOM_DOOR_AG;
 extern EntityDefinition EXIT_ROOM_DOOR_AG;
 extern EntityDefinition KEY_AG;
+extern EntityDefinition BANDANA_AG;
 
 extern EntityDefinition COIN_AG;
 extern EntityDefinition AFFINE_COIN_AG;

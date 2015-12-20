@@ -21,15 +21,15 @@
 
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
-#include "Key.h"
+#include "Bandana.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE KeyTiles[];
-extern BYTE KeyMap[];
+extern BYTE BandanaTiles[];
+extern BYTE BandanaMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ extern BYTE KeyMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef KEY_SPIN_ANIM =
+AnimationFunctionROMDef BANDANA_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	8,
@@ -59,16 +59,16 @@ AnimationFunctionROMDef KEY_SPIN_ANIM =
 };
 
 // an animation definition
-AnimationDescriptionROMDef KEY_ANIM =
+AnimationDescriptionROMDef BANDANA_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&KEY_SPIN_ANIM,
+		(AnimationFunction*)&BANDANA_SPIN_ANIM,
 		NULL,
 	}
 };
 
-TextureROMDef KEY_TX =
+TextureROMDef BANDANA_TX =
 {
     {
         // number of chars, depending on allocation type:
@@ -82,11 +82,11 @@ TextureROMDef KEY_TX =
         __ANIMATED_MULTI,
 
         // char definition
-        KeyTiles,
+        BandanaTiles,
     },
 
     // bgmap definition
-    KeyMap,
+    BandanaMap,
 
     // cols (max 64)
     2,
@@ -101,13 +101,13 @@ TextureROMDef KEY_TX =
     1,
 };
 
-ObjectSpriteROMDef KEY_SPRITE =
+ObjectSpriteROMDef BANDANA_SPRITE =
 {
 	// sprite's type
 	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&KEY_TX,
+	(TextureDefinition*)&BANDANA_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
@@ -119,25 +119,25 @@ ObjectSpriteROMDef KEY_SPRITE =
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef* const KEY_SPRITES[] =
+ObjectSpriteROMDef* const BANDANA_SPRITES[] =
 {
-	&KEY_SPRITE,
+	&BANDANA_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef KEY_AG =
+AnimatedInGameEntityROMDef BANDANA_AG =
 {
     {
         {
-            __TYPE(Key),
-            (SpriteROMDef**)KEY_SPRITES,
+            __TYPE(Bandana),
+            (SpriteROMDef**)BANDANA_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
-        {1, 1, 1, 2},
+        {4, 4, 2, 2},
 
         // in game type
-        kKey,
+        kBandana,
 
         // width
         // if 0, width and height will be inferred from the texture's size
@@ -152,7 +152,7 @@ AnimatedInGameEntityROMDef KEY_AG =
     },
 
     // pointer to the animation definition for the item
-    (AnimationDescription*)&KEY_ANIM,
+    (AnimationDescription*)&BANDANA_ANIM,
 
     // initial animation
     "Spin",
