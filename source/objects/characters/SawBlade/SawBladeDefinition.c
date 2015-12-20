@@ -66,22 +66,26 @@ AnimationDescription SAW_BLADE_ANIM =
 	}
 };
 
-TextureDefinition SAW_BLADE_TX =
+CharSetROMDef SAW_BLADE_CH =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        18,
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    18,
 
-        // allocation type
-        __ANIMATED_MULTI,
+    // allocation type
+    __ANIMATED_MULTI,
 
-        // char definition
-        SawBladeTiles,
-    },
+    // char definition
+    SawBladeTiles,
+};
+
+TextureROMDef SAW_BLADE_TX =
+{
+    // charset definition
+    (CharSetDefinition*)&SAW_BLADE_CH,
 
     // bgmap definition
     SawBladeMap,

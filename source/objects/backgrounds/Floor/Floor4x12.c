@@ -38,22 +38,26 @@ extern BYTE Floor4TopMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef FLOOR_4x12_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    16,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Floor4x12Tiles,
+};
+
 TextureROMDef FLOOR_4x12_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        16,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor4x12Tiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&FLOOR_4x12_CH,
 
     // bgmap definition
     Floor4x12Map,
@@ -88,22 +92,27 @@ ObjectSpriteROMDef FLOOR_4x12_SPRITE =
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
+
+CharSetROMDef FLOOR_4_TOP_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    7,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Floor4TopTiles,
+};
+
 TextureROMDef FLOOR_4_TOP_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        7,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor4TopTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&FLOOR_4_TOP_CH,
 
     // bgmap definition
     Floor4TopMap,

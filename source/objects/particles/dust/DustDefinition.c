@@ -39,22 +39,26 @@ extern BYTE DustParticleLargeMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef DUST_PARTICLE_SMALL_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    1,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    DustParticleSmallTiles,
+};
+
 TextureROMDef DUST_PARTICLE_SMALL_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        1,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        DustParticleSmallTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&DUST_PARTICLE_SMALL_CH,
 
     // bgmap definition
     DustParticleSmallMap,
@@ -90,22 +94,26 @@ ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
 	WRLD_ON,
 };
 
+CharSetROMDef DUST_PARTICLE_LARGE_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    1,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    DustParticleLargeTiles,
+};
+
 TextureROMDef DUST_PARTICLE_LARGE_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        1,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        DustParticleLargeTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&DUST_PARTICLE_LARGE_CH,
 
     // bgmap definition
     DustParticleLargeMap,

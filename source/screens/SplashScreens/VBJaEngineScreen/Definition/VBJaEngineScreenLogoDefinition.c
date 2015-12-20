@@ -37,22 +37,26 @@ extern BYTE VBJaEngineScreenLogoOutlineMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef VBJAENGINE_LOGO_3D_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    54,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    VBJaEngineScreenLogoTiles,
+};
+
 TextureROMDef VBJAENGINE_LOGO_3D_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        54,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        VBJaEngineScreenLogoTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&VBJAENGINE_LOGO_3D_CH,
 
     // bgmap definition
     VBJaEngineScreenLogoMap,
@@ -70,22 +74,26 @@ TextureROMDef VBJAENGINE_LOGO_3D_TX =
     0,
 };
 
+CharSetROMDef VBJAENGINE_LOGO_OUTLINE_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    57,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    VBJaEngineScreenLogoOutlineTiles,
+};
+
 TextureROMDef VBJAENGINE_LOGO_OUTLINE_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        57,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        VBJaEngineScreenLogoOutlineTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&VBJAENGINE_LOGO_OUTLINE_CH,
 
     // bgmap definition
     VBJaEngineScreenLogoOutlineMap,

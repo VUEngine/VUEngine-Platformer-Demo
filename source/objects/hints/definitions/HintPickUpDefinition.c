@@ -139,22 +139,26 @@ AnimationDescriptionROMDef HINT_PICK_UP_ANIM =
 	}
 };
 
+CharSetROMDef HINT_PICK_UP_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    18,
+
+    // allocation type
+    __ANIMATED_SINGLE,
+
+    // char definition
+    HintPickUpTiles,
+};
+
 TextureROMDef HINT_PICK_UP_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        217,
-
-        // allocation type
-        __ANIMATED_MULTI,
-
-        // char definition
-        HintPickUpTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&HINT_PICK_UP_CH,
 
     // bgmap definition
     HintPickUpMap,

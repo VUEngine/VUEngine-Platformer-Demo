@@ -34,22 +34,26 @@ extern BYTE Level_1_Main_1_MainFront_3Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    4,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Level_1_Main_1_MainFrontTiles,
+};
+
 TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        4,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Level_1_Main_1_MainFrontTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_3_CH,
 
     // bgmap definition
     Level_1_Main_1_MainFront_3Map,

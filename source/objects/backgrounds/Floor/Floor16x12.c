@@ -38,22 +38,26 @@ extern BYTE Floor16TopMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef FLOOR_16x12_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    16,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Floor16x12Tiles,
+};
+
 TextureROMDef FLOOR_16x12_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        16,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor16x12Tiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&FLOOR_16x12_CH,
 
     // bgmap definition
     Floor16x12Map,
@@ -88,22 +92,27 @@ ObjectSpriteROMDef FLOOR_16x12_SPRITE =
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
+
+CharSetROMDef FLOOR_16_TOP_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    7,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Floor16TopTiles,
+};
+
 TextureROMDef FLOOR_16_TOP_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        7,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Floor16TopTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&FLOOR_16_TOP_CH,
 
     // bgmap definition
     Floor16TopMap,

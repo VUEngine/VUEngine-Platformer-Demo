@@ -37,22 +37,27 @@ extern BYTE CogWheelMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+
+CharSetROMDef COG_WHEEL_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    367,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    CogWheelTiles,
+};
+
 TextureROMDef COG_WHEEL_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        367,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        CogWheelTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&COG_WHEEL_CH,
 
     // bgmap definition
     CogWheelMap,

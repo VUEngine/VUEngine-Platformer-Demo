@@ -142,22 +142,26 @@ AnimationDescriptionROMDef DOOR_ANIM =
 	}
 };
 
+CharSetROMDef DOOR_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    49,
+
+    // allocation type
+    __ANIMATED_MULTI,
+
+    // char definition
+    DoorTiles,
+};
+
 TextureROMDef DOOR_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        49,
-
-        // allocation type
-        __ANIMATED_MULTI,
-
-        // char definition
-        DoorTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&DOOR_CH,
 
     // bgmap definition
     DoorMap,
@@ -389,22 +393,26 @@ AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
     "Closed",
 };
 
+CharSetROMDef DOOR_BACK_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    25,
+
+    // allocation type
+    __ANIMATED_MULTI,
+
+    // char definition
+    DoorBackTiles,
+};
+
 TextureROMDef DOOR_BACK_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        25,
-
-        // allocation type
-        __ANIMATED_MULTI,
-
-        // char definition
-        DoorBackTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&DOOR_BACK_CH,
 
     // bgmap definition
     DoorBackMap,

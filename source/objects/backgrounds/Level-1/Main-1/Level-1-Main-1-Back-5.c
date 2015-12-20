@@ -34,22 +34,26 @@ extern BYTE Level_1_Main_1_Back_5Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+CharSetROMDef LEVEL_1_MAIN_1_BACK_5_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_MULTI: sum of chars of all animation frames
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
+    // __NOT_ANIMATED: number of chars of whole image
+    136,
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    Level_1_Main_1_BackTiles,
+};
+
 TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
 {
-    {
-        // number of chars, depending on allocation type:
-        // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-        // __ANIMATED_MULTI: sum of chars of all animation frames
-        // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-        // __NOT_ANIMATED: number of chars of whole image
-        136,
-
-        // allocation type
-        __NOT_ANIMATED,
-
-        // char definition
-        Level_1_Main_1_BackTiles,
-    },
+    // charset definition
+    (CharSetDefinition*)&LEVEL_1_MAIN_1_BACK_5_CH,
 
     // bgmap definition
     Level_1_Main_1_Back_5Map,
