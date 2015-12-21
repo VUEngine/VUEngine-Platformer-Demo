@@ -510,13 +510,10 @@ void Hero_synchronizeDirectionWithVelocity(Hero this)
 	}
 }
 
-void Hero_takeHitFrom(Hero this, Actor other)
+void Hero_takeHitFrom(Hero this, Actor other, bool pause)
 {
     if (!Hero_isInvincible(this))
     {
-        // first stop all movement
-        // Actor_stopMovement(__SAFE_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
-
         if(this->energy > 0)
         {
             Hero_setInvincible(this, true);
@@ -537,18 +534,20 @@ void Hero_takeHitFrom(Hero this, Actor other)
                 this->energy--;
             }
 
-        	Game_pausePhysics(Game_getInstance(), true);
-        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+            if(pause)
+            {
+	        	Game_pausePhysics(Game_getInstance(), true);
+	        	MessageDispatcher_dispatchMessage(250, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+	        	
+	        	//Game_disableKeyPad(GameInstance());
+	        	KeypadManager_disable(KeypadManager_getInstance());
+            }
 
             // start short screen shake
             Screen_startEffect(Screen_getInstance(), kShake, 200);
 
             // play hit sound
             SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
-            
-        	//Game_disableKeyPad(GameInstance());
-        	KeypadManager_disable(KeypadManager_getInstance());
-
         }
         else
         {
@@ -556,7 +555,7 @@ void Hero_takeHitFrom(Hero this, Actor other)
 
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
             Game_pausePhysics(Game_getInstance(), true);
-        	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
+        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
         	return;
         }
 
@@ -1098,13 +1097,13 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kSawBlade:
 
-                Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity));
+                Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity), true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kHit:
 
-                Hero_takeHitFrom(this, NULL);
+                Hero_takeHitFrom(this, NULL, false);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
