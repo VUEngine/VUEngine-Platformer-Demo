@@ -818,6 +818,8 @@ void Hero_lookBack(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
+	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_HERO_DIED);
+
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));

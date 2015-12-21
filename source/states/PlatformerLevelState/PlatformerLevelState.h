@@ -76,6 +76,7 @@ __CLASS(PlatformerLevelState);
 #define EVENT_KEY_TAKEN			"KeyTaken"
 #define EVENT_BANDANA_TAKEN		"BandanaTaken"
 #define EVENT_BANDANA_LOST		"BandanaLost"
+#define EVENT_HERO_DIED			"HeroDied"
 
 
 //---------------------------------------------------------------------------------------------------------

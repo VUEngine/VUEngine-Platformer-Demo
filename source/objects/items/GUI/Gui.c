@@ -53,6 +53,8 @@ static void GUI_onCoinTaken(GUI this, Object eventFirer);
 static void GUI_onKeyTaken(GUI this, Object eventFirer);
 static void GUI_onBandanaTaken(GUI this, Object eventFirer);
 static void GUI_onBandanaLost(GUI this, Object eventFirer);
+static void GUI_onHeroDied(GUI this, Object eventFirer);
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -83,6 +85,7 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
     Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
     Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaTaken, EVENT_BANDANA_TAKEN);
     Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaLost, EVENT_BANDANA_LOST);
+    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHeroDied, EVENT_HERO_DIED);
 
     GUI_printAll(this);
 }
@@ -92,14 +95,6 @@ void GUI_destructor(GUI this)
 {
 	// delete the super object
 	__DESTROY_BASE;
-
-    // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onSecondChange, __EVENT_SECOND_CHANGED);
-	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHitTaken, EVENT_HIT_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaTaken, EVENT_BANDANA_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaLost, EVENT_BANDANA_LOST);
 }
 
 // print elapsed time to gui
@@ -199,4 +194,17 @@ static void GUI_onBandanaTaken(GUI this, Object eventFirer)
 static void GUI_onBandanaLost(GUI this, Object eventFirer)
 {
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_CH);
+}
+
+// handle event
+static void GUI_onHeroDied(GUI this, Object eventFirer)
+{
+    // remove event listeners
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHitTaken, EVENT_HIT_TAKEN);
+	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
+	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
+    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaTaken, EVENT_BANDANA_TAKEN);
+    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaLost, EVENT_BANDANA_LOST);
+    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHeroDied, EVENT_HERO_DIED);
 }
