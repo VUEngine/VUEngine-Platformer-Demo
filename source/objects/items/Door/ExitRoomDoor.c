@@ -67,6 +67,7 @@ void ExitRoomDoor_constructor(ExitRoomDoor this, AnimatedInGameEntityDefinition*
 void ExitRoomDoor_destructor(ExitRoomDoor this)
 {
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

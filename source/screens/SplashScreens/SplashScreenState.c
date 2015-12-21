@@ -48,6 +48,7 @@ void SplashScreenState_constructor(SplashScreenState this)
 void SplashScreenState_destructor(SplashScreenState this)
 {
 	// destroy the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

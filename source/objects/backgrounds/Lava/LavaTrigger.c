@@ -70,6 +70,7 @@ void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition*
 void LavaTrigger_destructor(LavaTrigger this)
 {
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

@@ -72,6 +72,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 void Door_destructor(Door this)
 {
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

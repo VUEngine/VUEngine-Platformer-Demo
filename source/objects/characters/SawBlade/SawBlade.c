@@ -98,6 +98,7 @@ void SawBlade_destructor(SawBlade this)
 	ASSERT(this, "SawBlade::destructor: null this");
 
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

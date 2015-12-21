@@ -72,6 +72,7 @@ void Lava_destructor(Lava this)
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kMove);
 
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

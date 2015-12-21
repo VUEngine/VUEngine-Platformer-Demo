@@ -75,6 +75,7 @@ void CannonBall_constructor(CannonBall this, InanimatedInGameEntityDefinition* i
 void CannonBall_destructor(CannonBall this)
 {
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

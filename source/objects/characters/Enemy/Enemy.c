@@ -56,6 +56,7 @@ void Enemy_constructor(Enemy this, ActorDefinition* characterDefinition, int id,
 void Enemy_destructor(Enemy this)
 {
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

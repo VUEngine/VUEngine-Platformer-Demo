@@ -72,6 +72,7 @@ void Hint_destructor(Hint this)
 	ASSERT(this, "Hint::destructor: null this");
 
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

@@ -69,5 +69,6 @@ void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* anima
 void HideLayer_destructor(HideLayer this)
 {
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }

@@ -67,6 +67,7 @@ void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedInGameEntityDefin
 void LayerSwitchDoor_destructor(LayerSwitchDoor this)
 {
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

@@ -83,6 +83,7 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 void Coin_destructor(Coin this)
 {
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

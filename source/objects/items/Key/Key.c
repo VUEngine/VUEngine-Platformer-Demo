@@ -79,6 +79,7 @@ void Key_destructor(Key this)
 	KeyManager_removeKey(KeyManager_getInstance(), this);
 
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

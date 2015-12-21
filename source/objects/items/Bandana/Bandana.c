@@ -76,6 +76,7 @@ void Bandana_destructor(Bandana this)
 	ASSERT(this, "Bandana::destructor: null this");
 
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 

@@ -191,6 +191,7 @@ void Hero_destructor(Hero this)
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
 	// delete the super object
+	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 
