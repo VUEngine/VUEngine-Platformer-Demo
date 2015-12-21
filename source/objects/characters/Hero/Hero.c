@@ -537,7 +537,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             if(pause)
             {
 	        	Game_pausePhysics(Game_getInstance(), true);
-	        	MessageDispatcher_dispatchMessage(250, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+	        	MessageDispatcher_dispatchMessage(600, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
 	        	
 	        	//Game_disableKeyPad(GameInstance());
 	        	KeypadManager_disable(KeypadManager_getInstance());
