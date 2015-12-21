@@ -151,7 +151,7 @@ AnimatedInGameEntityROMDef GUI_AG =
 {
     {
         {
-            __TYPE(AnimatedInGameEntity),
+            __TYPE(GUI),
             (SpriteROMDef**)GUI_SPRITES,
         },
 
