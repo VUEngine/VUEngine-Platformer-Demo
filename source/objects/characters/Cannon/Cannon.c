@@ -63,9 +63,6 @@ void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInG
 {
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
-
-	// register a shape for collision detection
-    //this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
 }
 
 // class's destructor
@@ -134,5 +131,5 @@ void Cannon_spawnCannonBall(Cannon this)
     SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
     // add cannon ball entity to stage
-	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_AC, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, false);
+	Stage_addEntity(this, (EntityDefinition*)&CANNON_BALL_AC, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, false);
 }

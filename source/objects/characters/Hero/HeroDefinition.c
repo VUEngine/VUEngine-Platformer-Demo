@@ -151,7 +151,7 @@ AnimationFunctionROMDef HERO_SLIDING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_HIT_FRONT_ANIM =
+AnimationFunctionROMDef HERO_HIT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -160,107 +160,39 @@ AnimationFunctionROMDef HERO_HIT_FRONT_ANIM =
 	{8},
 	
 	// number of cycles a frame of animation is displayed
-	0,
+	80 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
-	false,
+	true,
 	
 	// method to call on function completion
 	NULL,
 	
 	// function's name
-	"HitFront",
+	"Hit",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_HIT_BEHIND_ANIM =
+AnimationFunctionROMDef HERO_CLIMB_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
-	{8},
-	
+	{9, 10},
+
 	// number of cycles a frame of animation is displayed
-	0,
-	
+	8 * __FPS_ANIM_FACTOR,
+
 	// whether to play it in loop or not
-	false,
-	
+	true,
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
-	"HitBehind",
+	"Climb",
 };
-
-// a function which defines the frames to play
-AnimationFunctionROMDef HERO_HIT_FIRE_ANIM =
-{
-	// number of frames of this animation function
-	1,
-	
-	// frames to play in animation
-	{8},
-	
-	// number of cycles a frame of animation is displayed
-	0,
-	
-	// whether to play it in loop or not
-	false,
-	
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"HitFire",
-};
-
-
-// a function which defines the frames to play
-AnimationFunctionROMDef HERO_JUMP_BACK_ANIM =
-{
-	// number of frames of this animation function
-	1,
-	
-	// frames to play in animation
-	{12},
-	
-	// number of cycles a frame of animation is displayed
-	0,
-	
-	// whether to play it in loop or not
-	false,
-	
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"JumpBack",
-};
-
-// a function which defines the frames to play
-AnimationFunctionROMDef HERO_JUMP_FRONT_ANIM =
-{
-	// number of frames of this animation function
-	1,
-	
-	// frames to play in animation
-	{13},
-	
-	// number of cycles a frame of animation is displayed
-	0,
-	
-	// whether to play it in loop or not
-	false,
-	
-	// method to call on function completion
-	NULL,
-	
-	// function's name
-	"JumpFront",
-};
-
 
 // a function which defines the frames to play
 AnimationFunctionROMDef HERO_FRONT_ANIM =
@@ -317,10 +249,8 @@ AnimationDescriptionROMDef HERO_ANIM =
 		(AnimationFunction*)&HERO_JUMPING_ANIM,
 		(AnimationFunction*)&HERO_FALLING_ANIM,
 		(AnimationFunction*)&HERO_SLIDING_ANIM,
-		(AnimationFunction*)&HERO_HIT_FRONT_ANIM,
-		(AnimationFunction*)&HERO_HIT_BEHIND_ANIM,
-		(AnimationFunction*)&HERO_JUMP_BACK_ANIM,
-		(AnimationFunction*)&HERO_JUMP_FRONT_ANIM,
+		(AnimationFunction*)&HERO_HIT_ANIM,
+		(AnimationFunction*)&HERO_CLIMB_ANIM,
 		(AnimationFunction*)&HERO_FRONT_ANIM,
 		(AnimationFunction*)&HERO_BACK_ANIM,
 		NULL,

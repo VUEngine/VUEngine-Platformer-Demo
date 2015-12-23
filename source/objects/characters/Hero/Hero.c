@@ -515,6 +515,8 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
 {
     if (!Hero_isInvincible(this))
     {
+		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
+
         if(this->energy > 0)
         {
             Hero_setInvincible(this, true);
