@@ -46,7 +46,7 @@ AnimationFunctionROMDef HERO_IDLE_ANIM =
 	2,
 	
 	// frames to play in animation
-	{4,5},
+	{4, 5},
 	
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -269,7 +269,7 @@ AnimationFunctionROMDef HERO_FRONT_ANIM =
 	2,
 	
 	// frames to play in animation
-	{0,1},
+	{0, 1},
 	
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -291,7 +291,7 @@ AnimationFunctionROMDef HERO_BACK_ANIM =
 	2,
 	
 	// frames to play in animation
-	{2,3},
+	{2, 3},
 	
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,

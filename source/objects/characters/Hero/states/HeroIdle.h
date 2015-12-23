@@ -53,7 +53,6 @@ __CLASS(HeroIdle);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// setup the init focus screen
 HeroIdle HeroIdle_getInstance();
 
 

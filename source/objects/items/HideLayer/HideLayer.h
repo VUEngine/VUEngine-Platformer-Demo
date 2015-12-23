@@ -41,7 +41,7 @@ __CLASS(HideLayer);
 
 #define HideLayer_ATTRIBUTES														\
 																				    \
-	/* it is derivated from */													    \
+	/* it is derived from */													    \
 	AnimatedInGameEntity_ATTRIBUTES												    \
 
 

@@ -45,7 +45,7 @@ AnimationFunctionROMDef HINT_PICK_UP_OPEN_ANIM =
 	5,
 	
 	// frames to play in animation
-	{0,1,2,3,4},
+	{0, 1, 2, 3, 4},
 
 	// number of cycles a frame of animation is displayed
 	__FPS_ANIM_FACTOR,
@@ -67,7 +67,7 @@ AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
 	2,
 
 	// frames to play in animation
-	{5,6},
+	{5, 6},
 
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -89,7 +89,7 @@ AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 	2,
 	
 	// frames to play in animation
-	{7,8},
+	{7, 8},
 	
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -111,7 +111,7 @@ AnimationFunctionROMDef HINT_PICK_UP_CLOSE_ANIM =
 	5,
 
 	// frames to play in animation
-	{4,3,2,1,0},
+	{4, 3, 2, 1, 0},
 
 	// number of cycles a frame of animation is displayed
 	__FPS_ANIM_FACTOR,

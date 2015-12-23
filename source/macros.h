@@ -52,6 +52,7 @@ enum PlatformerTypes
 	kLava,
 	kLavaTrigger,
 	kSawBlade,
+	kCannonBall,
 };
 
 enum GameWorldModes

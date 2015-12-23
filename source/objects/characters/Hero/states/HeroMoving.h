@@ -66,7 +66,6 @@ enum HeroMovingMessages
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// setup the init focus screen
 HeroMoving HeroMoving_getInstance();
 
 

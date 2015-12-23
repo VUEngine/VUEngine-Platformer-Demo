@@ -66,7 +66,7 @@ AnimationFunctionROMDef BUSH_WINDY_ANIM =
 	2,
 
 	// frames to play in animation
-	{0,1},
+	{0, 1},
 
 	// number of cycles a frame of animation is displayed
 	15 * __FPS_ANIM_FACTOR,

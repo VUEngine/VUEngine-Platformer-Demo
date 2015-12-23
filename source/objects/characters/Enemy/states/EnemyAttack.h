@@ -30,50 +30,36 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define EnemyAttack_METHODS								\
-	State_METHODS;									
+#define EnemyAttack_METHODS																				\
+	State_METHODS;																						\
 
 // declare the virtual methods which are redefined
-#define EnemyAttack_SET_VTABLE(ClassName)					\
-	State_SET_VTABLE(ClassName)								\
-	__VIRTUAL_SET(ClassName, EnemyAttack, enter);			\
-	__VIRTUAL_SET(ClassName, EnemyAttack, execute);			\
-	__VIRTUAL_SET(ClassName, EnemyAttack, exit);			\
-	__VIRTUAL_SET(ClassName, EnemyAttack, handleMessage);	\
-
-
+#define EnemyAttack_SET_VTABLE(ClassName)																\
+	State_SET_VTABLE(ClassName)																			\
+	__VIRTUAL_SET(ClassName, EnemyAttack, enter);														\
+	__VIRTUAL_SET(ClassName, EnemyAttack, execute);														\
+	__VIRTUAL_SET(ClassName, EnemyAttack, exit);														\
+	__VIRTUAL_SET(ClassName, EnemyAttack, handleMessage);												\
 
 __CLASS(EnemyAttack);
 
-#define EnemyAttack_ATTRIBUTES			\
-										\
-	/* inherits */						\
-	State_ATTRIBUTES
+#define EnemyAttack_ATTRIBUTES																			\
+																										\
+	/* inherits */																						\
+	State_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// setup the init focus screen
 EnemyAttack EnemyAttack_getInstance();
 
-// class's constructor
 void EnemyAttack_constructor(EnemyAttack this);
-
-// class's destructor
 void EnemyAttack_destructor(EnemyAttack this);
-
-// state's enter
 void EnemyAttack_enter(EnemyAttack this, void* owner);
-
-// state's execute
 void EnemyAttack_execute(EnemyAttack this, void* owner);
-
-// state's enter
 void EnemyAttack_exit(EnemyAttack this, void* owner);
-
-// state's on message
 bool EnemyAttack_handleMessage(EnemyAttack this, void* owner, Telegram telegram);
 
 

@@ -46,7 +46,7 @@ AnimationFunctionROMDef COIN_SPIN_ANIM =
 	4,
 	
 	// frames to play in animation
-	{0,1,2,3},
+	{0, 1, 2, 3},
 	
 	// number of cycles a frame of animation is displayed
 	8 * __FPS_ANIM_FACTOR,

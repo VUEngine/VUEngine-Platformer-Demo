@@ -44,7 +44,7 @@ AnimationFunctionROMDef MOUND_BG_CASTLE_FLAG_WAVE_ANIM =
 	2,
 
 	// frames to play in animation
-	{0,1},
+	{0, 1},
 
 	// number of cycles a frame of animation is displayed
 	10 * __FPS_ANIM_FACTOR,

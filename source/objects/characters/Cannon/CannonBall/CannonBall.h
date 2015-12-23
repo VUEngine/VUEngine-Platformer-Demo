@@ -22,48 +22,49 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Actor.h>
 #include <macros.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-#define CANNON_BALL_MOVE_DELAY 100
-#define CANNON_BALL_Z_OFFSET_PER_CYCLE 5
-#define CANNON_BALL_MINIMUM_Z_POSITION -80
+#include <Enemy.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CannonBall_METHODS														\
-	InanimatedInGameEntity_METHODS;
+#define CannonBall_METHODS																				\
+	Enemy_METHODS;																						\
+
+#define CannonBall_SET_VTABLE(ClassName)																\
+	Enemy_SET_VTABLE(ClassName);																		\
+	__VIRTUAL_SET(ClassName, CannonBall, die);															\
+	__VIRTUAL_SET(ClassName, CannonBall, takeHit);														\
+	__VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);										\
+	__VIRTUAL_SET(ClassName, CannonBall, ready);														\
 	
-
-#define CannonBall_SET_VTABLE(ClassName)										\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
-	__VIRTUAL_SET(ClassName, CannonBall, handleMessage);						\
-
 __CLASS(CannonBall);
 
-#define CannonBall_ATTRIBUTES													\
-																				\
-	/* it is derivated from */													\
-	InanimatedInGameEntity_ATTRIBUTES											\
+#define CannonBall_ATTRIBUTES																			\
+																										\
+	/* it is derived from */																			\
+	Enemy_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(CannonBall, InanimatedInGameEntityDefinition* inanimatedEntityDefinition, int id, const char* const name);
+// allocator
+__CLASS_NEW_DECLARE(CannonBall, ActorDefinition* definition, int id, const char* const name);
 
-void CannonBall_constructor(CannonBall this, InanimatedInGameEntityDefinition* inanimatedEntityDefinition, int id, const char* const name);
+void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id, const char* const name);
 void CannonBall_destructor(CannonBall this);
-bool CannonBall_handleMessage(CannonBall this, Telegram telegram);
+void CannonBall_ready(CannonBall this);
+void CannonBall_registerShape(CannonBall this);
+void CannonBall_unregisterShape(CannonBall this);
+void CannonBall_takeHit(CannonBall this, int axis, s8 direction);
+void CannonBall_die(CannonBall this);
+int CannonBall_getAxisFreeForMovement(CannonBall this);
+void CannonBall_startMovement(CannonBall this);
 
 
 #endif

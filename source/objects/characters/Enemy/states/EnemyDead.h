@@ -53,7 +53,6 @@ __CLASS(EnemyDead);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// setup the init focus screen
 EnemyDead EnemyDead_getInstance();
 
 

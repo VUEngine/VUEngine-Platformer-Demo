@@ -43,7 +43,7 @@ AnimationFunctionROMDef KEY_SPIN_ANIM =
 	8,
 	
 	// frames to play in animation
-	{0,1,2,3,4,5,6,7},
+	{0, 1, 2, 3, 4, 5, 6, 7},
 	
 	// number of cycles a frame of animation is displayed
 	8 * __FPS_ANIM_FACTOR,

@@ -19,10 +19,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <InAnimatedInGameEntity.h>
-#include <macros.h>
-#include <CannonBall.h>
+#include <BgmapAnimatedSprite.h>
+#include "CannonBall.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -37,6 +35,37 @@ extern BYTE CannonBallMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+AnimationFunction CANNON_BALL_FLY_ANIM =
+{
+	// number of frames of this animation function
+	1,
+	
+	// frames to play in animation
+	{0},
+	
+	// number of cycles a frame of animation is displayed
+	8 * __FPS_ANIM_FACTOR,
+	
+	// whether to play it in loop or not
+	true,
+	
+	// method to call on function completion
+	NULL,
+	
+	// function's name
+	"Fly",
+};
+
+// an animation definition
+AnimationDescription CANNON_BALL_ANIM =
+{
+	// animation functions
+	{
+		&CANNON_BALL_FLY_ANIM,
+		NULL,
+	}
+};
+
 CharSetROMDef CANNON_BALL_CH =
 {
     // number of chars, depending on allocation type:
@@ -44,10 +73,10 @@ CharSetROMDef CANNON_BALL_CH =
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    9,
+    10,
 
     // allocation type
-    __NOT_ANIMATED,
+    __ANIMATED_MULTI,
 
     // char definition
     CannonBallTiles,
@@ -74,10 +103,10 @@ TextureROMDef CANNON_BALL_TX =
     1,
 };
 
-BgmapSpriteROMDef CANNON_BALL_BG_SPRITE =
+BgmapSpriteROMDef CANNON_BALL_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&CANNON_BALL_TX,
@@ -88,48 +117,54 @@ BgmapSpriteROMDef CANNON_BALL_BG_SPRITE =
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
 	WRLD_AFFINE,
 	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON) (WRLD_ON, WRLD_LON or WRLD_RON)
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const CANNON_BALL_BG_SPRITES[] =
+BgmapSpriteROMDef* const CANNON_BALL_SPRITES[] =
 {
-	&CANNON_BALL_BG_SPRITE,
+	&CANNON_BALL_SPRITE,
 	NULL
 };
 
-InanimatedInGameEntityROMDef CANNON_BALL_IG =
+ActorROMDef CANNON_BALL_AC =
 {
-    {
-        {
-            __TYPE(CannonBall),
-            (SpriteROMDef**)CANNON_BALL_BG_SPRITES,
-        },
+	{
+		{
+			{
+				__TYPE(CannonBall),
+				(SpriteROMDef**)CANNON_BALL_SPRITES,
+			},
 
-        // collision detection gap (up, down, left, right)
-        {2, 2, 2, 2},
+			// collision detection gap (up, down, left, right)
+			{0, 0, 0, 0},
 
-        // in game type
-        kSolid,
+			// in game type
+			kCannonBall,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+			// width
+			0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+			// height
+			0,
 
-        // depth
-        8
-    },
+			// depth
+			10
+		},
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(0.0f),
+		// pointer to the animation definition for the character
+		&CANNON_BALL_ANIM,
 
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(0.0f),
+		// initial animation
+		NULL
+	},
 
-    // register shape
-    true,
+	// friction for physics
+	ITOFIX19_13(0),
+
+	// elasticity for physics
+	ITOFIX19_13(0),
+
+	// mass
+	ITOFIX19_13(10)
 };

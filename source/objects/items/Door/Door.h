@@ -43,7 +43,7 @@ __CLASS(Door);
 
 #define Door_ATTRIBUTES															\
 																				\
-	/* it is derivated from */													\
+	/* it is derived from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
 																				\
 	/* destination of door */													\

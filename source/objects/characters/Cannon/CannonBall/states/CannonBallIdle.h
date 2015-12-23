@@ -14,61 +14,46 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CANNON_H_
-#define CANNON_H_
+#ifndef CANNON_BALL_IDLE_H_
+#define CANNON_BALL_IDLE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
-#include <macros.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-#define CANNON_INITIAL_SHOOT_DELAY 500
-#define CANNON_SHOOT_DELAY 7500
+#include <StateMachine.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Cannon_METHODS																					\
-	AnimatedInGameEntity_METHODS;
+// declare the virtual methods
+#define CannonBallIdle_METHODS																			\
+	State_METHODS;																						\
+
+// declare the virtual methods which are redefined
+#define CannonBallIdle_SET_VTABLE(ClassName)															\
+State_SET_VTABLE(ClassName)																				\
+	__VIRTUAL_SET(ClassName, CannonBallIdle, enter);													\
+	__VIRTUAL_SET(ClassName, CannonBallIdle, execute);													\
+	__VIRTUAL_SET(ClassName, CannonBallIdle, exit);														\
+	__VIRTUAL_SET(ClassName, CannonBallIdle, handleMessage);											\
 	
+__CLASS(CannonBallIdle);
 
-#define Cannon_SET_VTABLE(ClassName)																	\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
-	__VIRTUAL_SET(ClassName, Cannon, handleMessage);													\
-	__VIRTUAL_SET(ClassName, Cannon, ready);															\
-	__VIRTUAL_SET(ClassName, Cannon, suspend);															\
-
-__CLASS(Cannon);
-
-#define Cannon_ATTRIBUTES																				\
+#define CannonBallIdle_ATTRIBUTES																		\
 																										\
-	/* it is derived from */																			\
-	AnimatedInGameEntity_ATTRIBUTES																		\
+	/* inherits */																						\
+	State_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Cannon, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
-
-void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
-void Cannon_destructor(Cannon this);
-bool Cannon_handleMessage(Cannon this, Telegram telegram);
-void Cannon_ready(Cannon this);
-void Cannon_suspend(Cannon this);
-void Cannon_shoot(Cannon this);
-void Cannon_spawnCannonBall(Cannon this);
+CannonBallIdle CannonBallIdle_getInstance();
 
 
 #endif

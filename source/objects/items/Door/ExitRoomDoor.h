@@ -42,7 +42,7 @@ __CLASS(ExitRoomDoor);
 
 #define ExitRoomDoor_ATTRIBUTES																			\
 																										\
-	/* it is derivated from */																			\
+	/* it is derived from */																			\
 	Door_ATTRIBUTES																						\
 
 

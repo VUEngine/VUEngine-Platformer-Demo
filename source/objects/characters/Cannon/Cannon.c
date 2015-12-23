@@ -83,7 +83,7 @@ void Cannon_ready(Cannon this)
 	Entity_ready(__SAFE_CAST(Entity, this));
 	
     // send delayed message to self to trigger first shot
-    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+    MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // state's on message
@@ -134,5 +134,5 @@ void Cannon_spawnCannonBall(Cannon this)
     SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
     // add cannon ball entity to stage
-	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_IG, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, false);
+	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_AC, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, false);
 }

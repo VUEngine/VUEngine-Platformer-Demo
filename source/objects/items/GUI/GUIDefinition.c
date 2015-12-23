@@ -45,7 +45,7 @@ AnimationFunctionROMDef GUI_DEFAULT_ANIM =
 	15,
 
 	// frames to play in animation
-	{1,0,1,0,1,0,1,0,1,0,1,0,2,3,4},
+	{1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 2, 3, 4},
 
 	// number of cycles a frame of animation is displayed
 	8 * __FPS_ANIM_FACTOR,

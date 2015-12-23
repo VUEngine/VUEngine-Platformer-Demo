@@ -44,7 +44,7 @@ __CLASS(Enemy);
 
 #define Enemy_ATTRIBUTES																				\
 																										\
-	/* it is derivated from */																			\
+	/* it is derived from */																			\
 	Actor_ATTRIBUTES																					\
 																										\
 	/* Enemy has energy	*/																				\

@@ -60,7 +60,7 @@ __CLASS(Hero);
 
 #define Hero_ATTRIBUTES															\
 																				\
-	/* it is derivated from */													\
+	/* it is derived from */													\
 	Actor_ATTRIBUTES															\
 																				\
 	/* a reference to the last door the hero passed */    						\

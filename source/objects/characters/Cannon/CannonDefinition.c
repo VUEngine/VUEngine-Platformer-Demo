@@ -64,7 +64,7 @@ AnimationFunction CANNON_SHOOT_ANIM =
 	15,
 
 	// frames to play in animation
-	{1,2,1,2,0,0,0,0,0,0,3,4,5,6,0},
+	{1, 2, 1, 2, 0, 0, 0, 0, 0, 0, 3, 4, 5, 6, 0},
 
 	// number of cycles a frame of animation is displayed
 	6 * __FPS_ANIM_FACTOR,

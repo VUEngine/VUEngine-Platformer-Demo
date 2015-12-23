@@ -40,7 +40,7 @@ __CLASS(GUI);
 
 #define GUI_ATTRIBUTES																					\
 																										\
-	/* it is derivated from */																			\
+	/* it is derived from */																			\
 	AnimatedInGameEntity_ATTRIBUTES																		\
 
 
