@@ -21,7 +21,7 @@
 
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
-#include <TriggerEntity.h>
+#include <CameraTriggerEntity.h>
 
 #include "Hero.h"
 
@@ -448,11 +448,11 @@ ActorROMDef HERO_AC =
 };
 
 
-TriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
+CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 {
     {
         {
-            __TYPE(TriggerEntity),
+            __TYPE(CameraTriggerEntity),
             NULL,
         },
 
@@ -468,7 +468,7 @@ TriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	12 * 8,
+    	14 * 8,
 
     	// depth
     	4 * 8

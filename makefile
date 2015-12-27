@@ -105,6 +105,7 @@ $(ENGINE): deleteEngine
 $(TARGET).vb: main.elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary main.elf $@
+#	@$(OBJDUMP) -S main.elf > machine.asm
 	@echo $(TARGET).vb done
 
 asm: main.elf

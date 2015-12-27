@@ -80,7 +80,7 @@ void Clouds_update(Clouds this)
 
     // get local position of clouds and substract defined displacement from x value
     VBVec3D offset = *Container_getLocalPosition(__GET_CAST(Container, this));
-    offset.x -= FIX19_13_MULT(this->displacement, ITOFIX19_13(Clock_getElapsedTime(Game_getInGameClock(Game_getInstance()))));
+    offset.x -= FIX19_13_MULT(this->displacement, PhysicalWorld_getElapsedTime(PhysicalWorld_getInstance()));
 
     // update clouds' position
     Container_setLocalPosition(__GET_CAST(Container, this), &offset);

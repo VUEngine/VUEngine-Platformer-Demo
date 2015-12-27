@@ -85,6 +85,8 @@ static void TitleScreenState_destructor(TitleScreenState this)
 // state's enter
 static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
+	Game_disableKeypad(Game_getInstance());
+
 	const char* name1 = "IgnoreMeDoor";
 	const char* name2 = "IgnoreMeCoin";
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
@@ -172,7 +174,8 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 	// pause physical simulations
-    Game_pausePhysics(Game_getInstance(), true);
+	Game_pauseInGameClock(Game_getInstance(), false);
+	Game_pausePhysics(Game_getInstance(), false);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -191,7 +194,8 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 
 	// pause physical simulations
-    Game_pauseClocks(Game_getInstance());
+	Game_pauseInGameClock(Game_getInstance(), true);
+	Game_pausePhysics(Game_getInstance(), true);
 }
 
 // state's on message
@@ -201,9 +205,6 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 	switch(Telegram_getMessage(telegram))
     {
 		case kSetUpLevel:
-
-			// make a little bit of physical simulations so each entity is placed at the floor
-		    Game_startPhysics(Game_getInstance());
 
 			// account for any entity's tranform modification during their initialization
 			GameState_transform(__SAFE_CAST(GameState, this));
@@ -219,6 +220,8 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kStartLevel);
+
+			Game_enableKeypad(Game_getInstance());
 			break;
 
 		case kKeyPressed:

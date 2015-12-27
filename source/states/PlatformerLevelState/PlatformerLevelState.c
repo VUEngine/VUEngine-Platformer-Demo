@@ -113,6 +113,8 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
+	Game_disableKeypad(Game_getInstance());
+
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
 	
@@ -179,8 +181,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
 	// reset clock
-    Game_startAnimations(Game_getInstance());
-    Game_startPhysics(Game_getInstance());
+	Game_startClocks(Game_getInstance());
 		
 	// render gui values
 	// TODO
@@ -321,6 +322,9 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			Game_startInGameClock(Game_getInstance());
 
         	PlatformerLevelState_setModeToPlaying(this);
+        	
+        	Game_enableKeypad(Game_getInstance());
+
 			break;
 
 		case kHideLevelMessage:
