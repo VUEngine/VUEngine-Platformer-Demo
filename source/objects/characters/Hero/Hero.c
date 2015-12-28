@@ -541,7 +541,6 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
 {
     if (!Hero_isInvincible(this))
     {
-    	this->energy = 0;
         if(this->energy > 0 || Hero_hasBandana(this))
         {
             Hero_setInvincible(this, true);
