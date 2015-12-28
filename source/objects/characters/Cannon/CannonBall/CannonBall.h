@@ -28,6 +28,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+#define CANNON_BALL_MINIMUM_Z_VALUE -64
+
+
+//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
@@ -40,7 +47,8 @@
 	__VIRTUAL_SET(ClassName, CannonBall, takeHit);														\
 	__VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);										\
 	__VIRTUAL_SET(ClassName, CannonBall, ready);														\
-	
+	__VIRTUAL_SET(ClassName, CannonBall, isVisible);													\
+
 __CLASS(CannonBall);
 
 #define CannonBall_ATTRIBUTES																			\
@@ -65,6 +73,7 @@ void CannonBall_takeHit(CannonBall this, int axis, s8 direction);
 void CannonBall_die(CannonBall this);
 int CannonBall_getAxisFreeForMovement(CannonBall this);
 void CannonBall_startMovement(CannonBall this);
+bool CannonBall_isVisible(CannonBall this, int pad);
 
 
 #endif

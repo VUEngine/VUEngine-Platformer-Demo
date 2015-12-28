@@ -130,3 +130,10 @@ void CannonBall_startMovement(CannonBall this)
 
 	Body_moveUniformly(this->body, velocity);
 }
+
+bool CannonBall_isVisible(CannonBall this, int pad)
+{
+    VBVec3D localPosition = *Container_getLocalPosition(__SAFE_CAST(Container, this));
+
+    return localPosition.z > ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE);
+}

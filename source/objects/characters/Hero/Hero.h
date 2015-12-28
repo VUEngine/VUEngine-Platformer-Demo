@@ -35,7 +35,7 @@
 
 #define HERO_NAME               "John Hero"
 #define HERO_FLASH_PALETTE      3
-#define HERO_FLASH_DURATION     3000
+#define HERO_FLASH_DURATION     2000
 #define HERO_FLASH_INTERVAL     100
 
 

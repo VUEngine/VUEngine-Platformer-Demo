@@ -131,5 +131,5 @@ void Cannon_spawnCannonBall(Cannon this)
     SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
     // add cannon ball entity to stage
-	Stage_addEntity(this, (EntityDefinition*)&CANNON_BALL_AC, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, false);
+	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_AC, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, false);
 }

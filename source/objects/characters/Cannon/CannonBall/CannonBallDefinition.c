@@ -149,7 +149,7 @@ ActorROMDef CANNON_BALL_AC =
 			0,
 
 			// depth
-			10
+			1
 		},
 
 		// pointer to the animation definition for the character

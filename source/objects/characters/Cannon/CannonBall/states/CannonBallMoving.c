@@ -90,40 +90,5 @@ void CannonBallMoving_exit(CannonBallMoving this, void* owner)
 // state's on message
 bool CannonBallMoving_handleMessage(CannonBallMoving this, void* owner, Telegram telegram)
 {
-	int message = Telegram_getMessage(telegram);
-
-	switch(message)
-    {
-		case kCollision:
-		{
-			VirtualList collidingObjects = __SAFE_CAST(VirtualList, Telegram_getExtraInfo(telegram));
-			ASSERT(collidingObjects, "CannonBallMoving::handleMessage: null collidingObjects");
-
-			VirtualNode node = NULL;
-			
-			// this will place the shape in the owner's position
-			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
-            {
-				InGameEntity inGameEntity = __SAFE_CAST(InGameEntity, VirtualNode_getData(node));
-				
-				switch(InGameEntity_getInGameType(inGameEntity))
-                {
-					case kHero:
-					
-						// ok, i hit him
-						//Hero_takeHitFrom((Hero)inGameEntity, Entity_getPosition(__SAFE_CAST(Entity, owner)));
-						return true;
-						break;
-						
-					case kSolid:
-						
-						return true;
-						break;
-				}
-			}
-		}
-        break;
-	}
-
 	return false;
 }
