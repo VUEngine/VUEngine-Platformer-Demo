@@ -180,7 +180,8 @@ void Hero_destructor(Hero this)
 
 	this->feetDust = NULL;
 	this->currentHint = NULL;
-	
+	this->cameraBoudingBox = NULL;
+
 	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
 
 	hero = NULL;
@@ -189,7 +190,6 @@ void Hero_destructor(Hero this)
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
-	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -1277,11 +1277,6 @@ int Hero_doMessage(Hero this, int message)
 
 	switch(message)
 	{
-		case kStartLevel:
-
-			Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this->cameraBoudingBox));
-			break;
-		
 		case kSetUpLevel:
 
 			this->cameraBoudingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL);
@@ -1299,7 +1294,6 @@ int Hero_doMessage(Hero this, int message)
 
 		case kResumeLevel:
 			{
-
 				// move the screen to its previous position
 				Screen_position(Screen_getInstance(), false);
 

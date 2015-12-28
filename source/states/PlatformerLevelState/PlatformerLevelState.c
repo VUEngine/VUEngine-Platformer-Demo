@@ -268,7 +268,6 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	switch(Telegram_getMessage(telegram))
     {
 		case kSetUpLevel:
-
 			{
 				// print level name
 	            PlatformerStageDefinition* platformerStageDefinition = this->platformerStageDefinition;

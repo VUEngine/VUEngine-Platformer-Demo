@@ -117,10 +117,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			// apply transformations
 			__VIRTUAL_CALL(void, Container, transform, _screen->focusInGameEntity, &environmentTransform);
 	
-			int movementState = __VIRTUAL_CALL(u8, InGameEntity, getMovementState, _screen->focusInGameEntity);
-	
 			Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
-			
+
 			{
 				// update vertical position
 				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));

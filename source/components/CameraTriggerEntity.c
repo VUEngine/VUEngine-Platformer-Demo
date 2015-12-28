@@ -24,6 +24,8 @@
 #include <Optics.h>
 #include <Shape.h>
 #include <Prototypes.h>
+#include <Screen.h>
+#include <PlatformerLevelState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -61,6 +63,8 @@ void CameraTriggerEntity_destructor(CameraTriggerEntity this)
 {
 	ASSERT(this, "CameraTriggerEntity::destructor: null this");
 
+	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
+
 	// destroy the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
@@ -89,6 +93,24 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 		__VIRTUAL_CALL(void, Shape, position, this->shape);
 //		__VIRTUAL_CALL(void, Shape, draw, this->shape);
 	}
+}
+
+// process message
+int CameraTriggerEntity_doMessage(CameraTriggerEntity this, int message)
+{
+	ASSERT(this, "HeroMoving::doMessage: null this");
+
+	switch(message)
+	{
+		case kStartLevel:
+
+			Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+			return true;
+			break;
+		
+	}
+	
+	return false;
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)

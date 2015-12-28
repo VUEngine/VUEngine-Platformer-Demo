@@ -36,6 +36,7 @@
 #define CameraTriggerEntity_SET_VTABLE(ClassName)								\
 		TriggerEntity_SET_VTABLE(ClassName)										\
 		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);				\
+		__VIRTUAL_SET(ClassName, CameraTriggerEntity, doMessage);				\
 
 
 // A CameraTriggerEntity which represent a generic object inside a Stage
@@ -67,6 +68,7 @@ __CLASS_NEW_DECLARE(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraTr
 void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, const char* const name);
 void CameraTriggerEntity_destructor(CameraTriggerEntity this);
 void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform);
+int CameraTriggerEntity_doMessage(CameraTriggerEntity this, int message);
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag);
 VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this);
 

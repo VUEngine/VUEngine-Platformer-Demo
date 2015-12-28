@@ -206,6 +206,9 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
     {
 		case kSetUpLevel:
 
+			// tell any interested entity
+			GameState_propagateMessage(__SAFE_CAST(GameState, this), kSetUpLevel);
+
 			// account for any entity's tranform modification during their initialization
 			GameState_transform(__SAFE_CAST(GameState, this));
 			
