@@ -20,7 +20,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
-
 #include <Game.h>
 #include <Screen.h>
 #include <Screen.h>
@@ -39,7 +38,6 @@
 #include <objects.h>
 #include <UserDataManager.h>
 #include <CustomScreenMovementManager.h>
-
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,7 +73,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE();
 
-	this->platformerStageDefinition = (PlatformerStageDefinition*)&LEVEL_1_TOWER_ST;
+	this->platformerStageDefinition = (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST;
 
 	this->heroLastPosition.x = 0;
 	this->heroLastPosition.y = 0;
@@ -183,7 +181,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
     Game_startPhysics(Game_getInstance());
 		
 	// render gui values
-	// TODO
+    Object_fireEvent(__SAFE_CAST(Object, this), EVENT_LEVEL_ENTER);
 }
 
 // state's exit
@@ -235,7 +233,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 #endif
 
 	// render gui values
-	// TODO
+    Object_fireEvent(__SAFE_CAST(Object, this), EVENT_LEVEL_RESUME);
 
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY >> 1);
