@@ -243,9 +243,9 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
     // set desired fx duration
     this->shakeTimeLeft = duration;
 
-    this->lastShakeOffset.x = ITOFIX19_13(2);
+    this->lastShakeOffset.x = ITOFIX19_13(4);
 
-    // discard pending _screen shake messages from previously started shake fx
+    // discard pending screen shake messages from previously started shake fx
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kShake);
 
     // instantly send shake message to self to start fx
