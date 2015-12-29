@@ -34,7 +34,7 @@
 //                                                 PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef LEVEL_1_MAIN_1_MAIN_1_ST;
+extern StageROMDef LEVEL_1_MAIN_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_ENTITIES[] =
     {&COIN_AG,                          {FTOFIX19_13(192),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, "Coin 100", NULL, NULL, true},
     {&COIN_AG,                          {FTOFIX19_13(208),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, "Coin 099", NULL, NULL, true},
 
-    {&EXIT_ROOM_DOOR_AG,                {FTOFIX19_13(257),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, (void*)&LEVEL_1_MAIN_1_MAIN_1_ST, true},
+    {&EXIT_ROOM_DOOR_AG,                {FTOFIX19_13(257),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, (void*)&LEVEL_1_MAIN_ST, true},
 
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };

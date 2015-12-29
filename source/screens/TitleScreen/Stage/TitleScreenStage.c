@@ -33,7 +33,7 @@
 // 											    PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef LEVEL_1_MAIN_1_MAIN_1_ST;
+extern StageROMDef LEVEL_1_MAIN_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{&COLLISION_2x28x1, 	{FTOFIX19_13(292),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 
 	{&HERO_AC, 				{FTOFIX19_13(144),  FTOFIX19_13(148), FTOFIX19_13(0)}, HERO_NAME, NULL, NULL, true},
-	{&DOOR_AG,				{FTOFIX19_13(192),  FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_MAIN_1_MAIN_1_ST, true},
+	{&DOOR_AG,				{FTOFIX19_13(192),  FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_MAIN_ST, true},
 
 	{&GRASS_AG,      	    {FTOFIX19_13(34),   FTOFIX19_13(153), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
 	{&BUSH_AG,      	    {FTOFIX19_13(366),  FTOFIX19_13(148), FTOFIX19_13(1)}, NULL, NULL, NULL, true},

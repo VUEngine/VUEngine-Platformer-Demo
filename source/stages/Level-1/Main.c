@@ -94,7 +94,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_MANAGED[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
+PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&MOUND_BG_BACK_IM,	 	            {FTOFIX19_13(0),    FTOFIX19_13(120), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
@@ -197,13 +197,13 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_UI_ENTITIES[] =
+PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {FTOFIX19_13(191), FTOFIX19_13(214), FTOFIX19_13(-8)}, NULL, NULL, NULL, true},
+	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(215), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-CharSetROMDef* LEVEL_1_MAIN_1_MAIN_1_ST_CHARSETS[] =
+CharSetROMDef* LEVEL_1_MAIN_ST_CHARSETS[] =
 {
 	&LEVEL_1_MAIN_1_MAIN_1_CH,
 	&LEVEL_1_MAIN_1_MAIN_2_CH,
@@ -212,7 +212,7 @@ CharSetROMDef* LEVEL_1_MAIN_1_MAIN_1_ST_CHARSETS[] =
 	NULL,
 };
 
-TextureROMDef* LEVEL_1_MAIN_1_MAIN_1_ST_TEXTURES[] =
+TextureROMDef* LEVEL_1_MAIN_ST_TEXTURES[] =
 {
 	&LEVEL_1_MAIN_1_MAIN_1_TX,
 	&LEVEL_1_MAIN_1_MAIN_2_TX,
@@ -234,7 +234,7 @@ TextureROMDef* LEVEL_1_MAIN_1_MAIN_1_ST_TEXTURES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
+PlatformerStageROMDef LEVEL_1_MAIN_ST =
 {
     {
         // size
@@ -344,19 +344,19 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         },
 
         // char sets to preload
-        (CharSetDefinition**)LEVEL_1_MAIN_1_MAIN_1_ST_CHARSETS,
+        (CharSetDefinition**)LEVEL_1_MAIN_ST_CHARSETS,
 
         // textures to preload
-        (TextureDefinition**)LEVEL_1_MAIN_1_MAIN_1_ST_TEXTURES,
+        (TextureDefinition**)LEVEL_1_MAIN_ST_TEXTURES,
 
         // UI
         {
-            LEVEL_1_MAIN_1_MAIN_1_ST_UI_ENTITIES,
+            LEVEL_1_MAIN_ST_UI_ENTITIES,
             __TYPE(UI),
         },
 
         // entities
-        LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES,
+        LEVEL_1_MAIN_ST_ENTITIES,
 
         // background music
         (const u16 (*)[])KRISSE_BGM,
