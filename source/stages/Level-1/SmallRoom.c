@@ -48,43 +48,37 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_ENTITIES[] =
 {
     // since these are always visible it doesn't matter that they are not logically placed in this definition
 
-    {&LEVEL_1_MAIN_1_MAIN_BACK_3_IM,        {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&LEVEL_1_SMALL_ROOM_FRONT_IM,          {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&LEVEL_1_SMALL_ROOM_PLATFORMS_IM,      {FTOFIX19_13(188),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&COLLISION_48x2x1,                    {FTOFIX19_13(192),  FTOFIX19_13(168), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&COLLISION_48x2x1,                    {FTOFIX19_13(192),  FTOFIX19_13(48),  FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&COLLISION_48x2x1,                    {FTOFIX19_13(-56),  FTOFIX19_13(120), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&COLLISION_18x6x1,                     {FTOFIX19_13(240),  FTOFIX19_13(136), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&COLLISION_ONEWAY_7x1x1,               {FTOFIX19_13(156),  FTOFIX19_13(116), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&COLLISION_2x28x1,                    {FTOFIX19_13(96),   FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&COLLISION_2x28x1,                    {FTOFIX19_13(280),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+    {&LEVEL_1_SMALL_ROOM_BACK_IM,       {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
+    {&LEVEL_1_SMALL_ROOM_MAIN_IM,       {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&LEVEL_1_SMALL_ROOM_MAIN_BACK_IM,  {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0 + 0.001f)}, NULL, NULL, NULL, true},
+    {&COLLISION_48x2x1,                 {FTOFIX19_13(192),  FTOFIX19_13(168), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&COLLISION_48x2x1,                 {FTOFIX19_13(192),  FTOFIX19_13(56),  FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&COLLISION_48x2x1,                 {FTOFIX19_13(-48),  FTOFIX19_13(120), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&COLLISION_18x6x1,                 {FTOFIX19_13(248),  FTOFIX19_13(136), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&COLLISION_ONEWAY_7x1x1,           {FTOFIX19_13(156),  FTOFIX19_13(116), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&COLLISION_2x28x1,                 {FTOFIX19_13(104),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&COLLISION_2x28x1,                 {FTOFIX19_13(280),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
-    {&HERO_AC,                              {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(0)}, HERO_NAME, NULL, NULL, true},
+    {&TORCH_AG,                         {FTOFIX19_13(148),  FTOFIX19_13(72),  FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
+    {&TORCH_AG,                         {FTOFIX19_13(244),  FTOFIX19_13(72),  FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
 
-    {&DOOR_AG,                              {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-    {&DOOR_AG,                              {FTOFIX19_13(122),  FTOFIX19_13(145), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+    {&HERO_AC,                          {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
 
-    {&COIN_AG,                              {FTOFIX19_13(208),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0 + 2)}, "Coin 099", NULL, NULL, true},
-    {&COIN_AG,                              {FTOFIX19_13(224),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0 + 2)}, "Coin 100", NULL, NULL, true},
+    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, NULL, true},
+    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(143), FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, NULL, true},
 
-    {&EXIT_ROOM_DOOR_AG,                    {FTOFIX19_13(257),  FTOFIX19_13(96),  FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_MAIN_1_MAIN_1_ST, true},
+    {&COIN_AG,                          {FTOFIX19_13(192),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, "Coin 100", NULL, NULL, true},
+    {&COIN_AG,                          {FTOFIX19_13(208),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, "Coin 099", NULL, NULL, true},
+
+    {&EXIT_ROOM_DOOR_AG,                {FTOFIX19_13(257),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, (void*)&LEVEL_1_MAIN_1_MAIN_1_ST, true},
 
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_UI_ENTITIES[] =
 {
-    {&GUI_AG,                 {FTOFIX19_13(__SCREEN_WIDTH / 2), FTOFIX19_13(__SCREEN_HEIGHT - 8), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
+    {&GUI_AG,   {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
-};
-
-TextureROMDef* LEVEL_1_SMALL_ROOM_ST_TEXTURES[] =
-{
-    &LEVEL_1_SMALL_ROOM_FRONT_TX,
-    &LEVEL_1_SMALL_ROOM_PLATFORMS_TX,
-    &DOOR_TX,
-    &COIN_TX,
-    NULL
 };
 
 
@@ -204,7 +198,7 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
         (CharSetDefinition**)NULL,
 
         // textures to preload
-        (TextureDefinition**)LEVEL_1_SMALL_ROOM_ST_TEXTURES,
+        (TextureDefinition**)NULL,
 
         // UI
         {

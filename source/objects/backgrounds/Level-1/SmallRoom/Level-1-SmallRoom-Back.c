@@ -26,43 +26,43 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_SmallRoom_FrontTiles[];
-extern BYTE Level_1_SmallRoom_FrontMap[];
+extern BYTE Level_1_SmallRoom_BackTiles[];
+extern BYTE Level_1_SmallRoom_BackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_SMALL_ROOM_FRONT_CH =
+CharSetROMDef LEVEL_1_SMALL_ROOM_BACK_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    32,
+    33,
 
     // allocation type
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_SmallRoom_FrontTiles,
+    Level_1_SmallRoom_BackTiles,
 };
 
-TextureROMDef LEVEL_1_SMALL_ROOM_FRONT_TX =
+TextureROMDef LEVEL_1_SMALL_ROOM_BACK_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_SMALL_ROOM_FRONT_CH,
+    (CharSetDefinition*)&LEVEL_1_SMALL_ROOM_BACK_CH,
 
     // bgmap definition
-    Level_1_SmallRoom_FrontMap,
+    Level_1_SmallRoom_BackMap,
 
     // cols (max 64)
-    48,
+    22,
 
     // rows (max 64)
-    28,
+    14,
 
     // number of frames
     1,
@@ -71,13 +71,13 @@ TextureROMDef LEVEL_1_SMALL_ROOM_FRONT_TX =
     0,
 };
 
-BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_FRONT_IM_SPRITE =
+BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_BACK_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)&LEVEL_1_SMALL_ROOM_FRONT_TX,
+	(TextureDefinition*)&LEVEL_1_SMALL_ROOM_BACK_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
@@ -89,14 +89,14 @@ BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_FRONT_IM_SPRITE =
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_SMALL_ROOM_FRONT_IM_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_SMALL_ROOM_BACK_IM_SPRITES[] =
 {
-	&LEVEL_1_SMALL_ROOM_FRONT_IM_SPRITE,
+	&LEVEL_1_SMALL_ROOM_BACK_IM_SPRITE,
 	NULL
 };
 
-MBackgroundROMDef LEVEL_1_SMALL_ROOM_FRONT_IM =
+MBackgroundROMDef LEVEL_1_SMALL_ROOM_BACK_IM =
 {
 	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_SMALL_ROOM_FRONT_IM_SPRITES,
+	(SpriteROMDef**)LEVEL_1_SMALL_ROOM_BACK_IM_SPRITES,
 };
