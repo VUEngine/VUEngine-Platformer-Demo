@@ -72,10 +72,10 @@ TextureROMDef ONE_WAY_PLATFORM_4_TX =
     1,
 };
 
-ObjectSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
+BgmapSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&ONE_WAY_PLATFORM_4_TX,
@@ -84,13 +84,13 @@ ObjectSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
+	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef* const ONE_WAY_PLATFORM_4_SPRITES[] =
+BgmapSpriteROMDef* const ONE_WAY_PLATFORM_4_SPRITES[] =
 {
 	&ONE_WAY_PLATFORM_4_SPRITE,
 	NULL

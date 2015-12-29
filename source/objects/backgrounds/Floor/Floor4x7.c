@@ -74,10 +74,10 @@ TextureROMDef FLOOR_4x7_TX =
     1,
 };
 
-ObjectSpriteROMDef FLOOR_4x7_SPRITE =
+BgmapSpriteROMDef FLOOR_4x7_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_4x7_TX,
@@ -86,16 +86,16 @@ ObjectSpriteROMDef FLOOR_4x7_SPRITE =
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
+	WRLD_BGMAP,
 
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef FLOOR_4x7_TOP_SPRITE =
+BgmapSpriteROMDef FLOOR_4x7_TOP_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_4_TOP_TX,
@@ -104,13 +104,13 @@ ObjectSpriteROMDef FLOOR_4x7_TOP_SPRITE =
 	{0, FTOFIX19_13(-24), FTOFIX19_13(-1)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
+	WRLD_BGMAP,
 
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef* const FLOOR_4x7_SPRITES[] =
+BgmapSpriteROMDef* const FLOOR_4x7_SPRITES[] =
 {
 	&FLOOR_4x7_SPRITE,
 	&FLOOR_4x7_TOP_SPRITE,
