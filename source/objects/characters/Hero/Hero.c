@@ -525,6 +525,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             MessageDispatcher_dispatchMessage(HERO_FLASH_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopInvincibility, NULL);
 
             // start flashing of hero
+            MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
 
             // lose power-up or reduce energy
@@ -883,7 +884,12 @@ void Hero_collectBandana(Hero this)
 
 	Game_pausePhysics(Game_getInstance(), true);
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+
 	// TODO: play "get bandana" animation
+    //AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
+
+	// play collect sound
+    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
 // lose a bandana
