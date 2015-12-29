@@ -143,11 +143,11 @@ InanimatedInGameEntityROMDef FLOOR_22x5_IG =
         16
     },
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(40),
+    // friction
+    FTOFIX19_13(FLOOR_FRICTION),
 
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(1.0f),
+    // elasticity
+    FTOFIX19_13(FLOOR_ELASTICITY),
 
     // register shape
     true,

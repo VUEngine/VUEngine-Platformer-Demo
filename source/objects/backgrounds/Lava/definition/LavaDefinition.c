@@ -124,10 +124,10 @@ InanimatedInGameEntityROMDef LAVA_IG =
         20
     },
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(0.0f),
+    // friction
+    FTOFIX19_13(NO_FRICTION),
 
-    // elasticity FTOFIX19_13
+    // elasticity
     FTOFIX19_13(0.0f),
 
     // register shape

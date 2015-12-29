@@ -35,6 +35,10 @@
 #define LAYER_4 			(LAYER_3 + LAYER_INCREMENT)
 #define LAYER_5 			(LAYER_4 + LAYER_INCREMENT)
 
+#define NO_FRICTION 		0
+#define FLOOR_FRICTION 		150.0f
+#define FLOOR_ELASTICITY 	1.0f
+
 enum PlatformerTypes
 {
 	kHero = 1,
