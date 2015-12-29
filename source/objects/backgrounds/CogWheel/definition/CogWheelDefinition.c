@@ -84,7 +84,7 @@ BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =
 	(TextureDefinition*)&COG_WHEEL_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(-2)},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

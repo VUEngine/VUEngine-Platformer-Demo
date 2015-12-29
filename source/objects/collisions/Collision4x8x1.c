@@ -19,109 +19,38 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <InAnimatedInGameEntity.h>
+#include <InanimatedInGameEntity.h>
 #include <macros.h>
-#include <Lava.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern BYTE LavaTiles[];
-extern BYTE LavaMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LAVA_CH =
-{
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
-    // __NOT_ANIMATED: number of chars of whole image
-    15,
-
-    // allocation type
-    __NOT_ANIMATED,
-
-    // char definition
-    LavaTiles,
-};
-
-TextureROMDef LAVA_TX =
-{
-    // charset definition
-    (CharSetDefinition*)&LAVA_CH,
-
-    // bgmap definition
-    LavaMap,
-
-    // cols (max 64)
-    48,
-
-    // rows (max 64)
-    28,
-
-    // number of frames
-    1,
-
-    // palette number
-    1,
-};
-
-BgmapSpriteROMDef LAVA_BG_SPRITE =
-{
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
-	(TextureDefinition*)&LAVA_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(-2)},
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
-};
-
-BgmapSpriteROMDef* const LAVA_BG_SPRITES[] =
-{
-	&LAVA_BG_SPRITE,
-	NULL
-};
-
-InanimatedInGameEntityROMDef LAVA_IG =
+InanimatedInGameEntityROMDef COLLISION_4x8x1 =
 {
     {
         {
-            __TYPE(Lava),
-            (SpriteROMDef**)LAVA_BG_SPRITES,
+            __TYPE(InanimatedInGameEntity),
+            NULL,
         },
 
         // collision detection gap (up, down, left, right)
-        {2, 0, 0, 0},
+        {0, 0, 0, 0},
 
         // in game type
-        kLava,
+        kSolid,
 
         // width
         // if 0, width and height will be inferred from the texture's size
-    	0,
+    	4 * 8,
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	0,
+    	8 * 8,
 
-        // depth
-        4
+    	// depth
+    	1 * 8
     },
 
     // friction

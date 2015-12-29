@@ -19,53 +19,50 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <InAnimatedInGameEntity.h>
-#include <macros.h>
-#include <Lava.h>
+#include <MBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE LavaTiles[];
-extern BYTE LavaMap[];
+extern BYTE Level_1_Tower_MainBackTiles[];
+extern BYTE Level_1_Tower_MainBack_1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LAVA_CH =
+CharSetROMDef LEVEL_1_TOWER_MAIN_BACK_1_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    15,
+    5,
 
     // allocation type
     __NOT_ANIMATED,
 
     // char definition
-    LavaTiles,
+    Level_1_Tower_MainBackTiles,
 };
 
-TextureROMDef LAVA_TX =
+TextureROMDef LEVEL_1_TOWER_MAIN_BACK_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LAVA_CH,
+    (CharSetDefinition*)&LEVEL_1_TOWER_MAIN_BACK_1_CH,
 
     // bgmap definition
-    LavaMap,
+    Level_1_Tower_MainBack_1Map,
 
     // cols (max 64)
     48,
 
     // rows (max 64)
-    28,
+    64,
 
     // number of frames
     1,
@@ -74,16 +71,16 @@ TextureROMDef LAVA_TX =
     1,
 };
 
-BgmapSpriteROMDef LAVA_BG_SPRITE =
+BgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)&LAVA_TX,
+	(TextureDefinition*)&LEVEL_1_TOWER_MAIN_BACK_1_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(-2)},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -92,44 +89,14 @@ BgmapSpriteROMDef LAVA_BG_SPRITE =
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const LAVA_BG_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITES[] =
 {
-	&LAVA_BG_SPRITE,
+	&LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE,
 	NULL
 };
 
-InanimatedInGameEntityROMDef LAVA_IG =
+MBackgroundROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM =
 {
-    {
-        {
-            __TYPE(Lava),
-            (SpriteROMDef**)LAVA_BG_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {2, 0, 0, 0},
-
-        // in game type
-        kLava,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-        // depth
-        4
-    },
-
-    // friction
-    FTOFIX19_13(FLOOR_FRICTION),
-
-    // elasticity
-    FTOFIX19_13(FLOOR_ELASTICITY),
-
-    // register shape
-    true,
+	__TYPE(MBackground),
+	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITES,
 };

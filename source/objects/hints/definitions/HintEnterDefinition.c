@@ -170,6 +170,28 @@ AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 	"Close",
 };
 
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_ENTER_CLOSED_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{0},
+
+	// number of cycles a frame of animation is displayed
+	1 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Closed",
+};
+
 // an animation definition
 AnimationDescriptionROMDef HINT_ENTER_ANIM =
 {
@@ -181,6 +203,7 @@ AnimationDescriptionROMDef HINT_ENTER_ANIM =
 		(AnimationFunction*)&HINT_ENTER_ESPANOL_ANIM,
 		(AnimationFunction*)&HINT_ENTER_FRANCAIS_ANIM,
 		(AnimationFunction*)&HINT_ENTER_CLOSE_ANIM,
+		(AnimationFunction*)&HINT_ENTER_CLOSED_ANIM,
 		NULL,
 	}
 };
@@ -276,5 +299,5 @@ AnimatedInGameEntityROMDef HINT_ENTER_MC =
     (AnimationDescription*)&HINT_ENTER_ANIM,
 
     // initial animation
-    "Open",
+    "Closed",
 };

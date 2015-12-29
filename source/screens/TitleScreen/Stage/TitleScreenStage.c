@@ -52,9 +52,9 @@ extern StageROMDef LEVEL_1_MAIN_1_MAIN_1_ST;
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
 // ---------------------------------------------------------------------------------------------------------
-/* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
- * know that it must stop reading the stage's/ui's textures and entities.
- */
+
+// Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
+// know that it must stop reading the stage's/ui's textures and entities.
 
 PositionedEntityROMDef CASTLE_CHILD_ENTITIES[] =
 {

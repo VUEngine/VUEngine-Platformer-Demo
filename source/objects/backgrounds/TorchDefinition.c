@@ -115,7 +115,7 @@ ObjectSpriteROMDef TORCH_SPRITE =
 	(TextureDefinition*)&TORCH_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+	{0, 0, FTOFIX19_13(-1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,

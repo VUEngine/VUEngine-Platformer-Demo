@@ -68,8 +68,9 @@ extern EntityDefinition LEVEL_1_MAIN_1_MAIN_6_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_6_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_BACK_6_IM;
 
-extern EntityDefinition LEVEL_1_TOWER_FRONT_1_IM;
-extern EntityDefinition LEVEL_1_TOWER_PLATFORMS_1_IM;
+extern EntityDefinition LEVEL_1_TOWER_MAIN_1_IM;
+extern EntityDefinition LEVEL_1_TOWER_MAIN_BACK_1_IM;
+extern EntityDefinition LEVEL_1_TOWER_BACK_1_IM;
 
 extern EntityDefinition FLOOR_22x12_IG;
 extern EntityDefinition FLOOR_22x5_IG;

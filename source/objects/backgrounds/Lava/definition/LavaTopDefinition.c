@@ -104,7 +104,7 @@ TextureROMDef LAVA_TOP_TX =
     1,
 
     // palette number
-    0
+    1
 };
 
 BgmapSpriteROMDef LAVA_TOP_SPRITE =
@@ -116,7 +116,7 @@ BgmapSpriteROMDef LAVA_TOP_SPRITE =
 	(TextureDefinition*)&LAVA_TOP_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(-2)},
+	{0, 0, FTOFIX19_13(-1)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -154,7 +154,7 @@ AnimatedInGameEntityROMDef LAVA_TOP_AG =
     	0,
     	
     	// depth
-        16
+        4
     },
 
     // pointer to the animation definition for the item
