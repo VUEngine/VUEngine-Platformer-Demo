@@ -178,6 +178,8 @@ void Hero_destructor(Hero this)
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
+	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), NULL);
+
 	this->feetDust = NULL;
 	this->currentHint = NULL;
 	this->cameraBoudingBox = NULL;
@@ -1278,6 +1280,7 @@ int Hero_doMessage(Hero this, int message)
 	{
 		case kSetUpLevel:
 
+			CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
 			this->cameraBoudingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL);
 			CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)));
 
