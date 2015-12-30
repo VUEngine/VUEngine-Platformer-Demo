@@ -45,7 +45,7 @@ AnimationFunctionROMDef HINT_ENTER_OPEN_ANIM =
 	5,
 	
 	// frames to play in animation
-	{0,1,2,3,4},
+	{0, 1, 2, 3, 4},
 	
 	// number of cycles a frame of animation is displayed
 	1 * __FPS_ANIM_FACTOR,
@@ -67,7 +67,7 @@ AnimationFunctionROMDef HINT_ENTER_ENGLISH_ANIM =
 	2,
 
 	// frames to play in animation
-	{5,6},
+	{5, 6},
 
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -89,7 +89,7 @@ AnimationFunctionROMDef HINT_ENTER_DEUTSCH_ANIM =
 	2,
 	
 	// frames to play in animation
-	{7,8},
+	{7, 8},
 	
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -111,7 +111,7 @@ AnimationFunctionROMDef HINT_ENTER_ESPANOL_ANIM =
 	2,
 
 	// frames to play in animation
-	{9,10},
+	{9, 10},
 
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -133,7 +133,7 @@ AnimationFunctionROMDef HINT_ENTER_FRANCAIS_ANIM =
 	2,
 
 	// frames to play in animation
-	{11,12},
+	{11, 12},
 
 	// number of cycles a frame of animation is displayed
 	14 * __FPS_ANIM_FACTOR,
@@ -155,7 +155,7 @@ AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 	5,
 
 	// frames to play in animation
-	{4,3,2,1,0},
+	{4, 3, 2, 1, 0},
 
 	// number of cycles a frame of animation is displayed
 	1 * __FPS_ANIM_FACTOR,
@@ -170,6 +170,28 @@ AnimationFunctionROMDef HINT_ENTER_CLOSE_ANIM =
 	"Close",
 };
 
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_ENTER_CLOSED_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{0},
+
+	// number of cycles a frame of animation is displayed
+	1 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Closed",
+};
+
 // an animation definition
 AnimationDescriptionROMDef HINT_ENTER_ANIM =
 {
@@ -181,6 +203,7 @@ AnimationDescriptionROMDef HINT_ENTER_ANIM =
 		(AnimationFunction*)&HINT_ENTER_ESPANOL_ANIM,
 		(AnimationFunction*)&HINT_ENTER_FRANCAIS_ANIM,
 		(AnimationFunction*)&HINT_ENTER_CLOSE_ANIM,
+		(AnimationFunction*)&HINT_ENTER_CLOSED_ANIM,
 		NULL,
 	}
 };
@@ -233,7 +256,7 @@ BgmapSpriteROMDef HINT_ENTER_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
@@ -276,5 +299,5 @@ AnimatedInGameEntityROMDef HINT_ENTER_MC =
     (AnimationDescription*)&HINT_ENTER_ANIM,
 
     // initial animation
-    "Open",
+    "Closed",
 };

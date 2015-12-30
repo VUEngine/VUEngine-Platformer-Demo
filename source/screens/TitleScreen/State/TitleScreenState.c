@@ -87,6 +87,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
 	Game_disableKeypad(Game_getInstance());
 
+    // sample code that shows how to ignore selected entities when loading a stage
 	const char* name1 = "IgnoreMeDoor";
 	const char* name2 = "IgnoreMeCoin";
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
@@ -99,9 +100,8 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	__DELETE(entityNamesToIgnore);
 
 	/*
-	// sample code to show how to animate multiple sprites at the same time
-	// buy just playing an animation in a single entity when varios share
-	// the same __ANIMATED_SHARED CharSet
+	// sample code to show how to animate multiple sprites at the same time by just playing an animation in a single
+	// entity when various share the same __ANIMATED_SHARED CharSet
 	if(Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true))
 	{
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true)), "Idle");

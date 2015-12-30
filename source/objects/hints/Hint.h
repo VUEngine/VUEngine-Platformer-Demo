@@ -54,7 +54,7 @@ __CLASS(Hint);
 
 #define Hint_ATTRIBUTES															\
 																				\
-	/* it is derivated from */													\
+	/* it is derived from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
 
 

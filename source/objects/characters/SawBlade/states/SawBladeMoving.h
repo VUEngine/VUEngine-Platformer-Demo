@@ -53,7 +53,6 @@ __CLASS(SawBladeMoving);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// setup the init focus screen
 SawBladeMoving SawBladeMoving_getInstance();
 
 

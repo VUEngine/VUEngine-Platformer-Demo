@@ -72,10 +72,10 @@ TextureROMDef ONE_WAY_PLATFORM_4_TX =
     1,
 };
 
-ObjectSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
+BgmapSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&ONE_WAY_PLATFORM_4_TX,
@@ -83,14 +83,14 @@ ObjectSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef* const ONE_WAY_PLATFORM_4_SPRITES[] =
+BgmapSpriteROMDef* const ONE_WAY_PLATFORM_4_SPRITES[] =
 {
 	&ONE_WAY_PLATFORM_4_SPRITE,
 	NULL
@@ -122,11 +122,11 @@ InanimatedInGameEntityROMDef ONE_WAY_PLATFORM_4_IG =
         16
     },
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(40),
+    // friction
+    FTOFIX19_13(FLOOR_FRICTION),
 
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(1.0f),
+    // elasticity
+    FTOFIX19_13(FLOOR_ELASTICITY),
 
     // register shape
     true,

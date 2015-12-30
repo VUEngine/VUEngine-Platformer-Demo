@@ -26,40 +26,40 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Tower_Platforms_1Tiles[];
-extern BYTE Level_1_Tower_Platforms_1Map[];
+extern BYTE Level_1_Tower_BackTiles[];
+extern BYTE Level_1_Tower_Back_1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_TOWER_PLATFORMS_1_CH =
+CharSetROMDef LEVEL_1_TOWER_BACK_1_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    7,
+    50,
 
     // allocation type
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_Tower_Platforms_1Tiles,
+    Level_1_Tower_BackTiles,
 };
 
-TextureROMDef LEVEL_1_TOWER_PLATFORMS_1_TX =
+TextureROMDef LEVEL_1_TOWER_BACK_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_TOWER_PLATFORMS_1_CH,
+    (CharSetDefinition*)&LEVEL_1_TOWER_BACK_1_CH,
 
     // bgmap definition
-    Level_1_Tower_Platforms_1Map,
+    Level_1_Tower_Back_1Map,
 
     // cols (max 64)
-    43,
+    48,
 
     // rows (max 64)
     64,
@@ -71,32 +71,32 @@ TextureROMDef LEVEL_1_TOWER_PLATFORMS_1_TX =
     0,
 };
 
-BgmapSpriteROMDef LEVEL_1_TOWER_PLATFORMS_1_IM_SPRITE =
+BgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)&LEVEL_1_TOWER_PLATFORMS_1_TX,
+	(TextureDefinition*)&LEVEL_1_TOWER_BACK_1_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(-1)},
+	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_TOWER_PLATFORMS_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_TOWER_BACK_1_IM_SPRITES[] =
 {
-	&LEVEL_1_TOWER_PLATFORMS_1_IM_SPRITE,
+	&LEVEL_1_TOWER_BACK_1_IM_SPRITE,
 	NULL
 };
 
-MBackgroundROMDef LEVEL_1_TOWER_PLATFORMS_1_IM =
+MBackgroundROMDef LEVEL_1_TOWER_BACK_1_IM =
 {
 	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_TOWER_PLATFORMS_1_IM_SPRITES,
+	(SpriteROMDef**)LEVEL_1_TOWER_BACK_1_IM_SPRITES,
 };

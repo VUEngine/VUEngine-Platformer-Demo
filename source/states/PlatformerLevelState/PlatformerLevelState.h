@@ -30,37 +30,36 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define PlatformerLevelState_METHODS											\
+#define PlatformerLevelState_METHODS																	\
 	GameState_METHODS;									
 
 // declare the virtual methods which are redefined
-#define PlatformerLevelState_SET_VTABLE(ClassName)								\
-	GameState_SET_VTABLE(ClassName)												\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);						\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);						\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);					\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);						\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, handleMessage);				\
-
+#define PlatformerLevelState_SET_VTABLE(ClassName)														\
+	GameState_SET_VTABLE(ClassName)																		\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);												\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);												\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);											\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);												\
+	__VIRTUAL_SET(ClassName, PlatformerLevelState, handleMessage);										\
 
 __CLASS(PlatformerLevelState);
 
-#define PlatformerLevelState_ATTRIBUTES											\
-																				\
-	/* inherits */																\
-	GameState_ATTRIBUTES														\
-																				\
-	/* the stage to load */														\
-	PlatformerStageDefinition* platformerStageDefinition;						\
-																				\
-	/* hero's last position for when exiting a room */							\
-	VBVec3D heroLastPosition;													\
-																				\
-	/* flag to know if exiting a room */										\
-	bool isExitingRoom;															\
-																				\
-	/* to allow moving the screen */											\
-	u8 mode: 4;																	\
+#define PlatformerLevelState_ATTRIBUTES																	\
+																										\
+	/* inherits */																						\
+	GameState_ATTRIBUTES																				\
+																										\
+	/* the stage to load */																				\
+	PlatformerStageDefinition* platformerStageDefinition;												\
+																										\
+	/* hero's last position for when exiting a room */													\
+	VBVec3D heroLastPosition;																			\
+																										\
+	/* flag to know if exiting a room */																\
+	bool isExitingRoom;																					\
+																										\
+	/* to allow moving the screen */																	\
+	u8 mode: 4;																							\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -99,7 +98,6 @@ typedef struct PlatformerStageDefinition
 
 typedef const PlatformerStageDefinition PlatformerStageROMDef;
 
-
 enum PlatformerLevelStateMessageTypes
 {
 	kHeroDied = kLastEngineMessage + 1,
@@ -135,8 +133,8 @@ enum PlatformerLevelStateMessageTypes
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// setup the init focus screen
 PlatformerLevelState PlatformerLevelState_getInstance(void);
+
 void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageDefinition* platformerStageDefinition);
 PlatformerStageDefinition* PlatformerLevelState_getStage(PlatformerLevelState this);
 void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDefinition);

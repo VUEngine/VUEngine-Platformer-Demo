@@ -35,7 +35,7 @@
 
 #define HERO_NAME               "John Hero"
 #define HERO_FLASH_PALETTE      3
-#define HERO_FLASH_DURATION     3000
+#define HERO_FLASH_DURATION     2000
 #define HERO_FLASH_INTERVAL     100
 
 
@@ -60,7 +60,7 @@ __CLASS(Hero);
 
 #define Hero_ATTRIBUTES															\
 																				\
-	/* it is derivated from */													\
+	/* it is derived from */													\
 	Actor_ATTRIBUTES															\
 																				\
 	/* a reference to the last door the hero passed */    						\

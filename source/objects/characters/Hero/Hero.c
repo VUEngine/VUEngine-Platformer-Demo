@@ -545,6 +545,8 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
     {
         if(this->energy > 0 || Hero_hasBandana(this))
         {
+        	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
+
             Hero_setInvincible(this, true);
 
             // reset invincible a bit later
@@ -770,16 +772,10 @@ static void Hero_addHints(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
-	VBVec3D position = 
-	{
-		FTOFIX19_13(25), FTOFIX19_13(-20), FTOFIX19_13(0)
-	};
+	VBVec3D position = {FTOFIX19_13(25), FTOFIX19_13(-20), FTOFIX19_13(0)};
 
     // save the hint entity, so we can remove it later
 	this->currentHint = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &HINT_ENTER_MC, -1, "enterHint", &position, NULL);
-	
-	// turn it off
-	Hero_hideHint(this);
 }
 
 static void Hero_addFeetDust(Hero this)
@@ -1137,11 +1133,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kLava:
 
-//				Hero_die(this);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				Hero_die(this);
+//				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kSawBlade:
+			case kCannonBall:
 
                 Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity), true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);

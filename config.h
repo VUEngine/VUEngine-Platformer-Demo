@@ -61,10 +61,10 @@
 #define __ZZERO									0
 
 // game world limit to unload entities
-#define __Z_GAME_LIMIT							__ZZERO - 30
+#define __Z_GAME_LIMIT							__ZZERO - 8
 
 // lowest possible z coordinate
-#define __ZLOWLIMIT 							-200
+#define __ZLOWLIMIT 							-16
 
 // distance from player's eyes to the virtual screen
 #define __DISTANCE_EYE_SCREEN					384
@@ -82,11 +82,11 @@
 // player's eyes' vertical position
 #define __VERTICAL_VIEW_POINT_CENTER			112
 
-// zoom factor to distortoine zooming
+// zoom factor to distort zooming
 #define __ZOOM_FACTOR							0.2f
 
 // parallax values are divide by this factor to control their strength
-#define __PARALLAX_CORRECTION_FACTOR			20
+#define __PARALLAX_CORRECTION_FACTOR			16
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -151,7 +151,7 @@
 
 #define __MEMORY_POOL_ARRAYS													\
 	__BLOCK_DEFINITION(188, 1)													\
-	__BLOCK_DEFINITION(164, 2)													\
+	__BLOCK_DEFINITION(164, 6)													\
 	__BLOCK_DEFINITION(132, 32)													\
 	__BLOCK_DEFINITION(112, 32)													\
 	__BLOCK_DEFINITION(96, 54)													\

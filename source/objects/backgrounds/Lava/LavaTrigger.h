@@ -42,7 +42,7 @@ __CLASS(LavaTrigger);
 
 #define LavaTrigger_ATTRIBUTES															\
 																						\
-	/* it is derivated from */															\
+	/* it is derived from */															\
 	InanimatedInGameEntity_ATTRIBUTES													\
 
 

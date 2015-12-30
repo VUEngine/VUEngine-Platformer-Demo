@@ -53,7 +53,6 @@ __CLASS(SawBladeIdle);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// setup the init focus screen
 SawBladeIdle SawBladeIdle_getInstance();
 
 

@@ -71,7 +71,7 @@ TextureROMDef LAVA_TX =
     1,
 
     // palette number
-    0,
+    1,
 };
 
 BgmapSpriteROMDef LAVA_BG_SPRITE =
@@ -85,7 +85,7 @@ BgmapSpriteROMDef LAVA_BG_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, FTOFIX19_13(-2)},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
@@ -107,7 +107,7 @@ InanimatedInGameEntityROMDef LAVA_IG =
         },
 
         // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+        {2, 0, 0, 0},
 
         // in game type
         kLava,
@@ -121,14 +121,14 @@ InanimatedInGameEntityROMDef LAVA_IG =
     	0,
 
         // depth
-        20
+        4
     },
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(0.0f),
+    // friction
+    FTOFIX19_13(FLOOR_FRICTION),
 
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(0.0f),
+    // elasticity
+    FTOFIX19_13(FLOOR_ELASTICITY),
 
     // register shape
     true,

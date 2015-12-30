@@ -30,29 +30,30 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define CANNON_SHOOT_DELAY 7500
+#define CANNON_INITIAL_SHOOT_DELAY 500
+#define CANNON_SHOOT_DELAY 3500
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Cannon_METHODS															\
+#define Cannon_METHODS																					\
 	AnimatedInGameEntity_METHODS;
 	
 
-#define Cannon_SET_VTABLE(ClassName)											\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Cannon, handleMessage);							\
-	__VIRTUAL_SET(ClassName, Cannon, ready);									\
-	__VIRTUAL_SET(ClassName, Cannon, suspend);									\
+#define Cannon_SET_VTABLE(ClassName)																	\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
+	__VIRTUAL_SET(ClassName, Cannon, handleMessage);													\
+	__VIRTUAL_SET(ClassName, Cannon, ready);															\
+	__VIRTUAL_SET(ClassName, Cannon, suspend);															\
 
 __CLASS(Cannon);
 
-#define Cannon_ATTRIBUTES														\
-																				\
-	/* it is derivated from */													\
-	AnimatedInGameEntity_ATTRIBUTES												\
+#define Cannon_ATTRIBUTES																				\
+																										\
+	/* it is derived from */																			\
+	AnimatedInGameEntity_ATTRIBUTES																		\
 
 
 //---------------------------------------------------------------------------------------------------------

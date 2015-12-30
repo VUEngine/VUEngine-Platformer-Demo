@@ -42,7 +42,7 @@ __CLASS(LayerSwitchDoor);
 
 #define LayerSwitchDoor_ATTRIBUTES																		\
 																										\
-	/* it is derivated from */																			\
+	/* it is derived from */																			\
 	Door_ATTRIBUTES																						\
 
 

@@ -82,7 +82,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3_IM_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{ITOFIX19_13(-8), ITOFIX19_13(93), FTOFIX19_13(1)},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)

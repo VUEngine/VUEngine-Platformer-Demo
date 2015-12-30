@@ -44,7 +44,7 @@ CharSetROMDef MOUND_BG_MIDDLE_CH =
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    69,
+    82,
 
     // allocation type
     __NOT_ANIMATED,
@@ -92,7 +92,7 @@ MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
         // displacement (x, y, z) (in pixels)
         {0, 0, 0},
 		
-		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
 		
 		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)

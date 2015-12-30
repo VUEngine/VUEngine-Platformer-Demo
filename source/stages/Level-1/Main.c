@@ -42,9 +42,9 @@ extern StageROMDef LEVEL_1_TOWER_ST;
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
 // ---------------------------------------------------------------------------------------------------------
-/* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
- * know that it must stop reading the stage's/ui's textures and entities.
- */
+
+// Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
+// know that it must stop reading the stage's/ui's textures and entities.
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_IM_COLLISIONS[] =
 {
@@ -168,15 +168,15 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 	{&COLLISION_67x25x1, 	            {FTOFIX19_13(2336), FTOFIX19_13(416), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2172), FTOFIX19_13(292), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2188), FTOFIX19_13(292), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
-//	{&CANNON_AC,                        {FTOFIX19_13(2180), FTOFIX19_13(282), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
+	{&CANNON_AC,                        {FTOFIX19_13(2180), FTOFIX19_13(282), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
 	{&COLLISION_8x3x1, 	                {FTOFIX19_13(2180), FTOFIX19_13(317), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COLLISION_8x3x1, 	                {FTOFIX19_13(2292), FTOFIX19_13(317), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2396), FTOFIX19_13(292), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2412), FTOFIX19_13(292), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
-//	{&CANNON_AC,                        {FTOFIX19_13(2404), FTOFIX19_13(282), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
+	{&CANNON_AC,                        {FTOFIX19_13(2404), FTOFIX19_13(282), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
 	{&COLLISION_8x3x1, 	                {FTOFIX19_13(2404), FTOFIX19_13(317), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-//	{&HERO_AC, 				            {FTOFIX19_13(2606), FTOFIX19_13(300), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
+//	{&HERO_AC, 				            {FTOFIX19_13(2540), FTOFIX19_13(300), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
 
     {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(2732), FTOFIX19_13(356), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_6_MANAGED, NULL, false},
 
@@ -199,7 +199,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(214), FTOFIX19_13(-8)}, NULL, NULL, NULL, true},
+	{&GUI_AG, {FTOFIX19_13(191), FTOFIX19_13(214), FTOFIX19_13(-8)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -321,7 +321,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_1_MAIN_1_ST =
         // initial screen position
         {
             // x
-            //ITOFIX19_13(2610),
+            //ITOFIX19_13(2540),
             ITOFIX19_13(0),
             // y
             ITOFIX19_13(0),

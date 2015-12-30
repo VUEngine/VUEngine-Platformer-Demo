@@ -64,7 +64,7 @@ AnimationFunction CANNON_SHOOT_ANIM =
 	15,
 
 	// frames to play in animation
-	{1,2,1,2,0,0,0,0,0,0,3,4,5,6,0},
+	{1, 2, 1, 2, 0, 0, 0, 0, 0, 0, 3, 4, 5, 6, 0},
 
 	// number of cycles a frame of animation is displayed
 	6 * __FPS_ANIM_FACTOR,
@@ -138,7 +138,7 @@ BgmapSpriteROMDef CANNON_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON) (WRLD_ON, WRLD_LON or WRLD_RON)

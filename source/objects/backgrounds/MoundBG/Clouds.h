@@ -50,7 +50,7 @@ __CLASS(Clouds);
 
 #define Clouds_ATTRIBUTES															\
 																				    \
-	/* it is derivated from */													    \
+	/* it is derived from */													    \
 	Image_ATTRIBUTES															    \
 																					\
 	/* displacement per cycle */												    \

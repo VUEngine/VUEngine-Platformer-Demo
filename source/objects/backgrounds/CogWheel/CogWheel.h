@@ -30,22 +30,22 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CogWheel_METHODS															\
+#define CogWheel_METHODS																				\
 	InanimatedInGameEntity_METHODS;
 
-#define CogWheel_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, CogWheel, ready);										\
-	__VIRTUAL_SET(ClassName, CogWheel, handleMessage);								\
-    __VIRTUAL_SET(ClassName, CogWheel, resume);										\
-	__VIRTUAL_SET(ClassName, CogWheel, moves);										\
+#define CogWheel_SET_VTABLE(ClassName)																	\
+	InanimatedInGameEntity_SET_VTABLE(ClassName);														\
+	__VIRTUAL_SET(ClassName, CogWheel, ready);															\
+	__VIRTUAL_SET(ClassName, CogWheel, handleMessage);													\
+    __VIRTUAL_SET(ClassName, CogWheel, resume);															\
+	__VIRTUAL_SET(ClassName, CogWheel, moves);															\
 
 __CLASS(CogWheel);
 
-#define CogWheel_ATTRIBUTES															\
-																					\
-	/* it is derivated from */														\
-	InanimatedInGameEntity_ATTRIBUTES												\
+#define CogWheel_ATTRIBUTES																				\
+																										\
+	/* it is derived from */																			\
+	InanimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------

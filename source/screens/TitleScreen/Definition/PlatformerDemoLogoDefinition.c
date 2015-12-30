@@ -199,7 +199,7 @@ BgmapSpriteROMDef LOGO_L_IM_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
@@ -217,7 +217,7 @@ BgmapSpriteROMDef LOGO_R_IM_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
@@ -235,7 +235,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, FTOFIX19_13(1)},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
@@ -253,7 +253,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, FTOFIX19_13(1)},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)

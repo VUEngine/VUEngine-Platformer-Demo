@@ -19,84 +19,152 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBackground.h>
+#include <BgmapAnimatedSprite.h>
+#include "CannonBall.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Tower_Front_1Tiles[];
-extern BYTE Level_1_Tower_Front_1Map[];
+extern BYTE CannonBallTiles[];
+extern BYTE CannonBallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_TOWER_FRONT_1_CH =
+AnimationFunction CANNON_BALL_FLY_ANIM =
+{
+	// number of frames of this animation function
+	1,
+	
+	// frames to play in animation
+	{0},
+	
+	// number of cycles a frame of animation is displayed
+	8 * __FPS_ANIM_FACTOR,
+	
+	// whether to play it in loop or not
+	true,
+	
+	// method to call on function completion
+	NULL,
+	
+	// function's name
+	"Fly",
+};
+
+// an animation definition
+AnimationDescription CANNON_BALL_ANIM =
+{
+	// animation functions
+	{
+		&CANNON_BALL_FLY_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef CANNON_BALL_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    13,
+    10,
 
     // allocation type
-    __NOT_ANIMATED,
+    __ANIMATED_MULTI,
 
     // char definition
-    Level_1_Tower_Front_1Tiles,
+    CannonBallTiles,
 };
 
-TextureROMDef LEVEL_1_TOWER_FRONT_1_TX =
+TextureROMDef CANNON_BALL_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_TOWER_FRONT_1_CH,
+    (CharSetDefinition*)&CANNON_BALL_CH,
 
     // bgmap definition
-    Level_1_Tower_Front_1Map,
+    CannonBallMap,
 
     // cols (max 64)
-    48,
+    3,
 
     // rows (max 64)
-    64,
+    3,
 
     // number of frames
     1,
 
     // palette number
-    0,
+    1,
 };
 
-BgmapSpriteROMDef LEVEL_1_TOWER_FRONT_1_IM_SPRITE =
+BgmapSpriteROMDef CANNON_BALL_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&LEVEL_1_TOWER_FRONT_1_TX,
+	(TextureDefinition*)&CANNON_BALL_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_BGMAP,
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+	WRLD_AFFINE,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_TOWER_FRONT_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const CANNON_BALL_SPRITES[] =
 {
-	&LEVEL_1_TOWER_FRONT_1_IM_SPRITE,
+	&CANNON_BALL_SPRITE,
 	NULL
 };
 
-MBackgroundROMDef LEVEL_1_TOWER_FRONT_1_IM =
+ActorROMDef CANNON_BALL_AC =
 {
-	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_TOWER_FRONT_1_IM_SPRITES,
+	{
+		{
+			{
+				__TYPE(CannonBall),
+				(SpriteROMDef**)CANNON_BALL_SPRITES,
+			},
+
+			// collision detection gap (up, down, left, right)
+			{0, 0, 0, 0},
+
+			// in game type
+			kCannonBall,
+
+			// width
+			0,
+
+			// height
+			0,
+
+			// depth
+			1
+		},
+
+		// pointer to the animation definition for the character
+		&CANNON_BALL_ANIM,
+
+		// initial animation
+		NULL
+	},
+
+	// friction for physics
+	ITOFIX19_13(0),
+
+	// elasticity for physics
+	ITOFIX19_13(0),
+
+	// mass
+	ITOFIX19_13(10)
 };

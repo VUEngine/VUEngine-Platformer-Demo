@@ -42,7 +42,7 @@ __CLASS(Coin);
 
 #define Coin_ATTRIBUTES															\
 																				\
-	/* it is derivated from */													\
+	/* it is derived from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
 																				\
 	/* have I been collected yet? */											\

@@ -52,7 +52,7 @@ __CLASS(Lava);
 
 #define Lava_ATTRIBUTES															\
 																				\
-	/* it is derivated from */													\
+	/* it is derived from */													\
 	InanimatedInGameEntity_ATTRIBUTES											\
 
 

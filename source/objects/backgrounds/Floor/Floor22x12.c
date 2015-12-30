@@ -75,10 +75,10 @@ TextureROMDef FLOOR_22x12_TX =
     1,
 };
 
-ObjectSpriteROMDef FLOOR_22x12_SPRITE =
+BgmapSpriteROMDef FLOOR_22x12_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_22x12_TX,
@@ -86,8 +86,8 @@ ObjectSpriteROMDef FLOOR_22x12_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+	WRLD_BGMAP,
 
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
@@ -130,10 +130,10 @@ TextureROMDef FLOOR_22_TOP_TX =
     1,
 };
 
-ObjectSpriteROMDef FLOOR_22x12_TOP_SPRITE =
+BgmapSpriteROMDef FLOOR_22x12_TOP_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&FLOOR_22_TOP_TX,
@@ -141,14 +141,14 @@ ObjectSpriteROMDef FLOOR_22x12_TOP_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, FTOFIX19_13(-40), FTOFIX19_13(-1)},
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_OBJ,
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+	WRLD_BGMAP,
 
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef* const FLOOR_22x12_SPRITES[] =
+BgmapSpriteROMDef* const FLOOR_22x12_SPRITES[] =
 {
 	&FLOOR_22x12_SPRITE,
 //	&FLOOR_22x12_TOP_SPRITE,
@@ -181,11 +181,11 @@ InanimatedInGameEntityROMDef FLOOR_22x12_IG =
         16
     },
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(40),
+    // friction
+    FTOFIX19_13(FLOOR_FRICTION),
 
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(1.0f),
+    // elasticity
+    FTOFIX19_13(FLOOR_ELASTICITY),
 
     // register shape
     true,

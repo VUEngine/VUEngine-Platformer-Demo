@@ -19,117 +19,84 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <InAnimatedInGameEntity.h>
-#include <macros.h>
-#include <CannonBall.h>
+#include <MBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CannonBallTiles[];
-extern BYTE CannonBallMap[];
+extern BYTE Level_1_Tower_MainTiles[];
+extern BYTE Level_1_Tower_Main_1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CANNON_BALL_CH =
+CharSetROMDef LEVEL_1_TOWER_MAIN_1_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    9,
+    30,
 
     // allocation type
     __NOT_ANIMATED,
 
     // char definition
-    CannonBallTiles,
+    Level_1_Tower_MainTiles,
 };
 
-TextureROMDef CANNON_BALL_TX =
+TextureROMDef LEVEL_1_TOWER_MAIN_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&CANNON_BALL_CH,
+    (CharSetDefinition*)&LEVEL_1_TOWER_MAIN_1_CH,
 
     // bgmap definition
-    CannonBallMap,
+    Level_1_Tower_Main_1Map,
 
     // cols (max 64)
-    3,
+    48,
 
     // rows (max 64)
-    3,
+    64,
 
     // number of frames
     1,
 
     // palette number
-    1,
+    0,
 };
 
-BgmapSpriteROMDef CANNON_BALL_BG_SPRITE =
+BgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)&CANNON_BALL_TX,
+	(TextureDefinition*)&LEVEL_1_TOWER_MAIN_1_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
-	WRLD_AFFINE,
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+	WRLD_BGMAP,
 	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON) (WRLD_ON, WRLD_LON or WRLD_RON)
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const CANNON_BALL_BG_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_1_IM_SPRITES[] =
 {
-	&CANNON_BALL_BG_SPRITE,
+	&LEVEL_1_TOWER_MAIN_1_IM_SPRITE,
 	NULL
 };
 
-InanimatedInGameEntityROMDef CANNON_BALL_IG =
+MBackgroundROMDef LEVEL_1_TOWER_MAIN_1_IM =
 {
-    {
-        {
-            __TYPE(CannonBall),
-            (SpriteROMDef**)CANNON_BALL_BG_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {2, 2, 2, 2},
-
-        // in game type
-        kSolid,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-        // depth
-        8
-    },
-
-    // friction FTOFIX19_13
-    FTOFIX19_13(0.0f),
-
-    // elasticity FTOFIX19_13
-    FTOFIX19_13(0.0f),
-
-    // register shape
-    true,
+	__TYPE(MBackground),
+	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_1_IM_SPRITES,
 };

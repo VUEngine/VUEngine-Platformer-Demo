@@ -57,7 +57,7 @@ const ClassSizeData _userClassesSizeData[] =
 const UserObject _userObjects[] =
 {
 	{&LEVEL_1_HOUSE_IM, "House"},
-	{&CANNON_BALL_IG, "CannonBall"},
+	{&CANNON_BALL_AC, "CannonBall"},
 	{&COIN_AG, "Coin"},
 	{&DOOR_AG, "Door"},
 	{&HERO_AC, "Hero"},

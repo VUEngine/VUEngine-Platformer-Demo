@@ -84,9 +84,9 @@ BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =
 	(TextureDefinition*)&COG_WHEEL_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(-2)},
+	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
@@ -125,10 +125,10 @@ InanimatedInGameEntityROMDef COG_WHEEL_IG =
         1
     },
 
-    // friction FTOFIX19_13
-    FTOFIX19_13(0.0f),
+    // friction
+    FTOFIX19_13(NO_FRICTION),
 
-    // elasticity FTOFIX19_13
+    // elasticity
     FTOFIX19_13(0.0f),
 
     // register shape

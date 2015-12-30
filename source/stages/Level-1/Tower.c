@@ -34,86 +34,71 @@
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
-#define LAYER_0_FLOOR	196
-#define LAYER_1_FLOOR	196 - 16
-#define LAYER_2_FLOOR	196 - 32
-#define LAYER_3_FLOOR	196 - 64
-
-#define LEVEL_X_SIZE 	384
-#define LEVEL_Y_SIZE 	5000
-#define LEVEL_Z_SIZE 	64
-
-#define SCREEN_X_POSITION 	0
-#define SCREEN_Y_POSITION 	LEVEL_Y_SIZE - __SCREEN_HEIGHT
-#define SCREEN_Z_POSITION 	0
-
-
-//---------------------------------------------------------------------------------------------------------
-//                                                 PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
+#define LEVEL_1_TOWER_HEIGHT 	5000
+#define SCREEN_Y_POSITION 	LEVEL_1_TOWER_HEIGHT - __SCREEN_HEIGHT
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
 // ---------------------------------------------------------------------------------------------------------
-/* Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
- * know that it must stop reading the stage's/ui's textures and entities.
- */
 
-PositionedEntityROMDef LAVA_CHILD_ENTITIES2[] =
+// Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
+// know that it must stop reading the stage's/ui's textures and entities.
+
+PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
 	{&LAVA_TOP_AG, {FTOFIX19_13(0), FTOFIX19_13(-114), FTOFIX19_13(-1)}, NULL, NULL, NULL, false},
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
+PositionedEntityROMDef TOWER_MAIN_1_CHILD_ENTITIES[] =
 {
-	{&LAVA_IG,		{FTOFIX19_13(0), FTOFIX19_13(224 - 32), FTOFIX19_13(-2)}, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES2, NULL, false},
-    {NULL, {0,0,0}, NULL, NULL, NULL, false},
-};
-
-PositionedEntityROMDef TOWER_FRONT_1_CHILD_ENTITIES[] =
-{
-	{&COLLISION_2x28x1,	{FTOFIX19_13(-182), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // outer left wall
-	{&COLLISION_48x28x1,	{FTOFIX19_13(304), FTOFIX19_13(254), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // bottom right floor
-	{&COLLISION_2x28x1,	{FTOFIX19_13(192), FTOFIX19_13(64), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // outer right wall
-	{&COLLISION_48x28x1,	{FTOFIX19_13(-120), FTOFIX19_13(286), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // bottom left floor
-	{&COLLISION_3x2x1,		{FTOFIX19_13(96), FTOFIX19_13(74), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // floating stone bottom right
-	{&COLLISION_3x2x1,		{FTOFIX19_13(180), FTOFIX19_13(100), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // step stone bottom right
-	{&COLLISION_48x3x1,		{FTOFIX19_13(-168), FTOFIX19_13(54), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // 2nd level floor left
-	{&DOOR_AG,	            {FTOFIX19_13(-144), FTOFIX19_13(154), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
+	{&COLLISION_2x64x1,	    {FTOFIX19_13(-184), FTOFIX19_13(0), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer left wall
+	{&COLLISION_48x28x1,	{FTOFIX19_13(302),  FTOFIX19_13(256), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom right floor
+	{&COLLISION_2x64x1,	    {FTOFIX19_13(184),  FTOFIX19_13(0), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer right wall
+	{&COLLISION_48x28x1,	{FTOFIX19_13(-128), FTOFIX19_13(288), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom left floor
+	{&COLLISION_4x2x1,		{FTOFIX19_13(88),   FTOFIX19_13(72), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone bottom right
+	{&COLLISION_4x8x1,		{FTOFIX19_13(176),  FTOFIX19_13(144), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // step stone bottom right
+	{&COLLISION_48x3x1,		{FTOFIX19_13(-172), FTOFIX19_13(28), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
+	{&DOOR_AG,	            {FTOFIX19_13(-144), FTOFIX19_13(159), FTOFIX19_13(1)}, NULL, NULL, NULL, false},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 104), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{(ManagedEntityDefinition*)&MANAGED_ENTITY,		{FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT / 2), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, true},
-	
-	{&COIN_AG, 				{FTOFIX19_13(132), FTOFIX19_13(-48 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
-	{&COIN_AG, 				{FTOFIX19_13(148), FTOFIX19_13(-48 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
-	{&COIN_AG, 				{FTOFIX19_13(132), FTOFIX19_13(-64 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
-	{&COIN_AG, 				{FTOFIX19_13(148), FTOFIX19_13(-64 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
 
-	{&COIN_AG, 				{FTOFIX19_13(132 + 32), FTOFIX19_13(-48 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
-	{&COIN_AG, 				{FTOFIX19_13(148 + 32), FTOFIX19_13(-48 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
-	{&COIN_AG, 				{FTOFIX19_13(132 + 32), FTOFIX19_13(-64 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
-	{&COIN_AG, 				{FTOFIX19_13(148 + 32), FTOFIX19_13(-64 + SCREEN_Y_POSITION + LAYER_0_FLOOR - 40), FTOFIX19_13(LAYER_0 + 1)}, NULL, NULL, NULL, true},
+	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 128), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&LAVA_IG,		        {FTOFIX19_13(190), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT + 80), FTOFIX19_13(LAYER_0)}, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
 
-	// the following entities must be placed in logical (spatial) order,
-	// according to the level's disposition, for the streaming to work properly
-	// beware of edge case scenarios!
-	{&LEVEL_1_TOWER_FRONT_1_IM,     {FTOFIX19_13(192), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48), FTOFIX19_13(LAYER_0 + 2)}, NULL, (struct PositionedEntity*)TOWER_FRONT_1_CHILD_ENTITIES, NULL, true},
-	{&LEVEL_1_TOWER_PLATFORMS_1_IM, {FTOFIX19_13(197), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT -48), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, NULL, true},
-	{&LAVA_TRIGGER_IG,  	{FTOFIX19_13(174), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT + 80), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&COG_WHEEL_IG,	        {FTOFIX19_13(384), FTOFIX19_13(LEVEL_Y_SIZE - __SCREEN_HEIGHT), FTOFIX19_13(50)}, NULL, NULL, NULL, true},
+	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
+	// for the streaming to work properly. beware of edge case scenarios!
+
+	{&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(192), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)TOWER_MAIN_1_CHILD_ENTITIES, NULL, false},
+	{&LEVEL_1_TOWER_MAIN_BACK_1_IM, {FTOFIX19_13(192), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), FTOFIX19_13(LAYER_0_BACK)}, NULL, NULL, NULL, false},
+    {&LEVEL_1_TOWER_BACK_1_IM,      {FTOFIX19_13(192), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+
+    {&TORCH_AG,                     {FTOFIX19_13(76),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 136), FTOFIX19_13(LAYER_1 - SORTING_OFFSET)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(196), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 136), FTOFIX19_13(LAYER_1 - SORTING_OFFSET)}, NULL, NULL, NULL, false},
+
+	{&LAVA_TRIGGER_IG,  	{FTOFIX19_13(174), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 130), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COG_WHEEL_IG,	        {FTOFIX19_13(384), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 224), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+
+	{&COIN_AG, 				{FTOFIX19_13(132), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 				{FTOFIX19_13(148), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 				{FTOFIX19_13(132 + 32), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 				{FTOFIX19_13(148 + 32), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+
+	{&GRASS_AG, 			{FTOFIX19_13(332), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 121), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+
+	{&COIN_AG, 				{FTOFIX19_13(280), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 204), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(__SCREEN_HEIGHT - 8), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
+	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -124,8 +109,8 @@ TextureROMDef* LEVEL_1_TOWER_ST_TEXTURES[] =
 	&GUI_TX,
 	&LAVA_TX,
 	&LAVA_TOP_TX,
-	&LEVEL_1_TOWER_FRONT_1_TX,
-	&LEVEL_1_TOWER_PLATFORMS_1_TX,
+	&LEVEL_1_TOWER_MAIN_1_TX,
+	&LEVEL_1_TOWER_MAIN_BACK_1_TX,
 	&COG_WHEEL_TX,
 	NULL
 };
@@ -141,11 +126,11 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
         // size
         {
             // x
-            LEVEL_X_SIZE,
+            384,
             // y
-            LEVEL_Y_SIZE,
+            LEVEL_1_TOWER_HEIGHT,
             // z
-            LEVEL_Z_SIZE
+            256
         },
 
         // streaming
@@ -222,17 +207,17 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
         // initial screen position
         {
             // x
-            ITOFIX19_13(SCREEN_X_POSITION),
+            ITOFIX19_13(0),
             // y
             ITOFIX19_13(SCREEN_Y_POSITION),
             // z
-            ITOFIX19_13(SCREEN_Z_POSITION)
+            ITOFIX19_13(0)
         },
 
         // optical configuration values
         {
     		// maximum view distance's power into the horizon
-    		__MAXIMUM_VIEW_DISTANCE_POWER,
+    		__MAXIMUM_VIEW_DISTANCE_POWER + 1,
             // distance of the eyes to the screen
             ITOFIX19_13(__DISTANCE_EYE_SCREEN),
             // distance from left to right eye (depth sensation)

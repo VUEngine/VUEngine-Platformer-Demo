@@ -43,7 +43,7 @@ AnimationFunctionROMDef BANDANA_SPIN_ANIM =
 	8,
 	
 	// frames to play in animation
-	{0,1,2,3,4,5,6,7},
+	{0, 1, 2, 3, 4, 5, 6, 7},
 	
 	// number of cycles a frame of animation is displayed
 	8 * __FPS_ANIM_FACTOR,
@@ -116,7 +116,7 @@ ObjectSpriteROMDef BANDANA_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)

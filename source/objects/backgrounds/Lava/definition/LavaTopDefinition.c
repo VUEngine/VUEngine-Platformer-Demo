@@ -44,7 +44,7 @@ AnimationFunctionROMDef LAVA_TOP_ANIM_1 =
 	9,
 	
 	// frames to play in animation
-	{0,1,2,3,4,5,6,7,8},
+	{0, 1, 2, 3, 4, 5, 6, 7, 8},
 	
 	// number of cycles a frame of animation is displayed
 	8 * __FPS_ANIM_FACTOR,
@@ -104,7 +104,7 @@ TextureROMDef LAVA_TOP_TX =
     1,
 
     // palette number
-    0
+    1
 };
 
 BgmapSpriteROMDef LAVA_TOP_SPRITE =
@@ -116,9 +116,9 @@ BgmapSpriteROMDef LAVA_TOP_SPRITE =
 	(TextureDefinition*)&LAVA_TOP_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(-2)},
+	{0, 0, FTOFIX19_13(-1)},
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
@@ -154,7 +154,7 @@ AnimatedInGameEntityROMDef LAVA_TOP_AG =
     	0,
     	
     	// depth
-        16
+        4
     },
 
     // pointer to the animation definition for the item

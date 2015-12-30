@@ -14,56 +14,81 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CANNON_BALL_H_
-#define CANNON_BALL_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
+#include <Game.h>
+#include <InGameEntity.h>
+#include <MessageDispatcher.h>
+#include <Prototypes.h>
 
-#include <InanimatedInGameEntity.h>
-#include <macros.h>
+#include <EnemyDead.h>
+#include <Hero.h>
+#include <CannonBall.h>
+
+#include "CannonBallMoving.h"
+#include "CannonBallIdle.h"
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-#define CANNON_BALL_MOVE_DELAY 100
-#define CANNON_BALL_Z_OFFSET_PER_CYCLE 5
-#define CANNON_BALL_MINIMUM_Z_POSITION -80
+void CannonBallMoving_constructor(CannonBallMoving this);
+void CannonBallMoving_destructor(CannonBallMoving this);
+void CannonBallMoving_enter(CannonBallMoving this, void* owner);
+void CannonBallMoving_execute(CannonBallMoving this, void* owner);
+void CannonBallMoving_exit(CannonBallMoving this, void* owner);
+bool CannonBallMoving_handleMessage(CannonBallMoving this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+// 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-#define CannonBall_METHODS														\
-	InanimatedInGameEntity_METHODS;
+__CLASS_DEFINITION(CannonBallMoving, State);
+__SINGLETON(CannonBallMoving);
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
+
+// class's constructor
+void CannonBallMoving_constructor(CannonBallMoving this)
+{
+	// construct base
+	__CONSTRUCT_BASE();
+}
+
+// class's destructor
+void CannonBallMoving_destructor(CannonBallMoving this)
+{
+	// destroy base
+	__SINGLETON_DESTROY;
+}
+
+// state's enter
+void CannonBallMoving_enter(CannonBallMoving this, void* owner)
+{
+	CannonBall_startMovement((CannonBall)owner);
 	
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Fly");
+}
 
-#define CannonBall_SET_VTABLE(ClassName)										\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
-	__VIRTUAL_SET(ClassName, CannonBall, handleMessage);						\
+// state's execute
+void CannonBallMoving_execute(CannonBallMoving this, void* owner)
+{
+}
 
-__CLASS(CannonBall);
+// state's exit
+void CannonBallMoving_exit(CannonBallMoving this, void* owner)
+{
+}
 
-#define CannonBall_ATTRIBUTES													\
-																				\
-	/* it is derivated from */													\
-	InanimatedInGameEntity_ATTRIBUTES											\
-
-
-//---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(CannonBall, InanimatedInGameEntityDefinition* inanimatedEntityDefinition, int id, const char* const name);
-
-void CannonBall_constructor(CannonBall this, InanimatedInGameEntityDefinition* inanimatedEntityDefinition, int id, const char* const name);
-void CannonBall_destructor(CannonBall this);
-bool CannonBall_handleMessage(CannonBall this, Telegram telegram);
-
-
-#endif
+// state's on message
+bool CannonBallMoving_handleMessage(CannonBallMoving this, void* owner, Telegram telegram)
+{
+	return false;
+}

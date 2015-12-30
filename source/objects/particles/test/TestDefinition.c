@@ -44,7 +44,7 @@ AnimationFunctionROMDef TEST_PARTICLE_SPIN_ANIM =
 	4,
 	
 	// frames to play in animation
-	{0,1,2,3},
+	{0, 1, 2, 3},
 	
 	// number of cycles a frame of animation is displayed
 	2 * __FPS_ANIM_FACTOR,
@@ -122,7 +122,7 @@ ObjectSpriteROMDef OBJECT_TEST_PARTICLE_SPRITE =
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_HBIAS OR WRLD_OBJ)
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
