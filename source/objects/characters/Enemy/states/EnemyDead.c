@@ -69,24 +69,11 @@ void EnemyDead_enter(EnemyDead this, void* owner)
 	Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, owner));
 	direction.z = __NEAR;
 	InGameEntity_setDirection(__SAFE_CAST(InGameEntity, owner), direction);
-	
-	// stop movement
-/*	Actor_stopMovement(__SAFE_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
-	
-	// jump
-	Actor_jump(__SAFE_CAST(Actor, owner), DEAD_VELOCITY_Y, DEAD_ACCELERATION_Y);
-	
-	// move over z axis
-	Actor_startMovement(__SAFE_CAST(Actor, owner), __ZAXIS, ~(__ACCELMOVEX | __RETARMOVEX),
-			DEAD_VELOCITY_Z, DEAD_ACCELERATION_Z);
-	*/
 }
 
 // state's execute
 void EnemyDead_execute(EnemyDead this, void* owner)
 {
-	// update movement
-//	Actor_move(__SAFE_CAST(Actor, owner));
 }
 
 // state's exit
@@ -97,7 +84,5 @@ void EnemyDead_exit(EnemyDead this, void* owner)
 // state's on message
 bool EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram)
 {
-	// if the botton of the screen has been reached
-
 	return false;
 }

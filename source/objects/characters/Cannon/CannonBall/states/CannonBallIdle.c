@@ -69,16 +69,12 @@ void CannonBallIdle_destructor(CannonBallIdle this)
 // state's enter
 void CannonBallIdle_enter(CannonBallIdle this, void* owner)
 {
-	// do not move
-    // Actor_stopMovement(__SAFE_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
-
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
+    CannonBall_stopMovement(owner);
 }
 
 // state's execute
 void CannonBallIdle_execute(CannonBallIdle this, void* owner)
 {
-    StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, CannonBallMoving_getInstance()));
 }
 
 // state's exit

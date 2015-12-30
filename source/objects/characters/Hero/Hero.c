@@ -137,7 +137,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
-	this->cameraBoudingBox = NULL;
+	this->cameraBoundingBox = NULL;
 
 	Hero_setInvincible(this, false);
 
@@ -182,7 +182,7 @@ void Hero_destructor(Hero this)
 
 	this->feetDust = NULL;
 	this->currentHint = NULL;
-	this->cameraBoudingBox = NULL;
+	this->cameraBoundingBox = NULL;
 
 	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
 
@@ -393,9 +393,9 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 
 void Hero_freeCameraTriggerMovement(Hero this, u8 axisToFreeUp)
 {
-	if(this->cameraBoudingBox)
+	if(this->cameraBoundingBox)
 	{
-        VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoudingBox));
+        VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
 
         if(__XAXIS & axisToFreeUp)
         {
@@ -407,15 +407,15 @@ void Hero_freeCameraTriggerMovement(Hero this, u8 axisToFreeUp)
             overridePositionFlag.y = false;
         }
 
-        CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoudingBox), overridePositionFlag);
+        CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
 	}
 }
 
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 {
-	if(this->cameraBoudingBox)
+	if(this->cameraBoundingBox)
 	{
-        VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoudingBox));
+        VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
 
         if(__XAXIS & axisToLockUp)
         {
@@ -427,7 +427,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
             overridePositionFlag.y = locked;
         }
 
-        CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoudingBox), overridePositionFlag);
+        CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
 	}
 }
 
@@ -760,7 +760,7 @@ void Hero_enterDoor(Hero this)
 	// reset currently overlapping door
 	Hero_setCurrentlyOverlappingDoor(this, NULL);
 	
-	// hide hint inmediately
+	// hide hint immediately
 	if(this->currentHint != NULL)
 	{
 		Entity_hide(__SAFE_CAST(Entity, this->currentHint));
@@ -1052,7 +1052,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kCameraTarget:
 				{
 					VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-					
+
 	                // get the axis of collision
 	                u8 axisOfCollision = __VIRTUAL_CALL(
 	                    int,
@@ -1063,17 +1063,17 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	                    Body_getLastDisplacement(this->body),
 	                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
 	                );
-	                
+
                     if(axisOfCollision & __XAXIS)
                     {
                     	Hero_lockCameraTriggerMovement(this, __XAXIS, false);
                     }
-                    
+
                     if(axisOfCollision & __YAXIS)
                     {
                     	Hero_lockCameraTriggerMovement(this, __YAXIS, false);
                     }
-	                
+
 					VBVec3D position =
 					{
 		                0,
@@ -1081,7 +1081,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 		                0,
 					};
 	
-					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoudingBox, &position);
+					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoundingBox, &position);
 				}
 				break;
 				
@@ -1284,8 +1284,8 @@ int Hero_doMessage(Hero this, int message)
 		case kSetUpLevel:
 
 			CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
-			this->cameraBoudingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL);
-			CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)));
+			this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL);
+			CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 
 			// set focus on the hero
 			VBVec3D screenDisplacement =

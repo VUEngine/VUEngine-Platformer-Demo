@@ -72,14 +72,13 @@ void CannonBallMoving_destructor(CannonBallMoving this)
 // state's enter
 void CannonBallMoving_enter(CannonBallMoving this, void* owner)
 {
-	CannonBall_startMovement((CannonBall)owner);
-	
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Fly");
+	CannonBall_startMovement(owner);
 }
 
 // state's execute
 void CannonBallMoving_execute(CannonBallMoving this, void* owner)
 {
+    CannonBall_checkPosition(owner);
 }
 
 // state's exit

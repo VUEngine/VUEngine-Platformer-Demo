@@ -31,6 +31,8 @@
 
 #include <CustomScreenMovementManager.h>
 #include <objects.h>
+#include <CannonBall.h>
+#include <CannonBallMoving.h>
 #include "Cannon.h"
 
 #include <PlatformerLevelState.h>
@@ -61,6 +63,8 @@ __CLASS_NEW_END(Cannon, animatedInGameEntityDefinition, id, name);
 // class's constructor
 void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
+	ASSERT(this, "Cannon::constructor: null this");
+
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 }
@@ -68,6 +72,11 @@ void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInG
 // class's destructor
 void Cannon_destructor(Cannon this)
 {
+	ASSERT(this, "Cannon::destructor: null this");
+
+    // not necessary to manually destroy the CannonBall here as all children are automatically
+    // destroyed as well when an entity is unloaded
+
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
@@ -78,7 +87,11 @@ void Cannon_ready(Cannon this)
 	ASSERT(this, "Cannon::ready: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
-	
+
+    // add cannon ball as child
+    VBVec3D position = *Container_getLocalPosition(__GET_CAST(Container, this));
+    Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
+
     // send delayed message to self to trigger first shot
     MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
@@ -118,7 +131,7 @@ void Cannon_shoot(Cannon this)
     MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
-// spawn a cannon ball
+// spawn a cannon ball, this is the callback of the "Shoot" animation
 void Cannon_spawnCannonBall(Cannon this)
 {
 	ASSERT(this, "Cannon::spawnCannonBall: null this");
@@ -130,6 +143,8 @@ void Cannon_spawnCannonBall(Cannon this)
     extern const u16 FIRE_SND[];
     SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
-    // add cannon ball entity to stage
-	Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CANNON_BALL_AC, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, false);
+    // set cannon ball to moving state
+    NM_ASSERT(1 >= VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
+    CannonBall cannonBall = (CannonBall)VirtualList_front(this->children);
+    StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, cannonBall)), __SAFE_CAST(State, CannonBallMoving_getInstance()));
 }

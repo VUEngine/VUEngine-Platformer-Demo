@@ -58,8 +58,6 @@ void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id
 
 	// register a body for physics
 	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), definition->mass);
-
-	//Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 }
 
 // class's constructor
@@ -78,8 +76,8 @@ void CannonBall_ready(CannonBall this)
 	ASSERT(this, "CannonBall::ready: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
-	
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, CannonBallMoving_getInstance()));
+
+	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, CannonBallIdle_getInstance()));
 }
 
 // register a shape with the collision detection system
@@ -89,7 +87,7 @@ void CannonBall_registerShape(CannonBall this)
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
-	
+
 	// don't check collisions against other objects
 	Shape_setCheckForCollisions(this->shape, false);
 }
@@ -126,14 +124,42 @@ int CannonBall_getAxisFreeForMovement(CannonBall this)
 // start moving
 void CannonBall_startMovement(CannonBall this)
 {
-	Velocity velocity = {0, 0, ITOFIX19_13(-128)};
+    // set back local position
+    VBVec3D position = {0, 0, FTOFIX19_13(-SORTING_OFFSET)};
+    Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
 
+	// register the shape for collision detections
+	Shape_setActive(this->shape, true);
+
+    // move me with physics
+	Velocity velocity = {0, 0, ITOFIX19_13(-128)};
 	Body_moveUniformly(this->body, velocity);
+
+    // show me
+	Entity_show(__SAFE_CAST(Entity, this));
 }
 
-bool CannonBall_isVisible(CannonBall this, int pad)
+// move back to cannon
+void CannonBall_stopMovement(CannonBall this)
 {
-    VBVec3D localPosition = *Container_getLocalPosition(__SAFE_CAST(Container, this));
+    // stop movement
+    Actor_stopMovement(__SAFE_CAST(Actor, this));
 
-    return localPosition.z > ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE);
+	// unregister the shape for collision detections
+	Shape_setActive(this->shape, false);
+
+    // hide me
+    Entity_hide(__SAFE_CAST(Entity, this));
+}
+
+// check position and set state to idle if minimum z value has been reached
+void CannonBall_checkPosition(CannonBall this)
+{
+    VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this));
+
+    if(position.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
+    {
+        // set state to idle
+        StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, this)), __SAFE_CAST(State, CannonBallIdle_getInstance()));
+    }
 }

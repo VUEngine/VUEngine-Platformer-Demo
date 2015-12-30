@@ -97,10 +97,10 @@ CharSetROMDef CANNON_CH =
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    9,
+    64,
 
     // allocation type
-    __ANIMATED_SHARED,
+    __ANIMATED_MULTI,
 
     // char definition
     CannonTiles,

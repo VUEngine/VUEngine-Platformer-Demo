@@ -82,7 +82,7 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 			{
                 LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), (char *)this->destination, true);
                 VBVec3D destinationDoorPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
-                destinationDoorPosition.z -= FTOFIX19_13(0.001f);
+                destinationDoorPosition.z -= FTOFIX19_13(SORTING_OFFSET);
                 Actor_stopMovement(__SAFE_CAST(Actor, Hero_getInstance()));
                 Actor_setLocalPosition(__SAFE_CAST(Actor, Hero_getInstance()), &destinationDoorPosition);
 				return true;

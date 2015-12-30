@@ -47,7 +47,6 @@
 	__VIRTUAL_SET(ClassName, CannonBall, takeHit);														\
 	__VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);										\
 	__VIRTUAL_SET(ClassName, CannonBall, ready);														\
-	__VIRTUAL_SET(ClassName, CannonBall, isVisible);													\
 
 __CLASS(CannonBall);
 
@@ -73,7 +72,8 @@ void CannonBall_takeHit(CannonBall this, int axis, s8 direction);
 void CannonBall_die(CannonBall this);
 int CannonBall_getAxisFreeForMovement(CannonBall this);
 void CannonBall_startMovement(CannonBall this);
-bool CannonBall_isVisible(CannonBall this, int pad);
+void CannonBall_stopMovement(CannonBall this);
+void CannonBall_checkPosition(CannonBall this);
 
 
 #endif

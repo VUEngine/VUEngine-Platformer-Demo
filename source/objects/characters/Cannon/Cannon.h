@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CANNON_INITIAL_SHOOT_DELAY 500
-#define CANNON_SHOOT_DELAY 3500
+#define CANNON_SHOOT_DELAY 5000
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Cannon_METHODS																					\
-	AnimatedInGameEntity_METHODS;
+	AnimatedInGameEntity_METHODS;																		\
 	
 
 #define Cannon_SET_VTABLE(ClassName)																	\
