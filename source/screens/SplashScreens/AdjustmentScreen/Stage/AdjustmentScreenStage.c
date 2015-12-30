@@ -137,7 +137,7 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
         // y
         ITOFIX19_13(0),
         //z
-        ITOFIX19_13(__ZZERO)
+        ITOFIX19_13(0)
     },
     
     // optical configuration values
