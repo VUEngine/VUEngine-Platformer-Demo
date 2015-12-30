@@ -33,6 +33,7 @@
 #include "states/HeroMoving.h"
 #include <CustomScreenMovementManager.h>
 #include <UserDataManager.h>
+#include <CameraTriggerEntity.h>
 
 #include <Hint.h>
 
@@ -177,9 +178,12 @@ void Hero_destructor(Hero this)
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
+	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), NULL);
+
 	this->feetDust = NULL;
 	this->currentHint = NULL;
-	
+	this->cameraBoudingBox = NULL;
+
 	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
 
 	hero = NULL;
@@ -188,7 +192,6 @@ void Hero_destructor(Hero this)
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
-	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -388,24 +391,46 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	}
 }
 
-void Hero_setCameraTrigger(Hero this)
+void Hero_freeCameraTriggerMovement(Hero this, u8 axisToFreeUp)
 {
 	if(this->cameraBoudingBox)
 	{
-		Container stage = __SAFE_CAST(Container, GameState_getStage(Game_getCurrentState(Game_getInstance())));
+        VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoudingBox));
 
-		Container_addChild(stage, __SAFE_CAST(Container, this->cameraBoudingBox));
-		__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoudingBox, Container_getGlobalPosition(__SAFE_CAST(Container, this->cameraBoudingBox)));
-	
-		// transform focus entity
-		Transformation environmentTransform = Container_getEnvironmentTransform(stage);
-		__VIRTUAL_CALL(void, Container, transform, this->cameraBoudingBox, &environmentTransform);
-		
-		Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
-		CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)));
+        if(__XAXIS & axisToFreeUp)
+        {
+            overridePositionFlag.x = false;
+        }
 
+        if(__YAXIS & axisToFreeUp)
+        {
+            overridePositionFlag.y = false;
+        }
+
+        CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoudingBox), overridePositionFlag);
 	}
 }
+
+void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
+{
+	if(this->cameraBoudingBox)
+	{
+        VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoudingBox));
+
+        if(__XAXIS & axisToLockUp)
+        {
+            overridePositionFlag.x = locked;
+        }
+
+        if(__YAXIS & axisToLockUp)
+        {
+            overridePositionFlag.y = locked;
+        }
+
+        CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoudingBox), overridePositionFlag);
+	}
+}
+
 
 // stop moving over axis
 bool Hero_stopMovingOnAxis(Hero this, int axis)
@@ -419,10 +444,13 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
 
     	Hero_hideDust(this);
+    	Hero_lockCameraTriggerMovement(this, __XAXIS, true);
     }
 
 	if(__YAXIS & axis)
     {
+    	Hero_lockCameraTriggerMovement(this, __YAXIS, true);
+
 		if(__XAXIS && Body_isMoving(this->body))
 		{
 			if(this->inputDirection.x)
@@ -468,7 +496,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 		position.x = abs(position.x) * -1;
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
-		Hero_setCameraTrigger(this);
+		Hero_lockCameraTriggerMovement(this, __XAXIS, true);
 	}
 	else if(K_LL & pressedKey)
     {
@@ -477,7 +505,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 		position.x = abs(position.x);
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
-		Hero_setCameraTrigger(this);
+		Hero_lockCameraTriggerMovement(this, __XAXIS, true);
 	}
 	else if(K_LU & pressedKey)
     {
@@ -515,10 +543,10 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
 {
     if (!Hero_isInvincible(this))
     {
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
-
-        if(this->energy > 0)
+        if(this->energy > 0 || Hero_hasBandana(this))
         {
+        	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
+
             Hero_setInvincible(this, true);
 
             // reset invincible a bit later
@@ -541,10 +569,8 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             if(pause)
             {
 	        	Game_pausePhysics(Game_getInstance(), true);
-	        	MessageDispatcher_dispatchMessage(600, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
-	        	
-	        	//Game_disableKeyPad(GameInstance());
-	        	KeypadManager_disable(KeypadManager_getInstance());
+	        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+	        	Game_disableKeypad(Game_getInstance());
             }
 
             // start short screen shake
@@ -1024,23 +1050,40 @@ int Hero_processCollision(Hero this, Telegram telegram)
 		switch(InGameEntity_getInGameType(inGameEntity))
         {
 			case kCameraTarget:
-			
-				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
-				Shape_setActive(Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)), false);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-				Container_addChild(__SAFE_CAST(Container, this), __SAFE_CAST(Container, this->cameraBoudingBox));
-				
 				{
+					VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+					
+	                // get the axis of collision
+	                u8 axisOfCollision = __VIRTUAL_CALL(
+	                    int,
+	                    Shape,
+	                    getAxisOfCollision,
+	                    this->shape,
+	                    VirtualNode_getData(node),
+	                    Body_getLastDisplacement(this->body),
+	                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
+	                );
+	                
+                    if(axisOfCollision & __XAXIS)
+                    {
+                    	Hero_lockCameraTriggerMovement(this, __XAXIS, false);
+                    }
+                    
+                    if(axisOfCollision & __YAXIS)
+                    {
+                    	Hero_lockCameraTriggerMovement(this, __YAXIS, false);
+                    }
+	                
 					VBVec3D position =
 					{
 		                0,
-		                ITOFIX19_13(-16),
+		                ITOFIX19_13(-8),
 		                0,
 					};
 	
 					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoudingBox, &position);
 				}
-				return true;
+				break;
 				
 			case kCoin:
 
@@ -1109,7 +1152,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kHit:
 
-                Hero_takeHitFrom(this, NULL, false);
+                Hero_takeHitFrom(this, NULL, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1218,7 +1261,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
         case kResumeGame:
 
         	Game_pausePhysics(Game_getInstance(), false);
-        	KeypadManager_enable(KeypadManager_getInstance());
+        	Game_enableKeypad(Game_getInstance());
         	break;
 
         case kHeroDied:
@@ -1238,14 +1281,10 @@ int Hero_doMessage(Hero this, int message)
 
 	switch(message)
 	{
-		case kStartLevel:
-
-			Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
-			break;
-		
 		case kSetUpLevel:
 
-			this->cameraBoudingBox = Stage_addEntity(GameState_getStage(Game_getCurrentState(Game_getInstance())), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL, true);
+			CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
+			this->cameraBoudingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, Container_getLocalPosition(__SAFE_CAST(Container, this)), NULL);
 			CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoudingBox)));
 
 			// set focus on the hero
@@ -1256,13 +1295,10 @@ int Hero_doMessage(Hero this, int message)
                 ITOFIX19_13(-LAYER_0),
 			};
 
-		//	Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
-
 			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 		case kResumeLevel:
 			{
-
 				// move the screen to its previous position
 				Screen_position(Screen_getInstance(), false);
 
@@ -1297,8 +1333,7 @@ void Hero_suspend(Hero this)
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
     MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kStopInvincibility);
     
-	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
-	Hero_setCameraTrigger(this);
+	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 }
 
 void Hero_resume(Hero this)

@@ -78,6 +78,7 @@ static void CustomScreenMovementManager_constructor(CustomScreenMovementManager 
 	__CONSTRUCT_BASE();
 	
 	this->tempFocusInGameEntity = NULL;
+	this->transformationBaseEntity = NULL;
 
 	this->lastShakeOffset.x = 0;
 	this->lastShakeOffset.y = 0;
@@ -105,21 +106,20 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
 	// if focusInGameEntity is defined
-	if(_screen->focusInGameEntity)
+	if(_screen->focusInGameEntity && this->transformationBaseEntity)
 	{
-		Container focusInGameEntityParent = Container_getParent(__SAFE_CAST(Container, _screen->focusInGameEntity));
+		Container transformationBaseEntityParent = Container_getParent(__SAFE_CAST(Container, this->transformationBaseEntity));
 		
-		if(focusInGameEntityParent)
+		if(transformationBaseEntityParent)
 		{
 			// transform focus entity
-			Transformation environmentTransform = Container_getEnvironmentTransform(focusInGameEntityParent);
+			Transformation environmentTransform = Container_getEnvironmentTransform(transformationBaseEntityParent);
 
 			// apply transformations
-			__VIRTUAL_CALL(void, Container, transform, _screen->focusInGameEntity, &environmentTransform);
-	
-			int movementState = __VIRTUAL_CALL(u8, InGameEntity, getMovementState, _screen->focusInGameEntity);
+			__VIRTUAL_CALL(void, Container, transform, this->transformationBaseEntity, &environmentTransform);
 	
 			Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
+
 			{
 				// update vertical position
 				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
@@ -151,7 +151,6 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				_screen->lastDisplacement.x = (_screen->position.x - _screen->lastDisplacement.x);
 			}
 			
-			if(!(movementState & __YAXIS) || !checkIfFocusEntityIsMoving)
 			{
 				// update vertical position
 				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
@@ -228,6 +227,13 @@ bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this,
 	}
 
 	return false;
+}
+
+void CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager this, Entity transformationBaseEntity)
+{
+	ASSERT(this, "Screen::setTransformationBaseEntity: null this");
+
+	this->transformationBaseEntity = transformationBaseEntity;
 }
 
 // start shaking the screen

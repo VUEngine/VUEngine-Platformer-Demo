@@ -60,6 +60,9 @@ enum CustomScreenFX
 	/* super's attributes */													\
 	ScreenMovementManager_ATTRIBUTES;											\
 																				\
+	/* entity to transform before positioning the screen */						\
+	Entity transformationBaseEntity;											\
+																				\
 	/* temporary variable to hold the focus entity during shaking fx */			\
 	InGameEntity tempFocusInGameEntity;											\
 																				\
@@ -84,6 +87,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, int effect, int duration);
 void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, int effect);
 bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram);
+void CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager this, Entity transformationBaseEntity);
 
 
 #endif

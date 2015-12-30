@@ -153,7 +153,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram);
 int Hero_doMessage(Hero this, int message);
 void Hero_suspend(Hero this);
 void Hero_resume(Hero this);
-void Hero_setCameraTrigger(Hero this);
+void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
 
 
 #endif
