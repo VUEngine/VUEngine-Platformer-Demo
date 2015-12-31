@@ -124,10 +124,6 @@ int CannonBall_getAxisFreeForMovement(CannonBall this)
 // start moving
 void CannonBall_startMovement(CannonBall this)
 {
-    // set back local position
-    VBVec3D position = {0, 0, FTOFIX19_13(-SORTING_OFFSET)};
-    Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
-
 	// register the shape for collision detections
 	Shape_setActive(this->shape, true);
 
@@ -147,6 +143,10 @@ void CannonBall_stopMovement(CannonBall this)
 
 	// unregister the shape for collision detections
 	Shape_setActive(this->shape, false);
+
+    // set back local position
+    VBVec3D position = {0, 0, FTOFIX19_13(-SORTING_OFFSET)};
+    Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
 
     // hide me
     Entity_hide(__SAFE_CAST(Entity, this));

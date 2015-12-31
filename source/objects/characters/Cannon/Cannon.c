@@ -144,7 +144,7 @@ void Cannon_spawnCannonBall(Cannon this)
     SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
     // set cannon ball to moving state
-    NM_ASSERT(1 >= VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
+    NM_ASSERT(1 == VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
     CannonBall cannonBall = (CannonBall)VirtualList_front(this->children);
     StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, cannonBall)), __SAFE_CAST(State, CannonBallMoving_getInstance()));
 }
