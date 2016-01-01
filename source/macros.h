@@ -22,7 +22,7 @@
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
-#define FADE_DELAY			32
+#define FADE_DELAY			16
 
 #define LAYER_INCREMENT		32
 #define SORTING_OFFSET		0.001f

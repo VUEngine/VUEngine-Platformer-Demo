@@ -20,7 +20,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
-
 #include <Game.h>
 #include <Screen.h>
 #include <Printing.h>
@@ -29,6 +28,7 @@
 #include <I18n.h>
 #include <AutoPauseScreenState.h>
 #include <Languages.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -92,14 +92,14 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner)
     u8 strTextXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseTextSize.x >> 1);
     Printing_text(Printing_getInstance(), strAutomaticPauseText, strTextXPos, 11 + strAutomaticPauseSize.y, NULL);
 
-    Screen_startEffect(Screen_getInstance(), kFadeIn, 16 >> 1);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 }
 
 // state's exit
 static void AutoPauseScreenState_exit(AutoPauseScreenState this, void* owner)
 {
 	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, 16 >> 1);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 }
 
 // state's on message

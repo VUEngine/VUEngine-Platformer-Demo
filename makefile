@@ -1,5 +1,5 @@
-#Makefile taken from Wikipedia.org
-#
+# Makefile taken from Wikipedia.org
+
 # Specify the main target
 TARGET = output
 
@@ -21,8 +21,8 @@ DLIBS =
 
 # Obligatory headers
 VBJAENGINE = $(VBDE)/libs/vbjaengine
-VBJANEGINE_CONFIG_FILE = $(shell pwd)/config.h
-GAME_ESSENTIALS = 	-include $(VBJANEGINE_CONFIG_FILE) \
+VBJAENGINE_CONFIG_FILE = $(shell pwd)/config.h
+GAME_ESSENTIALS = 	-include $(VBJAENGINE_CONFIG_FILE) \
 					-include $(VBJAENGINE)/libvbjae.h
 
 
@@ -100,7 +100,7 @@ deleteEngine:
 		@rm -f $(ENGINE)
 
 $(ENGINE): deleteEngine
-	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJANEGINE_CONFIG_FILE)
+	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
 
 $(TARGET).vb: main.elf
 	@echo Creating $@

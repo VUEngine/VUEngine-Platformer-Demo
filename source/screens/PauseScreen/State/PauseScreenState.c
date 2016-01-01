@@ -83,7 +83,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner)
 
     Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_PAUSE), 21, 16, "GUIFont");
 
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY >> 1);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 }
 
 // state's execute
@@ -95,7 +95,7 @@ static void PauseScreenState_execute(PauseScreenState this, void* owner)
 static void PauseScreenState_exit(PauseScreenState this, void* owner)
 {
 	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY >> 1);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	// destroy the state
 	__DELETE(this);

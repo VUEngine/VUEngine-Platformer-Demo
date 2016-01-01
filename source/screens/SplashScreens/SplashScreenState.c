@@ -23,6 +23,7 @@
 #include <Screen.h>
 #include <MessageDispatcher.h>
 #include <SplashScreenState.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -61,8 +62,8 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 	}
 
     __VIRTUAL_CALL(void, SplashScreenState, print, this);
-	
-    Screen_startEffect(Screen_getInstance(), kFadeIn, 16);
+
+    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 }
 
 // state's execute
@@ -77,7 +78,7 @@ void SplashScreenState_execute(SplashScreenState this, void* owner)
 // state's exit
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
-	Screen_startEffect(Screen_getInstance(), kFadeOut, 16);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	// destroy the state
 	__DELETE(this);
@@ -104,7 +105,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 
 	// make a fade in
-	    Screen_startEffect(Screen_getInstance(), kFadeIn, 16);
+	    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}
