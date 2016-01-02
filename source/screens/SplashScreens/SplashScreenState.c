@@ -86,10 +86,10 @@ void SplashScreenState_execute(SplashScreenState this, void* owner)
 // state's exit
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
+	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
-
-	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	// destroy the state
 	__DELETE(this);
