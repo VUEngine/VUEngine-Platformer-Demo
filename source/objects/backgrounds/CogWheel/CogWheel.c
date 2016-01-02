@@ -117,7 +117,7 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 // rotate cogwheel
 static void CogWheel_rotate(CogWheel this)
 {
-	this->transform.localRotation.z += 1;
+	this->transform.localRotation.z += ITOFIX19_13(1);
 	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 
     // send delayed message to itself to trigger next movement

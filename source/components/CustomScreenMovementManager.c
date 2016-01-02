@@ -105,6 +105,11 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
+	if(this->tempFocusInGameEntity)
+	{
+		return;
+	}
+
 	// if focusInGameEntity is defined
 	if(_screen->focusInGameEntity && this->transformationBaseEntity)
 	{
@@ -139,13 +144,16 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 					_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT);
 				}
 
-				if(0 > _screen->position.x)
+				if(!this->tempFocusInGameEntity)
 				{
-					_screen->position.x = 0;
-				}
-				else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
-				{
-					_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
+					if(0 > _screen->position.x)
+					{
+						_screen->position.x = 0;
+					}
+					else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+					{
+						_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
+					}
 				}
 
 				_screen->lastDisplacement.x = (_screen->position.x - _screen->lastDisplacement.x);
@@ -166,14 +174,18 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 					_screen->position.y -= ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT);
 				}
 
-				if(0 > _screen->position.y)
+				if(!this->tempFocusInGameEntity)
 				{
-					_screen->position.y = 0;
+					if(0 > _screen->position.y)
+					{
+						_screen->position.y = 0;
+					}
+					else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
+					{
+						_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
+					}
 				}
-				else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
-				{
-					_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
-				}
+				
 				_screen->lastDisplacement.y = 0xFFFFE000 & (_screen->position.y - _screen->lastDisplacement.y);
 			}
 		}
@@ -277,6 +289,8 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
         // if needed, undo last offset
         if(this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
         {
+            this->tempFocusInGameEntity = NULL;
+
             //Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
             this->lastShakeOffset.x = 0;
             GameState_transform(__SAFE_CAST(GameState, Game_getCurrentState(Game_getInstance())));

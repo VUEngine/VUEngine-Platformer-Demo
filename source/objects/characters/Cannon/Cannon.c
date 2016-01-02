@@ -133,7 +133,7 @@ void Cannon_spawnCannonBall(Cannon this)
 	ASSERT(this, "Cannon::spawnCannonBall: null this");
 
     // start short screen shake
-//    Screen_startEffect(Screen_getInstance(), kShake, 250);
+    Screen_startEffect(Screen_getInstance(), kShake, 250);
 
     // play boom sound
     extern const u16 FIRE_SND[];
