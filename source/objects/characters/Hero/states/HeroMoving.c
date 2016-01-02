@@ -64,6 +64,9 @@ void HeroMoving_constructor(HeroMoving this)
 // class's destructor
 void HeroMoving_destructor(HeroMoving this)
 {
+    // discard pending delayed messages
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kDisallowJumpOnBouncing);
+
 	// destroy base
 	__SINGLETON_DESTROY;
 }

@@ -69,6 +69,9 @@ void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition*
 // class's destructor
 void LavaTrigger_destructor(LavaTrigger this)
 {
+    // discard pending delayed messages
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kLavaTriggerEnd);
+
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;

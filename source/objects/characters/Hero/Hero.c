@@ -188,6 +188,8 @@ void Hero_destructor(Hero this)
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
+    // discard pending delayed messages
+    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
 
 	// delete the super object
 	// must always be called at the end of the destructor
