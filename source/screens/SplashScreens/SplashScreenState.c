@@ -33,6 +33,11 @@
 __CLASS_DEFINITION(SplashScreenState, GameState);
 
 
+enum SplashScreensMessageTypes
+{
+	kScreenStarted = kLastEngineMessage + 1,
+};
+
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
@@ -63,7 +68,7 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 
     __VIRTUAL_CALL(void, SplashScreenState, print, this);
 
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenStarted, NULL);
 }
 
 // state's execute
@@ -123,6 +128,11 @@ bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegr
 {
 	switch(Telegram_getMessage(telegram))
 	{
+		case kScreenStarted:
+		
+		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+			break;
+			
 		case kKeyPressed:
 		{
             u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));

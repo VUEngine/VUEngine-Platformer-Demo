@@ -126,7 +126,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
         // size
         {
             // x
-            384,
+            390,
             // y
             LEVEL_1_TOWER_HEIGHT,
             // z
