@@ -89,7 +89,7 @@ void Cannon_ready(Cannon this)
 	Entity_ready(__SAFE_CAST(Entity, this));
 
     // add cannon ball as child
-    VBVec3D position = *Container_getLocalPosition(__GET_CAST(Container, this));
+    VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this));
     Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
 
     // send delayed message to self to trigger first shot

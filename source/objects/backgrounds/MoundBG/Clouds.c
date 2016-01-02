@@ -80,11 +80,11 @@ void Clouds_update(Clouds this)
 	Container_update(__SAFE_CAST(Container, this));
 
     // get local position of clouds and substract defined displacement from x value
-    VBVec3D offset = *Container_getLocalPosition(__GET_CAST(Container, this));
+    VBVec3D offset = *Container_getLocalPosition(__SAFE_CAST(Container, this));
     offset.x -= FIX19_13_MULT(this->displacement, PhysicalWorld_getElapsedTime(PhysicalWorld_getInstance()));
 
     // update clouds' position
-    Container_setLocalPosition(__GET_CAST(Container, this), &offset);
+    Container_setLocalPosition(__SAFE_CAST(Container, this), &offset);
 }
 
 // does it move?

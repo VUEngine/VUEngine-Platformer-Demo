@@ -121,7 +121,7 @@ static void CogWheel_rotate(CogWheel this)
 	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);
 }
 
 // resume after pause
@@ -132,7 +132,7 @@ void CogWheel_resume(CogWheel this)
 	Entity_resume(__SAFE_CAST(Entity, this));
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __GET_CAST(Object, this), kMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);
 }
 
 // does it move?
