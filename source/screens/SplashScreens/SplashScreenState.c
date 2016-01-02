@@ -61,6 +61,9 @@ void SplashScreenState_destructor(SplashScreenState this)
 // state's enter
 void SplashScreenState_enter(SplashScreenState this, void* owner)
 {
+	// call base
+	GameState_enter(__SAFE_CAST(GameState, this), owner);
+
 	if(this->stageDefinition)
 	{
 		GameState_loadStage(__SAFE_CAST(GameState, this), this->stageDefinition, NULL, true);
@@ -83,6 +86,9 @@ void SplashScreenState_execute(SplashScreenState this, void* owner)
 // state's exit
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
+	// call base
+	GameState_exit(__SAFE_CAST(GameState, this), owner);
+
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	// destroy the state

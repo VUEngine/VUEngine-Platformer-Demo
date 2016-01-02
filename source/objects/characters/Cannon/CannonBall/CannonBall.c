@@ -25,6 +25,7 @@
 #include <PhysicalWorld.h>
 #include <Prototypes.h>
 #include <EnemyDead.h>
+#include <PlatformerLevelState.h>
 #include "CannonBall.h"
 #include "states/CannonBallIdle.h"
 #include "states/CannonBallMoving.h"
@@ -58,6 +59,7 @@ void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id
 
 	// register a body for physics
 	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), definition->mass);
+
 }
 
 // class's constructor
@@ -163,3 +165,4 @@ void CannonBall_checkPosition(CannonBall this)
         StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, this)), __SAFE_CAST(State, CannonBallIdle_getInstance()));
     }
 }
+

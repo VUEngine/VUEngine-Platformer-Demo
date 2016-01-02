@@ -548,7 +548,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             MessageDispatcher_dispatchMessage(HERO_FLASH_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopInvincibility, NULL);
 
             // start flashing of hero
-            MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
+            MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
 
             // lose power-up or reduce energy
@@ -839,7 +839,7 @@ void Hero_die(Hero this)
 {
 	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_HERO_DIED);
 
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 
@@ -1291,26 +1291,8 @@ int Hero_doMessage(Hero this, int message)
 			};
 
 			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
-
-		case kResumeLevel:
-			{
-				// move the screen to its previous position
-				Screen_position(Screen_getInstance(), false);
-
-				if(Hero_getCurrentlyOverlappingDoor(this))
-				{
-                    // remind hero to check if door is still overlapping in 100 milliseconds
-                    MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckForOverlappingDoor, NULL);
-				}
-
-				if(Hero_getCurrentlyOverlappingHideLayer(this))
-				{
-                    // remind hero to check if hide layer is still overlapping in 100 milliseconds
-                    MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckForOverlappingHideLayer, NULL);
-				}
-				return true;
-			}
 			break;
+
 	}
 
 	return false;
@@ -1324,29 +1306,14 @@ void Hero_suspend(Hero this)
 	
 	ParticleSystem_pause(this->feetDust);
 	
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kCheckForOverlappingDoor);
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kFlash);
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kStopInvincibility);
-    
 	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 }
 
 void Hero_resume(Hero this)
 {
-	ASSERT(this, "Hero::suspend: null this");
+	ASSERT(this, "Hero::resume: null this");
 
-	Entity_resume(__SAFE_CAST(Entity, this));
+	Actor_resume(__SAFE_CAST(Actor, this));
 
-    // only flash as long as hero is invincible
-    if(Hero_isInvincible(this))
-    {
-        // toggle between original and flash palette
-        Hero_toggleFlashPalette(this);
-
-        // next flash state change after HERO_FLASH_INTERVAL milliseconds
-        MessageDispatcher_dispatchMessage(HERO_FLASH_INTERVAL, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
-        
-        // TODO: fix this, it can be exploited to be invincible by pausing the game
-        MessageDispatcher_dispatchMessage(HERO_FLASH_DURATION / 2, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopInvincibility, NULL);
-    }
-}
+	Screen_position(Screen_getInstance(), false);
+}	

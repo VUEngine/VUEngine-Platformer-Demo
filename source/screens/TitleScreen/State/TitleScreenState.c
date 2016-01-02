@@ -85,6 +85,9 @@ static void TitleScreenState_destructor(TitleScreenState this)
 // state's enter
 static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
+	// call base
+	GameState_enter(__SAFE_CAST(GameState, this), owner);
+
 	Game_disableKeypad(Game_getInstance());
 
     // sample code that shows how to ignore selected entities when loading a stage
@@ -145,6 +148,9 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
+	// call base
+	GameState_exit(__SAFE_CAST(GameState, this), owner);
+
 	// destroy the state
 	__DELETE(this);
 }
@@ -174,7 +180,6 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 	// pause physical simulations
-	Game_pauseInGameClock(Game_getInstance(), false);
 	Game_pausePhysics(Game_getInstance(), false);
 
 #ifdef __DEBUG_TOOLS
@@ -194,7 +199,6 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 
 	// pause physical simulations
-	Game_pauseInGameClock(Game_getInstance(), true);
 	Game_pausePhysics(Game_getInstance(), true);
 }
 

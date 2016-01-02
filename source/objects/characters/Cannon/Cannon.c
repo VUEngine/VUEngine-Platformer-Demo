@@ -93,7 +93,7 @@ void Cannon_ready(Cannon this)
     Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
 
     // send delayed message to self to trigger first shot
-    MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+    MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // state's on message
@@ -110,13 +110,6 @@ bool Cannon_handleMessage(Cannon this, Telegram telegram)
 	}
 	
 	return false;
-}
-
-void Cannon_suspend(Cannon this)
-{
-	ASSERT(this, "Cannon::suspend: null this");
-
-	Entity_suspend(__SAFE_CAST(Entity, this));
 }
 
 // start shooting a cannon ball
@@ -137,7 +130,7 @@ void Cannon_spawnCannonBall(Cannon this)
 	ASSERT(this, "Cannon::spawnCannonBall: null this");
 
     // start short screen shake
-    Screen_startEffect(Screen_getInstance(), kShake, 250);
+//    Screen_startEffect(Screen_getInstance(), kShake, 250);
 
     // play boom sound
     extern const u16 FIRE_SND[];

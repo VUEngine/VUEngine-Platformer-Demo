@@ -46,7 +46,6 @@
 	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
 	__VIRTUAL_SET(ClassName, Cannon, handleMessage);													\
 	__VIRTUAL_SET(ClassName, Cannon, ready);															\
-	__VIRTUAL_SET(ClassName, Cannon, suspend);															\
 
 __CLASS(Cannon);
 
@@ -66,7 +65,6 @@ void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* definition,
 void Cannon_destructor(Cannon this);
 bool Cannon_handleMessage(Cannon this, Telegram telegram);
 void Cannon_ready(Cannon this);
-void Cannon_suspend(Cannon this);
 void Cannon_shoot(Cannon this);
 void Cannon_spawnCannonBall(Cannon this);
 

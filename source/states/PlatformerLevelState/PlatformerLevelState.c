@@ -111,6 +111,9 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
+	// call base
+	GameState_enter(__SAFE_CAST(GameState, this), owner);
+	
 	Game_disableKeypad(Game_getInstance());
 
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
@@ -198,7 +201,6 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 {
 	// pause physical simulations
-	Game_pauseInGameClock(Game_getInstance(), true);
 	Game_pausePhysics(Game_getInstance(), true);
 
 #ifdef __DEBUG_TOOLS
@@ -253,7 +255,6 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 #endif
 	
 	// pause physical simulations
-	Game_pauseInGameClock(Game_getInstance(), false);
 	Game_pausePhysics(Game_getInstance(), false);
 
 	PlatformerLevelState_setModeToPlaying(this);

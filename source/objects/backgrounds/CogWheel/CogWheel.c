@@ -76,7 +76,7 @@ void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* inani
 void CogWheel_destructor(CogWheel this)
 {
     // discard pending moving messages
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kMove);
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor

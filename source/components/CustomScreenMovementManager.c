@@ -252,7 +252,7 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
     this->lastShakeOffset.x = ITOFIX19_13(4);
 
     // discard pending screen shake messages from previously started shake fx
-    MessageDispatcher_discardDelayedMessages(MessageDispatcher_getInstance(), kShake);
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kShake);
 
     // instantly send shake message to self to start fx
     MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
