@@ -87,7 +87,7 @@ BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	WRLD_AFFINE,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
