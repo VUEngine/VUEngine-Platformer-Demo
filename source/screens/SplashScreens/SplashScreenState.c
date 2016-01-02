@@ -68,7 +68,7 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 
     __VIRTUAL_CALL(void, SplashScreenState, print, this);
 
-	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenStarted, NULL);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenStarted, NULL);
 }
 
 // state's execute
