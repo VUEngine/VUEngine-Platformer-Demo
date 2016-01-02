@@ -32,11 +32,11 @@
 
 __CLASS_DEFINITION(SplashScreenState, GameState);
 
-
 enum SplashScreensMessageTypes
 {
 	kScreenStarted = kLastEngineMessage + 1,
 };
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS

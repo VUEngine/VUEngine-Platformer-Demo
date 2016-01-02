@@ -69,7 +69,7 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInG
 void Lava_destructor(Lava this)
 {
     // discard pending delayed messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMove);
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kLavaMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
