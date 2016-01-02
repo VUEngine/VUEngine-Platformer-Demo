@@ -352,7 +352,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	}
 	
 	// start movement
-	if(__GET_CAST(State, HeroMoving_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+	if(__SAFE_CAST(State, HeroMoving_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
     {
  		if(__XAXIS & axis)
         {
