@@ -174,6 +174,7 @@ void Hero_destructor(Hero this)
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
 	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), NULL);
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
 
 	this->feetDust = NULL;
 	this->currentHint = NULL;
