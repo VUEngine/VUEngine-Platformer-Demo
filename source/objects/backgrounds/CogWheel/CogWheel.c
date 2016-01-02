@@ -75,8 +75,8 @@ void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* inani
 // class's destructor
 void CogWheel_destructor(CogWheel this)
 {
-    // discard pending moving messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMove);
+    // discard pending delayed messages
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -91,7 +91,7 @@ void CogWheel_ready(CogWheel this)
 	Entity_ready(__SAFE_CAST(Entity, this));
 	
 	// start moving
-	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);
+	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 	
 	// must make sure that the shape is updated
 	if(this->shape)
@@ -105,7 +105,7 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
-		case kMove:
+		case kCogWheelMove:
 
             CogWheel_rotate(this);
 			break;
@@ -121,7 +121,7 @@ static void CogWheel_rotate(CogWheel this)
 	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
 
 // resume after pause
@@ -132,7 +132,7 @@ void CogWheel_resume(CogWheel this)
 	Entity_resume(__SAFE_CAST(Entity, this));
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);
+    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
 
 // does it move?

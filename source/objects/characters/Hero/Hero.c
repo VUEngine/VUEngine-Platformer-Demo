@@ -26,7 +26,6 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <KeypadManager.h>
-
 #include <objects.h>
 #include "Hero.h"
 #include "states/HeroIdle.h"
@@ -188,6 +187,8 @@ void Hero_destructor(Hero this)
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
+    // discard pending delayed messages
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
 
 	// delete the super object
 	// must always be called at the end of the destructor

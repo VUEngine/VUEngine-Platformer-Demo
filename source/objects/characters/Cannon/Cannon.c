@@ -74,6 +74,9 @@ void Cannon_destructor(Cannon this)
 {
 	ASSERT(this, "Cannon::destructor: null this");
 
+    // discard pending delayed messages
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCannonShoot);
+
     // not necessary to manually destroy the CannonBall here as all children are automatically
     // destroyed as well when an entity is unloaded
 

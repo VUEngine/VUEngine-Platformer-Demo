@@ -68,8 +68,8 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInG
 // class's destructor
 void Lava_destructor(Lava this)
 {
-    // discard pending moving messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMove);
+    // discard pending delayed messages
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kLavaMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -82,7 +82,7 @@ void Lava_startMoving(Lava this)
 	ASSERT(this, "Lava::startMoving: null this");
 
 	// start moving
-	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);
+	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
 	
 	// must make sure that the shape is updated
 	if(this->shape)
@@ -105,7 +105,7 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
-		case kMove:
+		case kLavaMove:
 
             Lava_moveUpwards(this);
 			break;
@@ -125,7 +125,7 @@ void Lava_moveUpwards(Lava this)
    __VIRTUAL_CALL(void, Container, setLocalPosition, __SAFE_CAST(Container, this), &offset);
 
     // send delayed message to self to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);
+    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
 }
 
 // resume after pause
@@ -136,7 +136,7 @@ void Lava_resume(Lava this)
 	Entity_resume(__SAFE_CAST(Entity, this));
 
     // send delayed message to itself to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMove, NULL);
+    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
 }
 
 // does it move?
