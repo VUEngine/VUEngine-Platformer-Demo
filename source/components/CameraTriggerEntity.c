@@ -91,7 +91,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 	if(this->shape)
 	{
 		__VIRTUAL_CALL(void, Shape, position, this->shape);
-		__VIRTUAL_CALL(void, Shape, draw, this->shape);
+//		__VIRTUAL_CALL(void, Shape, draw, this->shape);
 	}
 }
 
@@ -122,6 +122,15 @@ void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec
 	
 	Transformation environmentTransform = Container_getEnvironmentTransform(this->parent);
 	Entity_transform(__SAFE_CAST(Entity, this), &environmentTransform);
+	
+	if(overridePositionFlag.x)
+	{
+		Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
+	}
+	else
+	{
+		Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+	}
 }
 
 VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this)

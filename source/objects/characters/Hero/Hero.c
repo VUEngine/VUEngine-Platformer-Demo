@@ -324,9 +324,9 @@ void Hero_stopAddingForce(Hero this)
 	Velocity velocity = Body_getVelocity(this->body);
 
 	// no input
-	this->inputDirection.x = 0;
-	this->inputDirection.y = 0;
-	this->inputDirection.z = 0;
+//	this->inputDirection.x = 0;
+//	this->inputDirection.y = 0;
+//	this->inputDirection.z = 0;
 
 	if(!(__YAXIS & Body_isMoving(this->body)))
     {

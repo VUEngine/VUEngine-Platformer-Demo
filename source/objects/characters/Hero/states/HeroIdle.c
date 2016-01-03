@@ -132,14 +132,24 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 				if((K_LL | K_LR | K_A) & pressedKey)
                 {
-                    Hero_checkDirection((Hero)owner, pressedKey, "Idle");
+			 		Acceleration acceleration =
+			 	    {
+			 	    	(K_LL | K_LR) & pressedKey? ITOFIX19_13(InGameEntity_getDirection(__SAFE_CAST(InGameEntity, owner)).x): 0,
+			 	    	K_A & pressedKey? ITOFIX19_13(-1): 0,
+			 	    	0,
+			 		};
 
-                    Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
-
-    				if(K_A & pressedKey)
-                    {
-                        Hero_jump((Hero)owner, true, true);
-    				}
+			 		if(Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+			 		{
+	                    Hero_checkDirection((Hero)owner, pressedKey, "Idle");
+	
+	                    Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
+	
+	    				if(K_A & pressedKey)
+	                    {
+	                        Hero_jump((Hero)owner, true, true);
+	    				}
+			 		}
 
                     return true;
                     break;
