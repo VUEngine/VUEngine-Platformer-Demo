@@ -140,7 +140,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 					Hero_disableBoost((Hero)owner);
 				}
 
-				if((K_LL | K_LR) & releasedKey)
+				if(((K_LL | K_LR) & releasedKey) && ((K_LL | K_LR) & holdKey))
 				{
 					Hero_checkDirection((Hero)owner, holdKey, "Walk");	
 				}
