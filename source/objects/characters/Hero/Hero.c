@@ -1060,13 +1060,13 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	                    Body_getLastDisplacement(this->body),
 	                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
 	                );
-
+	                
                     if(axisOfCollision & __XAXIS)
                     {
                     	Hero_lockCameraTriggerMovement(this, __XAXIS, false);
                     }
 
-                    if(axisOfCollision & __YAXIS)
+                    if(axisOfCollision & __XAXIS || !(axisOfCollision & __XAXIS))
                     {
                     	Hero_lockCameraTriggerMovement(this, __YAXIS, false);
                     }

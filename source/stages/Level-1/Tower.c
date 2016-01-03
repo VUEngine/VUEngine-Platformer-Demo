@@ -209,7 +209,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
             // x
             ITOFIX19_13(0),
             // y
-            ITOFIX19_13(SCREEN_Y_POSITION),
+            ITOFIX19_13(SCREEN_Y_POSITION - __SCREEN_HEIGHT / 2),
             // z
             ITOFIX19_13(0)
         },
