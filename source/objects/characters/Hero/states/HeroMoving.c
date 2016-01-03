@@ -135,30 +135,16 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
 				u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
-				if((K_LL | K_LR) & holdKey)
-				{
-					Hero_checkDirection((Hero)owner, holdKey, "Walk");	
-					return true;
-				}
-				
-				if((K_LL | K_LR) & releasedKey)
-                {
-					Velocity velocity = Body_getVelocity(Actor_getBody(__SAFE_CAST(Actor, owner)));
-					
-
-					if(0 < abs(velocity.x))
-                    {
-						Hero_stopAddingForce((Hero)owner);		
-					}
-					else
-                    {
-						StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, HeroIdle_getInstance()));
-					}
-				}
-				else if(K_B & releasedKey)
+				if(K_B & releasedKey)
                 {
 					Hero_disableBoost((Hero)owner);
 				}
+
+				if((K_LL | K_LR) & releasedKey)
+				{
+					Hero_checkDirection((Hero)owner, holdKey, "Walk");	
+				}
+				
 
 				/*
 				if((K_LU | K_LD) & releasedKey)
@@ -203,8 +189,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 		case kBodyStopped:
 			
-			Hero_stopMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
-			return true;
+			return Hero_stopMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kBodyStartedMoving:
