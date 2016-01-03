@@ -26,7 +26,7 @@
 #include <Prototypes.h>
 #include <Screen.h>
 #include <PlatformerLevelState.h>
-
+#include <CustomScreenMovementManager.h>
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
@@ -103,8 +103,12 @@ int CameraTriggerEntity_doMessage(CameraTriggerEntity this, int message)
 	switch(message)
 	{
 		case kStartLevel:
-
-			Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+			{
+				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+		
+				VBVec3DFlag positionFlag = {true, true, true};
+			    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
+			}
 			return true;
 			break;
 		
@@ -122,15 +126,6 @@ void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec
 	
 	Transformation environmentTransform = Container_getEnvironmentTransform(this->parent);
 	Entity_transform(__SAFE_CAST(Entity, this), &environmentTransform);
-	
-	if(overridePositionFlag.x)
-	{
-		Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
-	}
-	else
-	{
-		Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
-	}
 }
 
 VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this)

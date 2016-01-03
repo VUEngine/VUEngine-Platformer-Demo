@@ -71,6 +71,9 @@ enum CustomScreenFX
 																				\
 	/* time left in current shaking fx (in ms) */								\
 	u16 shakeTimeLeft;															\
+																				\
+	/* update axis flag */														\
+	VBVec3DFlag positionFlag;													\
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);
@@ -88,6 +91,8 @@ void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, i
 void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, int effect);
 bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram);
 void CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager this, Entity transformationBaseEntity);
+void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag);
+VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this);
 
 
 #endif

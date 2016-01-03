@@ -397,6 +397,10 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
         if(__XAXIS & axisToLockUp)
         {
             overridePositionFlag.x = locked;
+            
+			VBVec3DFlag positionFlag = CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager_getInstance());
+		    positionFlag.x = !locked;
+		    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
         }
 
         if(__YAXIS & axisToLockUp)

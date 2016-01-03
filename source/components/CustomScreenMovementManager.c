@@ -84,6 +84,10 @@ static void CustomScreenMovementManager_constructor(CustomScreenMovementManager 
 	this->lastShakeOffset.y = 0;
 	this->lastShakeOffset.z = 0;
 	
+	this->positionFlag.x = 0;
+	this->positionFlag.y = 0;
+	this->positionFlag.z = 0;
+	
 	this->shakeTimeLeft = 0;
 	
 	_screen = Screen_getInstance();
@@ -124,6 +128,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			__VIRTUAL_CALL(void, Container, transform, this->transformationBaseEntity, &environmentTransform);
 	
 			Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, this->transformationBaseEntity));
+			
+			if(this->positionFlag.x)
 			{
 				// update vertical position
 				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
@@ -158,6 +164,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				_screen->lastDisplacement.x = (_screen->position.x - _screen->lastDisplacement.x);
 			}
 			
+			if(this->positionFlag.y)
 			{
 				// update vertical position
 				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
@@ -316,4 +323,18 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
 
     // send message for next screen movement
 	MessageDispatcher_dispatchMessage(nextShakeDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
+}
+
+void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag)
+{
+	ASSERT(this, "CustomScreenMovementManager::setPositionFlag: null this");
+
+	this->positionFlag = positionFlag;
+}
+
+VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this)
+{
+	ASSERT(this, "CustomScreenMovementManager::getPositionFlag: null this");
+
+	return this->positionFlag;
 }
