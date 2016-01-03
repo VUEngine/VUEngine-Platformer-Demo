@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
+#include <PlatformerLevelState.h>
 #include <macros.h>
 
 
@@ -30,24 +31,23 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Door_METHODS															\
-	AnimatedInGameEntity_METHODS;
-	
+#define Door_METHODS																					\
+	AnimatedInGameEntity_METHODS;																		\
 
-#define Door_SET_VTABLE(ClassName)												\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Door, setExtraInfo);								\
-	__VIRTUAL_SET(ClassName, Door, handleMessage);
+#define Door_SET_VTABLE(ClassName)																		\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
+	__VIRTUAL_SET(ClassName, Door, setExtraInfo);														\
+	__VIRTUAL_SET(ClassName, Door, handleMessage);														\
 
 __CLASS(Door);
 
-#define Door_ATTRIBUTES															\
-																				\
-	/* it is derived from */													\
-	AnimatedInGameEntity_ATTRIBUTES												\
-																				\
-	/* destination of door */													\
-	void (*destination)(void);													\
+#define Door_ATTRIBUTES																					\
+																										\
+	/* it is derived from */																			\
+	AnimatedInGameEntity_ATTRIBUTES																		\
+																										\
+	/* destination of door */																			\
+	PlatformerStageEntryPointDefinition* destinationDefinition;														\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ __CLASS_NEW_DECLARE(Door, AnimatedInGameEntityDefinition* animatedInGameEntityDe
 
 void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void Door_destructor(Door this);
-void* Door_getExtraInfo(Door this);
+PlatformerStageEntryPointDefinition* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);
 bool Door_handleMessage(Door this, Telegram telegram);
 bool Door_hasDestination(Door this);

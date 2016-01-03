@@ -42,8 +42,6 @@ extern EntityDefinition DOOR_AG;
 extern EntityDefinition DOOR_BACK_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
-extern EntityDefinition ENTER_ROOM_DOOR_AG;
-extern EntityDefinition EXIT_ROOM_DOOR_AG;
 extern EntityDefinition KEY_AG;
 extern EntityDefinition BANDANA_AG;
 

@@ -34,7 +34,7 @@
 //                                                 PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef LEVEL_1_MAIN_ST;
+extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -64,13 +64,13 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_ENTITIES[] =
 
     {&HERO_AC,                          {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
 
-    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, NULL, true},
-    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(143), FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, NULL, true},
+    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, "UpperEntryDoor", NULL, NULL, true},
+    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(143), FTOFIX19_13(LAYER_0 + 0.002f)}, "LowerEntryDoor", NULL, NULL, true},
 
     {&COIN_AG,                          {FTOFIX19_13(192),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, "Coin 100", NULL, NULL, true},
     {&COIN_AG,                          {FTOFIX19_13(208),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, "Coin 099", NULL, NULL, true},
 
-    {&EXIT_ROOM_DOOR_AG,                {FTOFIX19_13(257),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, (void*)&LEVEL_1_MAIN_ST, true},
+    {&DOOR_AG,                          {FTOFIX19_13(257),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, (void*)&LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP, true},
 
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -218,4 +218,39 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
 
     // name
     NULL,
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												ENTRY POINTS
+// ---------------------------------------------------------------------------------------------------------
+
+PlatformerStageEntryPointROMDef LEVEL_1_SMALL_ROOM_MAIN_EP[] =
+{
+    // the stage to load
+    (PlatformerStageDefinition*)&LEVEL_1_SMALL_ROOM_ST,
+
+    // name of the entity to start at
+    "UpperEntryDoor",
+
+    // offset from entry point (x, y, z)
+    {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
+
+	// does a level start at this entry point?
+	false,
+};
+
+PlatformerStageEntryPointROMDef LEVEL_1_SMALL_ROOM_LOWER_EP[] =
+{
+    // the stage to load
+    (PlatformerStageDefinition*)&LEVEL_1_SMALL_ROOM_ST,
+
+    // name of the entity to start at
+    "LowerEntryDoor",
+
+    // offset from entry point (x, y, z)
+    {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
+
+	// does a level start at this entry point?
+	false,
 };

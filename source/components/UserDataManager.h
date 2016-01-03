@@ -75,7 +75,7 @@ typedef struct UserData
 	VBVec3D heroLastPosition;
 	char lastStageName[STAGE_NAME_LENGTH];
 	bool isExitingRoom;
-	
+
 } UserData;
 
 

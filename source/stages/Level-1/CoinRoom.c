@@ -34,7 +34,7 @@
 //                                                 PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef LEVEL_1_SMALL_ROOM_ST;
+extern PlatformerStageEntryPointROMDef LEVEL_1_SMALL_ROOM_LOWER_EP;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,8 +63,8 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_ENTITIES[] =
 
     {&HERO_AC,                      {FTOFIX19_13(44),  FTOFIX19_13(144), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
 
-    {&ENTER_ROOM_DOOR_AG,           {FTOFIX19_13(44),  FTOFIX19_13(143), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, NULL, true},
-    {&DOOR_AG,                      {FTOFIX19_13(340), FTOFIX19_13(143), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, (void*)&LEVEL_1_SMALL_ROOM_ST, true},
+    {&DOOR_AG,                      {FTOFIX19_13(44),  FTOFIX19_13(143), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, NULL, true},
+    {&DOOR_AG,                      {FTOFIX19_13(340), FTOFIX19_13(143), FTOFIX19_13(LAYER_0 + 2)}, NULL, NULL, (void*)&LEVEL_1_SMALL_ROOM_LOWER_EP, true},
 
     {&TORCH_AG,                     {FTOFIX19_13(44),  FTOFIX19_13(104), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
     {&TORCH_AG,                     {FTOFIX19_13(340), FTOFIX19_13(104), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
@@ -243,4 +243,25 @@ PlatformerStageROMDef LEVEL_1_COIN_ROOM_ST =
 
     // name
     NULL,
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												ENTRY POINTS
+// ---------------------------------------------------------------------------------------------------------
+
+PlatformerStageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP[] =
+{
+	// the stage to load
+    (PlatformerStageDefinition*)&LEVEL_1_COIN_ROOM_ST,
+
+	// name of the entity to start at
+    NULL,
+
+    // offset from entry point (x, y, z)
+    {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
+
+
+	// does a level start at this entry point?
+	false,
 };

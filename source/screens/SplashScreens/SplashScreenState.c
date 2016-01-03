@@ -71,6 +71,7 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 
     __VIRTUAL_CALL(void, SplashScreenState, print, this);
 
+	// start fade in effect in 1 ms, because a full render cycle is needed to put everything in place
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenStarted, NULL);
 }
 
@@ -86,6 +87,7 @@ void SplashScreenState_execute(SplashScreenState this, void* owner)
 // state's exit
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
+    // start a fade out effect
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	// call base
@@ -116,7 +118,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 
 	// make a fade in
-	    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -140,12 +142,11 @@ bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegr
 			break;
 			
 		case kKeyPressed:
-		{
-            u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-            __VIRTUAL_CALL(void, SplashScreenState, processInput, this, pressedKey);
-        }
-        break;
+		    {
+                u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+                __VIRTUAL_CALL(void, SplashScreenState, processInput, this, pressedKey);
+            }
+            break;
 	}
 
 	return false;
