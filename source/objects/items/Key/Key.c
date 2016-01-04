@@ -27,14 +27,8 @@
 
 #include <objects.h>
 #include "Key.h"
-#include "KeyManager.h"
 
 #include <PlatformerLevelState.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S MACROS
-//---------------------------------------------------------------------------------------------------------
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,8 +70,6 @@ void Key_destructor(Key this)
 {
 	ASSERT(this, "Key::destructor: null this");
 
-	KeyManager_removeKey(KeyManager_getInstance(), this);
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
@@ -89,8 +81,6 @@ void Key_ready(Key this)
 	ASSERT(this, "Key::initialize: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
-
-	KeyManager_registerKey(KeyManager_getInstance(), this);
 }
 
 // state's on message
