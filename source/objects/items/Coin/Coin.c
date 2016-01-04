@@ -24,7 +24,7 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
-#include <UserDataManager.h>
+#include <ProgressManager.h>
 #include <Container.h>
 
 #include <objects.h>
@@ -66,7 +66,7 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
     // if coin has already been collected, only show silhouette representation
-	this->taken = &COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || UserDataManager_getCoinStatus(UserDataManager_getInstance(), name);
+	this->taken = &COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || ProgressManager_getCoinStatus(ProgressManager_getInstance(), name);
     if(this->taken)
     {
         animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
@@ -94,7 +94,7 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 
 	switch(Telegram_getMessage(telegram))
     {
-		case kTakeCoin:
+		case kTaken:
 
 			Coin_removeFromStage(this);
 			break;

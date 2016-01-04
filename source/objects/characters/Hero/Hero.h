@@ -26,6 +26,7 @@
 #include <Door.h>
 #include <HideLayer.h>
 #include <ParticleSystem.h>
+#include <ProgressManager.h>
 #include <macros.h>
 
 
@@ -34,70 +35,78 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define HERO_NAME               "John Hero"
+#define HERO_INITIAL_ENERGY  	3
+
 #define HERO_FLASH_PALETTE      3
 #define HERO_FLASH_DURATION     2000
 #define HERO_FLASH_INTERVAL     100
+
+enum HeroPowerUps
+{
+	kPowerUpNone,
+	kPowerUpBandana,
+};
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Hero_METHODS															\
+#define Hero_METHODS																					\
 	Actor_METHODS;
 
-#define Hero_SET_VTABLE(ClassName)												\
-	Actor_SET_VTABLE(ClassName);												\
-	__VIRTUAL_SET(ClassName, Hero, ready);										\
-	__VIRTUAL_SET(ClassName, Hero, die);										\
-	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);								\
-	__VIRTUAL_SET(ClassName, Hero, doMessage);									\
-	__VIRTUAL_SET(ClassName, Hero, handleMessage);								\
-	__VIRTUAL_SET(ClassName, Hero, suspend);									\
-	__VIRTUAL_SET(ClassName, Hero, resume);										\
+#define Hero_SET_VTABLE(ClassName)																		\
+	Actor_SET_VTABLE(ClassName);																		\
+	__VIRTUAL_SET(ClassName, Hero, ready);																\
+	__VIRTUAL_SET(ClassName, Hero, die);																\
+	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);														\
+	__VIRTUAL_SET(ClassName, Hero, doMessage);															\
+	__VIRTUAL_SET(ClassName, Hero, handleMessage);														\
+	__VIRTUAL_SET(ClassName, Hero, suspend);															\
+	__VIRTUAL_SET(ClassName, Hero, resume);																\
 
 __CLASS(Hero);
 
-#define Hero_ATTRIBUTES															\
-																				\
-	/* it is derived from */													\
-	Actor_ATTRIBUTES															\
-																				\
-	/* a reference to the last door the hero passed */    						\
-	Door currentlyOverlappingDoor;												\
-	                                                                            \
-	/* a reference to the last hide layer the hero passed */    				\
-	HideLayer currentlyOverlappingHideLayer;									\
-																				\
-	/* the currently shown hint entity */										\
-	Entity currentHint;															\
-																				\
-	/* feet dust */																\
-	ParticleSystem feetDust;													\
-																				\
-	/* bounding box to control camera's movement */								\
-	Entity cameraBoundingBox;													\
-																				\
-	/* used to know if gap must be changed */									\
-	Direction inputDirection;													\
-																				\
-	/* hero has energy	*/														\
-	s8 energy;																	\
-																				\
-	/* boost flag */															\
-	bool boost;																	\
-																				\
-	/* number of collected coins */												\
-	u8 coins;																	\
-																				\
-	/* flag for collected key */												\
-	bool hasKey;																\
-																				\
-	/* flag for collected bandana */											\
-	bool hasBandana;															\
-																				\
-	/* flag for invincible mode (after being hit) */							\
-	bool invincible;															\
+#define Hero_ATTRIBUTES																					\
+																										\
+	/* it is derived from */																			\
+	Actor_ATTRIBUTES																					\
+																										\
+	/* a reference to the last door the hero passed */    												\
+	Door currentlyOverlappingDoor;																		\
+	                                                                            						\
+	/* a reference to the last hide layer the hero passed */    										\
+	HideLayer currentlyOverlappingHideLayer;															\
+																										\
+	/* the currently shown hint entity */																\
+	Entity currentHint;																					\
+																										\
+	/* feet dust */																						\
+	ParticleSystem feetDust;																			\
+																										\
+	/* bounding box to control camera's movement */														\
+	Entity cameraBoundingBox;																			\
+																										\
+	/* used to know if gap must be changed */															\
+	Direction inputDirection;																			\
+																										\
+	/* hero has energy	*/																				\
+	u8 energy;																							\
+																										\
+	/* boost flag */																					\
+	bool boost;																							\
+																										\
+	/* number of collected coins */																		\
+	u8 coins;																							\
+																										\
+	/* flag for collected key */																		\
+	bool hasKey;																						\
+																										\
+	/* currently active power-up */																		\
+	u8 powerUp;																							\
+																										\
+	/* flag for invincible mode (after being hit) */													\
+	bool invincible;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -136,8 +145,8 @@ void Hero_lookBack(Hero this);
 void Hero_die(Hero this);
 void Hero_collectKey(Hero this);
 bool Hero_hasKey(Hero this);
-void Hero_collectBandana(Hero this);
-bool Hero_hasBandana(Hero this);
+void Hero_collectPowerUp(Hero this, u8 powerUp);
+u8 Hero_getPowerUp(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);

@@ -24,7 +24,7 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
-#include <UserDataManager.h>
+#include <ProgressManager.h>
 #include <Container.h>
 #include <Screen.h>
 #include <ParticleSystem.h>

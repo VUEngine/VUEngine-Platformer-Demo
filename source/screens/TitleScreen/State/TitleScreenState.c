@@ -35,7 +35,8 @@
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
 #include <CustomScreenMovementManager.h>
-#include <UserDataManager.h>
+#include <ProgressManager.h>
+#include <EventManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -244,19 +245,19 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 	            }
 			}
 			
-			Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_PRESSED);
+			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_PRESSED);
 			return true;
 			break;
 
 		case kKeyReleased:
 		
-			Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_RELEASED);
+			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_RELEASED);
 			return true;
 			break;
 
 		case kKeyHold:
 			
-			Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_HOLD);
+			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_HOLD);
 			return true;
 			break;
 	}

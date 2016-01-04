@@ -95,7 +95,7 @@ bool Bandana_handleMessage(Bandana this, Telegram telegram)
 
 	switch(Telegram_getMessage(telegram))
     {
-		case kTakeBandana:
+		case kTaken:
 
 			Bandana_removeFromStage(this);
 			break;

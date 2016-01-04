@@ -19,89 +19,44 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
-#include <CollisionManager.h>
-#include <MessageDispatcher.h>
-#include <Cuboid.h>
-#include <PhysicalWorld.h>
-
-#include <objects.h>
-#include "Key.h"
-
-#include <PlatformerLevelState.h>
+#include <EventManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Key, AnimatedInGameEntity);
+__CLASS_DEFINITION(EventManager, Object);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Key_removeFromStage(Key this);
+static void EventManager_constructor(EventManager this);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Key, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(Key, animatedInGameEntityDefinition, id, name);
+// it's a singleton
+__SINGLETON(EventManager);
 
 // class's constructor
-void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+static void EventManager_constructor(EventManager this)
 {
-	ASSERT(this, "Key::constructor: null this");
+	ASSERT(this, "EventManager::constructor: null this");
 
-	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
+	// construct base object
+	__CONSTRUCT_BASE();
 }
 
 // class's destructor
-void Key_destructor(Key this)
+void EventManager_destructor(EventManager this)
 {
-	ASSERT(this, "Key::destructor: null this");
+	ASSERT(this, "EventManager::destructor: null this");
 
-	// delete the super object
-	// must always be called at the end of the destructor
-	__DESTROY_BASE;
-}
-
-// ready method
-void Key_ready(Key this)
-{
-	ASSERT(this, "Key::initialize: null this");
-
-	Entity_ready(__SAFE_CAST(Entity, this));
-}
-
-// state's on message
-bool Key_handleMessage(Key this, Telegram telegram)
-{
-	ASSERT(this, "Key::handleMessage: null this");
-
-	switch(Telegram_getMessage(telegram))
-    {
-		case kTaken:
-
-			Key_removeFromStage(this);
-			break;
-	}
-	
-	return false;
-}
-
-void Key_removeFromStage(Key this)
-{
-	ASSERT(this, "Key::removeFromStage: null this");
-
-	Container_deleteMyself(__SAFE_CAST(Container, this));
+	// destroy base
+	__SINGLETON_DESTROY;
 }

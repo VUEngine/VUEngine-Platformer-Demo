@@ -36,8 +36,9 @@
 #include <macros.h>
 #include <Languages.h>
 #include <objects.h>
-#include <UserDataManager.h>
+#include <ProgressManager.h>
 #include <CustomScreenMovementManager.h>
+#include <EventManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -97,7 +98,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 	int i = 0;
 	for(;this->platformerStageDefinition->stageDefinition.entities[i].entityDefinition; i++)
 	{
-		if(UserDataManager_getCoinStatus(UserDataManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
+		if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
 		{
 			VirtualList_pushBack(entityNamesToIgnore, this->platformerStageDefinition->stageDefinition.entities[i].name);
 		}
@@ -114,6 +115,12 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
 	
 	Game_disableKeypad(Game_getInstance());
+
+	// reset progress manager if this is a level start entry point
+	if(this->entryPointDefinition->isLevelStartPoint)
+	{
+		ProgressManager_reset(ProgressManager_getInstance());
+	}
 
     // get list of entities that should not be loaded
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
@@ -199,7 +206,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Game_startClocks(Game_getInstance());
 
 	// fire event to render gui values
-    Object_fireEvent(__SAFE_CAST(Object, this), EVENT_LEVEL_ENTER);
+    Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_LEVEL_ENTER);
 }
 
 // state's exit
@@ -207,7 +214,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
-	
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 }
@@ -250,7 +257,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 #endif
 
 	// render gui values
-    Object_fireEvent(__SAFE_CAST(Object, this), EVENT_LEVEL_RESUME);
+    Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_LEVEL_RESUME);
 
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
@@ -369,7 +376,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
                     break;
                 }
 				
-				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_PRESSED);
+				Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_PRESSED);
 			}
 			return true;
 			break;
@@ -378,7 +385,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			if(kPlaying == this->mode)
             {
-				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_RELEASED);
+				Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_RELEASED);
 			}
 			return true;
 			break;
@@ -387,7 +394,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			
 			if(kPlaying == this->mode)
             {
-				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_HOLD);
+				Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_HOLD);
 			}
 			return true;
 			break;

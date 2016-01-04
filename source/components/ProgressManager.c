@@ -21,34 +21,27 @@
 
 #include <string.h>
 
-#include <UserDataManager.h>
+#include <ProgressManager.h>
 #include <SRAMManager.h>
+#include <EventManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-#define UserDataManager_ATTRIBUTES												\
-																				\
-	/* super's attributes */													\
-	Object_ATTRIBUTES;															\
-
-// define the UserDataManager
-__CLASS_DEFINITION(UserDataManager, Object);
+__CLASS_DEFINITION(ProgressManager, Object);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void UserDataManager_constructor(UserDataManager this);
-static void UserDataManager_initialize(UserDataManager this);
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												GLOBALS
-//---------------------------------------------------------------------------------------------------------
+static void ProgressManager_constructor(ProgressManager this);
+static void ProgressManager_initialize(ProgressManager this);
+static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer);
+static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
+static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,31 +49,49 @@ static void UserDataManager_initialize(UserDataManager this);
 //---------------------------------------------------------------------------------------------------------
 
 // it's a singleton
-__SINGLETON(UserDataManager);
+__SINGLETON(ProgressManager);
 
 // class's constructor
-static void UserDataManager_constructor(UserDataManager this)
+static void ProgressManager_constructor(ProgressManager this)
 {
-	ASSERT(this, "UserDataManager::constructor: null this");
+	ASSERT(this, "ProgressManager::constructor: null this");
 
 	// construct base object
 	__CONSTRUCT_BASE();
-	
-	UserDataManager_initialize(this);
+
+	ProgressManager_initialize(this);
+
+	ProgressManager_reset(this);
+
+    // add event listeners
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUp, EVENT_POWERUP);
 }
 
 // class's destructor
-void UserDataManager_destructor(UserDataManager this)
+void ProgressManager_destructor(ProgressManager this)
 {
-	ASSERT(this, "UserDataManager::destructor: null this");
+	ASSERT(this, "ProgressManager::destructor: null this");
+
+    // remove event listeners
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUp, EVENT_POWERUP);
 
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
-static void UserDataManager_initialize(UserDataManager this)
+void ProgressManager_reset(ProgressManager this)
 {
-	ASSERT(this, "UserDataManager::initialize: null this");
+	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
+	this->heroCurrentPowerUp = kPowerUpNone;
+}
+
+static void ProgressManager_initialize(ProgressManager this)
+{
+	ASSERT(this, "ProgressManager::initialize: null this");
 
 	char saveStamp[SAVE_STAMP_LENGTH];
 	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&saveStamp, (u16*)&_userData->saveStamp, sizeof(saveStamp));
@@ -105,25 +116,25 @@ static void UserDataManager_initialize(UserDataManager this)
 	}
 }
 
-int UserDataManager_getNumberOfCollectedCoins(UserDataManager this)
+int ProgressManager_getNumberOfCollectedCoins(ProgressManager this)
 {
-	ASSERT(this, "UserDataManager::getNumberOfCollectedCoins: null this");
+	ASSERT(this, "ProgressManager::getNumberOfCollectedCoins: null this");
 
 	int numberOfCollectedCoins;
 	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)&_userData->numberOfCollectedCoins, sizeof(numberOfCollectedCoins));
 	return numberOfCollectedCoins;
 }
 
-void UserDataManager_setNumberOfCollectedCoins(UserDataManager this, int numberOfCollectedCoins)
+void ProgressManager_setNumberOfCollectedCoins(ProgressManager this, int numberOfCollectedCoins)
 {
-	ASSERT(this, "UserDataManager::setNumberOfCollectedCoins: null this");
+	ASSERT(this, "ProgressManager::setNumberOfCollectedCoins: null this");
 	
 	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)&_userData->numberOfCollectedCoins, sizeof(numberOfCollectedCoins));
 }
 
-bool UserDataManager_getCoinStatus(UserDataManager this, const char* coinName)
+bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName)
 {
-	ASSERT(this, "UserDataManager::getCoinStatus: null this");
+	ASSERT(this, "ProgressManager::getCoinStatus: null this");
 	
 	if(coinName)
 	{
@@ -143,9 +154,9 @@ bool UserDataManager_getCoinStatus(UserDataManager this, const char* coinName)
 	return false;
 }
 
-bool UserDataManager_setCoinStatus(UserDataManager this, char* coinName, bool taken)
+bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool taken)
 {
-	ASSERT(this, "UserDataManager::setCoinStatus: null this");
+	ASSERT(this, "ProgressManager::setCoinStatus: null this");
 	
 	int coin = 1;
 	for(; coin <= TOTAL_COINS_IN_GAME; coin++)
@@ -162,4 +173,34 @@ bool UserDataManager_setCoinStatus(UserDataManager this, char* coinName, bool ta
 	}
 	
 	return false;
+}
+
+// get hero's current energy
+u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this)
+{
+	return this->heroCurrentEnergy;
+}
+
+// get hero's current power-up
+u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this)
+{
+	return this->heroCurrentPowerUp;
+}
+
+// handle event
+static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer)
+{
+	ProgressManager_reset(this);
+}
+
+// handle event
+static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer)
+{
+	this->heroCurrentEnergy = Hero_getEnergy(Hero_getInstance());
+}
+
+// handle event
+static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer)
+{
+	this->heroCurrentPowerUp = Hero_getPowerUp(Hero_getInstance());
 }

@@ -31,9 +31,8 @@
 #include "states/HeroIdle.h"
 #include "states/HeroMoving.h"
 #include <CustomScreenMovementManager.h>
-#include <UserDataManager.h>
 #include <CameraTriggerEntity.h>
-
+#include <EventManager.h>
 #include <Hint.h>
 
 
@@ -55,11 +54,13 @@ void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
 void Hero_resetCurrentlyOverlappingHideLayer(Hero this);
+void Hero_updateSprite(Hero this);
 static void Hero_addHints(Hero this);
 static void Hero_addFeetDust(Hero this);
 static void Hero_slide(Hero this);
 static void Hero_showDust(Hero this, bool autoHideDust);
 static void Hero_hideDust(Hero this);
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -90,7 +91,7 @@ extern EntityDefinition HINT_ENTER_MC;
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Hero_loseBandana(Hero this);
+void Hero_losePowerUp(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -125,19 +126,21 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	// construct base
 	__CONSTRUCT_BASE(actorDefinition, id, name);
 
-	this->energy = 3;
+	// init class variables
 	this->coins = 0;
-	this->hasBandana = false;
 	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
 	this->cameraBoundingBox = NULL;
-
-	Hero_setInvincible(this, false);
+	this->energy = HERO_INITIAL_ENERGY;
+	this->powerUp = kPowerUpNone;
+	this->invincible = false;
+	this->currentlyOverlappingDoor = NULL;
+	this->currentlyOverlappingHideLayer = NULL;
+	this->boost = false;
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
-
 	ASSERT(this->shape, "Hero::constructor: null shape");
 
 	// register a body for physics
@@ -145,21 +148,12 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	Body_setElasticity(this->body, actorDefinition->elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.localPosition);
-		
-    // no door overlapping at start
-	this->currentlyOverlappingDoor = NULL;
-	Hero_setCurrentlyOverlappingDoor(this, NULL);
 
-    // no hide layer overlapping at start
-	Hero_resetCurrentlyOverlappingHideLayer(this);
-	
-	this->boost = false;
-	
 	Hero_setInstance(this);
 
-	Object_addEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_addEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_addEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
 	this->inputDirection = this->direction;
 }
@@ -175,17 +169,18 @@ void Hero_destructor(Hero this)
 	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), NULL);
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
 
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
+
+	// unset entity and children
 	this->feetDust = NULL;
 	this->currentHint = NULL;
 	this->cameraBoundingBox = NULL;
-
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
-
 	hero = NULL;
-	
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+
+    // remove event listeners
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
     // discard pending delayed messages
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
@@ -200,6 +195,20 @@ void Hero_ready(Hero this)
 	ASSERT(this, "HeroMoving::ready: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
+
+	// override with progress from progress manager
+	ProgressManager progressManager = ProgressManager_getInstance();
+	if(progressManager)
+	{
+		this->energy = ProgressManager_getHeroCurrentEnergy(progressManager);
+
+		u8 currentPowerUp = ProgressManager_getHeroCurrentPowerUp(progressManager);
+		if(currentPowerUp != this->powerUp)
+		{
+			this->powerUp = currentPowerUp;
+			Hero_updateSprite(this);
+		}
+	}
 
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
@@ -535,7 +544,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
 {
     if (!Hero_isInvincible(this))
     {
-        if(this->energy > 0 || Hero_hasBandana(this))
+        if((this->energy > 0) || (this->powerUp != kPowerUpNone))
         {
         	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
 
@@ -549,9 +558,9 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
 
             // lose power-up or reduce energy
-            if(Hero_hasBandana(this))
+            if(this->powerUp != kPowerUpNone)
             {
-                Hero_loseBandana(this);
+                Hero_losePowerUp(this);
             }
             else
             {
@@ -582,7 +591,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
         }
 
         // inform others to update ui etc
-        Object_fireEvent(__SAFE_CAST(Object, this), EVENT_HIT_TAKEN);
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HIT_TAKEN);
 
         // must unregister the shape for collision detections
         // Shape_setActive(this->shape, false);
@@ -834,7 +843,7 @@ void Hero_lookBack(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_HERO_DIED);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HERO_DIED);
 
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
 
@@ -883,7 +892,7 @@ static void Hero_onKeyHold(Hero this, Object eventFirer)
 void Hero_collectKey(Hero this)
 {
 	this->hasKey = true;
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_TAKEN);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_TAKEN);
 }
 
 // does the hero have a key?
@@ -892,37 +901,51 @@ bool Hero_hasKey(Hero this)
 	return this->hasKey;
 }
 
-// collect a bandana
-void Hero_collectBandana(Hero this)
+// collect a power-up
+void Hero_collectPowerUp(Hero this, u8 powerUp)
 {
-	this->hasBandana = true;
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_BANDANA_TAKEN);
-
-	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
+	this->powerUp = powerUp;
+	Hero_updateSprite(this);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
 
 	Game_pausePhysics(Game_getInstance(), true);
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
 
-	// TODO: play "get bandana" animation
+	// TODO: play "get powerup" animation
     //AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
 
 	// play collect sound
     SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
-// lose a bandana
-void Hero_loseBandana(Hero this)
+// lose a power-up
+void Hero_losePowerUp(Hero this)
 {
-	this->hasBandana = false;
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_BANDANA_LOST);
-
-	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
+	this->powerUp = kPowerUpNone;
+	Hero_updateSprite(this);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
 }
 
-// does the hero have a bandana?
-bool Hero_hasBandana(Hero this)
+// update sprite, i.e. after collecting a power-up
+void Hero_updateSprite(Hero this)
 {
-	return this->hasBandana;
+	switch(this->powerUp)
+	{
+		case kPowerUpBandana:
+			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
+			break;
+
+		default:
+		case kPowerUpNone:
+			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
+			break;
+	}
+}
+
+// get current power-up
+u8 Hero_getPowerUp(Hero this)
+{
+	return this->powerUp;
 }
 
 // collect a coin
@@ -930,11 +953,11 @@ void Hero_collectCoin(Hero this, Coin coin)
 {
     if(!Coin_taken(coin))
     {
-        int numberOfCollectedCoins = UserDataManager_getNumberOfCollectedCoins(UserDataManager_getInstance());
+        int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
         numberOfCollectedCoins++;
-        UserDataManager_setNumberOfCollectedCoins(UserDataManager_getInstance(), numberOfCollectedCoins);
-        UserDataManager_setCoinStatus(UserDataManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
-        Object_fireEvent(__SAFE_CAST(Object, this), EVENT_COIN_TAKEN);
+        ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
+        ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_COIN_TAKEN);
 
         SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
     }
@@ -943,7 +966,7 @@ void Hero_collectCoin(Hero this, Coin coin)
 // get number of collected coins
 u8 Hero_getCoins(Hero this)
 {
-	return UserDataManager_getNumberOfCollectedCoins(UserDataManager_getInstance());
+	return ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
 }
 
 // get energy
@@ -1084,21 +1107,21 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kCoin:
 
 				Hero_collectCoin(this, __SAFE_CAST(Coin, inGameEntity));
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTakeCoin, NULL);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kKey:
 
 				Hero_collectKey(this);
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTakeKey, NULL);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kBandana:
 
-				Hero_collectBandana(this);
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTakeBandana, NULL);
+				Hero_collectPowerUp(this, kPowerUpBandana);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
