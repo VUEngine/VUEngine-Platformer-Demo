@@ -32,7 +32,7 @@
 #include "states/HeroMoving.h"
 #include <CustomScreenMovementManager.h>
 #include <CameraTriggerEntity.h>
-
+#include <EventManager.h>
 #include <Hint.h>
 
 
@@ -157,9 +157,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 
 	Hero_setInstance(this);
 
-	Object_addEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_addEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_addEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
 	this->inputDirection = this->direction;
 }
@@ -183,9 +183,9 @@ void Hero_destructor(Hero this)
 
 	hero = NULL;
 	
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
     // discard pending delayed messages
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
@@ -554,7 +554,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
         }
 
         // inform others to update ui etc
-        Object_fireEvent(__SAFE_CAST(Object, this), EVENT_HIT_TAKEN);
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HIT_TAKEN);
 
         // must unregister the shape for collision detections
         // Shape_setActive(this->shape, false);
@@ -806,7 +806,7 @@ void Hero_lookBack(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_HERO_DIED);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HERO_DIED);
 
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
 
@@ -855,7 +855,7 @@ static void Hero_onKeyHold(Hero this, Object eventFirer)
 void Hero_collectKey(Hero this)
 {
 	this->hasKey = true;
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_TAKEN);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_TAKEN);
 }
 
 // does the hero have a key?
@@ -876,7 +876,7 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 			break;
 	}
 
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_POWERUP_TAKEN);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP_TAKEN);
 
 	Game_pausePhysics(Game_getInstance(), true);
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
@@ -892,7 +892,7 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 void Hero_losePowerUp(Hero this)
 {
 	this->powerUp = kPowerUpNone;
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_POWERUP_LOST);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP_LOST);
 
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
 }
@@ -912,7 +912,7 @@ void Hero_collectCoin(Hero this, Coin coin)
         numberOfCollectedCoins++;
         ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
         ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
-        Object_fireEvent(__SAFE_CAST(Object, this), EVENT_COIN_TAKEN);
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_COIN_TAKEN);
 
         SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
     }

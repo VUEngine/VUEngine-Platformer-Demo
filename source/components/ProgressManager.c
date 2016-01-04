@@ -23,6 +23,7 @@
 
 #include <ProgressManager.h>
 #include <SRAMManager.h>
+#include <EventManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -41,7 +42,6 @@ static void ProgressManager_initialize(ProgressManager this);
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onPowerUpTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onPowerUpLost(ProgressManager this, Object eventFirer);
-static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -64,19 +64,20 @@ static void ProgressManager_constructor(ProgressManager this)
 	ProgressManager_reset(this);
 
     // add event listeners
-	if(Hero_getInstance())
-	{
-	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
-	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpTaken, EVENT_POWERUP_TAKEN);
-	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpLost, EVENT_POWERUP_LOST);
-    	Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
-	}
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpTaken, EVENT_POWERUP_TAKEN);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpLost, EVENT_POWERUP_LOST);
 }
 
 // class's destructor
 void ProgressManager_destructor(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::destructor: null this");
+
+    // remove event listeners
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpTaken, EVENT_POWERUP_TAKEN);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpLost, EVENT_POWERUP_LOST);
 
 	// destroy base
 	__SINGLETON_DESTROY;
@@ -206,14 +207,4 @@ static void ProgressManager_onPowerUpTaken(ProgressManager this, Object eventFir
 static void ProgressManager_onPowerUpLost(ProgressManager this, Object eventFirer)
 {
 	this->heroCurrentPowerUp = kPowerUpNone;
-}
-
-// handle event
-static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer)
-{
-    // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpTaken, EVENT_POWERUP_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpLost, EVENT_POWERUP_LOST);
-    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
 }
