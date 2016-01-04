@@ -208,6 +208,34 @@ void Hero_ready(Hero this)
 	Hero_addFeetDust(this);
 }
 
+SpatialObject CollisionManager_searchNextObjectOfCollision(CollisionManager this, const Shape shape, VBVec3D direction);
+
+void Hero_locateOverNextFloor(Hero this)
+{
+	VBVec3D direction = {0, 1, 0};
+	
+	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(CollisionManager_getInstance(), this->shape, direction);
+	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
+
+	if(collidingSpatialObject && this->collisionSolver)
+	{
+		VirtualList collidingSpatialObjects = __NEW(VirtualList);
+		VirtualList_pushBack(collidingSpatialObjects, collidingSpatialObject);
+
+		VBVec3D displacement = 
+		{
+			ITOFIX19_13(0),
+			ITOFIX19_13(1),
+			ITOFIX19_13(0),
+		};
+
+		CollisionSolver_resolveCollision(this->collisionSolver, collidingSpatialObjects, __YAXIS, displacement, &this->transform.globalScale);
+		
+		__DELETE(collidingSpatialObjects);
+//		Actor_updateSourroundingFriction(this);
+	}
+}
+
 // make him jump
 void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 {
@@ -1273,6 +1301,9 @@ int Hero_doMessage(Hero this, int message)
 	
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 			}
+			
+			//Hero_locateOverNextFloor(this);
+
 			break;
 
 	}

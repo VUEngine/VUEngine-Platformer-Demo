@@ -75,7 +75,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE();
 
-	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_MAIN_MAIN_EP;
+	this->entryPointDefinition = NULL;
 
 	// set the custom movement screen manager now
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
@@ -107,6 +107,8 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
+	NM_ASSERT(this->entryPointDefinition, "PlatformerLevelState::enter: null entryPointDefinition");
+
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
 	

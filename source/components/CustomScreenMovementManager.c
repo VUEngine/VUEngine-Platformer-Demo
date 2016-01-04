@@ -29,7 +29,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define __SCREEN_EASING_X_DISPLACEMENT		3
-#define __SCREEN_EASING_Y_DISPLACEMENT		4
+#define __SCREEN_EASING_Y_DISPLACEMENT		6
 #define __SCREEN_HORIZONTAL_DISPLACEMENT 	30
 #define __SCREEN_VERTICAL_DISPLACEMENT 		(__SCREEN_HEIGHT / 2) + 30
 
