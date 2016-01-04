@@ -90,7 +90,7 @@ extern EntityDefinition HINT_ENTER_MC;
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Hero_loseBandana(Hero this);
+void Hero_losePowerUp(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 
 	this->energy = 3;
 	this->coins = 0;
-	this->hasBandana = false;
+	this->powerUp = kPowerUpNone;
 	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
@@ -507,7 +507,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
 {
     if (!Hero_isInvincible(this))
     {
-        if(this->energy > 0 || Hero_hasBandana(this))
+        if((this->energy > 0) || (this->powerUp != kPowerUpNone))
         {
         	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
 
@@ -521,9 +521,9 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
 
             // lose power-up or reduce energy
-            if(Hero_hasBandana(this))
+            if(this->powerUp != kPowerUpNone)
             {
-                Hero_loseBandana(this);
+                Hero_losePowerUp(this);
             }
             else
             {
@@ -864,37 +864,37 @@ bool Hero_hasKey(Hero this)
 	return this->hasKey;
 }
 
-// collect a bandana
-void Hero_collectBandana(Hero this)
+// collect a power-up
+void Hero_collectPowerUp(Hero this, u8 powerUp)
 {
-	this->hasBandana = true;
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_BANDANA_TAKEN);
+	this->powerUp = powerUp;
 
-	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
+	switch(powerUp)
+	{
+		case kPowerUpBandana:
+			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
+			break;
+	}
+
+	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_POWERUP_TAKEN);
 
 	Game_pausePhysics(Game_getInstance(), true);
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
 
-	// TODO: play "get bandana" animation
+	// TODO: play "get powerup" animation
     //AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
 
 	// play collect sound
     SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
-// lose a bandana
-void Hero_loseBandana(Hero this)
+// lose a power-up
+void Hero_losePowerUp(Hero this)
 {
-	this->hasBandana = false;
-	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_BANDANA_LOST);
+	this->powerUp = kPowerUpNone;
+	Object_fireEvent(__SAFE_CAST(Object, this), EVENT_POWERUP_LOST);
 
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
-}
-
-// does the hero have a bandana?
-bool Hero_hasBandana(Hero this)
-{
-	return this->hasBandana;
 }
 
 // collect a coin
@@ -1056,21 +1056,21 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kCoin:
 
 				Hero_collectCoin(this, __SAFE_CAST(Coin, inGameEntity));
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTakeCoin, NULL);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kKey:
 
 				Hero_collectKey(this);
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTakeKey, NULL);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kBandana:
 
-				Hero_collectBandana(this);
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTakeBandana, NULL);
+				Hero_collectPowerUp(this, kPowerUpBandana);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 

@@ -94,7 +94,7 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 
 	switch(Telegram_getMessage(telegram))
     {
-		case kTakeCoin:
+		case kTaken:
 
 			Coin_removeFromStage(this);
 			break;

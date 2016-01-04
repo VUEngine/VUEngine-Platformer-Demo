@@ -90,7 +90,7 @@ bool Key_handleMessage(Key this, Telegram telegram)
 
 	switch(Telegram_getMessage(telegram))
     {
-		case kTakeKey:
+		case kTaken:
 
 			Key_removeFromStage(this);
 			break;

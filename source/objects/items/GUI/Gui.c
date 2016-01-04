@@ -41,6 +41,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(GUI, AnimatedInGameEntity);
+__CLASS_FRIEND_DEFINITION(Hero);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -51,8 +52,8 @@ static void GUI_onSecondChange(GUI this, Object eventFirer);
 static void GUI_onHitTaken(GUI this, Object eventFirer);
 static void GUI_onCoinTaken(GUI this, Object eventFirer);
 static void GUI_onKeyTaken(GUI this, Object eventFirer);
-static void GUI_onBandanaTaken(GUI this, Object eventFirer);
-static void GUI_onBandanaLost(GUI this, Object eventFirer);
+static void GUI_onPowerUpTaken(GUI this, Object eventFirer);
+static void GUI_onPowerUpLost(GUI this, Object eventFirer);
 static void GUI_onHeroDied(GUI this, Object eventFirer);
 static void GUI_onLevelEnter(GUI this, Object eventFirer);
 static void GUI_onLevelResume(GUI this, Object eventFirer);
@@ -87,8 +88,8 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHitTaken, EVENT_HIT_TAKEN);
 	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
 	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
-	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaTaken, EVENT_BANDANA_TAKEN);
-	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaLost, EVENT_BANDANA_LOST);
+	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUpTaken, EVENT_POWERUP_TAKEN);
+	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUpLost, EVENT_POWERUP_LOST);
 	    Object_addEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHeroDied, EVENT_HERO_DIED);
 	    Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelEnter, EVENT_LEVEL_ENTER);
 	    Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelResume, EVENT_LEVEL_RESUME);
@@ -193,13 +194,20 @@ static void GUI_onKeyTaken(GUI this, Object eventFirer)
 }
 
 // handle event
-static void GUI_onBandanaTaken(GUI this, Object eventFirer)
+static void GUI_onPowerUpTaken(GUI this, Object eventFirer)
 {
-	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_BANDANA_CH);
+	Hero hero = Hero_getInstance();
+
+	switch(hero->powerUp)
+	{
+		case kPowerUpBandana:
+			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_BANDANA_CH);
+			break;
+	}
 }
 
 // handle event
-static void GUI_onBandanaLost(GUI this, Object eventFirer)
+static void GUI_onPowerUpLost(GUI this, Object eventFirer)
 {
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_CH);
 }
@@ -224,8 +232,8 @@ static void GUI_onHeroDied(GUI this, Object eventFirer)
 	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHitTaken, EVENT_HIT_TAKEN);
 	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
 	Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaTaken, EVENT_BANDANA_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onBandanaLost, EVENT_BANDANA_LOST);
+    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUpTaken, EVENT_POWERUP_TAKEN);
+    Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUpLost, EVENT_POWERUP_LOST);
     Object_removeEventListener(__SAFE_CAST(Object, Hero_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHeroDied, EVENT_HERO_DIED);
     Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelEnter, EVENT_LEVEL_ENTER);
     Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelResume, EVENT_LEVEL_RESUME);
