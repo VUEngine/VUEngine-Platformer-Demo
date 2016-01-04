@@ -379,7 +379,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
 // ---------------------------------------------------------------------------------------------------------
 
 PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
-{
+{{
 	// the stage to load
     (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
 
@@ -391,10 +391,10 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
 
 	// does a level start at this entry point?
 	true,
-};
+}};
 
 PlatformerStageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP[] =
-{
+{{
 	// the stage to load
     (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
 
@@ -406,10 +406,10 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP[] =
 
 	// does a level start at this entry point?
 	false,
-};
+}};
 
 PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
-{
+{{
 	// the stage to load
     (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
 
@@ -421,10 +421,10 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
 
 	// does a level start at this entry point?
 	false,
-};
+}};
 
 PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
-{
+{{
 	// the stage to load
     (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
 
@@ -436,4 +436,4 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
 
 	// does a level start at this entry point?
 	false,
-};
+}};

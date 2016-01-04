@@ -260,7 +260,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
 // ---------------------------------------------------------------------------------------------------------
 
 PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
-{
+{{
 	// the stage to load
     (PlatformerStageDefinition*)&LEVEL_1_TOWER_ST,
 
@@ -272,4 +272,4 @@ PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
 
 	// does a level start at this entry point?
 	false,
-};
+}};
