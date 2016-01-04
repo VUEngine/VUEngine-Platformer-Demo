@@ -35,7 +35,7 @@
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
 #include <CustomScreenMovementManager.h>
-#include <UserDataManager.h>
+#include <ProgressManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

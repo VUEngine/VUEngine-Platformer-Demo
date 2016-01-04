@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef USER_DATA_MANAGER_H_
-#define USER_DATA_MANAGER_H_
+#ifndef PROGRESS_MANAGER_H_
+#define PROGRESS_MANAGER_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -23,11 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Object.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												MACROS
-//---------------------------------------------------------------------------------------------------------
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,15 +31,26 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define UserDataManager_METHODS													\
-    	Object_METHODS															\
+#define ProgressManager_METHODS																			\
+    	Object_METHODS																					\
 
 // declare the virtual methods which are redefined
-#define UserDataManager_SET_VTABLE(ClassName)									\
-    	Object_SET_VTABLE(ClassName)											\
+#define ProgressManager_SET_VTABLE(ClassName)															\
+    	Object_SET_VTABLE(ClassName)																	\
 
-// declare a UserDataManager
-__CLASS(UserDataManager);
+// declare a ProgressManager
+__CLASS(ProgressManager);
+
+#define ProgressManager_ATTRIBUTES																		\
+																										\
+	/* super's attributes */																			\
+	Object_ATTRIBUTES;																					\
+																										\
+	/* hero's current energy	*/																		\
+	u8 heroCurrentEnergy;																				\
+																										\
+	/* hero's currently active power-up */																\
+	u8 heroCurrentPowerUp;																				\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -83,13 +90,16 @@ typedef struct UserData
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-UserDataManager UserDataManager_getInstance();
+ProgressManager ProgressManager_getInstance();
 
-void UserDataManager_destructor(UserDataManager this);
-int UserDataManager_getNumberOfCollectedCoins(UserDataManager this);
-void UserDataManager_setNumberOfCollectedCoins(UserDataManager this, int numberOfCollectedCoins);
-bool UserDataManager_getCoinStatus(UserDataManager this, const char* coinName);
-bool UserDataManager_setCoinStatus(UserDataManager this, char* coinName, bool status);
+void ProgressManager_destructor(ProgressManager this);
+void ProgressManager_reset(ProgressManager this);
+int ProgressManager_getNumberOfCollectedCoins(ProgressManager this);
+void ProgressManager_setNumberOfCollectedCoins(ProgressManager this, int numberOfCollectedCoins);
+bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName);
+bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool status);
+u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this);
+u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
 
 
 #endif

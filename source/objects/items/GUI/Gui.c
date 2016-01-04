@@ -41,7 +41,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(GUI, AnimatedInGameEntity);
-__CLASS_FRIEND_DEFINITION(Hero);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -196,9 +195,7 @@ static void GUI_onKeyTaken(GUI this, Object eventFirer)
 // handle event
 static void GUI_onPowerUpTaken(GUI this, Object eventFirer)
 {
-	Hero hero = Hero_getInstance();
-
-	switch(hero->powerUp)
+	switch(Hero_getPowerUp(Hero_getInstance()))
 	{
 		case kPowerUpBandana:
 			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_BANDANA_CH);

@@ -31,7 +31,6 @@
 #include "states/HeroIdle.h"
 #include "states/HeroMoving.h"
 #include <CustomScreenMovementManager.h>
-#include <UserDataManager.h>
 #include <CameraTriggerEntity.h>
 
 #include <Hint.h>
@@ -125,19 +124,29 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	// construct base
 	__CONSTRUCT_BASE(actorDefinition, id, name);
 
-	this->energy = 3;
+	//
 	this->coins = 0;
-	this->powerUp = kPowerUpNone;
 	this->hasKey = false;
 	this->currentHint = NULL;
 	this->feetDust = NULL;
 	this->cameraBoundingBox = NULL;
+	this->energy = HERO_INITIAL_ENERGY;
+	this->powerUp = kPowerUpNone;
+	this->invincible = false;
+	this->currentlyOverlappingDoor = NULL;
+	this->currentlyOverlappingHideLayer = NULL;
+	this->boost = false;
 
-	Hero_setInvincible(this, false);
+	// override with progress from progress manager
+	ProgressManager progressManager = ProgressManager_getInstance();
+	if(progressManager)
+	{
+		this->energy = ProgressManager_getHeroCurrentEnergy(progressManager);
+		this->powerUp = ProgressManager_getHeroCurrentPowerUp(progressManager);
+	}
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
-
 	ASSERT(this->shape, "Hero::constructor: null shape");
 
 	// register a body for physics
@@ -145,16 +154,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	Body_setElasticity(this->body, actorDefinition->elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.localPosition);
-		
-    // no door overlapping at start
-	this->currentlyOverlappingDoor = NULL;
-	Hero_setCurrentlyOverlappingDoor(this, NULL);
 
-    // no hide layer overlapping at start
-	Hero_resetCurrentlyOverlappingHideLayer(this);
-	
-	this->boost = false;
-	
 	Hero_setInstance(this);
 
 	Object_addEventListener(__SAFE_CAST(Object, Game_getCurrentState(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
@@ -897,15 +897,21 @@ void Hero_losePowerUp(Hero this)
 	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
 }
 
+// get current power-up
+u8 Hero_getPowerUp(Hero this)
+{
+	return this->powerUp;
+}
+
 // collect a coin
 void Hero_collectCoin(Hero this, Coin coin)
 {
     if(!Coin_taken(coin))
     {
-        int numberOfCollectedCoins = UserDataManager_getNumberOfCollectedCoins(UserDataManager_getInstance());
+        int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
         numberOfCollectedCoins++;
-        UserDataManager_setNumberOfCollectedCoins(UserDataManager_getInstance(), numberOfCollectedCoins);
-        UserDataManager_setCoinStatus(UserDataManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
+        ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
+        ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
         Object_fireEvent(__SAFE_CAST(Object, this), EVENT_COIN_TAKEN);
 
         SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
@@ -915,7 +921,7 @@ void Hero_collectCoin(Hero this, Coin coin)
 // get number of collected coins
 u8 Hero_getCoins(Hero this)
 {
-	return UserDataManager_getNumberOfCollectedCoins(UserDataManager_getInstance());
+	return ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
 }
 
 // get energy

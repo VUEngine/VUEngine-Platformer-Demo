@@ -26,6 +26,7 @@
 #include <Door.h>
 #include <HideLayer.h>
 #include <ParticleSystem.h>
+#include <ProgressManager.h>
 #include <macros.h>
 
 
@@ -34,6 +35,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define HERO_NAME               "John Hero"
+#define HERO_INITIAL_ENERGY  	3
+
 #define HERO_FLASH_PALETTE      3
 #define HERO_FLASH_DURATION     2000
 #define HERO_FLASH_INTERVAL     100
@@ -143,6 +146,7 @@ void Hero_die(Hero this);
 void Hero_collectKey(Hero this);
 bool Hero_hasKey(Hero this);
 void Hero_collectPowerUp(Hero this, u8 powerUp);
+u8 Hero_getPowerUp(Hero this);
 u8 Hero_getCoins(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);

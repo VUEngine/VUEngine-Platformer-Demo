@@ -36,7 +36,7 @@
 #include <macros.h>
 #include <Languages.h>
 #include <objects.h>
-#include <UserDataManager.h>
+#include <ProgressManager.h>
 #include <CustomScreenMovementManager.h>
 
 
@@ -97,7 +97,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 	int i = 0;
 	for(;this->platformerStageDefinition->stageDefinition.entities[i].entityDefinition; i++)
 	{
-		if(UserDataManager_getCoinStatus(UserDataManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
+		if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
 		{
 			VirtualList_pushBack(entityNamesToIgnore, this->platformerStageDefinition->stageDefinition.entities[i].name);
 		}
