@@ -84,7 +84,6 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 // state's execute
 void HeroMoving_execute(HeroMoving this, void* owner)
 {
-	Hero_synchronizeDirectionWithVelocity(__SAFE_CAST(Hero, owner));
 //	Body_printPhysics(Actor_getBody(owner), 1, 7);
 }
 

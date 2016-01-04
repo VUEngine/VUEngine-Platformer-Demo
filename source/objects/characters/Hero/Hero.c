@@ -503,23 +503,6 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 	}
 }
 
-// check direction
-void Hero_synchronizeDirectionWithVelocity(Hero this)
-{
-	ASSERT(this, "Hero::synchronizeDirectionWithVelocity: null this");
-
-    Velocity velocity = Body_getVelocity(this->body);
-
-	if(0 < velocity.x)
-    {
-		this->direction.x = __RIGHT;
-	}
-	else if(0 > velocity.x)
-    {
-		this->direction.x = __LEFT;
-	}
-}
-
 void Hero_takeHitFrom(Hero this, Actor other, bool pause)
 {
     if (!Hero_isInvincible(this))
