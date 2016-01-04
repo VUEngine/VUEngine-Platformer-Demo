@@ -114,6 +114,12 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	
 	Game_disableKeypad(Game_getInstance());
 
+	// reset progress manager if this is a level start entry point
+	if(this->entryPointDefinition->isLevelStartPoint)
+	{
+		ProgressManager_reset(ProgressManager_getInstance());
+	}
+
     // get list of entities that should not be loaded
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
@@ -197,12 +203,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// reset clocks
 	Game_startClocks(Game_getInstance());
 
-	// reset progress manager if this is a level start entry point
-	if(this->entryPointDefinition->isLevelStartPoint)
-	{
-		ProgressManager_reset(ProgressManager_getInstance());
-	}
-
 	// fire event to render gui values
     Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_LEVEL_ENTER);
 }
@@ -212,7 +212,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
-	
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 }

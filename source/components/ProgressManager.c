@@ -39,9 +39,9 @@ __CLASS_DEFINITION(ProgressManager, Object);
 
 static void ProgressManager_constructor(ProgressManager this);
 static void ProgressManager_initialize(ProgressManager this);
+static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer);
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
-static void ProgressManager_onPowerUpTaken(ProgressManager this, Object eventFirer);
-static void ProgressManager_onPowerUpLost(ProgressManager this, Object eventFirer);
+static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -64,9 +64,9 @@ static void ProgressManager_constructor(ProgressManager this)
 	ProgressManager_reset(this);
 
     // add event listeners
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpTaken, EVENT_POWERUP_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpLost, EVENT_POWERUP_LOST);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUp, EVENT_POWERUP);
 }
 
 // class's destructor
@@ -75,9 +75,9 @@ void ProgressManager_destructor(ProgressManager this)
 	ASSERT(this, "ProgressManager::destructor: null this");
 
     // remove event listeners
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpTaken, EVENT_POWERUP_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUpLost, EVENT_POWERUP_LOST);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUp, EVENT_POWERUP);
 
 	// destroy base
 	__SINGLETON_DESTROY;
@@ -188,23 +188,19 @@ u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this)
 }
 
 // handle event
+static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer)
+{
+	ProgressManager_reset(this);
+}
+
+// handle event
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer)
 {
 	this->heroCurrentEnergy = Hero_getEnergy(Hero_getInstance());
-	Printing_int(Printing_getInstance(), ProgressManager_getHeroCurrentEnergy(ProgressManager_getInstance()), 0, 0, NULL);
-	Printing_int(Printing_getInstance(), ProgressManager_getHeroCurrentPowerUp(ProgressManager_getInstance()), 0, 1, NULL);
 }
 
 // handle event
-static void ProgressManager_onPowerUpTaken(ProgressManager this, Object eventFirer)
+static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer)
 {
 	this->heroCurrentPowerUp = Hero_getPowerUp(Hero_getInstance());
-	Printing_int(Printing_getInstance(), ProgressManager_getHeroCurrentEnergy(ProgressManager_getInstance()), 0, 0, NULL);
-	Printing_int(Printing_getInstance(), ProgressManager_getHeroCurrentPowerUp(ProgressManager_getInstance()), 0, 1, NULL);
-}
-
-// handle event
-static void ProgressManager_onPowerUpLost(ProgressManager this, Object eventFirer)
-{
-	this->heroCurrentPowerUp = kPowerUpNone;
 }

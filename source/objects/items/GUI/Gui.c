@@ -52,8 +52,7 @@ static void GUI_onSecondChange(GUI this, Object eventFirer);
 static void GUI_onHitTaken(GUI this, Object eventFirer);
 static void GUI_onCoinTaken(GUI this, Object eventFirer);
 static void GUI_onKeyTaken(GUI this, Object eventFirer);
-static void GUI_onPowerUpTaken(GUI this, Object eventFirer);
-static void GUI_onPowerUpLost(GUI this, Object eventFirer);
+static void GUI_onPowerUp(GUI this, Object eventFirer);
 static void GUI_onLevelEnter(GUI this, Object eventFirer);
 static void GUI_onLevelResume(GUI this, Object eventFirer);
 
@@ -85,8 +84,7 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHitTaken, EVENT_HIT_TAKEN);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUpTaken, EVENT_POWERUP_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUpLost, EVENT_POWERUP_LOST);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUp, EVENT_POWERUP);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelEnter, EVENT_LEVEL_ENTER);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelResume, EVENT_LEVEL_RESUME);
 
@@ -101,8 +99,7 @@ void GUI_destructor(GUI this)
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHitTaken, EVENT_HIT_TAKEN);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUpTaken, EVENT_POWERUP_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUpLost, EVENT_POWERUP_LOST);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUp, EVENT_POWERUP);
     Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelEnter, EVENT_LEVEL_ENTER);
     Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelResume, EVENT_LEVEL_RESUME);
 
@@ -164,9 +161,26 @@ void GUI_printLevel(GUI this)
 	Printing_text(Printing_getInstance(), platformerStageDefinition->identifier, GUI_X_POS + 35, GUI_Y_POS, GUI_FONT);
 }
 
+// update sprite, i.e. after collecting a power-up
+void GUI_updateSprite(GUI this)
+{
+	switch(Hero_getPowerUp(Hero_getInstance()))
+	{
+		case kPowerUpBandana:
+			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_BANDANA_CH);
+			break;
+
+		default:
+		case kPowerUpNone:
+			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_CH);
+			break;
+	}
+}
+
 // print current level to gui
 void GUI_printAll(GUI this)
 {
+	GUI_updateSprite(this);
 	GUI_printClock(this);
 	GUI_printCoins(this);
 	GUI_printEnergy(this);
@@ -199,20 +213,9 @@ static void GUI_onKeyTaken(GUI this, Object eventFirer)
 }
 
 // handle event
-static void GUI_onPowerUpTaken(GUI this, Object eventFirer)
+static void GUI_onPowerUp(GUI this, Object eventFirer)
 {
-	switch(Hero_getPowerUp(Hero_getInstance()))
-	{
-		case kPowerUpBandana:
-			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_BANDANA_CH);
-			break;
-	}
-}
-
-// handle event
-static void GUI_onPowerUpLost(GUI this, Object eventFirer)
-{
-	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_CH);
+	GUI_updateSprite(this);
 }
 
 // handle event

@@ -54,11 +54,13 @@ void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
 void Hero_resetCurrentlyOverlappingHideLayer(Hero this);
+void Hero_updateSprite(Hero this);
 static void Hero_addHints(Hero this);
 static void Hero_addFeetDust(Hero this);
 static void Hero_slide(Hero this);
 static void Hero_showDust(Hero this, bool autoHideDust);
 static void Hero_hideDust(Hero this);
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -124,7 +126,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	// construct base
 	__CONSTRUCT_BASE(actorDefinition, id, name);
 
-	//
+	// init class variables
 	this->coins = 0;
 	this->hasKey = false;
 	this->currentHint = NULL;
@@ -136,14 +138,6 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->currentlyOverlappingDoor = NULL;
 	this->currentlyOverlappingHideLayer = NULL;
 	this->boost = false;
-
-	// override with progress from progress manager
-	ProgressManager progressManager = ProgressManager_getInstance();
-	if(progressManager)
-	{
-		this->energy = ProgressManager_getHeroCurrentEnergy(progressManager);
-		this->powerUp = ProgressManager_getHeroCurrentPowerUp(progressManager);
-	}
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
@@ -175,14 +169,15 @@ void Hero_destructor(Hero this)
 	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), NULL);
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
 
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
+
+	// unset entity and children
 	this->feetDust = NULL;
 	this->currentHint = NULL;
 	this->cameraBoundingBox = NULL;
-
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
-
 	hero = NULL;
-	
+
+    // remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
@@ -200,6 +195,20 @@ void Hero_ready(Hero this)
 	ASSERT(this, "HeroMoving::ready: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
+
+	// override with progress from progress manager
+	ProgressManager progressManager = ProgressManager_getInstance();
+	if(progressManager)
+	{
+		this->energy = ProgressManager_getHeroCurrentEnergy(progressManager);
+
+		u8 currentPowerUp = ProgressManager_getHeroCurrentPowerUp(progressManager);
+		if(currentPowerUp != this->powerUp)
+		{
+			this->powerUp = currentPowerUp;
+			Hero_updateSprite(this);
+		}
+	}
 
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
@@ -868,15 +877,8 @@ bool Hero_hasKey(Hero this)
 void Hero_collectPowerUp(Hero this, u8 powerUp)
 {
 	this->powerUp = powerUp;
-
-	switch(powerUp)
-	{
-		case kPowerUpBandana:
-			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
-			break;
-	}
-
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP_TAKEN);
+	Hero_updateSprite(this);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
 
 	Game_pausePhysics(Game_getInstance(), true);
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
@@ -892,9 +894,24 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 void Hero_losePowerUp(Hero this)
 {
 	this->powerUp = kPowerUpNone;
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP_LOST);
+	Hero_updateSprite(this);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
+}
 
-	CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
+// update sprite, i.e. after collecting a power-up
+void Hero_updateSprite(Hero this)
+{
+	switch(this->powerUp)
+	{
+		case kPowerUpBandana:
+			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
+			break;
+
+		default:
+		case kPowerUpNone:
+			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
+			break;
+	}
 }
 
 // get current power-up
