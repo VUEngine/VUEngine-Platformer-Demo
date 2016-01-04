@@ -116,24 +116,20 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
 
-    // load stage
-    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->entryPointDefinition->platformerStageDefinition->stageDefinition), entityNamesToIgnore, true);
-
 	// check if destination entity name is given
 	if(this->entryPointDefinition->destinationName)
 	{
+		VBVec3D environmentPosition = {0, 0, 0};
+		
 	    // TODO: iterate definition; this only finds instantiated entities
-        Container entity = Container_getChildByName(__SAFE_CAST(Container, this->stage), this->entryPointDefinition->destinationName, true);
+		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->entryPointDefinition->platformerStageDefinition->stageDefinition.entities, environmentPosition, this->entryPointDefinition->destinationName);
 
-        if(entity)
+        if(initialPosition)
         {
-            // get global position of destination entity
-            VBVec3D initialPosition = *Container_getGlobalPosition(entity);
-
             // apply entry point offset
-            initialPosition.x += this->entryPointDefinition->offset.x;
-            initialPosition.y += this->entryPointDefinition->offset.y;
-            initialPosition.z += this->entryPointDefinition->offset.z;
+            initialPosition->x += this->entryPointDefinition->offset.x;
+            initialPosition->y += this->entryPointDefinition->offset.y;
+            initialPosition->z += this->entryPointDefinition->offset.z;
 
             // set world's limits
             Screen_setStageSize(Screen_getInstance(), this->entryPointDefinition->platformerStageDefinition->stageDefinition.size);
@@ -141,11 +137,15 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
             // set offset screen position
             VBVec3D screenPosition =
             {
-                initialPosition.x - ITOFIX19_13(__SCREEN_WIDTH >> 1),
-                initialPosition.y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
-                initialPosition.z
+                initialPosition->x - ITOFIX19_13(__SCREEN_WIDTH >> 1),
+                initialPosition->y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
+                initialPosition->z
             };
+            
             Screen_setPosition(Screen_getInstance(), screenPosition);
+
+    	    // load stage
+    	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->entryPointDefinition->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
 
             // get hero entity
             Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
@@ -156,9 +156,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
                 {
                     &HERO_AC,
                     {
-                        initialPosition.x,
-                        initialPosition.y,
-                        initialPosition.z
+                        initialPosition->x,
+                        initialPosition->y,
+                        initialPosition->z
                     },
                     HERO_NAME,
                     NULL,
@@ -173,9 +173,14 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
             }
             else
             {
-                Actor_setPosition(__SAFE_CAST(Actor, hero), &initialPosition);
+                Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
             }
         }
+	}
+	else
+	{
+	    // load stage
+	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->entryPointDefinition->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
 	}
 
     // free some memory

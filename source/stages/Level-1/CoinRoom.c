@@ -261,7 +261,6 @@ PlatformerStageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP[] =
     // offset from entry point (x, y, z)
     {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
 
-
 	// does a level start at this entry point?
 	false,
 };
