@@ -75,7 +75,8 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE();
 
-	this->entryPointDefinition = NULL;
+	// set default entry point
+	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_MAIN_MAIN_EP;
 
 	// set the custom movement screen manager now
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
@@ -121,11 +122,11 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// check if destination entity name is given
 	if(this->entryPointDefinition->destinationName)
 	{
+	    // iterate stage definition to find global position of destination entity
 		VBVec3D environmentPosition = {0, 0, 0};
-		
-	    // TODO: iterate definition; this only finds instantiated entities
 		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->entryPointDefinition->platformerStageDefinition->stageDefinition.entities, environmentPosition, this->entryPointDefinition->destinationName);
 
+		// if global position of destination entity could be found, move the hero and the screen there
         if(initialPosition)
         {
             // apply entry point offset
@@ -136,14 +137,13 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
             // set world's limits
             Screen_setStageSize(Screen_getInstance(), this->entryPointDefinition->platformerStageDefinition->stageDefinition.size);
 
-            // set offset screen position
+            // focus screen on new position
             VBVec3D screenPosition =
             {
                 initialPosition->x - ITOFIX19_13(__SCREEN_WIDTH >> 1),
                 initialPosition->y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
                 initialPosition->z
             };
-            
             Screen_setPosition(Screen_getInstance(), screenPosition);
 
     	    // load stage
@@ -152,6 +152,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
             // get hero entity
             Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
 
+			// if no hero could be found, create one. otherwise, move found hero.
             if(!hero)
             {
                 PositionedEntity positionedEntity =
@@ -301,7 +302,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				// tell any interested entity
 				GameState_propagateMessage(__SAFE_CAST(GameState, this), kSetUpLevel);
 	
-				// account for any entity's tranform modification during their initialization
+				// account for any entity's transform modification during their initialization
 				GameState_transform(__SAFE_CAST(GameState, this));
 				
 				// show level after 0.5 second
@@ -313,7 +314,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 		case kStartLevel:
 
-			// fade screen
+			// fade in
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 			// erase level message in n milliseconds, if there was one

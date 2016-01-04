@@ -251,7 +251,7 @@ PlatformerStageROMDef LEVEL_1_COIN_ROOM_ST =
 // ---------------------------------------------------------------------------------------------------------
 
 PlatformerStageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP[] =
-{
+{{
 	// the stage to load
     (PlatformerStageDefinition*)&LEVEL_1_COIN_ROOM_ST,
 
@@ -263,4 +263,4 @@ PlatformerStageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP[] =
 
 	// does a level start at this entry point?
 	false,
-};
+}};

@@ -60,7 +60,7 @@ PositionedEntityROMDef TOWER_MAIN_1_CHILD_ENTITIES[] =
 	{&COLLISION_4x2x1,		{FTOFIX19_13(88),   FTOFIX19_13(72), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone bottom right
 	{&COLLISION_4x8x1,		{FTOFIX19_13(176),  FTOFIX19_13(144), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // step stone bottom right
 	{&COLLISION_48x3x1,		{FTOFIX19_13(-172), FTOFIX19_13(28), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
-	{&DOOR_AG,	            {FTOFIX19_13(-144), FTOFIX19_13(159), FTOFIX19_13(1)}, NULL, NULL, NULL, false},
+	{&DOOR_AG,	            {FTOFIX19_13(-144), FTOFIX19_13(159), FTOFIX19_13(1)}, "EntryDoor", NULL, NULL, false},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -68,8 +68,8 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
-	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 128), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&LAVA_IG,		        {FTOFIX19_13(190), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT + 80), FTOFIX19_13(LAYER_0)}, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
+	{&HERO_AC, 				{FTOFIX19_13(72), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 128), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
+    {&LAVA_IG,		        {FTOFIX19_13(190), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT + 64), FTOFIX19_13(LAYER_0)}, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
@@ -260,16 +260,16 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
 // ---------------------------------------------------------------------------------------------------------
 
 PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
-{
+{{
 	// the stage to load
     (PlatformerStageDefinition*)&LEVEL_1_TOWER_ST,
 
 	// name of the entity to start at
-    NULL,
+    "EntryDoor",
 
     // offset from entry point (x, y, z)
     {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
 
 	// does a level start at this entry point?
 	false,
-};
+}};
