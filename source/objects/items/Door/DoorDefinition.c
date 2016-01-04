@@ -22,8 +22,6 @@
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
 #include "Door.h"
-#include "EnterRoomDoor.h"
-#include "ExitRoomDoor.h"
 #include "LayerSwitchDoor.h"
 
 
@@ -268,73 +266,6 @@ AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_AG =
     // initial animation
     "Closed",
 };
-
-AnimatedInGameEntityROMDef ENTER_ROOM_DOOR_AG =
-{
-    {
-        {
-            __TYPE(EnterRoomDoor),
-            (SpriteROMDef**)DOOR_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
-
-        // in game type
-        kDoor,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-    	
-    	// depth
-        4
-    },
-
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
-
-    // initial animation
-    "Closed",
-};
-
-AnimatedInGameEntityROMDef EXIT_ROOM_DOOR_AG =
-{
-    {
-        {
-            __TYPE(ExitRoomDoor),
-            (SpriteROMDef**)DOOR_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
-
-        // in game type
-        kDoor,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-    	
-    	// depth
-        4
-    },
-
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
-
-    // initial animation
-    "Closed",
-};
-
 
 BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 {

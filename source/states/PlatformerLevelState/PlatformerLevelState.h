@@ -49,14 +49,8 @@ __CLASS(PlatformerLevelState);
 	/* inherits */																						\
 	GameState_ATTRIBUTES																				\
 																										\
-	/* the stage to load */																				\
-	PlatformerStageDefinition* platformerStageDefinition;												\
-																										\
-	/* hero's last position for when exiting a room */													\
-	VBVec3D heroLastPosition;																			\
-																										\
-	/* flag to know if exiting a room */																\
-	bool isExitingRoom;																					\
+	/* the stage and respective entry point to load */													\
+	PlatformerStageEntryPointDefinition* entryPointDefinition;											\
 																										\
 	/* to allow moving the screen */																	\
 	u8 mode: 4;																							\
@@ -101,6 +95,26 @@ typedef struct PlatformerStageDefinition
 
 typedef const PlatformerStageDefinition PlatformerStageROMDef;
 
+
+typedef struct PlatformerStageEntryPointDefinition
+{
+	// the stage to load
+	PlatformerStageDefinition* platformerStageDefinition;
+
+	// name of the entity to start at
+	char* destinationName;
+
+    // offset from entry point (x, y, z)
+    VBVec3D offset;
+
+	// does a level start at this entry point?
+	bool isLevelStartPoint;
+
+} PlatformerStageEntryPointDefinition;
+
+typedef const PlatformerStageEntryPointDefinition PlatformerStageEntryPointROMDef;
+
+
 enum PlatformerLevelStateMessageTypes
 {
 	kHeroDied = kLastEngineMessage + 1,
@@ -139,13 +153,11 @@ enum PlatformerLevelStateMessageTypes
 
 PlatformerLevelState PlatformerLevelState_getInstance(void);
 
-void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageDefinition* platformerStageDefinition);
+void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageEntryPointDefinition* entryPointDefinition);
 PlatformerStageDefinition* PlatformerLevelState_getStage(PlatformerLevelState this);
-void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDefinition);
+void PlatformerLevelState_enterStage(PlatformerLevelState this, PlatformerStageEntryPointDefinition* entryPointDefinition);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
-void PlatformerLevelState_enterRoom(PlatformerStageDefinition* platformerStageDefinition);
-void PlatformerLevelState_exitRoom(PlatformerStageDefinition* platformerStageDefinition);
 
 
 #endif

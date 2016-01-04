@@ -32,20 +32,10 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S MACROS
-//---------------------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Door, AnimatedInGameEntity);
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -65,7 +55,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
 
-	this->destination = NULL;
+	this->destinationDefinition = NULL;
 }
 
 // class's destructor
@@ -77,11 +67,11 @@ void Door_destructor(Door this)
 }
 
 // get destination
-void* Door_getExtraInfo(Door this)
+PlatformerStageEntryPointDefinition* Door_getExtraInfo(Door this)
 {
 	ASSERT(this, "Door::setExtraInfo: null this");
 
-	return this->destination;
+	return this->destinationDefinition;
 }
 
 // set destination
@@ -89,7 +79,7 @@ void Door_setExtraInfo(Door this, void* extraInfo)
 {
 	ASSERT(this, "Door::setExtraInfo: null this");
 
-	this->destination = (void (*)(void))extraInfo;
+	this->destinationDefinition = (PlatformerStageEntryPointDefinition*)extraInfo;
 }
 
 // state's on message
@@ -101,7 +91,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 			if(Door_hasDestination(this))
 			{
-				PlatformerLevelState_goToLevel((PlatformerStageDefinition*)this->destination);
+				PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), this->destinationDefinition);
 				return true;
 			}
 			break;
@@ -128,5 +118,5 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 bool Door_hasDestination(Door this)
 {
-	return NULL != this->destination;
+	return NULL != this->destinationDefinition;
 }

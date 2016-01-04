@@ -55,6 +55,8 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
+extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
@@ -73,14 +75,8 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE();
 
-	this->platformerStageDefinition = (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST;
+	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_MAIN_MAIN_EP;
 
-	this->heroLastPosition.x = 0;
-	this->heroLastPosition.y = 0;
-	this->heroLastPosition.z = 0;
-	
-	this->isExitingRoom = false;
-	
 	// set the custom movement screen manager now
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 }
@@ -116,75 +112,85 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	
 	Game_disableKeypad(Game_getInstance());
 
+    // get list of entities that should not be loaded
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
-	
-	// check if exiting room
-	if(this->isExitingRoom)
+
+    // load stage
+    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->entryPointDefinition->platformerStageDefinition->stageDefinition), entityNamesToIgnore, true);
+
+	// check if destination entity name is given
+	if(this->entryPointDefinition->destinationName)
 	{
-		VBVec3D screenPosition = 
-		{
-			this->heroLastPosition.x - ITOFIX19_13(__SCREEN_WIDTH >> 1),
-			this->heroLastPosition.y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
-			this->heroLastPosition.z
-		};
-		
-		// set world's limits
-		Screen_setStageSize(Screen_getInstance(), this->platformerStageDefinition->stageDefinition.size);
+	    // TODO: iterate definition; this only finds instantiated entities
+        Container entity = Container_getChildByName(__SAFE_CAST(Container, this->stage), this->entryPointDefinition->destinationName, true);
 
-		// must set the screen's position before loading the stage
-		Screen_setPosition(Screen_getInstance(), screenPosition);
-	    
-		// load stage
-		GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
+        if(entity)
+        {
+            // get global position of destination entity
+            VBVec3D initialPosition = *Container_getGlobalPosition(entity);
 
-		Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
+            // apply entry point offset
+            initialPosition.x += this->entryPointDefinition->offset.x;
+            initialPosition.y += this->entryPointDefinition->offset.y;
+            initialPosition.z += this->entryPointDefinition->offset.z;
 
-		if(!hero)
-		{
-			PositionedEntity positionedEntity =
-			{
-				&HERO_AC, 				
-				{
-					this->heroLastPosition.x, 
-					this->heroLastPosition.y, 
-					this->heroLastPosition.z
-				}, 
-				HERO_NAME, 
-				NULL, 
-				NULL,
-				false
-			};
+            // set world's limits
+            Screen_setStageSize(Screen_getInstance(), this->entryPointDefinition->platformerStageDefinition->stageDefinition.size);
 
-			hero = __SAFE_CAST(Container, Stage_addPositionedEntity(this->stage, &positionedEntity, true));
-			
-			// make sure that the streaming doesn't load the hero again
-			Stage_registerEntityId(this->stage, Container_getId(hero), &HERO_AC);
-		}
-		else
-		{
-			Actor_setPosition(__SAFE_CAST(Actor, hero), &this->heroLastPosition);
-		}
-		
-		this->isExitingRoom = false;
+            // set offset screen position
+            VBVec3D screenPosition =
+            {
+                initialPosition.x - ITOFIX19_13(__SCREEN_WIDTH >> 1),
+                initialPosition.y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
+                initialPosition.z
+            };
+            Screen_setPosition(Screen_getInstance(), screenPosition);
+
+            // get hero entity
+            Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
+
+            if(!hero)
+            {
+                PositionedEntity positionedEntity =
+                {
+                    &HERO_AC,
+                    {
+                        initialPosition.x,
+                        initialPosition.y,
+                        initialPosition.z
+                    },
+                    HERO_NAME,
+                    NULL,
+                    NULL,
+                    false
+                };
+
+                hero = __SAFE_CAST(Container, Stage_addPositionedEntity(this->stage, &positionedEntity, true));
+
+                // make sure that the streaming doesn't load the hero again
+                Stage_registerEntityId(this->stage, Container_getId(hero), &HERO_AC);
+            }
+            else
+            {
+                Actor_setPosition(__SAFE_CAST(Actor, hero), &initialPosition);
+            }
+        }
 	}
-	else
-	{
-		GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->platformerStageDefinition->stageDefinition), entityNamesToIgnore, true);
-	}
-	
+
+    // free some memory
 	__DELETE(entityNamesToIgnore);
 
-	// playing by default
+	// level is paused
 	PlatformerLevelState_setModeToPaused(this);
-	
+
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
 
-	// reset clock
+	// reset clocks
 	Game_startClocks(Game_getInstance());
-		
-	// render gui values
+
+	// fire event to render gui values
     Object_fireEvent(__SAFE_CAST(Object, this), EVENT_LEVEL_ENTER);
 }
 
@@ -268,20 +274,18 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
     {
 		case kSetUpLevel:
 			{
-				// print level name
-	            PlatformerStageDefinition* platformerStageDefinition = this->platformerStageDefinition;
-	
-	            if((*platformerStageDefinition).name)
+				// print level name if at level start point
+				if(this->entryPointDefinition->isLevelStartPoint && this->entryPointDefinition->platformerStageDefinition->name)
 	            {
-				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)(*platformerStageDefinition).name);
+				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->entryPointDefinition->platformerStageDefinition->name);
 	                Printing_text(Printing_getInstance(), "\"", 17, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GUIFont");
 
-                    if((*platformerStageDefinition).identifier)
+                    if(this->entryPointDefinition->platformerStageDefinition->identifier)
                     {
                         char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-                        char* strLevelName = (*platformerStageDefinition).identifier;
+                        char* strLevelName = this->entryPointDefinition->platformerStageDefinition->identifier;
                         Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
                         Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
                     }
@@ -305,8 +309,11 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			// fade screen
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
-			// erase message in 1 second
-			MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
+			// erase level message in n milliseconds, if there was one
+            if(this->entryPointDefinition->isLevelStartPoint && this->entryPointDefinition->platformerStageDefinition->name)
+            {
+			    MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
+            }
 			
 			// reset clock and restart
 			Clock_reset(Game_getInGameClock(Game_getInstance()));
@@ -388,51 +395,22 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 }
 
 // set the next state to load
-void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageDefinition* platformerStageDefinition)
+void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageEntryPointDefinition* entryPointDefinition)
 {
-	this->platformerStageDefinition = platformerStageDefinition;
+	this->entryPointDefinition = entryPointDefinition;
 }
 
 // get current stage's definition
 PlatformerStageDefinition* PlatformerLevelState_getStage(PlatformerLevelState this)
 {
-	return this->platformerStageDefinition;
+	return this->entryPointDefinition->platformerStageDefinition;
 }
 
 // start a given level
-void PlatformerLevelState_goToLevel(PlatformerStageDefinition* platformerStageDefinition)
+void PlatformerLevelState_enterStage(PlatformerLevelState this, PlatformerStageEntryPointDefinition* entryPointDefinition)
 {
-	PlatformerLevelState this = PlatformerLevelState_getInstance();
-	this->platformerStageDefinition = platformerStageDefinition;
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
-}
+	this->entryPointDefinition = entryPointDefinition;
 
-// start a given room
-void PlatformerLevelState_enterRoom(PlatformerStageDefinition* platformerStageDefinition)
-{
-	PlatformerLevelState this = PlatformerLevelState_getInstance();
-
-	// save hero's actual position
-	Hero hero = __SAFE_CAST(Hero, Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, false));
-	ASSERT(hero, "PlatformerLevelState::enterRoom: hero not found");
-
-	if(hero)
-	{
-		this->heroLastPosition = *Container_getLocalPosition(__SAFE_CAST(Container, hero));
-		this->isExitingRoom = false;
-	}
-
-	this->platformerStageDefinition = platformerStageDefinition;
-	
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
-}
-
-// exit a given room
-void PlatformerLevelState_exitRoom(PlatformerStageDefinition* platformerStageDefinition)
-{
-	PlatformerLevelState this = PlatformerLevelState_getInstance();
-	this->platformerStageDefinition = platformerStageDefinition;
-	this->isExitingRoom = true;
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }
 

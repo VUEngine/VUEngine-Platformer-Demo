@@ -253,3 +253,23 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
     // name
     NULL,
 };
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												ENTRY POINTS
+// ---------------------------------------------------------------------------------------------------------
+
+PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
+{
+	// the stage to load
+    (PlatformerStageDefinition*)&LEVEL_1_TOWER_ST,
+
+	// name of the entity to start at
+    NULL,
+
+    // offset from entry point (x, y, z)
+    {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
+
+	// does a level start at this entry point?
+	false,
+};
