@@ -85,7 +85,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_MANAGED[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_MANAGED[] =
 {
 	{&LEVEL_1_MAIN_1_BACK_5_IM,         {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(SORTING_OFFSET * 2)}, NULL, NULL, NULL, false},
-	{&LAYER_SWITCH_DOOR_BACK_AG, 	    {FTOFIX19_13(145), FTOFIX19_13(-82), FTOFIX19_13(SORTING_OFFSET)}, "Door Back 1", NULL, (void*)&LEVEL_1_MAIN_LS_BACK_EP, false},
+	{&LAYER_SWITCH_DOOR_BACK_AG, 	    {FTOFIX19_13(145), FTOFIX19_13(-82), FTOFIX19_13(SORTING_OFFSET)}, "Door Back 1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
 	{&COLLISION_ONEWAY_7x1x1, 	        {FTOFIX19_13(190), FTOFIX19_13(-115), FTOFIX19_13(0)}, NULL, NULL, NULL, false},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -179,15 +179,13 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{&CANNON_AC,                        {FTOFIX19_13(2404), FTOFIX19_13(282), FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
 	{&COLLISION_8x3x1, 	                {FTOFIX19_13(2404), FTOFIX19_13(317), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-//	{&HERO_AC, 				            {FTOFIX19_13(2540), FTOFIX19_13(300), FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
-
     {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(2732), FTOFIX19_13(356), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_6_MANAGED, NULL, false},
 
 	{&COLLISION_48x28x1, 	            {FTOFIX19_13(2676), FTOFIX19_13(429), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COLLISION_ONEWAY_7x1x1, 	        {FTOFIX19_13(2602), FTOFIX19_13(257), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COLLISION_12x4x1,                 {FTOFIX19_13(2676), FTOFIX19_13(253), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&STAR_AG,  	        			{FTOFIX19_13(2544), FTOFIX19_13(108), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, false},
-	{&LAYER_SWITCH_DOOR_AG,				{FTOFIX19_13(2669), FTOFIX19_13(300), FTOFIX19_13(LAYER_0_BACK)}, "Door Front 1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
+	{&LAYER_SWITCH_DOOR_AG,				{FTOFIX19_13(2669), FTOFIX19_13(300), FTOFIX19_13(LAYER_0_BACK)}, "Door Front 1", NULL, (void*)&LEVEL_1_MAIN_LS_BACK_EP, false},
 	{&COLLISION_48x28x1, 	            {FTOFIX19_13(2900), FTOFIX19_13(349), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2732), FTOFIX19_13(224), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2748), FTOFIX19_13(224), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
@@ -324,10 +322,8 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
         // initial screen position
         {
             // x
-//            ITOFIX19_13(2400),
             ITOFIX19_13(0),
             // y
-            //ITOFIX19_13(200),
             ITOFIX19_13(0),
             // z
             ITOFIX19_13(0)
@@ -414,7 +410,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
     (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
-    "Door Back 1",
+    "Door Front 1",
 
     // offset from entry point (x, y, z)
     {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
@@ -429,7 +425,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
     (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
-    "Door Front 1",
+    "Door Back 1",
 
     // offset from entry point (x, y, z)
     {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
