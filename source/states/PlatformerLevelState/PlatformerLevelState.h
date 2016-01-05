@@ -64,9 +64,6 @@ __CLASS(PlatformerLevelState);
 #define EVENT_KEY_RELEASED		"keyUp"
 #define EVENT_KEY_HOLD			"keyHold"
 
-#define EVENT_LEVEL_ENTER       "LevelEnter"
-#define EVENT_LEVEL_RESUME      "LevelResume"
-
 #define EVENT_HIT_TAKEN		    "HitTaken"
 #define EVENT_COIN_TAKEN		"CoinTaken"
 #define EVENT_KEY_TAKEN			"KeyTaken"

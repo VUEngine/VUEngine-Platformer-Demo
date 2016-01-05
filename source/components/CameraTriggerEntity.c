@@ -28,6 +28,7 @@
 #include <PlatformerLevelState.h>
 #include <CustomScreenMovementManager.h>
 
+
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
@@ -96,9 +97,9 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 }
 
 // process message
-int CameraTriggerEntity_doMessage(CameraTriggerEntity this, int message)
+bool CameraTriggerEntity_handlePropagatedMessage(CameraTriggerEntity this, int message)
 {
-	ASSERT(this, "HeroMoving::doMessage: null this");
+	ASSERT(this, "HeroMoving::handlePropagatedMessage: null this");
 
 	switch(message)
 	{
