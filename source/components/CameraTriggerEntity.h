@@ -29,24 +29,21 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CameraTriggerEntity_METHODS												\
-		TriggerEntity_METHODS													\
+#define CameraTriggerEntity_METHODS																		\
+		TriggerEntity_METHODS																			\
 
+#define CameraTriggerEntity_SET_VTABLE(ClassName)														\
+		TriggerEntity_SET_VTABLE(ClassName)																\
+		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);										\
+		__VIRTUAL_SET(ClassName, CameraTriggerEntity, handlePropagatedMessage);							\
 
-#define CameraTriggerEntity_SET_VTABLE(ClassName)								\
-		TriggerEntity_SET_VTABLE(ClassName)										\
-		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);				\
-		__VIRTUAL_SET(ClassName, CameraTriggerEntity, doMessage);				\
-
-
-// A CameraTriggerEntity which represent a generic object inside a Stage
-#define CameraTriggerEntity_ATTRIBUTES											\
-																				\
-	/* super's attributes */													\
-	TriggerEntity_ATTRIBUTES													\
-																				\
-	/* update axis flag */														\
-	VBVec3DFlag overridePositionFlag;											\
+#define CameraTriggerEntity_ATTRIBUTES																	\
+																										\
+	/* super's attributes */																			\
+	TriggerEntity_ATTRIBUTES																			\
+																										\
+	/* update axis flag */																				\
+	VBVec3DFlag overridePositionFlag;																	\
 
 __CLASS(CameraTriggerEntity);
 
@@ -55,9 +52,9 @@ __CLASS(CameraTriggerEntity);
 // 											CLASS'S ROM DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 typedef TriggerEntityDefinition CameraTriggerEntityDefinition;
 typedef const CameraTriggerEntityDefinition CameraTriggerEntityROMDef;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
@@ -68,7 +65,7 @@ __CLASS_NEW_DECLARE(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraTr
 void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, const char* const name);
 void CameraTriggerEntity_destructor(CameraTriggerEntity this);
 void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform);
-int CameraTriggerEntity_doMessage(CameraTriggerEntity this, int message);
+bool CameraTriggerEntity_handlePropagatedMessage(CameraTriggerEntity this, int message);
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag);
 VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this);
 

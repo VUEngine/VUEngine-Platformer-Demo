@@ -202,9 +202,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 	// reset clocks
 	Game_startClocks(Game_getInstance());
-
-	// fire event to render gui values
-    Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_LEVEL_ENTER);
 }
 
 // state's exit
@@ -253,9 +250,6 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-
-	// render gui values
-    Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_LEVEL_RESUME);
 
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);

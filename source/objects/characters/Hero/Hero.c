@@ -732,13 +732,14 @@ void Hero_enterDoor(Hero this)
 
 	// reset currently overlapping door
 	Hero_setCurrentlyOverlappingDoor(this, NULL);
-	
+
 	// hide hint immediately
 	if(this->currentHint != NULL)
 	{
 		Entity_hide(__SAFE_CAST(Entity, this->currentHint));
 	}
 
+	// play door sound
     SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
@@ -1266,9 +1267,9 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 }
 
 // process message
-int Hero_doMessage(Hero this, int message)
+bool Hero_handlePropagatedMessage(Hero this, int message)
 {
-	ASSERT(this, "HeroMoving::doMessage: null this");
+	ASSERT(this, "Hero::handlePropagatedMessage: null this");
 
 	switch(message)
 	{

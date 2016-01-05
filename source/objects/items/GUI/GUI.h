@@ -36,6 +36,7 @@
 #define GUI_SET_VTABLE(ClassName)																		\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
 	__VIRTUAL_SET(ClassName, GUI, ready);																\
+	__VIRTUAL_SET(ClassName, GUI, handlePropagatedMessage);												\
 
 __CLASS(GUI);
 
@@ -69,6 +70,7 @@ void GUI_printEnergy(GUI this);
 void GUI_printKey(GUI this);
 void GUI_printLevel(GUI this);
 void GUI_printAll(GUI this);
+bool GUI_handlePropagatedMessage(GUI this, int message);
 
 
 #endif

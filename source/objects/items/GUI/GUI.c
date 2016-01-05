@@ -48,13 +48,12 @@ __CLASS_DEFINITION(GUI, AnimatedInGameEntity);
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
+void GUI_printAll(GUI this);
 static void GUI_onSecondChange(GUI this, Object eventFirer);
 static void GUI_onHitTaken(GUI this, Object eventFirer);
 static void GUI_onCoinTaken(GUI this, Object eventFirer);
 static void GUI_onKeyTaken(GUI this, Object eventFirer);
 static void GUI_onPowerUp(GUI this, Object eventFirer);
-static void GUI_onLevelEnter(GUI this, Object eventFirer);
-static void GUI_onLevelResume(GUI this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -85,8 +84,6 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUp, EVENT_POWERUP);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelEnter, EVENT_LEVEL_ENTER);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelResume, EVENT_LEVEL_RESUME);
 }
 
 // class's destructor
@@ -98,8 +95,6 @@ void GUI_destructor(GUI this)
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
     Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUp, EVENT_POWERUP);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelEnter, EVENT_LEVEL_ENTER);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelResume, EVENT_LEVEL_RESUME);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -229,14 +224,17 @@ static void GUI_onPowerUp(GUI this, Object eventFirer)
 	GUI_updateSprite(this);
 }
 
-// handle event
-static void GUI_onLevelEnter(GUI this, Object eventFirer)
+bool GUI_handlePropagatedMessage(GUI this, int message)
 {
-	GUI_printAll(this);
-}
+	ASSERT(this, "GUI::handlePropagatedMessage: null this");
 
-// handle event
-static void GUI_onLevelResume(GUI this, Object eventFirer)
-{
-	GUI_printAll(this);
+	switch(message)
+	{
+		case kSetUpLevel:
+		case kResumeLevel:
+			GUI_printAll(this);
+			break;
+	}
+
+	return false;
 }

@@ -60,7 +60,7 @@ enum HeroPowerUps
 	__VIRTUAL_SET(ClassName, Hero, ready);																\
 	__VIRTUAL_SET(ClassName, Hero, die);																\
 	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);														\
-	__VIRTUAL_SET(ClassName, Hero, doMessage);															\
+	__VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);											\
 	__VIRTUAL_SET(ClassName, Hero, handleMessage);														\
 	__VIRTUAL_SET(ClassName, Hero, suspend);															\
 	__VIRTUAL_SET(ClassName, Hero, resume);																\
@@ -159,7 +159,7 @@ void Hero_resetCurrentlyOverlappingDoor(Hero this);
 void Hero_resetCurrentlyOverlappingHideLayer(Hero this);
 int Hero_processCollision(Hero this, Telegram telegram);
 bool Hero_handleMessage(Hero this, Telegram telegram);
-int Hero_doMessage(Hero this, int message);
+bool Hero_handlePropagatedMessage(Hero this, int message);
 void Hero_suspend(Hero this);
 void Hero_resume(Hero this);
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
