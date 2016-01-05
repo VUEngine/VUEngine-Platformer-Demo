@@ -161,21 +161,12 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 // class's destructor
 void Hero_destructor(Hero this)
 {
-	// free the instance pointer
 	ASSERT(this, "Hero::destructor: null this");
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
+	// unset the hero as transformation base entity from the custom screen movement manager
 	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), NULL);
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
-
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
-
-	// unset entity and children
-	this->feetDust = NULL;
-	this->currentHint = NULL;
-	this->cameraBoundingBox = NULL;
-	hero = NULL;
 
     // remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
@@ -184,6 +175,15 @@ void Hero_destructor(Hero this)
 
     // discard pending delayed messages
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
+
+	// inform the game about the hero's death
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
+
+	// free the instance pointers
+	this->feetDust = NULL;
+	this->currentHint = NULL;
+	this->cameraBoundingBox = NULL;
+	hero = NULL;
 
 	// delete the super object
 	// must always be called at the end of the destructor

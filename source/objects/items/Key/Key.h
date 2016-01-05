@@ -30,21 +30,20 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Key_METHODS															\
+#define Key_METHODS																						\
 	AnimatedInGameEntity_METHODS;
 	
 
-#define Key_SET_VTABLE(ClassName)												\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Key, handleMessage);								\
-	__VIRTUAL_SET(ClassName, Key, ready);										\
+#define Key_SET_VTABLE(ClassName)																		\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
+	__VIRTUAL_SET(ClassName, Key, handleMessage);														\
 
 __CLASS(Key);
 
-#define Key_ATTRIBUTES															\
-																				\
-	/* it is derived from */													\
-	AnimatedInGameEntity_ATTRIBUTES												\
+#define Key_ATTRIBUTES																					\
+																										\
+	/* it is derived from */																			\
+	AnimatedInGameEntity_ATTRIBUTES																		\
 
 
 //---------------------------------------------------------------------------------------------------------
