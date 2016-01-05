@@ -21,6 +21,8 @@
 
 #include <Image.h>
 #include <MBgmapSprite.h>
+#include <macros.h>
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -80,7 +82,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
 	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_6_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{ITOFIX19_13(85), ITOFIX19_13(-192), FTOFIX19_13(0.001f)},
+	{ITOFIX19_13(85), ITOFIX19_13(-192), FTOFIX19_13(SORTING_OFFSET * 4)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

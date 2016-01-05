@@ -41,7 +41,7 @@ CharSetROMDef LEVEL_1_SMALL_ROOM_MAIN_BACK_CH =
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    5,
+    13,
 
     // allocation type
     __NOT_ANIMATED,
