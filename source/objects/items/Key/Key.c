@@ -75,14 +75,6 @@ void Key_destructor(Key this)
 	__DESTROY_BASE;
 }
 
-// ready method
-void Key_ready(Key this)
-{
-	ASSERT(this, "Key::initialize: null this");
-
-	Entity_ready(__SAFE_CAST(Entity, this));
-}
-
 // state's on message
 bool Key_handleMessage(Key this, Telegram telegram)
 {

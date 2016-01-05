@@ -87,8 +87,6 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUp, EVENT_POWERUP);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelEnter, EVENT_LEVEL_ENTER);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onLevelResume, EVENT_LEVEL_RESUME);
-
-    GUI_printAll(this);
 }
 
 // class's destructor
@@ -106,6 +104,19 @@ void GUI_destructor(GUI this)
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
+}
+
+void GUI_ready(GUI this)
+{
+	ASSERT(this, "GUI::ready: null this");
+
+	// call base
+	Entity_ready(__SAFE_CAST(Entity, this));
+
+	// initially print gui
+	// GUI_printAll calls GUI_updateSprite, which modifies Sprites. These are not yet available in the entity's
+	// construction phase, so we need to utilize the ready method.
+    GUI_printAll(this);
 }
 
 // print elapsed time to gui

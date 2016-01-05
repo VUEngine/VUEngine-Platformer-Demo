@@ -34,7 +34,8 @@
 	AnimatedInGameEntity_METHODS;
 
 #define GUI_SET_VTABLE(ClassName)																		\
-	AnimatedInGameEntity_SET_VTABLE(ClassName)															\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
+	__VIRTUAL_SET(ClassName, GUI, ready);																\
 
 __CLASS(GUI);
 
@@ -61,6 +62,7 @@ __CLASS_NEW_DECLARE(GUI, AnimatedInGameEntityDefinition* animatedInGameEntityDef
 
 void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void GUI_destructor(GUI this);
+void GUI_ready(GUI this);
 void GUI_printClock(GUI this);
 void GUI_printCoins(GUI this);
 void GUI_printEnergy(GUI this);
