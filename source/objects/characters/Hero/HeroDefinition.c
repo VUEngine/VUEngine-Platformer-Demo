@@ -398,7 +398,7 @@ CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	14 * 8,
+    	18 * 8,
 
     	// depth
     	4 * 8
