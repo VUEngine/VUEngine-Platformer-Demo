@@ -192,7 +192,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{&COIN_AG,                          {FTOFIX19_13(2732), FTOFIX19_13(224), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2748), FTOFIX19_13(224), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(2764), FTOFIX19_13(224), FTOFIX19_13(LAYER_0)}, "Coin 006", NULL, NULL, false},
-	{&DOOR_AG,				            {FTOFIX19_13(2900), FTOFIX19_13(220), FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_TOWER_MAIN_EP, false},
+	{&DOOR_AG,				            {FTOFIX19_13(2900), FTOFIX19_13(220), FTOFIX19_13(LAYER_0_BACK)}, NULL, NULL, (void*)&LEVEL_1_TOWER_MAIN_EP, false},
 	{&GRASS_AG,				            {FTOFIX19_13(2960), FTOFIX19_13(228), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
 	{&COLLISION_2x28x1,                 {FTOFIX19_13(2996), FTOFIX19_13(116), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
@@ -253,9 +253,9 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
         // streaming
     	{
     		// delay per cycle
-    		20,
+    		16,
     		// load padding
-    		96,
+    		80,
     		// unload padding
     		16,
     		// streaming amplitude

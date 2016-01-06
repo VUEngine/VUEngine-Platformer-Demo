@@ -1282,6 +1282,10 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 
         	Game_pausePhysics(Game_getInstance(), false);
         	Game_enableKeypad(Game_getInstance());
+        	if(!(__YAXIS & Body_isMoving(this->body)))
+        	{
+        		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+        	}
         	break;
 
         case kHeroDied:
