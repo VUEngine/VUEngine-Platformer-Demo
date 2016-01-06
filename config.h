@@ -144,7 +144,7 @@
 	__BLOCK_DEFINITION(112, 36)																			\
 	__BLOCK_DEFINITION(96, 48)																			\
 	__BLOCK_DEFINITION(76, 36)																			\
-	__BLOCK_DEFINITION(68, 70)																			\
+	__BLOCK_DEFINITION(68, 75)																			\
 	__BLOCK_DEFINITION(28, 260)																			\
 	__BLOCK_DEFINITION(20, 654)																			\
 	__BLOCK_DEFINITION(16, 290)																			\

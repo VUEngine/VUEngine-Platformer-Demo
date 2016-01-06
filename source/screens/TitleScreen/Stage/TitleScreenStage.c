@@ -35,20 +35,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP;
-extern PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												DEFINES
-//---------------------------------------------------------------------------------------------------------
-
-#define LEVEL_X_SIZE 	    __SCREEN_WIDTH
-#define LEVEL_Y_SIZE 	    __SCREEN_HEIGHT
-#define LEVEL_Z_SIZE 	    __SCREEN_WIDTH
-
-#define SCREEN_X_POSITION 	0
-#define SCREEN_Y_POSITION 	(LEVEL_Y_SIZE - __SCREEN_HEIGHT)
-#define SCREEN_Z_POSITION 	0
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -128,11 +114,11 @@ StageROMDef TITLE_SCREEN_ST =
     // size
     {
         // x
-        LEVEL_X_SIZE,
+        __SCREEN_WIDTH,
         // y
-        LEVEL_Y_SIZE,
+		__SCREEN_HEIGHT,
         // z
-        LEVEL_Z_SIZE
+        __SCREEN_WIDTH,
     },
 
     // streaming
@@ -209,11 +195,11 @@ StageROMDef TITLE_SCREEN_ST =
     // initial screen position
     {
         // x
-        ITOFIX19_13(SCREEN_X_POSITION),
+        ITOFIX19_13(0),
         // y
-        ITOFIX19_13(SCREEN_Y_POSITION),
+        ITOFIX19_13(0),
         // z
-        ITOFIX19_13(SCREEN_Z_POSITION)
+        ITOFIX19_13(0)
     },
 
     // optical configuration values
