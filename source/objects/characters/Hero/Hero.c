@@ -1328,6 +1328,8 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				};
 	
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
+
+				Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 			}
 			
 			//Hero_locateOverNextFloor(this);
