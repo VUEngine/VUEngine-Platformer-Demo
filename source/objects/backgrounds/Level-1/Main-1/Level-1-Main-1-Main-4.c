@@ -72,23 +72,43 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_4_TX =
     1,
 };
 
-BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_4_IM_SPRITE =
+TextureROMDef* LEVEL_1_MAIN_1_MAIN_4_IM_TEXTURES[] = 
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
 	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_4_TX,
-
-	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
-	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	NULL
 };
+ 
+MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_4_IM_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(MBgmapSprite),
+
+		// texture definition
+		NULL,
+
+		// displacement (x, y, z) (in pixels)
+		{0, 0, 0},
+		
+		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+		WRLD_BGMAP,
+		
+		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+		WRLD_ON,
+	},
+	
+	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_4_IM_TEXTURES,
+	
+	// SCX/SCY
+	WRLD_1x1,
+
+	// x loop
+	false,
+	
+	// y loop
+	false
+};
+
 
 extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE;
 
