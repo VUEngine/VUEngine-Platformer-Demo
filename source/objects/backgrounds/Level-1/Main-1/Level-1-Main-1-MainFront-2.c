@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <MBackground.h>
+#include <MBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -71,22 +72,42 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2_TX =
     1,
 };
 
-BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITE =
+TextureROMDef* LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_TEXTURES[] = 
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
 	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_2_TX,
+	NULL
+};
+ 
+MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(MBgmapSprite),
 
-	// displacement (x, y, z) (in pixels)
-	{ITOFIX19_13(-8), ITOFIX19_13(-32), FTOFIX19_13(-1)},
+		// texture definition
+		NULL,
+
+		// displacement (x, y, z) (in pixels)
+		{ITOFIX19_13(-8), ITOFIX19_13(-32), FTOFIX19_13(-1)},
+		
+		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+		WRLD_BGMAP,
+		
+		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+		WRLD_ON,
+
+	},
 	
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_TEXTURES,
 	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// SCX/SCY
+	WRLD_1x1,
+
+	// x loop
+	false,
+	
+	// y loop
+	false
 };
 
 BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITES[] =

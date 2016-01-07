@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
+#include <MBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -86,8 +87,9 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE =
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	WRLD_ON,	
 };
+
 
 BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITES[] =
 {
