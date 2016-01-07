@@ -114,6 +114,10 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 		return;
 	}
 
+	_screen->lastDisplacement.x = 0;
+	_screen->lastDisplacement.y = 0;
+	_screen->lastDisplacement.z = 0;
+
 	// if focusInGameEntity is defined
 	if(_screen->focusInGameEntity && this->transformationBaseEntity)
 	{
@@ -129,6 +133,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	
 			Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, this->transformationBaseEntity));
 			
+			VBVec3D screenPreviousPosition = _screen->position;
+			
 			if(this->positionFlag.x)
 			{
 				// update vertical position
@@ -136,6 +142,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 
 				fix19_13 horizontalPosition = 0xFFFFE000 & _screen->position.x;
 				fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT));
+				
 				if(horizontalPosition + ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT) < horizontalTarget)
 				{
 					_screen->position.x += ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT);
@@ -161,7 +168,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 					}
 				}
 
-				_screen->lastDisplacement.x = (_screen->position.x - _screen->lastDisplacement.x);
+				_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
 			}
 			
 			if(this->positionFlag.y)
@@ -192,7 +199,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 					}
 				}
 				
-				_screen->lastDisplacement.y = 0xFFFFE000 & (_screen->position.y - _screen->lastDisplacement.y);
+				_screen->lastDisplacement.y = 0xFFFFE000 & (_screen->position.y - screenPreviousPosition.y);
 			}
 		}
 	}
