@@ -259,7 +259,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
     		// unload padding
     		16,
     		// streaming amplitude
-    		20,
+    		24,
     	},
 
         // gravity
