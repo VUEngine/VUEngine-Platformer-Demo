@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <MBackground.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -80,7 +81,7 @@ BgmapSpriteROMDef LEVEL_1_COIN_ROOM_MAIN_BACK_IM_SPRITE =
 	(TextureDefinition*)&LEVEL_1_COIN_ROOM_MAIN_BACK_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+	{0, 0, FTOFIX19_13(SORT_BACK_4)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

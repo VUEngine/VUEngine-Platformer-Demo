@@ -138,7 +138,7 @@ ObjectSpriteROMDef STAR_SPRITE =
 	(TextureDefinition*)&STAR_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+	{0, 0, FTOFIX19_13(SORT_FRONT_1)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,

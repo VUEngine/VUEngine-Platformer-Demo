@@ -21,6 +21,7 @@
 
 #include <MBackground.h>
 #include <MBgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -73,12 +74,12 @@ TextureROMDef LEVEL_1_TOWER_MAIN_BACK_1_TX =
 };
 
 
-TextureROMDef* LEVEL_1_TOWER_MAIN_BACK_1_IM_TEXTURES[] = 
+TextureROMDef* LEVEL_1_TOWER_MAIN_BACK_1_IM_TEXTURES[] =
 {
 	(TextureDefinition*)&LEVEL_1_TOWER_MAIN_BACK_1_TX,
 	NULL
 };
- 
+
 MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 {
 	{
@@ -89,30 +90,30 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 		NULL,
 
 		// displacement (x, y, z) (in pixels)
-		{0, 0, 0},
-		
+		{0, 0, FTOFIX19_13(SORT_BACK_4)},
+
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
-		
+
 		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 		WRLD_ON,
 	},
-	
+
 	(TextureDefinition**)LEVEL_1_TOWER_MAIN_BACK_1_IM_TEXTURES,
-	
+
 	// SCX/SCY
 	WRLD_1x1,
 
 	// x loop
 	false,
-	
+
 	// y loop
 	true
 };
 
 BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITES[] =
 {
-	&LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE,
+	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE,
 	NULL
 };
 

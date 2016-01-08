@@ -23,6 +23,7 @@
 #include <ParticleSystem.h>
 #include <ObjectSprite.h>
 #include "../behaviors.h"
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------

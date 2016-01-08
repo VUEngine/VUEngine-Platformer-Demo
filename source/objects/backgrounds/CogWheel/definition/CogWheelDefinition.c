@@ -21,8 +21,8 @@
 
 #include <Image.h>
 #include <InAnimatedInGameEntity.h>
-#include <macros.h>
 #include <CogWheel.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =
 	(TextureDefinition*)&COG_WHEEL_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+	{0, 0, FTOFIX19_13(SORT_FRONT_4)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,

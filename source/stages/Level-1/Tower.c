@@ -35,7 +35,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define LEVEL_1_TOWER_HEIGHT 	5000
-#define SCREEN_Y_POSITION 	LEVEL_1_TOWER_HEIGHT - __SCREEN_HEIGHT
+#define SCREEN_Y_POSITION 		LEVEL_1_TOWER_HEIGHT - __SCREEN_HEIGHT
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -47,20 +47,20 @@
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	{&LAVA_TOP_AG, {FTOFIX19_13(0), FTOFIX19_13(-114), FTOFIX19_13(-1)}, NULL, NULL, NULL, false},
+	{&LAVA_TOP_AG, 					{FTOFIX19_13(0), 	FTOFIX19_13(-114), 	FTOFIX19_13(-1)}, NULL, NULL, NULL, false},
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef TOWER_MAIN_1_CHILD_ENTITIES[] =
 {
-	{&COLLISION_2x64x1,	    {FTOFIX19_13(-184), FTOFIX19_13(0), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer left wall
-	{&COLLISION_48x28x1,	{FTOFIX19_13(302),  FTOFIX19_13(256), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom right floor
-	{&COLLISION_2x64x1,	    {FTOFIX19_13(184),  FTOFIX19_13(0), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer right wall
-	{&COLLISION_48x28x1,	{FTOFIX19_13(-128), FTOFIX19_13(288), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom left floor
-	{&COLLISION_4x2x1,		{FTOFIX19_13(88),   FTOFIX19_13(72), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone bottom right
-	{&COLLISION_4x8x1,		{FTOFIX19_13(176),  FTOFIX19_13(144), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // step stone bottom right
-	{&COLLISION_48x3x1,		{FTOFIX19_13(-172), FTOFIX19_13(28), FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
-	{&DOOR_AG,	            {FTOFIX19_13(-144), FTOFIX19_13(159), FTOFIX19_13(1)}, "EntryDoor", NULL, NULL, false},
+	{&COLLISION_2x64x1,	    		{FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer left wall
+	{&COLLISION_48x28x1,			{FTOFIX19_13(302),  FTOFIX19_13(256), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom right floor
+	{&COLLISION_2x64x1,	    		{FTOFIX19_13(184),  FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer right wall
+	{&COLLISION_48x28x1,			{FTOFIX19_13(-128), FTOFIX19_13(288), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom left floor
+	{&COLLISION_4x2x1,				{FTOFIX19_13(88),   FTOFIX19_13(72), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone bottom right
+	{&COLLISION_4x8x1,				{FTOFIX19_13(176),  FTOFIX19_13(144), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // step stone bottom right
+	{&COLLISION_48x3x1,				{FTOFIX19_13(-172), FTOFIX19_13(28), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
+	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, NULL, false},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -74,24 +74,24 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
 
-	{&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(192), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)TOWER_MAIN_1_CHILD_ENTITIES, NULL, false},
-	{&LEVEL_1_TOWER_MAIN_BACK_1_IM, {FTOFIX19_13(192), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), FTOFIX19_13(LAYER_0_BACK)}, NULL, NULL, NULL, false},
-    {&LEVEL_1_TOWER_BACK_1_IM,      {FTOFIX19_13(192), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+	{&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(192), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), 	FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)TOWER_MAIN_1_CHILD_ENTITIES, NULL, false},
+	{&LEVEL_1_TOWER_MAIN_BACK_1_IM, {FTOFIX19_13(192), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&LEVEL_1_TOWER_BACK_1_IM,      {FTOFIX19_13(192), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
 
-    {&TORCH_AG,                     {FTOFIX19_13(76),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 136), FTOFIX19_13(LAYER_1 - SORTING_OFFSET)}, NULL, NULL, NULL, false},
-    {&TORCH_AG,                     {FTOFIX19_13(196), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 136), FTOFIX19_13(LAYER_1 - SORTING_OFFSET)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(76),  	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 136), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(196), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 136), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
 
-	{&LAVA_TRIGGER_IG,  	{FTOFIX19_13(174), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 130), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-	{&COG_WHEEL_IG,	        {FTOFIX19_13(384), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 224), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+	{&LAVA_TRIGGER_IG,  			{FTOFIX19_13(174),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 130), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COG_WHEEL_IG,	        		{FTOFIX19_13(384),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 224), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
 
-	{&COIN_AG, 				{FTOFIX19_13(132), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
-	{&COIN_AG, 				{FTOFIX19_13(148), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
-	{&COIN_AG, 				{FTOFIX19_13(132 + 32), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
-	{&COIN_AG, 				{FTOFIX19_13(148 + 32), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 						{FTOFIX19_13(132),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 						{FTOFIX19_13(148),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 						{FTOFIX19_13(164), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 						{FTOFIX19_13(180), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 92), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-	{&GRASS_AG, 			{FTOFIX19_13(332), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 121), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+	{&GRASS_AG, 					{FTOFIX19_13(332), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 121), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-	{&COIN_AG, 				{FTOFIX19_13(280), FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 204), FTOFIX19_13(LAYER_0_BACK + SORTING_OFFSET)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 						{FTOFIX19_13(280), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 204), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -195,13 +195,13 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
         // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
         {
             // SPT0
-            ITOFIX19_13(0),
+            FTOFIX19_13(LAYER_0 + SORT_BACK_3),
             // SPT1
-            ITOFIX19_13(0),
+            FTOFIX19_13(LAYER_0 + SORT_BACK_3),
             // SPT2
-            ITOFIX19_13(0),
+            FTOFIX19_13(LAYER_0 + SORT_BACK_3),
             // SPT3
-            ITOFIX19_13(20),
+            FTOFIX19_13(20),
         },
 
         // initial screen position
@@ -268,7 +268,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
     "EntryDoor",
 
     // offset from entry point (x, y, z)
-    {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
+    {0, 0, FTOFIX19_13(SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,

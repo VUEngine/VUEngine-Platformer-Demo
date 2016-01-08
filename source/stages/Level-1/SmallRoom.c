@@ -50,7 +50,7 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_ENTITIES[] =
 
     {&LEVEL_1_SMALL_ROOM_BACK_IM,       {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
     {&LEVEL_1_SMALL_ROOM_MAIN_IM,       {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&LEVEL_1_SMALL_ROOM_MAIN_BACK_IM,  {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0 + 0.001f)}, NULL, NULL, NULL, true},
+    {&LEVEL_1_SMALL_ROOM_MAIN_BACK_IM,  {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
     {&COLLISION_48x2x1,                 {FTOFIX19_13(192),  FTOFIX19_13(168), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
     {&COLLISION_48x2x1,                 {FTOFIX19_13(192),  FTOFIX19_13(56),  FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
     {&COLLISION_48x2x1,                 {FTOFIX19_13(-48),  FTOFIX19_13(120), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
@@ -64,13 +64,13 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_ENTITIES[] =
 
     {&HERO_AC,                          {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
 
-    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, "UpperEntryDoor", NULL, NULL, true},
-    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(143), FTOFIX19_13(LAYER_0 + 0.002f)}, "LowerEntryDoor", NULL, NULL, true},
+    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0)}, "UpperEntryDoor", NULL, NULL, true},
+    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(143), FTOFIX19_13(LAYER_0)}, "LowerEntryDoor", NULL, NULL, true},
 
     {&COIN_AG,                          {FTOFIX19_13(192),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, "Coin 100", NULL, NULL, true},
     {&COIN_AG,                          {FTOFIX19_13(208),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, "Coin 099", NULL, NULL, true},
 
-    {&DOOR_AG,                          {FTOFIX19_13(257),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0 + 0.002f)}, NULL, NULL, (void*)&LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP, true},
+    {&DOOR_AG,                          {FTOFIX19_13(257),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP, true},
 
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -161,13 +161,13 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
         // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
         {
             // SPT0
-            ITOFIX19_13(0),
+            FTOFIX19_13(LAYER_0 + SORT_BACK_3),
             // SPT1
-            ITOFIX19_13(0),
+            FTOFIX19_13(LAYER_0 + SORT_BACK_3),
             // SPT2
-            ITOFIX19_13(0),
+            FTOFIX19_13(LAYER_0 + SORT_BACK_3),
             // SPT3
-            ITOFIX19_13(0),
+            FTOFIX19_13(LAYER_0 + SORT_BACK_3),
         },
 
         // initial screen position
@@ -234,7 +234,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_SMALL_ROOM_MAIN_EP[] =
     "UpperEntryDoor",
 
     // offset from entry point (x, y, z)
-    {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
+    {0, 0, FTOFIX19_13(SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,
@@ -249,7 +249,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_SMALL_ROOM_LOWER_EP[] =
     "LowerEntryDoor",
 
     // offset from entry point (x, y, z)
-    {0, 0, FTOFIX19_13(-SORTING_OFFSET)},
+    {0, 0, FTOFIX19_13(SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,

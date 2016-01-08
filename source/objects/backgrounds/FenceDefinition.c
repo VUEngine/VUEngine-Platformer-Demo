@@ -21,6 +21,7 @@
 
 #include <Image.h>
 #include <ObjectSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -81,7 +82,7 @@ ObjectSpriteROMDef FENCE_IM_SPRITE =
 	(TextureDefinition*)&FENCE_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+	{0, 0, FTOFIX19_13(SORT_FRONT_3)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,

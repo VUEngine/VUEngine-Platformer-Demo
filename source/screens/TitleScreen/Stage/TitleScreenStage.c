@@ -28,6 +28,7 @@
 #include <objects.h>
 #include <screens.h>
 #include <sound.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,46 +56,46 @@ PositionedEntityROMDef CASTLE_CHILD_ENTITIES[] =
 PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&MOUND_BG_BACK_IM,     {FTOFIX19_13(0),    FTOFIX19_13(-132), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
-	{&CLOUDS_IM,            {FTOFIX19_13(0),    FTOFIX19_13(108), FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
-	{&MOUND_BG_FRONT_IM,    {FTOFIX19_13(-32),  FTOFIX19_13(152), FTOFIX19_13(LAYER_3)}, NULL, NULL, NULL, true},
+	{&MOUND_BG_BACK_IM,     {FTOFIX19_13(0),    FTOFIX19_13(-132), 	FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
+	{&CLOUDS_IM,            {FTOFIX19_13(0),    FTOFIX19_13(108), 	FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
+	{&MOUND_BG_FRONT_IM,    {FTOFIX19_13(-32),  FTOFIX19_13(152), 	FTOFIX19_13(LAYER_3)}, NULL, NULL, NULL, true},
 
-	{&MOUND_BG_CASTLE_IM, 	{FTOFIX19_13(360),  FTOFIX19_13(77), FTOFIX19_13(LAYER_3 - SORTING_OFFSET)}, NULL, (struct PositionedEntity*)CASTLE_CHILD_ENTITIES, NULL, true},
+	{&MOUND_BG_CASTLE_IM, 	{FTOFIX19_13(360),  FTOFIX19_13(77), 	FTOFIX19_13(LAYER_3)}, NULL, (struct PositionedEntity*)CASTLE_CHILD_ENTITIES, NULL, true},
 
-	{&STAR_AG, 	            {FTOFIX19_13(472),  FTOFIX19_13(-200), FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
+	{&STAR_AG, 	            {FTOFIX19_13(472),  FTOFIX19_13(-200), 	FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
 
-	{&FLOOR_16x12_IG,		{FTOFIX19_13(-16),  FTOFIX19_13(208), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&FLOOR_4x12_IG,		{FTOFIX19_13(64),   FTOFIX19_13(192), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&FLOOR_22x5_IG,		{FTOFIX19_13(192),  FTOFIX19_13(188), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&FLOOR_16x12_IG,		{FTOFIX19_13(360),  FTOFIX19_13(200), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+	{&FLOOR_16x12_IG,		{FTOFIX19_13(-16),  FTOFIX19_13(208), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&FLOOR_4x12_IG,		{FTOFIX19_13(64),   FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&FLOOR_22x5_IG,		{FTOFIX19_13(192),  FTOFIX19_13(188), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&FLOOR_16x12_IG,		{FTOFIX19_13(360),  FTOFIX19_13(200), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
-	{&COLLISION_2x28x1, 	{FTOFIX19_13(92),   FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&COLLISION_2x28x1, 	{FTOFIX19_13(292),  FTOFIX19_13(112), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+	{&COLLISION_2x28x1, 	{FTOFIX19_13(92),   FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&COLLISION_2x28x1, 	{FTOFIX19_13(292),  FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
-	{&HERO_AC, 				{FTOFIX19_13(144),  FTOFIX19_13(148), FTOFIX19_13(0)}, HERO_NAME, NULL, NULL, true},
-	{&DOOR_AG,				{FTOFIX19_13(192),  FTOFIX19_13(152), FTOFIX19_13(1)}, NULL, NULL, (void*)&LEVEL_1_MAIN_MAIN_EP, true},
+	{&HERO_AC, 				{FTOFIX19_13(144),  FTOFIX19_13(148), 	FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
+	{&DOOR_AG,				{FTOFIX19_13(192),  FTOFIX19_13(152), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_MAIN_MAIN_EP, true},
 
-	{&GRASS_AG,      	    {FTOFIX19_13(34),   FTOFIX19_13(153), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
-	{&BUSH_AG,      	    {FTOFIX19_13(366),  FTOFIX19_13(148), FTOFIX19_13(1)}, NULL, NULL, NULL, true},
-	{&FENCE_IM,      	    {FTOFIX19_13(322),  FTOFIX19_13(145), FTOFIX19_13(-1)}, NULL, NULL, NULL, true},
-	{&FENCE_IM,      	    {FTOFIX19_13(339),  FTOFIX19_13(145), FTOFIX19_13(-1)}, NULL, NULL, NULL, true},
+	{&GRASS_AG,      	    {FTOFIX19_13(34),   FTOFIX19_13(153), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&BUSH_AG,      	    {FTOFIX19_13(366),  FTOFIX19_13(148), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&FENCE_IM,      	    {FTOFIX19_13(322),  FTOFIX19_13(145), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&FENCE_IM,      	    {FTOFIX19_13(339),  FTOFIX19_13(145), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
-	{&COIN_AG, 		        {FTOFIX19_13(57),   FTOFIX19_13(134), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&COIN_AG, 		        {FTOFIX19_13(71),   FTOFIX19_13(134), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+	{&COIN_AG, 		        {FTOFIX19_13(57),   FTOFIX19_13(134), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&COIN_AG, 		        {FTOFIX19_13(71),   FTOFIX19_13(134), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
-	{&VBJAENGINE_IM,        {FTOFIX19_13(192),  FTOFIX19_13(10), FTOFIX19_13(LAYER_0 + 32)}, NULL, NULL, NULL, true},
-	{&LOGO_IM, 			    {FTOFIX19_13(192),  FTOFIX19_13(64), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&VBJAENGINE_IM,        {FTOFIX19_13(192),  FTOFIX19_13(10), 	FTOFIX19_13(LAYER_0 + 32)}, NULL, NULL, NULL, true},
+	{&LOGO_IM, 			    {FTOFIX19_13(192),  FTOFIX19_13(64), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
 	// samples of ignored entities
-	{&COIN_AG, 		        {FTOFIX19_13(57), FTOFIX19_13(108), FTOFIX19_13(0)}, "IgnoreMeCoin", NULL, NULL, true},
-	{&DOOR_AG,				{FTOFIX19_13((__SCREEN_WIDTH >> 1)), FTOFIX19_13(152), FTOFIX19_13(0)}, "IgnoreMeDoor", NULL, NULL, true},
+	{&COIN_AG, 		        {FTOFIX19_13(57), 	FTOFIX19_13(108), 	FTOFIX19_13(0)}, "IgnoreMeCoin", NULL, NULL, true},
+	{&DOOR_AG,				{FTOFIX19_13(192), 	FTOFIX19_13(152), 	FTOFIX19_13(0)}, "IgnoreMeDoor", NULL, NULL, true},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef TITLE_SCREEN_ST_UI_ENTITIES[] =
 {
-	{&GUI_BLANK_IM,			{FTOFIX19_13(__SCREEN_WIDTH >> 1), FTOFIX19_13(__SCREEN_HEIGHT - 8), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+	{&GUI_BLANK_IM,			{FTOFIX19_13(192), 	FTOFIX19_13(216), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -102,7 +103,6 @@ TextureROMDef* TITLE_SCREEN_ST_TEXTURES[] =
 {
 	NULL
 };
-
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ StageROMDef TITLE_SCREEN_ST =
         // y
 		__SCREEN_HEIGHT,
         // z
-        __SCREEN_WIDTH,
+        256,
     },
 
     // streaming
@@ -183,13 +183,13 @@ StageROMDef TITLE_SCREEN_ST =
 	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
     {
         // SPT0
-		ITOFIX19_13(0),
+		FTOFIX19_13(LAYER_0 + SORT_BACK_3),
         // SPT1
-		ITOFIX19_13(0),
+		FTOFIX19_13(LAYER_0 + SORT_BACK_3),
         // SPT2
-		ITOFIX19_13(0),
+		FTOFIX19_13(LAYER_0 + SORT_BACK_3),
         // SPT3
-    	ITOFIX19_13(0),
+    	FTOFIX19_13(LAYER_0 + SORT_BACK_3),
     },
 
     // initial screen position

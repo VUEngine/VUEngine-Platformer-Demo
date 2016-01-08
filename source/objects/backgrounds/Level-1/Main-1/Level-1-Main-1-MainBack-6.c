@@ -73,12 +73,12 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_TX =
     1,
 };
 
-TextureROMDef* LEVEL_1_MAIN_1_MAIN_BACK_6_IM_TEXTURES[] = 
+TextureROMDef* LEVEL_1_MAIN_1_MAIN_BACK_6_IM_TEXTURES[] =
 {
 	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_6_TX,
 	NULL
 };
- 
+
 MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
 {
 	{
@@ -89,23 +89,23 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
 		NULL,
 
 		// displacement (x, y, z) (in pixels)
-		{ITOFIX19_13(85), ITOFIX19_13(-192), FTOFIX19_13(SORTING_OFFSET * 4)},
-		
+		{ITOFIX19_13(85), ITOFIX19_13(-192), FTOFIX19_13(SORT_BACK_4)},
+
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
-		
+
 		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 		WRLD_ON,
 	},
-	
+
 	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_BACK_6_IM_TEXTURES,
-	
+
 	// SCX/SCY
 	WRLD_1x1,
 
 	// x loop
 	false,
-	
+
 	// y loop
 	false
 };
@@ -113,7 +113,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
 
 BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITES[] =
 {
-	&LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE,
+	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE,
 	NULL
 };
 

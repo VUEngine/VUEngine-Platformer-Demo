@@ -22,8 +22,8 @@
 #include <AnimatedInGameEntity.h>
 #include <BgmapAnimatedSprite.h>
 #include <libgccvb.h>
-#include <macros.h>
 #include <Hint.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -254,7 +254,7 @@ BgmapSpriteROMDef HINT_ENTER_SPRITE =
 	(TextureDefinition*)&HINT_ENTER_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(-(SORTING_OFFSET * 4))},
+	{0, 0, FTOFIX19_13(SORT_FRONT_4)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,
