@@ -190,7 +190,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	else
 	{
 	    // load stage
-	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->entryPointDefinition->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
+	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->entryPointDefinition->platformerStageDefinition->stageDefinition), entityNamesToIgnore, true);
 	}
 
     // free some memory
