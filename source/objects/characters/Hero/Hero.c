@@ -449,6 +449,22 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 	}
 }
 
+// retrieve friction of colliding objects
+void Hero_updateSourroundingFriction(Hero this)
+{
+	ASSERT(this, "Hero::updateSourroundingFriction: null this");
+	ASSERT(this->body, "Hero::updateSourroundingFriction: null body");
+
+	Force totalFriction = {this->actorDefinition->friction, this->actorDefinition->friction, this->actorDefinition->friction};
+	
+	if(this->collisionSolver)
+	{
+		Force sourroundingFriction = CollisionSolver_getSourroundingFriction(this->collisionSolver);
+		totalFriction.x += sourroundingFriction.x;
+	}
+
+	Body_setFriction(this->body, totalFriction);
+}
 
 // stop moving over axis
 bool Hero_stopMovingOnAxis(Hero this, int axis)
