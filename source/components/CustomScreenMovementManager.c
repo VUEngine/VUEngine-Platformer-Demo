@@ -28,10 +28,12 @@
 // 											CLASS'S MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define __SCREEN_EASING_X_DISPLACEMENT		3
-#define __SCREEN_EASING_Y_DISPLACEMENT		6
-#define __SCREEN_HORIZONTAL_DISPLACEMENT 	30
-#define __SCREEN_VERTICAL_DISPLACEMENT 		(__SCREEN_HEIGHT / 2) + 30
+#define __SCREEN_EASING_X_DISPLACEMENT					3
+#define __SCREEN_POSITIVE_EASING_Y_DISPLACEMENT			8
+#define __SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT			3
+#define __SCREEN_EASING_Y_DISPLACEMENT					3
+#define __SCREEN_HORIZONTAL_DISPLACEMENT 				30
+#define __SCREEN_VERTICAL_DISPLACEMENT 					(__SCREEN_HEIGHT / 2) + 30
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -178,13 +180,13 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				fix19_13 verticalPosition = 0xFFFFE000 & _screen->position.y;
 				fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_VERTICAL_DISPLACEMENT));
 
-				if(verticalPosition + ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT) < verticalTarget)
+				if(verticalPosition + ITOFIX19_13(__SCREEN_POSITIVE_EASING_Y_DISPLACEMENT) < verticalTarget)
 				{
-					_screen->position.y += ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT);
+					_screen->position.y += ITOFIX19_13(__SCREEN_POSITIVE_EASING_Y_DISPLACEMENT);
 				}
-				else if(verticalPosition - ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT) > verticalTarget)
+				else if(verticalPosition - ITOFIX19_13(__SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT) > verticalTarget)
 				{
-					_screen->position.y -= ITOFIX19_13(__SCREEN_EASING_Y_DISPLACEMENT);
+					_screen->position.y -= ITOFIX19_13(__SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT);
 				}
 
 				if(!this->tempFocusInGameEntity)
