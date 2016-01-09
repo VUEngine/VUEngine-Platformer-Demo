@@ -1201,24 +1201,8 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kTopSolid:
             {
-                // get the axis of collision
-                u8 axisOfCollision = __VIRTUAL_CALL(
-                    int,
-                    Shape,
-                    getAxisOfCollision,
-                    this->shape,
-                    VirtualNode_getData(node),
-                    Body_getLastDisplacement(this->body),
-                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
-                );
-
-                // get positions of colliding entities
-                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 2);
-                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 2);
-
-                // process collision only if axis of collision is y and if hero is above platform
-                if(!((__YAXIS & axisOfCollision) && (heroBottomPosition < collidingEntityTopPosition)))
-                {
+            	if(0 > Body_getVelocity(this->body).y)
+            	{
     				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
                 }
 
