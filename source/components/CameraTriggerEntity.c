@@ -123,7 +123,7 @@ void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec
 	ASSERT(this, "CameraTriggerEntity::setOverridePositionFlag: null this");
 
 	this->overridePositionFlag = overridePositionFlag;
-	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this));
+	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this), __XAXIS | __YAXIS | __ZAXIS);
 	
 	Transformation environmentTransform = Container_getEnvironmentTransform(this->parent);
 	CameraTriggerEntity_transform(this, &environmentTransform);
