@@ -78,7 +78,7 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
 	// texture definition
 	(TextureDefinition*)& ADJUSTMENT_SCREEN_ICON_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -102,7 +102,7 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
 	// texture definition
 	(TextureDefinition*)& ADJUSTMENT_SCREEN_ICON_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

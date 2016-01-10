@@ -111,7 +111,7 @@ BgmapSpriteROMDef CANNON_BALL_SPRITE =
 	// texture definition
 	(TextureDefinition*)&CANNON_BALL_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, FTOFIX19_13(SORT_FRONT_2)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

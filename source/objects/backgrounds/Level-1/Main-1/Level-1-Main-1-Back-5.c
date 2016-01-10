@@ -21,6 +21,8 @@
 
 #include <Image.h>
 #include <MBgmapSprite.h>
+#include <macros.h>
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -87,8 +89,8 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
 		// texture definition
 		NULL,
 
-		// displacement (x, y, z) (in pixels)
-		{0, 0, 0},
+		// displacement vector
+		{0, 0, FTOFIX19_13(SORT_BACK_4)},
 		
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,

@@ -194,7 +194,7 @@ ObjectSpriteROMDef COIN_SPRITE =
 	// texture definition
 	(TextureDefinition*)&COIN_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, FTOFIX19_13(SORT_BACK_3)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -218,7 +218,7 @@ ObjectSpriteROMDef COIN_SILHOUETTE_SPRITE =
 	// texture definition
 	(TextureDefinition*)&COIN_SILHOUETTE_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, FTOFIX19_13(SORT_BACK_3)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -313,7 +313,7 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 	// texture definition
 	(TextureDefinition*)&AFFINE_COIN_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

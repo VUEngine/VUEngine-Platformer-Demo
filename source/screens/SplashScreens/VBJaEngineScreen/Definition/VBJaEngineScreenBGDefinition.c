@@ -79,7 +79,7 @@ BgmapSpriteROMDef VBJAENGINE_BG_SB_SPRITE =
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_BG_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)

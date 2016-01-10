@@ -81,7 +81,7 @@ ObjectSpriteROMDef FENCE_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FENCE_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, FTOFIX19_13(SORT_FRONT_3)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

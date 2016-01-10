@@ -83,7 +83,7 @@ BgmapSpriteROMDef FLOOR_22x12_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FLOOR_22x12_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -138,7 +138,7 @@ BgmapSpriteROMDef FLOOR_22x12_TOP_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FLOOR_22_TOP_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, FTOFIX19_13(-40), FTOFIX19_13(-1)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

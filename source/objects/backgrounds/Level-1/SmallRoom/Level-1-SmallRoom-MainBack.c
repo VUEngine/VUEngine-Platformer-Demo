@@ -80,8 +80,8 @@ BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_MAIN_BACK_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LEVEL_1_SMALL_ROOM_MAIN_BACK_TX,
 
-	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(SORT_BACK_4)},
+	// displacement vector
+	{0, 0, FTOFIX19_13(SORT_BACK_1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

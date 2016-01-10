@@ -317,7 +317,7 @@ BgmapSpriteROMDef HERO_SPRITE =
 	// texture definition
 	(TextureDefinition*)&HERO_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

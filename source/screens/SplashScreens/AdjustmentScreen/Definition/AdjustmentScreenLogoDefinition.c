@@ -79,7 +79,7 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)& ADJUSTMENT_SCREEN_LOGO_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 	
 	// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)

@@ -88,7 +88,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_3_IM_SPRITE =
 		// texture definition
 		NULL,
 
-		// displacement (x, y, z) (in pixels)
+		// displacement vector
 		{0, 0, 0},
 		
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
