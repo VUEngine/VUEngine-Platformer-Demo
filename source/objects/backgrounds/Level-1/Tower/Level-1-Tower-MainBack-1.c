@@ -90,7 +90,7 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 		NULL,
 
 		// displacement (x, y, z) (in pixels)
-		{0, 0, FTOFIX19_13(SORT_BACK_4)},
+		{0, 0, FTOFIX19_13(SORT_INCREMENT)},
 
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
@@ -109,16 +109,4 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 
 	// y loop
 	true
-};
-
-BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE,
-	NULL
-};
-
-MBackgroundROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM =
-{
-	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITES,
 };

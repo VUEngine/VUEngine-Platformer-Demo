@@ -181,7 +181,7 @@ BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =
 	(TextureDefinition*)&HIDE_LAYER_10x7_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(SORT_FRONT_4)},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

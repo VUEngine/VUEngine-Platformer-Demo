@@ -89,16 +89,3 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE =
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,	
 };
-
-
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE,
-	NULL
-};
-
-ImageROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITES,
-};

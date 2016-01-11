@@ -30,6 +30,9 @@
 extern BYTE Level_1_Tower_MainTiles[];
 extern BYTE Level_1_Tower_Main_1Map[];
 
+extern BgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
@@ -111,6 +114,8 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_IM_SPRITE =
 
 BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_1_IM_SPRITES[] =
 {
+	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_BACK_1_IM_SPRITE,
+	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE,
 	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_MAIN_1_IM_SPRITE,
 	NULL
 };

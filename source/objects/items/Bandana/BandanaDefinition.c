@@ -115,7 +115,7 @@ ObjectSpriteROMDef BANDANA_SPRITE =
 	(TextureDefinition*)&BANDANA_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(SORT_BACK_3)},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
