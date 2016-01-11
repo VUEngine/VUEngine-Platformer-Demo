@@ -183,13 +183,13 @@ StageROMDef TITLE_SCREEN_ST =
 	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
     {
         // SPT0
-		FTOFIX19_13(LAYER_0 + SORT_BACK_3),
+		FTOFIX19_13(LAYER_0_PARTICLES),
         // SPT1
-		FTOFIX19_13(LAYER_0 + SORT_BACK_3),
+		FTOFIX19_13(LAYER_0_PARTICLES),
         // SPT2
-		FTOFIX19_13(LAYER_0 + SORT_BACK_3),
+		FTOFIX19_13(LAYER_0_PARTICLES),
         // SPT3
-    	FTOFIX19_13(LAYER_0 + SORT_BACK_3),
+    	FTOFIX19_13(LAYER_0_PARTICLES),
     },
 
     // initial screen position

@@ -111,8 +111,8 @@ BgmapSpriteROMDef SAW_BLADE_SPRITE =
 	// texture definition
 	(TextureDefinition*)&SAW_BLADE_TX,
 
-	// displacement vector
-	{0, 0, FTOFIX19_13(SORT_BACK_2)},
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

@@ -29,6 +29,9 @@
 extern BYTE Level_1_CoinRoom_MainTiles[];
 extern BYTE Level_1_CoinRoom_MainMap[];
 
+extern BgmapSpriteROMDef LEVEL_1_COIN_ROOM_BACK_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_COIN_ROOM_MAIN_BACK_IM_SPRITE;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
@@ -91,6 +94,8 @@ BgmapSpriteROMDef LEVEL_1_COIN_ROOM_MAIN_IM_SPRITE =
 
 BgmapSpriteROMDef* const LEVEL_1_COIN_ROOM_MAIN_IM_SPRITES[] =
 {
+	&LEVEL_1_COIN_ROOM_BACK_IM_SPRITE,
+	&LEVEL_1_COIN_ROOM_MAIN_BACK_IM_SPRITE,
 	&LEVEL_1_COIN_ROOM_MAIN_IM_SPRITE,
 	NULL
 };

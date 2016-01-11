@@ -88,8 +88,8 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 		// texture definition
 		NULL,
 
-		// displacement vector
-		{0, 0, 0},
+		// displacement (x, y, z) (in pixels)
+		{0, 0, FTOFIX19_13(1)},
 		
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
@@ -108,16 +108,4 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 	
 	// y loop
 	true
-};
-
-BgmapSpriteROMDef* const LEVEL_1_TOWER_BACK_1_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_BACK_1_IM_SPRITE,
-	NULL
-};
-
-MBackgroundROMDef LEVEL_1_TOWER_BACK_1_IM =
-{
-	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_TOWER_BACK_1_IM_SPRITES,
 };

@@ -185,8 +185,8 @@ BgmapSpriteROMDef DOOR_SPRITE =
 	// texture definition
 	(TextureDefinition*)&DOOR_TX,
 
-	// displacement vector
-	{0, 0, FTOFIX19_13(SORT_BACK_4)},
+	// displacement (x, y, z) (in pixels)
+	{0, 0, FTOFIX19_13(1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -275,8 +275,8 @@ BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 	// texture definition
 	(TextureDefinition*)&DOOR_TX,
 
-	// displacement vector
-	{0, 0, FTOFIX19_13(SORT_BACK_4)},
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -369,8 +369,8 @@ BgmapSpriteROMDef DOOR_BACK_SPRITE =
 	// texture definition
 	(TextureDefinition*)&DOOR_BACK_TX,
 
-	// displacement vector
-	{0, 0, FTOFIX19_13(SORT_BACK_4)},
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

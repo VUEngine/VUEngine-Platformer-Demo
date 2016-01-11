@@ -30,6 +30,8 @@
 extern BYTE Level_1_Main_1_MainTiles[];
 extern BYTE Level_1_Main_1_Main_1Map[];
 
+extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
@@ -108,8 +110,6 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
 	// y loop
 	false
 };
-
-extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
 
 BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES[] =
 {

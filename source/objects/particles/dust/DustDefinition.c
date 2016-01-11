@@ -85,8 +85,8 @@ ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
 
-	// displacement vector
-	{0, 0, FTOFIX19_13(SORT_BACK_1)},
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -140,8 +140,8 @@ ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
 
-	// displacement vector
-	{0, 0, FTOFIX19_13(SORT_BACK_1)},
+	// displacement (x, y, z) (in pixels)
+	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
