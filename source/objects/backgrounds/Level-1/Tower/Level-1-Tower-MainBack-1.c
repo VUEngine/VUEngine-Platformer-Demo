@@ -39,9 +39,10 @@ extern BYTE Level_1_Tower_MainBack_1Map[];
 CharSetROMDef LEVEL_1_TOWER_MAIN_BACK_1_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     5,
 
@@ -90,7 +91,7 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 		NULL,
 
 		// displacement (x, y, z) (in pixels)
-		{0, 0, FTOFIX19_13(SORT_BACK_4)},
+		{0, 0, FTOFIX19_13(SORT_INCREMENT)},
 
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
@@ -109,16 +110,4 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 
 	// y loop
 	true
-};
-
-BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE,
-	NULL
-};
-
-MBackgroundROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM =
-{
-	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITES,
 };

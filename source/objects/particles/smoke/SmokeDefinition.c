@@ -21,7 +21,7 @@
 
 #include <libgccvb.h>
 #include <ParticleSystem.h>
-#include <ObjectSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include "../behaviors.h"
 #include <macros.h>
 
@@ -38,17 +38,51 @@ extern BYTE SmokeParticleSmallMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+
+// a function which defines the frames to play
+AnimationFunctionROMDef SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{0, 1, 2, 3},
+
+	// number of cycles a frame of animation is displayed
+	8 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Float",
+};
+
+// an animation definition
+AnimationDescriptionROMDef SMOKE_PARTICLE_SMALL_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&SMOKE_PARTICLE_SMALL_FLOAT_ANIM,
+		NULL,
+	}
+};
+
 CharSetROMDef SMOKE_PARTICLE_SMALL_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
-    1,
+    4,
 
     // allocation type
-    __NOT_ANIMATED,
+    __ANIMATED_MULTI,
 
     // char definition
     SmokeParticleSmallTiles,
@@ -69,22 +103,22 @@ TextureROMDef SMOKE_PARTICLE_SMALL_TX =
     1,
 
     // number of frames
-    1,
+    4,
 
     // palette number
     0,
 };
 
-ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_IM_SPRITE =
+ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_SPRITE =
 {
 	// sprite's type
-	__TYPE(ObjectSprite),
+	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&SMOKE_PARTICLE_SMALL_TX,
 
-	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(2)},
+	// displacement vector
+	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -93,17 +127,11 @@ ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_IM_SPRITE =
 	WRLD_ON,
 };
 
-ObjectSpriteROMDef* const SMOKE_PARTICLE_IM_SPRITES[] =
+ObjectSpriteROMDef* const SMOKE_PARTICLE_SMALL_SPRITES[] =
 {
-	&SMOKE_PARTICLE_SMALL_IM_SPRITE,
+	&SMOKE_PARTICLE_SMALL_SPRITE,
 	NULL
 };
-
-
-
-//---------------------------------------------------------------------------------------------------------
-// 										  OBJECT SMOKE_PARTICLE
-//---------------------------------------------------------------------------------------------------------
 
 // particle's definition
 ParticleROMDef SMOKE_PARTICLE =
@@ -132,10 +160,10 @@ ParticleROMDef SMOKE_PARTICLE =
 
 	// animation description
 	// used only if sprite is animated
-	NULL,
+	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
 	
 	// animation's name to play 
-	NULL
+	"Float"
 };
 
 ParticleSystemROMDef SMOKE_PS =
@@ -155,10 +183,10 @@ ParticleSystemROMDef SMOKE_PS =
 	200,
 
 	// maximum total particles
-	16,
+	14,
 
 	// array of textures
-	(const ObjectSpriteDefinition**)SMOKE_PARTICLE_IM_SPRITES,
+	(const ObjectSpriteDefinition**)SMOKE_PARTICLE_SMALL_SPRITES,
 
 	// auto start
 	true,

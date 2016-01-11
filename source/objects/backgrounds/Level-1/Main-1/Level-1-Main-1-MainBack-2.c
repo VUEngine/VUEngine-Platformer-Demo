@@ -38,9 +38,10 @@ extern BYTE Level_1_Main_1_MainBack_2Map[];
 CharSetROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     85,
 
@@ -80,7 +81,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_2_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{ITOFIX19_13(-50), ITOFIX19_13(40), FTOFIX19_13(1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -88,17 +89,4 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE =
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,	
-};
-
-
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE,
-	NULL
-};
-
-ImageROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITES,
 };

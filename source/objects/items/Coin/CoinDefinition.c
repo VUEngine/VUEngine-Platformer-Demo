@@ -74,9 +74,10 @@ AnimationDescriptionROMDef COIN_ANIM =
 CharSetROMDef COIN_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     4,
 
@@ -111,9 +112,10 @@ TextureROMDef COIN_TX =
 CharSetROMDef COIN_SILHOUETTE_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     4,
 
@@ -148,9 +150,10 @@ TextureROMDef COIN_SILHOUETTE_TX =
 CharSetROMDef AFFINE_COIN_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     16,
 
@@ -195,7 +198,7 @@ ObjectSpriteROMDef COIN_SPRITE =
 	(TextureDefinition*)&COIN_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(SORT_BACK_3)},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -219,7 +222,7 @@ ObjectSpriteROMDef COIN_SILHOUETTE_SPRITE =
 	(TextureDefinition*)&COIN_SILHOUETTE_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(SORT_BACK_3)},
+	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,

@@ -48,9 +48,7 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_ENTITIES[] =
 {
     // since these are always visible it doesn't matter that they are not logically placed in this definition
 
-    {&LEVEL_1_COIN_ROOM_MAIN_IM,        {FTOFIX19_13(192), 		FTOFIX19_13(112), 		FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-    {&LEVEL_1_COIN_ROOM_MAIN_BACK_IM,   {FTOFIX19_13(192), 		FTOFIX19_13(112), 		FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-    {&LEVEL_1_COIN_ROOM_BACK_IM,        {FTOFIX19_13(192), 		FTOFIX19_13(112), 		FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+    {&LEVEL_1_COIN_ROOM_MAIN_IM,        {FTOFIX19_13(192), 		FTOFIX19_13(112), 		FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, NULL, NULL, false},
 
     {&COLLISION_48x2x1,             	{FTOFIX19_13(192), 		FTOFIX19_13(200), 		FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
     {&COLLISION_48x2x1,             	{FTOFIX19_13(192), 		FTOFIX19_13(2),   		FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
@@ -63,41 +61,41 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_ENTITIES[] =
 
     {&HERO_AC,                      	{FTOFIX19_13(44),  		FTOFIX19_13(144), 		FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
 
-    {&DOOR_AG,                      	{FTOFIX19_13(44),  		FTOFIX19_13(143), 		FTOFIX19_13(LAYER_0)}, "EntryDoor", NULL, NULL, false},
-    {&DOOR_AG,                      	{FTOFIX19_13(340), 		FTOFIX19_13(143), 		FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_SMALL_ROOM_LOWER_EP, false},
+    {&DOOR_AG,                      	{FTOFIX19_13(40),  		FTOFIX19_13(143), 		FTOFIX19_13(LAYER_0_DOORS)}, "EntryDoor", NULL, NULL, false},
+    {&DOOR_AG,                      	{FTOFIX19_13(344), 		FTOFIX19_13(143), 		FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, (void*)&LEVEL_1_SMALL_ROOM_LOWER_EP, false},
 
-    {&TORCH_AG,                     	{FTOFIX19_13(44),  		FTOFIX19_13(104), 		FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
-    {&TORCH_AG,                     	{FTOFIX19_13(340), 		FTOFIX19_13(104), 		FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     	{FTOFIX19_13(64),  		FTOFIX19_13(128), 		FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     	{FTOFIX19_13(320), 		FTOFIX19_13(128), 		FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 0),  FTOFIX19_13(104 + 0),  	FTOFIX19_13(LAYER_0)}, "Coin 050", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 0),  FTOFIX19_13(104 + 16), 	FTOFIX19_13(LAYER_0)}, "Coin 051", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 0),  FTOFIX19_13(104 + 32), 	FTOFIX19_13(LAYER_0)}, "Coin 052", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 0),  FTOFIX19_13(104 + 48), 	FTOFIX19_13(LAYER_0)}, "Coin 053", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 32), FTOFIX19_13(104 + 0),  	FTOFIX19_13(LAYER_0)}, "Coin 054", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 32), FTOFIX19_13(104 + 16), 	FTOFIX19_13(LAYER_0)}, "Coin 055", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 32), FTOFIX19_13(104 + 32), 	FTOFIX19_13(LAYER_0)}, "Coin 056", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 32), FTOFIX19_13(104 + 48), 	FTOFIX19_13(LAYER_0)}, "Coin 057", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 16), FTOFIX19_13(104 + 64), 	FTOFIX19_13(LAYER_0)}, "Coin 058", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 0),  FTOFIX19_13(104 + 0),  	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 050", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 0),  FTOFIX19_13(104 + 16), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 051", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 0),  FTOFIX19_13(104 + 32), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 052", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 0),  FTOFIX19_13(104 + 48), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 053", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 32), FTOFIX19_13(104 + 0),  	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 054", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 32), FTOFIX19_13(104 + 16), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 055", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 32), FTOFIX19_13(104 + 32), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 056", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 32), FTOFIX19_13(104 + 48), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 057", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 16), FTOFIX19_13(104 + 64), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 058", NULL, NULL, false},
 
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 0),  	FTOFIX19_13(LAYER_0)}, "Coin 059", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 16), 	FTOFIX19_13(LAYER_0)}, "Coin 060", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 32), 	FTOFIX19_13(LAYER_0)}, "Coin 061", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 48), 	FTOFIX19_13(LAYER_0)}, "Coin 062", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 64), 	FTOFIX19_13(LAYER_0)}, "Coin 063", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 80), FTOFIX19_13(104 + 0),  	FTOFIX19_13(LAYER_0)}, "Coin 064", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 80), FTOFIX19_13(104 + 32), 	FTOFIX19_13(LAYER_0)}, "Coin 065", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 80), FTOFIX19_13(104 + 64), 	FTOFIX19_13(LAYER_0)}, "Coin 066", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 96), FTOFIX19_13(104 + 16), 	FTOFIX19_13(LAYER_0)}, "Coin 067", NULL, NULL, false},
-    {&COIN_AG,                      	{FTOFIX19_13(144 + 96), FTOFIX19_13(104 + 48), 	FTOFIX19_13(LAYER_0)}, "Coin 068", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 0),  	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 059", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 16), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 060", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 32), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 061", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 48), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 062", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 64), FTOFIX19_13(104 + 64), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 063", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 80), FTOFIX19_13(104 + 0),  	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 064", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 80), FTOFIX19_13(104 + 32), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 065", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 80), FTOFIX19_13(104 + 64), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 066", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 96), FTOFIX19_13(104 + 16), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 067", NULL, NULL, false},
+    {&COIN_AG,                      	{FTOFIX19_13(144 + 96), FTOFIX19_13(104 + 48), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 068", NULL, NULL, false},
 
-    {&SAW_BLADE_H8_AC,              	{FTOFIX19_13(192),      FTOFIX19_13(190),      	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&SAW_BLADE_H8_AC,              	{FTOFIX19_13(192),      FTOFIX19_13(190),      	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_UI_ENTITIES[] =
 {
-    {&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+    {&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(215), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -259,7 +257,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP[] =
     "EntryDoor",
 
     // offset from entry point (x, y, z)
-    {0, 0, FTOFIX19_13(SORT_INCREMENT)},
+    {0, 0, FTOFIX19_13(-SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,

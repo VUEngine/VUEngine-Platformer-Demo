@@ -30,17 +30,20 @@
 extern BYTE Level_1_Main_1_MainTiles[];
 extern BYTE Level_1_Main_1_Main_1Map[];
 
+extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_1_CH =
+CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     58,
 
@@ -54,7 +57,7 @@ CharSetROMDef LEVEL_1_MAIN_1_MAIN_1_CH =
 TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_1_CH,
+    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_CH,
 
     // bgmap definition
     Level_1_Main_1_Main_1Map,
@@ -63,7 +66,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
     64,
 
     // rows (max 64)
-    35,
+    33,
 
     // number of frames
     1,
@@ -87,7 +90,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
 		// texture definition
 		NULL,
 
-		// displacement (x, y, z) (in pixels)
+		// displacement vector
 		{0, 0, 0},
 		
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -108,8 +111,6 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
 	// y loop
 	false
 };
-
-extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
 
 BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES[] =
 {

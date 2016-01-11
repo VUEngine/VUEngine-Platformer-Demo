@@ -29,6 +29,9 @@
 extern BYTE Level_1_SmallRoom_MainTiles[];
 extern BYTE Level_1_SmallRoom_MainMap[];
 
+extern BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_BACK_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_MAIN_BACK_IM_SPRITE;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
@@ -37,9 +40,10 @@ extern BYTE Level_1_SmallRoom_MainMap[];
 CharSetROMDef LEVEL_1_SMALL_ROOM_MAIN_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     30,
 
@@ -79,7 +83,7 @@ BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LEVEL_1_SMALL_ROOM_MAIN_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -91,6 +95,8 @@ BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITE =
 
 BgmapSpriteROMDef* const LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITES[] =
 {
+	&LEVEL_1_SMALL_ROOM_BACK_IM_SPRITE,
+	&LEVEL_1_SMALL_ROOM_MAIN_BACK_IM_SPRITE,
 	&LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITE,
 	NULL
 };

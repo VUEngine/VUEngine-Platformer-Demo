@@ -42,35 +42,20 @@ extern EntityDefinition CLOUDS_SB;
 extern EntityDefinition STAR_AG;
 
 extern EntityDefinition LEVEL_1_COIN_ROOM_MAIN_IM;
-extern EntityDefinition LEVEL_1_COIN_ROOM_MAIN_BACK_IM;
-extern EntityDefinition LEVEL_1_COIN_ROOM_BACK_IM;
 
 extern EntityDefinition LEVEL_1_SMALL_ROOM_MAIN_IM;
-extern EntityDefinition LEVEL_1_SMALL_ROOM_MAIN_BACK_IM;
-extern EntityDefinition LEVEL_1_SMALL_ROOM_BACK_IM;
 
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_1_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_1_IM;
 extern EntityDefinition LEVEL_1_HOUSE_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_BACK_1_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_2_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_BACK_2_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_3_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_3_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_BACK_3_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_4_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_4_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_5_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_5_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_BACK_5_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_6_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_FRONT_6_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_BACK_6_IM;
 
 extern EntityDefinition LEVEL_1_TOWER_MAIN_1_IM;
-extern EntityDefinition LEVEL_1_TOWER_MAIN_BACK_1_IM;
-extern EntityDefinition LEVEL_1_TOWER_BACK_1_IM;
 
 extern EntityDefinition FLOOR_22x12_IG;
 extern EntityDefinition FLOOR_22x5_IG;

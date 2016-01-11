@@ -39,9 +39,10 @@ extern BYTE CloudsBMap[];
 CharSetROMDef CLOUDS_A_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     28,
 
@@ -55,9 +56,10 @@ CharSetROMDef CLOUDS_A_CH =
 CharSetROMDef CLOUDS_B_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows of this texture)
+    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows of this texture)
     // __NOT_ANIMATED: number of chars of whole image
     27,
 
@@ -118,7 +120,7 @@ BgmapSpriteROMDef CLOUDS_SB_SPRITE_1 =
 	// texture definition
 	(TextureDefinition*)&CLOUDS_A_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -136,7 +138,7 @@ BgmapSpriteROMDef CLOUDS_SB_SPRITE_2 =
 	// texture definition
 	(TextureDefinition*)&CLOUDS_B_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement vector
 	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

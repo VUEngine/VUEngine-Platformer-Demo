@@ -34,10 +34,8 @@ extern CharSetDefinition CLOUDS_B_CH;
 extern CharSetDefinition STAR_CH;
 
 extern CharSetDefinition LEVEL_1_COIN_ROOM_CH;
-extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_1_CH;
-extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_2_CH;
-extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_1_CH;
-extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2_CH;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_CH;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_CH;
 
 extern TextureDefinition MOUND_BG_BACK_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
