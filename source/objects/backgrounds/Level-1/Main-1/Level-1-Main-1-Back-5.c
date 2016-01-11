@@ -91,7 +91,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
 		NULL,
 
 		// displacement vector
-		{0, 0, FTOFIX19_13(SORT_BACK_4)},
+		{0, 0, 0},
 		
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,

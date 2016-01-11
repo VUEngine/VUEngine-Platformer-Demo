@@ -75,7 +75,7 @@ TextureROMDef DUST_PARTICLE_SMALL_TX =
     1,
 
     // palette number
-    0,
+    1,
 };
 
 ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
@@ -131,7 +131,7 @@ TextureROMDef DUST_PARTICLE_LARGE_TX =
     1,
 
     // palette number
-    0,
+    1,
 };
 
 ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =

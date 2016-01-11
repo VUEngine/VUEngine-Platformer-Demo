@@ -82,7 +82,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_1_IM_SPRITE =
 	(TextureDefinition*)&LEVEL_1_MAIN_1_BACK_1_TX,
 
 	// displacement vector
-	{0, 0, FTOFIX19_13(SORT_BACK_4)},
+	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

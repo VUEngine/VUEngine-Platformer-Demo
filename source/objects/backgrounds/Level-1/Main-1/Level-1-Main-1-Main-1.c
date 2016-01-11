@@ -37,7 +37,7 @@ extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_1_CH =
+CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
@@ -57,7 +57,7 @@ CharSetROMDef LEVEL_1_MAIN_1_MAIN_1_CH =
 TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_1_CH,
+    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_CH,
 
     // bgmap definition
     Level_1_Main_1_Main_1Map,
@@ -66,7 +66,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
     64,
 
     // rows (max 64)
-    35,
+    33,
 
     // number of frames
     1,

@@ -29,6 +29,8 @@
 extern BYTE Level_1_Main_1_MainTiles[];
 extern BYTE Level_1_Main_1_Main_4Map[];
 
+extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH;
+
 extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE;
 
 
@@ -36,28 +38,10 @@ extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE;
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_4_CH =
-{
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
-    58,
-
-    // allocation type
-    __NOT_ANIMATED,
-
-    // char definition
-    Level_1_Main_1_MainTiles,
-};
-
 TextureROMDef LEVEL_1_MAIN_1_MAIN_4_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_4_CH,
+    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_CH,
 
     // bgmap definition
     Level_1_Main_1_Main_4Map,

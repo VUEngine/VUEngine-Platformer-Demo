@@ -21,6 +21,7 @@
 
 #include <Image.h>
 #include <BgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,7 +46,7 @@ CharSetROMDef VBJAENGINE_LOGO_3D_CH =
     // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __NOT_ANIMATED: number of chars of whole image
-    54,
+    49,
 
     // allocation type
     __NOT_ANIMATED,
@@ -83,7 +84,7 @@ CharSetROMDef VBJAENGINE_LOGO_OUTLINE_CH =
     // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __NOT_ANIMATED: number of chars of whole image
-    57,
+    80,
 
     // allocation type
     __NOT_ANIMATED,
@@ -122,19 +123,13 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITE =
 	(TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
 
 	// displacement vector
-	{0, 0, 0},
+	{0, 0, FTOFIX19_13(SORT_INCREMENT)},
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
-};
-
-BgmapSpriteROMDef* const VBJAENGINE_LOGO_3D_IM_SPRITES[] =
-{
-	&VBJAENGINE_LOGO_3D_IM_SPRITE,
-	NULL
 };
 
 BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
@@ -146,7 +141,7 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
 	(TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
 
 	// displacement vector
-	{0, 0, 0},
+	{FTOFIX19_13(13), FTOFIX19_13(1), 0},
 
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,
@@ -155,9 +150,10 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* VBJAENGINE_LOGO_OUTLINE_IM_SPRITES[] =
+BgmapSpriteROMDef* const VBJAENGINE_LOGO_3D_IM_SPRITES[] =
 {
 	&VBJAENGINE_LOGO_OUTLINE_IM_SPRITE,
+	&VBJAENGINE_LOGO_3D_IM_SPRITE,
 	NULL
 };
 
@@ -165,10 +161,4 @@ ImageROMDef VBJAENGINE_LOGO_3D_IM =
 {
 	__TYPE(Image),
 	(SpriteROMDef**)VBJAENGINE_LOGO_3D_IM_SPRITES,
-};
-
-ImageROMDef VBJAENGINE_LOGO_OUTLINE_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)VBJAENGINE_LOGO_OUTLINE_IM_SPRITES,
 };
