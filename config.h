@@ -140,8 +140,8 @@
 #define __MEMORY_POOL_ARRAYS																			\
 	__BLOCK_DEFINITION(188, 1)																			\
 	__BLOCK_DEFINITION(164, 4)																			\
-	__BLOCK_DEFINITION(132, 34)																			\
-	__BLOCK_DEFINITION(112, 44)																			\
+	__BLOCK_DEFINITION(132, 32)																			\
+	__BLOCK_DEFINITION(112, 48)																			\
 	__BLOCK_DEFINITION(96, 58)																			\
 	__BLOCK_DEFINITION(76, 32)																			\
 	__BLOCK_DEFINITION(68, 75)																			\

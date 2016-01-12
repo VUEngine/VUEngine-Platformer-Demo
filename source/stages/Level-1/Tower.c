@@ -57,9 +57,9 @@ PositionedEntityROMDef TOWER_MAIN_1_CHILD_ENTITIES[] =
 	{&COLLISION_48x28x1,			{FTOFIX19_13(302),  FTOFIX19_13(256), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom right floor
 	{&COLLISION_2x64x1,	    		{FTOFIX19_13(184),  FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer right wall
 	{&COLLISION_48x28x1,			{FTOFIX19_13(-128), FTOFIX19_13(288), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom left floor
-	{&COLLISION_4x2x1,				{FTOFIX19_13(88),   FTOFIX19_13(72), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone bottom right
+	{&COLLISION_4x2x1,				{FTOFIX19_13(88),   FTOFIX19_13(71), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone bottom right
 	{&COLLISION_4x8x1,				{FTOFIX19_13(176),  FTOFIX19_13(144), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // step stone bottom right
-	{&COLLISION_48x3x1,				{FTOFIX19_13(-172), FTOFIX19_13(28), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
+	{&COLLISION_48x3x1,				{FTOFIX19_13(-172), FTOFIX19_13(27), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
 	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, NULL, false},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
