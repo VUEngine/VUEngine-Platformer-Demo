@@ -106,20 +106,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_MANAGED[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 {
-		/*
-    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(630), FTOFIX19_13(200), FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_MANAGED, NULL, false},
-	{&HERO_AC, 				            {FTOFIX19_13(56),   FTOFIX19_13(288), 	FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
-
-	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
-	// for the streaming to work properly. beware of edge case scenarios!
-
-	{&COLLISION_2x28x1,                 {FTOFIX19_13(-12),  FTOFIX19_13(116), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-
-    {&LEVEL_1_HOUSE_IM,                 {FTOFIX19_13(104),  FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0)}, "House", NULL, NULL, false},
-	{&COLLISION_30x33x1,                {FTOFIX19_13(118),  FTOFIX19_13(369), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-	{&COLLISION_34x30x1,                {FTOFIX19_13(366),  FTOFIX19_13(381), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
-*/
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&MOUND_BG_BACK_IM,	 	            {FTOFIX19_13(0),    FTOFIX19_13(120), 	FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
 	{&CLOUDS_IM, 	  			        {FTOFIX19_13(0),    FTOFIX19_13(232), 	FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
@@ -148,9 +134,9 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{&SAW_BLADE_H8_AC,                  {FTOFIX19_13(338),  FTOFIX19_13(260), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 	{&BUSH_AG,                          {FTOFIX19_13(472),  FTOFIX19_13(256), 	FTOFIX19_13(LAYER_0_BACKGROUND)}, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_MAIN_1_MAIN_2_IM, 	    {FTOFIX19_13(764),  FTOFIX19_13(352), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_IM_COLLISIONS, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(528),  FTOFIX19_13(228), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 006", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(544),  FTOFIX19_13(228), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 007", NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_2_IM, 	    {FTOFIX19_13(764),  FTOFIX19_13(352), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_IM_COLLISIONS, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(732),  FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 009", NULL, NULL, false},
     {&BANDANA_AG,                       {FTOFIX19_13(756),  FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)}, NULL, NULL, NULL, false},
 //	{&COIN_AG,                          {FTOFIX19_13(764),  FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 010", NULL, NULL, false},
@@ -271,9 +257,9 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
         // streaming
     	{
     		// delay per cycle
-    		20,
+    		8,
     		// load padding
-    		96,
+    		80,
     		// unload padding
     		16,
     		// streaming amplitude
