@@ -30,33 +30,17 @@
 
 extern BYTE Level_1_Main_1_MainBackTiles[];
 extern BYTE Level_1_Main_1_MainBack_6Map[];
+extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_BACK_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_CH =
-{
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
-    85,
-
-    // allocation type
-    __NOT_ANIMATED,
-
-    // char definition
-    Level_1_Main_1_MainBackTiles,
-};
-
 TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_6_CH,
+    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
 
     // bgmap definition
     Level_1_Main_1_MainBack_6Map,
@@ -90,7 +74,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
 		NULL,
 
 		// displacement (x, y, z) (in pixels)
-		{ITOFIX19_13(85), ITOFIX19_13(-192), FTOFIX19_13(1)},
+		{ITOFIX19_13(85), ITOFIX19_13(-192), FTOFIX19_13(2)},
 
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
