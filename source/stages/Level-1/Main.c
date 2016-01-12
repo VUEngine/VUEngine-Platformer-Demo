@@ -70,6 +70,11 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_MANAGED[] =
 {
 	{&LEVEL_1_MAIN_1_MAIN_3_IM, 	    {FTOFIX19_13(0),    FTOFIX19_13(0),     FTOFIX19_13(0)},    NULL, NULL, NULL, false},
     {&HIDE_LAYER_10x7_AG,               {FTOFIX19_13(-160), FTOFIX19_13(-44),   FTOFIX19_13(0)},   NULL, NULL, NULL, false},
+	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+};
+
+PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIOS_MANAGED[] =
+{
 	{&COLLISION_ONEWAY_7x1x1, 	        {FTOFIX19_13(-226), FTOFIX19_13(-12),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_ONEWAY_7x1x1, 	        {FTOFIX19_13(-226), FTOFIX19_13(84),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_48x18x1, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-136),  FTOFIX19_13(0)},    NULL, NULL, NULL, false},
@@ -101,6 +106,20 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_MANAGED[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 {
+		/*
+    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(630), FTOFIX19_13(200), FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_MANAGED, NULL, false},
+	{&HERO_AC, 				            {FTOFIX19_13(56),   FTOFIX19_13(288), 	FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
+
+	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
+	// for the streaming to work properly. beware of edge case scenarios!
+
+	{&COLLISION_2x28x1,                 {FTOFIX19_13(-12),  FTOFIX19_13(116), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+
+    {&LEVEL_1_HOUSE_IM,                 {FTOFIX19_13(104),  FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0)}, "House", NULL, NULL, false},
+	{&COLLISION_30x33x1,                {FTOFIX19_13(118),  FTOFIX19_13(369), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COLLISION_34x30x1,                {FTOFIX19_13(366),  FTOFIX19_13(381), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+*/
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&MOUND_BG_BACK_IM,	 	            {FTOFIX19_13(0),    FTOFIX19_13(120), 	FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
 	{&CLOUDS_IM, 	  			        {FTOFIX19_13(0),    FTOFIX19_13(232), 	FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
@@ -139,7 +158,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{&DOOR_AG,				            {FTOFIX19_13(798),  FTOFIX19_13(400), 	FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, (void*)&LEVEL_1_COIN_ROOM_MAIN_EP, false},
 
     {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(1228), FTOFIX19_13(240), FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_MANAGED, NULL, false},
-//	{&COIN_AG,                          {FTOFIX19_13(988),  FTOFIX19_13(212), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 011", NULL, NULL, false},
+    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(1228), FTOFIX19_13(240), FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIOS_MANAGED, NULL, false},
+	//	{&COIN_AG,                          {FTOFIX19_13(988),  FTOFIX19_13(212), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 011", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(988),  FTOFIX19_13(260), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 012", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(988),  FTOFIX19_13(308), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 013", NULL, NULL, false},
 	{&COIN_AG,                          {FTOFIX19_13(988),  FTOFIX19_13(356), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 014", NULL, NULL, false},
@@ -257,7 +277,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
     		// unload padding
     		16,
     		// streaming amplitude
-    		24,
+    		28,
     	},
 
         // gravity
