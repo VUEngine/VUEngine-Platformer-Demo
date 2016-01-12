@@ -43,7 +43,7 @@ CharSetROMDef LEVEL_1_TOWER_BACK_1_CH =
     // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __NOT_ANIMATED: number of chars of whole image
-    50,
+    84,
 
     // allocation type
     __NOT_ANIMATED,
