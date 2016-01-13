@@ -1134,11 +1134,6 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	            	{
 	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 	                }
-					else
-					{
-		                Printing_int(Printing_getInstance(), FIX19_13TOI(collidingEntityTopPosition), 20, 10, NULL);
-		                Printing_int(Printing_getInstance(), FIX19_13TOI(heroBottomPosition), 20, 11, NULL);
-					}
 				}
 
 				break;
