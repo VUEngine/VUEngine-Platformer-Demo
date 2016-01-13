@@ -81,24 +81,24 @@
 // 										FRAME RATE CONTROL
 //---------------------------------------------------------------------------------------------------------
 
-// determine whether frame rate is capped or not
-#define __CAP_FPS								1
-
 // clock resolution
 #define __TIMER_RESOLUTION						10
 
 // target frames per second
-// must be a muliple of 50 to being able to use a timer resolution greater than 1
-// if finer control is needed, change timer resolution to 1
-#define __TARGET_FPS 							50
+// __FRAME_CYCLE = 0 means __TARGET_FPS = 50
+// __FRAME_CYCLE = 1 means __TARGET_FPS = 25
+#define	__FRAME_CYCLE							1
+
+#define __TARGET_FPS 							(50 >> __FRAME_CYCLE)
 
 // target frames per second
-#define __OPTIMUM_FPS 							__TARGET_FPS
+#define __OPTIMUM_FPS 							(__TARGET_FPS >> __FRAME_CYCLE)
 
 // target frames per second
 #define __MINIMUM_GOOD_FPS 						(__TARGET_FPS - 0)
 
-#define __MILLISECONDS_IN_SECOND				1000
+
+#define __MILLISECONDS_IN_SECOND				(1000 >> __FRAME_CYCLE)
 
 // set animation delays as if they are 60 FPS, and multiply by this factor
 #define __FPS_ANIM_FACTOR 						(__TARGET_FPS / (float)__OPTIMUM_FPS)
