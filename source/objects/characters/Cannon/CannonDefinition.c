@@ -46,7 +46,7 @@ AnimationFunction CANNON_IDLE_ANIM =
 	{0},
 	
 	// number of cycles a frame of animation is displayed
-	1 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(2),
 	
 	// whether to play it in loop or not
 	false,
@@ -67,7 +67,7 @@ AnimationFunction CANNON_SHOOT_ANIM =
 	{1, 2, 1, 2, 0, 0, 0, 0, 0, 0, 3, 4, 5, 6, 0},
 
 	// number of cycles a frame of animation is displayed
-	6 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(6),
 
 	// whether to play it in loop or not
 	false,

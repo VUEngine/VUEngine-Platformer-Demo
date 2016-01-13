@@ -101,16 +101,7 @@
 #define __MILLISECONDS_IN_SECOND				(1000 >> __FRAME_CYCLE)
 
 // set animation delays as if they are 60 FPS, and multiply by this factor
-#define __FPS_ANIM_FACTOR 						(__TARGET_FPS / (float)__OPTIMUM_FPS)
-
-// seconds that must elapse to call rest state (in seconds)
-#define __REST_DELAY 							900 // 15 minutes
-
-// if defined, user input is only read in the Game's update logic cycle;
-// otherwise, it is read on each pass of the Game's main update loop, ensuring
-// that no user's input is lost, but introducing a considerable lost of loop's 
-// passes because of the delay needed to read the keypad
-#define __POLL_USER_INPUT_ONLY_ON_LOGIC_CYCLE
+#define __ANIMATION_DELAY(n)					(n >> __FRAME_CYCLE)
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -251,7 +242,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PHYSICS
+// 											PHYSICS
 //---------------------------------------------------------------------------------------------------------
 
 #define __GRAVITY								9800 * 4
@@ -261,7 +252,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										SOUND
+// 											SOUND
 //---------------------------------------------------------------------------------------------------------
 
 // channels per bgms

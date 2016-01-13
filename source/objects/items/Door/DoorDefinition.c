@@ -49,7 +49,7 @@ AnimationFunctionROMDef DOOR_OPENING_ANIM =
 	{0, 1, 2, 3},
 
 	// number of cycles a frame of animation is displayed
-	3 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(4),
 
 	// whether to play it in loop or not
 	false,
@@ -71,7 +71,7 @@ AnimationFunctionROMDef DOOR_CLOSING_ANIM =
 	{3, 2, 1, 0},
 
 	// number of cycles a frame of animation is displayed
-	3 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(4),
 
 	// whether to play it in loop or not
 	false,

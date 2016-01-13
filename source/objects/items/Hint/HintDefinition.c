@@ -48,7 +48,7 @@ AnimationFunctionROMDef HINT_OPEN_ANIM =
 	{0, 1, 2, 3, 4},
 	
 	// number of cycles a frame of animation is displayed
-	1 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(2),
 	
 	// whether to play it in loop or not
 	false,
@@ -70,7 +70,7 @@ AnimationFunctionROMDef HINT_CLOSE_ANIM =
 	{4, 3, 2, 1, 0},
 
 	// number of cycles a frame of animation is displayed
-	1 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(2),
 
 	// whether to play it in loop or not
 	false,
@@ -92,7 +92,7 @@ AnimationFunctionROMDef HINT_CLOSED_ANIM =
 	{0},
 
 	// number of cycles a frame of animation is displayed
-	1 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(2),
 
 	// whether to play it in loop or not
 	false,
@@ -114,7 +114,7 @@ AnimationFunctionROMDef HINT_ENTER_ENGLISH_ANIM =
 	{5, 6},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 
 	// whether to play it in loop or not
 	true,
@@ -136,7 +136,7 @@ AnimationFunctionROMDef HINT_ENTER_DEUTSCH_ANIM =
 	{7, 8},
 	
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 	
 	// whether to play it in loop or not
 	true,
@@ -158,7 +158,7 @@ AnimationFunctionROMDef HINT_ENTER_ESPANOL_ANIM =
 	{9, 10},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 
 	// whether to play it in loop or not
 	true,
@@ -180,7 +180,7 @@ AnimationFunctionROMDef HINT_ENTER_FRANCAIS_ANIM =
 	{11, 12},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 
 	// whether to play it in loop or not
 	true,
@@ -202,7 +202,7 @@ AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
 	{13, 14},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 
 	// whether to play it in loop or not
 	true,
@@ -224,7 +224,7 @@ AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 	{15, 16},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 
 	// whether to play it in loop or not
 	true,
@@ -246,7 +246,7 @@ AnimationFunctionROMDef HINT_PICK_UP_ESPANOL_ANIM =
 	{17, 18},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 
 	// whether to play it in loop or not
 	true,
@@ -268,7 +268,7 @@ AnimationFunctionROMDef HINT_PICK_UP_FRANCAIS_ANIM =
 	{19, 20},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 
 	// whether to play it in loop or not
 	true,
@@ -290,7 +290,7 @@ AnimationFunctionROMDef HINT_KEY_ANIM =
 	{21, 22},
 
 	// number of cycles a frame of animation is displayed
-	14 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(14),
 
 	// whether to play it in loop or not
 	true,

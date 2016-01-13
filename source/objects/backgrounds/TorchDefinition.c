@@ -47,7 +47,7 @@ AnimationFunctionROMDef TORCH_BURN_ANIM =
 	{0, 1, 2},
 
 	// number of cycles a frame of animation is displayed
-	5 * __FPS_ANIM_FACTOR,
+	__ANIMATION_DELAY(6),
 
 	// whether to play it in loop or not
 	true,
