@@ -64,7 +64,7 @@ enum HeroPowerUps
 	__VIRTUAL_SET(ClassName, Hero, suspend);															\
 	__VIRTUAL_SET(ClassName, Hero, resume);																\
 	__VIRTUAL_SET(ClassName, Hero, updateSourroundingFriction);											\
-	__VIRTUAL_SET(ClassName, Hero, getAxisAllowedForCollision);											\
+	__VIRTUAL_SET(ClassName, Hero, getAxisAllowedForBouncing);											\
 
 __CLASS(Hero);
 
@@ -155,7 +155,7 @@ void Hero_suspend(Hero this);
 void Hero_resume(Hero this);
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
 void Hero_updateSourroundingFriction(Hero this);
-u8 Hero_getAxisAllowedForCollision(Hero this);
+u8 Hero_getAxisAllowedForBouncing(Hero this);
 void Hero_setPosition(Hero this, VBVec3D* position);
 
 

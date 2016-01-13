@@ -250,6 +250,10 @@
 #define __MAX_SHAPES_PER_LEVEL					32
 #define __MAX_BODIES_PER_LEVEL					32
 
+// used to make an approximation of Lorentz' contraction
+// to handle collisions on very fast moving shapes
+#define __SPEED_LIGHT		ITOFIX19_13(100000 << __FRAME_CYCLE)
+
 
 //---------------------------------------------------------------------------------------------------------
 // 											SOUND

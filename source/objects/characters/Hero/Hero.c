@@ -1119,11 +1119,27 @@ int Hero_processCollision(Hero this, Telegram telegram)
                 }
                 */
 			case kTopSolid:
-
-				if(0 >= Body_getVelocity(this->body).y)
-            	{
-    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-                }
+				
+				{
+	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 2);
+	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 2);
+	                int collidingEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y;
+	
+	                Velocity velocity = Body_getVelocity(this->body);
+	                // process collision only if axis of collision is y and if hero is above platform
+					if(!velocity.y || 
+						(0 > velocity.y && (heroBottomPosition > collidingEntityTopPosition)) ||
+						(0 < velocity.y && (heroBottomPosition > collidingEntityPosition))
+					)
+	            	{
+	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+	                }
+					else
+					{
+		                Printing_int(Printing_getInstance(), FIX19_13TOI(collidingEntityTopPosition), 20, 10, NULL);
+		                Printing_int(Printing_getInstance(), FIX19_13TOI(heroBottomPosition), 20, 11, NULL);
+					}
+				}
 
 				break;
 		}
@@ -1259,8 +1275,6 @@ void Hero_suspend(Hero this)
 	Entity_suspend(__SAFE_CAST(Entity, this));
 	
 	ParticleSystem_pause(this->feetDust);
-	
-//	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 }
 
 void Hero_resume(Hero this)
@@ -1279,9 +1293,9 @@ void Hero_resume(Hero this)
 }	
 
 
-u8 Hero_getAxisAllowedForCollision(Hero this)
+u8 Hero_getAxisAllowedForBouncing(Hero this)
 {
-	ASSERT(this, "Hero::getAxisAllowedForCollision: null this");
+	ASSERT(this, "Hero::getAxisAllowedForBouncing: null this");
 
 	return __YAXIS;
 }

@@ -78,7 +78,6 @@ void HeroIdle_enter(HeroIdle this, void* owner)
     // show animation
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 	
-	Hero_disableBoost((Hero)owner);
 	Hero_lockCameraTriggerMovement(__SAFE_CAST(Hero, owner), __XAXIS | __YAXIS, true);
 #ifndef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
@@ -120,6 +119,11 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
 
+				if(K_B & pressedKey)
+                {
+					Hero_enableBoost((Hero)owner);
+				}
+
 				// check if in front of door and possibly enter it
 				if(K_LU & pressedKey)
 				{
@@ -152,7 +156,6 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 			 		}
 
                     return true;
-                    break;
 				}
 
 
@@ -161,7 +164,6 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                     Hero_checkDirection((Hero)owner, pressedKey, "Back");
 
                     return true;
-                    break;
 				}				
 
 				if(K_LD & pressedKey)
@@ -169,10 +171,22 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                     Hero_checkDirection((Hero)owner, pressedKey, "Front");
 
                     return true;
-                    break;
 				}				
 			}
+			break;
 
+		case kKeyReleased:
+			{
+				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
+
+				if(K_B & releasedKey)
+                {
+					Hero_disableBoost((Hero)owner);
+				}
+
+			}
+			break;
+			
 		case kKeyHold:
 			
 			{
@@ -196,8 +210,6 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 	                    return true;
 			 		}
 				}
-
-                break;
 			}
 			break;
 	}

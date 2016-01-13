@@ -90,7 +90,6 @@ void HeroMoving_execute(HeroMoving this, void* owner)
 // state's exit
 void HeroMoving_exit(HeroMoving this, void* owner)
 {
-	Hero_disableBoost((Hero)owner);
 }
 
 // state's handle message
@@ -101,6 +100,11 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 		case kKeyPressed:
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+
+				if(K_B & pressedKey)
+                {
+					Hero_enableBoost((Hero)owner);
+				}
 
 				// check direction
 				if((K_LL | K_LR ) & pressedKey)
@@ -176,11 +180,6 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 		case kKeyHold:
 			{
 				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
-
-				if(K_B & holdKey)
-                {
-					Hero_enableBoost((Hero)owner);
-				}
 
 				// check direction
 				if((K_LL | K_LR ) & holdKey)
