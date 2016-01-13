@@ -238,7 +238,7 @@ void Hero_locateOverNextFloor(Hero this)
 		CollisionSolver_resolveCollision(this->collisionSolver, collidingSpatialObjects, __YAXIS, displacement, &this->transform.globalScale);
 		
 		__DELETE(collidingSpatialObjects);
-//		Actor_updateSourroundingFriction(this);
+//		Actor_updateSurroundingFriction(this);
 	}
 }
 
@@ -447,17 +447,17 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 }
 
 // retrieve friction of colliding objects
-void Hero_updateSourroundingFriction(Hero this)
+void Hero_updateSurroundingFriction(Hero this)
 {
-	ASSERT(this, "Hero::updateSourroundingFriction: null this");
-	ASSERT(this->body, "Hero::updateSourroundingFriction: null body");
+	ASSERT(this, "Hero::updateSurroundingFriction: null this");
+	ASSERT(this->body, "Hero::updateSurroundingFriction: null body");
 
 	Force totalFriction = {this->actorDefinition->friction, this->actorDefinition->friction, this->actorDefinition->friction};
 	
 	if(this->collisionSolver)
 	{
-		Force sourroundingFriction = CollisionSolver_getSourroundingFriction(this->collisionSolver);
-		totalFriction.x += sourroundingFriction.x;
+		Force surroundingFriction = CollisionSolver_getSurroundingFriction(this->collisionSolver);
+		totalFriction.x += surroundingFriction.x;
 	}
 
 	Body_setFriction(this->body, totalFriction);
