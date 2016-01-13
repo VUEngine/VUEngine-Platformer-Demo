@@ -33,7 +33,8 @@
 enum HintTypes
 {
 	kEnterHint = 0,
-	kPickUpHint
+    kPickUpHint,
+    kKeyHint
 };
 
 
@@ -41,21 +42,24 @@ enum HintTypes
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Hint_METHODS															\
+#define Hint_METHODS																					\
 	AnimatedInGameEntity_METHODS;
 	
 
-#define Hint_SET_VTABLE(ClassName)												\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Hint, resume);										\
-	__VIRTUAL_SET(ClassName, Hint, handleMessage);								\
+#define Hint_SET_VTABLE(ClassName)																		\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
+	__VIRTUAL_SET(ClassName, Hint, resume);																\
+	__VIRTUAL_SET(ClassName, Hint, handleMessage);														\
 
 __CLASS(Hint);
 
-#define Hint_ATTRIBUTES															\
-																				\
-	/* it is derived from */													\
-	AnimatedInGameEntity_ATTRIBUTES												\
+#define Hint_ATTRIBUTES																					\
+																										\
+	/* it is derived from */																			\
+	AnimatedInGameEntity_ATTRIBUTES																		\
+																										\
+	/* the current hint type to show */																	\
+	u8 type;																							\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +72,7 @@ void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, int
 void Hint_destructor(Hint this);
 void Hint_resume(Hint this);
 bool Hint_handleMessage(Hint this, Telegram telegram);
-void Hint_open(Hint this);
+void Hint_open(Hint this, u8 hintType);
 void Hint_close(Hint this);
 void Hint_onCloseDone(Hint this, Object eventFirer);
 void Hint_playActiveLanguageHint(Hint this, Object eventFirer);

@@ -27,6 +27,7 @@
 #include "HideLayer/HideLayer.h"
 #include "Key/Key.h"
 #include "Bandana/Bandana.h"
+#include "Hint/Hint.h"
 
 #include "textures.h"
 
@@ -51,6 +52,8 @@ extern EntityDefinition AFFINE_DOOR_AG;
 extern EntityDefinition AFFINE_KEY_AG;
 
 extern EntityDefinition HIDE_LAYER_10x7_AG;
+
+extern EntityDefinition HINT_MC;
 
 
 #endif
