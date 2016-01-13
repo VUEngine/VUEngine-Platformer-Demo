@@ -28,10 +28,10 @@
 // 											CLASS'S MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define __SCREEN_EASING_X_DISPLACEMENT					8
-#define __SCREEN_POSITIVE_EASING_Y_DISPLACEMENT			12
-#define __SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT			6
-#define __SCREEN_EASING_Y_DISPLACEMENT					6
+#define __SCREEN_EASING_X_DISPLACEMENT					(3 << __FRAME_CYCLE)
+#define __SCREEN_POSITIVE_EASING_Y_DISPLACEMENT			(8 << __FRAME_CYCLE)
+#define __SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT			(3 << __FRAME_CYCLE)
+#define __SCREEN_EASING_Y_DISPLACEMENT					(3 << __FRAME_CYCLE)
 #define __SCREEN_HORIZONTAL_DISPLACEMENT 				30
 #define __SCREEN_VERTICAL_DISPLACEMENT 					(__SCREEN_HEIGHT / 2) + 30
 
