@@ -1093,50 +1093,32 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				Hero_stopAddingForce(this);		
 				break;
 
-				/*
 			case kTopSolid:
-            {
-            	
-                // get the axis of collision
-                u8 axisOfCollision = __VIRTUAL_CALL(
-                    int,
-                    Shape,
-                    getAxisOfCollision,
-                    this->shape,
-                    VirtualNode_getData(node),
-                    Body_getLastDisplacement(this->body),
-                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
-                );
-
-                // get positions of colliding entities
-                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 2);
-                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 2);
-
-                // process collision only if axis of collision is y and if hero is above platform
-                if(!((__YAXIS & axisOfCollision) && (heroBottomPosition <= collidingEntityTopPosition)))
-                {
-    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-                }
-                */
-			case kTopSolid:
-				
-				{
+	            {
+	            	
+	                // get the axis of collision
+	                u8 axisOfCollision = __VIRTUAL_CALL(
+	                    int,
+	                    Shape,
+	                    getAxisOfCollision,
+	                    this->shape,
+	                    VirtualNode_getData(node),
+	                    Body_getLastDisplacement(this->body),
+	                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
+	                );
+	
+	                // get positions of colliding entities
 	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 2);
 	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 2);
-	                int collidingEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y;
 	
-	                Velocity velocity = Body_getVelocity(this->body);
 	                // process collision only if axis of collision is y and if hero is above platform
-					if(!velocity.y || 
-						(0 > velocity.y && (heroBottomPosition > collidingEntityTopPosition)) ||
-						(0 < velocity.y && (heroBottomPosition > collidingEntityPosition))
-					)
-	            	{
+	                if(!((__YAXIS & axisOfCollision) && (heroBottomPosition <= collidingEntityTopPosition)))
+	                {
 	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 	                }
-				}
-
-				break;
+	            }
+	            
+	            break;
 		}
 	}
 
