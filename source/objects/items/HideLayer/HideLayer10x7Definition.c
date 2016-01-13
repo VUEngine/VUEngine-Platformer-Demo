@@ -111,7 +111,7 @@ AnimationFunctionROMDef HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
 	{0, 1, 2, 3, 4, 5, 6},
 
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(-41),
+	__ANIMATION_DELAY(2),
 
 	// whether to play it in loop or not
 	false,

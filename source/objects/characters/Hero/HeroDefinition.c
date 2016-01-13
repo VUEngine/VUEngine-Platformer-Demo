@@ -362,8 +362,7 @@ ActorROMDef HERO_AC =
 	    },
 
 	    // pointer to the animation definition for the character
-//	    (AnimationDescription*)&HERO_ANIM,
-	    NULL,
+	    (AnimationDescription*)&HERO_ANIM,
 
 	    // initial animation
 	    NULL,
