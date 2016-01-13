@@ -46,7 +46,7 @@ const LangROMDef LANGUAGE_DE =
         //STR_PRECAUTION_SCREEN_TITLE:
         "Wichtig:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        "   Lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
+        "   Lesen Sie vor dem\n Spielen die Anleitung\nund Sicherheitshinweise",
         //STR_AUTOMATIC_PAUSE:
         "Automatische Pause",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:

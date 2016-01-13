@@ -46,7 +46,7 @@ const LangROMDef LANGUAGE_FR =
         //STR_PRECAUTION_SCREEN_TITLE:
         "Important:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        "Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
+        "Prenez conaissance de la\nnotice et des précautions\na prendre avant de jouer",
         //STR_AUTOMATIC_PAUSE:
         "Pause Automatique",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
