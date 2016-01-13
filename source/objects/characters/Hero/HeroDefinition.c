@@ -49,7 +49,7 @@ AnimationFunctionROMDef HERO_IDLE_ANIM =
 	{4, 5},
 	
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(14),
+	(14),
 	
 	// whether to play it in loop or not
 	true,
@@ -71,7 +71,7 @@ AnimationFunctionROMDef HERO_WALKING_ANIM =
 	{13, 14},
 	
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(10),
+	(10),
 	
 	// whether to play it in loop or not
 	true,
@@ -159,7 +159,7 @@ AnimationFunctionROMDef HERO_HIT_ANIM =
 	{8},
 	
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(80),
+	(80),
 	
 	// whether to play it in loop or not
 	true,
@@ -181,7 +181,7 @@ AnimationFunctionROMDef HERO_CLIMB_ANIM =
 	{9, 10},
 
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(8),
+	(8),
 
 	// whether to play it in loop or not
 	true,
@@ -203,7 +203,7 @@ AnimationFunctionROMDef HERO_FRONT_ANIM =
 	{0, 1},
 	
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(14),
+	(14),
 	
 	// whether to play it in loop or not
 	true,
@@ -225,7 +225,7 @@ AnimationFunctionROMDef HERO_BACK_ANIM =
 	{2, 3},
 	
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(14),
+	(14),
 	
 	// whether to play it in loop or not
 	true,

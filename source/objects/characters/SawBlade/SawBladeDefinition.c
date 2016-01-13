@@ -44,7 +44,7 @@ AnimationFunction SAW_BLADE_SPIN_ANIM =
 	{0, 1},
 	
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(8),
+	(8),
 	
 	// whether to play it in loop or not
 	true,

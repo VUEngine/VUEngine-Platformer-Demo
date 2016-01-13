@@ -48,7 +48,7 @@ AnimationFunctionROMDef GUI_DEFAULT_ANIM =
 	{1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 2, 3, 4},
 
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(8),
+	(8),
 
 	// whether to play it in loop or not
 	true,
