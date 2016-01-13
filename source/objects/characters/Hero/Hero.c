@@ -1199,8 +1199,10 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				Hero_stopAddingForce(this);		
 				break;
 
+				/*
 			case kTopSolid:
             {
+            	
                 // get the axis of collision
                 u8 axisOfCollision = __VIRTUAL_CALL(
                     int,
@@ -1221,9 +1223,15 @@ int Hero_processCollision(Hero this, Telegram telegram)
                 {
     				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
                 }
+                */
+			case kTopSolid:
+
+				if(0 >= Body_getVelocity(this->body).y)
+            	{
+    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+                }
 
 				break;
-            }
 		}
 	}
 
