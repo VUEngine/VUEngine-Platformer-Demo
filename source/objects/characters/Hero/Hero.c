@@ -1344,3 +1344,11 @@ void Hero_resume(Hero this)
     CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
 }	
+
+
+u8 Hero_getAxisAllowedForCollision(Hero this)
+{
+	ASSERT(this, "Hero::getAxisAllowedForCollision: null this");
+
+	return __YAXIS;
+}

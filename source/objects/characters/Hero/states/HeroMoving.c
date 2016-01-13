@@ -76,7 +76,7 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 {
 	this->mustCheckDirection = false;
 
-#ifdef __DEBUG
+#ifndef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
 }
@@ -104,8 +104,21 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 				// check direction
 				if((K_LL | K_LR ) & pressedKey)
-                {
-					Hero_checkDirection((Hero)owner, pressedKey, "Walk");	
+				{
+			 		Acceleration acceleration =
+			 	    {
+			 	    	K_LL & pressedKey? ITOFIX19_13(-1) : K_LR & pressedKey? ITOFIX19_13(1): 0,
+			 	    	0,
+			 	    	0,
+			 		};
+
+			 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+			 		{
+						Hero_addForce((Hero)owner, this->mustCheckDirection, __XAXIS);					
+						this->mustCheckDirection = false;
+			 		}
+
+			 		Hero_checkDirection((Hero)owner, pressedKey, "Walk");	
 				}
 				else if(K_LU & pressedKey)
 				{
@@ -115,9 +128,6 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 						return true;
 					}
 				}
-
-				//	Hero_checkDirection((Hero)owner, pressedKey, "Walk");
-				//}
 
 				if(K_A & pressedKey)
                 {
@@ -150,20 +160,19 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				if(((K_LL | K_LR) & releasedKey) && !((K_LL | K_LR) & holdKey))
                 {
 					Velocity velocity = Body_getVelocity(Actor_getBody(__SAFE_CAST(Actor, owner)));
-					
 
-					if(0 < abs(velocity.x))
+					if(abs(velocity.x))
                     {
 						Hero_stopAddingForce((Hero)owner);		
 					}
-					else
+					else if(!abs(velocity.y))
                     {
 						StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, HeroIdle_getInstance()));
 					}
 				}
 			}
 			break;
-	
+			
 		case kKeyHold:
 			{
 				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
@@ -176,7 +185,15 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				// check direction
 				if((K_LL | K_LR ) & holdKey)
                 {
-					Hero_addForce((Hero)owner, this->mustCheckDirection, __XAXIS);					
+//					Hero_checkDirection((Hero)owner, holdKey, "Walk");	
+
+//					Velocity velocity = Body_getVelocity(Actor_getBody(__SAFE_CAST(Actor, owner)));
+
+		//			if(__XAXIS & Body_isMoving(Actor_getBody(__SAFE_CAST(Actor, owner))))
+                    {
+						Hero_addForce((Hero)owner, this->mustCheckDirection, __XAXIS);					
+                    }
+					
 					this->mustCheckDirection = false;
 				}
 				else if((K_LU | K_LD ) & holdKey)
