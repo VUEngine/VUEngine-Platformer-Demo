@@ -28,6 +28,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 												MACROS
+//---------------------------------------------------------------------------------------------------------
+
+#define DOOR_OVERLAPPING_CHECK_DELAY  100
+
+
+//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
@@ -47,7 +54,10 @@ __CLASS(Door);
 	AnimatedInGameEntity_ATTRIBUTES																		\
 																										\
 	/* destination of door */																			\
-	PlatformerStageEntryPointDefinition* destinationDefinition;														\
+	PlatformerStageEntryPointDefinition* destinationDefinition;											\
+																										\
+	/* is door currently being overlapped by hero? */													\
+	bool currentlyOverlappingHero;																		\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -62,6 +72,8 @@ PlatformerStageEntryPointDefinition* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);
 bool Door_handleMessage(Door this, Telegram telegram);
 bool Door_hasDestination(Door this);
+void Door_setOverlapping(Door this);
+bool Door_isOverlapping(Door this);
 
 
 #endif

@@ -39,6 +39,13 @@ __CLASS_DEFINITION(Door, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+bool Door_checkStillOverlapping(Door this);
+
+
+//---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -55,7 +62,9 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
 
+    // init class variables
 	this->destinationDefinition = NULL;
+	this->currentlyOverlappingHero = false;
 }
 
 // class's destructor
@@ -82,33 +91,28 @@ void Door_setExtraInfo(Door this, void* extraInfo)
 	this->destinationDefinition = (PlatformerStageEntryPointDefinition*)extraInfo;
 }
 
-// state's on message
+// class's handle message
 bool Door_handleMessage(Door this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
+        case kCheckOverlapping:
+
+            if(Door_checkStillOverlapping(this))
+            {
+                // delayed check if still overlapping hero
+                MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
+            }
+
+            return true;
+            break;
+
 		case kEnterDoor:
 
 			if(Door_hasDestination(this))
 			{
 				PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), this->destinationDefinition);
 				return true;
-			}
-			break;
-
-		case kOpenDoor:
-
-			if(Door_hasDestination(this))
-			{
-				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
-			}
-			break;
-
-		case kCloseDoor:
-
-			if(Door_hasDestination(this))
-			{
-				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closing");
 			}
 			break;
 	}
@@ -119,4 +123,44 @@ bool Door_handleMessage(Door this, Telegram telegram)
 bool Door_hasDestination(Door this)
 {
 	return NULL != this->destinationDefinition;
+}
+
+void Door_setOverlapping(Door this)
+{
+	this->currentlyOverlappingHero = true;
+
+    if(Door_hasDestination(this))
+    {
+        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
+    }
+
+    // delayed check if still overlapping hero
+    MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
+}
+
+bool Door_isOverlapping(Door this)
+{
+	return this->currentlyOverlappingHero;
+}
+
+bool Door_checkStillOverlapping(Door this)
+{
+	// check if hero has recently overlapped door and is still doing so
+	if(
+		this->currentlyOverlappingHero &&
+		!__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, Hero_getInstance())), Entity_getShape(__SAFE_CAST(Entity, this)))
+	)
+	{
+		this->currentlyOverlappingHero = false;
+
+        // inform the hero
+        MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kEndOverlapping, NULL);
+
+        if(Door_hasDestination(this))
+        {
+            AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closing");
+        }
+	}
+
+	return this->currentlyOverlappingHero;
 }

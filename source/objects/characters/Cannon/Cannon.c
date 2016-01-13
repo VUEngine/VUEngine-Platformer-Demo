@@ -99,7 +99,7 @@ void Cannon_ready(Cannon this)
     MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
-// state's on message
+// state's handle message
 bool Cannon_handleMessage(Cannon this, Telegram telegram)
 {
 	ASSERT(this, "Cannon::handleMessage: null this");

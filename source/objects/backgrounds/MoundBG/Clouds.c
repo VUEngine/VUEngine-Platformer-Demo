@@ -72,7 +72,7 @@ bool Clouds_isVisible(Clouds this, int pad)
 	return true;
 }
 
-// state's on message
+// state's handle message
 void Clouds_update(Clouds this)
 {
 	ASSERT(this, "Clouds::update: null this");

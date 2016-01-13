@@ -24,7 +24,6 @@
 
 #include <Actor.h>
 #include <Door.h>
-#include <HideLayer.h>
 #include <ParticleSystem.h>
 #include <ProgressManager.h>
 #include <macros.h>
@@ -73,12 +72,9 @@ __CLASS(Hero);
 																										\
 	/* it is derived from */																			\
 	Actor_ATTRIBUTES																					\
-																										\
+	                                                                            						\
 	/* a reference to the last door the hero passed */    												\
 	Door currentlyOverlappingDoor;																		\
-	                                                                            						\
-	/* a reference to the last hide layer the hero passed */    										\
-	HideLayer currentlyOverlappingHideLayer;															\
 																										\
 	/* hint entity */																					\
 	Entity hint;																						\
@@ -138,7 +134,6 @@ void Hero_resetPalette(Hero this);
 void Hero_disableBoost(Hero this);
 void Hero_enableBoost(Hero this);
 bool Hero_isOverlappingDoor(Hero this);
-bool Hero_isOverlappingHideLayer(Hero this);
 void Hero_enterDoor(Hero this);
 void Hero_showHint(Hero this, u8 hintType);
 void Hero_hideHint(Hero this);
@@ -153,12 +148,6 @@ u8 Hero_getCoins(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
-Door Hero_getCurrentlyOverlappingDoor(Hero this);
-HideLayer Hero_getCurrentlyOverlappingHideLayer(Hero this);
-void Hero_setCurrentlyOverlappingDoor(Hero this, Door door);
-void Hero_setCurrentlyOverlappingHideLayer(Hero this, HideLayer hideLayer);
-void Hero_resetCurrentlyOverlappingDoor(Hero this);
-void Hero_resetCurrentlyOverlappingHideLayer(Hero this);
 int Hero_processCollision(Hero this, Telegram telegram);
 bool Hero_handleMessage(Hero this, Telegram telegram);
 bool Hero_handlePropagatedMessage(Hero this, int message);
@@ -167,6 +156,7 @@ void Hero_resume(Hero this);
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
 void Hero_updateSourroundingFriction(Hero this);
 u8 Hero_getAxisAllowedForCollision(Hero this);
+void Hero_setPosition(Hero this, VBVec3D* position);
 
 
 #endif

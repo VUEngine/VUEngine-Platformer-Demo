@@ -88,7 +88,7 @@ void Bandana_ready(Bandana this)
 	Entity_ready(__SAFE_CAST(Entity, this));
 }
 
-// state's on message
+// state's handle message
 bool Bandana_handleMessage(Bandana this, Telegram telegram)
 {
 	ASSERT(this, "Bandana::handleMessage: null this");

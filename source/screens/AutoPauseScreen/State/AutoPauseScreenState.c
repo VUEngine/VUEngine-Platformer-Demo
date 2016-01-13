@@ -102,7 +102,7 @@ static void AutoPauseScreenState_exit(AutoPauseScreenState this, void* owner)
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 }
 
-// state's on message
+// state's handle message
 static bool AutoPauseScreenState_handleMessage(AutoPauseScreenState this, void* owner, Telegram telegram)
 {
 	// process message

@@ -77,7 +77,7 @@ void LavaTrigger_destructor(LavaTrigger this)
 	__DESTROY_BASE;
 }
 
-// state's on message
+// state's handle message
 bool LavaTrigger_handleMessage(LavaTrigger this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))

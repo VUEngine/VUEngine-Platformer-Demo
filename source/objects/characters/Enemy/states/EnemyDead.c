@@ -81,7 +81,7 @@ void EnemyDead_exit(EnemyDead this, void* owner)
 {
 }
 
-// state's on message
+// state's handle message
 bool EnemyDead_handleMessage(EnemyDead this, void* owner, Telegram telegram)
 {
 	return false;

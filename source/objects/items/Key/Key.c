@@ -75,7 +75,7 @@ void Key_destructor(Key this)
 	__DESTROY_BASE;
 }
 
-// state's on message
+// state's handle message
 bool Key_handleMessage(Key this, Telegram telegram)
 {
 	ASSERT(this, "Key::handleMessage: null this");

@@ -86,7 +86,7 @@ void SawBladeIdle_exit(SawBladeIdle this, void* owner)
 {
 }
 
-// state's on message
+// state's handle message
 bool SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram)
 {
 	return false;

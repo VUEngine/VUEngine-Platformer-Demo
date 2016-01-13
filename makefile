@@ -4,9 +4,9 @@
 TARGET = output
 
 # Default build type
-TYPE = debug
+#TYPE = debug
 #TYPE = release
-#TYPE = release-tools
+TYPE = release-tools
 #TYPE = preprocessor
 
 # Which directories contain source files

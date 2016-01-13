@@ -27,22 +27,32 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 												MACROS
+//---------------------------------------------------------------------------------------------------------
+
+#define HIDE_LAYER_OVERLAPPING_CHECK_DELAY  100
+
+
+//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define HideLayer_METHODS															\
+#define HideLayer_METHODS																				\
 	AnimatedInGameEntity_METHODS;
 
-
-#define HideLayer_SET_VTABLE(ClassName)												\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									    \
+#define HideLayer_SET_VTABLE(ClassName)																	\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
+	__VIRTUAL_SET(ClassName, HideLayer, handleMessage);													\
 
 __CLASS(HideLayer);
 
-#define HideLayer_ATTRIBUTES														\
-																				    \
-	/* it is derived from */													    \
-	AnimatedInGameEntity_ATTRIBUTES												    \
+#define HideLayer_ATTRIBUTES																			\
+																										\
+	/* it is derived from */																			\
+	AnimatedInGameEntity_ATTRIBUTES																		\
+																										\
+	/* is hide layer currently being overlapped by hero? */												\
+	bool currentlyOverlappingHero;																		\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,6 +63,9 @@ __CLASS_NEW_DECLARE(HideLayer, AnimatedInGameEntityDefinition* animatedInGameEnt
 
 void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void HideLayer_destructor(HideLayer this);
+bool HideLayer_handleMessage(HideLayer this, Telegram telegram);
+void HideLayer_setOverlapping(HideLayer this);
+bool HideLayer_isOverlapping(HideLayer this);
 
 
 #endif

@@ -101,7 +101,7 @@ static void PauseScreenState_exit(PauseScreenState this, void* owner)
 	__DELETE(this);
 }
 
-// state's on message
+// state's handle message
 static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, Telegram telegram)
 {
 	// process message
