@@ -80,7 +80,7 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 	
 	Hero_disableBoost((Hero)owner);
 	Hero_lockCameraTriggerMovement(__SAFE_CAST(Hero, owner), __XAXIS | __YAXIS, true);
-#ifdef __DEBUG
+#ifndef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
 }
@@ -134,12 +134,12 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                 {
 			 		Acceleration acceleration =
 			 	    {
-			 	    	(K_LL | K_LR) & pressedKey? ITOFIX19_13(InGameEntity_getDirection(__SAFE_CAST(InGameEntity, owner)).x): 0,
+			 	    	K_LL & pressedKey? ITOFIX19_13(-1) : K_LR & pressedKey? ITOFIX19_13(1): 0,
 			 	    	K_A & pressedKey? ITOFIX19_13(-1): 0,
 			 	    	0,
 			 		};
 
-			 		if(Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+			 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			 		{
 	                    Hero_checkDirection((Hero)owner, pressedKey, "Idle");
 	
@@ -180,13 +180,24 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 				if((K_LL | K_LR) & holdKey)
                 {
-                    Hero_checkDirection((Hero)owner, holdKey, "Idle");
+			 		Acceleration acceleration =
+			 	    {
+			 	    	(K_LL | K_LR) & holdKey? ITOFIX19_13(InGameEntity_getDirection(__SAFE_CAST(InGameEntity, owner)).x): 0,
+			 	    	K_A & holdKey? ITOFIX19_13(-1): 0,
+			 	    	0,
+			 		};
 
-                    Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
-
-                    return true;
-                    break;
+			 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+			 		{
+	                    Hero_checkDirection((Hero)owner, holdKey, "Idle");
+	
+	                    Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
+	
+	                    return true;
+			 		}
 				}
+
+                break;
 			}
 			break;
 	}
