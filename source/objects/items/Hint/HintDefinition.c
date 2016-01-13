@@ -30,8 +30,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HintPickUpTiles[];
-extern BYTE HintPickUpMap[];
+extern BYTE HintTiles[];
+extern BYTE HintMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,16 +39,16 @@ extern BYTE HintPickUpMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_OPEN_ANIM =
+AnimationFunctionROMDef HINT_OPEN_ANIM =
 {
 	// number of frames of this animation function
 	5,
 	
 	// frames to play in animation
 	{0, 1, 2, 3, 4},
-
+	
 	// number of cycles a frame of animation is displayed
-	__FPS_ANIM_FACTOR,
+	1 * __FPS_ANIM_FACTOR,
 	
 	// whether to play it in loop or not
 	false,
@@ -61,7 +61,51 @@ AnimationFunctionROMDef HINT_PICK_UP_OPEN_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
+AnimationFunctionROMDef HINT_CLOSE_ANIM =
+{
+	// number of frames of this animation function
+	5,
+
+	// frames to play in animation
+	{4, 3, 2, 1, 0},
+
+	// number of cycles a frame of animation is displayed
+	1 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	&Hint_onCloseDone,
+
+	// function's name
+	"Close",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_CLOSED_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{0},
+
+	// number of cycles a frame of animation is displayed
+	1 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Closed",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_ENTER_ENGLISH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -79,11 +123,11 @@ AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
 	NULL,
 
 	// function's name
-	"English",
+	"EnterEnglish",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
+AnimationFunctionROMDef HINT_ENTER_DEUTSCH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -101,45 +145,185 @@ AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 	NULL,
 	
 	// function's name
-	"Deutsch",
+	"EnterDeutsch",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_CLOSE_ANIM =
+AnimationFunctionROMDef HINT_ENTER_ESPANOL_ANIM =
 {
 	// number of frames of this animation function
-	5,
+	2,
 
 	// frames to play in animation
-	{4, 3, 2, 1, 0},
+	{9, 10},
 
 	// number of cycles a frame of animation is displayed
-	__FPS_ANIM_FACTOR,
+	14 * __FPS_ANIM_FACTOR,
 
 	// whether to play it in loop or not
-	false,
+	true,
 
 	// method to call on function completion
-	&Hint_onCloseDone,
+	NULL,
 
 	// function's name
-	"Close",
+	"EnterEspanol",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_ENTER_FRANCAIS_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{11, 12},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"EnterFrancais",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{13, 14},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"PickUpEnglish",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{15, 16},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"PickUpDeutsch",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_PICK_UP_ESPANOL_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{17, 18},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"PickUpEspanol",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_PICK_UP_FRANCAIS_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{19, 20},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"PickUpFrancais",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HINT_KEY_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{21, 22},
+
+	// number of cycles a frame of animation is displayed
+	14 * __FPS_ANIM_FACTOR,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Key",
 };
 
 // an animation definition
-AnimationDescriptionROMDef HINT_PICK_UP_ANIM =
+AnimationDescriptionROMDef HINT_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HINT_PICK_UP_OPEN_ANIM,
+		(AnimationFunction*)&HINT_OPEN_ANIM,
+		(AnimationFunction*)&HINT_CLOSE_ANIM,
+		(AnimationFunction*)&HINT_CLOSED_ANIM,
+		(AnimationFunction*)&HINT_ENTER_ENGLISH_ANIM,
+		(AnimationFunction*)&HINT_ENTER_DEUTSCH_ANIM,
+		(AnimationFunction*)&HINT_ENTER_ESPANOL_ANIM,
+		(AnimationFunction*)&HINT_ENTER_FRANCAIS_ANIM,
 		(AnimationFunction*)&HINT_PICK_UP_ENGLISH_ANIM,
 		(AnimationFunction*)&HINT_PICK_UP_DEUTSCH_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_CLOSE_ANIM,
+		(AnimationFunction*)&HINT_PICK_UP_ESPANOL_ANIM,
+		(AnimationFunction*)&HINT_PICK_UP_FRANCAIS_ANIM,
+		(AnimationFunction*)&HINT_KEY_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef HINT_PICK_UP_CH =
+CharSetROMDef HINT_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
@@ -147,22 +331,22 @@ CharSetROMDef HINT_PICK_UP_CH =
     // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __NOT_ANIMATED: number of chars of whole image
-    18,
+    24,
 
     // allocation type
     __ANIMATED_SINGLE,
 
     // char definition
-    HintPickUpTiles,
+    HintTiles,
 };
 
-TextureROMDef HINT_PICK_UP_TX =
+TextureROMDef HINT_TX =
 {
     // charset definition
-    (CharSetDefinition*)&HINT_PICK_UP_CH,
+    (CharSetDefinition*)&HINT_CH,
 
     // bgmap definition
-    HintPickUpMap,
+    HintMap,
 
     // cols (max 64)
     8,
@@ -171,19 +355,19 @@ TextureROMDef HINT_PICK_UP_TX =
     3,
 
     // number of frames
-    9,
+    23,
 
     // palette number
     1,
 };
 
-BgmapSpriteROMDef HINT_PICK_UP_SPRITE =
+BgmapSpriteROMDef HINT_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&HINT_PICK_UP_TX,
+	(TextureDefinition*)&HINT_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
@@ -194,19 +378,19 @@ BgmapSpriteROMDef HINT_PICK_UP_SPRITE =
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
-
-BgmapSpriteROMDef* const HINT_PICK_UP_SPRITES[] =
+	
+BgmapSpriteROMDef* const HINT_SPRITES[] =
 {
-	&HINT_PICK_UP_SPRITE,
+	&HINT_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
+AnimatedInGameEntityROMDef HINT_MC =
 {
     {
         {
             __TYPE(Hint),
-            (SpriteROMDef**)HINT_PICK_UP_SPRITES,
+            (SpriteROMDef**)HINT_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -228,8 +412,8 @@ AnimatedInGameEntityROMDef HINT_PICK_UP_MC =
     },
 
     // pointer to the animation definition for the item
-    (AnimationDescription*)&HINT_PICK_UP_ANIM,
+    (AnimationDescription*)&HINT_ANIM,
 
     // initial animation
-    "Open",
+    "Closed",
 };

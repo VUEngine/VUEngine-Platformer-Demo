@@ -55,7 +55,7 @@ void Hero_hideHint(Hero this);
 void Hero_resetCurrentlyOverlappingDoor(Hero this);
 void Hero_resetCurrentlyOverlappingHideLayer(Hero this);
 void Hero_updateSprite(Hero this);
-static void Hero_addHints(Hero this);
+static void Hero_addHint(Hero this);
 static void Hero_addFeetDust(Hero this);
 static void Hero_slide(Hero this);
 static void Hero_showDust(Hero this, bool autoHideDust);
@@ -74,7 +74,7 @@ extern const u16 JUMP_SND[];
 extern CharSetDefinition HERO_CH;
 extern CharSetDefinition HERO_BANDANA_CH;
 extern EntityDefinition DUST_PS;
-extern EntityDefinition HINT_ENTER_MC;
+extern EntityDefinition HINT_MC;
 
 #define HERO_INPUT_FORCE 						ITOFIX19_13(5050)
 #define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(3800)
@@ -129,7 +129,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	// init class variables
 	this->coins = 0;
 	this->hasKey = false;
-	this->currentHint = NULL;
+	this->hint = NULL;
 	this->feetDust = NULL;
 	this->cameraBoundingBox = NULL;
 	this->energy = HERO_INITIAL_ENERGY;
@@ -181,7 +181,7 @@ void Hero_destructor(Hero this)
 
 	// free the instance pointers
 	this->feetDust = NULL;
-	this->currentHint = NULL;
+	this->hint = NULL;
 	this->cameraBoundingBox = NULL;
 	hero = NULL;
 
@@ -213,7 +213,7 @@ void Hero_ready(Hero this)
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 
-	Hero_addHints(this);
+	Hero_addHint(this);
 	Hero_addFeetDust(this);
 }
 
@@ -778,23 +778,23 @@ void Hero_enterDoor(Hero this)
 	Hero_setCurrentlyOverlappingDoor(this, NULL);
 
 	// hide hint immediately
-	if(this->currentHint != NULL)
+	if(this->hint != NULL)
 	{
-		Entity_hide(__SAFE_CAST(Entity, this->currentHint));
+		Entity_hide(__SAFE_CAST(Entity, this->hint));
 	}
 
 	// play door sound
     SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
-static void Hero_addHints(Hero this)
+static void Hero_addHint(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
 	VBVec3D position = {FTOFIX19_13(25), FTOFIX19_13(-20), FTOFIX19_13(-SORT_INCREMENT * 4)};
 
     // save the hint entity, so we can remove it later
-	this->currentHint = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &HINT_ENTER_MC, -1, "enterHint", &position, NULL);
+	this->hint = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
 }
 
 static void Hero_addFeetDust(Hero this)
@@ -811,27 +811,21 @@ static void Hero_addFeetDust(Hero this)
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 }
 
-void Hero_showHint(Hero this, char* hintName)
+void Hero_showHint(Hero this, u8 hintType)
 {
 	ASSERT(this, "Hero::showHint: null this");
-	
-	// close any previous opened hint
-	Hero_hideHint(this);
+	ASSERT(this->hint, "Hero::showHint: null hint");
 
-	this->currentHint = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, this), hintName, false));
-    
-	ASSERT(this->currentHint, "Hero::showHint: null currentHint");
-
-	Hint_open((Hint)this->currentHint);
+	Hint_open((Hint)this->hint, hintType);
 }
 
 void Hero_hideHint(Hero this)
 {
     // check if a hint is being shown at the moment
-	if(this->currentHint)
+	if(this->hint)
 	{
 	    // play the closing animation (the hint will delete itself afterwards)
-		Hint_close(__SAFE_CAST(Hint, this->currentHint));
+		Hint_close(__SAFE_CAST(Hint, this->hint));
 	}
 }
 
@@ -1164,7 +1158,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
                 // first contact with door?
 				if(Hero_getCurrentlyOverlappingDoor(this) == NULL && Door_hasDestination((Door)inGameEntity))
 				{
-				    Hero_showHint(this, "enterHint");
+				    Hero_showHint(this, kEnterHint);
                     Hero_setCurrentlyOverlappingDoor(this, __SAFE_CAST(Door, inGameEntity));
 
                     // remind hero to check if door is still overlapping in 100 milliseconds

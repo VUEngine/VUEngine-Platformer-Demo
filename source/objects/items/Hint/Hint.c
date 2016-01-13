@@ -25,16 +25,9 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <I18n.h>
-
 #include <objects.h>
 #include "Hint.h"
-
 #include <PlatformerLevelState.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S MACROS
-//---------------------------------------------------------------------------------------------------------
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,11 +35,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Hint, AnimatedInGameEntity);
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -61,6 +49,8 @@ __CLASS_NEW_END(Hint, animatedInGameEntityDefinition, id, name);
 void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	ASSERT(this, "Hint::constructor: null this");
+
+	this->type = kEnterHint;
 
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
@@ -101,12 +91,14 @@ bool Hint_handleMessage(Hint this, Telegram telegram)
 	return false;
 }
 
-void Hint_open(Hint this)
+void Hint_open(Hint this, u8 hintType)
 {
 	ASSERT(this, "Hint::open: null this");
 
+    this->type = hintType;
+
 	Entity_show(__SAFE_CAST(Entity, this));
-	
+
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
 }
 
@@ -128,25 +120,57 @@ void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
 {
 	ASSERT(this, "Hint::playActiveLanguageHint: null this");
 
-    char* LanguageAnimName;
+    char* LanguageAnimName = "";
 
-    switch(I18n_getActiveLanguage(I18n_getInstance()))
+    switch(this->type)
     {
         default:
-        case 0:
-            LanguageAnimName = "English";
+        case kEnterHint:
+            switch(I18n_getActiveLanguage(I18n_getInstance()))
+            {
+                default:
+                case 0:
+                    LanguageAnimName = "EnterEnglish";
+                    break;
+
+                case 1:
+                    LanguageAnimName = "EnterDeutsch";
+                    break;
+
+                case 2:
+                    LanguageAnimName = "EnterEspanol";
+                    break;
+
+                case 3:
+                    LanguageAnimName = "EnterFrancais";
+                    break;
+            }
             break;
 
-        case 1:
-            LanguageAnimName = "Deutsch";
+        case kPickUpHint:
+            switch(I18n_getActiveLanguage(I18n_getInstance()))
+            {
+                default:
+                case 0:
+                    LanguageAnimName = "PickUpEnglish";
+                    break;
+
+                case 1:
+                    LanguageAnimName = "PickUpDeutsch";
+                    break;
+
+                case 2:
+                    LanguageAnimName = "PickUpEspanol";
+                    break;
+
+                case 3:
+                    LanguageAnimName = "PickUpFrancais";
+                    break;
+            }
             break;
 
-        case 2:
-            LanguageAnimName = "Espanol";
-            break;
-
-        case 3:
-            LanguageAnimName = "Francais";
+        case kKeyHint:
+            LanguageAnimName = "Key";
             break;
     }
 

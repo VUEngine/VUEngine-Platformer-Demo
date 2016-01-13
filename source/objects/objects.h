@@ -27,7 +27,6 @@
 #include "backgrounds/backgrounds.h"
 #include "characters/characters.h"
 #include "collisions/collisions.h"
-#include "hints/hints.h"
 #include "items/items.h"
 #include "particles/particles.h"
 

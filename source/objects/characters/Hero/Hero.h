@@ -79,8 +79,8 @@ __CLASS(Hero);
 	/* a reference to the last hide layer the hero passed */    										\
 	HideLayer currentlyOverlappingHideLayer;															\
 																										\
-	/* the currently shown hint entity */																\
-	Entity currentHint;																					\
+	/* hint entity */																					\
+	Entity hint;																						\
 																										\
 	/* feet dust */																						\
 	ParticleSystem feetDust;																			\
@@ -139,7 +139,7 @@ void Hero_enableBoost(Hero this);
 bool Hero_isOverlappingDoor(Hero this);
 bool Hero_isOverlappingHideLayer(Hero this);
 void Hero_enterDoor(Hero this);
-void Hero_showHint(Hero this, char* hintName);
+void Hero_showHint(Hero this, u8 hintType);
 void Hero_hideHint(Hero this);
 void Hero_lookFront(Hero this);
 void Hero_lookBack(Hero this);
