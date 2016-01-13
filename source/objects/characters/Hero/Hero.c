@@ -1373,7 +1373,7 @@ void Hero_suspend(Hero this)
 	
 	ParticleSystem_pause(this->feetDust);
 	
-	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
+//	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 }
 
 void Hero_resume(Hero this)
@@ -1383,4 +1383,10 @@ void Hero_resume(Hero this)
 	Actor_resume(__SAFE_CAST(Actor, this));
 
 	Screen_position(Screen_getInstance(), false);
+	
+	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
+
+	VBVec3DFlag positionFlag = {true, true, true};
+    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
+	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
 }	
