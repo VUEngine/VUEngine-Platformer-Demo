@@ -79,14 +79,8 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
                 destinationDoorPosition.y += this->destinationDefinition->offset.y;
                 destinationDoorPosition.z += this->destinationDefinition->offset.z;
 
-                // TODO: move the 3 calls below to a single method in the Hero
-                // stop hero's movement
-                Actor_stopMovement(__SAFE_CAST(Actor, Hero_getInstance()));
-
-                // set hero's position to that of the destination door
-                Actor_setLocalPosition(__SAFE_CAST(Actor, Hero_getInstance()), &destinationDoorPosition);
-
-				Hero_lockCameraTriggerMovement(Hero_getInstance(), __XAXIS | __YAXIS, true);
+                // set hero's position
+                Hero_setPosition(Hero_getInstance(), &destinationDoorPosition);
 
 				return true;
 			}
