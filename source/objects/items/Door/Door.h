@@ -47,7 +47,7 @@ __CLASS(Door);
 	AnimatedInGameEntity_ATTRIBUTES																		\
 																										\
 	/* destination of door */																			\
-	PlatformerStageEntryPointDefinition* destinationDefinition;														\
+	PlatformerStageEntryPointDefinition* destinationDefinition;											\
 
 
 //---------------------------------------------------------------------------------------------------------

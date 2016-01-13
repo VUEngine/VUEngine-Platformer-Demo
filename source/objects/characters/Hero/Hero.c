@@ -1359,19 +1359,20 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 	return false;
 }
 
-void Hero_setPosition(Hero this, VBVec3D* destinationDoorPosition)
+void Hero_setPosition(Hero this, VBVec3D* position)
 {
 	ASSERT(this, "Hero::setPosition: null this");
 
+    // stop all movement
 	Actor_stopMovement(__SAFE_CAST(Actor, this));
 	
-	// set hero's position to that of the destination door
-	Actor_setLocalPosition(__SAFE_CAST(Actor, this), destinationDoorPosition);
+	// set new position
+	Actor_setLocalPosition(__SAFE_CAST(Actor, this), position);
 
 	// must make sure that collision detection is reset
 	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
 	
-	// make the camera be active for collision detection
+	// make the camera active for collision detection
 	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 }
 
