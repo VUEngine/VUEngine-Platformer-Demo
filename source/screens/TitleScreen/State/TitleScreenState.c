@@ -122,6 +122,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 // state's execute
 static void TitleScreenState_execute(TitleScreenState this, void* owner)
 {
+/*
     Door currentlyOverlappingDoor = Hero_getCurrentlyOverlappingDoor(Hero_getInstance());
     char* strLevelSelectLabel = "";
 
@@ -138,7 +139,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
         Printing_text(Printing_getInstance(), strLevelSelectLabel, (48 - strlen(strLevelSelectLabel)) >> 1, 26, "GUIFont");
         this->lastLevelSelectLabel = strLevelSelectLabel;
     }
-
+*/
 	// call base
 	GameState_execute(__SAFE_CAST(GameState, this), owner);
 }
@@ -203,7 +204,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	Game_pausePhysics(Game_getInstance(), true);
 }
 
-// state's on message
+// state's handle message
 static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
 {
 	// process message

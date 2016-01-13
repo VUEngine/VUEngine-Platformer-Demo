@@ -100,7 +100,7 @@ void CogWheel_ready(CogWheel this)
 	}
 }
 
-// state's on message
+// state's handle message
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))

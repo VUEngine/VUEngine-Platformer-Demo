@@ -275,7 +275,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_setModeToPlaying(this);
 }
 
-// state's on message
+// state's handle message
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)
 {
 	// process message

@@ -24,10 +24,8 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
-
 #include <objects.h>
 #include "LayerSwitchDoor.h"
-
 #include <PlatformerLevelState.h>
 
 
@@ -61,7 +59,7 @@ void LayerSwitchDoor_destructor(LayerSwitchDoor this)
 	__DESTROY_BASE;
 }
 
-// state's on message
+// state's handle message
 bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))

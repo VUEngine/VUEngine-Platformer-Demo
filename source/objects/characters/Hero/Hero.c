@@ -52,8 +52,6 @@ static void Hero_onKeyReleased(Hero this, Object eventFirer);
 static void Hero_onKeyHold(Hero this, Object eventFirer);
 void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
-void Hero_resetCurrentlyOverlappingDoor(Hero this);
-void Hero_resetCurrentlyOverlappingHideLayer(Hero this);
 void Hero_updateSprite(Hero this);
 static void Hero_addHint(Hero this);
 static void Hero_addFeetDust(Hero this);
@@ -722,25 +720,6 @@ void Hero_enableBoost(Hero this)
 	}
 }
 
-// check if the hero is overlapping a door
-bool Hero_isOverlappingDoor(Hero this)
-{
-	ASSERT(this, "Hero::isOverlappingDoor: null this");
-
-	bool isOverlapping = false;
-
-	// check if hero recently passed a door and is still doing so
-	if(
-		(Hero_getCurrentlyOverlappingDoor(this) != NULL) &&
-		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, this)), Entity_getShape(__SAFE_CAST(Entity, Hero_getCurrentlyOverlappingDoor(this))))
-	)
-	{
-		isOverlapping = true;
-	}
-
-	return isOverlapping;
-}
-
 // check if the hero is overlapping a hide layer
 bool Hero_isOverlappingHideLayer(Hero this)
 {
@@ -760,6 +739,14 @@ bool Hero_isOverlappingHideLayer(Hero this)
 	return isOverlapping;
 }
 
+// check if the hero is overlapping a door
+bool Hero_isOverlappingDoor(Hero this)
+{
+	ASSERT(this, "Hero::isOverlappingDoor: null this");
+
+	return (this->currentlyOverlappingDoor != NULL);
+}
+
 void Hero_enterDoor(Hero this)
 {
 	ASSERT(this, "Hero::enterDoor: null this");
@@ -772,10 +759,10 @@ void Hero_enterDoor(Hero this)
 	}
 
 	// inform the door entity
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getCurrentlyOverlappingDoor(this)), kEnterDoor, NULL);
-
-	// reset currently overlapping door
-	Hero_setCurrentlyOverlappingDoor(this, NULL);
+	if(this->currentlyOverlappingDoor != NULL)
+	{
+	    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappingDoor), kEnterDoor, NULL);
+	}
 
 	// hide hint immediately
 	if(this->hint != NULL)
@@ -824,7 +811,7 @@ void Hero_hideHint(Hero this)
     // check if a hint is being shown at the moment
 	if(this->hint)
 	{
-	    // play the closing animation (the hint will delete itself afterwards)
+	    // play the closing animation
 		Hint_close(__SAFE_CAST(Hint, this->hint));
 	}
 }
@@ -832,7 +819,7 @@ void Hero_hideHint(Hero this)
 // make hero to look to the player
 void Hero_lookFront(Hero this)
 {
-	// if already not playing
+	// if not already playing
 	if(!AnimatedInGameEntity_isAnimationLoaded(__SAFE_CAST(AnimatedInGameEntity, this), "Front"))
     {
 		// play animation
@@ -843,7 +830,7 @@ void Hero_lookFront(Hero this)
 // make hero to look away from the player
 void Hero_lookBack(Hero this)
 {
-	// if already not playing
+	// if not already playing
 	if(!AnimatedInGameEntity_isAnimationLoaded(__SAFE_CAST(AnimatedInGameEntity, this), "Back"))
     {
 		// play animation
@@ -998,33 +985,10 @@ bool Hero_isInvincible(Hero this)
 	return this->invincible;
 }
 
-// get door the hero is currently overlapping
-Door Hero_getCurrentlyOverlappingDoor(Hero this)
-{
-	return this->currentlyOverlappingDoor;
-}
-
 // get hide layer the hero is currently overlapping
 HideLayer Hero_getCurrentlyOverlappingHideLayer(Hero this)
 {
 	return this->currentlyOverlappingHideLayer;
-}
-
-// set door the hero is currently overlapping
-void Hero_setCurrentlyOverlappingDoor(Hero this, Door door)
-{
-	if(door) 
-	{
-		// open the door
-		MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, door), kOpenDoor, NULL);
-	}
-	else if(this->currentlyOverlappingDoor)
-	{
-		// close the door
-		MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappingDoor), kCloseDoor, NULL);
-	}
-	
-	this->currentlyOverlappingDoor = door;
 }
 
 // set hide layer the hero is currently overlapping
@@ -1036,15 +1000,6 @@ void Hero_setCurrentlyOverlappingHideLayer(Hero this, HideLayer hideLayer)
 	}
 
 	this->currentlyOverlappingHideLayer = hideLayer;
-}
-
-void Hero_resetCurrentlyOverlappingDoor(Hero this)
-{
-	// reset currently overlapping door
-	Hero_setCurrentlyOverlappingDoor(this, NULL);
-
-	// remove door enter hint
-	Hero_hideHint(this);
 }
 
 void Hero_resetCurrentlyOverlappingHideLayer(Hero this)
@@ -1153,17 +1108,14 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kDoor:
 
-			    // TODO: let the overlapping entities handle overlapping logic
-
                 // first contact with door?
-				if(Hero_getCurrentlyOverlappingDoor(this) == NULL && Door_hasDestination((Door)inGameEntity))
-				{
+                if(!Door_isOverlapping((Door)inGameEntity) && Door_hasDestination((Door)inGameEntity))
+                {
 				    Hero_showHint(this, kEnterHint);
-                    Hero_setCurrentlyOverlappingDoor(this, __SAFE_CAST(Door, inGameEntity));
+				    this->currentlyOverlappingDoor = (Door)inGameEntity;
+                    Door_setOverlapping((Door)inGameEntity);
+                }
 
-                    // remind hero to check if door is still overlapping in 100 milliseconds
-                    MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckForOverlappingDoor, NULL);
-				}
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1248,21 +1200,6 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
     {
-        case kCheckForOverlappingDoor:
-
-            if(!Hero_isOverlappingDoor(this))
-            {
-                Hero_resetCurrentlyOverlappingDoor(this);
-            }
-            else
-            {
-                // remind hero to check again in 100 milliseconds
-                MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckForOverlappingDoor, NULL);
-            }
-
-            return true;
-            break;
-
         case kCheckForOverlappingHideLayer:
 
             if(!Hero_isOverlappingHideLayer(this))
@@ -1275,6 +1212,13 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
                 MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckForOverlappingHideLayer, NULL);
             }
 
+            return true;
+            break;
+
+        case kEndOverlapping:
+
+            this->currentlyOverlappingDoor = NULL;
+            Hero_hideHint(this);
             return true;
             break;
 
@@ -1353,7 +1297,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 			//Hero_locateOverNextFloor(this);
 
 			break;
-
 	}
 
 	return false;

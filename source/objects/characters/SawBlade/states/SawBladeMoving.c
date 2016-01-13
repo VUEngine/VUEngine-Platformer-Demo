@@ -103,7 +103,7 @@ void SawBladeMoving_exit(SawBladeMoving this, void* owner)
 {
 }
 
-// state's on message
+// state's handle message
 bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram telegram)
 {
 	int message = Telegram_getMessage(telegram);

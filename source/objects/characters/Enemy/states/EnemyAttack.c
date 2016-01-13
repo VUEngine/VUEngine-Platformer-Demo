@@ -74,7 +74,7 @@ void EnemyAttack_exit(EnemyAttack this, void* owner)
 {
 }
 
-// state's on message
+// state's handle message
 bool EnemyAttack_handleMessage(EnemyAttack this, void* owner, Telegram telegram)
 {
 	return false;

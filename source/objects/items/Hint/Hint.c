@@ -74,7 +74,7 @@ void Hint_resume(Hint this)
 	Entity_hide(__SAFE_CAST(Entity, this));
 }
 
-// state's on message
+// state's handle message
 bool Hint_handleMessage(Hint this, Telegram telegram)
 {
 	ASSERT(this, "Hint::handleMessage: null this");

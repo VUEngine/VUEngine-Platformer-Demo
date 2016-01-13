@@ -87,7 +87,7 @@ void Coin_destructor(Coin this)
 	__DESTROY_BASE;
 }
 
-// state's on message
+// state's handle message
 bool Coin_handleMessage(Coin this, Telegram telegram)
 {
 	ASSERT(this, "Coin::handleMessage: null this");

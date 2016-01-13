@@ -82,7 +82,7 @@ void CannonBallIdle_exit(CannonBallIdle this, void* owner)
 {
 }
 
-// state's on message
+// state's handle message
 bool CannonBallIdle_handleMessage(CannonBallIdle this, void* owner, Telegram telegram)
 {
 	return false;

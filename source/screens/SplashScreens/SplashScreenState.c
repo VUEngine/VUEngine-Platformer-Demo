@@ -131,7 +131,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 }
 
-// state's on message
+// state's handle message
 bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))

@@ -95,7 +95,7 @@ void HeroIdle_exit(HeroIdle this, void* owner)
 {
 }
 
-// state's on message
+// state's handle message
 bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
@@ -123,9 +123,9 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 				// check if in front of door and possibly enter it
 				if(K_LU & pressedKey)
 				{
-					if(Hero_isOverlappingDoor(Hero_getInstance()))
+					if(Hero_isOverlappingDoor((Hero)owner))
 					{
-						Hero_enterDoor(Hero_getInstance());
+						Hero_enterDoor((Hero)owner);
 						return true;
 					}
 				}

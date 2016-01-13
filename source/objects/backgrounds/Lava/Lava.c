@@ -100,7 +100,7 @@ bool Lava_isVisible(Lava this, int pad)
 	return true;
 }
 
-// state's on message
+// state's handle message
 bool Lava_handleMessage(Lava this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))

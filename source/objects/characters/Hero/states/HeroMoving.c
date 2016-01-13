@@ -93,8 +93,7 @@ void HeroMoving_exit(HeroMoving this, void* owner)
 	Hero_disableBoost((Hero)owner);
 }
 
-
-// state's on message
+// state's handle message
 bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
@@ -110,9 +109,9 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				}
 				else if(K_LU & pressedKey)
 				{
-					if(Hero_isOverlappingDoor(Hero_getInstance()))
+					if(Hero_isOverlappingDoor((Hero)owner))
 					{
-						Hero_enterDoor(Hero_getInstance());
+						Hero_enterDoor((Hero)owner);
 						return true;
 					}
 				}
