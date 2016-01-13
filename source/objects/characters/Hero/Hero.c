@@ -134,7 +134,6 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->powerUp = kPowerUpNone;
 	this->invincible = false;
 	this->currentlyOverlappingDoor = NULL;
-	this->currentlyOverlappingHideLayer = NULL;
 	this->boost = false;
 
 	// register a shape for collision detection
@@ -720,25 +719,6 @@ void Hero_enableBoost(Hero this)
 	}
 }
 
-// check if the hero is overlapping a hide layer
-bool Hero_isOverlappingHideLayer(Hero this)
-{
-	ASSERT(this, "Hero::isOverlappingHideLayer: null this");
-
-	bool isOverlapping = false;
-
-	// check if hero recently passed a hide layer and is still doing so
-	if(
-		(Hero_getCurrentlyOverlappingHideLayer(this) != NULL) &&
-		__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, this)), Entity_getShape(__SAFE_CAST(Entity, Hero_getCurrentlyOverlappingHideLayer(this))))
-	)
-	{
-		isOverlapping = true;
-	}
-
-	return isOverlapping;
-}
-
 // check if the hero is overlapping a door
 bool Hero_isOverlappingDoor(Hero this)
 {
@@ -985,34 +965,6 @@ bool Hero_isInvincible(Hero this)
 	return this->invincible;
 }
 
-// get hide layer the hero is currently overlapping
-HideLayer Hero_getCurrentlyOverlappingHideLayer(Hero this)
-{
-	return this->currentlyOverlappingHideLayer;
-}
-
-// set hide layer the hero is currently overlapping
-void Hero_setCurrentlyOverlappingHideLayer(Hero this, HideLayer hideLayer)
-{
-	if(hideLayer)
-	{
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, hideLayer), "ToTransparent");
-	}
-
-	this->currentlyOverlappingHideLayer = hideLayer;
-}
-
-void Hero_resetCurrentlyOverlappingHideLayer(Hero this)
-{
-    if(this->currentlyOverlappingHideLayer)
-    {
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this->currentlyOverlappingHideLayer), "ToSolid");
-    }
-
-	// reset currently overlapping hide layer
-	Hero_setCurrentlyOverlappingHideLayer(this, NULL);
-}
-
 // process collisions
 int Hero_processCollision(Hero this, Telegram telegram)
 {
@@ -1093,16 +1045,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kHideLayer:
 
-			    // TODO: let the overlapping entities handle overlapping logic
-
                 // first contact with hide layer?
-				if(Hero_getCurrentlyOverlappingHideLayer(this) == NULL)
-				{
-                    Hero_setCurrentlyOverlappingHideLayer(this, __SAFE_CAST(HideLayer, inGameEntity));
+                if(!HideLayer_isOverlapping((HideLayer)inGameEntity))
+                {
+                    HideLayer_setOverlapping((HideLayer)inGameEntity);
+                }
 
-                    // remind hero to check if hide layer is still overlapping in 100 milliseconds
-                    MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckForOverlappingHideLayer, NULL);
-				}
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1200,21 +1148,6 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
     {
-        case kCheckForOverlappingHideLayer:
-
-            if(!Hero_isOverlappingHideLayer(this))
-            {
-                Hero_resetCurrentlyOverlappingHideLayer(this);
-            }
-            else
-            {
-                // remind hero to check again in 100 milliseconds
-                MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckForOverlappingHideLayer, NULL);
-            }
-
-            return true;
-            break;
-
         case kEndOverlapping:
 
             this->currentlyOverlappingDoor = NULL;

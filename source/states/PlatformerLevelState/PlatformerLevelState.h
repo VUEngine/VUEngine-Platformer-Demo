@@ -127,7 +127,6 @@ enum PlatformerLevelStateMessageTypes
 	kCannonShoot,
 	kEnterDoor,
     kCheckOverlapping,
-    kCheckForOverlappingHideLayer,
     kEndOverlapping,
     kStopFeetDust,
     kStopInvincibility,

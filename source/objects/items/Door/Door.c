@@ -91,7 +91,7 @@ void Door_setExtraInfo(Door this, void* extraInfo)
 	this->destinationDefinition = (PlatformerStageEntryPointDefinition*)extraInfo;
 }
 
-// state's handle message
+// class's handle message
 bool Door_handleMessage(Door this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
@@ -100,8 +100,8 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
             if(Door_checkStillOverlapping(this))
             {
-                // check if still overlapping hero in 100 milliseconds
-                MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
+                // delayed check if still overlapping hero
+                MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
             }
 
             return true;
@@ -134,8 +134,8 @@ void Door_setOverlapping(Door this)
         AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
     }
 
-    // check if still overlapping hero in 100 milliseconds
-    MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
+    // delayed check if still overlapping hero
+    MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
 }
 
 bool Door_isOverlapping(Door this)
