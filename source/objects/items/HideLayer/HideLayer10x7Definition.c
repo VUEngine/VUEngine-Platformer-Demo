@@ -25,6 +25,7 @@
 #include <AnimatedInGameEntity.h>
 #include "HideLayer.h"
 
+void HideLayer_onToTransparentAnimationComplete(HideLayer this);
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
@@ -110,13 +111,13 @@ AnimationFunctionROMDef HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
 	{0, 1, 2, 3, 4, 5, 6},
 
 	// number of cycles a frame of animation is displayed
-	__ANIMATION_DELAY(2),
+	__ANIMATION_DELAY(-41),
 
 	// whether to play it in loop or not
 	false,
 
 	// method to call on function completion
-	NULL,
+	&HideLayer_onToTransparentAnimationComplete,
 
 	// function's name
 	"ToTransparent",
@@ -167,7 +168,7 @@ TextureROMDef HIDE_LAYER_10x7_TX =
     7,
 
     // number of frames
-    2,
+    1,
 
     // palette number
     1,

@@ -97,7 +97,10 @@ void HideLayer_setOverlapping(HideLayer this)
 	this->currentlyOverlappingHero = true;
 
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "ToTransparent");
+}
 
+void HideLayer_onToTransparentAnimationComplete(HideLayer this)
+{
     // delayed check if still overlapping hero
     MessageDispatcher_dispatchMessage(HIDE_LAYER_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
 }

@@ -76,7 +76,7 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 {
 	this->mustCheckDirection = false;
 
-#ifndef __DEBUG
+#ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
 }

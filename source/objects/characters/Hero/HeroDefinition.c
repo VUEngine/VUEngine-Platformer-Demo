@@ -304,7 +304,7 @@ TextureROMDef HERO_TX =
     3,
 
     // number of frames
-    15,
+    1,
 
     // palette number
     1,
@@ -362,7 +362,8 @@ ActorROMDef HERO_AC =
 	    },
 
 	    // pointer to the animation definition for the character
-	    (AnimationDescription*)&HERO_ANIM,
+//	    (AnimationDescription*)&HERO_ANIM,
+	    NULL,
 
 	    // initial animation
 	    NULL,
