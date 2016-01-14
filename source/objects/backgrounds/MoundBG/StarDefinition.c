@@ -69,7 +69,7 @@ AnimationFunctionROMDef STAR_FLASH_ANIM =
 	{0, 0, 0, 1, 2, 1},
 
 	// number of cycles a frame of animation is displayed
-	(6),
+	6,
 
 	// whether to play it in loop or not
 	true,

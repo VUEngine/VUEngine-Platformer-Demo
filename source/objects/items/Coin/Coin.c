@@ -66,8 +66,7 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
     // if coin has already been collected, only show silhouette representation
-	this->taken = &COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || ProgressManager_getCoinStatus(ProgressManager_getInstance(), name);
-    if(this->taken)
+    if(&COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || ProgressManager_getCoinStatus(ProgressManager_getInstance(), name))
     {
         animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
     }
@@ -109,11 +108,4 @@ void Coin_removeFromStage(Coin this)
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
     Shape_setActive(this->shape, false);
-}
-
-bool Coin_taken(Coin this)
-{
-	ASSERT(this, "Coin::Coin_taken: null this");
-
-	return this->taken;
 }

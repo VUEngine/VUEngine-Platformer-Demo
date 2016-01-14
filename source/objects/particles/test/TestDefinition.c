@@ -47,7 +47,7 @@ AnimationFunctionROMDef TEST_PARTICLE_SPIN_ANIM =
 	{0, 1, 2, 3},
 	
 	// number of cycles a frame of animation is displayed
-	(2),
+	2,
 	
 	// whether to play it in loop or not
 	true,

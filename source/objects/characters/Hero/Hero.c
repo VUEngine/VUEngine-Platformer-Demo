@@ -77,9 +77,9 @@ extern EntityDefinition HINT_MC;
 #define HERO_INPUT_FORCE 						ITOFIX19_13(5050)
 #define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(3800)
 
-#define HERO_VELOCITY_X							ITOFIX19_13(120)
-#define HERO_VELOCITY_Y							ITOFIX19_13(200)
-#define HERO_VELOCITY_Z							ITOFIX19_13(60)
+#define HERO_MAX_VELOCITY_X							ITOFIX19_13(120)
+#define HERO_MAX_VELOCITY_Y							ITOFIX19_13(1100)
+#define HERO_MAX_VELOCITY_Z							ITOFIX19_13(60)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(170)
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-48000)
 #define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-57000)
@@ -287,7 +287,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 
 	static int movementType = 0;
 
-	fix19_13 maxVelocity = this->boost? HERO_BOOST_VELOCITY_X: HERO_VELOCITY_X;
+	fix19_13 maxVelocity = this->boost? HERO_BOOST_VELOCITY_X: HERO_MAX_VELOCITY_X;
 	
 	Velocity velocity = Body_getVelocity(this->body);
 	
@@ -929,16 +929,13 @@ u8 Hero_getPowerUp(Hero this)
 // collect a coin
 void Hero_collectCoin(Hero this, Coin coin)
 {
-    if(!Coin_taken(coin))
-    {
-        int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
-        numberOfCollectedCoins++;
-        ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
-        ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
-        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_COIN_TAKEN);
+    int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
+    numberOfCollectedCoins++;
+    ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
+    ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
+    Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_COIN_TAKEN);
 
-        SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
-    }
+    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
 // get number of collected coins
@@ -1095,24 +1092,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kTopSolid:
 	            {
+	            	Velocity velocity = Body_getVelocity(this->body);
 	            	
-	                // get the axis of collision
-	                u8 axisOfCollision = __VIRTUAL_CALL(
-	                    int,
-	                    Shape,
-	                    getAxisOfCollision,
-	                    this->shape,
-	                    VirtualNode_getData(node),
-	                    Body_getLastDisplacement(this->body),
-	                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
-	                );
-	
-	                // get positions of colliding entities
-	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 2);
-	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 2);
-	
-	                // process collision only if axis of collision is y and if hero is above platform
-	                if(!((__YAXIS & axisOfCollision) && (heroBottomPosition <= collidingEntityTopPosition)))
+	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1);
+	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 1);
+
+	            	if(!velocity.y || 0 > velocity.y || heroBottomPosition > collidingEntityTopPosition)
 	                {
 	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 	                }
@@ -1251,14 +1236,15 @@ void Hero_update(Hero this)
 
 	Actor_update(__SAFE_CAST(Actor, this));
 	
-	fix19_13 maxYVelocity = HERO_VELOCITY_Y;
-	
 	Velocity velocity = Body_getVelocity(this->body);
 	
-	if(HERO_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType())
+	if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
 	{
-		velocity.y = HERO_VELOCITY_Y;
-		Body_moveUniformly(this->body, newVelocity);
+		velocity.x = 0;
+		velocity.y = HERO_MAX_VELOCITY_Y;
+		velocity.z = 0;
+
+		Body_moveUniformly(this->body, velocity);
 	}
 }
 

@@ -109,15 +109,13 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
-	NM_ASSERT(this->entryPointDefinition, "PlatformerLevelState::enter: null entryPointDefinition");
-
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
 	
 	Game_disableKeypad(Game_getInstance());
 
 	// reset progress manager if this is a level start entry point
-	if(this->entryPointDefinition->isLevelStartPoint)
+	if(this->entryPointDefinition && this->entryPointDefinition->isLevelStartPoint)
 	{
 		ProgressManager_reset(ProgressManager_getInstance());
 	}
@@ -127,7 +125,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
 
 	// check if destination entity name is given
-	if(this->entryPointDefinition->destinationName)
+	if(this->entryPointDefinition && this->entryPointDefinition->destinationName)
 	{
 	    // iterate stage definition to find global position of destination entity
 		VBVec3D environmentPosition = {0, 0, 0};
