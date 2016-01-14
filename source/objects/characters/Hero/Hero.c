@@ -75,14 +75,14 @@ extern EntityDefinition DUST_PS;
 extern EntityDefinition HINT_MC;
 
 #define HERO_INPUT_FORCE 						ITOFIX19_13(5050)
-#define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(3800)
+#define HERO_X_INPUT_FORCE_WHILE_JUMPING		ITOFIX19_13(4000)
 
-#define HERO_MAX_VELOCITY_X							ITOFIX19_13(120)
-#define HERO_MAX_VELOCITY_Y							ITOFIX19_13(1100)
-#define HERO_MAX_VELOCITY_Z							ITOFIX19_13(60)
+#define HERO_MAX_VELOCITY_X						ITOFIX19_13(120)
+#define HERO_MAX_VELOCITY_Y						ITOFIX19_13(1100)
+#define HERO_MAX_VELOCITY_Z						ITOFIX19_13(60)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(170)
-#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-48000)
-#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-57000)
+#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-50000)
+#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-60000)
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -297,7 +297,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 			Actor_changedDirection(__SAFE_CAST(Actor, this), __XAXIS) || 
 			Actor_changedDirection(__SAFE_CAST(Actor, this), __ZAXIS))
     {
-		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body) ? HERO_JUMPING_INPUT_FORCE : HERO_INPUT_FORCE;
+		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix19_13 xForce = (__XAXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
 		fix19_13 zForce = 0; //(__ZAXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
