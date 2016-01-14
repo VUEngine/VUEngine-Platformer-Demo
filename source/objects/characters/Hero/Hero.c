@@ -1092,12 +1092,10 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kTopSolid:
 	            {
-	            	Velocity velocity = Body_getVelocity(this->body);
-	            	
 	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1);
 	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 1);
 
-	            	if(!velocity.y || 0 > velocity.y || heroBottomPosition > collidingEntityTopPosition)
+	            	if(0 >= Body_getVelocity(this->body).y || heroBottomPosition > collidingEntityTopPosition)
 	                {
 	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 	                }
