@@ -25,6 +25,7 @@
 #include "Hero/Hero.h"
 #include "SawBlade/SawBlade.h"
 #include "Cannon/Cannon.h"
+#include "Cannon/CannonBall/CannonBall.h"
 
 
 //---------------------------------------------------------------------------------------------------------

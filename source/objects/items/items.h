@@ -25,6 +25,7 @@
 #include "Coin/Coin.h"
 #include "Door/Door.h"
 #include "HideLayer/HideLayer.h"
+#include "GUI/GUI.h"
 #include "Key/Key.h"
 #include "Bandana/Bandana.h"
 #include "Hint/Hint.h"
