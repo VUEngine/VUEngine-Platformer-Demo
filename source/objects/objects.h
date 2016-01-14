@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <ManagedEntity.h>
+#include <Entity.h>
 
 #include "backgrounds/backgrounds.h"
 #include "characters/characters.h"
@@ -36,6 +37,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern ManagedEntityROMDef MANAGED_ENTITY;
+extern EntityROMDef ENTITY;
 
 
 #endif
