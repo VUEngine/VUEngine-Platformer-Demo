@@ -97,11 +97,7 @@
 // target frames per second
 #define __MINIMUM_GOOD_FPS 						(__TARGET_FPS - 0)
 
-
 #define __MILLISECONDS_IN_SECOND				(1000 >> __FRAME_CYCLE)
-
-// set animation delays as if they are 60 FPS, and multiply by this factor
-#define __ANIMATION_DELAY(n)					(n >> __FRAME_CYCLE)
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -133,7 +129,7 @@
 	__BLOCK_DEFINITION(164, 4)																			\
 	__BLOCK_DEFINITION(132, 30)																			\
 	__BLOCK_DEFINITION(112, 48)																			\
-	__BLOCK_DEFINITION(96, 58)																			\
+	__BLOCK_DEFINITION(96, 66)																			\
 	__BLOCK_DEFINITION(76, 32)																			\
 	__BLOCK_DEFINITION(68, 75)																			\
 	__BLOCK_DEFINITION(28, 254)																			\
