@@ -196,7 +196,7 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                 {
 			 		Acceleration acceleration =
 			 	    {
-			 	    	(K_LL | K_LR) & holdKey? ITOFIX19_13(InGameEntity_getDirection(__SAFE_CAST(InGameEntity, owner)).x): 0,
+			 	    	K_LL & holdKey? ITOFIX19_13(-1) : K_LR & holdKey? ITOFIX19_13(1): 0,
 			 	    	K_A & holdKey? ITOFIX19_13(-1): 0,
 			 	    	0,
 			 		};

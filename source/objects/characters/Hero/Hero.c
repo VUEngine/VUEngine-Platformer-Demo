@@ -78,7 +78,7 @@ extern EntityDefinition HINT_MC;
 #define HERO_JUMPING_INPUT_FORCE				ITOFIX19_13(3800)
 
 #define HERO_VELOCITY_X							ITOFIX19_13(120)
-#define HERO_VELOCITY_Y							ITOFIX19_13(-200)
+#define HERO_VELOCITY_Y							ITOFIX19_13(200)
 #define HERO_VELOCITY_Z							ITOFIX19_13(60)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(170)
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-48000)
@@ -1244,6 +1244,24 @@ void Hero_setPosition(Hero this, VBVec3D* position)
 	// make the camera active for collision detection
 	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 }
+
+void Hero_update(Hero this)
+{
+	ASSERT(this, "Hero::update: null this");
+
+	Actor_update(__SAFE_CAST(Actor, this));
+	
+	fix19_13 maxYVelocity = HERO_VELOCITY_Y;
+	
+	Velocity velocity = Body_getVelocity(this->body);
+	
+	if(HERO_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType())
+	{
+		velocity.y = HERO_VELOCITY_Y;
+		Body_moveUniformly(this->body, newVelocity);
+	}
+}
+
 
 void Hero_suspend(Hero this)
 {

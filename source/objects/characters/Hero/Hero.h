@@ -57,6 +57,7 @@ enum HeroPowerUps
 #define Hero_SET_VTABLE(ClassName)																		\
 	Actor_SET_VTABLE(ClassName);																		\
 	__VIRTUAL_SET(ClassName, Hero, ready);																\
+	__VIRTUAL_SET(ClassName, Hero, update);																\
 	__VIRTUAL_SET(ClassName, Hero, die);																\
 	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);														\
 	__VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);											\
@@ -157,6 +158,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
 void Hero_updateSurroundingFriction(Hero this);
 u8 Hero_getAxisAllowedForBouncing(Hero this);
 void Hero_setPosition(Hero this, VBVec3D* position);
+void Hero_update(Hero this);
 
 
 #endif
