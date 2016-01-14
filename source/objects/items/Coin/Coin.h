@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Coin_METHODS															\
-	AnimatedInGameEntity_METHODS;
+	AnimatedInGameEntity_METHODS;												\
 	
 
 #define Coin_SET_VTABLE(ClassName)												\
@@ -44,9 +44,6 @@ __CLASS(Coin);
 																				\
 	/* it is derived from */													\
 	AnimatedInGameEntity_ATTRIBUTES												\
-																				\
-	/* have I been collected yet? */											\
-	bool taken;												                    \
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,7 +56,6 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int
 void Coin_destructor(Coin this);
 bool Coin_handleMessage(Coin this, Telegram telegram);
 void Coin_removeFromStage(Coin this);
-bool Coin_taken(Coin this);
 
 
 #endif
