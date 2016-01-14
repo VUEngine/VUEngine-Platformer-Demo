@@ -52,10 +52,10 @@ const ClassSizeData _userClassesSizeData[] =
 {
 	{&Bandana_getObjectSize,    "Bandana"},
 	{&Cannon_getObjectSize,     "Cannon"},
-	//{&CannonBall_getObjectSize, "CannonBall"},
+	{&CannonBall_getObjectSize, "CannonBall"},
 	{&Coin_getObjectSize,       "Coin"},
 	{&Door_getObjectSize,       "Door"},
-	//{&GUI_getObjectSize,        "GUI"},
+	{&GUI_getObjectSize,        "GUI"},
 	{&Hero_getObjectSize,       "Hero"},
 	{&HideLayer_getObjectSize,  "HideLayer"},
 	{&HideLayer_getObjectSize,  "Hint"},
