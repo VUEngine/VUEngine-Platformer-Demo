@@ -42,7 +42,7 @@ CharSetROMDef LEVEL_1_HOUSE_CH =
     // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __NOT_ANIMATED: number of chars of whole image
-    53,
+    60,
 
     // allocation type
     __NOT_ANIMATED,
@@ -60,7 +60,7 @@ TextureROMDef LEVEL_1_HOUSE_TX =
     Level_1_HouseMap,
 
     // cols (max 64)
-    20,
+    24,
 
     // rows (max 64)
     11,

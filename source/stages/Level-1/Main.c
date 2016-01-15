@@ -52,15 +52,15 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[];
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ENTITIES[] =
 {
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,         {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-    {&LEVEL_1_HOUSE_IM,                 {FTOFIX19_13(-152), FTOFIX19_13(-176), 	FTOFIX19_13(0)},    "House", NULL, NULL, false},
-    {&SMOKE_PS,                         {FTOFIX19_13(-159), FTOFIX19_13(-218), 	FTOFIX19_13(32)},   NULL, NULL, NULL, false},
+    {&LEVEL_1_HOUSE_IM,                 {FTOFIX19_13(-140), FTOFIX19_13(-176), 	FTOFIX19_13(0)},    "House", NULL, NULL, false},
+    {&SMOKE_PS,                         {FTOFIX19_13(-164), FTOFIX19_13(-218), 	FTOFIX19_13(32)},   NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 {
-	{&COLLISION_30x33x1,                {FTOFIX19_13(-138), FTOFIX19_13(1), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_30x33x1,                {FTOFIX19_13(-130), FTOFIX19_13(1), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_34x30x1,                {FTOFIX19_13(110),  FTOFIX19_13(13), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
@@ -75,7 +75,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_ONEWAY_7x7x1, 			{FTOFIX19_13(-226), FTOFIX19_13(-107 + 24),  FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 			{FTOFIX19_13(-226), FTOFIX19_13(-83),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_14x18x1, 	    		{FTOFIX19_13(-145), FTOFIX19_13(-55),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_14x18x1, 	    		{FTOFIX19_13(127),  FTOFIX19_13(-55),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_8x3x1, 	        		{FTOFIX19_13(-8),   FTOFIX19_13(-131),  FTOFIX19_13(0)},    NULL, NULL, NULL, false},
@@ -87,10 +87,10 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 {
-	{&COLLISION_ONEWAY_7x7x1, 			{FTOFIX19_13(-226), FTOFIX19_13(69 + 24),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 			{FTOFIX19_13(-226), FTOFIX19_13(93),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_48x18x1, 	    		{FTOFIX19_13(-10),  FTOFIX19_13(137),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x7x1, 			{FTOFIX19_13(210),  FTOFIX19_13(-75 + 24),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x7x1, 			{FTOFIX19_13(210),  FTOFIX19_13(21 + 24),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 			{FTOFIX19_13(210),  FTOFIX19_13(-51),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 			{FTOFIX19_13(210),  FTOFIX19_13(45),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_14x6x1,		    		{FTOFIX19_13(127),  FTOFIX19_13(39),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_18x6x1,		    		{FTOFIX19_13(238),  FTOFIX19_13(89),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
@@ -226,8 +226,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
     {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_ENTITIES, NULL, false},
     {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
-	{&COIN_AG,                                  {FTOFIX19_13(216),  FTOFIX19_13(225), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 001", NULL, NULL, false},
-	{&COIN_AG,                                  {FTOFIX19_13(232),  FTOFIX19_13(225), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 002", NULL, NULL, false},
+	{&COIN_AG,                                  {FTOFIX19_13(232),  FTOFIX19_13(225), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 001", NULL, NULL, false},
+	{&COIN_AG,                                  {FTOFIX19_13(248),  FTOFIX19_13(225), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 002", NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_BACK_1_IM,                 {FTOFIX19_13(360),  FTOFIX19_13(256), 	FTOFIX19_13(LAYER_2)}, NULL, NULL, NULL, false},
     {&STAR_AG,                                  {FTOFIX19_13(344),  FTOFIX19_13(92),  	FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, false},
 	{&COIN_AG,                                  {FTOFIX19_13(304),  FTOFIX19_13(248), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 003", NULL, NULL, false},
@@ -482,7 +482,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
     "House",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(-48), FTOFIX19_13(-256), FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(-64), FTOFIX19_13(-256), FTOFIX19_13(-SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	true,
