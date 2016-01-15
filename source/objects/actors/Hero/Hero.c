@@ -1008,12 +1008,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
                     	Hero_lockCameraTriggerMovement(this, __YAXIS, false);
                     }
 
-					VBVec3D position =
-					{
-		                0,
-		                ITOFIX19_13(-8),
-		                0,
-					};
+					VBVec3D position = {0, ITOFIX19_13(-8), 0};
 	
 					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoundingBox, &position);
 				}
@@ -1090,17 +1085,32 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				Hero_stopAddingForce(this);		
 				break;
 
-			case kTopSolid:
-	            {
-	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1);
-	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 1);
+			case kMovingPlatform:
+                {
+                    // if hero's falling or is above colliding entity
+                    if((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity)))
+                    {
+                        // don't further process collision
+                        VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+                    }
+                    /*else
+                    {
+                        VBVec3D position = {0, FTOFIX19_13(-24), 0};
+                        Container_addChild(__SAFE_CAST(Container, inGameEntity), __SAFE_CAST(Container, this));
+                        Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
+                    }*/
+                }
+	            break;
 
-	            	if(0 >= Body_getVelocity(this->body).y || heroBottomPosition > collidingEntityTopPosition)
-	                {
-	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-	                }
-	            }
-	            
+			case kTopSolid:
+                {
+                    // if hero's moving over the y axis or is above colliding entity
+                    if((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity)))
+                    {
+                        // don't further process collision
+                        VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+                    }
+                }
 	            break;
 		}
 	}
@@ -1246,7 +1256,6 @@ void Hero_update(Hero this)
 	}
 }
 
-
 void Hero_suspend(Hero this)
 {
 	ASSERT(this, "Hero::suspend: null this");
@@ -1269,12 +1278,21 @@ void Hero_resume(Hero this)
 	VBVec3DFlag positionFlag = {true, true, true};
     CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
-}	
-
+}
 
 u8 Hero_getAxisAllowedForBouncing(Hero this)
 {
 	ASSERT(this, "Hero::getAxisAllowedForBouncing: null this");
 
 	return __YAXIS;
+}
+
+bool Hero_isAboveEntity(Hero this, Entity entity)
+{
+	ASSERT(this, "Hero::isAboveEntity: null this");
+
+    int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1);
+    int entityTopPosition = Entity_getPosition(entity)->y - ITOFIX19_13(Entity_getHeight(entity) >> 1);
+
+    return (heroBottomPosition > entityTopPosition);
 }
