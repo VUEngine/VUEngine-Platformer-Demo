@@ -50,16 +50,16 @@ const EntityROMDef ENTITY =
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] =
 {
-	{&Bandana_getObjectSize,    "Bandana"},
-	{&Cannon_getObjectSize,     "Cannon"},
-	{&CannonBall_getObjectSize, "CannonBall"},
-	{&Coin_getObjectSize,       "Coin"},
-	{&Door_getObjectSize,       "Door"},
-	{&GUI_getObjectSize,        "GUI"},
-	{&Hero_getObjectSize,       "Hero"},
-	{&HideLayer_getObjectSize,  "HideLayer"},
-	{&HideLayer_getObjectSize,  "Hint"},
-	{&Key_getObjectSize,        "Key"},
+	{&Bandana_getObjectSize,        "Bandana"},
+	{&Cannon_getObjectSize,         "Cannon"},
+	{&CannonBall_getObjectSize,     "CannonBall"},
+	{&Coin_getObjectSize,           "Coin"},
+	{&Door_getObjectSize,           "Door"},
+	{&GUI_getObjectSize,            "GUI"},
+	{&Hero_getObjectSize,           "Hero"},
+	{&HideLayer_getObjectSize,      "HideLayer"},
+	{&HideLayer_getObjectSize,      "Hint"},
+	{&Key_getObjectSize,            "Key"},
 	{&MovingEntity_getObjectSize,   "MovingEntity"},
 	{NULL, ""},
 };
@@ -68,15 +68,15 @@ const ClassSizeData _userClassesSizeData[] =
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
-	{&LEVEL_1_HOUSE_IM,         "House"},
-	{&CANNON_BALL_AC,           "CannonBall"},
-	{&COIN_AG,                  "Coin"},
-	{&DOOR_AG,                  "Door"},
-	{&HERO_AC,                  "Hero"},
-	{&KEY_AG,                   "Key"},
-	{&MOVING_ENTITY_V3_AC,          "SawBlade V3"},
-	{&MOVING_ENTITY_H3_AC,          "SawBlade H3"},
-	{&LANE_V_6_IM,              "SawBlade Lane V6"},
+	{&LEVEL_1_HOUSE_IM,     "House"},
+	{&CANNON_BALL_AC,       "CannonBall"},
+	{&COIN_AG,              "Coin"},
+	{&DOOR_AG,              "Door"},
+	{&HERO_AC,              "Hero"},
+	{&KEY_AG,               "Key"},
+	{&SAW_BLADE_V3_AC,      "SawBlade V3"},
+	{&SAW_BLADE_H3_AC,      "SawBlade H3"},
+	{&LANE_V_6_IM,          "SawBlade Lane V6"},
 	{NULL, ""},
 };
 #endif
@@ -88,7 +88,7 @@ const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
 	{(AnimatedInGameEntityDefinition*)&DOOR_AG,         "Door"},
 	{(AnimatedInGameEntityDefinition*)&HERO_AC,         "Hero"},
 	{(AnimatedInGameEntityDefinition*)&KEY_AG,          "Key"},
-	{(AnimatedInGameEntityDefinition*)&MOVING_ENTITY_V3_AC, "SawBlade"},
+	{(AnimatedInGameEntityDefinition*)&SAW_BLADE_V3_AC, "SawBlade"},
 	{(AnimatedInGameEntityDefinition*)&LAVA_TOP_AG,     "Lava top"},
 	{NULL, ""},
 };

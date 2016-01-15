@@ -49,40 +49,40 @@ __CLASS_NEW_DEFINITION(MovingEntity, MovingEntityDefinition* MovingEntityDefinit
 __CLASS_NEW_END(MovingEntity, MovingEntityDefinition, id, name);
 
 // class's constructor
-void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name)
+void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingEntityDefinition, int id, const char* const name)
 {
 	ASSERT(this, "MovingEntity::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE((ActorDefinition*)&MovingEntityDefinition->actorDefinition, id, name);
+	__CONSTRUCT_BASE((ActorDefinition*)&movingEntityDefinition->actorDefinition, id, name);
 
 	// register a shape for collision detection
 	MovingEntity_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), MovingEntityDefinition->actorDefinition.mass);
-
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), movingEntityDefinition->actorDefinition.mass);
+	Body_setElasticity(this->body, movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	
 	// save over which axis I'm going to move
-	this->axis = MovingEntityDefinition->axis;
+	this->axis = movingEntityDefinition->axis;
 	
 	// set movement direction;
-	this->movementDirection = MovingEntityDefinition->direction;
+	this->movementDirection = movingEntityDefinition->direction;
 
 	// set movement radius;
-	this->radius = MovingEntityDefinition->radius;
+	this->radius = movingEntityDefinition->radius;
 	
 	switch(this->axis)
     {
 		case __XAXIS:
 
-			this->direction.x = MovingEntityDefinition->direction;
+			this->direction.x = movingEntityDefinition->direction;
 			break;
 			
 		case __YAXIS:
 
-			this->direction.y = MovingEntityDefinition->direction;
+			this->direction.y = movingEntityDefinition->direction;
 			break;			
 	}
 }
@@ -142,7 +142,7 @@ void MovingEntity_die(MovingEntity this)
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, EnemyDead_getInstance()));
 }
 
-// set  position
+// set position
 void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 {
 	// set my position
