@@ -25,30 +25,30 @@
 
 #include <EnemyDead.h>
 #include <Hero.h>
-#include <SawBlade.h>
+#include <MovingEntity.h>
 
-#include "SawBladeMoving.h"
-#include "SawBladeIdle.h"
+#include "MovingEntityMoving.h"
+#include "MovingEntityIdle.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void SawBladeMoving_constructor(SawBladeMoving this);
-void SawBladeMoving_destructor(SawBladeMoving this);
-void SawBladeMoving_enter(SawBladeMoving this, void* owner);
-void SawBladeMoving_execute(SawBladeMoving this, void* owner);
-void SawBladeMoving_exit(SawBladeMoving this, void* owner);
-bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram telegram);
+void MovingEntityMoving_constructor(MovingEntityMoving this);
+void MovingEntityMoving_destructor(MovingEntityMoving this);
+void MovingEntityMoving_enter(MovingEntityMoving this, void* owner);
+void MovingEntityMoving_execute(MovingEntityMoving this, void* owner);
+void MovingEntityMoving_exit(MovingEntityMoving this, void* owner);
+bool MovingEntityMoving_handleMessage(MovingEntityMoving this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(SawBladeMoving, State);
-__SINGLETON(SawBladeMoving);
+__CLASS_DEFINITION(MovingEntityMoving, State);
+__SINGLETON(MovingEntityMoving);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,55 +56,55 @@ __SINGLETON(SawBladeMoving);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void SawBladeMoving_constructor(SawBladeMoving this)
+void MovingEntityMoving_constructor(MovingEntityMoving this)
 {
 	// construct base
 	__CONSTRUCT_BASE();
 }
 
 // class's destructor
-void SawBladeMoving_destructor(SawBladeMoving this)
+void MovingEntityMoving_destructor(MovingEntityMoving this)
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void SawBladeMoving_enter(SawBladeMoving this, void* owner)
+void MovingEntityMoving_enter(MovingEntityMoving this, void* owner)
 {
-	SawBlade_startMovement((SawBlade)owner);
+	MovingEntity_startMovement((MovingEntity)owner);
 	
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Spin");
 }
 
 // state's execute
-void SawBladeMoving_execute(SawBladeMoving this, void* owner)
+void MovingEntityMoving_execute(MovingEntityMoving this, void* owner)
 {	
 	// if not waiting
 	if(!Enemy_getActionTime((Enemy)owner))
     {
 		// update movement
-		SawBlade_move((SawBlade)owner);		
+		MovingEntity_move((MovingEntity)owner);
 	}
 	else
     {
 		// if wait time elapsed
-		if(SAW_BLADE_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
+		if(MOVING_ENTITY_WAIT_DELAY < Clock_getTime(Game_getInGameClock(Game_getInstance())) - Enemy_getActionTime((Enemy)owner))
 		{
 			// start movement in opposite direction
-			SawBlade_startMovement((SawBlade)owner);
+			MovingEntity_startMovement((MovingEntity)owner);
 		}
 	}
 	
 }
 
 // state's exit
-void SawBladeMoving_exit(SawBladeMoving this, void* owner)
+void MovingEntityMoving_exit(MovingEntityMoving this, void* owner)
 {
 }
 
 // state's handle message
-bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram telegram)
+bool MovingEntityMoving_handleMessage(MovingEntityMoving this, void* owner, Telegram telegram)
 {
 	int message = Telegram_getMessage(telegram);
 
@@ -113,7 +113,7 @@ bool SawBladeMoving_handleMessage(SawBladeMoving this, void* owner, Telegram tel
 		case kCollision:
 		{
 			VirtualList collidingObjects = __SAFE_CAST(VirtualList, Telegram_getExtraInfo(telegram));
-			ASSERT(collidingObjects, "SawBladeMoving::handleMessage: null collidingObjects");
+			ASSERT(collidingObjects, "MovingEntityMoving::handleMessage: null collidingObjects");
 
 			VirtualNode node = NULL;
 			

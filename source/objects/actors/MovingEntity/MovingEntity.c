@@ -28,21 +28,16 @@
 #include <EnemyDead.h>
 #include <Hero.h>
 
-#include "SawBlade.h"
-#include "states/SawBladeIdle.h"
-#include "states/SawBladeMoving.h"
+#include "MovingEntity.h"
+#include "states/MovingEntityIdle.h"
+#include "states/MovingEntityMoving.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											 CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(SawBlade, Enemy);
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
+__CLASS_DEFINITION(MovingEntity, Enemy);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,52 +45,52 @@ __CLASS_DEFINITION(SawBlade, Enemy);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(SawBlade, SawBladeDefinition* sawBladeDefinition, int id, const char* const name)
-__CLASS_NEW_END(SawBlade, sawBladeDefinition, id, name);
+__CLASS_NEW_DEFINITION(MovingEntity, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(MovingEntity, MovingEntityDefinition, id, name);
 
 // class's constructor
-void SawBlade_constructor(SawBlade this, SawBladeDefinition* sawBladeDefinition, int id, const char* const name)
+void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name)
 {
-	ASSERT(this, "SawBlade::constructor: null this");
+	ASSERT(this, "MovingEntity::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE((ActorDefinition*)&sawBladeDefinition->actorDefinition, id, name);
+	__CONSTRUCT_BASE((ActorDefinition*)&MovingEntityDefinition->actorDefinition, id, name);
 
 	// register a shape for collision detection
-	SawBlade_registerShape(this);
+	MovingEntity_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), sawBladeDefinition->actorDefinition.mass);
+	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), MovingEntityDefinition->actorDefinition.mass);
 
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	
 	// save over which axis I'm going to move
-	this->axis = sawBladeDefinition->axis;
+	this->axis = MovingEntityDefinition->axis;
 	
 	// set movement direction;
-	this->movementDirection = sawBladeDefinition->direction;
+	this->movementDirection = MovingEntityDefinition->direction;
 
 	// set movement radius;
-	this->radius = sawBladeDefinition->radius;
+	this->radius = MovingEntityDefinition->radius;
 	
 	switch(this->axis)
     {
 		case __XAXIS:
 
-			this->direction.x = sawBladeDefinition->direction;			
+			this->direction.x = MovingEntityDefinition->direction;
 			break;
 			
 		case __YAXIS:
 
-			this->direction.y = sawBladeDefinition->direction;
+			this->direction.y = MovingEntityDefinition->direction;
 			break;			
 	}
 }
 
 // class's constructor
-void SawBlade_destructor(SawBlade this)
+void MovingEntity_destructor(MovingEntity this)
 {
-	ASSERT(this, "SawBlade::destructor: null this");
+	ASSERT(this, "MovingEntity::destructor: null this");
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -103,19 +98,19 @@ void SawBlade_destructor(SawBlade this)
 }
 
 // ready method
-void SawBlade_ready(SawBlade this)
+void MovingEntity_ready(MovingEntity this)
 {
-	ASSERT(this, "SawBlade::ready: null this");
+	ASSERT(this, "MovingEntity::ready: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
 	
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, SawBladeMoving_getInstance()));
+	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }
 
 // register a shape with the collision detection system
-void SawBlade_registerShape(SawBlade this)
+void MovingEntity_registerShape(MovingEntity this)
 {
-	ASSERT(this, "SawBlade::registerShape: null this");
+	ASSERT(this, "MovingEntity::registerShape: null this");
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
@@ -125,20 +120,20 @@ void SawBlade_registerShape(SawBlade this)
 }
 
 // unregister the shape with the collision detection system
-void SawBlade_unregisterShape(SawBlade this)
+void MovingEntity_unregisterShape(MovingEntity this)
 {
-	ASSERT(this, "SawBlade::unregisterShape: null this");
+	ASSERT(this, "MovingEntity::unregisterShape: null this");
 
 	Shape_setActive(this->shape, false);
 }
 
 // tell me I've been hit
-void SawBlade_takeHit(SawBlade this, int axis, s8 direction)
+void MovingEntity_takeHit(MovingEntity this, int axis, s8 direction)
 {
 }
 
 // die
-void SawBlade_die(SawBlade this)
+void MovingEntity_die(MovingEntity this)
 {
 	// must unregister the shape for collision detections
 	Shape_setActive(this->shape, false);
@@ -148,7 +143,7 @@ void SawBlade_die(SawBlade this)
 }
 
 // set  position
-void SawBlade_setLocalPosition(SawBlade this, const VBVec3D* position)
+void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 {
 	// set my position
 	Actor_setLocalPosition(__SAFE_CAST(Actor, this), position);
@@ -169,13 +164,13 @@ void SawBlade_setLocalPosition(SawBlade this, const VBVec3D* position)
 }
 
 // retrieve axis free for movement
-int SawBlade_getAxisFreeForMovement(SawBlade this)
+int MovingEntity_getAxisFreeForMovement(MovingEntity this)
 {
 	return 0;// ((__XAXIS & ~(__XAXIS & movingState) )|(__ZAXIS & ~(__ZAXIS & movingState)));
 }
 
 // update movement
-void SawBlade_move(SawBlade this)
+void MovingEntity_move(MovingEntity this)
 {
 	int displacement = this->radius;
 
@@ -283,7 +278,7 @@ void SawBlade_move(SawBlade this)
 }
 
 // start moving
-void SawBlade_startMovement(SawBlade this)
+void MovingEntity_startMovement(MovingEntity this)
 {
 	switch(this->axis)
     {

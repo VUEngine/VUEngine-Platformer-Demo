@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SAW_BLADE_IDLE_H_
-#define SAW_BLADE_IDLE_H_
+#ifndef MOVING_ENTITY_MOVING_H_
+#define MOVING_ENTITY_MOVING_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,30 +30,30 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define SawBladeIdle_METHODS									\
-	State_METHODS;									
+#define MovingEntityMoving_METHODS																		\
+	State_METHODS;																						\
 
 // declare the virtual methods which are redefined
-#define SawBladeIdle_SET_VTABLE(ClassName)						\
-State_SET_VTABLE(ClassName)										\
-	__VIRTUAL_SET(ClassName, SawBladeIdle, enter);				\
-	__VIRTUAL_SET(ClassName, SawBladeIdle, execute);			\
-	__VIRTUAL_SET(ClassName, SawBladeIdle, exit);				\
-	__VIRTUAL_SET(ClassName, SawBladeIdle, handleMessage);		\
-	
-__CLASS(SawBladeIdle);
+#define MovingEntityMoving_SET_VTABLE(ClassName)														\
+	State_SET_VTABLE(ClassName)																			\
+	__VIRTUAL_SET(ClassName, MovingEntityMoving, enter);												\
+	__VIRTUAL_SET(ClassName, MovingEntityMoving, execute);												\
+	__VIRTUAL_SET(ClassName, MovingEntityMoving, exit);													\
+	__VIRTUAL_SET(ClassName, MovingEntityMoving, handleMessage);										\
 
-#define SawBladeIdle_ATTRIBUTES									\
-																\
-	/* inherits */												\
-	State_ATTRIBUTES
+__CLASS(MovingEntityMoving);
+
+#define MovingEntityMoving_ATTRIBUTES																	\
+																										\
+	/* inherits */																						\
+	State_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-SawBladeIdle SawBladeIdle_getInstance();
+MovingEntityMoving MovingEntityMoving_getInstance();
 
 
 #endif

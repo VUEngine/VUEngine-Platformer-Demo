@@ -1,4 +1,4 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+    /* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
  *
  * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
@@ -14,32 +14,19 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CHARACTERS_H_
-#define CHARACTERS_H_
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
-//---------------------------------------------------------------------------------------------------------
-
-#include "Hero/Hero.h"
-#include "SawBlade/SawBlade.h"
-#include "Cannon/Cannon.h"
-#include "Cannon/CannonBall/CannonBall.h"
+#ifndef ELEMENTS_TEXTURES_H_
+#define ELEMENTS_TEXTURES_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition HERO_AC;
-extern EntityDefinition CAMERA_BOUNDING_BOX_IG;
-extern EntityDefinition SAW_BLADE_V3_AC;
-extern EntityDefinition SAW_BLADE_H3_AC;
-extern EntityDefinition SAW_BLADE_H8_AC;
-extern EntityDefinition SAW_BLADE_LANE_V_6_IM;
-extern EntityDefinition CANNON_AC;
-extern EntityDefinition CANNON_BALL_AC;
+extern TextureDefinition GUI_TX;
+extern TextureDefinition DOOR_TX;
+extern TextureDefinition DOOR_BACK_TX;
+extern TextureDefinition HIDE_LAYER_10x7_TX;
+extern TextureDefinition HINT_TX;
 
 
 #endif

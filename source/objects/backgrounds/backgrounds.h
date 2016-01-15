@@ -79,5 +79,7 @@ extern EntityDefinition BUSH_AG;
 extern EntityDefinition FENCE_IM;
 extern EntityDefinition TORCH_AG;
 
+extern EntityDefinition LANE_V_6_IM;
+
 
 #endif

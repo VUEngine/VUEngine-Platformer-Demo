@@ -60,7 +60,7 @@ const ClassSizeData _userClassesSizeData[] =
 	{&HideLayer_getObjectSize,  "HideLayer"},
 	{&HideLayer_getObjectSize,  "Hint"},
 	{&Key_getObjectSize,        "Key"},
-	{&SawBlade_getObjectSize,   "SawBlade"},
+	{&MovingEntity_getObjectSize,   "MovingEntity"},
 	{NULL, ""},
 };
 #endif
@@ -74,9 +74,9 @@ const UserObject _userObjects[] =
 	{&DOOR_AG,                  "Door"},
 	{&HERO_AC,                  "Hero"},
 	{&KEY_AG,                   "Key"},
-	{&SAW_BLADE_V3_AC,          "SawBlade V3"},
-	{&SAW_BLADE_H3_AC,          "SawBlade H3"},
-	{&SAW_BLADE_LANE_V_6_IM,    "SawBlade Lane V6"},
+	{&MOVING_ENTITY_V3_AC,          "SawBlade V3"},
+	{&MOVING_ENTITY_H3_AC,          "SawBlade H3"},
+	{&LANE_V_6_IM,              "SawBlade Lane V6"},
 	{NULL, ""},
 };
 #endif
@@ -88,7 +88,7 @@ const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
 	{(AnimatedInGameEntityDefinition*)&DOOR_AG,         "Door"},
 	{(AnimatedInGameEntityDefinition*)&HERO_AC,         "Hero"},
 	{(AnimatedInGameEntityDefinition*)&KEY_AG,          "Key"},
-	{(AnimatedInGameEntityDefinition*)&SAW_BLADE_V3_AC, "SawBlade"},
+	{(AnimatedInGameEntityDefinition*)&MOVING_ENTITY_V3_AC, "SawBlade"},
 	{(AnimatedInGameEntityDefinition*)&LAVA_TOP_AG,     "Lava top"},
 	{NULL, ""},
 };
