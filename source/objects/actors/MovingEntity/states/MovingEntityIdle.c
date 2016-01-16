@@ -21,31 +21,31 @@
 
 #include <Optics.h>
 
-#include <SawBlade.h>
+#include <MovingEntity.h>
 #include <Hero.h>
 
-#include "SawBladeIdle.h"
-#include "SawBladeMoving.h"
+#include "MovingEntityIdle.h"
+#include "MovingEntityMoving.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void SawBladeIdle_constructor(SawBladeIdle this);
-void SawBladeIdle_destructor(SawBladeIdle this);
-void SawBladeIdle_enter(SawBladeIdle this, void* owner);
-void SawBladeIdle_execute(SawBladeIdle this, void* owner);
-void SawBladeIdle_exit(SawBladeIdle this, void* owner);
-bool SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram);
+void MovingEntityIdle_constructor(MovingEntityIdle this);
+void MovingEntityIdle_destructor(MovingEntityIdle this);
+void MovingEntityIdle_enter(MovingEntityIdle this, void* owner);
+void MovingEntityIdle_execute(MovingEntityIdle this, void* owner);
+void MovingEntityIdle_exit(MovingEntityIdle this, void* owner);
+bool MovingEntityIdle_handleMessage(MovingEntityIdle this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(SawBladeIdle, State);
-__SINGLETON(SawBladeIdle);
+__CLASS_DEFINITION(MovingEntityIdle, State);
+__SINGLETON(MovingEntityIdle);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,21 +53,21 @@ __SINGLETON(SawBladeIdle);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void SawBladeIdle_constructor(SawBladeIdle this)
+void MovingEntityIdle_constructor(MovingEntityIdle this)
 {
 	// construct base
 	__CONSTRUCT_BASE();
 }
 
 // class's destructor
-void SawBladeIdle_destructor(SawBladeIdle this)
+void MovingEntityIdle_destructor(MovingEntityIdle this)
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void SawBladeIdle_enter(SawBladeIdle this, void* owner)
+void MovingEntityIdle_enter(MovingEntityIdle this, void* owner)
 {
 	// do not move
     // Actor_stopMovement(__SAFE_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
@@ -76,18 +76,18 @@ void SawBladeIdle_enter(SawBladeIdle this, void* owner)
 }
 
 // state's execute
-void SawBladeIdle_execute(SawBladeIdle this, void* owner)
+void MovingEntityIdle_execute(MovingEntityIdle this, void* owner)
 {
-    StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, SawBladeMoving_getInstance()));
+    StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }
 
 // state's exit
-void SawBladeIdle_exit(SawBladeIdle this, void* owner)
+void MovingEntityIdle_exit(MovingEntityIdle this, void* owner)
 {
 }
 
 // state's handle message
-bool SawBladeIdle_handleMessage(SawBladeIdle this, void* owner, Telegram telegram)
+bool MovingEntityIdle_handleMessage(MovingEntityIdle this, void* owner, Telegram telegram)
 {
 	return false;
 }

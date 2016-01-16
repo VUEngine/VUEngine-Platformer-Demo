@@ -14,46 +14,37 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SAW_BLADE_MOVING_H_
-#define SAW_BLADE_MOVING_H_
+#ifndef ELEMENTS_H_
+#define ELEMENTS_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StateMachine.h>
+#include "Door/Door.h"
+#include "HideLayer/HideLayer.h"
+#include "GUI/GUI.h"
+#include "Hint/Hint.h"
+
+#include "textures.h"
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+// 											  DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define SawBladeMoving_METHODS									\
-	State_METHODS;									
+extern EntityDefinition GUI_AG;
 
-// declare the virtual methods which are redefined
-#define SawBladeMoving_SET_VTABLE(ClassName)					\
-	State_SET_VTABLE(ClassName)									\
-	__VIRTUAL_SET(ClassName, SawBladeMoving, enter);			\
-	__VIRTUAL_SET(ClassName, SawBladeMoving, execute);			\
-	__VIRTUAL_SET(ClassName, SawBladeMoving, exit);				\
-	__VIRTUAL_SET(ClassName, SawBladeMoving, handleMessage);	\
+extern EntityDefinition DOOR_AG;
+extern EntityDefinition DOOR_BACK_AG;
+extern EntityDefinition LAYER_SWITCH_DOOR_AG;
+extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
+extern EntityDefinition AFFINE_DOOR_AG;
 
-__CLASS(SawBladeMoving);
+extern EntityDefinition HIDE_LAYER_10x7_AG;
 
-#define SawBladeMoving_ATTRIBUTES								\
-																\
-	/* inherits */												\
-	State_ATTRIBUTES
-
-
-//---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-SawBladeMoving SawBladeMoving_getInstance();
+extern EntityDefinition HINT_MC;
 
 
 #endif

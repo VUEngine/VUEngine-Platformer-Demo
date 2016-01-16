@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include "SawBlade.h"
+#include "MovingEntity.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -128,13 +128,13 @@ BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 	NULL
 };
 
-SawBladeROMDef SAW_BLADE_V3_AC =
+MovingEntityROMDef SAW_BLADE_V3_AC =
 {
 	{
 	    {
 	        {
 	            {
-	                __TYPE(SawBlade),
+	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)SAW_BLADE_SPRITES,
 	            },
 	
@@ -181,13 +181,13 @@ SawBladeROMDef SAW_BLADE_V3_AC =
     __UP
 };
 
-SawBladeROMDef SAW_BLADE_H3_AC =
+MovingEntityROMDef SAW_BLADE_H3_AC =
 {
 	{
 	    {
 	        {
 	            {
-	                __TYPE(SawBlade),
+	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)SAW_BLADE_SPRITES,
 	            },
 
@@ -234,13 +234,13 @@ SawBladeROMDef SAW_BLADE_H3_AC =
     __LEFT
 };
 
-SawBladeROMDef SAW_BLADE_H8_AC =
+MovingEntityROMDef SAW_BLADE_H8_AC =
 {
 	{
 	    {
 	        {
 	            {
-	                __TYPE(SawBlade),
+	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)SAW_BLADE_SPRITES,
 	            },
 

@@ -23,8 +23,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include "backgrounds/textures.h"
-#include "characters/textures.h"
-#include "items/textures.h"
+#include "actors/textures.h"
+#include "elements/textures.h"
 #include "items/textures.h"
 #include "particles/textures.h"
 

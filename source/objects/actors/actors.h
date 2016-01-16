@@ -14,31 +14,32 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ITEMS_H_
-#define ITEMS_H_
+#ifndef ACTORS_H_
+#define ACTORS_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Coin/Coin.h"
-#include "Key/Key.h"
-#include "Bandana/Bandana.h"
-
-#include "textures.h"
+#include "Hero/Hero.h"
+#include "MovingEntity/MovingEntity.h"
+#include "Cannon/Cannon.h"
+#include "CannonBall/CannonBall.h"
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COIN_AG;
-extern EntityDefinition KEY_AG;
-extern EntityDefinition BANDANA_AG;
-
-extern EntityDefinition AFFINE_COIN_AG;
-extern EntityDefinition AFFINE_KEY_AG;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition CAMERA_BOUNDING_BOX_IG;
+extern EntityDefinition SAW_BLADE_V3_AC;
+extern EntityDefinition SAW_BLADE_H3_AC;
+extern EntityDefinition SAW_BLADE_H8_AC;
+extern EntityDefinition CANNON_AC;
+extern EntityDefinition CANNON_BALL_AC;
+extern EntityDefinition MOVING_PLATFORM_V3_AC;
 
 
 #endif

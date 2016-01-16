@@ -100,5 +100,7 @@ extern TextureDefinition BUSH_TX;
 extern TextureDefinition FENCE_TX;
 extern TextureDefinition TORCH_TX;
 
+extern TextureDefinition LANE_V_6_TX;
+
 
 #endif

@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CHARACTERS_TEXTURES_H_
-#define CHARACTERS_TEXTURES_H_
+#ifndef ACTORS_TEXTURES_H_
+#define ACTORS_TEXTURES_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@
 extern TextureDefinition HERO_TX;
 extern TextureDefinition KEY_TX;
 extern TextureDefinition SAW_BLADE_TX;
-extern TextureDefinition SAW_BLADE_LANE_V_6_TX;
+extern TextureDefinition MOVING_PLATFORM_TX;
 extern TextureDefinition CANNON_TX;
 extern TextureDefinition CANNON_BALL_TX;
 

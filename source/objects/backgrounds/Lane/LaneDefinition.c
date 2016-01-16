@@ -20,21 +20,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_HouseTiles[];
-extern BYTE Level_1_HouseMap[];
+extern BYTE LANE_CH[];
+extern BYTE LANE_V_6_MP[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_HOUSE_CH =
+CharSetROMDef LANE_V_6_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
@@ -42,28 +43,28 @@ CharSetROMDef LEVEL_1_HOUSE_CH =
     // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __NOT_ANIMATED: number of chars of whole image
-    60,
+    2,
 
     // allocation type
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_HouseTiles,
+    LANE_CH,
 };
 
-TextureROMDef LEVEL_1_HOUSE_TX =
+TextureROMDef LANE_V_6_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_HOUSE_CH,
+    (CharSetDefinition*)&LANE_V_6_CH,
 
     // bgmap definition
-    Level_1_HouseMap,
+    LANE_V_6_MP,
 
     // cols (max 64)
-    24,
+    1,
 
     // rows (max 64)
-    11,
+    6,
 
     // number of frames
     1,
@@ -72,15 +73,15 @@ TextureROMDef LEVEL_1_HOUSE_TX =
     1,
 };
 
-BgmapSpriteROMDef LEVEL_1_HOUSE_IM_SPRITE =
+BgmapSpriteROMDef LANE_V_6_IM_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)&LEVEL_1_HOUSE_TX,
+	(TextureDefinition*)&LANE_V_6_TX,
 
-	// displacement vector
+	// displacement (x, y, z) (in pixels)
 	{0, 0, FTOFIX19_13(2)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -90,14 +91,14 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_IM_SPRITE =
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_HOUSE_IM_SPRITES[] =
+BgmapSpriteROMDef* const LANE_V_6_IM_SPRITES[] =
 {
-	&LEVEL_1_HOUSE_IM_SPRITE,
+	&LANE_V_6_IM_SPRITE,
 	NULL
 };
 
-ImageROMDef LEVEL_1_HOUSE_IM =
+ImageROMDef LANE_V_6_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_HOUSE_IM_SPRITES,
+	(SpriteROMDef**)LANE_V_6_IM_SPRITES,
 };

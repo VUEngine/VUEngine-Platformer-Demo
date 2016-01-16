@@ -19,23 +19,54 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <macros.h>
+#include <BgmapAnimatedSprite.h>
+#include <MovingEntity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SAW_BLADE_LANE_CH[];
-extern BYTE SAW_BLADE_LANE_V_6_MP[];
+extern BYTE MovingPlatform4Tiles[];
+extern BYTE MovingPlatform4Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef SAW_BLADE_LANE_V_6_CH =
+AnimationFunction MOVING_PLATFORM_MOVE_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{0},
+
+	// number of cycles a frame of animation is displayed
+	0,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Move",
+};
+
+// an animation definition
+AnimationDescription MOVING_PLATFORM_ANIM =
+{
+	// animation functions
+	{
+		&MOVING_PLATFORM_MOVE_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef MOVING_PLATFORM_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
@@ -43,28 +74,28 @@ CharSetROMDef SAW_BLADE_LANE_V_6_CH =
     // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI: sum of chars of all animation frames
     // __NOT_ANIMATED: number of chars of whole image
-    2,
+    4,
 
     // allocation type
-    __NOT_ANIMATED,
+    __ANIMATED_SINGLE,
 
     // char definition
-    SAW_BLADE_LANE_CH,
+    MovingPlatform4Tiles,
 };
 
-TextureROMDef SAW_BLADE_LANE_V_6_TX =
+TextureROMDef MOVING_PLATFORM_TX =
 {
     // charset definition
-    (CharSetDefinition*)&SAW_BLADE_LANE_V_6_CH,
+    (CharSetDefinition*)&MOVING_PLATFORM_CH,
 
     // bgmap definition
-    SAW_BLADE_LANE_V_6_MP,
+    MovingPlatform4Map,
 
     // cols (max 64)
-    1,
+    4,
 
     // rows (max 64)
-    6,
+    1,
 
     // number of frames
     1,
@@ -73,32 +104,79 @@ TextureROMDef SAW_BLADE_LANE_V_6_TX =
     1,
 };
 
-BgmapSpriteROMDef SAW_BLADE_LANE_V_6_IM_SPRITE =
+BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapSprite),
+	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&SAW_BLADE_LANE_V_6_TX,
+	(TextureDefinition*)&MOVING_PLATFORM_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, FTOFIX19_13(2)},
-	
+	{0, 0, 0},
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const SAW_BLADE_LANE_V_6_IM_SPRITES[] =
+BgmapSpriteROMDef* const MOVING_PLATFORM_SPRITES[] =
 {
-	&SAW_BLADE_LANE_V_6_IM_SPRITE,
+	&MOVING_PLATFORM_SPRITE,
 	NULL
 };
 
-ImageROMDef SAW_BLADE_LANE_V_6_IM =
+MovingEntityROMDef MOVING_PLATFORM_V3_AC =
 {
-	__TYPE(Image),
-	(SpriteROMDef**)SAW_BLADE_LANE_V_6_IM_SPRITES,
+	{
+	    {
+	        {
+	            {
+	                __TYPE(MovingEntity),
+	                (SpriteROMDef**)MOVING_PLATFORM_SPRITES,
+	            },
+	
+	            // collision detection gap (up, down, left, right)
+	            {1, 1, 1, 1},
+	
+	            // in game type
+	            kTopSolid,
+	
+	            // width
+	            0,
+	            
+	            // height
+	            0,
+	            
+	            // depth
+	            4
+	        },
+	
+	        // pointer to the animation definition for the character
+	        &MOVING_PLATFORM_ANIM,
+	
+	        // initial animation
+	        "Move"
+	    },
+	    
+		// friction for physics
+		FTOFIX19_13(FLOOR_FRICTION),
+
+		// elasticity for physics
+		FTOFIX19_13(FLOOR_ELASTICITY),
+		
+		// mass
+		ITOFIX19_13(10)
+	},
+	
+    // radius
+    ITOFIX19_13(24),
+
+    // axis
+    __YAXIS,
+
+    // direction
+    __DOWN
 };

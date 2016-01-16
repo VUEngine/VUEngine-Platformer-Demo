@@ -14,31 +14,46 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ITEMS_H_
-#define ITEMS_H_
+#ifndef MOVING_ENTITY_IDLE_H_
+#define MOVING_ENTITY_IDLE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Coin/Coin.h"
-#include "Key/Key.h"
-#include "Bandana/Bandana.h"
-
-#include "textures.h"
+#include <StateMachine.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition COIN_AG;
-extern EntityDefinition KEY_AG;
-extern EntityDefinition BANDANA_AG;
+// declare the virtual methods
+#define MovingEntityIdle_METHODS																		\
+	State_METHODS;																						\
 
-extern EntityDefinition AFFINE_COIN_AG;
-extern EntityDefinition AFFINE_KEY_AG;
+// declare the virtual methods which are redefined
+#define MovingEntityIdle_SET_VTABLE(ClassName)															\
+State_SET_VTABLE(ClassName)																				\
+	__VIRTUAL_SET(ClassName, MovingEntityIdle, enter);													\
+	__VIRTUAL_SET(ClassName, MovingEntityIdle, execute);												\
+	__VIRTUAL_SET(ClassName, MovingEntityIdle, exit);													\
+	__VIRTUAL_SET(ClassName, MovingEntityIdle, handleMessage);											\
+	
+__CLASS(MovingEntityIdle);
+
+#define MovingEntityIdle_ATTRIBUTES																		\
+																										\
+	/* inherits */																						\
+	State_ATTRIBUTES																					\
+
+
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+MovingEntityIdle MovingEntityIdle_getInstance();
 
 
 #endif
