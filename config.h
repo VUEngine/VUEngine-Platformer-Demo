@@ -87,7 +87,7 @@
 // target frames per second
 // __FRAME_CYCLE = 0 means __TARGET_FPS = 50
 // __FRAME_CYCLE = 1 means __TARGET_FPS = 25
-#define	__FRAME_CYCLE							1
+#define	__FRAME_CYCLE							0
 
 #define __TARGET_FPS 							(50 >> __FRAME_CYCLE)
 
@@ -147,7 +147,7 @@
 	__SET_MEMORY_POOL_ARRAY(68)																			\
 	__SET_MEMORY_POOL_ARRAY(28)																			\
 	__SET_MEMORY_POOL_ARRAY(20)																			\
-	__SET_MEMORY_POOL_ARRAY(16)																			\
+	__SET_MEMORY_POOL_ARRAY(16)																				\
 
 // percentage (0-100) above which the memory pool's status shows the pool usage
 #define __MEMORY_POOL_WARNING_THRESHOLD			85
