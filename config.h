@@ -55,7 +55,7 @@
 #define __SCREEN_HEIGHT							224
 
 // screen depth in pixels
-#define __SCREEN_DEPTH							0
+#define __SCREEN_DEPTH							384
 
 // distance from player's eyes to the virtual screen
 #define __DISTANCE_EYE_SCREEN					384
@@ -124,22 +124,22 @@
 #define __MEMORY_POOLS							11
 
 #define __MEMORY_POOL_ARRAYS																			\
-	__BLOCK_DEFINITION(184, 1)																			\
-	__BLOCK_DEFINITION(164, 3)																			\
-	__BLOCK_DEFINITION(136, 4)																			\
-	__BLOCK_DEFINITION(128, 28)																			\
-	__BLOCK_DEFINITION(112, 50)																			\
-	__BLOCK_DEFINITION(96, 66)																			\
-	__BLOCK_DEFINITION(76, 32)																			\
-	__BLOCK_DEFINITION(68, 75)																			\
-	__BLOCK_DEFINITION(28, 254)																			\
-	__BLOCK_DEFINITION(20, 632)																			\
-	__BLOCK_DEFINITION(16, 290)																		\
+	__BLOCK_DEFINITION(188, 1)																			\
+	__BLOCK_DEFINITION(168, 3)																			\
+	__BLOCK_DEFINITION(140, 28)																			\
+	__BLOCK_DEFINITION(128, 8)																			\
+	__BLOCK_DEFINITION(112, 48)																			\
+	__BLOCK_DEFINITION(96, 64)																			\
+	__BLOCK_DEFINITION(76, 28)																			\
+	__BLOCK_DEFINITION(68, 68)																			\
+	__BLOCK_DEFINITION(28, 240)																			\
+	__BLOCK_DEFINITION(20, 612)																			\
+	__BLOCK_DEFINITION(16, 230)	
 
 #define __SET_MEMORY_POOL_ARRAYS																		\
-	__SET_MEMORY_POOL_ARRAY(184)																		\
-	__SET_MEMORY_POOL_ARRAY(164)																		\
-	__SET_MEMORY_POOL_ARRAY(136)																		\
+	__SET_MEMORY_POOL_ARRAY(188)																		\
+	__SET_MEMORY_POOL_ARRAY(168)																		\
+	__SET_MEMORY_POOL_ARRAY(140)																		\
 	__SET_MEMORY_POOL_ARRAY(128)																		\
 	__SET_MEMORY_POOL_ARRAY(112)																		\
 	__SET_MEMORY_POOL_ARRAY(96)																			\
