@@ -93,11 +93,9 @@ ENGINE = libvbjae.a
 pad: $(TARGET).vb
 	@echo "Padding " $(TARGET).vb
 	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb
-	@cp $(TARGET).vb /cygdrive/z/ROMs/
-	
+
 all: $(TARGET).vb
-	@cp $(TARGET).vb /cygdrive/z/ROMs/
-	
+
 deleteEngine:
 		@rm -f $(ENGINE)
 
