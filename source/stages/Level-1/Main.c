@@ -108,8 +108,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1[] =
 {
-	{&COLLISION_ONEWAY_7x7x1, 	        {FTOFIX19_13(-226), FTOFIX19_13(-11 + 24),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x7x1, 	        {FTOFIX19_13(-226), FTOFIX19_13(84 + 24),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 	        {FTOFIX19_13(-226), FTOFIX19_13(13),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 	        {FTOFIX19_13(-226), FTOFIX19_13(109),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_48x18x1, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-138),  FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_38x10x1, 	            {FTOFIX19_13(-48),  FTOFIX19_13(25),    FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_28x16x1, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-12),   FTOFIX19_13(0)},    NULL, NULL, NULL, false},
@@ -148,10 +148,10 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_1[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2[] =
 {
-	{&COLLISION_20x6x1,		            {FTOFIX19_13(124),  FTOFIX19_13(-27), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_8x3x1, 	                {FTOFIX19_13(128),  FTOFIX19_13(-84), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_20x32x1, 	            {FTOFIX19_13(288),  FTOFIX19_13(53), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&HIT_COLLISION_20x1x1, 	        {FTOFIX19_13(128),  FTOFIX19_13(-51), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_8x3x1, 	                {FTOFIX19_13(128),  FTOFIX19_13(-83), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_20x6x1,		            {FTOFIX19_13(124),  FTOFIX19_13(-23), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&HIT_COLLISION_20x1x1, 	        {FTOFIX19_13(128),  FTOFIX19_13(-44), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_20x32x1, 	            {FTOFIX19_13(288),  FTOFIX19_13(49), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -159,6 +159,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_ENTITIES[] =
 {
 	{&LEVEL_1_MAIN_1_BACK_5_IM,         {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(4 * SORT_INCREMENT)}, NULL, NULL, NULL, false},
+	{&LAYER_SWITCH_DOOR_BACK_AG, 	    {FTOFIX19_13(145), 	FTOFIX19_13(-82), 	FTOFIX19_13(3 * SORT_INCREMENT)}, "Door Back 1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
 	{&CANNON_AC,                        {FTOFIX19_13(-156), FTOFIX19_13(-102), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&CANNON_AC,                        {FTOFIX19_13(68),   FTOFIX19_13(-102), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
@@ -170,7 +171,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS[] =
 	{&COLLISION_46x2x1, 	            {FTOFIX19_13(-4),   FTOFIX19_13(-124), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_48x5x1, 	            {FTOFIX19_13(-76),  FTOFIX19_13(-88), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_67x25x1, 	            {FTOFIX19_13(0),    FTOFIX19_13(32), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x7x1, 	        {FTOFIX19_13(190), 	FTOFIX19_13(-115 + 24), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 	        {FTOFIX19_13(190), 	FTOFIX19_13(-91), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -202,7 +203,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_ENTITIES[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 {
 	{&COLLISION_48x28x1, 	            {FTOFIX19_13(-56),  FTOFIX19_13(65), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x7x1, 	        {FTOFIX19_13(-130), FTOFIX19_13(-107 + 24), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 	        {FTOFIX19_13(-130), FTOFIX19_13(-83), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_12x4x1,                 {FTOFIX19_13(-56),  FTOFIX19_13(-111), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_48x28x1, 	            {FTOFIX19_13(168),  FTOFIX19_13(-15), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
@@ -266,17 +267,17 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{&COIN_AG,                                  {FTOFIX19_13(1356), FTOFIX19_13(432), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 017", NULL, NULL, false},
 	{&GRASS_AG,                                 {FTOFIX19_13(1288), FTOFIX19_13(472), 	FTOFIX19_13(LAYER_0_BACKGROUND)}, NULL, NULL, NULL, false},
 
-    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(1732), FTOFIX19_13(400),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_ENTITIES, NULL, false},
-    {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(1732), FTOFIX19_13(400),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_1, NULL, false},
-    {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(1732), FTOFIX19_13(400),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2, NULL, false},
+    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(1731), FTOFIX19_13(399),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_ENTITIES, NULL, false},
+    {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(1731), FTOFIX19_13(399),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_1, NULL, false},
+    {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(1731), FTOFIX19_13(399),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2, NULL, false},
 
 	{&SAW_BLADE_H3_AC,                          {FTOFIX19_13(1861), FTOFIX19_13(302), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 
     {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(2336), FTOFIX19_13(384),   FTOFIX19_13(LAYER_2)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_ENTITIES, NULL, false},
     {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(2336), FTOFIX19_13(384),   FTOFIX19_13(LAYER_2)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS, NULL, false},
 
-    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(2208), FTOFIX19_13(400),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_5_ENTITIES, NULL, false},
-    {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(2208), FTOFIX19_13(400),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_5_COLLISIONS, NULL, false},
+    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(2207), FTOFIX19_13(399),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_5_ENTITIES, NULL, false},
+    {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(2207), FTOFIX19_13(399),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_5_COLLISIONS, NULL, false},
 
 	{&COIN_AG,                                  {FTOFIX19_13(2172), FTOFIX19_13(292), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 019", NULL, NULL, false},
 	{&COIN_AG,                                  {FTOFIX19_13(2188), FTOFIX19_13(292), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 020", NULL, NULL, false},
