@@ -28,6 +28,7 @@ extern TextureDefinition SAW_BLADE_TX;
 extern TextureDefinition MOVING_PLATFORM_TX;
 extern TextureDefinition CANNON_TX;
 extern TextureDefinition CANNON_BALL_TX;
+extern TextureDefinition SNAIL_TX;
 
 
 #endif

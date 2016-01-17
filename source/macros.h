@@ -61,6 +61,7 @@ enum PlatformerTypes
 	kLava,
 	kLavaTrigger,
 	kSawBlade,
+	kSnail,
 	kCannonBall,
 	kMovingPlatform,
 };
