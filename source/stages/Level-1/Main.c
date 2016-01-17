@@ -533,3 +533,18 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
 	// does a level start at this entry point?
 	false,
 }};
+
+PlatformerStageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP[] =
+{{
+	// the stage to load
+    (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
+
+	// name of the entity to start at
+    "TowerEntrance",
+
+    // offset from entry point (x, y, z)
+    {0, 0, FTOFIX19_13(-SORT_INCREMENT)},
+
+	// does a level start at this entry point?
+	false,
+}};
