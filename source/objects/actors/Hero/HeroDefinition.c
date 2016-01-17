@@ -358,7 +358,7 @@ ActorROMDef HERO_AC =
 	    	0,
 
 	    	// depth
-	        1
+	        1 * 8
 	    },
 
 	    // pointer to the animation definition for the character
