@@ -128,7 +128,7 @@ BgmapSpriteROMDef* const SNAIL_SPRITES[] =
 	NULL
 };
 
-MovingEntityROMDef SNAIL_8_AC =
+MovingEntityROMDef SNAIL_4_AC =
 {
 	{
 	    {
@@ -140,7 +140,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	
 	            // collision detection gap (up, down, left, right)
 	            {3, 1, 4, 2},
-	
+
 	            // in game type
 	            kSnail,
 	
@@ -171,6 +171,59 @@ MovingEntityROMDef SNAIL_8_AC =
 		ITOFIX19_13(10)
 	},
 	
+    // radius
+    ITOFIX19_13(32),
+
+    // axis
+    __XAXIS,
+
+    // direction
+    __LEFT
+};
+
+MovingEntityROMDef SNAIL_8_AC =
+{
+	{
+	    {
+	        {
+	            {
+	                __TYPE(MovingEntity),
+	                (SpriteROMDef**)SNAIL_SPRITES,
+	            },
+
+	            // collision detection gap (up, down, left, right)
+	            {3, 1, 4, 2},
+
+	            // in game type
+	            kSnail,
+
+	            // width
+	            0,
+
+	            // height
+	            0,
+
+	            // depth
+	            8,
+	        },
+
+	        // pointer to the animation definition for the character
+	        &SNAIL_ANIM,
+
+	        // initial animation
+	        "Move"
+	    },
+
+		// friction for physics
+		ITOFIX19_13(0),
+
+		// elasticity for physics
+		ITOFIX19_13(0),
+
+		// mass
+		ITOFIX19_13(10)
+	},
+
     // radius
     ITOFIX19_13(64),
 

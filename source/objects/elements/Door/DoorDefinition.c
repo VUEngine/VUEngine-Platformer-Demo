@@ -360,7 +360,7 @@ TextureROMDef DOOR_BACK_TX =
     4,
 
     // palette number
-    1
+    2
 };
 
 BgmapSpriteROMDef DOOR_BACK_SPRITE =

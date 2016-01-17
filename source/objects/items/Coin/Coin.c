@@ -38,6 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG;
+extern AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -66,9 +67,20 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
     // if coin has already been collected, only show silhouette representation
-    if(&COIN_SILHOUETTE_AG == animatedInGameEntityDefinition || ProgressManager_getCoinStatus(ProgressManager_getInstance(), name))
+    if(
+        //&COIN_SILHOUETTE_AG == animatedInGameEntityDefinition ||
+        //&COIN_BACK_SILHOUETTE_AG == animatedInGameEntityDefinition ||
+        ProgressManager_getCoinStatus(ProgressManager_getInstance(), name)
+    )
     {
-        animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
+        if((AnimatedInGameEntityDefinition*)&COIN_BACK_AG == animatedInGameEntityDefinition)
+        {
+            animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_BACK_SILHOUETTE_AG;
+        }
+        else
+        {
+            animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
+        }
     }
 
 	// construct base

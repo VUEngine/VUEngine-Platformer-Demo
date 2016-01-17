@@ -758,7 +758,7 @@ static void Hero_addHint(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
-	VBVec3D position = {FTOFIX19_13(25), FTOFIX19_13(-20), FTOFIX19_13(-SORT_INCREMENT * 4)};
+	VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT * 4)};
 
     // save the hint entity, so we can remove it later
 	this->hint = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
