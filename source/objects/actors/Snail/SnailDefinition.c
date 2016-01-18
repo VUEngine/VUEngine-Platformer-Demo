@@ -224,8 +224,14 @@ MovingEntityROMDef SNAIL_8_AC =
 		ITOFIX19_13(10)
 	},
 
-    // radius
-    ITOFIX19_13(64),
+	// velocity
+	ITOFIX19_13(20),
+
+	// maximum deviation from initial position
+	ITOFIX19_13(64),
+
+	// time to rest idle
+	3000,
 
     // axis
     __XAXIS,

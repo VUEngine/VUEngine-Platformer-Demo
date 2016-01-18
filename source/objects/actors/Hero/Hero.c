@@ -1198,26 +1198,14 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 	{
 		case kLevelSetUp:
 			{
-				// set focus on the hero
-				VBVec3D position =
-				{
-	                ITOFIX19_13(0),
-	                ITOFIX19_13(-16),
-	                ITOFIX19_13(0),
-				};
-	
+				// set camera
+				VBVec3D cameraBoundingBoxPosition = {0, ITOFIX19_13(-8), 0};
 				CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
-				this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &position, NULL);
+				this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
 				CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 	
 				// set focus on the hero
-				VBVec3D screenDisplacement =
-				{
-	                0,
-	                ITOFIX19_13(0),
-	                ITOFIX19_13(-LAYER_0),
-				};
-	
+				VBVec3D screenDisplacement = {0, 0, 0};
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 				Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);

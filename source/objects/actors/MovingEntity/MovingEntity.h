@@ -51,7 +51,7 @@ __CLASS(MovingEntity);
 
 #define MovingEntity_ATTRIBUTES																			\
 																										\
-	/* it is derivated from */																			\
+	/* it is derived from */																			\
 	Actor_ATTRIBUTES																					\
 																										\
 	/* save my initial position */																		\
