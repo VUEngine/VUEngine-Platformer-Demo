@@ -583,10 +583,6 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
 	        	Game_pausePhysics(Game_getInstance(), true);
 	        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumeGame, NULL);
 	        	Game_disableKeypad(Game_getInstance());
-	        	
-	        	// make sure that no distance is perceivable between the object that hit me and me
-	        	Transformation environmentTransform = Container_getEnvironmentTransform(__SAFE_CAST(Container, this));
-	        	__VIRTUAL_CALL(void, Container, transform, this, &environmentTransform);
             }
 
             // start short screen shake

@@ -56,7 +56,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
-extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP;
+extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP;	
 
 
 //---------------------------------------------------------------------------------------------------------
