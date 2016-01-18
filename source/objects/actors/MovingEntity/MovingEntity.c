@@ -91,9 +91,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 void MovingEntity_destructor(MovingEntity this)
 {
 	ASSERT(this, "MovingEntity::destructor: null this");
-
-	CollisionManager_unregisterShape(CollisionManager_getInstance(), this->shape);
-
+	
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
