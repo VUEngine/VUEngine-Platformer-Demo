@@ -44,7 +44,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[];
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
-// ---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
 
 // Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
 // know that it must stop reading the stage's/ui's textures and entities.
@@ -492,7 +492,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
 
 //---------------------------------------------------------------------------------------------------------
 // 												ENTRY POINTS
-// ---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
 
 PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
 {{
@@ -501,7 +501,6 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
 
 	// name of the entity to start at
     "House",
-    //"TowerEntrance",
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(-64), FTOFIX19_13(-256), FTOFIX19_13(-SORT_INCREMENT)},

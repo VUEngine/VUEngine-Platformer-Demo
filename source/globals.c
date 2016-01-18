@@ -60,7 +60,8 @@ const ClassSizeData _userClassesSizeData[] =
 	{&HideLayer_getObjectSize,      "HideLayer"},
 	{&HideLayer_getObjectSize,      "Hint"},
 	{&Key_getObjectSize,            "Key"},
-	{&MovingEnemy_getObjectSize,   "MovingEnemy"},
+	{&MovingEntity_getObjectSize,   "MovingEntity"},
+	{&MovingEnemy_getObjectSize,    "MovingEnemy"},
 	{NULL, ""},
 };
 #endif

@@ -37,13 +37,13 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define MovingEnemy_METHODS																			\
+#define MovingEnemy_METHODS																				\
 	Enemy_METHODS;
 
 #define MovingEnemy_SET_VTABLE(ClassName)																\
 	Enemy_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, MovingEnemy, die);														\
-	__VIRTUAL_SET(ClassName, MovingEnemy, takeHit);													\
+	__VIRTUAL_SET(ClassName, MovingEnemy, die);															\
+	__VIRTUAL_SET(ClassName, MovingEnemy, takeHit);														\
 	__VIRTUAL_SET(ClassName, MovingEnemy, setLocalPosition);											\
 	__VIRTUAL_SET(ClassName, MovingEnemy, getAxisFreeForMovement);										\
 	__VIRTUAL_SET(ClassName, MovingEnemy, ready);														\
@@ -52,7 +52,7 @@ __CLASS(MovingEnemy);
 
 #define MovingEnemy_ATTRIBUTES																			\
 																										\
-	/* it is derivated from */																			\
+	/* it is derived from */																			\
 	Enemy_ATTRIBUTES																					\
 																										\
 	/* save my initial position */																		\

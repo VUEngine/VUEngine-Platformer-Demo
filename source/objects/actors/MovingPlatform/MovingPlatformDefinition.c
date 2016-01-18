@@ -128,7 +128,7 @@ BgmapSpriteROMDef* const MOVING_PLATFORM_SPRITES[] =
 	NULL
 };
 
-MovingEntityROMDef MOVING_PLATFORM_V3_AC =
+MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 {
 	{
 	    {
@@ -172,10 +172,10 @@ MovingEntityROMDef MOVING_PLATFORM_V3_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(40),
+	ITOFIX19_13(48),
 
 	// maximum deviation from initial position
-	ITOFIX19_13(20),
+	ITOFIX19_13(48),
 	
 	// time to rest idle
 	1000,

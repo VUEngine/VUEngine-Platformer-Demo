@@ -76,7 +76,6 @@ void MovingEntityIdle_enter(MovingEntityIdle this, void* owner)
 // state's execute
 void MovingEntityIdle_execute(MovingEntityIdle this, void* owner)
 {
-	
     StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }
 

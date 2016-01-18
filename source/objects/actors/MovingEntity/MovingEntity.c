@@ -45,6 +45,7 @@ __CLASS_DEFINITION(MovingEntity, Actor);
 
 static void MovingEntity_registerShape(MovingEntity this);
 
+
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
@@ -68,18 +69,18 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), movingEntityDefinition->actorDefinition.mass);
 	Body_setElasticity(this->body, movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
-	
+
 	this->movingEntityDefinition = movingEntityDefinition;
-	
+
 	this->initialPosition = 0;
-	
+
 	switch(this->movingEntityDefinition->axis)
     {
 		case __XAXIS:
 
 			this->direction.x = this->movingEntityDefinition->direction;
 			break;
-			
+
 		case __YAXIS:
 
 			this->direction.y = this->movingEntityDefinition->direction;
@@ -91,7 +92,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 void MovingEntity_destructor(MovingEntity this)
 {
 	ASSERT(this, "MovingEntity::destructor: null this");
-	
+
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
@@ -104,7 +105,7 @@ static void MovingEntity_registerShape(MovingEntity this)
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
-	
+
 	// don't check collisions agains other objects
 	Shape_setCheckForCollisions(this->shape, false);
 }
@@ -115,7 +116,7 @@ void MovingEntity_ready(MovingEntity this)
 	ASSERT(this, "MovingEntity::ready: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
-	
+
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }
 
@@ -142,7 +143,7 @@ void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 {
 	// set my position
 	Actor_setLocalPosition(__SAFE_CAST(Actor, this), position);
-	
+
 	// save initial position
 	switch(this->movingEntityDefinition->axis)
     {
@@ -150,9 +151,9 @@ void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 
 			this->initialPosition = position->x;
 			break;
-			
+
 		case __YAXIS:
-			
+
 			this->initialPosition = position->y;
 			break;			
 	}
@@ -172,7 +173,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 		case __XAXIS:
 			{
 				fix19_13 distance = abs(this->transform.globalPosition.x - this->initialPosition);
-				
+
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
 					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
@@ -216,7 +217,7 @@ void MovingEntity_startMovement(MovingEntity this)
 			{
 				Velocity velocity =
                 {
-					((int)ITOFIX19_13(20) * this->direction.x),
+					((int)this->movingEntityDefinition->velocity * this->direction.x),
 					0,
 					0,
 				};
@@ -244,7 +245,7 @@ void MovingEntity_startMovement(MovingEntity this)
 				Velocity velocity =
                 {
 					0,
-					((int)ITOFIX19_13(20) * this->direction.y),
+					((int)this->movingEntityDefinition->velocity * this->direction.y),
 					0,
 				};
 				

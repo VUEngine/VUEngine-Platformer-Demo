@@ -47,7 +47,7 @@ extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP;
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
-// ---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
 
 // Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
 // know that it must stop reading the stage's/ui's textures and entities.
@@ -58,7 +58,17 @@ PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef TOWER_MAIN_1_CHILD_ENTITIES[] =
+PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_ENTITIES[] =
+{
+    {&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(158), 	FTOFIX19_13(0)}, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
+    {&TORCH_AG,                     {FTOFIX19_13(-107), FTOFIX19_13(136), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(12), 	FTOFIX19_13(136), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+
+	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+};
+
+PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS[] =
 {
 	{&COLLISION_2x64x1,	    		{FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer left wall
 	{&COLLISION_48x28x1,			{FTOFIX19_13(302),  FTOFIX19_13(256), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom right floor
@@ -67,7 +77,7 @@ PositionedEntityROMDef TOWER_MAIN_1_CHILD_ENTITIES[] =
 	{&COLLISION_4x2x1,				{FTOFIX19_13(88),   FTOFIX19_13(71), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone bottom right
 	{&COLLISION_4x8x1,				{FTOFIX19_13(176),  FTOFIX19_13(144), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // step stone bottom right
 	{&COLLISION_48x3x1,				{FTOFIX19_13(-172), FTOFIX19_13(28), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
-	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
+
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -81,12 +91,11 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
 
-	{&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(192), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)TOWER_MAIN_1_CHILD_ENTITIES, NULL, false},
+    // part 1
+    {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_ENTITIES, NULL, false},
+    {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS, NULL, false},
 
-    {&MOVING_PLATFORM_V3_AC,        {FTOFIX19_13(85),  	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 120), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
-
-    {&TORCH_AG,                     {FTOFIX19_13(85),  	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 120), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-    {&TORCH_AG,                     {FTOFIX19_13(204), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 120), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&MOVING_PLATFORM_V6_AC,        {FTOFIX19_13(60),  	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 288), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 
 	{&LAVA_TRIGGER_IG,  			{FTOFIX19_13(174),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 130), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COG_WHEEL_IG,	        		{FTOFIX19_13(384),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 224), 	FTOFIX19_13(LAYER_0_BACKGROUND)}, NULL, NULL, NULL, false},
@@ -266,7 +275,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
 
 //---------------------------------------------------------------------------------------------------------
 // 												ENTRY POINTS
-// ---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
 
 PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
 {{
