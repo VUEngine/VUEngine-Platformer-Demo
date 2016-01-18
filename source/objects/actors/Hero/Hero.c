@@ -580,8 +580,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
 
             if(pause)
             {
-	        	Game_pausePhysics(Game_getInstance(), true);
-	        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumeGame, NULL);
+            	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroPauseGame, NULL);
 	        	Game_disableKeypad(Game_getInstance());
             }
 
@@ -1167,6 +1166,12 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
         	Hero_flash(this);
             return true;
             break;
+
+        case kHeroPauseGame:
+
+        	Game_pausePhysics(Game_getInstance(), true);
+        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumeGame, NULL);
+        	break;
 
         case kHeroResumeGame:
 
