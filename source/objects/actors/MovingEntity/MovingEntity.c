@@ -20,13 +20,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
+#include <MessageDispatcher.h>
 #include <CollisionManager.h>
 #include <Optics.h>
 #include <PhysicalWorld.h>
 #include <Prototypes.h>
-
-#include <EnemyDead.h>
-#include <Hero.h>
+#include <PlatformerLevelState.h>
 
 #include "MovingEntity.h"
 #include "states/MovingEntityIdle.h"
@@ -37,8 +36,14 @@
 // 											 CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(MovingEntity, Enemy);
+__CLASS_DEFINITION(MovingEntity, Actor);
 
+
+//---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+static void MovingEntity_registerShape(MovingEntity this);
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
@@ -64,25 +69,20 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	Body_setElasticity(this->body, movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	
-	// save over which axis I'm going to move
-	this->axis = movingEntityDefinition->axis;
+	this->movingEntityDefinition = movingEntityDefinition;
 	
-	// set movement direction;
-	this->movementDirection = movingEntityDefinition->direction;
-
-	// set movement radius;
-	this->radius = movingEntityDefinition->radius;
+	this->initialPosition = 0;
 	
-	switch(this->axis)
+	switch(this->movingEntityDefinition->axis)
     {
 		case __XAXIS:
 
-			this->direction.x = movingEntityDefinition->direction;
+			this->direction.x = this->movingEntityDefinition->direction;
 			break;
 			
 		case __YAXIS:
 
-			this->direction.y = movingEntityDefinition->direction;
+			this->direction.y = this->movingEntityDefinition->direction;
 			break;			
 	}
 }
@@ -92,9 +92,23 @@ void MovingEntity_destructor(MovingEntity this)
 {
 	ASSERT(this, "MovingEntity::destructor: null this");
 
+	CollisionManager_unregisterShape(CollisionManager_getInstance(), this->shape);
+
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
+}
+
+// register a shape with the collision detection system
+static void MovingEntity_registerShape(MovingEntity this)
+{
+	ASSERT(this, "MovingEntity::registerShape: null this");
+
+	// register a shape for collision detection
+	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
+	
+	// don't check collisions agains other objects
+	Shape_setCheckForCollisions(this->shape, false);
 }
 
 // ready method
@@ -105,18 +119,6 @@ void MovingEntity_ready(MovingEntity this)
 	Entity_ready(__SAFE_CAST(Entity, this));
 	
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityMoving_getInstance()));
-}
-
-// register a shape with the collision detection system
-void MovingEntity_registerShape(MovingEntity this)
-{
-	ASSERT(this, "MovingEntity::registerShape: null this");
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
-	
-	// don't check collisions agains other objects
-	Shape_setCheckForCollisions(this->shape, false);
 }
 
 // unregister the shape with the collision detection system
@@ -135,11 +137,6 @@ void MovingEntity_takeHit(MovingEntity this, int axis, s8 direction)
 // die
 void MovingEntity_die(MovingEntity this)
 {
-	// must unregister the shape for collision detections
-	Shape_setActive(this->shape, false);
-
-	// now change state to dead
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, EnemyDead_getInstance()));
 }
 
 // set position
@@ -149,7 +146,7 @@ void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 	Actor_setLocalPosition(__SAFE_CAST(Actor, this), position);
 	
 	// save initial position
-	switch(this->axis)
+	switch(this->movingEntityDefinition->axis)
     {
 		case __XAXIS:
 
@@ -169,120 +166,54 @@ int MovingEntity_getAxisFreeForMovement(MovingEntity this)
 	return 0;// ((__XAXIS & ~(__XAXIS & movingState) )|(__ZAXIS & ~(__ZAXIS & movingState)));
 }
 
-// update movement
-void MovingEntity_move(MovingEntity this)
+void MovingEntity_checkDisplacement(MovingEntity this)
 {
-	int displacement = this->radius;
-
 	// update position
-	switch(this->axis)
+	switch(this->movingEntityDefinition->axis)
     {
 		case __XAXIS:
-
-			switch(this->direction.x)
-            {
-				case __LEFT:
-
-					{
-						// check position
-						if(this->transform.globalPosition.x < this->initialPosition - displacement)
-                        {
-							// stop moving
-							Actor_stopMovement(__SAFE_CAST(Actor, this));
-
-							// change direction
-							this->direction.x = __RIGHT;
-
-							// start action time
-							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-
-							// set position
-							this->transform.localPosition.x = this->initialPosition - displacement;
-						}
-					}
-					break;
-
-				case __RIGHT:
-
-					{
-						// check position
-						if(this->transform.globalPosition.x > this->initialPosition + displacement)
-                        {
-							// stop moving
-							Actor_stopMovement(__SAFE_CAST(Actor, this));
-
-							// change direction
-							this->direction.x = __LEFT;
-
-							// start action time
-							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-
-							// set position
-							this->transform.localPosition.x = this->initialPosition;
-						}
-					}
-					break;
-
+			{
+				fix19_13 distance = abs(this->transform.globalPosition.x - this->initialPosition);
+				
+				if(distance > this->movingEntityDefinition->maximumDisplacement)
+				{
+					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
+				}
 			}
 			break;
-			
+
 		case __YAXIS:
-			
-			switch(this->direction.y)
-            {
-				case __UP:
+			{
+				fix19_13 distance = abs(this->transform.globalPosition.y - this->initialPosition);
 
-					{	
-						// check position
-						if(this->transform.globalPosition.y < this->initialPosition - displacement)
-                        {
-							// stop moving
-							Actor_stopMovement(__SAFE_CAST(Actor, this));
-
-							// change direction
-							this->direction.y = __DOWN;
-
-							// start action time
-							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-
-							// set position
-							this->transform.localPosition.y = this->initialPosition - displacement;
-						}
-					}
-					break;
-					
-				case __DOWN:
-
-					{
-						// check position
-						if(this->transform.globalPosition.y > this->initialPosition + displacement)
-                        {
-							// stop moving
-							Actor_stopMovement(__SAFE_CAST(Actor, this));
-							
-							// change direction
-							this->direction.y = __UP;
-							
-							// start action time
-							this->actionTime = Clock_getTime(Game_getInGameClock(Game_getInstance()));
-							
-							// set position
-							this->transform.localPosition.y = this->initialPosition;
-						}
-					}
-					break;
-					
+				if(distance > this->movingEntityDefinition->maximumDisplacement)
+				{
+					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
+				}
 			}
-			break;			
-	}
+			break;
+    }
 }
 
 // start moving
 void MovingEntity_startMovement(MovingEntity this)
 {
-	switch(this->axis)
+	switch(this->movingEntityDefinition->axis)
     {
 		case __XAXIS:
+			
+			switch(this->direction.x)
+            {
+				case __LEFT:
+					
+					this->direction.x = __RIGHT;
+					break;
+
+				case __RIGHT:
+					
+					this->direction.x = __LEFT;
+					break;
+            }
 
 			{
 				Velocity velocity =
@@ -298,11 +229,24 @@ void MovingEntity_startMovement(MovingEntity this)
 			
 		case __YAXIS:
 			
+			switch(this->direction.y)
+            {
+				case __UP:
+					
+					this->direction.y = __DOWN;
+					break;
+
+				case __DOWN:
+					
+					this->direction.y = __UP;
+					break;
+            }
+
 			{
 				Velocity velocity =
                 {
 					0,
-					((int)ITOFIX19_13(10) * this->direction.y),
+					((int)ITOFIX19_13(20) * this->direction.y),
 					0,
 				};
 				
@@ -310,6 +254,14 @@ void MovingEntity_startMovement(MovingEntity this)
 			}
 			break;			
 	}
-	
-	this->actionTime = 0;
 }
+
+// stop moving
+void MovingEntity_stopMovement(MovingEntity this)
+{
+	// stop moving
+	Actor_stopMovement(__SAFE_CAST(Actor, this));
+
+	MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMovement, NULL);
+}
+

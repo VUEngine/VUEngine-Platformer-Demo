@@ -96,18 +96,18 @@ bool Door_handleMessage(Door this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
-        case kCheckOverlapping:
+        case kHeroCheckOverlapping:
 
             if(Door_checkStillOverlapping(this))
             {
                 // delayed check if still overlapping hero
-                MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
+                MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
             }
 
             return true;
             break;
 
-		case kEnterDoor:
+		case kHeroEnterDoor:
 
 			if(Door_hasDestination(this))
 			{
@@ -135,7 +135,7 @@ void Door_setOverlapping(Door this)
     }
 
     // delayed check if still overlapping hero
-    MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCheckOverlapping, NULL);
+    MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
 }
 
 bool Door_isOverlapping(Door this)
@@ -154,7 +154,7 @@ bool Door_checkStillOverlapping(Door this)
 		this->currentlyOverlappingHero = false;
 
         // inform the hero
-        MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kEndOverlapping, NULL);
+        MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kHeroEndOverlapping, NULL);
 
         if(Door_hasDestination(this))
         {

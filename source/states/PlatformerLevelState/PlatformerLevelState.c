@@ -56,7 +56,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
-extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP;
+extern PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 	__CONSTRUCT_BASE();
 
 	// set default entry point
-	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_MAIN_MAIN_EP;
+	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_TOWER_MAIN_EP;
 
 	// set the custom movement screen manager now
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
@@ -198,7 +198,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_setModeToPaused(this);
 
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 
 	// reset clocks
 	Game_startClocks(Game_getInstance());
@@ -255,7 +255,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 	
 	// tell any interested entity
-	GameState_propagateMessage(__SAFE_CAST(GameState, this), kResumeLevel);
+	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -279,7 +279,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	// process message
 	switch(Telegram_getMessage(telegram))
     {
-		case kSetUpLevel:
+		case kLevelSetUp:
 			{
 				// print level name if at level start point
 				if(this->entryPointDefinition->isLevelStartPoint && this->entryPointDefinition->platformerStageDefinition->name)
@@ -299,19 +299,19 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	            }
 	
 				// tell any interested entity
-				GameState_propagateMessage(__SAFE_CAST(GameState, this), kSetUpLevel);
+				GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 	
 				// account for any entity's transform modification during their initialization
 				GameState_transform(__SAFE_CAST(GameState, this));
 				
 				// show level after 0.5 second
-				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kStartLevel, NULL);
+				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
 	
 				this->mode = kShowingUp;
 			}
 			break;
 
-		case kStartLevel:
+		case kLevelStarted:
 
 			// fade in
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
@@ -327,7 +327,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			//Clock_start(Game_getInGameClock(Game_getInstance()));
 
 			// tell any interested entity
-			GameState_propagateMessage(__SAFE_CAST(GameState, this), kStartLevel);
+			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
 			// restart clock
 			// pause physical simulations

@@ -103,7 +103,7 @@ bool CameraTriggerEntity_handlePropagatedMessage(CameraTriggerEntity this, int m
 
 	switch(message)
 	{
-		case kStartLevel:
+		case kLevelStarted:
 			{
 				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
 		

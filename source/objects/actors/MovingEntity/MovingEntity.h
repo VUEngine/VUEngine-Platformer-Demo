@@ -24,7 +24,6 @@
 
 #include <Actor.h>
 #include <macros.h>
-#include <Enemy.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,12 +38,11 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define MovingEntity_METHODS																			\
-	Enemy_METHODS;
+	Actor_METHODS;
 
 #define MovingEntity_SET_VTABLE(ClassName)																\
-	Enemy_SET_VTABLE(ClassName);																		\
+	Actor_SET_VTABLE(ClassName);																		\
 	__VIRTUAL_SET(ClassName, MovingEntity, die);														\
-	__VIRTUAL_SET(ClassName, MovingEntity, takeHit);													\
 	__VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);											\
 	__VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);										\
 	__VIRTUAL_SET(ClassName, MovingEntity, ready);														\
@@ -54,19 +52,14 @@ __CLASS(MovingEntity);
 #define MovingEntity_ATTRIBUTES																			\
 																										\
 	/* it is derivated from */																			\
-	Enemy_ATTRIBUTES																					\
+	Actor_ATTRIBUTES																					\
 																										\
 	/* save my initial position */																		\
 	int initialPosition;																				\
 																										\
-	/* movement radius */																				\
-    int radius;																							\
-																										\
-	/* movement axis */																					\
-	u8 axis: 4;																							\
-																										\
-	/* movement direction */																			\
-	s8 movementDirection: 2;																			\
+	/* definition pointer */																			\
+	MovingEntityDefinition* movingEntityDefinition;														\
+
 
 // definition in ROM memory
 typedef struct MovingEntityDefinition
@@ -74,8 +67,14 @@ typedef struct MovingEntityDefinition
 	// It has a Character in the beginning
 	ActorDefinition actorDefinition;
 
-	// movement radius
-	int radius;
+	// velocity
+	fix19_13 velocity;
+	
+	// maximum deviation from initial position
+	fix19_13 maximumDisplacement;
+	
+	// time to rest idle
+	u16 idleDuration;
 	
 	// on which axis it moves
 	u8 axis;
@@ -98,14 +97,12 @@ __CLASS_NEW_DECLARE(MovingEntity, MovingEntityDefinition* MovingEntityDefinition
 void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name);
 void MovingEntity_destructor(MovingEntity this);
 void MovingEntity_ready(MovingEntity this);
-void MovingEntity_registerShape(MovingEntity this);
-void MovingEntity_unregisterShape(MovingEntity this);
-void MovingEntity_takeHit(MovingEntity this, int axis, s8 direction);
-void MovingEntity_die(MovingEntity this);
 void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position);
 int MovingEntity_getAxisFreeForMovement(MovingEntity this);
-void MovingEntity_move(MovingEntity this);
 void MovingEntity_startMovement(MovingEntity this);
+void MovingEntity_stopMovement(MovingEntity this);
+void MovingEntity_die(MovingEntity this);
+void MovingEntity_checkDisplacement(MovingEntity this);
 
 
 #endif

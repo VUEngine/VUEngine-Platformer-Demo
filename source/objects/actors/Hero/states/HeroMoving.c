@@ -76,7 +76,7 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 {
 	this->mustCheckDirection = false;
 
-#ifdef __DEBUG
+#ifndef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
 }
@@ -84,6 +84,7 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 // state's execute
 void HeroMoving_execute(HeroMoving this, void* owner)
 {
+	Printing_text(Printing_getInstance(), __GET_CLASS_NAME(Container_getParent(owner)), 10, 12, NULL);
 //	Body_printPhysics(Actor_getBody(owner), 1, 7);
 }
 

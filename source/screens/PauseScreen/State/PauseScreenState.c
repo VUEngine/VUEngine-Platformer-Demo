@@ -79,7 +79,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner)
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, NULL, true);
 
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 
     Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_PAUSE), 21, 16, "GUIFont");
 

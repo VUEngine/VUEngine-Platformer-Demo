@@ -34,6 +34,7 @@
 #include <CameraTriggerEntity.h>
 #include <EventManager.h>
 #include <Hint.h>
+#include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -144,7 +145,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
 	Body_setElasticity(this->body, actorDefinition->elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
-	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.localPosition);
+	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.localPosition, &this->transform.localPosition);
 
 	Hero_setInstance(this);
 
@@ -171,10 +172,10 @@ void Hero_destructor(Hero this)
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyHold, EVENT_KEY_HOLD);
 
     // discard pending delayed messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
 	// inform the game about the hero's death
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
+//	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
 
 	// free the instance pointers
 	this->feetDust = NULL;
@@ -246,9 +247,7 @@ void Hero_locateOverNextFloor(Hero this)
 void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 {
 	ASSERT(this, "Hero::jump: null this");
-
-	Hero_startedMovingOnAxis(this, __YAXIS);
-
+	
 	if(this->body)
     {
         Velocity velocity = Body_getVelocity(this->body);
@@ -262,6 +261,8 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 
 		if((!checkIfYMovement || !velocity.y) && !(__YAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, this), &acceleration)))
         {
+			Hero_startedMovingOnAxis(this, __YAXIS);
+
 			Force force =
             {
                 0,
@@ -341,7 +342,7 @@ static void Hero_showDust(Hero this, bool autoHideDust)
 	if(autoHideDust)
 	{
 		// stop the dust after some time
-	    MessageDispatcher_dispatchMessage(200, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopFeetDust, NULL);
+	    MessageDispatcher_dispatchMessage(200, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroStopFeetDust, NULL);
 	}
 }
 
@@ -397,7 +398,9 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
  		else if(__YAXIS & axis)
         {
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Fall");
-		}
+
+			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
+        }
 
 		StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor,  this)), __SAFE_CAST(State,  HeroMoving_getInstance()));
 	}
@@ -413,7 +416,8 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 		if(__YAXIS & axis)
         {
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Fall");
-		}
+			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
+        }
 
 		if(__ZAXIS & axis)
         {
@@ -564,11 +568,11 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             Hero_setInvincible(this, true);
 
             // reset invincible a bit later
-            MessageDispatcher_dispatchMessage(HERO_FLASH_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopInvincibility, NULL);
+            MessageDispatcher_dispatchMessage(HERO_FLASH_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroStopInvincibility, NULL);
 
             // start flashing of hero
-            MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
-            MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
+            MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
+            MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
 
             // lose power-up or reduce energy
             if(this->powerUp != kPowerUpNone)
@@ -583,7 +587,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             if(pause)
             {
 	        	Game_pausePhysics(Game_getInstance(), true);
-	        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+	        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumeGame, NULL);
 	        	Game_disableKeypad(Game_getInstance());
             }
 
@@ -597,7 +601,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
         {
             Hero_setInvincible(this, true);
 
-            MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
+            MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
             Game_pausePhysics(Game_getInstance(), true);
         	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
         	return;
@@ -623,7 +627,7 @@ void Hero_flash(Hero this)
         Hero_toggleFlashPalette(this);
 
         // next flash state change after HERO_FLASH_INTERVAL milliseconds
-        MessageDispatcher_dispatchMessage(HERO_FLASH_INTERVAL, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kFlash, NULL);
+        MessageDispatcher_dispatchMessage(HERO_FLASH_INTERVAL, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
     }
     else
     {
@@ -741,7 +745,7 @@ void Hero_enterDoor(Hero this)
 	// inform the door entity
 	if(this->currentlyOverlappingDoor != NULL)
 	{
-	    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappingDoor), kEnterDoor, NULL);
+	    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappingDoor), kHeroEnterDoor, NULL);
 	}
 
 	// hide hint immediately
@@ -823,7 +827,7 @@ void Hero_die(Hero this)
 {
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HERO_DIED);
 
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kFlash);
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 
@@ -887,7 +891,7 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
 
 	Game_pausePhysics(Game_getInstance(), true);
-	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kResumeGame, NULL);
+	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumeGame, NULL);
 
 	// TODO: play "get powerup" animation
     //AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
@@ -1022,21 +1026,21 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kCoin:
 
 				Hero_collectCoin(this, __SAFE_CAST(Coin, inGameEntity));
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kKey:
 
 				Hero_collectKey(this);
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kBandana:
 
 				Hero_collectPowerUp(this, kPowerUpBandana);
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kTaken, NULL);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1089,16 +1093,21 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				Hero_stopAddingForce(this);		
 				break;
-
+				
 			case kTopSolid:
 	            {
+	            	static counter = 0;
 	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1);
-	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, VirtualNode_getData(node)))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 1);
+	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, inGameEntity))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 1);
 
-	            	if(0 >= Body_getVelocity(this->body).y || heroBottomPosition > collidingEntityTopPosition)
+	            	if(0 >= Body_getVelocity(this->body).y)// || heroBottomPosition > collidingEntityTopPosition)
 	                {
 	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 	                }
+	            	else if(__GET_CAST(MovingEntity, inGameEntity))
+	            	{
+	            		MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroChangeParent, inGameEntity);
+	            	}
 	            }
 	            
 	            break;
@@ -1124,32 +1133,37 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
     {
-        case kEndOverlapping:
+		case kHeroChangeParent:
+
+			Container_addChild(__SAFE_CAST(Container, Telegram_getExtraInfo(telegram)), __SAFE_CAST(Container, this));
+			break;
+
+		case kHeroEndOverlapping:
 
             this->currentlyOverlappingDoor = NULL;
             Hero_hideHint(this);
             return true;
             break;
 
-        case kStopFeetDust:
+        case kHeroStopFeetDust:
 
             Hero_hideDust(this);
             return true;
             break;
 
-        case kStopInvincibility:
+        case kHeroStopInvincibility:
 
             Hero_setInvincible(this, false);
             return true;
             break;
 
-        case kFlash:
+        case kHeroFlash:
 
         	Hero_flash(this);
             return true;
             break;
 
-        case kResumeGame:
+        case kHeroResumeGame:
 
         	Game_pausePhysics(Game_getInstance(), false);
         	Game_enableKeypad(Game_getInstance());
@@ -1176,7 +1190,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 
 	switch(message)
 	{
-		case kSetUpLevel:
+		case kLevelSetUp:
 			{
 				// set focus on the hero
 				VBVec3D position =

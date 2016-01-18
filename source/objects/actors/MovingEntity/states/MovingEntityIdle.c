@@ -70,14 +70,13 @@ void MovingEntityIdle_destructor(MovingEntityIdle this)
 void MovingEntityIdle_enter(MovingEntityIdle this, void* owner)
 {
 	// do not move
-    // Actor_stopMovement(__SAFE_CAST(Actor, owner), __XAXIS | __YAXIS | __ZAXIS);
-
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
+	MovingEntity_stopMovement(__SAFE_CAST(MovingEntity, owner));
 }
 
 // state's execute
 void MovingEntityIdle_execute(MovingEntityIdle this, void* owner)
 {
+	
     StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }
 
@@ -89,5 +88,14 @@ void MovingEntityIdle_exit(MovingEntityIdle this, void* owner)
 // state's handle message
 bool MovingEntityIdle_handleMessage(MovingEntityIdle this, void* owner, Telegram telegram)
 {
+	// handle messages that any state would handle here
+	switch(Telegram_getMessage(telegram))
+    {
+		case 1001:
+
+			StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, MovingEntityIdle_getInstance()));
+			break;
+    }
+	
 	return false;
 }

@@ -78,7 +78,7 @@ void Hint_resume(Hint this)
 bool Hint_handleMessage(Hint this, Telegram telegram)
 {
 	ASSERT(this, "Hint::handleMessage: null this");
-
+/*
 	switch(Telegram_getMessage(telegram))
 	{
 		case kSuspend:
@@ -87,7 +87,7 @@ bool Hint_handleMessage(Hint this, Telegram telegram)
 			return true;
 			break;
 	}
-	
+	*/
 	return false;
 }
 

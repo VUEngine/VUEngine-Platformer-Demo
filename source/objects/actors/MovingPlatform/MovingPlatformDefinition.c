@@ -95,7 +95,7 @@ TextureROMDef MOVING_PLATFORM_TX =
     4,
 
     // rows (max 64)
-    1,
+    8,
 
     // number of frames
     1,
@@ -170,10 +170,16 @@ MovingEntityROMDef MOVING_PLATFORM_V3_AC =
 		// mass
 		ITOFIX19_13(10)
 	},
-	
-    // radius
-    ITOFIX19_13(24),
 
+	// velocity
+	ITOFIX19_13(40),
+
+	// maximum deviation from initial position
+	ITOFIX19_13(20),
+	
+	// time to rest idle
+	1000,
+	
     // axis
     __YAXIS,
 

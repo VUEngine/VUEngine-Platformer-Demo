@@ -116,7 +116,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	Game_startClocks(Game_getInstance());
 
 	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kSetUpLevel, NULL);
+	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 }
 
 // state's execute
@@ -176,7 +176,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 #endif
 	
 	// tell any interested entity
-	GameState_propagateMessage(__SAFE_CAST(GameState, this), kResumeLevel);
+	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// make a fade in
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
@@ -210,25 +210,25 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 	// process message
 	switch(Telegram_getMessage(telegram))
     {
-		case kSetUpLevel:
+		case kLevelSetUp:
 
 			// tell any interested entity
-			GameState_propagateMessage(__SAFE_CAST(GameState, this), kSetUpLevel);
+			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 
 			// account for any entity's tranform modification during their initialization
 			GameState_transform(__SAFE_CAST(GameState, this));
 			
 			// show level after 0.5 second
-			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kStartLevel, NULL);
+			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
 			break;
 
-		case kStartLevel:
+		case kLevelStarted:
 
 			// fade screen
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 			// tell any interested entity
-			GameState_propagateMessage(__SAFE_CAST(GameState, this), kStartLevel);
+			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
 			Game_enableKeypad(Game_getInstance());
 			break;

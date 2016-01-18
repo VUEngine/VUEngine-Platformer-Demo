@@ -230,8 +230,8 @@ bool GUI_handlePropagatedMessage(GUI this, int message)
 
 	switch(message)
 	{
-		case kSetUpLevel:
-		case kResumeLevel:
+		case kLevelSetUp:
+		case kLevelResumed:
 			GUI_printAll(this);
 			break;
 	}
