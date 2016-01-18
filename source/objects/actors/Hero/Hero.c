@@ -1106,6 +1106,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	                }
 	            	else if(__GET_CAST(MovingEntity, inGameEntity))
 	            	{
+	            		__GET_CLASS_NAME
 	            		// must wait for the transformations to take effect after
 	            		// the actor aligns me, and then to change parent
 	            		MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroChangeParent, inGameEntity);

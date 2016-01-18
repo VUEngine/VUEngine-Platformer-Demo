@@ -79,7 +79,7 @@ void HeroIdle_enter(HeroIdle this, void* owner)
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 	
 	Hero_lockCameraTriggerMovement(__SAFE_CAST(Hero, owner), __XAXIS | __YAXIS, true);
-#ifndef __DEBUG
+#ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
 }
@@ -87,7 +87,6 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 // state's execute
 void HeroIdle_execute(HeroIdle this, void* owner)
 {
-	Printing_text(Printing_getInstance(), __GET_CLASS_NAME(Container_getParent(owner)), 10, 12, NULL);
 }
 
 // state's exit
