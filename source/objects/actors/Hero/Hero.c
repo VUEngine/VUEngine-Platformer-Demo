@@ -83,7 +83,7 @@ extern EntityDefinition HINT_MC;
 #define HERO_MAX_VELOCITY_Z						ITOFIX19_13(60)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(170)
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-50000)
-#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-56000)
+#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-60000)
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -1096,11 +1096,10 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				
 			case kTopSolid:
 	            {
-	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1);
+	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y;
 	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, inGameEntity))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 1);
 
-//	            	if(0 >= Body_getVelocity(this->body).y || heroBottomPosition > collidingEntityTopPosition)
-	            	if(0 >= Body_getVelocity(this->body).y)
+	            	if(0 >= Body_getVelocity(this->body).y || heroBottomPosition > collidingEntityTopPosition)
 	                {
 	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 	                }
