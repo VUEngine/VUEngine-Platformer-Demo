@@ -31,7 +31,7 @@
 //extern TextureDefinition VBJAENGINE_LOGO_3D_TX;
 //extern TextureDefinition VBJAENGINE_LOGO_OUTLINE_TX;
 
-extern EntityDefinition VBJAENGINE_BG_SB;
+extern EntityDefinition VBJAENGINE_BG_IM;
 extern EntityDefinition VBJAENGINE_LOGO_3D_IM;
 
 
@@ -47,7 +47,7 @@ PositionedEntityROMDef VBJAENGINE_SCREEN_ST_UI_ENTITIES[] =
 
 PositionedEntityROMDef VBJAENGINE_SCREEN_ST_ENTITIES[] =
 {
-	{&VBJAENGINE_BG_SB, {FTOFIX19_13(0), FTOFIX19_13(__SCREEN_HEIGHT >> 1), FTOFIX19_13(64)}, NULL, NULL, NULL, true},
+	{&VBJAENGINE_BG_IM, {FTOFIX19_13(0), FTOFIX19_13(__SCREEN_HEIGHT >> 1), FTOFIX19_13(64)}, NULL, NULL, NULL, true},
 	{NULL,{0,0,0}, NULL, NULL, NULL, false},
 };
 

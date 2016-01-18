@@ -80,8 +80,6 @@ void SplashScreenState_execute(SplashScreenState this, void* owner)
 {
  	// call base
 	GameState_execute(__SAFE_CAST(GameState, this), owner);
-
-	Game_enableKeypad(Game_getInstance());
 }
 
 // state's exit

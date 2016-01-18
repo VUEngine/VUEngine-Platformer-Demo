@@ -19,7 +19,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ScrollBackground.h>
+#include <Image.h>
+#include <MBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,7 +61,7 @@ TextureROMDef VBJAENGINE_BG_TX =
     VBJaEngineScreenBGMap,
 
     // cols (max 64)
-    48,
+    64,
 
     // rows (max 64)
     28,
@@ -72,33 +73,52 @@ TextureROMDef VBJAENGINE_BG_TX =
     0,
 };
 
-BgmapSpriteROMDef VBJAENGINE_BG_SB_SPRITE =
+TextureROMDef* VBJAENGINE_BG_IM_SPRITE_TEXTURES[] = 
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
-
-	// texture definition
 	(TextureDefinition*)&VBJAENGINE_BG_TX,
-
-	// displacement vector
-	{0, 0, 0},
-	
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_BGMAP,
-	
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
-};
-
-BgmapSpriteROMDef* const VBJAENGINE_BG_SB_SPRITES[] =
-{
-	&VBJAENGINE_BG_SB_SPRITE,
-	&VBJAENGINE_BG_SB_SPRITE,
 	NULL
 };
 
-ScrollBackgroundROMDef VBJAENGINE_BG_SB =
+MBgmapSpriteROMDef VBJAENGINE_BG_IM_SPRITE =
 {
-	__TYPE(ScrollBackground),
-	(SpriteROMDef**)VBJAENGINE_BG_SB_SPRITES,
+	{
+		// sprite's type
+		__TYPE(MBgmapSprite),
+
+		// texture definition
+		NULL,
+
+        // displacement vector
+        {0, 0, 0},
+		
+		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+		WRLD_BGMAP,
+		
+		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+		WRLD_ON,
+	},
+	
+	(TextureDefinition**)VBJAENGINE_BG_IM_SPRITE_TEXTURES,
+	
+	// SCX/SCY
+	WRLD_1x1,
+
+	// x loop
+	true,
+	
+	// y loop
+	false
 };
+
+BgmapSpriteROMDef* const VBJAENGINE_BG_IM_SPRITES[] =
+{
+	(BgmapSpriteROMDef*)&VBJAENGINE_BG_IM_SPRITE,
+	NULL
+};
+
+ImageROMDef VBJAENGINE_BG_IM =
+{
+	__TYPE(Image),
+	(SpriteROMDef**)VBJAENGINE_BG_IM_SPRITES,
+};
+
