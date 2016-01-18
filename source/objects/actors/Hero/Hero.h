@@ -128,7 +128,7 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u16 currentPressedKey, char * animation);
 void Hero_synchronizeDirectionWithVelocity(Hero this);
-void Hero_takeHitFrom(Hero this, Actor other, bool pause);
+void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins);
 void Hero_flash(Hero this);
 void Hero_toggleFlashPalette(Hero this);
 void Hero_resetPalette(Hero this);

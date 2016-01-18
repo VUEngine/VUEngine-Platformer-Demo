@@ -551,11 +551,11 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 	}
 }
 
-void Hero_takeHitFrom(Hero this, Actor other, bool pause)
+void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins)
 {
-    if (!Hero_isInvincible(this))
+    if (!Hero_isInvincible(this) || !invincibleWins)
     {
-        if((this->energy > 0) || (this->powerUp != kPowerUpNone))
+        if(invincibleWins && ((this->energy  - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
         {
         	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
 
@@ -575,7 +575,7 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
             }
             else
             {
-                this->energy--;
+                this->energy -= energyToReduce;
             }
 
             if(pause)
@@ -583,6 +583,10 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
 	        	Game_pausePhysics(Game_getInstance(), true);
 	        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumeGame, NULL);
 	        	Game_disableKeypad(Game_getInstance());
+	        	
+	        	// make sure that no distance is perceivable between the object that hit me and me
+	        	Transformation environmentTransform = Container_getEnvironmentTransform(__SAFE_CAST(Container, this));
+	        	__VIRTUAL_CALL(void, Container, transform, this, &environmentTransform);
             }
 
             // start short screen shake
@@ -594,11 +598,11 @@ void Hero_takeHitFrom(Hero this, Actor other, bool pause)
         else
         {
             Hero_setInvincible(this, true);
+            this->energy = 0;
 
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
             Game_pausePhysics(Game_getInstance(), true);
         	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
-        	return;
         }
 
         // inform others to update ui etc
@@ -1059,21 +1063,26 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kLava:
 
-				Hero_die(this);
+                Hero_takeHitFrom(this, NULL, this->energy, true, false);
 //				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kSawBlade:
 			case kSnail:
+				
+                Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity), 1, true, true);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+
 			case kCannonBall:
 
-                Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity), true);
+                Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity), 2, true, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kHit:
 
-                Hero_takeHitFrom(this, NULL, true);
+                Hero_takeHitFrom(this, NULL, 1, true, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
