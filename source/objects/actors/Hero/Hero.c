@@ -45,23 +45,6 @@ __CLASS_DEFINITION(Hero, Actor);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void Hero_onKeyPressed(Hero this, Object eventFirer);
-static void Hero_onKeyReleased(Hero this, Object eventFirer);
-static void Hero_onKeyHold(Hero this, Object eventFirer);
-void Hero_enterDoor(Hero this);
-void Hero_hideHint(Hero this);
-void Hero_updateSprite(Hero this);
-static void Hero_addHint(Hero this);
-static void Hero_addFeetDust(Hero this);
-static void Hero_slide(Hero this);
-static void Hero_showDust(Hero this, bool autoHideDust);
-static void Hero_hideDust(Hero this);
-
-
-//---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
@@ -90,6 +73,17 @@ extern EntityDefinition HINT_MC;
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
+static void Hero_onKeyPressed(Hero this, Object eventFirer);
+static void Hero_onKeyReleased(Hero this, Object eventFirer);
+static void Hero_onKeyHold(Hero this, Object eventFirer);
+void Hero_enterDoor(Hero this);
+void Hero_hideHint(Hero this);
+void Hero_updateSprite(Hero this);
+static void Hero_addHint(Hero this);
+static void Hero_addFeetDust(Hero this);
+static void Hero_slide(Hero this);
+static void Hero_showDust(Hero this, bool autoHideDust);
+static void Hero_hideDust(Hero this);
 void Hero_losePowerUp(Hero this);
 
 

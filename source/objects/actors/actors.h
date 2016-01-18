@@ -40,7 +40,7 @@ extern EntityDefinition SAW_BLADE_H3_AC;
 extern EntityDefinition SAW_BLADE_H8_AC;
 extern EntityDefinition CANNON_AC;
 extern EntityDefinition CANNON_BALL_AC;
-extern EntityDefinition MOVING_PLATFORM_V3_AC;
+extern EntityDefinition MOVING_PLATFORM_V6_AC;
 extern EntityDefinition SNAIL_4_AC;
 extern EntityDefinition SNAIL_8_AC;
 

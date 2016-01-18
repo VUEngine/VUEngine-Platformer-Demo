@@ -500,8 +500,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
     (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
-    //"House",
-    "TowerEntrance",
+    "House",
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(-64), FTOFIX19_13(-256), FTOFIX19_13(-SORT_INCREMENT)},
