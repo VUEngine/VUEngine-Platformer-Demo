@@ -1096,16 +1096,18 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				
 			case kTopSolid:
 	            {
-	            	static counter = 0;
 	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1);
 	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, inGameEntity))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 1);
 
-	            	if(0 >= Body_getVelocity(this->body).y)// || heroBottomPosition > collidingEntityTopPosition)
+//	            	if(0 >= Body_getVelocity(this->body).y || heroBottomPosition > collidingEntityTopPosition)
+	            	if(0 >= Body_getVelocity(this->body).y)
 	                {
 	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 	                }
 	            	else if(__GET_CAST(MovingEntity, inGameEntity))
 	            	{
+	            		// must wait for the transformations to take effect after
+	            		// the actor aligns me, and then to change parent
 	            		MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroChangeParent, inGameEntity);
 	            	}
 	            }
