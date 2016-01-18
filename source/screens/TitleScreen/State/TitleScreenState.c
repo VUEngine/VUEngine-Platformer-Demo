@@ -71,9 +71,6 @@ static void TitleScreenState_constructor(TitleScreenState this)
 	__CONSTRUCT_BASE();
 
 	this->lastLevelSelectLabel = "";
-	
-	// set the custom movement screen manager now
-	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 }
 
 // class's destructor
@@ -88,6 +85,9 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
+
+	// set the custom movement screen manager now
+	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 
 	Game_disableKeypad(Game_getInstance());
 

@@ -78,9 +78,6 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 
 	// set default entry point
 	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_MAIN_MAIN_EP;
-
-	// set the custom movement screen manager now
-	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 }
 
 // class's destructor
@@ -112,6 +109,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
 	
+	// set the custom movement screen manager now
+	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
+
 	Game_disableKeypad(Game_getInstance());
 
 	// reset progress manager if this is a level start entry point
