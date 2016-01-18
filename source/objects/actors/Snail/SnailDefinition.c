@@ -98,7 +98,7 @@ TextureROMDef SNAIL_TX =
     2,
 
     // number of frames
-    2,
+    3,
 
     // palette number
     1,

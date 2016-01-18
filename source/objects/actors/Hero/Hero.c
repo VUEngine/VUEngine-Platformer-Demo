@@ -1246,6 +1246,8 @@ void Hero_setPosition(Hero this, VBVec3D* position)
 	
 	// make the camera active for collision detection
 	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
+	
+	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this), __XAXIS | __YAXIS | __ZAXIS);
 }
 
 void Hero_update(Hero this)

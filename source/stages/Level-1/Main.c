@@ -53,7 +53,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ENTITIES[] =
 {
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,         {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
     {&LEVEL_1_HOUSE_IM,                 {FTOFIX19_13(-140), FTOFIX19_13(-176), 	FTOFIX19_13(0)},    "House", NULL, NULL, false},
-    {&SMOKE_PS,                         {FTOFIX19_13(-164), FTOFIX19_13(-218), 	FTOFIX19_13(32)},   NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -227,6 +226,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{&COLLISION_2x28x1,                         {FTOFIX19_13(-12),  FTOFIX19_13(116), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
     // part 1
+    {&SMOKE_PS,                        			 {FTOFIX19_13(256 - 164), FTOFIX19_13(368 - 218), 	FTOFIX19_13(LAYER_0_FOREGROUND + 32)},   NULL, NULL, NULL, false},
     {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_ENTITIES, NULL, false},
     {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
@@ -500,8 +500,8 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
     (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
-    //"House",
-    "TowerEntrance",
+    "House",
+    //"TowerEntrance",
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(-64), FTOFIX19_13(-256), FTOFIX19_13(-SORT_INCREMENT)},
