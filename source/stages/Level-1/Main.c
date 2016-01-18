@@ -383,7 +383,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
         // gravity
         {
             ITOFIX19_13(0),
-            ITOFIX19_13(__GRAVITY),
+            ITOFIX19_13(__GRAVITY / 2),
             ITOFIX19_13(0)
         },
 
