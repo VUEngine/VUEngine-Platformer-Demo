@@ -159,6 +159,7 @@ void Hero_updateSurroundingFriction(Hero this);
 u8 Hero_getAxisAllowedForBouncing(Hero this);
 void Hero_setPosition(Hero this, VBVec3D* position);
 void Hero_update(Hero this);
+bool Hero_isAboveEntity(Hero this, Entity entity);
 
 
 #endif

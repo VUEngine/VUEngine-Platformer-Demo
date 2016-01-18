@@ -34,6 +34,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntityDefinition COIN_AG;
+extern EntityDefinition COIN_BACK_AG;
 extern EntityDefinition KEY_AG;
 extern EntityDefinition BANDANA_AG;
 

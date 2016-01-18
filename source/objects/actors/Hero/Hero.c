@@ -762,7 +762,7 @@ static void Hero_addHint(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
-	VBVec3D position = {FTOFIX19_13(25), FTOFIX19_13(-20), FTOFIX19_13(-SORT_INCREMENT * 4)};
+	VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT * 4)};
 
     // save the hint entity, so we can remove it later
 	this->hint = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
@@ -1012,12 +1012,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
                     	Hero_lockCameraTriggerMovement(this, __YAXIS, false);
                     }
 
-					VBVec3D position =
-					{
-		                0,
-		                ITOFIX19_13(-8),
-		                0,
-					};
+					VBVec3D position = {0, ITOFIX19_13(-8), 0};
 	
 					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoundingBox, &position);
 				}
@@ -1075,6 +1070,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				break;
 
 			case kSawBlade:
+			case kSnail:
 			case kCannonBall:
 
                 Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity), true);
@@ -1093,24 +1089,33 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				Hero_stopAddingForce(this);		
 				break;
-				
-			case kTopSolid:
-	            {
-	                int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y;
-	                int collidingEntityTopPosition = Entity_getPosition(__SAFE_CAST(Entity, inGameEntity))->y - ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, inGameEntity)) >> 1);
 
-	            	if(0 >= Body_getVelocity(this->body).y || heroBottomPosition > collidingEntityTopPosition)
-	                {
-	    				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-	                }
-	            	else if(__GET_CAST(MovingEntity, inGameEntity))
-	            	{
+			case kMovingPlatform:
+                {
+                    // if hero's falling or is above colliding entity
+                    if((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity)))
+                    {
+                        // don't further process collision
+                        VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+                    }
+                    else
+                    {
 	            		// must wait for the transformations to take effect after
 	            		// the actor aligns me, and then to change parent
 	            		MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroChangeParent, inGameEntity);
-	            	}
-	            }
-	            
+                    }
+                }
+	            break;
+
+			case kTopSolid:
+                {
+                    // if hero's moving over the y axis or is above colliding entity
+                    if((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity)))
+                    {
+                        // don't further process collision
+                        VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+                    }
+                }
 	            break;
 		}
 	}
@@ -1261,7 +1266,6 @@ void Hero_update(Hero this)
 	}
 }
 
-
 void Hero_suspend(Hero this)
 {
 	ASSERT(this, "Hero::suspend: null this");
@@ -1284,12 +1288,21 @@ void Hero_resume(Hero this)
 	VBVec3DFlag positionFlag = {true, true, true};
     CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
-}	
-
+}
 
 u8 Hero_getAxisAllowedForBouncing(Hero this)
 {
 	ASSERT(this, "Hero::getAxisAllowedForBouncing: null this");
 
 	return __YAXIS;
+}
+
+bool Hero_isAboveEntity(Hero this, Entity entity)
+{
+	ASSERT(this, "Hero::isAboveEntity: null this");
+
+    int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y;
+    int entityTopPosition = Entity_getPosition(entity)->y - ITOFIX19_13(Entity_getHeight(entity) >> 1);
+
+    return (heroBottomPosition > entityTopPosition);
 }

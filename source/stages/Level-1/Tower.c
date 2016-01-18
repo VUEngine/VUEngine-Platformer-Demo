@@ -31,6 +31,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 											    PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP;
+
+
+//---------------------------------------------------------------------------------------------------------
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
@@ -59,8 +66,8 @@ PositionedEntityROMDef TOWER_MAIN_1_CHILD_ENTITIES[] =
 	{&COLLISION_48x28x1,			{FTOFIX19_13(-128), FTOFIX19_13(288), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom left floor
 	{&COLLISION_4x2x1,				{FTOFIX19_13(88),   FTOFIX19_13(71), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone bottom right
 	{&COLLISION_4x8x1,				{FTOFIX19_13(176),  FTOFIX19_13(144), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // step stone bottom right
-	{&COLLISION_48x3x1,				{FTOFIX19_13(-172), FTOFIX19_13(27), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
-	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, NULL, false},
+	{&COLLISION_48x3x1,				{FTOFIX19_13(-172), FTOFIX19_13(28), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
+	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -92,6 +99,8 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 	{&GRASS_AG, 					{FTOFIX19_13(332), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 121), 	FTOFIX19_13(LAYER_0_BACKGROUND)}, NULL, NULL, NULL, false},
 
 	{&COIN_AG, 						{FTOFIX19_13(280), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 204), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 034", NULL, NULL, false},
+
+	{&SNAIL_8_AC, 					{FTOFIX19_13(132),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 248), 	FTOFIX19_13(LAYER_0_ITEMS)}, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -268,7 +277,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
     "EntryDoor",
 
     // offset from entry point (x, y, z)
-    {0, 0, FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(16), 0, FTOFIX19_13(-SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,

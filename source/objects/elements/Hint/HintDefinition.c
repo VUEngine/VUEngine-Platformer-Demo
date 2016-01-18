@@ -370,10 +370,10 @@ BgmapSpriteROMDef HINT_SPRITE =
 	(TextureDefinition*)&HINT_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, 0, 0},
+	{FTOFIX19_13(28), FTOFIX19_13(-21), 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_AFFINE,
+	WRLD_BGMAP,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,

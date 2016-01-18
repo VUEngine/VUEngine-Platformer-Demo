@@ -44,6 +44,7 @@
 #define Door_SET_VTABLE(ClassName)																		\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
 	__VIRTUAL_SET(ClassName, Door, setExtraInfo);														\
+	__VIRTUAL_SET(ClassName, Door, ready);																\
 	__VIRTUAL_SET(ClassName, Door, handleMessage);														\
 
 __CLASS(Door);
@@ -70,6 +71,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 void Door_destructor(Door this);
 PlatformerStageEntryPointDefinition* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);
+void Door_ready(Door this);
 bool Door_handleMessage(Door this, Telegram telegram);
 bool Door_hasDestination(Door this);
 void Door_setOverlapping(Door this);

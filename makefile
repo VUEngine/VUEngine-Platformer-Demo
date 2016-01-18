@@ -5,8 +5,8 @@ TARGET = output
 
 # Default build type
 #TYPE = debug
-TYPE = release
-#TYPE = release-tools
+#TYPE = release
+TYPE = release-tools
 #TYPE = preprocessor
 
 # Which directories contain source files
@@ -93,11 +93,9 @@ ENGINE = libvbjae.a
 pad: $(TARGET).vb
 	@echo "Padding " $(TARGET).vb
 	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb
-	@cp $(TARGET).vb /cygdrive/z/ROMs/
-	
+
 all: $(TARGET).vb
-	@cp $(TARGET).vb /cygdrive/z/ROMs/
-	
+
 deleteEngine:
 		@rm -f $(ENGINE)
 

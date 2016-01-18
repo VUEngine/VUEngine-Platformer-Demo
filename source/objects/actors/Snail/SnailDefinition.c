@@ -20,22 +20,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include "MovingEnemy.h"
+#include "MovingEntity.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SawBladeTiles[];
-extern BYTE SawBladeMap[];
+extern BYTE SnailTiles[];
+extern BYTE SnailMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunction SAW_BLADE_SPIN_ANIM =
+AnimationFunction SNAIL_MOVE_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -44,7 +44,7 @@ AnimationFunction SAW_BLADE_SPIN_ANIM =
 	{0, 1},
 	
 	// number of cycles a frame of animation is displayed
-	8,
+	16,
 	
 	// whether to play it in loop or not
 	true,
@@ -53,20 +53,20 @@ AnimationFunction SAW_BLADE_SPIN_ANIM =
 	NULL,
 	
 	// function's name
-	"Spin",
+	"Move",
 };
 
 // an animation definition
-AnimationDescription SAW_BLADE_ANIM =
+AnimationDescription SNAIL_ANIM =
 {
 	// animation functions
 	{
-		&SAW_BLADE_SPIN_ANIM,
+		&SNAIL_MOVE_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef SAW_BLADE_CH =
+CharSetROMDef SNAIL_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
@@ -80,22 +80,22 @@ CharSetROMDef SAW_BLADE_CH =
     __ANIMATED_MULTI,
 
     // char definition
-    SawBladeTiles,
+    SnailTiles,
 };
 
-TextureROMDef SAW_BLADE_TX =
+TextureROMDef SNAIL_TX =
 {
     // charset definition
-    (CharSetDefinition*)&SAW_BLADE_CH,
+    (CharSetDefinition*)&SNAIL_CH,
 
     // bgmap definition
-    SawBladeMap,
+    SnailMap,
 
     // cols (max 64)
     3,
 
     // rows (max 64)
-    3,
+    2,
 
     // number of frames
     2,
@@ -104,45 +104,45 @@ TextureROMDef SAW_BLADE_TX =
     1,
 };
 
-BgmapSpriteROMDef SAW_BLADE_SPRITE =
+BgmapSpriteROMDef SNAIL_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapAnimatedSprite),
 
 	// texture definition
-	(TextureDefinition*)&SAW_BLADE_TX,
+	(TextureDefinition*)&SNAIL_TX,
 
 	// displacement (x, y, z) (in pixels)
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	WRLD_AFFINE,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
+BgmapSpriteROMDef* const SNAIL_SPRITES[] =
 {
-	&SAW_BLADE_SPRITE,
+	&SNAIL_SPRITE,
 	NULL
 };
 
-MovingEnemyROMDef SAW_BLADE_V3_AC =
+MovingEntityROMDef SNAIL_4_AC =
 {
 	{
 	    {
 	        {
 	            {
-	                __TYPE(MovingEnemy),
-	                (SpriteROMDef**)SAW_BLADE_SPRITES,
+	                __TYPE(MovingEntity),
+	                (SpriteROMDef**)SNAIL_SPRITES,
 	            },
 	
 	            // collision detection gap (up, down, left, right)
-	            {1, 2, 2, 1},
-	
+	            {3, 1, 4, 2},
+
 	            // in game type
-	            kSawBlade,
+	            kSnail,
 	
 	            // width
 	            0,
@@ -155,10 +155,10 @@ MovingEnemyROMDef SAW_BLADE_V3_AC =
 	        },
 	
 	        // pointer to the animation definition for the character
-	        &SAW_BLADE_ANIM,
+	        &SNAIL_ANIM,
 	
 	        // initial animation
-	        NULL
+	        "Move"
 	    },
 	    
 		// friction for physics
@@ -172,60 +172,7 @@ MovingEnemyROMDef SAW_BLADE_V3_AC =
 	},
 	
     // radius
-    ITOFIX19_13(24),
-
-    // axis
-    __YAXIS,
-
-    // direction
-    __UP
-};
-
-MovingEnemyROMDef SAW_BLADE_H3_AC =
-{
-	{
-	    {
-	        {
-	            {
-	                __TYPE(MovingEnemy),
-	                (SpriteROMDef**)SAW_BLADE_SPRITES,
-	            },
-
-	            // collision detection gap (up, down, left, right)
-	            {1, 2, 2, 1},
-
-	            // in game type
-	            kSawBlade,
-
-	            // width
-	            0,
-
-	            // height
-	            0,
-
-	            // depth
-	            8,
-	        },
-
-	        // pointer to the animation definition for the character
-	        &SAW_BLADE_ANIM,
-
-	        // initial animation
-	        NULL
-	    },
-
-		// friction for physics
-		ITOFIX19_13(0),
-
-		// elasticity for physics
-		ITOFIX19_13(0),
-
-		// mass
-		ITOFIX19_13(10)
-	},
-
-    // radius
-    ITOFIX19_13(24),
+    ITOFIX19_13(32),
 
     // axis
     __XAXIS,
@@ -234,21 +181,21 @@ MovingEnemyROMDef SAW_BLADE_H3_AC =
     __LEFT
 };
 
-MovingEnemyROMDef SAW_BLADE_H8_AC =
+MovingEntityROMDef SNAIL_8_AC =
 {
 	{
 	    {
 	        {
 	            {
-	                __TYPE(MovingEnemy),
-	                (SpriteROMDef**)SAW_BLADE_SPRITES,
+	                __TYPE(MovingEntity),
+	                (SpriteROMDef**)SNAIL_SPRITES,
 	            },
 
 	            // collision detection gap (up, down, left, right)
-	            {1, 2, 2, 1},
+	            {3, 1, 4, 2},
 
 	            // in game type
-	            kSawBlade,
+	            kSnail,
 
 	            // width
 	            0,
@@ -261,10 +208,10 @@ MovingEnemyROMDef SAW_BLADE_H8_AC =
 	        },
 
 	        // pointer to the animation definition for the character
-	        &SAW_BLADE_ANIM,
+	        &SNAIL_ANIM,
 
 	        // initial animation
-	        NULL
+	        "Move"
 	    },
 
 		// friction for physics

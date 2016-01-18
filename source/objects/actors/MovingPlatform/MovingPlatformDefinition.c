@@ -142,7 +142,7 @@ MovingEntityROMDef MOVING_PLATFORM_V3_AC =
 	            {1, 1, 1, 1},
 	
 	            // in game type
-	            kTopSolid,
+	            kMovingPlatform,
 	
 	            // width
 	            4 * 8,

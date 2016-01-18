@@ -40,6 +40,13 @@
 #define LAYER_0_DOORS		LAYER_0 - (SORT_INCREMENT * 4)
 #define LAYER_0_FOREGROUND	LAYER_0 - (SORT_INCREMENT * 4)
 
+#define LAYER_2_ENEMIES 	LAYER_2 + (SORT_INCREMENT * 1)
+#define LAYER_2_ITEMS 		LAYER_2 + (SORT_INCREMENT * 2)
+#define LAYER_2_PARTICLES	LAYER_2 + (SORT_INCREMENT * 3)
+#define LAYER_2_BACKGROUND	LAYER_2 + (SORT_INCREMENT * 4)
+#define LAYER_2_DOORS		LAYER_2 - (SORT_INCREMENT * 4)
+#define LAYER_2_FOREGROUND	LAYER_2 - (SORT_INCREMENT * 4)
+
 #define NO_FRICTION 		0
 #define FLOOR_FRICTION 		150.0f
 #define FLOOR_ELASTICITY 	1.0f
@@ -61,7 +68,9 @@ enum PlatformerTypes
 	kLava,
 	kLavaTrigger,
 	kSawBlade,
+	kSnail,
 	kCannonBall,
+	kMovingPlatform,
 };
 
 enum GameWorldModes
