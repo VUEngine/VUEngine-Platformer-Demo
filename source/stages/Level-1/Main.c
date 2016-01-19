@@ -158,8 +158,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_ENTITIES[] =
 {
 	{&LEVEL_1_MAIN_1_BACK_5_IM,         {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(4 * SORT_INCREMENT)}, NULL, NULL, NULL, false},
 	{&LAYER_SWITCH_DOOR_BACK_AG, 	    {FTOFIX19_13(145), 	FTOFIX19_13(-82), 	FTOFIX19_13(3 * SORT_INCREMENT)}, "Door Back 1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
-	{&CANNON_AC,                        {FTOFIX19_13(-156), FTOFIX19_13(-102), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&CANNON_AC,                        {FTOFIX19_13(68),   FTOFIX19_13(-102), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -283,6 +281,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
     // part 5 (back)
     {(ManagedEntityDefinition*)&MANAGED_ENTITY, {FTOFIX19_13(2336), FTOFIX19_13(384),   FTOFIX19_13(LAYER_2)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_ENTITIES, NULL, false},
     {(EntityDefinition*)&ENTITY,                {FTOFIX19_13(2336), FTOFIX19_13(384),   FTOFIX19_13(LAYER_2)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS, NULL, false},
+	{&CANNON_AC,								{FTOFIX19_13(2336 - 156), FTOFIX19_13(384 - 102), 	FTOFIX19_13(LAYER_2 - 0.1f)},    NULL, NULL, NULL, false},
+	{&CANNON_AC,								{FTOFIX19_13(2336+ 68),   FTOFIX19_13(384 - 102), 	FTOFIX19_13(LAYER_2 - 0.1f)},    NULL, NULL, NULL, false},
 
 	{&COIN_BACK_AG,                             {FTOFIX19_13(2093), FTOFIX19_13(265), 	FTOFIX19_13(LAYER_2_ITEMS)}, "Coin 089", NULL, NULL, false},
 	{&COIN_BACK_AG,                             {FTOFIX19_13(2105), FTOFIX19_13(265), 	FTOFIX19_13(LAYER_2_ITEMS)}, "Coin 090", NULL, NULL, false},
