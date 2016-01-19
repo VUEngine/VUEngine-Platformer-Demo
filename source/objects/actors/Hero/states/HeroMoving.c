@@ -84,6 +84,7 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 // state's execute
 void HeroMoving_execute(HeroMoving this, void* owner)
 {
+//	Printing_int(Printing_getInstance(), FIX19_13TOI(BgmapSprite_getPosition(VirtualList_front(Entity_getSprites(owner))).x), 10, 10, NULL);
 }
 
 // state's exit

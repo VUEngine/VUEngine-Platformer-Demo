@@ -35,7 +35,6 @@
 #define CameraTriggerEntity_SET_VTABLE(ClassName)														\
 		TriggerEntity_SET_VTABLE(ClassName)																\
 		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);										\
-		__VIRTUAL_SET(ClassName, CameraTriggerEntity, handlePropagatedMessage);							\
 
 #define CameraTriggerEntity_ATTRIBUTES																	\
 																										\
@@ -65,7 +64,6 @@ __CLASS_NEW_DECLARE(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraTr
 void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, const char* const name);
 void CameraTriggerEntity_destructor(CameraTriggerEntity this);
 void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform);
-bool CameraTriggerEntity_handlePropagatedMessage(CameraTriggerEntity this, int message);
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag);
 VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this);
 

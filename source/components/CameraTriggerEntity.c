@@ -88,34 +88,12 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 	{
 		this->transform.globalPosition.y = currentGlobalPosition.y;
 	}
-	
+
 	if(this->shape)
 	{
 		__VIRTUAL_CALL(void, Shape, position, this->shape);
 //		__VIRTUAL_CALL(void, Shape, draw, this->shape);
 	}
-}
-
-// process message
-bool CameraTriggerEntity_handlePropagatedMessage(CameraTriggerEntity this, int message)
-{
-	ASSERT(this, "HeroMoving::handlePropagatedMessage: null this");
-
-	switch(message)
-	{
-		case kLevelStarted:
-			{
-				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
-		
-				VBVec3DFlag positionFlag = {true, true, true};
-			    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
-			}
-			return true;
-			break;
-		
-	}
-	
-	return false;
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)

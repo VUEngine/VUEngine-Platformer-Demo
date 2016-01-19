@@ -62,11 +62,13 @@ extern EntityDefinition HINT_MC;
 #define HERO_X_INPUT_FORCE_WHILE_JUMPING		ITOFIX19_13(4000)
 
 #define HERO_MAX_VELOCITY_X						ITOFIX19_13(120)
-#define HERO_MAX_VELOCITY_Y						ITOFIX19_13(1100)
+#define HERO_MAX_VELOCITY_Y						ITOFIX19_13(500)
 #define HERO_MAX_VELOCITY_Z						ITOFIX19_13(60)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(170)
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-50000)
 #define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-60000)
+
+#define CAMERA_BOUNDING_BOX_DISPLACEMENT		{0, ITOFIX19_13(-24), 0}
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -156,6 +158,8 @@ void Hero_destructor(Hero this)
 	ASSERT(this, "Hero::destructor: null this");
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
+
+	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
 	// unset the hero as transformation base entity from the custom screen movement manager
 	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), NULL);
@@ -426,21 +430,23 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 	{
         VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
 
+		VBVec3DFlag positionFlag = CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager_getInstance());
+
         if(__XAXIS & axisToLockUp)
         {
             overridePositionFlag.x = locked;
             
-			VBVec3DFlag positionFlag = CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager_getInstance());
 		    positionFlag.x = !locked;
-		    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
         }
 
         if(__YAXIS & axisToLockUp)
         {
             overridePositionFlag.y = locked;
+		    positionFlag.y = !locked;
         }
 
 	    CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
+	    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 	}
 }
 
@@ -1005,7 +1011,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
                     	Hero_lockCameraTriggerMovement(this, __YAXIS, false);
                     }
 
-					VBVec3D position = {0, ITOFIX19_13(-8), 0};
+					VBVec3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 	
 					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoundingBox, &position);
 				}
@@ -1203,7 +1209,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 		case kLevelSetUp:
 			{
 				// set camera
-				VBVec3D cameraBoundingBoxPosition = {0, ITOFIX19_13(-8), 0};
+				VBVec3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 				CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
 				this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
 				CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
@@ -1218,6 +1224,17 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 			//Hero_locateOverNextFloor(this);
 
 			break;
+			
+		case kLevelStarted:
+			{
+				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+		
+				VBVec3DFlag positionFlag = {true, true, true};
+			    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
+			}
+			return true;
+			break;
+			
 	}
 
 	return false;

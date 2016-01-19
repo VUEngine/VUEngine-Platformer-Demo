@@ -29,13 +29,13 @@
 // 											CLASS'S MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define __SCREEN_EASING_X_DISPLACEMENT					(3 << __FRAME_CYCLE)
-#define __SCREEN_POSITIVE_EASING_Y_DISPLACEMENT			(8 << __FRAME_CYCLE)
-#define __SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT			(3 << __FRAME_CYCLE)
-#define __SCREEN_EASING_Y_DISPLACEMENT					(3 << __FRAME_CYCLE)
-#define __SCREEN_HORIZONTAL_DISPLACEMENT 				30
-#define __SCREEN_VERTICAL_DISPLACEMENT 					(__SCREEN_HEIGHT / 2) + 30
-
+#define SCREEN_EASING_X_DISPLACEMENT					(3 << __FRAME_CYCLE)
+#define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT			(8 << __FRAME_CYCLE)
+#define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT			(3 << __FRAME_CYCLE)
+#define SCREEN_EASING_Y_DISPLACEMENT					(3 << __FRAME_CYCLE)
+#define SCREEN_HORIZONTAL_DISPLACEMENT 					30
+#define SCREEN_VERTICAL_DISPLACEMENT 					(__SCREEN_HEIGHT / 2) + 30
+#define SCREEN_HEIGHT_REDUCTION							64
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
@@ -122,74 +122,70 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	_screen->lastDisplacement.z = 0;
 
 	// if focusInGameEntity is defined
-	if(_screen->focusInGameEntity && this->transformationBaseEntity)
+	if(_screen->focusInGameEntity)
 	{
-		Container transformationBaseEntityParent = Container_getParent(__SAFE_CAST(Container, this->transformationBaseEntity));
+		Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
 		
-		if(transformationBaseEntityParent)
+		VBVec3D screenPreviousPosition = _screen->position;
+		
+		if(this->positionFlag.x)
 		{
-			// transform focus entity
-			Transformation environmentTransform = Container_getEnvironmentTransform(transformationBaseEntityParent);
+			// update vertical position
+			const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
 
-			// apply transformations
-			__VIRTUAL_CALL(void, Container, transform, this->transformationBaseEntity, &environmentTransform);
-	
-			Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, this->transformationBaseEntity));
+			VBVec2D focusInGameEntity2DPosition = BgmapSprite_getPosition(VirtualList_front(Entity_getSprites(_screen->focusInGameEntity)));
+
+			fix19_13 horizontalPosition = 0xFFFFE000 & _screen->position.x;
+			fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
 			
-			VBVec3D screenPreviousPosition = _screen->position;
-			
-			if(this->positionFlag.x)
+			if(horizontalPosition + ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT) < horizontalTarget)
 			{
-				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
-
-				fix19_13 horizontalPosition = 0xFFFFE000 & _screen->position.x;
-				fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT));
-				
-				if(horizontalPosition + ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT) < horizontalTarget)
-				{
-					_screen->position.x += ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT);
-				}
-				else if(horizontalPosition - ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT) > horizontalTarget)
-				{
-					_screen->position.x -= ITOFIX19_13(__SCREEN_EASING_X_DISPLACEMENT);
-				}
-				else
-				{
-					_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * __SCREEN_HORIZONTAL_DISPLACEMENT);
-				}
-
-				if(!this->tempFocusInGameEntity)
-				{
-					if(0 > _screen->position.x)
-					{
-						_screen->position.x = 0;
-					}
-					else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
-					{
-						_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
-					}
-				}
-
-				_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
+				_screen->position.x += ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT);
 			}
-			
-			if(this->positionFlag.y)
+			else if(horizontalPosition - ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT) > horizontalTarget)
 			{
-				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
-				fix19_13 verticalPosition = 0xFFFFE000 & _screen->position.y;
-				fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_VERTICAL_DISPLACEMENT));
+				_screen->position.x -= ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT);
+			}
+			else
+			{
+				_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT);
+			}
 
-				if(verticalPosition + ITOFIX19_13(__SCREEN_POSITIVE_EASING_Y_DISPLACEMENT) < verticalTarget)
+			if(!this->tempFocusInGameEntity)
+			{
+				if(0 > _screen->position.x)
 				{
-					_screen->position.y += ITOFIX19_13(__SCREEN_POSITIVE_EASING_Y_DISPLACEMENT);
+					_screen->position.x = 0;
 				}
-				else if(verticalPosition - ITOFIX19_13(__SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT) > verticalTarget)
+				else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
 				{
-					_screen->position.y -= ITOFIX19_13(__SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT);
+					_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
 				}
+			}
 
+			_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
+		}
+
+		{
+			// update vertical position
+			const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
+			fix19_13 verticalPosition = 0xFFFFE000 & _screen->position.y;
+			fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(SCREEN_VERTICAL_DISPLACEMENT));
+
+			if(this->positionFlag.y ||
+				focusInGameEntityPosition->y > _screen->position.y + ITOFIX19_13( __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION) ||
+				focusInGameEntityPosition->y < _screen->position.y + ITOFIX19_13(SCREEN_HEIGHT_REDUCTION)
+			)
+			{
+				if(verticalPosition + ITOFIX19_13(SCREEN_POSITIVE_EASING_Y_DISPLACEMENT) < verticalTarget)
+				{
+					_screen->position.y += ITOFIX19_13(SCREEN_POSITIVE_EASING_Y_DISPLACEMENT);
+				}
+				else if(verticalPosition - ITOFIX19_13(SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT) > verticalTarget)
+				{
+					_screen->position.y -= ITOFIX19_13(SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT);
+				}
+	
 				if(!this->tempFocusInGameEntity)
 				{
 					if(0 > _screen->position.y)
