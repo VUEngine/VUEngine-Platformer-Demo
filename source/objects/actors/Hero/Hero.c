@@ -55,6 +55,7 @@ extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
 extern CharSetDefinition HERO_CH;
 extern CharSetDefinition HERO_BANDANA_CH;
+
 extern EntityDefinition DUST_PS;
 extern EntityDefinition HINT_MC;
 
@@ -282,15 +283,15 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 
 	static int movementType = 0;
 
-	fix19_13 maxVelocity = this->boost? HERO_BOOST_VELOCITY_X: HERO_MAX_VELOCITY_X;
+	fix19_13 maxVelocity = this->boost ? HERO_BOOST_VELOCITY_X : HERO_MAX_VELOCITY_X;
 	
 	Velocity velocity = Body_getVelocity(this->body);
 	
 	if(this->direction.x != this->inputDirection.x ||
-			((__XAXIS & axis) && maxVelocity > fabs(velocity.x)) || 
-			((__ZAXIS & axis) && maxVelocity > fabs(velocity.z)) || 
-			Actor_changedDirection(__SAFE_CAST(Actor, this), __XAXIS) || 
-			Actor_changedDirection(__SAFE_CAST(Actor, this), __ZAXIS))
+        ((__XAXIS & axis) && maxVelocity > fabs(velocity.x)) ||
+        ((__ZAXIS & axis) && maxVelocity > fabs(velocity.z)) ||
+        Actor_changedDirection(__SAFE_CAST(Actor, this), __XAXIS) ||
+        Actor_changedDirection(__SAFE_CAST(Actor, this), __ZAXIS))
     {
 		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix19_13 xForce = (__XAXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
@@ -367,11 +368,11 @@ void Hero_stopAddingForce(Hero this)
 	}
 
 	// begin to decelerate
-	int axisOfDeacceleartion = 0;
-	axisOfDeacceleartion |= velocity.x? __XAXIS: 0;
-	axisOfDeacceleartion |= velocity.z? __ZAXIS: 0;
+	int axisOfDeacceleration = 0;
+	axisOfDeacceleration |= velocity.x? __XAXIS: 0;
+	axisOfDeacceleration |= velocity.z? __ZAXIS: 0;
 	Body_clearAcceleration(this->body, __XAXIS);
-	Body_moveAccelerated(this->body, axisOfDeacceleartion);
+	Body_moveAccelerated(this->body, axisOfDeacceleration);
 }
 
 // started moving over axis
@@ -765,10 +766,7 @@ static void Hero_addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
 
-	VBVec3D position = 
-	{
-		FTOFIX19_13(-6), FTOFIX19_13(11), FTOFIX19_13(1)
-	};
+	VBVec3D position = {FTOFIX19_13(-6), FTOFIX19_13(11), FTOFIX19_13(1)};
 
 	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 

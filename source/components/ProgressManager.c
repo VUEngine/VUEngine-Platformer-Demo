@@ -157,7 +157,7 @@ bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName)
 bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool taken)
 {
 	ASSERT(this, "ProgressManager::setCoinStatus: null this");
-	
+
 	int coin = 1;
 	for(; coin <= TOTAL_COINS_IN_GAME; coin++)
 	{
@@ -171,7 +171,7 @@ bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool ta
 			return true;
 		}
 	}
-	
+
 	return false;
 }
 
