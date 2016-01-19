@@ -22,7 +22,9 @@
 #include <CustomScreenMovementManager.h>
 #include <Screen.h>
 #include <MessageDispatcher.h>
+#include <Actor.h>
 #include <debugConfig.h>
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -125,6 +127,9 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	{
 		Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
 		
+		ASSERT(__SAFE_CAST(Actor, _screen->focusInGameEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
+		Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusInGameEntity));
+		
 		VBVec3D screenPreviousPosition = _screen->position;
 		
 		if(this->positionFlag.x)
@@ -135,13 +140,15 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			fix19_13 horizontalPosition = _screen->position.x;
 			fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
 			
-			if(horizontalPosition + ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT) < horizontalTarget)
+			fix19_13 easingDisplacement = velocity.x? ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT): ITOFIX19_13(1);
+			
+			if(horizontalPosition + easingDisplacement < horizontalTarget)
 			{
-				_screen->position.x += ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT);
+				_screen->position.x += easingDisplacement;
 			}
-			else if(horizontalPosition - ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT) > horizontalTarget)
+			else if(horizontalPosition - easingDisplacement > horizontalTarget)
 			{
-				_screen->position.x -= ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT);
+				_screen->position.x -= easingDisplacement;
 			}
 			else
 			{
@@ -174,13 +181,22 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				focusInGameEntityPosition->y < _screen->position.y + ITOFIX19_13(SCREEN_HEIGHT_REDUCTION)
 			)
 			{
-				if(verticalPosition + ITOFIX19_13(SCREEN_POSITIVE_EASING_Y_DISPLACEMENT) < verticalTarget)
+				fix19_13 downEasingDisplacement = ITOFIX19_13(1);
+				fix19_13 upEasingDisplacement = ITOFIX19_13(1);
+
+				if(velocity.y)
 				{
-					_screen->position.y += ITOFIX19_13(SCREEN_POSITIVE_EASING_Y_DISPLACEMENT);
+					downEasingDisplacement = ITOFIX19_13(SCREEN_POSITIVE_EASING_Y_DISPLACEMENT);
+					upEasingDisplacement = ITOFIX19_13(SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT);
 				}
-				else if(verticalPosition - ITOFIX19_13(SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT) > verticalTarget)
+				
+				if(verticalPosition + downEasingDisplacement < verticalTarget)
 				{
-					_screen->position.y -= ITOFIX19_13(SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT);
+					_screen->position.y += downEasingDisplacement;
+				}
+				else if(verticalPosition - upEasingDisplacement > verticalTarget)
+				{
+					_screen->position.y -= upEasingDisplacement;
 				}
 	
 				if(!this->tempFocusInGameEntity)
