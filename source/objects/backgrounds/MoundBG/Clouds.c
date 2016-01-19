@@ -64,7 +64,7 @@ void Clouds_destructor(Clouds this)
 }
 
 // whether it is visible
-bool Clouds_isVisible(Clouds this, int pad)
+bool Clouds_isVisible(Clouds this, int pad, bool recursive)
 {
 	ASSERT(this, "Clouds::isVisible: null this");
 

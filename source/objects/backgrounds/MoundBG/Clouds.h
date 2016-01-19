@@ -79,7 +79,7 @@ __CLASS_NEW_DECLARE(Clouds, CloudsDefinition* cloudsDefinition, int id, const ch
 void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, int id, const char* const name);
 void Clouds_destructor(Clouds this);
 void Clouds_update(Clouds this);
-bool Clouds_isVisible(Clouds this, int pad);
+bool Clouds_isVisible(Clouds this, int pad, bool recursive);
 
 
 #endif

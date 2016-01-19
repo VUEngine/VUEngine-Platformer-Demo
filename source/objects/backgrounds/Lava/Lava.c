@@ -92,7 +92,7 @@ void Lava_startMoving(Lava this)
 }
 
 // whether it is visible
-bool Lava_isVisible(Lava this, int pad)
+bool Lava_isVisible(Lava this, int pad, bool recursive)
 {
 	ASSERT(this, "Lava::isVisible: null this");
 

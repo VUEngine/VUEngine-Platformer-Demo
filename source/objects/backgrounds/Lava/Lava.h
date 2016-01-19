@@ -66,7 +66,7 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, i
 void Lava_destructor(Lava this);
 void Lava_startMoving(Lava this);
 bool Lava_handleMessage(Lava this, Telegram telegram);
-bool Lava_isVisible(Lava this, int pad);
+bool Lava_isVisible(Lava this, int pad, bool recursive);
 void Lava_resume(Lava this);
 bool Lava_moves(Lava this);
 
