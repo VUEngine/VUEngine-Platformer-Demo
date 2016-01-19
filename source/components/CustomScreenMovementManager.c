@@ -22,6 +22,7 @@
 #include <CustomScreenMovementManager.h>
 #include <Screen.h>
 #include <MessageDispatcher.h>
+#include <debugConfig.h>
 
 
 //---------------------------------------------------------------------------------------------------------
