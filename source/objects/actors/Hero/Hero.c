@@ -159,10 +159,8 @@ void Hero_destructor(Hero this)
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
+	// unset the hero as focus entity from the custom screen movement manager
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
-
-	// unset the hero as transformation base entity from the custom screen movement manager
-	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), NULL);
 
     // remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))Hero_onKeyPressed, EVENT_KEY_PRESSED);
@@ -1210,7 +1208,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 			{
 				// set camera
 				VBVec3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-				CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
 				this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
 				CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 	
@@ -1298,7 +1295,6 @@ void Hero_resume(Hero this)
 
 	VBVec3DFlag positionFlag = {true, true, true};
     CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
-	CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager_getInstance(), __SAFE_CAST(Entity, this));
 }
 
 u8 Hero_getAxisAllowedForBouncing(Hero this)

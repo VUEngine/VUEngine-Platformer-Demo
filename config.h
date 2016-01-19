@@ -128,13 +128,13 @@
 	__BLOCK_DEFINITION(168, 4)																			\
 	__BLOCK_DEFINITION(140, 28)																			\
 	__BLOCK_DEFINITION(128, 8)																			\
-	__BLOCK_DEFINITION(112, 48)																			\
+	__BLOCK_DEFINITION(112, 58)																			\
 	__BLOCK_DEFINITION(96, 64)																			\
 	__BLOCK_DEFINITION(76, 28)																			\
 	__BLOCK_DEFINITION(68, 68)																			\
 	__BLOCK_DEFINITION(28, 242)																			\
 	__BLOCK_DEFINITION(20, 612)																			\
-	__BLOCK_DEFINITION(16, 234)																			\
+	__BLOCK_DEFINITION(16, 234)																		\
 
 #define __SET_MEMORY_POOL_ARRAYS																		\
 	__SET_MEMORY_POOL_ARRAY(188)																		\

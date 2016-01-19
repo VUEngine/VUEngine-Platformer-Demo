@@ -30,7 +30,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define SCREEN_EASING_X_DISPLACEMENT					(3 << __FRAME_CYCLE)
-#define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT			(8 << __FRAME_CYCLE)
+#define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT			(4 << __FRAME_CYCLE)
 #define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT			(3 << __FRAME_CYCLE)
 #define SCREEN_EASING_Y_DISPLACEMENT					(3 << __FRAME_CYCLE)
 #define SCREEN_HORIZONTAL_DISPLACEMENT 					30
@@ -81,7 +81,6 @@ static void CustomScreenMovementManager_constructor(CustomScreenMovementManager 
 	__CONSTRUCT_BASE();
 	
 	this->tempFocusInGameEntity = NULL;
-	this->transformationBaseEntity = NULL;
 
 	this->lastShakeOffset.x = 0;
 	this->lastShakeOffset.y = 0;
@@ -133,10 +132,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			// update vertical position
 			const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
 
-			VBVec2D focusInGameEntity2DPosition = BgmapSprite_getPosition(VirtualList_front(Entity_getSprites(_screen->focusInGameEntity)));
-
-			fix19_13 horizontalPosition = 0xFFFFE000 & _screen->position.x;
-			fix19_13 horizontalTarget = 0xFFFFE000 & (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
+			fix19_13 horizontalPosition = _screen->position.x;
+			fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
 			
 			if(horizontalPosition + ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT) < horizontalTarget)
 			{
@@ -150,7 +147,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			{
 				_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT);
 			}
-
+			
 			if(!this->tempFocusInGameEntity)
 			{
 				if(0 > _screen->position.x)
@@ -251,13 +248,6 @@ bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this,
 	}
 
 	return false;
-}
-
-void CustomScreenMovementManager_setTransformationBaseEntity(CustomScreenMovementManager this, Entity transformationBaseEntity)
-{
-	ASSERT(this, "Screen::setTransformationBaseEntity: null this");
-
-	this->transformationBaseEntity = transformationBaseEntity;
 }
 
 // start shaking the screen
