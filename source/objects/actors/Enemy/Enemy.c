@@ -71,3 +71,13 @@ bool Enemy_canAttack(Enemy this)
 {
 	return true;
 }
+
+// die
+void Enemy_die(Enemy this)
+{
+	// must unregister the shape for collision detections
+	Shape_setActive(this->shape, false);
+
+	// now change state to dead
+	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, EnemyDead_getInstance()));
+}

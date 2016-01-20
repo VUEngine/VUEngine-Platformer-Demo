@@ -33,11 +33,13 @@
 #define Enemy_METHODS																					\
 	Actor_METHODS;																						\
 	__VIRTUAL_DEC(canAttack);																			\
-	__VIRTUAL_DEC(takeHit);
+	__VIRTUAL_DEC(takeHit);																				\
+	__VIRTUAL_DEC(die);																					\
 
 #define Enemy_SET_VTABLE(ClassName)																		\
 	Actor_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, Enemy, canAttack);
+	__VIRTUAL_SET(ClassName, Enemy, canAttack);															\
+	__VIRTUAL_SET(ClassName, Enemy, die);																\
 
 // Abstract class
 __CLASS(Enemy);
@@ -62,6 +64,7 @@ void Enemy_constructor(Enemy this, ActorDefinition* definition, int id, const ch
 void Enemy_destructor(Enemy this);
 u32 Enemy_getActionTime(Enemy this);
 bool Enemy_canAttack(Enemy this);
+void Enemy_die(Enemy this);
 
 
 #endif

@@ -66,6 +66,7 @@ enum HeroPowerUps
 	__VIRTUAL_SET(ClassName, Hero, resume);																\
 	__VIRTUAL_SET(ClassName, Hero, updateSurroundingFriction);											\
 	__VIRTUAL_SET(ClassName, Hero, getAxisAllowedForBouncing);											\
+	__VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);											\
 
 __CLASS(Hero);
 
@@ -160,6 +161,6 @@ u8 Hero_getAxisAllowedForBouncing(Hero this);
 void Hero_setPosition(Hero this, VBVec3D* position);
 void Hero_update(Hero this);
 bool Hero_isAboveEntity(Hero this, Entity entity);
-
+void Hero_collisionsProcessingDone(Hero this);
 
 #endif

@@ -1097,12 +1097,6 @@ int Hero_processCollision(Hero this, Telegram telegram)
                         // don't further process collision
                         VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
                     }
-                    else
-                    {
-	            		// must wait for the transformations to take effect after
-	            		// the actor aligns me, and then to change parent
-	            		MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroChangeParent, inGameEntity);
-                    }
                 }
 	            break;
 
@@ -1138,11 +1132,6 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
     {
-		case kHeroChangeParent:
-
-			Container_addChild(__SAFE_CAST(Container, Telegram_getExtraInfo(telegram)), __SAFE_CAST(Container, this));
-			break;
-
 		case kHeroEndOverlapping:
 
             this->currentlyOverlappingDoor = NULL;
@@ -1309,4 +1298,10 @@ bool Hero_isAboveEntity(Hero this, Entity entity)
     int entityTopPosition = Entity_getPosition(entity)->y - ITOFIX19_13(Entity_getHeight(entity) >> 1);
 
     return (heroBottomPosition >= entityTopPosition);
+}
+
+void Hero_collisionsProcessingDone(Hero this)
+{
+	ASSERT(this, "Hero::collisionsProcessingDone: null this");
+	Container_addChild(__SAFE_CAST(Container, Telegram_getExtraInfo(telegram)), __SAFE_CAST(Container, this));
 }

@@ -133,11 +133,6 @@ void MovingEntity_takeHit(MovingEntity this, int axis, s8 direction)
 {
 }
 
-// die
-void MovingEntity_die(MovingEntity this)
-{
-}
-
 // set position
 void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 {

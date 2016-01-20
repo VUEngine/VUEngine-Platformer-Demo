@@ -42,7 +42,6 @@
 
 #define MovingEnemy_SET_VTABLE(ClassName)																\
 	Enemy_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, MovingEnemy, die);															\
 	__VIRTUAL_SET(ClassName, MovingEnemy, takeHit);														\
 	__VIRTUAL_SET(ClassName, MovingEnemy, setLocalPosition);											\
 	__VIRTUAL_SET(ClassName, MovingEnemy, getAxisFreeForMovement);										\
@@ -100,7 +99,6 @@ void MovingEnemy_ready(MovingEnemy this);
 void MovingEnemy_registerShape(MovingEnemy this);
 void MovingEnemy_unregisterShape(MovingEnemy this);
 void MovingEnemy_takeHit(MovingEnemy this, int axis, s8 direction);
-void MovingEnemy_die(MovingEnemy this);
 void MovingEnemy_setLocalPosition(MovingEnemy this, const VBVec3D* position);
 int MovingEnemy_getAxisFreeForMovement(MovingEnemy this);
 void MovingEnemy_move(MovingEnemy this);

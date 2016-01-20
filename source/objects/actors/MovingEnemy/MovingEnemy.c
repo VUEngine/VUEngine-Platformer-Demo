@@ -132,16 +132,6 @@ void MovingEnemy_takeHit(MovingEnemy this, int axis, s8 direction)
 {
 }
 
-// die
-void MovingEnemy_die(MovingEnemy this)
-{
-	// must unregister the shape for collision detections
-	Shape_setActive(this->shape, false);
-
-	// now change state to dead
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, EnemyDead_getInstance()));
-}
-
 // set position
 void MovingEnemy_setLocalPosition(MovingEnemy this, const VBVec3D* position)
 {

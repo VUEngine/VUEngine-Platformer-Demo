@@ -107,16 +107,6 @@ void CannonBall_takeHit(CannonBall this, int axis, s8 direction)
 {
 }
 
-// die
-void CannonBall_die(CannonBall this)
-{
-	// must unregister the shape for collision detections
-	Shape_setActive(this->shape, false);
-
-	// now change state to dead
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, EnemyDead_getInstance()));
-}
-
 // retrieve axis free for movement
 int CannonBall_getAxisFreeForMovement(CannonBall this)
 {

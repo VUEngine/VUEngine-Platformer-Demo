@@ -125,7 +125,6 @@ enum PlatformerLevelStateMessageTypes
     kHeroStopFeetDust,
     kHeroStopInvincibility,
     kHeroFlash,
-    kHeroChangeParent,
 	kItemTaken,
 	kLavaTriggerStart,
 	kLavaTriggerEnd,

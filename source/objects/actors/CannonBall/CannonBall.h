@@ -43,7 +43,6 @@
 
 #define CannonBall_SET_VTABLE(ClassName)																\
 	Enemy_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, CannonBall, die);															\
 	__VIRTUAL_SET(ClassName, CannonBall, takeHit);														\
 	__VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);										\
 	__VIRTUAL_SET(ClassName, CannonBall, ready);														\
@@ -69,7 +68,6 @@ void CannonBall_ready(CannonBall this);
 void CannonBall_registerShape(CannonBall this);
 void CannonBall_unregisterShape(CannonBall this);
 void CannonBall_takeHit(CannonBall this, int axis, s8 direction);
-void CannonBall_die(CannonBall this);
 int CannonBall_getAxisFreeForMovement(CannonBall this);
 void CannonBall_startMovement(CannonBall this);
 void CannonBall_stopMovement(CannonBall this);
