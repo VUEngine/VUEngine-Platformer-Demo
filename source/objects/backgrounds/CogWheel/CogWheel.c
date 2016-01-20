@@ -42,7 +42,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(CogWheel, InanimatedInGameEntity);
+__CLASS_DEFINITION(CogWheel, Image);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -57,19 +57,14 @@ static void CogWheel_rotate(CogWheel this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CogWheel, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(CogWheel, inanimatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(CogWheel, ImageDefinition* imageDefinition, s16 id, const char* const name)
+__CLASS_NEW_END(CogWheel, imageDefinition, id, name);
 
 // class's constructor
-void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+void CogWheel_constructor(CogWheel this, ImageDefinition* imageDefinition, s16 id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
-	
-	if(this->shape)
-	{
-		Shape_setCheckForCollisions(__SAFE_CAST(Shape, this->shape), false);
-	}
+	__CONSTRUCT_BASE(imageDefinition, id, name);
 }
 
 // class's destructor
@@ -92,12 +87,6 @@ void CogWheel_ready(CogWheel this)
 	
 	// start moving
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
-	
-	// must make sure that the shape is updated
-	if(this->shape)
-	{
-		CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
-	}
 }
 
 // state's handle message
@@ -133,12 +122,4 @@ void CogWheel_resume(CogWheel this)
 
     // send delayed message to itself to trigger next movement
     MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
-}
-
-// does it move?
-bool CogWheel_moves(CogWheel this)
-{
-	ASSERT(this, "CogWheel::moves: null this");
-
-	return true;
 }

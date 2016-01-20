@@ -72,7 +72,7 @@ extern EntityDefinition LAVA_IG;
 extern EntityDefinition LAVA_TOP_AG;
 extern EntityDefinition LAVA_TRIGGER_IG;
 
-extern EntityDefinition COG_WHEEL_IG;
+extern EntityDefinition COG_WHEEL_IM;
 
 extern EntityDefinition GRASS_AG;
 extern EntityDefinition BUSH_AG;

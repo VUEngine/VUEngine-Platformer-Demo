@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Image.h>
 #include <macros.h>
 
 
@@ -31,35 +31,33 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CogWheel_METHODS																				\
-	InanimatedInGameEntity_METHODS;
+	Image_METHODS;
 
 #define CogWheel_SET_VTABLE(ClassName)																	\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);														\
+	Image_SET_VTABLE(ClassName);																		\
 	__VIRTUAL_SET(ClassName, CogWheel, ready);															\
 	__VIRTUAL_SET(ClassName, CogWheel, handleMessage);													\
     __VIRTUAL_SET(ClassName, CogWheel, resume);															\
-	__VIRTUAL_SET(ClassName, CogWheel, moves);															\
 
 __CLASS(CogWheel);
 
 #define CogWheel_ATTRIBUTES																				\
 																										\
 	/* it is derived from */																			\
-	InanimatedInGameEntity_ATTRIBUTES																	\
+	Image_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(CogWheel, InanimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(CogWheel, ImageDefinition* imageDefinition, s16 id, const char* const name);
 
-void CogWheel_constructor(CogWheel this, InanimatedInGameEntityDefinition* definition, int id, const char* const name);
+void CogWheel_constructor(CogWheel this, ImageDefinition* definition, s16 id, const char* const name);
 void CogWheel_destructor(CogWheel this);
 void CogWheel_ready(CogWheel this);
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram);
 void CogWheel_resume(CogWheel this);
-bool CogWheel_moves(CogWheel this);
 
 
 #endif

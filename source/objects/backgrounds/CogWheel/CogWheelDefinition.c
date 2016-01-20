@@ -100,38 +100,8 @@ BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =
 	NULL
 };
 
-InanimatedInGameEntityROMDef COG_WHEEL_IG =
+ImageROMDef COG_WHEEL_IM =
 {
-    {
-        {
-            __TYPE(CogWheel),
-            (SpriteROMDef**)COG_WHEEL_BG_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
-
-        // in game type
-        kNotSolid,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-        // depth
-        1
-    },
-
-    // friction
-    FTOFIX19_13(NO_FRICTION),
-
-    // elasticity
-    FTOFIX19_13(0.0f),
-
-    // register shape
-    false,
+    __TYPE(CogWheel),
+    (SpriteROMDef**)COG_WHEEL_BG_SPRITES,
 };
