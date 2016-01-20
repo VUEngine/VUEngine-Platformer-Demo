@@ -139,7 +139,7 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	            },
 	
 	            // collision detection gap (up, down, left, right)
-	            {1, 2, 2, 1},
+	            {5, 2, 2, 5},
 	
 	            // in game type
 	            kSawBlade,
@@ -198,7 +198,7 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	            },
 
 	            // collision detection gap (up, down, left, right)
-	            {1, 2, 2, 1},
+	            {5, 2, 2, 5},
 
 	            // in game type
 	            kSawBlade,
@@ -257,7 +257,7 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	            },
 
 	            // collision detection gap (up, down, left, right)
-	            {1, 2, 2, 1},
+	            {5, 2, 2, 5},
 
 	            // in game type
 	            kSawBlade,

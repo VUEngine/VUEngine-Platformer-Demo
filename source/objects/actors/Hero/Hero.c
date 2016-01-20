@@ -559,7 +559,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
 {
     if (!Hero_isInvincible(this) || !invincibleWins)
     {
-        if(invincibleWins && ((this->energy  - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
+        if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
         {
         	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
 
@@ -584,12 +584,19 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
 
             if(pause)
             {
-            	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroPauseGame, other);
 	        	Game_disableKeypad(Game_getInstance());
+                Body_setActive(this->body, false);
+                
+                if(other && Actor_getBody(other))
+                {
+                    Body_setActive(Actor_getBody(other), false);
+                }
+                
+                MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroBodyMovement, other);
             }
 
             // start short screen shake
-            Screen_startEffect(Screen_getInstance(), kShake, 200);
+            // Screen_startEffect(Screen_getInstance(), kShake, 200);
 
             // play hit sound
             SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
@@ -600,7 +607,12 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
             this->energy = 0;
 
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
-            Game_pausePhysics(Game_getInstance(), true);
+//            Game_pausePhysics(Game_getInstance(), true);
+            
+            // set body inactive, but don't stop it
+            // because collision against other objects may still need
+            // to take place
+            Body_setActive(this->body, false);
         	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
         }
 
@@ -884,8 +896,8 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 	Hero_updateSprite(this);
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
 
-	Game_pausePhysics(Game_getInstance(), true);
-	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumeGame, NULL);
+    Body_setActive(this->body, true);
+	MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroBodyMovement, NULL);
 
 	// TODO: play "get powerup" animation
     //AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
@@ -1066,19 +1078,31 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kSawBlade:
 			case kSnail:
 				
-                Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity), 1, true, true);
+                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true);
+                
+				if(!Hero_isInvincible(this))
+				{
+					Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, inGameEntity));
+				}
+
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kCannonBall:
 
-                Hero_takeHitFrom(this, __SAFE_CAST(Actor, inGameEntity), 2, true, true);
+                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kHit:
 
                 Hero_takeHitFrom(this, NULL, 1, true, true);
+
+				if(!Hero_isInvincible(this))
+				{
+					Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, inGameEntity));
+				}
+
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1157,16 +1181,19 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             return true;
             break;
 
-        case kHeroPauseGame:
+        case kHeroBodyMovement:
 
-        	Game_pausePhysics(Game_getInstance(), true);
-        	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumeGame, NULL);
-        	break;
-
-        case kHeroResumeGame:
-
-        	Game_pausePhysics(Game_getInstance(), false);
+            Body_setActive(this->body, true);
         	Game_enableKeypad(Game_getInstance());
+        	{
+        		Actor other = __GET_CAST(Actor, Telegram_getExtraInfo(telegram));
+        		
+                if(other && Actor_getBody(other))
+                {
+                    Body_setActive(Actor_getBody(other), true);
+                }
+        	}
+        	
         	if(!(__YAXIS & Body_isMoving(this->body)))
         	{
         		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");

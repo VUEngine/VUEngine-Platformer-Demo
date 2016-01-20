@@ -36,7 +36,7 @@ InanimatedInGameEntityROMDef HIT_COLLISION_20x1x1 =
         },
 
         // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+        {5, 0, 0, 0},
 
         // in game type
         kHit,
