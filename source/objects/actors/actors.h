@@ -25,7 +25,6 @@
 #include "Cannon/Cannon.h"
 #include "CannonBall/CannonBall.h"
 #include "Hero/Hero.h"
-#include "MovingEnemy/MovingEnemy.h"
 #include "MovingEntity/MovingEntity.h"
 
 

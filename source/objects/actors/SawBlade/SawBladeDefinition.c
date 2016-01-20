@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include "MovingEnemy.h"
+#include <MovingEntity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -128,13 +128,13 @@ BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 	NULL
 };
 
-MovingEnemyROMDef SAW_BLADE_V3_AC =
+MovingEntityROMDef SAW_BLADE_V3_AC =
 {
 	{
 	    {
 	        {
 	            {
-	                __TYPE(MovingEnemy),
+	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)SAW_BLADE_SPRITES,
 	            },
 	
@@ -158,7 +158,7 @@ MovingEnemyROMDef SAW_BLADE_V3_AC =
 	        &SAW_BLADE_ANIM,
 	
 	        // initial animation
-	        NULL
+	        "Spin"
 	    },
 	    
 		// friction for physics
@@ -171,23 +171,29 @@ MovingEnemyROMDef SAW_BLADE_V3_AC =
 		ITOFIX19_13(10)
 	},
 	
-    // radius
-    ITOFIX19_13(24),
+	// velocity
+	ITOFIX19_13(50),
 
+	// maximum deviation from initial position
+	ITOFIX19_13(3 * 8),
+	
+	// time to rest idle
+	1000,
+	
     // axis
     __YAXIS,
 
     // direction
-    __UP
+    __DOWN
 };
 
-MovingEnemyROMDef SAW_BLADE_H3_AC =
+MovingEntityROMDef SAW_BLADE_H3_AC =
 {
 	{
 	    {
 	        {
 	            {
-	                __TYPE(MovingEnemy),
+	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)SAW_BLADE_SPRITES,
 	            },
 
@@ -211,7 +217,7 @@ MovingEnemyROMDef SAW_BLADE_H3_AC =
 	        &SAW_BLADE_ANIM,
 
 	        // initial animation
-	        NULL
+	        "Spin"
 	    },
 
 		// friction for physics
@@ -224,9 +230,15 @@ MovingEnemyROMDef SAW_BLADE_H3_AC =
 		ITOFIX19_13(10)
 	},
 
-    // radius
-    ITOFIX19_13(24),
+	// velocity
+	ITOFIX19_13(50),
 
+	// maximum deviation from initial position
+	ITOFIX19_13(3 * 8),
+	
+	// time to rest idle
+	1000,
+	
     // axis
     __XAXIS,
 
@@ -234,13 +246,13 @@ MovingEnemyROMDef SAW_BLADE_H3_AC =
     __LEFT
 };
 
-MovingEnemyROMDef SAW_BLADE_H8_AC =
+MovingEntityROMDef SAW_BLADE_H8_AC =
 {
 	{
 	    {
 	        {
 	            {
-	                __TYPE(MovingEnemy),
+	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)SAW_BLADE_SPRITES,
 	            },
 
@@ -264,7 +276,7 @@ MovingEnemyROMDef SAW_BLADE_H8_AC =
 	        &SAW_BLADE_ANIM,
 
 	        // initial animation
-	        NULL
+	        "Spin"
 	    },
 
 		// friction for physics
@@ -277,9 +289,15 @@ MovingEnemyROMDef SAW_BLADE_H8_AC =
 		ITOFIX19_13(10)
 	},
 
-    // radius
-    ITOFIX19_13(64),
+	// velocity
+	ITOFIX19_13(50),
 
+	// maximum deviation from initial position
+	ITOFIX19_13(8 * 8),
+	
+	// time to rest idle
+	1000,
+	
     // axis
     __XAXIS,
 
