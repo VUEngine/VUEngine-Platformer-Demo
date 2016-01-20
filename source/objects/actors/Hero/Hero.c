@@ -1237,8 +1237,10 @@ void Hero_setPosition(Hero this, VBVec3D* position)
 	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
 	
 	// make the camera active for collision detection
-	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
+	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, false);
 	
+	CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
+
 	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this), __XAXIS | __YAXIS | __ZAXIS);
 }
 
@@ -1300,8 +1302,20 @@ bool Hero_isAboveEntity(Hero this, Entity entity)
     return (heroBottomPosition >= entityTopPosition);
 }
 
-void Hero_collisionsProcessingDone(Hero this)
+void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects)
 {
 	ASSERT(this, "Hero::collisionsProcessingDone: null this");
-	Container_addChild(__SAFE_CAST(Container, Telegram_getExtraInfo(telegram)), __SAFE_CAST(Container, this));
+	
+	if(collidingSpatialObjects && 1 == VirtualList_getSize(collidingSpatialObjects))
+	{
+		InGameEntity inGameEntity = __SAFE_CAST(InGameEntity, VirtualList_front(collidingSpatialObjects));
+
+		switch(InGameEntity_getInGameType(inGameEntity))
+		{
+			case kMovingPlatform:
+
+				Container_addChild(__SAFE_CAST(Container, inGameEntity), __SAFE_CAST(Container, this));
+				break;
+		}
+	}
 }

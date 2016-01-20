@@ -58,7 +58,6 @@ enum HeroPowerUps
 	Actor_SET_VTABLE(ClassName);																		\
 	__VIRTUAL_SET(ClassName, Hero, ready);																\
 	__VIRTUAL_SET(ClassName, Hero, update);																\
-	__VIRTUAL_SET(ClassName, Hero, die);																\
 	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);														\
 	__VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);											\
 	__VIRTUAL_SET(ClassName, Hero, handleMessage);														\
@@ -161,6 +160,6 @@ u8 Hero_getAxisAllowedForBouncing(Hero this);
 void Hero_setPosition(Hero this, VBVec3D* position);
 void Hero_update(Hero this);
 bool Hero_isAboveEntity(Hero this, Entity entity);
-void Hero_collisionsProcessingDone(Hero this);
+void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
 
 #endif
