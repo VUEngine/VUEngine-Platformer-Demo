@@ -24,7 +24,6 @@
 #include <Optics.h>
 #include <PhysicalWorld.h>
 #include <Prototypes.h>
-#include <EnemyDead.h>
 #include <PlatformerLevelState.h>
 #include "CannonBall.h"
 #include "states/CannonBallIdle.h"
@@ -35,7 +34,7 @@
 // 											 CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(CannonBall, Enemy);
+__CLASS_DEFINITION(CannonBall, Actor);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -103,9 +102,6 @@ void CannonBall_unregisterShape(CannonBall this)
 }
 
 // tell me I've been hit
-void CannonBall_takeHit(CannonBall this, int axis, s8 direction)
-{
-}
 
 // retrieve axis free for movement
 int CannonBall_getAxisFreeForMovement(CannonBall this)

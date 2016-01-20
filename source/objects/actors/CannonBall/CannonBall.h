@@ -24,7 +24,7 @@
 
 #include <Actor.h>
 #include <macros.h>
-#include <Enemy.h>
+#include <Actor.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,11 +39,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CannonBall_METHODS																				\
-	Enemy_METHODS;																						\
+	Actor_METHODS;																						\
 
 #define CannonBall_SET_VTABLE(ClassName)																\
-	Enemy_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, CannonBall, takeHit);														\
+	Actor_SET_VTABLE(ClassName);																		\
 	__VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);										\
 	__VIRTUAL_SET(ClassName, CannonBall, ready);														\
 
@@ -52,7 +51,7 @@ __CLASS(CannonBall);
 #define CannonBall_ATTRIBUTES																			\
 																										\
 	/* it is derived from */																			\
-	Enemy_ATTRIBUTES																					\
+	Actor_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -67,7 +66,6 @@ void CannonBall_destructor(CannonBall this);
 void CannonBall_ready(CannonBall this);
 void CannonBall_registerShape(CannonBall this);
 void CannonBall_unregisterShape(CannonBall this);
-void CannonBall_takeHit(CannonBall this, int axis, s8 direction);
 int CannonBall_getAxisFreeForMovement(CannonBall this);
 void CannonBall_startMovement(CannonBall this);
 void CannonBall_stopMovement(CannonBall this);

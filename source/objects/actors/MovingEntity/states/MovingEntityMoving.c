@@ -23,7 +23,6 @@
 #include <MessageDispatcher.h>
 #include <Prototypes.h>
 
-#include <EnemyDead.h>
 #include <Hero.h>
 #include <MovingEntity.h>
 
