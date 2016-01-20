@@ -561,8 +561,6 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
     {
         if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
         {
-        	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
-
             Hero_setInvincible(this, true);
 
             // reset invincible a bit later
@@ -605,9 +603,13 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
         {
             Hero_setInvincible(this, true);
             this->energy = 0;
+            
+            if(other && Actor_getBody(other))
+            {
+                Body_setActive(Actor_getBody(other), false);
+            }
 
             MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
-//            Game_pausePhysics(Game_getInstance(), true);
             
             // set body inactive, but don't stop it
             // because collision against other objects may still need
@@ -615,6 +617,8 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
             Body_setActive(this->body, false);
         	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
         }
+
+    	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
 
         // inform others to update ui etc
         Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HIT_TAKEN);
@@ -1193,7 +1197,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
                     Body_setActive(Actor_getBody(other), true);
                 }
         	}
-        	
+
         	if(!(__YAXIS & Body_isMoving(this->body)))
         	{
         		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
