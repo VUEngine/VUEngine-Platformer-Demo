@@ -532,7 +532,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
     "Door Front 1",
 
     // offset from entry point (x, y, z)
-    {0, 0, FTOFIX19_13(-SORT_INCREMENT)},
+    {0, ITOFIX19_13(-1), FTOFIX19_13(-SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,
@@ -547,7 +547,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
     "Door Back 1",
 
     // offset from entry point (x, y, z)
-    {0, 0, FTOFIX19_13(-SORT_INCREMENT)},
+    {0, FTOFIX19_13(-0.5f), FTOFIX19_13(-SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,

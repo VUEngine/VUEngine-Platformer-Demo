@@ -1231,7 +1231,7 @@ void Hero_setPosition(Hero this, VBVec3D* position)
 	Actor_stopMovement(__SAFE_CAST(Actor, this));
 	
 	// set new position
-	Actor_setLocalPosition(__SAFE_CAST(Actor, this), position);
+	Actor_setPosition(__SAFE_CAST(Actor, this), position);
 
 	// must make sure that collision detection is reset
 	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
