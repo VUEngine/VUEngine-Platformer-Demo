@@ -395,7 +395,6 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
  		else if(__YAXIS & axis)
         {
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Fall");
-
 			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
         }
 
@@ -1060,7 +1059,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kLava:
 
-                Hero_takeHitFrom(this, inGameEntity, this->energy, true, false);
+                Hero_takeHitFrom(this, NULL, this->energy, true, false);
 //				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1306,8 +1305,8 @@ bool Hero_isAboveEntity(Hero this, Entity entity)
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
-    int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y;
+    int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y * 2;
     int entityTopPosition = Entity_getPosition(entity)->y - ITOFIX19_13(Entity_getHeight(entity) >> 1);
 
-    return (heroBottomPosition > entityTopPosition);
+    return (heroBottomPosition >= entityTopPosition);
 }
