@@ -285,7 +285,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
     "EntryDoor",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(16), 0, FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(16), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,

@@ -20,7 +20,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
-#include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>

@@ -585,7 +585,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
 
             if(pause)
             {
-            	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroPauseGame, NULL);
+            	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroPauseGame, other);
 	        	Game_disableKeypad(Game_getInstance());
             }
 
@@ -1060,7 +1060,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kLava:
 
-                Hero_takeHitFrom(this, NULL, this->energy, true, false);
+                Hero_takeHitFrom(this, inGameEntity, this->energy, true, false);
 //				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
