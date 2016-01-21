@@ -113,7 +113,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	*/
 
 	// make a little bit of physical simulations so each entity is placed at the floor
-	Game_startClocks(Game_getInstance());
+	GameState_startClocks(__SAFE_CAST(GameState, this));
 
 	// show up level after a little bit
 	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
@@ -182,7 +182,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 	// pause physical simulations
-	Game_pausePhysics(Game_getInstance(), false);
+	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -201,7 +201,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 
 	// pause physical simulations
-	Game_pausePhysics(Game_getInstance(), true);
+	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
 }
 
 // state's handle message

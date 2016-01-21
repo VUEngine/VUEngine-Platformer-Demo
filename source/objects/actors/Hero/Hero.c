@@ -595,9 +595,9 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
             if(pause)
             {
 	        	Game_disableKeypad(Game_getInstance());
-                Game_pausePhysics(Game_getInstance(), true);
+                GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
                 Body_setActive(this->body, false);
-                Game_pauseAnimations(Game_getInstance(), true);
+                GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
                 MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, other);
             }
 
@@ -612,8 +612,8 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
             Hero_setInvincible(this, true);
             this->energy = 0;
         	Hero_flash(this);
-            Game_pausePhysics(Game_getInstance(), true);
-            Game_pauseAnimations(Game_getInstance(), true);
+            GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
+            GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
             Body_setActive(this->body, false);
         	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
         }
@@ -897,7 +897,7 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 	Hero_updateSprite(this);
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
 
-    Game_pausePhysics(Game_getInstance(), true);
+    GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
     Body_setActive(this->body, false);
 	MessageDispatcher_dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 
@@ -1173,8 +1173,8 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
         case kHeroResumePhysics:
 
         	Game_enableKeypad(Game_getInstance());
-            Game_pausePhysics(Game_getInstance(), false);
-            Game_pauseAnimations(Game_getInstance(), false);
+            GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), false);
+            GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), false);
             Body_setActive(this->body, true);
 
         	if(!(__YAXIS & Body_isMoving(this->body)))
