@@ -589,7 +589,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
             }
             else
             {
-               // this->energy -= energyToReduce;
+            	this->energy -= energyToReduce;
             }
 
             if(pause)
