@@ -233,7 +233,7 @@ void Hero_locateOverNextFloor(Hero this)
 			ITOFIX19_13(0),
 		};
 
-		CollisionSolver_resolveCollision(this->collisionSolver, collidingSpatialObjects, __YAXIS, displacement, &this->transform.globalScale);
+		CollisionSolver_resolveCollision(this->collisionSolver, collidingSpatialObjects, __YAXIS, displacement, &this->transform.globalScale, true);
 		
 		__DELETE(collidingSpatialObjects);
 //		Actor_updateSurroundingFriction(this);
