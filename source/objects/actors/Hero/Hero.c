@@ -568,7 +568,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
     {
     	if(other && Body_isMoving(this->body))
     	{
-			Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, other));
+			Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, other), false);
     	}
     	
         if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
@@ -589,7 +589,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
             }
             else
             {
-            	this->energy -= energyToReduce;
+            	//this->energy -= energyToReduce;
             }
 
             if(pause)
