@@ -470,7 +470,14 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 {
 	ASSERT(this, "Hero::stopMovingOnAxis: null this");
 
+	// if being hit do nothing
+	if(!Body_isActive(this->body))
+	{
+		return false;
+	}
+
 	bool movementState = Body_isMoving(this->body);
+	
 
 	if((__XAXIS & axis) && !(__YAXIS & movementState))
     {
@@ -559,6 +566,11 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
 {
     if (!Hero_isInvincible(this) || !invincibleWins)
     {
+    	if(other)
+    	{
+			Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, other));
+    	}
+    	
         if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
         {
             Hero_setInvincible(this, true);
@@ -577,24 +589,20 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
             }
             else
             {
-                this->energy -= energyToReduce;
+               // this->energy -= energyToReduce;
             }
 
             if(pause)
             {
 	        	Game_disableKeypad(Game_getInstance());
+                Game_pausePhysics(Game_getInstance(), true);
                 Body_setActive(this->body, false);
-                
-                if(other && Actor_getBody(other))
-                {
-                    Body_setActive(Actor_getBody(other), false);
-                }
-                
-                MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroBodyMovement, other);
+                Game_pauseAnimations(Game_getInstance(), true);
+                MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, other);
             }
 
             // start short screen shake
-            // Screen_startEffect(Screen_getInstance(), kShake, 200);
+            Screen_startEffect(Screen_getInstance(), kShake, 200);
 
             // play hit sound
             SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
@@ -603,17 +611,9 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
         {
             Hero_setInvincible(this, true);
             this->energy = 0;
-            
-            if(other && Actor_getBody(other))
-            {
-                Body_setActive(Actor_getBody(other), false);
-            }
-
-            MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
-            
-            // set body inactive, but don't stop it
-            // because collision against other objects may still need
-            // to take place
+        	Hero_flash(this);
+            Game_pausePhysics(Game_getInstance(), true);
+            Game_pauseAnimations(Game_getInstance(), true);
             Body_setActive(this->body, false);
         	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
         }
@@ -622,9 +622,6 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
 
         // inform others to update ui etc
         Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HIT_TAKEN);
-
-        // must unregister the shape for collision detections
-        // Shape_setActive(this->shape, false);
     }
 }
 
@@ -900,8 +897,9 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 	Hero_updateSprite(this);
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
 
-    Body_setActive(this->body, true);
-	MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroBodyMovement, NULL);
+    Game_pausePhysics(Game_getInstance(), true);
+    Body_setActive(this->body, false);
+	MessageDispatcher_dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 
 	// TODO: play "get powerup" animation
     //AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
@@ -1076,19 +1074,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kLava:
 
                 Hero_takeHitFrom(this, NULL, this->energy, true, false);
-//				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kSawBlade:
 			case kSnail:
 				
-                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true);
-                
-				if(!Hero_isInvincible(this))
-				{
-					Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, inGameEntity));
-				}
-
+				Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1101,12 +1092,6 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kHit:
 
                 Hero_takeHitFrom(this, NULL, 1, true, true);
-
-				if(!Hero_isInvincible(this))
-				{
-					Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, inGameEntity));
-				}
-
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1185,23 +1170,18 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             return true;
             break;
 
-        case kHeroBodyMovement:
+        case kHeroResumePhysics:
 
-            Body_setActive(this->body, true);
         	Game_enableKeypad(Game_getInstance());
-        	{
-        		Actor other = __GET_CAST(Actor, Telegram_getExtraInfo(telegram));
-        		
-                if(other && Actor_getBody(other))
-                {
-                    Body_setActive(Actor_getBody(other), true);
-                }
-        	}
+            Game_pausePhysics(Game_getInstance(), false);
+            Game_pauseAnimations(Game_getInstance(), false);
+            Body_setActive(this->body, true);
 
         	if(!(__YAXIS & Body_isMoving(this->body)))
         	{
         		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
         	}
+        	
         	break;
 
         case kHeroDied:

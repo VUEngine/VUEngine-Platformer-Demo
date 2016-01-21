@@ -139,7 +139,7 @@ MovingEntityROMDef SNAIL_4_AC =
 	            },
 	
 	            // collision detection gap (up, down, left, right)
-	            {6, 1, 4, 4},
+	            {8, 0, 4, 4},
 
 	            // in game type
 	            kSnail,
@@ -199,7 +199,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	            },
 
 	            // collision detection gap (up, down, left, right)
-	            {6, 1, 4, 4},
+	            {8, 0, 4, 4},
 
 	            // in game type
 	            kSnail,

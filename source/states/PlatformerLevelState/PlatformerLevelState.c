@@ -56,7 +56,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
-extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP;	
+extern PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;	
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 	__CONSTRUCT_BASE();
 
 	// set default entry point
-	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP;
+	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_TOWER_MAIN_EP;
 }
 
 // class's destructor

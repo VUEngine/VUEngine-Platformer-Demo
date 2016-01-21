@@ -116,7 +116,7 @@ enum PlatformerLevelStateMessageTypes
 	kLevelSetUp = kLastEngineMessage + 1,
 	kLevelStarted,
 	kLevelResumed,
-	kHeroBodyMovement,
+	kHeroResumePhysics,
 	kHideLevelMessage,
 	kHeroDied,
 	kHeroFall,
