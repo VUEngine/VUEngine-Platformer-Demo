@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <MBackground.h>
+#include <ManagedMBackground.h>
 #include <MBgmapSprite.h>
 
 
@@ -107,6 +108,6 @@ BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_5_IM_SPRITES[] =
 
 MBackgroundROMDef LEVEL_1_MAIN_1_MAIN_5_IM =
 {
-	__TYPE(MBackground),
+	__TYPE(ManagedMBackground),
 	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_5_IM_SPRITES,
 };
