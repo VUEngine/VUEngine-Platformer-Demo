@@ -87,7 +87,7 @@ void Lava_startMoving(Lava this)
 	// must make sure that the shape is updated
 	if(this->shape)
 	{
-		CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
+		CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
 	}
 }
 

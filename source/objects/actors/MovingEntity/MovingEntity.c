@@ -66,7 +66,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	MovingEntity_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), movingEntityDefinition->actorDefinition.mass);
+	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), __SAFE_CAST(SpatialObject, this), movingEntityDefinition->actorDefinition.mass);
 	Body_setElasticity(this->body, movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
@@ -104,7 +104,7 @@ static void MovingEntity_registerShape(MovingEntity this)
 	ASSERT(this, "MovingEntity::registerShape: null this");
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 
 	// don't check collisions agains other objects
 	Shape_setCheckForCollisions(this->shape, false);

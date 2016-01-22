@@ -135,11 +135,11 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->boost = false;
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 	ASSERT(this->shape, "Hero::constructor: null shape");
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
+	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
 	Body_setElasticity(this->body, actorDefinition->elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.globalPosition);
@@ -218,7 +218,7 @@ void Hero_locateOverNextFloor(Hero this)
 {
 	VBVec3D direction = {0, 1, 0};
 	
-	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(CollisionManager_getInstance(), this->shape, direction);
+	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(Game_getCollisionManager(Game_getInstance()), this->shape, direction);
 	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
 
 	if(collidingSpatialObject && this->collisionSolver)
@@ -1206,7 +1206,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				// set camera
 				VBVec3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 				this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
-				CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
+				CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 	
 				// set focus on the hero
 				VBVec3D screenDisplacement = {0, 0, 0};
@@ -1250,7 +1250,7 @@ void Hero_setPosition(Hero this, VBVec3D* position)
 	// make the camera active for collision detection
 	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, false);
 	
-	CollisionManager_shapeStartedMoving(CollisionManager_getInstance(), this->shape);
+	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
 
 	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this), __XAXIS | __YAXIS | __ZAXIS);
 }

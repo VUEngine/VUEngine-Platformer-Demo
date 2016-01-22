@@ -57,7 +57,7 @@ void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id
 	CannonBall_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(PhysicalWorld_getInstance(), __SAFE_CAST(SpatialObject, this), definition->mass);
+	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), __SAFE_CAST(SpatialObject, this), definition->mass);
 
 }
 
@@ -87,7 +87,7 @@ void CannonBall_registerShape(CannonBall this)
 	ASSERT(this, "CannonBall::registerShape: null this");
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(CollisionManager_getInstance(), __SAFE_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 
 	// don't check collisions against other objects
 	Shape_setCheckForCollisions(this->shape, false);
