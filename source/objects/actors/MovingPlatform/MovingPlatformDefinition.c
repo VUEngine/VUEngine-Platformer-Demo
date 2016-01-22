@@ -95,7 +95,7 @@ TextureROMDef MOVING_PLATFORM_TX =
     4,
 
     // rows (max 64)
-    2,
+    1,
 
     // number of frames
     1,
@@ -113,7 +113,7 @@ BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
 	(TextureDefinition*)&MOVING_PLATFORM_TX,
 
 	// displacement (x, y, z) (in pixels)
-	{0, ITOFIX19_13(-16), 0},
+	{0, ITOFIX19_13(-20), 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
