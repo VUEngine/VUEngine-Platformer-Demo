@@ -311,7 +311,6 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
 
             //Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
             this->lastShakeOffset.x = 0;
-            GameState_transform(__SAFE_CAST(GameState, Game_getCurrentState(Game_getInstance())));
         }
 
         return;
