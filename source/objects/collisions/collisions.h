@@ -61,7 +61,7 @@ extern EntityDefinition COLLISION_2x28x1;
 
 extern EntityDefinition COLLISION_ONEWAY_7x7x1;
 
-extern EntityDefinition HIT_COLLISION_20x1x1;
+extern EntityDefinition HIT_COLLISION_20x2x1;
 
 
 #endif

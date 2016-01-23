@@ -600,7 +600,6 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
                 GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
                 MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, other);
             }
-
         }
         else
         {
