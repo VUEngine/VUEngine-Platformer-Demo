@@ -91,7 +91,7 @@ void Cannon_ready(Cannon this)
 	Entity_ready(__SAFE_CAST(Entity, this));
 
     // add cannon ball as child
-    VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this));
+    VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
     Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
 
     // send delayed message to self to trigger first shot
@@ -139,7 +139,7 @@ void Cannon_spawnCannonBall(Cannon this)
     SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
     // set cannon ball to moving state
-    NM_ASSERT(1 == VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
+    ASSERT(1 == VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
     CannonBall cannonBall = (CannonBall)VirtualList_front(this->children);
     StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, cannonBall)), __SAFE_CAST(State, CannonBallMoving_getInstance()));
 }

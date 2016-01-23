@@ -59,6 +59,8 @@ void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id
 	// register a body for physics
 	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), __SAFE_CAST(SpatialObject, this), definition->mass);
 
+	// I start my life hidden
+    this->hidden = true;
 }
 
 // class's constructor
@@ -133,7 +135,7 @@ void CannonBall_stopMovement(CannonBall this)
 	Shape_setActive(this->shape, false);
 
     // set back local position
-    VBVec3D position = {0, 0, FTOFIX19_13(SORT_INCREMENT)};
+    VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
     Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
 
     // hide me
@@ -143,7 +145,7 @@ void CannonBall_stopMovement(CannonBall this)
 // check position and set state to idle if minimum z value has been reached
 void CannonBall_checkPosition(CannonBall this)
 {
-    VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this));
+    VBVec3D position = *Container_getGlobalPosition(__SAFE_CAST(Container, this));
 
     if(position.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
     {
