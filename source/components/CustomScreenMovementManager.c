@@ -329,9 +329,6 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
     // move screen a bit
     Screen_move(_screen, this->lastShakeOffset, false);
 
-    // apply _screen offset
-    GameState_transform(__SAFE_CAST(GameState, StateMachine_getCurrentState(Game_getStateMachine(Game_getInstance()))));
-
     // send message for next screen movement
 	MessageDispatcher_dispatchMessage(nextShakeDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
 }

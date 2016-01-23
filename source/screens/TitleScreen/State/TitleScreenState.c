@@ -215,9 +215,6 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 
-			// account for any entity's tranform modification during their initialization
-			GameState_transform(__SAFE_CAST(GameState, this));
-			
 			// show level after 0.5 second
 			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
 			break;
