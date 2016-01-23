@@ -176,7 +176,6 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			fix19_13 verticalPosition = 0xFFFFE000 & _screen->position.y;
 			fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(SCREEN_VERTICAL_DISPLACEMENT));
 
-
 			bool focusEntityOutOfBounds = focusInGameEntityPosition->y > _screen->position.y + ITOFIX19_13( __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION) || focusInGameEntityPosition->y < _screen->position.y + ITOFIX19_13(SCREEN_HEIGHT_REDUCTION);
 
 			if(this->positionFlag.y || focusEntityOutOfBounds)
@@ -184,7 +183,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				fix19_13 downEasingDisplacement = ITOFIX19_13(1);
 				fix19_13 upEasingDisplacement = ITOFIX19_13(1);
 
-				if(focusEntityOutOfBounds || velocity.y)
+				if(velocity.y)
 				{
 					downEasingDisplacement = ITOFIX19_13(SCREEN_POSITIVE_EASING_Y_DISPLACEMENT);
 					upEasingDisplacement = ITOFIX19_13(SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT);
