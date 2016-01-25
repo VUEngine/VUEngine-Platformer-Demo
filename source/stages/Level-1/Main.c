@@ -329,24 +329,24 @@ CharSetROMDef* LEVEL_1_MAIN_ST_CHARSETS[] =
 	NULL,
 };
 
-TextureROMDef* LEVEL_1_MAIN_ST_TEXTURES[] =
+StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 {
-	&LEVEL_1_MAIN_1_MAIN_1_TX,
-	&LEVEL_1_MAIN_1_MAIN_2_TX,
-	&LEVEL_1_MAIN_1_MAIN_FRONT_1_TX,
-	&LEVEL_1_MAIN_1_MAIN_FRONT_2_TX,
-	&LEVEL_1_MAIN_1_BACK_1_TX,
-	&MOUND_BG_BACK_TX,
-	&MOUND_BG_MIDDLE_TX,
-	&MOUND_BG_FRONT_TX,
-	&HERO_TX,
-	&DUST_PARTICLE_SMALL_TX,
-	&COIN_TX,
-	&COIN_SILHOUETTE_TX,
-	&COIN_BACK_TX,
-	&COIN_BACK_SILHOUETTE_TX,
-	&DOOR_TX,
-	NULL
+	{&LEVEL_1_MAIN_1_MAIN_1_TX, true},
+	{&LEVEL_1_MAIN_1_MAIN_2_TX, true},
+	{&LEVEL_1_MAIN_1_MAIN_FRONT_1_TX, true},
+	{&LEVEL_1_MAIN_1_MAIN_FRONT_2_TX, true},
+	{&LEVEL_1_MAIN_1_BACK_1_TX, true},
+	{&MOUND_BG_BACK_TX, false},
+	{&MOUND_BG_MIDDLE_TX, false},
+	{&MOUND_BG_FRONT_TX, false},
+	{&HERO_TX, false},
+	{&DUST_PARTICLE_SMALL_TX, false},
+	{&COIN_TX, false},
+	{&COIN_SILHOUETTE_TX, false},
+	{&COIN_BACK_TX, false},
+	{&COIN_BACK_SILHOUETTE_TX, false},
+	{&DOOR_TX, false},
+	{NULL, false}
 };
 
 
@@ -466,7 +466,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
         (CharSetDefinition**)LEVEL_1_MAIN_ST_CHARSETS,
 
         // textures to preload
-        (TextureDefinition**)LEVEL_1_MAIN_ST_TEXTURES,
+        (StageTextureEntryDefinition*)LEVEL_1_MAIN_ST_TEXTURES,
 
         // UI
         {

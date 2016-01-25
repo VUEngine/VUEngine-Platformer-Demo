@@ -60,14 +60,14 @@ PositionedEntityROMDef PAUSE_SCREEN_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-TextureROMDef* PAUSE_SCREEN_ST_TEXTURES[] =
+StageTextureEntryROMDef PAUSE_SCREEN_ST_TEXTURES[] =
 {
-	&VBJAENGINE_TX,
-	&LOGO_L_TX,
-	&LOGO_R_TX,
-	&LOGO_OUTLINE_L_TX,
-	&LOGO_OUTLINE_R_TX,
-	NULL
+	{&VBJAENGINE_TX, false},
+	{&LOGO_L_TX, false},
+	{&LOGO_R_TX, false},
+	{&LOGO_OUTLINE_L_TX, false},
+	{&LOGO_OUTLINE_R_TX, false},
+	{NULL, false}
 };
 
 
@@ -187,7 +187,7 @@ StageROMDef PAUSE_SCREEN_ST =
     (CharSetDefinition**)NULL,
 
     // textures to preload
-    (TextureDefinition**)PAUSE_SCREEN_ST_TEXTURES,
+    (StageTextureEntryDefinition*)PAUSE_SCREEN_ST_TEXTURES,
 
     // UI
     {

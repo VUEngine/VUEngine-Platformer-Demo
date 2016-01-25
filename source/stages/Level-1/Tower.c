@@ -119,17 +119,16 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-TextureROMDef* LEVEL_1_TOWER_ST_TEXTURES[] =
+StageTextureEntryROMDef LEVEL_1_TOWER_ST_TEXTURES[] =
 {
-	//&COIN_TX,
-	&DOOR_TX,
-	&GUI_TX,
-	&LAVA_TX,
-	&LAVA_TOP_TX,
-	&LEVEL_1_TOWER_MAIN_1_TX,
-	&LEVEL_1_TOWER_MAIN_BACK_1_TX,
-	&COG_WHEEL_TX,
-	NULL
+	{&DOOR_TX, false},
+	{&GUI_TX, false},
+	{&LAVA_TX, false},
+	{&LAVA_TOP_TX, false},
+	{&LEVEL_1_TOWER_MAIN_1_TX, false},
+	{&LEVEL_1_TOWER_MAIN_BACK_1_TX, false},
+	{&COG_WHEEL_TX, false},
+	{NULL, false}
 };
 
 
@@ -249,7 +248,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
         (CharSetDefinition**)NULL,
 
         // textures to preload
-        (TextureDefinition**)LEVEL_1_TOWER_ST_TEXTURES,
+        (StageTextureEntryDefinition*)LEVEL_1_TOWER_ST_TEXTURES,
 
         // UI
         {

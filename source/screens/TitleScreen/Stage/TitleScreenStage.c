@@ -99,9 +99,9 @@ PositionedEntityROMDef TITLE_SCREEN_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-TextureROMDef* TITLE_SCREEN_ST_TEXTURES[] =
+StageTextureEntryROMDef TITLE_SCREEN_ST_TEXTURES[] =
 {
-	NULL
+	{NULL, false}
 };
 
 
@@ -220,7 +220,7 @@ StageROMDef TITLE_SCREEN_ST =
     NULL,
 
     // textures to preload
-    (TextureDefinition**)TITLE_SCREEN_ST_TEXTURES,
+    (StageTextureEntryDefinition*)TITLE_SCREEN_ST_TEXTURES,
 
     // UI
     {

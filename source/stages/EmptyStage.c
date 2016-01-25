@@ -37,9 +37,9 @@ PositionedEntityROMDef EMPTY_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false}
 };
 
-TextureROMDef* EMPTY_ST_TEXTURES[] =
+StageTextureEntryROMDef EMPTY_ST_TEXTURES[] =
 {
-	NULL
+	{NULL, false}
 };
 
 
@@ -152,7 +152,7 @@ StageROMDef EMPTY_ST =
     (CharSetDefinition**)NULL,
 
     // textures to preload
-    (TextureDefinition**)EMPTY_ST_TEXTURES,
+    (StageTextureEntryDefinition*)EMPTY_ST_TEXTURES,
 
     // UI
     {

@@ -98,9 +98,9 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_UI_ENTITIES[] =
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-TextureROMDef* LEVEL_1_COIN_ROOM_ST_TEXTURES[] =
+StageTextureEntryROMDef LEVEL_1_COIN_ROOM_ST_TEXTURES[] =
 {
-    NULL
+	{NULL, false}
 };
 
 
@@ -220,7 +220,7 @@ PlatformerStageROMDef LEVEL_1_COIN_ROOM_ST =
         (CharSetDefinition**)NULL,
 
         // textures to preload
-        (TextureDefinition**)LEVEL_1_COIN_ROOM_ST_TEXTURES,
+        (StageTextureEntryDefinition*)LEVEL_1_COIN_ROOM_ST_TEXTURES,
 
         // UI
         {
