@@ -72,14 +72,12 @@ AnimationDescriptionROMDef TORCH_ANIM =
 CharSetROMDef TORCH_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     3,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __ANIMATED_SHARED,
 
     // char definition
@@ -100,11 +98,13 @@ TextureROMDef TORCH_TX =
     // rows (max 64)
     3,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     4,
 
-    // palette number
-    0
+    // palette number (0-3)
+    0,
 };
 
 ObjectSpriteROMDef TORCH_SPRITE =
@@ -115,7 +115,7 @@ ObjectSpriteROMDef TORCH_SPRITE =
 	// texture definition
 	(TextureDefinition*)&TORCH_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement
 	{0, 0, FTOFIX19_13(1)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

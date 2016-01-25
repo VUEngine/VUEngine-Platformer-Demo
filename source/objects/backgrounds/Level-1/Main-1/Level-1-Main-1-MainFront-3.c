@@ -48,10 +48,12 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3_TX =
     // rows (max 64)
     34,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     1,
 
-    // palette number
+    // palette number (0-3)
     1,
 };
 
@@ -70,7 +72,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3_IM_SPRITE =
 		// texture definition
 		NULL,
 
-		// displacement vector
+		// displacement
 		{ITOFIX19_13(-32), ITOFIX19_13(120), FTOFIX19_13(-1)},
 		
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

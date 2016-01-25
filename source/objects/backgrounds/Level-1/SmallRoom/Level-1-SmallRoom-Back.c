@@ -37,14 +37,12 @@ extern BYTE Level_1_SmallRoom_BackMap[];
 CharSetROMDef LEVEL_1_SMALL_ROOM_BACK_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     33,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
@@ -65,10 +63,12 @@ TextureROMDef LEVEL_1_SMALL_ROOM_BACK_TX =
     // rows (max 64)
     14,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     1,
 
-    // palette number
+    // palette number (0-3)
     0,
 };
 
@@ -80,7 +80,7 @@ BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_BACK_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LEVEL_1_SMALL_ROOM_BACK_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement
 	{0, 0, FTOFIX19_13(2)},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

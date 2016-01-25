@@ -41,14 +41,12 @@ extern BYTE VBJaEngineScreenLogoOutlineMap[];
 CharSetROMDef VBJAENGINE_LOGO_3D_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     49,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
@@ -69,24 +67,24 @@ TextureROMDef VBJAENGINE_LOGO_3D_TX =
     // rows (max 64)
     9,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     1,
 
-   // palette number
+   // palette number (0-3)
     0,
 };
 
 CharSetROMDef VBJAENGINE_LOGO_OUTLINE_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     80,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
@@ -107,10 +105,12 @@ TextureROMDef VBJAENGINE_LOGO_OUTLINE_TX =
     // rows (max 64)
     9,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     1,
 
-    // palette number
+    // palette number (0-3)
     1,
 };
 
@@ -122,7 +122,7 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
 
-	// displacement vector
+	// displacement
 	{0, 0, FTOFIX19_13(SORT_INCREMENT)},
 	
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
@@ -140,7 +140,7 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
 	// texture definition
 	(TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
 
-	// displacement vector
+	// displacement
 	{FTOFIX19_13(13), FTOFIX19_13(1), 0},
 
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)

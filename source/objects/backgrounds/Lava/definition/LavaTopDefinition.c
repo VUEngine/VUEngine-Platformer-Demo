@@ -73,14 +73,12 @@ AnimationDescriptionROMDef LAVA_TOP_ANIM =
 CharSetROMDef LAVA_TOP_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     48,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __ANIMATED_SINGLE,
 
     // char definition
@@ -101,11 +99,13 @@ TextureROMDef LAVA_TOP_TX =
     // rows (max 64)
     1,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     1,
 
-    // palette number
-    1
+    // palette number (0-3)
+    1,
 };
 
 BgmapSpriteROMDef LAVA_TOP_SPRITE =
@@ -116,7 +116,7 @@ BgmapSpriteROMDef LAVA_TOP_SPRITE =
 	// texture definition
 	(TextureDefinition*)&LAVA_TOP_TX,
 
-	// displacement vector
+	// displacement
 	{0, 0, FTOFIX19_13(-1)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
