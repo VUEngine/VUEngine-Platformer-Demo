@@ -153,7 +153,7 @@ CharSetROMDef HIDE_LAYER_10x7_CH =
     70,
 
     // allocation type
-    __ANIMATED_SINGLE,
+    __ANIMATED_SHARED,
 
     // char definition
     HideLayer10x7Tiles,
