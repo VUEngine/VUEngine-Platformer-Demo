@@ -37,6 +37,7 @@
 #define SCREEN_EASING_Y_DISPLACEMENT					(3 << __FRAME_CYCLE)
 #define SCREEN_HORIZONTAL_DISPLACEMENT 					30
 #define SCREEN_VERTICAL_DISPLACEMENT 					(__SCREEN_HEIGHT / 2) + 30
+#define SCREEN_WIDTH_REDUCTION							64
 #define SCREEN_HEIGHT_REDUCTION							64
 
 //---------------------------------------------------------------------------------------------------------
@@ -131,48 +132,53 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 		Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusInGameEntity));
 		
 		VBVec3D screenPreviousPosition = _screen->position;
-		
-		if(this->positionFlag.x)
+
+		const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
+
 		{
-			// update vertical position
-			const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
-
-			fix19_13 horizontalPosition = _screen->position.x;
-			fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
-			
-			fix19_13 easingDisplacement = velocity.x? ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT): ITOFIX19_13(1);
-			
-			if(horizontalPosition + easingDisplacement < horizontalTarget)
+			bool focusEntityOutOfBounds = focusInGameEntityPosition->x > _screen->position.x + ITOFIX19_13( __SCREEN_WIDTH - SCREEN_WIDTH_REDUCTION) || focusInGameEntityPosition->x < _screen->position.x + ITOFIX19_13(SCREEN_WIDTH_REDUCTION);
+	
+			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
-				_screen->position.x += easingDisplacement;
-			}
-			else if(horizontalPosition - easingDisplacement > horizontalTarget)
-			{
-				_screen->position.x -= easingDisplacement;
-			}
-			else
-			{
-				_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT);
-			}
-			
-			if(!this->tempFocusInGameEntity)
-			{
-				if(0 > _screen->position.x)
+				// update vertical position
+				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
+	
+				fix19_13 horizontalPosition = _screen->position.x;
+				fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
+				
+				fix19_13 easingDisplacement = velocity.x? ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT): ITOFIX19_13(1);
+				
+				if(horizontalPosition + easingDisplacement < horizontalTarget)
 				{
-					_screen->position.x = 0;
+					_screen->position.x += easingDisplacement;
 				}
-				else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+				else if(horizontalPosition - easingDisplacement > horizontalTarget)
 				{
-					_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
+					_screen->position.x -= easingDisplacement;
 				}
+				else
+				{
+					_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT);
+				}
+				
+				if(!this->tempFocusInGameEntity)
+				{
+					if(0 > _screen->position.x)
+					{
+						_screen->position.x = 0;
+					}
+					else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+					{
+						_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
+					}
+				}
+	
+				_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
 			}
-
-			_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
 		}
 
 		{
 			// update vertical position
-			const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
 			fix19_13 verticalPosition = 0xFFFFE000 & _screen->position.y;
 			fix19_13 verticalTarget = 0xFFFFE000 & (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(SCREEN_VERTICAL_DISPLACEMENT));
 
