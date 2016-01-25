@@ -41,14 +41,12 @@ extern BYTE Floor16TopMap[];
 CharSetROMDef FLOOR_16x12_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     16,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
@@ -69,10 +67,12 @@ TextureROMDef FLOOR_16x12_TX =
     // rows (max 64)
     12,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     1,
 
-    // palette number
+    // palette number (0-3)
     1,
 };
 
@@ -84,7 +84,7 @@ BgmapSpriteROMDef FLOOR_16x12_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FLOOR_16x12_TX,
 
-	// displacement vector
+	// displacement
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
@@ -97,14 +97,12 @@ BgmapSpriteROMDef FLOOR_16x12_SPRITE =
 CharSetROMDef FLOOR_16_TOP_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     7,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
@@ -125,10 +123,12 @@ TextureROMDef FLOOR_16_TOP_TX =
     // rows (max 64)
     2,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     1,
 
-    // palette number
+    // palette number (0-3)
     1,
 };
 
@@ -140,7 +140,7 @@ BgmapSpriteROMDef FLOOR_16x12_TOP_SPRITE =
 	// texture definition
 	(TextureDefinition*)&FLOOR_16_TOP_TX,
 
-	// displacement vector
+	// displacement
 	{0, FTOFIX19_13(-40), FTOFIX19_13(-1)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

@@ -145,14 +145,12 @@ AnimationDescriptionROMDef HIDE_LAYER_10x7_ANIM =
 CharSetROMDef HIDE_LAYER_10x7_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     70,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __ANIMATED_SHARED,
 
     // char definition
@@ -173,10 +171,12 @@ TextureROMDef HIDE_LAYER_10x7_TX =
     // rows (max 64)
     7,
 
-    // number of frames
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
     7,
 
-    // palette number
+    // palette number (0-3)
     1,
 };
 
@@ -188,7 +188,7 @@ BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =
 	// texture definition
 	(TextureDefinition*)&HIDE_LAYER_10x7_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
