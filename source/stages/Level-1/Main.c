@@ -372,7 +372,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
     		// delay per cycle
     		8,
     		// load padding
-    		32,
+    		40,
     		// unload padding
     		16,
     		// streaming amplitude
@@ -410,7 +410,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
 
         // BGMAP segments configuration
         // number of segments reserved for dynamically allocated textures when preloading
-        6,
+        7,
 
     	// OBJs segments sizes (must total 1024)
         {
