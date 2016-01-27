@@ -14,23 +14,51 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef OBJECTS_H_
-#define OBJECTS_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ManagedEntity.h>
-#include <Entity.h>
-
-#include "backgrounds/backgrounds.h"
-#include "actors/actors.h"
-#include "collisions/collisions.h"
-#include "elements/elements.h"
-#include "items/items.h"
-#include "particles/particles.h"
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
-#endif
+//---------------------------------------------------------------------------------------------------------
+// 												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+InanimatedInGameEntityROMDef COLLISION_32x4x1 =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kSolid,
+
+    	// width
+        // if 0, width and height will be inferred from the texture's size
+    	32 * 8,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	4 * 8,
+
+    	// depth
+    	1 * 8
+    },
+
+    // friction
+    FTOFIX19_13(FLOOR_FRICTION),
+
+    // elasticity
+    FTOFIX19_13(FLOOR_ELASTICITY),
+
+    // register shape
+    true
+};

@@ -122,7 +122,7 @@ ObjectSpriteROMDef SNAIL_SPRITE =
 	WRLD_ON,
 };
 
-BgmapSpriteROMDef* const SNAIL_SPRITES[] =
+ObjectSpriteROMDef* const SNAIL_SPRITES[] =
 {
 	&SNAIL_SPRITE,
 	NULL
