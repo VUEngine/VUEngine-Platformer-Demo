@@ -777,6 +777,8 @@ static void Hero_addHint(Hero this)
 
     // save the hint entity, so we can remove it later
 	this->hint = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
+	
+	Hero_hideHint(this);
 }
 
 static void Hero_addFeetDust(Hero this)
@@ -1227,7 +1229,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				VBVec3DFlag positionFlag = {true, true, true};
 			    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 			}
-			return true;
 			break;
 			
 	}

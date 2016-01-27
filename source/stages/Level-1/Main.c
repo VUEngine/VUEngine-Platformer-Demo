@@ -224,7 +224,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{&COLLISION_2x28x1,									{FTOFIX19_13(0),  FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
     // part 1
-    {&SMOKE_PS,											{FTOFIX19_13(256 - 164), FTOFIX19_13(368 - 218), 	FTOFIX19_13(LAYER_0_FOREGROUND + 32)},   NULL, NULL, NULL, false},
+//    {&SMOKE_PS,											{FTOFIX19_13(256 - 164), FTOFIX19_13(368 - 218), 	FTOFIX19_13(LAYER_0_FOREGROUND + 32)},   NULL, NULL, NULL, false},
     {&MANAGED_ENTITY,									{FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_ENTITIES, NULL, false},
     {&COLLISIONS_CONTAINER_ENTITY,						{FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
@@ -246,7 +246,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{&COIN_AG,											{FTOFIX19_13(528),  FTOFIX19_13(228), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 006", NULL, NULL, false},
 	{&COIN_AG,											{FTOFIX19_13(544),  FTOFIX19_13(228), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 007", NULL, NULL, false},
 	{&COIN_AG,											{FTOFIX19_13(732),  FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 009", NULL, NULL, false},
-	{&BANDANA_AG,											{FTOFIX19_13(756),  FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)}, NULL, NULL, NULL, false},
+//	{&BANDANA_AG,											{FTOFIX19_13(756),  FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)}, NULL, NULL, NULL, false},
 //	{&COIN_AG,											{FTOFIX19_13(764),  FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 010", NULL, NULL, false},
     {&COIN_AG,											{FTOFIX19_13(780),  FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 011", NULL, NULL, false},
 	{&DOOR_AG,											{FTOFIX19_13(798),  FTOFIX19_13(400), 	FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, (void*)&LEVEL_1_COIN_ROOM_MAIN_EP, false},
@@ -323,37 +323,67 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
+// TODO: put me in a header file
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
+extern CharSetDefinition DOOR_CH;
+extern CharSetDefinition COIN_CH;
+extern CharSetDefinition COIN_BACK_CH;
+extern CharSetDefinition COIN_SILHOUETTE_CH;
+extern CharSetDefinition COIN_BACK_SILHOUETTE_CH;
+extern CharSetDefinition MOUND_BG_BACK_CH;
+extern CharSetDefinition MOUND_BG_MIDDLE_CH;
+extern CharSetDefinition MOUND_BG_FRONT_CH;
+extern CharSetDefinition HIDE_LAYER_10x7_CH;
+extern CharSetDefinition SNAIL_CH;
+extern CharSetDefinition GRASS_CH;
+extern CharSetDefinition BUSH_CH;
+extern CharSetDefinition LEVEL_1_HOUSE_CH;
+extern CharSetDefinition SAW_BLADE_CH;
+extern CharSetDefinition KEY_CH;
+
 
 CharSetROMDef* LEVEL_1_MAIN_ST_CHARSETS[] =
 {
 	&LEVEL_1_MAIN_1_MAIN_CH,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
 	&LEVEL_1_MAIN_1_MAIN_BACK_CH,
-/*	&MOUND_BG_BACK_CH,
+	&DOOR_CH,
+	&COIN_CH,
+	&COIN_BACK_CH,
+	&COIN_SILHOUETTE_CH,
+	&COIN_BACK_SILHOUETTE_CH,
+	&MOUND_BG_BACK_CH,
 	&MOUND_BG_MIDDLE_CH,
 	&MOUND_BG_FRONT_CH,
-	&COIN_CH,
-	*/
+	&HIDE_LAYER_10x7_CH,
+	&SNAIL_CH,
+	&GRASS_CH,
+	&BUSH_CH,
+	&LEVEL_1_HOUSE_CH,
+	&SAW_BLADE_CH,
+	&KEY_CH,
 	NULL,
 };
 
 StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 {
+	{&LEVEL_1_MAIN_1_MAIN_3_TX, true},
+	{&LEVEL_1_MAIN_1_MAIN_FRONT_3_TX, true},
+	{&LEVEL_1_MAIN_1_MAIN_BACK_3_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_1_TX, true},
+	{&LEVEL_1_MAIN_1_BACK_1_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_2_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_FRONT_1_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_FRONT_2_TX, true},
-	{&LEVEL_1_MAIN_1_BACK_1_TX, true},
 	{&MOUND_BG_BACK_TX, false},
 	{&MOUND_BG_MIDDLE_TX, false},
 	{&MOUND_BG_FRONT_TX, false},
 	{&DUST_PARTICLE_SMALL_TX, false},
-	{&COIN_TX, false},
-	{&COIN_SILHOUETTE_TX, false},
-	{&COIN_BACK_TX, false},
-	{&COIN_BACK_SILHOUETTE_TX, false},
+	{&SAW_BLADE_TX, false},
 	{&DOOR_TX, false},
+	{&LEVEL_1_HOUSE_TX, false},
+	{&HIDE_LAYER_10x7_TX, false},
+	
 	{NULL, false}
 };
 
@@ -378,7 +408,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
         // streaming
     	{
     		// delay per cycle
-    		8,
+    		16,
     		// load padding
     		40,
     		// unload padding
@@ -418,7 +448,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
 
         // BGMAP segments configuration
         // number of segments reserved for dynamically allocated textures when preloading
-        7,
+        5,
 
     	// OBJs segments sizes (must total 1024)
         {
