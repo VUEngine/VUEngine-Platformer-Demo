@@ -23,6 +23,7 @@
 #include <Debug.h>
 #include <StageEditor.h>
 #include <AnimationEditor.h>
+#include <CollisionsContainerEntity.h>
 
 #include <objects.h>
 #include <screens.h>
@@ -46,6 +47,14 @@ const EntityROMDef ENTITY =
     __TYPE(Entity),
     NULL
 };
+
+// only need to define one for all entities
+const CollisionsContainerEntityROMDef COLLISIONS_CONTAINER_ENTITY =
+{
+    __TYPE(CollisionsContainerEntity),
+    NULL
+};
+
 
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] =

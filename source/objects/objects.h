@@ -37,8 +37,10 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ManagedEntityROMDef MANAGED_ENTITY;
+extern EntityROMDef MANAGED_ENTITY;
 extern EntityROMDef ENTITY;
+extern EntityROMDef COLLISIONS_CONTAINER_ENTITY;
+
 
 
 #endif
