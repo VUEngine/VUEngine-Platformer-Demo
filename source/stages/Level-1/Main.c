@@ -322,10 +322,18 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
+
 CharSetROMDef* LEVEL_1_MAIN_ST_CHARSETS[] =
 {
 	&LEVEL_1_MAIN_1_MAIN_CH,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
+	&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+/*	&MOUND_BG_BACK_CH,
+	&MOUND_BG_MIDDLE_CH,
+	&MOUND_BG_FRONT_CH,
+	&COIN_CH,
+	*/
 	NULL,
 };
 
@@ -339,7 +347,6 @@ StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 	{&MOUND_BG_BACK_TX, false},
 	{&MOUND_BG_MIDDLE_TX, false},
 	{&MOUND_BG_FRONT_TX, false},
-	{&HERO_TX, false},
 	{&DUST_PARTICLE_SMALL_TX, false},
 	{&COIN_TX, false},
 	{&COIN_SILHOUETTE_TX, false},

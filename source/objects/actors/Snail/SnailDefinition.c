@@ -19,7 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include "MovingEntity.h"
 
 
@@ -104,10 +104,10 @@ TextureROMDef SNAIL_TX =
     1,
 };
 
-BgmapSpriteROMDef SNAIL_SPRITE =
+ObjectSpriteROMDef SNAIL_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&SNAIL_TX,
@@ -116,7 +116,7 @@ BgmapSpriteROMDef SNAIL_SPRITE =
 	{0, 0, 0},
 	
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_AFFINE,
+	WRLD_OBJ,
 	
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
