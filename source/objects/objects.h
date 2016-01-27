@@ -37,9 +37,9 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityROMDef MANAGED_ENTITY;
-extern EntityROMDef ENTITY;
-extern EntityROMDef COLLISIONS_CONTAINER_ENTITY;
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition ENTITY;
+extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
 
 

@@ -23,9 +23,9 @@
 #include <Debug.h>
 #include <StageEditor.h>
 #include <AnimationEditor.h>
+#include <ManagedEntity.h>
 #include <CollisionsContainerEntity.h>
 
-#include <objects.h>
 #include <screens.h>
 #include <sound.h>
 
@@ -35,21 +35,21 @@
 //---------------------------------------------------------------------------------------------------------
 
 // only need to define one for all managed entities
-const ManagedEntityROMDef MANAGED_ENTITY =
+ManagedEntityROMDef MANAGED_ENTITY =
 {
     __TYPE(ManagedEntity),
     NULL
 };
 
 // only need to define one for all entities
-const EntityROMDef ENTITY =
+EntityROMDef ENTITY =
 {
     __TYPE(Entity),
     NULL
 };
 
 // only need to define one for all entities
-const CollisionsContainerEntityROMDef COLLISIONS_CONTAINER_ENTITY =
+CollisionsContainerEntityROMDef COLLISIONS_CONTAINER_ENTITY =
 {
     __TYPE(CollisionsContainerEntity),
     NULL
