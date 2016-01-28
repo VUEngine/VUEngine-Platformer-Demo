@@ -38,12 +38,12 @@ extern BgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE;
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_TOWER_MAIN_1_CH =
+CharSetROMDef LEVEL_1_TOWER_MAIN_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    30,
+    41,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -56,7 +56,7 @@ CharSetROMDef LEVEL_1_TOWER_MAIN_1_CH =
 TextureROMDef LEVEL_1_TOWER_MAIN_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_TOWER_MAIN_1_CH,
+    (CharSetDefinition*)&LEVEL_1_TOWER_MAIN_CH,
 
     // bgmap definition
     Level_1_Tower_Main_1Map,

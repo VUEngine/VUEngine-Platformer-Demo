@@ -27,36 +27,25 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Tower_BackTiles[];
-extern BYTE Level_1_Tower_Back_1Map[];
+extern BYTE Level_1_Tower_MainTiles[];
+extern BYTE Level_1_Tower_Main_2Map[];
+
+extern BgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_2_IM_SPRITE;
+extern CharSetROMDef LEVEL_1_TOWER_MAIN_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_TOWER_BACK_1_CH =
-{
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    77,
-
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
-
-    // char definition
-    Level_1_Tower_BackTiles,
-};
-
-TextureROMDef LEVEL_1_TOWER_BACK_1_TX =
+TextureROMDef LEVEL_1_TOWER_MAIN_2_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_TOWER_BACK_1_CH,
+    (CharSetDefinition*)&LEVEL_1_TOWER_MAIN_CH,
 
     // bgmap definition
-    Level_1_Tower_Back_1Map,
+    Level_1_Tower_Main_2Map,
 
     // cols (max 64)
     48,
@@ -73,14 +62,13 @@ TextureROMDef LEVEL_1_TOWER_BACK_1_TX =
     0,
 };
 
-
-TextureROMDef* LEVEL_1_TOWER_BACK_1_IM_TEXTURES[] = 
+TextureROMDef* LEVEL_1_TOWER_MAIN_2_IM_TEXTURES[] =
 {
-	(TextureDefinition*)&LEVEL_1_TOWER_BACK_1_TX,
+	(TextureDefinition*)&LEVEL_1_TOWER_MAIN_2_TX,
 	NULL
 };
  
-MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
+MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_2_IM_SPRITE =
 {
 	{
 		// sprite's type
@@ -90,7 +78,7 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 		NULL,
 
 		// displacement
-		{0, 0, FTOFIX19_13(2)},
+		{0, 0, 0},
 		
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
@@ -99,7 +87,7 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 		WRLD_ON,
 	},
 	
-	(TextureDefinition**)LEVEL_1_TOWER_BACK_1_IM_TEXTURES,
+	(TextureDefinition**)LEVEL_1_TOWER_MAIN_2_IM_TEXTURES,
 	
 	// SCX/SCY
 	WRLD_1x1,
@@ -108,5 +96,19 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 	false,
 	
 	// y loop
-	true
+	false
+};
+
+BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_2_IM_SPRITES[] =
+{
+	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_BACK_1_IM_SPRITE,
+	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_MAIN_BACK_2_IM_SPRITE,
+	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_MAIN_2_IM_SPRITE,
+	NULL
+};
+
+MBackgroundROMDef LEVEL_1_TOWER_MAIN_2_IM =
+{
+	__TYPE(MBackground),
+	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_2_IM_SPRITES,
 };
