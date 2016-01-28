@@ -112,7 +112,7 @@ StageROMDef PAUSE_SCREEN_ST =
     // Palette's config
     {
     	// background color
-    	__COLOR_BLACK,
+    	__COLOR_DARK_RED,
     	
     	{
             __BGMAP_PALETTE_0,

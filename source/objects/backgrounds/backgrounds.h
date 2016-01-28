@@ -70,10 +70,6 @@ extern EntityDefinition ONE_WAY_PLATFORM_4_IG;
 extern EntityDefinition MOUND_1_IM;
 extern EntityDefinition MOUND_2_IM;
 
-extern EntityDefinition LAVA_IG;
-extern EntityDefinition LAVA_TOP_AG;
-extern EntityDefinition LAVA_TRIGGER_IG;
-
 extern EntityDefinition COG_WHEEL_IM;
 
 extern EntityDefinition GRASS_AG;

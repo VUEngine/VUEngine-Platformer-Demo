@@ -27,6 +27,8 @@ extern TextureDefinition DOOR_TX;
 extern TextureDefinition DOOR_BACK_TX;
 extern TextureDefinition HIDE_LAYER_10x7_TX;
 extern TextureDefinition HINT_TX;
+extern TextureDefinition LAVA_TX;
+extern TextureDefinition LAVA_TOP_TX;
 
 
 #endif

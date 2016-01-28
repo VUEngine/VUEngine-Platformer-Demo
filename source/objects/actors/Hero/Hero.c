@@ -1076,7 +1076,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kLava:
 
-                //Hero_takeHitFrom(this, NULL, this->energy, true, false);
+                Hero_takeHitFrom(this, NULL, this->energy, true, false);
 				break;
 
 			case kSawBlade:

@@ -83,10 +83,6 @@ extern TextureDefinition ONE_WAY_PLATFORM_4_TX;
 
 extern TextureDefinition MOUND_1_TX;
 extern TextureDefinition MOUND_2_TX;
-
-extern TextureDefinition LAVA_TX;
-extern TextureDefinition LAVA_TOP_TX;
-
 extern TextureDefinition COG_WHEEL_TX;
 
 extern TextureDefinition GRASS_TX;

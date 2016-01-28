@@ -108,7 +108,7 @@ InanimatedInGameEntityROMDef LAVA_IG =
         },
 
         // collision detection gap (up, down, left, right)
-        {2, 0, 0, 0},
+        {6, 0, 0, 0},
 
         // in game type
         kLava,

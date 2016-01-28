@@ -43,6 +43,10 @@ extern EntityDefinition LAYER_SWITCH_DOOR_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 extern EntityDefinition AFFINE_DOOR_AG;
 
+extern EntityDefinition LAVA_IG;
+extern EntityDefinition LAVA_TOP_AG;
+extern EntityDefinition LAVA_TRIGGER_IG;
+
 extern EntityDefinition HIDE_LAYER_10x7_AG;
 
 extern EntityDefinition HINT_MC;
