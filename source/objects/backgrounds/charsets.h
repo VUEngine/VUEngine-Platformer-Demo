@@ -14,38 +14,41 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ELEMENTS_H_
-#define ELEMENTS_H_
+#ifndef BACKGROUND_CHARSETS_H_
+#define BACKGROUND_CHARSETS_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Door/Door.h"
-#include "HideLayer/HideLayer.h"
-#include "GUI/GUI.h"
-#include "Hint/Hint.h"
-
-#include "textures.h"
-#include "charsets.h"
+#include <CharSet.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition GUI_AG;
+extern CharSetDefinition CLOUDS_A_CH;
+extern CharSetDefinition CLOUDS_B_CH;
+extern CharSetDefinition MOUND_BG_BACK_CH;
+extern CharSetDefinition MOUND_BG_MIDDLE_CH;
+extern CharSetDefinition MOUND_BG_FRONT_CH;
+extern CharSetDefinition BUSH_CH;
+extern CharSetDefinition GRASS_CH;
+extern CharSetDefinition STAR_CH;
 
-extern EntityDefinition DOOR_AG;
-extern EntityDefinition DOOR_BACK_AG;
-extern EntityDefinition LAYER_SWITCH_DOOR_AG;
-extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
-extern EntityDefinition AFFINE_DOOR_AG;
+extern CharSetDefinition LEVEL_1_COIN_ROOM_CH;
 
-extern EntityDefinition HIDE_LAYER_10x7_AG;
+extern CharSetDefinition LEVEL_1_HOUSE_CH;
 
-extern EntityDefinition HINT_MC;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_CH;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_CH;
+
+extern CharSetDefinition LEVEL_1_TOWER_BACK_1_CH;
+extern CharSetDefinition LEVEL_1_TOWER_MAIN_BACK_CH;
+extern CharSetDefinition LEVEL_1_TOWER_MAIN_CH;
 
 
 #endif

@@ -1,4 +1,4 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+    /* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
  *
  * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
@@ -14,38 +14,19 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ELEMENTS_H_
-#define ELEMENTS_H_
+#ifndef ITEMS_CHARSETS_H_
+#define ITEMS_CHARSETS_H_
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+// 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#include "Door/Door.h"
-#include "HideLayer/HideLayer.h"
-#include "GUI/GUI.h"
-#include "Hint/Hint.h"
-
-#include "textures.h"
-#include "charsets.h"
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern EntityDefinition GUI_AG;
-
-extern EntityDefinition DOOR_AG;
-extern EntityDefinition DOOR_BACK_AG;
-extern EntityDefinition LAYER_SWITCH_DOOR_AG;
-extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
-extern EntityDefinition AFFINE_DOOR_AG;
-
-extern EntityDefinition HIDE_LAYER_10x7_AG;
-
-extern EntityDefinition HINT_MC;
+extern CharSetDefinition COIN_CH;
+extern CharSetDefinition COIN_SILHOUETTE_CH;
+extern CharSetDefinition COIN_BACK_CH;
+extern CharSetDefinition COIN_BACK_SILHOUETTE_CH;
+extern CharSetDefinition KEY_CH;
 
 
 #endif

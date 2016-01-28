@@ -22,6 +22,9 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include "textures.h"
+#include "charsets.h"
+
 #include "Cannon/Cannon.h"
 #include "CannonBall/CannonBall.h"
 #include "Hero/Hero.h"

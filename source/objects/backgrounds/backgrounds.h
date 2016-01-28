@@ -26,6 +26,7 @@
 #include "MoundBG/Clouds.h"
 #include <Entity.h>
 #include "textures.h"
+#include "charsets.h"
 
 
 //---------------------------------------------------------------------------------------------------------

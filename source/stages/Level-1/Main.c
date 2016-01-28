@@ -323,25 +323,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-// TODO: put me in a header file
-extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
-extern CharSetDefinition DOOR_CH;
-extern CharSetDefinition COIN_CH;
-extern CharSetDefinition COIN_BACK_CH;
-extern CharSetDefinition COIN_SILHOUETTE_CH;
-extern CharSetDefinition COIN_BACK_SILHOUETTE_CH;
-extern CharSetDefinition MOUND_BG_BACK_CH;
-extern CharSetDefinition MOUND_BG_MIDDLE_CH;
-extern CharSetDefinition MOUND_BG_FRONT_CH;
-extern CharSetDefinition HIDE_LAYER_10x7_CH;
-extern CharSetDefinition SNAIL_CH;
-extern CharSetDefinition GRASS_CH;
-extern CharSetDefinition BUSH_CH;
-extern CharSetDefinition LEVEL_1_HOUSE_CH;
-extern CharSetDefinition SAW_BLADE_CH;
-extern CharSetDefinition KEY_CH;
-
-
 CharSetROMDef* LEVEL_1_MAIN_ST_CHARSETS[] =
 {
 	&LEVEL_1_MAIN_1_MAIN_CH,

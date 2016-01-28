@@ -14,38 +14,51 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ELEMENTS_H_
-#define ELEMENTS_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "Door/Door.h"
-#include "HideLayer/HideLayer.h"
-#include "GUI/GUI.h"
-#include "Hint/Hint.h"
-
-#include "textures.h"
-#include "charsets.h"
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition GUI_AG;
+InanimatedInGameEntityROMDef COLLISION_16x2x1 =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
 
-extern EntityDefinition DOOR_AG;
-extern EntityDefinition DOOR_BACK_AG;
-extern EntityDefinition LAYER_SWITCH_DOOR_AG;
-extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
-extern EntityDefinition AFFINE_DOOR_AG;
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-extern EntityDefinition HIDE_LAYER_10x7_AG;
+        // in game type
+        kSolid,
 
-extern EntityDefinition HINT_MC;
+    	// width
+        // if 0, width and height will be inferred from the texture's size
+    	16 * 8,
 
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	2 * 8,
 
-#endif
+    	// depth
+    	1 * 8
+    },
+
+    // friction
+    FTOFIX19_13(FLOOR_FRICTION),
+
+    // elasticity
+    FTOFIX19_13(FLOOR_ELASTICITY),
+
+    // register shape
+    true,
+};

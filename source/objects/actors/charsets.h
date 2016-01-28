@@ -14,38 +14,16 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ELEMENTS_H_
-#define ELEMENTS_H_
+#ifndef ACTORS_CHARSETS_H_
+#define ACTORS_CHARSETS_H_
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+// 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#include "Door/Door.h"
-#include "HideLayer/HideLayer.h"
-#include "GUI/GUI.h"
-#include "Hint/Hint.h"
-
-#include "textures.h"
-#include "charsets.h"
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											  DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern EntityDefinition GUI_AG;
-
-extern EntityDefinition DOOR_AG;
-extern EntityDefinition DOOR_BACK_AG;
-extern EntityDefinition LAYER_SWITCH_DOOR_AG;
-extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
-extern EntityDefinition AFFINE_DOOR_AG;
-
-extern EntityDefinition HIDE_LAYER_10x7_AG;
-
-extern EntityDefinition HINT_MC;
+extern CharSetDefinition SAW_BLADE_CH;
+extern CharSetDefinition SNAIL_CH;
 
 
 #endif
