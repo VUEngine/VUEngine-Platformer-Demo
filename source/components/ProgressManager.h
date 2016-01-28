@@ -60,7 +60,7 @@ __CLASS(ProgressManager);
 #define COIN_NAME_LENGTH		10
 #define STAGE_NAME_LENGTH		20
 #define SAVE_STAMP_LENGTH		20
-#define TOTAL_COINS_IN_GAME		100
+#define TOTAL_COINS_IN_GAME		64
 #define SAVE_STAMP				"GameSaved"
 
 typedef struct CoinStatus 
