@@ -154,14 +154,31 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
+extern CharSetDefinition LEVEL_1_TOWER_BACK_1_CH;
+extern CharSetDefinition LEVEL_1_TOWER_MAIN_BACK_CH;
+extern CharSetDefinition LEVEL_1_TOWER_MAIN_CH;
+
+
+CharSetROMDef* LEVEL_1_TOWER_ST_CHARSETS[] =
+{
+	&LEVEL_1_TOWER_BACK_1_CH,
+	&LEVEL_1_TOWER_MAIN_BACK_CH,
+	&LEVEL_1_TOWER_MAIN_CH,
+	NULL
+};
+
+
 StageTextureEntryROMDef LEVEL_1_TOWER_ST_TEXTURES[] =
 {
+	{&LEVEL_1_TOWER_BACK_1_TX, true},
+	{&LEVEL_1_TOWER_MAIN_BACK_1_TX, true},
+	{&LEVEL_1_TOWER_MAIN_1_TX, true},
+	{&LEVEL_1_TOWER_MAIN_1_TX, false},
+	{&LEVEL_1_TOWER_MAIN_BACK_1_TX, false},
 	{&DOOR_TX, false},
 	{&GUI_TX, false},
 	{&LAVA_TX, false},
 	{&LAVA_TOP_TX, false},
-	{&LEVEL_1_TOWER_MAIN_1_TX, false},
-	{&LEVEL_1_TOWER_MAIN_BACK_1_TX, false},
 	{&COG_WHEEL_TX, false},
 	{NULL, false}
 };
@@ -280,7 +297,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
         },
 
         // char sets to preload
-        (CharSetDefinition**)NULL,
+        (CharSetDefinition**)LEVEL_1_TOWER_ST_CHARSETS,
 
         // textures to preload
         (StageTextureEntryDefinition*)LEVEL_1_TOWER_ST_TEXTURES,
