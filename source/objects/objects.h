@@ -37,10 +37,6 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition MANAGED_ENTITY;
-extern EntityDefinition ENTITY;
-extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
-
 
 
 #endif

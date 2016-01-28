@@ -26,6 +26,7 @@
 #include <ManagedEntity.h>
 #include <CollisionsContainerEntity.h>
 
+#include <objects.h>
 #include <screens.h>
 #include <sound.h>
 

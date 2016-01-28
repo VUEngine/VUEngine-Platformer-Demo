@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											    PROTOTYPES
+// 											    DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern PlatformerStageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP;
@@ -40,6 +40,10 @@ extern PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
 
 PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[];
 PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[];
+
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition ENTITY;
+extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -405,7 +409,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
         // streaming
     	{
     		// delay per cycle
-    		16,
+    		20,
     		// load padding
     		40,
     		// unload padding

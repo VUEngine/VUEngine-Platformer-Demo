@@ -30,10 +30,16 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											    PROTOTYPES
+// 											    DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP;
+
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition ENTITY;
+extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
+
+
 
 
 //---------------------------------------------------------------------------------------------------------
