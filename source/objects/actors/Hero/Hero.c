@@ -562,11 +562,11 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 	}
 }
 
-void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins)
+void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
     if (!Hero_isInvincible(this) || !invincibleWins)
     {
-    	if(other && Body_isMoving(this->body))
+    	if(alignToEnemy && other && Body_isMoving(this->body))
     	{
 			Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, other), false);
     	}
@@ -1076,25 +1076,25 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kLava:
 
-                Hero_takeHitFrom(this, NULL, this->energy, true, false);
+                Hero_takeHitFrom(this, NULL, this->energy, true, false, true);
 				break;
 
 			case kSawBlade:
 			case kSnail:
 				
-				Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true);
+				Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kCannonBall:
 
-                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true);
+                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true, false);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kHit:
 
-                Hero_takeHitFrom(this, NULL, 1, true, true);
+                Hero_takeHitFrom(this, NULL, 1, true, true, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 

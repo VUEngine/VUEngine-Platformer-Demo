@@ -20,7 +20,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <BgmapAnimatedSprite.h>
 #include <ObjectAnimatedSprite.h>
 #include "Coin.h"
 
@@ -509,7 +508,7 @@ AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG =
 ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+	__TYPE(ObjectAnimatedSprite),
 
 	// texture definition
 	(TextureDefinition*)&AFFINE_COIN_TX,

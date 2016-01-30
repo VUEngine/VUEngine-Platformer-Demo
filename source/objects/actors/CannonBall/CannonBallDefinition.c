@@ -107,7 +107,7 @@ TextureROMDef CANNON_BALL_TX =
 BgmapSpriteROMDef CANNON_BALL_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&CANNON_BALL_TX,

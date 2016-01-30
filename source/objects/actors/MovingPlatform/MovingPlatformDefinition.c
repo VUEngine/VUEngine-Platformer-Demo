@@ -19,7 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BgmapAnimatedSprite.h>
+#include <BgmapSprite.h>
 #include <MovingEntity.h>
 
 
@@ -107,7 +107,7 @@ TextureROMDef MOVING_PLATFORM_TX =
 BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
 {
 	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+	__TYPE(BgmapSprite),
 
 	// texture definition
 	(TextureDefinition*)&MOVING_PLATFORM_TX,
