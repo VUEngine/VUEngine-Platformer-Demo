@@ -43,7 +43,7 @@ extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
-#define LEVEL_1_TOWER_HEIGHT 	384 * 2
+#define LEVEL_1_TOWER_HEIGHT 	1024
 #define SCREEN_Y_POSITION 		LEVEL_1_TOWER_HEIGHT - __SCREEN_HEIGHT
 
 
@@ -88,6 +88,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_2[] =
 	{&COLLISION_32x4x1,				{FTOFIX19_13(32),   FTOFIX19_13(-97),   FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 3rd level floor right
 	{&COLLISION_48x4x1,				{FTOFIX19_13(-80),  FTOFIX19_13(-177),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 4th level floor left
 	{&COLLISION_48x2x1,				{FTOFIX19_13(-82),  FTOFIX19_13(-247),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floor below spikes
+	{&COLLISION_14x6x1,				{FTOFIX19_13(-136), FTOFIX19_13(-216),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // left wall below spikes
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -124,12 +125,23 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_2[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
+PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
+{
+	{&COLLISION_ONEWAY_7x7x1,		{FTOFIX19_13(-80),  FTOFIX19_13(-132),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room one way
+	{&COLLISION_48x4x1,				{FTOFIX19_13(144),  FTOFIX19_13(-144),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room right floor
+	{&COLLISION_8x20x1,				{FTOFIX19_13(-144), FTOFIX19_13(-80),   FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room left floor
+	{&COLLISION_48x2x1,				{FTOFIX19_13(0),    FTOFIX19_13(-232),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room ceiling
+	{&COLLISION_4x8x1,				{FTOFIX19_13(80),   FTOFIX19_13(-192),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room right wall
+
+	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+};
+
 PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
 	{&HERO_AC, 						{FTOFIX19_13(72), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 128), 	FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
-    {&LAVA_IG,		        		{FTOFIX19_13(190), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT + 72), 	FTOFIX19_13(LAYER_0)}, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
+    {&LAVA_IG,		        		{FTOFIX19_13(190), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT + 80), 	FTOFIX19_13(LAYER_0)}, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
@@ -185,6 +197,12 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 	{&COIN_AG, 						{FTOFIX19_13(192 - 8 + 80), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 600 -56-32), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 63", NULL, NULL, false},
 
     {&MOVING_PLATFORM_V6_AC,        {FTOFIX19_13(336),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 752),    FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
+
+    {&MOVING_PLATFORM_V6_AC,        {FTOFIX19_13(112),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 848),    FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
+	{&COIN_AG, 						{FTOFIX19_13(40), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 944), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 64", NULL, NULL, false},
+	{&DOOR_AG, 						{FTOFIX19_13(208), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 946), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 64", NULL, NULL, false},
+
+    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 768),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };

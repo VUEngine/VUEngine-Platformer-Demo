@@ -30,30 +30,30 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define LAVA_MOVE_DELAY 200
+#define LAVA_MOVE_DELAY 	152
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Lava_METHODS															\
-	InanimatedInGameEntity_METHODS;
+#define Lava_METHODS																					\
+	InanimatedInGameEntity_METHODS;																		\
 	
 
-#define Lava_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);								\
-	__VIRTUAL_SET(ClassName, Lava, handleMessage);								\
-    __VIRTUAL_SET(ClassName, Lava, isVisible);									\
-    __VIRTUAL_SET(ClassName, Lava, resume);										\
-	__VIRTUAL_SET(ClassName, Lava, moves);										\
+#define Lava_SET_VTABLE(ClassName)																		\
+	InanimatedInGameEntity_SET_VTABLE(ClassName);														\
+	__VIRTUAL_SET(ClassName, Lava, handleMessage);														\
+    __VIRTUAL_SET(ClassName, Lava, isVisible);															\
+    __VIRTUAL_SET(ClassName, Lava, resume);																\
+	__VIRTUAL_SET(ClassName, Lava, moves);																\
 
 __CLASS(Lava);
 
-#define Lava_ATTRIBUTES															\
-																				\
-	/* it is derived from */													\
-	InanimatedInGameEntity_ATTRIBUTES											\
+#define Lava_ATTRIBUTES																					\
+																										\
+	/* it is derived from */																			\
+	InanimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------

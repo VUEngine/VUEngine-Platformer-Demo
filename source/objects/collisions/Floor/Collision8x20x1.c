@@ -27,7 +27,7 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_ONEWAY_7x7x1 =
+InanimatedInGameEntityROMDef COLLISION_8x20x1 =
 {
     {
         {
@@ -39,15 +39,15 @@ InanimatedInGameEntityROMDef COLLISION_ONEWAY_7x7x1 =
         {0, 0, 0, 0},
 
         // in game type
-        kTopSolid,
+        kSolid,
 
-    	// width
+        // width
         // if 0, width and height will be inferred from the texture's size
-    	7 * 8,
+    	8 * 8,
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	7 * 8,
+    	20 * 8,
 
     	// depth
     	1 * 8

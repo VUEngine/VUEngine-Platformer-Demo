@@ -57,6 +57,7 @@ extern EntityDefinition COLLISION_12x12x1;
 extern EntityDefinition COLLISION_12x4x1;
 extern EntityDefinition COLLISION_8x4x1;
 extern EntityDefinition COLLISION_8x3x1;
+extern EntityDefinition COLLISION_8x20x1;
 extern EntityDefinition COLLISION_6x4x1;
 extern EntityDefinition COLLISION_4x8x1;
 extern EntityDefinition COLLISION_4x4x1;
