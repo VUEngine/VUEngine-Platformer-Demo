@@ -139,6 +139,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 PositionedEntityROMDef LEVEL_1_TOWER_ST_ENTITIES[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
+	{&LEVEL_1_TOWER_MAIN_BACK_IM,  	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
 	{&HERO_AC, 						{FTOFIX19_13(72), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 128), 	FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
     {&LAVA_IG,		        		{FTOFIX19_13(190), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT + 80), 	FTOFIX19_13(LAYER_0)}, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},

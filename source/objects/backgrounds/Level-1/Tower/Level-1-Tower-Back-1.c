@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <Image.h>
 #include <MBackground.h>
 #include <MBgmapSprite.h>
 
@@ -109,4 +110,17 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 	
 	// y loop
 	true
+};
+
+BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES[] =
+{
+	(BgmapSpriteROMDef*)&LEVEL_1_TOWER_BACK_1_IM_SPRITE,
+	NULL
+};
+
+
+ImageROMDef LEVEL_1_TOWER_MAIN_BACK_IM =
+{
+	__TYPE(MBackground),
+	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES,
 };
