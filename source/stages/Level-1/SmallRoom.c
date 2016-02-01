@@ -195,7 +195,7 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
         (CharSetDefinition**)NULL,
 
         // textures to preload
-        (StageTextureEntryDefinition**)NULL,
+        (StageTextureEntryDefinition*)NULL,
 
         // UI
         {
