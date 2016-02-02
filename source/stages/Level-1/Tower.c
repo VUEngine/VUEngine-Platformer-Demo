@@ -62,7 +62,7 @@ PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_ENTITIES[] =
 {
-    {&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(1), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
 	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
     {&TORCH_AG,                     {FTOFIX19_13(-107), FTOFIX19_13(136), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(12), 	FTOFIX19_13(136), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},

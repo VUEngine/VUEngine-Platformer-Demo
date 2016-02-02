@@ -228,7 +228,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 #ifdef __ANIMATION_EDITOR
 	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
-	// make a fade in
+	// make a fade out
     Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);

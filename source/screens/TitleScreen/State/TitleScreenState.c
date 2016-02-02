@@ -198,10 +198,13 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 // state's suspend
 static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 {
-	GameState_suspend(__SAFE_CAST(GameState, this), owner);
-
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
+
+	// make a fade in
+    Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+
+	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
 
 // state's handle message
