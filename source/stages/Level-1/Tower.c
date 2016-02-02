@@ -77,7 +77,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_1[] =
 	{&COLLISION_48x28x1,			{FTOFIX19_13(-128), FTOFIX19_13(288), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom left floor
 	{&COLLISION_48x28x1,			{FTOFIX19_13(302),  FTOFIX19_13(256), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom right floor
 	{&COLLISION_4x8x1,				{FTOFIX19_13(160),  FTOFIX19_13(144), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // step stone bottom right
-	{&COLLISION_4x2x1,				{FTOFIX19_13(80),   FTOFIX19_13(71), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone
+	{&COLLISION_4x2x1,				{FTOFIX19_13(80),   FTOFIX19_13(72), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floating stone
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
