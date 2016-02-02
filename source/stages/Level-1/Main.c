@@ -210,7 +210,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
+PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
@@ -317,7 +317,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_ENTITIES[] =
+PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_CHILDREN[] =
 {
 	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
@@ -376,15 +376,28 @@ StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 PlatformerStageROMDef LEVEL_1_MAIN_ST =
 {
     {
-        // size
-        {
-            // x
-            2988,
-            // y
-            512,
-            // z
-            256,
-        },
+    	// level
+		{
+	        // size
+	        {
+	            // x
+	            2988,
+	            // y
+	            512,
+	            // z
+	            256,
+	        },
+	        
+			// screen's initial position inside the game world
+	        {
+	            // x
+	            ITOFIX19_13(0),
+	            // y
+	            ITOFIX19_13(0),
+	            // z
+	            ITOFIX19_13(0)
+	        },
+		},
 
         // streaming
     	{
@@ -397,107 +410,116 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
     		// streaming amplitude
     		24,
     	},
+    	
+    	// rendering
+    	{
+    		// number of cycles the texture writing is idle
+    		__TARGET_FPS / 10,
+    		
+    		// maximum number of texture's rows to write each time the 
+    		// texture writing is active
+    		12,
+    		
+            // Palette's config
+            {
+            	// background color
+            	__COLOR_BLACK,
+            	
+            	{
+            		__BGMAP_PALETTE_0,
+            		__BGMAP_PALETTE_1,
+            		__BGMAP_PALETTE_2,
+            		__BGMAP_PALETTE_3,
+            	},
+            	{
+            		__OBJECT_PALETTE_0,
+            		__OBJECT_PALETTE_1,
+            		__OBJECT_PALETTE_2,
+            		__OBJECT_PALETTE_3,
+            	} 
+            },
+            
+            // BGMAP segments configuration
+            // number of segments reserved for dynamically allocated textures when preloading
+            5,
 
-        // gravity
+        	// OBJs segments sizes (must total 1024)
+            {
+                // SPT0
+            	__AVAILABLE_CHAR_OBJECTS / 4,
+                // SPT1
+            	__AVAILABLE_CHAR_OBJECTS / 4,
+                // SPT2
+            	__AVAILABLE_CHAR_OBJECTS / 4,
+                // SPT3
+            	__AVAILABLE_CHAR_OBJECTS / 4,
+            },
+            
+            // OBJs segments z coordinates
+            // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+            // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
+            {
+                // SPT0
+                FTOFIX19_13(LAYER_0_PARTICLES),
+                // SPT1
+                FTOFIX19_13(LAYER_0_PARTICLES),
+                // SPT2
+                FTOFIX19_13(LAYER_0_PARTICLES),
+                // SPT3
+                FTOFIX19_13(24),
+            },
+
+            // optical configuration values
+            {
+        		// maximum view distance's power into the horizon
+        		__MAXIMUM_VIEW_DISTANCE_POWER + 1,
+                // distance of the eyes to the screen
+                ITOFIX19_13(__DISTANCE_EYE_SCREEN),
+                // distance from left to right eye (depth sensation)
+                ITOFIX19_13(__BASE_FACTOR),
+                // horizontal View point center
+                ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+                // vertical View point center
+                ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+            },            
+    	},
+
+        //physics
         {
-            ITOFIX19_13(0),
-            ITOFIX19_13(__GRAVITY),
-            ITOFIX19_13(0)
+            // gravity
+            {
+                ITOFIX19_13(0),
+                ITOFIX19_13(__GRAVITY),
+                ITOFIX19_13(0)
+            },
+            
+	        // friction
+	        FTOFIX19_13(0.1f),
         },
 
-        // friction
-        FTOFIX19_13(0.1f),
-        
-        // Palette's config
+        // assets
         {
-        	// background color
-        	__COLOR_BLACK,
-        	
-        	{
-        		__BGMAP_PALETTE_0,
-        		__BGMAP_PALETTE_1,
-        		__BGMAP_PALETTE_2,
-        		__BGMAP_PALETTE_3,
-        	},
-        	{
-        		__OBJECT_PALETTE_0,
-        		__OBJECT_PALETTE_1,
-        		__OBJECT_PALETTE_2,
-        		__OBJECT_PALETTE_3,
-        	} 
-        },
-
-        // BGMAP segments configuration
-        // number of segments reserved for dynamically allocated textures when preloading
-        5,
-
-    	// OBJs segments sizes (must total 1024)
-        {
-            // SPT0
-        	__AVAILABLE_CHAR_OBJECTS / 4,
-            // SPT1
-        	__AVAILABLE_CHAR_OBJECTS / 4,
-            // SPT2
-        	__AVAILABLE_CHAR_OBJECTS / 4,
-            // SPT3
-        	__AVAILABLE_CHAR_OBJECTS / 4,
-        },
-        
-        // OBJs segments z coordinates
-        // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
-        // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
-        {
-            // SPT0
-            FTOFIX19_13(LAYER_0_PARTICLES),
-            // SPT1
-            FTOFIX19_13(LAYER_0_PARTICLES),
-            // SPT2
-            FTOFIX19_13(LAYER_0_PARTICLES),
-            // SPT3
-            FTOFIX19_13(24),
-        },
-
-        // initial screen position
-        {
-            // x
-            ITOFIX19_13(0),
-            // y
-            ITOFIX19_13(0),
-            // z
-            ITOFIX19_13(0)
-        },
-
-        // optical configuration values
-        {
-    		// maximum view distance's power into the horizon
-    		__MAXIMUM_VIEW_DISTANCE_POWER + 1,
-            // distance of the eyes to the screen
-            ITOFIX19_13(__DISTANCE_EYE_SCREEN),
-            // distance from left to right eye (depth sensation)
-            ITOFIX19_13(__BASE_FACTOR),
-            // horizontal View point center
-            ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
-            // vertical View point center
-            ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
-        },
-
-        // char sets to preload
-        (CharSetDefinition**)LEVEL_1_MAIN_ST_CHARSETS,
-
-        // textures to preload
-        (StageTextureEntryDefinition*)LEVEL_1_MAIN_ST_TEXTURES,
-
-        // UI
-        {
-            LEVEL_1_MAIN_ST_UI_ENTITIES,
-            __TYPE(UI),
+	        // char sets to preload
+	        (CharSetDefinition**)LEVEL_1_MAIN_ST_CHARSETS,
+	
+	        // textures to preload
+	        (StageTextureEntryDefinition*)LEVEL_1_MAIN_ST_TEXTURES,
+	        
+	        // background music
+	        (const u16 (*)[])KRISSE_BGM,
         },
 
         // entities
-        LEVEL_1_MAIN_ST_ENTITIES,
-
-        // background music
-        (const u16 (*)[])KRISSE_BGM,
+        {
+	        // UI
+	        {
+	            LEVEL_1_MAIN_ST_UI_CHILDREN,
+	            __TYPE(UI),
+	        },
+	
+	        // children
+	        LEVEL_1_MAIN_ST_CHILDREN,
+        }
     },
 
     // identifier

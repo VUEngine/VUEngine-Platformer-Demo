@@ -47,7 +47,7 @@
 // Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
 // know that it must stop reading the stage's/ui's textures and entities.
 
-PositionedEntityROMDef PAUSE_SCREEN_ST_ENTITIES[] =
+PositionedEntityROMDef PAUSE_SCREEN_ST_CHILDREN[] =
 {
 	{&VBJAENGINE_IM,        {FTOFIX19_13(192), FTOFIX19_13(42), FTOFIX19_13(LAYER_0 + 32)}, NULL, NULL, NULL, true},
 	{&LOGO_IM, 			    {FTOFIX19_13(192), FTOFIX19_13(88), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
@@ -55,7 +55,7 @@ PositionedEntityROMDef PAUSE_SCREEN_ST_ENTITIES[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef PAUSE_SCREEN_ST_UI_ENTITIES[] =
+PositionedEntityROMDef PAUSE_SCREEN_ST_UI_CHILDREN[] =
 {
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -77,127 +77,148 @@ StageTextureEntryROMDef PAUSE_SCREEN_ST_TEXTURES[] =
 
 StageROMDef PAUSE_SCREEN_ST =
 {
-    // size
-    {
-        // x
-        LEVEL_X_SIZE,
-        // y
-        LEVEL_Y_SIZE,
-        // z
-        LEVEL_Z_SIZE
-    },
+	// level
+	{
+        // size
+        {
+            // x
+            __SCREEN_WIDTH,
+            // y
+            __SCREEN_HEIGHT,
+            // z
+            1
+        },
+        
+		// screen's initial position inside the game world
+        {
+            // x
+            ITOFIX19_13(0),
+            // y
+            ITOFIX19_13(0),
+            // z
+            ITOFIX19_13(0)
+        },
+	},
 
     // streaming
 	{
 		// delay per cycle
-		8,
+		15,
 		// load padding
-		64,
+		40,
 		// unload padding
 		16,
 		// streaming amplitude
-		16,
+		24,
+	},
+	
+	// rendering
+	{
+		// number of cycles the texture writing is idle
+		__TARGET_FPS / 10,
+		
+		// maximum number of texture's rows to write each time the 
+		// texture writing is active
+		12,
+		
+        // Palette's config
+        {
+        	// background color
+        	__COLOR_BLACK,
+        	
+        	{
+                __BGMAP_PALETTE_0,
+                __BGMAP_PALETTE_1,
+                __BGMAP_PALETTE_2,
+                __BGMAP_PALETTE_3,
+        	},
+        	{
+                __OBJECT_PALETTE_0,
+                __OBJECT_PALETTE_1,
+                __OBJECT_PALETTE_2,
+                __OBJECT_PALETTE_3,
+        	} 
+        },
+        
+        // BGMAP segments configuration
+        // number of segments reserved for dynamically allocated textures when preloading
+        1,
+
+    	// OBJs segments sizes (must total 1024)
+        {
+            // SPT0
+        	__AVAILABLE_CHAR_OBJECTS / 4,
+            // SPT1
+        	__AVAILABLE_CHAR_OBJECTS / 4,
+            // SPT2
+        	__AVAILABLE_CHAR_OBJECTS / 4,
+            // SPT3
+        	__AVAILABLE_CHAR_OBJECTS / 4,
+        },
+        
+        // OBJs segments z coordinates
+        // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+        // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
+        {
+            // SPT0
+            FTOFIX19_13(LAYER_0_PARTICLES),
+            // SPT1
+            FTOFIX19_13(LAYER_0_PARTICLES),
+            // SPT2
+            FTOFIX19_13(LAYER_0_PARTICLES),
+            // SPT3
+            FTOFIX19_13(24),
+        },
+
+        // optical configuration values
+        {
+    		// maximum view distance's power into the horizon
+    		__MAXIMUM_VIEW_DISTANCE_POWER,
+    		// distance of the eyes to the screen
+        	ITOFIX19_13(__DISTANCE_EYE_SCREEN),
+    		// distance from left to right eye (depth sensation)
+    		ITOFIX19_13(__BASE_FACTOR),
+    		// horizontal View point center
+    		ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+    		// vertical View point center
+    		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+        },            
 	},
 
-	// gravity
+    //physics
     {
-	    ITOFIX19_13(0),
-	    ITOFIX19_13(0),
-	    ITOFIX19_13(0)
+        // gravity
+        {
+    	    ITOFIX19_13(0),
+    	    ITOFIX19_13(0),
+    	    ITOFIX19_13(0)
+        },
+        
+        // friction
+        FTOFIX19_13(0),
     },
 
-    // friction
-    ITOFIX19_13(0),
-    
-    // Palette's config
+    // assets
     {
-    	// background color
-    	__COLOR_DARK_RED,
-    	
-    	{
-            __BGMAP_PALETTE_0,
-            __BGMAP_PALETTE_1,
-            __BGMAP_PALETTE_2,
-            __BGMAP_PALETTE_3,
-    	},
-    	{
-            __OBJECT_PALETTE_0,
-            __OBJECT_PALETTE_1,
-            __OBJECT_PALETTE_2,
-            __OBJECT_PALETTE_3,
-    	} 
-    },
+        // char sets to preload
+        (CharSetDefinition**)NULL,
 
-    // BGMAP segments configuration
-    // number of segments reserved for dynamically allocated textures when preloading
-    1,
-
-	// OBJs segments sizes (must total 1024)
-    {
-        // SPT0
-    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-        // SPT1
-    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-        // SPT2
-    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-        // SPT3
-    	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-    },
-
-
-	// OBJs segments z coordinates
-	// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
-	// since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
-    {
-        // SPT0
-		ITOFIX19_13(0),
-        // SPT1
-		ITOFIX19_13(0),
-        // SPT2
-		ITOFIX19_13(0),
-        // SPT3
-    	ITOFIX19_13(0),
-    },
-
-    // initial screen position
-    {
-        // x
-        ITOFIX19_13(SCREEN_X_POSITION),
-        // y
-        ITOFIX19_13(SCREEN_Y_POSITION),
-        // z
-        ITOFIX19_13(SCREEN_Z_POSITION)
-    },
-
-    // optical configuration values
-    {
-		// maximum view distance's power into the horizon
-		__MAXIMUM_VIEW_DISTANCE_POWER,
-		// distance of the eyes to the screen
-    	ITOFIX19_13(__DISTANCE_EYE_SCREEN),
-		// distance from left to right eye (depth sensation)
-		ITOFIX19_13(__BASE_FACTOR),
-		// horizontal View point center
-		ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
-		// vertical View point center
-		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
-    },
-    
-    // char sets to preload
-    (CharSetDefinition**)NULL,
-
-    // textures to preload
-    (StageTextureEntryDefinition*)PAUSE_SCREEN_ST_TEXTURES,
-
-    // UI
-    {
-        PAUSE_SCREEN_ST_UI_ENTITIES,
-        __TYPE(UI),
+        // textures to preload
+        (StageTextureEntryDefinition*)PAUSE_SCREEN_ST_TEXTURES,
+        
+        // background music
+        NULL,
     },
 
     // entities
-    PAUSE_SCREEN_ST_ENTITIES,
+    {
+        // UI
+        {
+        	PAUSE_SCREEN_ST_UI_CHILDREN,
+            __TYPE(UI),
+        },
 
-    // background music
-    NULL,
+        // children
+        PAUSE_SCREEN_ST_CHILDREN,
+    }		
 };

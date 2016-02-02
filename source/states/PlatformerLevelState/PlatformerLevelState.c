@@ -129,7 +129,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	{
 	    // iterate stage definition to find global position of destination entity
 		VBVec3D environmentPosition = {0, 0, 0};
-		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->entryPointDefinition->platformerStageDefinition->stageDefinition.entities, environmentPosition, this->entryPointDefinition->destinationName);
+		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->entryPointDefinition->platformerStageDefinition->stageDefinition.entities.children, environmentPosition, this->entryPointDefinition->destinationName);
 
 		// if global position of destination entity could be found, move the hero and the screen there
         if(initialPosition)
@@ -140,7 +140,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
             initialPosition->z += this->entryPointDefinition->offset.z;
 
             // set world's limits
-            Screen_setStageSize(Screen_getInstance(), this->entryPointDefinition->platformerStageDefinition->stageDefinition.size);
+            Screen_setStageSize(Screen_getInstance(), this->entryPointDefinition->platformerStageDefinition->stageDefinition.level.size);
 
             // focus screen on new position
             VBVec3D screenPosition =
