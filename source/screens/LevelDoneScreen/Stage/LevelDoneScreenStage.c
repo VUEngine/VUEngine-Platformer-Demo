@@ -152,9 +152,9 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
         	ITOFIX19_13(__DISTANCE_EYE_SCREEN),
     		// distance from left to right eye (depth sensation)
     		ITOFIX19_13(__BASE_FACTOR),
-    		// horizontal View point center
+    		// horizontal view point center
     		ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
-    		// vertical View point center
+    		// vertical view point center
     		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
         },            
 	},

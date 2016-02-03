@@ -346,9 +346,9 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
                 ITOFIX19_13(__DISTANCE_EYE_SCREEN),
                 // distance from left to right eye (depth sensation)
                 ITOFIX19_13(__BASE_FACTOR),
-                // horizontal View point center
+                // horizontal view point center
                 ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
-                // vertical View point center
+                // vertical view point center
                 ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
             },            
     	},
@@ -409,8 +409,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
     (PlatformerStageDefinition*)&LEVEL_1_TOWER_ST,
 
 	// name of the entity to start at
-    //"EntryDoor",
-    "Coin 64",
+    "EntryDoor",
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(16), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},

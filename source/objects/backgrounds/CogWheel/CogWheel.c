@@ -109,7 +109,7 @@ static void CogWheel_rotate(CogWheel this)
 	this->transform.localRotation.z += 1;
 	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 
-    // send delayed message to itself to trigger next movement
+    // send delayed message to self to trigger next movement
     MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
 
@@ -120,6 +120,6 @@ void CogWheel_resume(CogWheel this)
 
 	Entity_resume(__SAFE_CAST(Entity, this));
 
-    // send delayed message to itself to trigger next movement
+    // send delayed message to self to trigger next movement
     MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }

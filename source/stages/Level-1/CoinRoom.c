@@ -49,7 +49,7 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_CHILDREN[] =
 
     {&LEVEL_1_COIN_ROOM_MAIN_IM,        {FTOFIX19_13(192), 	FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, NULL, NULL, false},
 
-    {&COLLISION_48x2x1,             	{FTOFIX19_13(192), 	FTOFIX19_13(200), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&COLLISION_48x2x1,             	{FTOFIX19_13(192), 	FTOFIX19_13(199), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
     {&COLLISION_48x2x1,             	{FTOFIX19_13(192), 	FTOFIX19_13(2),   	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
     {&COLLISION_2x28x1,             	{FTOFIX19_13(8),   	FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
     {&COLLISION_2x28x1,             	{FTOFIX19_13(376), 	FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
@@ -212,9 +212,9 @@ PlatformerStageROMDef LEVEL_1_COIN_ROOM_ST =
                 ITOFIX19_13(__DISTANCE_EYE_SCREEN),
                 // distance from left to right eye (depth sensation)
                 ITOFIX19_13(__BASE_FACTOR),
-                // horizontal View point center
+                // horizontal view point center
                 ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
-                // vertical View point center
+                // vertical view point center
                 ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
             },            
     	},
