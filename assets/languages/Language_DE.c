@@ -62,10 +62,12 @@ const LangROMDef LANGUAGE_DE =
         //STR_LANGUAGE_SELECT:
         "Sprachauswahl",
 
-        /* Level Names */
+        /* Levels */
 
         //STR_LEVEL:
         "Level",
+        //STR_LEVEL_DONE:
+        "Level geschafft!",
         //STR_LEVEL_1_NAME:
         "Woohoo-Berge",
     },

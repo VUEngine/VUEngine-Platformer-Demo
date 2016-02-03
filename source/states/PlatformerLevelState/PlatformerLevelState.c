@@ -56,7 +56,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
-extern PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;	
+extern PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -352,7 +352,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				{
     				// adjustment screen
 	                PlatformerLevelState_setModeToPaused(this);
-					SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
+					SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
 					Game_pause(Game_getInstance(), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
 					break;
             	}

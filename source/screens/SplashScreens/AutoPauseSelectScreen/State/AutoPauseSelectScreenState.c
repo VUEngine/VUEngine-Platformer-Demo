@@ -67,7 +67,7 @@ static void AutoPauseSelectScreenState_constructor(AutoPauseSelectScreenState th
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, VBJaEngineScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, VBJaEngineScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
     this->selection = true;
 }

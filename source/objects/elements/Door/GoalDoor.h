@@ -14,50 +14,50 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TITLE_SCREEN_STATE_H_
-#define TITLE_SCREEN_STATE_H_
+#ifndef GOAL_DOOR_H_
+#define GOAL_DOOR_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameState.h>
+#include <Door.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define TitleScreenState_METHODS																		\
-	GameState_METHODS;											    									\
+#define GoalDoor_METHODS																				\
+	Door_METHODS;																						\
 
-// declare the virtual methods which are redefined
-#define TitleScreenState_SET_VTABLE(ClassName)															\
-	GameState_SET_VTABLE(ClassName)								    									\
-	__VIRTUAL_SET(ClassName, TitleScreenState, enter);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, exit);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, execute);												\
-	__VIRTUAL_SET(ClassName, TitleScreenState, resume);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, suspend);												\
-	__VIRTUAL_SET(ClassName, TitleScreenState, handleMessage);											\
+#define GoalDoor_SET_VTABLE(ClassName)																	\
+	Door_SET_VTABLE(ClassName);																			\
+	__VIRTUAL_SET(ClassName, GoalDoor, handleMessage);													\
+	__VIRTUAL_SET(ClassName, GoalDoor, ready);															\
+	__VIRTUAL_SET(ClassName, GoalDoor, hasDestination);													\
 
-__CLASS(TitleScreenState);
+__CLASS(GoalDoor);
 
-#define TitleScreenState_ATTRIBUTES							        									\
-														            									\
-	/* inherits */																						\
-	GameState_ATTRIBUTES																				\
+#define GoalDoor_ATTRIBUTES																				\
 																										\
-	char* lastLevelSelectLabel;																			\
+	/* it is derived from */																			\
+	Door_ATTRIBUTES																						\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-TitleScreenState TitleScreenState_getInstance(void);
+__CLASS_NEW_DECLARE(GoalDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+
+void GoalDoor_constructor(GoalDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+void GoalDoor_destructor(GoalDoor this);
+bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram);
+void GoalDoor_ready(Door this);
+bool GoalDoor_hasDestination(Door this);
 
 
 #endif

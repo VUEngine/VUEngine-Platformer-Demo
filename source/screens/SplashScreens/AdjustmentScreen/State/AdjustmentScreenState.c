@@ -61,7 +61,7 @@ static void AdjustmentScreenState_constructor(AdjustmentScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)& ADJUSTMENT_SCREEN_ST;
 }
 

@@ -114,7 +114,7 @@ asm: main.elf
 	@echo Creating machine.asm done
 	
 main.elf: $(ENGINE) dirs $(OBJECTS)
-		@echo Linking $(TARGET).
+		@echo Linking $(TARGET)
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
 			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB))
 

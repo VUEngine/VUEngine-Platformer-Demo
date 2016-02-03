@@ -40,12 +40,14 @@
 
 #define Door_METHODS																					\
 	AnimatedInGameEntity_METHODS;																		\
+	__VIRTUAL_DEC(hasDestination);																		\
 
 #define Door_SET_VTABLE(ClassName)																		\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
 	__VIRTUAL_SET(ClassName, Door, setExtraInfo);														\
 	__VIRTUAL_SET(ClassName, Door, ready);																\
 	__VIRTUAL_SET(ClassName, Door, handleMessage);														\
+	__VIRTUAL_SET(ClassName, Door, hasDestination);														\
 
 __CLASS(Door);
 

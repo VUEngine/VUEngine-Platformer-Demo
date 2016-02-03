@@ -64,7 +64,7 @@ static void PrecautionScreenState_constructor(PrecautionScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
 }
 

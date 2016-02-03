@@ -23,6 +23,7 @@
 #include <BgmapAnimatedSprite.h>
 #include "Door.h"
 #include "LayerSwitchDoor.h"
+#include "GoalDoor.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -268,6 +269,39 @@ AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_AG =
     "Closed",
 };
 
+AnimatedInGameEntityROMDef GOAL_DOOR_AG =
+{
+    {
+        {
+            __TYPE(GoalDoor),
+            (SpriteROMDef**)DOOR_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {6, 0, 6, 6},
+
+        // in game type
+        kDoor,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// depth
+        4
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&DOOR_ANIM,
+
+    // initial animation
+    "Opened",
+};
+
 BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 {
 	// sprite's type
@@ -315,7 +349,7 @@ AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
     	0,
     	
     	// depth
-        4
+        4,
     },
 
     // pointer to the animation definition for the item
@@ -360,7 +394,7 @@ TextureROMDef DOOR_BACK_TX =
     4,
 
     // palette number (0-3)
-    2
+    2,
 };
 
 BgmapSpriteROMDef DOOR_BACK_SPRITE =
@@ -410,7 +444,7 @@ AnimatedInGameEntityROMDef DOOR_BACK_AG =
     	0,
 
     	// depth
-        1
+        1,
     },
 
     // pointer to the animation definition for the item
@@ -443,7 +477,7 @@ AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_BACK_AG =
     	0,
 
     	// depth
-        1
+        1,
     },
 
     // pointer to the animation definition for the item

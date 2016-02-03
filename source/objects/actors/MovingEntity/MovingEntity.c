@@ -106,7 +106,7 @@ static void MovingEntity_registerShape(MovingEntity this)
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 
-	// don't check collisions agains other objects
+	// don't check collisions against other objects
 	Shape_setCheckForCollisions(this->shape, false);
 }
 
@@ -258,4 +258,3 @@ void MovingEntity_stopMovement(MovingEntity this)
 
 	MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMovement, NULL);
 }
-

@@ -92,20 +92,18 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	Game_disableKeypad(Game_getInstance());
 
     // sample code that shows how to ignore selected entities when loading a stage
-	const char* name1 = "IgnoreMeDoor";
-	const char* name2 = "IgnoreMeCoin";
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
-	VirtualList_pushBack(entityNamesToIgnore, name1);
-	VirtualList_pushBack(entityNamesToIgnore, name2);
+	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeDoor");
+	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeCoin");
 	
 	//load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, true);
 
 	__DELETE(entityNamesToIgnore);
 
-	/*
 	// sample code to show how to animate multiple sprites at the same time by just playing an animation in a single
-	// entity when various share the same __ANIMATED_SHARED CharSet
+	// entity when various share the same __ANIMATED_SHARED charset
+	/*
 	if(Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true))
 	{
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true)), "Idle");
@@ -240,7 +238,7 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 	            if(K_SEL & pressedKey)
 	            {
 	                // adjustment screen
-					SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
+					SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
 	                Game_pause(Game_getInstance(), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
 	                break;
 	            }

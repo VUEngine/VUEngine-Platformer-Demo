@@ -43,8 +43,9 @@ enum LanguageStrings
     STR_OFF,
     STR_LANGUAGE_SELECT,
 
-    /* Level Names */
+    /* Levels */
     STR_LEVEL,
+    STR_LEVEL_DONE,
     STR_LEVEL_1_NAME,
 };
 

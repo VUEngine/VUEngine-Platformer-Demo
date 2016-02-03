@@ -177,7 +177,7 @@ AnimatedInGameEntityROMDef STAR_AG =
     	0,
 
     	// depth
-        1
+        1,
     },
 
     // pointer to the animation definition for the item

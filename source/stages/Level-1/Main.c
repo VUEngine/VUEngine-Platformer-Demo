@@ -55,7 +55,7 @@ extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ENTITIES[] =
 {
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,     {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-    {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(-140), FTOFIX19_13(-176), 	FTOFIX19_13(0)},    "House", NULL, NULL, false},
+    {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(-140), FTOFIX19_13(-175), 	FTOFIX19_13(0)},    "House", NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };

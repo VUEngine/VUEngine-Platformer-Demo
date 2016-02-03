@@ -60,7 +60,7 @@ static void VBJaEngineScreenState_constructor(VBJaEngineScreenState this)
 {
 	__CONSTRUCT_BASE();
 
-	SplashScreenState_setNextstate(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, LangSelectScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, LangSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&VBJAENGINE_SCREEN_ST;
 }
 

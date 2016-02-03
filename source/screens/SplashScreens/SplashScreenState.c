@@ -159,7 +159,7 @@ void SplashScreenState_print(SplashScreenState this)
 {
 }
 
-void SplashScreenState_setNextstate(SplashScreenState this, GameState nextState)
+void SplashScreenState_setNextState(SplashScreenState this, GameState nextState)
 {
     this->nextState = nextState;
 }

@@ -27,6 +27,7 @@
 #include <AutoPauseSelectScreenState.h>
 #include <LangSelectScreenState.h>
 #include <VBJaEngineScreenState.h>
+#include <LevelDoneScreenState.h>
 #include <TitleScreenState.h>
 #include <PlatformerLevelState.h>
 #include "stages.h"

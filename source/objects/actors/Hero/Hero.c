@@ -1064,7 +1064,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kDoor:
 
                 // first contact with door?
-                if(!Door_isOverlapping((Door)inGameEntity) && Door_hasDestination((Door)inGameEntity))
+                if(!Door_isOverlapping((Door)inGameEntity) && __VIRTUAL_CALL(bool, Door, hasDestination, (Door)inGameEntity, (Door)inGameEntity))
                 {
 				    Hero_showHint(this, kEnterHint);
 				    this->currentlyOverlappingDoor = (Door)inGameEntity;

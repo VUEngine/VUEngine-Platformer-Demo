@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TITLE_SCREEN_STATE_H_
-#define TITLE_SCREEN_STATE_H_
+#ifndef LEVEL_DONE_SCREEN_STATE_H_
+#define LEVEL_DONE_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,34 +30,30 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define TitleScreenState_METHODS																		\
-	GameState_METHODS;											    									\
+#define LevelDoneScreenState_METHODS																	\
+	GameState_METHODS;												    								\
 
 // declare the virtual methods which are redefined
-#define TitleScreenState_SET_VTABLE(ClassName)															\
+#define LevelDoneScreenState_SET_VTABLE(ClassName)														\
 	GameState_SET_VTABLE(ClassName)								    									\
-	__VIRTUAL_SET(ClassName, TitleScreenState, enter);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, exit);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, execute);												\
-	__VIRTUAL_SET(ClassName, TitleScreenState, resume);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, suspend);												\
-	__VIRTUAL_SET(ClassName, TitleScreenState, handleMessage);											\
+	__VIRTUAL_SET(ClassName, LevelDoneScreenState, enter);												\
+	__VIRTUAL_SET(ClassName, LevelDoneScreenState, exit);												\
+	__VIRTUAL_SET(ClassName, LevelDoneScreenState, execute);											\
+	__VIRTUAL_SET(ClassName, LevelDoneScreenState, handleMessage);										\
 
-__CLASS(TitleScreenState);
+__CLASS(LevelDoneScreenState);
 
-#define TitleScreenState_ATTRIBUTES							        									\
+#define LevelDoneScreenState_ATTRIBUTES							        								\
 														            									\
 	/* inherits */																						\
 	GameState_ATTRIBUTES																				\
-																										\
-	char* lastLevelSelectLabel;																			\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-TitleScreenState TitleScreenState_getInstance(void);
+LevelDoneScreenState LevelDoneScreenState_getInstance(void);
 
 
 #endif
