@@ -107,5 +107,5 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE =
 	false,
 	
 	// y loop
-	false
+	false,
 };

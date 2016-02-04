@@ -98,7 +98,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_5_IM_SPRITE =
 	false,
 	
 	// y loop
-	false
+	false,
 };
 
 BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_5_IM_SPRITES[] =

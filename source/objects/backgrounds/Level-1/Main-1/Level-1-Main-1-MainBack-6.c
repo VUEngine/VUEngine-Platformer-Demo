@@ -94,18 +94,5 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
 	false,
 
 	// y loop
-	false
-};
-
-
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE,
-	NULL
-};
-
-ImageROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITES,
+	false,
 };

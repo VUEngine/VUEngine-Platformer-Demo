@@ -224,7 +224,7 @@ StageROMDef TITLE_SCREEN_ST =
         },            
 	},
 
-    //physics
+    // physics
     {
         // gravity
         {

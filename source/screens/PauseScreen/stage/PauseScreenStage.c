@@ -189,7 +189,7 @@ StageROMDef PAUSE_SCREEN_ST =
         },            
 	},
 
-    //physics
+    // physics
     {
         // gravity
         {

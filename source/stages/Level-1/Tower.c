@@ -285,12 +285,10 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
     		// number of cycles the texture writing is idle
     		__TARGET_FPS / 10,
     		
-    		// maximum number of texture's rows to write each time the 
-    		// texture writing is active
+    		// maximum number of texture's rows to write each time the texture writing is active
     		12,
     		
-    		// maximum number of rows to compute 
-    		// on each call to the affine functions
+    		// maximum number of rows to compute on each call to the affine functions
     		16,
 
     		// Palette's config
@@ -345,7 +343,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
             // optical configuration values
             {
         		// maximum view distance's power into the horizon
-        		__MAXIMUM_VIEW_DISTANCE_POWER + 1,
+        		__MAXIMUM_VIEW_DISTANCE_POWER,
                 // distance of the eyes to the screen
                 ITOFIX19_13(__DISTANCE_EYE_SCREEN),
                 // distance from left to right eye (depth sensation)
@@ -357,7 +355,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
             },            
     	},
 
-        //physics
+        // physics
         {
             // gravity
             {

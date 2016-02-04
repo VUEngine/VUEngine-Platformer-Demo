@@ -109,7 +109,7 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_IM_SPRITE =
 	false,
 	
 	// y loop
-	false
+	false,
 };
 
 BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_1_IM_SPRITES[] =

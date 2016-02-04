@@ -168,7 +168,7 @@ StageROMDef VBJAENGINE_SCREEN_ST =
         },            
 	},
 
-    //physics
+    // physics
     {
         // gravity
         {

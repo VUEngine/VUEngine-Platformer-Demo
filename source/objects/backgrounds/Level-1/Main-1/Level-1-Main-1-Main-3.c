@@ -98,13 +98,13 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_3_IM_SPRITE =
 	false,
 	
 	// y loop
-	false
+	false,
 };
 
 BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_3_IM_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_BACK_3_IM_SPRITE,
 	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_3_IM_SPRITE,
+	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_BACK_3_IM_SPRITE,
 	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_3_IM_SPRITE,
 	NULL
 };

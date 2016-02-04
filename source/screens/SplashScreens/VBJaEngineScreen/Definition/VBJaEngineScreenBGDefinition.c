@@ -107,7 +107,7 @@ MBgmapSpriteROMDef VBJAENGINE_BG_IM_SPRITE =
 	true,
 	
 	// y loop
-	false
+	false,
 };
 
 BgmapSpriteROMDef* const VBJAENGINE_BG_IM_SPRITES[] =

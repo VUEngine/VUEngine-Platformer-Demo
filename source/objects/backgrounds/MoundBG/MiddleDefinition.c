@@ -109,7 +109,7 @@ MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
 	true,
 	
 	// y loop
-	false
+	false,
 };
 
 BgmapSpriteROMDef* const MOUND_BG_MIDDLE_SB_SPRITES[] =

@@ -157,7 +157,7 @@ StageROMDef EMPTY_ST =
         },            
 	},
 
-    //physics
+    // physics
     {
         // gravity
         {

@@ -163,7 +163,7 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
         },            
 	},
 
-    //physics
+    // physics
     {
         // gravity
         {

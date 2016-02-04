@@ -165,7 +165,7 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
         },            
 	},
 
-    //physics
+    // physics
     {
         // gravity
         {
