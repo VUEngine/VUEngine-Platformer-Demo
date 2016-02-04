@@ -51,6 +51,12 @@ __CLASS(ProgressManager);
 																										\
 	/* hero's currently active power-up */																\
 	u8 heroCurrentPowerUp;																				\
+																										\
+	/* flag that tells if the hero has collected the current level's key */								\
+	bool heroHasKey;																					\
+																										\
+	/* flag that tells if the hero has already used the current level's key */							\
+	bool heroHasUsedKey;																				\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -77,11 +83,6 @@ typedef struct UserData
 	// number of coins
 	int numberOfCollectedCoins;
 	CoinStatus coinStatus[TOTAL_COINS_IN_GAME];
-	
-	// current level status (for loading rooms within rooms)
-	VBVec3D heroLastPosition;
-	char lastStageName[STAGE_NAME_LENGTH];
-	bool isExitingRoom;
 
 } UserData;
 
@@ -100,6 +101,8 @@ bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName);
 bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool status);
 u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this);
 u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
+bool ProgressManager_heroHasKey(ProgressManager this);
+bool ProgressManager_heroHasUsedKey(ProgressManager this);
 
 
 #endif

@@ -101,12 +101,12 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
     {
 		case kCollision:
 
-			return Hero_processCollision((Hero)owner, telegram);
+			return Hero_processCollision(__SAFE_CAST(Hero, owner), telegram);
 			break;
 
 		case kBodyStartedMoving:
 
-			Hero_startedMovingOnAxis((Hero)owner, *(int*)Telegram_getExtraInfo(telegram));
+			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kBodyStopped:
@@ -121,16 +121,21 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 				if(K_B & pressedKey)
                 {
-					Hero_enableBoost((Hero)owner);
+					Hero_enableBoost(__SAFE_CAST(Hero, owner));
 				}
 
 				// check if in front of door and possibly enter it
 				if(K_LU & pressedKey)
 				{
-					if(Hero_isOverlappingDoor((Hero)owner))
+	                Hero_lookBack(__SAFE_CAST(Hero, owner));
+
+					if(NULL != Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner)))
 					{
-						Hero_enterDoor((Hero)owner);
-						return true;
+					    if(__VIRTUAL_CALL(bool, Door, canEnter, Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
+					    {
+						    Hero_enterDoor(__SAFE_CAST(Hero, owner));
+						    return true;
+					    }
 					}
 				}
 
@@ -145,13 +150,13 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 			 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			 		{
-	                    Hero_checkDirection((Hero)owner, pressedKey, "Idle");
+	                    Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Idle");
 	
-	                    Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
+	                    Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
 	
 	    				if(K_A & pressedKey)
 	                    {
-	                        Hero_jump((Hero)owner, true, true);
+	                        Hero_jump(__SAFE_CAST(Hero, owner), true, true);
 	    				}
 			 		}
 
@@ -161,14 +166,14 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 				if(K_LU & pressedKey)
                 {
-                    Hero_checkDirection((Hero)owner, pressedKey, "Back");
+                    Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Back");
 
                     return true;
 				}				
 
 				if(K_LD & pressedKey)
                 {
-                    Hero_checkDirection((Hero)owner, pressedKey, "Front");
+                    Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Front");
 
                     return true;
 				}				
@@ -181,7 +186,7 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 				if(K_B & releasedKey)
                 {
-					Hero_disableBoost((Hero)owner);
+					Hero_disableBoost(__SAFE_CAST(Hero, owner));
 				}
 
 			}
@@ -196,16 +201,16 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                 {
 			 		Acceleration acceleration =
 			 	    {
-			 	    	K_LL & holdKey? ITOFIX19_13(-1) : K_LR & holdKey? ITOFIX19_13(1): 0,
-			 	    	K_A & holdKey? ITOFIX19_13(-1): 0,
+			 	    	K_LL & holdKey ? ITOFIX19_13(-1) : K_LR & holdKey ? ITOFIX19_13(1): 0,
+			 	    	K_A & holdKey ? ITOFIX19_13(-1): 0,
 			 	    	0,
 			 		};
 
 			 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			 		{
-	                    Hero_checkDirection((Hero)owner, holdKey, "Idle");
+	                    Hero_checkDirection(__SAFE_CAST(Hero, owner), holdKey, "Idle");
 	
-	                    Hero_startedMovingOnAxis((Hero)owner, __XAXIS);
+	                    Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
 	
 	                    return true;
 			 		}
@@ -215,4 +220,5 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 	}
 
 	return false;
+//	return Hero_handleMessage(__SAFE_CAST(Hero, owner), telegram);
 }

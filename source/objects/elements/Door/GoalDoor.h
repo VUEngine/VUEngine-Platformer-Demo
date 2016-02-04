@@ -38,6 +38,7 @@
 	__VIRTUAL_SET(ClassName, GoalDoor, handleMessage);													\
 	__VIRTUAL_SET(ClassName, GoalDoor, ready);															\
 	__VIRTUAL_SET(ClassName, GoalDoor, hasDestination);													\
+	__VIRTUAL_SET(ClassName, GoalDoor, canEnter);														\
 
 __CLASS(GoalDoor);
 
@@ -58,6 +59,7 @@ void GoalDoor_destructor(GoalDoor this);
 bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram);
 void GoalDoor_ready(Door this);
 bool GoalDoor_hasDestination(Door this);
+bool GoalDoor_canEnter(GoalDoor this);
 
 
 #endif

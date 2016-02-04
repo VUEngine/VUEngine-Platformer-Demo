@@ -131,7 +131,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->energy = HERO_INITIAL_ENERGY;
 	this->powerUp = kPowerUpNone;
 	this->invincible = false;
-	this->currentlyOverlappingDoor = NULL;
+	this->currentlyOverlappedDoor = NULL;
 	this->boost = false;
 
 	// register a shape for collision detection
@@ -187,7 +187,7 @@ void Hero_destructor(Hero this)
 
 void Hero_ready(Hero this)
 {
-	ASSERT(this, "HeroMoving::ready: null this");
+	ASSERT(this, "Hero::ready: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
 
@@ -203,6 +203,8 @@ void Hero_ready(Hero this)
 			this->powerUp = currentPowerUp;
 			Hero_updateSprite(this);
 		}
+
+		this->hasKey = ProgressManager_heroHasKey(ProgressManager_getInstance());
 	}
 
 	// initialize me as idle
@@ -734,19 +736,17 @@ void Hero_enableBoost(Hero this)
 	}
 }
 
-// check if the hero is overlapping a door
-bool Hero_isOverlappingDoor(Hero this)
+// get the door overlapped by the hero
+Door Hero_getOverlappedDoor(Hero this)
 {
-	ASSERT(this, "Hero::isOverlappingDoor: null this");
+	ASSERT(this, "Hero::getOverlappedDoor: null this");
 
-	return (this->currentlyOverlappingDoor != NULL);
+	return this->currentlyOverlappedDoor;
 }
 
 void Hero_enterDoor(Hero this)
 {
 	ASSERT(this, "Hero::enterDoor: null this");
-
-	Hero_lookBack(this);
 
 	if((__YAXIS | __ZAXIS) & Body_isMoving(this->body))
 	{
@@ -754,9 +754,9 @@ void Hero_enterDoor(Hero this)
 	}
 
 	// inform the door entity
-	if(this->currentlyOverlappingDoor != NULL)
+	if(this->currentlyOverlappedDoor != NULL)
 	{
-	    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappingDoor), kHeroEnterDoor, NULL);
+	    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappedDoor), kHeroEnterDoor, NULL);
 	}
 
 	// hide hint immediately
@@ -980,9 +980,9 @@ bool Hero_isInvincible(Hero this)
 // process collisions
 int Hero_processCollision(Hero this, Telegram telegram)
 {
-	ASSERT(this, "HeroMoving::processCollision: null this");
+	ASSERT(this, "Hero::processCollision: null this");
 	VirtualList collidingObjects = __SAFE_CAST(VirtualList, Telegram_getExtraInfo(telegram));
-	ASSERT(collidingObjects, "HeroMoving::processCollision: null collidingObjects");
+	ASSERT(collidingObjects, "Hero::processCollision: null collidingObjects");
 
 	VirtualNode node = NULL;
 
@@ -1063,14 +1063,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kDoor:
 
-                // first contact with door?
-                if(!Door_isOverlapping((Door)inGameEntity) && __VIRTUAL_CALL(bool, Door, hasDestination, (Door)inGameEntity, (Door)inGameEntity))
-                {
-				    Hero_showHint(this, kEnterHint);
-				    this->currentlyOverlappingDoor = (Door)inGameEntity;
-                    Door_setOverlapping((Door)inGameEntity);
-                }
-
+                Door_onOverlapping((Door)inGameEntity);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1143,14 +1136,23 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 bool Hero_handleMessage(Hero this, Telegram telegram)
 {
-	ASSERT(this, "HeroMoving::handleMessage: null this");
+	ASSERT(this, "Hero::handleMessage: null this");
 
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
     {
+		case kHeroStartOverlapping:
+        {
+			Door door = __SAFE_CAST(Door, Telegram_getSender(telegram));
+
+            this->currentlyOverlappedDoor = door;
+            Hero_showHint(this, __VIRTUAL_CALL(u8, Door, getHintType, door));
+            return true;
+            break;
+        }
 		case kHeroEndOverlapping:
 
-            this->currentlyOverlappingDoor = NULL;
+            this->currentlyOverlappedDoor = NULL;
             Hero_hideHint(this);
             return true;
             break;

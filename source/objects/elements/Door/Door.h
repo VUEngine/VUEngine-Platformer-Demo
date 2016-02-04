@@ -41,6 +41,10 @@
 #define Door_METHODS																					\
 	AnimatedInGameEntity_METHODS;																		\
 	__VIRTUAL_DEC(hasDestination);																		\
+	__VIRTUAL_DEC(setOverlapping);																		\
+	__VIRTUAL_DEC(unsetOverlapping);																	\
+	__VIRTUAL_DEC(canEnter);																			\
+	__VIRTUAL_DEC(getHintType);																			\
 
 #define Door_SET_VTABLE(ClassName)																		\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
@@ -48,6 +52,10 @@
 	__VIRTUAL_SET(ClassName, Door, ready);																\
 	__VIRTUAL_SET(ClassName, Door, handleMessage);														\
 	__VIRTUAL_SET(ClassName, Door, hasDestination);														\
+	__VIRTUAL_SET(ClassName, Door, setOverlapping);														\
+	__VIRTUAL_SET(ClassName, Door, unsetOverlapping);													\
+	__VIRTUAL_SET(ClassName, Door, canEnter);															\
+	__VIRTUAL_SET(ClassName, Door, getHintType);														\
 
 __CLASS(Door);
 
@@ -76,8 +84,12 @@ void Door_setExtraInfo(Door this, void* extraInfo);
 void Door_ready(Door this);
 bool Door_handleMessage(Door this, Telegram telegram);
 bool Door_hasDestination(Door this);
+void Door_onOverlapping(Door this);
 void Door_setOverlapping(Door this);
+void Door_unsetOverlapping(Door this);
 bool Door_isOverlapping(Door this);
+bool Door_canEnter(Door this);
+u8 Door_getHintType(Door this);
 
 
 #endif

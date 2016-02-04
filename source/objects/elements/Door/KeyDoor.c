@@ -24,8 +24,9 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <Hint.h>
 #include <objects.h>
-#include "GoalDoor.h"
+#include "KeyDoor.h"
 #include <PlatformerLevelState.h>
 #include <LevelDoneScreenState.h>
 
@@ -34,7 +35,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(GoalDoor, Door);
+__CLASS_DEFINITION(KeyDoor, Door);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,18 +43,18 @@ __CLASS_DEFINITION(GoalDoor, Door);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(GoalDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(GoalDoor, animatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(KeyDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(KeyDoor, animatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void GoalDoor_constructor(GoalDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+void KeyDoor_constructor(KeyDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
 	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
-void GoalDoor_destructor(GoalDoor this)
+void KeyDoor_destructor(KeyDoor this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -61,33 +62,51 @@ void GoalDoor_destructor(GoalDoor this)
 }
 
 // ready
-void GoalDoor_ready(Door this)
+void KeyDoor_ready(KeyDoor this)
 {
-	ASSERT(this, "GoalDoor::ready: null this");
+	ASSERT(this, "KeyDoor::ready: null this");
 
-    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Goal");
+    if(ProgressManager_heroHasUsedKey(ProgressManager_getInstance())) {
+        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
+    } else {
+        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Key");
+    }
 }
 
-bool GoalDoor_hasDestination(Door this)
+bool KeyDoor_hasDestination(KeyDoor this)
 {
 	return true;
 }
 
-// state's handle message
-bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
+void KeyDoor_setOverlapping(KeyDoor this)
 {
-	switch(Telegram_getMessage(telegram))
-    {
-		case kHeroEnterDoor:
+    if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
+        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
+    }
 
-			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState_getInstance()));
-			break;
-	}
-	
-	return Door_handleMessage(__SAFE_CAST(Door, this), telegram);
+    Door_setOverlapping(__SAFE_CAST(Door, this));
 }
 
-bool GoalDoor_canEnter(GoalDoor this)
+void KeyDoor_unsetOverlapping(KeyDoor this)
 {
-	return true;
+
+    if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
+        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closing");
+    }
+
+    Door_unsetOverlapping(__SAFE_CAST(Door, this));
+}
+
+bool KeyDoor_canEnter(KeyDoor this)
+{
+	return ProgressManager_heroHasKey(ProgressManager_getInstance());
+}
+
+u8 KeyDoor_getHintType(KeyDoor this)
+{
+    if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
+	    return kEnterHint;
+    } else {
+	    return kKeyHint;
+    }
 }

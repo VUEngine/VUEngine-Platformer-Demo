@@ -41,6 +41,7 @@ static void ProgressManager_constructor(ProgressManager this);
 static void ProgressManager_initialize(ProgressManager this);
 static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer);
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
+static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
 
 
@@ -66,6 +67,7 @@ static void ProgressManager_constructor(ProgressManager this)
     // add event listeners
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUp, EVENT_POWERUP);
 }
 
@@ -77,6 +79,7 @@ void ProgressManager_destructor(ProgressManager this)
     // remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
     Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUp, EVENT_POWERUP);
 
 	// destroy base
@@ -87,6 +90,8 @@ void ProgressManager_reset(ProgressManager this)
 {
 	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
 	this->heroCurrentPowerUp = kPowerUpNone;
+	this->heroHasKey = false;
+	this->heroHasUsedKey = false;
 }
 
 static void ProgressManager_initialize(ProgressManager this)
@@ -187,6 +192,16 @@ u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this)
 	return this->heroCurrentPowerUp;
 }
 
+bool ProgressManager_heroHasKey(ProgressManager this)
+{
+	return this->heroHasKey;
+}
+
+bool ProgressManager_heroHasUsedKey(ProgressManager this)
+{
+	return this->heroHasUsedKey;
+}
+
 // handle event
 static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer)
 {
@@ -197,6 +212,12 @@ static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer)
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer)
 {
 	this->heroCurrentEnergy = Hero_getEnergy(Hero_getInstance());
+}
+
+// handle event
+static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer)
+{
+	this->heroHasKey = true;
 }
 
 // handle event

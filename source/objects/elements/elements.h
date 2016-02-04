@@ -41,6 +41,7 @@ extern EntityDefinition DOOR_AG;
 extern EntityDefinition DOOR_BACK_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_AG;
 extern EntityDefinition GOAL_DOOR_AG;
+extern EntityDefinition KEY_DOOR_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 extern EntityDefinition AFFINE_DOOR_AG;
 
