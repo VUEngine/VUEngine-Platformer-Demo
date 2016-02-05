@@ -93,7 +93,7 @@ static void PrecautionScreenState_print(PrecautionScreenState this)
     Size titleSize = Printing_getTextSize(Printing_getInstance(), strPrecautionTitle, NULL);
     Size textSize = Printing_getTextSize(Printing_getInstance(), strPrecautionText, NULL);
 
-    u8 totalHeight = titleSize.y + 1 + textSize.y;
+    u8 totalHeight = titleSize.y + textSize.y;
 
     Printing_text(
         Printing_getInstance(),
@@ -111,4 +111,3 @@ static void PrecautionScreenState_print(PrecautionScreenState this)
         NULL
     );
 }
-

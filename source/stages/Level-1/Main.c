@@ -397,7 +397,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
 	            // y
 	            512,
 	            // z
-	            256,
+	            __SCREEN_DEPTH,
 	        },
 	        
 			// screen's initial position inside the game world
@@ -520,7 +520,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
 	        (StageTextureEntryDefinition*)LEVEL_1_MAIN_ST_TEXTURES,
 	        
 	        // background music
-	        (const u16 (*)[])KRISSE_BGM,
+	        (const u16 (*)[])WORLD_0_0_0_BGM,
         },
 
         // entities
