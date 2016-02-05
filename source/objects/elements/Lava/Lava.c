@@ -131,7 +131,7 @@ void Lava_moveUpwards(Lava this)
 // resume after pause
 void Lava_resume(Lava this)
 {
-	ASSERT(this, "Entity::resume: null this");
+	ASSERT(this, "Lava::resume: null this");
 
 	Entity_resume(__SAFE_CAST(Entity, this));
 

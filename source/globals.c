@@ -43,13 +43,6 @@ ManagedEntityROMDef MANAGED_ENTITY =
 };
 
 // only need to define one for all entities
-EntityROMDef ENTITY =
-{
-    __TYPE(Entity),
-    NULL
-};
-
-// only need to define one for all entities
 CollisionsContainerEntityROMDef COLLISIONS_CONTAINER_ENTITY =
 {
     __TYPE(CollisionsContainerEntity),

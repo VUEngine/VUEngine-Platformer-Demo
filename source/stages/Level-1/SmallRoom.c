@@ -35,6 +35,9 @@
 
 extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP;
 
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
+
 
 //---------------------------------------------------------------------------------------------------------
 //                                                 ASSETS
@@ -43,31 +46,50 @@ extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP;
 // Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
 // know that it must stop reading the stage's/ui's textures and entities.
 
+PositionedEntityROMDef LEVEL_1_SMALL_ROOM_MAIN_ENTITIES[] =
+{
+    {&LEVEL_1_SMALL_ROOM_MAIN_IM,   {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+
+	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+};
+
+PositionedEntityROMDef LEVEL_1_SMALL_ROOM_MAIN_COLLISIONS[] =
+{
+    {&COLLISION_48x2x1,             {FTOFIX19_13(0),    FTOFIX19_13(56),    FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_48x2x1,             {FTOFIX19_13(0),    FTOFIX19_13(-56),   FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_48x2x1,             {FTOFIX19_13(-240), FTOFIX19_13(8),     FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_18x6x1,             {FTOFIX19_13(56),   FTOFIX19_13(24),    FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(-36),  FTOFIX19_13(28),    FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_2x28x1,             {FTOFIX19_13(-88),  FTOFIX19_13(0),     FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_2x28x1,             {FTOFIX19_13(88),   FTOFIX19_13(0),     FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+
+	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 											ENTITY LISTS
+//---------------------------------------------------------------------------------------------------------
+
 PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_CHILDREN[] =
 {
     // since these are always visible it doesn't matter that they are not logically placed in this definition
 
-    {&LEVEL_1_SMALL_ROOM_MAIN_IM,       {FTOFIX19_13(192),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, NULL, NULL, true},
-    {&COLLISION_48x2x1,                 {FTOFIX19_13(192),  FTOFIX19_13(168), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&COLLISION_48x2x1,                 {FTOFIX19_13(192),  FTOFIX19_13(56),  FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&COLLISION_48x2x1,                 {FTOFIX19_13(-48),  FTOFIX19_13(120), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&COLLISION_18x6x1,                 {FTOFIX19_13(248),  FTOFIX19_13(136), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&COLLISION_ONEWAY_7x7x1,           {FTOFIX19_13(156),  FTOFIX19_13(116 + 24), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&COLLISION_2x28x1,                 {FTOFIX19_13(104),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&COLLISION_2x28x1,                 {FTOFIX19_13(280),  FTOFIX19_13(112), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(112),   FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_SMALL_ROOM_MAIN_ENTITIES, NULL, false},
+    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(111),   FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_SMALL_ROOM_MAIN_COLLISIONS, NULL, false},
 
-    {&TORCH_AG,                         {FTOFIX19_13(152),  FTOFIX19_13(88),  FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-    {&TORCH_AG,                         {FTOFIX19_13(232),  FTOFIX19_13(88),  FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+    {&TORCH_AG,                     {FTOFIX19_13(152),  FTOFIX19_13(88),    FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(232),  FTOFIX19_13(88),    FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-    {&HERO_AC,                          {FTOFIX19_13(122),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
+    {&HERO_AC,                      {FTOFIX19_13(122),  FTOFIX19_13(96),    FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
 
-    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0_DOORS)}, "UpperEntryDoor", NULL, NULL, true},
-    {&DOOR_AG,                          {FTOFIX19_13(128),  FTOFIX19_13(143), FTOFIX19_13(LAYER_0_DOORS)}, "LowerEntryDoor", NULL, NULL, true},
+    {&DOOR_AG,                      {FTOFIX19_13(131),  FTOFIX19_13(96),    FTOFIX19_13(LAYER_0_DOORS)}, "UpperEntryDoor", NULL, NULL, false},
+    {&DOOR_AG,                      {FTOFIX19_13(131),  FTOFIX19_13(144),   FTOFIX19_13(LAYER_0_DOORS)}, "LowerEntryDoor", NULL, NULL, false},
 
-    {&COIN_AG,                          {FTOFIX19_13(192),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 45", NULL, NULL, true},
-    {&COIN_AG,                          {FTOFIX19_13(208),  FTOFIX19_13(96),  FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 46", NULL, NULL, true},
+    {&COIN_AG,                      {FTOFIX19_13(192),  FTOFIX19_13(96),    FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 45", NULL, NULL, false},
+    {&COIN_AG,                      {FTOFIX19_13(208),  FTOFIX19_13(96),    FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 46", NULL, NULL, false},
 
-    {&DOOR_AG,                          {FTOFIX19_13(257),  FTOFIX19_13(95),  FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, (void*)&LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP, true},
+    {&DOOR_AG,                      {FTOFIX19_13(251),  FTOFIX19_13(96),    FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, (void*)&LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP, false},
 
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -192,7 +214,7 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
                 // horizontal view point center
                 ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
                 // vertical view point center
-                ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
+                ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
             },            
     	},
 

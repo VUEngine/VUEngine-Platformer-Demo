@@ -36,7 +36,7 @@ InanimatedInGameEntityROMDef COLLISION_38x10x1 =
         },
 
         // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+        {1, 1, 1, 1},
 
         // in game type
         kSolid,

@@ -25,29 +25,22 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										DEBUGGING TOOLS
+// 											DEBUGGING TOOLS
 //---------------------------------------------------------------------------------------------------------
 
-#ifdef __DEBUG
+#ifdef __TOOLS
 #define __PRINT_FRAMERATE
 #define __PRINT_MEMORY_POOL_STATUS
 #define __ALERT_STACK_OVERFLOW
+#define __PRINT_TRANSFORMATIONS_NOT_IN_SYNC_WITH_VPU_WARNING
 #define __DEBUG_TOOLS
 #define __STAGE_EDITOR
 #define __ANIMATION_EDITOR
-#define __PRINT_TRANSFORMATIONS_NOT_IN_SYNC_WITH_VPU_WARNING
-#endif
-
-#ifdef __DEBUG_TOOLS
-#define __PRINT_FRAMERATE
-#define __PRINT_MEMORY_POOL_STATUS
-#define __ALERT_STACK_OVERFLOW
-#define __PRINT_TRANSFORMATIONS_NOT_IN_SYNC_WITH_VPU_WARNING
 #endif
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										OPTICS / PROJECTION
+// 											OPTICS / PROJECTION
 //---------------------------------------------------------------------------------------------------------
 
 // screen width in pixels
@@ -62,8 +55,7 @@
 // distance from player's eyes to the virtual screen
 #define __DISTANCE_EYE_SCREEN					384
 
-// maximum view distance (Depth)
-// always use a power of 2 as the maximum view distance, and update the number of bits to make projection faster
+// maximum view distance (depth) (power of two)
 #define __MAXIMUM_VIEW_DISTANCE_POWER			9
 
 // distance between eyes
@@ -73,18 +65,17 @@
 #define __HORIZONTAL_VIEW_POINT_CENTER			192
 
 // player's eyes' vertical position
-#define __VERTICAL_VIEW_POINT_CENTER			112
+#define __VERTICAL_VIEW_POINT_CENTER			256
 
 // parallax values are divide by this factor to control their strength
 #define __PARALLAX_CORRECTION_FACTOR			16
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										FRAME RATE CONTROL
+// 											FRAME RATE CONTROL
 //---------------------------------------------------------------------------------------------------------
 
-// disable VPU's XPEND interrupt, and thus rendering
-// while transformation operations have not finished
+// disable VPU's XPEND interrupt, and thus rendering while transformation operations have not finished
 #undef __FORCE_VPU_SYNC
 
 // clock resolution
@@ -106,7 +97,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										ANIMATION
+// 												ANIMATION
 //---------------------------------------------------------------------------------------------------------
 
 // max length of an animation function's name
@@ -120,7 +111,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										MEMORY POOL
+// 												MEMORY POOL
 //---------------------------------------------------------------------------------------------------------
 
 // reset to 0 each byte of each free block on resetting game
@@ -136,17 +127,17 @@
 	__BLOCK_DEFINITION(160, 5)																			\
 	__BLOCK_DEFINITION(144, 6)																			\
 	__BLOCK_DEFINITION(136, 24)																			\
-	__BLOCK_DEFINITION(120, 34)																			\
+	__BLOCK_DEFINITION(120, 35)																			\
 	__BLOCK_DEFINITION(112, 12)																			\
 	__BLOCK_DEFINITION(104, 10)																			\
 	__BLOCK_DEFINITION(100, 16)																			\
 	__BLOCK_DEFINITION(92, 24)																			\
 	__BLOCK_DEFINITION(84, 30)																			\
 	__BLOCK_DEFINITION(76, 8)																			\
-	__BLOCK_DEFINITION(68, 55)																			\
-	__BLOCK_DEFINITION(28, 270)																			\
-	__BLOCK_DEFINITION(20, 600)																			\
-	__BLOCK_DEFINITION(16, 280)																			\
+	__BLOCK_DEFINITION(68, 56)																			\
+	__BLOCK_DEFINITION(28, 274)																			\
+	__BLOCK_DEFINITION(20, 588)																			\
+	__BLOCK_DEFINITION(16, 276)																			\
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS																		\
@@ -171,7 +162,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										CHAR MANAGEMENT
+// 											CHAR MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
 // number of char segments
@@ -183,7 +174,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										SPRITE MANAGEMENT
+// 											SPRITE MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
 // total number of layers (basically the number of Worlds)
@@ -191,7 +182,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										TEXTURE MANAGEMENT
+// 											TEXTURE MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
 // total number of bgmap segments
@@ -219,7 +210,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PARAM TABLE
+// 												PARAM TABLE
 //---------------------------------------------------------------------------------------------------------
 
 // param table for affine and hbias render
@@ -233,7 +224,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										    STREAMING
+// 											    STREAMING
 //---------------------------------------------------------------------------------------------------------
 
 // the number of total calls to the streaming method which completes a cycle
@@ -252,7 +243,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											PHYSICS
+// 												PHYSICS
 //---------------------------------------------------------------------------------------------------------
 
 #define __GRAVITY								9800 * 4
@@ -269,7 +260,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											SOUND
+// 												SOUND
 //---------------------------------------------------------------------------------------------------------
 
 // channels per bgms
@@ -290,7 +281,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										COLOR PALETTES
+// 											COLOR PALETTES
 //---------------------------------------------------------------------------------------------------------
 
 #define __PRINTING_PALETTE						0
@@ -309,7 +300,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 									LOW BATTERY INDICATOR
+// 											LOW BATTERY INDICATOR
 //---------------------------------------------------------------------------------------------------------
 
 // when this is defined, the engine's default low battery indicator is used
@@ -328,7 +319,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										AUTOMATIC PAUSE
+// 											AUTOMATIC PAUSE
 //---------------------------------------------------------------------------------------------------------
 
 // amount of time after which to show auto pause (in milliseconds)
@@ -340,7 +331,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											FONTS
+// 												FONTS
 //---------------------------------------------------------------------------------------------------------
 
 // when this is defined, custom fonts are loaded instead of the default one
@@ -348,7 +339,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 									RANDOM NUMBER GENERATION
+// 										RANDOM NUMBER GENERATION
 //---------------------------------------------------------------------------------------------------------
 
 // how many times the randomSeed function cycles generate a random seed
@@ -356,7 +347,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											EXCEPTIONS
+// 												EXCEPTIONS
 //---------------------------------------------------------------------------------------------------------
 
 #define __EXCEPTION_COLUMN						0

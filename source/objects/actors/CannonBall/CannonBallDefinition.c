@@ -138,7 +138,7 @@ ActorROMDef CANNON_BALL_AC =
 			},
 
 			// collision detection gap (up, down, left, right)
-			{0, 0, 0, 0},
+			{1, 1, 1, 1},
 
 			// in game type
 			kCannonBall,

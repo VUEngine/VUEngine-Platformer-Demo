@@ -63,7 +63,8 @@ PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_ENTITIES[] =
 {
     {&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
+//	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
+	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(-107), FTOFIX19_13(136), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(12), 	FTOFIX19_13(136), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
 
@@ -86,8 +87,9 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_2[] =
 {
 	{&COLLISION_48x4x1,				{FTOFIX19_13(-172), FTOFIX19_13(32), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 2nd level floor left
 	{&COLLISION_32x4x1,				{FTOFIX19_13(32),   FTOFIX19_13(-96),   FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 3rd level floor right
+	{&COLLISION_16x2x1,				{FTOFIX19_13(160),  FTOFIX19_13(-40), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // small stone right under 3rd
 	{&COLLISION_48x4x1,				{FTOFIX19_13(-80),  FTOFIX19_13(-176),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // 4th level floor left
-	{&COLLISION_48x2x1,				{FTOFIX19_13(-82),  FTOFIX19_13(-247),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floor below spikes
+	{&COLLISION_48x2x1,				{FTOFIX19_13(-82),  FTOFIX19_13(-248),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // floor below spikes
 	{&COLLISION_14x6x1,				{FTOFIX19_13(-136), FTOFIX19_13(-216),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // left wall below spikes
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
@@ -136,6 +138,11 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
+
+//---------------------------------------------------------------------------------------------------------
+// 											ENTITY LISTS
+//---------------------------------------------------------------------------------------------------------
+
 PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
@@ -149,10 +156,8 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
 
     // part 1
     {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_ENTITIES, NULL, false},
-    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_1, NULL, false},
-    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_2, NULL, false},
-
-	{&COLLISION_16x2x1,				{FTOFIX19_13(352),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 296), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // small stone right under 3rd
+    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 257),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_1, NULL, false},
+    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 257),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_2, NULL, false},
 
 	{&LAVA_TRIGGER_IG,  			{FTOFIX19_13(174),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 130), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 	{&COG_WHEEL_IM,	        		{FTOFIX19_13(384),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 224), 	FTOFIX19_13(LAYER_0_BACKGROUND)}, NULL, NULL, NULL, false},
@@ -184,9 +189,9 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
     {&MOVING_PLATFORM_V6_AC,        {FTOFIX19_13(336),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 424), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 
     // part 2
-    {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 767),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_ENTITIES, NULL, false},
-    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 767),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_1, NULL, false},
-    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 767),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_2, NULL, false},
+    {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 768),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_ENTITIES, NULL, false},
+    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_1, NULL, false},
+    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_2, NULL, false},
 
 	{&COIN_AG, 						{FTOFIX19_13(88),   FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 623), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 58", NULL, NULL, false},
 	{&COIN_AG, 						{FTOFIX19_13(104), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 623), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 59", NULL, NULL, false},
@@ -199,20 +204,29 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
 
     {&MOVING_PLATFORM_V6_AC,        {FTOFIX19_13(336),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 751),    FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 
+	{&SNAIL_8_AC, 					{FTOFIX19_13(210),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 808), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
+
     {&MOVING_PLATFORM_V6_AC,        {FTOFIX19_13(112),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 844),    FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 	{&COIN_AG, 						{FTOFIX19_13(40), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 942), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 64", NULL, NULL, false},
 	{&GOAL_DOOR_AG, 				{FTOFIX19_13(208), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 944), 	FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(176), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 952), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(240), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 952), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
-    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 767),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
+    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_CHILDREN[] =
 {
-	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
+	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(217), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
+
+
+//---------------------------------------------------------------------------------------------------------
+// 											PRELOAD LISTS
+//---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef* LEVEL_1_TOWER_ST_CHARSETS[] =
 {
@@ -351,7 +365,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
                 // horizontal View point center
                 ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
                 // vertical View point center
-                ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
+                ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
             },            
     	},
 
@@ -414,7 +428,7 @@ PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
     "EntryDoor",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(16), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(0), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
 
 	// does a level start at this entry point?
 	false,
