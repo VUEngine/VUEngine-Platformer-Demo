@@ -26,7 +26,7 @@
 
 #define LAYER_INCREMENT		32
 #define SORT_INCREMENT		0.001f
-#define LAYER_0 			0
+#define LAYER_0 			1
 #define LAYER_1 			(LAYER_0 + LAYER_INCREMENT)
 #define LAYER_2 			(LAYER_1 + LAYER_INCREMENT)
 #define LAYER_3 			(LAYER_2 + LAYER_INCREMENT)
