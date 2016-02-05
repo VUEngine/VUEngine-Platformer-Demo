@@ -1298,6 +1298,8 @@ void Hero_resume(Hero this)
 
 	VBVec3DFlag positionFlag = {true, true, true};
     CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
+
+    Hero_updateSprite(this);
 }
 
 u8 Hero_getAxisAllowedForBouncing(Hero this)
