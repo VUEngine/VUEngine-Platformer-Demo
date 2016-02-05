@@ -30,22 +30,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define VBJaEngineScreenState_METHODS											\
-	SplashScreenState_METHODS;													\
+#define VBJaEngineScreenState_METHODS																	\
+	SplashScreenState_METHODS;																			\
 
 // declare the virtual methods which are redefined
-#define VBJaEngineScreenState_SET_VTABLE(ClassName)								\
-	SplashScreenState_SET_VTABLE(ClassName)							    		\
-	__VIRTUAL_SET(ClassName, VBJaEngineScreenState, print);						\
-	__VIRTUAL_SET(ClassName, VBJaEngineScreenState, execute);					\
+#define VBJaEngineScreenState_SET_VTABLE(ClassName)														\
+	SplashScreenState_SET_VTABLE(ClassName)							    								\
+	__VIRTUAL_SET(ClassName, VBJaEngineScreenState, print);												\
+	__VIRTUAL_SET(ClassName, VBJaEngineScreenState, execute);											\
 
 
 __CLASS(VBJaEngineScreenState);
 
-#define VBJaEngineScreenState_ATTRIBUTES								   		\
-														            			\
-	/* inherits */																\
-	SplashScreenState_ATTRIBUTES												\
+#define VBJaEngineScreenState_ATTRIBUTES								   								\
+														            									\
+	/* inherits */																						\
+	SplashScreenState_ATTRIBUTES																		\
 
 
 //---------------------------------------------------------------------------------------------------------

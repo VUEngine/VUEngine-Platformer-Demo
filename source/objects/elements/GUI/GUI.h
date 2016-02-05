@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define GUI_METHODS																						\
-	AnimatedInGameEntity_METHODS;
+	AnimatedInGameEntity_METHODS;																		\
 
 #define GUI_SET_VTABLE(ClassName)																		\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);															\

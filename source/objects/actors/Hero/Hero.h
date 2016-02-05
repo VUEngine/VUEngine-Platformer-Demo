@@ -52,7 +52,7 @@ enum HeroPowerUps
 //---------------------------------------------------------------------------------------------------------
 
 #define Hero_METHODS																					\
-	Actor_METHODS;
+	Actor_METHODS;																						\
 
 #define Hero_SET_VTABLE(ClassName)																		\
 	Actor_SET_VTABLE(ClassName);																		\
@@ -161,5 +161,6 @@ void Hero_setPosition(Hero this, VBVec3D* position);
 void Hero_update(Hero this);
 bool Hero_isAboveEntity(Hero this, Entity entity);
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
+
 
 #endif

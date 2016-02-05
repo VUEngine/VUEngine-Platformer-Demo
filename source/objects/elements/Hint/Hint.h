@@ -43,7 +43,7 @@ enum HintTypes
 //---------------------------------------------------------------------------------------------------------
 
 #define Hint_METHODS																					\
-	AnimatedInGameEntity_METHODS;
+	AnimatedInGameEntity_METHODS;																		\
 	
 
 #define Hint_SET_VTABLE(ClassName)																		\

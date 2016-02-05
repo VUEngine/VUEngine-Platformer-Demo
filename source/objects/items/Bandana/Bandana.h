@@ -30,21 +30,21 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Bandana_METHODS															\
-	AnimatedInGameEntity_METHODS;
+#define Bandana_METHODS																					\
+	AnimatedInGameEntity_METHODS;																		\
 	
 
-#define Bandana_SET_VTABLE(ClassName)												\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);									\
-	__VIRTUAL_SET(ClassName, Bandana, handleMessage);								\
-	__VIRTUAL_SET(ClassName, Bandana, ready);										\
+#define Bandana_SET_VTABLE(ClassName)																	\
+	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
+	__VIRTUAL_SET(ClassName, Bandana, handleMessage);													\
+	__VIRTUAL_SET(ClassName, Bandana, ready);															\
 
 __CLASS(Bandana);
 
-#define Bandana_ATTRIBUTES															\
-																				\
-	/* it is derived from */													\
-	AnimatedInGameEntity_ATTRIBUTES												\
+#define Bandana_ATTRIBUTES																				\
+																										\
+	/* it is derived from */																			\
+	AnimatedInGameEntity_ATTRIBUTES																		\
 
 
 //---------------------------------------------------------------------------------------------------------

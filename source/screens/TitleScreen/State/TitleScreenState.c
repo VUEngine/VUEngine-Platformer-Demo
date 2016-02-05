@@ -52,6 +52,8 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner);
 static void TitleScreenState_resume(TitleScreenState this, void* owner);
 static void TitleScreenState_suspend(TitleScreenState this, void* owner);
 static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
+static void TitleScreenState_showMessage(TitleScreenState this);
+static void TitleScreenState_hideMessage(TitleScreenState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -188,7 +190,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
 
-void TitleScreenState_showMessage(TitleScreenState this)
+static void TitleScreenState_showMessage(TitleScreenState this)
 {
 	ASSERT(this, "TitleScreenState::showMessage: null this");
 
@@ -200,7 +202,7 @@ void TitleScreenState_showMessage(TitleScreenState this)
 	MessageDispatcher_dispatchMessage(PRESS_START_BLINK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHideMessage, NULL);
 }
 
-void TitleScreenState_hideMessage(TitleScreenState this)
+static void TitleScreenState_hideMessage(TitleScreenState this)
 {
 	ASSERT(this, "TitleScreenState::hideMessage: null this");
 
@@ -210,7 +212,7 @@ void TitleScreenState_hideMessage(TitleScreenState this)
 }
 
 // state's handle message
-bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
+static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

@@ -30,22 +30,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define AutoPauseScreenState_METHODS												\
-	GameState_METHODS;												    			\
+#define AutoPauseScreenState_METHODS																	\
+	GameState_METHODS;												    								\
 
 // declare the virtual methods which are redefined
-#define AutoPauseScreenState_SET_VTABLE(ClassName)									\
-	GameState_SET_VTABLE(ClassName)								    				\
-	__VIRTUAL_SET(ClassName, AutoPauseScreenState, enter);							\
-	__VIRTUAL_SET(ClassName, AutoPauseScreenState, exit);							\
-	__VIRTUAL_SET(ClassName, AutoPauseScreenState, handleMessage);					\
+#define AutoPauseScreenState_SET_VTABLE(ClassName)														\
+	GameState_SET_VTABLE(ClassName)								    									\
+	__VIRTUAL_SET(ClassName, AutoPauseScreenState, enter);												\
+	__VIRTUAL_SET(ClassName, AutoPauseScreenState, exit);												\
+	__VIRTUAL_SET(ClassName, AutoPauseScreenState, handleMessage);										\
 
 __CLASS(AutoPauseScreenState);
 
-#define AutoPauseScreenState_ATTRIBUTES							        			\
-														            				\
-	/* inherits */																	\
-	GameState_ATTRIBUTES															\
+#define AutoPauseScreenState_ATTRIBUTES							        								\
+														            									\
+	/* inherits */																						\
+	GameState_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Key_METHODS																						\
-	AnimatedInGameEntity_METHODS;
+	AnimatedInGameEntity_METHODS;																		\
 	
 
 #define Key_SET_VTABLE(ClassName)																		\

@@ -30,20 +30,19 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define LavaTrigger_METHODS																\
-	InanimatedInGameEntity_METHODS;
+#define LavaTrigger_METHODS																				\
+	InanimatedInGameEntity_METHODS;																		\
 	
-
-#define LavaTrigger_SET_VTABLE(ClassName)												\
-	InanimatedInGameEntity_SET_VTABLE(ClassName);										\
-	__VIRTUAL_SET(ClassName, LavaTrigger, handleMessage);								\
+#define LavaTrigger_SET_VTABLE(ClassName)																\
+	InanimatedInGameEntity_SET_VTABLE(ClassName);														\
+	__VIRTUAL_SET(ClassName, LavaTrigger, handleMessage);												\
 
 __CLASS(LavaTrigger);
 
-#define LavaTrigger_ATTRIBUTES															\
-																						\
-	/* it is derived from */															\
-	InanimatedInGameEntity_ATTRIBUTES													\
+#define LavaTrigger_ATTRIBUTES																			\
+																										\
+	/* it is derived from */																			\
+	InanimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------

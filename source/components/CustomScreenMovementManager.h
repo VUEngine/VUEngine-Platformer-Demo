@@ -44,33 +44,33 @@ enum CustomScreenFX
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define CustomScreenMovementManager_METHODS										\
-    	ScreenMovementManager_METHODS											\
+#define CustomScreenMovementManager_METHODS																\
+    	ScreenMovementManager_METHODS																	\
 
 // declare the virtual methods which are redefined
-#define CustomScreenMovementManager_SET_VTABLE(ClassName)						\
-    	ScreenMovementManager_SET_VTABLE(ClassName)								\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, position);		\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, startEffect);		\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, stopEffect);		\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, handleMessage);	\
+#define CustomScreenMovementManager_SET_VTABLE(ClassName)												\
+    	ScreenMovementManager_SET_VTABLE(ClassName)														\
+		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, position);								\
+		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, startEffect);								\
+		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, stopEffect);								\
+		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, handleMessage);							\
 
-#define CustomScreenMovementManager_ATTRIBUTES									\
-																				\
-	/* super's attributes */													\
-	ScreenMovementManager_ATTRIBUTES;											\
-																				\
-	/* temporary variable to hold the focus entity during shaking fx */			\
-	InGameEntity tempFocusInGameEntity;											\
-																				\
-	/* last offset set by shake function */										\
-	VBVec3D lastShakeOffset;													\
-																				\
-	/* time left in current shaking fx (in ms) */								\
-	u16 shakeTimeLeft;															\
-																				\
-	/* update axis flag */														\
-	VBVec3DFlag positionFlag;													\
+#define CustomScreenMovementManager_ATTRIBUTES															\
+																										\
+	/* super's attributes */																			\
+	ScreenMovementManager_ATTRIBUTES;																	\
+																										\
+	/* temporary variable to hold the focus entity during shaking fx */									\
+	InGameEntity tempFocusInGameEntity;																	\
+																										\
+	/* last offset set by shake function */																\
+	VBVec3D lastShakeOffset;																			\
+																										\
+	/* time left in current shaking fx (in ms) */														\
+	u16 shakeTimeLeft;																					\
+																										\
+	/* update axis flag */																				\
+	VBVec3DFlag positionFlag;																			\
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);

@@ -30,22 +30,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define AdjustmentScreenState_METHODS											\
-	SplashScreenState_METHODS;													\
+#define AdjustmentScreenState_METHODS																	\
+	SplashScreenState_METHODS;																			\
 
 // declare the virtual methods which are redefined
-#define AdjustmentScreenState_SET_VTABLE(ClassName)								\
-	SplashScreenState_SET_VTABLE(ClassName)										\
-	__VIRTUAL_SET(ClassName, AdjustmentScreenState, print);						\
-	__VIRTUAL_SET(ClassName, AdjustmentScreenState, processInput);				\
+#define AdjustmentScreenState_SET_VTABLE(ClassName)														\
+	SplashScreenState_SET_VTABLE(ClassName)																\
+	__VIRTUAL_SET(ClassName, AdjustmentScreenState, print);												\
+	__VIRTUAL_SET(ClassName, AdjustmentScreenState, processInput);										\
 
 
 __CLASS(AdjustmentScreenState);
 
-#define AdjustmentScreenState_ATTRIBUTES										\
-														            			\
-	/* inherits */																\
-	SplashScreenState_ATTRIBUTES												\
+#define AdjustmentScreenState_ATTRIBUTES																\
+														            									\
+	/* inherits */																						\
+	SplashScreenState_ATTRIBUTES																		\
 
 
 //---------------------------------------------------------------------------------------------------------

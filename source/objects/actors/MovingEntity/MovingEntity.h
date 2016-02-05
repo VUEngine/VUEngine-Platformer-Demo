@@ -38,7 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define MovingEntity_METHODS																			\
-	Actor_METHODS;
+	Actor_METHODS;																						\
 
 #define MovingEntity_SET_VTABLE(ClassName)																\
 	Actor_SET_VTABLE(ClassName);																		\
@@ -58,7 +58,6 @@ __CLASS(MovingEntity);
 																										\
 	/* definition pointer */																			\
 	MovingEntityDefinition* movingEntityDefinition;														\
-
 
 // definition in ROM memory
 typedef struct MovingEntityDefinition
