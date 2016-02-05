@@ -121,7 +121,11 @@ StageROMDef PAUSE_SCREEN_ST =
 		// texture writing is active
 		12,
 		
-        // Palette's config
+		// maximum number of rows to compute 
+		// on each call to the affine functions
+		16,
+
+		// Palette's config
         {
         	// background color
         	__COLOR_BLACK,
