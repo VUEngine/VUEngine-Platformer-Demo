@@ -24,6 +24,7 @@
 #include "Door.h"
 #include "LayerSwitchDoor.h"
 #include "GoalDoor.h"
+#include "KeyDoor.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -85,7 +86,7 @@ AnimationFunctionROMDef DOOR_CLOSING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef DOOR_OPENED_ANIM =
+AnimationFunctionROMDef DOOR_OPEN_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -103,7 +104,7 @@ AnimationFunctionROMDef DOOR_OPENED_ANIM =
 	NULL,
 
 	// function's name
-	"Opened",
+	"Open",
 };
 
 // a function which defines the frames to play
@@ -113,7 +114,7 @@ AnimationFunctionROMDef DOOR_CLOSED_ANIM =
 	1,
 	
 	// frames to play in animation
-	{0},
+	{4},
 	
 	// number of cycles a frame of animation is displayed
 	0,
@@ -128,6 +129,50 @@ AnimationFunctionROMDef DOOR_CLOSED_ANIM =
 	"Closed",
 };
 
+// a function which defines the frames to play
+AnimationFunctionROMDef DOOR_KEY_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{0},
+
+	// number of cycles a frame of animation is displayed
+	0,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Key",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef DOOR_GOAL_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{5, 6},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Goal",
+};
+
 // an animation definition
 AnimationDescriptionROMDef DOOR_ANIM =
 {
@@ -135,8 +180,10 @@ AnimationDescriptionROMDef DOOR_ANIM =
 	{
 		(AnimationFunction*)&DOOR_OPENING_ANIM,
 		(AnimationFunction*)&DOOR_CLOSING_ANIM,
-		(AnimationFunction*)&DOOR_OPENED_ANIM,
+		(AnimationFunction*)&DOOR_OPEN_ANIM,
 		(AnimationFunction*)&DOOR_CLOSED_ANIM,
+		(AnimationFunction*)&DOOR_KEY_ANIM,
+		(AnimationFunction*)&DOOR_GOAL_ANIM,
 		NULL,
 	}
 };
@@ -146,7 +193,7 @@ CharSetROMDef DOOR_CH =
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    49,
+    85,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -173,7 +220,7 @@ TextureROMDef DOOR_TX =
     // number of frames, depending on charset's allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
     // __ANIMATED_MULTI: total number of frames
-    4,
+    7,
 
     // palette number (0-3)
     1,
@@ -278,6 +325,39 @@ AnimatedInGameEntityROMDef GOAL_DOOR_AG =
         },
 
         // collision detection gap (up, down, left, right)
+        {1, 0, 1, 1},
+
+        // in game type
+        kDoor,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// depth
+        4
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&DOOR_ANIM,
+
+    // initial animation
+    "Open",
+};
+
+AnimatedInGameEntityROMDef KEY_DOOR_AG =
+{
+    {
+        {
+            __TYPE(KeyDoor),
+            (SpriteROMDef**)DOOR_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
         {6, 0, 6, 6},
 
         // in game type
@@ -299,7 +379,7 @@ AnimatedInGameEntityROMDef GOAL_DOOR_AG =
     (AnimationDescription*)&DOOR_ANIM,
 
     // initial animation
-    "Opened",
+    "Closed",
 };
 
 BgmapSpriteROMDef AFFINE_DOOR_SPRITE =

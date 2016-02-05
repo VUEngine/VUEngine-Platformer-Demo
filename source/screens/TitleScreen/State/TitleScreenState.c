@@ -121,13 +121,13 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 static void TitleScreenState_execute(TitleScreenState this, void* owner)
 {
 /*
-    Door currentlyOverlappingDoor = Hero_getCurrentlyOverlappingDoor(Hero_getInstance());
+    Door currentlyOverlappedDoor = Hero_getCurrentlyOverlappingDoor(Hero_getInstance());
     char* strLevelSelectLabel = "";
 
     // display level name if in front of a door
-    if(currentlyOverlappingDoor != NULL)
+    if(currentlyOverlappedDoor != NULL)
     {
-        PlatformerStageEntryPointDefinition* destinationDefinition = Door_getExtraInfo(currentlyOverlappingDoor);
+        PlatformerStageEntryPointDefinition* destinationDefinition = Door_getExtraInfo(currentlyOverlappedDoor);
         strLevelSelectLabel = I18n_getText(I18n_getInstance(), (int)destinationDefinition->platformerStageDefinition->name);
     }
 

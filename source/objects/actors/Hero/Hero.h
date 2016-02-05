@@ -75,7 +75,7 @@ __CLASS(Hero);
 	Actor_ATTRIBUTES																					\
 	                                                                            						\
 	/* a reference to the last door the hero passed */    												\
-	Door currentlyOverlappingDoor;																		\
+	Door currentlyOverlappedDoor;																		\
 																										\
 	/* hint entity */																					\
 	Entity hint;																						\
@@ -134,7 +134,7 @@ void Hero_toggleFlashPalette(Hero this);
 void Hero_resetPalette(Hero this);
 void Hero_disableBoost(Hero this);
 void Hero_enableBoost(Hero this);
-bool Hero_isOverlappingDoor(Hero this);
+Door Hero_getOverlappedDoor(Hero this);
 void Hero_enterDoor(Hero this);
 void Hero_showHint(Hero this, u8 hintType);
 void Hero_hideHint(Hero this);

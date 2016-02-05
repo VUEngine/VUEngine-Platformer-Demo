@@ -131,6 +131,7 @@ enum PlatformerLevelStateMessageTypes
 	kLavaMove,
 	kCannonShoot,
     kHeroCheckOverlapping,
+    kHeroStartOverlapping,
     kHeroEndOverlapping,
     kMovingEntityStartMovement,
 
