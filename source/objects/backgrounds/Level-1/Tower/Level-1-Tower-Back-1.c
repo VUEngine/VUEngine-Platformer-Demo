@@ -121,6 +121,6 @@ BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES[] =
 
 ImageROMDef LEVEL_1_TOWER_MAIN_BACK_IM =
 {
-	__TYPE(MBackground),
+	__TYPE(Image),
 	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES,
 };

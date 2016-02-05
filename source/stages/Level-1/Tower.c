@@ -62,7 +62,7 @@ PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_ENTITIES[] =
 {
-//    {&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
 	{&DOOR_AG,	            		{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
     {&TORCH_AG,                     {FTOFIX19_13(-107), FTOFIX19_13(136), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(12), 	FTOFIX19_13(136), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
@@ -148,7 +148,6 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
 	// for the streaming to work properly. beware of edge case scenarios!
 
     // part 1
-    {&LEVEL_1_TOWER_MAIN_1_IM,      {FTOFIX19_13(192), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, NULL, NULL, false},
     {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_ENTITIES, NULL, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_1, NULL, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),   FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_2, NULL, false},
@@ -202,7 +201,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
 
     {&MOVING_PLATFORM_V6_AC,        {FTOFIX19_13(112),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 848),    FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 	{&COIN_AG, 						{FTOFIX19_13(40), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 944), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin 64", NULL, NULL, false},
-	{&GOAL_DOOR_AG, 				{FTOFIX19_13(208), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 946), 	FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, NULL, false},
+	{&DOOR_AG, 						{FTOFIX19_13(208), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 946), 	FTOFIX19_13(LAYER_0_ITEMS)}, "ExitDoor", NULL, NULL, false},
 
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 768),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
 
@@ -225,7 +224,7 @@ CharSetROMDef* LEVEL_1_TOWER_ST_CHARSETS[] =
 
 StageTextureEntryROMDef LEVEL_1_TOWER_ST_TEXTURES[] =
 {
-	{&LEVEL_1_TOWER_BACK_1_TX, true},
+	{&LEVEL_1_TOWER_BACK_1_TX, false},
 	{&LEVEL_1_TOWER_MAIN_BACK_1_TX, true},
 	{&LEVEL_1_TOWER_MAIN_1_TX, true},
 	{&LEVEL_1_TOWER_MAIN_1_TX, false},
@@ -342,14 +341,14 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
             // optical configuration values
             {
         		// maximum view distance's power into the horizon
-        		__MAXIMUM_VIEW_DISTANCE_POWER + 10,
+        		__MAXIMUM_VIEW_DISTANCE_POWER + 1,
                 // distance of the eyes to the screen
                 ITOFIX19_13(__DISTANCE_EYE_SCREEN),
                 // distance from left to right eye (depth sensation)
                 ITOFIX19_13(__BASE_FACTOR),
-                // horizontal view point center
+                // horizontal View point center
                 ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
-                // vertical view point center
+                // vertical View point center
                 ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER + __VERTICAL_VIEW_POINT_CENTER/2),
             },            
     	},
