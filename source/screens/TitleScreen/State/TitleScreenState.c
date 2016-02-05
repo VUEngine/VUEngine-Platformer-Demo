@@ -54,6 +54,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner);
 static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
 static void TitleScreenState_showMessage(TitleScreenState this);
 static void TitleScreenState_hideMessage(TitleScreenState this);
+static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -86,6 +87,8 @@ static void TitleScreenState_destructor(TitleScreenState this)
 // state's enter
 static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
+
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
 
@@ -130,6 +133,8 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
 // state's exit
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
+
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
@@ -198,8 +203,6 @@ static void TitleScreenState_showMessage(TitleScreenState this)
     Size strPressStartButtonSize = Printing_getTextSize(Printing_getInstance(), strPressStartButton, NULL);
     u8 strXPos = (__SCREEN_WIDTH >> 4) - (strPressStartButtonSize.x >> 1);
     Printing_text(Printing_getInstance(), strPressStartButton, strXPos, 26, NULL);
-
-	MessageDispatcher_dispatchMessage(PRESS_START_BLINK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHideMessage, NULL);
 }
 
 static void TitleScreenState_hideMessage(TitleScreenState this)
@@ -207,8 +210,6 @@ static void TitleScreenState_hideMessage(TitleScreenState this)
 	ASSERT(this, "TitleScreenState::hideMessage: null this");
 
     Printing_text(Printing_getInstance(), "                                           ", 0, 26, NULL);
-
-	MessageDispatcher_dispatchMessage(PRESS_START_BLINK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShowMessage, NULL);
 }
 
 // state's handle message
@@ -235,18 +236,6 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
 			Game_enableKeypad(Game_getInstance());
-
-            TitleScreenState_showMessage(this);
-			break;
-
-		case kHideMessage:
-
-            TitleScreenState_hideMessage(this);
-			break;
-
-		case kShowMessage:
-
-            TitleScreenState_showMessage(this);
 			break;
 
 		case kKeyPressed:
@@ -256,4 +245,17 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 	}
 
 	return false;
+}
+
+// handle event
+static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventFirer)
+{
+    if((Clock_getSeconds(Game_getInGameClock(Game_getInstance())) % 2) == 0)
+    {
+        TitleScreenState_showMessage(this);
+    }
+    else
+    {
+        TitleScreenState_hideMessage(this);
+    }
 }
