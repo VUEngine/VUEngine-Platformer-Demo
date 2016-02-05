@@ -61,6 +61,8 @@ const LangROMDef LANGUAGE_ES =
         "Apagado",
         //STR_LANGUAGE_SELECT:
         "Seleccionar Idioma",
+        // STR_PRESS_START_BUTTON:
+        "Press Start Button",
 
         /* Levels */
 

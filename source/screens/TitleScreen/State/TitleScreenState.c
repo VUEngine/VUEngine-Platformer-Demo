@@ -26,6 +26,7 @@
 #include <Printing.h>
 #include <MessageDispatcher.h>
 #include <I18n.h>
+#include <Languages.h>
 #include <PhysicalWorld.h>
 #include <TitleScreenState.h>
 #include <Hero.h>
@@ -120,24 +121,6 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 // state's execute
 static void TitleScreenState_execute(TitleScreenState this, void* owner)
 {
-/*
-    Door currentlyOverlappedDoor = Hero_getCurrentlyOverlappingDoor(Hero_getInstance());
-    char* strLevelSelectLabel = "";
-
-    // display level name if in front of a door
-    if(currentlyOverlappedDoor != NULL)
-    {
-        PlatformerStageEntryPointDefinition* destinationDefinition = Door_getExtraInfo(currentlyOverlappedDoor);
-        strLevelSelectLabel = I18n_getText(I18n_getInstance(), (int)destinationDefinition->platformerStageDefinition->name);
-    }
-
-    if(0 != strcmp(this->lastLevelSelectLabel, strLevelSelectLabel))
-    {
-        Printing_text(Printing_getInstance(), "                                                ", 0, 26, "GUIFont");
-        Printing_text(Printing_getInstance(), strLevelSelectLabel, (48 - strlen(strLevelSelectLabel)) >> 1, 26, "GUIFont");
-        this->lastLevelSelectLabel = strLevelSelectLabel;
-    }
-*/
 	// call base
 	GameState_execute(__SAFE_CAST(GameState, this), owner);
 }
@@ -205,8 +188,29 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
 
+void TitleScreenState_showMessage(TitleScreenState this)
+{
+	ASSERT(this, "TitleScreenState::showMessage: null this");
+
+    char* strPressStartButton = I18n_getText(I18n_getInstance(), STR_PRESS_START_BUTTON);
+    Size strPressStartButtonSize = Printing_getTextSize(Printing_getInstance(), strPressStartButton, NULL);
+    u8 strXPos = (__SCREEN_WIDTH >> 4) - (strPressStartButtonSize.x >> 1);
+    Printing_text(Printing_getInstance(), strPressStartButton, strXPos, 26, NULL);
+
+	MessageDispatcher_dispatchMessage(PRESS_START_BLINK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHideMessage, NULL);
+}
+
+void TitleScreenState_hideMessage(TitleScreenState this)
+{
+	ASSERT(this, "TitleScreenState::hideMessage: null this");
+
+    Printing_text(Printing_getInstance(), "                                           ", 0, 26, NULL);
+
+	MessageDispatcher_dispatchMessage(PRESS_START_BLINK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShowMessage, NULL);
+}
+
 // state's handle message
-static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
+bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))
@@ -216,8 +220,8 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 
-			// show level after 0.5 second
-			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
+			// show level after 0.25 seconds
+			MessageDispatcher_dispatchMessage(250, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
 			break;
 
 		case kLevelStarted:
@@ -229,35 +233,23 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
 			Game_enableKeypad(Game_getInstance());
+
+            TitleScreenState_showMessage(this);
+			break;
+
+		case kHideMessage:
+
+            TitleScreenState_hideMessage(this);
+			break;
+
+		case kShowMessage:
+
+            TitleScreenState_showMessage(this);
 			break;
 
 		case kKeyPressed:
-			{
-	            u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-	
-	            if(K_SEL & pressedKey)
-	            {
-	                // adjustment screen
-					SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
-	                Game_pause(Game_getInstance(), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
-	                break;
-	            }
-			}
-			
-			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_PRESSED);
-			return true;
-			break;
 
-		case kKeyReleased:
-		
-			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_RELEASED);
-			return true;
-			break;
-
-		case kKeyHold:
-			
-			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_HOLD);
-			return true;
+            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
 			break;
 	}
 

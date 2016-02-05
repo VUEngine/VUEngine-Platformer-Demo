@@ -42,6 +42,7 @@ enum LanguageStrings
     STR_ON,
     STR_OFF,
     STR_LANGUAGE_SELECT,
+    STR_PRESS_START_BUTTON,
 
     /* Levels */
     STR_LEVEL,

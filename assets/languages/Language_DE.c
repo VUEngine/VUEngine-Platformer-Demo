@@ -61,6 +61,8 @@ const LangROMDef LANGUAGE_DE =
         "Aus",
         //STR_LANGUAGE_SELECT:
         "Sprachauswahl",
+        // STR_PRESS_START_BUTTON:
+        "Start-Knopf drücken",
 
         /* Levels */
 

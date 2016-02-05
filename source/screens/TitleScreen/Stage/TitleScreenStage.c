@@ -32,13 +32,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											    PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP;
-
-
-//---------------------------------------------------------------------------------------------------------
 // 												ASSETS
 //---------------------------------------------------------------------------------------------------------
 
@@ -72,8 +65,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_CHILDREN[] =
 	{&COLLISION_2x28x1, 	{FTOFIX19_13(92),   FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 	{&COLLISION_2x28x1, 	{FTOFIX19_13(292),  FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
-	{&HERO_AC, 				{FTOFIX19_13(144),  FTOFIX19_13(148), 	FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
-	{&DOOR_AG,				{FTOFIX19_13(192),  FTOFIX19_13(152), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, (void*)&LEVEL_1_MAIN_MAIN_EP, true},
+	{&HERO_AC, 				{FTOFIX19_13(192),  FTOFIX19_13(157), 	FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, true},
 
 	{&GRASS_AG,      	    {FTOFIX19_13(34),   FTOFIX19_13(153), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 	{&BUSH_AG,      	    {FTOFIX19_13(366),  FTOFIX19_13(148), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
@@ -95,6 +87,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_CHILDREN[] =
 
 PositionedEntityROMDef TITLE_SCREEN_ST_UI_CHILDREN[] =
 {
+	{&GUI_BLANK_IM,			{FTOFIX19_13(192), 	FTOFIX19_13(208), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{&GUI_BLANK_IM,			{FTOFIX19_13(192), 	FTOFIX19_13(216), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };

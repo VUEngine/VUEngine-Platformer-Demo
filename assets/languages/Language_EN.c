@@ -61,6 +61,8 @@ const LangROMDef LANGUAGE_EN =
         "Off",
         //STR_LANGUAGE_SELECT:
         "Language Select",
+        // STR_PRESS_START_BUTTON:
+        "Press Start Button",
 
         /* Levels */
 
