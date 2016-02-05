@@ -46,7 +46,7 @@ const LangROMDef LANGUAGE_ES =
         //STR_PRECAUTION_SCREEN_TITLE:
         "Importante:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        "     Lea los libros de\nInstrucciones y precauciones\n       antes de jugar",
+        "     Lea los libros de\n\nInstrucciones y precauciones\n\n       antes de jugar",
         //STR_AUTOMATIC_PAUSE:
         "Pausa Automática",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
@@ -61,15 +61,17 @@ const LangROMDef LANGUAGE_ES =
         "Apagado",
         //STR_LANGUAGE_SELECT:
         "Seleccionar Idioma",
-        // STR_PRESS_START_BUTTON:
-        "Press Start Button",
+        //STR_PRESS_START_BUTTON:
+        "Presionar Start",
 
         /* Levels */
 
         //STR_LEVEL:
         "Nivel",
         //STR_LEVEL_DONE:
-        "Level Completed!",
+        "¡Nivel completo!",
+        //STR_LEVEL_CONQUERED:
+        "¡Nivel conquistado!",
         //STR_LEVEL_1_NAME:
         "Woohoo Hills",
     },

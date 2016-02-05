@@ -38,7 +38,6 @@
 	GameState_SET_VTABLE(ClassName)								    									\
 	__VIRTUAL_SET(ClassName, LevelDoneScreenState, enter);												\
 	__VIRTUAL_SET(ClassName, LevelDoneScreenState, exit);												\
-	__VIRTUAL_SET(ClassName, LevelDoneScreenState, execute);											\
 	__VIRTUAL_SET(ClassName, LevelDoneScreenState, handleMessage);										\
 
 __CLASS(LevelDoneScreenState);

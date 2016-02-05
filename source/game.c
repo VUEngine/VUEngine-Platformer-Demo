@@ -29,8 +29,8 @@
 int main(void)
 {
     // start the game
-	Game_start(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
-    
+	Game_start(Game_getInstance(), __SAFE_CAST(GameState, PrecautionScreenState_getInstance()));
+
 	// end program
 	return true;
 }

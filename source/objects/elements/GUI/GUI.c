@@ -129,11 +129,11 @@ void GUI_printCoins(GUI this)
     if(coins >= 10)
     {
         printPos--;
-    }
-    if(coins >= 64)
+    }/*
+    if(coins >= 100)
     {
         printPos--;
-    }
+    }*/
     Printing_int(Printing_getInstance(), coins, printPos, GUI_Y_POS, GUI_FONT);
 }
 

@@ -47,6 +47,7 @@ enum LanguageStrings
     /* Levels */
     STR_LEVEL,
     STR_LEVEL_DONE,
+    STR_LEVEL_CONQUERED,
     STR_LEVEL_1_NAME,
 };
 

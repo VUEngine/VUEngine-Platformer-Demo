@@ -36,6 +36,7 @@
 
 PositionedEntityROMDef LEVEL_DONE_SCREEN_ST_CHILDREN[] =
 {
+    {&COIN_AG,      {FTOFIX19_13(164),  FTOFIX19_13(108),   FTOFIX19_13(LAYER_0_ITEMS)},    NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
