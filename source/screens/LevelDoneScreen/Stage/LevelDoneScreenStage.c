@@ -145,7 +145,7 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
             // SPT2
             FTOFIX19_13(LAYER_0_PARTICLES),
             // SPT3
-            FTOFIX19_13(24),
+            FTOFIX19_13(LAYER_0_PARTICLES),
         },
 
         // optical configuration values
