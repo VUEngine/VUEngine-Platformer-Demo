@@ -61,7 +61,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 {
-	{&COLLISION_30x33x1,            {FTOFIX19_13(-120), FTOFIX19_13(0), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left floor
+	{&COLLISION_34x30x1,            {FTOFIX19_13(-136), FTOFIX19_13(-12), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left floor
 	{&COLLISION_34x30x1,            {FTOFIX19_13(112),  FTOFIX19_13(12), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // right floor
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
@@ -227,7 +227,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	// for the streaming to work properly. beware of edge case scenarios!
 
     // left border
-	{&COLLISION_2x28x1,				{FTOFIX19_13(-4),  FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+	{&COLLISION_2x28x1,				{FTOFIX19_13(-8),  FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
     // part 1
     {&SMOKE_PS,						{FTOFIX19_13(91),   FTOFIX19_13(138), 	FTOFIX19_13(LAYER_0_FOREGROUND + 32)},   NULL, NULL, NULL, false},

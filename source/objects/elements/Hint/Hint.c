@@ -71,24 +71,7 @@ void Hint_resume(Hint this)
 	ASSERT(this, "Hint::resume: null this");
 
 	Entity_resume(__SAFE_CAST(Entity, this));
-	Entity_hide(__SAFE_CAST(Entity, this));
-}
-
-// state's handle message
-bool Hint_handleMessage(Hint this, Telegram telegram)
-{
-	ASSERT(this, "Hint::handleMessage: null this");
-/*
-	switch(Telegram_getMessage(telegram))
-	{
-		case kSuspend:
-
-			__VIRTUAL_CALL(void, Container, suspend, this);
-			return true;
-			break;
-	}
-	*/
-	return false;
+	Hint_playActiveLanguageHint(this, NULL);
 }
 
 void Hint_open(Hint this, u8 hintType)

@@ -251,11 +251,11 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	{
 #endif
 
-	// make a fade in
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
-	
 	// tell any interested entity
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
+
+	// make a fade in
+    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}

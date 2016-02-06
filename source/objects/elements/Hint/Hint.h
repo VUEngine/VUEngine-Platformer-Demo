@@ -44,12 +44,10 @@ enum HintTypes
 
 #define Hint_METHODS																					\
 	AnimatedInGameEntity_METHODS;																		\
-	
 
 #define Hint_SET_VTABLE(ClassName)																		\
 	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
 	__VIRTUAL_SET(ClassName, Hint, resume);																\
-	__VIRTUAL_SET(ClassName, Hint, handleMessage);														\
 
 __CLASS(Hint);
 
@@ -71,7 +69,6 @@ __CLASS_NEW_DECLARE(Hint, AnimatedInGameEntityDefinition* animatedEntityDefiniti
 void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Hint_destructor(Hint this);
 void Hint_resume(Hint this);
-bool Hint_handleMessage(Hint this, Telegram telegram);
 void Hint_open(Hint this, u8 hintType);
 void Hint_close(Hint this);
 void Hint_onCloseDone(Hint this, Object eventFirer);
