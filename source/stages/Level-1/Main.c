@@ -416,7 +416,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
     		// delay per cycle
     		10,
     		// load padding
-    		40,
+    		48,
     		// unload padding
     		16,
     		// streaming amplitude
@@ -429,7 +429,7 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
     		__TARGET_FPS / 10,
     		
     		// maximum number of texture's rows to write each time the texture writing is active
-    		12,
+    		16,
     		
     		// maximum number of rows to compute on each call to the affine functions
     		16,
