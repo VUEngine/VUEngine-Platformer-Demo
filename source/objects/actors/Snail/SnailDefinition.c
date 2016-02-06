@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <ObjectAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include "MovingEntity.h"
 
 
@@ -139,7 +140,7 @@ MovingEntityROMDef SNAIL_4_AC =
 	            },
 	
 	            // collision detection gap (up, down, left, right)
-	            {4, 0, 5, 3},
+	            {6, 0, 5, 3},
 
 	            // in game type
 	            kSnail,
@@ -199,7 +200,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	            },
 
 	            // collision detection gap (up, down, left, right)
-	            {4, 0, 5, 3},
+	            {6, 0, 5, 3},
 
 	            // in game type
 	            kSnail,
@@ -232,7 +233,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(20),
+	ITOFIX19_13(90),
 
 	// maximum deviation from initial position
 	ITOFIX19_13(64),
