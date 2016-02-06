@@ -176,6 +176,8 @@ void GUI_updateSprite(GUI this)
 			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_CH);
 			break;
 	}
+
+	CharSet_rewrite(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))));
 }
 
 // print current level to gui

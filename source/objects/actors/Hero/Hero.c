@@ -933,6 +933,8 @@ void Hero_updateSprite(Hero this)
 			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
 			break;
 	}
+
+	CharSet_rewrite(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))));
 }
 
 // get current power-up
