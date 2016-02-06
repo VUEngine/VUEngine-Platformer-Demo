@@ -115,7 +115,7 @@ static void ProgressManager_initialize(ProgressManager this)
 			CoinStatus coinStatus;
 			coinStatus.taken = false;
 			strncpy(coinStatus.name, "Coin ", COIN_NAME_LENGTH);
-			strncat(coinStatus.name, Utilities_itoa(coin, 10, 3), COIN_NAME_LENGTH);
+			strncat(coinStatus.name, Utilities_itoa(coin, 10, 2), COIN_NAME_LENGTH);
 			SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
 		}
 	}

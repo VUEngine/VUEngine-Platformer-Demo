@@ -119,16 +119,18 @@ void GUI_printClock(GUI this)
 void GUI_printCoins(GUI this)
 {
     u8 coins = Hero_getCoins(Hero_getInstance());
+
+    // bound to 64
+    if(coins > 64)
+    {
+        coins = 64;
+    }
+
+    // compute x position
+    u8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
+
+    // print
 	Printing_text(Printing_getInstance(), "00/64", GUI_X_POS + 11, GUI_Y_POS, GUI_FONT);
-    u8 printPos = GUI_X_POS + 12;
-    if(coins >= 10)
-    {
-        printPos--;
-    }/*
-    if(coins >= 100)
-    {
-        printPos--;
-    }*/
     Printing_int(Printing_getInstance(), coins, printPos, GUI_Y_POS, GUI_FONT);
 }
 

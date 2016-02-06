@@ -300,7 +300,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
     		__TARGET_FPS / 10,
     		
     		// maximum number of texture's rows to write each time the texture writing is active
-    		12,
+    		16,
     		
     		// maximum number of rows to compute on each call to the affine functions
     		16,
@@ -326,7 +326,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
             
             // BGMAP segments configuration
             // number of segments reserved for dynamically allocated textures when preloading
-            6,
+            5,
 
         	// OBJs segments sizes (must total 1024)
             {
@@ -351,7 +351,7 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
                 // SPT2
                 FTOFIX19_13(LAYER_0_PARTICLES),
                 // SPT3
-                FTOFIX19_13(20),
+                FTOFIX19_13(LAYER_0_PARTICLES),
             },
 
             // optical configuration values

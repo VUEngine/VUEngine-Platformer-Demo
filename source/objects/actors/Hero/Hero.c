@@ -885,6 +885,9 @@ void Hero_collectKey(Hero this)
 {
 	this->hasKey = true;
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_TAKEN);
+
+	// play collect sound
+    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
 // does the hero have a key?
@@ -946,13 +949,23 @@ u8 Hero_getPowerUp(Hero this)
 // collect a coin
 void Hero_collectCoin(Hero this, Coin coin)
 {
-    int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
-    numberOfCollectedCoins++;
-    ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
-    ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
-    Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_COIN_TAKEN);
+    // if the coin has not been taken already
+    if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin))))
+    {
+        // increment the number of collected coins
+        int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
+        numberOfCollectedCoins++;
+        ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
 
-    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+        // set coin status to taken
+        ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
+
+        // fire "taken" event
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_COIN_TAKEN);
+
+        // play collect sound
+        SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+    }
 }
 
 // get number of collected coins
