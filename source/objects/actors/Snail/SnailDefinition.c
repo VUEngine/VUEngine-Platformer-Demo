@@ -233,7 +233,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(90),
+	ITOFIX19_13(20),
 
 	// maximum deviation from initial position
 	ITOFIX19_13(64),

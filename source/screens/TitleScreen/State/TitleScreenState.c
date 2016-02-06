@@ -244,8 +244,8 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 
 			if(K_STA & pressedKey)
 			{
-			//	extern PlatformerStageEntryPointDefinition LEVEL_1_MAIN_MAIN_EP;
-			//	PlatformerLevelState_setStage(PlatformerLevelState_getInstance(), &LEVEL_1_MAIN_MAIN_EP);
+				extern PlatformerStageEntryPointDefinition LEVEL_1_MAIN_MAIN_EP;
+				PlatformerLevelState_setStage(PlatformerLevelState_getInstance(), &LEVEL_1_MAIN_MAIN_EP);
 	            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
 			}
 		}
