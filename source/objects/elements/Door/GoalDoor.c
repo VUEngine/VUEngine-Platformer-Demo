@@ -81,6 +81,7 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 		case kHeroEnterDoor:
 
 			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState_getInstance()));
+			return true;
 			break;
 	}
 	
