@@ -37,7 +37,6 @@
 	Image_SET_VTABLE(ClassName);																		\
 	__VIRTUAL_SET(ClassName, CogWheel, ready);															\
 	__VIRTUAL_SET(ClassName, CogWheel, handleMessage);													\
-    __VIRTUAL_SET(ClassName, CogWheel, resume);															\
 
 __CLASS(CogWheel);
 
@@ -57,7 +56,6 @@ void CogWheel_constructor(CogWheel this, ImageDefinition* definition, s16 id, co
 void CogWheel_destructor(CogWheel this);
 void CogWheel_ready(CogWheel this);
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram);
-void CogWheel_resume(CogWheel this);
 
 
 #endif

@@ -112,14 +112,3 @@ static void CogWheel_rotate(CogWheel this)
     // send delayed message to self to trigger next movement
     MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
-
-// resume after pause
-void CogWheel_resume(CogWheel this)
-{
-	ASSERT(this, "Entity::resume: null this");
-
-	Entity_resume(__SAFE_CAST(Entity, this));
-
-    // send delayed message to self to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
-}
