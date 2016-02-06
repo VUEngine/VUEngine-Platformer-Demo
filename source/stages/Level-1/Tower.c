@@ -285,9 +285,9 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
         // streaming
     	{
     		// delay per cycle
-    		15,
+    		10,
     		// load padding
-    		40,
+    		48,
     		// unload padding
     		16,
     		// streaming amplitude
