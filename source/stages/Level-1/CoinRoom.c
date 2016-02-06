@@ -135,7 +135,7 @@ PlatformerStageROMDef LEVEL_1_COIN_ROOM_ST =
 	            // y
 	            __SCREEN_HEIGHT,
 	            // z
-	            128
+	            __SCREEN_DEPTH,
 	        },
 	        
 			// screen's initial position inside the game world

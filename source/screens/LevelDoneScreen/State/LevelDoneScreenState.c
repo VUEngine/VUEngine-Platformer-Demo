@@ -41,7 +41,6 @@
 static void LevelDoneScreenState_destructor(LevelDoneScreenState this);
 static void LevelDoneScreenState_constructor(LevelDoneScreenState this);
 static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner);
-static void LevelDoneScreenState_execute(LevelDoneScreenState this, void* owner);
 static void LevelDoneScreenState_print(LevelDoneScreenState this);
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner);
 static bool LevelDoneScreenState_handleMessage(LevelDoneScreenState this, void* owner, Telegram telegram);
@@ -82,12 +81,9 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner)
 
 	ProgressManager_reset(ProgressManager_getInstance());
 
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
-}
+    Game_enableKeypad(Game_getInstance());
 
-// state's execute
-static void LevelDoneScreenState_execute(LevelDoneScreenState this, void* owner)
-{
+    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 }
 
 // state's exit
@@ -105,14 +101,22 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this)
 {
 	ASSERT(this, "LevelDoneScreenState::print: null this");
 
-    // "level completed"
+    u8 numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
+
+    // "level completed/conquered"
     char* strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_DONE);
+    if(numberOfCollectedCoins == 64)
+    {
+        strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_CONQUERED);
+    }
     Size strLevelDoneSize = Printing_getTextSize(Printing_getInstance(), strLevelDone, "GUIFont");
     u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (strLevelDoneSize.x >> 1);
-    Printing_text(Printing_getInstance(), strLevelDone, strHeaderXPos, 8, "GUIFont");
+    Printing_text(Printing_getInstance(), strLevelDone, strHeaderXPos, 9, "GUIFont");
 
     // number of coins
-    //Printing_int(Printing_getInstance(), 666666, 12, 8, "GUIFont");
+    Printing_text(Printing_getInstance(), "x   /64", 22, 13, NULL);
+    u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 25 : 24;
+    Printing_int(Printing_getInstance(), numberOfCollectedCoins, numberPrintPos, 13, NULL);
 }
 
 // state's handle message

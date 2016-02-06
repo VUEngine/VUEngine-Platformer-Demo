@@ -264,11 +264,11 @@ PlatformerStageROMDef LEVEL_1_TOWER_ST =
 	        // size
 	        {
 	            // x
-	            384,
+	            __SCREEN_WIDTH,
 	            // y
 	            LEVEL_1_TOWER_HEIGHT,
 	            // z
-	            256
+	            __SCREEN_DEPTH,
 	        },
 	        
 			// screen's initial position inside the game world

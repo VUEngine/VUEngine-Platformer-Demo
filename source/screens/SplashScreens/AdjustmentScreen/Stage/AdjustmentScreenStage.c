@@ -39,12 +39,13 @@ extern EntityDefinition ADJUSTMENT_SCREEN_ICON_IM_R;
 
 PositionedEntityROMDef ADJUSTMENT_SCREEN_ST_CHILDREN[] =
 {
-	{&ADJUSTMENT_SCREEN_BG_IM, 		{FTOFIX19_13(192),  FTOFIX19_13(88), 	FTOFIX19_13(64)}, NULL, NULL, NULL, true},
-	{&ADJUSTMENT_SCREEN_LOGO_IM,	{FTOFIX19_13(192),  FTOFIX19_13(104), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{FTOFIX19_13(8),	FTOFIX19_13(8), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{FTOFIX19_13(376),  FTOFIX19_13(216), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&ADJUSTMENT_SCREEN_ICON_IM_R,	{FTOFIX19_13(376),	FTOFIX19_13(8), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&ADJUSTMENT_SCREEN_ICON_IM_R,  {FTOFIX19_13(8),	FTOFIX19_13(216), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+	{&ADJUSTMENT_SCREEN_BG_IM, 		{FTOFIX19_13(192),  FTOFIX19_13(92), 	FTOFIX19_13(64)},   NULL, NULL, NULL, true},
+	{&ADJUSTMENT_SCREEN_LOGO_IM,	{FTOFIX19_13(192),  FTOFIX19_13(104), 	FTOFIX19_13(0)},    NULL, NULL, NULL, true},
+	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{FTOFIX19_13(8),	FTOFIX19_13(8), 	FTOFIX19_13(0)},    NULL, NULL, NULL, true},
+	{&ADJUSTMENT_SCREEN_ICON_IM_L,	{FTOFIX19_13(376),  FTOFIX19_13(216), 	FTOFIX19_13(0)},    NULL, NULL, NULL, true},
+	{&ADJUSTMENT_SCREEN_ICON_IM_R,	{FTOFIX19_13(376),	FTOFIX19_13(8), 	FTOFIX19_13(0)},    NULL, NULL, NULL, true},
+	{&ADJUSTMENT_SCREEN_ICON_IM_R,  {FTOFIX19_13(8),	FTOFIX19_13(216), 	FTOFIX19_13(0)},    NULL, NULL, NULL, true},
+
 	{NULL,{0,0,0}, NULL, NULL, NULL, false},
 };
 
@@ -64,7 +65,7 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
             // y
             __SCREEN_HEIGHT,
             // z
-            1
+            __SCREEN_DEPTH,
         },
         
 		// screen's initial position inside the game world
@@ -95,12 +96,10 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
 		// number of cycles the texture writing is idle
 		0,
 		
-		// maximum number of texture's rows to write each time the 
-		// texture writing is active
+		// maximum number of texture's rows to write each time the texture writing is active
 		64,
 
-		// maximum number of rows to compute 
-		// on each call to the affine functions
+		// maximum number of rows to compute on each call to the affine functions
 		16,
 
         // Palette's config

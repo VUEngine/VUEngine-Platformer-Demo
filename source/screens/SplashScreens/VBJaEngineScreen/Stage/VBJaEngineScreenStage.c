@@ -63,7 +63,7 @@ StageROMDef VBJAENGINE_SCREEN_ST =
             // y
             __SCREEN_HEIGHT,
             // z
-            1
+            __SCREEN_DEPTH,
         },
         
 		// screen's initial position inside the game world
@@ -94,12 +94,10 @@ StageROMDef VBJAENGINE_SCREEN_ST =
 		// number of cycles the texture writing is idle
 		0,
 		
-		// maximum number of texture's rows to write each time the 
-		// texture writing is active
+		// maximum number of texture's rows to write each time the texture writing is active
 		64,
 		
-		// maximum number of rows to compute 
-		// on each call to the affine functions
+		// maximum number of rows to compute on each call to the affine functions
 		16,
 
 		// Palette's config

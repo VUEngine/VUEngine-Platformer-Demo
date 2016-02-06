@@ -46,7 +46,7 @@ const LangROMDef LANGUAGE_DE =
         //STR_PRECAUTION_SCREEN_TITLE:
         "Wichtig:",
         //STR_PRECAUTION_SCREEN_TEXT:
-        "   Lesen Sie vor dem\n Spielen die Anleitung\nund Sicherheitshinweise",
+        "   Lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
         //STR_AUTOMATIC_PAUSE:
         "Automatische Pause",
         //STR_AUTOMATIC_PAUSE_EXPLANATION:
@@ -61,7 +61,7 @@ const LangROMDef LANGUAGE_DE =
         "Aus",
         //STR_LANGUAGE_SELECT:
         "Sprachauswahl",
-        // STR_PRESS_START_BUTTON:
+        //STR_PRESS_START_BUTTON:
         "Start-Knopf drücken",
 
         /* Levels */
@@ -70,6 +70,8 @@ const LangROMDef LANGUAGE_DE =
         "Level",
         //STR_LEVEL_DONE:
         "Level geschafft!",
+        //STR_LEVEL_CONQUERED:
+        "Level gemeistert!",
         //STR_LEVEL_1_NAME:
         "Woohoo-Berge",
     },

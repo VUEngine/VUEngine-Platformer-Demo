@@ -105,10 +105,6 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_UI_CHILDREN[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-extern CharSetDefinition LEVEL_1_SMALL_ROOM_BACK_CH;
-extern CharSetDefinition LEVEL_1_SMALL_ROOM_MAIN_BACK_CH;
-extern CharSetDefinition LEVEL_1_SMALL_ROOM_MAIN_CH;
-
 CharSetROMDef* LEVEL_1_SMALL_ROOM_ST_CHARSETS[] =
 {
 	&LEVEL_1_SMALL_ROOM_BACK_CH,
@@ -136,7 +132,7 @@ PlatformerStageROMDef LEVEL_1_SMALL_ROOM_ST =
 	            // y
 	            __SCREEN_HEIGHT,
 	            // z
-	            128
+	            __SCREEN_DEPTH,
 	        },
 	        
 			// screen's initial position inside the game world
