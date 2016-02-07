@@ -75,7 +75,7 @@ void Door_destructor(Door this)
 }
 
 // get destination
-PlatformerStageEntryPointDefinition* Door_getExtraInfo(Door this)
+StageEntryPointDefinition* Door_getExtraInfo(Door this)
 {
 	ASSERT(this, "Door::setExtraInfo: null this");
 
@@ -87,7 +87,7 @@ void Door_setExtraInfo(Door this, void* extraInfo)
 {
 	ASSERT(this, "Door::setExtraInfo: null this");
 
-	this->destinationDefinition = (PlatformerStageEntryPointDefinition*)extraInfo;
+	this->destinationDefinition = (StageEntryPointDefinition*)extraInfo;
 }
 
 // ready

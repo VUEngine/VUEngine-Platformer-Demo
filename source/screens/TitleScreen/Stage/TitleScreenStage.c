@@ -250,5 +250,5 @@ StageROMDef TITLE_SCREEN_ST =
 
         // children
         TITLE_SCREEN_ST_CHILDREN,
-    }		
+    },
 };

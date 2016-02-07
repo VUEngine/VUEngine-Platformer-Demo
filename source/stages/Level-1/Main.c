@@ -33,12 +33,12 @@
 // 											    DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern PlatformerStageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP;
-extern PlatformerStageEntryPointROMDef LEVEL_1_SMALL_ROOM_MAIN_EP;
-extern PlatformerStageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
+extern StageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP;
+extern StageEntryPointROMDef LEVEL_1_SMALL_ROOM_MAIN_EP;
+extern StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
 
-PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[];
-PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[];
+StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[];
+StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[];
 
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
@@ -385,162 +385,154 @@ StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerStageROMDef LEVEL_1_MAIN_ST =
+StageROMDef LEVEL_1_MAIN_ST =
 {
+    // level
     {
-    	// level
-		{
-	        // size
-	        {
-	            // x
-	            2988,
-	            // y
-	            512,
-	            // z
-	            __SCREEN_DEPTH,
-	        },
-	        
-			// screen's initial position inside the game world
-	        {
-	            // x
-	            ITOFIX19_13(0),
-	            // y
-	            ITOFIX19_13(0),
-	            // z
-	            ITOFIX19_13(0)
-	        },
-		},
-
-        // streaming
-    	{
-    		// delay per cycle
-    		10,
-    		// load padding
-    		48,
-    		// unload padding
-    		16,
-    		// streaming amplitude
-    		24,
-    	},
-    	
-    	// rendering
-    	{
-    		// number of cycles the texture writing is idle
-    		__TARGET_FPS / 10,
-    		
-    		// maximum number of texture's rows to write each time the texture writing is active
-    		16,
-    		
-    		// maximum number of rows to compute on each call to the affine functions
-    		16,
-    		
-            // Palette's config
-            {
-            	// background color
-            	__COLOR_BLACK,
-            	
-            	{
-            		__BGMAP_PALETTE_0,
-            		__BGMAP_PALETTE_1,
-            		__BGMAP_PALETTE_2,
-            		__BGMAP_PALETTE_3,
-            	},
-            	{
-            		__OBJECT_PALETTE_0,
-            		__OBJECT_PALETTE_1,
-            		__OBJECT_PALETTE_2,
-            		__OBJECT_PALETTE_3,
-            	} 
-            },
-            
-            // BGMAP segments configuration
-            // number of segments reserved for dynamically allocated textures when preloading
-            5,
-
-        	// OBJs segments sizes (must total 1024)
-            {
-                // SPT0
-            	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-                // SPT1
-            	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-                // SPT2
-            	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-                // SPT3
-            	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-            },
-            
-            // OBJs segments z coordinates
-            // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
-            // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
-            {
-                // SPT0
-                FTOFIX19_13(LAYER_0_PARTICLES),
-                // SPT1
-                FTOFIX19_13(LAYER_0_PARTICLES),
-                // SPT2
-                FTOFIX19_13(LAYER_0_PARTICLES),
-                // SPT3
-                FTOFIX19_13(24),
-            },
-
-            // optical configuration values
-            {
-        		// maximum view distance's power into the horizon
-        		__MAXIMUM_VIEW_DISTANCE_POWER,
-                // distance of the eyes to the screen
-                ITOFIX19_13(__DISTANCE_EYE_SCREEN),
-                // distance from left to right eye (depth sensation)
-                ITOFIX19_13(__BASE_FACTOR),
-                // horizontal view point center
-                ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
-                // vertical view point center
-                ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
-            },
-    	},
-
-        // physics
+        // size
         {
-            // gravity
-            {
-                ITOFIX19_13(0),
-                ITOFIX19_13(__GRAVITY),
-                ITOFIX19_13(0)
-            },
-            
-	        // friction
-	        FTOFIX19_13(0.1f),
+            // x
+            2988,
+            // y
+            512,
+            // z
+            __SCREEN_DEPTH,
         },
 
-        // assets
+        // screen's initial position inside the game world
         {
-	        // char sets to preload
-	        (CharSetDefinition**)LEVEL_1_MAIN_ST_CHARSETS,
-	
-	        // textures to preload
-	        (StageTextureEntryDefinition*)LEVEL_1_MAIN_ST_TEXTURES,
-	        
-	        // background music
-	        (const u16 (*)[])WORLD_0_0_0_BGM,
+            // x
+            ITOFIX19_13(0),
+            // y
+            ITOFIX19_13(0),
+            // z
+            ITOFIX19_13(0)
         },
-
-        // entities
-        {
-	        // UI
-	        {
-	            LEVEL_1_MAIN_ST_UI_CHILDREN,
-	            __TYPE(UI),
-	        },
-	
-	        // children
-	        LEVEL_1_MAIN_ST_CHILDREN,
-        }
     },
 
-    // identifier
-    "1-1",
+    // streaming
+    {
+        // delay per cycle
+        10,
+        // load padding
+        48,
+        // unload padding
+        16,
+        // streaming amplitude
+        24,
+    },
 
-    // name
-    (void*)STR_LEVEL_1_NAME,
+    // rendering
+    {
+        // number of cycles the texture writing is idle
+        __TARGET_FPS / 10,
+
+        // maximum number of texture's rows to write each time the texture writing is active
+        16,
+
+        // maximum number of rows to compute on each call to the affine functions
+        16,
+
+        // Palette's config
+        {
+            // background color
+            __COLOR_BLACK,
+
+            {
+                __BGMAP_PALETTE_0,
+                __BGMAP_PALETTE_1,
+                __BGMAP_PALETTE_2,
+                __BGMAP_PALETTE_3,
+            },
+            {
+                __OBJECT_PALETTE_0,
+                __OBJECT_PALETTE_1,
+                __OBJECT_PALETTE_2,
+                __OBJECT_PALETTE_3,
+            }
+        },
+
+        // BGMAP segments configuration
+        // number of segments reserved for dynamically allocated textures when preloading
+        5,
+
+        // OBJs segments sizes (must total 1024)
+        {
+            // SPT0
+            __AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+            // SPT1
+            __AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+            // SPT2
+            __AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+            // SPT3
+            __AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+        },
+
+        // OBJs segments z coordinates
+        // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+        // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
+        {
+            // SPT0
+            FTOFIX19_13(LAYER_0_PARTICLES),
+            // SPT1
+            FTOFIX19_13(LAYER_0_PARTICLES),
+            // SPT2
+            FTOFIX19_13(LAYER_0_PARTICLES),
+            // SPT3
+            FTOFIX19_13(24),
+        },
+
+        // optical configuration values
+        {
+            // maximum view distance's power into the horizon
+            __MAXIMUM_VIEW_DISTANCE_POWER,
+            // distance of the eyes to the screen
+            ITOFIX19_13(__DISTANCE_EYE_SCREEN),
+            // distance from left to right eye (depth sensation)
+            ITOFIX19_13(__BASE_FACTOR),
+            // horizontal view point center
+            ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+            // vertical view point center
+            ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+        },
+    },
+
+    // physics
+    {
+        // gravity
+        {
+            ITOFIX19_13(0),
+            ITOFIX19_13(__GRAVITY),
+            ITOFIX19_13(0)
+        },
+
+        // friction
+        FTOFIX19_13(0.1f),
+    },
+
+    // assets
+    {
+        // char sets to preload
+        (CharSetDefinition**)LEVEL_1_MAIN_ST_CHARSETS,
+
+        // textures to preload
+        (StageTextureEntryDefinition*)LEVEL_1_MAIN_ST_TEXTURES,
+
+        // background music
+        (const u16 (*)[])WORLD_0_0_0_BGM,
+    },
+
+    // entities
+    {
+        // UI
+        {
+            LEVEL_1_MAIN_ST_UI_CHILDREN,
+            __TYPE(UI),
+        },
+
+        // children
+        LEVEL_1_MAIN_ST_CHILDREN,
+    },
 };
 
 
@@ -548,77 +540,62 @@ PlatformerStageROMDef LEVEL_1_MAIN_ST =
 // 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
+StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
 {{
 	// the stage to load
-    (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
     "House",
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(-64), FTOFIX19_13(-256), FTOFIX19_13(-SORT_INCREMENT)},
-
-	// does a level start at this entry point?
-	true,
 }};
 
-PlatformerStageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP[] =
+StageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP[] =
 {{
 	// the stage to load
-    (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
     "SmallRoomExitDoor",
 
     // offset from entry point (x, y, z)
     {0, 0, FTOFIX19_13(-SORT_INCREMENT)},
-
-	// does a level start at this entry point?
-	false,
 }};
 
-PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
+StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
 {{
 	// the stage to load
-    (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
     "Door Front 1",
 
     // offset from entry point (x, y, z)
     {0, ITOFIX19_13(-1), FTOFIX19_13(-SORT_INCREMENT)},
-
-	// does a level start at this entry point?
-	false,
 }};
 
-PlatformerStageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
+StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
 {{
 	// the stage to load
-    (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
     "Door Back 1",
 
     // offset from entry point (x, y, z)
     {0, FTOFIX19_13(-0.5f), FTOFIX19_13(-SORT_INCREMENT)},
-
-	// does a level start at this entry point?
-	false,
 }};
 
-PlatformerStageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP[] =
+StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP[] =
 {{
 	// the stage to load
-    (PlatformerStageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_ST,
 
 	// name of the entity to start at
     "TowerEntrance",
 
     // offset from entry point (x, y, z)
     {0, 0, FTOFIX19_13(-SORT_INCREMENT)},
-
-	// does a level start at this entry point?
-	false,
 }};

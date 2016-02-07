@@ -49,8 +49,11 @@ __CLASS(PlatformerLevelState);
 	/* inherits */																						\
 	GameState_ATTRIBUTES																				\
 																										\
-	/* the stage and respective entry point to load */													\
-	PlatformerStageEntryPointDefinition* entryPointDefinition;											\
+	/* the current loaded level */																		\
+	PlatformerLevelDefinition* currentLevel;															\
+																										\
+	/* the current loaded entry point */																\
+	StageEntryPointDefinition* currentStageEntryPoint;													\
 																										\
 	/* to allow moving the screen */																	\
 	u8 mode: 4;																							\
@@ -75,27 +78,10 @@ __CLASS(PlatformerLevelState);
 // 											CLASS'S ROM DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// defines a game world in ROM memory
-typedef struct PlatformerStageDefinition
-{
-	// stage's definition
-	StageDefinition stageDefinition;
-
-	// stages's identifier
-	void* identifier;
-
-	// stages's name
-	void* name;
-
-} PlatformerStageDefinition;
-
-typedef const PlatformerStageDefinition PlatformerStageROMDef;
-
-
-typedef struct PlatformerStageEntryPointDefinition
+typedef struct StageEntryPointDefinition
 {
 	// the stage to load
-	PlatformerStageDefinition* platformerStageDefinition;
+	StageDefinition* stageDefinition;
 
 	// name of the entity to start at
 	char* destinationName;
@@ -103,12 +89,28 @@ typedef struct PlatformerStageEntryPointDefinition
     // offset from entry point (x, y, z)
     VBVec3D offset;
 
-	// does a level start at this entry point?
-	bool isLevelStartPoint;
+} StageEntryPointDefinition;
 
-} PlatformerStageEntryPointDefinition;
+typedef const StageEntryPointDefinition StageEntryPointROMDef;
 
-typedef const PlatformerStageEntryPointDefinition PlatformerStageEntryPointROMDef;
+
+typedef struct PlatformerLevelDefinition
+{
+	// starting entry point
+	StageEntryPointDefinition* entryPoint;
+
+    // id
+    u8 id;
+
+	// identifier
+	void* identifier;
+
+	// name
+	void* name;
+
+} PlatformerLevelDefinition;
+
+typedef const PlatformerLevelDefinition PlatformerLevelROMDef;
 
 
 enum PlatformerLevelStateMessageTypes
@@ -146,9 +148,8 @@ enum PlatformerLevelStateMessageTypes
 
 PlatformerLevelState PlatformerLevelState_getInstance(void);
 
-void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageEntryPointDefinition* entryPointDefinition);
-PlatformerStageDefinition* PlatformerLevelState_getStage(PlatformerLevelState this);
-void PlatformerLevelState_enterStage(PlatformerLevelState this, PlatformerStageEntryPointDefinition* entryPointDefinition);
+PlatformerLevelDefinition* PlatformerLevelState_getLevel(PlatformerLevelState this);
+void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 

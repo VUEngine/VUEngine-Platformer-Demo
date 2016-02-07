@@ -65,7 +65,7 @@ __CLASS(Door);
 	AnimatedInGameEntity_ATTRIBUTES																		\
 																										\
 	/* destination of door */																			\
-	PlatformerStageEntryPointDefinition* destinationDefinition;											\
+	StageEntryPointDefinition* destinationDefinition;											\
 																										\
 	/* is door currently being overlapped by hero? */													\
 	bool currentlyOverlappingHero;																		\
@@ -79,7 +79,7 @@ __CLASS_NEW_DECLARE(Door, AnimatedInGameEntityDefinition* animatedInGameEntityDe
 
 void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void Door_destructor(Door this);
-PlatformerStageEntryPointDefinition* Door_getExtraInfo(Door this);
+StageEntryPointDefinition* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);
 void Door_ready(Door this);
 bool Door_handleMessage(Door this, Telegram telegram);

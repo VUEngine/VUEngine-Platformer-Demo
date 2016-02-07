@@ -53,10 +53,11 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
 static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this, VirtualList entityNamesToIgnore);
+bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 
-extern PlatformerStageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP;
+extern PlatformerLevelDefinition LEVEL_1_LV;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -77,7 +78,8 @@ static void PlatformerLevelState_constructor(PlatformerLevelState this)
 	__CONSTRUCT_BASE();
 
 	// set default entry point
-	this->entryPointDefinition = (PlatformerStageEntryPointDefinition*)&LEVEL_1_MAIN_MAIN_EP;
+	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
+	this->currentStageEntryPoint = this->currentLevel->entryPoint;
 }
 
 // class's destructor
@@ -93,11 +95,11 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 
 	/*
 	int i = 0;
-	for(;this->platformerStageDefinition->stageDefinition.entities[i].entityDefinition; i++)
+	for(;this->currentStageEntryPoint->stageDefinition->entities[i].entityDefinition; i++)
 	{
-		if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->platformerStageDefinition->stageDefinition.entities[i].name))
+		if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->currentStageEntryPoint->stageDefinition->entities[i].name))
 		{
-			VirtualList_pushBack(entityNamesToIgnore, this->platformerStageDefinition->stageDefinition.entities[i].name);
+			VirtualList_pushBack(entityNamesToIgnore, this->stageDefinition->stageDefinition->entities[i].name);
 		}
 	}
 	*/
@@ -115,7 +117,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Game_disableKeypad(Game_getInstance());
 
 	// reset progress manager if this is a level start entry point
-	if(this->entryPointDefinition && this->entryPointDefinition->isLevelStartPoint)
+	if(PlatformerLevelState_isStartingLevel(this))
 	{
 		ProgressManager_reset(ProgressManager_getInstance());
 	}
@@ -125,22 +127,22 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
 
 	// check if destination entity name is given
-	if(this->entryPointDefinition && this->entryPointDefinition->destinationName)
+	if(this->currentStageEntryPoint->destinationName)
 	{
 	    // iterate stage definition to find global position of destination entity
 		VBVec3D environmentPosition = {0, 0, 0};
-		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->entryPointDefinition->platformerStageDefinition->stageDefinition.entities.children, environmentPosition, this->entryPointDefinition->destinationName);
+		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
 
 		// if global position of destination entity could be found, move the hero and the screen there
         if(initialPosition)
         {
             // apply entry point offset
-            initialPosition->x += this->entryPointDefinition->offset.x;
-            initialPosition->y += this->entryPointDefinition->offset.y;
-            initialPosition->z += this->entryPointDefinition->offset.z;
+            initialPosition->x += this->currentStageEntryPoint->offset.x;
+            initialPosition->y += this->currentStageEntryPoint->offset.y;
+            initialPosition->z += this->currentStageEntryPoint->offset.z;
 
             // set world's limits
-            Screen_setStageSize(Screen_getInstance(), this->entryPointDefinition->platformerStageDefinition->stageDefinition.level.size);
+            Screen_setStageSize(Screen_getInstance(), this->currentStageEntryPoint->stageDefinition->level.size);
 
             // focus screen on new position
             VBVec3D screenPosition =
@@ -152,7 +154,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
             Screen_setPosition(Screen_getInstance(), screenPosition);
 
     	    // load stage
-    	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->entryPointDefinition->platformerStageDefinition->stageDefinition), entityNamesToIgnore, false);
+    	    GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, entityNamesToIgnore, false);
+    	    //GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_1_MAIN_ST, entityNamesToIgnore, false);
 
             // get hero entity
             Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
@@ -188,7 +191,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	else
 	{
 	    // load stage
-	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->entryPointDefinition->platformerStageDefinition->stageDefinition), entityNamesToIgnore, true);
+	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->currentStageEntryPoint->stageDefinition), entityNamesToIgnore, true);
 	}
 
     // free some memory
@@ -228,6 +231,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 #ifdef __ANIMATION_EDITOR
 	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
+
 	// make a fade out
     Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
@@ -282,17 +286,17 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 		case kLevelSetUp:
 			{
 				// print level name if at level start point
-				if(this->entryPointDefinition->isLevelStartPoint && this->entryPointDefinition->platformerStageDefinition->name)
+				if(PlatformerLevelState_isStartingLevel(this) && this->currentLevel->name)
 	            {
-				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->entryPointDefinition->platformerStageDefinition->name);
+				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->currentLevel->name);
 	                Printing_text(Printing_getInstance(), "\"", 17, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GUIFont");
 
-                    if(this->entryPointDefinition->platformerStageDefinition->identifier)
+                    if(this->currentLevel->identifier)
                     {
                         char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-                        char* strLevelName = this->entryPointDefinition->platformerStageDefinition->identifier;
+                        char* strLevelName = this->currentLevel->identifier;
                         Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
                         Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
                     }
@@ -313,11 +317,8 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			// fade in
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
-			// erase level message in n milliseconds, if there was one
-            if(this->entryPointDefinition->isLevelStartPoint && this->entryPointDefinition->platformerStageDefinition->name)
-            {
-			    MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
-            }
+			// erase level message in n milliseconds
+            MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
 			
 			// reset clock and restart
 			Clock_reset(this->inGameClock);
@@ -397,24 +398,24 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 	return false;
 }
 
-// set the next state to load
-void PlatformerLevelState_setStage(PlatformerLevelState this, PlatformerStageEntryPointDefinition* entryPointDefinition)
+// get current level's definition
+PlatformerLevelDefinition* PlatformerLevelState_getLevel(PlatformerLevelState this)
 {
-	this->entryPointDefinition = entryPointDefinition;
-}
-
-// get current stage's definition
-PlatformerStageDefinition* PlatformerLevelState_getStage(PlatformerLevelState this)
-{
-	return this->entryPointDefinition->platformerStageDefinition;
+	return this->currentLevel;
 }
 
 // start a given level
-void PlatformerLevelState_enterStage(PlatformerLevelState this, PlatformerStageEntryPointDefinition* entryPointDefinition)
+void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition)
 {
-	this->entryPointDefinition = entryPointDefinition;
+	this->currentStageEntryPoint = entryPointDefinition;
 
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
+}
+
+// determine if starting a new level
+bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this)
+{
+	return (this->currentStageEntryPoint == this->currentLevel->entryPoint);
 }
 
 // set paused mode

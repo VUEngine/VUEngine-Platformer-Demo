@@ -160,8 +160,8 @@ void GUI_printKey(GUI this)
 // print current level to gui
 void GUI_printLevel(GUI this)
 {
-    PlatformerStageDefinition* platformerStageDefinition = PlatformerLevelState_getStage(PlatformerLevelState_getInstance());
-	Printing_text(Printing_getInstance(), platformerStageDefinition->identifier, GUI_X_POS + 35, GUI_Y_POS, GUI_FONT);
+    PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getLevel(PlatformerLevelState_getInstance());
+	Printing_text(Printing_getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 35, GUI_Y_POS, GUI_FONT);
 }
 
 // update sprite, i.e. after collecting a power-up
