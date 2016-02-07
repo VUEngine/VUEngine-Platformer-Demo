@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TITLE_SCREEN_STATE_H_
-#define TITLE_SCREEN_STATE_H_
+#ifndef OVERWORLD_STATE_H_
+#define OVERWORLD_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -37,22 +37,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define TitleScreenState_METHODS																		\
+#define OverworldState_METHODS																			\
 	GameState_METHODS;											    									\
 
 // declare the virtual methods which are redefined
-#define TitleScreenState_SET_VTABLE(ClassName)															\
+#define OverworldState_SET_VTABLE(ClassName)															\
 	GameState_SET_VTABLE(ClassName)								    									\
-	__VIRTUAL_SET(ClassName, TitleScreenState, enter);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, exit);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, execute);												\
-	__VIRTUAL_SET(ClassName, TitleScreenState, resume);													\
-	__VIRTUAL_SET(ClassName, TitleScreenState, suspend);												\
-	__VIRTUAL_SET(ClassName, TitleScreenState, handleMessage);											\
+	__VIRTUAL_SET(ClassName, OverworldState, enter);													\
+	__VIRTUAL_SET(ClassName, OverworldState, exit);														\
+	__VIRTUAL_SET(ClassName, OverworldState, execute);													\
+	__VIRTUAL_SET(ClassName, OverworldState, resume);													\
+	__VIRTUAL_SET(ClassName, OverworldState, suspend);													\
+	__VIRTUAL_SET(ClassName, OverworldState, handleMessage);											\
 
-__CLASS(TitleScreenState);
+__CLASS(OverworldState);
 
-#define TitleScreenState_ATTRIBUTES							        									\
+#define OverworldState_ATTRIBUTES							        									\
 														            									\
 	/* inherits */																						\
 	GameState_ATTRIBUTES																				\
@@ -62,7 +62,7 @@ __CLASS(TitleScreenState);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-TitleScreenState TitleScreenState_getInstance(void);
+OverworldState OverworldState_getInstance(void);
 
 
 #endif

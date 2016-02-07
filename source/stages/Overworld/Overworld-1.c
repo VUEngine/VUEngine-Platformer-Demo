@@ -22,7 +22,7 @@
 #include <Stage.h>
 #include <macros.h>
 #include <PlatformerLevelState.h>
-#include <TitleScreenState.h>
+#include <OverworldState.h>
 #include <VPUManager.h>
 
 #include <objects.h>
@@ -38,61 +38,31 @@
 // Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
 // know that it must stop reading the stage's/ui's textures and entities.
 
-PositionedEntityROMDef CASTLE_CHILD_ENTITIES[] =
-{
-	{&MOUND_BG_CASTLE_FLAG_AG, 	{FTOFIX19_13(-30),  FTOFIX19_13(-23), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // left
-	{&MOUND_BG_CASTLE_FLAG_AG, 	{FTOFIX19_13(5),    FTOFIX19_13(-12), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // middle
-	{&MOUND_BG_CASTLE_FLAG_AG, 	{FTOFIX19_13(40),   FTOFIX19_13(-23), FTOFIX19_13(0)}, NULL, NULL, NULL, true}, // right
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
-};
-
-PositionedEntityROMDef TITLE_SCREEN_ST_CHILDREN[] =
+PositionedEntityROMDef OVERWORLD_1_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&MOUND_BG_BACK_IM,		{FTOFIX19_13(0),    FTOFIX19_13(-24), 	FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
-	{&CLOUDS_IM,			{FTOFIX19_13(0),    FTOFIX19_13(104), 	FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
-	{&MOUND_BG_FRONT_IM,	{FTOFIX19_13(0),    FTOFIX19_13(136), 	FTOFIX19_13(LAYER_3)}, NULL, NULL, NULL, true},
+    {&OVERWORLD_1_IM,		{FTOFIX19_13(192),  FTOFIX19_13(96), 	FTOFIX19_13(LAYER_1 + SORT_INCREMENT)}, NULL, NULL, NULL, false},
+	{&HERO_AG, 		        {FTOFIX19_13(158),  FTOFIX19_13(76), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+    {&SMOKE_PS,				{FTOFIX19_13(228),  FTOFIX19_13(29), 	FTOFIX19_13(LAYER_1)},   NULL, NULL, NULL, false},
 
-	{&MOUND_BG_CASTLE_IM, 	{FTOFIX19_13(338),  FTOFIX19_13(77), 	FTOFIX19_13(LAYER_3)}, NULL, (struct PositionedEntity*)CASTLE_CHILD_ENTITIES, NULL, true},
+    {&WATER_A_AG,		    {FTOFIX19_13(80),   FTOFIX19_13(-8), 	FTOFIX19_13(LAYER_1)},   NULL, NULL, NULL, false},
+    {&WATER_A_AG,		    {FTOFIX19_13(32),   FTOFIX19_13(32), 	FTOFIX19_13(LAYER_1)},   NULL, NULL, NULL, false},
+    {&WATER_A_AG,		    {FTOFIX19_13(46),   FTOFIX19_13(168), 	FTOFIX19_13(LAYER_1)},   NULL, NULL, NULL, false},
 
-	{&STAR_AG, 	            {FTOFIX19_13(344),  FTOFIX19_13(-80), 	FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
-
-	{&FLOOR_16x12_IG,		{FTOFIX19_13(-16),  FTOFIX19_13(208), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&FLOOR_4x12_IG,		{FTOFIX19_13(64),   FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&FLOOR_22x5_IG,		{FTOFIX19_13(192),  FTOFIX19_13(188), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&FLOOR_16x12_IG,		{FTOFIX19_13(360),  FTOFIX19_13(200), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-
-	{&COLLISION_2x28x1, 	{FTOFIX19_13(92),   FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&COLLISION_2x28x1, 	{FTOFIX19_13(292),  FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-
-	{&HERO_BANDANA_AG, 		{FTOFIX19_13(192),  FTOFIX19_13(157), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-
-	{&GRASS_AG,      	    {FTOFIX19_13(34),   FTOFIX19_13(153), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&BUSH_AG,      	    {FTOFIX19_13(366),  FTOFIX19_13(148), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&FENCE_IM,      	    {FTOFIX19_13(322),  FTOFIX19_13(145), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&FENCE_IM,      	    {FTOFIX19_13(339),  FTOFIX19_13(145), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-
-	{&COIN_AG, 		        {FTOFIX19_13(57),   FTOFIX19_13(134), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-	{&COIN_AG, 		        {FTOFIX19_13(71),   FTOFIX19_13(134), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-
-	{&VBJAENGINE_IM,        {FTOFIX19_13(192),  FTOFIX19_13(10), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
-	{&LOGO_IM, 			    {FTOFIX19_13(192),  FTOFIX19_13(64), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
-
-	// samples of ignored entities
-	{&COIN_AG, 		        {FTOFIX19_13(57), 	FTOFIX19_13(108), 	FTOFIX19_13(0)}, "IgnoreMeCoin", NULL, NULL, true},
-	{&DOOR_AG,				{FTOFIX19_13(192), 	FTOFIX19_13(152), 	FTOFIX19_13(0)}, "IgnoreMeDoor", NULL, NULL, true},
+	{&FLOWER_A_AG, 		    {FTOFIX19_13(132),  FTOFIX19_13(104), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+	{&FLOWER_A_AG, 		    {FTOFIX19_13(115),  FTOFIX19_13(72), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+	{&FLOWER_A_AG, 		    {FTOFIX19_13(219),  FTOFIX19_13(120), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef TITLE_SCREEN_ST_UI_CHILDREN[] =
+PositionedEntityROMDef OVERWORLD_1_ST_UI_CHILDREN[] =
 {
-	{&GUI_BLANK_IM,			{FTOFIX19_13(192), 	FTOFIX19_13(208), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
-	{&GUI_BLANK_IM,			{FTOFIX19_13(192), 	FTOFIX19_13(216), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
+	{&GUI_OVERWORLD_AG,		{FTOFIX19_13(192), 	FTOFIX19_13(216), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-StageTextureEntryROMDef TITLE_SCREEN_ST_TEXTURES[] =
+StageTextureEntryROMDef OVERWORLD_1_ST_TEXTURES[] =
 {
 	{NULL, false}
 };
@@ -102,7 +72,7 @@ StageTextureEntryROMDef TITLE_SCREEN_ST_TEXTURES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef TITLE_SCREEN_ST =
+StageROMDef OVERWORLD_1_ST =
 {
 	// level
 	{
@@ -196,7 +166,7 @@ StageROMDef TITLE_SCREEN_ST =
             // SPT2
     		FTOFIX19_13(LAYER_0_PARTICLES),
             // SPT3
-        	FTOFIX19_13(LAYER_0_PARTICLES),
+        	FTOFIX19_13(LAYER_1),
         },
 
         // optical configuration values
@@ -234,7 +204,7 @@ StageROMDef TITLE_SCREEN_ST =
         NULL,
 
         // textures to preload
-        (StageTextureEntryDefinition*)TITLE_SCREEN_ST_TEXTURES,
+        (StageTextureEntryDefinition*)OVERWORLD_1_ST_TEXTURES,
         
         // background music
         (const u16 (*)[])WORLD_0_0_0_BGM,
@@ -244,11 +214,11 @@ StageROMDef TITLE_SCREEN_ST =
     {
         // UI
         {
-        	TITLE_SCREEN_ST_UI_CHILDREN,
+        	OVERWORLD_1_ST_UI_CHILDREN,
             __TYPE(UI),
         },
 
         // children
-        TITLE_SCREEN_ST_CHILDREN,
+        OVERWORLD_1_ST_CHILDREN,
     },
 };

@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern TextureDefinition GUI_TX;
+extern TextureDefinition GUI_OVERWORLD_TX;
 extern TextureDefinition DOOR_TX;
 extern TextureDefinition DOOR_BACK_TX;
 extern TextureDefinition HIDE_LAYER_10x7_TX;

@@ -29,7 +29,7 @@
 #include <screens.h>
 #include <macros.h>
 #include <PlatformerLevelState.h>
-#include <TitleScreenState.h>
+#include <OverworldState.h>
 #include <ProgressManager.h>
 #include "LevelDoneScreenState.h"
 
@@ -127,7 +127,7 @@ static bool LevelDoneScreenState_handleMessage(LevelDoneScreenState this, void* 
     {
 		case kKeyPressed:
 
-            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
+            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 			return true;
 			break;
 	}

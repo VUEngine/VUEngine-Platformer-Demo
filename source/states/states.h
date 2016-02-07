@@ -29,6 +29,7 @@
 #include <VBJaEngineScreenState.h>
 #include <LevelDoneScreenState.h>
 #include <TitleScreenState.h>
+#include <OverworldState.h>
 #include <PlatformerLevelState.h>
 #include "stages.h"
 

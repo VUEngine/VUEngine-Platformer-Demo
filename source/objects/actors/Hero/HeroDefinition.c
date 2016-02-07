@@ -49,7 +49,7 @@ AnimationFunctionROMDef HERO_IDLE_ANIM =
 	{4, 5},
 	
 	// number of cycles a frame of animation is displayed
-	14,
+	16,
 	
 	// whether to play it in loop or not
 	true,
@@ -203,7 +203,7 @@ AnimationFunctionROMDef HERO_FRONT_ANIM =
 	{0, 1},
 	
 	// number of cycles a frame of animation is displayed
-	14,
+	16,
 	
 	// whether to play it in loop or not
 	true,
@@ -225,7 +225,7 @@ AnimationFunctionROMDef HERO_BACK_ANIM =
 	{2, 3},
 	
 	// number of cycles a frame of animation is displayed
-	14,
+	16,
 	
 	// whether to play it in loop or not
 	true,
@@ -308,7 +308,29 @@ TextureROMDef HERO_TX =
     1,
 };
 
-BgmapSpriteROMDef HERO_SPRITE =
+TextureROMDef HERO_BANDANA_TX =
+{
+    (CharSetDefinition*)&HERO_BANDANA_CH,
+
+    // bgmap definition
+    HeroMap,
+
+    // cols (max 64)
+    3,
+
+    // rows (max 64)
+    3,
+
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
+    1,
+
+    // palette number (0-3)
+    1,
+};
+
+BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 {
 	// sprite's type
 	__TYPE(BgmapAnimatedSprite),
@@ -326,6 +348,54 @@ BgmapSpriteROMDef HERO_SPRITE =
 	WRLD_ON,
 };
 
+BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
+{
+	// sprite's type
+	__TYPE(BgmapAnimatedSprite),
+
+	// texture definition
+	(TextureDefinition*)&HERO_BANDANA_TX,
+
+	// displacement
+	{0, 0, 0},
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+	WRLD_AFFINE,
+
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+	WRLD_ON,
+};
+
+BgmapSpriteROMDef HERO_SPRITE =
+{
+	// sprite's type
+	__TYPE(BgmapAnimatedSprite),
+
+	// texture definition
+	(TextureDefinition*)&HERO_TX,
+
+	// displacement
+	{0, 0, 0},
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+	WRLD_BGMAP,
+
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+	WRLD_ON,
+};
+
+BgmapSpriteROMDef* const HERO_AFFINE_SPRITES[] =
+{
+	&HERO_AFFINE_SPRITE,
+	NULL
+};
+
+BgmapSpriteROMDef* const HERO_BANDANA_AFFINE_SPRITES[] =
+{
+	&HERO_BANDANA_AFFINE_SPRITE,
+	NULL
+};
+
 BgmapSpriteROMDef* const HERO_SPRITES[] =
 {
 	&HERO_SPRITE,
@@ -338,7 +408,7 @@ ActorROMDef HERO_AC =
 	    {
 	        {
 	            __TYPE(Hero),
-	            (SpriteROMDef**)HERO_SPRITES,
+	            (SpriteROMDef**)HERO_AFFINE_SPRITES,
 	        },
 
 	        // collision detection gap (up, down, left, right)
@@ -363,7 +433,7 @@ ActorROMDef HERO_AC =
 	    (AnimationDescription*)&HERO_ANIM,
 
 	    // initial animation
-	    NULL,
+	    "Idle",
 	},
 
 	// friction for physics
@@ -374,6 +444,72 @@ ActorROMDef HERO_AC =
 
 	// mass
 	ITOFIX19_13(10)
+};
+
+AnimatedInGameEntityROMDef HERO_AG =
+{
+    {
+        {
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)HERO_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kHero,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// depth
+        1,
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&HERO_ANIM,
+
+    // initial animation
+    "Idle",
+};
+
+AnimatedInGameEntityROMDef HERO_BANDANA_AG =
+{
+    {
+        {
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)HERO_BANDANA_AFFINE_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kHero,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// depth
+        1,
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&HERO_ANIM,
+
+    // initial animation
+    "Idle",
 };
 
 

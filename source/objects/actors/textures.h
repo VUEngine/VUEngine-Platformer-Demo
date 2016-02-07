@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern TextureDefinition HERO_TX;
+extern TextureDefinition HERO_BANDANA_TX;
 extern TextureDefinition KEY_TX;
 extern TextureDefinition SAW_BLADE_TX;
 extern TextureDefinition MOVING_PLATFORM_TX;

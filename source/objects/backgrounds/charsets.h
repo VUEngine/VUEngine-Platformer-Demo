@@ -29,6 +29,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern CharSetDefinition OVERWORLD_CH;
+
 extern CharSetDefinition CLOUDS_A_CH;
 extern CharSetDefinition CLOUDS_B_CH;
 extern CharSetDefinition MOUND_BG_BACK_CH;

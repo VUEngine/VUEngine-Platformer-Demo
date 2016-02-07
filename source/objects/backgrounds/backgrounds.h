@@ -33,6 +33,10 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition OVERWORLD_1_IM;
+extern EntityDefinition WATER_A_AG;
+extern EntityDefinition FLOWER_A_AG;
+
 extern EntityDefinition MOUND_BG_BACK_IM;
 extern EntityDefinition MOUND_BG_MIDDLE_IM;
 extern EntityDefinition CLOUDS_IM;

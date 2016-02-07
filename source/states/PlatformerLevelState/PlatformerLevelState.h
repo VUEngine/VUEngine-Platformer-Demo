@@ -149,6 +149,7 @@ enum PlatformerLevelStateMessageTypes
 PlatformerLevelState PlatformerLevelState_getInstance(void);
 
 PlatformerLevelDefinition* PlatformerLevelState_getLevel(PlatformerLevelState this);
+void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition);
 void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);

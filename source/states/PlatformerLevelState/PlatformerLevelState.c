@@ -29,7 +29,7 @@
 #include <I18n.h>
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
-#include <TitleScreenState.h>
+#include <OverworldState.h>
 #include <PauseScreenState.h>
 #include <Hero.h>
 #include "../stages/stages.h"
@@ -155,7 +155,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
     	    // load stage
     	    GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, entityNamesToIgnore, false);
-    	    //GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_1_MAIN_ST, entityNamesToIgnore, false);
 
             // get hero entity
             Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
@@ -200,8 +199,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// level is paused
 	PlatformerLevelState_setModeToPaused(this);
 
-	// show up level after a little bit
-	MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
+	// show up level after a little delay
+	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 
 	// reset clocks
 	GameState_startClocks(__SAFE_CAST(GameState, this));
@@ -305,7 +304,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 				// tell any interested entity
 				GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 	
-				// show level after 0.5 second
+				// show level after a little delay
 				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
 	
 				this->mode = kShowingUp;
@@ -390,7 +389,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 		case kHeroDied:	
 			
-			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
+			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 			return true;
 			break;
 	}
@@ -405,6 +404,13 @@ PlatformerLevelDefinition* PlatformerLevelState_getLevel(PlatformerLevelState th
 }
 
 // start a given level
+void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition)
+{
+	this->currentLevel = platformerLevelDefinition;
+	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+}
+
+// start a given stage
 void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition)
 {
 	this->currentStageEntryPoint = entryPointDefinition;

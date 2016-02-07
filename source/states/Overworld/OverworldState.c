@@ -28,7 +28,7 @@
 #include <I18n.h>
 #include <Languages.h>
 #include <PhysicalWorld.h>
-#include <TitleScreenState.h>
+#include <OverworldState.h>
 #include <Hero.h>
 #include <screens.h>
 #include <macros.h>
@@ -38,32 +38,29 @@
 #include <CustomScreenMovementManager.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
-#include <OverworldState.h>
+#include "../stages/stages.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void TitleScreenState_destructor(TitleScreenState this);
-static void TitleScreenState_constructor(TitleScreenState this);
-static void TitleScreenState_enter(TitleScreenState this, void* owner);
-static void TitleScreenState_execute(TitleScreenState this, void* owner);
-static void TitleScreenState_exit(TitleScreenState this, void* owner);
-static void TitleScreenState_resume(TitleScreenState this, void* owner);
-static void TitleScreenState_suspend(TitleScreenState this, void* owner);
-static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
-static void TitleScreenState_showMessage(TitleScreenState this);
-static void TitleScreenState_hideMessage(TitleScreenState this);
-static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventFirer);
+static void OverworldState_destructor(OverworldState this);
+static void OverworldState_constructor(OverworldState this);
+static void OverworldState_enter(OverworldState this, void* owner);
+static void OverworldState_execute(OverworldState this, void* owner);
+static void OverworldState_exit(OverworldState this, void* owner);
+static void OverworldState_resume(OverworldState this, void* owner);
+static void OverworldState_suspend(OverworldState this, void* owner);
+static bool OverworldState_handleMessage(OverworldState this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(TitleScreenState, GameState);
-__SINGLETON_DYNAMIC(TitleScreenState);
+__CLASS_DEFINITION(OverworldState, GameState);
+__SINGLETON_DYNAMIC(OverworldState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -71,47 +68,29 @@ __SINGLETON_DYNAMIC(TitleScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void TitleScreenState_constructor(TitleScreenState this)
+static void OverworldState_constructor(OverworldState this)
 {
 	__CONSTRUCT_BASE();
 }
 
 // class's destructor
-static void TitleScreenState_destructor(TitleScreenState this)
+static void OverworldState_destructor(OverworldState this)
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-static void TitleScreenState_enter(TitleScreenState this, void* owner)
+static void OverworldState_enter(OverworldState this, void* owner)
 {
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
-
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
 
     // disable user input
 	Game_disableKeypad(Game_getInstance());
-
-    // sample code that shows how to ignore selected entities when loading a stage
-	VirtualList entityNamesToIgnore = __NEW(VirtualList);
-	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeDoor");
-	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeCoin");
 	
 	//load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, true);
-
-	__DELETE(entityNamesToIgnore);
-
-	// sample code to show how to animate multiple sprites at the same time by just playing an animation in a single
-	// entity when various share the same __ANIMATED_SHARED charset
-	/*
-	if(Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true))
-	{
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true)), "Idle");
-	}
-	*/
+	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&OVERWORLD_1_ST, NULL, true);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	GameState_startClocks(__SAFE_CAST(GameState, this));
@@ -121,17 +100,15 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 }
 
 // state's execute
-static void TitleScreenState_execute(TitleScreenState this, void* owner)
+static void OverworldState_execute(OverworldState this, void* owner)
 {
 	// call base
 	GameState_execute(__SAFE_CAST(GameState, this), owner);
 }
 
 // state's exit
-static void TitleScreenState_exit(TitleScreenState this, void* owner)
+static void OverworldState_exit(OverworldState this, void* owner)
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
-
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
@@ -143,7 +120,7 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 }
 
 // state's resume
-static void TitleScreenState_resume(TitleScreenState this, void* owner)
+static void OverworldState_resume(OverworldState this, void* owner)
 {
 	GameState_resume(__SAFE_CAST(GameState, this), owner);
 
@@ -181,7 +158,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 }
 
 // state's suspend
-static void TitleScreenState_suspend(TitleScreenState this, void* owner)
+static void OverworldState_suspend(OverworldState this, void* owner)
 {
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
@@ -192,25 +169,22 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
 
-static void TitleScreenState_showMessage(TitleScreenState this)
+// print gui
+static void OverworldState_print(OverworldState this)
 {
-	ASSERT(this, "TitleScreenState::showMessage: null this");
+	ASSERT(this, "OverworldState::print: null this");
 
-    char* strPressStartButton = I18n_getText(I18n_getInstance(), STR_PRESS_START_BUTTON);
-    Size strPressStartButtonSize = Printing_getTextSize(Printing_getInstance(), strPressStartButton, NULL);
-    u8 strXPos = (__SCREEN_WIDTH >> 4) - (strPressStartButtonSize.x >> 1);
-    Printing_text(Printing_getInstance(), strPressStartButton, strXPos, 26, NULL);
-}
+    // coins
+    u8 coins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
+    Printing_int(Printing_getInstance(), coins, 4, 26, "GUIFont");
 
-static void TitleScreenState_hideMessage(TitleScreenState this)
-{
-	ASSERT(this, "TitleScreenState::hideMessage: null this");
-
-    Printing_text(Printing_getInstance(), "                                           ", 0, 26, NULL);
+    // level name
+    Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_LEVEL_1_NAME), 16, 26, "GUIFont");
+    Printing_text(Printing_getInstance(), "1-1", 12, 26, "GUIFont");
 }
 
 // state's handle message
-static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
+static bool OverworldState_handleMessage(OverworldState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))
@@ -225,6 +199,8 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 			break;
 
 		case kLevelStarted:
+
+            OverworldState_print(this);
 
 			// fade screen
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
@@ -241,24 +217,12 @@ static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, T
 
 			if(K_STA & pressedKey)
 			{
-	            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+				extern StageEntryPointDefinition LEVEL_1_MAIN_MAIN_EP;
+				PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), &LEVEL_1_MAIN_MAIN_EP);
 			}
 		}
 			break;
 	}
 
 	return false;
-}
-
-// handle event
-static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventFirer)
-{
-    if((Clock_getSeconds(Game_getInGameClock(Game_getInstance())) % 2) == 0)
-    {
-        TitleScreenState_showMessage(this);
-    }
-    else
-    {
-        TitleScreenState_hideMessage(this);
-    }
 }

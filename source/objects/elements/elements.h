@@ -36,6 +36,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntityDefinition GUI_AG;
+extern EntityDefinition GUI_OVERWORLD_AG;
 
 extern EntityDefinition DOOR_AG;
 extern EntityDefinition DOOR_BACK_AG;

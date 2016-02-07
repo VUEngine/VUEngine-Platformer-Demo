@@ -31,6 +31,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE GUITiles[];
+extern BYTE GUIOverworldTiles[];
 extern BYTE GUIBandanaTiles[];
 extern BYTE GUIMap[];
 
@@ -100,10 +101,48 @@ CharSetROMDef GUI_BANDANA_CH =
     GUIBandanaTiles,
 };
 
+CharSetROMDef GUI_OVERWORLD_CH =
+{
+    // number of chars, depending on allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+    96,
+
+    // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+    __ANIMATED_SINGLE,
+
+    // char definition
+    GUIOverworldTiles,
+};
+
 TextureROMDef GUI_TX =
 {
     // charset definition
     (CharSetDefinition*)&GUI_CH,
+
+    // bgmap definition
+    GUIMap,
+
+    // cols (max 64)
+    48,
+
+    // rows (max 64)
+    2,
+
+    // number of frames, depending on charset's allocation type:
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+    // __ANIMATED_MULTI: total number of frames
+    5,
+
+    // palette number (0-3)
+    1,
+};
+
+TextureROMDef GUI_OVERWORLD_TX =
+{
+    // charset definition
+    (CharSetDefinition*)&GUI_OVERWORLD_CH,
 
     // bgmap definition
     GUIMap,
@@ -141,9 +180,33 @@ BgmapSpriteROMDef GUI_SPRITE =
 	WRLD_ON,
 };
 
+BgmapSpriteROMDef GUI_OVERWORLD_SPRITE =
+{
+	// sprite's type
+	__TYPE(BgmapAnimatedSprite),
+
+	// texture definition
+	(TextureDefinition*)&GUI_OVERWORLD_TX,
+
+	// displacement
+	{0, 0, 0},
+
+	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
+	WRLD_BGMAP,
+
+	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
+	WRLD_ON,
+};
+
 BgmapSpriteROMDef* const GUI_SPRITES[] =
 {
 	&GUI_SPRITE,
+	NULL
+};
+
+BgmapSpriteROMDef* const GUI_OVERWORLD_SPRITES[] =
+{
+	&GUI_OVERWORLD_SPRITE,
 	NULL
 };
 
@@ -153,6 +216,39 @@ AnimatedInGameEntityROMDef GUI_AG =
         {
             __TYPE(GUI),
             (SpriteROMDef**)GUI_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kNotSolid,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// depth
+        1,
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&GUI_ANIM,
+
+    // initial animation
+    "Default",
+};
+
+AnimatedInGameEntityROMDef GUI_OVERWORLD_AG =
+{
+    {
+        {
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)GUI_OVERWORLD_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
