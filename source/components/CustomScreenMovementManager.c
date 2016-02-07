@@ -23,22 +23,7 @@
 #include <Screen.h>
 #include <MessageDispatcher.h>
 #include <Actor.h>
-#include <debugConfig.h>
 
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											CLASS'S MACROS
-//---------------------------------------------------------------------------------------------------------
-
-#define SCREEN_EASING_X_DISPLACEMENT					(3 << __FRAME_CYCLE)
-#define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT			(4 << __FRAME_CYCLE)
-#define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT			(3 << __FRAME_CYCLE)
-#define SCREEN_EASING_Y_DISPLACEMENT					(3 << __FRAME_CYCLE)
-#define SCREEN_HORIZONTAL_DISPLACEMENT 					30
-#define SCREEN_VERTICAL_DISPLACEMENT 					(__SCREEN_HEIGHT / 2) + 30
-#define SCREEN_WIDTH_REDUCTION							64
-#define SCREEN_HEIGHT_REDUCTION							64
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
