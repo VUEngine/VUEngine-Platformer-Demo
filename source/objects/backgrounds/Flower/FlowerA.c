@@ -14,6 +14,7 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
+
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
@@ -33,7 +34,7 @@ extern BYTE FlowerAMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//												ANIMATION DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
@@ -68,17 +69,20 @@ AnimationDescriptionROMDef FLOWER_A_ANIM =
 	}
 };
 
+
+//---------------------------------------------------------------------------------------------------------
+// 											SPRITE DEFINITION
+//---------------------------------------------------------------------------------------------------------
+
 CharSetROMDef FLOWER_A_CH =
 {
     // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI: sum of chars of all animation frames
-    // __NOT_ANIMATED: number of chars of whole image
+    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
     2,
 
     // allocation type
+    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __ANIMATED_SHARED,
 
     // char definition
@@ -99,10 +103,12 @@ TextureROMDef FLOWER_A_TX =
     // rows (max 64)
     1,
 
-    // number of frames
+        // number of frames, depending on charset's allocation type:
+        // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+        // __ANIMATED_MULTI: total number of frames
     1,
 
-    // palette number
+    // palette number (0-3)
     0
 };
 
@@ -119,7 +125,7 @@ BgmapSpriteROMDef FLOWER_A_SPRITE =
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -129,6 +135,11 @@ BgmapSpriteROMDef* const FLOWER_A_SPRITES[] =
 	&FLOWER_A_SPRITE,
 	NULL
 };
+
+
+//---------------------------------------------------------------------------------------------------------
+// 											ENTITY DEFINITION
+//---------------------------------------------------------------------------------------------------------
 
 AnimatedInGameEntityROMDef FLOWER_A_AG =
 {
@@ -151,7 +162,7 @@ AnimatedInGameEntityROMDef FLOWER_A_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         8
     },
