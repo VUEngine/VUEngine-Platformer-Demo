@@ -120,7 +120,7 @@ BgmapSpriteROMDef WATER_A_SPRITE =
 	// texture definition
 	(TextureDefinition*)&WATER_A_TX,
 
-	// displacement (x, y, z) (in pixels)
+	// displacement
 	{FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0)},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)

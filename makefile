@@ -5,8 +5,8 @@ TARGET = output
 
 # Default build type
 #TYPE = debug
-#TYPE = release
-TYPE = release-tools
+TYPE = release
+#TYPE = release-tools
 #TYPE = preprocessor
 
 # Which directories contain source files
@@ -112,7 +112,7 @@ asm: main.elf
 	@$(OBJDUMP) -t main.elf > sections.txt
 	@$(OBJDUMP) -S main.elf > machine.asm
 	@echo Creating machine.asm done
-	
+
 main.elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET)
 		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \

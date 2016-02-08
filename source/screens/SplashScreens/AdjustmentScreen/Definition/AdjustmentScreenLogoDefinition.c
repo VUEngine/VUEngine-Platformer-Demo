@@ -78,21 +78,21 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITE =
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)& ADJUSTMENT_SCREEN_LOGO_TX,
+	(TextureDefinition*)&ADJUSTMENT_SCREEN_LOGO_TX,
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
 BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_LOGO_IM_SPRITES[] =
 {
-	& ADJUSTMENT_SCREEN_LOGO_IM_SPRITE,
+	&ADJUSTMENT_SCREEN_LOGO_IM_SPRITE,
 	NULL
 };
 

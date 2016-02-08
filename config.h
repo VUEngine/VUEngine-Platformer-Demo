@@ -235,7 +235,7 @@
 // 4) initialize the loaded entity
 #define __STREAM_CYCLE_DURATION					24
 
-// pad to determine if an entity must be loaded/unloaded 
+// pad to determine if an entity must be loaded/unloaded
 // load pad must always be lower than unload pad!
 // too close values will put the streaming under heavy usage!
 #define __ENTITY_LOAD_PAD 						256
@@ -293,10 +293,10 @@
 #define __BGMAP_PALETTE_2						0b10010000 // background layer
 #define __BGMAP_PALETTE_3						0b01010000 // very dark, used when getting hit
 
-#define __OBJECT_PALETTE_0						0b11100100
-#define __OBJECT_PALETTE_1						0b11100000
-#define __OBJECT_PALETTE_2						0b11010000
-#define __OBJECT_PALETTE_3						0b01010000
+#define __OBJECT_PALETTE_0						__BGMAP_PALETTE_0
+#define __OBJECT_PALETTE_1						__BGMAP_PALETTE_1
+#define __OBJECT_PALETTE_2						__BGMAP_PALETTE_2
+#define __OBJECT_PALETTE_3						__BGMAP_PALETTE_3
 
 
 //---------------------------------------------------------------------------------------------------------

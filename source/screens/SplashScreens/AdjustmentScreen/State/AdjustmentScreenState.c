@@ -62,7 +62,7 @@ static void AdjustmentScreenState_constructor(AdjustmentScreenState this)
 	__CONSTRUCT_BASE();
 
 	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
-	this->stageDefinition = (StageDefinition*)& ADJUSTMENT_SCREEN_ST;
+	this->stageDefinition = (StageDefinition*)&ADJUSTMENT_SCREEN_ST;
 }
 
 // class's destructor
@@ -82,8 +82,8 @@ static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u16 p
     if(this->nextState == NULL)
     {
         Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
-    } 
-    else 
+    }
+    else
     {
 	    Game_changeState(Game_getInstance(), this->nextState);
     }

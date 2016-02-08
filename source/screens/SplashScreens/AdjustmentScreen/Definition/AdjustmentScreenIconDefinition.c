@@ -21,6 +21,7 @@
 
 #include <Image.h>
 
+
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
@@ -77,21 +78,21 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)& ADJUSTMENT_SCREEN_ICON_TX,
+	(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
 
 	// displacement
 	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_LON,
 };
 
 BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
 {
-	& ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE,
+	&ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE,
 	NULL
 };
 
@@ -101,21 +102,21 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
 	__TYPE(BgmapSprite),
 
 	// texture definition
-	(TextureDefinition*)& ADJUSTMENT_SCREEN_ICON_TX,
+	(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
 
 	// displacement
 	{0, 0, 0},
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_RON,
 };
 
 BgmapSpriteROMDef* ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] =
 {
-	& ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE,
+	&ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE,
 	NULL
 
 };
