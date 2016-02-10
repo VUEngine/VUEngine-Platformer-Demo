@@ -23,6 +23,7 @@
 #include <Screen.h>
 #include <MessageDispatcher.h>
 #include <Actor.h>
+#include <debugConfig.h>
 
 
 //---------------------------------------------------------------------------------------------------------
