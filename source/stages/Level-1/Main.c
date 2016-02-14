@@ -415,25 +415,25 @@ StageROMDef LEVEL_1_MAIN_ST =
     // streaming
     {
         // delay per cycle
-        10,
+        15,
         // load padding
-        48,
+        80,
         // unload padding
         16,
         // streaming amplitude
-        24,
+        36,
     },
 
     // rendering
     {
         // number of cycles the texture writing is idle
-        __TARGET_FPS / 10,
+        4,
 
         // maximum number of texture's rows to write each time the texture writing is active
-        16,
+        12,
 
         // maximum number of rows to compute on each call to the affine functions
-        16,
+        12,
 
         // Palette's config
         {
