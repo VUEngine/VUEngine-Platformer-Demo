@@ -20,7 +20,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Stage.h>
-#include <macros.h>
 #include <PlatformerLevelState.h>
 #include <OverworldState.h>
 #include <VPUManager.h>
@@ -85,7 +84,7 @@ StageROMDef OVERWORLD_1_ST =
             // z
             __SCREEN_DEPTH,
         },
-        
+
 		// screen's initial position inside the game world
         {
             // x
@@ -108,15 +107,15 @@ StageROMDef OVERWORLD_1_ST =
 		// streaming amplitude
 		24,
 	},
-	
+
 	// rendering
 	{
 		// number of cycles the texture writing is idle
 		0,
-		
+
 		// maximum number of texture's rows to write each time the texture writing is active
 		64,
-		
+
 		// maximum number of rows to compute on each call to the affine functions
 		16,
 
@@ -124,7 +123,7 @@ StageROMDef OVERWORLD_1_ST =
         {
         	// background color
         	__COLOR_BLACK,
-        	
+
         	{
                 __BGMAP_PALETTE_0,
                 __BGMAP_PALETTE_1,
@@ -136,9 +135,9 @@ StageROMDef OVERWORLD_1_ST =
                 __OBJECT_PALETTE_1,
                 __OBJECT_PALETTE_2,
                 __OBJECT_PALETTE_3,
-        	} 
+        	}
         },
-        
+
         // BGMAP segments configuration
         // number of segments reserved for dynamically allocated textures when preloading
         1,
@@ -154,7 +153,7 @@ StageROMDef OVERWORLD_1_ST =
             // SPT3
         	0,
         },
-        
+
         // OBJs segments z coordinates
         // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
         // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
@@ -182,7 +181,7 @@ StageROMDef OVERWORLD_1_ST =
     		// vertical view point center
     		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
 
-        },            
+        },
 	},
 
     // physics
@@ -193,7 +192,7 @@ StageROMDef OVERWORLD_1_ST =
     	    ITOFIX19_13(__GRAVITY),
     	    ITOFIX19_13(0)
         },
-        
+
         // friction
         FTOFIX19_13(0.1f),
     },
@@ -205,7 +204,7 @@ StageROMDef OVERWORLD_1_ST =
 
         // textures to preload
         (StageTextureEntryDefinition*)OVERWORLD_1_ST_TEXTURES,
-        
+
         // background music
         (const u16 (*)[])WORLD_0_0_0_BGM,
     },
