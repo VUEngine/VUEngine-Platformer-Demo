@@ -286,11 +286,11 @@ StageROMDef LEVEL_1_TOWER_ST =
         // delay per cycle
         10,
         // load padding
-        48,
+        80,
         // unload padding
         16,
         // streaming amplitude
-        24,
+        36,
     },
 
     // rendering
