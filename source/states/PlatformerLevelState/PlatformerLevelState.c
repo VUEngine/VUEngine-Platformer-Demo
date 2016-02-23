@@ -124,9 +124,13 @@ void PlatformerLevelState_testPostProcessingEffect(u32 frameBufferSetToModify)
                 {
                     BYTE* sourcePointer = (BYTE*) (frameBufferSetToModify | (buffer? 0x00010000: 0 ));
                     sourcePointer += ((x << 6) + (y >> 2));
-                    *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
-                }
 
+                    // shift down
+                    // *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
+
+                    // negative
+                    *sourcePointer = ~*sourcePointer;
+                }
             }
         }
     }
