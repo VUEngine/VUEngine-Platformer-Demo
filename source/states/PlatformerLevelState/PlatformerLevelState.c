@@ -140,20 +140,28 @@ void PlatformerLevelState_testPostProcessingEffect(u32 frameBufferSetToModify)
                     sourcePointer += ((x << 6) + (y >> 2));
 
                     // shift down
+                    /*
                     *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
 
                     // negative
                     *sourcePointer = ~*sourcePointer;
+                    */
 
                     // noise
                     if(xCounter % 2 && noise)
                     {
-                        *sourcePointer &= 0xCC;
+                        *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
+                        //*sourcePointer &= 0xCC;
                     }
                     else
                     {
-                        *sourcePointer &= 0x33;
+                        *sourcePointer = (*sourcePointer & 0xC0)| (*sourcePointer >> 2);
+
+                        //*sourcePointer &= 0x33;
                     }
+
+                    *sourcePointer |= 0x55;
+
                 }
             }
         }
@@ -161,7 +169,7 @@ void PlatformerLevelState_testPostProcessingEffect(u32 frameBufferSetToModify)
 
     if(--wait < 0)
     {
-        wait = 10;
+        wait = 4;
         noise = noise? 0 : 1;
     }
 }
