@@ -21,6 +21,7 @@
 
 #include <string.h>
 #include <Game.h>
+#include <Optics.h>
 #include <Screen.h>
 #include <Screen.h>
 #include <Printing.h>
@@ -107,32 +108,61 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 
 void PlatformerLevelState_testPostProcessingEffect(u32 frameBufferSetToModify)
 {
-    int size = 192;
-    int xCounter = size;
-    int yCounter = size;
-    int x = __SCREEN_WIDTH / 2 - xCounter / 2;
-    int y = __SCREEN_HEIGHT / 2 - yCounter / 2;
+    int xCounter = 0;
+    int yCounter = 0;
+    int x = 0;
+    int y = 0;
+
+    static int noise = 0;
+    static int wait = 0;
+
+    Hero hero = Hero_getInstance();
+
+    if(!hero)
+    {
+        return;
+    }
+
+    VBVec3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
+    extern const VBVec3D* _screenPosition;
+	__OPTICS_NORMALIZE(heroPosition);
 
     if(0 == frameBufferSetToModify || 0x8000 == frameBufferSetToModify)
     {
         u32 buffer = 0;
         for(;buffer < 2; buffer++)
         {
-            for(yCounter = 56, y = __SCREEN_HEIGHT / 2 - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
+            for(xCounter = 32, x = FIX19_13TOI(heroPosition.x) - xCounter / 2; xCounter--; x++)
             {
-                for(xCounter = 192, x = __SCREEN_WIDTH / 2 - xCounter / 2; xCounter--; x++)
+                for(yCounter = 32, y = FIX19_13TOI(heroPosition.y) - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
                 {
                     BYTE* sourcePointer = (BYTE*) (frameBufferSetToModify | (buffer? 0x00010000: 0 ));
                     sourcePointer += ((x << 6) + (y >> 2));
 
                     // shift down
-                    // *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
+                    *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
 
                     // negative
                     *sourcePointer = ~*sourcePointer;
+
+                    // noise
+                    if(xCounter % 2 && noise)
+                    {
+                        *sourcePointer &= 0xCC;
+                    }
+                    else
+                    {
+                        *sourcePointer &= 0x33;
+                    }
                 }
             }
         }
+    }
+
+    if(--wait < 0)
+    {
+        wait = 10;
+        noise = noise? 0 : 1;
     }
 }
 
