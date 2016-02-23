@@ -23,7 +23,6 @@
 #include <Game.h>
 #include <Optics.h>
 #include <Screen.h>
-#include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
 #include <PhysicalWorld.h>
