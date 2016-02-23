@@ -105,12 +105,39 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 	*/
 }
 
+void PlatformerLevelState_testPostProcessingEffect(u32 frameBufferSetToModify)
+{
+    int size = 192;
+    int xCounter = size;
+    int yCounter = size;
+    int x = __SCREEN_WIDTH / 2 - xCounter / 2;
+    int y = __SCREEN_HEIGHT / 2 - yCounter / 2;
+
+    if(0 == frameBufferSetToModify || 0x8000 == frameBufferSetToModify)
+    {
+        u32 buffer = 0;
+        for(;buffer < 2; buffer++)
+        {
+            for(yCounter = 56, y = __SCREEN_HEIGHT / 2 - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
+            {
+                for(xCounter = 192, x = __SCREEN_WIDTH / 2 - xCounter / 2; xCounter--; x++)
+                {
+                    BYTE* sourcePointer = (BYTE*) (frameBufferSetToModify | (buffer? 0x00010000: 0 ));
+                    sourcePointer += ((x << 6) + (y >> 2));
+                    *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
+                }
+
+            }
+        }
+    }
+}
+
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
-	
+
 	// set the custom movement screen manager now
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 
@@ -204,6 +231,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 	// reset clocks
 	GameState_startClocks(__SAFE_CAST(GameState, this));
+
+	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testPostProcessingEffect);
 }
 
 // state's exit
@@ -269,7 +298,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 #ifdef __ANIMATION_EDITOR
 	}
 #endif
-	
+
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
 
@@ -300,13 +329,13 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
                         Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
                     }
 	            }
-	
+
 				// tell any interested entity
 				GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
-	
+
 				// show level after a little delay
 				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
-	
+
 				this->mode = kShowingUp;
 			}
 			break;
@@ -318,7 +347,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 
 			// erase level message in n milliseconds
             MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
-			
+
 			// reset clock and restart
 			Clock_reset(this->inGameClock);
 
@@ -330,7 +359,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			GameState_startInGameClock(__SAFE_CAST(GameState, this));
 
         	PlatformerLevelState_setModeToPlaying(this);
-        	
+
         	Game_enableKeypad(Game_getInstance());
 
 			break;
@@ -341,7 +370,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			Printing_text(Printing_getInstance(), "                                                ", 0, 6, NULL);
 			Printing_text(Printing_getInstance(), "                                                ", 0, 7, NULL);
 			break;
-			
+
 		case kKeyPressed:
 
 			if(kPlaying == this->mode)
@@ -363,7 +392,7 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
                     Game_pause(Game_getInstance(), __SAFE_CAST(GameState, PauseScreenState_getInstance()));
                     break;
                 }
-				
+
 				Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_PRESSED);
 			}
 			return true;
@@ -377,9 +406,9 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			}
 			return true;
 			break;
-			
+
 		case kKeyHold:
-			
+
 			if(kPlaying == this->mode)
             {
 				Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_HOLD);
@@ -387,8 +416,8 @@ static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* 
 			return true;
 			break;
 
-		case kHeroDied:	
-			
+		case kHeroDied:
+
 			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 			return true;
 			break;
