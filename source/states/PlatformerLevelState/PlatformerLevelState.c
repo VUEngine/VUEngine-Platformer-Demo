@@ -105,16 +105,13 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 	*/
 }
 
-void PlatformerLevelState_testPostProcessingEffect(u32 frameBufferSetToModify)
+void PlatformerLevelState_testPostProcessingEffect(u32 currentDrawingframeBufferSet)
 {
-    int xCounter = 0;
-    int yCounter = 0;
-    int x = 0;
-    int y = 0;
+    // the frameBufferSetToModify dictates which frame buffer set (remember that
+    // there are 4 frame buffers, 2 per eye) has been written by the VPU
+    // and you can work on
 
-    static int noise = 0;
-    static int wait = 0;
-
+    // will try to add a post processing effect around the hero
     Hero hero = Hero_getInstance();
 
     if(!hero)
@@ -126,50 +123,61 @@ void PlatformerLevelState_testPostProcessingEffect(u32 frameBufferSetToModify)
     extern const VBVec3D* _screenPosition;
 	__OPTICS_NORMALIZE(heroPosition);
 
-    if(0 == frameBufferSetToModify || 0x8000 == frameBufferSetToModify)
+    // the pixel in screen coordinates (x: 0 - 384, y: 0 - 224)
+    int x = 0;
+    int y = 0;
+
+    // these will be used to dictate the size of the screen portion to by
+    // affected
+    int xCounter = 0;
+    int yCounter = 0;
+
+    // this is just a test, so that's why these are static
+    static bool vibrate = false;
+    static int wait = 0;
+
+    u32 buffer = 0;
+    for(;buffer < 2; buffer++)
     {
-        u32 buffer = 0;
-        for(;buffer < 2; buffer++)
+        for(xCounter = 32, x = FIX19_13TOI(heroPosition.x) - xCounter / 2; xCounter--; x++)
         {
-            for(xCounter = 32, x = FIX19_13TOI(heroPosition.x) - xCounter / 2; xCounter--; x++)
+            for(yCounter = 32, y = FIX19_13TOI(heroPosition.y) - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
             {
-                for(yCounter = 32, y = FIX19_13TOI(heroPosition.y) - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
+                BYTE* sourcePointer = (BYTE*) (currentDrawingframeBufferSet | (buffer? 0x00010000: 0 ));
+                sourcePointer += ((x << 6) + (y >> 2));
+
+                /*
+                // negative
+                *sourcePointer = ~*sourcePointer;
+                */
+
+                // noise
+                if(vibrate)
                 {
-                    BYTE* sourcePointer = (BYTE*) (frameBufferSetToModify | (buffer? 0x00010000: 0 ));
-                    sourcePointer += ((x << 6) + (y >> 2));
-
-                    // shift down
-                    /*
-                    *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
-
-                    // negative
-                    *sourcePointer = ~*sourcePointer;
-                    */
-
-                    // noise
-                    if(xCounter % 2 && noise)
+                    if(xCounter % 2)
                     {
+                        // shift down one pixel
                         *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
-                        //*sourcePointer &= 0xCC;
                     }
                     else
                     {
+                        // shift up one pixel
                         *sourcePointer = (*sourcePointer & 0xC0)| (*sourcePointer >> 2);
-
-                        //*sourcePointer &= 0x33;
                     }
-
-                    *sourcePointer |= 0x55;
-
                 }
+
+                // add 1 to each pixel's color to "light it up"
+                *sourcePointer |= 0x55;
+
             }
         }
     }
 
+    // this just create a simple delay to not shift the pixels on each cycle
     if(--wait < 0)
     {
         wait = 4;
-        noise = noise? 0 : 1;
+        vibrate = !vibrate;
     }
 }
 
