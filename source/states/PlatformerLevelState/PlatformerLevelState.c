@@ -146,10 +146,9 @@ void PlatformerLevelState_testPostProcessingEffect(u32 currentDrawingframeBuffer
                 BYTE* sourcePointer = (BYTE*) (currentDrawingframeBufferSet | (buffer? 0x00010000: 0 ));
                 sourcePointer += ((x << 6) + (y >> 2));
 
-                /*
                 // negative
                 *sourcePointer = ~*sourcePointer;
-                */
+
 
                 // noise
                 if(vibrate)
