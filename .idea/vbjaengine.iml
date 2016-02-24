@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="C++" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../libs/vbjaengine">
+      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/.make-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/.make-release" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/.make-release-tools" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/doc" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/lib" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
