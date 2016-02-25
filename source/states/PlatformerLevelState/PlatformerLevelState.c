@@ -105,7 +105,34 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 	*/
 }
 
-void PlatformerLevelState_testPostProcessingEffect(u32 currentDrawingframeBufferSet)
+void PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect(u32 currentDrawingframeBufferSet)
+{
+    // the pixel in screen coordinates (x: 0 - 384, y: 0 - 224)
+    int x = 0;
+    int y = 0;
+    u32 lastPart;
+
+    // write to framebuffers for both screens
+    u32 buffer = 0;
+    for(;buffer < 2; buffer++)
+    {
+        for(x = 0; x < 384; x+=4)
+        {
+            for(y = 0; y < 224; y+=4)
+            {
+                u32* sourcePointer = (u32*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
+                sourcePointer += ((x << 6) + y);
+
+                lastPart = *sourcePointer;
+
+                *sourcePointer = (*sourcePointer << 2) | (lastPart & 3);
+                //*sourcePointer |= 0x55;
+            }
+        }
+    }
+}
+
+void PlatformerLevelState_lightingTestPostProcessingEffect(u32 currentDrawingframeBufferSet)
 {
     // the frameBufferSetToModify dictates which frame buffer set (remember that
     // there are 4 frame buffers, 2 per eye) has been written by the VPU
@@ -127,8 +154,7 @@ void PlatformerLevelState_testPostProcessingEffect(u32 currentDrawingframeBuffer
     int x = 0;
     int y = 0;
 
-    // these will be used to dictate the size of the screen portion to by
-    // affected
+    // these will be used to dictate the size of the screen portion to be affected
     int xCounter = 0;
     int yCounter = 0;
 
@@ -136,6 +162,7 @@ void PlatformerLevelState_testPostProcessingEffect(u32 currentDrawingframeBuffer
     static bool vibrate = false;
     static int wait = 0;
 
+    // write to framebuffers for both screens
     u32 buffer = 0;
     for(;buffer < 2; buffer++)
     {
@@ -143,12 +170,13 @@ void PlatformerLevelState_testPostProcessingEffect(u32 currentDrawingframeBuffer
         {
             for(yCounter = 32, y = FIX19_13TOI(heroPosition.y) - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
             {
-                BYTE* sourcePointer = (BYTE*) (currentDrawingframeBufferSet | (buffer? 0x00010000: 0 ));
+                BYTE* sourcePointer = (BYTE*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
                 sourcePointer += ((x << 6) + (y >> 2));
 
+                /*
                 // negative
                 *sourcePointer = ~*sourcePointer;
-
+                */
 
                 // noise
                 if(vibrate)
@@ -280,7 +308,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// reset clocks
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
-	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testPostProcessingEffect);
+	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
 }
 
 // state's exit
