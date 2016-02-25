@@ -105,6 +105,34 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 	*/
 }
 
+void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBufferSet)
+{
+    // the pixel in screen coordinates (x: 0 - 384, y: 0 - 224)
+    int x = 0;
+    int y = 0;
+    u32 lastPart;
+
+    const u8 waveLut[8] = {0,1,2,3,3,2,1,0};
+
+    // write to framebuffers for both screens
+    u32 buffer = 0;
+    for(;buffer < 2; buffer++)
+    {
+        for(x = 0; x < 96; x++)
+        {
+            for(y = 0; y < 256; y+=4)
+            {
+                u32* sourcePointer = (u32*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
+                sourcePointer += ((x << 6) + (y >> 2));
+
+                lastPart = *sourcePointer;
+
+                *sourcePointer = (*sourcePointer << (waveLut[x%8] << 1)) | (lastPart & ((waveLut[x%8] << 1) + 1));
+            }
+        }
+    }
+}
+
 void PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect(u32 currentDrawingframeBufferSet)
 {
     // the pixel in screen coordinates (x: 0 - 384, y: 0 - 224)
@@ -308,7 +336,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// reset clocks
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
-	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
+	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
 }
 
 // state's exit
