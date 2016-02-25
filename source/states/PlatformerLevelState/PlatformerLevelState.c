@@ -113,12 +113,14 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
     u32 lastPart;
 
     const u8 waveLut[8] = {0,1,2,3,3,2,1,0};
+    static int waveLutIndex = 0;
+    static int wavingDelay = 0;
 
     // write to framebuffers for both screens
     u32 buffer = 0;
     for(;buffer < 2; buffer++)
     {
-        for(x = 0; x < 96; x++)
+        for(x = 0; x < 96; x++, waveLutIndex++)
         {
             for(y = 0; y < 256; y+=4)
             {
@@ -127,9 +129,15 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
 
                 lastPart = *sourcePointer;
 
-                *sourcePointer = (*sourcePointer << (waveLut[x%8] << 1)) | (lastPart & ((waveLut[x%8] << 1) + 1));
+                *sourcePointer = (*sourcePointer << (waveLut[waveLutIndex%8] << 1)) | (lastPart & ((waveLut[waveLutIndex%8] << 1) + 1));
             }
         }
+    }
+
+    if(--wavingDelay < 0)
+    {
+        wavingDelay = 3;
+        waveLutIndex++;
     }
 }
 
@@ -142,6 +150,30 @@ void PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect(u32 currentDra
 
     // write to framebuffers for both screens
     u32 buffer = 0;
+
+    static int randomDelay = 0;
+    static bool dontApply = false;
+
+    // remove me
+    if(dontApply)
+    {
+        return;
+    }
+
+    if(--randomDelay  < 0)
+    {
+        dontApply = !dontApply;
+        randomDelay = Utilities_random(Utilities_randomSeed(), dontApply? 205: 150);
+    }
+
+    /*
+    // uncomment me: although the intended randomness doesn't work
+
+    if(dontApply)
+    {
+        return;
+    }
+    */
     for(;buffer < 2; buffer++)
     {
         for(x = 0; x < 384; x+=4)
@@ -154,7 +186,7 @@ void PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect(u32 currentDra
                 lastPart = *sourcePointer;
 
                 *sourcePointer = (*sourcePointer << 2) | (lastPart & 3);
-                //*sourcePointer |= 0x55;
+                //*sourcePointer &= *sourcePointer;
             }
         }
     }
@@ -336,7 +368,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// reset clocks
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
-	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
+//	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_lightingTestPostProcessingEffect);
+	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
+//	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
 }
 
 // state's exit
