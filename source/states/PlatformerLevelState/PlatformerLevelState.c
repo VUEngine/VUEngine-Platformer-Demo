@@ -107,12 +107,18 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 
 void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBufferSet)
 {
-    // the pixel in screen coordinates (x: 0 - 384, y: 0 - 224)
+    // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
     int x = 0;
     int y = 0;
-    u32 lastPart;
 
-    const u8 waveLut[8] = {0,1,2,3,3,2,1,0};
+    //
+    u32 previousSourcePointerValue = 0;
+    u32 previousSourcePointerValueTemp = 0;
+
+    // look up table of bitshifts performed on rows
+    const u8 waveLut[8] = {0,2,4,6,6,4,2,0};
+
+    // runtime working variables
     static int waveLutIndex = 0;
     static int wavingDelay = 0;
 
@@ -120,23 +126,60 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
     u32 buffer = 0;
     for(;buffer < 2; buffer++)
     {
+        // loop columns, each column is 4 pixels wide
         for(x = 0; x < 96; x++, waveLutIndex++)
         {
+            // wrap wave lut index (&7 equals %8)
+            waveLutIndex = waveLutIndex&7;
+
+            // we can skip further processing for the current column if no shifting would be done on it
+            if(waveLut[waveLutIndex] == 0)
+            {
+                continue;
+            }
+
+            // loop pixels of current column
             for(y = 0; y < 256; y+=4)
             {
+                if ((y&63) == 0) {
+                    // the shifted out pixels on top should be black
+                    previousSourcePointerValue = 0;
+                } else if ((y&63) > 48) {
+                    // ignore the bottom 16 pixels of the screen (gui)
+                    continue;
+                }
+
+                // pointer to currently manipulated 32 bits of framebuffer
                 u32* sourcePointer = (u32*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
                 sourcePointer += ((x << 6) + (y >> 2));
 
-                lastPart = *sourcePointer;
+                // save current mask to temp var and mask the lowest x bits of it, according to wave lut
+                previousSourcePointerValueTemp = (u32)(*sourcePointer) & ((1 << (waveLut[waveLutIndex])) - 1);
+                // shift masked bits all the way left, since we want to insert these as the highest bits
+                //previousSourcePointerValueTemp <<= (32 - waveLut[waveLutIndex]);
 
-                *sourcePointer = (*sourcePointer << (waveLut[waveLutIndex%8] << 1)) | (lastPart & ((waveLut[waveLutIndex%8] << 1) + 1));
+                // manipulate current 32 bits in frame buffer
+                *sourcePointer =
+                    // shift bits according to wave lut
+                    // it's two bits per pixel, so 2 bits shifted left = 1 pixel shifted down on screen
+                    (*sourcePointer << (waveLut[waveLutIndex]))
+
+                    // since the above shifting creates black pixels, we need to carry over these pixels
+                    // from the previous loop
+                    // TODO: instead of masking, left shifting, then right shifting should work, too
+                    | previousSourcePointerValue;
+
+                // we need the current source pointer value _before_ we modified it, therefore we save it
+                // to a temp variable while modifying
+                previousSourcePointerValue = previousSourcePointerValueTemp;
             }
         }
     }
 
+    // delay
     if(--wavingDelay < 0)
     {
-        wavingDelay = 3;
+        wavingDelay = 8;
         waveLutIndex++;
     }
 }
@@ -369,8 +412,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_lightingTestPostProcessingEffect);
-	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
-//	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
+//	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
+	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
 }
 
 // state's exit
