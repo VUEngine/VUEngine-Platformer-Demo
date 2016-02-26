@@ -153,10 +153,9 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
                 u32* sourcePointer = (u32*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
                 sourcePointer += ((x << 6) + (y >> 2));
 
-                // save current mask to temp var and mask the lowest x bits of it, according to wave lut
-                previousSourcePointerValueTemp = (u32)(*sourcePointer) & ((1 << (waveLut[waveLutIndex])) - 1);
-                // shift masked bits all the way left, since we want to insert these as the highest bits
-                //previousSourcePointerValueTemp <<= (32 - waveLut[waveLutIndex]);
+                // save current pointer value to temp var and shift highest x bits of it, according to lut,
+                // to the lowest bits, since we want to insert these
+                previousSourcePointerValueTemp = (u32)(*sourcePointer) >> (32 - waveLut[waveLutIndex]);
 
                 // manipulate current 32 bits in frame buffer
                 *sourcePointer =
