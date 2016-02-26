@@ -165,7 +165,6 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
 
                     // since the above shifting creates black pixels, we need to carry over these pixels
                     // from the previous loop
-                    // TODO: instead of masking, left shifting, then right shifting should work, too
                     | previousSourcePointerValue;
 
                 // we need the current source pointer value _before_ we modified it, therefore we save it
