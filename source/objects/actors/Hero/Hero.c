@@ -106,7 +106,7 @@ Hero Hero_getInstance()
 void Hero_setInstance(Hero instance)
 {
 	ASSERT(!hero, "Hero::setInstance: already instantiated");
-	
+
 	hero = instance;
 }
 
@@ -219,7 +219,7 @@ SpatialObject CollisionManager_searchNextObjectOfCollision(CollisionManager this
 void Hero_locateOverNextFloor(Hero this)
 {
 	VBVec3D direction = {0, 1, 0};
-	
+
 	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(Game_getCollisionManager(Game_getInstance()), this->shape, direction);
 	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
 
@@ -228,7 +228,7 @@ void Hero_locateOverNextFloor(Hero this)
 		VirtualList collidingSpatialObjects = __NEW(VirtualList);
 		VirtualList_pushBack(collidingSpatialObjects, collidingSpatialObject);
 
-		VBVec3D displacement = 
+		VBVec3D displacement =
 		{
 			ITOFIX19_13(0),
 			ITOFIX19_13(1),
@@ -236,7 +236,7 @@ void Hero_locateOverNextFloor(Hero this)
 		};
 
 		CollisionSolver_resolveCollision(this->collisionSolver, collidingSpatialObjects, __YAXIS, displacement, &this->transform.globalScale, true);
-		
+
 		__DELETE(collidingSpatialObjects);
 //		Actor_updateSurroundingFriction(this);
 	}
@@ -246,7 +246,7 @@ void Hero_locateOverNextFloor(Hero this)
 void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 {
 	ASSERT(this, "Hero::jump: null this");
-	
+
 	if(this->body)
     {
         Velocity velocity = Body_getVelocity(this->body);
@@ -268,9 +268,9 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
                 this->boost ? HERO_BOOST_JUMP_HERO_INPUT_FORCE : HERO_NORMAL_JUMP_HERO_INPUT_FORCE,
                 0
             };
-			
+
 			Actor_addForce(__SAFE_CAST(Actor, this), &force);
-			
+
 	    	Hero_hideDust(this);
 
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Jump");
@@ -288,9 +288,9 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 	static int movementType = 0;
 
 	fix19_13 maxVelocity = this->boost ? HERO_BOOST_VELOCITY_X : HERO_MAX_VELOCITY_X;
-	
+
 	Velocity velocity = Body_getVelocity(this->body);
-	
+
 	if(this->direction.x != this->inputDirection.x ||
         ((__XAXIS & axis) && maxVelocity > fabs(velocity.x)) ||
         ((__ZAXIS & axis) && maxVelocity > fabs(velocity.z)) ||
@@ -318,7 +318,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 			0,
 			(__ZAXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
 		};
-		
+
 		if(__UNIFORM_MOVEMENT != movementType || (abs(velocity.x) > maxVelocity && !(__YAXIS & Body_isMoving(this->body))))
         {
 			movementType = __UNIFORM_MOVEMENT;
@@ -330,7 +330,7 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 static void Hero_slide(Hero this)
 {
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Slide");
-	
+
 	Hero_showDust(this, false);
 }
 
@@ -386,7 +386,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	{
 		Hero_hideDust(this);
 	}
-	
+
 	// start movement
 	if(__SAFE_CAST(State, HeroMoving_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
     {
@@ -435,7 +435,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
         if(__XAXIS & axisToLockUp)
         {
             overridePositionFlag.x = locked;
-            
+
 		    positionFlag.x = !locked;
         }
 
@@ -457,7 +457,7 @@ void Hero_updateSurroundingFriction(Hero this)
 	ASSERT(this->body, "Hero::updateSurroundingFriction: null body");
 
 	Force totalFriction = {this->actorDefinition->friction, this->actorDefinition->friction, this->actorDefinition->friction};
-	
+
 	if(this->collisionSolver)
 	{
 		Force surroundingFriction = CollisionSolver_getSurroundingFriction(this->collisionSolver);
@@ -479,7 +479,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 	}
 
 	bool movementState = Body_isMoving(this->body);
-	
+
 
 	if((__XAXIS & axis) && !(__YAXIS & movementState))
     {
@@ -498,7 +498,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 			if(this->inputDirection.x)
 	        {
 				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
-				
+
 				Hero_showDust(this, true);
 			}
 			else
@@ -507,18 +507,18 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 			}
 		}
 	}
-	
+
 	if(__ZAXIS & axis)
     {
-		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));					
+		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 		return true;
 	}
 
 	if(!Body_isMoving(Actor_getBody(__SAFE_CAST(Actor, this))) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
     {
-		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));					
+		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 	}
-	
+
 	return false;
 }
 
@@ -530,7 +530,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 	bool movementState = Body_isMoving(this->body);
 
 	Hero_hideDust(this);
-	
+
 	if(K_LR & pressedKey)
     {
 		this->inputDirection.x = __RIGHT;
@@ -566,13 +566,13 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 
 void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
-    if (!Hero_isInvincible(this) || !invincibleWins)
+    if(!Hero_isInvincible(this) || !invincibleWins)
     {
     	if(alignToEnemy && other && Body_isMoving(this->body))
     	{
 			Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, other), false);
     	}
-    	
+
         if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
         {
             Hero_setInvincible(this, true);
@@ -706,7 +706,7 @@ void Hero_setAnimationDelta(Hero this, int delta)
 	ASSERT(this->sprites, "Hero::setAnimationDelta: null sprites");
 
 	VirtualNode node = VirtualList_begin(this->sprites);
-	
+
 	for(; node; node = VirtualNode_getNext(node))
 	{
 		Sprite_setFrameDelayDelta(__SAFE_CAST(Sprite, VirtualNode_getData(node)), this->boost ? 2 : 1);
@@ -731,7 +731,7 @@ void Hero_enableBoost(Hero this)
 	if(!this->boost)
     {
 		this->boost = true;
-		
+
 		Hero_setAnimationDelta(this, -2);
 	}
 }
@@ -777,7 +777,7 @@ static void Hero_addHint(Hero this)
 
     // save the hint entity, so we can remove it later
 	this->hint = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
-	
+
 	Hero_hideHint(this);
 }
 
@@ -857,7 +857,7 @@ void Hero_die(Hero this)
 static void Hero_onKeyPressed(Hero this, Object eventFirer)
 {
 	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
-	
+
 	// inform my current states about the key pressed
 	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->stateMachine), kKeyPressed, &pressedKey);
 }
@@ -867,7 +867,7 @@ static void Hero_onKeyReleased(Hero this, Object eventFirer)
 {
 	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
-	// inform my current states about the key up		
+	// inform my current states about the key up
 	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->stateMachine), kKeyReleased, &releasedKey);
 }
 
@@ -876,7 +876,7 @@ static void Hero_onKeyHold(Hero this, Object eventFirer)
 {
 	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
-	// inform my current states about the key hold		
+	// inform my current states about the key hold
 	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->stateMachine), kKeyHold, &holdKey);
 }
 
@@ -1023,7 +1023,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	                    Body_getLastDisplacement(this->body),
 	                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
 	                );
-	                
+
                     if(axisOfCollision & __YAXIS)
                     {
                     	Hero_lockCameraTriggerMovement(this, __YAXIS, false);
@@ -1039,11 +1039,11 @@ int Hero_processCollision(Hero this, Telegram telegram)
                     }
 
 					VBVec3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-	
+
 					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoundingBox, &position);
 				}
 				break;
-				
+
 			case kCoin:
 
 				Hero_collectCoin(this, __SAFE_CAST(Coin, inGameEntity));
@@ -1089,7 +1089,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kSawBlade:
 			case kSnail:
-				
+
 				Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
@@ -1110,7 +1110,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kLavaTriggerStart, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-				Hero_stopAddingForce(this);		
+				Hero_stopAddingForce(this);
 				break;
 
 			case kMovingPlatform:
@@ -1143,7 +1143,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 		// the ones you don't care about, i.e.: in most cases, the ones which are solid
 		VirtualList_removeElement(collidingObjects, VirtualNode_getData(node));
 	}
-	
+
 	__DELETE(collidingObjectsToRemove);
 
 	return !VirtualList_getSize(collidingObjects);
@@ -1201,11 +1201,11 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
         	{
         		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
         	}
-        	
+
         	break;
 
         case kHeroDied:
-        	
+
         	Hero_die(this);
         	break;
 
@@ -1227,27 +1227,27 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				VBVec3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 				this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
 				CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
-	
+
 				// set focus on the hero
 				VBVec3D screenDisplacement = {0, 0, 0};
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 				Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 			}
-			
+
 			//Hero_locateOverNextFloor(this);
 
 			break;
-			
+
 		case kLevelStarted:
 			{
 				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
-		
+
 				VBVec3DFlag positionFlag = {true, true, true};
 			    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 			}
 			break;
-			
+
 	}
 
 	return false;
@@ -1259,16 +1259,16 @@ void Hero_setPosition(Hero this, VBVec3D* position)
 
     // stop all movement
 	Actor_stopMovement(__SAFE_CAST(Actor, this));
-	
+
 	// set new position
 	Actor_setPosition(__SAFE_CAST(Actor, this), position);
 
 	// must make sure that collision detection is reset
 	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
-	
+
 	// make the camera active for collision detection
 	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, false);
-	
+
 	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
 
 	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this), __XAXIS | __YAXIS | __ZAXIS);
@@ -1279,9 +1279,9 @@ void Hero_update(Hero this)
 	ASSERT(this, "Hero::update: null this");
 
 	Actor_update(__SAFE_CAST(Actor, this));
-	
+
 	Velocity velocity = Body_getVelocity(this->body);
-	
+
 	if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
 	{
 		velocity.x = 0;
@@ -1297,7 +1297,7 @@ void Hero_suspend(Hero this)
 	ASSERT(this, "Hero::suspend: null this");
 
 	Entity_suspend(__SAFE_CAST(Entity, this));
-	
+
 	ParticleSystem_pause(this->feetDust);
 }
 
@@ -1308,7 +1308,7 @@ void Hero_resume(Hero this)
 	Actor_resume(__SAFE_CAST(Actor, this));
 
 	Screen_position(Screen_getInstance(), false);
-	
+
 	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 
 	VBVec3DFlag positionFlag = {true, true, true};
@@ -1337,7 +1337,7 @@ bool Hero_isAboveEntity(Hero this, Entity entity)
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects)
 {
 	ASSERT(this, "Hero::collisionsProcessingDone: null this");
-	
+
 	if(collidingSpatialObjects && 1 == VirtualList_getSize(collidingSpatialObjects))
 	{
 		InGameEntity inGameEntity = __SAFE_CAST(InGameEntity, VirtualList_front(collidingSpatialObjects));
