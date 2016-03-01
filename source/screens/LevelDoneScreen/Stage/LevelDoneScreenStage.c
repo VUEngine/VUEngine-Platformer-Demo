@@ -63,7 +63,7 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
             // z
             __SCREEN_DEPTH,
         },
-        
+
 		// screen's initial position inside the game world
         {
             // x
@@ -86,23 +86,26 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
 		// streaming amplitude
 		24,
 	},
-	
+
 	// rendering
 	{
 		// number of cycles the texture writing is idle
 		__TARGET_FPS / 10,
-		
+
 		// maximum number of texture's rows to write each time the texture writing is active
 		12,
-		
+
 		// maximum number of rows to compute on each call to the affine functions
 		16,
-		
-        // Palette's config
+
+        // column table
+		NULL,
+
+        // palette's config
         {
         	// background color
         	__COLOR_BLACK,
-        	
+
         	{
                 __BGMAP_PALETTE_0,
                 __BGMAP_PALETTE_1,
@@ -114,9 +117,9 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
                 __OBJECT_PALETTE_1,
                 __OBJECT_PALETTE_2,
                 __OBJECT_PALETTE_3,
-        	} 
+        	}
         },
-        
+
         // BGMAP segments configuration
         // number of segments reserved for dynamically allocated textures when preloading
         1,
@@ -132,7 +135,7 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
             // SPT3
         	__AVAILABLE_CHAR_OBJECTS / 4,
         },
-        
+
         // OBJs segments z coordinates
         // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
         // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
@@ -159,7 +162,7 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
     		ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
     		// vertical view point center
     		ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
-        },            
+        },
 	},
 
     // physics
@@ -170,7 +173,7 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
     	    ITOFIX19_13(0),
     	    ITOFIX19_13(0)
         },
-        
+
         // friction
         FTOFIX19_13(0),
     },
@@ -182,7 +185,7 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
 
         // textures to preload
         (StageTextureEntryDefinition*)NULL,
-        
+
         // background music
         NULL,
     },
@@ -197,5 +200,5 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
 
         // children
         LEVEL_DONE_SCREEN_ST_CHILDREN,
-    }		
+    }
 };

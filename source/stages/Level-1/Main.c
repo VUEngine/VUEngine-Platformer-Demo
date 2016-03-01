@@ -435,7 +435,10 @@ StageROMDef LEVEL_1_MAIN_ST =
         // maximum number of rows to compute on each call to the affine functions
         12,
 
-        // Palette's config
+        // column table
+		NULL,
+
+        // palette's config
         {
             // background color
             __COLOR_BLACK,

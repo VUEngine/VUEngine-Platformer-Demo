@@ -99,15 +99,15 @@ static void LangSelectScreenState_destructor(LangSelectScreenState this)
 
 void LangSelectScreenState_processInput(LangSelectScreenState this, u16 pressedKey)
 {
-	if ((pressedKey & K_LU) || (pressedKey & K_RU))
+	if((pressedKey & K_LU) || (pressedKey & K_RU))
 	{
 		OptionsSelector_selectPrevious(this->languageSelector);
 	}
-    else if ((pressedKey & K_LD) || (pressedKey & K_RD))
+    else if((pressedKey & K_LD) || (pressedKey & K_RD))
 	{
 		OptionsSelector_selectNext(this->languageSelector);
 	}
-	else if ((pressedKey & K_A) || (pressedKey & K_STA))
+	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
 	    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this->nextState));

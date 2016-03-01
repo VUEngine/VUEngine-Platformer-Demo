@@ -141,10 +141,10 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
             // loop pixels of current column
             for(y = 0; y < 256; y+=4)
             {
-                if ((y&63) == 0) {
+                if((y&63) == 0) {
                     // the shifted out pixels on top should be black
                     previousSourcePointerValue = 0;
-                } else if ((y&63) > 48) {
+                } else if((y&63) > 48) {
                     // ignore the bottom 16 pixels of the screen (gui)
                     continue;
                 }

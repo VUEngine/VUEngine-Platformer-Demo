@@ -168,7 +168,10 @@ StageROMDef LEVEL_1_SMALL_ROOM_ST =
         // maximum number of rows to compute on each call to the affine functions
         16,
 
-        // Palette's config
+        // column table
+		NULL,
+
+        // palette's config
         {
             // background color
             __COLOR_BLACK,
@@ -268,7 +271,7 @@ StageROMDef LEVEL_1_SMALL_ROOM_ST =
         // children
         LEVEL_1_SMALL_ROOM_ST_CHILDREN,
     },
-};	
+};
 
 
 //---------------------------------------------------------------------------------------------------------
