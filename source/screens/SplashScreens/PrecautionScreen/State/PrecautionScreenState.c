@@ -99,7 +99,7 @@ static void PrecautionScreenState_print(PrecautionScreenState this)
         Printing_getInstance(),
         strPrecautionTitle,
         (__SCREEN_WIDTH >> 4) - (titleSize.x >> 1),
-        (__SCREEN_HEIGHT >> 4) - (totalHeight >> 1),
+        (__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) - 1,
         "GUIFont"
     );
 
@@ -107,7 +107,7 @@ static void PrecautionScreenState_print(PrecautionScreenState this)
         Printing_getInstance(),
         strPrecautionText,
         (__SCREEN_WIDTH >> 4) - (textSize.x >> 1),
-        (__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) + titleSize.y + 2,
+        (__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) - 1 + titleSize.y + 2,
         NULL
     );
 }
