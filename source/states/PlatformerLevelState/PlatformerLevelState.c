@@ -235,9 +235,8 @@ void PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect(u32 currentDra
 
 void PlatformerLevelState_lightingTestPostProcessingEffect(u32 currentDrawingframeBufferSet)
 {
-    // the frameBufferSetToModify dictates which frame buffer set (remember that
-    // there are 4 frame buffers, 2 per eye) has been written by the VPU
-    // and you can work on
+    // the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
+    // 2 per eye) has been written by the VPU and you can work on
 
     // will try to add a post processing effect around the hero
     Hero hero = Hero_getInstance();
@@ -409,9 +408,10 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// reset clocks
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
+    // activate post processing effect
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_lightingTestPostProcessingEffect);
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
-	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
+//	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
 }
 
 // state's exit
