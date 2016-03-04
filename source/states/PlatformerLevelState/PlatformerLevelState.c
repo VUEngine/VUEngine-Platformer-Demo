@@ -116,36 +116,36 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
     u32 previousSourcePointerValueTemp = 0;
 
     // look up table of bitshifts performed on rows
-    const u8 waveLut[8] = {0,2,4,6,6,4,2,0};
+    const u8 waveLut[32] = {0,0,0,0,2,2,2,2,4,4,4,4,6,6,6,6,6,6,6,6,4,4,4,4,2,2,2,2,0,0,0,0};
 
     // runtime working variables
     static int waveLutIndex = 0;
-    static int wavingDelay = 0;
 
     // write to framebuffers for both screens
     u32 buffer = 0;
     for(;buffer < 2; buffer++)
     {
         // loop columns, each column is 4 pixels wide
-        for(x = 0; x < 96; x++, waveLutIndex++)
+        for(x = 0; x < 96; x++)
         {
-            // wrap wave lut index (&7 equals %8)
-            waveLutIndex = waveLutIndex&7;
-
-            // we can skip further processing for the current column if no shifting would be done on it
-            if(waveLut[waveLutIndex] == 0)
-            {
-                continue;
-            }
-
             // loop pixels of current column
             for(y = 0; y < 256; y+=4)
             {
                 if((y&63) == 0) {
                     // the shifted out pixels on top should be black
+                    waveLutIndex++;
                     previousSourcePointerValue = 0;
                 } else if((y&63) > 48) {
                     // ignore the bottom 16 pixels of the screen (gui)
+                    continue;
+                }
+
+                // wrap wave lut index (&31 equals %32)
+                waveLutIndex = waveLutIndex&31;
+
+                // we can skip further processing for the current column if no shifting would be done on it
+                if(waveLut[waveLutIndex] == 0)
+                {
                     continue;
                 }
 
@@ -174,12 +174,7 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
         }
     }
 
-    // delay
-    if(--wavingDelay < 0)
-    {
-        wavingDelay = 8;
-        waveLutIndex++;
-    }
+    waveLutIndex++;
 }
 
 void PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect(u32 currentDrawingframeBufferSet)
@@ -411,7 +406,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
     // activate post processing effect
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_lightingTestPostProcessingEffect);
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
-//	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
+	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
 }
 
 // state's exit
