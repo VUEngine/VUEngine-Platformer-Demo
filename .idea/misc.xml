@@ -7,7 +7,7 @@
     <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/doc" />
     <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/lib" />
     <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/source" />
-    <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/assets/fonts" />
+    <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/assets/data" />
     <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/assets/images" />
     <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/doc/assets" />
     <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/doc/assets/bootstrap" />
@@ -41,7 +41,7 @@
     <system-include-dir path="$PROJECT_DIR$/../../../libs/vbjaengine/source/world/entities/Particles" />
     <system-include-dir path="$PROJECT_DIR$/assets" />
     <system-include-dir path="$PROJECT_DIR$/source" />
-    <system-include-dir path="$PROJECT_DIR$/assets/fonts" />
+    <system-include-dir path="$PROJECT_DIR$/assets/data" />
     <system-include-dir path="$PROJECT_DIR$/assets/images" />
     <system-include-dir path="$PROJECT_DIR$/assets/languages" />
     <system-include-dir path="$PROJECT_DIR$/assets/mockups" />
