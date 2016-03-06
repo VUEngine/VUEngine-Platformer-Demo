@@ -158,7 +158,7 @@ StageROMDef TITLE_SCREEN_ST =
 		16,
 
         // column table
-		(ColumnTableDefinition*)&TEST_COLUMN_TABLE,
+		NULL, //(ColumnTableDefinition*)&TEST_COLUMN_TABLE,
 
 		// palette's config
         {
