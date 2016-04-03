@@ -859,7 +859,7 @@ static void Hero_onKeyPressed(Hero this, Object eventFirer)
 	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
 
 	// inform my current states about the key pressed
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->stateMachine), kKeyPressed, &pressedKey);
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this->stateMachine), __SAFE_CAST(Object, this->stateMachine), kKeyPressed, &pressedKey);
 }
 
 // process user input
@@ -868,7 +868,7 @@ static void Hero_onKeyReleased(Hero this, Object eventFirer)
 	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
 	// inform my current states about the key up
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->stateMachine), kKeyReleased, &releasedKey);
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this->stateMachine), __SAFE_CAST(Object, this->stateMachine), kKeyReleased, &releasedKey);
 }
 
 // process user input
@@ -877,7 +877,7 @@ static void Hero_onKeyHold(Hero this, Object eventFirer)
 	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
 	// inform my current states about the key hold
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->stateMachine), kKeyHold, &holdKey);
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this->stateMachine), __SAFE_CAST(Object, this->stateMachine), kKeyHold, &holdKey);
 }
 
 // collect a key
