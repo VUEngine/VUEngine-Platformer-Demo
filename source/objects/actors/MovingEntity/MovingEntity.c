@@ -169,14 +169,15 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 			{
 				fix19_13 distance = abs(this->transform.globalPosition.x - this->initialPosition);
 				
-				VBVec3D position = *Body_getPosition(this->body);
-				VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
-				position.x -= lastDisplacement.x;
-				
-				Body_setPosition(this->body, &position, __GET_CAST(SpatialObject, this));
-
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
+					// make sure that I don't get stuck moving back and forth
+					VBVec3D position = this->transform.globalPosition;
+					VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
+					position.x -= lastDisplacement.x << 1;
+					
+					Actor_setPosition(__SAFE_CAST(Actor, this), &position);
+
 					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
 				}
 			}
@@ -186,15 +187,15 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 			{
 				fix19_13 distance = abs(this->transform.globalPosition.y - this->initialPosition);
 
-				// make sure that I don't get stuck moving back and forth
-				VBVec3D position = *Body_getPosition(this->body);
-				VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
-				position.y -= lastDisplacement.y;
-				
-				Body_setPosition(this->body, &position, __GET_CAST(SpatialObject, this));
-
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
+					// make sure that I don't get stuck moving back and forth
+					VBVec3D position = this->transform.globalPosition;
+					VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
+					position.y -= lastDisplacement.y << 1;
+					
+					Actor_setPosition(__SAFE_CAST(Actor, this), &position);
+
 					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
 				}
 			}
