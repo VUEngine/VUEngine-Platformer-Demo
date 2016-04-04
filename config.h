@@ -130,14 +130,14 @@
 	__BLOCK_DEFINITION(120, 35)																			\
 	__BLOCK_DEFINITION(112, 12)																			\
 	__BLOCK_DEFINITION(104, 10)																			\
-	__BLOCK_DEFINITION(100, 16)																			\
+	__BLOCK_DEFINITION(100, 20)																			\
 	__BLOCK_DEFINITION(92, 24)																			\
 	__BLOCK_DEFINITION(84, 30)																			\
 	__BLOCK_DEFINITION(76, 8)																			\
 	__BLOCK_DEFINITION(68, 56)																			\
-	__BLOCK_DEFINITION(28, 274)																			\
+	__BLOCK_DEFINITION(28, 276)																			\
 	__BLOCK_DEFINITION(20, 588)																			\
-	__BLOCK_DEFINITION(16, 276)																			\
+	__BLOCK_DEFINITION(16, 276)																		\
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS																		\
@@ -246,10 +246,13 @@
 // 												PHYSICS
 //---------------------------------------------------------------------------------------------------------
 
-#define __GRAVITY								9800 * 4
+#define __GRAVITY								13000
 
-// number of game cycles to wait before checking for gravity on each body
+// number of game cycles to wait before checking for gravity on each cycle
 #define __GRAVITY_CHECK_CYCLE_DELAY	(__TARGET_FPS / 10)
+
+// number of bodies to check for gravity on each cycle
+#define __BODIES_TO_CHECK_FOR_GRAVITY		10
 
 #define __MAX_SHAPES_PER_LEVEL					32
 #define __MAX_BODIES_PER_LEVEL					32
