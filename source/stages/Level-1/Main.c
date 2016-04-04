@@ -216,7 +216,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-
 	{&MOUND_BG_BACK_IM,				{FTOFIX19_13(0),    FTOFIX19_13(32), 	FTOFIX19_13(LAYER_5)}, NULL, NULL, NULL, true},
 	{&CLOUDS_IM,					{FTOFIX19_13(0),    FTOFIX19_13(170), 	FTOFIX19_13(LAYER_4)}, NULL, NULL, NULL, true},
 	{&MOUND_BG_FRONT_IM,			{FTOFIX19_13(0),    FTOFIX19_13(208), 	FTOFIX19_13(LAYER_3)}, NULL, NULL, NULL, true},
@@ -430,10 +429,10 @@ StageROMDef LEVEL_1_MAIN_ST =
         4,
 
         // maximum number of texture's rows to write each time the texture writing is active
-        12,
+        4,
 
         // maximum number of rows to compute on each call to the affine functions
-        12,
+        8,
 
         // column table
 		NULL,
@@ -507,7 +506,7 @@ StageROMDef LEVEL_1_MAIN_ST =
         // gravity
         {
             ITOFIX19_13(0),
-            ITOFIX19_13(__GRAVITY),
+            ITOFIX19_13(__GRAVITY / 3),
             ITOFIX19_13(0)
         },
 
@@ -554,7 +553,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
     "House",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(-64), FTOFIX19_13(-256), FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(-64), FTOFIX19_13(-0), FTOFIX19_13(-SORT_INCREMENT)},
 }};
 
 StageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP[] =

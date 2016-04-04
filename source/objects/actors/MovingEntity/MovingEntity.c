@@ -168,6 +168,12 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 		case __XAXIS:
 			{
 				fix19_13 distance = abs(this->transform.globalPosition.x - this->initialPosition);
+				
+				VBVec3D position = *Body_getPosition(this->body);
+				VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
+				position.x -= lastDisplacement.x;
+				
+				Body_setPosition(this->body, &position, __GET_CAST(SpatialObject, this));
 
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
@@ -179,6 +185,13 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 		case __YAXIS:
 			{
 				fix19_13 distance = abs(this->transform.globalPosition.y - this->initialPosition);
+
+				// make sure that I don't get stuck moving back and forth
+				VBVec3D position = *Body_getPosition(this->body);
+				VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
+				position.y -= lastDisplacement.y;
+				
+				Body_setPosition(this->body, &position, __GET_CAST(SpatialObject, this));
 
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{

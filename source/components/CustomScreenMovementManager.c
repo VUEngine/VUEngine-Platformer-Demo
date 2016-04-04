@@ -309,7 +309,7 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
     
 	long seed = Utilities_randomSeed();
 
-    u16 nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, abs(SHAKE_DELAY_DELTA));
+    int nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, abs(SHAKE_DELAY_DELTA));
 
     // subtract time until next shake
     this->shakeTimeLeft = (this->shakeTimeLeft <= nextShakeDelay) ? 0 : this->shakeTimeLeft - nextShakeDelay;

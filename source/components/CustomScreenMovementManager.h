@@ -77,7 +77,7 @@ enum CustomScreenFX
 	VBVec3D lastShakeOffset;																			\
 																										\
 	/* time left in current shaking fx (in ms) */														\
-	u16 shakeTimeLeft;																					\
+	int shakeTimeLeft;																					\
 																										\
 	/* update axis flag */																				\
 	VBVec3DFlag positionFlag;																			\

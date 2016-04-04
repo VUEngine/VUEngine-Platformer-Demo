@@ -406,7 +406,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
     // activate post processing effect
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_lightingTestPostProcessingEffect);
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
-	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
+//	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_testWavePostProcessingEffect);
 }
 
 // state's exit
