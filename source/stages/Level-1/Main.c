@@ -429,10 +429,10 @@ StageROMDef LEVEL_1_MAIN_ST =
         4,
 
         // maximum number of texture's rows to write each time the texture writing is active
-        4,
+        8,
 
         // maximum number of rows to compute on each call to the affine functions
-        8,
+        12,
 
         // column table
 		NULL,
@@ -506,7 +506,7 @@ StageROMDef LEVEL_1_MAIN_ST =
         // gravity
         {
             ITOFIX19_13(0),
-            ITOFIX19_13(__GRAVITY / 3),
+            ITOFIX19_13(__GRAVITY),
             ITOFIX19_13(0)
         },
 
