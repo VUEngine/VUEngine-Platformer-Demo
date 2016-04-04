@@ -31,10 +31,6 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-#define SCREEN_EASING_X_DISPLACEMENT				(200)
-#define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT		(300)
-#define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT		(400)
-
 // define the CustomScreenMovementManager
 __CLASS_DEFINITION(CustomScreenMovementManager, ScreenMovementManager);
 
