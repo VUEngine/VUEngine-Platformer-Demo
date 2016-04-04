@@ -31,9 +31,9 @@
 // 												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define SCREEN_EASING_X_DISPLACEMENT				(3 << __FRAME_CYCLE)
-#define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT		(4 << __FRAME_CYCLE)
-#define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT		(5 << __FRAME_CYCLE)
+#define SCREEN_EASING_X_DISPLACEMENT				200
+#define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT		300
+#define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT		400
 //#define SCREEN_EASING_Y_DISPLACEMENT				(3 << __FRAME_CYCLE)
 #define SCREEN_HORIZONTAL_DISPLACEMENT 				30
 #define SCREEN_VERTICAL_DISPLACEMENT 				(__SCREEN_HEIGHT / 2) + 30
@@ -81,6 +81,9 @@ enum CustomScreenFX
 																										\
 	/* update axis flag */																				\
 	VBVec3DFlag positionFlag;																			\
+																										\
+	/* to calculate elapsed time */																				\
+	u32 previousTime;																			\
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);

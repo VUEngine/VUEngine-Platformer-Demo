@@ -23,6 +23,7 @@
 #include <Screen.h>
 #include <MessageDispatcher.h>
 #include <Actor.h>
+#include <PhysicalWorld.h>
 #include <debugConfig.h>
 
 
@@ -30,6 +31,9 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
+#define SCREEN_EASING_X_DISPLACEMENT				(200)
+#define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT		(300)
+#define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT		(400)
 
 // define the CustomScreenMovementManager
 __CLASS_DEFINITION(CustomScreenMovementManager, ScreenMovementManager);
@@ -80,6 +84,7 @@ static void CustomScreenMovementManager_constructor(CustomScreenMovementManager 
 	this->positionFlag.z = 0;
 	
 	this->shakeTimeLeft = 0;
+	this->previousTime = 0;
 	
 	_screen = Screen_getInstance();
 	
@@ -109,6 +114,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	_screen->lastDisplacement.y = 0;
 	_screen->lastDisplacement.z = 0;
 
+	fix19_13 elapsedTime = PhysicalWorld_getElapsedTime(Game_getPhysicalWorld(Game_getInstance()));
+
 	// if focusInGameEntity is defined
 	if(_screen->focusInGameEntity)
 	{
@@ -127,16 +134,18 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
 				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
+				const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(const VBVec3D*, SpatialObject, getPosition, _screen->focusInGameEntity);
 	
 				fix19_13 horizontalPosition = _screen->position.x;
 				fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
 				
 				fix19_13 easingDisplacement = velocity.x? ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT): ITOFIX19_13(1);
-				
+				easingDisplacement = FIX19_13_MULT(easingDisplacement, elapsedTime);
+
 				if(horizontalPosition + easingDisplacement < horizontalTarget)
 				{
 					_screen->position.x += easingDisplacement;
+					
 				}
 				else if(horizontalPosition - easingDisplacement > horizontalTarget)
 				{
@@ -180,7 +189,10 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 					downEasingDisplacement = ITOFIX19_13(SCREEN_POSITIVE_EASING_Y_DISPLACEMENT);
 					upEasingDisplacement = ITOFIX19_13(SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT);
 				}
-				
+
+				downEasingDisplacement = FIX19_13_MULT(downEasingDisplacement, elapsedTime);
+				upEasingDisplacement = FIX19_13_MULT(upEasingDisplacement, elapsedTime);
+
 				if(verticalPosition + downEasingDisplacement < verticalTarget)
 				{
 					_screen->position.y += downEasingDisplacement;
