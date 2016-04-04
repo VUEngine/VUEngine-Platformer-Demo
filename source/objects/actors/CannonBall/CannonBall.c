@@ -145,9 +145,7 @@ void CannonBall_stopMovement(CannonBall this)
 // check position and set state to idle if minimum z value has been reached
 void CannonBall_checkPosition(CannonBall this)
 {
-    VBVec3D position = *Container_getGlobalPosition(__SAFE_CAST(Container, this));
-
-    if(position.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
+    if(this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
     {
         // set state to idle
         StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, this)), __SAFE_CAST(State, CannonBallIdle_getInstance()));
