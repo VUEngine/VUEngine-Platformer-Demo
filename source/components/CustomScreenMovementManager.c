@@ -71,22 +71,22 @@ static void CustomScreenMovementManager_constructor(CustomScreenMovementManager 
 
 	// construct base object
 	__CONSTRUCT_BASE();
-	
+
 	this->tempFocusInGameEntity = NULL;
 
 	this->lastShakeOffset.x = 0;
 	this->lastShakeOffset.y = 0;
 	this->lastShakeOffset.z = 0;
-	
+
 	this->positionFlag.x = 0;
 	this->positionFlag.y = 0;
 	this->positionFlag.z = 0;
-	
+
 	this->shakeTimeLeft = 0;
 	this->previousTime = 0;
-	
+
 	_screen = Screen_getInstance();
-	
+
 	NM_ASSERT(_screen, "CustomScreenMovementManager::constructor: null _screen");
 }
 
@@ -119,32 +119,32 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	if(_screen->focusInGameEntity)
 	{
 		Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
-		
+
 		ASSERT(__SAFE_CAST(Actor, _screen->focusInGameEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
 		Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusInGameEntity));
-		
+
 		VBVec3D screenPreviousPosition = _screen->position;
 
 		const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
 
 		{
 			bool focusEntityOutOfBounds = focusInGameEntityPosition->x > _screen->position.x + ITOFIX19_13( __SCREEN_WIDTH - SCREEN_WIDTH_REDUCTION) || focusInGameEntityPosition->x < _screen->position.x + ITOFIX19_13(SCREEN_WIDTH_REDUCTION);
-	
+
 			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
 				// update vertical position
 				const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(const VBVec3D*, SpatialObject, getPosition, _screen->focusInGameEntity);
-	
+
 				fix19_13 horizontalPosition = _screen->position.x;
 				fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
-				
+
 				fix19_13 easingDisplacement = velocity.x? ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT): ITOFIX19_13(100);
 				easingDisplacement = FIX19_13_MULT(easingDisplacement, elapsedTime);
 
 				if(horizontalPosition + easingDisplacement < horizontalTarget)
 				{
 					_screen->position.x += easingDisplacement;
-					
+
 				}
 				else if(horizontalPosition - easingDisplacement > horizontalTarget)
 				{
@@ -154,7 +154,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				{
 					_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT);
 				}
-				
+
 				if(!this->tempFocusInGameEntity)
 				{
 					if(0 > _screen->position.x)
@@ -166,7 +166,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 						_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
 					}
 				}
-	
+
 				_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
 			}
 		}
@@ -200,7 +200,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				{
 					_screen->position.y -= upEasingDisplacement;
 				}
-	
+
 				if(!this->tempFocusInGameEntity)
 				{
 					if(0 > _screen->position.y)
@@ -212,8 +212,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 						_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
 					}
 				}
-				
-				_screen->lastDisplacement.y = 0xFFFFE000 & (_screen->position.y - screenPreviousPosition.y);
+
+				_screen->lastDisplacement.y = _screen->position.y - screenPreviousPosition.y;
 			}
 		}
 	}
@@ -222,16 +222,16 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, int effect, int duration)
 {
 	ASSERT(this, "CustomScreenMovementManager::startEffect: null this");
-	
+
 	switch(effect)
 	{
 		case kShake:
-			
+
 			CustomScreenMovementManager_FXShakeStart(this, duration);
 			break;
 
 		default:
-			
+
 			ScreenMovementManager_startEffect(__SAFE_CAST(ScreenMovementManager, this), effect, duration);
 			break;
 	}
@@ -244,12 +244,12 @@ void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, in
 	switch(effect)
 	{
 		case kShake:
-			
+
 			CustomScreenMovementManager_FXShakeStop(this);
 			break;
 
 		default:
-			
+
 			ScreenMovementManager_stopEffect(__SAFE_CAST(ScreenMovementManager, this), effect);
 			break;
 	}
@@ -260,7 +260,7 @@ bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this,
 	switch(Telegram_getMessage(telegram))
 	{
 		case kShake:
-			
+
 			CustomScreenMovementManager_onScreenShake(this);
             break;
 	}
@@ -317,7 +317,7 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
 
         return;
     }
-    
+
 	long seed = Utilities_randomSeed();
 
     int nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, abs(SHAKE_DELAY_DELTA));
