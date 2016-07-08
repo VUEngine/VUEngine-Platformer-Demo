@@ -23,7 +23,10 @@
 #include <Screen.h>
 #include <MessageDispatcher.h>
 #include <Actor.h>
+#include <Game.h>
 #include <PhysicalWorld.h>
+#include <Utilities.h>
+
 #include <debugConfig.h>
 
 
@@ -135,7 +138,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				fix19_13 horizontalPosition = _screen->position.x;
 				fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
 				
-				fix19_13 easingDisplacement = velocity.x? ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT): ITOFIX19_13(1);
+				fix19_13 easingDisplacement = velocity.x? ITOFIX19_13(SCREEN_EASING_X_DISPLACEMENT): ITOFIX19_13(100);
 				easingDisplacement = FIX19_13_MULT(easingDisplacement, elapsedTime);
 
 				if(horizontalPosition + easingDisplacement < horizontalTarget)
@@ -177,8 +180,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 
 			if(this->positionFlag.y || focusEntityOutOfBounds)
 			{
-				fix19_13 downEasingDisplacement = ITOFIX19_13(1);
-				fix19_13 upEasingDisplacement = ITOFIX19_13(1);
+				fix19_13 downEasingDisplacement = ITOFIX19_13(30);
+				fix19_13 upEasingDisplacement = ITOFIX19_13(30);
 
 				if(velocity.y)
 				{

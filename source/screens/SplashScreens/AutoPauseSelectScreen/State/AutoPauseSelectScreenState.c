@@ -30,6 +30,7 @@
 #include <VBJaEngineScreenState.h>
 #include <AutoPauseScreenState.h>
 #include <Languages.h>
+#include <KeyPadManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

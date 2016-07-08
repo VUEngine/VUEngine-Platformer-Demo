@@ -33,6 +33,7 @@
 #include <macros.h>
 #include <PlatformerLevelState.h>
 #include <Languages.h>
+#include <KeyPadManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

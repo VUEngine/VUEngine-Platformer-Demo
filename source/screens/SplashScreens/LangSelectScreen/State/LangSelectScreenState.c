@@ -27,6 +27,7 @@
 #include <LangSelectScreenState.h>
 #include <TitleScreenState.h>
 #include <Languages.h>
+#include <KeyPadManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

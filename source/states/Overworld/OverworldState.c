@@ -38,6 +38,8 @@
 #include <CustomScreenMovementManager.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
+#include <KeyPadManager.h>
+
 #include "../stages/stages.h"
 
 

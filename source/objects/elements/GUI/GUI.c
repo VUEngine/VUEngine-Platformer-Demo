@@ -24,6 +24,7 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <Printing.h>
 
 #include <objects.h>
 #include "GUI.h"

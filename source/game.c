@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <states.h>
+#include <Game.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -29,8 +30,10 @@
 int main(void)
 {
     // start the game
-	Game_start(Game_getInstance(), __SAFE_CAST(GameState, PrecautionScreenState_getInstance()));
+//	Game_start(Game_getInstance(), __SAFE_CAST(GameState, PrecautionScreenState_getInstance()));
+	Game_start(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
 
+	
 	// end program
 	return true;
 }

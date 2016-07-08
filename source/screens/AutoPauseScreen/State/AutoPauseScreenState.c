@@ -27,6 +27,7 @@
 #include <PhysicalWorld.h>
 #include <I18n.h>
 #include <AutoPauseScreenState.h>
+#include <KeyPadManager.h>
 #include <Languages.h>
 #include <macros.h>
 

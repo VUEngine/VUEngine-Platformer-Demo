@@ -25,6 +25,7 @@
 
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
+#include <KeyPadManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

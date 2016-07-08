@@ -27,6 +27,7 @@
 #include <Container.h>
 #include <Screen.h>
 #include <ParticleSystem.h>
+#include <SoundManager.h>
 
 #include <CustomScreenMovementManager.h>
 #include <objects.h>

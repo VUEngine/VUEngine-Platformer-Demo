@@ -292,8 +292,8 @@ void Hero_addForce(Hero this, int changedDirection, int axis)
 	Velocity velocity = Body_getVelocity(this->body);
 
 	if(this->direction.x != this->inputDirection.x ||
-        ((__XAXIS & axis) && maxVelocity > fabs(velocity.x)) ||
-        ((__ZAXIS & axis) && maxVelocity > fabs(velocity.z)) ||
+        ((__XAXIS & axis) && maxVelocity > abs(velocity.x)) ||
+        ((__ZAXIS & axis) && maxVelocity > abs(velocity.z)) ||
         Actor_changedDirection(__SAFE_CAST(Actor, this), __XAXIS) ||
         Actor_changedDirection(__SAFE_CAST(Actor, this), __ZAXIS))
     {

@@ -9,6 +9,20 @@ TYPE = release
 #TYPE = release-tools
 #TYPE = preprocessor
 
+# compiler
+COMPILER = 4.7
+COMPILER_OUTPUT = c
+COMPILER_NAME = v810
+
+ifeq ($(COMPILER), 4.7)
+COMPILER_NAME = v810-nec-elf32
+endif
+
+GCC = $(COMPILER_NAME)-gcc
+OBJCOPY = $(COMPILER_NAME)-objcopy
+OBJDUMP = $(COMPILER_NAME)-objdump
+
+
 # Which directories contain source files
 DIRS := $(shell find * -type d -print)
 
@@ -19,8 +33,10 @@ ROMHEADER=lib/vb.hdr
 # Dynamic libraries
 DLIBS =
 
-# Obligatory headers
+# engine's home
 VBJAENGINE = $(VBDE)libs/vbjaengine
+
+# Obligatory headers
 VBJAENGINE_CONFIG_FILE = $(shell pwd)/config.h
 GAME_ESSENTIALS = 	-include $(VBJAENGINE_CONFIG_FILE) \
 					-include $(VBJAENGINE)/libvbjae.h
@@ -35,13 +51,13 @@ endif
 
 ifeq ($(TYPE), release)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESSENTIALS)
+CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline $(GAME_ESSENTIALS)
 MACROS =
 endif
 
 ifeq ($(TYPE), release-tools)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESSENTIALS)
+CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline $(GAME_ESSENTIALS)
 MACROS = __TOOLS
 endif
 
@@ -61,13 +77,8 @@ LIBPATH =
 # Which files to add to backups, apart from the source code
 EXTRA_FILES = makefile
 
-# The compiler
-GCC = v810-gcc
-OBJCOPY = v810-objcopy
-OBJDUMP = v810-objdump
-
 # Where to store object and dependency files.
-STORE = .make-$(TYPE)
+STORE = .make-$(TYPE)-$(COMPILER)-$(COMPILER_OUTPUT)
 
 # Makes a list of the source (.cpp) files.
 SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
@@ -99,19 +110,18 @@ deleteEngine:
 		@rm -f $(ENGINE)
 
 $(ENGINE): deleteEngine
-	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
+	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e COMPILER=$(COMPILER) -e COMPILER_OUTPUT=$(COMPILER_OUTPUT) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
 
 $(TARGET).vb: main.elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary main.elf $@
-#	@$(OBJDUMP) -S main.elf > machine.asm
-	@echo Done creating $(TARGET).vb in $(TYPE) mode
+	@echo Done creating $(TARGET).vb in $(TYPE) mode with GCC $(COMPILER)
 
 asm: main.elf
 	@echo Generating assembler code
-	@$(OBJDUMP) -t main.elf > sections.txt
-	@$(OBJDUMP) -S main.elf > machine.asm
-	@echo Creating machine.asm done
+	@$(OBJDUMP) -t main.elf > sections-$(TYPE)-$(COMPILER).txt
+	@$(OBJDUMP) -S main.elf > machine-$(TYPE)-$(COMPILER).asm
+	@echo Creating machine-$(TYPE)-$(COMPILER).asm done
 
 main.elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET)
@@ -123,7 +133,7 @@ main.elf: $(ENGINE) dirs $(OBJECTS)
 $(STORE)/%.o: %.c
 		@echo Creating object file for $*
 		@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(CCPARAM) $(foreach INC,$(INCPATH_ENGINE) $(INCPATH_GAME),-I$(INC))\
-                $(foreach MACRO,$(MACROS),-D$(MACRO)) -c $< -o $@
+                $(foreach MACRO,$(MACROS),-D$(MACRO)) -$(COMPILER_OUTPUT) $< -o $@
 		@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
 		@rm -f $(STORE)/$*.dd
 

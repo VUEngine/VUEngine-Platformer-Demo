@@ -39,6 +39,8 @@
 #include <ProgressManager.h>
 #include <CustomScreenMovementManager.h>
 #include <EventManager.h>
+#include <KeyPadManager.h>
+#include <Utilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -24,6 +24,7 @@
 #include <ProgressManager.h>
 #include <SRAMManager.h>
 #include <EventManager.h>
+#include <Utilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------

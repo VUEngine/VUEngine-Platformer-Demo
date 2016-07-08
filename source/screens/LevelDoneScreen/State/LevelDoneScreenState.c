@@ -31,6 +31,7 @@
 #include <PlatformerLevelState.h>
 #include <OverworldState.h>
 #include <ProgressManager.h>
+#include <KeyPadManager.h>
 #include "LevelDoneScreenState.h"
 
 
