@@ -10,7 +10,7 @@ TYPE = release
 #TYPE = preprocessor
 
 # compiler
-COMPILER = 4.7
+COMPILER = 4.4
 COMPILER_OUTPUT = c
 COMPILER_NAME = v810
 
