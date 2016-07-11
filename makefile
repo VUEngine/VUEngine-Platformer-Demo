@@ -28,6 +28,15 @@ GCC = $(COMPILER_NAME)-gcc
 OBJCOPY = $(COMPILER_NAME)-objcopy
 OBJDUMP = $(COMPILER_NAME)-objdump
 
+DUMP_TARGET =
+ifeq ($(DUMP_ELF), 1)
+DUMP_TARGET = asm
+endif
+
+PAD =
+ifeq ($(PAD_ROM), 1)
+PAD = pad
+endif
 
 ifeq ($(SRAM_WRAM), 1)
 LINKER_SCRIPT = vb_sram.ld
@@ -110,11 +119,12 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 # first build the engine
 ENGINE = libvbjae.a
 
+
+all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
+
 pad: $(TARGET).vb
 	@echo "Padding " $(TARGET).vb
 	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb
-
-all: $(TARGET).vb
 
 deleteEngine:
 		@rm -f $(ENGINE)
