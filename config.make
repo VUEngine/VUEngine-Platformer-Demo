@@ -1,21 +1,24 @@
-# compilation type
-# debug:            adds lots of runtime assertions, adds debugging tools too
-# release:          for shipping only!
-# release-tools:    same optimization options as release, but adds debuggint tools
-# preprocessor:     the .o files are preprocessor's output instead of compiler's.
-TYPE = release
+# Compilation type
+# debug:            Adds lots of runtime assertions. Enables debugging tools too.
+#                   It is recommended to use SRAM_WRAM = 1 when debugging in order to
+#                   avoid stack overflows (SRAM as WRAM only works on emulators).
+# release:          For shipping only!
+# release-tools:    Same optimization options as release, but adds debuggint tools
+# preprocessor:     The .o files are preprocessor's output instead of compiler's.
+TYPE = debug
 
-# pad ROM for hardware testing
-# 0: no pad
-# 1: pad
+# Pad ROM for hardware testing
+# 0:                No padding.
+# 1:                Pad the ROM for hardware testing.
 PAD_ROM = 0
 
-# dump elf
-# 0: no dump
-# 1: dump
+# Dump elf
+# 0:                No dumping.
+# 1:                Dump the assembly code and the memory sections.
 DUMP_ELF = 0
 
 # SRAM's usage
-# 0: don't use SRAM as WRAM
-# 1: use SRAM as WRAM, adds 8KB of WRAM where all static variables will be loaded (experimental)
+# 0:                Don't use SRAM as WRAM.
+# 1:                Use SRAM as WRAM. Adds 8KB of WRAM where all static variables will be loaded.
+#                   This feature is experimental and only works properly on emulators
 SRAM_WRAM = 1
