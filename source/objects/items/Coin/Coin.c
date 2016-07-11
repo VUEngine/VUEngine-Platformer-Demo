@@ -34,7 +34,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S MACROS
+// 											 CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
 extern AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG;
@@ -110,7 +110,7 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 			Coin_removeFromStage(this);
 			break;
 	}
-	
+
 	return false;
 }
 

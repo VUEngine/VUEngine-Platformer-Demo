@@ -32,7 +32,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S MACROS
+// 											 CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
 
@@ -100,7 +100,7 @@ bool Bandana_handleMessage(Bandana this, Telegram telegram)
 			Bandana_removeFromStage(this);
 			break;
 	}
-	
+
 	return false;
 }
 
