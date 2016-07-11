@@ -33,7 +33,6 @@ int main(void)
 //	Game_start(Game_getInstance(), __SAFE_CAST(GameState, PrecautionScreenState_getInstance()));
 	Game_start(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
 
-	
 	// end program
 	return true;
 }

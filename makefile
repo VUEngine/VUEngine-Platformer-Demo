@@ -4,8 +4,8 @@
 TARGET = output
 
 # Default build type
-#TYPE = debug
-TYPE = release
+TYPE = debug
+#TYPE = release
 #TYPE = release-tools
 #TYPE = preprocessor
 
@@ -13,6 +13,12 @@ TYPE = release
 COMPILER = 4.4
 COMPILER_OUTPUT = c
 COMPILER_NAME = v810
+
+# linker script
+LINKER_SCRIPT = vb.ld
+
+# include overrides
+include config.make
 
 ifeq ($(COMPILER), 4.7)
 COMPILER_NAME = v810-nec-elf32
@@ -22,6 +28,10 @@ GCC = $(COMPILER_NAME)-gcc
 OBJCOPY = $(COMPILER_NAME)-objcopy
 OBJDUMP = $(COMPILER_NAME)-objdump
 
+
+ifeq ($(SRAM_WRAM), 1)
+LINKER_SCRIPT = vb_sram.ld
+endif
 
 # Which directories contain source files
 DIRS := $(shell find * -type d -print)
@@ -44,25 +54,25 @@ GAME_ESSENTIALS = 	-include $(VBJAENGINE_CONFIG_FILE) \
 
 # The next blocks changes some variables depending on the build type
 ifeq ($(TYPE),debug)
-LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall $(GAME_ESSENTIALS)
 MACROS = __DEBUG __TOOLS
 endif
 
 ifeq ($(TYPE), release)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline $(GAME_ESSENTIALS)
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESSENTIALS)
 MACROS =
 endif
 
 ifeq ($(TYPE), release-tools)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline $(GAME_ESSENTIALS)
 MACROS = __TOOLS
 endif
 
 ifeq ($(TYPE),preprocessor)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/vb.ld -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline $(GAME_ESSENTIALS) -E
 MACROS = __TOOLS
 endif
