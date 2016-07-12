@@ -30,7 +30,7 @@ OBJDUMP = $(COMPILER_NAME)-objdump
 
 DUMP_TARGET =
 ifeq ($(DUMP_ELF), 1)
-DUMP_TARGET = asm
+DUMP_TARGET = dump
 endif
 
 PAD =
@@ -124,7 +124,8 @@ all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
 pad: $(TARGET).vb
 	@echo "Padding " $(TARGET).vb
-	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb
+	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb 0 21 $(TARGET)_pad.vb
+	@echo " "
 
 deleteEngine:
 		@rm -f $(ENGINE)
@@ -137,15 +138,16 @@ $(TARGET).vb: main.elf
 	@$(OBJCOPY) -O binary main.elf $@
 	@echo Done creating $(TARGET).vb in $(TYPE) mode with GCC $(COMPILER)
 
-asm: main.elf
+dump: main.elf
+	@echo
 	@echo Generating assembler code
 	@$(OBJDUMP) -t main.elf > sections-$(TYPE)-$(COMPILER).txt
 	@$(OBJDUMP) -S main.elf > machine-$(TYPE)-$(COMPILER).asm
-	@echo Creating machine-$(TYPE)-$(COMPILER).asm done
+	@echo Dumping elf done
 
 main.elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET)
-		@$(GCC) -o $@ $(OBJECTS) $(LDPARAM) \
+		@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(LDPARAM) $(VBJAENGINE)/lib/compiler/extra/crt0.o \
 			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB))
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
