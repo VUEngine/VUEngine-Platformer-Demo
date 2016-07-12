@@ -25,6 +25,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 											    DEBUGGING
+//---------------------------------------------------------------------------------------------------------
+
+// if defined, performes runtime checks to make sure that no abstract class is being instantiated
+#undef __CHECK_ABSTRACT_CLASS_INSTANTIATION
+
+//---------------------------------------------------------------------------------------------------------
 // 											DEBUGGING TOOLS
 //---------------------------------------------------------------------------------------------------------
 
@@ -113,6 +120,9 @@
 //---------------------------------------------------------------------------------------------------------
 // 												MEMORY POOL
 //---------------------------------------------------------------------------------------------------------
+
+// select when SRAM can hold the whole memory pool
+#undef __PUT_MEMORY_POOL_IN_SRAM
 
 // reset to 0 each byte of each free block on resetting game
 // only use for debugging, proper object's initialization must make this macro unnecessary
