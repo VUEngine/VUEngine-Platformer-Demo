@@ -40,139 +40,139 @@ extern BYTE HeroMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_IDLE_ANIM =
+AnimationFunctionROMDef  HERO_IDLE_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{4, 5},
-	
+
 	// number of cycles a frame of animation is displayed
 	16,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Idle",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_WALKING_ANIM =
+AnimationFunctionROMDef  HERO_WALKING_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{13, 14},
-	
+
 	// number of cycles a frame of animation is displayed
 	10,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Walk",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_JUMPING_ANIM =
+AnimationFunctionROMDef  HERO_JUMPING_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
 	{6},
-	
+
 	// number of cycles a frame of animation is displayed
 	0,
-	
+
 	// whether to play it in loop or not
 	false,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Jump",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_FALLING_ANIM =
+AnimationFunctionROMDef  HERO_FALLING_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
 	{7},
-	
+
 	// number of cycles a frame of animation is displayed
 	0,
-	
+
 	// whether to play it in loop or not
 	false,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Fall",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_SLIDING_ANIM =
+AnimationFunctionROMDef  HERO_SLIDING_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
 	{7},
-	
+
 	// number of cycles a frame of animation is displayed
 	0,
-	
+
 	// whether to play it in loop or not
 	false,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Slide",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_HIT_ANIM =
+AnimationFunctionROMDef  HERO_HIT_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
 	{8},
-	
+
 	// number of cycles a frame of animation is displayed
 	80,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Hit",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_CLIMB_ANIM =
+AnimationFunctionROMDef  HERO_CLIMB_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -194,45 +194,45 @@ AnimationFunctionROMDef HERO_CLIMB_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_FRONT_ANIM =
+AnimationFunctionROMDef  HERO_FRONT_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{0, 1},
-	
+
 	// number of cycles a frame of animation is displayed
 	16,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Front",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_BACK_ANIM =
+AnimationFunctionROMDef  HERO_BACK_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{2, 3},
-	
+
 	// number of cycles a frame of animation is displayed
 	16,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Back",
 };
@@ -343,7 +343,7 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -541,7 +541,7 @@ CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 
     // shape type
     kInverseCuboid,
-    
-    // moves 
+
+    // moves
     true
 };

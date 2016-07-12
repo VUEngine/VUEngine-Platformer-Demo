@@ -38,7 +38,7 @@ extern BYTE TorchMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef TORCH_BURN_ANIM =
+AnimationFunctionROMDef  TORCH_BURN_ANIM =
 {
 	// number of frames of this animation function
 	3,
@@ -117,10 +117,10 @@ ObjectSpriteROMDef TORCH_SPRITE =
 
 	// displacement
 	{0, 0, FTOFIX19_13(1)},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -152,7 +152,7 @@ AnimatedInGameEntityROMDef TORCH_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         1,
     },

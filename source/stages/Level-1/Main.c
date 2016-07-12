@@ -336,7 +336,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_CHILDREN[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef* LEVEL_1_MAIN_ST_CHARSETS[] =
+CharSetROMDef* const LEVEL_1_MAIN_ST_CHARSETS[] =
 {
 	&LEVEL_1_MAIN_1_MAIN_CH,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_CH,

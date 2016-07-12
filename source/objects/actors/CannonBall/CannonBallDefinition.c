@@ -35,33 +35,33 @@ extern BYTE CannonBallMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunction CANNON_BALL_FLY_ANIM =
+AnimationFunctionROMDef CANNON_BALL_FLY_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
 	{0},
-	
+
 	// number of cycles a frame of animation is displayed
 	8,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Fly",
 };
 
 // an animation definition
-AnimationDescription CANNON_BALL_ANIM =
+AnimationDescriptionROMDef CANNON_BALL_ANIM =
 {
 	// animation functions
 	{
-		&CANNON_BALL_FLY_ANIM,
+		(AnimationFunction*)&CANNON_BALL_FLY_ANIM,
 		NULL,
 	}
 };
@@ -114,10 +114,10 @@ BgmapSpriteROMDef CANNON_BALL_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -154,7 +154,7 @@ ActorROMDef CANNON_BALL_AC =
 		},
 
 		// pointer to the animation definition for the character
-		&CANNON_BALL_ANIM,
+		(AnimationDescription*)&CANNON_BALL_ANIM,
 
 		// initial animation
 		NULL

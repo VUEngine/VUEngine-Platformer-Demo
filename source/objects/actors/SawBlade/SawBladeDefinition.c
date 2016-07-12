@@ -35,33 +35,33 @@ extern BYTE SawBladeMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunction SAW_BLADE_SPIN_ANIM =
+AnimationFunctionROMDef SAW_BLADE_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{0, 1},
-	
+
 	// number of cycles a frame of animation is displayed
 	8,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Spin",
 };
 
 // an animation definition
-AnimationDescription SAW_BLADE_ANIM =
+AnimationDescriptionROMDef SAW_BLADE_ANIM =
 {
 	// animation functions
 	{
-		&SAW_BLADE_SPIN_ANIM,
+		(AnimationFunction*)&SAW_BLADE_SPIN_ANIM,
 		NULL,
 	}
 };
@@ -114,10 +114,10 @@ BgmapSpriteROMDef SAW_BLADE_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -137,49 +137,49 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)SAW_BLADE_SPRITES,
 	            },
-	
+
 	            // collision detection gap (up, down, left, right)
 	            {5, 2, 2, 5},
-	
+
 	            // in game type
 	            kSawBlade,
-	
+
 	            // width
 	            0,
-	            
+
 	            // height
 	            0,
-	            
+
 	            // depth
 	            8,
 	        },
-	
+
 	        // pointer to the animation definition for the character
-	        &SAW_BLADE_ANIM,
-	
+	        (AnimationDescription*)&SAW_BLADE_ANIM,
+
 	        // initial animation
 	        "Spin"
 	    },
-	    
+
 		// friction for physics
 		ITOFIX19_13(0),
 
 		// elasticity for physics
 		ITOFIX19_13(0),
-		
+
 		// mass
 		ITOFIX19_13(10)
 	},
-	
+
 	// velocity
 	ITOFIX19_13(50),
 
 	// maximum deviation from initial position
 	ITOFIX19_13(3 * 8),
-	
+
 	// time to rest idle
 	1000,
-	
+
     // axis
     __YAXIS,
 
@@ -214,7 +214,7 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	        },
 
 	        // pointer to the animation definition for the character
-	        &SAW_BLADE_ANIM,
+	        (AnimationDescription*)&SAW_BLADE_ANIM,
 
 	        // initial animation
 	        "Spin"
@@ -235,10 +235,10 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 
 	// maximum deviation from initial position
 	ITOFIX19_13(3 * 8),
-	
+
 	// time to rest idle
 	1000,
-	
+
     // axis
     __XAXIS,
 
@@ -273,7 +273,7 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	        },
 
 	        // pointer to the animation definition for the character
-	        &SAW_BLADE_ANIM,
+	        (AnimationDescription*)&SAW_BLADE_ANIM,
 
 	        // initial animation
 	        "Spin"
@@ -294,10 +294,10 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 
 	// maximum deviation from initial position
 	ITOFIX19_13(8 * 8),
-	
+
 	// time to rest idle
 	1000,
-	
+
     // axis
     __XAXIS,
 

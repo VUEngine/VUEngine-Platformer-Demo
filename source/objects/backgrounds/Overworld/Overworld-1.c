@@ -74,7 +74,7 @@ TextureROMDef OVERWORLD_1_TX =
     0,
 };
 
-TextureROMDef* OVERWORLD_1_IM_TEXTURES[] =
+TextureROMDef* const OVERWORLD_1_IM_TEXTURES[] =
 {
 	(TextureDefinition*)&OVERWORLD_1_TX,
 	NULL
@@ -91,22 +91,22 @@ MBgmapSpriteROMDef OVERWORLD_1_IM_SPRITE =
 
 		// displacement
 		{0, 0, 0},
-		
+
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
-		
+
 		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 		WRLD_ON,
 	},
-	
+
 	(TextureDefinition**)OVERWORLD_1_IM_TEXTURES,
-	
+
 	// SCX/SCY
 	WRLD_1x1,
 
 	// x loop
 	false,
-	
+
 	// y loop
 	false,
 };

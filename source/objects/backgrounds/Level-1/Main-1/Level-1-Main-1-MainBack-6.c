@@ -60,7 +60,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_TX =
     1,
 };
 
-TextureROMDef* LEVEL_1_MAIN_1_MAIN_BACK_6_IM_TEXTURES[] =
+TextureROMDef* const LEVEL_1_MAIN_1_MAIN_BACK_6_IM_TEXTURES[] =
 {
 	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_6_TX,
 	NULL

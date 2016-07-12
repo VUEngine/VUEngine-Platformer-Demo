@@ -57,7 +57,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3_TX =
     1,
 };
 
-TextureROMDef* LEVEL_1_MAIN_1_MAIN_FRONT_3_IM_TEXTURES[] = 
+TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_3_IM_TEXTURES[] =
 {
 	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_3_TX,
 	NULL
@@ -74,22 +74,22 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3_IM_SPRITE =
 
 		// displacement
 		{ITOFIX19_13(-32), ITOFIX19_13(120), FTOFIX19_13(-1)},
-		
+
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
-		
+
 		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 		WRLD_ON,
 	},
-	
+
 	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_FRONT_3_IM_TEXTURES,
-	
+
 	// SCX/SCY
 	WRLD_1x1,
 
 	// x loop
 	false,
-	
+
 	// y loop
 	false,
 };

@@ -38,26 +38,26 @@ extern BYTE LavaTopMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef LAVA_TOP_ANIM_1 =
+AnimationFunctionROMDef  LAVA_TOP_ANIM_1 =
 {
 	// number of frames of this animation function
 	9,
-	
+
 	// frames to play in animation
 	{0, 1, 2, 3, 4, 5, 6, 7, 8},
-	
+
 	// number of cycles a frame of animation is displayed
 	8,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Lava",
-	
+
 };
 
 // an animation definition
@@ -121,7 +121,7 @@ BgmapSpriteROMDef LAVA_TOP_SPRITE =
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -153,7 +153,7 @@ AnimatedInGameEntityROMDef LAVA_TOP_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         4
     },

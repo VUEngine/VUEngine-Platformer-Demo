@@ -40,7 +40,7 @@ extern BYTE SmokeParticleSmallMap[];
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
+AnimationFunctionROMDef  SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -150,10 +150,10 @@ ParticleROMDef SMOKE_PARTICLE =
 
 	// particle's mass delta
 	FTOFIX19_13(0),
-	
+
 	// axis subject to gravity (false to disable)
 	false,
-	
+
 	// function pointer to control particle's behavior
 	//(void (*)(Particle))&smokeParticleBehavior,
 	NULL,
@@ -161,8 +161,8 @@ ParticleROMDef SMOKE_PARTICLE =
 	// animation description
 	// used only if sprite is animated
 	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
-	
-	// animation's name to play 
+
+	// animation's name to play
 	"Float"
 };
 
@@ -175,7 +175,7 @@ ParticleSystemROMDef SMOKE_PS =
 
 	// reuse expired particles?
     true,
-    
+
 	// minimum generation delay in milliseconds
 	100,
 
@@ -190,10 +190,10 @@ ParticleSystemROMDef SMOKE_PS =
 
 	// auto start
 	true,
-	
+
 	// particle definition
 	(ParticleDefinition*)&SMOKE_PARTICLE,
-	
+
 	// minimum random distance from the center of the system for spawn
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 

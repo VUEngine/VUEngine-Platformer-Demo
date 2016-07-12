@@ -73,7 +73,7 @@ TextureROMDef VBJAENGINE_BG_TX =
     0,
 };
 
-TextureROMDef* VBJAENGINE_BG_IM_SPRITE_TEXTURES[] = 
+TextureROMDef* const VBJAENGINE_BG_IM_SPRITE_TEXTURES[] =
 {
 	(TextureDefinition*)&VBJAENGINE_BG_TX,
 	NULL
@@ -90,22 +90,22 @@ MBgmapSpriteROMDef VBJAENGINE_BG_IM_SPRITE =
 
         // displacement
         {0, 0, 0},
-		
+
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
-		
+
 		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 		WRLD_ON,
 	},
-	
+
 	(TextureDefinition**)VBJAENGINE_BG_IM_SPRITE_TEXTURES,
-	
+
 	// SCX/SCY
 	WRLD_1x1,
 
 	// x loop
 	true,
-	
+
 	// y loop
 	false,
 };

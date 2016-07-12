@@ -36,33 +36,33 @@ extern BYTE SnailMap[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunction SNAIL_MOVE_ANIM =
+AnimationFunctionROMDef SNAIL_MOVE_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{0, 1},
-	
+
 	// number of cycles a frame of animation is displayed
 	16,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Move",
 };
 
 // an animation definition
-AnimationDescription SNAIL_ANIM =
+AnimationDescriptionROMDef SNAIL_ANIM =
 {
 	// animation functions
 	{
-		&SNAIL_MOVE_ANIM,
+		(AnimationFunction*)&SNAIL_MOVE_ANIM,
 		NULL,
 	}
 };
@@ -115,10 +115,10 @@ ObjectSpriteROMDef SNAIL_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -138,40 +138,40 @@ MovingEntityROMDef SNAIL_4_AC =
 	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)SNAIL_SPRITES,
 	            },
-	
+
 	            // collision detection gap (up, down, left, right)
 	            {6, 0, 5, 3},
 
 	            // in game type
 	            kSnail,
-	
+
 	            // width
 	            0,
-	            
+
 	            // height
 	            0,
-	            
+
 	            // depth
 	            8,
 	        },
-	
+
 	        // pointer to the animation definition for the character
-	        &SNAIL_ANIM,
-	
+	        (AnimationDescription*)&SNAIL_ANIM,
+
 	        // initial animation
 	        "Move"
 	    },
-	    
+
 		// friction for physics
 		ITOFIX19_13(0),
 
 		// elasticity for physics
 		ITOFIX19_13(0),
-		
+
 		// mass
 		ITOFIX19_13(10)
 	},
-	
+
 	// velocity
 	ITOFIX19_13(20),
 
@@ -216,7 +216,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	        },
 
 	        // pointer to the animation definition for the character
-	        &SNAIL_ANIM,
+	        (AnimationDescription*)&SNAIL_ANIM,
 
 	        // initial animation
 	        "Move"

@@ -75,7 +75,7 @@ TextureROMDef MOUND_BG_MIDDLE_TX =
     0,
 };
 
-TextureROMDef* MOUND_BG_MIDDLE_SB_TEXTURES[] = 
+TextureROMDef* const MOUND_BG_MIDDLE_SB_TEXTURES[] =
 {
 	(TextureDefinition*)&MOUND_BG_MIDDLE_TX,
 	NULL
@@ -92,22 +92,22 @@ MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
 
         // displacement
         {0, 0, 0},
-		
+
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,
-		
+
 		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 		WRLD_ON,
 	},
-	
+
 	(TextureDefinition**)MOUND_BG_MIDDLE_SB_TEXTURES,
-	
+
 	// SCX/SCY
 	WRLD_1x1,
 
 	// x loop
 	true,
-	
+
 	// y loop
 	false,
 };

@@ -38,23 +38,23 @@ extern BYTE CoinMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef TEST_PARTICLE_SPIN_ANIM =
+AnimationFunctionROMDef  TEST_PARTICLE_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	4,
-	
+
 	// frames to play in animation
 	{0, 1, 2, 3},
-	
+
 	// number of cycles a frame of animation is displayed
 	2,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Spin",
 };
@@ -122,10 +122,10 @@ ObjectSpriteROMDef OBJECT_TEST_PARTICLE_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -153,18 +153,18 @@ ParticleROMDef TEST_PARTICLE =
 
 	// particle's maximum mass
 	FTOFIX19_13(10.0f),
-	
+
 	// axis subject to gravity (false to disable)
 	__YAXIS,
-	
+
 	// function pointer to control particle's behavior
 	(void (*)(Particle))&testParticleBehavior,
 
 	// animation description
 	// used only if sprite is animated
 	(AnimationDescription*)&TEST_PARTICLE_ANIM,
-	
-	// animation's name to play 
+
+	// animation's name to play
 	"Spin"
 };
 
@@ -192,10 +192,10 @@ ParticleSystemROMDef TEST_PS =
 
 	// auto start
 	true,
-	
+
 	// particle definition
 	(ParticleDefinition*)&TEST_PARTICLE,
-	
+
 	// minimum random distance from the center of the system for spawn
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
@@ -204,7 +204,7 @@ ParticleSystemROMDef TEST_PS =
 
 	// maximum relative spawn position
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
-	
+
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
 	{(-5000), (-20000), (0)},

@@ -105,7 +105,7 @@ PositionedEntityROMDef LEVEL_1_SMALL_ROOM_ST_UI_CHILDREN[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef* LEVEL_1_SMALL_ROOM_ST_CHARSETS[] =
+CharSetROMDef* const LEVEL_1_SMALL_ROOM_ST_CHARSETS[] =
 {
 	&LEVEL_1_SMALL_ROOM_BACK_CH,
 	&LEVEL_1_SMALL_ROOM_MAIN_BACK_CH,

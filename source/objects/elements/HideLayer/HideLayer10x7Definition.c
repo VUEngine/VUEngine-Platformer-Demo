@@ -45,28 +45,28 @@ extern BYTE HideLayer10x7Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef HIDE_LAYER_10x7_SOLID_ANIM =
+AnimationFunctionROMDef  HIDE_LAYER_10x7_SOLID_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
 	{0},
-	
+
 	// number of cycles a frame of animation is displayed
 	0,
-	
+
 	// whether to play it in loop or not
 	false,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Solid",
 };
 
-AnimationFunctionROMDef HIDE_LAYER_10x7_TRANSPARENT_ANIM =
+AnimationFunctionROMDef  HIDE_LAYER_10x7_TRANSPARENT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -87,7 +87,7 @@ AnimationFunctionROMDef HIDE_LAYER_10x7_TRANSPARENT_ANIM =
 	"Transparent",
 };
 
-AnimationFunctionROMDef HIDE_LAYER_10x7_TO_SOLID_ANIM =
+AnimationFunctionROMDef  HIDE_LAYER_10x7_TO_SOLID_ANIM =
 {
 	// number of frames of this animation function
 	7,
@@ -108,7 +108,7 @@ AnimationFunctionROMDef HIDE_LAYER_10x7_TO_SOLID_ANIM =
 	"ToSolid",
 };
 
-AnimationFunctionROMDef HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
+AnimationFunctionROMDef  HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
 {
 	// number of frames of this animation function
 	7,
@@ -190,10 +190,10 @@ BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -225,7 +225,7 @@ AnimatedInGameEntityROMDef HIDE_LAYER_10x7_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         8
     },

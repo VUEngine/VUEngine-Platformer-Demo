@@ -37,23 +37,23 @@ extern BYTE KeyMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef KEY_SPIN_ANIM =
+AnimationFunctionROMDef  KEY_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	8,
-	
+
 	// frames to play in animation
 	{0, 1, 2, 3, 4, 5, 6, 7},
-	
+
 	// number of cycles a frame of animation is displayed
 	8,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Spin",
 };
@@ -116,10 +116,10 @@ ObjectSpriteROMDef KEY_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -151,7 +151,7 @@ AnimatedInGameEntityROMDef KEY_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         4
     },

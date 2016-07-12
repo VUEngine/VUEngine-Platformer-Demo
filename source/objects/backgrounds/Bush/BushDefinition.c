@@ -38,29 +38,29 @@ extern BYTE BushMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef BUSH_STILL_ANIM =
+AnimationFunctionROMDef  BUSH_STILL_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
 	{0},
-	
+
 	// number of cycles a frame of animation is displayed
 	0,
-	
+
 	// whether to play it in loop or not
 	false,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Still",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef BUSH_WINDY_ANIM =
+AnimationFunctionROMDef  BUSH_WINDY_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -140,10 +140,10 @@ ObjectSpriteROMDef BUSH_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -175,7 +175,7 @@ AnimatedInGameEntityROMDef BUSH_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         1,
     },

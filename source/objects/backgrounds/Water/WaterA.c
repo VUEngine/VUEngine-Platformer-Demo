@@ -38,7 +38,7 @@ extern BYTE WaterAMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef WATER_A_DEFAULT_ANIM =
+AnimationFunctionROMDef  WATER_A_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
 	2,

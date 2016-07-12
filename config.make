@@ -3,9 +3,9 @@
 #                   It is recommended to use SRAM_WRAM = 1 when debugging in order to
 #                   avoid stack overflows (SRAM as WRAM only works on emulators).
 # release:          For shipping only!
-# release-tools:    Same optimization options as release, but adds debuggint tools
+# release-tools:    Same optimization options as release, but adds debugging tools
 # preprocessor:     The .o files are preprocessor's output instead of compiler's.
-TYPE = debug
+TYPE = release
 
 # Pad ROM for hardware testing
 # 0:                No padding.
@@ -15,7 +15,7 @@ PAD_ROM = 0
 # Dump elf
 # 0:                No dumping.
 # 1:                Dump the assembly code and the memory sections.
-DUMP_ELF = 0
+DUMP_ELF = 1
 
 # SRAM's usage
 # 0:                Don't use SRAM as WRAM.

@@ -38,7 +38,7 @@ extern BYTE BackgroundMoundCastleFlagMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef MOUND_BG_CASTLE_FLAG_WAVE_ANIM =
+AnimationFunctionROMDef  MOUND_BG_CASTLE_FLAG_WAVE_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -117,10 +117,10 @@ ObjectSpriteROMDef MOUND_BG_CASTLE_FLAG_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };

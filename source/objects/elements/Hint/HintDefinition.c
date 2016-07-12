@@ -39,29 +39,29 @@ extern BYTE HintMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_OPEN_ANIM =
+AnimationFunctionROMDef  HINT_OPEN_ANIM =
 {
 	// number of frames of this animation function
 	5,
-	
+
 	// frames to play in animation
 	{0, 1, 2, 3, 4},
-	
+
 	// number of cycles a frame of animation is displayed
 	2,
-	
+
 	// whether to play it in loop or not
 	false,
-	
+
 	// method to call on function completion
 	&Hint_playActiveLanguageHint,
-	
+
 	// function's name
 	"Open",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_CLOSE_ANIM =
+AnimationFunctionROMDef  HINT_CLOSE_ANIM =
 {
 	// number of frames of this animation function
 	5,
@@ -83,7 +83,7 @@ AnimationFunctionROMDef HINT_CLOSE_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_CLOSED_ANIM =
+AnimationFunctionROMDef  HINT_CLOSED_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -105,7 +105,7 @@ AnimationFunctionROMDef HINT_CLOSED_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_ENTER_ENGLISH_ANIM =
+AnimationFunctionROMDef  HINT_ENTER_ENGLISH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -127,29 +127,29 @@ AnimationFunctionROMDef HINT_ENTER_ENGLISH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_ENTER_DEUTSCH_ANIM =
+AnimationFunctionROMDef  HINT_ENTER_DEUTSCH_ANIM =
 {
 	// number of frames of this animation function
 	2,
-	
+
 	// frames to play in animation
 	{7, 8},
-	
+
 	// number of cycles a frame of animation is displayed
 	14,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"EnterDeutsch",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_ENTER_ESPANOL_ANIM =
+AnimationFunctionROMDef  HINT_ENTER_ESPANOL_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -171,7 +171,7 @@ AnimationFunctionROMDef HINT_ENTER_ESPANOL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_ENTER_FRANCAIS_ANIM =
+AnimationFunctionROMDef  HINT_ENTER_FRANCAIS_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -193,7 +193,7 @@ AnimationFunctionROMDef HINT_ENTER_FRANCAIS_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
+AnimationFunctionROMDef  HINT_PICK_UP_ENGLISH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -215,7 +215,7 @@ AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
+AnimationFunctionROMDef  HINT_PICK_UP_DEUTSCH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -237,7 +237,7 @@ AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_ESPANOL_ANIM =
+AnimationFunctionROMDef  HINT_PICK_UP_ESPANOL_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -259,7 +259,7 @@ AnimationFunctionROMDef HINT_PICK_UP_ESPANOL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_PICK_UP_FRANCAIS_ANIM =
+AnimationFunctionROMDef  HINT_PICK_UP_FRANCAIS_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -281,7 +281,7 @@ AnimationFunctionROMDef HINT_PICK_UP_FRANCAIS_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HINT_KEY_ANIM =
+AnimationFunctionROMDef  HINT_KEY_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -371,14 +371,14 @@ BgmapSpriteROMDef HINT_SPRITE =
 
 	// displacement
 	{FTOFIX19_13(28), FTOFIX19_13(-21), 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
-	
+
 BgmapSpriteROMDef* const HINT_SPRITES[] =
 {
 	&HINT_SPRITE,

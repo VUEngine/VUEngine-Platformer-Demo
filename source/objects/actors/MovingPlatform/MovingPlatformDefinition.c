@@ -35,7 +35,7 @@ extern BYTE MovingPlatform4Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunction MOVING_PLATFORM_MOVE_ANIM =
+AnimationFunctionROMDef MOVING_PLATFORM_MOVE_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -57,11 +57,11 @@ AnimationFunction MOVING_PLATFORM_MOVE_ANIM =
 };
 
 // an animation definition
-AnimationDescription MOVING_PLATFORM_ANIM =
+AnimationDescriptionROMDef MOVING_PLATFORM_ANIM =
 {
 	// animation functions
 	{
-		&MOVING_PLATFORM_MOVE_ANIM,
+		(AnimationFunction*)&MOVING_PLATFORM_MOVE_ANIM,
 		NULL,
 	}
 };
@@ -137,36 +137,36 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 	                __TYPE(MovingEntity),
 	                (SpriteROMDef**)MOVING_PLATFORM_SPRITES,
 	            },
-	
+
 	            // collision detection gap (up, down, left, right)
 	            {1, 1, 1, 1},
-	
+
 	            // in game type
 	            kMovingPlatform,
-	
+
 	            // width
 	            4 * 8,
-	            
+
 	            // height
 	            6 * 8,
-	            
+
 	            // depth
 	            4
 	        },
-	
+
 	        // pointer to the animation definition for the character
-	        &MOVING_PLATFORM_ANIM,
-	
+	        (AnimationDescription*)&MOVING_PLATFORM_ANIM,
+
 	        // initial animation
 	        "Move"
 	    },
-	    
+
 		// friction for physics
 		FTOFIX19_13(FLOOR_FRICTION),
 
 		// elasticity for physics
 		FTOFIX19_13(FLOOR_ELASTICITY),
-		
+
 		// mass
 		ITOFIX19_13(10)
 	},
@@ -176,10 +176,10 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 
 	// maximum deviation from initial position
 	ITOFIX19_13(48),
-	
+
 	// time to rest idle
 	1000,
-	
+
     // axis
     __YAXIS,
 

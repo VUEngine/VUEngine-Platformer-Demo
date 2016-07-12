@@ -43,23 +43,23 @@ extern BYTE CoinBackSilhouetteMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef COIN_SPIN_ANIM =
+AnimationFunctionROMDef  COIN_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	4,
-	
+
 	// frames to play in animation
 	{0, 1, 2, 3},
-	
+
 	// number of cycles a frame of animation is displayed
 	8,
-	
+
 	// whether to play it in loop or not
 	true,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Spin",
 };
@@ -278,10 +278,10 @@ ObjectSpriteROMDef COIN_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -337,7 +337,7 @@ AnimatedInGameEntityROMDef COIN_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         4
     },
@@ -515,10 +515,10 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -550,7 +550,7 @@ AnimatedInGameEntityROMDef AFFINE_COIN_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         4
     },

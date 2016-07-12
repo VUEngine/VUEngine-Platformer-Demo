@@ -42,7 +42,7 @@ extern BYTE DoorBackMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef DOOR_OPENING_ANIM =
+AnimationFunctionROMDef  DOOR_OPENING_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -58,13 +58,13 @@ AnimationFunctionROMDef DOOR_OPENING_ANIM =
 
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Opening",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef DOOR_CLOSING_ANIM =
+AnimationFunctionROMDef  DOOR_CLOSING_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -80,13 +80,13 @@ AnimationFunctionROMDef DOOR_CLOSING_ANIM =
 
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Closing",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef DOOR_OPEN_ANIM =
+AnimationFunctionROMDef  DOOR_OPEN_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -108,29 +108,29 @@ AnimationFunctionROMDef DOOR_OPEN_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef DOOR_CLOSED_ANIM =
+AnimationFunctionROMDef  DOOR_CLOSED_ANIM =
 {
 	// number of frames of this animation function
 	1,
-	
+
 	// frames to play in animation
 	{4},
-	
+
 	// number of cycles a frame of animation is displayed
 	0,
-	
+
 	// whether to play it in loop or not
 	false,
-	
+
 	// method to call on function completion
 	NULL,
-	
+
 	// function's name
 	"Closed",
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef DOOR_KEY_ANIM =
+AnimationFunctionROMDef  DOOR_KEY_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -152,7 +152,7 @@ AnimationFunctionROMDef DOOR_KEY_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef DOOR_GOAL_ANIM =
+AnimationFunctionROMDef  DOOR_GOAL_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -236,10 +236,10 @@ BgmapSpriteROMDef DOOR_SPRITE =
 
 	// displacement
 	{0, 0, FTOFIX19_13(2)},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -271,7 +271,7 @@ AnimatedInGameEntityROMDef DOOR_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         4
     },
@@ -392,10 +392,10 @@ BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 
 	// displacement
 	{0, 0, 0},
-	
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -427,7 +427,7 @@ AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
     	// depth
         4,
     },

@@ -90,7 +90,7 @@ const FontROMDef PLATFORMER_LARGE_FONT =
     "LargeFont",
 };
 
-const FontROMDef* __FONTS[] =
+FontROMDef* const __FONTS[] =
 {
     &PLATFORMER_DEFAULT_FONT,
     &PLATFORMER_GUI_FONT,
