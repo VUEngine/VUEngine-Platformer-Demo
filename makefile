@@ -25,6 +25,7 @@ COMPILER_NAME = v810-nec-elf32
 endif
 
 GCC = $(COMPILER_NAME)-gcc
+LD = $(COMPILER_NAME)-ld
 OBJCOPY = $(COMPILER_NAME)-objcopy
 OBJDUMP = $(COMPILER_NAME)-objdump
 
@@ -70,7 +71,7 @@ endif
 
 ifeq ($(TYPE), release)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline $(GAME_ESSENTIALS)
+CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline $(GAME_ESSENTIALS)
 MACROS =
 endif
 
@@ -124,7 +125,7 @@ all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
 pad: $(TARGET).vb
 	@echo "Padding " $(TARGET).vb
-	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb 0 21 $(TARGET)_pad.vb
+	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb
 	@echo " "
 
 deleteEngine:
@@ -133,22 +134,22 @@ deleteEngine:
 $(ENGINE): deleteEngine
 	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e COMPILER=$(COMPILER) -e COMPILER_OUTPUT=$(COMPILER_OUTPUT) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
 
-$(TARGET).vb: main.elf
+$(TARGET).vb: $(TARGET).elf
 	@echo Creating $@
-	@$(OBJCOPY) -O binary main.elf $@
+	@$(OBJCOPY) -O binary $(TARGET).elf $@
 	@echo Done creating $(TARGET).vb in $(TYPE) mode with GCC $(COMPILER)
 
-dump: main.elf
+dump: $(TARGET).elf
 	@echo
-	@echo Generating assembler code
-	@$(OBJDUMP) -t main.elf > sections-$(TYPE)-$(COMPILER).txt
-	@$(OBJDUMP) -S main.elf > machine-$(TYPE)-$(COMPILER).asm
+	@echo Dumping elf
+	@$(OBJDUMP) -t $(TARGET).elf > sections-$(TYPE)-$(COMPILER).txt
+	@$(OBJDUMP) -S $(TARGET).elf > machine-$(TYPE)-$(COMPILER).asm
 	@echo Dumping elf done
 
-main.elf: $(ENGINE) dirs $(OBJECTS)
+$(TARGET).elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET)
-		@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(LDPARAM) $(VBJAENGINE)/lib/compiler/extra/crt0.o \
-			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB))
+		@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(LDPARAM) \
+			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.

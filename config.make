@@ -21,4 +21,4 @@ DUMP_ELF = 1
 # 0:                Don't use SRAM as WRAM.
 # 1:                Use SRAM as WRAM. Adds 8KB of WRAM where all static variables will be loaded.
 #                   This feature is experimental and only works properly on emulators
-SRAM_WRAM = 1
+SRAM_WRAM = 0
