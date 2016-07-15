@@ -50,7 +50,7 @@ __CLASS_NEW_END(KeyDoor, animatedInGameEntityDefinition, id, name);
 void KeyDoor_constructor(KeyDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor

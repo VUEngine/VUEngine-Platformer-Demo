@@ -63,7 +63,7 @@ __CLASS_NEW_END(LavaTrigger, inanimatedInGameEntityDefinition, id, name);
 void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(InanimatedInGameEntity, inanimatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -92,7 +92,7 @@ bool LavaTrigger_handleMessage(LavaTrigger this, Telegram telegram)
             LavaTrigger_triggerEventEnd(this);
 			break;
 	}
-	
+
 	return false;
 }
 
@@ -126,7 +126,7 @@ void LavaTrigger_triggerEventEnd(LavaTrigger this)
     // release player
     PlatformerLevelState platformerState = (PlatformerLevelState)Game_getCurrentState(Game_getInstance());
     PlatformerLevelState_setModeToPlaying(platformerState);
-    
+
     // remove me from stage so I don't waste resources
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 }

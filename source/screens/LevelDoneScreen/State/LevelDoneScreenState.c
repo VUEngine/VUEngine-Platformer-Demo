@@ -62,7 +62,7 @@ __SINGLETON_DYNAMIC(LevelDoneScreenState);
 // class's constructor
 static void LevelDoneScreenState_constructor(LevelDoneScreenState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(GameState);
 }
 
 // class's destructor

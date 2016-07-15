@@ -72,7 +72,7 @@ __SINGLETON_DYNAMIC(OverworldState);
 // class's constructor
 static void OverworldState_constructor(OverworldState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(GameState);
 }
 
 // class's destructor
@@ -90,7 +90,7 @@ static void OverworldState_enter(OverworldState this, void* owner)
 
     // disable user input
 	Game_disableKeypad(Game_getInstance());
-	
+
 	//load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&OVERWORLD_1_ST, NULL, true);
 
@@ -138,7 +138,7 @@ static void OverworldState_resume(OverworldState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-	
+
 	// tell any interested entity
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 

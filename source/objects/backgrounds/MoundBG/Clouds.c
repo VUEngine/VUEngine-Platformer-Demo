@@ -43,8 +43,8 @@ __CLASS_NEW_END(Clouds, cloudsDefinition, id, name);
 void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(&cloudsDefinition->imageDefinition, id, name);
-	
+	__CONSTRUCT_BASE(Image, &cloudsDefinition->imageDefinition, id, name);
+
 	this->displacement = cloudsDefinition->displacement;
 }
 

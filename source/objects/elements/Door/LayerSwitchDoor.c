@@ -48,7 +48,7 @@ __CLASS_NEW_END(LayerSwitchDoor, animatedInGameEntityDefinition, id, name);
 void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -84,6 +84,6 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 			}
 			break;
 	}
-	
+
 	return Door_handleMessage(__SAFE_CAST(Door, this), telegram);
 }

@@ -56,7 +56,7 @@ __SINGLETON(CannonBallIdle);
 void CannonBallIdle_constructor(CannonBallIdle this)
 {
 	// construct base
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(State);
 }
 
 // class's destructor

@@ -66,7 +66,7 @@ void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInG
 	ASSERT(this, "Cannon::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -111,7 +111,7 @@ bool Cannon_handleMessage(Cannon this, Telegram telegram)
             Cannon_shoot(this);
 			break;
 	}
-	
+
 	return false;
 }
 

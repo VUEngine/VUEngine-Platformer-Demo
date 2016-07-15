@@ -58,7 +58,7 @@ __SINGLETON(CannonBallMoving);
 void CannonBallMoving_constructor(CannonBallMoving this)
 {
 	// construct base
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(State);
 }
 
 // class's destructor

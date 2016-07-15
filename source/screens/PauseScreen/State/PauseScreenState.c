@@ -63,7 +63,7 @@ __SINGLETON_DYNAMIC(PauseScreenState);
 // class's constructor
 static void PauseScreenState_constructor(PauseScreenState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(GameState);
 }
 
 // class's destructor
@@ -111,7 +111,7 @@ static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, T
 		case kKeyPressed:
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-		
+
 				// check direction
 				if(K_STA & pressedKey)
 				{

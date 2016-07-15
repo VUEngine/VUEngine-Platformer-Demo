@@ -56,8 +56,8 @@ __SINGLETON(HeroMoving);
 void HeroMoving_constructor(HeroMoving this)
 {
 	// construct base
-	__CONSTRUCT_BASE();
-	
+	__CONSTRUCT_BASE(State);
+
 	this->mustCheckDirection = false;
 	this->bouncing = false;
 }
@@ -152,7 +152,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 
 			return true;
 			break;
-			
+
 		case kKeyReleased:
 			{
 				u16 releasedKey = *((u16*)Telegram_getExtraInfo(telegram));
@@ -171,7 +171,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 						return true;
 					}
 				}
-				
+
 				if(((K_LL | K_LR) & releasedKey) && !((K_LL | K_LR) & holdKey))
                 {
 					Velocity velocity = Body_getVelocity(Actor_getBody(__SAFE_CAST(Actor, owner)));
@@ -187,7 +187,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 				}
 			}
 			break;
-			
+
 		case kKeyHold:
 			{
 				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
@@ -202,7 +202,7 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			break;
 
 		case kBodyStopped:
-			
+
 			Hero_stopMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
 			return true;
 			break;
@@ -221,18 +221,18 @@ bool HeroMoving_handleMessage(HeroMoving this, void* owner, Telegram telegram)
 			break;
 
 		case kBodyBounced:
-			
+
 			this->mustCheckDirection = true;
 			this->bouncing = true;
 			MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kDisallowJumpOnBouncing, NULL);
 			return true;
 			break;
-			
+
 		case kDisallowJumpOnBouncing:
-			
+
 			this->bouncing = false;
 			break;
-			
+
 		case kCollision:
 
 			return Hero_processCollision(__SAFE_CAST(Hero, owner), telegram);

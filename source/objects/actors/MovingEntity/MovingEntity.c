@@ -60,7 +60,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	ASSERT(this, "MovingEntity::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE((ActorDefinition*)&movingEntityDefinition->actorDefinition, id, name);
+	__CONSTRUCT_BASE(Actor, (ActorDefinition*)&movingEntityDefinition->actorDefinition, id, name);
 
 	// register a shape for collision detection
 	MovingEntity_registerShape(this);
@@ -84,7 +84,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 		case __YAXIS:
 
 			this->direction.y = this->movingEntityDefinition->direction;
-			break;			
+			break;
 	}
 }
 
@@ -150,7 +150,7 @@ void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 		case __YAXIS:
 
 			this->initialPosition = position->y;
-			break;			
+			break;
 	}
 }
 
@@ -168,14 +168,14 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 		case __XAXIS:
 			{
 				fix19_13 distance = abs(this->transform.globalPosition.x - this->initialPosition);
-				
+
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
 					// make sure that I don't get stuck moving back and forth
 					VBVec3D position = this->transform.globalPosition;
 					VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
 					position.x -= lastDisplacement.x << 1;
-					
+
 					Actor_setPosition(__SAFE_CAST(Actor, this), &position);
 
 					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
@@ -193,7 +193,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 					VBVec3D position = this->transform.globalPosition;
 					VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
 					position.y -= lastDisplacement.y << 1;
-					
+
 					Actor_setPosition(__SAFE_CAST(Actor, this), &position);
 
 					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
@@ -209,16 +209,16 @@ void MovingEntity_startMovement(MovingEntity this)
 	switch(this->movingEntityDefinition->axis)
     {
 		case __XAXIS:
-			
+
 			switch(this->direction.x)
             {
 				case __LEFT:
-					
+
 					this->direction.x = __RIGHT;
 					break;
 
 				case __RIGHT:
-					
+
 					this->direction.x = __LEFT;
 					break;
             }
@@ -234,18 +234,18 @@ void MovingEntity_startMovement(MovingEntity this)
 				Body_moveUniformly(this->body, velocity);
 			}
 			break;
-			
+
 		case __YAXIS:
-			
+
 			switch(this->direction.y)
             {
 				case __UP:
-					
+
 					this->direction.y = __DOWN;
 					break;
 
 				case __DOWN:
-					
+
 					this->direction.y = __UP;
 					break;
             }
@@ -257,10 +257,10 @@ void MovingEntity_startMovement(MovingEntity this)
 					((int)this->movingEntityDefinition->velocity * this->direction.y),
 					0,
 				};
-				
+
 				Body_moveUniformly(this->body, velocity);
 			}
-			break;			
+			break;
 	}
 }
 

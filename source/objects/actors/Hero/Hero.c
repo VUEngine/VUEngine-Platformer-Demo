@@ -120,7 +120,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	ASSERT(this, "Hero::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(actorDefinition, id, name);
+	__CONSTRUCT_BASE(Actor, actorDefinition, id, name);
 
 	// init class variables
 	this->coins = 0;

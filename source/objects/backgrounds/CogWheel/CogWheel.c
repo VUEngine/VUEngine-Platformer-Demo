@@ -57,7 +57,7 @@ __CLASS_NEW_END(CogWheel, imageDefinition, id, name);
 void CogWheel_constructor(CogWheel this, ImageDefinition* imageDefinition, s16 id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(imageDefinition, id, name);
+	__CONSTRUCT_BASE(Image, imageDefinition, id, name);
 }
 
 // class's destructor
@@ -77,7 +77,7 @@ void CogWheel_ready(CogWheel this)
 	ASSERT(this, "CogWheel::ready: null this");
 
 	Entity_ready(__SAFE_CAST(Entity, this));
-	
+
 	// start moving
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
@@ -92,7 +92,7 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
             CogWheel_rotate(this);
 			break;
 	}
-	
+
 	return false;
 }
 

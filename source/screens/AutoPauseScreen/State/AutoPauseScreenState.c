@@ -65,7 +65,7 @@ __SINGLETON(AutoPauseScreenState);
 // class's constructor
 static void AutoPauseScreenState_constructor(AutoPauseScreenState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(GameState);
 }
 
 // class's destructor
@@ -112,7 +112,7 @@ static bool AutoPauseScreenState_handleMessage(AutoPauseScreenState this, void* 
 		case kKeyPressed:
 			{
 				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-		
+
 				if(K_STA & pressedKey)
 				{
 					Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));

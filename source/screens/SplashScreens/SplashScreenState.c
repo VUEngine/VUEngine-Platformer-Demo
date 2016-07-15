@@ -45,7 +45,7 @@ enum SplashScreensMessageTypes
 // class's constructor
 void SplashScreenState_constructor(SplashScreenState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(GameState);
 
 	this->stageDefinition = NULL;
 }
@@ -101,7 +101,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 	GameState_resume(__SAFE_CAST(GameState, this), owner);
 
 	__VIRTUAL_CALL(void, SplashScreenState, print, this);
-	
+
 #ifdef __DEBUG_TOOLS
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
@@ -135,10 +135,10 @@ bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegr
 	switch(Telegram_getMessage(telegram))
 	{
 		case kScreenStarted:
-		
+
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 			break;
-			
+
 		case kKeyPressed:
 		    {
                 u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));

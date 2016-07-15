@@ -70,7 +70,7 @@ static void CustomScreenMovementManager_constructor(CustomScreenMovementManager 
 	ASSERT(this, "CustomScreenMovementManager::constructor: null this");
 
 	// construct base object
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(ScreenMovementManager);
 
 	this->tempFocusInGameEntity = NULL;
 

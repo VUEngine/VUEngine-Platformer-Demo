@@ -15,7 +15,7 @@ PAD_ROM = 0
 # Dump elf
 # 0:                No dumping.
 # 1:                Dump the assembly code and the memory sections.
-DUMP_ELF = 1
+DUMP_ELF = 0
 
 # SRAM's usage
 # 0:                Don't use SRAM as WRAM.

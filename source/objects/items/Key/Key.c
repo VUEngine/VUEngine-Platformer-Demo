@@ -59,7 +59,7 @@ void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	ASSERT(this, "Key::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
@@ -87,7 +87,7 @@ bool Key_handleMessage(Key this, Telegram telegram)
 			Key_removeFromStage(this);
 			break;
 	}
-	
+
 	return false;
 }
 

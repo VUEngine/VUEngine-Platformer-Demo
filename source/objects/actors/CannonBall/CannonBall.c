@@ -51,7 +51,7 @@ void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id
 	ASSERT(this, "CannonBall::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(definition, id, name);
+	__CONSTRUCT_BASE(Actor, definition, id, name);
 
 	// register a shape for collision detection
 	CannonBall_registerShape(this);

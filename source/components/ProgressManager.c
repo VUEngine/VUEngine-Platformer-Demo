@@ -59,7 +59,7 @@ static void ProgressManager_constructor(ProgressManager this)
 	ASSERT(this, "ProgressManager::constructor: null this");
 
 	// construct base object
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(Object);
 
 	ProgressManager_initialize(this);
 
@@ -101,12 +101,12 @@ static void ProgressManager_initialize(ProgressManager this)
 
 	char saveStamp[SAVE_STAMP_LENGTH];
 	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&saveStamp, (u16*)&_userData->saveStamp, sizeof(saveStamp));
-	
+
 	if(strncmp(saveStamp, SAVE_STAMP, SAVE_STAMP_LENGTH))
 	{
 		strncpy(saveStamp, SAVE_STAMP, SAVE_STAMP_LENGTH);
 		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&saveStamp, (u16*)&_userData->saveStamp, sizeof(saveStamp));
-	
+
 		int numberOfCollectedCoins = 0;
 		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)&(_userData->numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 
@@ -134,14 +134,14 @@ int ProgressManager_getNumberOfCollectedCoins(ProgressManager this)
 void ProgressManager_setNumberOfCollectedCoins(ProgressManager this, int numberOfCollectedCoins)
 {
 	ASSERT(this, "ProgressManager::setNumberOfCollectedCoins: null this");
-	
+
 	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)&_userData->numberOfCollectedCoins, sizeof(numberOfCollectedCoins));
 }
 
 bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName)
 {
 	ASSERT(this, "ProgressManager::getCoinStatus: null this");
-	
+
 	if(coinName)
 	{
 		int coin = 1;
@@ -149,14 +149,14 @@ bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName)
 		{
 			CoinStatus coinStatus;
 			SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
-			
+
 			if(coinName && !strncmp(coinStatus.name, coinName, COIN_NAME_LENGTH))
 			{
 				return coinStatus.taken;
 			}
 		}
 	}
-	
+
 	return false;
 }
 
@@ -169,7 +169,7 @@ bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool ta
 	{
 		CoinStatus coinStatus;
 		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
-		
+
 		if(!strncmp(coinStatus.name, coinName, COIN_NAME_LENGTH))
 		{
 			coinStatus.taken = taken;

@@ -50,10 +50,10 @@ void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameE
 {
 	ASSERT(this, "Hint::constructor: null this");
 
-	this->type = kEnterHint;
-
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
+
+	this->type = kEnterHint;
 }
 
 // class's destructor

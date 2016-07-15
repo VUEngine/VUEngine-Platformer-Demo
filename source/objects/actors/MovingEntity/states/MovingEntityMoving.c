@@ -58,7 +58,7 @@ __SINGLETON(MovingEntityMoving);
 void MovingEntityMoving_constructor(MovingEntityMoving this)
 {
 	// construct base
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(State);
 }
 
 // class's destructor
@@ -76,7 +76,7 @@ void MovingEntityMoving_enter(MovingEntityMoving this, void* owner)
 
 // state's execute
 void MovingEntityMoving_execute(MovingEntityMoving this, void* owner)
-{	
+{
 	MovingEntity_checkDisplacement(owner);
 }
 

@@ -59,7 +59,7 @@ __SINGLETON_DYNAMIC(AdjustmentScreenState);
 // class's constructor
 static void AdjustmentScreenState_constructor(AdjustmentScreenState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(SplashScreenState);
 
 	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&ADJUSTMENT_SCREEN_ST;

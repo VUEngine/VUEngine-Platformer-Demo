@@ -63,7 +63,7 @@ __SINGLETON_DYNAMIC(LangSelectScreenState);
 // class's constructor
 static void LangSelectScreenState_constructor(LangSelectScreenState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(SplashScreenState);
 
 	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;

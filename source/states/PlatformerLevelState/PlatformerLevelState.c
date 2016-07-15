@@ -77,7 +77,7 @@ __SINGLETON(PlatformerLevelState);
 // class's constructor
 static void PlatformerLevelState_constructor(PlatformerLevelState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(GameState);
 
 	// set default entry point
 	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;

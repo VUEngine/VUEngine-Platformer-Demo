@@ -49,7 +49,7 @@ __CLASS_NEW_END(GoalDoor, animatedInGameEntityDefinition, id, name);
 void GoalDoor_constructor(GoalDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -84,7 +84,7 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 			return true;
 			break;
 	}
-	
+
 	return Door_handleMessage(__SAFE_CAST(Door, this), telegram);
 }
 

@@ -50,7 +50,7 @@ static void EventManager_constructor(EventManager this)
 	ASSERT(this, "EventManager::constructor: null this");
 
 	// construct base object
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(Object);
 }
 
 // class's destructor

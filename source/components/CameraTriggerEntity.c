@@ -52,7 +52,7 @@ void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEnti
 	ASSERT(cameraTriggerEntityDefinition, "CameraTriggerEntity::constructor: null definition");
 
 	// construct base object
-	__CONSTRUCT_BASE((TriggerEntityDefinition*)cameraTriggerEntityDefinition, id, name);
+	__CONSTRUCT_BASE(TriggerEntity, (TriggerEntityDefinition*)cameraTriggerEntityDefinition, id, name);
 
 	this->overridePositionFlag.x = false;
 	this->overridePositionFlag.y = false;
@@ -102,7 +102,7 @@ void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec
 
 	this->overridePositionFlag = overridePositionFlag;
 	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this), __XAXIS | __YAXIS | __ZAXIS);
-	
+
 	Transformation environmentTransform = Container_getEnvironmentTransform(this->parent);
 	CameraTriggerEntity_transform(this, &environmentTransform);
 }

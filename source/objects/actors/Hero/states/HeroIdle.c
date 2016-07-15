@@ -60,7 +60,7 @@ __SINGLETON(HeroIdle);
 void HeroIdle_constructor(HeroIdle this)
 {
 	// construct base
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(State);
 }
 
 // class's destructor
@@ -78,7 +78,7 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 
     // show animation
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
-	
+
 	Hero_lockCameraTriggerMovement(__SAFE_CAST(Hero, owner), __XAXIS | __YAXIS, true);
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
@@ -111,7 +111,7 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 			break;
 
 		case kBodyStopped:
-			
+
 			return true;
 			break;
 
@@ -152,9 +152,9 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 			 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			 		{
 	                    Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Idle");
-	
+
 	                    Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
-	
+
 	    				if(K_A & pressedKey)
 	                    {
 	                        Hero_jump(__SAFE_CAST(Hero, owner), true, true);
@@ -170,14 +170,14 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
                     Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Back");
 
                     return true;
-				}				
+				}
 
 				if(K_LD & pressedKey)
                 {
                     Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Front");
 
                     return true;
-				}				
+				}
 			}
 			break;
 
@@ -192,9 +192,9 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 			}
 			break;
-			
+
 		case kKeyHold:
-			
+
 			{
 				u16 holdKey = *((u16*)Telegram_getExtraInfo(telegram));
 
@@ -210,9 +210,9 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 			 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			 		{
 	                    Hero_checkDirection(__SAFE_CAST(Hero, owner), holdKey, "Idle");
-	
+
 	                    Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
-	
+
 	                    return true;
 			 		}
 				}

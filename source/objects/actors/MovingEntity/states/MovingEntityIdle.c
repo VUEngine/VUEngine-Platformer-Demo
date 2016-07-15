@@ -56,7 +56,7 @@ __SINGLETON(MovingEntityIdle);
 void MovingEntityIdle_constructor(MovingEntityIdle this)
 {
 	// construct base
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(State);
 }
 
 // class's destructor
@@ -95,6 +95,6 @@ bool MovingEntityIdle_handleMessage(MovingEntityIdle this, void* owner, Telegram
 			StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, MovingEntityIdle_getInstance()));
 			break;
     }
-	
+
 	return false;
 }

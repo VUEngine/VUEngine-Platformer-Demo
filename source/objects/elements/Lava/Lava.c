@@ -57,8 +57,8 @@ __CLASS_NEW_END(Lava, inanimatedInGameEntityDefinition, id, name);
 void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(inanimatedInGameEntityDefinition, id, name);
-	
+	__CONSTRUCT_BASE(InanimatedInGameEntity, inanimatedInGameEntityDefinition, id, name);
+
 	if(this->shape)
 	{
 		Shape_setCheckForCollisions(__SAFE_CAST(Shape, this->shape), false);
@@ -83,7 +83,7 @@ void Lava_startMoving(Lava this)
 
 	// start moving
 	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
-	
+
 	// must make sure that the shape is updated
 	if(this->shape)
 	{
@@ -110,7 +110,7 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
             Lava_moveUpwards(this);
 			break;
 	}
-	
+
 	return false;
 }
 

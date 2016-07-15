@@ -74,7 +74,7 @@ __SINGLETON_DYNAMIC(TitleScreenState);
 // class's constructor
 static void TitleScreenState_constructor(TitleScreenState this)
 {
-	__CONSTRUCT_BASE();
+	__CONSTRUCT_BASE(GameState);
 }
 
 // class's destructor
@@ -99,7 +99,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
 	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeDoor");
 	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeCoin");
-	
+
 	//load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, true);
 
@@ -160,7 +160,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-	
+
 	// tell any interested entity
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
