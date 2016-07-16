@@ -39,7 +39,7 @@ void CannonBallMoving_destructor(CannonBallMoving this);
 void CannonBallMoving_enter(CannonBallMoving this, void* owner);
 void CannonBallMoving_execute(CannonBallMoving this, void* owner);
 void CannonBallMoving_exit(CannonBallMoving this, void* owner);
-bool CannonBallMoving_handleMessage(CannonBallMoving this, void* owner, Telegram telegram);
+bool CannonBallMoving_processMessage(CannonBallMoving this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ void CannonBallMoving_exit(CannonBallMoving this, void* owner)
 }
 
 // state's handle message
-bool CannonBallMoving_handleMessage(CannonBallMoving this, void* owner, Telegram telegram)
+bool CannonBallMoving_processMessage(CannonBallMoving this, void* owner, Telegram telegram)
 {
 	return false;
 }

@@ -37,25 +37,24 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define OverworldState_METHODS																			\
-	GameState_METHODS;											    									\
+#define OverworldState_METHODS(ClassName)																\
+	    GameState_METHODS(ClassName);											    					\
 
 // declare the virtual methods which are redefined
 #define OverworldState_SET_VTABLE(ClassName)															\
-	GameState_SET_VTABLE(ClassName)								    									\
-	__VIRTUAL_SET(ClassName, OverworldState, enter);													\
-	__VIRTUAL_SET(ClassName, OverworldState, exit);														\
-	__VIRTUAL_SET(ClassName, OverworldState, execute);													\
-	__VIRTUAL_SET(ClassName, OverworldState, resume);													\
-	__VIRTUAL_SET(ClassName, OverworldState, suspend);													\
-	__VIRTUAL_SET(ClassName, OverworldState, handleMessage);											\
+        GameState_SET_VTABLE(ClassName)								    								\
+        __VIRTUAL_SET(ClassName, OverworldState, enter);												\
+        __VIRTUAL_SET(ClassName, OverworldState, exit);													\
+        __VIRTUAL_SET(ClassName, OverworldState, execute);												\
+        __VIRTUAL_SET(ClassName, OverworldState, resume);												\
+        __VIRTUAL_SET(ClassName, OverworldState, suspend);												\
+        __VIRTUAL_SET(ClassName, OverworldState, processMessage);                                       \
 
 __CLASS(OverworldState);
 
 #define OverworldState_ATTRIBUTES							        									\
-														            									\
-	/* inherits */																						\
-	GameState_ATTRIBUTES																				\
+        /* inherits */																					\
+        GameState_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------

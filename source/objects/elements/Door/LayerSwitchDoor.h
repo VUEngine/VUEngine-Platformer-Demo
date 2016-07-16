@@ -30,19 +30,18 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define LayerSwitchDoor_METHODS																			\
-	Door_METHODS;																						\
+#define LayerSwitchDoor_METHODS(ClassName)																\
+	    Door_METHODS(ClassName);																		\
 
 #define LayerSwitchDoor_SET_VTABLE(ClassName)															\
-	Door_SET_VTABLE(ClassName);																			\
-	__VIRTUAL_SET(ClassName, LayerSwitchDoor, handleMessage);											\
+        Door_SET_VTABLE(ClassName);																		\
+        __VIRTUAL_SET(ClassName, LayerSwitchDoor, handleMessage);										\
 
 __CLASS(LayerSwitchDoor);
 
 #define LayerSwitchDoor_ATTRIBUTES																		\
-																										\
-	/* it is derived from */																			\
-	Door_ATTRIBUTES																						\
+        /* it is derived from */																		\
+        Door_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------

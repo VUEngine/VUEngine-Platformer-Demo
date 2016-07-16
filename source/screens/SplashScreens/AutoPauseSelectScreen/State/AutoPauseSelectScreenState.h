@@ -30,24 +30,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define AutoPauseSelectScreenState_METHODS																\
-	SplashScreenState_METHODS;																			\
+#define AutoPauseSelectScreenState_METHODS(ClassName)													\
+    	SplashScreenState_METHODS(ClassName);															\
 
 // declare the virtual methods which are redefined
 #define AutoPauseSelectScreenState_SET_VTABLE(ClassName)												\
-	SplashScreenState_SET_VTABLE(ClassName)																\
-	__VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, print);										\
-	__VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, processInput);									\
+        SplashScreenState_SET_VTABLE(ClassName)															\
+        __VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, print);									\
+        __VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, processInput);								\
 
 
 __CLASS(AutoPauseSelectScreenState);
 
-#define AutoPauseSelectScreenState_ATTRIBUTES							   		\
-														            			\
-	/* inherits */																\
-	SplashScreenState_ATTRIBUTES												\
-																				\
-	bool selection;																\
+#define AutoPauseSelectScreenState_ATTRIBUTES							   		                        \
+        /* inherits */														    		                \
+        SplashScreenState_ATTRIBUTES										    	                	\
+        bool selection;														    		                \
 
 
 //---------------------------------------------------------------------------------------------------------

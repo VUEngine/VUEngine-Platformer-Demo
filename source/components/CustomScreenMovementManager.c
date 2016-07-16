@@ -133,7 +133,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
 				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(const VBVec3D*, SpatialObject, getPosition, _screen->focusInGameEntity);
+				const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
 
 				fix19_13 horizontalPosition = _screen->position.x;
 				fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
@@ -255,7 +255,7 @@ void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, in
 	}
 }
 
-bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram)
+bool CustomScreenMovementManager_processMessage(CustomScreenMovementManager this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
 	{

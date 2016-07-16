@@ -51,61 +51,49 @@ enum HeroPowerUps
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Hero_METHODS																					\
-	Actor_METHODS;																						\
+#define Hero_METHODS(ClassName)																			\
+    	Actor_METHODS(ClassName);																	    \
 
 #define Hero_SET_VTABLE(ClassName)																		\
-	Actor_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, Hero, ready);																\
-	__VIRTUAL_SET(ClassName, Hero, update);																\
-	__VIRTUAL_SET(ClassName, Hero, takeHitFrom);														\
-	__VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);											\
-	__VIRTUAL_SET(ClassName, Hero, handleMessage);														\
-	__VIRTUAL_SET(ClassName, Hero, suspend);															\
-	__VIRTUAL_SET(ClassName, Hero, resume);																\
-	__VIRTUAL_SET(ClassName, Hero, updateSurroundingFriction);											\
-	__VIRTUAL_SET(ClassName, Hero, getAxisAllowedForBouncing);											\
-	__VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);											\
+        Actor_SET_VTABLE(ClassName);																	\
+        __VIRTUAL_SET(ClassName, Hero, ready);															\
+        __VIRTUAL_SET(ClassName, Hero, update);															\
+        __VIRTUAL_SET(ClassName, Hero, takeHitFrom);													\
+        __VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);										\
+        __VIRTUAL_SET(ClassName, Hero, handleMessage);													\
+        __VIRTUAL_SET(ClassName, Hero, suspend);														\
+        __VIRTUAL_SET(ClassName, Hero, resume);															\
+        __VIRTUAL_SET(ClassName, Hero, updateSurroundingFriction);										\
+        __VIRTUAL_SET(ClassName, Hero, getAxisAllowedForBouncing);										\
+        __VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);										\
 
 __CLASS(Hero);
 
 #define Hero_ATTRIBUTES																					\
-																										\
-	/* it is derived from */																			\
-	Actor_ATTRIBUTES																					\
-	                                                                            						\
-	/* a reference to the last door the hero passed */    												\
-	Door currentlyOverlappedDoor;																		\
-																										\
-	/* hint entity */																					\
-	Entity hint;																						\
-																										\
-	/* feet dust */																						\
-	ParticleSystem feetDust;																			\
-																										\
-	/* bounding box to control camera's movement */														\
-	Entity cameraBoundingBox;																			\
-																										\
-	/* used to know if gap must be changed */															\
-	Direction inputDirection;																			\
-																										\
-	/* hero has energy	*/																				\
-	u8 energy;																							\
-																										\
-	/* boost flag */																					\
-	bool boost;																							\
-																										\
-	/* number of collected coins */																		\
-	u8 coins;																							\
-																										\
-	/* flag for collected key */																		\
-	bool hasKey;																						\
-																										\
-	/* currently active power-up */																		\
-	u8 powerUp;																							\
-																										\
-	/* flag for invincible mode (after being hit) */													\
-	bool invincible;																					\
+        /* it is derived from */																		\
+        Actor_ATTRIBUTES																				\
+        /* a reference to the last door the hero passed */    											\
+        Door currentlyOverlappedDoor;																	\
+        /* hint entity */																				\
+        Entity hint;																					\
+        /* feet dust */																					\
+        ParticleSystem feetDust;																		\
+        /* bounding box to control camera's movement */													\
+        Entity cameraBoundingBox;																		\
+        /* used to know if gap must be changed */														\
+        Direction inputDirection;																		\
+        /* hero has energy	*/																			\
+        u8 energy;																						\
+        /* boost flag */																				\
+        bool boost;																						\
+        /* number of collected coins */																	\
+        u8 coins;																						\
+        /* flag for collected key */																	\
+        bool hasKey;																					\
+        /* currently active power-up */																	\
+        u8 powerUp;																						\
+        /* flag for invincible mode (after being hit) */												\
+        bool invincible;																				\
 
 
 //---------------------------------------------------------------------------------------------------------

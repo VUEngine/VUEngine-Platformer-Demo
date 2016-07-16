@@ -53,7 +53,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
-static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram);
+static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this, VirtualList entityNamesToIgnore);
 bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
@@ -482,7 +482,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 }
 
 // state's handle message
-static bool PlatformerLevelState_handleMessage(PlatformerLevelState this, void* owner, Telegram telegram)
+static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

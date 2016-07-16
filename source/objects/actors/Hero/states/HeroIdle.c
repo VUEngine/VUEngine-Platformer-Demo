@@ -41,7 +41,7 @@ void HeroIdle_destructor(HeroIdle this);
 void HeroIdle_enter(HeroIdle this, void* owner);
 void HeroIdle_execute(HeroIdle this, void* owner);
 void HeroIdle_exit(HeroIdle this, void* owner);
-bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram);
+bool HeroIdle_processMessage(HeroIdle this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -96,7 +96,7 @@ void HeroIdle_exit(HeroIdle this, void* owner)
 }
 
 // state's handle message
-bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
+bool HeroIdle_processMessage(HeroIdle this, void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
@@ -132,7 +132,7 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 
 					if(NULL != Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner)))
 					{
-					    if(__VIRTUAL_CALL(bool, Door, canEnter, Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
+					    if(__VIRTUAL_CALL(Door, canEnter, Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
 					    {
 						    Hero_enterDoor(__SAFE_CAST(Hero, owner));
 						    return true;
@@ -221,5 +221,5 @@ bool HeroIdle_handleMessage(HeroIdle this, void* owner, Telegram telegram)
 	}
 
 	return false;
-//	return Hero_handleMessage(__SAFE_CAST(Hero, owner), telegram);
+//	return Hero_processMessage(__SAFE_CAST(Hero, owner), telegram);
 }

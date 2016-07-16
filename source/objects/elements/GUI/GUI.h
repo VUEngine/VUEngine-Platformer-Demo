@@ -30,20 +30,19 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define GUI_METHODS																						\
-	AnimatedInGameEntity_METHODS;																		\
+#define GUI_METHODS(ClassName)																			\
+	    AnimatedInGameEntity_METHODS(ClassName);														\
 
 #define GUI_SET_VTABLE(ClassName)																		\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
-	__VIRTUAL_SET(ClassName, GUI, ready);																\
-	__VIRTUAL_SET(ClassName, GUI, handlePropagatedMessage);												\
+        AnimatedInGameEntity_SET_VTABLE(ClassName);														\
+        __VIRTUAL_SET(ClassName, GUI, ready);															\
+        __VIRTUAL_SET(ClassName, GUI, handlePropagatedMessage);											\
 
 __CLASS(GUI);
 
 #define GUI_ATTRIBUTES																					\
-																										\
-	/* it is derived from */																			\
-	AnimatedInGameEntity_ATTRIBUTES																		\
+        /* it is derived from */																		\
+        AnimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------

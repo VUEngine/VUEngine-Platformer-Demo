@@ -30,33 +30,29 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define PlatformerLevelState_METHODS																	\
-	GameState_METHODS;																					\
+#define PlatformerLevelState_METHODS(ClassName)															\
+	    GameState_METHODS(ClassName);																	\
 
 // declare the virtual methods which are redefined
 #define PlatformerLevelState_SET_VTABLE(ClassName)														\
-	GameState_SET_VTABLE(ClassName)																		\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);												\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);												\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);											\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);												\
-	__VIRTUAL_SET(ClassName, PlatformerLevelState, handleMessage);										\
+        GameState_SET_VTABLE(ClassName)																	\
+        __VIRTUAL_SET(ClassName, PlatformerLevelState, enter);											\
+        __VIRTUAL_SET(ClassName, PlatformerLevelState, exit);											\
+        __VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);										\
+        __VIRTUAL_SET(ClassName, PlatformerLevelState, resume);											\
+        __VIRTUAL_SET(ClassName, PlatformerLevelState, processMessage);                                 \
 
 __CLASS(PlatformerLevelState);
 
 #define PlatformerLevelState_ATTRIBUTES																	\
-																										\
-	/* inherits */																						\
-	GameState_ATTRIBUTES																				\
-																										\
-	/* the current loaded level */																		\
-	PlatformerLevelDefinition* currentLevel;															\
-																										\
-	/* the current loaded entry point */																\
-	StageEntryPointDefinition* currentStageEntryPoint;													\
-																										\
-	/* to allow moving the screen */																	\
-	u8 mode: 4;																							\
+        /* inherits */																					\
+        GameState_ATTRIBUTES																			\
+        /* the current loaded level */																	\
+        PlatformerLevelDefinition* currentLevel;														\
+        /* the current loaded entry point */															\
+        StageEntryPointDefinition* currentStageEntryPoint;												\
+        /* to allow moving the screen */																\
+        u8 mode: 4;																						\
 
 
 //---------------------------------------------------------------------------------------------------------

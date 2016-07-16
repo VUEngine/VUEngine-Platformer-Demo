@@ -30,23 +30,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define MovingEntityMoving_METHODS																		\
-	State_METHODS;																						\
+#define MovingEntityMoving_METHODS(ClassName)															\
+	    State_METHODS(ClassName);																		\
 
 // declare the virtual methods which are redefined
 #define MovingEntityMoving_SET_VTABLE(ClassName)														\
-	State_SET_VTABLE(ClassName)																			\
-	__VIRTUAL_SET(ClassName, MovingEntityMoving, enter);												\
-	__VIRTUAL_SET(ClassName, MovingEntityMoving, execute);												\
-	__VIRTUAL_SET(ClassName, MovingEntityMoving, exit);													\
-	__VIRTUAL_SET(ClassName, MovingEntityMoving, handleMessage);										\
+        State_SET_VTABLE(ClassName)																		\
+        __VIRTUAL_SET(ClassName, MovingEntityMoving, enter);											\
+        __VIRTUAL_SET(ClassName, MovingEntityMoving, execute);											\
+        __VIRTUAL_SET(ClassName, MovingEntityMoving, exit);												\
+        __VIRTUAL_SET(ClassName, MovingEntityMoving, processMessage);                                   \
 
 __CLASS(MovingEntityMoving);
 
 #define MovingEntityMoving_ATTRIBUTES																	\
-																										\
-	/* inherits */																						\
-	State_ATTRIBUTES																					\
+        /* inherits */																					\
+        State_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------

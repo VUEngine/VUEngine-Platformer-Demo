@@ -69,7 +69,7 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 		GameState_loadStage(__SAFE_CAST(GameState, this), this->stageDefinition, NULL, true);
 	}
 
-    __VIRTUAL_CALL(void, SplashScreenState, print, this);
+    __VIRTUAL_CALL(SplashScreenState, print, this);
 
 	// start fade in effect in 1 ms, because a full render cycle is needed to put everything in place
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenStarted, NULL);
@@ -100,7 +100,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 {
 	GameState_resume(__SAFE_CAST(GameState, this), owner);
 
-	__VIRTUAL_CALL(void, SplashScreenState, print, this);
+	__VIRTUAL_CALL(SplashScreenState, print, this);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
@@ -130,7 +130,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 }
 
 // state's handle message
-bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegram telegram)
+bool SplashScreenState_processMessage(SplashScreenState this, void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
 	{
@@ -142,7 +142,7 @@ bool SplashScreenState_handleMessage(SplashScreenState this, void* owner, Telegr
 		case kKeyPressed:
 		    {
                 u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-                __VIRTUAL_CALL(void, SplashScreenState, processInput, this, pressedKey);
+                __VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
             }
             break;
 	}

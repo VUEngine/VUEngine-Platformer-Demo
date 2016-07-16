@@ -37,22 +37,20 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define HideLayer_METHODS																				\
-	AnimatedInGameEntity_METHODS;																		\
+#define HideLayer_METHODS(ClassName)																	\
+	    AnimatedInGameEntity_METHODS(ClassName);														\
 
 #define HideLayer_SET_VTABLE(ClassName)																	\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
-	__VIRTUAL_SET(ClassName, HideLayer, handleMessage);													\
+        AnimatedInGameEntity_SET_VTABLE(ClassName);														\
+        __VIRTUAL_SET(ClassName, HideLayer, handleMessage);												\
 
 __CLASS(HideLayer);
 
 #define HideLayer_ATTRIBUTES																			\
-																										\
-	/* it is derived from */																			\
-	AnimatedInGameEntity_ATTRIBUTES																		\
-																										\
-	/* is hide layer currently being overlapped by hero? */												\
-	bool currentlyOverlappingHero;																		\
+        /* it is derived from */																		\
+        AnimatedInGameEntity_ATTRIBUTES																	\
+        /* is hide layer currently being overlapped by hero? */											\
+        bool currentlyOverlappingHero;																	\
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -38,20 +38,19 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Cannon_METHODS																					\
-	AnimatedInGameEntity_METHODS;																		\
-	
+#define Cannon_METHODS(ClassName)																		\
+    	AnimatedInGameEntity_METHODS(ClassName);														\
+
 #define Cannon_SET_VTABLE(ClassName)																	\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
-	__VIRTUAL_SET(ClassName, Cannon, handleMessage);													\
-	__VIRTUAL_SET(ClassName, Cannon, ready);															\
+        AnimatedInGameEntity_SET_VTABLE(ClassName);														\
+        __VIRTUAL_SET(ClassName, Cannon, handleMessage);												\
+        __VIRTUAL_SET(ClassName, Cannon, ready);														\
 
 __CLASS(Cannon);
 
 #define Cannon_ATTRIBUTES																				\
-																										\
-	/* it is derived from */																			\
-	AnimatedInGameEntity_ATTRIBUTES																		\
+        /* it is derived from */																		\
+        AnimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------

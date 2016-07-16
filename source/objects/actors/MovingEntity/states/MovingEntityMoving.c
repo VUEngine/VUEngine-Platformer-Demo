@@ -39,7 +39,7 @@ void MovingEntityMoving_destructor(MovingEntityMoving this);
 void MovingEntityMoving_enter(MovingEntityMoving this, void* owner);
 void MovingEntityMoving_execute(MovingEntityMoving this, void* owner);
 void MovingEntityMoving_exit(MovingEntityMoving this, void* owner);
-bool MovingEntityMoving_handleMessage(MovingEntityMoving this, void* owner, Telegram telegram);
+bool MovingEntityMoving_processMessage(MovingEntityMoving this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ void MovingEntityMoving_exit(MovingEntityMoving this, void* owner)
 }
 
 // state's handle message
-bool MovingEntityMoving_handleMessage(MovingEntityMoving this, void* owner, Telegram telegram)
+bool MovingEntityMoving_processMessage(MovingEntityMoving this, void* owner, Telegram telegram)
 {
 	return false;
 }

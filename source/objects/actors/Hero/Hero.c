@@ -34,6 +34,7 @@
 #include <CameraTriggerEntity.h>
 #include <EventManager.h>
 #include <Hint.h>
+#include <SoundManager.h>
 #include <debugUtilities.h>
 
 
@@ -1015,13 +1016,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 	                // get the axis of collision
 	                u8 axisOfCollision = __VIRTUAL_CALL(
-	                    int,
 	                    Shape,
 	                    getAxisOfCollision,
 	                    this->shape,
 	                    VirtualNode_getData(node),
 	                    Body_getLastDisplacement(this->body),
-	                    CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
+	                    *CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
 	                );
 
                     if(axisOfCollision & __YAXIS)
@@ -1040,7 +1040,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 					VBVec3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 
-					__VIRTUAL_CALL(void, Container, setLocalPosition, this->cameraBoundingBox, &position);
+					__VIRTUAL_CALL(Container, setLocalPosition, this->cameraBoundingBox, &position);
 				}
 				break;
 
@@ -1161,7 +1161,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 			Door door = __SAFE_CAST(Door, Telegram_getSender(telegram));
 
             this->currentlyOverlappedDoor = door;
-            Hero_showHint(this, __VIRTUAL_CALL(u8, Door, getHintType, door));
+            Hero_showHint(this, __VIRTUAL_CALL(Door, getHintType, door));
             return true;
             break;
         }

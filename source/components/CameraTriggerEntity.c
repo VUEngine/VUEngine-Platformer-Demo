@@ -91,7 +91,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 /*
 	if(this->shape)
 	{
-		__VIRTUAL_CALL(void, Shape, draw, this->shape);
+		__VIRTUAL_CALL(Shape, draw, this->shape);
 	}
 */
 }

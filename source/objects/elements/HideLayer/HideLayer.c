@@ -115,7 +115,7 @@ bool HideLayer_checkStillOverlapping(HideLayer this)
 	// check if hero has recently overlapped door and is still doing so
 	if(
 		this->currentlyOverlappingHero &&
-		!__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, Hero_getInstance())), Entity_getShape(__SAFE_CAST(Entity, this)))
+		!__VIRTUAL_CALL(Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, Hero_getInstance())), Entity_getShape(__SAFE_CAST(Entity, this)))
 	)
 	{
 		this->currentlyOverlappingHero = false;

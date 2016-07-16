@@ -31,8 +31,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define ProgressManager_METHODS																			\
-    	Object_METHODS																					\
+#define ProgressManager_METHODS(ClassName)																\
+    	Object_METHODS(ClassName)																		\
 
 // declare the virtual methods which are redefined
 #define ProgressManager_SET_VTABLE(ClassName)															\
@@ -42,21 +42,16 @@
 __CLASS(ProgressManager);
 
 #define ProgressManager_ATTRIBUTES																		\
-																										\
-	/* super's attributes */																			\
-	Object_ATTRIBUTES;																					\
-																										\
-	/* hero's current energy */																			\
-	u8 heroCurrentEnergy;																				\
-																										\
-	/* hero's currently active power-up */																\
-	u8 heroCurrentPowerUp;																				\
-																										\
-	/* flag that tells if the hero has collected the current level's key */								\
-	bool heroHasKey;																					\
-																										\
-	/* flag that tells if the hero has already used the current level's key */							\
-	bool heroHasUsedKey;																				\
+        /* super's attributes */																		\
+        Object_ATTRIBUTES;																				\
+        /* hero's current energy */																		\
+        u8 heroCurrentEnergy;																			\
+        /* hero's currently active power-up */															\
+        u8 heroCurrentPowerUp;																			\
+        /* flag that tells if the hero has collected the current level's key */							\
+        bool heroHasKey;																				\
+        /* flag that tells if the hero has already used the current level's key */						\
+        bool heroHasUsedKey;																			\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -69,7 +64,7 @@ __CLASS(ProgressManager);
 #define TOTAL_COINS_IN_GAME		64
 #define SAVE_STAMP				"GameSaved"
 
-typedef struct CoinStatus 
+typedef struct CoinStatus
 {
 	char name[COIN_NAME_LENGTH];
 	bool taken;
@@ -79,7 +74,7 @@ typedef struct UserData
 {
 	// flag to know if there is data saved
 	u32 saveStamp[SAVE_STAMP_LENGTH];
-	
+
 	// number of coins
 	int numberOfCollectedCoins;
 	CoinStatus coinStatus[TOTAL_COINS_IN_GAME];

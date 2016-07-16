@@ -29,20 +29,18 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CameraTriggerEntity_METHODS																		\
-		TriggerEntity_METHODS																			\
+#define CameraTriggerEntity_METHODS(ClassName)															\
+		TriggerEntity_METHODS(ClassName)																\
 
 #define CameraTriggerEntity_SET_VTABLE(ClassName)														\
 		TriggerEntity_SET_VTABLE(ClassName)																\
 		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);										\
 
 #define CameraTriggerEntity_ATTRIBUTES																	\
-																										\
-	/* super's attributes */																			\
-	TriggerEntity_ATTRIBUTES																			\
-																										\
-	/* update axis flag */																				\
-	VBVec3DFlag overridePositionFlag;																	\
+        /* super's attributes */																		\
+        TriggerEntity_ATTRIBUTES																		\
+        /* update axis flag */																			\
+        VBVec3DFlag overridePositionFlag;																\
 
 __CLASS(CameraTriggerEntity);
 

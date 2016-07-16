@@ -54,7 +54,7 @@ static void OverworldState_execute(OverworldState this, void* owner);
 static void OverworldState_exit(OverworldState this, void* owner);
 static void OverworldState_resume(OverworldState this, void* owner);
 static void OverworldState_suspend(OverworldState this, void* owner);
-static bool OverworldState_handleMessage(OverworldState this, void* owner, Telegram telegram);
+static bool OverworldState_processMessage(OverworldState this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -186,7 +186,7 @@ static void OverworldState_print(OverworldState this)
 }
 
 // state's handle message
-static bool OverworldState_handleMessage(OverworldState this, void* owner, Telegram telegram)
+static bool OverworldState_processMessage(OverworldState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

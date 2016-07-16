@@ -38,13 +38,13 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CannonBall_METHODS																				\
-	Actor_METHODS;																						\
+#define CannonBall_METHODS(ClassName)																	\
+    	Actor_METHODS(ClassName);																		\
 
 #define CannonBall_SET_VTABLE(ClassName)																\
-	Actor_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);										\
-	__VIRTUAL_SET(ClassName, CannonBall, ready);														\
+        Actor_SET_VTABLE(ClassName);																	\
+        __VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);									\
+        __VIRTUAL_SET(ClassName, CannonBall, ready);													\
 
 __CLASS(CannonBall);
 

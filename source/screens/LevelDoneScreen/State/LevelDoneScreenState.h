@@ -30,22 +30,21 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define LevelDoneScreenState_METHODS																	\
-	GameState_METHODS;												    								\
+#define LevelDoneScreenState_METHODS(ClassName)															\
+	    GameState_METHODS(ClassName);												    				\
 
 // declare the virtual methods which are redefined
 #define LevelDoneScreenState_SET_VTABLE(ClassName)														\
-	GameState_SET_VTABLE(ClassName)								    									\
-	__VIRTUAL_SET(ClassName, LevelDoneScreenState, enter);												\
-	__VIRTUAL_SET(ClassName, LevelDoneScreenState, exit);												\
-	__VIRTUAL_SET(ClassName, LevelDoneScreenState, handleMessage);										\
+        GameState_SET_VTABLE(ClassName)								    								\
+        __VIRTUAL_SET(ClassName, LevelDoneScreenState, enter);											\
+        __VIRTUAL_SET(ClassName, LevelDoneScreenState, exit);											\
+        __VIRTUAL_SET(ClassName, LevelDoneScreenState, processMessage);	                                \
 
 __CLASS(LevelDoneScreenState);
 
 #define LevelDoneScreenState_ATTRIBUTES							        								\
-														            									\
-	/* inherits */																						\
-	GameState_ATTRIBUTES																				\
+        /* inherits */																					\
+        GameState_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------

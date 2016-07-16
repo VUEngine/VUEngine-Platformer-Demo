@@ -37,7 +37,7 @@ void MovingEntityIdle_destructor(MovingEntityIdle this);
 void MovingEntityIdle_enter(MovingEntityIdle this, void* owner);
 void MovingEntityIdle_execute(MovingEntityIdle this, void* owner);
 void MovingEntityIdle_exit(MovingEntityIdle this, void* owner);
-bool MovingEntityIdle_handleMessage(MovingEntityIdle this, void* owner, Telegram telegram);
+bool MovingEntityIdle_processMessage(MovingEntityIdle this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ void MovingEntityIdle_exit(MovingEntityIdle this, void* owner)
 }
 
 // state's handle message
-bool MovingEntityIdle_handleMessage(MovingEntityIdle this, void* owner, Telegram telegram)
+bool MovingEntityIdle_processMessage(MovingEntityIdle this, void* owner, Telegram telegram)
 {
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))

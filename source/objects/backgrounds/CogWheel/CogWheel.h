@@ -37,20 +37,19 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CogWheel_METHODS																				\
-	Image_METHODS;																						\
+#define CogWheel_METHODS(ClassName)																		\
+    	Image_METHODS(ClassName);																		\
 
 #define CogWheel_SET_VTABLE(ClassName)																	\
-	Image_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, CogWheel, ready);															\
-	__VIRTUAL_SET(ClassName, CogWheel, handleMessage);													\
+        Image_SET_VTABLE(ClassName);																	\
+        __VIRTUAL_SET(ClassName, CogWheel, ready);														\
+        __VIRTUAL_SET(ClassName, CogWheel, handleMessage);												\
 
 __CLASS(CogWheel);
 
 #define CogWheel_ATTRIBUTES																				\
-																										\
-	/* it is derived from */																			\
-	Image_ATTRIBUTES																					\
+        /* it is derived from */																    	\
+        Image_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------

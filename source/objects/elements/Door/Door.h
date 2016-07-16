@@ -38,37 +38,34 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Door_METHODS																					\
-	AnimatedInGameEntity_METHODS;																		\
-	__VIRTUAL_DEC(hasDestination);																		\
-	__VIRTUAL_DEC(setOverlapping);																		\
-	__VIRTUAL_DEC(unsetOverlapping);																	\
-	__VIRTUAL_DEC(canEnter);																			\
-	__VIRTUAL_DEC(getHintType);																			\
+#define Door_METHODS(ClassName)																			\
+        AnimatedInGameEntity_METHODS(ClassName);														\
+        __VIRTUAL_DEC(ClassName, bool, hasDestination);													\
+        __VIRTUAL_DEC(ClassName, void, setOverlapping);													\
+        __VIRTUAL_DEC(ClassName, void, unsetOverlapping);												\
+        __VIRTUAL_DEC(ClassName, bool, canEnter);														\
+        __VIRTUAL_DEC(ClassName, u8, getHintType);														\
 
 #define Door_SET_VTABLE(ClassName)																		\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
-	__VIRTUAL_SET(ClassName, Door, setExtraInfo);														\
-	__VIRTUAL_SET(ClassName, Door, ready);																\
-	__VIRTUAL_SET(ClassName, Door, handleMessage);														\
-	__VIRTUAL_SET(ClassName, Door, hasDestination);														\
-	__VIRTUAL_SET(ClassName, Door, setOverlapping);														\
-	__VIRTUAL_SET(ClassName, Door, unsetOverlapping);													\
-	__VIRTUAL_SET(ClassName, Door, canEnter);															\
-	__VIRTUAL_SET(ClassName, Door, getHintType);														\
+        AnimatedInGameEntity_SET_VTABLE(ClassName);														\
+        __VIRTUAL_SET(ClassName, Door, setExtraInfo);													\
+        __VIRTUAL_SET(ClassName, Door, ready);															\
+        __VIRTUAL_SET(ClassName, Door, handleMessage);													\
+        __VIRTUAL_SET(ClassName, Door, hasDestination);													\
+        __VIRTUAL_SET(ClassName, Door, setOverlapping);													\
+        __VIRTUAL_SET(ClassName, Door, unsetOverlapping);												\
+        __VIRTUAL_SET(ClassName, Door, canEnter);														\
+        __VIRTUAL_SET(ClassName, Door, getHintType);													\
 
 __CLASS(Door);
 
 #define Door_ATTRIBUTES																					\
-																										\
-	/* it is derived from */																			\
-	AnimatedInGameEntity_ATTRIBUTES																		\
-																										\
-	/* destination of door */																			\
-	StageEntryPointDefinition* destinationDefinition;											\
-																										\
-	/* is door currently being overlapped by hero? */													\
-	bool currentlyOverlappingHero;																		\
+        /* it is derived from */																		\
+        AnimatedInGameEntity_ATTRIBUTES																	\
+        /* destination of door */																		\
+        StageEntryPointDefinition* destinationDefinition;										    	\
+        /* is door currently being overlapped by hero? */												\
+        bool currentlyOverlappingHero;																	\
 
 
 //---------------------------------------------------------------------------------------------------------

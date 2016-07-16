@@ -30,24 +30,23 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define KeyDoor_METHODS																					\
-	Door_METHODS;																						\
+#define KeyDoor_METHODS(ClassName)																		\
+	    Door_METHODS(ClassName);																		\
 
 #define KeyDoor_SET_VTABLE(ClassName)																	\
-	Door_SET_VTABLE(ClassName);																			\
-	__VIRTUAL_SET(ClassName, KeyDoor, ready);															\
-	__VIRTUAL_SET(ClassName, KeyDoor, hasDestination);													\
-	__VIRTUAL_SET(ClassName, KeyDoor, setOverlapping);													\
-	__VIRTUAL_SET(ClassName, KeyDoor, unsetOverlapping);												\
-	__VIRTUAL_SET(ClassName, KeyDoor, canEnter);														\
-	__VIRTUAL_SET(ClassName, KeyDoor, getHintType);														\
+        Door_SET_VTABLE(ClassName);																		\
+        __VIRTUAL_SET(ClassName, KeyDoor, ready);														\
+        __VIRTUAL_SET(ClassName, KeyDoor, hasDestination);												\
+        __VIRTUAL_SET(ClassName, KeyDoor, setOverlapping);												\
+        __VIRTUAL_SET(ClassName, KeyDoor, unsetOverlapping);											\
+        __VIRTUAL_SET(ClassName, KeyDoor, canEnter);													\
+        __VIRTUAL_SET(ClassName, KeyDoor, getHintType);													\
 
 __CLASS(KeyDoor);
 
 #define KeyDoor_ATTRIBUTES																				\
-																										\
-	/* it is derived from */																			\
-	Door_ATTRIBUTES																						\
+        /* it is derived from */																		\
+        Door_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------

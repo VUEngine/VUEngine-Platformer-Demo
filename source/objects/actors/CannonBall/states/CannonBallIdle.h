@@ -30,23 +30,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define CannonBallIdle_METHODS																			\
-	State_METHODS;																						\
+#define CannonBallIdle_METHODS(ClassName)																\
+	    State_METHODS(ClassName);																		\
 
 // declare the virtual methods which are redefined
 #define CannonBallIdle_SET_VTABLE(ClassName)															\
-State_SET_VTABLE(ClassName)																				\
-	__VIRTUAL_SET(ClassName, CannonBallIdle, enter);													\
-	__VIRTUAL_SET(ClassName, CannonBallIdle, execute);													\
-	__VIRTUAL_SET(ClassName, CannonBallIdle, exit);														\
-	__VIRTUAL_SET(ClassName, CannonBallIdle, handleMessage);											\
-	
+        State_SET_VTABLE(ClassName)																		\
+        __VIRTUAL_SET(ClassName, CannonBallIdle, enter);												\
+        __VIRTUAL_SET(ClassName, CannonBallIdle, execute);												\
+        __VIRTUAL_SET(ClassName, CannonBallIdle, exit);													\
+        __VIRTUAL_SET(ClassName, CannonBallIdle, processMessage);                                       \
+
 __CLASS(CannonBallIdle);
 
 #define CannonBallIdle_ATTRIBUTES																		\
-																										\
-	/* inherits */																						\
-	State_ATTRIBUTES																					\
+        /* inherits */																					\
+        State_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------

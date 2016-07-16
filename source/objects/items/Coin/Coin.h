@@ -30,19 +30,18 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Coin_METHODS																					\
-	AnimatedInGameEntity_METHODS;																		\
+#define Coin_METHODS(ClassName)																			\
+    	AnimatedInGameEntity_METHODS(ClassName);														\
 
 #define Coin_SET_VTABLE(ClassName)																		\
-	AnimatedInGameEntity_SET_VTABLE(ClassName);															\
-	__VIRTUAL_SET(ClassName, Coin, handleMessage);														\
+        AnimatedInGameEntity_SET_VTABLE(ClassName);														\
+        __VIRTUAL_SET(ClassName, Coin, handleMessage);													\
 
 __CLASS(Coin);
 
 #define Coin_ATTRIBUTES																					\
-																										\
-	/* it is derived from */																			\
-	AnimatedInGameEntity_ATTRIBUTES																		\
+        /* it is derived from */																		\
+        AnimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------

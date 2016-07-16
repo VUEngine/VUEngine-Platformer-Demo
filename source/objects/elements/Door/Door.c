@@ -95,7 +95,7 @@ void Door_ready(Door this)
 {
 	ASSERT(this, "Door::ready: null this");
 
-    if(__VIRTUAL_CALL(bool, Door, hasDestination, this))
+    if(__VIRTUAL_CALL(Door, hasDestination, this))
     {
         AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
     }
@@ -123,7 +123,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 
 		case kHeroEnterDoor:
 
-			if(__VIRTUAL_CALL(bool, Door, hasDestination, this))
+			if(__VIRTUAL_CALL(Door, hasDestination, this))
 			{
 				PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), this->destinationDefinition);
 				return true;
@@ -142,11 +142,11 @@ bool Door_hasDestination(Door this)
 void Door_onOverlapping(Door this)
 {
     // first contact with hero?
-    if(!Door_isOverlapping(this) && __VIRTUAL_CALL(bool, Door, hasDestination, this, this))
+    if(!Door_isOverlapping(this) && __VIRTUAL_CALL(Door, hasDestination, this))
     {
         MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kHeroStartOverlapping, NULL);
 
-	    __VIRTUAL_CALL(void, Door, setOverlapping, this);
+	    __VIRTUAL_CALL(Door, setOverlapping, this);
     }
 }
 
@@ -176,10 +176,10 @@ bool Door_checkStillOverlapping(Door this)
 	// check if hero has recently overlapped door and is still doing so
 	if(
 		this->currentlyOverlappingHero &&
-		!__VIRTUAL_CALL(int, Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, Hero_getInstance())), Entity_getShape(__SAFE_CAST(Entity, this)))
+		!__VIRTUAL_CALL(Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, Hero_getInstance())), Entity_getShape(__SAFE_CAST(Entity, this)))
 	)
 	{
-	    __VIRTUAL_CALL(void, Door, unsetOverlapping, this);
+	    __VIRTUAL_CALL(Door, unsetOverlapping, this);
 	}
 
 	return this->currentlyOverlappingHero;
@@ -187,7 +187,7 @@ bool Door_checkStillOverlapping(Door this)
 
 bool Door_canEnter(Door this)
 {
-	return __VIRTUAL_CALL(bool, Door, hasDestination, this);
+	return __VIRTUAL_CALL(Door, hasDestination, this);
 }
 
 u8 Door_getHintType(Door this)

@@ -45,7 +45,7 @@ static void PauseScreenState_constructor(PauseScreenState this);
 static void PauseScreenState_enter(PauseScreenState this, void* owner);
 static void PauseScreenState_execute(PauseScreenState this, void* owner);
 static void PauseScreenState_exit(PauseScreenState this, void* owner);
-static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, Telegram telegram);
+static bool PauseScreenState_processMessage(PauseScreenState this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ static void PauseScreenState_exit(PauseScreenState this, void* owner)
 }
 
 // state's handle message
-static bool PauseScreenState_handleMessage(PauseScreenState this, void* owner, Telegram telegram)
+static bool PauseScreenState_processMessage(PauseScreenState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

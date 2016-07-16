@@ -30,8 +30,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define EventManager_METHODS																			\
-    	Object_METHODS																					\
+#define EventManager_METHODS(ClassName)																	\
+    	Object_METHODS(ClassName)																		\
 
 // declare the virtual methods which are redefined
 #define EventManager_SET_VTABLE(ClassName)																\
@@ -41,9 +41,8 @@
 __CLASS(EventManager);
 
 #define EventManager_ATTRIBUTES																			\
-																										\
-	/* super's attributes */																			\
-	Object_ATTRIBUTES;																					\
+        /* super's attributes */																		\
+        Object_ATTRIBUTES;																				\
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -37,27 +37,24 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define MovingEntity_METHODS																			\
-	Actor_METHODS;																						\
+#define MovingEntity_METHODS(ClassName)																	\
+    	Actor_METHODS(ClassName);																		\
 
 #define MovingEntity_SET_VTABLE(ClassName)																\
-	Actor_SET_VTABLE(ClassName);																		\
-	__VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);											\
-	__VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);										\
-	__VIRTUAL_SET(ClassName, MovingEntity, ready);														\
-	
+        Actor_SET_VTABLE(ClassName);																	\
+        __VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);										\
+        __VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);									\
+        __VIRTUAL_SET(ClassName, MovingEntity, ready);													\
+
 __CLASS(MovingEntity);
 
 #define MovingEntity_ATTRIBUTES																			\
-																										\
-	/* it is derived from */																			\
-	Actor_ATTRIBUTES																					\
-																										\
-	/* save my initial position */																		\
-	int initialPosition;																				\
-																										\
-	/* definition pointer */																			\
-	MovingEntityDefinition* movingEntityDefinition;														\
+        /* it is derived from */																		\
+        Actor_ATTRIBUTES																				\
+        /* save my initial position */																	\
+        int initialPosition;																			\
+        /* definition pointer */																		\
+        MovingEntityDefinition* movingEntityDefinition;													\
 
 // definition in ROM memory
 typedef struct MovingEntityDefinition
@@ -67,19 +64,19 @@ typedef struct MovingEntityDefinition
 
 	// velocity
 	fix19_13 velocity;
-	
+
 	// maximum deviation from initial position
 	fix19_13 maximumDisplacement;
-	
+
 	// time to rest idle
 	u16 idleDuration;
-	
+
 	// on which axis it moves
 	u8 axis;
-	
+
 	// movement direction
 	s8 direction;
-	
+
 } MovingEntityDefinition;
 
 typedef const MovingEntityDefinition MovingEntityROMDef;

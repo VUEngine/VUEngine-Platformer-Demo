@@ -30,23 +30,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define HeroIdle_METHODS																				\
-	State_METHODS;																						\
+#define HeroIdle_METHODS(ClassName)																		\
+	    State_METHODS(ClassName);																		\
 
 // declare the virtual methods which are redefined
 #define HeroIdle_SET_VTABLE(ClassName)																	\
-	State_SET_VTABLE(ClassName)																			\
-	__VIRTUAL_SET(ClassName, HeroIdle, enter);															\
-	__VIRTUAL_SET(ClassName, HeroIdle, execute);														\
-	__VIRTUAL_SET(ClassName, HeroIdle, exit);															\
-	__VIRTUAL_SET(ClassName, HeroIdle, handleMessage);													\
-	
+        State_SET_VTABLE(ClassName)																		\
+        __VIRTUAL_SET(ClassName, HeroIdle, enter);														\
+        __VIRTUAL_SET(ClassName, HeroIdle, execute);													\
+        __VIRTUAL_SET(ClassName, HeroIdle, exit);														\
+        __VIRTUAL_SET(ClassName, HeroIdle, processMessage);	                                            \
+
 __CLASS(HeroIdle);
 
 #define HeroIdle_ATTRIBUTES																				\
-																										\
-	/* inherits */																						\
-	State_ATTRIBUTES																					\
+        /* inherits */																					\
+        State_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------

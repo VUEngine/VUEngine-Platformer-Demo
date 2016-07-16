@@ -65,25 +65,25 @@ GAME_ESSENTIALS = 	-include $(VBJAENGINE_CONFIG_FILE) \
 # The next blocks changes some variables depending on the build type
 ifeq ($(TYPE),debug)
 LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall $(GAME_ESSENTIALS)
+CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = __DEBUG __TOOLS
 endif
 
 ifeq ($(TYPE), release)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline $(GAME_ESSENTIALS)
+CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS =
 endif
 
 ifeq ($(TYPE), release-tools)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline $(GAME_ESSENTIALS)
+CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = __TOOLS
 endif
 
 ifeq ($(TYPE),preprocessor)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
-CCPARAM = -nodefaultlibs -mv810 -Wall -Winline $(GAME_ESSENTIALS) -E
+CCPARAM = -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
 MACROS = __TOOLS
 endif
 
@@ -149,7 +149,7 @@ dump: $(TARGET).elf
 $(TARGET).elf: $(ENGINE) dirs $(OBJECTS)
 		@echo Linking $(TARGET)
 		@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(LDPARAM) \
-			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
+			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET)-$(COMPILER).map
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.

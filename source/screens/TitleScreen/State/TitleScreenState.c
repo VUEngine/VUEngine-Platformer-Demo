@@ -53,7 +53,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
 static void TitleScreenState_resume(TitleScreenState this, void* owner);
 static void TitleScreenState_suspend(TitleScreenState this, void* owner);
-static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram);
+static bool TitleScreenState_processMessage(TitleScreenState this, void* owner, Telegram telegram);
 static void TitleScreenState_showMessage(TitleScreenState this);
 static void TitleScreenState_hideMessage(TitleScreenState this);
 static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventFirer);
@@ -211,7 +211,7 @@ static void TitleScreenState_hideMessage(TitleScreenState this)
 }
 
 // state's handle message
-static bool TitleScreenState_handleMessage(TitleScreenState this, void* owner, Telegram telegram)
+static bool TitleScreenState_processMessage(TitleScreenState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

@@ -30,22 +30,21 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define GoalDoor_METHODS																				\
-	Door_METHODS;																						\
+#define GoalDoor_METHODS(ClassName)																		\
+	    Door_METHODS(ClassName);																		\
 
 #define GoalDoor_SET_VTABLE(ClassName)																	\
-	Door_SET_VTABLE(ClassName);																			\
-	__VIRTUAL_SET(ClassName, GoalDoor, handleMessage);													\
-	__VIRTUAL_SET(ClassName, GoalDoor, ready);															\
-	__VIRTUAL_SET(ClassName, GoalDoor, hasDestination);													\
-	__VIRTUAL_SET(ClassName, GoalDoor, canEnter);														\
+        Door_SET_VTABLE(ClassName);																		\
+        __VIRTUAL_SET(ClassName, GoalDoor, handleMessage);												\
+        __VIRTUAL_SET(ClassName, GoalDoor, ready);														\
+        __VIRTUAL_SET(ClassName, GoalDoor, hasDestination);												\
+        __VIRTUAL_SET(ClassName, GoalDoor, canEnter);													\
 
 __CLASS(GoalDoor);
 
 #define GoalDoor_ATTRIBUTES																				\
-																										\
-	/* it is derived from */																			\
-	Door_ATTRIBUTES																						\
+        /* it is derived from */																		\
+        Door_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------

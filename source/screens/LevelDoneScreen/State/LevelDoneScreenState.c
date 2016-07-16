@@ -44,7 +44,7 @@ static void LevelDoneScreenState_constructor(LevelDoneScreenState this);
 static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner);
 static void LevelDoneScreenState_print(LevelDoneScreenState this);
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner);
-static bool LevelDoneScreenState_handleMessage(LevelDoneScreenState this, void* owner, Telegram telegram);
+static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -121,7 +121,7 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this)
 }
 
 // state's handle message
-static bool LevelDoneScreenState_handleMessage(LevelDoneScreenState this, void* owner, Telegram telegram)
+static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this, void* owner, Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

@@ -54,8 +54,8 @@ enum CustomScreenFX
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define CustomScreenMovementManager_METHODS																\
-    	ScreenMovementManager_METHODS																	\
+#define CustomScreenMovementManager_METHODS(ClassName)																\
+    	ScreenMovementManager_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define CustomScreenMovementManager_SET_VTABLE(ClassName)												\
@@ -63,27 +63,20 @@ enum CustomScreenFX
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, position);								\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, startEffect);								\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, stopEffect);								\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, handleMessage);							\
 
 #define CustomScreenMovementManager_ATTRIBUTES															\
-																										\
-	/* super's attributes */																			\
-	ScreenMovementManager_ATTRIBUTES;																	\
-																										\
-	/* temporary variable to hold the focus entity during shaking fx */									\
-	InGameEntity tempFocusInGameEntity;																	\
-																										\
-	/* last offset set by shake function */																\
-	VBVec3D lastShakeOffset;																			\
-																										\
-	/* time left in current shaking fx (in ms) */														\
-	int shakeTimeLeft;																					\
-																										\
-	/* update axis flag */																				\
-	VBVec3DFlag positionFlag;																			\
-																										\
-	/* to calculate elapsed time */																				\
-	u32 previousTime;																			\
+        /* super's attributes */																		\
+        ScreenMovementManager_ATTRIBUTES;																\
+        /* temporary variable to hold the focus entity during shaking fx */								\
+        InGameEntity tempFocusInGameEntity;																\
+        /* last offset set by shake function */															\
+        VBVec3D lastShakeOffset;																		\
+        /* time left in current shaking fx (in ms) */													\
+        int shakeTimeLeft;																				\
+        /* update axis flag */																			\
+        VBVec3DFlag positionFlag;																		\
+        /* to calculate elapsed time */																	\
+        u32 previousTime;																    			\
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);
@@ -99,7 +92,6 @@ void CustomScreenMovementManager_destructor(CustomScreenMovementManager this);
 void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving);
 void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, int effect, int duration);
 void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, int effect);
-bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram);
 void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag);
 VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this);
 
