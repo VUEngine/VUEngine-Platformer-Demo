@@ -1,8 +1,5 @@
 # Makefile taken from Wikipedia.org
 
-# Specify the main target
-TARGET = output
-
 # Default build type
 TYPE = debug
 #TYPE = release
@@ -16,6 +13,10 @@ COMPILER_NAME = v810
 
 # linker script
 LINKER_SCRIPT = vb.ld
+
+# Small data sections' usage
+SMALL_DATA_SECTION_SUFIX =
+SMALL_DATA_SECTION_MACRO =
 
 # include overrides
 include config.make
@@ -37,6 +38,11 @@ endif
 PAD =
 ifeq ($(PAD_ROM), 1)
 PAD = pad
+endif
+
+ifneq ($(SMALL_DATA_SECTION),)
+SMALL_DATA_SECTION_SUFIX = $(SMALL_DATA_SECTION)
+SMALL_DATA_SECTION_MACRO = __SMALL_DATA_SECTION=\"$(SMALL_DATA_SECTION)\"
 endif
 
 ifeq ($(SRAM_WRAM), 1)
@@ -66,25 +72,25 @@ GAME_ESSENTIALS = 	-include $(VBJAENGINE_CONFIG_FILE) \
 ifeq ($(TYPE),debug)
 LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
-MACROS = __DEBUG __TOOLS
+MACROS = __DEBUG __TOOLS $(SMALL_DATA_SECTION_MACRO)
 endif
 
 ifeq ($(TYPE), release)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
-MACROS =
+MACROS = $(SMALL_DATA_SECTION_MACRO)
 endif
 
 ifeq ($(TYPE), release-tools)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
-MACROS = __TOOLS
+MACROS = __TOOLS $(SMALL_DATA_SECTION_MACRO)
 endif
 
 ifeq ($(TYPE),preprocessor)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
-MACROS = __TOOLS
+MACROS = __TOOLS $(SMALL_DATA_SECTION_MACRO)
 endif
 
 
@@ -98,7 +104,7 @@ LIBPATH =
 EXTRA_FILES = makefile
 
 # Where to store object and dependency files.
-STORE = .make-$(TYPE)-$(COMPILER)-$(COMPILER_OUTPUT)
+STORE = .make-$(TYPE)-$(COMPILER)-$(COMPILER_OUTPUT)$(SMALL_DATA_SECTION_SUFIX)
 
 # Makes a list of the source (.cpp) files.
 SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
@@ -120,6 +126,8 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 # first build the engine
 ENGINE = libvbjae.a
 
+# first build the engine
+TARGET = ouput$(SMALL_DATA_SECTION_SUFIX)
 
 all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
@@ -129,10 +137,10 @@ pad: $(TARGET).vb
 	@echo " "
 
 deleteEngine:
-		@rm -f $(ENGINE)
+	@rm -f $(ENGINE)
 
 $(ENGINE): deleteEngine
-	$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e COMPILER=$(COMPILER) -e COMPILER_OUTPUT=$(COMPILER_OUTPUT) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
+	@$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e COMPILER=$(COMPILER) -e COMPILER_OUTPUT=$(COMPILER_OUTPUT) -e SMALL_DATA_SECTION=$(SMALL_DATA_SECTION) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
 
 $(TARGET).vb: $(TARGET).elf
 	@echo Creating $@
@@ -142,43 +150,43 @@ $(TARGET).vb: $(TARGET).elf
 dump: $(TARGET).elf
 	@echo
 	@echo Dumping elf
-	@$(OBJDUMP) -t $(TARGET).elf > sections-$(TYPE)-$(COMPILER).txt
-	@$(OBJDUMP) -S $(TARGET).elf > machine-$(TYPE)-$(COMPILER).asm
+	@$(OBJDUMP) -t $(TARGET).elf > sections-$(TYPE)-$(COMPILER)$(SMALL_DATA_SECTION_SUFIX).txt
+	@$(OBJDUMP) -S $(TARGET).elf > machine-$(TYPE)-$(COMPILER)$(SMALL_DATA_SECTION_SUFIX).asm
 	@echo Dumping elf done
 
 $(TARGET).elf: $(ENGINE) dirs $(OBJECTS)
-		@echo Linking $(TARGET)
-		@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(LDPARAM) \
-			$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET)-$(COMPILER).map
+	@echo Linking $(TARGET)
+	@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(LDPARAM) \
+		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET)-$(COMPILER).map
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.
 $(STORE)/%.o: %.c
-		@echo Creating object file for $*
-		@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(CCPARAM) $(foreach INC,$(INCPATH_ENGINE) $(INCPATH_GAME),-I$(INC))\
-                $(foreach MACRO,$(MACROS),-D$(MACRO)) -$(COMPILER_OUTPUT) $< -o $@
-		@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
-		@rm -f $(STORE)/$*.dd
+	@echo Creating object file for $*
+	@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(CCPARAM) $(foreach INC,$(INCPATH_ENGINE) $(INCPATH_GAME),-I$(INC))\
+        $(foreach MACRO,$(MACROS),-D$(MACRO)) -$(COMPILER_OUTPUT) $< -o $@
+	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
+	@rm -f $(STORE)/$*.dd
 
 # Empty rule to prevent problems when a header is deleted.
 %.h: ;
 
 # Cleans up the objects, .d files and executables.
 clean:
-		@echo Making clean.
-		@-rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
-		@-rm -Rf $(STORE)
-		@-rm -f $(ENGINE)
+	@echo Making clean.
+	@-rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
+	@-rm -Rf $(STORE)
+	@-rm -f $(ENGINE)
 
 # Backup the source files.
 backup:
-		@-if [ ! -e .backup ]; then mkdir .backup; fi;
-		@zip .backup/backup_`date +%d-%m-%y_%H.%M`.zip $(SOURCE) $(HEADERS) $(EXTRA_FILES)
+	@-if [ ! -e .backup ]; then mkdir .backup; fi;
+	@zip .backup/backup_`date +%d-%m-%y_%H.%M`.zip $(SOURCE) $(HEADERS) $(EXTRA_FILES)
 
 # Create necessary directories
 dirs:
-		@-if [ ! -e $(STORE) ]; then mkdir $(STORE); fi;
-		@-$(foreach DIR,$(DIRS), if [ ! -e $(STORE)/$(DIR) ]; \
+	@-if [ ! -e $(STORE) ]; then mkdir $(STORE); fi;
+	@-$(foreach DIR,$(DIRS), if [ ! -e $(STORE)/$(DIR) ]; \
          then mkdir -p $(STORE)/$(DIR); fi; )
 
 # Includes the .d files so it knows the exact dependencies for every source

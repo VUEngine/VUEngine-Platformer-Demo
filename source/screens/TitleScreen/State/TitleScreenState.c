@@ -87,7 +87,7 @@ static void TitleScreenState_destructor(TitleScreenState this)
 // state's enter
 static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
 
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
@@ -131,7 +131,7 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
 // state's exit
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
 
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);

@@ -133,7 +133,7 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
 				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
+				const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL_UNSAFE(SpatialObject, getPosition, _screen->focusInGameEntity);
 
 				fix19_13 horizontalPosition = _screen->position.x;
 				fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
@@ -276,6 +276,7 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
 	// don't follow the focus entity while shaking
 	Screen _screen = Screen_getInstance();
     this->tempFocusInGameEntity = Screen_getFocusInGameEntity(_screen);
+	NM_ASSERT(this->tempFocusInGameEntity, "Screen::FXShakeStart: null tempFocusInGameEntity");
 	//Screen_unsetFocusInGameEntity(_screen);
 
     // set desired fx duration
@@ -309,9 +310,8 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
         // if needed, undo last offset
         if(this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
         {
+            Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
             this->tempFocusInGameEntity = NULL;
-
-            //Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
             this->lastShakeOffset.x = 0;
         }
 

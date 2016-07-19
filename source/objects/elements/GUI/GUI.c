@@ -75,22 +75,22 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
 
     // add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onSecondChange, __EVENT_SECOND_CHANGED);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHitTaken, EVENT_HIT_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUp, EVENT_POWERUP);
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, EVENT_HIT_TAKEN);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, EVENT_COIN_TAKEN);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, EVENT_KEY_TAKEN);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onPowerUp, EVENT_POWERUP);
 }
 
 // class's destructor
 void GUI_destructor(GUI this)
 {
     // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onSecondChange, __EVENT_SECOND_CHANGED);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onHitTaken, EVENT_HIT_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onCoinTaken, EVENT_COIN_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onKeyTaken, EVENT_KEY_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))GUI_onPowerUp, EVENT_POWERUP);
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, EVENT_HIT_TAKEN);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, EVENT_COIN_TAKEN);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, EVENT_KEY_TAKEN);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onPowerUp, EVENT_POWERUP);
 
 	// delete the super object
 	// must always be called at the end of the destructor

@@ -26,6 +26,7 @@
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
 #include <KeyPadManager.h>
+#include <Printing.h>
 
 #ifdef __DEBUG
 //#include "../../levels/game/GameLevel.h"

@@ -65,23 +65,28 @@ static void ProgressManager_constructor(ProgressManager this)
 
 	ProgressManager_reset(this);
 
+    Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
+
     // add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUp, EVENT_POWERUP);
+	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHeroDied, EVENT_HERO_DIED);
+	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
+	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
+	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, EVENT_POWERUP);
 }
 
 // class's destructor
 void ProgressManager_destructor(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::destructor: null this");
+	ASSERT(EventManager_getInstance(), "ProgressManager::destructor: null eventManager");
+
+    Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 
     // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHeroDied, EVENT_HERO_DIED);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (void (*)(Object, Object))ProgressManager_onPowerUp, EVENT_POWERUP);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHeroDied, EVENT_HERO_DIED);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
+    Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, EVENT_POWERUP);
 
 	// destroy base
 	__SINGLETON_DESTROY;
