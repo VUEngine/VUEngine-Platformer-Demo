@@ -1,3 +1,6 @@
+# Compiler's version to use
+COMPILER = 4.7
+
 # Compilation type
 # debug:            Adds lots of runtime assertions. Enables debugging tools too.
 #                   It is recommended to use SRAM_WRAM = 1 when debugging in order to
@@ -10,24 +13,34 @@ TYPE                = release
 # Pad ROM for hardware testing
 # 0:                No padding.
 # 1:                Pad the ROM for hardware testing.
-PAD_ROM             = 0
+PAD_ROM             = 1
 
 # Dump elf
 # 0:                No dumping.
 # 1:                Dump the assembly code and the memory sections.
 DUMP_ELF            = 1
 
-# Small data section
-# [no value]:       Don't use the small data sections.
-# [.sdata/.sbss]:   Small data section to use.
-SMALL_DATA_SECTION  = .sbss
-
+# Sections' usage
 # SRAM's usage
-# 0:                Don't use SRAM as WRAM.
-# 1:                Use SRAM as WRAM. Adds, theoretically, 16MB of WRAM where all static variables will be loaded.
-#                   Since only 8KB of SRAM is available on real carts, more than that will only work on emulators.
-#                   This feature is experimental and only works properly on emulators
-#                   The memory pool will be placed in SRAM only if the BSS section is placed too.
-#                   To make effective the memory pool's location change, it needs to be recompiled.
-BSS_IN_SRAM         = 0
-MEMORY_POOL_IN_SRAM = 0
+# You can use SRAM as WRAM. It adds, theoretically, 16MB of WRAM where all static variables will be loaded.
+# Since only 8KB of SRAM is available on real carts, more than that will only work on emulators.
+# This feature is experimental and only works properly on emulators
+# To make effective the any change to these options, all the project needs to be recompiled.
+
+# valid options are [/.bss/.sbss/.sram]
+MEMORY_POOL_SECTION                     = .bss
+# valid options are [/.bss/.sbss/.sram]
+NON_INITIALIZED_DATA_SECTION            = .sbss
+# valid options are [/.data/.sdata]
+INITIALIZED_DATA_SECTION                = .data
+# valid options are [/.bss/.sbss/.sram]
+STATIC_SINGLETONS_DATA_SECTION          = .sbss
+# valid options are [/.bss/.sbss/.sram]
+VIRTUAL_TABLES_DATA_SECTION             = .sbss
+
+
+# Size of variables to be loaded in the .sdata section
+# Only affects the engine since const qualified variables are placed in the .rosdata by the compiler
+# and the linking phase fails.
+MSDA_SIZE = 0
+

@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
+#include <stddef.h>
 
 #include <ProgressManager.h>
 #include <SRAMManager.h>
@@ -105,15 +106,15 @@ static void ProgressManager_initialize(ProgressManager this)
 	ASSERT(this, "ProgressManager::initialize: null this");
 
 	char saveStamp[SAVE_STAMP_LENGTH];
-	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&saveStamp, (u16*)&_userData->saveStamp, sizeof(saveStamp));
+	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&saveStamp, (u16*)offsetof(struct UserData, saveStamp), sizeof(saveStamp));
 
 	if(strncmp(saveStamp, SAVE_STAMP, SAVE_STAMP_LENGTH))
 	{
 		strncpy(saveStamp, SAVE_STAMP, SAVE_STAMP_LENGTH);
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&saveStamp, (u16*)&_userData->saveStamp, sizeof(saveStamp));
+		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&saveStamp, (u16*)offsetof(struct UserData, saveStamp), sizeof(saveStamp));
 
 		int numberOfCollectedCoins = 0;
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)&(_userData->numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
+		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)offsetof(struct UserData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 
 		int coin = 1;
 		for(; coin <= TOTAL_COINS_IN_GAME; coin++)
@@ -122,7 +123,7 @@ static void ProgressManager_initialize(ProgressManager this)
 			coinStatus.taken = false;
 			strncpy(coinStatus.name, "Coin ", COIN_NAME_LENGTH);
 			strncat(coinStatus.name, Utilities_itoa(coin, 10, 2), COIN_NAME_LENGTH);
-			SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
+			SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)offsetof(struct UserData, coinStatus) + sizeof(CoinStatus) * coin, sizeof(coinStatus));
 		}
 	}
 }
@@ -132,7 +133,7 @@ int ProgressManager_getNumberOfCollectedCoins(ProgressManager this)
 	ASSERT(this, "ProgressManager::getNumberOfCollectedCoins: null this");
 
 	int numberOfCollectedCoins;
-	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)&_userData->numberOfCollectedCoins, sizeof(numberOfCollectedCoins));
+	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)offsetof(struct UserData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 	return numberOfCollectedCoins;
 }
 
@@ -140,7 +141,7 @@ void ProgressManager_setNumberOfCollectedCoins(ProgressManager this, int numberO
 {
 	ASSERT(this, "ProgressManager::setNumberOfCollectedCoins: null this");
 
-	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)&_userData->numberOfCollectedCoins, sizeof(numberOfCollectedCoins));
+	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, (u16*)offsetof(struct UserData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 }
 
 bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName)
@@ -153,7 +154,7 @@ bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName)
 		for(; coin <= TOTAL_COINS_IN_GAME; coin++)
 		{
 			CoinStatus coinStatus;
-			SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
+			SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)offsetof(struct UserData, coinStatus) + sizeof(CoinStatus) * coin, sizeof(coinStatus));
 
 			if(coinName && !strncmp(coinStatus.name, coinName, COIN_NAME_LENGTH))
 			{
@@ -173,12 +174,12 @@ bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool ta
 	for(; coin <= TOTAL_COINS_IN_GAME; coin++)
 	{
 		CoinStatus coinStatus;
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
+		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)offsetof(struct UserData, coinStatus) + sizeof(CoinStatus) * coin, sizeof(coinStatus));
 
 		if(!strncmp(coinStatus.name, coinName, COIN_NAME_LENGTH))
 		{
 			coinStatus.taken = taken;
-			SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)&_userData->coinStatus[coin], sizeof(coinStatus));
+			SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&coinStatus, (u16*)offsetof(struct UserData, coinStatus) + sizeof(CoinStatus) * coin, sizeof(coinStatus));
 			return true;
 		}
 	}

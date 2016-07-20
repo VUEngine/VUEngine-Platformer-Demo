@@ -15,8 +15,19 @@ COMPILER_NAME = v810
 LINKER_SCRIPT = vb.ld
 
 # Small data sections' usage
-SMALL_DATA_SECTION_SUFIX =
-SMALL_DATA_SECTION_MACRO =
+MSDA_SIZE                       = 0
+MEMORY_POOL_SECTION             =
+NON_INITIALIZED_DATA_SECTION    =
+INITIALIZED_DATA_SECTION        =
+STATIC_SINGLETONS_DATA_SECTION  =
+VIRTUAL_TABLES_DATA_SECTION     =
+
+MEMORY_POOL_SECTION_ATTRIBUTE               = __MEMORY_POOL_SECTION_ATTRIBUTE=
+NON_INITIALIZED_DATA_SECTION_ATTRIBUTE      = __NON_INITIALIZED_DATA_SECTION_ATTRIBUTE=
+INITIALIZED_DATA_SECTION_ATTRIBUTE          = __INITIALIZED_DATA_SECTION_ATTRIBUTE=
+STATIC_SINGLETONS_DATA_SECTION_ATTRIBUTE    = __STATIC_SINGLETONS_DATA_SECTION_ATTRIBUTE=
+VIRTUAL_TABLES_DATA_SECTION_ATTRIBUTE       = __VIRTUAL_TABLES_DATA_SECTION_ATTRIBUTE=
+
 
 MEMORY_POOL_IN_SRAM =
 
@@ -42,17 +53,34 @@ ifeq ($(PAD_ROM), 1)
 PAD = pad
 endif
 
-ifneq ($(SMALL_DATA_SECTION),)
-SMALL_DATA_SECTION_SUFIX = $(SMALL_DATA_SECTION)
-SMALL_DATA_SECTION_MACRO = __SMALL_DATA_SECTION=\"$(SMALL_DATA_SECTION)\"
+ifneq ($(MEMORY_POOL_SECTION),)
+MEMORY_POOL_SECTION_ATTRIBUTE = __MEMORY_POOL_SECTION_ATTRIBUTE="__attribute__((section(\"$(MEMORY_POOL_SECTION)\")))"
 endif
 
-ifeq ($(BSS_IN_SRAM), 1)
-LINKER_SCRIPT = vb_sram.ld
+ifneq ($(NON_INITIALIZED_DATA_SECTION),)
+NON_INITIALIZED_DATA_SECTION_ATTRIBUTE = __NON_INITIALIZED_DATA_SECTION_ATTRIBUTE="__attribute__((section(\"$(NON_INITIALIZED_DATA_SECTION)\")))"
 endif
+
+ifneq ($(INITIALIZED_DATA_SECTION),)
+INITIALIZED_DATA_SECTION_ATTRIBUTE = __INITIALIZED_DATA_SECTION_ATTRIBUTE="__attribute__((section(\"$(INITIALIZED_DATA_SECTION)\")))"
+endif
+
+ifneq ($(STATIC_SINGLETONS_DATA_SECTION),)
+STATIC_SINGLETONS_DATA_SECTION_ATTRIBUTE = __STATIC_SINGLETONS_DATA_SECTION_ATTRIBUTE="__attribute__((section(\"$(STATIC_SINGLETONS_DATA_SECTION)\")))"
+endif
+
+ifneq ($(VIRTUAL_TABLES_DATA_SECTION),)
+VIRTUAL_TABLES_DATA_SECTION_ATTRIBUTE = __VIRTUAL_TABLES_DATA_SECTION_ATTRIBUTE="__attribute__((section(\"$(VIRTUAL_TABLES_DATA_SECTION)\")))"
+endif
+
+DATA_SECTION_ATTRIBUTES = $(MEMORY_POOL_SECTION_ATTRIBUTE) $(NON_INITIALIZED_DATA_SECTION_ATTRIBUTE) $(INITIALIZED_DATA_SECTION_ATTRIBUTE) $(STATIC_SINGLETONS_DATA_SECTION_ATTRIBUTE) $(VIRTUAL_TABLES_DATA_SECTION_ATTRIBUTE)
+
+# engine's home
+VBJAENGINE = $(VBDE)libs/vbjaengine
 
 # Which directories contain source files
-DIRS := $(shell find * -type d -print)
+# DIRS := $(shell find * -type d -print)
+DIRS := $(shell find * $(VBJAENGINE)/assets $(VBJAENGINE)/source $(VBJAENGINE)/lib/compiler/extra -type d -print)
 
 # Which libraries are linked
 LIBS =
@@ -61,38 +89,41 @@ ROMHEADER=lib/vb.hdr
 # Dynamic libraries
 DLIBS =
 
-# engine's home
-VBJAENGINE = $(VBDE)libs/vbjaengine
 
 # Obligatory headers
 VBJAENGINE_CONFIG_FILE = $(shell pwd)/config.h
 GAME_ESSENTIALS = 	-include $(VBJAENGINE_CONFIG_FILE) \
 					-include $(VBJAENGINE)/libvbjae.h
 
+# Config includes
+CONFIG_MAKE_FILE = $(shell pwd)/config.make
+
+# Common macros for all build types
+COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
 
 # The next blocks changes some variables depending on the build type
 ifeq ($(TYPE),debug)
 LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
-MACROS = __DEBUG __TOOLS $(SMALL_DATA_SECTION_MACRO)
+MACROS = __DEBUG __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
-MACROS = $(SMALL_DATA_SECTION_MACRO)
+MACROS = $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release-tools)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
-MACROS = __TOOLS $(SMALL_DATA_SECTION_MACRO)
+MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE),preprocessor)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
-MACROS = __TOOLS $(SMALL_DATA_SECTION_MACRO)
+MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
 
@@ -106,7 +137,7 @@ LIBPATH =
 EXTRA_FILES = makefile
 
 # Where to store object and dependency files.
-STORE = .make-$(TYPE)-$(COMPILER)-$(COMPILER_OUTPUT)$(SMALL_DATA_SECTION_SUFIX)
+STORE = .make-$(TYPE)-$(COMPILER)-$(COMPILER_OUTPUT)
 
 # Makes a list of the source (.cpp) files.
 SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
@@ -129,12 +160,12 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 ENGINE = libvbjae.a
 
 # first build the engine
-TARGET = ouput$(SMALL_DATA_SECTION_SUFIX)
+TARGET = ouput
 
 all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
 pad: $(TARGET).vb
-	@echo "Padding " $(TARGET).vb
+	@echo Padding $(TARGET).vb
 	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb
 	@echo " "
 
@@ -142,7 +173,7 @@ deleteEngine:
 	@rm -f $(ENGINE)
 
 $(ENGINE): deleteEngine
-	@$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e COMPILER=$(COMPILER) -e COMPILER_OUTPUT=$(COMPILER_OUTPUT) -e SMALL_DATA_SECTION=$(SMALL_DATA_SECTION) -e MEMORY_POOL_IN_SRAM=$(MEMORY_POOL_IN_SRAM) -e BSS_IN_SRAM=$(BSS_IN_SRAM) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
+	@$(MAKE) -f $(VBJAENGINE)/makefile $@ -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
 
 $(TARGET).vb: $(TARGET).elf
 	@echo Creating $@
@@ -150,13 +181,12 @@ $(TARGET).vb: $(TARGET).elf
 	@echo Done creating $(TARGET).vb in $(TYPE) mode with GCC $(COMPILER)
 
 dump: $(TARGET).elf
-	@echo
 	@echo Dumping elf
-	@$(OBJDUMP) -t $(TARGET).elf > sections-$(TYPE)-$(COMPILER)$(SMALL_DATA_SECTION_SUFIX).txt
-	@$(OBJDUMP) -S $(TARGET).elf > machine-$(TYPE)-$(COMPILER)$(SMALL_DATA_SECTION_SUFIX).asm
+	@$(OBJDUMP) -t $(TARGET).elf > sections-$(TYPE)-$(COMPILER).txt
+	@$(OBJDUMP) -S $(TARGET).elf > machine-$(TYPE)-$(COMPILER).asm
 	@echo Dumping elf done
 
-$(TARGET).elf: $(ENGINE) dirs $(OBJECTS)
+$(TARGET).elf: dirs $(OBJECTS)
 	@echo Linking $(TARGET)
 	@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(LDPARAM) \
 		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET)-$(COMPILER).map
@@ -169,6 +199,10 @@ $(STORE)/%.o: %.c
         $(foreach MACRO,$(MACROS),-D$(MACRO)) -$(COMPILER_OUTPUT) $< -o $@
 	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
 	@rm -f $(STORE)/$*.dd
+
+$(STORE)/%.o: %.s
+	@echo Creating object file for $*
+	@$(AS) -o $@ $<
 
 # Empty rule to prevent problems when a header is deleted.
 %.h: ;
