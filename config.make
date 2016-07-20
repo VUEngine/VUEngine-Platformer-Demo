@@ -31,19 +31,18 @@ DUMP_ELF            = 1
 # To make effective any change to these options, the whole project needs to be recompiled.
 
 # valid options are [/.bss/.sbss/.sram]
-MEMORY_POOL_SECTION                     = .bss
+MEMORY_POOL_SECTION                     = .sbss
 # valid options are [/.bss/.sbss/.sram]
-NON_INITIALIZED_DATA_SECTION            = .bss
+NON_INITIALIZED_DATA_SECTION            = .sbss
 # valid options are [/.data/.sdata]
-INITIALIZED_DATA_SECTION                = .data
+INITIALIZED_DATA_SECTION                = .sdata
 # valid options are [/.bss/.sbss/.sram]
-STATIC_SINGLETONS_DATA_SECTION          = .bss
+STATIC_SINGLETONS_DATA_SECTION          = .sram
 # valid options are [/.bss/.sbss/.sram]
 VIRTUAL_TABLES_DATA_SECTION             = .sbss
 
 
 # Size of variables to be loaded in the .sdata section
-# Only affects the engine since const qualified variables are placed in the .rosdata by the compiler
-# and the linking phase fails.
-MSDA_SIZE = 0
+# Not working properly because rosdata is used instead of rodata section
+# MSDA_SIZE = 0
 
