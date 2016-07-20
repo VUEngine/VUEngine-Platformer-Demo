@@ -104,11 +104,14 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
+    Printing_text(Printing_getInstance(), "no focus", 1, 10, NULL);
+	        Printing_hex(Printing_getInstance(), this->tempFocusInGameEntity, 10, 10, NULL);
 	if(this->tempFocusInGameEntity)
 	{
 		return;
 	}
 
+    Printing_text(Printing_getInstance(), "si focus", 1, 10, NULL);
 	_screen->lastDisplacement.x = 0;
 	_screen->lastDisplacement.y = 0;
 	_screen->lastDisplacement.z = 0;
@@ -118,6 +121,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 	// if focusInGameEntity is defined
 	if(_screen->focusInGameEntity)
 	{
+	    Printing_text(Printing_getInstance(), "ok focus", 1, 10, NULL);
+
 		Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
 
 		ASSERT(__SAFE_CAST(Actor, _screen->focusInGameEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
@@ -255,7 +260,7 @@ void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, in
 	}
 }
 
-bool CustomScreenMovementManager_processMessage(CustomScreenMovementManager this, Telegram telegram)
+bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
 	{
@@ -302,7 +307,7 @@ void CustomScreenMovementManager_FXShakeStop(CustomScreenMovementManager this)
 // shake the _screen
 static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManager this)
 {
-	ASSERT(this, "Screen::onScreenShake: null this");
+	ASSERT(false, "Screen::onScreenShake: null this");
 
     // stop if no shaking time left
     if(this->shakeTimeLeft == 0)
@@ -310,10 +315,11 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
         // if needed, undo last offset
         if(this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
         {
-            Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
-            this->tempFocusInGameEntity = NULL;
             this->lastShakeOffset.x = 0;
         }
+
+        Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
+        this->tempFocusInGameEntity = NULL;
 
         return;
     }

@@ -54,8 +54,8 @@ enum CustomScreenFX
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define CustomScreenMovementManager_METHODS(ClassName)																\
-    	ScreenMovementManager_METHODS(ClassName)																	\
+#define CustomScreenMovementManager_METHODS(ClassName)													\
+    	ScreenMovementManager_METHODS(ClassName)														\
 
 // declare the virtual methods which are redefined
 #define CustomScreenMovementManager_SET_VTABLE(ClassName)												\
@@ -63,6 +63,7 @@ enum CustomScreenFX
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, position);								\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, startEffect);								\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, stopEffect);								\
+		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, handleMessage);							\
 
 #define CustomScreenMovementManager_ATTRIBUTES															\
         /* super's attributes */																		\
@@ -94,6 +95,7 @@ void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, i
 void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, int effect);
 void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag);
 VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this);
+bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram);
 
 
 #endif

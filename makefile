@@ -39,6 +39,7 @@ COMPILER_NAME = v810-nec-elf32
 endif
 
 GCC = $(COMPILER_NAME)-gcc
+AS = $(COMPILER_NAME)-as
 LD = $(COMPILER_NAME)-ld
 OBJCOPY = $(COMPILER_NAME)-objcopy
 OBJDUMP = $(COMPILER_NAME)-objdump
@@ -80,7 +81,7 @@ VBJAENGINE = $(VBDE)libs/vbjaengine
 
 # Which directories contain source files
 # DIRS := $(shell find * -type d -print)
-DIRS := $(shell find * $(VBJAENGINE)/assets $(VBJAENGINE)/source $(VBJAENGINE)/lib/compiler/extra -type d -print)
+DIRS := $(shell find ./source ./assets $(VBJAENGINE)/assets $(VBJAENGINE)/source $(VBJAENGINE)/lib/compiler/extra -type d -print)
 
 # Which libraries are linked
 LIBS =
@@ -103,25 +104,25 @@ COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
 
 # The next blocks changes some variables depending on the build type
 ifeq ($(TYPE),debug)
-LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
 CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = __DEBUG __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
 CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release-tools)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
 CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE),preprocessor)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm -lvbjae
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
@@ -137,16 +138,22 @@ LIBPATH =
 EXTRA_FILES = makefile
 
 # Where to store object and dependency files.
-STORE = .make-$(TYPE)-$(COMPILER)-$(COMPILER_OUTPUT)
+STORE = .make-$(TYPE)-$(COMPILER_OUTPUT)
 
 # Makes a list of the source (.cpp) files.
 SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
+
+# Makes a list of the source (.s) files.
+ASM := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.s))
 
 # List of header files.
 HEADERS := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.h))
 
 # Makes a list of the object files that will have to be created.
 OBJECTS := $(addprefix $(STORE)/, $(SOURCE:.c=.o))
+
+# Makes a list of the object files that will have to be created.
+ASM_OBJECTS := $(addprefix $(STORE)/, $(ASM:.s=.o))
 
 # Same for the .d (dependency) files.
 DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
@@ -182,14 +189,14 @@ $(TARGET).vb: $(TARGET).elf
 
 dump: $(TARGET).elf
 	@echo Dumping elf
-	@$(OBJDUMP) -t $(TARGET).elf > sections-$(TYPE)-$(COMPILER).txt
-	@$(OBJDUMP) -S $(TARGET).elf > machine-$(TYPE)-$(COMPILER).asm
+	@$(OBJDUMP) -t $(TARGET).elf > sections-$(TYPE).txt
+	@$(OBJDUMP) -S $(TARGET).elf > machine-$(TYPE).asm
 	@echo Dumping elf done
 
-$(TARGET).elf: dirs $(OBJECTS)
+$(TARGET).elf: dirs $(OBJECTS) $(ASM_OBJECTS)
 	@echo Linking $(TARGET)
-	@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(LDPARAM) \
-		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET)-$(COMPILER).map
+	@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(ASM_OBJECTS) $(LDPARAM) \
+		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.
@@ -209,10 +216,13 @@ $(STORE)/%.o: %.s
 
 # Cleans up the objects, .d files and executables.
 clean:
-	@echo Making clean.
-	@-rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
-	@-rm -Rf $(STORE)
-	@-rm -f $(ENGINE)
+	@echo Cleaning...
+	@rm -f $(TARGET)*
+	@rm -f sections-$(TYPE).txt
+	@rm -f machine-$(TYPE).asm
+	@rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
+	@rm -Rf $(STORE)
+	@echo Cleaning done.
 
 # Backup the source files.
 backup:

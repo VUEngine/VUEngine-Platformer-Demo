@@ -1,6 +1,9 @@
 # Compiler's version to use
 COMPILER = 4.7
 
+# Compiler's output
+COMPILER_OUTPUT = c
+
 # Compilation type
 # debug:            Adds lots of runtime assertions. Enables debugging tools too.
 #                   It is recommended to use SRAM_WRAM = 1 when debugging in order to
@@ -22,19 +25,19 @@ DUMP_ELF            = 1
 
 # Sections' usage
 # SRAM's usage
-# You can use SRAM as WRAM. It adds, theoretically, 16MB of WRAM where all static variables will be loaded.
+# You can use SRAM as WRAM. It adds, theoretically, 16MB of WRAM where all non initialized variables can be allocated.
+# This feature is experimental and only works properly on emulators.
 # Since only 8KB of SRAM is available on real carts, more than that will only work on emulators.
-# This feature is experimental and only works properly on emulators
-# To make effective the any change to these options, all the project needs to be recompiled.
+# To make effective any change to these options, the whole project needs to be recompiled.
 
 # valid options are [/.bss/.sbss/.sram]
 MEMORY_POOL_SECTION                     = .bss
 # valid options are [/.bss/.sbss/.sram]
-NON_INITIALIZED_DATA_SECTION            = .sbss
+NON_INITIALIZED_DATA_SECTION            = .bss
 # valid options are [/.data/.sdata]
 INITIALIZED_DATA_SECTION                = .data
 # valid options are [/.bss/.sbss/.sram]
-STATIC_SINGLETONS_DATA_SECTION          = .sbss
+STATIC_SINGLETONS_DATA_SECTION          = .bss
 # valid options are [/.bss/.sbss/.sram]
 VIRTUAL_TABLES_DATA_SECTION             = .sbss
 
