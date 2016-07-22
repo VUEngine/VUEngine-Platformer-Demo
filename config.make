@@ -37,7 +37,7 @@ NON_INITIALIZED_DATA_SECTION            = .sbss
 # valid options are [/.data/.sdata]
 INITIALIZED_DATA_SECTION                = .sdata
 # valid options are [/.bss/.sbss/.sram]
-STATIC_SINGLETONS_DATA_SECTION          = .sram
+STATIC_SINGLETONS_DATA_SECTION          = .sbss
 # valid options are [/.bss/.sbss/.sram]
 VIRTUAL_TABLES_DATA_SECTION             = .sbss
 

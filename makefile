@@ -7,7 +7,7 @@ TYPE = debug
 #TYPE = preprocessor
 
 # compiler
-COMPILER = 4.4
+COMPILER = 4.7
 COMPILER_OUTPUT = c
 COMPILER_NAME = v810
 
@@ -104,26 +104,26 @@ COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
 
 # The next blocks changes some variables depending on the build type
 ifeq ($(TYPE),debug)
-LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
-CCPARAM = -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
+CCPARAM = -fomit-frame-pointer -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = __DEBUG __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
+CCPARAM = -fomit-frame-pointer -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release-tools)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
-CCPARAM = -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
+CCPARAM = -fomit-frame-pointer -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE),preprocessor)
-LDPARAM = -T$(VBJAENGINE)/lib/compiler/extra/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
-CCPARAM = -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
+LDPARAM = -T$(VBJAENGINE)/lib/compiler/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
+CCPARAM = -fomit-frame-pointer -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
