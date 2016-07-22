@@ -81,7 +81,7 @@ VBJAENGINE = $(VBDE)libs/vbjaengine
 
 # Which directories contain source files
 # DIRS := $(shell find * -type d -print)
-DIRS := $(shell find ./source ./assets $(VBJAENGINE)/assets $(VBJAENGINE)/source $(VBJAENGINE)/lib/compiler/extra -type d -print)
+DIRS := $(shell find ./source ./assets $(VBJAENGINE)/assets $(VBJAENGINE)/source $(VBJAENGINE)/lib/compiler -type d -print)
 
 # Which libraries are linked
 LIBS =
