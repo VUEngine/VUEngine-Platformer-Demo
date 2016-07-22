@@ -144,7 +144,6 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				if(horizontalPosition + easingDisplacement < horizontalTarget)
 				{
 					_screen->position.x += easingDisplacement;
-
 				}
 				else if(horizontalPosition - easingDisplacement > horizontalTarget)
 				{

@@ -173,7 +173,7 @@ all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
 pad: $(TARGET).vb
 	@echo Padding $(TARGET).vb
-	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb
+	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb 3
 	@echo " "
 
 deleteEngine:

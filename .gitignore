@@ -12,4 +12,5 @@ cproject
 *.ram
 *.lnk
 *.asm
+*.map
 sections*.txt

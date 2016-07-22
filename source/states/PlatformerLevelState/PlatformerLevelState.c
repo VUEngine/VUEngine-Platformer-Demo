@@ -58,6 +58,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
+void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer);
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
 
@@ -351,6 +352,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
                 initialPosition->y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
                 initialPosition->z
             };
+
             Screen_setPosition(Screen_getInstance(), screenPosition);
 
     	    // load stage
@@ -385,6 +387,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
             {
                 Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
             }
+
+            GameState_transform(__SAFE_CAST(GameState, this));
         }
 	}
 	else
@@ -405,6 +409,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// reset clocks
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
+    Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, EVENT_HERO_DIED);
+
     // activate post processing effect
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_lightingTestPostProcessingEffect);
 //	Game_addPostProcessingEffect(Game_getInstance(), PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect);
@@ -416,6 +422,8 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, EVENT_HERO_DIED);
 
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
@@ -591,15 +599,14 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 			}
 			return true;
 			break;
-
-		case kHeroDied:
-
-			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
-			return true;
-			break;
 	}
 
 	return false;
+}
+
+void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer)
+{
+    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }
 
 // get current level's definition

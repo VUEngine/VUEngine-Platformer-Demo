@@ -169,11 +169,12 @@ void Hero_destructor(Hero this)
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, EVENT_KEY_HOLD);
 
+    // anounce my dead
+//	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HERO_DIED);
+
     // discard pending delayed messages
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
-	// inform the game about the hero's death
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHeroDied, NULL);
 
 	// free the instance pointers
 	this->feetDust = NULL;
@@ -836,8 +837,6 @@ void Hero_lookBack(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HERO_DIED);
-
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
