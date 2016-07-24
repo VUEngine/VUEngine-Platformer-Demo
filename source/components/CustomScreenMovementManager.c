@@ -256,6 +256,8 @@ void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, in
 
 bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram)
 {
+	ASSERT(this, "CustomScreenMovementManager::handleMessage: null this");
+
 	switch(Telegram_getMessage(telegram))
 	{
 		case kShake:
@@ -270,7 +272,7 @@ bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this,
 // start shaking the screen
 static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager this, u16 duration)
 {
-	ASSERT(this, "Screen::FXShakeStart: null this");
+	ASSERT(this, "CustomScreenMovementManager::FXShakeStart: null this");
 
 	// don't follow the focus entity while shaking
 	Screen _screen = Screen_getInstance();
@@ -301,7 +303,7 @@ void CustomScreenMovementManager_FXShakeStop(CustomScreenMovementManager this)
 // shake the _screen
 static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManager this)
 {
-	ASSERT(false, "Screen::onScreenShake: null this");
+	ASSERT(this, "CustomScreenMovementManager::onScreenShake: null this");
 
     // stop if no shaking time left
     if(this->shakeTimeLeft == 0)
