@@ -13,6 +13,16 @@ COMPILER_OUTPUT = c
 # preprocessor:     The .o files are preprocessor's output instead of compiler's.
 TYPE                = release
 
+# Frame pointer's usage
+# 0:                Omit.
+# 1:                Use.
+USE_FRAME_POINTER       = 0
+
+# Prolog functions' usage
+# 0:                Omit.
+# 1:                Use.
+USE_PROLOG_FUNCTIONS    = 0
+
 # Pad ROM for hardware testing
 # 0:                No padding.
 # 1:                Pad the ROM for hardware testing.

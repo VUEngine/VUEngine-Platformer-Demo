@@ -54,6 +54,18 @@ ifeq ($(PAD_ROM), 1)
 PAD = pad
 endif
 
+
+PROLOG_FUNCTIONS_FLAG =
+ifneq ($(USE_PROLOG_FUNCTIONS), 1)
+PROLOG_FUNCTIONS_FLAG = -mprolog-function
+endif
+
+FRAME_POINTER_USAGE_FLAG = -fomit-frame-pointer
+ifneq ($(USE_FRAME_POINTER), 1)
+FRAME_POINTER_USAGE_FLAG = -fno-omit-frame-pointer
+endif
+
+
 ifneq ($(MEMORY_POOL_SECTION),)
 MEMORY_POOL_SECTION_ATTRIBUTE = __MEMORY_POOL_SECTION_ATTRIBUTE="__attribute__((section(\"$(MEMORY_POOL_SECTION)\")))"
 endif
@@ -105,25 +117,25 @@ COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
 # The next blocks changes some variables depending on the build type
 ifeq ($(TYPE),debug)
 LDPARAM = -fno-builtin -ffreestanding -T$(VBJAENGINE)/lib/compiler/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
-CCPARAM = -mprolog-function -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = __DEBUG __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
-CCPARAM = -mprolog-function -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release-tools)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
-CCPARAM = -fomit-frame-pointer -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE),preprocessor)
 LDPARAM = -T$(VBJAENGINE)/lib/compiler/$(LINKER_SCRIPT) -L/opt/gccvb/v810/lib/ -L/opt/gccvb/v810/include/ -lm
-CCPARAM = -fomit-frame-pointer -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
+CCPARAM =  -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
