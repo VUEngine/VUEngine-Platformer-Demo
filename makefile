@@ -56,12 +56,12 @@ endif
 
 
 PROLOG_FUNCTIONS_FLAG =
-ifneq ($(USE_PROLOG_FUNCTIONS), 1)
+ifeq ($(USE_PROLOG_FUNCTIONS), 1)
 PROLOG_FUNCTIONS_FLAG = -mprolog-function
 endif
 
 FRAME_POINTER_USAGE_FLAG = -fomit-frame-pointer
-ifneq ($(USE_FRAME_POINTER), 1)
+ifeq ($(USE_FRAME_POINTER), 1)
 FRAME_POINTER_USAGE_FLAG = -fno-omit-frame-pointer
 endif
 
