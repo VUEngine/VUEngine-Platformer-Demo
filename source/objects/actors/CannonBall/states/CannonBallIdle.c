@@ -53,7 +53,7 @@ __SINGLETON(CannonBallIdle);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CannonBallIdle_constructor(CannonBallIdle this)
+void __attribute__ ((noinline)) CannonBallIdle_constructor(CannonBallIdle this)
 {
 	// construct base
 	__CONSTRUCT_BASE(State);

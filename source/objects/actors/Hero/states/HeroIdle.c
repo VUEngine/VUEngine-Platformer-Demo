@@ -58,7 +58,7 @@ __SINGLETON(HeroIdle);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void HeroIdle_constructor(HeroIdle this)
+void __attribute__ ((noinline)) HeroIdle_constructor(HeroIdle this)
 {
 	// construct base
 	__CONSTRUCT_BASE(State);

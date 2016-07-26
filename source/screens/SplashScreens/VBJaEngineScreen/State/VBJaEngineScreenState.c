@@ -56,7 +56,7 @@ __SINGLETON_DYNAMIC(VBJaEngineScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void VBJaEngineScreenState_constructor(VBJaEngineScreenState this)
+static void __attribute__ ((noinline)) VBJaEngineScreenState_constructor(VBJaEngineScreenState this)
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 

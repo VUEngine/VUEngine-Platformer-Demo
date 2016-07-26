@@ -54,7 +54,7 @@ __SINGLETON(HeroMoving);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void HeroMoving_constructor(HeroMoving this)
+void __attribute__ ((noinline)) HeroMoving_constructor(HeroMoving this)
 {
 	// construct base
 	__CONSTRUCT_BASE(State);

@@ -53,7 +53,7 @@ __SINGLETON(MovingEntityIdle);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void MovingEntityIdle_constructor(MovingEntityIdle this)
+void __attribute__ ((noinline)) MovingEntityIdle_constructor(MovingEntityIdle this)
 {
 	// construct base
 	__CONSTRUCT_BASE(State);

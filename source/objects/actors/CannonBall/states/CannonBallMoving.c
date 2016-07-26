@@ -55,7 +55,7 @@ __SINGLETON(CannonBallMoving);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CannonBallMoving_constructor(CannonBallMoving this)
+void __attribute__ ((noinline)) CannonBallMoving_constructor(CannonBallMoving this)
 {
 	// construct base
 	__CONSTRUCT_BASE(State);

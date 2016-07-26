@@ -64,7 +64,7 @@ __SINGLETON_DYNAMIC(AutoPauseSelectScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void AutoPauseSelectScreenState_constructor(AutoPauseSelectScreenState this)
+static void __attribute__ ((noinline)) AutoPauseSelectScreenState_constructor(AutoPauseSelectScreenState this)
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 

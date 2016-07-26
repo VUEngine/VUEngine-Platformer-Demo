@@ -63,7 +63,7 @@ __SINGLETON(AutoPauseScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void AutoPauseScreenState_constructor(AutoPauseScreenState this)
+static void __attribute__ ((noinline)) AutoPauseScreenState_constructor(AutoPauseScreenState this)
 {
 	__CONSTRUCT_BASE(GameState);
 }

@@ -45,7 +45,7 @@ static void EventManager_constructor(EventManager this);
 __SINGLETON(EventManager);
 
 // class's constructor
-static void EventManager_constructor(EventManager this)
+static void __attribute__ ((noinline)) EventManager_constructor(EventManager this)
 {
 	ASSERT(this, "EventManager::constructor: null this");
 

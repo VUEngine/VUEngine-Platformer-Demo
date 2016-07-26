@@ -55,7 +55,7 @@ __SINGLETON(MovingEntityMoving);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void MovingEntityMoving_constructor(MovingEntityMoving this)
+void __attribute__ ((noinline)) MovingEntityMoving_constructor(MovingEntityMoving this)
 {
 	// construct base
 	__CONSTRUCT_BASE(State);

@@ -61,7 +61,7 @@ __SINGLETON_DYNAMIC(PauseScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void PauseScreenState_constructor(PauseScreenState this)
+static void __attribute__ ((noinline)) PauseScreenState_constructor(PauseScreenState this)
 {
 	__CONSTRUCT_BASE(GameState);
 }

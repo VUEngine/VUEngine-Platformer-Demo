@@ -55,7 +55,7 @@ static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
 __SINGLETON(ProgressManager);
 
 // class's constructor
-static void ProgressManager_constructor(ProgressManager this)
+static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::constructor: null this");
 

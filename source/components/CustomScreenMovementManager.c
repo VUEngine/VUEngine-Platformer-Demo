@@ -65,7 +65,7 @@ static Screen _screen = NULL;
 __SINGLETON(CustomScreenMovementManager);
 
 // class's constructor
-static void CustomScreenMovementManager_constructor(CustomScreenMovementManager this)
+static void __attribute__ ((noinline)) CustomScreenMovementManager_constructor(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::constructor: null this");
 

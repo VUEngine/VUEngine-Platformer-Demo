@@ -1,37 +1,37 @@
 # Compiler's version to use
-COMPILER = 4.7
+COMPILER                = 4.7
 
 # Compiler's output
-COMPILER_OUTPUT = c
+COMPILER_OUTPUT          = c
 
 # Compilation type
-# debug:            Adds lots of runtime assertions. Enables debugging tools too.
-#                   It is recommended to use SRAM_WRAM = 1 when debugging in order to
-#                   avoid stack overflows (SRAM as WRAM only works on emulators).
-# release:          For shipping only!
-# release-tools:    Same optimization options as release, but adds debugging tools
-# preprocessor:     The .o files are preprocessor's output instead of compiler's.
-TYPE                = release
+# debug:                Adds lots of runtime assertions. Enables debugging tools too.
+#                       It is recommended to use SRAM_WRAM = 1 when debugging in order to
+#                       avoid stack overflows (SRAM as WRAM only works on emulators).
+# release:              For shipping only!
+# release-tools:        Same optimization options as release, but adds debugging tools.
+# preprocessor:         The .o files are preprocessor's output instead of compiler's.
+TYPE                    = release
 
 # Frame pointer's usage
-# 0:                Omit.
-# 1:                Use.
+# 0:                    Omit.
+# 1:                    Use.
 USE_FRAME_POINTER       = 0
 
 # Prolog functions' usage
-# 0:                Omit.
-# 1:                Use.
+# 0:                    Omit.
+# 1:                    Use.
 USE_PROLOG_FUNCTIONS    = 0
 
 # Pad ROM for hardware testing
-# 0:                No padding.
-# 1:                Pad the ROM for hardware testing.
-PAD_ROM             = 1
+# 0:                    No padding.
+# 1:                    Pad the ROM for hardware testing.
+PAD_ROM                 = 1
 
 # Dump elf
-# 0:                No dumping.
-# 1:                Dump the assembly code and the memory sections.
-DUMP_ELF            = 1
+# 0:                    No dumping.
+# 1:                    Dump the assembly code and the memory sections.
+DUMP_ELF                = 1
 
 # Sections' usage
 # SRAM's usage

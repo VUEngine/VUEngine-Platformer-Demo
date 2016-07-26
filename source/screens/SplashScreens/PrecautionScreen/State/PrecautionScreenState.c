@@ -60,7 +60,7 @@ __SINGLETON_DYNAMIC(PrecautionScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void PrecautionScreenState_constructor(PrecautionScreenState this)
+static void __attribute__ ((noinline)) PrecautionScreenState_constructor(PrecautionScreenState this)
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 

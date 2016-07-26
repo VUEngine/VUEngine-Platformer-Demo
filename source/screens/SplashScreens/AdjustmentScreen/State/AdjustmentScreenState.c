@@ -57,7 +57,7 @@ __SINGLETON_DYNAMIC(AdjustmentScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void AdjustmentScreenState_constructor(AdjustmentScreenState this)
+static void __attribute__ ((noinline)) AdjustmentScreenState_constructor(AdjustmentScreenState this)
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 

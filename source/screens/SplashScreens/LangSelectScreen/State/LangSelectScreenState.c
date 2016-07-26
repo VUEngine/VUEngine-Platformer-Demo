@@ -61,7 +61,7 @@ __SINGLETON_DYNAMIC(LangSelectScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void LangSelectScreenState_constructor(LangSelectScreenState this)
+static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSelectScreenState this)
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 

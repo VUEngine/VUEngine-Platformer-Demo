@@ -70,7 +70,7 @@ __SINGLETON_DYNAMIC(OverworldState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void OverworldState_constructor(OverworldState this)
+static void __attribute__ ((noinline)) OverworldState_constructor(OverworldState this)
 {
 	__CONSTRUCT_BASE(GameState);
 }

@@ -76,7 +76,7 @@ __SINGLETON(PlatformerLevelState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void PlatformerLevelState_constructor(PlatformerLevelState this)
+static void __attribute__ ((noinline)) PlatformerLevelState_constructor(PlatformerLevelState this)
 {
 	__CONSTRUCT_BASE(GameState);
 

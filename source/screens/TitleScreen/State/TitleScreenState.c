@@ -72,7 +72,7 @@ __SINGLETON_DYNAMIC(TitleScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void TitleScreenState_constructor(TitleScreenState this)
+static void __attribute__ ((noinline)) TitleScreenState_constructor(TitleScreenState this)
 {
 	__CONSTRUCT_BASE(GameState);
 }

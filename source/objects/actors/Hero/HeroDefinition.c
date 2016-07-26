@@ -348,6 +348,7 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 	WRLD_ON,
 };
 
+
 BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
 {
 	// sprite's type
