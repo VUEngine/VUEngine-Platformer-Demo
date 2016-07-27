@@ -181,7 +181,7 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 ENGINE = libvbjae.a
 
 # first build the engine
-TARGET = ouput
+TARGET = output
 
 all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
