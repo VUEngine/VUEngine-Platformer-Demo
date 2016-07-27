@@ -55,9 +55,11 @@ PAD = pad
 endif
 
 
+STORE_SUFIX =
 PROLOG_FUNCTIONS_FLAG =
 ifeq ($(USE_PROLOG_FUNCTIONS), 1)
 PROLOG_FUNCTIONS_FLAG = -mprolog-function
+STORE_SUFIX = -pf
 endif
 
 FRAME_POINTER_USAGE_FLAG = -fomit-frame-pointer
@@ -150,7 +152,7 @@ LIBPATH =
 EXTRA_FILES = makefile
 
 # Where to store object and dependency files.
-STORE = .make-$(TYPE)-$(COMPILER_OUTPUT)
+STORE = .make-$(TYPE)-$(COMPILER_OUTPUT)$(STORE_SUFIX)
 
 # Makes a list of the source (.cpp) files.
 SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
