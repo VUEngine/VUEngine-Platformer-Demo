@@ -35,6 +35,14 @@
 // 										DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+// only need to define one for all containers
+EntityROMDef SIMPLE_CONTAINER =
+{
+    __TYPE(Entity),
+    NULL
+};
+
+
 // only need to define one for all managed entities
 ManagedEntityROMDef MANAGED_ENTITY =
 {
