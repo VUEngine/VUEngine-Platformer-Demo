@@ -165,7 +165,17 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
 
-	// make a fade in
+#ifdef __DEBUG_TOOLS
+	if(!Game_isEnteringSpecialMode(Game_getInstance()))
+#endif
+#ifdef __STAGE_EDITOR
+	if(!Game_isEnteringSpecialMode(Game_getInstance()))
+#endif
+#ifdef __ANIMATION_EDITOR
+	if(!Game_isEnteringSpecialMode(Game_getInstance()))
+#endif
+
+	// make a fade out
     Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
