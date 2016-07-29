@@ -24,7 +24,7 @@
 #include <macros.h>
 #include <LevelDoneScreenState.h>
 #include <screens.h>
-#include <VPUManager.h>
+#include <VIPManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

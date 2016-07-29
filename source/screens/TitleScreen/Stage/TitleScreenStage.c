@@ -23,7 +23,7 @@
 #include <macros.h>
 #include <PlatformerLevelState.h>
 #include <TitleScreenState.h>
-#include <VPUManager.h>
+#include <VIPManager.h>
 
 #include <objects.h>
 #include <screens.h>

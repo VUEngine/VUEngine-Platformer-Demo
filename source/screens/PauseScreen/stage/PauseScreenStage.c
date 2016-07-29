@@ -24,7 +24,7 @@
 #include <macros.h>
 #include <PauseScreenState.h>
 #include <screens.h>
-#include <VPUManager.h>
+#include <VIPManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

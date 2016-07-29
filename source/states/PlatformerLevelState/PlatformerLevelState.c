@@ -111,8 +111,8 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBufferSet)
 {
     // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
-    int x = 0;
-    int y = 0;
+    u32 x = 0;
+    u32 y = 0;
 
     //
     u32 previousSourcePointerValue = 0;
@@ -126,25 +126,36 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
 
     // write to framebuffers for both screens
     u32 buffer = 0;
+
+    CACHE_DISABLE;
+    CACHE_ENABLE;
     for(;buffer < 2; buffer++)
     {
         // loop columns, each column is 4 pixels wide
-        for(x = 0; x < 96; x++)
+        for(x = 16; x < 96 - 16; x++)
         {
             // loop pixels of current column
-            for(y = 0; y < 256; y+=4)
+            for(y = 0; y < 256; y += 4)
             {
-                if((y&63) == 0) {
+                if((y & 63) == 0)
+                {
                     // the shifted out pixels on top should be black
                     waveLutIndex++;
                     previousSourcePointerValue = 0;
-                } else if((y&63) > 48) {
+                }
+                else if((y & 63) > 48)
+                {
                     // ignore the bottom 16 pixels of the screen (gui)
                     continue;
                 }
+                else if((y & 63) < 8)
+                 {
+                     // ignore the bottom 16 pixels of the screen (gui)
+                     continue;
+                 }
 
                 // wrap wave lut index (&31 equals %32)
-                waveLutIndex = waveLutIndex&31;
+                waveLutIndex = waveLutIndex & 31;
 
                 // we can skip further processing for the current column if no shifting would be done on it
                 if(waveLut[waveLutIndex] == 0)
@@ -176,6 +187,9 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
             }
         }
     }
+
+    CACHE_DISABLE;
+    CACHE_ENABLE;
 
     waveLutIndex++;
 }
@@ -213,7 +227,11 @@ void PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect(u32 currentDra
         return;
     }
     */
-    for(;buffer < 2; buffer++)
+
+    CACHE_DISABLE;
+    CACHE_ENABLE;
+
+    for(; buffer < 2; buffer++)
     {
         for(x = 0; x < 384; x+=4)
         {
@@ -229,6 +247,9 @@ void PlatformerLevelState_fullScreenWeirdnessPostProcessingEffect(u32 currentDra
             }
         }
     }
+
+    CACHE_DISABLE;
+    CACHE_ENABLE;
 }
 
 void PlatformerLevelState_lightingTestPostProcessingEffect(u32 currentDrawingframeBufferSet)
@@ -262,11 +283,18 @@ void PlatformerLevelState_lightingTestPostProcessingEffect(u32 currentDrawingfra
 
     // write to framebuffers for both screens
     u32 buffer = 0;
+
+    CACHE_DISABLE;
+    CACHE_ENABLE;
+
+    heroPosition.x = 384/2;
+    heroPosition.y = 224/2;
+
     for(;buffer < 2; buffer++)
     {
-        for(xCounter = 32, x = FIX19_13TOI(heroPosition.x) - xCounter / 2; xCounter--; x++)
+        for(xCounter = 384/3, x = heroPosition.x - xCounter / 2; xCounter--; x++)
         {
-            for(yCounter = 32, y = FIX19_13TOI(heroPosition.y) - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
+            for(yCounter = 224/3, y = heroPosition.y - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
             {
                 BYTE* sourcePointer = (BYTE*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
                 sourcePointer += ((x << 6) + (y >> 2));
@@ -297,6 +325,9 @@ void PlatformerLevelState_lightingTestPostProcessingEffect(u32 currentDrawingfra
             }
         }
     }
+
+    CACHE_DISABLE;
+    CACHE_ENABLE;
 
     // this just create a simple delay to not shift the pixels on each cycle
     if(--wait < 0)

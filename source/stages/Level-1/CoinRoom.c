@@ -23,7 +23,7 @@
 #include <macros.h>
 #include <PlatformerLevelState.h>
 #include <Languages.h>
-#include <VPUManager.h>
+#include <VIPManager.h>
 
 #include <objects.h>
 #include <sound.h>

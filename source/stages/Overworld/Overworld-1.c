@@ -22,7 +22,7 @@
 #include <Stage.h>
 #include <PlatformerLevelState.h>
 #include <OverworldState.h>
-#include <VPUManager.h>
+#include <VIPManager.h>
 
 #include <objects.h>
 #include <screens.h>
