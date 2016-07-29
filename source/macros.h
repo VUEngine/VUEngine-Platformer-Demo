@@ -22,7 +22,7 @@
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
-#define FADE_DELAY			16
+#define FADE_DELAY			8
 
 #define LAYER_INCREMENT		32
 #define SORT_INCREMENT		0.001f
