@@ -129,7 +129,7 @@ void PlatformerLevelState_testWavePostProcessingEffect(u32 currentDrawingframeBu
 
     CACHE_DISABLE;
     CACHE_ENABLE;
-    for(;buffer < 2; buffer++)
+    for(; buffer < 2; buffer++)
     {
         // loop columns, each column is 4 pixels wide
         for(x = 16; x < 96 - 16; x++)
@@ -287,14 +287,14 @@ void PlatformerLevelState_lightingTestPostProcessingEffect(u32 currentDrawingfra
     CACHE_DISABLE;
     CACHE_ENABLE;
 
-    heroPosition.x = 384/2;
-    heroPosition.y = 224/2;
+    heroPosition.x = FIX19_13TOI(heroPosition.x);
+    heroPosition.y = FIX19_13TOI(heroPosition.y);
 
-    for(;buffer < 2; buffer++)
+    for(; buffer < 2; buffer++)
     {
-        for(xCounter = 384/3, x = heroPosition.x - xCounter / 2; xCounter--; x++)
+        for(xCounter = 48, x = heroPosition.x - xCounter / 2; xCounter--; x++)
         {
-            for(yCounter = 224/3, y = heroPosition.y - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
+            for(yCounter = 48, y = heroPosition.y - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
             {
                 BYTE* sourcePointer = (BYTE*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
                 sourcePointer += ((x << 6) + (y >> 2));
