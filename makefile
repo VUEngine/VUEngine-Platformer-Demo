@@ -6,6 +6,9 @@ TYPE = debug
 #TYPE = release-tools
 #TYPE = preprocessor
 
+# output dir
+BUILD_DIR = build
+
 # compiler
 COMPILER = 4.7
 COMPILER_OUTPUT = c
@@ -143,7 +146,7 @@ endif
 
 
 # Add directories to the include and library paths
-INCPATH_ENGINE := $(shell find $(VBJAENGINE) -type d -print)
+INCPATH_ENGINE := $(VBJAENGINE) $(shell find $(VBJAENGINE)/source -type d -print)
 INCPATH_GAME := $(shell find * -type d -print)
 
 LIBPATH =
@@ -152,7 +155,7 @@ LIBPATH =
 EXTRA_FILES = makefile
 
 # Where to store object and dependency files.
-STORE = .make-$(TYPE)-$(COMPILER_OUTPUT)$(STORE_SUFIX)
+STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFIX)
 
 # Makes a list of the source (.cpp) files.
 SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
@@ -181,7 +184,7 @@ DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
 ENGINE = libvbjae.a
 
 # first build the engine
-TARGET = output
+TARGET = $(BUILD_DIR)/output
 
 all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
@@ -203,8 +206,8 @@ $(TARGET).vb: $(TARGET).elf
 
 dump: $(TARGET).elf
 	@echo Dumping elf
-	@$(OBJDUMP) -t $(TARGET).elf > sections-$(TYPE).txt
-	@$(OBJDUMP) -S $(TARGET).elf > machine-$(TYPE).asm
+	@$(OBJDUMP) -t $(TARGET).elf > $(STORE)/sections-$(TYPE).txt
+	@$(OBJDUMP) -S $(TARGET).elf > $(STORE)/machine-$(TYPE).asm
 	@echo Dumping elf done
 
 $(TARGET).elf: dirs $(OBJECTS) $(ASM_OBJECTS)
@@ -215,7 +218,7 @@ $(TARGET).elf: dirs $(OBJECTS) $(ASM_OBJECTS)
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.
 $(STORE)/%.o: %.c
-	@echo Creating object file for $*
+	@echo Compiling $<
 	@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(CCPARAM) $(foreach INC,$(INCPATH_ENGINE) $(INCPATH_GAME),-I$(INC))\
         $(foreach MACRO,$(MACROS),-D$(MACRO)) -$(COMPILER_OUTPUT) $< -o $@
 	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
@@ -231,9 +234,7 @@ $(STORE)/%.o: %.s
 # Cleans up the objects, .d files and executables.
 clean:
 	@echo Cleaning...
-	@rm -f $(TARGET)*
-	@rm -f sections-$(TYPE).txt
-	@rm -f machine-$(TYPE).asm
+	@find $(BUILD_DIR) -maxdepth 1 -type f -exec rm -f {} \;
 	@rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
 	@rm -Rf $(STORE)
 	@echo Cleaning done.
@@ -245,7 +246,7 @@ backup:
 
 # Create necessary directories
 dirs:
-	@-if [ ! -e $(STORE) ]; then mkdir $(STORE); fi;
+	@-if [ ! -e $(STORE) ]; then mkdir -p $(STORE); fi;
 	@-$(foreach DIR,$(DIRS), if [ ! -e $(STORE)/$(DIR) ]; \
          then mkdir -p $(STORE)/$(DIR); fi; )
 
