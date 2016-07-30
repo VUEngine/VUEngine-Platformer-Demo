@@ -139,7 +139,7 @@ MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE),preprocessor)
-LDPARAM = 
+LDPARAM =
 CCPARAM = -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
@@ -158,19 +158,19 @@ EXTRA_FILES = makefile
 STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFIX)
 
 # Makes a list of the source (.cpp) files.
-SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
+C_SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
 
 # Makes a list of the source (.s) files.
-ASM := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.s))
+ASSEMBLY_SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.s))
 
 # List of header files.
 HEADERS := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.h))
 
 # Makes a list of the object files that will have to be created.
-OBJECTS := $(addprefix $(STORE)/, $(SOURCE:.c=.o))
+C_OBJECTS := $(addprefix $(STORE)/, $(C_SOURCE:.c=.o))
 
 # Makes a list of the object files that will have to be created.
-ASM_OBJECTS := $(addprefix $(STORE)/, $(ASM:.s=.o))
+ASSEMBLY_OBJECTS := $(addprefix $(STORE)/, $(ASSEMBLY_SOURCE:.s=.o))
 
 # Same for the .d (dependency) files.
 DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
@@ -193,12 +193,6 @@ pad: $(TARGET).vb
 	@$(VBJAENGINE)/lib/utilities/padder $(TARGET).vb 3
 	@echo " "
 
-deleteEngine:
-	@rm -f $(ENGINE)
-
-$(ENGINE): deleteEngine
-	@$(MAKE) -f $(VBJAENGINE)/makefile $@ -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) -e CONFIG_FILE=$(VBJAENGINE_CONFIG_FILE)
-
 $(TARGET).vb: $(TARGET).elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary $(TARGET).elf $@
@@ -210,9 +204,9 @@ dump: $(TARGET).elf
 	@$(OBJDUMP) -S $(TARGET).elf > $(STORE)/machine-$(TYPE).asm
 	@echo Dumping elf done
 
-$(TARGET).elf: dirs $(OBJECTS) $(ASM_OBJECTS)
+$(TARGET).elf: dirs $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
 	@echo Linking $(TARGET)
-	@$(GCC) -o $@ -nostartfiles $(OBJECTS) $(ASM_OBJECTS) $(LDPARAM) \
+	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(LDPARAM) \
 		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
