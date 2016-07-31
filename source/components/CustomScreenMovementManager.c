@@ -113,7 +113,7 @@ static void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementMa
     _screen->position.x = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
     _screen->position.y = (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(SCREEN_VERTICAL_DISPLACEMENT));
 
-    Screen_capPosition(_screen, true);
+    Screen_capPosition(_screen);
     Screen_forceDisplacement(_screen, true);
 }
 
