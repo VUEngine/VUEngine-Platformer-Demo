@@ -568,6 +568,8 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 		case kLevelStarted:
 
+        	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
+
 			// fade in
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
@@ -591,6 +593,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
             CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager_getInstance());
             CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
 
+        	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
 			break;
 
 		case kHideLevelMessage:
