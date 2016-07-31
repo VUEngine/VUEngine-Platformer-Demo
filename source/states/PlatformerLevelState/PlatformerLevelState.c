@@ -58,6 +58,7 @@ static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState th
 bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
+void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer);
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
@@ -358,6 +359,10 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
 
+    // make sure that fucusing gets completed inmediatly
+    CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
+    CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager_getInstance());
+
 	// check if destination entity name is given
 	if(this->currentStageEntryPoint->destinationName)
 	{
@@ -419,7 +424,11 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
                 Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
             }
 
+            Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, hero));
+
+//            Screen_focus(Screen_getInstance(), false);
             GameState_transform(__SAFE_CAST(GameState, this));
+            GameState_updateVisuals(__SAFE_CAST(GameState, this));
         }
 	}
 	else
@@ -427,6 +436,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	    // load stage
 	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->currentStageEntryPoint->stageDefinition), entityNamesToIgnore, true);
 	}
+
+    CustomScreenMovementManager_disable(CustomScreenMovementManager_getInstance());
 
     // free some memory
 	__DELETE(entityNamesToIgnore);
@@ -575,7 +586,10 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
         	PlatformerLevelState_setModeToPlaying(this);
 
-        	Game_enableKeypad(Game_getInstance());
+            // enable focus easing
+            Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
+            CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager_getInstance());
+            CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
 
 			break;
 
@@ -633,6 +647,12 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 	}
 
 	return false;
+}
+
+void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer)
+{
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
+    Game_enableKeypad(Game_getInstance());
 }
 
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer)

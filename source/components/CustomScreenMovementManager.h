@@ -31,6 +31,8 @@
 // 												MACROS
 //---------------------------------------------------------------------------------------------------------
 
+#define EVENT_SCREEN_FOCUSED                        "screenFocused"
+
 #define SCREEN_EASING_X_DISPLACEMENT				200
 #define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT		300
 #define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT		400
@@ -60,7 +62,7 @@ enum CustomScreenFX
 // declare the virtual methods which are redefined
 #define CustomScreenMovementManager_SET_VTABLE(ClassName)												\
     	ScreenMovementManager_SET_VTABLE(ClassName)														\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, position);								\
+		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, focus);								    \
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, startEffect);								\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, stopEffect);								\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, handleMessage);							\
@@ -77,7 +79,11 @@ enum CustomScreenFX
         /* update axis flag */																			\
         VBVec3DFlag positionFlag;																		\
         /* to calculate elapsed time */																	\
-        u32 previousTime;																    			\
+        fix19_13 previousTime;																    		\
+        /* disable focusing */																	        \
+        bool disabled;																    		        \
+        /* do eased focusing */																	        \
+        bool enableFocusEasing;																    		\
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);
@@ -90,12 +96,16 @@ __CLASS(CustomScreenMovementManager);
 CustomScreenMovementManager CustomScreenMovementManager_getInstance();
 
 void CustomScreenMovementManager_destructor(CustomScreenMovementManager this);
-void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving);
+void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving);
 void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, int effect, int duration);
 void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, int effect);
 void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag);
 VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this);
 bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram);
+void CustomScreenMovementManager_enable(CustomScreenMovementManager this);
+void CustomScreenMovementManager_disable(CustomScreenMovementManager this);
+void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager this);
+void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager this);
 
 
 #endif

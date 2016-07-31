@@ -25,6 +25,7 @@
 #include <Actor.h>
 #include <Game.h>
 #include <PhysicalWorld.h>
+#include <EventManager.h>
 #include <Utilities.h>
 
 #include <debugConfig.h>
@@ -45,6 +46,7 @@ __CLASS_FRIEND_DEFINITION(Screen);
 //---------------------------------------------------------------------------------------------------------
 
 static void CustomScreenMovementManager_constructor(CustomScreenMovementManager this);
+static void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementManager this);
 static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager this, u16 duration);
 static void CustomScreenMovementManager_FXShakeStop(CustomScreenMovementManager this);
 static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManager this);
@@ -85,6 +87,9 @@ static void __attribute__ ((noinline)) CustomScreenMovementManager_constructor(C
 	this->shakeTimeLeft = 0;
 	this->previousTime = 0;
 
+	this->disabled = true;
+	this->enableFocusEasing = false;
+
 	_screen = Screen_getInstance();
 
 	NM_ASSERT(_screen, "CustomScreenMovementManager::constructor: null _screen");
@@ -99,24 +104,44 @@ void CustomScreenMovementManager_destructor(CustomScreenMovementManager this)
 	__SINGLETON_DESTROY;
 }
 
-// center world's _screen in function of focus actor's position
-void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving)
+static void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
-	if(this->tempFocusInGameEntity)
+    const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL_UNSAFE(SpatialObject, getPosition, _screen->focusInGameEntity);
+    Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
+    _screen->position.x = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
+    _screen->position.y = (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(SCREEN_VERTICAL_DISPLACEMENT));
+
+    Screen_capPosition(_screen, true);
+    Screen_forceDisplacement(_screen, true);
+}
+
+// center world's _screen in function of focus actor's position
+void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving)
+{
+	ASSERT(this, "CustomScreenMovementManager::update: null this");
+
+	if(this->tempFocusInGameEntity || this->disabled)
 	{
 		return;
+	}
+
+	if(!this->enableFocusEasing)
+	{
+	    CustomScreenMovementManager_focusWithNoEasing(this);
+	    return;
 	}
 
 	_screen->lastDisplacement.x = 0;
 	_screen->lastDisplacement.y = 0;
 	_screen->lastDisplacement.z = 0;
 
-	fix19_13 elapsedTime = PhysicalWorld_getElapsedTime(Game_getPhysicalWorld(Game_getInstance()));
+    fix19_13 currentTime = ITOFIX19_13(Clock_getTime(Game_getInGameClock(Game_getInstance())));
+	fix19_13 elapsedTime = FIX19_13_DIV(currentTime - this->previousTime, ITOFIX19_13(__MILLISECONDS_IN_SECOND));
 
 	// if focusInGameEntity is defined
-	if(_screen->focusInGameEntity)
+	if(_screen->focusInGameEntity && this->previousTime)
 	{
 		Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
 
@@ -126,6 +151,8 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 		VBVec3D screenPreviousPosition = _screen->position;
 
 		const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
+
+        bool screenMoved = false;
 
 		{
 			bool focusEntityOutOfBounds = focusInGameEntityPosition->x > _screen->position.x + ITOFIX19_13( __SCREEN_WIDTH - SCREEN_WIDTH_REDUCTION) || focusInGameEntityPosition->x < _screen->position.x + ITOFIX19_13(SCREEN_WIDTH_REDUCTION);
@@ -154,17 +181,14 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 					_screen->position.x = focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT);
 				}
 
-				if(!this->tempFocusInGameEntity)
-				{
-					if(0 > _screen->position.x)
-					{
-						_screen->position.x = 0;
-					}
-					else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
-					{
-						_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
-					}
-				}
+                if(0 > _screen->position.x)
+                {
+                    _screen->position.x = 0;
+                }
+                else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+                {
+                    _screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
+                }
 
 				_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
 			}
@@ -199,23 +223,31 @@ void CustomScreenMovementManager_position(CustomScreenMovementManager this, u8 c
 				{
 					_screen->position.y -= upEasingDisplacement;
 				}
-
-				if(!this->tempFocusInGameEntity)
+				else
 				{
-					if(0 > _screen->position.y)
-					{
-						_screen->position.y = 0;
-					}
-					else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
-					{
-						_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
-					}
+                    _screen->position.y = (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(SCREEN_VERTICAL_DISPLACEMENT));
 				}
+
+                if(0 > _screen->position.y)
+                {
+                    _screen->position.y = 0;
+                }
+                else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
+                {
+                    _screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
+                }
 
 				_screen->lastDisplacement.y = _screen->position.y - screenPreviousPosition.y;
 			}
 		}
+
+		if((this->positionFlag.x & this->positionFlag.y) & !_screen->lastDisplacement.x & !_screen->lastDisplacement.y)
+		{
+            Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_SCREEN_FOCUSED);
+		}
 	}
+
+    this->previousTime = currentTime;
 }
 
 void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, int effect, int duration)
@@ -316,6 +348,7 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
 
         Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
         this->tempFocusInGameEntity = NULL;
+        this->previousTime = 0;
 
         return;
     }
@@ -349,4 +382,33 @@ VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementMana
 	ASSERT(this, "CustomScreenMovementManager::getPositionFlag: null this");
 
 	return this->positionFlag;
+}
+
+void CustomScreenMovementManager_enable(CustomScreenMovementManager this)
+{
+	ASSERT(this, "CustomScreenMovementManager::enable: null this");
+
+	this->disabled = false;
+    this->previousTime = 0;//ITOFIX19_13(Clock_getTime(Game_getInGameClock(Game_getInstance())));
+}
+
+void CustomScreenMovementManager_disable(CustomScreenMovementManager this)
+{
+	ASSERT(this, "CustomScreenMovementManager::disable: null this");
+
+	this->disabled = true;
+}
+
+void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager this)
+{
+	ASSERT(this, "CustomScreenMovementManager::enableFocusEasing: null this");
+
+	this->enableFocusEasing = true;
+}
+
+void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager this)
+{
+	ASSERT(this, "CustomScreenMovementManager::disableFocusEasing: null this");
+
+	this->enableFocusEasing = false;
 }

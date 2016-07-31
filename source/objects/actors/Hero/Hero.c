@@ -1240,7 +1240,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 
 		case kLevelStarted:
 			{
-				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
+//				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
 
 				VBVec3DFlag positionFlag = {true, true, true};
 			    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
@@ -1306,7 +1306,7 @@ void Hero_resume(Hero this)
 
 	Actor_resume(__SAFE_CAST(Actor, this));
 
-	Screen_position(Screen_getInstance(), false);
+	Screen_focus(Screen_getInstance(), false);
 
 	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 
