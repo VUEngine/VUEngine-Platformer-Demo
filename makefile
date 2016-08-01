@@ -188,7 +188,6 @@ deleteEngine:
 
 $(ENGINE): deleteEngine
 	@echo Building VBJaEngine...
-	@echo $(VBJAENGINE)/makefile
 	@$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE)
 
 all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
