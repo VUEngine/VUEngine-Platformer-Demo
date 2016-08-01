@@ -173,7 +173,7 @@ C_OBJECTS := $(addprefix $(STORE)/, $(C_SOURCE:.c=.o))
 ASSEMBLY_OBJECTS := $(addprefix $(STORE)/, $(ASSEMBLY_SOURCE:.s=.o))
 
 # Same for the .d (dependency) files.
-DFILES := $(addprefix $(STORE)/,$(SOURCE:.c=.d))
+DFILES := $(addprefix $(STORE)/,$(C_SOURCE:.c=.d))
 
 # Specify phony rules. These are rules that are not real files.
 .PHONY: clean backup dirs
@@ -213,8 +213,8 @@ $(TARGET).elf: dirs $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
 # because the files gcc outputs assume it will be in the same dir as the source file.
 $(STORE)/%.o: %.c
 	@echo Compiling $<
-	@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(CCPARAM) $(foreach INC,$(INCPATH_ENGINE) $(INCPATH_GAME),-I$(INC))\
-        $(foreach MACRO,$(MACROS),-D$(MACRO)) -$(COMPILER_OUTPUT) $< -o $@
+	@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(foreach INC,$(INCPATH_ENGINE) $(INCPATH_GAME),-I$(INC))\
+        $(foreach MACRO,$(MACROS),-D$(MACRO)) $(CCPARAM)  -$(COMPILER_OUTPUT) $< -o $@
 	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
 	@rm -f $(STORE)/$*.dd
 
@@ -232,11 +232,6 @@ clean:
 	@rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
 	@rm -Rf $(STORE)
 	@echo Cleaning done.
-
-# Backup the source files.
-backup:
-	@-if [ ! -e .backup ]; then mkdir .backup; fi;
-	@zip .backup/backup_`date +%d-%m-%y_%H.%M`.zip $(SOURCE) $(HEADERS) $(EXTRA_FILES)
 
 # Create necessary directories
 dirs:
