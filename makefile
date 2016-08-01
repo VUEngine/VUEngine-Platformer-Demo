@@ -32,7 +32,8 @@ VIRTUAL_TABLES_DATA_SECTION_ATTRIBUTE       = __VIRTUAL_TABLES_DATA_SECTION_ATTR
 MEMORY_POOL_IN_SRAM =
 
 # include overrides
-include config.make
+CONFIG_MAKE_FILE = $(shell pwd)/config.make
+include $(CONFIG_MAKE_FILE)
 
 ifeq ($(COMPILER), 4.7)
 COMPILER_NAME = v810
@@ -98,23 +99,16 @@ LINKER_SCRIPT = $(VBJAENGINE)/lib/compiler/vb.ld
 
 # Which directories contain source files
 # DIRS := $(shell find * -type d -print)
-DIRS := $(shell find ./source ./assets $(VBJAENGINE)/assets $(VBJAENGINE)/source $(VBJAENGINE)/lib/compiler -type d -print)
+DIRS := $(shell find ./source ./assets -type d -print)
 
 # Which libraries are linked
-LIBS =
+LIBS =  vbjae
 ROMHEADER=lib/vb.hdr
 
-# Dynamic libraries
-DLIBS =
-
-
 # Obligatory headers
-VBJAENGINE_CONFIG_FILE = $(shell pwd)/config.h
-GAME_ESSENTIALS = 	-include $(VBJAENGINE_CONFIG_FILE) \
+CONFIG_FILE =       $(shell pwd)/config.h
+ESSENTIAL_HEADERS = -include $(CONFIG_FILE) \
 					-include $(VBJAENGINE)/libvbjae.h
-
-# Config includes
-CONFIG_MAKE_FILE = $(shell pwd)/config.make
 
 # Common macros for all build types
 COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
@@ -122,25 +116,25 @@ COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
 # The next blocks changes some variables depending on the build type
 ifeq ($(TYPE),debug)
 LDPARAM = -fno-builtin -ffreestanding -T$(LINKER_SCRIPT) -lm
-CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(ESSENTIAL_HEADERS)
 MACROS = __DEBUG __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release)
 LDPARAM = -T$(LINKER_SCRIPT) -lm
-CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline -std=gnu99 -fstrict-aliasing $(ESSENTIAL_HEADERS)
 MACROS = $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release-tools)
 LDPARAM = -T$(LINKER_SCRIPT) -lm
-CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS)
+CCPARAM = $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(ESSENTIAL_HEADERS)
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE),preprocessor)
 LDPARAM =
-CCPARAM = -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(GAME_ESSENTIALS) -E
+CCPARAM = -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(ESSENTIAL_HEADERS) -E
 MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
@@ -149,7 +143,7 @@ endif
 INCPATH_ENGINE := $(VBJAENGINE) $(shell find $(VBJAENGINE)/source -type d -print)
 INCPATH_GAME := $(shell find * -type d -print)
 
-LIBPATH =
+LIBPATH = $(BUILD_DIR)
 
 # Which files to add to backups, apart from the source code
 EXTRA_FILES = makefile
@@ -186,6 +180,17 @@ ENGINE = libvbjae.a
 # first build the engine
 TARGET = $(BUILD_DIR)/output
 
+# first build the engine
+ENGINE = $(BUILD_DIR)/libvbjae.a
+
+deleteEngine:
+	rm -f $(ENGINE)
+
+$(ENGINE): deleteEngine
+	@echo Building VBJaEngine...
+	@echo $(VBJAENGINE)/makefile
+	@$(MAKE) -f $(VBJAENGINE)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE)
+
 all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
 pad: $(TARGET).vb
@@ -204,8 +209,9 @@ dump: $(TARGET).elf
 	@$(OBJDUMP) -S $(TARGET).elf > $(STORE)/machine-$(TYPE).asm
 	@echo Dumping elf done
 
-$(TARGET).elf: dirs $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
+$(TARGET).elf: dirs $(ENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
 	@echo Linking $(TARGET)
+	@echo Linking $(ENGINE)
 	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(LDPARAM) \
 		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
 
