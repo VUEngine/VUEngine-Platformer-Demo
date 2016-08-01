@@ -184,7 +184,7 @@ TARGET = $(BUILD_DIR)/output
 ENGINE = $(BUILD_DIR)/libvbjae.a
 
 deleteEngine:
-	rm -f $(ENGINE)
+	@rm -f $(ENGINE)
 
 $(ENGINE): deleteEngine
 	@echo Building VBJaEngine...
