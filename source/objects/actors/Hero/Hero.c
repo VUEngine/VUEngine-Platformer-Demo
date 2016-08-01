@@ -1196,9 +1196,18 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), false);
             Body_setActive(this->body, true);
 
-        	if(!(__YAXIS & Body_isMoving(this->body)))
+            int bodyMovement = Body_isMoving(this->body);
+
+        	if(!(__YAXIS & bodyMovement))
         	{
-        		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+        	    if(__XAXIS & bodyMovement)
+        	    {
+            		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+                }
+                else
+                {
+            		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
+                }
         	}
 
         	break;
