@@ -209,8 +209,7 @@ dump: $(TARGET).elf
 	@echo Dumping elf done
 
 $(TARGET).elf: dirs $(ENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
-	@echo Linking $(TARGET)
-	@echo Linking $(ENGINE)
+	@echo Linking $(TARGET).elf
 	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(LDPARAM) \
 		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(LIBPATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
 
