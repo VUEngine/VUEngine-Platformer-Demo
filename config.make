@@ -1,6 +1,3 @@
-# Compiler's version to use
-COMPILER                = 4.7
-
 # Compiler's output
 COMPILER_OUTPUT          = c
 
