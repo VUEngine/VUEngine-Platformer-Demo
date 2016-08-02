@@ -141,7 +141,7 @@ endif
 
 # Add directories to the include and library paths
 INCPATH_ENGINE := $(VBJAENGINE) $(shell find $(VBJAENGINE)/source -type d -print)
-INCPATH_GAME := $(shell find * -type d -print)
+INCPATH_GAME := $(shell find assets source -type d -print)
 
 LIBPATH = $(BUILD_DIR)
 
@@ -151,7 +151,7 @@ EXTRA_FILES = makefile
 # Where to store object and dependency files.
 STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFIX)
 
-# Makes a list of the source (.cpp) files.
+# Makefs a list of the source (.cpp) files.
 C_SOURCE := $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
 
 # Makes a list of the source (.s) files.
