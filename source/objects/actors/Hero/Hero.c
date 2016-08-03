@@ -1125,8 +1125,10 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kTopSolid:
                 {
+        			int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, __SAFE_CAST(SpatialObject, inGameEntity), Body_isMoving(this->body), Body_getLastDisplacement(this->body));
+
                     // if hero's moving over the y axis or is above colliding entity
-                    if((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity)))
+                    if((__XAXIS & axisOfCollision) || ((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity))))
                     {
                         // don't further process collision
                         VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
