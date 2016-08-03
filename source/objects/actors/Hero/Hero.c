@@ -1113,16 +1113,6 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				break;
 
 			case kMovingPlatform:
-                {
-                    // if hero's falling or is above colliding entity
-                    if((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity)))
-                    {
-                        // don't further process collision
-                        VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-                    }
-                }
-	            break;
-
 			case kTopSolid:
                 {
         			int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, __SAFE_CAST(SpatialObject, inGameEntity), Body_isMoving(this->body), Body_getLastDisplacement(this->body));
