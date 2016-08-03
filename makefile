@@ -109,29 +109,28 @@ COMMON_MACROS := $(DATA_SECTION_ATTRIBUTES)
 
 # The next blocks changes some variables depending on the build type
 ifeq ($(TYPE),debug)
-LD_PARAMS := -fno-builtin -ffreestanding -T$(LINKER_SCRIPT) -lm
-C_PARAMS := $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -fno-builtin -ffreestanding -nodefaultlibs -mv810 -O0 -Wall -std=gnu99 -fstrict-aliasing $(ESSENTIAL_HEADERS)
+LD_PARAMS := -T$(LINKER_SCRIPT) -lm
+C_PARAMS := $(ESSENTIAL_HEADERS) $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -std=gnu99 -mv810 -nodefaultlibs -Wall -fstrict-aliasing -O0
 MACROS := __DEBUG __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE), release)
 LD_PARAMS := -T$(LINKER_SCRIPT) -lm
-C_PARAMS := $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -nodefaultlibs -mv810 -finline-functions -Wall -O3 -Winline -std=gnu99 -fstrict-aliasing $(ESSENTIAL_HEADERS)
+C_PARAMS := $(ESSENTIAL_HEADERS) $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -std=gnu99 -mv810 -nodefaultlibs -Wall -fstrict-aliasing -O3 -finline-functions -Winline
 MACROS := $(COMMON_MACROS)
 endif
 
-ifeq ($(TYPE), release-tools)
+ifeq ($(TYPE), tools)
 LD_PARAMS := -T$(LINKER_SCRIPT) -lm
-C_PARAMS := $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -nodefaultlibs -mv810 -finline-functions -Wall -O2 -Winline -std=gnu99 -fstrict-aliasing $(ESSENTIAL_HEADERS)
+C_PARAMS := $(ESSENTIAL_HEADERS) $(PROLOG_FUNCTIONS_FLAG) $(FRAME_POINTER_USAGE_FLAG) -std=gnu99 -mv810 -nodefaultlibs -Wall -fstrict-aliasing -O0 -finline-functions -Winline
 MACROS := __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE),preprocessor)
 LD_PARAMS :=
-C_PARAMS := -nodefaultlibs -mv810 -Wall -Winline -std=gnu99 -fstrict-aliasing $(ESSENTIAL_HEADERS) -E
-MACROS := __TOOLS $(COMMON_MACROS)
+C_PARAMS := -std=gnu99 -mv810 -nodefaultlibs -Wall -fstrict-aliasing -E
+MACROS := $(COMMON_MACROS)
 endif
-
 
 # Add directories to the include and library paths
 VBJAENGINE_INCLUDE_PATHS := $(VBJAENGINE_HOME) $(shell find $(VBJAENGINE_HOME)/source -type d -print)
@@ -169,17 +168,16 @@ ENGINE := libvbjae.a
 # first build the engine
 TARGET := $(BUILD_DIR)/output
 
-# first build the engine
-ENGINE := $(BUILD_DIR)/libvbjae.a
+# define the engine
+VBJAENGINE := $(BUILD_DIR)/libvbjae.a
 
-deleteEngine:
-	@rm -f $(ENGINE)
+all: printBuildingInfo $(TARGET).vb $(PAD) $(DUMP_TARGET)
 
-$(ENGINE): deleteEngine
-	@echo Building VBJaEngine...
-	@$(MAKE) -f $(VBJAENGINE_HOME)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE)
-
-all: $(TARGET).vb $(PAD) $(DUMP_TARGET)
+printBuildingInfo:
+	@echo Building $(TARGET).vb
+	@echo Build type: $(TYPE)
+	@echo Compiler: $(COMPILER_NAME) $(COMPILER_VERSION)
+	@echo Compiler\'s output: $(COMPILER_OUTPUT)
 
 pad: $(TARGET).vb
 	@echo Padding $(TARGET).vb
@@ -197,7 +195,14 @@ dump: $(TARGET).elf
 	@$(OBJDUMP) -S $(TARGET).elf > $(STORE)/machine-$(TYPE).asm
 	@echo Dumping elf done
 
-$(TARGET).elf: dirs $(ENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
+deleteEngine:
+	@rm -f $(VBJAENGINE)
+
+$(VBJAENGINE): deleteEngine
+	@echo Building VBJaEngine...
+	@$(MAKE) all -f $(VBJAENGINE_HOME)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE)
+
+$(TARGET).elf: dirs $(VBJAENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
 	@echo Linking $(TARGET).elf
 	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(LD_PARAMS) \
 		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(VBJAENGINE_LIBRARY_PATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
@@ -220,7 +225,7 @@ $(STORE)/%.o: %.s
 
 # Cleans up the objects, .d files and executables.
 clean:
-	@echo Cleaning...
+	@echo Cleaning $(TYPE)...
 	@find $(BUILD_DIR) -maxdepth 1 -type f -exec rm -f {} \;
 	@rm -f $(foreach DIR,$(DIRS),$(STORE)/$(DIR)/*.d $(STORE)/$(DIR)/*.o)
 	@rm -Rf $(STORE)
