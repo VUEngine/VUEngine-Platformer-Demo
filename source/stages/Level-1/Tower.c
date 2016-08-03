@@ -95,13 +95,6 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_2[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_ENTITIES[] =
-{
-    {&LEVEL_1_TOWER_MAIN_2_IM,      {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
-
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
-};
-
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_1[] =
 {
 	{&COLLISION_2x64x1,	    		{FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // outer left wall
@@ -189,7 +182,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
     {&MOVING_PLATFORM_V6_AC,        {FTOFIX19_13(336),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 424), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 
     // part 2
-    {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 768),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_ENTITIES, NULL, false},
+    {&LEVEL_1_TOWER_MAIN_2_IM,      {FTOFIX19_13(192), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 768), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, NULL, NULL, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_1, NULL, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),    FTOFIX19_13(LAYER_0_FOREGROUND)}, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_2, NULL, false},
 
@@ -286,11 +279,11 @@ StageROMDef LEVEL_1_TOWER_ST =
         // delay per cycle
         10,
         // load padding
-        80,
+        110,
         // unload padding
-        16,
+        32,
         // streaming amplitude
-        36,
+        28,
     },
 
     // rendering
