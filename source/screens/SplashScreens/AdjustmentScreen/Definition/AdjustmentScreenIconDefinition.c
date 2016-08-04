@@ -74,14 +74,16 @@ TextureROMDef ADJUSTMENT_SCREEN_ICON_TX =
 
 BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
+        // texture definition
+        (TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -98,14 +100,16 @@ BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
 
 BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
+        // texture definition
+        (TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

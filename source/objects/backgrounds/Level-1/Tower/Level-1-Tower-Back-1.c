@@ -84,14 +84,16 @@ TextureROMDef* const LEVEL_1_TOWER_BACK_1_IM_TEXTURES[] =
 MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 {
 	{
-		// sprite's type
-		__TYPE(MBgmapSprite),
+        {
+            // sprite's type
+            __TYPE(MBgmapSprite),
 
-		// texture definition
-		NULL,
+            // texture definition
+            NULL,
 
-		// displacement
-		{0, 0, FTOFIX19_13(2)},
+            // displacement
+            {0, 0, FTOFIX19_13(2)},
+        },
 
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,

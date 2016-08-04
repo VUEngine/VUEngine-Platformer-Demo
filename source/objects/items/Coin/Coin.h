@@ -31,10 +31,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Coin_METHODS(ClassName)																			\
-    	AnimatedInGameEntity_METHODS(ClassName);														\
+    	AnimatedInGameEntity_METHODS(ClassName)														\
 
 #define Coin_SET_VTABLE(ClassName)																		\
-        AnimatedInGameEntity_SET_VTABLE(ClassName);														\
+        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
         __VIRTUAL_SET(ClassName, Coin, handleMessage);													\
 
 __CLASS(Coin);

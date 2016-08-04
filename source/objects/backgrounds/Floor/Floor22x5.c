@@ -77,15 +77,17 @@ TextureROMDef FLOOR_22x5_TX =
 
 BgmapSpriteROMDef FLOOR_22x5_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&FLOOR_22x5_TX,
+        // texture definition
+        (TextureDefinition*)&FLOOR_22x5_TX,
 
-	// displacement
-	{0, 0, 0},
-	
+        // displacement
+        {0, 0, 0},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
 
@@ -95,14 +97,16 @@ BgmapSpriteROMDef FLOOR_22x5_SPRITE =
 
 BgmapSpriteROMDef FLOOR_22x5_TOP_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&FLOOR_22_TOP_TX,
+        // texture definition
+        (TextureDefinition*)&FLOOR_22_TOP_TX,
 
-	// displacement
-	{0, FTOFIX19_13(-12), FTOFIX19_13(-1)},
+        // displacement
+        {0, FTOFIX19_13(-12), FTOFIX19_13(-1)},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -135,11 +139,11 @@ InanimatedInGameEntityROMDef FLOOR_22x5_IG =
         // width
         // if 0, width and height will be inferred from the texture's size
         0,
-        
+
         // height
         // if 0, width and height will be inferred from the texture's size
         0,
-        
+
         // depth
         16
     },

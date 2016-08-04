@@ -38,10 +38,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CogWheel_METHODS(ClassName)																		\
-    	Image_METHODS(ClassName);																		\
+    	Image_METHODS(ClassName)																		\
 
 #define CogWheel_SET_VTABLE(ClassName)																	\
-        Image_SET_VTABLE(ClassName);																	\
+        Image_SET_VTABLE(ClassName)																	\
         __VIRTUAL_SET(ClassName, CogWheel, ready);														\
         __VIRTUAL_SET(ClassName, CogWheel, handleMessage);												\
 

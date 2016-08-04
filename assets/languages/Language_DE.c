@@ -34,45 +34,49 @@
  * form part of a valid UTF-8 byte sequence: £
  */
 
+const char* const germanStrings[] =
+{
+    /* Splash Screens */
+
+    //STR_PRECAUTION_SCREEN_TITLE:
+    "Wichtig:",
+    //STR_PRECAUTION_SCREEN_TEXT:
+    "   Lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
+    //STR_AUTOMATIC_PAUSE:
+    "Automatische Pause",
+    //STR_AUTOMATIC_PAUSE_EXPLANATION:
+    " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
+    //STR_AUTOMATIC_PAUSE_TEXT:
+    "Bitte mache eine Pause!",
+    //STR_PAUSE:
+    "Pause",
+    //STR_ON:
+    "An",
+    //STR_OFF:
+    "Aus",
+    //STR_LANGUAGE_SELECT:
+    "Sprachauswahl",
+    //STR_PRESS_START_BUTTON:
+    "Start-Knopf drücken",
+
+    /* Levels */
+
+    //STR_LEVEL:
+    "Level",
+    //STR_LEVEL_DONE:
+    "Level geschafft!",
+    //STR_LEVEL_CONQUERED:
+    "Level gemeistert!",
+    //STR_LEVEL_1_NAME:
+    "Woohoo-Berge",
+};
+
 const LangROMDef LANGUAGE_DE =
 {
     // Language Name
     "Deutsch",
 
     // Strings
-    {
-        /* Splash Screens */
-
-        //STR_PRECAUTION_SCREEN_TITLE:
-        "Wichtig:",
-        //STR_PRECAUTION_SCREEN_TEXT:
-        "   Lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
-        //STR_AUTOMATIC_PAUSE:
-        "Automatische Pause",
-        //STR_AUTOMATIC_PAUSE_EXPLANATION:
-        " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
-        //STR_AUTOMATIC_PAUSE_TEXT:
-        "Bitte mache eine Pause!",
-        //STR_PAUSE:
-        "Pause",
-        //STR_ON:
-        "An",
-        //STR_OFF:
-        "Aus",
-        //STR_LANGUAGE_SELECT:
-        "Sprachauswahl",
-        //STR_PRESS_START_BUTTON:
-        "Start-Knopf drücken",
-
-        /* Levels */
-
-        //STR_LEVEL:
-        "Level",
-        //STR_LEVEL_DONE:
-        "Level geschafft!",
-        //STR_LEVEL_CONQUERED:
-        "Level gemeistert!",
-        //STR_LEVEL_1_NAME:
-        "Woohoo-Berge",
-    },
+    germanStrings
 };
+

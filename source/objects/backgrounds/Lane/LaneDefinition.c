@@ -75,18 +75,20 @@ TextureROMDef LANE_V_6_TX =
 
 BgmapSpriteROMDef LANE_V_6_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&LANE_V_6_TX,
+        // texture definition
+        (TextureDefinition*)&LANE_V_6_TX,
 
-	// displacement
-	{0, 0, FTOFIX19_13(2)},
-	
+        // displacement
+        {0, 0, FTOFIX19_13(2)},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };

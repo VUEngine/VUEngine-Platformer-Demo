@@ -32,7 +32,7 @@
 
 // declare the virtual methods
 #define HeroMoving_METHODS(ClassName)																	\
-    	State_METHODS(ClassName);																		\
+    	State_METHODS(ClassName)																		\
 
 // declare the virtual methods which are redefined
 #define HeroMoving_SET_VTABLE(ClassName)																\

@@ -29,9 +29,9 @@
 // 											  DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern void (*testParticleBehavior)(Particle);
-extern void (*dustParticleBehavior)(Particle);
-extern void (*smokeParticleBehavior)(Particle);
+extern void testParticleBehavior(Particle particle);
+extern void dustParticleBehavior(Particle particle);
+extern void smokeParticleBehavior(Particle particle);
 
 
 //---------------------------------------------------------------------------------------------------------

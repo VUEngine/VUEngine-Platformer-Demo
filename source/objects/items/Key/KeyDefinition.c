@@ -108,14 +108,16 @@ TextureROMDef KEY_TX =
 
 ObjectSpriteROMDef KEY_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&KEY_TX,
+        // texture definition
+        (TextureDefinition*)&KEY_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,

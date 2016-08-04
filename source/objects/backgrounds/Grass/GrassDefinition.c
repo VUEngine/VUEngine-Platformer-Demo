@@ -132,14 +132,16 @@ TextureROMDef GRASS_TX =
 
 ObjectSpriteROMDef GRASS_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&GRASS_TX,
+        // texture definition
+        (TextureDefinition*)&GRASS_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,

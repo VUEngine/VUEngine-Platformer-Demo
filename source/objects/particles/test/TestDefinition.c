@@ -114,14 +114,16 @@ TextureROMDef OBJECT_TEST_PARTICLE_TX =
 
 ObjectSpriteROMDef OBJECT_TEST_PARTICLE_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&OBJECT_TEST_PARTICLE_TX,
+        // texture definition
+        (TextureDefinition*)&OBJECT_TEST_PARTICLE_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,

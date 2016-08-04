@@ -164,14 +164,16 @@ TextureROMDef GUI_OVERWORLD_TX =
 
 BgmapSpriteROMDef GUI_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&GUI_TX,
+        // texture definition
+        (TextureDefinition*)&GUI_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -182,14 +184,16 @@ BgmapSpriteROMDef GUI_SPRITE =
 
 BgmapSpriteROMDef GUI_OVERWORLD_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&GUI_OVERWORLD_TX,
+        // texture definition
+        (TextureDefinition*)&GUI_OVERWORLD_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

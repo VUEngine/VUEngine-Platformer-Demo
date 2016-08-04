@@ -34,45 +34,49 @@
  * form part of a valid UTF-8 byte sequence: £
  */
 
+const char* const englishStrings[] =
+// Strings
+{
+    /* Splash Screens */
+
+    //STR_PRECAUTION_SCREEN_TITLE:
+    "Important:",
+    //STR_PRECAUTION_SCREEN_TEXT:
+    "Read Instruction and\n\nPrecaution Booklets\n\n  before operating",
+    //STR_AUTOMATIC_PAUSE:
+    "Automatic Pause",
+    //STR_AUTOMATIC_PAUSE_EXPLANATION:
+    "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
+    //STR_AUTOMATIC_PAUSE_TEXT:
+    "Please take a rest!",
+    //STR_PAUSE:
+    "Pause",
+    //STR_ON:
+    "On",
+    //STR_OFF:
+    "Off",
+    //STR_LANGUAGE_SELECT:
+    "Language Select",
+    //STR_PRESS_START_BUTTON:
+    "Press Start Button",
+
+    /* Levels */
+
+    //STR_LEVEL:
+    "Level",
+    //STR_LEVEL_DONE:
+    "Level Completed!",
+    //STR_LEVEL_CONQUERED:
+    "Level Conquered!",
+    //STR_LEVEL_1_NAME:
+    "Woohoo Hills",
+};
+
 const LangROMDef LANGUAGE_EN =
 {
     // Language Name
     "English",
 
     // Strings
-    {
-        /* Splash Screens */
-
-        //STR_PRECAUTION_SCREEN_TITLE:
-        "Important:",
-        //STR_PRECAUTION_SCREEN_TEXT:
-        "Read Instruction and\n\nPrecaution Booklets\n\n  before operating",
-        //STR_AUTOMATIC_PAUSE:
-        "Automatic Pause",
-        //STR_AUTOMATIC_PAUSE_EXPLANATION:
-        "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
-        //STR_AUTOMATIC_PAUSE_TEXT:
-        "Please take a rest!",
-        //STR_PAUSE:
-        "Pause",
-        //STR_ON:
-        "On",
-        //STR_OFF:
-        "Off",
-        //STR_LANGUAGE_SELECT:
-        "Language Select",
-        //STR_PRESS_START_BUTTON:
-        "Press Start Button",
-
-        /* Levels */
-
-        //STR_LEVEL:
-        "Level",
-        //STR_LEVEL_DONE:
-        "Level Completed!",
-        //STR_LEVEL_CONQUERED:
-        "Level Conquered!",
-        //STR_LEVEL_1_NAME:
-        "Woohoo Hills",
-    },
+    englishStrings
 };

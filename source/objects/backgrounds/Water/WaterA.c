@@ -114,14 +114,16 @@ TextureROMDef WATER_A_TX =
 
 BgmapSpriteROMDef WATER_A_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&WATER_A_TX,
+        // texture definition
+        (TextureDefinition*)&WATER_A_TX,
 
-	// displacement
-	{FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0)},
+        // displacement
+        {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0)},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

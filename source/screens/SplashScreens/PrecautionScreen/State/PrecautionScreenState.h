@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define PrecautionScreenState_METHODS(ClassName)														\
-	    SplashScreenState_METHODS(ClassName);										    				\
+	    SplashScreenState_METHODS(ClassName)										    				\
 
 // declare the virtual methods which are redefined
 #define PrecautionScreenState_SET_VTABLE(ClassName)														\

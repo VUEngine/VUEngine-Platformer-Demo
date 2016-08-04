@@ -31,10 +31,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define LayerSwitchDoor_METHODS(ClassName)																\
-	    Door_METHODS(ClassName);																		\
+	    Door_METHODS(ClassName)																		\
 
 #define LayerSwitchDoor_SET_VTABLE(ClassName)															\
-        Door_SET_VTABLE(ClassName);																		\
+        Door_SET_VTABLE(ClassName)																		\
         __VIRTUAL_SET(ClassName, LayerSwitchDoor, handleMessage);										\
 
 __CLASS(LayerSwitchDoor);

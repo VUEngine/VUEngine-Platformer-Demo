@@ -31,10 +31,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define KeyDoor_METHODS(ClassName)																		\
-	    Door_METHODS(ClassName);																		\
+	    Door_METHODS(ClassName)																		\
 
 #define KeyDoor_SET_VTABLE(ClassName)																	\
-        Door_SET_VTABLE(ClassName);																		\
+        Door_SET_VTABLE(ClassName)																		\
         __VIRTUAL_SET(ClassName, KeyDoor, ready);														\
         __VIRTUAL_SET(ClassName, KeyDoor, hasDestination);												\
         __VIRTUAL_SET(ClassName, KeyDoor, setOverlapping);												\

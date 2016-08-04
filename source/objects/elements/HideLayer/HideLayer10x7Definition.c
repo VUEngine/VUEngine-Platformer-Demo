@@ -123,7 +123,7 @@ AnimationFunctionROMDef  HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
 	false,
 
 	// method to call on function completion
-	&HideLayer_onToTransparentAnimationComplete,
+	(EventListener)&HideLayer_onToTransparentAnimationComplete,
 
 	// function's name
 	"ToTransparent",
@@ -182,14 +182,16 @@ TextureROMDef HIDE_LAYER_10x7_TX =
 
 BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&HIDE_LAYER_10x7_TX,
+        // texture definition
+        (TextureDefinition*)&HIDE_LAYER_10x7_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -236,3 +238,4 @@ AnimatedInGameEntityROMDef HIDE_LAYER_10x7_AG =
     // initial animation
     "Solid",
 };
+

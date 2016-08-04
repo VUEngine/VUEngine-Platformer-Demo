@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define CannonBallIdle_METHODS(ClassName)																\
-	    State_METHODS(ClassName);																		\
+	    State_METHODS(ClassName)																		\
 
 // declare the virtual methods which are redefined
 #define CannonBallIdle_SET_VTABLE(ClassName)															\

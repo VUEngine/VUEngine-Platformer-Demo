@@ -80,14 +80,16 @@ TextureROMDef DUST_PARTICLE_SMALL_TX =
 
 ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectSprite),
 
-	// texture definition
-	(TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
+        // texture definition
+        (TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -136,14 +138,16 @@ TextureROMDef DUST_PARTICLE_LARGE_TX =
 
 ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectSprite),
 
-	// texture definition
-	(TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
+        // texture definition
+        (TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -182,10 +186,10 @@ ParticleROMDef DUST_PARTICLE =
 
 	// particle's mass delta
 	FTOFIX19_13(0),
-	
+
 	// axis subject to gravity (false to disable)
 	false,
-	
+
 	// function pointer to control particle's behavior
 	//(void (*)(Particle))&dustParticleBehavior,
 	NULL,
@@ -193,8 +197,8 @@ ParticleROMDef DUST_PARTICLE =
 	// animation description
 	// used only if sprite is animated
 	NULL,
-	
-	// animation's name to play 
+
+	// animation's name to play
 	NULL
 };
 
@@ -222,10 +226,10 @@ ParticleSystemROMDef DUST_PS =
 
 	// auto start
 	false,
-	
+
 	// particle definition
 	(ParticleDefinition*)&DUST_PARTICLE,
-	
+
 	// minimum random distance from the center of the system for spawn
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 

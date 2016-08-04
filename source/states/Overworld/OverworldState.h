@@ -38,7 +38,7 @@
 
 // declare the virtual methods
 #define OverworldState_METHODS(ClassName)																\
-	    GameState_METHODS(ClassName);											    					\
+	    GameState_METHODS(ClassName)											    					\
 
 // declare the virtual methods which are redefined
 #define OverworldState_SET_VTABLE(ClassName)															\

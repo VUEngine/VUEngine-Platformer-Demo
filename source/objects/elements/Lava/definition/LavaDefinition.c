@@ -77,18 +77,20 @@ TextureROMDef LAVA_TX =
 
 BgmapSpriteROMDef LAVA_BG_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&LAVA_TX,
+        // texture definition
+        (TextureDefinition*)&LAVA_TX,
 
-	// displacement
-	{0, 0, FTOFIX19_13(-1)},
-	
+        // displacement
+        {0, 0, FTOFIX19_13(-1)},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };

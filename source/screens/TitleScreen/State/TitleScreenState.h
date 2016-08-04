@@ -38,7 +38,7 @@
 
 // declare the virtual methods
 #define TitleScreenState_METHODS(ClassName)																\
-    	GameState_METHODS(ClassName);											    				    \
+    	GameState_METHODS(ClassName)											    				    \
 
 // declare the virtual methods which are redefined
 #define TitleScreenState_SET_VTABLE(ClassName)															\

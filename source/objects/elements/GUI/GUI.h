@@ -31,10 +31,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define GUI_METHODS(ClassName)																			\
-	    AnimatedInGameEntity_METHODS(ClassName);														\
+	    AnimatedInGameEntity_METHODS(ClassName)														\
 
 #define GUI_SET_VTABLE(ClassName)																		\
-        AnimatedInGameEntity_SET_VTABLE(ClassName);														\
+        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
         __VIRTUAL_SET(ClassName, GUI, ready);															\
         __VIRTUAL_SET(ClassName, GUI, handlePropagatedMessage);											\
 

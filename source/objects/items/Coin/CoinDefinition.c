@@ -270,14 +270,16 @@ TextureROMDef COIN_BACK_SILHOUETTE_TX =
 
 ObjectSpriteROMDef COIN_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&COIN_TX,
+        // texture definition
+        (TextureDefinition*)&COIN_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -294,14 +296,16 @@ ObjectSpriteROMDef* const COIN_SPRITES[] =
 
 ObjectSpriteROMDef COIN_SILHOUETTE_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&COIN_SILHOUETTE_TX,
+        // texture definition
+        (TextureDefinition*)&COIN_SILHOUETTE_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -388,14 +392,16 @@ AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG =
 
 ObjectSpriteROMDef COIN_BACK_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&COIN_BACK_TX,
+        // texture definition
+        (TextureDefinition*)&COIN_BACK_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -412,14 +418,16 @@ ObjectSpriteROMDef* const COIN_BACK_SPRITES[] =
 
 ObjectSpriteROMDef COIN_BACK_SILHOUETTE_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&COIN_BACK_SILHOUETTE_TX,
+        // texture definition
+        (TextureDefinition*)&COIN_BACK_SILHOUETTE_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -507,14 +515,16 @@ AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG =
 
 ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&AFFINE_COIN_TX,
+        // texture definition
+        (TextureDefinition*)&AFFINE_COIN_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,

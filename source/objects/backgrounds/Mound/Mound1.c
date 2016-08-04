@@ -75,18 +75,20 @@ TextureROMDef MOUND_1_TX =
 
 BgmapSpriteROMDef MOUND_1_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&MOUND_1_TX,
+        // texture definition
+        (TextureDefinition*)&MOUND_1_TX,
 
-	// displacement
-	{0, 0, 0},
-	
+        // displacement
+        {0, 0, 0},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };

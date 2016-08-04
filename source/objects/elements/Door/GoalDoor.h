@@ -31,10 +31,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define GoalDoor_METHODS(ClassName)																		\
-	    Door_METHODS(ClassName);																		\
+	    Door_METHODS(ClassName)																		\
 
 #define GoalDoor_SET_VTABLE(ClassName)																	\
-        Door_SET_VTABLE(ClassName);																		\
+        Door_SET_VTABLE(ClassName)																		\
         __VIRTUAL_SET(ClassName, GoalDoor, handleMessage);												\
         __VIRTUAL_SET(ClassName, GoalDoor, ready);														\
         __VIRTUAL_SET(ClassName, GoalDoor, hasDestination);												\

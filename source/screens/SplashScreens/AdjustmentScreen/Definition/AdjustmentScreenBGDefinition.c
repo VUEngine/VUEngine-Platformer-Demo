@@ -74,14 +74,16 @@ TextureROMDef ADJUSTMENT_SCREEN_BG_TX =
 
 BgmapSpriteROMDef ADJUSTMENT_SCREEN_BG_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&ADJUSTMENT_SCREEN_BG_TX,
+        // texture definition
+        (TextureDefinition*)&ADJUSTMENT_SCREEN_BG_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

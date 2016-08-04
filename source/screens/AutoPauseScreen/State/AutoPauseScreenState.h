@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define AutoPauseScreenState_METHODS(ClassName)															\
-	    GameState_METHODS(ClassName);												    			    \
+	    GameState_METHODS(ClassName)												    			    \
 
 // declare the virtual methods which are redefined
 #define AutoPauseScreenState_SET_VTABLE(ClassName)														\

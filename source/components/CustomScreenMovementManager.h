@@ -69,7 +69,7 @@ enum CustomScreenFX
 
 #define CustomScreenMovementManager_ATTRIBUTES															\
         /* super's attributes */																		\
-        ScreenMovementManager_ATTRIBUTES;																\
+        ScreenMovementManager_ATTRIBUTES																\
         /* temporary variable to hold the focus entity during shaking fx */								\
         InGameEntity tempFocusInGameEntity;																\
         /* last offset set by shake function */															\

@@ -74,18 +74,20 @@ TextureROMDef GUI_BLANK_TX =
 
 BgmapSpriteROMDef GUI_BLANK_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&GUI_BLANK_TX,
+        // texture definition
+        (TextureDefinition*)&GUI_BLANK_TX,
 
-	// displacement
-	{0, 0, 0},
-	
+        // displacement
+        {0, 0, 0},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };

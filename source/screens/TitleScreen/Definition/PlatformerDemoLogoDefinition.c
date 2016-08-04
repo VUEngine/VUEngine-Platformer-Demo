@@ -194,72 +194,80 @@ TextureROMDef LOGO_OUTLINE_R_TX =
 
 BgmapSpriteROMDef LOGO_L_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&LOGO_L_TX,
+        // texture definition
+        (TextureDefinition*)&LOGO_L_TX,
 
-	// displacement
-	{0, 0, 0},
-	
+        // displacement
+        {0, 0, 0},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_LON,
 };
 
 BgmapSpriteROMDef LOGO_R_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&LOGO_R_TX,
+        // texture definition
+        (TextureDefinition*)&LOGO_R_TX,
 
-	// displacement
-	{0, 0, 0},
-	
+        // displacement
+        {0, 0, 0},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_RON,
 };
 
 BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&LOGO_OUTLINE_L_TX,
+        // texture definition
+        (TextureDefinition*)&LOGO_OUTLINE_L_TX,
 
-	// displacement
-	{0, 0, FTOFIX19_13(1)},
-	
+        // displacement
+        {0, 0, FTOFIX19_13(1)},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_LON,
 };
 
 BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&LOGO_OUTLINE_R_TX,
+        // texture definition
+        (TextureDefinition*)&LOGO_OUTLINE_R_TX,
 
-	// displacement
-	{0, 0, FTOFIX19_13(1)},
-	
+        // displacement
+        {0, 0, FTOFIX19_13(1)},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_RON,
 };

@@ -73,7 +73,7 @@ AnimationFunctionROMDef CANNON_SHOOT_ANIM =
 	false,
 
 	// method to call on function completion
-	&Cannon_spawnCannonBall,
+	(EventListener)&Cannon_spawnCannonBall,
 
 	// function's name
 	"Shoot",
@@ -130,14 +130,16 @@ TextureROMDef CANNON_TX =
 
 BgmapSpriteROMDef CANNON_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&CANNON_TX,
+        // texture definition
+        (TextureDefinition*)&CANNON_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -193,3 +195,4 @@ ActorROMDef CANNON_AC =
     // mass
     ITOFIX19_13(10)
 };
+

@@ -84,14 +84,16 @@ TextureROMDef* const MOUND_BG_MIDDLE_SB_TEXTURES[] =
 MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
 {
 	{
-		// sprite's type
-		__TYPE(MBgmapSprite),
+        {
+            // sprite's type
+            __TYPE(MBgmapSprite),
 
-		// texture definition
-		NULL,
+            // texture definition
+            NULL,
 
-        // displacement
-        {0, 0, 0},
+            // displacement
+            {0, 0, 0},
+        },
 
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,

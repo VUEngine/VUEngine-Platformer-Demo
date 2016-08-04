@@ -77,18 +77,20 @@ TextureROMDef LEVEL_1_SMALL_ROOM_MAIN_TX =
 
 BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&LEVEL_1_SMALL_ROOM_MAIN_TX,
+        // texture definition
+        (TextureDefinition*)&LEVEL_1_SMALL_ROOM_MAIN_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };

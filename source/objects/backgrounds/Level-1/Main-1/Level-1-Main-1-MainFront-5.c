@@ -67,14 +67,16 @@ TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_5_IM_TEXTURES[] =
 MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_5_IM_SPRITE =
 {
 	{
-		// sprite's type
-		__TYPE(MBgmapSprite),
+        {
+            // sprite's type
+            __TYPE(MBgmapSprite),
 
-		// texture definition
-		NULL,
+            // texture definition
+            NULL,
 
-		// displacement
-		{ITOFIX19_13(-20), ITOFIX19_13(-88), FTOFIX19_13(-1)},
+            // displacement
+            {ITOFIX19_13(-20), ITOFIX19_13(-88), FTOFIX19_13(-1)},
+        },
 
 		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 		WRLD_BGMAP,

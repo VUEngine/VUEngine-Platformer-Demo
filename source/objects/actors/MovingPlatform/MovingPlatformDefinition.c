@@ -106,14 +106,16 @@ TextureROMDef MOVING_PLATFORM_TX =
 
 BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&MOVING_PLATFORM_TX,
+        // texture definition
+        (TextureDefinition*)&MOVING_PLATFORM_TX,
 
-	// displacement
-	{0, ITOFIX19_13(-20), 0},
+        // displacement
+        {0, ITOFIX19_13(-20), 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

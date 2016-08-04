@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define AdjustmentScreenState_METHODS(ClassName)													    \
-    	SplashScreenState_METHODS(ClassName);															\
+    	SplashScreenState_METHODS(ClassName)															\
 
 // declare the virtual methods which are redefined
 #define AdjustmentScreenState_SET_VTABLE(ClassName)														\

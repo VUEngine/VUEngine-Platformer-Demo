@@ -75,18 +75,20 @@ TextureROMDef ONE_WAY_PLATFORM_4_TX =
 
 BgmapSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&ONE_WAY_PLATFORM_4_TX,
+        // texture definition
+        (TextureDefinition*)&ONE_WAY_PLATFORM_4_TX,
 
-	// displacement
-	{0, 0, 0},
-	
+        // displacement
+        {0, 0, 0},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
@@ -118,7 +120,7 @@ InanimatedInGameEntityROMDef ONE_WAY_PLATFORM_4_IG =
     	// height
         // if 0, width and height will be inferred from the texture's size
     	0,
-    	
+
         // depth
         16
     },

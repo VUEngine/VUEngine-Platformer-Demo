@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define VBJaEngineScreenState_METHODS(ClassName)														\
-	    SplashScreenState_METHODS(ClassName);															\
+	    SplashScreenState_METHODS(ClassName)															\
 
 // declare the virtual methods which are redefined
 #define VBJaEngineScreenState_SET_VTABLE(ClassName)														\

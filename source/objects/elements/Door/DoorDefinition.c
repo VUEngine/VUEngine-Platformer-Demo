@@ -228,14 +228,16 @@ TextureROMDef DOOR_TX =
 
 BgmapSpriteROMDef DOOR_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&DOOR_TX,
+        // texture definition
+        (TextureDefinition*)&DOOR_TX,
 
-	// displacement
-	{0, 0, FTOFIX19_13(2)},
+        // displacement
+        {0, 0, FTOFIX19_13(2)},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -384,14 +386,16 @@ AnimatedInGameEntityROMDef KEY_DOOR_AG =
 
 BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&DOOR_TX,
+        // texture definition
+        (TextureDefinition*)&DOOR_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
@@ -479,14 +483,16 @@ TextureROMDef DOOR_BACK_TX =
 
 BgmapSpriteROMDef DOOR_BACK_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&DOOR_BACK_TX,
+        // texture definition
+        (TextureDefinition*)&DOOR_BACK_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

@@ -52,10 +52,10 @@ enum HeroPowerUps
 //---------------------------------------------------------------------------------------------------------
 
 #define Hero_METHODS(ClassName)																			\
-    	Actor_METHODS(ClassName);																	    \
+    	Actor_METHODS(ClassName)																	    \
 
 #define Hero_SET_VTABLE(ClassName)																		\
-        Actor_SET_VTABLE(ClassName);																	\
+        Actor_SET_VTABLE(ClassName)																	\
         __VIRTUAL_SET(ClassName, Hero, ready);															\
         __VIRTUAL_SET(ClassName, Hero, update);															\
         __VIRTUAL_SET(ClassName, Hero, takeHitFrom);													\

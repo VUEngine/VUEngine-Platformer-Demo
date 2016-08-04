@@ -32,7 +32,7 @@
 
 // declare the virtual methods
 #define LangSelectScreenState_METHODS(ClassName)														\
-    	SplashScreenState_METHODS(ClassName);							    							\
+    	SplashScreenState_METHODS(ClassName)							    							\
 
 // declare the virtual methods which are redefined
 #define LangSelectScreenState_SET_VTABLE(ClassName)														\

@@ -34,45 +34,48 @@
  * form part of a valid UTF-8 byte sequence: £
  */
 
+const char* const spanishStrings[] =
+{
+    /* Splash Screens */
+
+    //STR_PRECAUTION_SCREEN_TITLE:
+    "Importante:",
+    //STR_PRECAUTION_SCREEN_TEXT:
+    "     Lea los libros de\n\nInstrucciones y precauciones\n\n       antes de jugar",
+    //STR_AUTOMATIC_PAUSE:
+    "Pausa Automática",
+    //STR_AUTOMATIC_PAUSE_EXPLANATION:
+    " La función automática de pausa le\nrecordará que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
+    //STR_AUTOMATIC_PAUSE_TEXT:
+    "¡Por favor, tómese un descanso!",
+    //STR_PAUSE:
+    "Pausa",
+    //STR_ON:
+    "Encendido",
+    //STR_OFF:
+    "Apagado",
+    //STR_LANGUAGE_SELECT:
+    "Seleccionar Idioma",
+    //STR_PRESS_START_BUTTON:
+    "Presionar Start",
+
+    /* Levels */
+
+    //STR_LEVEL:
+    "Nivel",
+    //STR_LEVEL_DONE:
+    "¡Nivel completo!",
+    //STR_LEVEL_CONQUERED:
+    "¡Nivel conquistado!",
+    //STR_LEVEL_1_NAME:
+    "Woohoo Hills",
+};
+
 const LangROMDef LANGUAGE_ES =
 {
     // Language Name
     "Español",
 
     // Strings
-    {
-        /* Splash Screens */
-
-        //STR_PRECAUTION_SCREEN_TITLE:
-        "Importante:",
-        //STR_PRECAUTION_SCREEN_TEXT:
-        "     Lea los libros de\n\nInstrucciones y precauciones\n\n       antes de jugar",
-        //STR_AUTOMATIC_PAUSE:
-        "Pausa Automática",
-        //STR_AUTOMATIC_PAUSE_EXPLANATION:
-        " La función automática de pausa le\nrecordará que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
-        //STR_AUTOMATIC_PAUSE_TEXT:
-        "¡Por favor, tómese un descanso!",
-        //STR_PAUSE:
-        "Pausa",
-        //STR_ON:
-        "Encendido",
-        //STR_OFF:
-        "Apagado",
-        //STR_LANGUAGE_SELECT:
-        "Seleccionar Idioma",
-        //STR_PRESS_START_BUTTON:
-        "Presionar Start",
-
-        /* Levels */
-
-        //STR_LEVEL:
-        "Nivel",
-        //STR_LEVEL_DONE:
-        "¡Nivel completo!",
-        //STR_LEVEL_CONQUERED:
-        "¡Nivel conquistado!",
-        //STR_LEVEL_1_NAME:
-        "Woohoo Hills",
-    },
+    spanishStrings
 };

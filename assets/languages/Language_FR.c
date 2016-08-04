@@ -34,45 +34,48 @@
  * form part of a valid UTF-8 byte sequence: £
  */
 
+const char* const frenchStrings[] =
+{
+    /* Splash Screens */
+
+    //STR_PRECAUTION_SCREEN_TITLE:
+    "Important:",
+    //STR_PRECAUTION_SCREEN_TEXT:
+    "Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
+    //STR_AUTOMATIC_PAUSE:
+    "Pause Automatique",
+    //STR_AUTOMATIC_PAUSE_EXPLANATION:
+    "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
+    //STR_AUTOMATIC_PAUSE_TEXT:
+    "Se il vous plaît, prendre un repos!",
+    //STR_PAUSE:
+    "Pause",
+    //STR_ON:
+    "Activé",
+    //STR_OFF:
+    "Desactivé",
+    //STR_LANGUAGE_SELECT:
+    "Choix de la langue",
+    //STR_PRESS_START_BUTTON:
+    "Appuyer sur Start",
+
+    /* Levels */
+
+    //STR_LEVEL:
+    "Niveau",
+    //STR_LEVEL_DONE:
+    "Niveau terminé!",
+    //STR_LEVEL_CONQUERED:
+    "Niveau conquis!",
+    //STR_LEVEL_1_NAME:
+    "Woohoo Hills",
+};
+
 const LangROMDef LANGUAGE_FR =
 {
     // Language Name
     "Français",
 
     // Strings
-    {
-        /* Splash Screens */
-
-        //STR_PRECAUTION_SCREEN_TITLE:
-        "Important:",
-        //STR_PRECAUTION_SCREEN_TEXT:
-        "Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
-        //STR_AUTOMATIC_PAUSE:
-        "Pause Automatique",
-        //STR_AUTOMATIC_PAUSE_EXPLANATION:
-        "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
-        //STR_AUTOMATIC_PAUSE_TEXT:
-        "Se il vous plaît, prendre un repos!",
-        //STR_PAUSE:
-        "Pause",
-        //STR_ON:
-        "Activé",
-        //STR_OFF:
-        "Desactivé",
-        //STR_LANGUAGE_SELECT:
-        "Choix de la langue",
-        //STR_PRESS_START_BUTTON:
-        "Appuyer sur Start",
-
-        /* Levels */
-
-        //STR_LEVEL:
-        "Niveau",
-        //STR_LEVEL_DONE:
-        "Niveau terminé!",
-        //STR_LEVEL_CONQUERED:
-        "Niveau conquis!",
-        //STR_LEVEL_1_NAME:
-        "Woohoo Hills",
-    },
+    frenchStrings
 };

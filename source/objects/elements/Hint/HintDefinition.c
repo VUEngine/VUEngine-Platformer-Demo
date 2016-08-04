@@ -54,7 +54,7 @@ AnimationFunctionROMDef  HINT_OPEN_ANIM =
 	false,
 
 	// method to call on function completion
-	&Hint_playActiveLanguageHint,
+	(EventListener)&Hint_playActiveLanguageHint,
 
 	// function's name
 	"Open",
@@ -76,7 +76,7 @@ AnimationFunctionROMDef  HINT_CLOSE_ANIM =
 	false,
 
 	// method to call on function completion
-	&Hint_onCloseDone,
+	(EventListener)&Hint_onCloseDone,
 
 	// function's name
 	"Close",
@@ -363,14 +363,16 @@ TextureROMDef HINT_TX =
 
 BgmapSpriteROMDef HINT_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&HINT_TX,
+        // texture definition
+        (TextureDefinition*)&HINT_TX,
 
-	// displacement
-	{FTOFIX19_13(28), FTOFIX19_13(-21), 0},
+        // displacement
+        {FTOFIX19_13(28), FTOFIX19_13(-21), 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,
@@ -417,3 +419,4 @@ AnimatedInGameEntityROMDef HINT_MC =
     // initial animation
     "Closed",
 };
+

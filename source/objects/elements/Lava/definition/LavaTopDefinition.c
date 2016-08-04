@@ -110,14 +110,16 @@ TextureROMDef LAVA_TOP_TX =
 
 BgmapSpriteROMDef LAVA_TOP_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&LAVA_TOP_TX,
+        // texture definition
+        (TextureDefinition*)&LAVA_TOP_TX,
 
-	// displacement
-	{0, 0, FTOFIX19_13(-1)},
+        // displacement
+        {0, 0, FTOFIX19_13(-1)},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

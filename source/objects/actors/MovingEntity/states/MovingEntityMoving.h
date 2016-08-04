@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define MovingEntityMoving_METHODS(ClassName)															\
-	    State_METHODS(ClassName);																		\
+	    State_METHODS(ClassName)																		\
 
 // declare the virtual methods which are redefined
 #define MovingEntityMoving_SET_VTABLE(ClassName)														\

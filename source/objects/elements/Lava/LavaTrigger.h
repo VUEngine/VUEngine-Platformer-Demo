@@ -31,10 +31,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define LavaTrigger_METHODS(ClassName)																	\
-	    InanimatedInGameEntity_METHODS(ClassName);														\
+	    InanimatedInGameEntity_METHODS(ClassName)														\
 
 #define LavaTrigger_SET_VTABLE(ClassName)																\
-        InanimatedInGameEntity_SET_VTABLE(ClassName);													\
+        InanimatedInGameEntity_SET_VTABLE(ClassName)													\
         __VIRTUAL_SET(ClassName, LavaTrigger, handleMessage);											\
 
 __CLASS(LavaTrigger);

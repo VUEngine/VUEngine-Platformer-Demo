@@ -152,8 +152,6 @@ void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 chec
 
 		const VBVec3D* focusInGameEntityPosition = Entity_getPosition(__SAFE_CAST(Entity, _screen->focusInGameEntity));
 
-        bool screenMoved = false;
-
 		{
 			bool focusEntityOutOfBounds = focusInGameEntityPosition->x > _screen->position.x + ITOFIX19_13( __SCREEN_WIDTH - SCREEN_WIDTH_REDUCTION) || focusInGameEntityPosition->x < _screen->position.x + ITOFIX19_13(SCREEN_WIDTH_REDUCTION);
 

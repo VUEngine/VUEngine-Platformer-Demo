@@ -109,14 +109,16 @@ TextureROMDef TORCH_TX =
 
 ObjectSpriteROMDef TORCH_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&TORCH_TX,
+        // texture definition
+        (TextureDefinition*)&TORCH_TX,
 
-	// displacement
-	{0, 0, FTOFIX19_13(1)},
+        // displacement
+        {0, 0, FTOFIX19_13(1)},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,

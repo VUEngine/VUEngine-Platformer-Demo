@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define SplashScreenState_METHODS(ClassName)															\
-        GameState_METHODS(ClassName);											    					\
+        GameState_METHODS(ClassName)											    					\
         __VIRTUAL_DEC(ClassName, void, print);															\
         __VIRTUAL_DEC(ClassName, void, processInput, u16 releasedKey);									\
 

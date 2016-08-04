@@ -106,14 +106,16 @@ TextureROMDef SAW_BLADE_TX =
 
 BgmapSpriteROMDef SAW_BLADE_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&SAW_BLADE_TX,
+        // texture definition
+        (TextureDefinition*)&SAW_BLADE_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

@@ -332,14 +332,16 @@ TextureROMDef HERO_BANDANA_TX =
 
 BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&HERO_TX,
+        // texture definition
+        (TextureDefinition*)&HERO_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,
@@ -351,14 +353,16 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 
 BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&HERO_BANDANA_TX,
+        // texture definition
+        (TextureDefinition*)&HERO_BANDANA_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_AFFINE,
@@ -369,14 +373,16 @@ BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
 
 BgmapSpriteROMDef HERO_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapAnimatedSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapAnimatedSprite),
 
-	// texture definition
-	(TextureDefinition*)&HERO_TX,
+        // texture definition
+        (TextureDefinition*)&HERO_TX,
 
-	// displacement
-	{0, 0, 0},
+        // displacement
+        {0, 0, 0},
+    },
 
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_BGMAP,

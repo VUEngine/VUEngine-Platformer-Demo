@@ -116,32 +116,36 @@ TextureROMDef VBJAENGINE_LOGO_OUTLINE_TX =
 
 BgmapSpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
+        // texture definition
+        (TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
 
-	// displacement
-	{0, 0, FTOFIX19_13(SORT_INCREMENT)},
-	
+        // displacement
+        {0, 0, FTOFIX19_13(SORT_INCREMENT)},
+    },
+
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };
 
 BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(BgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-	// texture definition
-	(TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
+        // texture definition
+        (TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
 
-	// displacement
-	{FTOFIX19_13(13), FTOFIX19_13(1), 0},
+        // displacement
+        {FTOFIX19_13(13), FTOFIX19_13(1), 0},
+    },
 
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
 	WRLD_BGMAP,

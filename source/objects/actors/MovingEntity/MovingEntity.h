@@ -38,10 +38,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define MovingEntity_METHODS(ClassName)																	\
-    	Actor_METHODS(ClassName);																		\
+    	Actor_METHODS(ClassName)																		\
 
 #define MovingEntity_SET_VTABLE(ClassName)																\
-        Actor_SET_VTABLE(ClassName);																	\
+        Actor_SET_VTABLE(ClassName)																	\
         __VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);										\
         __VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);									\
         __VIRTUAL_SET(ClassName, MovingEntity, ready);													\

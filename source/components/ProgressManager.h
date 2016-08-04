@@ -43,7 +43,7 @@ __CLASS(ProgressManager);
 
 #define ProgressManager_ATTRIBUTES																		\
         /* super's attributes */																		\
-        Object_ATTRIBUTES;																				\
+        Object_ATTRIBUTES																				\
         /* hero's current energy */																		\
         u8 heroCurrentEnergy;																			\
         /* hero's currently active power-up */															\

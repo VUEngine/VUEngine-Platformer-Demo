@@ -43,10 +43,10 @@ enum HintTypes
 //---------------------------------------------------------------------------------------------------------
 
 #define Hint_METHODS(ClassName)																			\
-    	AnimatedInGameEntity_METHODS(ClassName);														\
+    	AnimatedInGameEntity_METHODS(ClassName)														\
 
 #define Hint_SET_VTABLE(ClassName)																		\
-        AnimatedInGameEntity_SET_VTABLE(ClassName);														\
+        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
         __VIRTUAL_SET(ClassName, Hint, resume);															\
 
 __CLASS(Hint);

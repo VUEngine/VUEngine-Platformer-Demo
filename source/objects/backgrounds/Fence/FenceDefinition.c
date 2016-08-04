@@ -76,18 +76,20 @@ TextureROMDef FENCE_TX =
 
 ObjectSpriteROMDef FENCE_IM_SPRITE =
 {
-	// sprite's type
-	__TYPE(ObjectSprite),
+    {
+        // sprite's type
+        __TYPE(ObjectSprite),
 
-	// texture definition
-	(TextureDefinition*)&FENCE_TX,
+        // texture definition
+        (TextureDefinition*)&FENCE_TX,
 
-	// displacement
-	{0, 0, 0},
-	
+        // displacement
+        {0, 0, 0},
+    },
+
 	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
 	WRLD_OBJ,
-	
+
 	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
 	WRLD_ON,
 };

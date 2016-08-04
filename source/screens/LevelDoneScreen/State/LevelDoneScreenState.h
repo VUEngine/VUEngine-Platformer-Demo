@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define LevelDoneScreenState_METHODS(ClassName)															\
-	    GameState_METHODS(ClassName);												    				\
+	    GameState_METHODS(ClassName)												    				\
 
 // declare the virtual methods which are redefined
 #define LevelDoneScreenState_SET_VTABLE(ClassName)														\

@@ -31,7 +31,7 @@
 
 // declare the virtual methods
 #define PlatformerLevelState_METHODS(ClassName)															\
-	    GameState_METHODS(ClassName);																	\
+	    GameState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define PlatformerLevelState_SET_VTABLE(ClassName)														\
