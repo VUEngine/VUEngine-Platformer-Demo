@@ -108,7 +108,7 @@ static void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementMa
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
-    const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL_UNSAFE(SpatialObject, getPosition, _screen->focusInGameEntity);
+    const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
     Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
     _screen->position.x = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
     _screen->position.y = (focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(SCREEN_VERTICAL_DISPLACEMENT));
@@ -158,7 +158,7 @@ void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 chec
 			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
 				// update vertical position
-				const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL_UNSAFE(SpatialObject, getPosition, _screen->focusInGameEntity);
+				const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
 
 				fix19_13 horizontalPosition = _screen->position.x;
 				fix19_13 horizontalTarget = (focusInGameEntityPosition->x + _screen->focusEntityPositionDisplacement.x - ITOFIX19_13((__SCREEN_WIDTH / 2) - direction.x * SCREEN_HORIZONTAL_DISPLACEMENT));
