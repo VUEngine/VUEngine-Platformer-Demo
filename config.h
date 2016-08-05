@@ -139,13 +139,13 @@
 	__BLOCK_DEFINITION(112, 12)																			\
 	__BLOCK_DEFINITION(104, 10)																			\
 	__BLOCK_DEFINITION(100, 20)																			\
-	__BLOCK_DEFINITION(92, 24)																			\
+	__BLOCK_DEFINITION(96, 24)																			\
 	__BLOCK_DEFINITION(84, 30)																			\
 	__BLOCK_DEFINITION(76, 8)																			\
 	__BLOCK_DEFINITION(68, 56)																			\
 	__BLOCK_DEFINITION(28, 276)																			\
 	__BLOCK_DEFINITION(20, 588)																			\
-	__BLOCK_DEFINITION(16, 276)																		\
+	__BLOCK_DEFINITION(16, 276)																		    \
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS																		\
@@ -157,7 +157,7 @@
 	__SET_MEMORY_POOL_ARRAY(112)																		\
 	__SET_MEMORY_POOL_ARRAY(104)																		\
 	__SET_MEMORY_POOL_ARRAY(100)																		\
-	__SET_MEMORY_POOL_ARRAY(92)																			\
+	__SET_MEMORY_POOL_ARRAY(96)																			\
 	__SET_MEMORY_POOL_ARRAY(84)																			\
 	__SET_MEMORY_POOL_ARRAY(76)																			\
 	__SET_MEMORY_POOL_ARRAY(68)																			\
@@ -299,10 +299,10 @@
 
 // default palette values, actual values are set in stage definitions
 
-#define __BGMAP_PALETTE_0						0b11100100 // normal progression
-#define __BGMAP_PALETTE_1						0b11100000 // show dark red as black
-#define __BGMAP_PALETTE_2						0b10010000 // background layer
-#define __BGMAP_PALETTE_3						0b01010000 // very dark, used when getting hit
+#define __BGMAP_PALETTE_0						0xE4 // normal progression
+#define __BGMAP_PALETTE_1						0xE0 // show dark red as black
+#define __BGMAP_PALETTE_2						0x90 // background layer
+#define __BGMAP_PALETTE_3						0x50 // very dark, used when getting hit
 
 #define __OBJECT_PALETTE_0						__BGMAP_PALETTE_0
 #define __OBJECT_PALETTE_1						__BGMAP_PALETTE_1

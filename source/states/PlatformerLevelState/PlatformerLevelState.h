@@ -52,7 +52,7 @@ __CLASS(PlatformerLevelState);
         /* the current loaded entry point */															\
         StageEntryPointDefinition* currentStageEntryPoint;												\
         /* to allow moving the screen */																\
-        u8 mode: 4;																						\
+        u8 mode;																						\
 
 
 //---------------------------------------------------------------------------------------------------------
