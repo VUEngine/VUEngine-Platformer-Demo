@@ -542,15 +542,15 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 				// print level name if at level start point
 				if(PlatformerLevelState_isStartingLevel(this) && this->currentLevel->name)
 	            {
-				    char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->currentLevel->name);
+				    const char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->currentLevel->name);
 	                Printing_text(Printing_getInstance(), "\"", 17, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GUIFont");
 	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GUIFont");
 
                     if(this->currentLevel->identifier)
                     {
-                        char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-                        char* strLevelName = this->currentLevel->identifier;
+                        const char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
+                        const char* strLevelName = this->currentLevel->identifier;
                         Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
                         Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
                     }

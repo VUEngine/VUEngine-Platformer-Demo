@@ -105,7 +105,7 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this)
     u8 numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
 
     // "level completed/conquered"
-    char* strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_DONE);
+    const char* strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_DONE);
     if(numberOfCollectedCoins == 64)
     {
         strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_CONQUERED);

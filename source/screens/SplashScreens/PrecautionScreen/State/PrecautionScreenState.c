@@ -88,8 +88,8 @@ static void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
 
 static void PrecautionScreenState_print(PrecautionScreenState this)
 {
-    char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TITLE);
-    char* strPrecautionText = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TEXT);
+    const char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TITLE);
+    const char* strPrecautionText = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TEXT);
     Size titleSize = Printing_getTextSize(Printing_getInstance(), strPrecautionTitle, NULL);
     Size textSize = Printing_getTextSize(Printing_getInstance(), strPrecautionText, NULL);
 

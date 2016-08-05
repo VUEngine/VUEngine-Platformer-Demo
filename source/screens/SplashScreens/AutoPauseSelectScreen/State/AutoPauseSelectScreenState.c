@@ -82,8 +82,8 @@ static void AutoPauseSelectScreenState_destructor(AutoPauseSelectScreenState thi
 
 static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 {
-    char* strAutomaticPause = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
-    char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION);
+    const char* strAutomaticPause = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
+    const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION);
     Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPause, "GUIFont");
     Size strAutomaticPauseExplanationSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseExplanation, NULL);
 
@@ -98,8 +98,8 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 
 static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenState this)
 {
-    char* strOn = I18n_getText(I18n_getInstance(), STR_ON);
-    char* strOff = I18n_getText(I18n_getInstance(), STR_OFF);
+    const char* strOn = I18n_getText(I18n_getInstance(), STR_ON);
+    const char* strOff = I18n_getText(I18n_getInstance(), STR_OFF);
 
     // get strings and determine sizes
     Size strOnSize = Printing_getTextSize(Printing_getInstance(), strOn, NULL);

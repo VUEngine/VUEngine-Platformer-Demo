@@ -208,7 +208,7 @@ static void TitleScreenState_showMessage(TitleScreenState this)
 {
 	ASSERT(this, "TitleScreenState::showMessage: null this");
 
-    char* strPressStartButton = I18n_getText(I18n_getInstance(), STR_PRESS_START_BUTTON);
+    const char* strPressStartButton = I18n_getText(I18n_getInstance(), STR_PRESS_START_BUTTON);
     Size strPressStartButtonSize = Printing_getTextSize(Printing_getInstance(), strPressStartButton, NULL);
     u8 strXPos = (__SCREEN_WIDTH >> 4) - (strPressStartButtonSize.x >> 1);
     Printing_text(Printing_getInstance(), strPressStartButton, strXPos, 26, NULL);

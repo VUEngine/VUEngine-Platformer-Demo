@@ -82,8 +82,8 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner)
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&EMPTY_ST, NULL, true);
 
     // print text
-    char* strAutomaticPause = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
-    char* strAutomaticPauseText = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_TEXT);
+    const char* strAutomaticPause = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
+    const char* strAutomaticPauseText = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_TEXT);
     Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPause, "GUIFont");
     Size strAutomaticPauseTextSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseText, NULL);
 
