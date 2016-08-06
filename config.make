@@ -10,7 +10,7 @@ COMPILER_OUTPUT          = c
 # preprocessor:         The .o files are preprocessor's output instead of compiler's.
 TYPE                    = release
 
-# Use enable pedantic wargings
+# Use enable pedantic warnings
 # 0:                    Omit.
 # 1:                    Use.
 PRINT_PEDANTIC_WARNINGS = 0

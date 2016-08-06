@@ -43,7 +43,7 @@ CharSetROMDef COG_WHEEL_CH =
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    268,
+    184,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -62,10 +62,10 @@ TextureROMDef COG_WHEEL_TX =
     CogWheelMap,
 
     // cols (max 64)
-    42,
+    25,
 
     // rows (max 64)
-    42,
+    25,
 
     // number of frames, depending on charset's allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
