@@ -6,9 +6,14 @@ COMPILER_OUTPUT          = c
 #                       It is recommended to use SRAM_WRAM = 1 when debugging in order to
 #                       avoid stack overflows (SRAM as WRAM only works on emulators).
 # release:              For shipping only!
-# release-tools:        Same optimization options as release, but adds debugging tools.
+# tools:                Adds debugging tools without all the debug checking.
 # preprocessor:         The .o files are preprocessor's output instead of compiler's.
 TYPE                    = release
+
+# Use enable pedantic wargings
+# 0:                    Omit.
+# 1:                    Use.
+OUTPUT_PEDANTIC_WARNINGS = 1
 
 # Frame pointer's usage
 # 0:                    Omit.
@@ -37,15 +42,15 @@ DUMP_ELF                = 1
 # Since only 8KB of SRAM is available on real carts, more than that will only work on emulators.
 # To make effective any change to these options, the whole project needs to be recompiled.
 
-# valid options are [/.bss/.sbss/.sram]
+# valid options are [/.bss/.sbss/.sram_bss]
 MEMORY_POOL_SECTION                     = .sbss
-# valid options are [/.bss/.sbss/.sram]
+# valid options are [/.bss/.sbss/.sram_bss]
 NON_INITIALIZED_DATA_SECTION            = .sbss
-# valid options are [/.data/.sdata]
+# valid options are [/.data/.sdata/.sram_data]
 INITIALIZED_DATA_SECTION                = .sdata
-# valid options are [/.bss/.sbss/.sram]
+# valid options are [/.bss/.sbss/.sram_bss]
 STATIC_SINGLETONS_DATA_SECTION          = .sbss
-# valid options are [/.bss/.sbss/.sram]
+# valid options are [/.bss/.sbss/.sram_bss]
 VIRTUAL_TABLES_DATA_SECTION             = .sbss
 
 
