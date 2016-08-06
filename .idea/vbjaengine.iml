@@ -4,9 +4,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../libs/vbjaengine">
       <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/.make-debug" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/.make-release" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/.make-release-tools" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/build" />
       <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/doc" />
       <excludeFolder url="file://$MODULE_DIR$/../../../libs/vbjaengine/lib" />
     </content>
