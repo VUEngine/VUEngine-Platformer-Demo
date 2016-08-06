@@ -13,7 +13,7 @@ TYPE                    = release
 # Use enable pedantic wargings
 # 0:                    Omit.
 # 1:                    Use.
-OUTPUT_PEDANTIC_WARNINGS = 1
+PRINT_PEDANTIC_WARNINGS = 0
 
 # Frame pointer's usage
 # 0:                    Omit.

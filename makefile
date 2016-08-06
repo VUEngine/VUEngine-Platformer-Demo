@@ -42,7 +42,7 @@ include $(CONFIG_MAKE_FILE)
 
 
 PEDANTIC_WARNINGS_FLAG =
-ifeq ($(OUTPUT_PEDANTIC_WARNINGS), 1)
+ifeq ($(PRINT_PEDANTIC_WARNINGS), 1)
 PEDANTIC_WARNINGS_FLAG := -pedantic
 endif
 
@@ -216,7 +216,7 @@ $(TARGET).elf: dirs $(VBJAENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
 $(STORE)/%.o: %.c
 	@echo Compiling $<
 	@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(foreach INC,$(VBJAENGINE_INCLUDE_PATHS) $(GAME_INCLUDE_PATHS),-I$(INC))\
-        $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS)  -$(COMPILER_OUTPUT) $< -o $@ 2>> $(STORE)/warnings.txt
+        $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS)  -$(COMPILER_OUTPUT) $< -o $@
 	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
 	@rm -f $(STORE)/$*.dd
 
