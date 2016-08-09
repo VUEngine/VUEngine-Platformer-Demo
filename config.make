@@ -41,17 +41,20 @@ DUMP_ELF                = 1
 # This feature is experimental and only works properly on emulators.
 # Since only 8KB of SRAM is available on real carts, more than that will only work on emulators.
 # To make effective any change to these options, the whole project needs to be recompiled.
+# VRAM can be used as WRAM too, you must edit the linker script vb.ld to accomodate this
+# taking into account that the Param Table's last address normal is 0x0003D800 were
+# the WORLD attributes start.
 
-# valid options are [/.bss/.sbss/.sram_bss]
+# valid options are [/.bss/.sbss/.vram_bss/.sram_bss]
 MEMORY_POOL_SECTION                     = .sbss
-# valid options are [/.bss/.sbss/.sram_bss]
+# valid options are [/.bss/.sbss/.vram_bss/.sram_bss]
 NON_INITIALIZED_DATA_SECTION            = .sbss
-# valid options are [/.data/.sdata/.sram_data]
+# valid options are [/.data/.sdata/.vram_data/.sram_data]
 INITIALIZED_DATA_SECTION                = .sdata
-# valid options are [/.bss/.sbss/.sram_bss]
+# valid options are [/.bss/.sbss/.vram_bss/.sram_bss]
 STATIC_SINGLETONS_DATA_SECTION          = .sbss
-# valid options are [/.bss/.sbss/.sram_bss]
-VIRTUAL_TABLES_DATA_SECTION             = .sbss
+# valid options are [/.bss/.sbss/.vram_bss/.sram_bss]
+VIRTUAL_TABLES_DATA_SECTION             = .vram_bss
 
 
 # Size of variables to be loaded in the .sdata section

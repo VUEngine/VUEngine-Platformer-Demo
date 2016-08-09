@@ -281,11 +281,11 @@ ObjectSpriteROMDef COIN_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_OBJ,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_OBJ,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 ObjectSpriteROMDef* const COIN_SPRITES[] =
@@ -307,11 +307,11 @@ ObjectSpriteROMDef COIN_SILHOUETTE_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_OBJ,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_OBJ,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 ObjectSpriteROMDef* const COIN_SILHOUETTE_SPRITES[] =
@@ -403,11 +403,11 @@ ObjectSpriteROMDef COIN_BACK_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_OBJ,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_OBJ,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 ObjectSpriteROMDef* const COIN_BACK_SPRITES[] =
@@ -429,11 +429,11 @@ ObjectSpriteROMDef COIN_BACK_SILHOUETTE_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_OBJ,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_OBJ,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 ObjectSpriteROMDef* const COIN_BACK_SILHOUETTE_SPRITES[] =
@@ -526,11 +526,11 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_AFFINE,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_AFFINE,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 ObjectSpriteROMDef* const AFFINE_COIN_SPRITES[] =

@@ -169,8 +169,9 @@ D_FILES := $(addprefix $(STORE)/,$(C_SOURCE:.c=.d))
 # first build the engine
 ENGINE := libvbjae.a
 
-# first build the engine
-TARGET := $(BUILD_DIR)/output
+# the target file
+TARGET_FILE = output
+TARGET := $(STORE)/$(TARGET_FILE)-$(TYPE)
 
 # define the engine
 VBJAENGINE := $(BUILD_DIR)/libvbjae.a
@@ -184,14 +185,15 @@ printBuildingInfo:
 	@echo Compiler\'s output: $(COMPILER_OUTPUT)
 
 pad: $(TARGET).vb
-	@echo Padding $(TARGET).vb
-	@$(VBJAENGINE_HOME)/lib/utilities/padder $(TARGET).vb 3
+	@echo Padding $(BUILD_DIR)/$(TARGET_FILE).vb
+	@$(VBJAENGINE_HOME)/lib/utilities/padder $(BUILD_DIR)/$(TARGET_FILE).vb 3
 	@echo " "
 
 $(TARGET).vb: $(TARGET).elf
 	@echo Creating $@
 	@$(OBJCOPY) -O binary $(TARGET).elf $@
-	@echo Done creating $(TARGET).vb in $(TYPE) mode with GCC $(COMPILER_VERSION)
+	@cp $(TARGET).vb $(BUILD_DIR)/$(TARGET_FILE).vb
+	@echo Done creating $(BUILD_DIR)/$(TARGET_FILE).vb in $(TYPE) mode with GCC $(COMPILER_VERSION)
 
 dump: $(TARGET).elf
 	@echo Dumping elf

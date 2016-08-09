@@ -86,10 +86,10 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITE =
     },
 
 	// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)
-	WRLD_BGMAP,
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_LOGO_IM_SPRITES[] =

@@ -85,11 +85,11 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_LON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_LON,
 };
 
 BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
@@ -111,11 +111,11 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_RON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_RON,
 };
 
 BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] =

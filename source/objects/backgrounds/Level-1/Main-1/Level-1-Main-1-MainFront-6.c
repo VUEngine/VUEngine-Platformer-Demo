@@ -77,17 +77,17 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_6_IM_SPRITE =
             {ITOFIX19_13(0), ITOFIX19_13(-88), FTOFIX19_13(-1)},
         },
 
-		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-		WRLD_BGMAP,
+		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+		__WORLD_BGMAP,
 
-		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-		WRLD_ON,
+		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+		__WORLD_ON,
 	},
 
 	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_FRONT_6_IM_TEXTURES,
 
 	// SCX/SCY
-	WRLD_1x1,
+	__WORLD_1x1,
 
 	// x loop
 	false,

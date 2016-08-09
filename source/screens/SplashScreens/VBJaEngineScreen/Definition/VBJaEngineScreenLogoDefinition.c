@@ -128,10 +128,10 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITE =
     },
 
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_BGMAP,
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
@@ -148,10 +148,10 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
     },
 
 	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	WRLD_BGMAP,
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 BgmapSpriteROMDef* const VBJAENGINE_LOGO_3D_IM_SPRITES[] =

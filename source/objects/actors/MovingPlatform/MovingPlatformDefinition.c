@@ -117,11 +117,11 @@ BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
         {0, ITOFIX19_13(-20), 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 BgmapSpriteROMDef* const MOVING_PLATFORM_SPRITES[] =

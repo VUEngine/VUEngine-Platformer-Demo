@@ -87,11 +87,11 @@ ObjectSpriteROMDef FENCE_IM_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_OBJ,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_OBJ,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 ObjectSpriteROMDef* const FENCE_IM_SPRITES[] =

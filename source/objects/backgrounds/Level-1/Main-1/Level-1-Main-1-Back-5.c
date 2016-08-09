@@ -95,17 +95,17 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
             {0, 0, 0},
         },
 
-		// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-		WRLD_BGMAP,
+		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+		__WORLD_BGMAP,
 
-		// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-		WRLD_ON,
+		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+		__WORLD_ON,
 	},
 
 	(TextureDefinition**)LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES,
 
 	// SCX/SCY
-	WRLD_1x1,
+	__WORLD_1x1,
 
 	// x loop
 	false,

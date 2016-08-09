@@ -118,24 +118,24 @@ StageROMDef EMPTY_ST =
         },
 
         // BGMAP segments configuration
-        // number of segments reserved for dynamically allocated textures when preloading
-        1,
+        // number of segments reserved for the param table
+        0,
 
     	// OBJs segments sizes (must total 1024)
         {
-            // SPT0
+            // __SPT0
         	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-            // SPT1
+            // __SPT1
         	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-            // SPT2
+            // __SPT2
         	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-            // SPT3
+            // __SPT3
         	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
         },
 
         // OBJs segments z coordinates
         // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
-        // since the VIP renders OBJ Worlds in reverse order (SPT3 to SPT0)
+        // since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
         {
         	ITOFIX19_13(0),
     		ITOFIX19_13(0),

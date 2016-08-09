@@ -205,11 +205,11 @@ BgmapSpriteROMDef LOGO_L_IM_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_LON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_LON,
 };
 
 BgmapSpriteROMDef LOGO_R_IM_SPRITE =
@@ -225,11 +225,11 @@ BgmapSpriteROMDef LOGO_R_IM_SPRITE =
         {0, 0, 0},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_RON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_RON,
 };
 
 BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
@@ -245,11 +245,11 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
         {0, 0, FTOFIX19_13(1)},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_LON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_LON,
 };
 
 BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
@@ -265,11 +265,11 @@ BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
         {0, 0, FTOFIX19_13(1)},
     },
 
-	// bgmap mode (WRLD_BGMAP, WRLD_AFFINE, WRLD_OBJ or WRLD_HBIAS)
-	WRLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-	// display mode (WRLD_ON, WRLD_LON or WRLD_RON)
-	WRLD_RON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_RON,
 };
 
 BgmapSpriteROMDef* const LOGO_IM_SPRITES[] =
