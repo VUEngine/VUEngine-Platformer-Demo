@@ -44,6 +44,7 @@
         __VIRTUAL_SET(ClassName, SplashScreenState, resume);											\
         __VIRTUAL_SET(ClassName, SplashScreenState, processMessage);                                    \
         __VIRTUAL_SET(ClassName, SplashScreenState, processInput);										\
+        __VIRTUAL_SET(ClassName, SplashScreenState, print);												\
 
 
 __CLASS(SplashScreenState);
