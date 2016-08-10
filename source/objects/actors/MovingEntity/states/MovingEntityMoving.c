@@ -69,24 +69,14 @@ void MovingEntityMoving_destructor(MovingEntityMoving this)
 }
 
 // state's enter
-void MovingEntityMoving_enter(MovingEntityMoving this, void* owner)
+void MovingEntityMoving_enter(MovingEntityMoving this __attribute__ ((unused)), void* owner)
 {
 	MovingEntity_startMovement((MovingEntity)owner);
 }
 
 // state's execute
-void MovingEntityMoving_execute(MovingEntityMoving this, void* owner)
+void MovingEntityMoving_execute(MovingEntityMoving this __attribute__ ((unused)), void* owner)
 {
 	MovingEntity_checkDisplacement(owner);
 }
 
-// state's exit
-void MovingEntityMoving_exit(MovingEntityMoving this, void* owner)
-{
-}
-
-// state's handle message
-bool MovingEntityMoving_processMessage(MovingEntityMoving this, void* owner, Telegram telegram)
-{
-	return false;
-}

@@ -106,7 +106,7 @@ void CannonBall_unregisterShape(CannonBall this)
 // tell me I've been hit
 
 // retrieve axis free for movement
-int CannonBall_getAxisFreeForMovement(CannonBall this)
+int CannonBall_getAxisFreeForMovement(CannonBall this __attribute__ ((unused)))
 {
 	return __ZAXIS;
 }

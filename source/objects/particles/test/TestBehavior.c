@@ -37,7 +37,7 @@
 // 											    FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void testParticleBehavior(Particle particle)
+void testParticleBehavior(Particle particle __attribute__ ((unused)))
 {
 	ASSERT(particle, "testParticleBehavior: null particle");
 }

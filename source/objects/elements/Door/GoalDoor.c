@@ -68,7 +68,7 @@ void GoalDoor_ready(Door this)
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Goal");
 }
 
-bool GoalDoor_hasDestination(Door this)
+bool GoalDoor_hasDestination(Door this __attribute__ ((unused)))
 {
 	return true;
 }
@@ -88,7 +88,7 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 	return Door_handleMessage(__SAFE_CAST(Door, this), telegram);
 }
 
-bool GoalDoor_canEnter(GoalDoor this)
+bool GoalDoor_canEnter(GoalDoor this __attribute__ ((unused)))
 {
 	return true;
 }

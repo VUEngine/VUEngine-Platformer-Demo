@@ -104,7 +104,7 @@ void CustomScreenMovementManager_destructor(CustomScreenMovementManager this)
 	__SINGLETON_DESTROY;
 }
 
-static void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementManager this)
+static void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
@@ -118,7 +118,7 @@ static void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementMa
 }
 
 // center world's _screen in function of focus actor's position
-void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving)
+void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 

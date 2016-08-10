@@ -237,7 +237,7 @@ void Hero_locateOverNextFloor(Hero this)
 			ITOFIX19_13(0),
 		};
 
-		CollisionSolver_resolveCollision(this->collisionSolver, collidingSpatialObjects, __YAXIS, displacement, &this->transform.globalScale, true);
+		CollisionSolver_resolveCollision(this->collisionSolver, collidingSpatialObjects, displacement, true);
 
 		__DELETE(collidingSpatialObjects);
 //		Actor_updateSurroundingFriction(this);
@@ -245,7 +245,7 @@ void Hero_locateOverNextFloor(Hero this)
 }
 
 // make him jump
-void Hero_jump(Hero this, int changeState, int checkIfYMovement)
+void Hero_jump(Hero this, int checkIfYMovement)
 {
 	ASSERT(this, "Hero::jump: null this");
 
@@ -283,7 +283,7 @@ void Hero_jump(Hero this, int changeState, int checkIfYMovement)
 }
 
 // keep movement
-void Hero_addForce(Hero this, int changedDirection, int axis)
+void Hero_addForce(Hero this, int axis)
 {
 	ASSERT(this, "Hero::addForce: null this");
 
@@ -516,7 +516,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		return true;
 	}
 
-	if(!Body_isMoving(Actor_getBody(__SAFE_CAST(Actor, this))) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+	if(!Body_isMoving(this->body) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
     {
 		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 	}
@@ -854,7 +854,7 @@ void Hero_die(Hero this)
 }
 
 // process user input
-static void Hero_onKeyPressed(Hero this, Object eventFirer)
+static void Hero_onKeyPressed(Hero this, Object eventFirer __attribute__ ((unused)))
 {
 	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
 
@@ -863,7 +863,7 @@ static void Hero_onKeyPressed(Hero this, Object eventFirer)
 }
 
 // process user input
-static void Hero_onKeyReleased(Hero this, Object eventFirer)
+static void Hero_onKeyReleased(Hero this, Object eventFirer __attribute__ ((unused)))
 {
 	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
@@ -872,7 +872,7 @@ static void Hero_onKeyReleased(Hero this, Object eventFirer)
 }
 
 // process user input
-static void Hero_onKeyHold(Hero this, Object eventFirer)
+static void Hero_onKeyHold(Hero this, Object eventFirer __attribute__ ((unused)))
 {
 	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
@@ -969,7 +969,7 @@ void Hero_collectCoin(Hero this, Coin coin)
 }
 
 // get number of collected coins
-u8 Hero_getCoins(Hero this)
+u8 Hero_getCoins(Hero this __attribute__ ((unused)))
 {
 	return ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
 }
@@ -1115,7 +1115,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kMovingPlatform:
 			case kTopSolid:
                 {
-        			int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, __SAFE_CAST(SpatialObject, inGameEntity), Body_isMoving(this->body), Body_getLastDisplacement(this->body));
+        			int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, __SAFE_CAST(SpatialObject, inGameEntity), Body_getLastDisplacement(this->body));
 
                     // if hero's moving over the y axis or is above colliding entity
                     if((__XAXIS & axisOfCollision) || ((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity))))
@@ -1317,7 +1317,7 @@ void Hero_resume(Hero this)
     Hero_updateSprite(this);
 }
 
-u8 Hero_getAxisAllowedForBouncing(Hero this)
+u8 Hero_getAxisAllowedForBouncing(Hero this __attribute__ ((unused)))
 {
 	ASSERT(this, "Hero::getAxisAllowedForBouncing: null this");
 

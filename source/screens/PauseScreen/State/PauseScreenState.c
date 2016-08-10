@@ -43,7 +43,6 @@
 static void PauseScreenState_destructor(PauseScreenState this);
 static void PauseScreenState_constructor(PauseScreenState this);
 static void PauseScreenState_enter(PauseScreenState this, void* owner);
-static void PauseScreenState_execute(PauseScreenState this, void* owner);
 static void PauseScreenState_exit(PauseScreenState this, void* owner);
 static bool PauseScreenState_processMessage(PauseScreenState this, void* owner, Telegram telegram);
 
@@ -74,7 +73,7 @@ static void PauseScreenState_destructor(PauseScreenState this)
 }
 
 // state's enter
-static void PauseScreenState_enter(PauseScreenState this, void* owner)
+static void PauseScreenState_enter(PauseScreenState this, void* owner __attribute__ ((unused)))
 {
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_ST, NULL, true);
@@ -87,13 +86,8 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner)
     Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 }
 
-// state's execute
-static void PauseScreenState_execute(PauseScreenState this, void* owner)
-{
-}
-
 // state's exit
-static void PauseScreenState_exit(PauseScreenState this, void* owner)
+static void PauseScreenState_exit(PauseScreenState this, void* owner __attribute__ ((unused)))
 {
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
@@ -103,7 +97,7 @@ static void PauseScreenState_exit(PauseScreenState this, void* owner)
 }
 
 // state's handle message
-static bool PauseScreenState_processMessage(PauseScreenState this, void* owner, Telegram telegram)
+static bool PauseScreenState_processMessage(PauseScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

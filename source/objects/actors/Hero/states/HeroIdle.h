@@ -37,8 +37,6 @@
 #define HeroIdle_SET_VTABLE(ClassName)																	\
         State_SET_VTABLE(ClassName)																		\
         __VIRTUAL_SET(ClassName, HeroIdle, enter);														\
-        __VIRTUAL_SET(ClassName, HeroIdle, execute);													\
-        __VIRTUAL_SET(ClassName, HeroIdle, exit);														\
         __VIRTUAL_SET(ClassName, HeroIdle, processMessage);	                                            \
 
 __CLASS(HeroIdle);

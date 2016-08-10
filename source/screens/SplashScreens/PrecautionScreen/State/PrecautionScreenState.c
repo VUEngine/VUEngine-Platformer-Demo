@@ -86,7 +86,7 @@ static void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
 	Game_enableKeypad(Game_getInstance());
 }
 
-static void PrecautionScreenState_print(PrecautionScreenState this)
+static void PrecautionScreenState_print(PrecautionScreenState this __attribute__ ((unused)))
 {
     const char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TITLE);
     const char* strPrecautionText = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TEXT);

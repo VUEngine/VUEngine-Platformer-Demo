@@ -38,7 +38,6 @@
         GameState_SET_VTABLE(ClassName)								    								\
         __VIRTUAL_SET(ClassName, PauseScreenState, enter);												\
         __VIRTUAL_SET(ClassName, PauseScreenState, exit);												\
-        __VIRTUAL_SET(ClassName, PauseScreenState, execute);											\
         __VIRTUAL_SET(ClassName, PauseScreenState, processMessage);                                     \
 
 __CLASS(PauseScreenState);

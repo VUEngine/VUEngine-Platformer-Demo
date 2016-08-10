@@ -77,5 +77,5 @@ const LangROMDef LANGUAGE_ES =
     "Español",
 
     // Strings
-    spanishStrings
+    (const char**)spanishStrings
 };

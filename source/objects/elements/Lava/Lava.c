@@ -92,7 +92,7 @@ void Lava_startMoving(Lava this)
 }
 
 // whether it is visible
-bool Lava_isVisible(Lava this, int pad, bool recursive)
+bool Lava_isVisible(Lava this __attribute__ ((unused)), int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "Lava::isVisible: null this");
 
@@ -129,7 +129,7 @@ void Lava_moveUpwards(Lava this)
 }
 
 // does it move?
-bool Lava_moves(Lava this)
+bool Lava_moves(Lava this __attribute__ ((unused)))
 {
 	ASSERT(this, "Lava::moves: null this");
 

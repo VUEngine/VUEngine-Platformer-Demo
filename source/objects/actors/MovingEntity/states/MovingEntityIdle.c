@@ -36,7 +36,6 @@ void MovingEntityIdle_constructor(MovingEntityIdle this);
 void MovingEntityIdle_destructor(MovingEntityIdle this);
 void MovingEntityIdle_enter(MovingEntityIdle this, void* owner);
 void MovingEntityIdle_execute(MovingEntityIdle this, void* owner);
-void MovingEntityIdle_exit(MovingEntityIdle this, void* owner);
 bool MovingEntityIdle_processMessage(MovingEntityIdle this, void* owner, Telegram telegram);
 
 
@@ -67,25 +66,21 @@ void MovingEntityIdle_destructor(MovingEntityIdle this)
 }
 
 // state's enter
-void MovingEntityIdle_enter(MovingEntityIdle this, void* owner)
+void MovingEntityIdle_enter(MovingEntityIdle this __attribute__ ((unused)), void* owner)
 {
 	// do not move
 	MovingEntity_stopMovement(__SAFE_CAST(MovingEntity, owner));
 }
 
 // state's execute
-void MovingEntityIdle_execute(MovingEntityIdle this, void* owner)
+void MovingEntityIdle_execute(MovingEntityIdle this __attribute__ ((unused)), void* owner)
 {
     StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }
 
-// state's exit
-void MovingEntityIdle_exit(MovingEntityIdle this, void* owner)
-{
-}
 
 // state's handle message
-bool MovingEntityIdle_processMessage(MovingEntityIdle this, void* owner, Telegram telegram)
+bool MovingEntityIdle_processMessage(MovingEntityIdle this __attribute__ ((unused)), void* owner, Telegram telegram)
 {
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))

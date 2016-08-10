@@ -69,24 +69,14 @@ void CannonBallMoving_destructor(CannonBallMoving this)
 }
 
 // state's enter
-void CannonBallMoving_enter(CannonBallMoving this, void* owner)
+void CannonBallMoving_enter(CannonBallMoving this __attribute__ ((unused)), void* owner)
 {
 	CannonBall_startMovement(owner);
 }
 
 // state's execute
-void CannonBallMoving_execute(CannonBallMoving this, void* owner)
+void CannonBallMoving_execute(CannonBallMoving this __attribute__ ((unused)), void* owner)
 {
     CannonBall_checkPosition(owner);
 }
 
-// state's exit
-void CannonBallMoving_exit(CannonBallMoving this, void* owner)
-{
-}
-
-// state's handle message
-bool CannonBallMoving_processMessage(CannonBallMoving this, void* owner, Telegram telegram)
-{
-	return false;
-}

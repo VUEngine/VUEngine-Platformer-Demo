@@ -59,7 +59,6 @@ void __attribute__ ((noinline)) HeroMoving_constructor(HeroMoving this)
 	// construct base
 	__CONSTRUCT_BASE(State);
 
-	this->mustCheckDirection = false;
 	this->bouncing = false;
 }
 
@@ -74,10 +73,8 @@ void HeroMoving_destructor(HeroMoving this)
 }
 
 // state's enter
-void HeroMoving_enter(HeroMoving this, void* owner)
+void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 {
-	this->mustCheckDirection = false;
-
 	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 	if(K_B & holdKey)
     {
@@ -89,18 +86,8 @@ void HeroMoving_enter(HeroMoving this, void* owner)
 #endif
 }
 
-// state's execute
-void HeroMoving_execute(HeroMoving this, void* owner)
-{
-}
-
-// state's exit
-void HeroMoving_exit(HeroMoving this, void* owner)
-{
-}
-
 // state's handle message
-bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram)
+bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
@@ -125,8 +112,7 @@ bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram)
 
 			 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			 		{
-						Hero_addForce(__SAFE_CAST(Hero, owner), this->mustCheckDirection, __XAXIS);
-						this->mustCheckDirection = false;
+						Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS);
 			 		}
 
 			 		Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Walk");
@@ -147,7 +133,7 @@ bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram)
 
 				if(K_A & pressedKey)
                 {
-					Hero_jump(__SAFE_CAST(Hero, owner), false, !this->bouncing);
+					Hero_jump(__SAFE_CAST(Hero, owner), !this->bouncing);
 				}
 			}
 
@@ -175,7 +161,7 @@ bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram)
 
 				if(((K_LL | K_LR) & releasedKey) && !((K_LL | K_LR) & holdKey))
                 {
-					Velocity velocity = Body_getVelocity(Actor_getBody(__SAFE_CAST(Actor, owner)));
+					Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, owner));
 
 					if(abs(velocity.x))
                     {
@@ -196,8 +182,7 @@ bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram)
 				// check direction
 				if((K_LL | K_LR ) & holdKey)
                 {
-                    Hero_addForce(__SAFE_CAST(Hero, owner), this->mustCheckDirection, __XAXIS);
-					this->mustCheckDirection = false;
+                    Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS);
 				}
 			}
 			break;
@@ -223,7 +208,6 @@ bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram)
 
 		case kBodyBounced:
 
-			this->mustCheckDirection = true;
 			this->bouncing = true;
 			MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kDisallowJumpOnBouncing, NULL);
 			return true;

@@ -77,6 +77,6 @@ const LangROMDef LANGUAGE_DE =
     "Deutsch",
 
     // Strings
-    germanStrings
+    (const char**)germanStrings
 };
 

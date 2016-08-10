@@ -129,7 +129,7 @@ void MovingEntity_unregisterShape(MovingEntity this)
 }
 
 // tell me I've been hit
-void MovingEntity_takeHit(MovingEntity this, int axis, s8 direction)
+void MovingEntity_takeHit(MovingEntity this __attribute__ ((unused)), int axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
 {
 }
 
@@ -155,7 +155,7 @@ void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 }
 
 // retrieve axis free for movement
-int MovingEntity_getAxisFreeForMovement(MovingEntity this)
+int MovingEntity_getAxisFreeForMovement(MovingEntity this __attribute__ ((unused)))
 {
 	return 0;// ((__XAXIS & ~(__XAXIS & movingState) )|(__ZAXIS & ~(__ZAXIS & movingState)));
 }

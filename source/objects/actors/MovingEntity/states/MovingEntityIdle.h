@@ -38,7 +38,6 @@
         State_SET_VTABLE(ClassName)																		\
         __VIRTUAL_SET(ClassName, MovingEntityIdle, enter);												\
         __VIRTUAL_SET(ClassName, MovingEntityIdle, execute);											\
-        __VIRTUAL_SET(ClassName, MovingEntityIdle, exit);												\
         __VIRTUAL_SET(ClassName, MovingEntityIdle, processMessage);                                     \
 
 __CLASS(MovingEntityIdle);

@@ -93,7 +93,7 @@ static void PlatformerLevelState_destructor(PlatformerLevelState this)
 	__SINGLETON_DESTROY;
 }
 
-static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this, VirtualList entityNamesToIgnore)
+static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this  __attribute__ ((unused)), VirtualList entityNamesToIgnore __attribute__ ((unused)))
 {
 	ASSERT(entityNamesToIgnore, "PlatformerLevelState::getEntityNamesToIngnore: null entityNamesToIgnore");
 
@@ -532,7 +532,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 }
 
 // state's handle message
-static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner, Telegram telegram)
+static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))
@@ -652,13 +652,13 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 	return false;
 }
 
-void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer)
+void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
 {
     Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
     Game_enableKeypad(Game_getInstance());
 }
 
-void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer)
+void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
     Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }

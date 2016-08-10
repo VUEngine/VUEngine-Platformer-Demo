@@ -107,12 +107,12 @@ __CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, int id, con
 void Hero_constructor(Hero this, ActorDefinition* definition, int id, const char* const name);
 void Hero_destructor(Hero this);
 void Hero_ready(Hero this);
-void Hero_addForce(Hero this, int changedDirection, int axis);
+void Hero_addForce(Hero this, int axis);
 void Hero_stopAddingForce(Hero this);
 void Hero_startedMovingOnAxis(Hero this, int axis);
 bool Hero_stopMovingOnAxis(Hero this, int axis);
 void Hero_move(Hero this);
-void Hero_jump(Hero this, int changeState, int checkIfYMovement);
+void Hero_jump(Hero this, int checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u16 currentPressedKey, char * animation);
 void Hero_synchronizeDirectionWithVelocity(Hero this);

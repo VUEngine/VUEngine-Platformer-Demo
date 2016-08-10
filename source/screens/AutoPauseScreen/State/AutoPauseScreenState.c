@@ -76,7 +76,7 @@ static void AutoPauseScreenState_destructor(AutoPauseScreenState this)
 }
 
 // state's enter
-static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner)
+static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __attribute__ ((unused)))
 {
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&EMPTY_ST, NULL, true);
@@ -97,14 +97,14 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner)
 }
 
 // state's exit
-static void AutoPauseScreenState_exit(AutoPauseScreenState this, void* owner)
+static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
 }
 
 // state's handle message
-static bool AutoPauseScreenState_processMessage(AutoPauseScreenState this, void* owner, Telegram telegram)
+static bool AutoPauseScreenState_processMessage(AutoPauseScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

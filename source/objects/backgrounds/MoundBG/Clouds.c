@@ -57,7 +57,7 @@ void Clouds_destructor(Clouds this)
 }
 
 // whether it is visible
-bool Clouds_isVisible(Clouds this, int pad, bool recursive)
+bool Clouds_isVisible(Clouds this __attribute__ ((unused)), int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "Clouds::isVisible: null this");
 
@@ -81,7 +81,7 @@ void Clouds_update(Clouds this)
 }
 
 // does it move?
-bool Clouds_moves(Clouds this)
+bool Clouds_moves(Clouds this __attribute__ ((unused)))
 {
 	ASSERT(this, "Clouds::moves: null this");
 

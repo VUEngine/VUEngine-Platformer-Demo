@@ -38,15 +38,11 @@
 #define HeroMoving_SET_VTABLE(ClassName)																\
         State_SET_VTABLE(ClassName)																		\
         __VIRTUAL_SET(ClassName, HeroMoving, enter);													\
-        __VIRTUAL_SET(ClassName, HeroMoving, execute);													\
-        __VIRTUAL_SET(ClassName, HeroMoving, exit);														\
         __VIRTUAL_SET(ClassName, HeroMoving, processMessage);                           				\
 
 #define HeroMoving_ATTRIBUTES																			\
         /* inherits */																					\
         State_ATTRIBUTES																				\
-        /* check direction flag */																		\
-        bool mustCheckDirection;														    			\
         /* flag to allow jump on bouncing */															\
         bool bouncing;																					\
 

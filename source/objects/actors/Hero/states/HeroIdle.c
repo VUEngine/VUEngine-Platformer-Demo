@@ -72,7 +72,7 @@ void HeroIdle_destructor(HeroIdle this)
 }
 
 // state's enter
-void HeroIdle_enter(HeroIdle this, void* owner)
+void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 {
 	// make sure it's not moving anymore
 	Actor_stopMovement(__SAFE_CAST(Actor, owner));
@@ -86,18 +86,8 @@ void HeroIdle_enter(HeroIdle this, void* owner)
 #endif
 }
 
-// state's execute
-void HeroIdle_execute(HeroIdle this, void* owner)
-{
-}
-
-// state's exit
-void HeroIdle_exit(HeroIdle this, void* owner)
-{
-}
-
 // state's handle message
-bool HeroIdle_processMessage(HeroIdle this, void* owner, Telegram telegram)
+bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
     {
@@ -158,7 +148,7 @@ bool HeroIdle_processMessage(HeroIdle this, void* owner, Telegram telegram)
 
 	    				if(K_A & pressedKey)
 	                    {
-	                        Hero_jump(__SAFE_CAST(Hero, owner), true, true);
+	                        Hero_jump(__SAFE_CAST(Hero, owner), true);
 	    				}
 			 		}
 

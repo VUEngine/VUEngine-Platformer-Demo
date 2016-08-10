@@ -190,7 +190,7 @@ bool Door_canEnter(Door this)
 	return __VIRTUAL_CALL(Door, hasDestination, this);
 }
 
-u8 Door_getHintType(Door this)
+u8 Door_getHintType(Door this __attribute__ ((unused)))
 {
 	return kEnterHint;
 }

@@ -73,7 +73,7 @@ static void LevelDoneScreenState_destructor(LevelDoneScreenState this)
 }
 
 // state's enter
-static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner)
+static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_DONE_SCREEN_ST, NULL, true);
@@ -88,7 +88,7 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner)
 }
 
 // state's exit
-static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner)
+static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
@@ -98,7 +98,7 @@ static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner)
 }
 
 // print level stats
-static void LevelDoneScreenState_print(LevelDoneScreenState this)
+static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ ((unused)))
 {
 	ASSERT(this, "LevelDoneScreenState::print: null this");
 
@@ -121,7 +121,7 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this)
 }
 
 // state's handle message
-static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this, void* owner, Telegram telegram)
+static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

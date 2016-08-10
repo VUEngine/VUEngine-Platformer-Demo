@@ -182,7 +182,7 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 }
 
 // print gui
-static void OverworldState_print(OverworldState this)
+static void OverworldState_print(OverworldState this __attribute__ ((unused)))
 {
 	ASSERT(this, "OverworldState::print: null this");
 
@@ -196,7 +196,7 @@ static void OverworldState_print(OverworldState this)
 }
 
 // state's handle message
-static bool OverworldState_processMessage(OverworldState this, void* owner, Telegram telegram)
+static bool OverworldState_processMessage(OverworldState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))

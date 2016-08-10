@@ -204,7 +204,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
 
-static void TitleScreenState_showMessage(TitleScreenState this)
+static void TitleScreenState_showMessage(TitleScreenState this __attribute__ ((unused)))
 {
 	ASSERT(this, "TitleScreenState::showMessage: null this");
 
@@ -214,7 +214,7 @@ static void TitleScreenState_showMessage(TitleScreenState this)
     Printing_text(Printing_getInstance(), strPressStartButton, strXPos, 26, NULL);
 }
 
-static void TitleScreenState_hideMessage(TitleScreenState this)
+static void TitleScreenState_hideMessage(TitleScreenState this __attribute__ ((unused)))
 {
 	ASSERT(this, "TitleScreenState::hideMessage: null this");
 
@@ -222,7 +222,7 @@ static void TitleScreenState_hideMessage(TitleScreenState this)
 }
 
 // state's handle message
-static bool TitleScreenState_processMessage(TitleScreenState this, void* owner, Telegram telegram)
+static bool TitleScreenState_processMessage(TitleScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
 	switch(Telegram_getMessage(telegram))
@@ -263,7 +263,7 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner, 
 }
 
 // handle event
-static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventFirer)
+static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventFirer __attribute__ ((unused)))
 {
     if((Clock_getSeconds(Game_getInGameClock(Game_getInstance())) % 2) == 0)
     {

@@ -37,7 +37,7 @@
 // 											    FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void smokeParticleBehavior(Particle particle)
+void smokeParticleBehavior(Particle particle __attribute__ ((unused)))
 {
 	ASSERT(particle, "testParticleBehavior: null particle");
 }

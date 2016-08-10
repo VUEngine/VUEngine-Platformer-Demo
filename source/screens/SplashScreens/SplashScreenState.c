@@ -130,7 +130,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 }
 
 // state's handle message
-bool SplashScreenState_processMessage(SplashScreenState this, void* owner, Telegram telegram)
+bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
 	{
@@ -150,12 +150,12 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner, Teleg
 	return false;
 }
 
-void SplashScreenState_processInput(SplashScreenState this, u16 pressedKey)
+void SplashScreenState_processInput(SplashScreenState this, u16 pressedKey __attribute__ ((unused)))
 {
 	Game_changeState(Game_getInstance(), this->nextState);
 }
 
-void SplashScreenState_print(SplashScreenState this)
+void SplashScreenState_print(SplashScreenState this __attribute__ ((unused)))
 {
 }
 

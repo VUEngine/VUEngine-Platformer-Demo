@@ -111,13 +111,13 @@ void GUI_ready(GUI this)
 }
 
 // print elapsed time to gui
-void GUI_printClock(GUI this)
+void GUI_printClock(GUI this __attribute__ ((unused)))
 {
 	Clock_print(Game_getInGameClock(Game_getInstance()), GUI_X_POS + 42, GUI_Y_POS, GUI_FONT);
 }
 
 // print number of coins to gui
-void GUI_printCoins(GUI this)
+void GUI_printCoins(GUI this __attribute__ ((unused)))
 {
     u8 coins = Hero_getCoins(Hero_getInstance());
 
@@ -136,7 +136,7 @@ void GUI_printCoins(GUI this)
 }
 
 // print hero's energy to gui
-void GUI_printEnergy(GUI this)
+void GUI_printEnergy(GUI this __attribute__ ((unused)))
 {
 	Printing_text(Printing_getInstance(), "\x7B\x7B\x7B", GUI_X_POS + 4, GUI_Y_POS, GUI_FONT);
     u8 i;
@@ -147,9 +147,10 @@ void GUI_printEnergy(GUI this)
 }
 
 // print keys icon to gui
-void GUI_printKey(GUI this)
+void GUI_printKey(GUI this __attribute__ ((unused)))
 {
-    if(Hero_hasKey(Hero_getInstance())) {
+    if(Hero_hasKey(Hero_getInstance()))
+    {
 	    Printing_text(Printing_getInstance(), "\x7E\x7F", GUI_X_POS + 24, GUI_Y_POS, GUI_FONT);
     }
     else
@@ -159,7 +160,7 @@ void GUI_printKey(GUI this)
 }
 
 // print current level to gui
-void GUI_printLevel(GUI this)
+void GUI_printLevel(GUI this __attribute__ ((unused)))
 {
     PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getLevel(PlatformerLevelState_getInstance());
 	Printing_text(Printing_getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 35, GUI_Y_POS, GUI_FONT);
@@ -195,31 +196,31 @@ void GUI_printAll(GUI this)
 }
 
 // handle event
-static void GUI_onSecondChange(GUI this, Object eventFirer)
+static void GUI_onSecondChange(GUI this, Object eventFirer __attribute__ ((unused)))
 {
 	GUI_printClock(this);
 }
 
 // handle event
-static void GUI_onHitTaken(GUI this, Object eventFirer)
+static void GUI_onHitTaken(GUI this, Object eventFirer __attribute__ ((unused)))
 {
 	GUI_printEnergy(this);
 }
 
 // handle event
-static void GUI_onCoinTaken(GUI this, Object eventFirer)
+static void GUI_onCoinTaken(GUI this, Object eventFirer __attribute__ ((unused)))
 {
 	GUI_printCoins(this);
 }
 
 // handle event
-static void GUI_onKeyTaken(GUI this, Object eventFirer)
+static void GUI_onKeyTaken(GUI this, Object eventFirer __attribute__ ((unused)))
 {
 	GUI_printKey(this);
 }
 
 // handle event
-static void GUI_onPowerUp(GUI this, Object eventFirer)
+static void GUI_onPowerUp(GUI this, Object eventFirer __attribute__ ((unused)))
 {
 	GUI_updateSprite(this);
 }

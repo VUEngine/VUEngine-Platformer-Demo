@@ -39,7 +39,6 @@ extern StageROMDef VBJAENGINE_SCREEN_ST;
 
 static void VBJaEngineScreenState_destructor(VBJaEngineScreenState this);
 static void VBJaEngineScreenState_constructor(VBJaEngineScreenState this);
-static void VBJaEngineScreenState_print(VBJaEngineScreenState this);
 static void VBJaEngineScreenState_execute(VBJaEngineScreenState this, void* owner);
 
 
@@ -69,10 +68,6 @@ static void VBJaEngineScreenState_destructor(VBJaEngineScreenState this)
 {
 	// destroy base
 	__SINGLETON_DESTROY;
-}
-
-static void VBJaEngineScreenState_print(VBJaEngineScreenState this)
-{
 }
 
 // state's execute

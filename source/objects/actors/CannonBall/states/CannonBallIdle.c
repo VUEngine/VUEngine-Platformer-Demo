@@ -67,23 +67,7 @@ void CannonBallIdle_destructor(CannonBallIdle this)
 }
 
 // state's enter
-void CannonBallIdle_enter(CannonBallIdle this, void* owner)
+void CannonBallIdle_enter(CannonBallIdle this __attribute__ ((unused)), void* owner)
 {
     CannonBall_stopMovement(owner);
-}
-
-// state's execute
-void CannonBallIdle_execute(CannonBallIdle this, void* owner)
-{
-}
-
-// state's exit
-void CannonBallIdle_exit(CannonBallIdle this, void* owner)
-{
-}
-
-// state's handle message
-bool CannonBallIdle_processMessage(CannonBallIdle this, void* owner, Telegram telegram)
-{
-	return false;
 }

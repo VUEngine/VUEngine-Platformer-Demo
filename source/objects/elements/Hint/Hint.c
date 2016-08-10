@@ -92,14 +92,14 @@ void Hint_close(Hint this)
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Close");
 }
 
-void Hint_onCloseDone(Hint this, Object eventFirer)
+void Hint_onCloseDone(Hint this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Hint::onCloseDone: null this");
 
 	Entity_hide(__SAFE_CAST(Entity, this));
 }
 
-void Hint_playActiveLanguageHint(Hint this, Object eventFirer)
+void Hint_playActiveLanguageHint(Hint this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Hint::playActiveLanguageHint: null this");
 

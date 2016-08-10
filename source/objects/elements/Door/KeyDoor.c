@@ -73,7 +73,7 @@ void KeyDoor_ready(KeyDoor this)
     }
 }
 
-bool KeyDoor_hasDestination(KeyDoor this)
+bool KeyDoor_hasDestination(KeyDoor this __attribute__ ((unused)))
 {
 	return true;
 }
@@ -97,16 +97,19 @@ void KeyDoor_unsetOverlapping(KeyDoor this)
     Door_unsetOverlapping(__SAFE_CAST(Door, this));
 }
 
-bool KeyDoor_canEnter(KeyDoor this)
+bool KeyDoor_canEnter(KeyDoor this __attribute__ ((unused)))
 {
 	return ProgressManager_heroHasKey(ProgressManager_getInstance());
 }
 
-u8 KeyDoor_getHintType(KeyDoor this)
+u8 KeyDoor_getHintType(KeyDoor this __attribute__ ((unused)))
 {
-    if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
+    if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
+    {
 	    return kEnterHint;
-    } else {
+    }
+    else
+    {
 	    return kKeyHint;
     }
 }

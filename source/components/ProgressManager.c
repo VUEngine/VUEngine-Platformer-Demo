@@ -101,7 +101,7 @@ void ProgressManager_reset(ProgressManager this)
 	this->heroHasUsedKey = false;
 }
 
-static void ProgressManager_initialize(ProgressManager this)
+static void ProgressManager_initialize(ProgressManager this __attribute__ ((unused)))
 {
 	ASSERT(this, "ProgressManager::initialize: null this");
 
@@ -128,7 +128,7 @@ static void ProgressManager_initialize(ProgressManager this)
 	}
 }
 
-int ProgressManager_getNumberOfCollectedCoins(ProgressManager this)
+int ProgressManager_getNumberOfCollectedCoins(ProgressManager this __attribute__ ((unused)))
 {
 	ASSERT(this, "ProgressManager::getNumberOfCollectedCoins: null this");
 
@@ -137,14 +137,14 @@ int ProgressManager_getNumberOfCollectedCoins(ProgressManager this)
 	return numberOfCollectedCoins;
 }
 
-void ProgressManager_setNumberOfCollectedCoins(ProgressManager this, int numberOfCollectedCoins)
+void ProgressManager_setNumberOfCollectedCoins(ProgressManager this __attribute__ ((unused)), int numberOfCollectedCoins)
 {
 	ASSERT(this, "ProgressManager::setNumberOfCollectedCoins: null this");
 
 	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct UserData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 }
 
-bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName)
+bool ProgressManager_getCoinStatus(ProgressManager this __attribute__ ((unused)), const char* coinName)
 {
 	ASSERT(this, "ProgressManager::getCoinStatus: null this");
 
@@ -166,7 +166,7 @@ bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName)
 	return false;
 }
 
-bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool taken)
+bool ProgressManager_setCoinStatus(ProgressManager this __attribute__ ((unused)), char* coinName, bool taken)
 {
 	ASSERT(this, "ProgressManager::setCoinStatus: null this");
 
@@ -210,25 +210,25 @@ bool ProgressManager_heroHasUsedKey(ProgressManager this)
 }
 
 // handle event
-static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer)
+static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
 	ProgressManager_reset(this);
 }
 
 // handle event
-static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer)
+static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
 	this->heroCurrentEnergy = Hero_getEnergy(Hero_getInstance());
 }
 
 // handle event
-static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer)
+static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
 	this->heroHasKey = true;
 }
 
 // handle event
-static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer)
+static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
 	this->heroCurrentPowerUp = Hero_getPowerUp(Hero_getInstance());
 }
