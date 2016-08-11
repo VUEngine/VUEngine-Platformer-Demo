@@ -80,3 +80,7 @@ void MovingEntityMoving_execute(MovingEntityMoving this __attribute__ ((unused))
 	MovingEntity_checkDisplacement(owner);
 }
 
+bool MovingEntityMoving_processMessage(MovingEntityMoving this, void* owner, Telegram telegram)
+{
+	return false;
+}
