@@ -701,7 +701,7 @@ void Hero_resetPalette(Hero this)
 }
 
 // set animation delta
-void Hero_setAnimationDelta(Hero this, int delta)
+void Hero_setAnimationDelta(Hero this, int delta __attribute__ ((unused)))
 {
 	ASSERT(this, "Hero::setAnimationDelta: null this");
 
