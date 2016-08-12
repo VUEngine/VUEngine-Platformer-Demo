@@ -72,7 +72,7 @@ void CannonBallIdle_enter(CannonBallIdle this __attribute__ ((unused)), void* ow
     CannonBall_stopMovement(owner);
 }
 
-bool CannonBallIdle_processMessage(CannonBallIdle this, void* owner, Telegram telegram)
+bool CannonBallIdle_processMessage(CannonBallIdle this __attribute__ ((unused)), void* owner __attribute__ ((unused)), Telegram telegram __attribute__ ((unused)))
 {
     return false;
 }

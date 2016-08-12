@@ -80,7 +80,7 @@ void CannonBallMoving_execute(CannonBallMoving this __attribute__ ((unused)), vo
     CannonBall_checkPosition(owner);
 }
 
-bool CannonBallMoving_processMessage(CannonBallMoving this, void* owner, Telegram telegram)
+bool CannonBallMoving_processMessage(CannonBallMoving this __attribute__ ((unused)), void* owner __attribute__ ((unused)), Telegram telegram __attribute__ ((unused)))
 {
     return false;
 }
