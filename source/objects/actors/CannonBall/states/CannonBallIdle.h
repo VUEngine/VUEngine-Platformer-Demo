@@ -37,6 +37,7 @@
 #define CannonBallIdle_SET_VTABLE(ClassName)															\
         State_SET_VTABLE(ClassName)																		\
         __VIRTUAL_SET(ClassName, CannonBallIdle, enter);												\
+        __VIRTUAL_SET(ClassName, CannonBallIdle, processMessage);										\
 
 __CLASS(CannonBallIdle);
 

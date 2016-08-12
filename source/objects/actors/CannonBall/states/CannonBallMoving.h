@@ -38,6 +38,7 @@
         State_SET_VTABLE(ClassName)																		\
         __VIRTUAL_SET(ClassName, CannonBallMoving, enter);												\
         __VIRTUAL_SET(ClassName, CannonBallMoving, execute);											\
+        __VIRTUAL_SET(ClassName, CannonBallMoving, processMessage);										\
 
 __CLASS(CannonBallMoving);
 
