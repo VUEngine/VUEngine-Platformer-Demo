@@ -570,5 +570,5 @@ AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_BACK_AG =
     (AnimationDescription*)&DOOR_ANIM,
 
     // initial animation
-    "Closed",
+    "Open",
 };
