@@ -64,7 +64,10 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_TX =
     // rows (max 64)
     7,
 
-    // number of frames, depending on charset's allocation type:
+    // padding for affine transformations
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
     // __ANIMATED_MULTI: total number of frames
     1,

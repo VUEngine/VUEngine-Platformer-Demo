@@ -217,7 +217,10 @@ TextureROMDef DOOR_TX =
     // rows (max 64)
     4,
 
-    // number of frames, depending on charset's allocation type:
+    // padding for affine transformations
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
     // __ANIMATED_MULTI: total number of frames
     7,
@@ -472,7 +475,10 @@ TextureROMDef DOOR_BACK_TX =
     // rows (max 64)
     3,
 
-    // number of frames, depending on charset's allocation type:
+    // padding for affine transformations
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
     // __ANIMATED_MULTI: total number of frames
     4,
