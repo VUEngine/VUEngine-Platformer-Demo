@@ -481,7 +481,7 @@ TextureROMDef DOOR_BACK_TX =
 	// number of frames, depending on charset's allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
     // __ANIMATED_MULTI: total number of frames
-    4,
+    7,
 
     // palette number (0-3)
     2,
