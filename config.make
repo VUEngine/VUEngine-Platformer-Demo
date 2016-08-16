@@ -11,7 +11,7 @@ COMPILER_OUTPUT          = c
 TYPE                    = release
 
 # Optimization level
-OPTIMIZATION            = O2
+OPTIMIZATION            = O3
 
 # Use enable pedantic warnings
 # 0:                    Omit.
@@ -45,7 +45,7 @@ DUMP_ELF                = 1
 # Since only 8KB of SRAM is available on real carts, more than that will only work on emulators.
 # To make effective any change to these options, the whole project needs to be recompiled.
 # VRAM can be used as WRAM too, you must edit the linker script vb.ld to accomodate this
-# taking into account that the Param Table's last address normal is 0x0003D800 were
+# taking into account that the Param Table's last address normally is 0x0003D800, were
 # the WORLD attributes start.
 
 # valid options are [/.bss/.sbss/.vram_bss/.sram_bss]

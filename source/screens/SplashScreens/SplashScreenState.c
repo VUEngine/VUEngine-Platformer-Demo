@@ -32,10 +32,6 @@
 
 __CLASS_DEFINITION(SplashScreenState, GameState);
 
-enum SplashScreensMessageTypes
-{
-	kScreenStarted = kLastEngineMessage + 1,
-};
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -73,6 +69,8 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 
 	// start fade in effect in 1 ms, because a full render cycle is needed to put everything in place
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenStarted, NULL);
+
+    Game_disableKeypad(Game_getInstance());
 }
 
 // state's execute
@@ -137,6 +135,7 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 		case kScreenStarted:
 
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+            Game_enableKeypad(Game_getInstance());
 			break;
 
 		case kKeyPressed:

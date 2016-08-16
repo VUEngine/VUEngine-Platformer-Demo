@@ -19,11 +19,11 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <macros.h>
 #include <Game.h>
 #include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
-#include <KeypadManager.h>
 #include <I18n.h>
 #include <PrecautionScreenState.h>
 #include <AdjustmentScreenState.h>
@@ -43,8 +43,8 @@ extern StageROMDef EMPTY_ST;
 
 static void PrecautionScreenState_destructor(PrecautionScreenState this);
 static void PrecautionScreenState_constructor(PrecautionScreenState this);
-static void PrecautionScreenState_enter(PrecautionScreenState this, void* owner);
 static void PrecautionScreenState_print(PrecautionScreenState this);
+static bool PrecautionScreenState_processMessage(PrecautionScreenState this, void* owner __attribute__ ((unused)), Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,15 +75,32 @@ static void PrecautionScreenState_destructor(PrecautionScreenState this)
 	__SINGLETON_DESTROY;
 }
 
-// state's enter
-static void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
+// state's handle message
+static bool PrecautionScreenState_processMessage(PrecautionScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
-    SplashScreenState_enter(__SAFE_CAST(SplashScreenState, this), owner);
+	switch(Telegram_getMessage(telegram))
+	{
+		case kScreenStarted:
 
-    // show this screen for at least 2 seconds, as defined by Nintendo in the official development manual
-    Game_wait(Game_getInstance(), 2000);
-	KeypadManager_flush(KeypadManager_getInstance());
-	Game_enableKeypad(Game_getInstance());
+		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+            // show this screen for at least 2 seconds
+            MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
+			break;
+
+		case kScreenAllowUserInput:
+
+            Game_enableKeypad(Game_getInstance());
+			break;
+
+		case kKeyPressed:
+		    {
+                u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+                __VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
+            }
+            break;
+	}
+
+	return false;
 }
 
 static void PrecautionScreenState_print(PrecautionScreenState this __attribute__ ((unused)))
