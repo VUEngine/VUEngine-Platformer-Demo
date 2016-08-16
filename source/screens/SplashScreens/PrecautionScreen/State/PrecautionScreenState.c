@@ -28,6 +28,7 @@
 #include <PrecautionScreenState.h>
 #include <AdjustmentScreenState.h>
 #include <Languages.h>
+ #include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,7 +83,10 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 	{
 		case kScreenStarted:
 
+            // wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual
+            Game_wait(Game_getInstance(), 2000);
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+
             // show this screen for at least 2 seconds
             MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
 			break;
