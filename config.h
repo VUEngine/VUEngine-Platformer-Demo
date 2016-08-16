@@ -132,7 +132,7 @@
 	__BLOCK_DEFINITION(112, 12)																			\
 	__BLOCK_DEFINITION(104, 10)																			\
 	__BLOCK_DEFINITION(100, 20)																			\
-	__BLOCK_DEFINITION(96, 24)																			\
+	__BLOCK_DEFINITION(96, 28)																			\
 	__BLOCK_DEFINITION(84, 30)																			\
 	__BLOCK_DEFINITION(76, 8)																			\
 	__BLOCK_DEFINITION(68, 56)																			\

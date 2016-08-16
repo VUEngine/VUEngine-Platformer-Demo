@@ -229,8 +229,8 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 
 			if(K_STA & pressedKey)
 			{
-				extern StageEntryPointDefinition LEVEL_1_MAIN_MAIN_EP;
-				PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), &LEVEL_1_MAIN_MAIN_EP);
+				extern PlatformerLevelDefinition LEVEL_1_LV;
+				PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), LEVEL_1_LV.entryPoint);
 			}
 		}
 			break;
