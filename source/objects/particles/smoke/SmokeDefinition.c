@@ -188,7 +188,7 @@ ParticleSystemROMDef SMOKE_PS =
 	200,
 
 	// maximum total particles
-	14,
+	10,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)SMOKE_PARTICLE_SMALL_SPRITES,
