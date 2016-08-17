@@ -23,6 +23,7 @@
 #include <Screen.h>
 #include <MessageDispatcher.h>
 #include <SplashScreenState.h>
+#include <KeypadManager.h>
 #include <macros.h>
 
 
@@ -141,7 +142,10 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 		case kKeyPressed:
 		    {
                 u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-                __VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
+                if(pressedKey & ~K_PWR)
+                {
+                    __VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
+                }
             }
             break;
 	}

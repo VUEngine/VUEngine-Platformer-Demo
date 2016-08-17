@@ -24,6 +24,7 @@
 #include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
+#include <KeypadManager.h>
 #include <I18n.h>
 #include <PrecautionScreenState.h>
 #include <AdjustmentScreenState.h>
@@ -84,11 +85,11 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 		case kScreenStarted:
 
             // wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual
-            Game_wait(Game_getInstance(), 2000);
+            Game_wait(Game_getInstance(), 3000);
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
 
             // show this screen for at least 2 seconds
-            MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
+            MessageDispatcher_dispatchMessage(3000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
 			break;
 
 		case kScreenAllowUserInput:
@@ -99,7 +100,11 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 		case kKeyPressed:
 		    {
                 u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
-                __VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
+
+                if(pressedKey & ~K_PWR)
+                {
+                    __VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
+                }
             }
             break;
 	}
