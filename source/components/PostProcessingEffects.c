@@ -21,6 +21,7 @@
 
 #include <PostProcessingEffects.h>
 #include <Optics.h>
+#include <Utilities.h>
 #include <Hero.h>
 
 
