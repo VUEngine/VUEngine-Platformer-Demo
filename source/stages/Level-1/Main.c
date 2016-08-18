@@ -61,7 +61,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 {
-	{&COLLISION_34x30x1,            {FTOFIX19_13(-136), FTOFIX19_13(-12), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left floor
+	{&COLLISION_34x30x1,            {FTOFIX19_13(-136), FTOFIX19_13(-13), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left floor
 	{&COLLISION_34x30x1,            {FTOFIX19_13(112),  FTOFIX19_13(12), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // right floor
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
@@ -76,12 +76,12 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(-226), FTOFIX19_13(-84),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left top one-way
-	{&COLLISION_14x18x1, 	        {FTOFIX19_13(-145), FTOFIX19_13(-56),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor left to spikes
-	{&COLLISION_14x18x1, 	        {FTOFIX19_13(127),  FTOFIX19_13(-56),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor right to spikes
-	{&COLLISION_8x3x1, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-132),  FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floating block over spikes
+	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(-226), FTOFIX19_13(-85),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left top one-way
+	{&COLLISION_14x18x1, 	        {FTOFIX19_13(-145), FTOFIX19_13(-57),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor left to spikes
+	{&COLLISION_14x18x1, 	        {FTOFIX19_13(127),  FTOFIX19_13(-57),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor right to spikes
+	{&COLLISION_8x3x1, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-133),  FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floating block over spikes
 	{&HIT_COLLISION_20x2x1,         {FTOFIX19_13(-8),   FTOFIX19_13(-92),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // spikes hit collision
-	{&COLLISION_32x14x1, 	        {FTOFIX19_13(-8),   FTOFIX19_13(-40),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor below spikes
+	{&COLLISION_32x14x1, 	        {FTOFIX19_13(-8),   FTOFIX19_13(-41),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor below spikes
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };

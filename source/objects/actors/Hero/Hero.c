@@ -1234,7 +1234,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 
 				// set focus on the hero
-				VBVec3D screenDisplacement = {0, 0, 0};
+				VBVec3D screenDisplacement = {ITOFIX19_13(50), ITOFIX19_13(-30), 0};
 				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 				Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
