@@ -82,6 +82,8 @@ StageROMDef EMPTY_ST =
 		16,
 		// streaming amplitude
 		24,
+		// particle removel delay cycles
+		0,
 	},
 
 	// rendering

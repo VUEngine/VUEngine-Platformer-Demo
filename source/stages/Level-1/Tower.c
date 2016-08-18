@@ -284,6 +284,8 @@ StageROMDef LEVEL_1_TOWER_ST =
         32,
         // streaming amplitude
         28,
+		// particle removel delay cycles
+		0,
     },
 
     // rendering

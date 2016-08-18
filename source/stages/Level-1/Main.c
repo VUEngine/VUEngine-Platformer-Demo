@@ -421,6 +421,8 @@ StageROMDef LEVEL_1_MAIN_ST =
         32,
         // streaming amplitude
         38,
+		// particle removel delay cycles
+		5,
     },
 
     // rendering
