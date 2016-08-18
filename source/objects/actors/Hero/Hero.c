@@ -1357,7 +1357,7 @@ void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObject
 	}
 }
 
-u8 Hero_getAxisForFlipping(Hero this)
+u8 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
 {
 	return __XAXIS;
 }
