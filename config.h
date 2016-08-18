@@ -125,20 +125,20 @@
 #undef __MEMORY_POOL_ARRAYS
 #define __MEMORY_POOL_ARRAYS																			\
 	__BLOCK_DEFINITION(192, 1)																			\
-	__BLOCK_DEFINITION(160, 5)																			\
-	__BLOCK_DEFINITION(144, 6)																			\
-	__BLOCK_DEFINITION(136, 26)																			\
+	__BLOCK_DEFINITION(160, 8)																			\
+	__BLOCK_DEFINITION(144, 8)																			\
+	__BLOCK_DEFINITION(136, 30)																			\
 	__BLOCK_DEFINITION(120, 35)																			\
-	__BLOCK_DEFINITION(112, 12)																			\
-	__BLOCK_DEFINITION(104, 10)																			\
-	__BLOCK_DEFINITION(100, 20)																			\
-	__BLOCK_DEFINITION(96, 28)																			\
-	__BLOCK_DEFINITION(84, 30)																			\
-	__BLOCK_DEFINITION(76, 8)																			\
-	__BLOCK_DEFINITION(68, 56)																			\
-	__BLOCK_DEFINITION(28, 276)																			\
-	__BLOCK_DEFINITION(20, 588)																			\
-	__BLOCK_DEFINITION(16, 276)																		    \
+	__BLOCK_DEFINITION(112, 16)																			\
+	__BLOCK_DEFINITION(104, 18)																			\
+	__BLOCK_DEFINITION(100, 25)																			\
+	__BLOCK_DEFINITION(96, 50)																			\
+	__BLOCK_DEFINITION(84, 40)																			\
+	__BLOCK_DEFINITION(76, 10)																			\
+	__BLOCK_DEFINITION(68, 70)																			\
+	__BLOCK_DEFINITION(28, 340)																			\
+	__BLOCK_DEFINITION(20, 630)																			\
+	__BLOCK_DEFINITION(16, 300)						    												\
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS																		\
@@ -245,9 +245,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define __GRAVITY								13000
-
-// number of game cycles to wait before checking for gravity on each cycle
-#define __GRAVITY_CHECK_CYCLE_DELAY	(__TARGET_FPS / 10)
 
 // number of bodies to check for gravity on each cycle
 #define __BODIES_TO_CHECK_FOR_GRAVITY		10
