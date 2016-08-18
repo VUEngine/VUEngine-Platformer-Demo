@@ -1188,11 +1188,11 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), false);
             Body_setActive(this->body, true);
 
-            int bodyMovement = Body_isMoving(this->body);
+            Velocity velocity = Body_getVelocity(this->body);
 
-        	if(!(__YAXIS & bodyMovement))
+        	if(!(__YAXIS & velocity.y))
         	{
-        	    if(__XAXIS & bodyMovement)
+        	    if(__XAXIS & velocity.y)
         	    {
             		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
                 }
