@@ -1356,3 +1356,8 @@ void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObject
 		}
 	}
 }
+
+u8 Hero_getAxisForFlipping(Hero this)
+{
+	return __XAXIS;
+}

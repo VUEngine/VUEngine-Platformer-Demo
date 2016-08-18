@@ -55,7 +55,7 @@ enum HeroPowerUps
     	Actor_METHODS(ClassName)																	    \
 
 #define Hero_SET_VTABLE(ClassName)																		\
-        Actor_SET_VTABLE(ClassName)																	\
+        Actor_SET_VTABLE(ClassName)																	    \
         __VIRTUAL_SET(ClassName, Hero, ready);															\
         __VIRTUAL_SET(ClassName, Hero, update);															\
         __VIRTUAL_SET(ClassName, Hero, takeHitFrom);													\
@@ -66,6 +66,7 @@ enum HeroPowerUps
         __VIRTUAL_SET(ClassName, Hero, updateSurroundingFriction);										\
         __VIRTUAL_SET(ClassName, Hero, getAxisAllowedForBouncing);										\
         __VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);										\
+        __VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);										        \
 
 __CLASS(Hero);
 
@@ -149,6 +150,6 @@ void Hero_setPosition(Hero this, VBVec3D* position);
 void Hero_update(Hero this);
 bool Hero_isAboveEntity(Hero this, Entity entity);
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
-
+u8 Hero_getAxisForFlipping(Hero this);
 
 #endif
