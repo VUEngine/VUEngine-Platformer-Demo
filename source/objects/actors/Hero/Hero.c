@@ -1190,9 +1190,9 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 
             Velocity velocity = Body_getVelocity(this->body);
 
-        	if(!(__YAXIS & velocity.y))
+        	if(!velocity.y)
         	{
-        	    if(__XAXIS & velocity.y)
+        	    if(velocity.x)
         	    {
             		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
                 }
@@ -1201,6 +1201,11 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
                 }
         	}
+        	else if(velocity.x)
+            {
+                AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+            }
+
 
         	break;
 
