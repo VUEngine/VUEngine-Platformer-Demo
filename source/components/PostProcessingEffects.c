@@ -29,7 +29,7 @@
 // 												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_testWavePostProcessingEffect(u32 currentDrawingframeBufferSet)
+void PostProcessingEffects_testWave(u32 currentDrawingframeBufferSet)
 {
     // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
     u32 x = 0;
@@ -50,10 +50,11 @@ void PostProcessingEffects_testWavePostProcessingEffect(u32 currentDrawingframeB
 
     CACHE_DISABLE;
     CACHE_ENABLE;
+
     for(; buffer < 2; buffer++)
     {
         // loop columns, each column is 4 pixels wide
-        for(x = 16; x < 96 - 16; x++)
+        for(x = 0; x < 96; x++)
         {
             // loop pixels of current column
             for(y = 0; y < 256; y += 4)
@@ -115,9 +116,9 @@ void PostProcessingEffects_testWavePostProcessingEffect(u32 currentDrawingframeB
     waveLutIndex++;
 }
 
-void PostProcessingEffects_fullScreenWeirdnessPostProcessingEffect(u32 currentDrawingframeBufferSet)
+void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingframeBufferSet)
 {
-    // the pixel in screen coordinates (x: 0 - 384, y: 0 - 224)
+    // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
     int x = 0;
     int y = 0;
     u32 lastPart;
@@ -137,7 +138,7 @@ void PostProcessingEffects_fullScreenWeirdnessPostProcessingEffect(u32 currentDr
     if(--randomDelay  < 0)
     {
         dontApply = !dontApply;
-        randomDelay = Utilities_random(Utilities_randomSeed(), dontApply? 205: 150);
+        randomDelay = Utilities_random(Utilities_randomSeed(), dontApply ? 205 : 150);
     }
 
     /*
@@ -173,7 +174,7 @@ void PostProcessingEffects_fullScreenWeirdnessPostProcessingEffect(u32 currentDr
     CACHE_ENABLE;
 }
 
-void PostProcessingEffects_lightingTestPostProcessingEffect(u32 currentDrawingframeBufferSet)
+void PostProcessingEffects_lightingTest(u32 currentDrawingframeBufferSet)
 {
     // the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
     // 2 per eye) has been written by the VPU and you can work on
@@ -190,7 +191,7 @@ void PostProcessingEffects_lightingTestPostProcessingEffect(u32 currentDrawingfr
     extern const VBVec3D* _screenPosition;
 	__OPTICS_NORMALIZE(heroPosition);
 
-    // the pixel in screen coordinates (x: 0 - 384, y: 0 - 224)
+    // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
     int x = 0;
     int y = 0;
 

@@ -97,45 +97,68 @@ StageROMDef EMPTY_ST =
 		// maximum number of rows to compute on each call to the affine functions
 		16,
 
-        // column table
-		NULL,
-
-		// palette's config
+        // colors config
         {
             // background color
             __COLOR_BLACK,
 
+            // brightness
+            // these values times the repeat values specified in the column table (max. 16) make the final
+            // brightness values on the respective regions of the screen. maximum brightness is 128.
             {
-                __BGMAP_PALETTE_0,
-                __BGMAP_PALETTE_1,
-                __BGMAP_PALETTE_2,
-                __BGMAP_PALETTE_3,
+                // dark red
+                __BRIGHTNESS_DARK_RED,
+                // medium red
+                __BRIGHTNESS_MEDIUM_RED,
+                // bright red
+                __BRIGHTNESS_BRIGHT_RED,
             },
-            {
-                __OBJECT_PALETTE_0,
-                __OBJECT_PALETTE_1,
-                __OBJECT_PALETTE_2,
-                __OBJECT_PALETTE_3,
-            }
+
+            // brightness repeat
+            (BrightnessRepeatDefinition*)NULL,
         },
 
-        // BGMAP segments configuration
+        // palettes' config
+        {
+        	{
+        	    // bgmap palette 0
+                __BGMAP_PALETTE_0,
+        	    // bgmap palette 1
+                __BGMAP_PALETTE_1,
+                // bgmap palette 2
+                __BGMAP_PALETTE_2,
+        	    // bgmap palette 3
+                __BGMAP_PALETTE_3,
+        	},
+        	{
+        	    // object palette 0
+                __OBJECT_PALETTE_0,
+        	    // object palette 1
+                __OBJECT_PALETTE_1,
+        	    // object palette 2
+                __OBJECT_PALETTE_2,
+        	    // object palette 3
+                __OBJECT_PALETTE_3,
+        	},
+        },
+
+        // bgmap segments configuration
         // number of segments reserved for the param table
         0,
 
-    	// OBJs segments sizes (must total 1024)
+    	// obj segments sizes (must total 1024)
         {
-            // __SPT0
+            // __spt0
         	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-            // __SPT1
+            // __spt1
         	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-            // __SPT2
+            // __spt2
         	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
-            // __SPT3
+            // __spt3
         	__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
         },
 
-        // OBJs segments z coordinates
+        // obj segments z coordinates
         // Note that each SPT's z coordinate much be larger than or equal to the previous one's,
         // since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
         {
@@ -187,7 +210,7 @@ StageROMDef EMPTY_ST =
 
     // entities
     {
-        // UI
+        // ui
         {
         	EMPTY_ST_UI_CHILDREN,
             __TYPE(UI),

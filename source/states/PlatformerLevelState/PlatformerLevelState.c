@@ -41,6 +41,7 @@
 #include <EventManager.h>
 #include <KeyPadManager.h>
 #include <Utilities.h>
+#include <PostProcessingEffects.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -225,9 +226,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
     Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, EVENT_HERO_DIED);
 
     // activate post processing effect
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTestPostProcessingEffect);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_fullScreenWeirdnessPostProcessingEffect);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_testWavePostProcessingEffect);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_testWave);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTest);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_fullScreenWeirdness);
 }
 
 // state's exit
