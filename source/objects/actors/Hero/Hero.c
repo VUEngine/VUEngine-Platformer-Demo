@@ -161,9 +161,6 @@ void Hero_destructor(Hero this)
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
-	// unset the hero as focus entity from the custom screen movement manager
-	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
-
     // remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, EVENT_KEY_PRESSED);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
@@ -1233,10 +1230,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
 				CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 
-				// set focus on the hero
-				VBVec3D screenDisplacement = {ITOFIX19_13(50), ITOFIX19_13(-30), 0};
-				Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
-
 				Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 			}
 
@@ -1246,8 +1239,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 
 		case kLevelStarted:
 			{
-//				Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, this));
-
 				VBVec3DFlag positionFlag = {true, true, true};
 			    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 			}

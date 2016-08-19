@@ -119,7 +119,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// set the custom movement screen manager now
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 
-	Game_disableKeypad(Game_getInstance());
+	Game_enableKeypad(Game_getInstance());
 
 	// reset progress manager if this is a level start entry point
 	if(PlatformerLevelState_isStartingLevel(this))
@@ -130,10 +130,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
     // get list of entities that should not be loaded
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
-
-    // make sure that fucusing gets completed inmediatly
-    CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
-    CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager_getInstance());
 
 	// check if destination entity name is given
 	if(this->currentStageEntryPoint->destinationName)
@@ -196,10 +192,19 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
                 Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
             }
 
-            Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, hero));
+            // make sure that fucusing gets completed inmediatly
+            CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
+            CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager_getInstance());
 
-//            Screen_focus(Screen_getInstance(), false);
+            // update actor's global transformations
             GameState_transform(__SAFE_CAST(GameState, this));
+
+            // set focus on the hero
+            Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, hero));
+            VBVec3D screenDisplacement = {ITOFIX19_13(50), ITOFIX19_13(-30), 0};
+            Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
+
+            // apply changes to the visuals
             GameState_updateVisuals(__SAFE_CAST(GameState, this));
         }
 	}
@@ -432,6 +437,9 @@ void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object even
 
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
+	// unset the hero as focus entity from the custom screen movement manager
+	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
+
     Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }
 

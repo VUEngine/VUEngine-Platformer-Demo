@@ -118,7 +118,7 @@ void CannonBall_startMovement(CannonBall this)
 	Shape_setActive(this->shape, true);
 
     // move me with physics
-	Velocity velocity = {0, ITOFIX19_13(32), ITOFIX19_13(-128)};
+	Velocity velocity = {0, 0, ITOFIX19_13(-128)};
 	Body_moveUniformly(this->body, velocity);
 
     // show me
