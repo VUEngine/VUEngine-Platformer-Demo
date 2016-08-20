@@ -119,7 +119,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// set the custom movement screen manager now
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 
-	Game_enableKeypad(Game_getInstance());
+	Game_disableKeypad(Game_getInstance());
 
 	// reset progress manager if this is a level start entry point
 	if(PlatformerLevelState_isStartingLevel(this))
@@ -369,6 +369,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
             Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
             CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager_getInstance());
             CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
+            CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager_getInstance());
 
         	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
 			break;
@@ -432,6 +433,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
 {
     Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
+    CustomScreenMovementManager_dontAlertWhenTargetFocused(CustomScreenMovementManager_getInstance());
     Game_enableKeypad(Game_getInstance());
 }
 
