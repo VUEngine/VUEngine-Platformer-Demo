@@ -84,14 +84,14 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __
 
     Game_enableKeypad(Game_getInstance());
 
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 }
 
 // state's exit
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
 	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
 	// destroy the state
 	__DELETE(this);

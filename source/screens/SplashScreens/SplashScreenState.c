@@ -85,7 +85,7 @@ void SplashScreenState_execute(SplashScreenState this, void* owner)
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
     // start a fade out effect
-	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
@@ -115,7 +115,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 
 	// make a fade in
-	Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -135,7 +135,7 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 	{
 		case kScreenStarted:
 
-		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+		    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
             Game_enableKeypad(Game_getInstance());
 			break;
 

@@ -91,7 +91,7 @@ static void OverworldState_enter(OverworldState this, void* owner)
     // disable user input
 	Game_disableKeypad(Game_getInstance());
 
-	//load stage
+	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&OVERWORLD_1_ST, NULL, true);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
@@ -112,7 +112,7 @@ static void OverworldState_execute(OverworldState this, void* owner)
 static void OverworldState_exit(OverworldState this, void* owner)
 {
 	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
@@ -143,7 +143,7 @@ static void OverworldState_resume(OverworldState this, void* owner)
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// make a fade in
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
@@ -176,7 +176,7 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 #endif
 
 	// make a fade out
-    Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
@@ -206,7 +206,7 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 
-			// show level after a little delays
+			// show level after a little delay
 			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
 			break;
 
@@ -215,7 +215,7 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
             OverworldState_print(this);
 
 			// fade screen
-		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+		    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);

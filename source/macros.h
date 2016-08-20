@@ -22,8 +22,6 @@
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
-#define FADE_DELAY			1000
-
 #define LAYER_INCREMENT		32
 #define SORT_INCREMENT		0.001f
 #define LAYER_0 			1
