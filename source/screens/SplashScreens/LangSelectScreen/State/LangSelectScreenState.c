@@ -111,7 +111,7 @@ void LangSelectScreenState_processInput(LangSelectScreenState this, u16 pressedK
 	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
 	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
-	    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this->nextState));
+	    SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
 	}
 }
 

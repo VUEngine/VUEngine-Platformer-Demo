@@ -158,6 +158,6 @@ void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u1
 	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
 		Game_setAutomaticPauseState(Game_getInstance(), this->selection ? __SAFE_CAST(GameState, AutoPauseScreenState_getInstance()): NULL);
-	    Game_changeState(Game_getInstance(), this->nextState);
+	    SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
 	}
 }

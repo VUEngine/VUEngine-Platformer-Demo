@@ -80,6 +80,6 @@ static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u16 p
     }
     else
     {
-	    Game_changeState(Game_getInstance(), this->nextState);
+	    SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
     }
 }

@@ -28,6 +28,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+static void SplashScreenState_onFadeInComplete(SplashScreenState this, Object eventFirer);
+static void SplashScreenState_onFadeOutComplete(SplashScreenState this, Object eventFirer);
+
+
+//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
@@ -84,9 +92,6 @@ void SplashScreenState_execute(SplashScreenState this, void* owner)
 // state's exit
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
-    // start a fade out effect
-	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
-
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 
@@ -114,8 +119,8 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 	{
 #endif
 
-	// make a fade in
-	Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
+	// start a fade in effect
+	Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, NULL, NULL);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -135,8 +140,8 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 	{
 		case kScreenStarted:
 
-		    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
-            Game_enableKeypad(Game_getInstance());
+            // start fade in effect
+            Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))SplashScreenState_onFadeInComplete, __SAFE_CAST(Object, this));
 			break;
 
 		case kKeyPressed:
@@ -155,7 +160,7 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 
 void SplashScreenState_processInput(SplashScreenState this, u16 pressedKey __attribute__ ((unused)))
 {
-	Game_changeState(Game_getInstance(), this->nextState);
+	SplashScreenState_loadNextState(this);
 }
 
 void SplashScreenState_print(SplashScreenState this __attribute__ ((unused)))
@@ -165,4 +170,31 @@ void SplashScreenState_print(SplashScreenState this __attribute__ ((unused)))
 void SplashScreenState_setNextState(SplashScreenState this, GameState nextState)
 {
     this->nextState = nextState;
+}
+
+void SplashScreenState_loadNextState(SplashScreenState this)
+{
+    // disable user input
+    Game_disableKeypad(Game_getInstance());
+
+    // start fade out effect
+    Screen_startEffect(Screen_getInstance(), kFadeOutAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))SplashScreenState_onFadeOutComplete, __SAFE_CAST(Object, this));
+}
+
+// handle event
+static void SplashScreenState_onFadeInComplete(SplashScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "SplashScreenState::onFadeInComplete: null this");
+
+    // enable user input
+    Game_enableKeypad(Game_getInstance());
+}
+
+// handle event
+static void SplashScreenState_onFadeOutComplete(SplashScreenState this, Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "SplashScreenState::onFadeOutComplete: null this");
+
+    // change to next stage
+    Game_changeState(Game_getInstance(), this->nextState);
 }

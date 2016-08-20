@@ -82,6 +82,7 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner, Teleg
 void SplashScreenState_processInput(SplashScreenState this, u16 releasedKey);
 void SplashScreenState_print(SplashScreenState this);
 void SplashScreenState_setNextState(SplashScreenState this, GameState nextState);
+void SplashScreenState_loadNextState(SplashScreenState this);
 
 
 #endif
