@@ -38,6 +38,7 @@
 #include <objects.h>
 #include <ProgressManager.h>
 #include <CustomScreenMovementManager.h>
+#include <CustomScreenEffectManager.h>
 #include <EventManager.h>
 #include <KeyPadManager.h>
 #include <Utilities.h>
@@ -116,8 +117,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
 
-	// set the custom movement screen manager now
+	// set the custom screen managers
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
+	Screen_setScreenEffectManager(Screen_getInstance(), __SAFE_CAST(ScreenEffectManager, CustomScreenEffectManager_getInstance()));
 
 	Game_disableKeypad(Game_getInstance());
 
@@ -240,7 +242,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
 	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
     Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, EVENT_HERO_DIED);
 
@@ -264,7 +266,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 #endif
 
 	// make a fade out
-    Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
@@ -290,7 +292,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// make a fade in
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -348,7 +350,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
         	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
 
 			// fade in
-		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+		    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
 			// erase level message in n milliseconds
             MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);

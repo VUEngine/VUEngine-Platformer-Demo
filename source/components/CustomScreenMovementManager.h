@@ -42,14 +42,6 @@
 #define SCREEN_WIDTH_REDUCTION						64
 #define SCREEN_HEIGHT_REDUCTION						32
 
-// delay between screen movements during shaking effect (in ms)
-#define MINIMUM_SHAKE_DELAY							20
-#define SHAKE_DELAY_DELTA							60
-
-enum CustomScreenFX
-{
-	kShake = kScreenLastFX,
-};
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
@@ -63,17 +55,10 @@ enum CustomScreenFX
 #define CustomScreenMovementManager_SET_VTABLE(ClassName)												\
     	ScreenMovementManager_SET_VTABLE(ClassName)														\
 		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, focus);								    \
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, startEffect);								\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, stopEffect);								\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, handleMessage);							\
 
 #define CustomScreenMovementManager_ATTRIBUTES															\
         /* super's attributes */																		\
         ScreenMovementManager_ATTRIBUTES																\
-        /* last offset set by shake function */															\
-        VBVec3D lastShakeOffset;																		\
-        /* time left in current shaking fx (in ms) */													\
-        int shakeTimeLeft;																				\
         /* update axis flag */																			\
         VBVec3DFlag positionFlag;																		\
         /* pointer to function that implements the required focusing */									\
@@ -92,11 +77,8 @@ CustomScreenMovementManager CustomScreenMovementManager_getInstance();
 
 void CustomScreenMovementManager_destructor(CustomScreenMovementManager this);
 void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving);
-void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, int effect, int duration);
-void CustomScreenMovementManager_stopEffect(CustomScreenMovementManager this, int effect);
 void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag);
 VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this);
-bool CustomScreenMovementManager_handleMessage(CustomScreenMovementManager this, Telegram telegram);
 void CustomScreenMovementManager_enable(CustomScreenMovementManager this);
 void CustomScreenMovementManager_disable(CustomScreenMovementManager this);
 void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager this);

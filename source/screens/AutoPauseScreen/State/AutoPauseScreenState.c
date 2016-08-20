@@ -93,14 +93,14 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __
     u8 strTextXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseTextSize.x >> 1);
     Printing_text(Printing_getInstance(), strAutomaticPauseText, strTextXPos, 11 + strAutomaticPauseSize.y, NULL);
 
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 }
 
 // state's exit
 static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
 	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 }
 
 // state's handle message

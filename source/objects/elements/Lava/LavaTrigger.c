@@ -28,7 +28,7 @@
 #include <Screen.h>
 #include <PhysicalWorld.h>
 #include <Lava.h>
-#include <CustomScreenMovementManager.h>
+#include <CustomScreenEffectManager.h>
 
 #include <objects.h>
 #include "LavaTrigger.h"

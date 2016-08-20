@@ -31,6 +31,7 @@
 #include "states/HeroIdle.h"
 #include "states/HeroMoving.h"
 #include <CustomScreenMovementManager.h>
+#include <CustomScreenEffectManager.h>
 #include <CameraTriggerEntity.h>
 #include <EventManager.h>
 #include <Hint.h>

@@ -100,7 +100,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeDoor");
 	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeCoin");
 
-	//load stage
+	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, true);
 
 	__DELETE(entityNamesToIgnore);
@@ -134,7 +134,7 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
 
 	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
@@ -165,7 +165,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// make a fade in
-    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
@@ -199,7 +199,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 #endif
 
 	// make a fade out
-    Screen_startEffect(Screen_getInstance(), kFadeOut, FADE_DELAY);
+    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
@@ -232,14 +232,14 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 
-			// show level after a little delays
+			// show level after a little delay
 			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
 			break;
 
 		case kLevelStarted:
 
-			// fade screen
-		    Screen_startEffect(Screen_getInstance(), kFadeIn, FADE_DELAY);
+			// fade in screen
+		    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
 			// tell any interested entity
 			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);

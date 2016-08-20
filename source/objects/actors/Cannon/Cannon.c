@@ -29,7 +29,7 @@
 #include <ParticleSystem.h>
 #include <SoundManager.h>
 
-#include <CustomScreenMovementManager.h>
+#include <CustomScreenEffectManager.h>
 #include <objects.h>
 #include <CannonBall.h>
 #include <CannonBallMoving.h>
