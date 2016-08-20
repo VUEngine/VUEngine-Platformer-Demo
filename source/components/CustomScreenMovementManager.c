@@ -192,12 +192,17 @@ void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 chec
 			fix19_13 verticalPosition = _screen->position.y;
 			fix19_13 verticalTarget = ((focusInGameEntityPosition->y + __0_5F_FIX19_13) & 0xFFFFE000) + ((_screen->focusEntityPositionDisplacement.y + __0_5F_FIX19_13) & 0xFFFFE000) - ITOFIX19_13(__SCREEN_HEIGHT / 2);
 
-			bool focusEntityOutOfBounds = focusInGameEntityPosition->y > _screen->position.y + ITOFIX19_13( __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION) || focusInGameEntityPosition->y < _screen->position.y + ITOFIX19_13(SCREEN_HEIGHT_REDUCTION);
+			bool focusEntityOutOfBounds = focusInGameEntityPosition->y > _screen->position.y + ITOFIX19_13( __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION) || focusInGameEntityPosition->y < _screen->position.y + ITOFIX19_13(SCREEN_HEIGHT_REDUCTION / 2);
 
-			if((!velocity.y || this->positionFlag.y) || focusEntityOutOfBounds)
+			if(this->positionFlag.y || focusEntityOutOfBounds)
 			{
 				fix19_13 downEasingDisplacement = ITOFIX19_13(2);
 				fix19_13 upEasingDisplacement = ITOFIX19_13(2);
+
+				if(focusEntityOutOfBounds)
+				{
+				    this->positionFlag.y = true;
+				}
 
                 if(velocity.y)
                 {
@@ -337,9 +342,6 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
 
         Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
         this->tempFocusInGameEntity = NULL;
-
-        this->positionFlag.y = true;
-        this->positionFlag.x = true;
 
         return;
     }

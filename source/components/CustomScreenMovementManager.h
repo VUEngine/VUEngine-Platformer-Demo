@@ -40,7 +40,7 @@
 #define SCREEN_HORIZONTAL_DISPLACEMENT 				30
 #define SCREEN_VERTICAL_DISPLACEMENT 				(__SCREEN_HEIGHT / 2) + 30
 #define SCREEN_WIDTH_REDUCTION						64
-#define SCREEN_HEIGHT_REDUCTION						64
+#define SCREEN_HEIGHT_REDUCTION						24
 
 // delay between screen movements during shaking effect (in ms)
 #define MINIMUM_SHAKE_DELAY							20

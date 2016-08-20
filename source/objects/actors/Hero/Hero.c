@@ -441,7 +441,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
         if(__YAXIS & axisToLockUp)
         {
             overridePositionFlag.y = locked;
-		    positionFlag.y = !locked? true: positionFlag.y;
+		    //positionFlag.y = !locked? true: positionFlag.y;
         }
 
 	    CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
