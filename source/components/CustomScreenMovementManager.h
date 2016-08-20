@@ -76,9 +76,9 @@ enum CustomScreenFX
         int shakeTimeLeft;																				\
         /* update axis flag */																			\
         VBVec3DFlag positionFlag;																		\
-        /* alert when target focues */																	\
-        bool alertWhenTargetFocused;																    \
-        void (*focusFunction)(CustomScreenMovementManager, u8);                                         \
+        /* pointer to function that implements the required focusing */									\
+        bool (*focusFunction)(CustomScreenMovementManager, u8, u8);                                     \
+        bool (*previuosFocusFunction)(CustomScreenMovementManager, u8, u8);                             \
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);

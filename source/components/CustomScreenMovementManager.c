@@ -47,9 +47,10 @@ __CLASS_FRIEND_DEFINITION(Screen);
 //---------------------------------------------------------------------------------------------------------
 
 static void CustomScreenMovementManager_constructor(CustomScreenMovementManager this);
-static void CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u8 checkIfFocusEntityIsMoving __attribute__ ((unused)));
-static void CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)));
-static void CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)));
+static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u8 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)));
+static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)));
+static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)));
+static void CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)));
 static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager this, u16 duration);
 static void CustomScreenMovementManager_FXShakeStop(CustomScreenMovementManager this);
 static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManager this);
@@ -90,9 +91,8 @@ static void __attribute__ ((noinline)) CustomScreenMovementManager_constructor(C
 
 	this->shakeTimeLeft = 0;
 
-	this->alertWhenTargetFocused = false;
-
 	this->focusFunction = &CustomScreenMovementManager_doFocus;
+    this->previuosFocusFunction = this->focusFunction;
 
 	_screen = Screen_getInstance();
 
@@ -113,12 +113,12 @@ void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 chec
 {
 	ASSERT(this, "CustomScreenMovementManager::focus: null this");
 
-    this->focusFunction(this, checkIfFocusEntityIsMoving);
+    this->focusFunction(this, checkIfFocusEntityIsMoving, false);
 }
 
-static void CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
+static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u8 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)))
 {
-	ASSERT(this, "CustomScreenMovementManager::update: null this");
+	ASSERT(this, "CustomScreenMovementManager::doFocusWithNoEasing: null this");
 
     const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
     Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
@@ -127,20 +127,22 @@ static void CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovement
 
     Screen_capPosition(_screen);
     Screen_forceDisplacement(_screen, true);
+
+    return true;
 }
 
 // center world's _screen in function of focus actor's position
-static void CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
+static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)))
 {
-	ASSERT(this, "CustomScreenMovementManager::update: null this");
+	ASSERT(this, "CustomScreenMovementManager::dontFocus: null this");
 
-    return;
+    return false;
 }
 
 // center world's _screen in function of focus actor's position
-static void CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
+static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)))
 {
-	ASSERT(this, "CustomScreenMovementManager::update: null this");
+	ASSERT(this, "CustomScreenMovementManager::doFocus: null this");
 
 	_screen->lastDisplacement.x = 0;
 	_screen->lastDisplacement.y = 0;
@@ -179,7 +181,7 @@ static void CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 
 				fix19_13 easingDisplacement = ITOFIX19_13(7);
 
-				if(this->alertWhenTargetFocused)
+				if(introFocusing)
 				{
 				    easingDisplacement = ITOFIX19_13(1);
 				}
@@ -227,7 +229,7 @@ static void CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 				fix19_13 downEasingDisplacement = ITOFIX19_13(3);
 				fix19_13 upEasingDisplacement = ITOFIX19_13(3);
 
-				if(this->alertWhenTargetFocused)
+				if(introFocusing)
 				{
 				    downEasingDisplacement = ITOFIX19_13(1);
                     upEasingDisplacement = ITOFIX19_13(1);
@@ -279,14 +281,26 @@ static void CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 			}
 		}
 
-        if(this->alertWhenTargetFocused)
+        if(reachedTargetFlag.x && reachedTargetFlag.y)
         {
-            if(reachedTargetFlag.x && reachedTargetFlag.y)
-            {
-                Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_SCREEN_FOCUSED);
-            }
+            return true;
         }
+    }
+
+    return false;
+}
+
+// center world's _screen in function of focus actor's position
+static void CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)))
+{
+    if(CustomScreenMovementManager_doFocus(this, checkIfFocusEntityIsMoving, true))
+    {
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_SCREEN_FOCUSED);
+
+        return true;
 	}
+
+	return false;
 }
 
 void CustomScreenMovementManager_startEffect(CustomScreenMovementManager this, int effect, int duration)
@@ -423,13 +437,15 @@ void CustomScreenMovementManager_enable(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::enable: null this");
 
-    this->focusFunction = &CustomScreenMovementManager_doFocus;
+    this->focusFunction = this->previuosFocusFunction;
+    this->previuosFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_disable(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::disable: null this");
 
+    this->previuosFocusFunction = this->focusFunction;
     this->focusFunction = &CustomScreenMovementManager_dontFocus;
 }
 
@@ -438,6 +454,7 @@ void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager t
 	ASSERT(this, "CustomScreenMovementManager::enableFocusEasing: null this");
 
     this->focusFunction = &CustomScreenMovementManager_doFocus;
+    this->previuosFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager this)
@@ -445,18 +462,20 @@ void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager 
 	ASSERT(this, "CustomScreenMovementManager::disableFocusEasing: null this");
 
     this->focusFunction = &CustomScreenMovementManager_doFocusWithNoEasing;
+    this->previuosFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::alertWhenTargetFocused: null this");
 
-	this->alertWhenTargetFocused = true;
+    this->previuosFocusFunction = this->focusFunction;
+	this->focusFunction = &CustomScreenMovementManager_doFocusAndAlertWhenTargetReached;
 }
 
 void CustomScreenMovementManager_dontAlertWhenTargetFocused(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::dontAlertWhenTargetFocused: null this");
 
-	this->alertWhenTargetFocused = false;
+	this->focusFunction = this->previuosFocusFunction;
 }
