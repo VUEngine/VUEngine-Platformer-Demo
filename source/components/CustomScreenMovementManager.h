@@ -70,22 +70,15 @@ enum CustomScreenFX
 #define CustomScreenMovementManager_ATTRIBUTES															\
         /* super's attributes */																		\
         ScreenMovementManager_ATTRIBUTES																\
-        /* temporary variable to hold the focus entity during shaking fx */								\
-        InGameEntity tempFocusInGameEntity;																\
         /* last offset set by shake function */															\
         VBVec3D lastShakeOffset;																		\
         /* time left in current shaking fx (in ms) */													\
         int shakeTimeLeft;																				\
         /* update axis flag */																			\
         VBVec3DFlag positionFlag;																		\
-        /* to calculate elapsed time */																	\
-        fix19_13 previousTime;																    		\
-        /* disable focusing */																	        \
-        bool disabled;																    		        \
-        /* is easing enable flag */																	    \
-        bool enableFocusEasing;																    		\
         /* alert when target focues */																	\
-        bool alertWhenTargetFocused;																    		\
+        bool alertWhenTargetFocused;																    \
+        void (*focusFunction)(CustomScreenMovementManager, u8);                                         \
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);

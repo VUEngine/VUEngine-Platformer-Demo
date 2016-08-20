@@ -47,7 +47,9 @@ __CLASS_FRIEND_DEFINITION(Screen);
 //---------------------------------------------------------------------------------------------------------
 
 static void CustomScreenMovementManager_constructor(CustomScreenMovementManager this);
-//static void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementManager this);
+static void CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u8 checkIfFocusEntityIsMoving __attribute__ ((unused)));
+static void CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)));
+static void CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)));
 static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager this, u16 duration);
 static void CustomScreenMovementManager_FXShakeStop(CustomScreenMovementManager this);
 static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManager this);
@@ -78,8 +80,6 @@ static void __attribute__ ((noinline)) CustomScreenMovementManager_constructor(C
 	// construct base object
 	__CONSTRUCT_BASE(ScreenMovementManager);
 
-	this->tempFocusInGameEntity = NULL;
-
 	this->lastShakeOffset.x = 0;
 	this->lastShakeOffset.y = 0;
 	this->lastShakeOffset.z = 0;
@@ -90,9 +90,9 @@ static void __attribute__ ((noinline)) CustomScreenMovementManager_constructor(C
 
 	this->shakeTimeLeft = 0;
 
-	this->disabled = true;
-	this->enableFocusEasing = false;
 	this->alertWhenTargetFocused = false;
+
+	this->focusFunction = &CustomScreenMovementManager_doFocus;
 
 	_screen = Screen_getInstance();
 
@@ -108,7 +108,15 @@ void CustomScreenMovementManager_destructor(CustomScreenMovementManager this)
 	__SINGLETON_DESTROY;
 }
 
-void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)))
+// center world's _screen in function of focus actor's position
+void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
+{
+	ASSERT(this, "CustomScreenMovementManager::focus: null this");
+
+    this->focusFunction(this, checkIfFocusEntityIsMoving);
+}
+
+static void CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
@@ -122,20 +130,17 @@ void CustomScreenMovementManager_focusWithNoEasing(CustomScreenMovementManager t
 }
 
 // center world's _screen in function of focus actor's position
-void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
+static void CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
-	if(this->tempFocusInGameEntity || this->disabled)
-	{
-		return;
-	}
+    return;
+}
 
-	if(!this->enableFocusEasing)
-	{
-	    CustomScreenMovementManager_focusWithNoEasing(this);
-	    return;
-	}
+// center world's _screen in function of focus actor's position
+static void CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving __attribute__ ((unused)))
+{
+	ASSERT(this, "CustomScreenMovementManager::update: null this");
 
 	_screen->lastDisplacement.x = 0;
 	_screen->lastDisplacement.y = 0;
@@ -342,9 +347,7 @@ static void CustomScreenMovementManager_FXShakeStart(CustomScreenMovementManager
 
 	// don't follow the focus entity while shaking
 	Screen _screen = Screen_getInstance();
-    this->tempFocusInGameEntity = Screen_getFocusInGameEntity(_screen);
-	NM_ASSERT(this->tempFocusInGameEntity, "Screen::FXShakeStart: null tempFocusInGameEntity");
-	//Screen_unsetFocusInGameEntity(_screen);
+    this->focusFunction = &CustomScreenMovementManager_dontFocus;
 
     // set desired fx duration
     this->shakeTimeLeft = duration;
@@ -380,8 +383,7 @@ static void CustomScreenMovementManager_onScreenShake(CustomScreenMovementManage
             this->lastShakeOffset.x = 0;
         }
 
-        Screen_setFocusInGameEntity(_screen, this->tempFocusInGameEntity);
-        this->tempFocusInGameEntity = NULL;
+        this->focusFunction = &CustomScreenMovementManager_doFocus;
 
         return;
     }
@@ -421,28 +423,28 @@ void CustomScreenMovementManager_enable(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::enable: null this");
 
-	this->disabled = false;
+    this->focusFunction = &CustomScreenMovementManager_doFocus;
 }
 
 void CustomScreenMovementManager_disable(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::disable: null this");
 
-	this->disabled = true;
+    this->focusFunction = &CustomScreenMovementManager_dontFocus;
 }
 
 void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::enableFocusEasing: null this");
 
-	this->enableFocusEasing = true;
+    this->focusFunction = &CustomScreenMovementManager_doFocus;
 }
 
 void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::disableFocusEasing: null this");
 
-	this->enableFocusEasing = false;
+    this->focusFunction = &CustomScreenMovementManager_doFocusWithNoEasing;
 }
 
 void CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager this)
