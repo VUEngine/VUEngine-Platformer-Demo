@@ -67,8 +67,10 @@
         fix19_13 previousTime;																    		\
         /* disable focusing */																	        \
         bool disabled;																    		        \
-        /* do eased focusing */																	        \
+        /* is easing enable flag */																	    \
         bool enableFocusEasing;																    		\
+        /* alert when target focues */																	\
+        bool alertWhenTargetFocused;																    		\
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);
@@ -89,6 +91,8 @@ void CustomScreenMovementManager_enable(CustomScreenMovementManager this);
 void CustomScreenMovementManager_disable(CustomScreenMovementManager this);
 void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager this);
 void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager this);
+void CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager this);
+void CustomScreenMovementManager_dontAlertWhenTargetFocused(CustomScreenMovementManager this);
 
 
 #endif
