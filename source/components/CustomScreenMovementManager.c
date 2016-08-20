@@ -192,7 +192,7 @@ void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 chec
 			fix19_13 verticalPosition = _screen->position.y;
 			fix19_13 verticalTarget = ((focusInGameEntityPosition->y + __0_5F_FIX19_13) & 0xFFFFE000) + ((_screen->focusEntityPositionDisplacement.y + __0_5F_FIX19_13) & 0xFFFFE000) - ITOFIX19_13(__SCREEN_HEIGHT / 2);
 
-			bool focusEntityOutOfBounds = focusInGameEntityPosition->y > _screen->position.y + ITOFIX19_13( __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION) || focusInGameEntityPosition->y < _screen->position.y + ITOFIX19_13(SCREEN_HEIGHT_REDUCTION / 2);
+			bool focusEntityOutOfBounds = focusInGameEntityPosition->y > _screen->position.y + ITOFIX19_13( __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION) || focusInGameEntityPosition->y < _screen->position.y + ITOFIX19_13(SCREEN_HEIGHT_REDUCTION);
 
 			if(this->positionFlag.y || focusEntityOutOfBounds)
 			{
@@ -237,7 +237,7 @@ void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 chec
 			}
 		}
 
-		if((this->positionFlag.x || (!this->positionFlag.y && positionFlag.y)) && !_screen->lastDisplacement.x && !_screen->lastDisplacement.y)
+		if((!this->positionFlag.y && positionFlag.y))// && !_screen->lastDisplacement.x && !_screen->lastDisplacement.y)
 		{
             Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_SCREEN_FOCUSED);
 		}
