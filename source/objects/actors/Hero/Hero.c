@@ -565,7 +565,6 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 
 void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
-    energyToReduce = 0;
     if(!Hero_isInvincible(this) || !invincibleWins)
     {
     	if(alignToEnemy && other && Body_isMoving(this->body))
@@ -600,7 +599,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
                 GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
                 Body_setActive(this->body, false);
                 GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-                MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, other);
+                MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, other);
             }
         }
         else
@@ -1088,7 +1087,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kSnail:
 			case kCannonBall:
 
-                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true, true);
+                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true, false);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
