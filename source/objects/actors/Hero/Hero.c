@@ -441,8 +441,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 
         if(__YAXIS & axisToLockUp)
         {
-            overridePositionFlag.y = locked;
-		    //positionFlag.y = !locked? true: positionFlag.y;
+            //erridePositionFlag.y = l? true: positionFlag.ynFlag.y = !locked? true: positionFlag.y;
         }
 
 	    CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
@@ -566,6 +565,7 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 
 void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
+    energyToReduce = 0;
     if(!Hero_isInvincible(this) || !invincibleWins)
     {
     	if(alignToEnemy && other && Body_isMoving(this->body))
@@ -600,7 +600,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
                 GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
                 Body_setActive(this->body, false);
                 GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-                MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, other);
+                MessageDispatcher_dispatchMessage(1000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, other);
             }
         }
         else
@@ -1086,20 +1086,15 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kSawBlade:
 			case kSnail:
-
-				Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true, true);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
-				break;
-
 			case kCannonBall:
 
-                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true, false);
+                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true, true);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kHit:
 
-                Hero_takeHitFrom(this, NULL, 1, true, true, true);
+                Hero_takeHitFrom(this, NULL, 1, true, true, false);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
