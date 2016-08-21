@@ -24,6 +24,7 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <Screen.h>
 #include <objects.h>
 #include "GoalDoor.h"
 #include <PlatformerLevelState.h>
@@ -79,6 +80,9 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 	switch(Telegram_getMessage(telegram))
     {
 		case kHeroEnterDoor:
+
+            // make a fade out
+            Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 
 			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState_getInstance()));
 			return true;

@@ -116,7 +116,7 @@ void CustomScreenEffectManager_startEffect(CustomScreenEffectManager this, int e
 
 		default:
 
-			ScreenEffectManager_startEffect(__SAFE_CAST(ScreenEffectManager, this), effect, args);
+			ScreenEffectManager_startEffect(ScreenEffectManager_getInstance(), effect, args);
 			break;
 	}
 }

@@ -62,6 +62,8 @@ void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
 
@@ -247,9 +249,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 // state's exit
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
-	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
-
     Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, EVENT_HERO_DIED);
 
 	// call base
@@ -353,33 +352,8 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 		case kLevelStarted:
 
-        	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
-
-			// fade in
-		    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
-
-			// erase level message in n milliseconds
-            MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
-
-			// reset clock and restart
-			Clock_reset(this->inGameClock);
-
-			// tell any interested entity
-			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
-
-			// restart clock
-			// pause physical simulations
-			GameState_startInGameClock(__SAFE_CAST(GameState, this));
-
-        	PlatformerLevelState_setModeToPlaying(this);
-
-            // enable focus easing
-            Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
-            CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager_getInstance());
-            CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
-            CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager_getInstance());
-
-        	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
+			// fade in screen
+            Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))PlatformerLevelState_onFadeInComplete, __SAFE_CAST(Object, this));
 			break;
 
 		case kHideLevelMessage:
@@ -471,7 +445,7 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
 {
 	this->currentStageEntryPoint = entryPointDefinition;
 
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
+	Screen_startEffect(Screen_getInstance(), kFadeOutAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))PlatformerLevelState_onFadeOutComplete, __SAFE_CAST(Object, this));
 }
 
 // determine if starting a new level
@@ -490,4 +464,39 @@ void PlatformerLevelState_setModeToPaused(PlatformerLevelState this)
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this)
 {
 	this->mode = kPlaying;
+}
+
+// handle event
+static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "PlatformerLevelState::onFadeInComplete: null this");
+
+    // erase level message in n milliseconds
+    MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
+
+    // reset clock and restart
+    Clock_reset(this->inGameClock);
+
+    // tell any interested entity
+    GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
+
+    // restart clock
+    // pause physical simulations
+    GameState_startInGameClock(__SAFE_CAST(GameState, this));
+
+    PlatformerLevelState_setModeToPlaying(this);
+
+    // enable focus easing
+    Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
+    CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager_getInstance());
+    CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
+    CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager_getInstance());
+}
+
+// handle event
+static void PlatformerLevelState_onFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "PlatformerLevelState::onFadeOutComplete: null this");
+
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }
