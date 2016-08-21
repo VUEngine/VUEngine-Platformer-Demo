@@ -320,7 +320,11 @@ void CustomScreenMovementManager_disable(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::disable: null this");
 
-    this->previuosFocusFunction = this->focusFunction;
+    if(&CustomScreenMovementManager_dontFocus != this->focusFunction)
+    {
+        this->previuosFocusFunction = this->focusFunction;
+    }
+
     this->focusFunction = &CustomScreenMovementManager_dontFocus;
 }
 
@@ -344,7 +348,11 @@ void CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementMana
 {
 	ASSERT(this, "CustomScreenMovementManager::alertWhenTargetFocused: null this");
 
-    this->previuosFocusFunction = this->focusFunction;
+    if(&CustomScreenMovementManager_doFocusAndAlertWhenTargetReached != this->focusFunction)
+    {
+        this->previuosFocusFunction = this->focusFunction;
+    }
+
 	this->focusFunction = &CustomScreenMovementManager_doFocusAndAlertWhenTargetReached;
 }
 
