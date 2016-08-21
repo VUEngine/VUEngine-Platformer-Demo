@@ -236,6 +236,12 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 //	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_testWave);
 //	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTest);
 //	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_fullScreenWeirdness);
+
+    // TODO: attach enduring effects to stages instead of doing it the hacky way as below
+    if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightnessRepeat != NULL)
+    {
+        Screen_startEffect(Screen_getInstance(), kScreenPulsate);
+    }
 }
 
 // state's exit
