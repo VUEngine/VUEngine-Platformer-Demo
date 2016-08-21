@@ -34,7 +34,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageEntryPointROMDef LEVEL_1_MAIN_SMALL_ROOM_EXIT_DOOR_EP;
-
+extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
@@ -180,15 +180,15 @@ StageROMDef LEVEL_1_SMALL_ROOM_ST =
             // brightness values on the respective regions of the screen. maximum brightness is 128.
             {
                 // dark red
-                __BRIGHTNESS_DARK_RED,
+                2,
                 // medium red
-                __BRIGHTNESS_MEDIUM_RED,
+                4,
                 // bright red
-                __BRIGHTNESS_BRIGHT_RED,
+                8,
             },
 
             // brightness repeat
-            (BrightnessRepeatDefinition*)NULL,
+            (BrightnessRepeatDefinition*)&EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
         },
 
         // palettes' config
