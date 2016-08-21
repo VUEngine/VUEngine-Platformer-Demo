@@ -57,6 +57,8 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner, 
 static void TitleScreenState_showMessage(TitleScreenState this);
 static void TitleScreenState_hideMessage(TitleScreenState this);
 static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventFirer);
+static void TitleScreenState_onFadeInComplete(TitleScreenState this, Object eventFirer);
+static void TitleScreenState_onFadeOutComplete(TitleScreenState this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -131,11 +133,6 @@ static void TitleScreenState_execute(TitleScreenState this, void* owner)
 // state's exit
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
-
-	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
-
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 
@@ -239,12 +236,7 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 		case kLevelStarted:
 
 			// fade in screen
-		    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
-
-			// tell any interested entity
-			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
-
-			Game_enableKeypad(Game_getInstance());
+			Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))TitleScreenState_onFadeInComplete, __SAFE_CAST(Object, this));
 			break;
 
 		case kKeyPressed:
@@ -253,7 +245,15 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 
 			if(K_STA & pressedKey)
 			{
-	            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+                // disable blinking "press start button"
+                Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
+                TitleScreenState_hideMessage(this);
+
+                // disable user input
+                Game_disableKeypad(Game_getInstance());
+
+			    // fade out screen
+                Screen_startEffect(Screen_getInstance(), kFadeOutAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))TitleScreenState_onFadeOutComplete, __SAFE_CAST(Object, this));
 			}
 		}
 			break;
@@ -273,4 +273,25 @@ static void TitleScreenState_onSecondChange(TitleScreenState this, Object eventF
     {
         TitleScreenState_hideMessage(this);
     }
+}
+
+// handle event
+static void TitleScreenState_onFadeInComplete(TitleScreenState this, Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "TitleScreenState::onFadeInComplete: null this");
+
+    // tell any interested entity
+    GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
+
+    // enable user input
+    Game_enableKeypad(Game_getInstance());
+}
+
+// handle event
+static void TitleScreenState_onFadeOutComplete(TitleScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
+
+    // swtich to next screen
+    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }

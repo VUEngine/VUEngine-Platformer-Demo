@@ -29,12 +29,6 @@
 #include <sound.h>
 #include <macros.h>
 
-//---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
@@ -80,7 +74,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_CHILDREN[] =
 	{&COIN_AG, 		        {FTOFIX19_13(57),   FTOFIX19_13(134), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 	{&COIN_AG, 		        {FTOFIX19_13(71),   FTOFIX19_13(134), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
-	{&VBJAENGINE_IM,        {FTOFIX19_13(192),  FTOFIX19_13(10), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
+	{&VBJAENGINE_IM,        {FTOFIX19_13(192),  FTOFIX19_13(24), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, true},
 	{&LOGO_IM, 			    {FTOFIX19_13(192),  FTOFIX19_13(64), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
 	// samples of ignored entities
@@ -167,15 +161,15 @@ StageROMDef TITLE_SCREEN_ST =
             // brightness values on the respective regions of the screen. maximum brightness is 128.
             {
                 // dark red
-                2,
+                __BRIGHTNESS_DARK_RED,
                 // medium red
-                4,
+                __BRIGHTNESS_MEDIUM_RED,
                 // bright red
-                8,
+                __BRIGHTNESS_BRIGHT_RED,
             },
 
             // brightness repeat
-            (BrightnessRepeatDefinition*)&EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
+            (BrightnessRepeatDefinition*)NULL,
         },
 
         // palettes' config

@@ -21,7 +21,6 @@
 
 #include <CustomScreenEffectManager.h>
 #include <CustomScreenMovementManager.h>
-
 #include <Screen.h>
 #include <MessageDispatcher.h>
 #include <Actor.h>
@@ -29,6 +28,7 @@
 #include <PhysicalWorld.h>
 #include <EventManager.h>
 #include <Utilities.h>
+#include <VIPManager.h>
 
 #include <debugConfig.h>
 
@@ -37,9 +37,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-// define the CustomScreenEffectManager
 __CLASS_DEFINITION(CustomScreenEffectManager, ScreenEffectManager);
-
 __CLASS_FRIEND_DEFINITION(Screen);
 
 
@@ -49,8 +47,11 @@ __CLASS_FRIEND_DEFINITION(Screen);
 
 static void CustomScreenEffectManager_constructor(CustomScreenEffectManager this);
 static void CustomScreenEffectManager_FXShakeStart(CustomScreenEffectManager this, u16 duration);
-static void CustomScreenEffectManager_FXShakeStop(CustomScreenEffectManager this);
+static void CustomScreenEffectManager_FXScreenPulsateStart(CustomScreenEffectManager this);
+void CustomScreenEffectManager_FXShakeStop(CustomScreenEffectManager this);
+void CustomScreenEffectManager_FXScreenPulsateStop(CustomScreenEffectManager this);
 static void CustomScreenEffectManager_onScreenShake(CustomScreenEffectManager this);
+static void CustomScreenEffectManager_onScreenPulsate(CustomScreenEffectManager this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -81,6 +82,8 @@ static void __attribute__ ((noinline)) CustomScreenEffectManager_constructor(Cus
 
 	this->shakeTimeLeft = 0;
 
+	this->pulsateNextStep = 0;
+
 	_screen = Screen_getInstance();
 
 	NM_ASSERT(_screen, "CustomScreenEffectManager::constructor: null _screen");
@@ -106,9 +109,14 @@ void CustomScreenEffectManager_startEffect(CustomScreenEffectManager this, int e
 			CustomScreenEffectManager_FXShakeStart(this, va_arg(args, int));
 			break;
 
+		case kScreenPulsate:
+
+			CustomScreenEffectManager_FXScreenPulsateStart(this);
+			break;
+
 		default:
 
-			ScreenEffectManager_startEffect(__SAFE_CAST(ScreenEffectManager, this), effect, args);
+			ScreenEffectManager_startEffect(ScreenEffectManager_getInstance(), effect, args);
 			break;
 	}
 }
@@ -122,6 +130,11 @@ void CustomScreenEffectManager_stopEffect(CustomScreenEffectManager this, int ef
 		case kShake:
 
 			CustomScreenEffectManager_FXShakeStop(this);
+			break;
+
+		case kScreenPulsate:
+
+			CustomScreenEffectManager_FXScreenPulsateStop(this);
 			break;
 
 		default:
@@ -141,6 +154,11 @@ bool CustomScreenEffectManager_handleMessage(CustomScreenEffectManager this, Tel
 
 			CustomScreenEffectManager_onScreenShake(this);
             break;
+
+		case kScreenPulsate:
+
+			CustomScreenEffectManager_onScreenPulsate(this);
+            break;
 	}
 
 	return false;
@@ -152,7 +170,7 @@ static void CustomScreenEffectManager_FXShakeStart(CustomScreenEffectManager thi
 	ASSERT(this, "CustomScreenEffectManager::FXShakeStart: null this");
 
 	// don't follow the focus entity while shaking
-	Screen _screen = Screen_getInstance();
+	//Screen _screen = Screen_getInstance();
     CustomScreenMovementManager_disable(CustomScreenMovementManager_getInstance());
 
     // set desired fx duration
@@ -160,11 +178,25 @@ static void CustomScreenEffectManager_FXShakeStart(CustomScreenEffectManager thi
 
     this->lastShakeOffset.x = ITOFIX19_13(4);
 
-    // discard pending screen shake messages from previously started shake fx
+    // discard pending messages from previously started fx
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kShake);
 
-    // instantly send shake message to self to start fx
+    // instantly send message to self to start fx
     MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
+}
+
+// start screen pulsating effect
+static void CustomScreenEffectManager_FXScreenPulsateStart(CustomScreenEffectManager this)
+{
+	ASSERT(this, "CustomScreenEffectManager::FXScreenPulsateStart: null this");
+
+    // discard pending messages from previously started fx
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
+
+    this->pulsateNextStep = 0;
+
+    // instantly send message to self to start fx
+    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
 }
 
 // stop shaking the _screen
@@ -173,6 +205,15 @@ void CustomScreenEffectManager_FXShakeStop(CustomScreenEffectManager this)
 	ASSERT(this, "CustomScreenEffectManager::FXShakeStop: null this");
 
     this->shakeTimeLeft = 0;
+}
+
+// stop shaking the _screen
+void CustomScreenEffectManager_FXScreenPulsateStop(CustomScreenEffectManager this)
+{
+	ASSERT(this, "CustomScreenEffectManager::FXScreenPulsateStop: null this");
+
+    this->pulsateNextStep = 0;
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
 }
 
 // shake the _screen
@@ -208,4 +249,16 @@ static void CustomScreenEffectManager_onScreenShake(CustomScreenEffectManager th
 
     // send message for next screen movement
 	MessageDispatcher_dispatchMessage(nextShakeDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
+}
+
+// write new brightness repeat values
+static void CustomScreenEffectManager_onScreenPulsate(CustomScreenEffectManager this)
+{
+	ASSERT(this, "CustomScreenEffectManager::onScreenPulsate: null this");
+
+    VIPManager_setupBrightnessRepeat(VIPManager_getInstance(), (BrightnessRepeatDefinition*)SCREEN_PULSATE_STEPS[this->pulsateNextStep]);
+
+    // send message for next fx step
+    this->pulsateNextStep = (this->pulsateNextStep < 3) ? this->pulsateNextStep + 1 : 0;
+	MessageDispatcher_dispatchMessage(150, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
 }
