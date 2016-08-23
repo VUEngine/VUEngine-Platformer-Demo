@@ -184,12 +184,14 @@ void SplashScreenState_loadNextState(SplashScreenState this)
     // disable user input
     Game_disableKeypad(Game_getInstance());
 
+    Brightness brightness = (Brightness){0, 0, 0};
+
     // start fade out effect
     Screen_startEffect(
         Screen_getInstance(),
         kFadeTo,
         __FADE_DELAY,
-        (Brightness){0, 0, 0},
+        &brightness,
         (void (*)(Object, Object))SplashScreenState_onFadeOutComplete,
         __SAFE_CAST(Object, this)
     );
