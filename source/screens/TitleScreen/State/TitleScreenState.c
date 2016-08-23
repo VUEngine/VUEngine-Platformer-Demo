@@ -236,7 +236,14 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 		case kLevelStarted:
 
 			// fade in screen
-			Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))TitleScreenState_onFadeInComplete, __SAFE_CAST(Object, this));
+			Screen_startEffect(
+                Screen_getInstance(),
+                kFadeTo,
+                __FADE_DELAY,
+                NULL,
+                (void (*)(Object, Object))TitleScreenState_onFadeInComplete,
+                __SAFE_CAST(Object, this)
+            );
 			break;
 
 		case kKeyPressed:
@@ -253,7 +260,14 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
                 Game_disableKeypad(Game_getInstance());
 
 			    // fade out screen
-                Screen_startEffect(Screen_getInstance(), kFadeOutAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))TitleScreenState_onFadeOutComplete, __SAFE_CAST(Object, this));
+                Screen_startEffect(
+                    Screen_getInstance(),
+                    kFadeTo,
+                    __FADE_DELAY,
+                    (Brightness){0, 0, 0},
+                    (void (*)(Object, Object))TitleScreenState_onFadeOutComplete,
+                    __SAFE_CAST(Object, this)
+                );
 			}
 		}
 			break;

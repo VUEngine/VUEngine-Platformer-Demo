@@ -120,7 +120,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 
 	// start a fade in effect
-	Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, NULL, NULL);
+	Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -141,7 +141,14 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 		case kScreenStarted:
 
             // start fade in effect
-            Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))SplashScreenState_onFadeInComplete, __SAFE_CAST(Object, this));
+            Screen_startEffect(
+                Screen_getInstance(),
+                kFadeTo,
+                __FADE_DELAY,
+                NULL,
+                (void (*)(Object, Object))SplashScreenState_onFadeInComplete,
+                __SAFE_CAST(Object, this)
+            );
 			break;
 
 		case kKeyPressed:
@@ -178,7 +185,14 @@ void SplashScreenState_loadNextState(SplashScreenState this)
     Game_disableKeypad(Game_getInstance());
 
     // start fade out effect
-    Screen_startEffect(Screen_getInstance(), kFadeOutAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))SplashScreenState_onFadeOutComplete, __SAFE_CAST(Object, this));
+    Screen_startEffect(
+        Screen_getInstance(),
+        kFadeTo,
+        __FADE_DELAY,
+        (Brightness){0, 0, 0},
+        (void (*)(Object, Object))SplashScreenState_onFadeOutComplete,
+        __SAFE_CAST(Object, this)
+    );
 }
 
 // handle event

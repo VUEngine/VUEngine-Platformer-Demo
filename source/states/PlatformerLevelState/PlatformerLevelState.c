@@ -353,7 +353,14 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 		case kLevelStarted:
 
 			// fade in screen
-            Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))PlatformerLevelState_onFadeInComplete, __SAFE_CAST(Object, this));
+			Screen_startEffect(
+                Screen_getInstance(),
+                kFadeTo,
+                __FADE_DELAY,
+                NULL,
+                (void (*)(Object, Object))PlatformerLevelState_onFadeInComplete,
+                __SAFE_CAST(Object, this)
+            );
 			break;
 
 		case kHideLevelMessage:
@@ -445,7 +452,14 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
 {
 	this->currentStageEntryPoint = entryPointDefinition;
 
-	Screen_startEffect(Screen_getInstance(), kFadeOutAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))PlatformerLevelState_onFadeOutComplete, __SAFE_CAST(Object, this));
+    Screen_startEffect(
+        Screen_getInstance(),
+        kFadeTo,
+        __FADE_DELAY,
+        (Brightness){0, 0, 0},
+        (void (*)(Object, Object))PlatformerLevelState_onFadeOutComplete,
+        __SAFE_CAST(Object, this)
+    );
 }
 
 // determine if starting a new level

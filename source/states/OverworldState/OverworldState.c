@@ -213,7 +213,14 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
             OverworldState_print(this);
 
 			// fade in screen
-			Screen_startEffect(Screen_getInstance(), kFadeInAsync, __FADE_ASYNC_DELAY, NULL, (void (*)(Object, Object))OverworldState_onFadeInComplete, __SAFE_CAST(Object, this));
+			Screen_startEffect(
+                Screen_getInstance(),
+                kFadeTo,
+                __FADE_DELAY,
+                NULL,
+                (void (*)(Object, Object))OverworldState_onFadeInComplete,
+                __SAFE_CAST(Object, this)
+            );
 
 			break;
 
