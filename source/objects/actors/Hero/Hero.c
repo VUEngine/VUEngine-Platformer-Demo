@@ -1085,6 +1085,11 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kSawBlade:
 			case kSnail:
+
+                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true, false);
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+
 			case kCannonBall:
 
                 Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true, false);
