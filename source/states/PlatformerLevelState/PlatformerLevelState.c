@@ -445,6 +445,8 @@ void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelD
 {
 	this->currentLevel = platformerLevelDefinition;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }
 
 // start a given stage
@@ -452,6 +454,7 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
 {
 	this->currentStageEntryPoint = entryPointDefinition;
 
+    // start a fade out effect
     Brightness brightness = (Brightness){0, 0, 0};
     Screen_startEffect(
         Screen_getInstance(),

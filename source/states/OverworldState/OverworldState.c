@@ -56,6 +56,7 @@ static void OverworldState_resume(OverworldState this, void* owner);
 static void OverworldState_suspend(OverworldState this, void* owner);
 static bool OverworldState_processMessage(OverworldState this, void* owner, Telegram telegram);
 static void OverworldState_onFadeInComplete(OverworldState this, Object eventFirer);
+static void OverworldState_onFadeOutComplete(OverworldState this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -233,9 +234,16 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 			    // disable user input
                 Game_disableKeypad(Game_getInstance());
 
-                // load level
-                extern PlatformerLevelDefinition LEVEL_1_LV;
-                PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), LEVEL_1_LV.entryPoint);
+                // start a fade out effect
+                Brightness brightness = (Brightness){0, 0, 0};
+                Screen_startEffect(
+                    Screen_getInstance(),
+                    kFadeTo,
+                    __FADE_DELAY,
+                    &brightness,
+                    (void (*)(Object, Object))OverworldState_onFadeOutComplete,
+                    __SAFE_CAST(Object, this)
+                );
 			}
 		}
 			break;
@@ -254,4 +262,14 @@ static void OverworldState_onFadeInComplete(OverworldState this, Object eventFir
 
     // enable user input
     Game_enableKeypad(Game_getInstance());
+}
+
+// handle event
+static void OverworldState_onFadeOutComplete(OverworldState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "OverworldState::onFadeOutComplete: null this");
+
+    // load platformer level
+    extern PlatformerLevelDefinition LEVEL_1_LV;
+    PlatformerLevelState_startLevel(PlatformerLevelState_getInstance(), &LEVEL_1_LV);
 }
