@@ -751,6 +751,9 @@ void Hero_enterDoor(Hero this)
 		return;
 	}
 
+	// play animation
+    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "WalkingBack");
+
 	// inform the door entity
 	if(this->currentlyOverlappedDoor != NULL)
 	{
