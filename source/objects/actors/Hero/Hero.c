@@ -173,7 +173,6 @@ void Hero_destructor(Hero this)
     // discard pending delayed messages
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
-
 	// free the instance pointers
 	this->feetDust = NULL;
 	this->hint = NULL;
