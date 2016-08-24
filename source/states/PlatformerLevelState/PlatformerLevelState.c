@@ -431,6 +431,10 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 	// unset the hero as focus entity from the custom screen movement manager
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
+    // fade out
+    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
+
+    // go to overworld
     Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }
 

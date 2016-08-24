@@ -88,7 +88,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
             Game_wait(Game_getInstance(), 3000);
 		    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
 
-            // show this screen for at least 2 seconds
+            // show this screen for at least 2 seconds, as defined by Nintendo in the official development manual (Appendix 1)
             MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
 			break;
 
