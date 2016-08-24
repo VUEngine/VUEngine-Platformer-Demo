@@ -79,6 +79,7 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 
                 // set hero's position
                 Hero_setPosition(Hero_getInstance(), &destinationDoorPosition);
+                // TODO: switch hero's palette according to new layer
 
 				return true;
 			}

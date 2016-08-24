@@ -452,11 +452,12 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
 {
 	this->currentStageEntryPoint = entryPointDefinition;
 
+    Brightness brightness = (Brightness){0, 0, 0};
     Screen_startEffect(
         Screen_getInstance(),
         kFadeTo,
         __FADE_DELAY,
-        (Brightness){0, 0, 0},
+        &brightness,
         (void (*)(Object, Object))PlatformerLevelState_onFadeOutComplete,
         __SAFE_CAST(Object, this)
     );

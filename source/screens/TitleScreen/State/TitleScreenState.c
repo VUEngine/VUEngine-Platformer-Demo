@@ -259,9 +259,8 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
                 // disable user input
                 Game_disableKeypad(Game_getInstance());
 
-                Brightness brightness = (Brightness){0, 0, 0};
-
 			    // fade out screen
+                Brightness brightness = (Brightness){0, 0, 0};
                 Screen_startEffect(
                     Screen_getInstance(),
                     kFadeTo,
