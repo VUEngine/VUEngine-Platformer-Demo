@@ -214,13 +214,13 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
             OverworldState_print(this);
 
 			// fade in screen
-			Screen_startEffect(
-                Screen_getInstance(),
-                kFadeTo,
-                __FADE_DELAY,
-                NULL,
-                (void (*)(Object, Object))OverworldState_onFadeInComplete,
-                __SAFE_CAST(Object, this)
+            Screen_startEffect(Screen_getInstance(),
+                kFadeTo, // effect type
+                0, // initial delay (in ms)
+                NULL, // target brightness
+                __FADE_DELAY, // delay between fading steps (in ms)
+                (void (*)(Object, Object))OverworldState_onFadeInComplete, // callback function
+                __SAFE_CAST(Object, this) // callback scope
             );
 
 			break;
@@ -236,13 +236,13 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 
                 // start a fade out effect
                 Brightness brightness = (Brightness){0, 0, 0};
-                Screen_startEffect(
-                    Screen_getInstance(),
-                    kFadeTo,
-                    __FADE_DELAY,
-                    &brightness,
-                    (void (*)(Object, Object))OverworldState_onFadeOutComplete,
-                    __SAFE_CAST(Object, this)
+                Screen_startEffect(Screen_getInstance(),
+                    kFadeTo, // effect type
+                    0, // initial delay (in ms)
+                    &brightness, // target brightness
+                    __FADE_DELAY, // delay between fading steps (in ms)
+                    (void (*)(Object, Object))OverworldState_onFadeOutComplete, // callback function
+                    __SAFE_CAST(Object, this) // callback scope
                 );
 			}
 		}

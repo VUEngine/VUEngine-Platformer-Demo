@@ -353,14 +353,15 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 		case kLevelStarted:
 
 			// fade in screen
-			Screen_startEffect(
-                Screen_getInstance(),
-                kFadeTo,
-                __FADE_DELAY,
-                NULL,
-                (void (*)(Object, Object))PlatformerLevelState_onFadeInComplete,
-                __SAFE_CAST(Object, this)
+            Screen_startEffect(Screen_getInstance(),
+                kFadeTo, // effect type
+                0, // initial delay (in ms)
+                NULL, // target brightness
+                __FADE_DELAY, // delay between fading steps (in ms)
+                (void (*)(Object, Object))PlatformerLevelState_onFadeInComplete, // callback function
+                __SAFE_CAST(Object, this) // callback scope
             );
+
 			break;
 
 		case kHideLevelMessage:
@@ -460,13 +461,13 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
 
     // start a fade out effect
     Brightness brightness = (Brightness){0, 0, 0};
-    Screen_startEffect(
-        Screen_getInstance(),
-        kFadeTo,
-        __FADE_DELAY,
-        &brightness,
-        (void (*)(Object, Object))PlatformerLevelState_onFadeOutComplete,
-        __SAFE_CAST(Object, this)
+    Screen_startEffect(Screen_getInstance(),
+        kFadeTo, // effect type
+        0, // initial delay (in ms)
+        &brightness, // target brightness
+        __FADE_DELAY, // delay between fading steps (in ms)
+        (void (*)(Object, Object))PlatformerLevelState_onFadeOutComplete, // callback function
+        __SAFE_CAST(Object, this) // callback scope
     );
 }
 

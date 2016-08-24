@@ -141,14 +141,15 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 		case kScreenStarted:
 
             // start fade in effect
-            Screen_startEffect(
-                Screen_getInstance(),
-                kFadeTo,
-                __FADE_DELAY,
-                NULL,
-                (void (*)(Object, Object))SplashScreenState_onFadeInComplete,
-                __SAFE_CAST(Object, this)
+            Screen_startEffect(Screen_getInstance(),
+                kFadeTo, // effect type
+                0, // initial delay (in ms)
+                NULL, // target brightness
+                __FADE_DELAY, // delay between fading steps (in ms)
+                (void (*)(Object, Object))SplashScreenState_onFadeInComplete, // callback function
+                __SAFE_CAST(Object, this) // callback scope
             );
+
 			break;
 
 		case kKeyPressed:
@@ -186,13 +187,13 @@ void SplashScreenState_loadNextState(SplashScreenState this)
 
     // start fade out effect
     Brightness brightness = (Brightness){0, 0, 0};
-    Screen_startEffect(
-        Screen_getInstance(),
-        kFadeTo,
-        __FADE_DELAY,
-        &brightness,
-        (void (*)(Object, Object))SplashScreenState_onFadeOutComplete,
-        __SAFE_CAST(Object, this)
+    Screen_startEffect(Screen_getInstance(),
+        kFadeTo, // effect type
+        0, // initial delay (in ms)
+        &brightness, // target brightness
+        __FADE_DELAY, // delay between fading steps (in ms)
+        (void (*)(Object, Object))SplashScreenState_onFadeOutComplete, // callback function
+        __SAFE_CAST(Object, this) // callback scope
     );
 }
 
