@@ -173,13 +173,13 @@ StageROMDef OVERWORLD_1_ST =
     	// obj segments sizes (must total 1024)
         {
             // __spt0
-        	__AVAILABLE_CHAR_OBJECTS,
+        	0,
             // __spt1
         	0,
             // __spt2
         	0,
             // __spt3
-        	0,
+        	__AVAILABLE_CHAR_OBJECTS,
         },
 
         // obj segments z coordinates
