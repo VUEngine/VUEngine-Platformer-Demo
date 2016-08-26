@@ -754,6 +754,11 @@ void Hero_enterDoor(Hero this)
 	// play animation
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "WalkingBack");
 
+    // move towards door
+    Body_setAxisSubjectToGravity(this->body, 0);
+    Velocity velocity = {0, 0, ITOFIX19_13(16)};
+    Body_moveUniformly(this->body, velocity);
+
 	// inform the door entity
 	if(this->currentlyOverlappedDoor != NULL)
 	{

@@ -157,7 +157,7 @@ void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 // retrieve axis free for movement
 int MovingEntity_getAxisFreeForMovement(MovingEntity this __attribute__ ((unused)))
 {
-	return 0;// ((__XAXIS & ~(__XAXIS & movingState) )|(__ZAXIS & ~(__ZAXIS & movingState)));
+	return 0;
 }
 
 void MovingEntity_checkDisplacement(MovingEntity this)
