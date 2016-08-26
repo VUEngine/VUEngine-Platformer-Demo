@@ -71,7 +71,7 @@ extern EntityDefinition HINT_MC;
 #define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-25000)
 #define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-30000)
 
-#define CAMERA_BOUNDING_BOX_DISPLACEMENT		{0, ITOFIX19_13(-24), 0}
+#define CAMERA_BOUNDING_BOX_DISPLACEMENT		{ITOFIX19_13(0), ITOFIX19_13(-24), 0}
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -438,11 +438,6 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 		    positionFlag.x = !locked;
         }
 
-        if(__YAXIS & axisToLockUp)
-        {
-            //erridePositionFlag.y = l? true: positionFlag.ynFlag.y = !locked? true: positionFlag.y;
-        }
-
 	    CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
 	    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 	}
@@ -484,7 +479,6 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
 
     	Hero_hideDust(this);
-    	Hero_lockCameraTriggerMovement(this, __XAXIS, true);
     }
 
 	if(__YAXIS & axis)
@@ -536,7 +530,6 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 		position.x = abs(position.x) * -1;
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
-		Hero_lockCameraTriggerMovement(this, __XAXIS, true);
 	}
 	else if(K_LL & pressedKey)
     {
@@ -545,7 +538,6 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
 		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 		position.x = abs(position.x);
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
-		Hero_lockCameraTriggerMovement(this, __XAXIS, true);
 	}
 	else if(K_LU & pressedKey)
     {
@@ -555,6 +547,11 @@ void Hero_checkDirection(Hero this, u16 pressedKey, char* animation)
     {
 		this->inputDirection.z = __NEAR;
 	}
+
+    if(this->direction.x != this->inputDirection.x)
+    {
+        Hero_lockCameraTriggerMovement(this, __XAXIS, true);
+    }
 
 	if(animation && !(__YAXIS & movementState))
     {

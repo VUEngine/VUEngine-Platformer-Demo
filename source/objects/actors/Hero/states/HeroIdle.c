@@ -80,7 +80,6 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
     // show animation
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 
-	Hero_lockCameraTriggerMovement(__SAFE_CAST(Hero, owner), __XAXIS | __YAXIS, true);
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
