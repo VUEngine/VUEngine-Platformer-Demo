@@ -41,7 +41,6 @@ __CLASS_DEFINITION(ProgressManager, Object);
 
 static void ProgressManager_constructor(ProgressManager this);
 static void ProgressManager_initialize(ProgressManager this);
-static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer);
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
@@ -69,7 +68,6 @@ static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManag
     Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 
     // add event listeners
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHeroDied, EVENT_HERO_DIED);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, EVENT_POWERUP);
@@ -84,7 +82,7 @@ void ProgressManager_destructor(ProgressManager this)
     Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 
     // remove event listeners
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHeroDied, EVENT_HERO_DIED);
+
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
     Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, EVENT_POWERUP);
@@ -207,12 +205,6 @@ bool ProgressManager_heroHasKey(ProgressManager this)
 bool ProgressManager_heroHasUsedKey(ProgressManager this)
 {
 	return this->heroHasUsedKey;
-}
-
-// handle event
-static void ProgressManager_onHeroDied(ProgressManager this, Object eventFirer __attribute__ ((unused)))
-{
-	ProgressManager_reset(this);
 }
 
 // handle event

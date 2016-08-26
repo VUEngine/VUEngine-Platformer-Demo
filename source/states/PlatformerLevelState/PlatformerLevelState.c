@@ -437,6 +437,9 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 
     // go to overworld
     Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+
+    // reset progress
+    ProgressManager_reset(ProgressManager_getInstance());
 }
 
 // get current level's definition
