@@ -14,15 +14,15 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HERO_IDLE_H_
-#define HERO_IDLE_H_
+#ifndef HERO_STATE_H_
+#define HERO_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <HeroState.h>
+#include <State.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,33 +30,29 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define HeroIdle_METHODS(ClassName)																		\
-	    HeroState_METHODS(ClassName)																    \
+#define HeroState_METHODS(ClassName)																		\
+	    State_METHODS(ClassName)																		\
+		__VIRTUAL_DEC(ClassName, void, onKeyPressed, void* owner);										\
+		__VIRTUAL_DEC(ClassName, void, onKeyReleased, void* owner);										\
+		__VIRTUAL_DEC(ClassName, void, onKeyHold, void* owner);										    \
 
 // declare the virtual methods which are redefined
-#define HeroIdle_SET_VTABLE(ClassName)																	\
-        HeroState_SET_VTABLE(ClassName)																	\
-        __VIRTUAL_SET(ClassName, HeroIdle, enter);														\
-        __VIRTUAL_SET(ClassName, HeroIdle, processMessage);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyPressed);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyReleased);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyHold);	                                                \
+#define HeroState_SET_VTABLE(ClassName)																	\
+        State_SET_VTABLE(ClassName)																		\
 
-__CLASS(HeroIdle);
+__CLASS(HeroState);
 
-#define HeroIdle_ATTRIBUTES																				\
+#define HeroState_ATTRIBUTES																				\
         /* inherits */																					\
-        HeroState_ATTRIBUTES																			\
+        State_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-HeroIdle HeroIdle_getInstance();
+void HeroState_constructor(HeroState this);
+void HeroState_destructor(HeroState this);
 
-void HeroIdle_onKeyPressed(HeroIdle this, void* owner);
-void HeroIdle_onKeyReleased(HeroIdle this, void* owner);
-void HeroIdle_onKeyHold(HeroIdle this, void* owner);
 
 #endif

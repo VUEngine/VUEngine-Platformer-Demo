@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StateMachine.h>
+#include <HeroState.h>
 #include <PlatformerLevelState.h>
 
 
@@ -32,17 +32,20 @@
 
 // declare the virtual methods
 #define HeroMoving_METHODS(ClassName)																	\
-    	State_METHODS(ClassName)																		\
+    	HeroState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define HeroMoving_SET_VTABLE(ClassName)																\
-        State_SET_VTABLE(ClassName)																		\
+        HeroState_SET_VTABLE(ClassName)																	\
         __VIRTUAL_SET(ClassName, HeroMoving, enter);													\
         __VIRTUAL_SET(ClassName, HeroMoving, processMessage);                           				\
+        __VIRTUAL_SET(ClassName, HeroMoving, onKeyPressed);	                                            \
+        __VIRTUAL_SET(ClassName, HeroMoving, onKeyReleased);	                                            \
+        __VIRTUAL_SET(ClassName, HeroMoving, onKeyHold);	                                                \
 
 #define HeroMoving_ATTRIBUTES																			\
         /* inherits */																					\
-        State_ATTRIBUTES																				\
+        HeroState_ATTRIBUTES																			\
         /* flag to allow jump on bouncing */															\
         bool bouncing;																					\
 
@@ -61,5 +64,8 @@ enum HeroMovingMessages
 
 HeroMoving HeroMoving_getInstance();
 
+void HeroMoving_onKeyPressed(HeroMoving this, void* owner);
+void HeroMoving_onKeyReleased(HeroMoving this, void* owner);
+void HeroMoving_onKeyHold(HeroMoving this, void* owner);
 
 #endif

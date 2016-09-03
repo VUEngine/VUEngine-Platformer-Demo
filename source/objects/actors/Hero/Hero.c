@@ -857,28 +857,19 @@ void Hero_die(Hero this)
 // process user input
 static void Hero_onKeyPressed(Hero this, Object eventFirer __attribute__ ((unused)))
 {
-	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
-
-	// inform my current states about the key pressed
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this->stateMachine), __SAFE_CAST(Object, this->stateMachine), kKeyPressed, &pressedKey);
+    __VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this);
 }
 
 // process user input
 static void Hero_onKeyReleased(Hero this, Object eventFirer __attribute__ ((unused)))
 {
-	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
-
-	// inform my current states about the key up
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this->stateMachine), __SAFE_CAST(Object, this->stateMachine), kKeyReleased, &releasedKey);
+    __VIRTUAL_CALL(HeroState, onKeyReleased, StateMachine_getCurrentState(this->stateMachine), this);
 }
 
 // process user input
 static void Hero_onKeyHold(Hero this, Object eventFirer __attribute__ ((unused)))
 {
-	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
-
-	// inform my current states about the key hold
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this->stateMachine), __SAFE_CAST(Object, this->stateMachine), kKeyHold, &holdKey);
+    __VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this);
 }
 
 // collect a key

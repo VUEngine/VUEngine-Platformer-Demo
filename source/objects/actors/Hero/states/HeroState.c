@@ -14,49 +14,42 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HERO_IDLE_H_
-#define HERO_IDLE_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <HeroState.h>
+#include "HeroState.h"
+#include <VirtualList.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+// 												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define HeroIdle_METHODS(ClassName)																		\
-	    HeroState_METHODS(ClassName)																    \
-
-// declare the virtual methods which are redefined
-#define HeroIdle_SET_VTABLE(ClassName)																	\
-        HeroState_SET_VTABLE(ClassName)																	\
-        __VIRTUAL_SET(ClassName, HeroIdle, enter);														\
-        __VIRTUAL_SET(ClassName, HeroIdle, processMessage);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyPressed);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyReleased);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyHold);	                                                \
-
-__CLASS(HeroIdle);
-
-#define HeroIdle_ATTRIBUTES																				\
-        /* inherits */																					\
-        HeroState_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+// 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-HeroIdle HeroIdle_getInstance();
+__CLASS_DEFINITION(HeroState, State);
 
-void HeroIdle_onKeyPressed(HeroIdle this, void* owner);
-void HeroIdle_onKeyReleased(HeroIdle this, void* owner);
-void HeroIdle_onKeyHold(HeroIdle this, void* owner);
 
-#endif
+//---------------------------------------------------------------------------------------------------------
+// 												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
+
+// class's constructor
+void __attribute__ ((noinline)) HeroState_constructor(HeroState this)
+{
+	// construct base
+	__CONSTRUCT_BASE(State);
+}
+
+// class's destructor
+void HeroState_destructor(HeroState this)
+{
+	// destroy base
+	__DESTROY_BASE;
+}
