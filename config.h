@@ -29,16 +29,41 @@
 //---------------------------------------------------------------------------------------------------------
 
 #ifdef __TOOLS
+
+// print frame rate
 #define __PRINT_FRAMERATE
+
+// print memory pool's status
 #define __PRINT_MEMORY_POOL_STATUS
+#define __PRINT_DETAILED_MEMORY_POOL_STATUS
+
+// alert stack overflows
 #define __ALERT_STACK_OVERFLOW
-#define __ALERT_TRANSFORMATIONS_NOT_IN_SYNC_WITH_VPU
+
+// alert VPU's overtime
 #define __ALERT_VPU_OVERTIME
+
+// alert transformation - VPU unsync warning
+#define __ALERT_TRANSFORMATIONS_NOT_IN_SYNC_WITH_VPU
+
+// tools
 #define __DEBUG_TOOLS
 #define __STAGE_EDITOR
 #define __ANIMATION_EDITOR
 #endif
 
+//---------------------------------------------------------------------------------------------------------
+// 											PROFILING
+//---------------------------------------------------------------------------------------------------------
+
+// print frame rate
+#undef __PRINT_FRAMERATE
+
+// show game's process profiling
+#define __PROFILING
+
+// show stage streaming's process profiling
+#undef __STREAMING_PROFILING
 
 //---------------------------------------------------------------------------------------------------------
 // 											OPTICS / PROJECTION
@@ -75,6 +100,9 @@
 //---------------------------------------------------------------------------------------------------------
 // 											FRAME RATE CONTROL
 //---------------------------------------------------------------------------------------------------------
+
+// cap the framerate
+#define __CAP_FRAMERATE
 
 // disable VPU's XPEND interrupt, and thus rendering while transformation operations have not finished
 #undef __FORCE_VPU_SYNC
