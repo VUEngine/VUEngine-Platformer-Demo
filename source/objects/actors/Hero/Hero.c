@@ -1246,7 +1246,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 	return false;
 }
 
-void Hero_setPosition(Hero this, VBVec3D* position)
+void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 {
 	ASSERT(this, "Hero::setPosition: null this");
 
@@ -1254,7 +1254,7 @@ void Hero_setPosition(Hero this, VBVec3D* position)
 	Actor_stopMovement(__SAFE_CAST(Actor, this));
 
 	// set new position
-	Actor_setPosition(__SAFE_CAST(Actor, this), position);
+	Actor_setPosition(__SAFE_CAST(Actor, this), outOfDoorPosition);
 
 	// must make sure that collision detection is reset
 	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
@@ -1265,6 +1265,9 @@ void Hero_setPosition(Hero this, VBVec3D* position)
 	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
 
 	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this), __XAXIS | __YAXIS | __ZAXIS);
+
+    Body_setAxisSubjectToGravity(this->body, __YAXIS);
+
 }
 
 void Hero_update(Hero this)

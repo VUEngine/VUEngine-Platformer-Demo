@@ -78,7 +78,7 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
                 destinationDoorPosition.z += this->destinationDefinition->offset.z;
 
                 // set hero's position
-                Hero_setPosition(Hero_getInstance(), &destinationDoorPosition);
+                Hero_getOutOfDoor(Hero_getInstance(), &destinationDoorPosition);
                 // TODO: switch hero's palette according to new layer
 
 				return true;
