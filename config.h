@@ -106,7 +106,7 @@
 #define __CAP_FRAMERATE
 
 // disable VIP's __XPEND interrupt, and thus rendering while transformation operations have not finished
-#define __FORCE_VIP_SYNC
+#undef __FORCE_VIP_SYNC
 
 // clock resolution
 #define __TIMER_RESOLUTION						10
