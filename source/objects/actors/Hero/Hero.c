@@ -591,7 +591,9 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
 
             if(pause)
             {
-	        	Game_disableKeypad(Game_getInstance());
+                // commented out because if the input stops while paused
+                // I will continue to move even if there is no user's input
+	        	//Game_disableKeypad(Game_getInstance());
                 GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
                 Body_setActive(this->body, false);
                 GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
@@ -1175,7 +1177,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 
         case kHeroResumePhysics:
 
-        	Game_enableKeypad(Game_getInstance());
+        	//Game_enableKeypad(Game_getInstance());
             GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), false);
             GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), false);
             Body_setActive(this->body, true);
