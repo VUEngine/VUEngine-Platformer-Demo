@@ -37,6 +37,7 @@ void PostProcessingEffects_wave(u32 currentDrawingFrameBufferSet)
     u32 previousSourcePointerValueTemp = 0;
 
     // look up table of bitshifts performed on rows
+    // values must be multiples of 2
     const u8 waveLut[32] = {0,0,0,0,2,2,2,2,4,4,4,4,6,6,6,6,6,6,6,6,4,4,4,4,2,2,2,2,0,0,0,0};
 
     // runtime working variables
@@ -144,7 +145,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
                     continue;
                 }
 
-                currentShift = (31 - (x / 3));
+                currentShift = (30 - ((x / 6) << 1));
 
                 if (currentShift == 0)
                 {
