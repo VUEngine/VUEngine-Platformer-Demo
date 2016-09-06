@@ -29,13 +29,10 @@
 // 												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_testWave(u32 currentDrawingframeBufferSet)
+void PostProcessingEffects_wave(u32 currentDrawingFrameBufferSet)
 {
-    // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
-    u32 x = 0;
-    u32 y = 0;
-
-    //
+    u8 x = 0;
+    u16 y = 0;
     u32 previousSourcePointerValue = 0;
     u32 previousSourcePointerValueTemp = 0;
 
@@ -61,8 +58,10 @@ void PostProcessingEffects_testWave(u32 currentDrawingframeBufferSet)
             {
                 if((y & 63) == 0)
                 {
-                    // the shifted out pixels on top should be black
+                    // increase look up table index
                     waveLutIndex++;
+
+                    // the shifted out pixels on top should be black
                     previousSourcePointerValue = 0;
                 }
                 else if((y & 63) > 48)
@@ -70,11 +69,6 @@ void PostProcessingEffects_testWave(u32 currentDrawingframeBufferSet)
                     // ignore the bottom 16 pixels of the screen (gui)
                     continue;
                 }
-                else if((y & 63) < 8)
-                 {
-                     // ignore the bottom 16 pixels of the screen (gui)
-                     continue;
-                 }
 
                 // wrap wave lut index (&31 equals %32)
                 waveLutIndex = waveLutIndex & 31;
@@ -86,7 +80,7 @@ void PostProcessingEffects_testWave(u32 currentDrawingframeBufferSet)
                 }
 
                 // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = (u32*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
+                u32* sourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0 ));
                 sourcePointer += ((x << 6) + (y >> 2));
 
                 // save current pointer value to temp var and shift highest x bits of it, according to lut,
@@ -103,8 +97,8 @@ void PostProcessingEffects_testWave(u32 currentDrawingframeBufferSet)
                     // from the previous loop
                     | previousSourcePointerValue;
 
-                // we need the current source pointer value _before_ we modified it, therefore we save it
-                // to a temp variable while modifying
+                // we need the current source pointer value from _before_ we modified it, therefore we save it
+                // it to a temp variable while modifying
                 previousSourcePointerValue = previousSourcePointerValueTemp;
             }
         }
@@ -113,10 +107,80 @@ void PostProcessingEffects_testWave(u32 currentDrawingframeBufferSet)
     CACHE_DISABLE;
     CACHE_ENABLE;
 
+    // move the wave one pixel in the next frame
     waveLutIndex++;
 }
 
-void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingframeBufferSet)
+void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
+{
+    u8 x = 0;
+    u16 y = 0;
+    u32 previousSourcePointerValue = 0;
+    u32 previousSourcePointerValueTemp = 0;
+    u8 currentShift = 0;
+
+    // write to framebuffers for both screens
+    u32 buffer = 0;
+
+    CACHE_DISABLE;
+    CACHE_ENABLE;
+
+    for(; buffer < 2; buffer++)
+    {
+        // loop columns, each column is 4 pixels wide
+        for(x = 0; x < 96; x++)
+        {
+            // loop pixels of current column
+            for(y = 0; y < 256; y += 4)
+            {
+                if((y & 63) == 0)
+                {
+                    // the shifted out pixels on top should be black
+                    previousSourcePointerValue = 0;
+                }
+                else if((y & 63) > 48)
+                {
+                    // ignore the bottom 16 pixels of the screen (gui)
+                    continue;
+                }
+
+                currentShift = (31 - (x / 3));
+
+                if (currentShift == 0)
+                {
+                    continue;
+                }
+
+                // pointer to currently manipulated 32 bits of framebuffer
+                u32* sourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0 ));
+                sourcePointer += ((x << 6) + (y >> 2));
+
+                // save current pointer value to temp var and shift highest x bits of it,
+                // to the lowest bits, since we want to insert these
+                previousSourcePointerValueTemp = (u32)(*sourcePointer) >> (32 - currentShift);
+
+                // manipulate current 32 bits in frame buffer
+                *sourcePointer =
+                    // shift bits
+                    // it's two bits per pixel, so 2 bits shifted left = 1 pixel shifted down on screen
+                    (*sourcePointer << currentShift)
+
+                    // since the above shifting creates black pixels, we need to carry over these pixels
+                    // from the previous loop
+                    | previousSourcePointerValue;
+
+                // we need the current source pointer value from _before_ we modified it, therefore we save it
+                // it to a temp variable while modifying
+                previousSourcePointerValue = previousSourcePointerValueTemp;
+            }
+        }
+    }
+
+    CACHE_DISABLE;
+    CACHE_ENABLE;
+}
+
+void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingFrameBufferSet)
 {
     // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
     int x = 0;
@@ -159,7 +223,7 @@ void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingframeBufferSet)
         {
             for(y = 0; y < 224; y+=4)
             {
-                u32* sourcePointer = (u32*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
+                u32* sourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0 ));
                 sourcePointer += ((x << 6) + y);
 
                 lastPart = *sourcePointer;
@@ -174,12 +238,12 @@ void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingframeBufferSet)
     CACHE_ENABLE;
 }
 
-void PostProcessingEffects_lightingTest(u32 currentDrawingframeBufferSet)
+void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
 {
     // the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
     // 2 per eye) has been written by the VPU and you can work on
 
-    // will try to add a post processing effect around the hero
+    // will add a post processing effect around the hero
     Hero hero = Hero_getInstance();
 
     if(!hero)
@@ -218,7 +282,7 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingframeBufferSet)
         {
             for(yCounter = 48, y = heroPosition.y - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
             {
-                BYTE* sourcePointer = (BYTE*) (currentDrawingframeBufferSet | (buffer ? 0x00010000 : 0 ));
+                BYTE* sourcePointer = (BYTE*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0 ));
                 sourcePointer += ((x << 6) + (y >> 2));
 
                 /*

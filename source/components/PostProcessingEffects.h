@@ -22,9 +22,10 @@
 // 										FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_testWave(u32 currentDrawingframeBufferSet);
-void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingframeBufferSet);
-void PostProcessingEffects_lightingTest(u32 currentDrawingframeBufferSet);
+void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet);
+void PostProcessingEffects_wave(u32 currentDrawingFrameBufferSet);
+void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingFrameBufferSet);
+void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet);
 
 
 #endif
