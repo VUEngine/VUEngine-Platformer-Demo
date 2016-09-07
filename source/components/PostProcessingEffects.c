@@ -46,9 +46,6 @@ void PostProcessingEffects_wave(u32 currentDrawingFrameBufferSet)
     // write to framebuffers for both screens
     u32 buffer = 0;
 
-    CACHE_DISABLE;
-    CACHE_ENABLE;
-
     for(; buffer < 2; buffer++)
     {
         // loop columns, each column is 4 pixels wide
@@ -105,9 +102,6 @@ void PostProcessingEffects_wave(u32 currentDrawingFrameBufferSet)
         }
     }
 
-    CACHE_DISABLE;
-    CACHE_ENABLE;
-
     // move the wave one pixel in the next frame
     waveLutIndex++;
 }
@@ -122,9 +116,6 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
 
     // write to framebuffers for both screens
     u32 buffer = 0;
-
-    CACHE_DISABLE;
-    CACHE_ENABLE;
 
     for(; buffer < 2; buffer++)
     {
@@ -176,9 +167,6 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
             }
         }
     }
-
-    CACHE_DISABLE;
-    CACHE_ENABLE;
 }
 
 void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingFrameBufferSet)
@@ -215,9 +203,6 @@ void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingFrameBufferSet)
     }
     */
 
-    CACHE_DISABLE;
-    CACHE_ENABLE;
-
     for(; buffer < 2; buffer++)
     {
         for(x = 0; x < 384; x+=4)
@@ -234,9 +219,6 @@ void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingFrameBufferSet)
             }
         }
     }
-
-    CACHE_DISABLE;
-    CACHE_ENABLE;
 }
 
 void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
@@ -270,9 +252,6 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
 
     // write to framebuffers for both screens
     u32 buffer = 0;
-
-    CACHE_DISABLE;
-    CACHE_ENABLE;
 
     heroPosition.x = FIX19_13TOI(heroPosition.x);
     heroPosition.y = FIX19_13TOI(heroPosition.y);
@@ -312,9 +291,6 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
             }
         }
     }
-
-    CACHE_DISABLE;
-    CACHE_ENABLE;
 
     // this just create a simple delay to not shift the pixels on each cycle
     if(--wait < 0)
