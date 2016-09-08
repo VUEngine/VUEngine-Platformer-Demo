@@ -24,6 +24,7 @@
 
 void PostProcessingEffects_wave(u32 currentDrawingFrameBufferSet);
 void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet);
+void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet);
 void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingFrameBufferSet);
 void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet);
 
