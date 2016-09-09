@@ -26,6 +26,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
+
+
+//---------------------------------------------------------------------------------------------------------
 // 												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
@@ -33,7 +40,7 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
 {
     u8 buffer = 0;
     u16 x = 0, y = 0;
-    u32 previousSourcePointerValue = 0, previousSourcePointerValueTemp = 0;
+    u32 previousSourcePointerValue = 0;
 
     // runtime working variables
     static int waveLutIndex = 0;
@@ -79,26 +86,7 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
             // ignore the bottom 16 pixels of the screen (gui)
             for(y = 0; y < 13; y++)
             {
-                // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = columnSourcePointer + y;
-
-                // save current pointer value to temp var and shift highest x bits of it, according to lut,
-                // to the lowest bits, since we want to insert these
-                previousSourcePointerValueTemp = (u32)(*sourcePointer) >> (32 - waveLut[waveLutIndex]);
-
-                // manipulate current 32 bits in frame buffer
-                *sourcePointer =
-                    // shift bits according to wave lut
-                    // it's two bits per pixel, so 2 bits shifted left = 1 pixel shifted down on screen
-                    (*sourcePointer << (waveLut[waveLutIndex]))
-
-                    // since the above shifting creates black pixels, we need to carry over these pixels
-                    // from the previous loop
-                    | previousSourcePointerValue;
-
-                // we need the current source pointer value from _before_ we modified it, therefore we save it
-                // it to a temp variable while modifying
-                previousSourcePointerValue = previousSourcePointerValueTemp;
+                previousSourcePointerValue = PostProcessingEffects_writeToFrameBuffer(y, waveLut[waveLutIndex], columnSourcePointer, previousSourcePointerValue);
             }
         }
     }
@@ -111,7 +99,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
 {
     u8 buffer = 0, currentShift = 0;
     u16 x = 0, y = 0;
-    u32 previousSourcePointerValue = 0, previousSourcePointerValueTemp = 0;
+    u32 previousSourcePointerValue = 0;
 
     // write to framebuffers for both screens
     for(; buffer < 2; buffer++)
@@ -132,26 +120,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
             // ignore the bottom 16 pixels of the screen (gui)
             for(y = 0; y < 13; y++)
             {
-                // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = columnSourcePointer + y;
-
-                // save current pointer value to temp var and shift highest x bits of it,
-                // to the lowest bits, since we want to insert these
-                previousSourcePointerValueTemp = (u32)(*sourcePointer) >> (32 - currentShift);
-
-                // manipulate current 32 bits in frame buffer
-                *sourcePointer =
-                    // shift bits
-                    // it's two bits per pixel, so 2 bits shifted left = 1 pixel shifted down on screen
-                    (*sourcePointer << currentShift)
-
-                    // since the above shifting creates black pixels, we need to carry over these pixels
-                    // from the previous loop
-                    | previousSourcePointerValue;
-
-                // we need the current source pointer value from _before_ we modified it, therefore we save it
-                // it to a temp variable while modifying
-                previousSourcePointerValue = previousSourcePointerValueTemp;
+                previousSourcePointerValue = PostProcessingEffects_writeToFrameBuffer(y, currentShift, columnSourcePointer, previousSourcePointerValue);
             }
         }
     }
@@ -161,7 +130,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
 {
     u8 buffer = 0;
     u16 x = 0, y = 0;
-    u32 previousSourcePointerValue = 0, previousSourcePointerValueTemp = 0;
+    u32 previousSourcePointerValue = 0;
 
     // runtime working variables
     static int lutIndex = 0;
@@ -205,26 +174,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             // ignore the bottom 16 pixels of the screen (gui)
             for(y = 0; y < 13; y++)
             {
-                // set pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = columnSourcePointer + y;
-
-                // save current pointer value to temp var and shift highest x bits of it, according to lut,
-                // to the lowest bits, since we want to insert these
-                previousSourcePointerValueTemp = (u32)(*sourcePointer) >> (lut[lutIndex]);
-
-                // manipulate current 32 bits in frame buffer
-                *sourcePointer =
-                    // shift bits according to effect lut
-                    // it's two bits per pixel, so 2 bits shifted left = 1 pixel shifted down on screen
-                    (*sourcePointer << (32 - lut[lutIndex]))
-
-                    // since the above shifting creates black pixels, we need to carry over these pixels
-                    // from the previous loop
-                    | previousSourcePointerValue;
-
-                // we need the current source pointer value from _before_ we modified it, therefore we save it
-                // it to a temp variable while modifying
-                previousSourcePointerValue = previousSourcePointerValueTemp;
+                previousSourcePointerValue = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointer, previousSourcePointerValue);
             }
 
             // iterate lut from left to right
@@ -247,26 +197,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             // ignore the bottom 16 pixels of the screen (gui)
             for(y = 0; y < 13; y++)
             {
-                // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = columnSourcePointer + y;
-
-                // save current pointer value to temp var and shift highest x bits of it, according to lut,
-                // to the lowest bits, since we want to insert these
-                previousSourcePointerValueTemp = (u32)(*sourcePointer) >> (lut[lutIndex]);
-
-                // manipulate current 32 bits in frame buffer
-                *sourcePointer =
-                    // shift bits according to effect lut
-                    // it's two bits per pixel, so 2 bits shifted left = 1 pixel shifted down on screen
-                    (*sourcePointer << (32 - lut[lutIndex]))
-
-                    // since the above shifting creates black pixels, we need to carry over these pixels
-                    // from the previous loop
-                    | previousSourcePointerValue;
-
-                // we need the current source pointer value from _before_ we modified it, therefore we save it
-                // it to a temp variable while modifying
-                previousSourcePointerValue = previousSourcePointerValueTemp;
+                previousSourcePointerValue = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointer, previousSourcePointerValue);
             }
         }
     }
@@ -348,4 +279,30 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
         wait = 4;
         vibrate = !vibrate;
     }
+}
+
+u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue)
+{
+    u32 previousSourcePointerValueTemp = 0;
+
+    // pointer to currently manipulated 32 bits of framebuffer
+    u32* sourcePointer = columnSourcePointer + y;
+
+    // save current pointer value to temp var and shift highest x bits of it, according to lut,
+    // to the lowest bits, since we want to insert these
+    previousSourcePointerValueTemp = (u32)(*sourcePointer) >> (32 - shift);
+
+    // manipulate current 32 bits in frame buffer
+    *sourcePointer =
+        // shift bits according to wave lut
+        // it's two bits per pixel, so 2 bits shifted left = 1 pixel shifted down on screen
+        (*sourcePointer << shift)
+
+        // since the above shifting creates black pixels, we need to carry over these pixels
+        // from the previous loop
+        | previousSourcePointerValue;
+
+    // we need the current source pointer value from _before_ we modified it, therefore we save it
+    // it to a temp variable while modifying
+    return previousSourcePointerValueTemp;
 }
