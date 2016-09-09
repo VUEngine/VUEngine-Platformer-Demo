@@ -47,10 +47,10 @@ __CLASS_FRIEND_DEFINITION(Screen);
 //---------------------------------------------------------------------------------------------------------
 
 static void CustomScreenMovementManager_constructor(CustomScreenMovementManager this);
-static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)));
-static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)));
-static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)));
-static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)));
+static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)));
+static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)));
+static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)));
+static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)));
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u32 che
     this->focusFunction(this, checkIfFocusEntityIsMoving, false);
 }
 
-static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)))
+static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomScreenMovementManager::doFocusWithNoEasing: null this");
 
@@ -123,7 +123,7 @@ static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovement
 }
 
 // center world's _screen in function of focus actor's position
-static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)))
+static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomScreenMovementManager::dontFocus: null this");
 
@@ -131,7 +131,7 @@ static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager th
 }
 
 // center world's _screen in function of focus actor's position
-static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)))
+static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomScreenMovementManager::doFocus: null this");
 
@@ -282,7 +282,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 }
 
 // center world's _screen in function of focus actor's position
-static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u8 introFocusing  __attribute__ ((unused)))
+static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
     if(CustomScreenMovementManager_doFocus(this, checkIfFocusEntityIsMoving, true))
     {
