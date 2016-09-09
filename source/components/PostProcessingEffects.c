@@ -181,6 +181,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
 
 void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
 {
+    u8 buffer = 0;
     u16 x = 0, y = 0;
     u32 previousSourcePointerValue = 0, previousSourcePointerValueTemp = 0;
 
@@ -188,31 +189,33 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
     static int lutIndex = 0;
 
     // look up table of bitshifts performed on rows
-    const u8 lut[128] =
+    const u8 lut[96] =
     {
-         2, 2,
-         4, 4,
-         6, 6, 6,
-         8, 8, 8, 8,
-        10,10,10,10,10,
-        12,12,12,12,12,12,
-        14,14,14,14,14,14,14,
-        16,16,16,16,16,16,16,16,
-        18,18,18,18,18,18,18,18,18,
-        20,20,20,20,20,20,20,20,20,20,
-        22,22,22,22,22,22,22,22,22,22,22,
-        24,24,24,24,24,24,24,24,24,24,24,24,
-        26,26,26,26,26,26,26,26,26,26,26,26,26,26,
-        28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,
-        30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+         2,
+         4,
+         6, 6,
+         8, 8,
+        10,10,10,
+        12,12,12,
+        14,14,14,14,
+        16,16,16,16,16,
+        18,18,18,18,18,18,
+        20,20,20,20,20,20,20,
+        22,22,22,22,22,22,22,22,
+        24,24,24,24,24,24,24,24,24,24,
+        26,26,26,26,26,26,26,26,26,26,26,26,
+        28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,
+        30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
     };
 
     // write to framebuffers for both screens
-    u32 buffer = 0;
     for(; buffer < 2; buffer++)
     {
-        // loop columns of left third of screen
-        for(x = 0; x < 128; x++)
+        // get pointer to currently manipulated 32 bits of framebuffer
+        u32* currentDrawingFrameBufferSetSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
+
+        // loop columns of left fourth of screen
+        for(x = 0; x < 96; x++)
         {
             // the shifted out pixels on top should be black
             previousSourcePointerValue = 0;
@@ -221,9 +224,8 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             // ignore the bottom 16 pixels of the screen (gui)
             for(y = 0; y < 13; y++)
             {
-                // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
-                sourcePointer += ((x << 4) + y);
+                // set pointer to currently manipulated 32 bits of framebuffer
+                u32* sourcePointer = currentDrawingFrameBufferSetSourcePointer + ((x << 4) + y);
 
                 // save current pointer value to temp var and shift highest x bits of it, according to lut,
                 // to the lowest bits, since we want to insert these
@@ -248,13 +250,13 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             lutIndex++;
         }
 
-        // loop columns of right third of screen
-        for(x = 256; x < 384; x++)
+        // loop columns of right fourth of screen
+        for(x = 288; x < 384; x++)
         {
             // the shifted out pixels on top should be black
             previousSourcePointerValue = 0;
 
-            // iterate lut from right to left
+            // iterate lut back from right to left
             lutIndex--;
 
             // loop pixels of current column
@@ -262,8 +264,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             for(y = 0; y < 13; y++)
             {
                 // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
-                sourcePointer += ((x << 4) + y);
+                u32* sourcePointer = currentDrawingFrameBufferSetSourcePointer + ((x << 4) + y);
 
                 // save current pointer value to temp var and shift highest x bits of it, according to lut,
                 // to the lowest bits, since we want to insert these
