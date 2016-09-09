@@ -47,7 +47,7 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
 
     // look up table of bitshifts performed on rows
     // values must be multiples of 2
-    const u8 waveLut[128] =
+    const u32 waveLut[128] =
     {
          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
          2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -136,7 +136,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
     static int lutIndex = 0;
 
     // look up table of bitshifts performed on rows
-    const u8 lut[96] =
+    const u32 lut[96] =
     {
          2,
          4,
