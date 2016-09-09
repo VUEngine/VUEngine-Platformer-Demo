@@ -234,18 +234,20 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
     Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, EVENT_HERO_DIED);
 
-    // activate post processing effect
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_dwarfPlanet);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_tiltScreen);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_wave);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTest);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_fullScreenWeirdness);
-
     // TODO: attach enduring effects to stages instead of doing it the hacky way as below
+
+    // activate pulsating effect in indoor stages
     if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightnessRepeat != NULL)
     {
         Screen_startEffect(Screen_getInstance(), kScreenPulsate);
     }
+
+    // activate post processing effect
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_dwarfPlanet);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_tiltScreen);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_wobble);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTest);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_fullScreenWeirdness);
 }
 
 // state's exit

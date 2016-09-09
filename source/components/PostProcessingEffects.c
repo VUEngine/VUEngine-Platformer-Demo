@@ -29,68 +29,58 @@
 // 												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_wave(u32 currentDrawingFrameBufferSet)
+void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
 {
-    u8 x = 0;
-    u16 y = 0;
-    u32 previousSourcePointerValue = 0;
-    u32 previousSourcePointerValueTemp = 0;
-
-    // look up table of bitshifts performed on rows
-    // values must be multiples of 2
-    const u8 waveLut[64] =
-    {
-        0,0,0,0,0,0,0,
-        2,2,2,2,2,2,
-        4,4,4,4,4,4,
-        6,6,6,6,6,6,
-        8,8,8,8,8,8,8,
-        8,8,8,8,8,8,8,
-        6,6,6,6,6,6,
-        4,4,4,4,4,4,
-        2,2,2,2,2,2,
-        0,0,0,0,0,0,0,
-    };
+    u8 buffer = 0;
+    u16 x = 0, y = 0;
+    u32 previousSourcePointerValue = 0, previousSourcePointerValueTemp = 0;
 
     // runtime working variables
     static int waveLutIndex = 0;
 
+    // look up table of bitshifts performed on rows
+    // values must be multiples of 2
+    const u8 waveLut[128] =
+    {
+         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+         4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+         6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+         8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+         8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+         6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+         4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    };
+
     // write to framebuffers for both screens
-    u32 buffer = 0;
     for(; buffer < 2; buffer++)
     {
-        // loop columns, each column is 4 pixels wide
-        for(x = 0; x < 96; x++)
+        // get pointer to currently manipulated 32 bits of framebuffer
+        u32* currentDrawingFrameBufferSetSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
+
+        // loop columns
+        for(x = 0; x < 384; x++)
         {
-            // loop pixels of current column
-            for(y = 0; y < 256; y += 4)
+            // the shifted out pixels on top should be black
+            previousSourcePointerValue = 0;
+
+            // increase look up table index, wrap around if necessary
+            waveLutIndex += (waveLutIndex < 127) ? 1 : -127;
+
+            // we can skip further processing for the current column if no shifting would be done on it
+            if(waveLut[waveLutIndex] == 0)
             {
-                if((y & 63) == 0)
-                {
-                    // increase look up table index
-                    waveLutIndex++;
+                continue;
+            }
 
-                    // the shifted out pixels on top should be black
-                    previousSourcePointerValue = 0;
-                }
-                else if((y & 63) > 48)
-                {
-                    // ignore the bottom 16 pixels of the screen (gui)
-                    continue;
-                }
-
-                // wrap wave lut index (& 63 equals % 64)
-                waveLutIndex = waveLutIndex & 63;
-
-                // we can skip further processing for the current column if no shifting would be done on it
-                if(waveLut[waveLutIndex] == 0)
-                {
-                    continue;
-                }
-
+            // loop pixels of current column
+            // ignore the bottom 16 pixels of the screen (gui)
+            for(y = 0; y < 13; y++)
+            {
                 // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
-                sourcePointer += ((x << 6) + (y >> 2));
+                u32* sourcePointer = currentDrawingFrameBufferSetSourcePointer + ((x << 4) + y);
 
                 // save current pointer value to temp var and shift highest x bits of it, according to lut,
                 // to the lowest bits, since we want to insert these
@@ -193,19 +183,19 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
     {
          2,
          4,
-         6, 6,
-         8, 8,
-        10,10,10,
-        12,12,12,
-        14,14,14,14,
-        16,16,16,16,16,
-        18,18,18,18,18,18,
-        20,20,20,20,20,20,20,
-        22,22,22,22,22,22,22,22,
-        24,24,24,24,24,24,24,24,24,24,
-        26,26,26,26,26,26,26,26,26,26,26,26,
-        28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,
-        30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+         6,  6,
+         8,  8,
+        10, 10, 10,
+        12, 12, 12,
+        14, 14, 14, 14,
+        16, 16, 16, 16, 16,
+        18, 18, 18, 18, 18, 18,
+        20, 20, 20, 20, 20, 20, 20,
+        22, 22, 22, 22, 22, 22, 22, 22,
+        24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+        26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26,
+        28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
+        30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
     };
 
     // write to framebuffers for both screens
