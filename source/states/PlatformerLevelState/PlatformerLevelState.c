@@ -247,7 +247,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 //	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_tiltScreen);
 //	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_wobble);
 //	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTest);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_fullScreenWeirdness);
 }
 
 // state's exit

@@ -75,7 +75,7 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
                 continue;
             }
 
-            // loop pixels of current column
+            // loop current column in steps of 16 pixels (32 bits)
             // ignore the bottom 16 pixels of the screen (gui)
             for(y = 0; y < 13; y++)
             {
@@ -109,43 +109,31 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
 
 void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
 {
-    u8 x = 0;
-    u16 y = 0;
-    u32 previousSourcePointerValue = 0;
-    u32 previousSourcePointerValueTemp = 0;
-    u8 currentShift = 0;
+    u8 buffer = 0, currentShift = 0;
+    u16 x = 0, y = 0;
+    u32 previousSourcePointerValue = 0, previousSourcePointerValueTemp = 0;
 
     // write to framebuffers for both screens
-    u32 buffer = 0;
     for(; buffer < 2; buffer++)
     {
-        // loop columns, each column is 4 pixels wide
-        for(x = 0; x < 96; x++)
+        // get pointer to currently manipulated 32 bits of framebuffer
+        u32* currentDrawingFrameBufferSetSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
+
+        // loop columns that shall be shifted
+        for(x = 0; x < 360; x++)
         {
-            // loop pixels of current column
-            for(y = 0; y < 256; y += 4)
+            // the shifted out pixels on top should be black
+            previousSourcePointerValue = 0;
+
+            // get shift for current column
+            currentShift = 30 - ((x / 24) << 1);
+
+            // loop current column in steps of 16 pixels (32 bits)
+            // ignore the bottom 16 pixels of the screen (gui)
+            for(y = 0; y < 13; y++)
             {
-                if((y & 63) == 0)
-                {
-                    // the shifted out pixels on top should be black
-                    previousSourcePointerValue = 0;
-                }
-                else if((y & 63) > 48)
-                {
-                    // ignore the bottom 16 pixels of the screen (gui)
-                    continue;
-                }
-
-                currentShift = (30 - ((x / 6) << 1));
-
-                if (currentShift == 0)
-                {
-                    continue;
-                }
-
                 // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
-                sourcePointer += ((x << 6) + (y >> 2));
+                u32* sourcePointer = currentDrawingFrameBufferSetSourcePointer + ((x << 4) + y);
 
                 // save current pointer value to temp var and shift highest x bits of it,
                 // to the lowest bits, since we want to insert these
@@ -210,7 +198,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             // the shifted out pixels on top should be black
             previousSourcePointerValue = 0;
 
-            // loop pixels of current column
+            // loop current column in steps of 16 pixels (32 bits)
             // ignore the bottom 16 pixels of the screen (gui)
             for(y = 0; y < 13; y++)
             {
@@ -249,7 +237,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             // iterate lut back from right to left
             lutIndex--;
 
-            // loop pixels of current column
+            // loop current column in steps of 16 pixels (32 bits)
             // ignore the bottom 16 pixels of the screen (gui)
             for(y = 0; y < 13; y++)
             {
@@ -273,57 +261,6 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
                 // we need the current source pointer value from _before_ we modified it, therefore we save it
                 // it to a temp variable while modifying
                 previousSourcePointerValue = previousSourcePointerValueTemp;
-            }
-        }
-    }
-}
-
-void PostProcessingEffects_fullScreenWeirdness(u32 currentDrawingFrameBufferSet)
-{
-    // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
-    int x = 0;
-    int y = 0;
-    u32 lastPart;
-
-    // write to framebuffers for both screens
-    u32 buffer = 0;
-    static int randomDelay = 0;
-    static bool dontApply = false;
-
-    // remove me
-    if(dontApply)
-    {
-        return;
-    }
-
-    if(--randomDelay  < 0)
-    {
-        dontApply = !dontApply;
-        randomDelay = Utilities_random(Utilities_randomSeed(), dontApply ? 205 : 150);
-    }
-
-    /*
-    // uncomment me: although the intended randomness doesn't work
-
-    if(dontApply)
-    {
-        return;
-    }
-    */
-
-    for(; buffer < 2; buffer++)
-    {
-        for(x = 0; x < 384; x+=4)
-        {
-            for(y = 0; y < 224; y+=4)
-            {
-                u32* sourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
-                sourcePointer += ((x << 6) + y);
-
-                lastPart = *sourcePointer;
-
-                *sourcePointer = (*sourcePointer << 2) | (lastPart & 3);
-                //*sourcePointer &= *sourcePointer;
             }
         }
     }
