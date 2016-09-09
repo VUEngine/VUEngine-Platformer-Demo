@@ -53,12 +53,25 @@ void CustomScreenEffectManager_FXScreenPulsateStop(CustomScreenEffectManager thi
 static void CustomScreenEffectManager_onScreenShake(CustomScreenEffectManager this);
 static void CustomScreenEffectManager_onScreenPulsate(CustomScreenEffectManager this);
 
+extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMDef EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMDef EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												GLOBALS
 //---------------------------------------------------------------------------------------------------------
 
 static Screen _screen = NULL;
+
+BrightnessRepeatROMDef* SCREEN_PULSATE_STEPS[] =
+{
+    &EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
+    &EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
+    &EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT,
+    &EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
+    NULL
+};
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -259,6 +272,8 @@ static void CustomScreenEffectManager_onScreenPulsate(CustomScreenEffectManager 
     VIPManager_setupBrightnessRepeat(VIPManager_getInstance(), (BrightnessRepeatDefinition*)SCREEN_PULSATE_STEPS[this->pulsateNextStep]);
 
     // send message for next fx step
-    this->pulsateNextStep = (this->pulsateNextStep < 3) ? this->pulsateNextStep + 1 : 0;
-	MessageDispatcher_dispatchMessage(150, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
+    this->pulsateNextStep = (SCREEN_PULSATE_STEPS[this->pulsateNextStep + 1] != NULL)
+        ? this->pulsateNextStep + 1
+        : 0;
+	MessageDispatcher_dispatchMessage(SCREEN_PULSATE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
 }

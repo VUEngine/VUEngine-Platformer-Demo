@@ -504,14 +504,14 @@ static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Obj
     MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
 
     // reset clock and restart
-    Clock_reset(this->inGameClock);
+    //Clock_reset(this->inGameClock);
 
     // tell any interested entity
     GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
     // restart clock
     // pause physical simulations
-    GameState_startInGameClock(__SAFE_CAST(GameState, this));
+    //GameState_startInGameClock(__SAFE_CAST(GameState, this));
 
     PlatformerLevelState_setModeToPlaying(this);
 

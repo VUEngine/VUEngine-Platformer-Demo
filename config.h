@@ -151,13 +151,12 @@
 #undef __MEMORY_POOLS
 #define __MEMORY_POOLS							14
 
-
 #undef __MEMORY_POOL_ARRAYS
 #define __MEMORY_POOL_ARRAYS																			\
 	__BLOCK_DEFINITION(196, 1)																			\
 	__BLOCK_DEFINITION(164, 8)																			\
 	__BLOCK_DEFINITION(144, 8)																			\
-	__BLOCK_DEFINITION(140, 15)																			\
+	__BLOCK_DEFINITION(140, 24)																			\
 	__BLOCK_DEFINITION(132, 45)																			\
 	__BLOCK_DEFINITION(112, 20)																			\
 	__BLOCK_DEFINITION(108, 20)																			\
