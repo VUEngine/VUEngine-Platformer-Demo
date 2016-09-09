@@ -227,7 +227,7 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 
 		case kKeyPressed:
 		{
-			u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+			u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
 
 			if(K_STA & pressedKey)
 			{

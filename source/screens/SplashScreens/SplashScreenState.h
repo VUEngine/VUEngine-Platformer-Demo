@@ -43,7 +43,7 @@ enum SplashScreensMessageTypes
 #define SplashScreenState_METHODS(ClassName)															\
         GameState_METHODS(ClassName)											    					\
         __VIRTUAL_DEC(ClassName, void, print);															\
-        __VIRTUAL_DEC(ClassName, void, processInput, u16 releasedKey);									\
+        __VIRTUAL_DEC(ClassName, void, processInput, u32 releasedKey);									\
 
 // declare the virtual methods which are redefined
 #define SplashScreenState_SET_VTABLE(ClassName)															\
@@ -79,7 +79,7 @@ void SplashScreenState_execute(SplashScreenState this, void* owner);
 void SplashScreenState_exit(SplashScreenState this, void* owner);
 void SplashScreenState_resume(SplashScreenState this, void* owner);
 bool SplashScreenState_processMessage(SplashScreenState this, void* owner, Telegram telegram);
-void SplashScreenState_processInput(SplashScreenState this, u16 releasedKey);
+void SplashScreenState_processInput(SplashScreenState this, u32 releasedKey);
 void SplashScreenState_print(SplashScreenState this);
 void SplashScreenState_setNextState(SplashScreenState this, GameState nextState);
 void SplashScreenState_loadNextState(SplashScreenState this);

@@ -112,7 +112,7 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 
 void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner)
 {
-	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
+	u32 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
 
     if(K_B & pressedKey)
     {
@@ -176,7 +176,7 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner)
 
 void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner)
 {
-	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
+	u32 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
     if(K_B & releasedKey)
     {
@@ -186,7 +186,7 @@ void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner)
 
 void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner)
 {
-	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
     if((K_LL | K_LR) & holdKey)
     {

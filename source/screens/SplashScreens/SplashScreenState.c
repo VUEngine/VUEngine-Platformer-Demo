@@ -154,7 +154,7 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 
 		case kKeyPressed:
 		    {
-                u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+                u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
                 if(pressedKey & ~K_PWR)
                 {
                     __VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
@@ -166,7 +166,7 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 	return false;
 }
 
-void SplashScreenState_processInput(SplashScreenState this, u16 pressedKey __attribute__ ((unused)))
+void SplashScreenState_processInput(SplashScreenState this, u32 pressedKey __attribute__ ((unused)))
 {
 	SplashScreenState_loadNextState(this);
 }

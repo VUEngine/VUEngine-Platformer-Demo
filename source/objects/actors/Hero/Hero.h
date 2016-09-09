@@ -115,7 +115,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis);
 void Hero_move(Hero this);
 void Hero_jump(Hero this, int checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
-void Hero_checkDirection(Hero this, u16 currentPressedKey, char * animation);
+void Hero_checkDirection(Hero this, u32 currentPressedKey, char * animation);
 void Hero_synchronizeDirectionWithVelocity(Hero this);
 void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy);
 void Hero_flash(Hero this);

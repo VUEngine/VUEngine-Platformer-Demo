@@ -44,7 +44,7 @@ extern LangROMDef* __LANGUAGES[];
 
 static void LangSelectScreenState_destructor(LangSelectScreenState this);
 static void LangSelectScreenState_constructor(LangSelectScreenState this);
-static void LangSelectScreenState_processInput(LangSelectScreenState this, u16 pressedKey);
+static void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedKey);
 static void LangSelectScreenState_print(LangSelectScreenState this);
 
 
@@ -98,7 +98,7 @@ static void LangSelectScreenState_destructor(LangSelectScreenState this)
 	__SINGLETON_DESTROY;
 }
 
-void LangSelectScreenState_processInput(LangSelectScreenState this, u16 pressedKey)
+void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedKey)
 {
 	if((pressedKey & K_LU) || (pressedKey & K_RU))
 	{

@@ -76,7 +76,7 @@ __CLASS(CustomScreenMovementManager);
 CustomScreenMovementManager CustomScreenMovementManager_getInstance();
 
 void CustomScreenMovementManager_destructor(CustomScreenMovementManager this);
-void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u8 checkIfFocusEntityIsMoving);
+void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving);
 void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag);
 VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this);
 void CustomScreenMovementManager_enable(CustomScreenMovementManager this);
