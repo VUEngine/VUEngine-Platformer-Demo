@@ -57,12 +57,12 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
     // write to framebuffers for both screens
     for(; buffer < 2; buffer++)
     {
-        // get pointer to currently manipulated 32 bits of framebuffer
-        u32* currentDrawingFrameBufferSetSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
-
         // loop columns
         for(x = 0; x < 384; x++)
         {
+            // get pointer to currently manipulated 32 bits of framebuffer
+            u32* columnSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0)) + (x << 4);
+
             // the shifted out pixels on top should be black
             previousSourcePointerValue = 0;
 
@@ -80,7 +80,7 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
             for(y = 0; y < 13; y++)
             {
                 // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = currentDrawingFrameBufferSetSourcePointer + ((x << 4) + y);
+                u32* sourcePointer = columnSourcePointer + y;
 
                 // save current pointer value to temp var and shift highest x bits of it, according to lut,
                 // to the lowest bits, since we want to insert these
@@ -116,12 +116,12 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
     // write to framebuffers for both screens
     for(; buffer < 2; buffer++)
     {
-        // get pointer to currently manipulated 32 bits of framebuffer
-        u32* currentDrawingFrameBufferSetSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
-
         // loop columns that shall be shifted
         for(x = 0; x < 360; x++)
         {
+            // get pointer to currently manipulated 32 bits of framebuffer
+            u32* columnSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0)) + (x << 4);
+
             // the shifted out pixels on top should be black
             previousSourcePointerValue = 0;
 
@@ -133,7 +133,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
             for(y = 0; y < 13; y++)
             {
                 // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = currentDrawingFrameBufferSetSourcePointer + ((x << 4) + y);
+                u32* sourcePointer = columnSourcePointer + y;
 
                 // save current pointer value to temp var and shift highest x bits of it,
                 // to the lowest bits, since we want to insert these
@@ -190,11 +190,14 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
     for(; buffer < 2; buffer++)
     {
         // get pointer to currently manipulated 32 bits of framebuffer
-        u32* currentDrawingFrameBufferSetSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
+        u32* bufferSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
 
         // loop columns of left fourth of screen
         for(x = 0; x < 96; x++)
         {
+            // get pointer to currently manipulated 32 bits of framebuffer
+            u32* columnSourcePointer = (u32*) (bufferSourcePointer) + (x << 4);
+
             // the shifted out pixels on top should be black
             previousSourcePointerValue = 0;
 
@@ -203,7 +206,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             for(y = 0; y < 13; y++)
             {
                 // set pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = currentDrawingFrameBufferSetSourcePointer + ((x << 4) + y);
+                u32* sourcePointer = columnSourcePointer + y;
 
                 // save current pointer value to temp var and shift highest x bits of it, according to lut,
                 // to the lowest bits, since we want to insert these
@@ -231,6 +234,9 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
         // loop columns of right fourth of screen
         for(x = 288; x < 384; x++)
         {
+            // get pointer to currently manipulated 32 bits of framebuffer
+            u32* columnSourcePointer = (u32*) (bufferSourcePointer) + (x << 4);
+
             // the shifted out pixels on top should be black
             previousSourcePointerValue = 0;
 
@@ -242,7 +248,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
             for(y = 0; y < 13; y++)
             {
                 // pointer to currently manipulated 32 bits of framebuffer
-                u32* sourcePointer = currentDrawingFrameBufferSetSourcePointer + ((x << 4) + y);
+                u32* sourcePointer = columnSourcePointer + y;
 
                 // save current pointer value to temp var and shift highest x bits of it, according to lut,
                 // to the lowest bits, since we want to insert these
@@ -320,12 +326,12 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
                     if(xCounter % 2)
                     {
                         // shift down one pixel
-                        *sourcePointer = (*sourcePointer & 0x03)| (*sourcePointer << 2);
+                        *sourcePointer = (*sourcePointer & 0x03) | (*sourcePointer << 2);
                     }
                     else
                     {
                         // shift up one pixel
-                        *sourcePointer = (*sourcePointer & 0xC0)| (*sourcePointer >> 2);
+                        *sourcePointer = (*sourcePointer & 0xC0) | (*sourcePointer >> 2);
                     }
                 }
 
