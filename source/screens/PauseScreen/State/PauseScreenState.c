@@ -104,7 +104,7 @@ static bool PauseScreenState_processMessage(PauseScreenState this, void* owner _
     {
 		case kKeyPressed:
 			{
-				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
 
 				// check direction
 				if(K_STA & pressedKey)

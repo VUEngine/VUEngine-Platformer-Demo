@@ -99,7 +99,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 
 		case kKeyPressed:
 		    {
-                u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+                u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
 
                 if(pressedKey & ~K_PWR)
                 {

@@ -75,7 +75,7 @@ void HeroMoving_destructor(HeroMoving this)
 // state's enter
 void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 {
-	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 	if(K_B & holdKey)
     {
 		Hero_enableBoost(__SAFE_CAST(Hero, owner));
@@ -135,7 +135,7 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 
 void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* owner)
 {
-	u16 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
+	u32 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
 
     if(K_B & pressedKey)
     {
@@ -181,8 +181,8 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 
 void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner)
 {
-	u16 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
-    u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+	u32 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
+    u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
     if(K_B & releasedKey)
     {
@@ -215,7 +215,7 @@ void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* ow
 
 void HeroMoving_onKeyHold(HeroMoving this __attribute__ ((unused)), void* owner)
 {
-	u16 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
     // check direction
     if((K_LL | K_LR ) & holdKey)

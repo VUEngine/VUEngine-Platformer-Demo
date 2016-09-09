@@ -48,7 +48,7 @@ static void AutoPauseSelectScreenState_destructor(AutoPauseSelectScreenState thi
 static void AutoPauseSelectScreenState_constructor(AutoPauseSelectScreenState this);
 static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this);
 static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenState this);
-static void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u16 pressedKey);
+static void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u32 pressedKey);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
     Printing_text(Printing_getInstance(), "\x06               ", optionEnd, 17 + strOnSize.y, NULL);
 }
 
-void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u16 pressedKey)
+void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u32 pressedKey)
 {
 	if((pressedKey & K_LL) || (pressedKey & K_LR))
 	{

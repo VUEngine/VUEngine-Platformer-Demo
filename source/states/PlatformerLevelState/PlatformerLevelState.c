@@ -377,7 +377,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 			if(kPlaying == this->mode)
             {
-				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
 
 				if(K_SEL & pressedKey)
 				{

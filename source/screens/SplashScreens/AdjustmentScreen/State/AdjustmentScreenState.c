@@ -40,7 +40,7 @@ extern StageROMDef ADJUSTMENT_SCREEN_ST;
 
 static void AdjustmentScreenState_destructor(AdjustmentScreenState this);
 static void AdjustmentScreenState_constructor(AdjustmentScreenState this);
-static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u16 pressedKey);
+static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -71,7 +71,7 @@ static void AdjustmentScreenState_destructor(AdjustmentScreenState this)
 	__SINGLETON_DESTROY;
 }
 
-static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u16 pressedKey __attribute__ ((unused)))
+static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey __attribute__ ((unused)))
 {
     // TODO: replace this ugly hack with a proper Game_isPaused check or something similar
     if(this->nextState == NULL)

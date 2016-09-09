@@ -111,7 +111,7 @@ static bool AutoPauseScreenState_processMessage(AutoPauseScreenState this, void*
     {
 		case kKeyPressed:
 			{
-				u16 pressedKey = *((u16*)Telegram_getExtraInfo(telegram));
+				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
 
 				if(K_STA & pressedKey)
 				{
