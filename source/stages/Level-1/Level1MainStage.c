@@ -323,6 +323,7 @@ CharSetROMDef* const LEVEL_1_MAIN_ST_CHARSETS[] =
 	&LEVEL_1_HOUSE_CH,
 	&SAW_BLADE_CH,
 	&KEY_CH,
+	&HERO_BANDANA_CH,
 	NULL,
 };
 
@@ -344,6 +345,8 @@ StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 	{&DOOR_TX, false},
 	{&LEVEL_1_HOUSE_TX, false},
 	{&HIDE_LAYER_10x7_TX, false},
+	{&COIN_TX, false},
+	{&HERO_BANDANA_TX, false},
 
 	{NULL, false}
 };

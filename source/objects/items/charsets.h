@@ -27,6 +27,7 @@ extern CharSetDefinition COIN_SILHOUETTE_CH;
 extern CharSetDefinition COIN_BACK_CH;
 extern CharSetDefinition COIN_BACK_SILHOUETTE_CH;
 extern CharSetDefinition KEY_CH;
+extern CharSetDefinition HERO_BANDANA_CH;
 
 
 #endif
