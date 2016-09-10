@@ -75,7 +75,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 {
 	ASSERT(this, "CameraTriggerEntity::transform: null this");
 
-	VBVec3D currentGlobalPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, this));
+	VBVec3D currentGlobalPosition = this->transform.globalPosition;
 
 	Entity_transform(__SAFE_CAST(Entity, this), environmentTransform);
 
