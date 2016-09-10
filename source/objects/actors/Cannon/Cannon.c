@@ -91,10 +91,6 @@ void Cannon_ready(Cannon this)
 
 	Entity_ready(__SAFE_CAST(Entity, this));
 
-    // add cannon ball as child
-    VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
-    Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
-
     // send delayed message to self to trigger first shot
     MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
@@ -119,6 +115,13 @@ bool Cannon_handleMessage(Cannon this, Telegram telegram)
 void Cannon_shoot(Cannon this)
 {
 	ASSERT(this, "Cannon::shoot: null this");
+
+	if(!this->children)
+	{
+	    // add cannon ball as child
+        VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
+        Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
+	}
 
     // start shooting sequence
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");

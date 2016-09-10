@@ -347,6 +347,8 @@ StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 	{&HIDE_LAYER_10x7_TX, false},
 	{&COIN_TX, false},
 	{&HERO_BANDANA_TX, false},
+	{&CANNON_TX, false},
+	{&CANNON_BALL_TX, false},
 
 	{NULL, false}
 };

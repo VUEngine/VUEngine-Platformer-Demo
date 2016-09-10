@@ -24,6 +24,8 @@
 
 extern CharSetDefinition SAW_BLADE_CH;
 extern CharSetDefinition SNAIL_CH;
+extern CharSetDefinition CANNON_CH;
+extern CharSetDefinition CANNON_BALL_CH;
 
 
 #endif
