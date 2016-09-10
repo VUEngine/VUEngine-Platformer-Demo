@@ -151,6 +151,7 @@
 #undef __MEMORY_POOLS
 #define __MEMORY_POOLS							13
 
+// test memory pool's config
 #undef __MEMORY_POOL_ARRAYS
 #define __MEMORY_POOL_ARRAYS																			\
 	__BLOCK_DEFINITION(196, 1)																			\
@@ -160,9 +161,9 @@
 	__BLOCK_DEFINITION(132, 45)																			\
 	__BLOCK_DEFINITION(112, 20)																			\
 	__BLOCK_DEFINITION(108, 25)																			\
-	__BLOCK_DEFINITION(96, 20)																			\
+	__BLOCK_DEFINITION(100, 25)																			\
 	__BLOCK_DEFINITION(88, 60)																			\
-	__BLOCK_DEFINITION(68, 60)																			\
+	__BLOCK_DEFINITION(68, 70)																			\
 	__BLOCK_DEFINITION(28, 340)																			\
 	__BLOCK_DEFINITION(20, 630)																			\
 	__BLOCK_DEFINITION(16, 300)						    												\
@@ -176,12 +177,13 @@
 	__SET_MEMORY_POOL_ARRAY(132)																		\
 	__SET_MEMORY_POOL_ARRAY(112)																		\
 	__SET_MEMORY_POOL_ARRAY(108)																		\
-	__SET_MEMORY_POOL_ARRAY(96)																			\
+	__SET_MEMORY_POOL_ARRAY(100)																		\
 	__SET_MEMORY_POOL_ARRAY(88)																			\
 	__SET_MEMORY_POOL_ARRAY(68)																			\
 	__SET_MEMORY_POOL_ARRAY(28)																			\
 	__SET_MEMORY_POOL_ARRAY(20)																			\
 	__SET_MEMORY_POOL_ARRAY(16)
+
 
 // percentage (0-100) above which the memory pool's status shows the pool usage
 #define __MEMORY_POOL_WARNING_THRESHOLD			85
