@@ -62,7 +62,7 @@ bool KeyDoor_hasDestination(KeyDoor this);
 void KeyDoor_setOverlapping(KeyDoor this);
 void KeyDoor_unsetOverlapping(KeyDoor this);
 bool KeyDoor_canEnter(KeyDoor this);
-u8 KeyDoor_getHintType(KeyDoor this);
+u32 KeyDoor_getHintType(KeyDoor this);
 
 
 #endif

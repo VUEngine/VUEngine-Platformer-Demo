@@ -797,7 +797,7 @@ static void Hero_addFeetDust(Hero this)
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 }
 
-void Hero_showHint(Hero this, u8 hintType)
+void Hero_showHint(Hero this, u32 hintType)
 {
 	ASSERT(this, "Hero::showHint: null this");
 	ASSERT(this->hint, "Hero::showHint: null hint");
@@ -1348,7 +1348,7 @@ void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObject
 	}
 }
 
-u8 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
+u32 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
 {
 	return __XAXIS;
 }

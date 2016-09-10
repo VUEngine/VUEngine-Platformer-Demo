@@ -125,7 +125,7 @@ void Hero_disableBoost(Hero this);
 void Hero_enableBoost(Hero this);
 Door Hero_getOverlappedDoor(Hero this);
 void Hero_enterDoor(Hero this);
-void Hero_showHint(Hero this, u8 hintType);
+void Hero_showHint(Hero this, u32 hintType);
 void Hero_hideHint(Hero this);
 void Hero_lookFront(Hero this);
 void Hero_lookBack(Hero this);
@@ -150,6 +150,6 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition);
 void Hero_update(Hero this);
 bool Hero_isAboveEntity(Hero this, Entity entity);
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
-u8 Hero_getAxisForFlipping(Hero this);
+u32 Hero_getAxisForFlipping(Hero this);
 
 #endif

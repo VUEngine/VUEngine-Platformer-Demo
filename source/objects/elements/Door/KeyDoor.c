@@ -102,7 +102,7 @@ bool KeyDoor_canEnter(KeyDoor this __attribute__ ((unused)))
 	return ProgressManager_heroHasKey(ProgressManager_getInstance());
 }
 
-u8 KeyDoor_getHintType(KeyDoor this __attribute__ ((unused)))
+u32 KeyDoor_getHintType(KeyDoor this __attribute__ ((unused)))
 {
     if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
     {

@@ -159,7 +159,7 @@
 	__BLOCK_DEFINITION(140, 40)																			\
 	__BLOCK_DEFINITION(132, 45)																			\
 	__BLOCK_DEFINITION(112, 20)																			\
-	__BLOCK_DEFINITION(108, 20)																			\
+	__BLOCK_DEFINITION(108, 25)																			\
 	__BLOCK_DEFINITION(96, 20)																			\
 	__BLOCK_DEFINITION(88, 60)																			\
 	__BLOCK_DEFINITION(68, 60)																			\

@@ -39,12 +39,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Door_METHODS(ClassName)																			\
-        AnimatedInGameEntity_METHODS(ClassName)														\
+        AnimatedInGameEntity_METHODS(ClassName)														    \
         __VIRTUAL_DEC(ClassName, bool, hasDestination);													\
         __VIRTUAL_DEC(ClassName, void, setOverlapping);													\
         __VIRTUAL_DEC(ClassName, void, unsetOverlapping);												\
         __VIRTUAL_DEC(ClassName, bool, canEnter);														\
-        __VIRTUAL_DEC(ClassName, u8, getHintType);														\
+        __VIRTUAL_DEC(ClassName, u32, getHintType);														\
 
 #define Door_SET_VTABLE(ClassName)																		\
         AnimatedInGameEntity_SET_VTABLE(ClassName)														\
@@ -86,7 +86,7 @@ void Door_setOverlapping(Door this);
 void Door_unsetOverlapping(Door this);
 bool Door_isOverlapping(Door this);
 bool Door_canEnter(Door this);
-u8 Door_getHintType(Door this);
+u32 Door_getHintType(Door this);
 
 
 #endif
