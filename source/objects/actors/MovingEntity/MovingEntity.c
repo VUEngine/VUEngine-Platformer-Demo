@@ -62,17 +62,12 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	// construct base
 	__CONSTRUCT_BASE(Actor, (ActorDefinition*)&movingEntityDefinition->actorDefinition, id, name);
 
-	// register a shape for collision detection
-	MovingEntity_registerShape(this);
-
-	// register a body for physics
-	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), movingEntityDefinition->actorDefinition.mass);
-	Body_setElasticity(this->body, movingEntityDefinition->actorDefinition.elasticity);
-	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
-
 	this->movingEntityDefinition = movingEntityDefinition;
 
 	this->initialPosition = 0;
+
+	// register a shape for collision detection
+	MovingEntity_registerShape(this);
 
 	switch(this->movingEntityDefinition->axis)
     {
@@ -114,6 +109,11 @@ static void MovingEntity_registerShape(MovingEntity this)
 void MovingEntity_ready(MovingEntity this)
 {
 	ASSERT(this, "MovingEntity::ready: null this");
+
+	// register a body for physics
+	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), this->movingEntityDefinition->actorDefinition.mass);
+	Body_setElasticity(this->body, this->movingEntityDefinition->actorDefinition.elasticity);
+	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
 	Entity_ready(__SAFE_CAST(Entity, this));
 

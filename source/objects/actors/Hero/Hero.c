@@ -148,9 +148,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 
 	Hero_setInstance(this);
 
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, EVENT_KEY_HOLD);
 
 	this->inputDirection = this->direction;
 }
@@ -163,9 +163,9 @@ void Hero_destructor(Hero this)
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
     // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, EVENT_KEY_PRESSED);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, EVENT_KEY_HOLD);
 
     // anounce my dead
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HERO_DIED);

@@ -396,7 +396,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
                     break;
                 }
 
-				Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_PRESSED);
+				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_PRESSED);
 			}
 			return true;
 			break;
@@ -405,7 +405,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 			if(kPlaying == this->mode)
             {
-				Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_RELEASED);
+				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_RELEASED);
 			}
 			return true;
 			break;
@@ -414,7 +414,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 			if(kPlaying == this->mode)
             {
-				Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_HOLD);
+				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_HOLD);
 			}
 			return true;
 			break;
@@ -520,6 +520,18 @@ static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Obj
     CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager_getInstance());
     CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
     CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager_getInstance());
+
+    	_vipRegisters[__GPLT0] = 0x50;
+    	_vipRegisters[__GPLT1] = 0x50;
+    	_vipRegisters[__GPLT2] = 0x54;
+    	_vipRegisters[__GPLT3] = 0x54;
+    	_vipRegisters[__JPLT0] = 0x54;
+    	_vipRegisters[__JPLT1] = 0x54;
+    	_vipRegisters[__JPLT2] = 0x54;
+    	_vipRegisters[__JPLT3] = 0x54;
+
+    	_vipRegisters[0x30 | __PRINTING_PALETTE] = 0xE4;
+
 }
 
 // handle event
