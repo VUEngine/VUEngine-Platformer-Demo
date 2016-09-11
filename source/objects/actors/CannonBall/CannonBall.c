@@ -57,7 +57,7 @@ void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id
 	CannonBall_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), __SAFE_CAST(SpatialObject, this), definition->mass);
+	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), definition->mass);
 
 	// I start my life hidden
     this->hidden = true;

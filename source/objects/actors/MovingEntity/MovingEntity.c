@@ -66,7 +66,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	MovingEntity_registerShape(this);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), __SAFE_CAST(SpatialObject, this), movingEntityDefinition->actorDefinition.mass);
+	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), movingEntityDefinition->actorDefinition.mass);
 	Body_setElasticity(this->body, movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 

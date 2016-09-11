@@ -141,7 +141,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	ASSERT(this->shape, "Hero::constructor: null shape");
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
+	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
 	Body_setElasticity(this->body, actorDefinition->elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.globalPosition);

@@ -215,4 +215,7 @@ ParticleSystemROMDef SMOKE_PS =
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
 	{(-5), (-20), (0)},
+
+	// movement type: __UNIFORM_MOVEMENT or __UNIFORM_MOVEMENT
+	__UNIFORM_MOVEMENT
 };
