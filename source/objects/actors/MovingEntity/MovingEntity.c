@@ -178,7 +178,14 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 
 					Actor_setPosition(__SAFE_CAST(Actor, this), &position);
 
-					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
+                    if(this->movingEntityDefinition->idleDuration)
+                    {
+    					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
+                    }
+                    else
+                    {
+                        MovingEntity_startMovement(this);
+                    }
 				}
 			}
 			break;
@@ -196,7 +203,14 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 
 					Actor_setPosition(__SAFE_CAST(Actor, this), &position);
 
-					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
+                    if(this->movingEntityDefinition->idleDuration)
+                    {
+    					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
+                    }
+                    else
+                    {
+                        MovingEntity_startMovement(this);
+                    }
 				}
 			}
 			break;

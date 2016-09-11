@@ -78,14 +78,13 @@ void MovingEntityIdle_execute(MovingEntityIdle this __attribute__ ((unused)), vo
     StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }
 
-
 // state's handle message
 bool MovingEntityIdle_processMessage(MovingEntityIdle this __attribute__ ((unused)), void* owner, Telegram telegram)
 {
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
     {
-		case 1001:
+		case kMovingEntityStartMovement:
 
 			StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, MovingEntityIdle_getInstance()));
 			break;
