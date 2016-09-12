@@ -283,20 +283,19 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
 
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue)
 {
-    u32 previousSourcePointerValueTemp = 0;
-
     // pointer to currently manipulated 32 bits of framebuffer
     u32* sourcePointer = columnSourcePointer + y;
 
     // save current pointer value to temp var and shift highest x bits of it, according to lut,
     // to the lowest bits, since we want to insert these
-    previousSourcePointerValueTemp = (u32)(*sourcePointer) >> (32 - shift);
+    u32 sourcePointerCurrentValue = *sourcePointer;
+    u32 previousSourcePointerValueTemp = sourcePointerCurrentValue >> (32 - shift);
 
     // manipulate current 32 bits in frame buffer
     *sourcePointer =
         // shift bits according to wave lut
         // it's two bits per pixel, so 2 bits shifted left = 1 pixel shifted down on screen
-        (*sourcePointer << shift)
+        (sourcePointerCurrentValue << shift)
 
         // since the above shifting creates black pixels, we need to carry over these pixels
         // from the previous loop
