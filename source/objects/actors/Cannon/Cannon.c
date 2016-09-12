@@ -116,6 +116,13 @@ void Cannon_shoot(Cannon this)
 {
 	ASSERT(this, "Cannon::shoot: null this");
 
+	if(!this->children)
+	{
+	    // add cannon ball as child
+        VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
+        Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
+	}
+
     // start shooting sequence
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");
 
@@ -127,13 +134,6 @@ void Cannon_shoot(Cannon this)
 void Cannon_spawnCannonBall(Cannon this)
 {
 	ASSERT(this, "Cannon::spawnCannonBall: null this");
-
-	if(!this->children)
-	{
-	    // add cannon ball as child
-        VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
-        Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
-	}
 
     // start short screen shake
     Screen_startEffect(Screen_getInstance(), kShake, 250);
