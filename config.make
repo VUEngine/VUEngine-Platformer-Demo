@@ -11,7 +11,7 @@ COMPILER_OUTPUT          = c
 TYPE                    = release
 
 # Optimization level
-OPTIMIZATION            = O3
+OPTIMIZATION            = Ofast
 
 # Use enable pedantic warnings
 # 0:                    Omit.
@@ -55,7 +55,7 @@ NON_INITIALIZED_DATA_SECTION            = .sbss
 # valid options are [/.data/.sdata/.dram_data/.sram_data]
 INITIALIZED_DATA_SECTION                = .sdata
 # valid options are [/.bss/.sbss/.dram_bss/.sram_bss]
-STATIC_SINGLETONS_DATA_SECTION          = .sbss
+STATIC_SINGLETONS_DATA_SECTION          = .dram_bss
 # valid options are [/.bss/.sbss/.dram_bss/.sram_bss]
 VIRTUAL_TABLES_DATA_SECTION             = .dram_bss
 
