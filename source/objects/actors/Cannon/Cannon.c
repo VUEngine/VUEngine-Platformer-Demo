@@ -155,8 +155,6 @@ static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer)
 
     // send delayed message to self to trigger next shot
     MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
-
-    Object_removeEventListener(__SAFE_CAST(Object, eventFirer), __SAFE_CAST(Object, this), (EventListener)Cannon_onCannonBallSpawned, __EVENT_ENTITY_LOADED);
 }
 
 
