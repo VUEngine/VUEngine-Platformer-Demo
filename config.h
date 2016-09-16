@@ -63,9 +63,6 @@
 // it is only useful when __TIMER_RESOLUTION is 1
 #undef __PROFILING
 
-// show stage streaming's process profiling
-#undef __STREAMING_PROFILING
-
 //---------------------------------------------------------------------------------------------------------
 // 											OPTICS / PROJECTION
 //---------------------------------------------------------------------------------------------------------
