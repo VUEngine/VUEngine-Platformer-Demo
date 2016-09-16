@@ -23,6 +23,10 @@
 #include <Optics.h>
 #include <Utilities.h>
 #include <Hero.h>
+#include <DirectDraw.h>
+#include <Game.h>
+#include <Container.h>
+#include <Entity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -36,6 +40,86 @@ u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSource
 // 												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
+/**
+ * Uses directdraw to draw a "halo" around the key.
+ * This effect only writes to the framebuffers, but does not read them. Since write access is much quicker
+ * than reading, and since only a few pixels are affected, this effect runs well on hardware.
+ *
+ * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
+ */
+void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)))
+{
+    u32 paletteIndex = 3;
+	fix19_13 radiusFix19_13;
+
+    // runtime working variables
+    static int radius = 11;
+
+    // get key position
+    Container key = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Key", false);
+    if (!key || !Entity_isVisible(__SAFE_CAST(Entity, key), 64, true)) {
+        // do nothing if key not found or not close to visible area
+        return;
+    }
+    VBVec3D keyPosition = *Container_getGlobalPosition(key);
+    extern const VBVec3D* _screenPosition;
+	__OPTICS_NORMALIZE(keyPosition);
+
+    // increase radius by 1 in each cycle
+    radius++;
+    radiusFix19_13 = ITOFIX19_13(radius);
+
+    // gradually decrease palette index with larger radius
+    if (radius < 80) {
+        paletteIndex = 3;
+    } else if(radius < 128) {
+        paletteIndex = 2;
+    } else if(radius < 176) {
+        paletteIndex = 1;
+    } else if(radius < 208) {
+        // pause for a little bit before restarting
+        return;
+    } else {
+        // reset radius when reaching a certain length
+        radius = 12;
+    }
+
+    // draw tilted square around key with given radius
+    DirectDraw_lineFast(
+        DirectDraw_getInstance(),
+        (VBVec2D) {keyPosition.x - radiusFix19_13,    keyPosition.y,                    keyPosition.z, 0},
+        (VBVec2D) {keyPosition.x,                     keyPosition.y - radiusFix19_13,   keyPosition.z, 0},
+        paletteIndex
+    );
+
+    DirectDraw_lineFast(
+        DirectDraw_getInstance(),
+        (VBVec2D) {keyPosition.x + radiusFix19_13,    keyPosition.y,                    keyPosition.z, 0},
+        (VBVec2D) {keyPosition.x,                     keyPosition.y - radiusFix19_13,   keyPosition.z, 0},
+        paletteIndex
+    );
+
+    DirectDraw_lineFast(
+        DirectDraw_getInstance(),
+        (VBVec2D) {keyPosition.x + radiusFix19_13,    keyPosition.y,                    keyPosition.z, 0},
+        (VBVec2D) {keyPosition.x,                     keyPosition.y + radiusFix19_13,   keyPosition.z, 0},
+        paletteIndex
+    );
+
+    DirectDraw_lineFast(
+        DirectDraw_getInstance(),
+        (VBVec2D) {keyPosition.x - radiusFix19_13,    keyPosition.y,                    keyPosition.z, 0},
+        (VBVec2D) {keyPosition.x,                     keyPosition.y + radiusFix19_13,   keyPosition.z, 0},
+        paletteIndex
+    );
+}
+
+/**
+ * Applies a full screen wobble distortion that is reminiscent of water waves. This effect reads and write
+ * almost the whole screen and is therefore not feasible on hardware.
+ *
+ * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
+ */
 void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
 {
     u8 buffer = 0;
@@ -95,6 +179,12 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
     waveLutIndex++;
 }
 
+/**
+ * "Tilts" the game image by a few percent by gradually shifting columns. This effect reads and write
+ * almost the whole screen and is therefore not feasible on hardware.
+ *
+ * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
+ */
 void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
 {
     u8 buffer = 0, currentShift = 0;
@@ -126,6 +216,13 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
     }
 }
 
+/**
+ * "Bends down" the left and right edges of the screen to make the world look like a very small planet.
+ * This effect reads and write a fourth of the screen and is therefore running OK-ish on hardware, but
+ * still cutting the frame rate in half.
+ *
+ * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
+ */
 void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
 {
     u8 buffer = 0;
@@ -203,6 +300,13 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
     }
 }
 
+/**
+ * Increases the palette index within a square area around the hero, effectively "lightening" it up.
+ * This effect reads and write only a small portion of the screen and is therefore semi-feasible on
+ * hardware.
+ *
+ * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
+ */
 void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
 {
     // the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
@@ -219,6 +323,8 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
     VBVec3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
     extern const VBVec3D* _screenPosition;
 	__OPTICS_NORMALIZE(heroPosition);
+    heroPosition.x = FIX19_13TOI(heroPosition.x);
+    heroPosition.y = FIX19_13TOI(heroPosition.y);
 
     // the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
     int x = 0;
@@ -234,14 +340,11 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
 
     // write to framebuffers for both screens
     u32 buffer = 0;
-    heroPosition.x = FIX19_13TOI(heroPosition.x);
-    heroPosition.y = FIX19_13TOI(heroPosition.y);
-
     for(; buffer < 2; buffer++)
     {
-        for(xCounter = 48, x = heroPosition.x - xCounter / 2; xCounter--; x++)
+        for(xCounter = 48, x = heroPosition.x - (xCounter >> 1); xCounter--; x++)
         {
-            for(yCounter = 48, y = heroPosition.y - yCounter / 2; yCounter >= 0; yCounter -= 4, y += 4)
+            for(yCounter = 48, y = heroPosition.y - (yCounter >> 1); yCounter >= 0; yCounter -= 4, y += 4)
             {
                 BYTE* sourcePointer = (BYTE*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
                 sourcePointer += ((x << 6) + (y >> 2));
@@ -254,7 +357,7 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
                 // noise
                 if(vibrate)
                 {
-                    if(xCounter % 2)
+                    if(xCounter & 1)
                     {
                         // shift down one pixel
                         *sourcePointer = (*sourcePointer & 0x03) | (*sourcePointer << 2);
@@ -268,7 +371,6 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
 
                 // add 1 to each pixel's color to "light it up"
                 *sourcePointer |= 0x55;
-
             }
         }
     }
@@ -281,6 +383,15 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
     }
 }
 
+/**
+ * Helper function used by various post processing effects to write a 32 bit value to the framebuffer
+ * (16 pixels)
+ *
+ * @param y                             Y coordinate (true y value = y * 16)
+ * @param shift                         Number of bits to shift the pixels by
+ * @param columnSourcePointer           Framebuffer address of the current column (x value)
+ * @param previousSourcePointerValue    Value from the loop's previous cycle (effectively where y - 1)
+ */
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue)
 {
     // pointer to currently manipulated 32 bits of framebuffer
