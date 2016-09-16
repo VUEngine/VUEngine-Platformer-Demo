@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
+#include <Entity.h>
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
@@ -50,7 +51,7 @@ __CLASS_DEFINITION(Cannon, AnimatedInGameEntity);
 //---------------------------------------------------------------------------------------------------------
 
 void Cannon_shoot(Cannon this);
-
+static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer);
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
@@ -119,8 +120,20 @@ void Cannon_shoot(Cannon this)
 	if(!this->children)
 	{
 	    // add cannon ball as child
-        VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
-        Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CANNON_BALL_AC, -1, NULL, &position, NULL);
+        extern EntityDefinition CANNON_BALL_AC;
+
+	    PositionedEntityROMDef CANNON_BALL =
+        {
+            &CANNON_BALL_AC,
+            {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
+            NULL,
+            NULL,
+            NULL,
+            false
+        };
+
+        Stage_spawnEntity(Game_getStage(Game_getInstance()), &CANNON_BALL, __SAFE_CAST(Object, this), (EventListener)Cannon_onCannonBallSpawned);
+        return;
 	}
 
     // start shooting sequence
@@ -129,6 +142,23 @@ void Cannon_shoot(Cannon this)
     // send delayed message to self to trigger next shot
     MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
+
+static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer)
+{
+	ASSERT(this, "Cannon::onCannonBallSpawned: null this");
+
+    // create the entity and add it to the world
+    Container_addChild(__SAFE_CAST(Container, this), __SAFE_CAST(Container, eventFirer));
+
+    // start shooting sequence
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");
+
+    // send delayed message to self to trigger next shot
+    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+
+    Object_removeEventListener(__SAFE_CAST(Object, eventFirer), __SAFE_CAST(Object, this), (EventListener)Cannon_onCannonBallSpawned, __EVENT_ENTITY_LOADED);
+}
+
 
 // spawn a cannon ball, this is the callback of the "Shoot" animation
 void Cannon_spawnCannonBall(Cannon this)
