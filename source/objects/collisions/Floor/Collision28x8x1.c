@@ -14,29 +14,51 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STAGES_H_
-#define STAGES_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Stage.h>
+#include <InanimatedInGameEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef EMPTY_ST;
+InanimatedInGameEntityROMDef COLLISION_28x8x1 =
+{
+    {
+        {
+            __TYPE(InanimatedInGameEntity),
+            NULL,
+        },
 
-extern StageROMDef OVERWORLD_1_ST;
+        // collision detection gap (up, down, left, right)
+        {1, 1, 1, 1},
 
-extern StageROMDef LEVEL_1_MAIN_ST;
-extern StageROMDef LEVEL_1_COIN_ROOM_ST;
-extern StageROMDef LEVEL_1_INTERSECTION_ST;
-extern StageROMDef LEVEL_1_TOWER_ST;
+        // in game type
+        kSolid,
 
+    	// width
+        // if 0, width and height will be inferred from the texture's size
+    	28 * 8,
 
-#endif
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	8 * 8,
+
+    	// depth
+    	1 * 8
+    },
+
+    // friction
+    FTOFIX19_13(FLOOR_FRICTION),
+
+    // elasticity
+    FTOFIX19_13(FLOOR_ELASTICITY),
+
+    // register shape
+    true
+};

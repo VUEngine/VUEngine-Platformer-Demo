@@ -20,51 +20,49 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <MBackground.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_SmallRoom_MainTiles[];
-extern BYTE Level_1_SmallRoom_MainMap[];
-
-extern BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_BACK_IM_SPRITE;
-extern BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_MAIN_BACK_IM_SPRITE;
+extern BYTE Level_1_Intersection_MainBackTiles[];
+extern BYTE Level_1_Intersection_MainBackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_SMALL_ROOM_MAIN_CH =
+CharSetROMDef LEVEL_1_INTERSECTION_MAIN_BACK_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    30,
+    16,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_SmallRoom_MainTiles,
+    Level_1_Intersection_MainBackTiles,
 };
 
-TextureROMDef LEVEL_1_SMALL_ROOM_MAIN_TX =
+TextureROMDef LEVEL_1_INTERSECTION_MAIN_BACK_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_SMALL_ROOM_MAIN_CH,
+    (CharSetDefinition*)&LEVEL_1_INTERSECTION_MAIN_BACK_CH,
 
     // bgmap definition
-    Level_1_SmallRoom_MainMap,
+    Level_1_Intersection_MainBackMap,
 
     // cols (max 64)
-    24,
+    48,
 
     // rows (max 64)
-    16,
+    24,
 
     // padding for affine transformations
 	{0, 0},
@@ -75,17 +73,17 @@ TextureROMDef LEVEL_1_SMALL_ROOM_MAIN_TX =
     1,
 
     // palette number (0-3)
-    0,
+    1,
 };
 
-BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITE =
+BgmapSpriteROMDef LEVEL_1_INTERSECTION_MAIN_BACK_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&LEVEL_1_SMALL_ROOM_MAIN_TX,
+        (TextureDefinition*)&LEVEL_1_INTERSECTION_MAIN_BACK_TX,
 
         // displacement
         {0, 0, 0},
@@ -96,18 +94,4 @@ BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITE =
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
-};
-
-BgmapSpriteROMDef* const LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITES[] =
-{
-	&LEVEL_1_SMALL_ROOM_BACK_IM_SPRITE,
-	&LEVEL_1_SMALL_ROOM_MAIN_BACK_IM_SPRITE,
-	&LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITE,
-	NULL
-};
-
-MBackgroundROMDef LEVEL_1_SMALL_ROOM_MAIN_IM =
-{
-	__TYPE(MBackground),
-	(SpriteROMDef**)LEVEL_1_SMALL_ROOM_MAIN_IM_SPRITES,
 };

@@ -48,9 +48,9 @@ extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_CH;
 
-extern CharSetDefinition LEVEL_1_SMALL_ROOM_BACK_CH;
-extern CharSetDefinition LEVEL_1_SMALL_ROOM_MAIN_BACK_CH;
-extern CharSetDefinition LEVEL_1_SMALL_ROOM_MAIN_CH;
+extern CharSetDefinition LEVEL_1_INTERSECTION_BACK_CH;
+extern CharSetDefinition LEVEL_1_INTERSECTION_MAIN_BACK_CH;
+extern CharSetDefinition LEVEL_1_INTERSECTION_MAIN_CH;
 
 extern CharSetDefinition LEVEL_1_COIN_ROOM_BACK_CH;
 extern CharSetDefinition LEVEL_1_COIN_ROOM_MAIN_BACK_CH;

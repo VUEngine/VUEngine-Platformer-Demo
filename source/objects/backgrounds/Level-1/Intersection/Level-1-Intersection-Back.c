@@ -26,42 +26,42 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_SmallRoom_BackTiles[];
-extern BYTE Level_1_SmallRoom_BackMap[];
+extern BYTE Level_1_Intersection_BackTiles[];
+extern BYTE Level_1_Intersection_BackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_SMALL_ROOM_BACK_CH =
+CharSetROMDef LEVEL_1_INTERSECTION_BACK_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    33,
+    50,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_SmallRoom_BackTiles,
+    Level_1_Intersection_BackTiles,
 };
 
-TextureROMDef LEVEL_1_SMALL_ROOM_BACK_TX =
+TextureROMDef LEVEL_1_INTERSECTION_BACK_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_SMALL_ROOM_BACK_CH,
+    (CharSetDefinition*)&LEVEL_1_INTERSECTION_BACK_CH,
 
     // bgmap definition
-    Level_1_SmallRoom_BackMap,
+    Level_1_Intersection_BackMap,
 
     // cols (max 64)
-    22,
+    48,
 
     // rows (max 64)
-    14,
+    24,
 
     // padding for affine transformations
 	{0, 0},
@@ -75,14 +75,14 @@ TextureROMDef LEVEL_1_SMALL_ROOM_BACK_TX =
     0,
 };
 
-BgmapSpriteROMDef LEVEL_1_SMALL_ROOM_BACK_IM_SPRITE =
+BgmapSpriteROMDef LEVEL_1_INTERSECTION_BACK_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&LEVEL_1_SMALL_ROOM_BACK_TX,
+        (TextureDefinition*)&LEVEL_1_INTERSECTION_BACK_TX,
 
         // displacement
         {0, 0, FTOFIX19_13(2)},
