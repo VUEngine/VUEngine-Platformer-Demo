@@ -55,10 +55,4 @@ extern EntityDefinition HIDE_LAYER_10x7_AG;
 extern EntityDefinition HINT_MC;
 
 
-extern TextureDefinition EMPTY_10x25_TX;
-extern TextureDefinition EMPTY_35x10_TX;
-
-
-
-
 #endif
