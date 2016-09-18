@@ -115,7 +115,7 @@ void MovingEntity_ready(MovingEntity this)
 	Body_setElasticity(this->body, this->movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
-	Entity_ready(__SAFE_CAST(Entity, this));
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this));
 
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }

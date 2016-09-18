@@ -147,7 +147,7 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
     {
         Acceleration acceleration =
         {
-            K_LL & pressedKey? ITOFIX19_13(-1) : K_LR & pressedKey? ITOFIX19_13(1): 0,
+            K_LL & pressedKey? ITOFIX19_13(-1) : K_LR & pressedKey? __1I_FIX19_13: 0,
             0,
             0,
         };

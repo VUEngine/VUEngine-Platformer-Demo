@@ -174,7 +174,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 
 				if(introFocusing)
 				{
-				    easingDisplacement = ITOFIX19_13(1);
+				    easingDisplacement = __1I_FIX19_13;
 				}
 
                 reachedTargetFlag.x = false;
@@ -222,8 +222,8 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 
 				if(introFocusing)
 				{
-				    downEasingDisplacement = ITOFIX19_13(1);
-                    upEasingDisplacement = ITOFIX19_13(1);
+				    downEasingDisplacement = __1I_FIX19_13;
+                    upEasingDisplacement = __1I_FIX19_13;
 				}
 				else
 				{

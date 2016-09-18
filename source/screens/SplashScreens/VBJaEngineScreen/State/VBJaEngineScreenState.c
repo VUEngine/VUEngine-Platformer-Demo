@@ -75,7 +75,7 @@ static void VBJaEngineScreenState_execute(VBJaEngineScreenState this, void* owne
 {
     VBVec3D translation =
     {
-        ITOFIX19_13(1),
+        __1I_FIX19_13,
         ITOFIX19_13(0),
         ITOFIX19_13(0)
     };

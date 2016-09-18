@@ -243,7 +243,7 @@ ParticleSystemROMDef DUST_PS =
 	{ITOFIX19_13(-1), ITOFIX19_13(-1), ITOFIX19_13(0)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(1), ITOFIX19_13(1), ITOFIX19_13(0)},
+	{__1I_FIX19_13, __1I_FIX19_13, ITOFIX19_13(0)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow

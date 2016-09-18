@@ -174,3 +174,13 @@ ActorROMDef CANNON_BALL_AC =
 	// mass
 	ITOFIX19_13(10)
 };
+
+PositionedEntityROMDef CANNON_BALL =
+{
+    (EntityDefinition*)&CANNON_BALL_AC,
+    {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
+    NULL,
+    NULL,
+    NULL,
+    false
+};

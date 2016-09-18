@@ -120,19 +120,9 @@ void Cannon_shoot(Cannon this)
 	if(!this->children)
 	{
 	    // add cannon ball as child
-        extern EntityDefinition CANNON_BALL_AC;
+	    extern PositionedEntityROMDef CANNON_BALL;
 
-	    PositionedEntityROMDef CANNON_BALL =
-        {
-            &CANNON_BALL_AC,
-            {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
-            NULL,
-            NULL,
-            NULL,
-            false
-        };
-
-        Stage_spawnEntity(Game_getStage(Game_getInstance()), &CANNON_BALL, __SAFE_CAST(Object, this), (EventListener)Cannon_onCannonBallSpawned);
+        Stage_spawnEntity(Game_getStage(Game_getInstance()), &CANNON_BALL, __SAFE_CAST(Container, this), (EventListener)Cannon_onCannonBallSpawned);
         return;
 	}
 
@@ -143,12 +133,9 @@ void Cannon_shoot(Cannon this)
     MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
-static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer)
+static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Cannon::onCannonBallSpawned: null this");
-
-    // create the entity and add it to the world
-    Container_addChild(__SAFE_CAST(Container, this), __SAFE_CAST(Container, eventFirer));
 
     // start shooting sequence
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");
@@ -156,7 +143,6 @@ static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer)
     // send delayed message to self to trigger next shot
     MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
-
 
 // spawn a cannon ball, this is the callback of the "Shoot" animation
 void Cannon_spawnCannonBall(Cannon this)
