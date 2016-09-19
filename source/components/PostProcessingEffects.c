@@ -94,28 +94,28 @@ void PostProcessingEffects_haloEmitter(u32 currentDrawingFrameBufferSet __attrib
     }
 
     // draw tilted square around object with given radius
-    DirectDraw_lineFast(
+    DirectDraw_drawLine(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
         paletteIndex
     );
 
-    DirectDraw_lineFast(
+    DirectDraw_drawLine(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
         paletteIndex
     );
 
-    DirectDraw_lineFast(
+    DirectDraw_drawLine(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
         paletteIndex
     );
 
-    DirectDraw_lineFast(
+    DirectDraw_drawLine(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
