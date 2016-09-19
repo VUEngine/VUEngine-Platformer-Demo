@@ -29,6 +29,7 @@
 #include "Key.h"
 
 #include <PlatformerLevelState.h>
+#include <PostProcessingEffects.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,12 +64,18 @@ void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEnt
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+
+    // add post processing effect to make key emit "halos"
+    Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter);
 }
 
 // class's destructor
 void Key_destructor(Key this)
 {
 	ASSERT(this, "Key::destructor: null this");
+
+    // remove post processing effect
+    Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter);
 
 	// delete the super object
 	// must always be called at the end of the destructor

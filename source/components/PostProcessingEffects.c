@@ -49,7 +49,7 @@ u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSource
  */
 void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)))
 {
-    u32 paletteIndex = 3;
+    u32 paletteIndex;
 	fix19_13 radiusFix19_13;
 
     // runtime working variables
@@ -57,10 +57,12 @@ void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __att
 
     // get key position
     Container key = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Key", false);
+    /*
     if (!key || !Entity_isVisible(__SAFE_CAST(Entity, key), 64, true)) {
         // do nothing if key not found or not close to visible area
         return;
     }
+    */
     VBVec3D keyPosition = *Container_getGlobalPosition(key);
     extern const VBVec3D* _screenPosition;
 	__OPTICS_NORMALIZE(keyPosition);
@@ -70,18 +72,28 @@ void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __att
     radiusFix19_13 = ITOFIX19_13(radius);
 
     // gradually decrease palette index with larger radius
-    if (radius < 80) {
+    if(radius < 80)
+    {
         paletteIndex = 3;
-    } else if(radius < 128) {
+    }
+    else if(radius < 128)
+    {
         paletteIndex = 2;
-    } else if(radius < 176) {
+    }
+    else if(radius < 176)
+    {
         paletteIndex = 1;
-    } else if(radius < 208) {
+    }
+    else if(radius < 280)
+    {
         // pause for a little bit before restarting
         return;
-    } else {
+    }
+    else
+    {
         // reset radius when reaching a certain length
-        radius = 12;
+        radius = 11;
+        return;
     }
 
     // draw tilted square around key with given radius

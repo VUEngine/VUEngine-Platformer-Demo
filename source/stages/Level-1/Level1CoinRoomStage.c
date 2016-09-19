@@ -33,7 +33,7 @@
 //                                                 PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointROMDef LEVEL_1_SMALL_ROOM_LOWER_EP;
+extern StageEntryPointROMDef LEVEL_1_INTERSECTION_LOWER_EP;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
@@ -81,7 +81,7 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_CHILDREN[] =
     {&HERO_AC,                      {FTOFIX19_13(44),  	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
 
     {&DOOR_AG,                      {FTOFIX19_13(42),  	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, "EntryDoor", NULL, NULL, false},
-    {&DOOR_AG,                      {FTOFIX19_13(347), 	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, (void*)&LEVEL_1_SMALL_ROOM_LOWER_EP, false},
+    {&DOOR_AG,                      {FTOFIX19_13(347), 	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, (void*)&LEVEL_1_INTERSECTION_LOWER_EP, false},
 
     {&TORCH_AG,                     {FTOFIX19_13(64),  	FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(320), 	FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},

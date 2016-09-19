@@ -48,7 +48,7 @@ extern EntityDefinition STAR_AG;
 
 extern EntityDefinition LEVEL_1_COIN_ROOM_MAIN_IM;
 
-extern EntityDefinition LEVEL_1_SMALL_ROOM_MAIN_IM;
+extern EntityDefinition LEVEL_1_INTERSECTION_MAIN_IM;
 
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_1_IM;
 extern EntityDefinition LEVEL_1_HOUSE_IM;
