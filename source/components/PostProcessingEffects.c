@@ -55,7 +55,7 @@ void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __att
     // runtime working variables
     static int radius = 11;
 
-    if(!spatialObject || *(u32*)spatialObject)
+    if(!spatialObject || !*(u32*)spatialObject)
     {
         return;
     }
