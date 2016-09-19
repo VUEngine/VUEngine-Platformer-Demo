@@ -47,7 +47,7 @@ u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSource
  *
  * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)))
+void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
 {
     u32 paletteIndex;
 	fix19_13 radiusFix19_13;
@@ -55,25 +55,14 @@ void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __att
     // runtime working variables
     static int radius = 11;
 
-    extern Container key;
-
-    // get key position
-//    Container key = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Key", false);
-    /*
-    if (!key || !Entity_isVisible(__SAFE_CAST(Entity, key), 64, true)) {
-        // do nothing if key not found or not close to visible area
-        return;
-    }
-    */
-
-    if(!key)
+    if(!spatialObject || *(u32*)spatialObject)
     {
         return;
     }
 
-    VBVec3D keyPosition = *Container_getGlobalPosition(key);
+    VBVec3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
     extern const VBVec3D* _screenPosition;
-	__OPTICS_NORMALIZE(keyPosition);
+	__OPTICS_NORMALIZE(spatialObjectPosition);
 
     // increase radius by 1 in each cycle
     radius++;
@@ -107,29 +96,29 @@ void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __att
     // draw tilted square around key with given radius
     DirectDraw_lineFast(
         DirectDraw_getInstance(),
-        (VBVec2D) {keyPosition.x - radiusFix19_13,    keyPosition.y,                    keyPosition.z, 0},
-        (VBVec2D) {keyPosition.x,                     keyPosition.y - radiusFix19_13,   keyPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
         paletteIndex
     );
 
     DirectDraw_lineFast(
         DirectDraw_getInstance(),
-        (VBVec2D) {keyPosition.x + radiusFix19_13,    keyPosition.y,                    keyPosition.z, 0},
-        (VBVec2D) {keyPosition.x,                     keyPosition.y - radiusFix19_13,   keyPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
         paletteIndex
     );
 
     DirectDraw_lineFast(
         DirectDraw_getInstance(),
-        (VBVec2D) {keyPosition.x + radiusFix19_13,    keyPosition.y,                    keyPosition.z, 0},
-        (VBVec2D) {keyPosition.x,                     keyPosition.y + radiusFix19_13,   keyPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
         paletteIndex
     );
 
     DirectDraw_lineFast(
         DirectDraw_getInstance(),
-        (VBVec2D) {keyPosition.x - radiusFix19_13,    keyPosition.y,                    keyPosition.z, 0},
-        (VBVec2D) {keyPosition.x,                     keyPosition.y + radiusFix19_13,   keyPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
         paletteIndex
     );
 }
@@ -140,7 +129,7 @@ void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __att
  *
  * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
+void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
     u8 buffer = 0;
     u16 x = 0, y = 0;
@@ -205,7 +194,7 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet)
  *
  * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
+void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
     u8 buffer = 0, currentShift = 0;
     u16 x = 0, y = 0;
@@ -243,7 +232,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet)
  *
  * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
+void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
     u8 buffer = 0;
     u16 x = 0, y = 0;
@@ -327,7 +316,7 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet)
  *
  * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet)
+void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
     // the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
     // 2 per eye) has been written by the VPU and you can work on

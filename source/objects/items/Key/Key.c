@@ -45,9 +45,6 @@ __CLASS_DEFINITION(Key, AnimatedInGameEntity);
 
 void Key_removeFromStage(Key this);
 
-// TODO: remove me, I'm a horrible hack
-Container key = NULL;
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
@@ -74,10 +71,8 @@ void Key_destructor(Key this)
 {
 	ASSERT(this, "Key::destructor: null this");
 
-    key = NULL;
-
     // remove post processing effect
-    Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter);
+    Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter, __SAFE_CAST(SpatialObject, this));
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -93,7 +88,7 @@ void Key_ready(Key this)
     key = this;
 
     // add post processing effect to make key emit "halos"
-    Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter);
+    Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
 // state's handle message
