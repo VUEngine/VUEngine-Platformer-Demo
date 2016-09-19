@@ -781,7 +781,7 @@ static void Hero_addHint(Hero this)
 	VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT * 4)};
 
     // save the hint entity, so we can remove it later
-	this->hint = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
+	this->hint = Entity_addChildEntity(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
 
 	Hero_hideHint(this);
 }
@@ -792,7 +792,7 @@ static void Hero_addFeetDust(Hero this)
 
 	VBVec3D position = {FTOFIX19_13(-6), FTOFIX19_13(12), FTOFIX19_13(1)};
 
-	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
+	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 }
@@ -1224,7 +1224,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 			{
 				// set camera
 				VBVec3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-				this->cameraBoundingBox = Entity_addChildFromDefinition(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
+				this->cameraBoundingBox = Entity_addChildEntity(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
 				CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 
 				Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);

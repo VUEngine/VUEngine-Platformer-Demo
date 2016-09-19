@@ -186,7 +186,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
                     false
                 };
 
-                hero = __SAFE_CAST(Container, Stage_addPositionedEntity(this->stage, &positionedEntity, true));
+                hero = __SAFE_CAST(Container, Stage_addChildEntity(this->stage, &positionedEntity, true));
 
                 // make sure that the streaming doesn't load the hero again
                 Stage_registerEntityId(this->stage, Container_getId(hero), &HERO_AC);
