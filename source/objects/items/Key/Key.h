@@ -31,12 +31,13 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Key_METHODS(ClassName)																			\
-	    AnimatedInGameEntity_METHODS(ClassName)														\
+	    AnimatedInGameEntity_METHODS(ClassName)														    \
 
 
 #define Key_SET_VTABLE(ClassName)																		\
         AnimatedInGameEntity_SET_VTABLE(ClassName)														\
         __VIRTUAL_SET(ClassName, Key, handleMessage);													\
+        __VIRTUAL_SET(ClassName, Key, ready);													        \
 
 __CLASS(Key);
 
