@@ -243,10 +243,10 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
     }
 
     // activate post processing effect
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_dwarfPlanet);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_tiltScreen);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_wobble);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTest);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_dwarfPlanet, NULL);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_tiltScreen, NULL);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_wobble, NULL);
+//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTest, NULL);
 }
 
 // state's exit
