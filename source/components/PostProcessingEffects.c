@@ -41,13 +41,13 @@ u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSource
 //---------------------------------------------------------------------------------------------------------
 
 /**
- * Uses directdraw to draw a "halo" around the key.
+ * Uses directdraw to draw a "halo" around the spatialObject.
  * This effect only writes to the framebuffers, but does not read them. Since write access is much quicker
  * than reading, and since only a few pixels are affected, this effect runs well on hardware.
  *
  * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
+void PostProcessingEffects_haloEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
 {
     u32 paletteIndex;
 	fix19_13 radiusFix19_13;
@@ -93,7 +93,7 @@ void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __att
         return;
     }
 
-    // draw tilted square around key with given radius
+    // draw tilted square around object with given radius
     DirectDraw_lineFast(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},

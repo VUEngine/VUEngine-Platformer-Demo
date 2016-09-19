@@ -30,7 +30,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+void PostProcessingEffects_haloEmitter(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);

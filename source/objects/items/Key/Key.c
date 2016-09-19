@@ -72,7 +72,7 @@ void Key_destructor(Key this)
 	ASSERT(this, "Key::destructor: null this");
 
     // remove post processing effect
-    Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter, __SAFE_CAST(SpatialObject, this));
+    Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_haloEmitter, __SAFE_CAST(SpatialObject, this));
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -86,7 +86,7 @@ void Key_ready(Key this)
     Entity_ready(__SAFE_CAST(Entity, this));
 
     // add post processing effect to make key emit "halos"
-    Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter, __SAFE_CAST(SpatialObject, this));
+    Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_haloEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
 // state's handle message
