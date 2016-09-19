@@ -230,7 +230,7 @@ void Hero_locateOverNextFloor(Hero this)
 		VBVec3D displacement =
 		{
 			ITOFIX19_13(0),
-			ITOFIX19_13(1),
+			__1I_FIX19_13,
 			ITOFIX19_13(0),
 		};
 
@@ -253,7 +253,7 @@ void Hero_jump(Hero this, int checkIfYMovement)
 		Acceleration acceleration =
         {
         	0,
-			ITOFIX19_13(1),
+			__1I_FIX19_13,
 			0
 		};
 
@@ -1264,7 +1264,7 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 
 	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
 
-	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this), __XAXIS | __YAXIS | __ZAXIS);
+	Container_invalidateGlobalTransformation(__SAFE_CAST(Container, this));
 
     Body_setAxisSubjectToGravity(this->body, __YAXIS);
 

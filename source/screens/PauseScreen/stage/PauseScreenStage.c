@@ -102,8 +102,6 @@ StageROMDef PAUSE_SCREEN_ST =
 
     // streaming
 	{
-		// delay per cycle
-		15,
 		// load padding
 		40,
 		// unload padding
