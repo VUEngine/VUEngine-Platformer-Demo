@@ -55,14 +55,22 @@ void PostProcessingEffects_keyHaloEmitter(u32 currentDrawingFrameBufferSet __att
     // runtime working variables
     static int radius = 11;
 
+    extern Container key;
+
     // get key position
-    Container key = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Key", false);
+//    Container key = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Key", false);
     /*
     if (!key || !Entity_isVisible(__SAFE_CAST(Entity, key), 64, true)) {
         // do nothing if key not found or not close to visible area
         return;
     }
     */
+
+    if(!key)
+    {
+        return;
+    }
+
     VBVec3D keyPosition = *Container_getGlobalPosition(key);
     extern const VBVec3D* _screenPosition;
 	__OPTICS_NORMALIZE(keyPosition);

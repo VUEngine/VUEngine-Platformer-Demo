@@ -45,6 +45,9 @@ __CLASS_DEFINITION(Key, AnimatedInGameEntity);
 
 void Key_removeFromStage(Key this);
 
+// TODO: remove me, I'm a horrible hack
+Container key = NULL;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												CLASS'S METHODS
@@ -71,6 +74,8 @@ void Key_destructor(Key this)
 {
 	ASSERT(this, "Key::destructor: null this");
 
+    key = NULL;
+
     // remove post processing effect
     Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter);
 
@@ -84,6 +89,8 @@ void Key_ready(Key this)
 	ASSERT(this, "Key::ready: null this");
 
     Entity_ready(__SAFE_CAST(Entity, this));
+
+    key = this;
 
     // add post processing effect to make key emit "halos"
     Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter);
