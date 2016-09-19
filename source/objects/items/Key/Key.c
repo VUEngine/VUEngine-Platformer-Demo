@@ -79,11 +79,11 @@ void Key_destructor(Key this)
 	__DESTROY_BASE;
 }
 
-void Key_ready(Key this)
+void Key_ready(Key this, u32 recursive)
 {
 	ASSERT(this, "Key::ready: null this");
 
-    Entity_ready(__SAFE_CAST(Entity, this));
+    Entity_ready(__SAFE_CAST(Entity, this), recursive);
 
     // add post processing effect to make key emit "halos"
     Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_haloEmitter, __SAFE_CAST(SpatialObject, this));

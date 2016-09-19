@@ -54,7 +54,7 @@ __CLASS_NEW_DECLARE(Key, AnimatedInGameEntityDefinition* animatedEntityDefinitio
 
 void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Key_destructor(Key this);
-void Key_ready(Key this);
+void Key_ready(Key this, u32 recursive);
 bool Key_handleMessage(Key this, Telegram telegram);
 void Key_removeFromStage(Key this);
 

@@ -72,11 +72,11 @@ void CogWheel_destructor(CogWheel this)
 }
 
 // ready method
-void CogWheel_ready(CogWheel this)
+void CogWheel_ready(CogWheel this, u32 recursive)
 {
 	ASSERT(this, "CogWheel::ready: null this");
 
-	Entity_ready(__SAFE_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this), recursive);
 
 	// start moving
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);

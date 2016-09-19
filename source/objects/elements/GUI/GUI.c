@@ -97,12 +97,12 @@ void GUI_destructor(GUI this)
 	__DESTROY_BASE;
 }
 
-void GUI_ready(GUI this)
+void GUI_ready(GUI this, u32 recursive)
 {
 	ASSERT(this, "GUI::ready: null this");
 
 	// call base
-	Entity_ready(__SAFE_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this), recursive);
 
 	// initially print gui
 	// GUI_printAll calls GUI_updateSprite, which modifies Sprites. These are not yet available in the entity's

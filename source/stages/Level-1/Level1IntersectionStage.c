@@ -170,7 +170,7 @@ StageROMDef LEVEL_1_INTERSECTION_ST =
         16,
         // streaming amplitude
         24,
-		// particle removel delay cycles
+		// particle removal delay cycles
 		0,
     },
 

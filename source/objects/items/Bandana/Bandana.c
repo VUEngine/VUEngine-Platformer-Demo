@@ -81,11 +81,11 @@ void Bandana_destructor(Bandana this)
 }
 
 // ready method
-void Bandana_ready(Bandana this)
+void Bandana_ready(Bandana this, u32 recursive)
 {
 	ASSERT(this, "Bandana::initialize: null this");
 
-	Entity_ready(__SAFE_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this), recursive);
 }
 
 // state's handle message

@@ -106,7 +106,7 @@ static void MovingEntity_registerShape(MovingEntity this)
 }
 
 // ready method
-void MovingEntity_ready(MovingEntity this)
+void MovingEntity_ready(MovingEntity this, u32 recursive)
 {
 	ASSERT(this, "MovingEntity::ready: null this");
 
@@ -115,7 +115,7 @@ void MovingEntity_ready(MovingEntity this)
 	Body_setElasticity(this->body, this->movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this));
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityMoving_getInstance()));
 }

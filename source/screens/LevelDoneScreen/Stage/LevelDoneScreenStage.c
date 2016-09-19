@@ -83,7 +83,7 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
 		16,
 		// streaming amplitude
 		24,
-		// particle removel delay cycles
+		// particle removal delay cycles
 		0,
 	},
 

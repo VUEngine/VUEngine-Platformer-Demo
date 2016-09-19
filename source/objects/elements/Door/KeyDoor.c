@@ -62,13 +62,16 @@ void KeyDoor_destructor(KeyDoor this)
 }
 
 // ready
-void KeyDoor_ready(KeyDoor this)
+void KeyDoor_ready(KeyDoor this, u32 recursive)
 {
 	ASSERT(this, "KeyDoor::ready: null this");
 
-    if(ProgressManager_heroHasUsedKey(ProgressManager_getInstance())) {
+    if(ProgressManager_heroHasUsedKey(ProgressManager_getInstance()))
+    {
         AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
-    } else {
+    }
+    else
+    {
         AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Key");
     }
 }

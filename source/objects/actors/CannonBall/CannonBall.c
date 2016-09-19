@@ -74,11 +74,11 @@ void CannonBall_destructor(CannonBall this)
 }
 
 // ready method
-void CannonBall_ready(CannonBall this)
+void CannonBall_ready(CannonBall this, u32 recursive)
 {
 	ASSERT(this, "CannonBall::ready: null this");
 
-	Entity_ready(__SAFE_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this), recursive);
 
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, CannonBallIdle_getInstance()));
 }

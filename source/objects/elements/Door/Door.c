@@ -91,7 +91,7 @@ void Door_setExtraInfo(Door this, void* extraInfo)
 }
 
 // ready
-void Door_ready(Door this)
+void Door_ready(Door this, u32 recursive)
 {
 	ASSERT(this, "Door::ready: null this");
 

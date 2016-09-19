@@ -62,7 +62,7 @@ __CLASS_NEW_DECLARE(Cannon, AnimatedInGameEntityDefinition* animatedEntityDefini
 void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Cannon_destructor(Cannon this);
 bool Cannon_handleMessage(Cannon this, Telegram telegram);
-void Cannon_ready(Cannon this);
+void Cannon_ready(Cannon this, u32 recursive);
 void Cannon_shoot(Cannon this);
 void Cannon_spawnCannonBall(Cannon this);
 

@@ -185,11 +185,11 @@ void Hero_destructor(Hero this)
 	__DESTROY_BASE;
 }
 
-void Hero_ready(Hero this)
+void Hero_ready(Hero this, u32 recursive)
 {
 	ASSERT(this, "Hero::ready: null this");
 
-	Entity_ready(__SAFE_CAST(Entity, this));
+	Entity_ready(__SAFE_CAST(Entity, this), recursive);
 
 	// override with progress from progress manager
 	ProgressManager progressManager = ProgressManager_getInstance();

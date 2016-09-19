@@ -62,7 +62,7 @@ void GoalDoor_destructor(GoalDoor this)
 }
 
 // ready
-void GoalDoor_ready(Door this)
+void GoalDoor_ready(Door this, u32 recursive)
 {
 	ASSERT(this, "GoalDoor::ready: null this");
 

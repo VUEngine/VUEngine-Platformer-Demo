@@ -56,7 +56,7 @@ __CLASS_NEW_DECLARE(GoalDoor, AnimatedInGameEntityDefinition* animatedInGameEnti
 void GoalDoor_constructor(GoalDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 void GoalDoor_destructor(GoalDoor this);
 bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram);
-void GoalDoor_ready(Door this);
+void GoalDoor_ready(Door this, u32 recursive);
 bool GoalDoor_hasDestination(Door this);
 bool GoalDoor_canEnter(GoalDoor this);
 
