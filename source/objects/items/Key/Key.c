@@ -85,8 +85,6 @@ void Key_ready(Key this)
 
     Entity_ready(__SAFE_CAST(Entity, this));
 
-    key = this;
-
     // add post processing effect to make key emit "halos"
     Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_keyHaloEmitter, __SAFE_CAST(SpatialObject, this));
 }
