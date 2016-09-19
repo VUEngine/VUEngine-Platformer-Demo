@@ -37,6 +37,7 @@
 #include <Hint.h>
 #include <SoundManager.h>
 #include <debugUtilities.h>
+#include <gameDebugConfig.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -561,6 +562,10 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 
 void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
+#ifdef INVINCIBLE_JOHN
+    return;
+#endif
+
     if(!Hero_isInvincible(this) || !invincibleWins)
     {
     	if(alignToEnemy && other && Body_isMoving(this->body))

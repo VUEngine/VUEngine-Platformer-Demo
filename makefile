@@ -157,6 +157,7 @@ endif
 # Add directories to the include and library paths
 VBJAENGINE_INCLUDE_PATHS = $(VBJAENGINE_HOME) $(shell find $(VBJAENGINE_HOME)/source -type d -print)
 GAME_INCLUDE_PATHS = $(shell find assets source -type d -print)
+GAME_INCLUDE_PATHS += .
 
 # linked engine's home
 VBJAENGINE_LIBRARY_PATH = $(BUILD_DIR)
