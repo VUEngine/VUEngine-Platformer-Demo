@@ -130,7 +130,6 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 	}
 
 	return false;
-//	return Hero_processMessage(__SAFE_CAST(Hero, owner), telegram);
 }
 
 void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* owner)

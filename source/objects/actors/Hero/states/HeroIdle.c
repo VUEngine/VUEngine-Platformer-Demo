@@ -107,7 +107,6 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 	}
 
 	return false;
-//	return Hero_processMessage(__SAFE_CAST(Hero, owner), telegram);
 }
 
 void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner)
