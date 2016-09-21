@@ -47,7 +47,7 @@ InanimatedInGameEntityROMDef COLLISION_ONEWAY_7x7x1 =
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	7 * 8,
+    	2 * 8,
 
     	// depth
     	1 * 8

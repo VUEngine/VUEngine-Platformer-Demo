@@ -122,7 +122,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_2[] =
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_ONEWAY_7x7x1,		{FTOFIX19_13(-80),  FTOFIX19_13(-132),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room one way
+	{&COLLISION_ONEWAY_7x7x1,		{FTOFIX19_13(-80),  FTOFIX19_13(-152),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room one way
 	{&COLLISION_48x4x1,				{FTOFIX19_13(144),  FTOFIX19_13(-144),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room right floor
 	{&COLLISION_8x20x1,				{FTOFIX19_13(-144), FTOFIX19_13(-80),   FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room left floor
 	{&COLLISION_48x2x1,				{FTOFIX19_13(0),    FTOFIX19_13(-232),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top room ceiling

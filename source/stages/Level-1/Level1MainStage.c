@@ -69,7 +69,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(-226), FTOFIX19_13(-84),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left top one-way
+	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(-226), FTOFIX19_13(-104),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left top one-way
 	{&COLLISION_14x18x1, 	        {FTOFIX19_13(-145), FTOFIX19_13(-56),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor left to spikes
 	{&COLLISION_14x18x1, 	        {FTOFIX19_13(127),  FTOFIX19_13(-56),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor right to spikes
 
@@ -87,16 +87,16 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(-226), FTOFIX19_13(92),    FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left bottom one-way
+	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(-226), FTOFIX19_13(72),    FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left bottom one-way
 	{&COLLISION_48x18x1, 	        {FTOFIX19_13(-10),  FTOFIX19_13(136),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // secret bottom floor
-	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(210),  FTOFIX19_13(-52),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // right top one-way
+	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(210),  FTOFIX19_13(-72),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // right top one-way
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 {
-	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(210),  FTOFIX19_13(44),    FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // right bottom one-way
+	{&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(210),  FTOFIX19_13(24),    FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // right bottom one-way
 	{&COLLISION_14x6x1,		        {FTOFIX19_13(127),  FTOFIX19_13(38),    FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // wall right to the secret door
 	{&COLLISION_18x6x1,		        {FTOFIX19_13(238),  FTOFIX19_13(88),    FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor under the one-way passage
 
@@ -105,8 +105,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1[] =
 {
-	{&COLLISION_ONEWAY_7x7x1, 	    {FTOFIX19_13(-226), FTOFIX19_13(12),    FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // top one-way
-	{&COLLISION_ONEWAY_7x7x1, 	    {FTOFIX19_13(-226), FTOFIX19_13(108),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // bottom one-way
+	{&COLLISION_ONEWAY_7x7x1, 	    {FTOFIX19_13(-226), FTOFIX19_13(-8),    FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // top one-way
+	{&COLLISION_ONEWAY_7x7x1, 	    {FTOFIX19_13(-226), FTOFIX19_13(88),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // bottom one-way
 	{&COLLISION_48x18x1, 	        {FTOFIX19_13(-8),   FTOFIX19_13(-138),  FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // above hidden area
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
@@ -183,7 +183,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2[] =
 {
 	{&COLLISION_67x25x1, 	        {FTOFIX19_13(0),    FTOFIX19_13(32), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x7x1, 	    {FTOFIX19_13(190), 	FTOFIX19_13(-92), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 	    {FTOFIX19_13(190), 	FTOFIX19_13(-112), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -200,7 +200,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_5_COLLISIONS[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 {
 	{&COLLISION_48x28x1, 	        {FTOFIX19_13(-56),  FTOFIX19_13(64), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x7x1, 	    {FTOFIX19_13(-130), FTOFIX19_13(-84), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
+	{&COLLISION_ONEWAY_7x7x1, 	    {FTOFIX19_13(-130), FTOFIX19_13(-104), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_12x4x1,             {FTOFIX19_13(-56),  FTOFIX19_13(-112), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 	{&COLLISION_48x28x1, 	        {FTOFIX19_13(168),  FTOFIX19_13(-16), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
 
@@ -430,11 +430,11 @@ StageROMDef LEVEL_1_MAIN_ST =
     // streaming
     {
         // load padding
-        384 / 2,
+        160,
         // unload padding
         32,
         // streaming amplitude
-        12,
+        8,
 		// particle removal delay cycles
 		4,
     },
@@ -442,10 +442,10 @@ StageROMDef LEVEL_1_MAIN_ST =
     // rendering
     {
         // number of cycles the texture writing is idle
-        4,
+        2,
 
         // maximum number of texture's rows to write each time the texture writing is active
-        11,
+        64 / 2,
 
         // maximum number of rows to compute on each call to the affine functions
         12,
