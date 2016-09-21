@@ -90,9 +90,6 @@ void CannonBall_registerShape(CannonBall this)
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
-
-	// don't check collisions against other objects
-	Shape_setCheckForCollisions(this->shape, false);
 }
 
 // unregister the shape with the collision detection system

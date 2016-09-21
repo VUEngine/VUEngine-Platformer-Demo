@@ -58,11 +58,6 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInG
 {
 	// construct base
 	__CONSTRUCT_BASE(InanimatedInGameEntity, inanimatedInGameEntityDefinition, id, name);
-
-	if(this->shape)
-	{
-		Shape_setCheckForCollisions(__SAFE_CAST(Shape, this->shape), false);
-	}
 }
 
 // class's destructor

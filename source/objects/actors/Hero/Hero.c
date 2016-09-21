@@ -140,6 +140,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 	ASSERT(this->shape, "Hero::constructor: null shape");
+	Shape_setCheckForCollisions(this->shape, true);
 
 	// register a body for physics
 	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
@@ -1204,7 +1205,6 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             {
                 AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
             }
-
 
         	break;
 
