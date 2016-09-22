@@ -145,7 +145,24 @@ void CannonBall_checkPosition(CannonBall this)
     if(this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
     {
         // set state to idle
-        StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, this)), __SAFE_CAST(State, CannonBallIdle_getInstance()));
+        StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, CannonBallIdle_getInstance()));
     }
 }
+
+// state's handle message
+bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
+{
+	ASSERT(this, "CannonBall::handleMessage: null this");
+
+	switch(Telegram_getMessage(telegram))
+    {
+		case kCannonShoot:
+
+            StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, CannonBallMoving_getInstance()));
+			break;
+	}
+
+	return false;
+}
+
 

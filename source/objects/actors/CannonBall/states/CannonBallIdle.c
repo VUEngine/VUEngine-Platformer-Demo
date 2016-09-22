@@ -35,7 +35,6 @@
 void CannonBallIdle_constructor(CannonBallIdle this);
 void CannonBallIdle_destructor(CannonBallIdle this);
 void CannonBallIdle_enter(CannonBallIdle this, void* owner);
-void CannonBallIdle_execute(CannonBallIdle this, void* owner);
 void CannonBallIdle_exit(CannonBallIdle this, void* owner);
 bool CannonBallIdle_processMessage(CannonBallIdle this, void* owner, Telegram telegram);
 

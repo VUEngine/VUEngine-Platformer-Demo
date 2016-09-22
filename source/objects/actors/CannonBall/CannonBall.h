@@ -45,6 +45,7 @@
         Actor_SET_VTABLE(ClassName)																	    \
         __VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);									\
         __VIRTUAL_SET(ClassName, CannonBall, ready);													\
+        __VIRTUAL_SET(ClassName, CannonBall, handleMessage);											\
 
 __CLASS(CannonBall);
 
@@ -70,6 +71,7 @@ int CannonBall_getAxisFreeForMovement(CannonBall this);
 void CannonBall_startMovement(CannonBall this);
 void CannonBall_stopMovement(CannonBall this);
 void CannonBall_checkPosition(CannonBall this);
+bool CannonBall_handleMessage(CannonBall this, Telegram telegram);
 
 
 #endif

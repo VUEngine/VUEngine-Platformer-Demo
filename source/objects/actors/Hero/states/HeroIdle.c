@@ -40,7 +40,6 @@
 static void HeroIdle_constructor(HeroIdle this);
 void HeroIdle_destructor(HeroIdle this);
 void HeroIdle_enter(HeroIdle this, void* owner);
-void HeroIdle_execute(HeroIdle this, void* owner);
 void HeroIdle_exit(HeroIdle this, void* owner);
 bool HeroIdle_processMessage(HeroIdle this, void* owner, Telegram telegram);
 
