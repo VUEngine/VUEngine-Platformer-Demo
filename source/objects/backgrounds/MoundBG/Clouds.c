@@ -66,7 +66,7 @@ bool Clouds_isVisible(Clouds this __attribute__ ((unused)), int pad __attribute_
 }
 
 // state's handle message
-void Clouds_update(Clouds this)
+void Clouds_update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
 {
 	ASSERT(this, "Clouds::update: null this");
 

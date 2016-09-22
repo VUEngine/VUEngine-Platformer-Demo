@@ -1278,11 +1278,11 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 
 }
 
-void Hero_update(Hero this)
+void Hero_update(Hero this, u32 elapsedTime)
 {
 	ASSERT(this, "Hero::update: null this");
 
-	Actor_update(__SAFE_CAST(Actor, this));
+	Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
 
 	Velocity velocity = Body_getVelocity(this->body);
 
