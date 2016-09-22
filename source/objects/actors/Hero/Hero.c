@@ -169,7 +169,7 @@ void Hero_destructor(Hero this)
 	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
 	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, EVENT_KEY_HOLD);
 
-    // anounce my dead
+    // announce my dead
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HERO_DIED);
 
     // discard pending delayed messages
@@ -1009,6 +1009,9 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 		switch(InGameEntity_getInGameType(inGameEntity))
         {
+            case kSolid:
+                break;
+
 			case kCameraTarget:
 				{
 					VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
