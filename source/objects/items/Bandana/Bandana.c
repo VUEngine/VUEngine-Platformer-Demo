@@ -80,14 +80,6 @@ void Bandana_destructor(Bandana this)
 	__DESTROY_BASE;
 }
 
-// ready method
-void Bandana_ready(Bandana this, u32 recursive)
-{
-	ASSERT(this, "Bandana::initialize: null this");
-
-	Entity_ready(__SAFE_CAST(Entity, this), recursive);
-}
-
 // state's handle message
 bool Bandana_handleMessage(Bandana this, Telegram telegram)
 {

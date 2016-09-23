@@ -31,13 +31,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Bandana_METHODS(ClassName)																		\
-	    AnimatedInGameEntity_METHODS(ClassName)														\
+	    AnimatedInGameEntity_METHODS(ClassName)														    \
 
 
 #define Bandana_SET_VTABLE(ClassName)																	\
         AnimatedInGameEntity_SET_VTABLE(ClassName)														\
         __VIRTUAL_SET(ClassName, Bandana, handleMessage);												\
-        __VIRTUAL_SET(ClassName, Bandana, ready);														\
 
 __CLASS(Bandana);
 
@@ -54,7 +53,6 @@ __CLASS_NEW_DECLARE(Bandana, AnimatedInGameEntityDefinition* animatedEntityDefin
 
 void Bandana_constructor(Bandana this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Bandana_destructor(Bandana this);
-void Bandana_ready(Bandana this, u32 recursive);
 bool Bandana_handleMessage(Bandana this, Telegram telegram);
 void Bandana_removeFromStage(Bandana this);
 
