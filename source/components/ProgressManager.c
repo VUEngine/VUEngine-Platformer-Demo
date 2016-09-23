@@ -22,6 +22,7 @@
 #include <string.h>
 #include <stddef.h>
 
+#include <GameEvents.h>
 #include <ProgressManager.h>
 #include <SRAMManager.h>
 #include <EventManager.h>
@@ -68,9 +69,9 @@ static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManag
     Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 
     // add event listeners
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, EVENT_POWERUP);
+	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
+	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
+	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
 }
 
 // class's destructor
@@ -83,9 +84,9 @@ void ProgressManager_destructor(ProgressManager this)
 
     // remove event listeners
 
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, EVENT_HIT_TAKEN);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, EVENT_KEY_TAKEN);
-    Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, EVENT_POWERUP);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
+    Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
 
 	// destroy base
 	__SINGLETON_DESTROY;

@@ -31,8 +31,6 @@
 // 												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EVENT_SCREEN_FOCUSED                        "scrnFoc"
-
 #define SCREEN_EASING_X_DISPLACEMENT				200
 #define SCREEN_POSITIVE_EASING_Y_DISPLACEMENT		250
 #define SCREEN_NEGATIVE_EASING_Y_DISPLACEMENT		250

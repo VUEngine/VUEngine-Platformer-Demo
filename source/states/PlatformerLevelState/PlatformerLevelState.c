@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
+#include <GameEvents.h>
 #include <Game.h>
 #include <Optics.h>
 #include <Screen.h>
@@ -232,7 +233,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// reset clocks
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
-    Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, EVENT_HERO_DIED);
+    Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
 
     // TODO: attach enduring effects to stages instead of doing it the hacky way as below
 
@@ -252,7 +253,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 // state's exit
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, EVENT_HERO_DIED);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
 
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
@@ -396,7 +397,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
                     break;
                 }
 
-				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_PRESSED);
+				Object_fireEvent(__SAFE_CAST(Object, this), kEventKeyPressed);
 			}
 			return true;
 			break;
@@ -405,7 +406,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 			if(kPlaying == this->mode)
             {
-				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_RELEASED);
+				Object_fireEvent(__SAFE_CAST(Object, this), kEventKeyReleased);
 			}
 			return true;
 			break;
@@ -414,7 +415,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 			if(kPlaying == this->mode)
             {
-				Object_fireEvent(__SAFE_CAST(Object, this), EVENT_KEY_HOLD);
+				Object_fireEvent(__SAFE_CAST(Object, this), kEventKeyHold);
 			}
 			return true;
 			break;
@@ -425,7 +426,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
 {
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
     CustomScreenMovementManager_dontAlertWhenTargetFocused(CustomScreenMovementManager_getInstance());
     Game_enableKeypad(Game_getInstance());
 }
@@ -516,7 +517,7 @@ static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Obj
     PlatformerLevelState_setModeToPlaying(this);
 
     // enable focus easing
-    Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, EVENT_SCREEN_FOCUSED);
+    Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
     CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager_getInstance());
     CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
     CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager_getInstance());

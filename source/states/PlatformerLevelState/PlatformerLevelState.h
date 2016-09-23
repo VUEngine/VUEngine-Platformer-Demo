@@ -59,15 +59,6 @@ __CLASS(PlatformerLevelState);
 // 										   MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EVENT_KEY_PRESSED		"keyDown"
-#define EVENT_KEY_RELEASED		"keyUp"
-#define EVENT_KEY_HOLD			"keyHold"
-
-#define EVENT_HIT_TAKEN		    "HitTakn"
-#define EVENT_COIN_TAKEN		"CoinTakn"
-#define EVENT_KEY_TAKEN			"KeyTakn"
-#define EVENT_POWERUP			"PowerUp"
-#define EVENT_HERO_DIED			"HeroDied"
 
 
 //---------------------------------------------------------------------------------------------------------

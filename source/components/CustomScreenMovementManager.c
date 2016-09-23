@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
 #include <CustomScreenMovementManager.h>
 #include <Optics.h>
 #include <Screen.h>
@@ -286,7 +287,7 @@ static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomS
 {
     if(CustomScreenMovementManager_doFocus(this, checkIfFocusEntityIsMoving, true))
     {
-        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_SCREEN_FOCUSED);
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventScreenFocused);
 
         return true;
 	}

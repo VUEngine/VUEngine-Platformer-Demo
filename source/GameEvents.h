@@ -1,4 +1,4 @@
-    /* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
  *
  * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
@@ -14,16 +14,33 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ELEMENTS_CHARSETS_H_
-#define ELEMENTS_CHARSETS_H_
-
+#ifndef GAME_EVENTS_H_
+#define GAME_EVENTS_H_
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+// 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-extern CharSetDefinition HIDE_LAYER_10x7_CH;
-extern CharSetDefinition DOOR_CH;
-extern CharSetDefinition DOOR_BACK_CH;
+#include <Events.h>
+
+//---------------------------------------------------------------------------------------------------------
+// 											 DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+
+enum GameEvents
+{
+    kEventScreenFocused = kLastEngineEvent + 1,
+
+    kEventKeyPressed,
+    kEventKeyReleased,
+    kEventKeyHold,
+
+    kEventHitTaken,
+    kEventCoinTaken,
+    kEventKeyTaken,
+    kEventPowerUp,
+    kEventHeroDied,
+};
 
 #endif

@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
@@ -75,22 +76,22 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
 
     // add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, __EVENT_SECOND_CHANGED);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, EVENT_HIT_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, EVENT_COIN_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, EVENT_KEY_TAKEN);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onPowerUp, EVENT_POWERUP);
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, kEventHitTaken);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, kEventCoinTaken);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, kEventKeyTaken);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onPowerUp, kEventPowerUp);
 }
 
 // class's destructor
 void GUI_destructor(GUI this)
 {
     // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, __EVENT_SECOND_CHANGED);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, EVENT_HIT_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, EVENT_COIN_TAKEN);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, EVENT_KEY_TAKEN);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onPowerUp, EVENT_POWERUP);
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, kEventHitTaken);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, kEventCoinTaken);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, kEventKeyTaken);
+    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onPowerUp, kEventPowerUp);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -169,19 +170,26 @@ void GUI_printLevel(GUI this __attribute__ ((unused)))
 // update sprite, i.e. after collecting a power-up
 void GUI_updateSprite(GUI this)
 {
+    CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
+
+    CharSetDefinition* charSetDefinition = NULL;
+
 	switch(Hero_getPowerUp(Hero_getInstance()))
 	{
 		case kPowerUpBandana:
-			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_BANDANA_CH);
+
+		    charSetDefinition = &GUI_BANDANA_CH;
 			break;
 
 		default:
 		case kPowerUpNone:
-			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &GUI_CH);
+
+		    charSetDefinition = &GUI_CH;
 			break;
 	}
 
-	CharSet_rewrite(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))));
+    CharSet_setCharSetDefinition(charSet, charSetDefinition);
+	CharSet_rewrite(charSet);
 }
 
 // print current level to gui

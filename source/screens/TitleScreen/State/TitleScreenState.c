@@ -89,7 +89,7 @@ static void TitleScreenState_destructor(TitleScreenState this)
 // state's enter
 static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, kEventSecondChanged);
 
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
@@ -254,7 +254,7 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 			if(K_STA & pressedKey)
 			{
                 // disable blinking "press start button"
-                Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, __EVENT_SECOND_CHANGED);
+                Object_removeEventListener(__SAFE_CAST(Object, Game_getInGameClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, kEventSecondChanged);
                 TitleScreenState_hideMessage(this);
 
                 // disable user input

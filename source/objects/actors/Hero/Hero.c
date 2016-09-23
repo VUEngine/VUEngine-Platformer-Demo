@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
@@ -150,9 +151,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 
 	Hero_setInstance(this);
 
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, kEventKeyPressed);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, kEventKeyReleased);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, kEventKeyHold);
 
 	this->inputDirection = this->direction;
 }
@@ -165,12 +166,12 @@ void Hero_destructor(Hero this)
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
     // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, EVENT_KEY_PRESSED);
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, EVENT_KEY_RELEASED);
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, EVENT_KEY_HOLD);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, kEventKeyPressed);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, kEventKeyReleased);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, kEventKeyHold);
 
     // announce my dead
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HERO_DIED);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHeroDied);
 
     // discard pending delayed messages
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
@@ -627,7 +628,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
     	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
 
         // inform others to update ui etc
-        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_HIT_TAKEN);
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHitTaken);
     }
 }
 
@@ -885,7 +886,7 @@ static void Hero_onKeyHold(Hero this, Object eventFirer __attribute__ ((unused))
 void Hero_collectKey(Hero this)
 {
 	this->hasKey = true;
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_KEY_TAKEN);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventKeyTaken);
 
 	// play collect sound
     SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
@@ -902,7 +903,7 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 {
 	this->powerUp = powerUp;
 	Hero_updateSprite(this);
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
 
     GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
     Body_setActive(this->body, false);
@@ -920,25 +921,32 @@ void Hero_losePowerUp(Hero this)
 {
 	this->powerUp = kPowerUpNone;
 	Hero_updateSprite(this);
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_POWERUP);
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
 }
 
 // update sprite, i.e. after collecting a power-up
 void Hero_updateSprite(Hero this)
 {
+    CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
+
+    CharSetDefinition* charSetDefinition = NULL;
+
 	switch(this->powerUp)
 	{
 		case kPowerUpBandana:
-			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_BANDANA_CH);
+
+		    charSetDefinition = &HERO_BANDANA_CH;
 			break;
 
 		default:
 		case kPowerUpNone:
-			CharSet_setCharSetDefinition(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))), &HERO_CH);
+
+		    charSetDefinition = &HERO_CH;
 			break;
 	}
 
-	CharSet_rewrite(Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)))));
+    CharSet_setCharSetDefinition(charSet, charSetDefinition);
+	CharSet_rewrite(charSet);
 }
 
 // get current power-up
@@ -962,7 +970,7 @@ void Hero_collectCoin(Hero this, Coin coin)
         ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
 
         // fire "taken" event
-        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), EVENT_COIN_TAKEN);
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);
 
         // play collect sound
         SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
