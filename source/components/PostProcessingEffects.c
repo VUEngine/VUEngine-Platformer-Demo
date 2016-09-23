@@ -27,6 +27,7 @@
 #include <Game.h>
 #include <Container.h>
 #include <Entity.h>
+#include <VIPManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -41,15 +42,15 @@ u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSource
 //---------------------------------------------------------------------------------------------------------
 
 /**
- * Uses directdraw to draw a "halo" around the spatialObject.
+ * Uses directdraw to draw a rhombus around the spatialObject.
  * This effect only writes to the framebuffers, but does not read them. Since write access is much quicker
  * than reading, and since only a few pixels are affected, this effect runs well on hardware.
  *
  * @param currentDrawingFrameBufferSet  The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_haloEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
+void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
 {
-    u32 paletteIndex;
+    u32 color;
 	fix19_13 radiusFix19_13;
 
     // runtime working variables
@@ -68,18 +69,18 @@ void PostProcessingEffects_haloEmitter(u32 currentDrawingFrameBufferSet __attrib
     radius++;
     radiusFix19_13 = ITOFIX19_13(radius);
 
-    // gradually decrease palette index with larger radius
+    // gradually decrease color with larger radius
     if(radius < 80)
     {
-        paletteIndex = 3;
+        color = __COLOR_BRIGHT_RED;
     }
     else if(radius < 128)
     {
-        paletteIndex = 2;
+        color = __COLOR_MEDIUM_RED;
     }
     else if(radius < 176)
     {
-        paletteIndex = 1;
+        color = __COLOR_DARK_RED;
     }
     else if(radius < 280)
     {
@@ -93,33 +94,33 @@ void PostProcessingEffects_haloEmitter(u32 currentDrawingFrameBufferSet __attrib
         return;
     }
 
-    // draw tilted square around object with given radius
+    // draw rhombus around object with given radius and color
     DirectDraw_drawLine(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
-        paletteIndex
+        color
     );
 
     DirectDraw_drawLine(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
-        paletteIndex
+        color
     );
 
     DirectDraw_drawLine(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
-        paletteIndex
+        color
     );
 
     DirectDraw_drawLine(
         DirectDraw_getInstance(),
         (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
-        paletteIndex
+        color
     );
 }
 
