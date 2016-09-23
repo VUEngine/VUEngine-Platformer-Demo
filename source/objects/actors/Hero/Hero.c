@@ -799,8 +799,9 @@ static void Hero_addFeetDust(Hero this)
 	VBVec3D position = {FTOFIX19_13(-6), FTOFIX19_13(12), FTOFIX19_13(1)};
 
 	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
-
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
+
+    ParticleSystem_spawnAllParticles(this->feetDust);
 }
 
 void Hero_showHint(Hero this, u32 hintType)
