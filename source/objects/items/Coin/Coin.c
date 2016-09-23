@@ -21,6 +21,7 @@
 
 #include <GameEvents.h>
 #include <Game.h>
+#include <EventManager.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
