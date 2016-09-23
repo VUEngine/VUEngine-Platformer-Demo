@@ -105,12 +105,17 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
 {
 	ASSERT(this, "Coin::handleMessage: null this");
 
+    extern const u16 COLLECT_SND[];
+
 	switch(Telegram_getMessage(telegram))
     {
 		case kItemTaken:
 
+            // play collect sound
+            SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+
             Shape_setActive(this->shape, false);
-            MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeCoin, NULL);
+            MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeCoin, NULL);
             break;
 
         case kTakeCoin:
@@ -138,11 +143,6 @@ void Coin_removeFromStage(Coin this)
 
         // fire "taken" event
         Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);
-
-        extern const u16 COLLECT_SND[];
-
-        // play collect sound
-        SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
     }
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));

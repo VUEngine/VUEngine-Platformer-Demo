@@ -97,12 +97,17 @@ bool Key_handleMessage(Key this, Telegram telegram)
 {
 	ASSERT(this, "Key::handleMessage: null this");
 
+    extern const u16 COLLECT_SND[];
+
 	switch(Telegram_getMessage(telegram))
     {
 		case kItemTaken:
 
+            // play collect sound
+            SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+
             Shape_setActive(this->shape, false);
-            MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeKey, NULL);
+            MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeKey, NULL);
             break;
 
         case kTakeKey:
@@ -119,11 +124,6 @@ void Key_removeFromStage(Key this)
 	ASSERT(this, "Key::removeFromStage: null this");
 
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventKeyTaken);
-
-    extern const u16 COLLECT_SND[];
-
-	// play collect sound
-    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 }

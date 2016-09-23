@@ -87,12 +87,15 @@ bool Bandana_handleMessage(Bandana this, Telegram telegram)
 {
 	ASSERT(this, "Bandana::handleMessage: null this");
 
+    extern const u16 COLLECT_SND[];
+
 	switch(Telegram_getMessage(telegram))
     {
 		case kItemTaken:
 
+            SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
             Shape_setActive(this->shape, false);
-            MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeBandana, NULL);
+            MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeBandana, NULL);
             break;
 
         case kTakeBandana:
@@ -110,10 +113,6 @@ void Bandana_removeFromStage(Bandana this)
 
 	// play collect sound
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
-
-    extern const u16 COLLECT_SND[];
-
-    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 }
