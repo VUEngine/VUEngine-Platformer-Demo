@@ -882,16 +882,6 @@ static void Hero_onKeyHold(Hero this, Object eventFirer __attribute__ ((unused))
     __VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this);
 }
 
-// collect a key
-void Hero_collectKey(Hero this)
-{
-	this->hasKey = true;
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventKeyTaken);
-
-	// play collect sound
-    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
-}
-
 // does the hero have a key?
 bool Hero_hasKey(Hero this)
 {
@@ -903,7 +893,6 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 {
 	this->powerUp = powerUp;
 	Hero_updateSprite(this);
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
 
     GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
     Body_setActive(this->body, false);
@@ -911,9 +900,6 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 
 	// TODO: play "get powerup" animation
     //AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
-
-	// play collect sound
-    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 }
 
 // lose a power-up
@@ -953,28 +939,6 @@ void Hero_updateSprite(Hero this)
 u8 Hero_getPowerUp(Hero this)
 {
 	return this->powerUp;
-}
-
-// collect a coin
-void Hero_collectCoin(Hero this, Coin coin)
-{
-    // if the coin has not been taken already
-    if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin))))
-    {
-        // increment the number of collected coins
-        int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
-        numberOfCollectedCoins++;
-        ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
-
-        // set coin status to taken
-        ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, coin)), true);
-
-        // fire "taken" event
-        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);
-
-        // play collect sound
-        SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
-    }
 }
 
 // get number of collected coins
@@ -1057,14 +1021,13 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kCoin:
 
-				Hero_collectCoin(this, __SAFE_CAST(Coin, inGameEntity));
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kKey:
 
-				Hero_collectKey(this);
+                this->hasKey = true;
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;

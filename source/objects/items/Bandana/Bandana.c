@@ -19,11 +19,13 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <SoundManager.h>
 
 #include <objects.h>
 #include "Bandana.h"
@@ -89,6 +91,12 @@ bool Bandana_handleMessage(Bandana this, Telegram telegram)
     {
 		case kItemTaken:
 
+            Shape_setActive(this->shape, false);
+            MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeBandana, NULL);
+            break;
+
+        case kTakeBandana:
+
 			Bandana_removeFromStage(this);
 			break;
 	}
@@ -99,6 +107,13 @@ bool Bandana_handleMessage(Bandana this, Telegram telegram)
 void Bandana_removeFromStage(Bandana this)
 {
 	ASSERT(this, "Bandana::removeFromStage: null this");
+
+	// play collect sound
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
+
+    extern const u16 COLLECT_SND[];
+
+    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 }

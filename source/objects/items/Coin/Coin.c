@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
@@ -26,6 +27,7 @@
 #include <PhysicalWorld.h>
 #include <ProgressManager.h>
 #include <Container.h>
+#include <SoundManager.h>
 
 #include <objects.h>
 #include "Coin.h"
@@ -107,6 +109,12 @@ bool Coin_handleMessage(Coin this, Telegram telegram)
     {
 		case kItemTaken:
 
+            Shape_setActive(this->shape, false);
+            MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeCoin, NULL);
+            break;
+
+        case kTakeCoin:
+
 			Coin_removeFromStage(this);
 			break;
 	}
@@ -118,6 +126,24 @@ void Coin_removeFromStage(Coin this)
 {
 	ASSERT(this, "Coin::removeFromStage: null this");
 
+    if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, this))))
+    {
+        // increment the number of collected coins
+        int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
+        numberOfCollectedCoins++;
+        ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
+
+        // set coin status to taken
+        ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, this)), true);
+
+        // fire "taken" event
+        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);
+
+        extern const u16 COLLECT_SND[];
+
+        // play collect sound
+        SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+    }
+
 	Container_deleteMyself(__SAFE_CAST(Container, this));
-    Shape_setActive(this->shape, false);
 }

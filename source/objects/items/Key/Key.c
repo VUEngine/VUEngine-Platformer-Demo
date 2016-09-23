@@ -19,11 +19,14 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
+#include <SoundManager.h>
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <EventManager.h>
 
 #include <objects.h>
 #include "Key.h"
@@ -98,6 +101,12 @@ bool Key_handleMessage(Key this, Telegram telegram)
     {
 		case kItemTaken:
 
+            Shape_setActive(this->shape, false);
+            MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeKey, NULL);
+            break;
+
+        case kTakeKey:
+
 			Key_removeFromStage(this);
 			break;
 	}
@@ -108,6 +117,13 @@ bool Key_handleMessage(Key this, Telegram telegram)
 void Key_removeFromStage(Key this)
 {
 	ASSERT(this, "Key::removeFromStage: null this");
+
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventKeyTaken);
+
+    extern const u16 COLLECT_SND[];
+
+	// play collect sound
+    SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 }

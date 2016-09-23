@@ -3,6 +3,6 @@
 
 #include <debugUtilities.h>
 
-#define INVINCIBLE_JOHN
+#undef INVINCIBLE_JOHN
 
 #endif
