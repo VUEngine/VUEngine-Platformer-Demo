@@ -228,9 +228,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	{&COLLISION_2x28x1,				{FTOFIX19_13(-8),  FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
 
     // part 1
-    // used to force animation coordinator to be instantianted at the start of the level
-	{&SNAIL_4_AC,					{FTOFIX19_13(92), FTOFIX19_13(350), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
-
     {&SMOKE_PS,						{FTOFIX19_13(92),   FTOFIX19_13(150), 	FTOFIX19_13(LAYER_0_FOREGROUND + 16)},   NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,     {FTOFIX19_13(256), 	FTOFIX19_13(368), 	FTOFIX19_13(LAYER_0_FOREGROUND)},    NULL, NULL, NULL, false},
     {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(256-140), FTOFIX19_13(368-176), 	FTOFIX19_13(LAYER_0_FOREGROUND)},    "House", NULL, NULL, false},
@@ -437,7 +434,7 @@ StageROMDef LEVEL_1_MAIN_ST =
     // streaming
     {
         // load padding
-        160,
+        96,
         // unload padding
         32,
         // streaming amplitude
