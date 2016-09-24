@@ -25,6 +25,8 @@
 #include <PhysicalWorld.h>
 #include <Prototypes.h>
 #include <PlatformerLevelState.h>
+#include <CollisionManager.h>
+
 #include "CannonBall.h"
 #include "states/CannonBallIdle.h"
 #include "states/CannonBallMoving.h"
@@ -111,12 +113,9 @@ int CannonBall_getAxisFreeForMovement(CannonBall this __attribute__ ((unused)))
 // start moving
 void CannonBall_startMovement(CannonBall this)
 {
-	// register the shape for collision detections
-	Shape_setActive(this->shape, true);
-
-    // move me with physics
 	Velocity velocity = {0, 0, ITOFIX19_13(-128)};
-	Body_moveUniformly(this->body, velocity);
+
+	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
     // show me
 	Entity_show(__SAFE_CAST(Entity, this));
@@ -127,9 +126,6 @@ void CannonBall_stopMovement(CannonBall this)
 {
     // stop movement
     Actor_stopMovement(__SAFE_CAST(Actor, this));
-
-	// unregister the shape for collision detections
-	Shape_setActive(this->shape, false);
 
     // set back local position
     VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
