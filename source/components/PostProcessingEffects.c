@@ -94,30 +94,32 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
         return;
     }
 
+    DirectDraw directDraw = DirectDraw_getInstance();
+
     // draw rhombus around object with given radius and color
     DirectDraw_drawLine(
-        DirectDraw_getInstance(),
+        directDraw,
         (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
         color
     );
 
     DirectDraw_drawLine(
-        DirectDraw_getInstance(),
+        directDraw,
         (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
         color
     );
 
     DirectDraw_drawLine(
-        DirectDraw_getInstance(),
+        directDraw,
         (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
         color
     );
 
     DirectDraw_drawLine(
-        DirectDraw_getInstance(),
+        directDraw,
         (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
         (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
         color
