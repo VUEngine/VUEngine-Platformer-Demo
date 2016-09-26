@@ -31,7 +31,7 @@ const u16 JUMP_SND[] =
 //songlength
 		1,
 //stdwait
-		0x0A,
+		0x08,
 //stdSxLRV
 		0xFF,
 //stdSxEV0

@@ -30,7 +30,7 @@ const u16 COLLECT_SND[] =
 //songlength
 		2,
 //stdwait
-		0x15,
+		0x0C,
 //stdSxLRV
 		0xFF,
 //stdSxEV0
