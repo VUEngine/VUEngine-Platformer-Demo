@@ -277,6 +277,8 @@ StageROMDef LEVEL_1_TOWER_ST =
 
     // streaming
     {
+        // minimum free ms in the current game frame to allow streaming to quick in
+        10,
         // load padding
         120,
         // unload padding

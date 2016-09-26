@@ -278,7 +278,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	{&COIN_AG,						{FTOFIX19_13(1340), FTOFIX19_13(432), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin12", NULL, NULL, false},
 	{&COIN_AG,						{FTOFIX19_13(1356), FTOFIX19_13(432), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Coin13", NULL, NULL, false},
 	{&DOOR_AG,						{FTOFIX19_13(1357), FTOFIX19_13(272), 	FTOFIX19_13(LAYER_0_DOORS)}, "IntExitD", NULL, NULL, false},
-	{&KEY_AG,						{FTOFIX19_13(1388), FTOFIX19_13(276), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Key", NULL, NULL, false},
+    {&KEY_AG,						{FTOFIX19_13(1388), FTOFIX19_13(276), 	FTOFIX19_13(LAYER_0_ITEMS)}, "Key", NULL, NULL, false},
 	{&SNAIL_4_AC,					{FTOFIX19_13(1416), FTOFIX19_13(409), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
 	{&BUSH_AG,						{FTOFIX19_13(1484), FTOFIX19_13(380), 	FTOFIX19_13(LAYER_0_BACKGROUND)}, NULL, NULL, NULL, false},
 	{&SNAIL_4_AC,					{FTOFIX19_13(1576), FTOFIX19_13(345), 	FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
@@ -398,6 +398,7 @@ StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 	{&HERO_BANDANA_TX, false},
 	{&CANNON_TX, false},
 	{&CANNON_BALL_TX, false},
+	{&KEY_TX, false},
 	{NULL, false}
 };
 
@@ -433,8 +434,10 @@ StageROMDef LEVEL_1_MAIN_ST =
 
     // streaming
     {
+        // minimum free ms in the current game frame to allow streaming to quick in
+        10,
         // load padding
-        96,
+        128,
         // unload padding
         32,
         // streaming amplitude
@@ -449,10 +452,10 @@ StageROMDef LEVEL_1_MAIN_ST =
         2,
 
         // maximum number of texture's rows to write each time the texture writing is active
-        64 / 2,
+        4,
 
         // maximum number of rows to compute on each call to the affine functions
-        12,
+        8,
 
         // colors config
         {
