@@ -452,7 +452,7 @@ StageROMDef LEVEL_1_MAIN_ST =
         2,
 
         // maximum number of texture's rows to write each time the texture writing is active
-        4,
+        8,
 
         // maximum number of rows to compute on each call to the affine functions
         8,
