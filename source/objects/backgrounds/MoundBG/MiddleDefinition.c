@@ -64,7 +64,9 @@ TextureROMDef MOUND_BG_MIDDLE_TX =
     64,
 
     // rows (max 64)
-    7,
+    // cut to reduce the load in the VIP
+    // 7,
+    5,
 
     // padding for affine transformations
 	{0, 0},
