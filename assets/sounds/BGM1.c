@@ -32,7 +32,7 @@ const u16 WORLD_0_0_0_BGM[][2] =
         //songlength
 		68,
         //stdwait
-		0x0C,
+		0x0D,
 	},
 	{
         //stdSxLRV
