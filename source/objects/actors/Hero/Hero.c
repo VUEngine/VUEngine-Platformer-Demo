@@ -974,7 +974,12 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 	VirtualNode node = NULL;
 
-	VirtualList collidingObjectsToRemove = __NEW(VirtualList);
+	static VirtualList collidingObjectsToRemove = NULL;
+
+	if(!collidingObjectsToRemove)
+	{
+    	collidingObjectsToRemove = __NEW(VirtualList);
+	}
 
 	for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
     {
@@ -1110,7 +1115,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 		VirtualList_removeElement(collidingObjects, VirtualNode_getData(node));
 	}
 
-	__DELETE(collidingObjectsToRemove);
+	VirtualList_clear(collidingObjectsToRemove);
 
 	return !VirtualList_getSize(collidingObjects);
 }
@@ -1187,7 +1192,6 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 
         	Hero_die(this);
         	break;
-
     }
 
 	return Actor_handleMessage(__SAFE_CAST(Actor, this), telegram);
