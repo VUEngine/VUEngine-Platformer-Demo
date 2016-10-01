@@ -1127,12 +1127,6 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
     {
-        case 10110101:
-
-            CollisionManager_shapeStoppedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
-            return true;
-            break;
-
 		case kHeroStartOverlapping:
         {
 			Door door = __SAFE_CAST(Door, Telegram_getSender(telegram));
