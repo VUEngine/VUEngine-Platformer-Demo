@@ -38,7 +38,7 @@ extern BYTE GrassMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  GRASS_STILL_ANIM =
+AnimationFunctionROMDef GRASS_STILL_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -60,7 +60,7 @@ AnimationFunctionROMDef  GRASS_STILL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  GRASS_WINDY_ANIM =
+AnimationFunctionROMDef GRASS_WINDY_ANIM =
 {
 	// number of frames of this animation function
 	2,

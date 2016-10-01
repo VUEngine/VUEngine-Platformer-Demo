@@ -38,7 +38,7 @@ extern BYTE LavaTopMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  LAVA_TOP_ANIM_1 =
+AnimationFunctionROMDef LAVA_TOP_ANIM_1 =
 {
 	// number of frames of this animation function
 	9,

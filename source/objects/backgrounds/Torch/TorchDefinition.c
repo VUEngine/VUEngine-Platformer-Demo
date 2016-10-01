@@ -38,7 +38,7 @@ extern BYTE TorchMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  TORCH_BURN_ANIM =
+AnimationFunctionROMDef TORCH_BURN_ANIM =
 {
 	// number of frames of this animation function
 	3,

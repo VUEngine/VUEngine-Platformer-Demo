@@ -38,7 +38,7 @@ extern BYTE BackgroundMoundCastleFlagMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  MOUND_BG_CASTLE_FLAG_WAVE_ANIM =
+AnimationFunctionROMDef MOUND_BG_CASTLE_FLAG_WAVE_ANIM =
 {
 	// number of frames of this animation function
 	2,

@@ -38,7 +38,7 @@ extern BYTE BandanaMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  BANDANA_SPIN_ANIM =
+AnimationFunctionROMDef BANDANA_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	8,

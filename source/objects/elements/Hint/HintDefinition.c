@@ -39,7 +39,7 @@ extern BYTE HintMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_OPEN_ANIM =
+AnimationFunctionROMDef HINT_OPEN_ANIM =
 {
 	// number of frames of this animation function
 	5,
@@ -61,7 +61,7 @@ AnimationFunctionROMDef  HINT_OPEN_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_CLOSE_ANIM =
+AnimationFunctionROMDef HINT_CLOSE_ANIM =
 {
 	// number of frames of this animation function
 	5,
@@ -83,7 +83,7 @@ AnimationFunctionROMDef  HINT_CLOSE_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_CLOSED_ANIM =
+AnimationFunctionROMDef HINT_CLOSED_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -105,7 +105,7 @@ AnimationFunctionROMDef  HINT_CLOSED_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_ENTER_ENGLISH_ANIM =
+AnimationFunctionROMDef HINT_ENTER_ENGLISH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -127,7 +127,7 @@ AnimationFunctionROMDef  HINT_ENTER_ENGLISH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_ENTER_DEUTSCH_ANIM =
+AnimationFunctionROMDef HINT_ENTER_DEUTSCH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -149,7 +149,7 @@ AnimationFunctionROMDef  HINT_ENTER_DEUTSCH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_ENTER_ESPANOL_ANIM =
+AnimationFunctionROMDef HINT_ENTER_ESPANOL_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -171,7 +171,7 @@ AnimationFunctionROMDef  HINT_ENTER_ESPANOL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_ENTER_FRANCAIS_ANIM =
+AnimationFunctionROMDef HINT_ENTER_FRANCAIS_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -193,7 +193,7 @@ AnimationFunctionROMDef  HINT_ENTER_FRANCAIS_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_PICK_UP_ENGLISH_ANIM =
+AnimationFunctionROMDef HINT_PICK_UP_ENGLISH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -215,7 +215,7 @@ AnimationFunctionROMDef  HINT_PICK_UP_ENGLISH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_PICK_UP_DEUTSCH_ANIM =
+AnimationFunctionROMDef HINT_PICK_UP_DEUTSCH_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -237,7 +237,7 @@ AnimationFunctionROMDef  HINT_PICK_UP_DEUTSCH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_PICK_UP_ESPANOL_ANIM =
+AnimationFunctionROMDef HINT_PICK_UP_ESPANOL_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -259,7 +259,7 @@ AnimationFunctionROMDef  HINT_PICK_UP_ESPANOL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_PICK_UP_FRANCAIS_ANIM =
+AnimationFunctionROMDef HINT_PICK_UP_FRANCAIS_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -281,7 +281,7 @@ AnimationFunctionROMDef  HINT_PICK_UP_FRANCAIS_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  HINT_KEY_ANIM =
+AnimationFunctionROMDef HINT_KEY_ANIM =
 {
 	// number of frames of this animation function
 	2,
