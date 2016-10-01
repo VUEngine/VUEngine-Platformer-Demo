@@ -83,7 +83,6 @@ void ProgressManager_destructor(ProgressManager this)
     Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 
     // remove event listeners
-
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
     Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);

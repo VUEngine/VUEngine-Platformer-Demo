@@ -37,7 +37,7 @@ extern BYTE KeyMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  KEY_SPIN_ANIM =
+AnimationFunctionROMDef KEY_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	8,

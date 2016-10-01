@@ -40,19 +40,19 @@ extern BYTE SmokeParticleSmallMap[];
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
+AnimationFunctionROMDef SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
 {
 	// number of frames of this animation function
-	4,
-
-	// frames to play in animation
-	{0, 1, 2, 3},
-
-	// number of cycles a frame of animation is displayed
 	8,
 
+	// frames to play in animation
+	{0, 0, 0, 0, 0, 1, 2, 3},
+
+	// number of cycles a frame of animation is displayed
+	32,
+
 	// whether to play it in loop or not
-	true,
+	false,
 
 	// method to call on function completion
 	NULL,

@@ -38,7 +38,7 @@ extern BYTE BackgroundMoundStarMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  STAR_STILL_ANIM =
+AnimationFunctionROMDef STAR_STILL_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -60,7 +60,7 @@ AnimationFunctionROMDef  STAR_STILL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  STAR_FLASH_ANIM =
+AnimationFunctionROMDef STAR_FLASH_ANIM =
 {
 	// number of frames of this animation function
 	6,

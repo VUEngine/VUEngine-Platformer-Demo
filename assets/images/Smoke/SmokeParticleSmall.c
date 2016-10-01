@@ -8,7 +8,7 @@
 //	+ regular map (flat), not compressed, 1x4 
 //	Total size: 80 + 8 = 88
 //
-//	Time-stamp: 2016-01-11, 22:20:45
+//	Time-stamp: 2016-10-01, 13:52:20
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -16,9 +16,9 @@
 
 const unsigned int SmokeParticleSmallTiles[20] __attribute__((aligned(4)))=
 {
-	0x00000000,0x00000000,0x00000000,0x00000000,0x00880000,0x88882222,0x08882222,0x00002220,
-	0x22000000,0x22220888,0x22220888,0x00000088,0x22200080,0x22208888,0x22208888,0x02200880,
-	0x00880000,0x08882220,0x08882220,0x08802220,
+	0x00000000,0x00000000,0x00000000,0x00000000,0x0FC00000,0xBFFF2FFC,0xAFFEBFFF,0x0AA02AE8,
+	0x0BC00000,0x2FFC2FF0,0x2BF82FFC,0x00000AA0,0x00000000,0x0BF003C0,0x02800BF0,0x00000000,
+	0x00000000,0x03C00000,0x00000280,0x00000000,
 };
 
 const unsigned short SmokeParticleSmallMap[4] __attribute__((aligned(4)))=

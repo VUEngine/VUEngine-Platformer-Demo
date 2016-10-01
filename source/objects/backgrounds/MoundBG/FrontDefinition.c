@@ -63,7 +63,6 @@ TextureROMDef MOUND_BG_FRONT_TX =
 
     // rows (max 64)
     // cut to reduce the load in the VIP
-    // 10,
     5,
 
     // padding for affine transformations

@@ -43,7 +43,7 @@ extern BYTE CoinBackSilhouetteMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  COIN_SPIN_ANIM =
+AnimationFunctionROMDef COIN_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	4,

@@ -38,7 +38,7 @@ extern BYTE BushMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  BUSH_STILL_ANIM =
+AnimationFunctionROMDef BUSH_STILL_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -60,7 +60,7 @@ AnimationFunctionROMDef  BUSH_STILL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  BUSH_WINDY_ANIM =
+AnimationFunctionROMDef BUSH_WINDY_ANIM =
 {
 	// number of frames of this animation function
 	2,

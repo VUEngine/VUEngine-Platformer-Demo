@@ -38,7 +38,7 @@ extern BYTE CoinMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef  TEST_PARTICLE_SPIN_ANIM =
+AnimationFunctionROMDef TEST_PARTICLE_SPIN_ANIM =
 {
 	// number of frames of this animation function
 	4,

@@ -45,7 +45,7 @@ extern BYTE HideLayer10x7Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef  HIDE_LAYER_10x7_SOLID_ANIM =
+AnimationFunctionROMDef HIDE_LAYER_10x7_SOLID_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -66,7 +66,7 @@ AnimationFunctionROMDef  HIDE_LAYER_10x7_SOLID_ANIM =
 	"Solid",
 };
 
-AnimationFunctionROMDef  HIDE_LAYER_10x7_TRANSPARENT_ANIM =
+AnimationFunctionROMDef HIDE_LAYER_10x7_TRANSPARENT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -87,7 +87,7 @@ AnimationFunctionROMDef  HIDE_LAYER_10x7_TRANSPARENT_ANIM =
 	"Transparent",
 };
 
-AnimationFunctionROMDef  HIDE_LAYER_10x7_TO_SOLID_ANIM =
+AnimationFunctionROMDef HIDE_LAYER_10x7_TO_SOLID_ANIM =
 {
 	// number of frames of this animation function
 	7,
@@ -108,7 +108,7 @@ AnimationFunctionROMDef  HIDE_LAYER_10x7_TO_SOLID_ANIM =
 	"ToSolid",
 };
 
-AnimationFunctionROMDef  HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
+AnimationFunctionROMDef HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
 {
 	// number of frames of this animation function
 	7,
