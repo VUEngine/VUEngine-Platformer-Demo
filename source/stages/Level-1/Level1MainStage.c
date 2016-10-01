@@ -441,11 +441,11 @@ StageROMDef LEVEL_1_MAIN_ST =
         // minimum free ms in the current game frame to allow streaming to quick in
         10,
         // load padding
-        128,
+        96,
         // unload padding
-        32,
+        16,
         // streaming amplitude
-        14,
+        16,
 		// particle removal delay cycles
 		4,
     },
@@ -459,7 +459,7 @@ StageROMDef LEVEL_1_MAIN_ST =
         6,
 
         // maximum number of rows to compute on each call to the affine functions
-        8,
+        4,
 
         // colors config
         {
@@ -603,7 +603,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
     "House",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(-64), FTOFIX19_13(+30), FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(-64), FTOFIX19_13(-100), FTOFIX19_13(-SORT_INCREMENT)},
 }};
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =

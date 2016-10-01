@@ -502,7 +502,7 @@ static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Obj
 	ASSERT(this, "PlatformerLevelState::onFadeInComplete: null this");
 
     // erase level message in n milliseconds
-    MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
+    MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
 
     // reset clock and restart
     //Clock_reset(this->inGameClock);
