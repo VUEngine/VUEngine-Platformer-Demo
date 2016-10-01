@@ -117,7 +117,7 @@ BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
         (TextureDefinition*)&MOVING_PLATFORM_TX,
 
         // displacement
-        {0, ITOFIX19_13(-20), 0},
+        {0, ITOFIX19_13(-4), 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
@@ -153,7 +153,7 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 	            4 * 8,
 
 	            // height
-	            6 * 8,
+	            2 * 8,
 
 	            // depth
 	            4
