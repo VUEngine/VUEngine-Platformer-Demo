@@ -279,7 +279,7 @@ void MovingEntity_startMovement(MovingEntity this)
 void MovingEntity_stopMovement(MovingEntity this)
 {
 	// stop moving
-	Actor_stopMovement(__SAFE_CAST(Actor, this));
+	Actor_stopMovement(__SAFE_CAST(Actor, this), false);
 
 	MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMovement, NULL);
 }

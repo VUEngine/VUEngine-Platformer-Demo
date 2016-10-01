@@ -1127,6 +1127,12 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
     {
+        case 10110101:
+
+            CollisionManager_shapeStoppedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
+            return true;
+            break;
+
 		case kHeroStartOverlapping:
         {
 			Door door = __SAFE_CAST(Door, Telegram_getSender(telegram));
@@ -1235,7 +1241,7 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 	ASSERT(this, "Hero::setPosition: null this");
 
     // stop all movement
-	Actor_stopMovement(__SAFE_CAST(Actor, this));
+	Actor_stopMovement(__SAFE_CAST(Actor, this), false);
 
 	// set new position
 	Actor_setPosition(__SAFE_CAST(Actor, this), outOfDoorPosition);
