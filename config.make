@@ -1,5 +1,5 @@
 # Compiler's output
-COMPILER_OUTPUT          = c
+COMPILER_OUTPUT         = c
 
 # Compilation type
 # debug:                Adds lots of runtime assertions. Enables debugging tools too.
@@ -49,18 +49,16 @@ DUMP_ELF                = 0
 # the WORLD attributes start.
 
 # valid options are [/.bss/.sbss/.dram_bss/.sram_bss]
-MEMORY_POOL_SECTION                     = .sbss
+MEMORY_POOL_SECTION             = .sbss
 # valid options are [/.bss/.sbss/.dram_bss/.sram_bss]
-NON_INITIALIZED_DATA_SECTION            = .sbss
+NON_INITIALIZED_DATA_SECTION    = .sbss
 # valid options are [/.data/.sdata/.dram_data/.sram_data]
-INITIALIZED_DATA_SECTION                = .sdata
+INITIALIZED_DATA_SECTION        = .sdata
 # valid options are [/.bss/.sbss/.dram_bss/.sram_bss]
-STATIC_SINGLETONS_DATA_SECTION          = .dram_bss
+STATIC_SINGLETONS_DATA_SECTION  = .dram_bss
 # valid options are [/.bss/.sbss/.dram_bss/.sram_bss]
-VIRTUAL_TABLES_DATA_SECTION             = .dram_bss
-
+VIRTUAL_TABLES_DATA_SECTION     = .dram_bss
 
 # Size of variables to be loaded in the .sdata section
 # Not working properly because rosdata is used instead of rodata section
-# MSDA_SIZE = 0
-
+# MSDA_SIZE             = 0
