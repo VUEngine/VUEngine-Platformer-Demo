@@ -216,9 +216,9 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
-	{&MOUND_BG_BACK_IM,				{FTOFIX19_13(0),    FTOFIX19_13(108), 	FTOFIX19_13(LAYER_5)},                  NULL, NULL, NULL, true},
-	{&CLOUDS_IM,					{FTOFIX19_13(0),    FTOFIX19_13(196), 	FTOFIX19_13(LAYER_4)},                  NULL, NULL, NULL, true},
-	{&MOUND_BG_FRONT_IM,			{FTOFIX19_13(0),    FTOFIX19_13(208), 	FTOFIX19_13(LAYER_3)},                  NULL, NULL, NULL, true},
+	{&MOUND_BG_BACK_IM,				{FTOFIX19_13(0),    FTOFIX19_13(112), 	FTOFIX19_13(LAYER_5)},                  NULL, NULL, NULL, true},
+	{&CLOUDS_IM,					{FTOFIX19_13(0),    FTOFIX19_13(198), 	FTOFIX19_13(LAYER_4)},                  NULL, NULL, NULL, true},
+	{&MOUND_BG_FRONT_IM,			{FTOFIX19_13(0),    FTOFIX19_13(212), 	FTOFIX19_13(LAYER_3)},                  NULL, NULL, NULL, true},
 
 	{&HERO_AC,						{FTOFIX19_13(56),   FTOFIX19_13(288), 	FTOFIX19_13(LAYER_0_FOREGROUND)},       HERO_NAME, NULL, NULL, true},
 
@@ -229,7 +229,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	{&COLLISION_2x28x1,				{FTOFIX19_13(-8),   FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)},                  NULL, NULL, NULL, false},
 
     // part 1
-    {&SMOKE_PS,						{FTOFIX19_13(92),   FTOFIX19_13(150), 	FTOFIX19_13(LAYER_0_FOREGROUND + 16)},  NULL, NULL, NULL, false},
+    {&SMOKE_PS,						{FTOFIX19_13(94),   FTOFIX19_13(150), 	FTOFIX19_13(LAYER_0_FOREGROUND + 16)},  NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,     {FTOFIX19_13(256), 	FTOFIX19_13(368), 	FTOFIX19_13(LAYER_0_FOREGROUND)},       NULL, NULL, NULL, false},
     {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(116),  FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0_FOREGROUND)},       "House", NULL, NULL, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)},       NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
@@ -600,7 +600,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
     "House",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(-64), FTOFIX19_13(-100), FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(-64), FTOFIX19_13(-64), FTOFIX19_13(-SORT_INCREMENT)},
 }};
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =
