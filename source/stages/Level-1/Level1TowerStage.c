@@ -56,7 +56,7 @@ extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	{&LAVA_TOP_AG, 					{FTOFIX19_13(0), 	FTOFIX19_13(-114), 	FTOFIX19_13(-1)}, NULL, NULL, NULL, false},
+	{&LAVA_TOP_AG, 					{FTOFIX19_13(0), 	FTOFIX19_13(-118), 	FTOFIX19_13(-1)}, NULL, NULL, NULL, false},
     {NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
