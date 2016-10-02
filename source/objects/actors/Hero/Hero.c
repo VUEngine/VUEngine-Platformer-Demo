@@ -601,9 +601,8 @@ void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, 
 
             if(pause)
             {
-                // commented out because if the input stops while paused I will continue to move even if
-                // there is no user input
-	        	//Game_disableKeypad(Game_getInstance());
+	            Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+	        	Game_disableKeypad(Game_getInstance());
                 GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
                 Body_setActive(this->body, false);
                 GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
@@ -899,7 +898,8 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 	this->powerUp = powerUp;
 	Hero_updateSprite(this);
 
-	//Game_disableKeypad(Game_getInstance());
+	Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+	Game_disableKeypad(Game_getInstance());
     GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
     Body_setActive(this->body, false);
 
@@ -1167,7 +1167,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 
         case kHeroResumePhysics:
 
-        	//Game_enableKeypad(Game_getInstance());
+        	Game_enableKeypad(Game_getInstance());
             GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), false);
             GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), false);
             Body_setActive(this->body, true);
@@ -1349,5 +1349,5 @@ void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer __attribute__
 {
 	ASSERT(this, "Hero::onPowerUpTransitionComplete: null this");
 
-	MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
+	MessageDispatcher_dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 }
