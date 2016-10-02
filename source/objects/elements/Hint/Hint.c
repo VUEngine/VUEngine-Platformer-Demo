@@ -71,7 +71,7 @@ void Hint_resume(Hint this)
 	ASSERT(this, "Hint::resume: null this");
 
 	Entity_resume(__SAFE_CAST(Entity, this));
-	Hint_playActiveLanguageHint(this, NULL);
+	Hint_onHintOpened(this, NULL);
 }
 
 void Hint_open(Hint this, u8 hintType)
@@ -99,9 +99,9 @@ void Hint_onCloseDone(Hint this, Object eventFirer __attribute__ ((unused)))
 	Entity_hide(__SAFE_CAST(Entity, this));
 }
 
-void Hint_playActiveLanguageHint(Hint this, Object eventFirer __attribute__ ((unused)))
+void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "Hint::playActiveLanguageHint: null this");
+	ASSERT(this, "Hint::onHintOpened: null this");
 
     char* LanguageAnimName = "";
 
