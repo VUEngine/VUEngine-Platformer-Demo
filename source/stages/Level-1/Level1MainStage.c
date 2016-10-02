@@ -79,7 +79,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 {
 	{&COLLISION_8x3x1, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-132),  FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floating block over spikes
-	{&HIT_COLLISION_20x2x1,         {FTOFIX19_13(-8),   FTOFIX19_13(-92),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // spikes hit collision
+	{&HIT_COLLISION_20x2x1,         {FTOFIX19_13(-8),   FTOFIX19_13(-94),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // spikes hit collision
 	{&COLLISION_32x14x1, 	        {FTOFIX19_13(-8),   FTOFIX19_13(-40),   FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor below spikes
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
@@ -158,7 +158,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3[] =
 {
-	{&HIT_COLLISION_20x2x1, 	    {FTOFIX19_13(128),  FTOFIX19_13(-44), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // spikes hit collision
+	{&HIT_COLLISION_20x2x1, 	    {FTOFIX19_13(128),  FTOFIX19_13(-46), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // spikes hit collision
 	{&COLLISION_20x32x1, 	        {FTOFIX19_13(288),  FTOFIX19_13(48), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // floor below spikes
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
@@ -438,9 +438,9 @@ StageROMDef LEVEL_1_MAIN_ST =
         // minimum free ms in the current game frame to allow streaming to quick in
         10,
         // load padding
-        96,
+        128,
         // unload padding
-        16,
+        24,
         // streaming amplitude
         16,
 		// particle removal delay cycles

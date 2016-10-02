@@ -562,17 +562,18 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 	}
 }
 
-void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
+void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
 #ifdef INVINCIBLE_JOHN
     return;
 #endif
 
+energyToReduce= 0;
     if(!Hero_isInvincible(this) || !invincibleWins)
     {
-    	if(alignToEnemy && other && Body_isMoving(this->body))
+    	if(alignToEnemy && inGameEntity && Body_isMoving(this->body))
     	{
-			Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, other), false);
+			Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, inGameEntity), false);
     	}
 
         if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
@@ -604,7 +605,7 @@ void Hero_takeHitFrom(Hero this, Actor other, int energyToReduce, bool pause, bo
                 GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
                 Body_setActive(this->body, false);
                 GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-                MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, other);
+                MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, inGameEntity);
             }
         }
         else
@@ -1069,19 +1070,19 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kSawBlade:
 			case kSnail:
 
-                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 1, true, true, false);
+                Hero_takeHitFrom(this, inGameEntity, 1, true, true, false);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kCannonBall:
 
-                Hero_takeHitFrom(this, __GET_CAST(Actor, inGameEntity), 2, true, true, false);
+                Hero_takeHitFrom(this, inGameEntity, 2, true, true, false);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
 			case kHit:
 
-                Hero_takeHitFrom(this, NULL, 1, true, true, false);
+                Hero_takeHitFrom(this, inGameEntity, 1, true, true, false);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1185,6 +1186,10 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
             {
                 AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
             }
+        	else
+            {
+                AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
+            }
 
         	break;
 
@@ -1262,7 +1267,7 @@ void Hero_update(Hero this, u32 elapsedTime)
 
 	Velocity velocity = Body_getVelocity(this->body);
 
-	if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
+	if(Body_isActive(this->body) && HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
 	{
 		velocity.x = 0;
 		velocity.y = HERO_MAX_VELOCITY_Y;
