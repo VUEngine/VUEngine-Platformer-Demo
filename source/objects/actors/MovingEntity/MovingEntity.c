@@ -140,7 +140,6 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 		case kMovingEntityStartMoving:
             {
                 VBVec3D position = this->transform.globalPosition;
-                VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
 
             	switch(this->movingEntityDefinition->axis)
                 {

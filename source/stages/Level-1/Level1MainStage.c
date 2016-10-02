@@ -600,7 +600,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
     "House",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(-64), FTOFIX19_13(-64), FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(-64), FTOFIX19_13(-38), FTOFIX19_13(-SORT_INCREMENT)},
 }};
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =
