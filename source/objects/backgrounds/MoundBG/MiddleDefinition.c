@@ -137,5 +137,5 @@ CloudsROMDef CLOUDS_IM =
 	},
 
 	// displacement per cycle
-	ITOFIX19_13(20),
+	ITOFIX19_13(150),
 };
