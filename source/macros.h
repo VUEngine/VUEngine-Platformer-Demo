@@ -68,7 +68,9 @@ enum PlatformerTypes
 	kSawBlade,
 	kSnail,
 	kCannonBall,
+	kCannonBallStartMoving,
 	kMovingPlatform,
+	kMovingEntityStartMoving,
 };
 
 enum GameWorldModes

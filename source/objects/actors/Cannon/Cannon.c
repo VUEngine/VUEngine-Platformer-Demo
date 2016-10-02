@@ -33,7 +33,6 @@
 #include <CustomScreenEffectManager.h>
 #include <objects.h>
 #include <CannonBall.h>
-#include <CannonBallMoving.h>
 #include "Cannon.h"
 
 #include <PlatformerLevelState.h>

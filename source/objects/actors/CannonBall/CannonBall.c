@@ -28,8 +28,6 @@
 #include <CollisionManager.h>
 
 #include "CannonBall.h"
-#include "states/CannonBallIdle.h"
-#include "states/CannonBallMoving.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,7 +80,20 @@ void CannonBall_ready(CannonBall this, u32 recursive)
 
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, CannonBallIdle_getInstance()));
+	CannonBall_startMovement(this);
+}
+
+void CannonBall_update(CannonBall this, u32 elapsedTime)
+{
+	ASSERT(this, "CannonBall::udpate: null this");
+
+    Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
+
+    if(Body_isMoving(this->body) && this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
+    {
+        // set state to idle
+        CannonBall_stopMovement(this);
+    }
 }
 
 // register a shape with the collision detection system
@@ -135,16 +146,6 @@ void CannonBall_stopMovement(CannonBall this)
     Entity_hide(__SAFE_CAST(Entity, this));
 }
 
-// check position and set state to idle if minimum z value has been reached
-void CannonBall_checkPosition(CannonBall this)
-{
-    if(this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
-    {
-        // set state to idle
-        StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, CannonBallIdle_getInstance()));
-    }
-}
-
 // state's handle message
 bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
 {
@@ -154,7 +155,7 @@ bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
     {
 		case kCannonShoot:
 
-            StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, CannonBallMoving_getInstance()));
+        	CannonBall_startMovement(this);
 			break;
 	}
 

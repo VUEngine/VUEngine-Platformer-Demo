@@ -41,10 +41,12 @@
     	Actor_METHODS(ClassName)																		\
 
 #define MovingEntity_SET_VTABLE(ClassName)																\
-        Actor_SET_VTABLE(ClassName)																	\
+        Actor_SET_VTABLE(ClassName)																	    \
         __VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);										\
         __VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);									\
         __VIRTUAL_SET(ClassName, MovingEntity, ready);													\
+        __VIRTUAL_SET(ClassName, MovingEntity, update);													\
+        __VIRTUAL_SET(ClassName, MovingEntity, handleMessage);											\
 
 __CLASS(MovingEntity);
 
@@ -92,6 +94,8 @@ __CLASS_NEW_DECLARE(MovingEntity, MovingEntityDefinition* MovingEntityDefinition
 void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name);
 void MovingEntity_destructor(MovingEntity this);
 void MovingEntity_ready(MovingEntity this, u32 recursive);
+void MovingEntity_update(MovingEntity this, u32 elapsedTime);
+bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram);
 void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position);
 int MovingEntity_getAxisFreeForMovement(MovingEntity this);
 void MovingEntity_startMovement(MovingEntity this);

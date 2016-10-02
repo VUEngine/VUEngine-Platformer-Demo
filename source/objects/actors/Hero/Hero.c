@@ -126,6 +126,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	// construct base
 	__CONSTRUCT_BASE(Actor, actorDefinition, id, name);
 
+	// construct the game state machine
+	this->stateMachine = __NEW(StateMachine, this);
+
 	// init class variables
 	this->coins = 0;
 	this->hasKey = false;
@@ -402,7 +405,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
         }
 
-		StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor,  this)), __SAFE_CAST(State,  HeroMoving_getInstance()));
+		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State,  HeroMoving_getInstance()));
 	}
 	else
 	{

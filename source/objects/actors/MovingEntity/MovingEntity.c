@@ -24,12 +24,13 @@
 #include <CollisionManager.h>
 #include <Optics.h>
 #include <PhysicalWorld.h>
+#include <MessageDispatcher.h>
 #include <Prototypes.h>
 #include <PlatformerLevelState.h>
+#include <debugUtilities.h>
+
 
 #include "MovingEntity.h"
-#include "states/MovingEntityIdle.h"
-#include "states/MovingEntityMoving.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -114,7 +115,53 @@ void MovingEntity_ready(MovingEntity this, u32 recursive)
 
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityMoving_getInstance()));
+	MovingEntity_startMovement(this);
+}
+
+// update method
+void MovingEntity_update(MovingEntity this, u32 elapsedTime)
+{
+	ASSERT(this, "MovingEntity::update: null this");
+
+	Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
+
+    if(Body_isMoving(this->body))
+    {
+    	MovingEntity_checkDisplacement(this);
+    }
+}
+
+bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
+{
+	ASSERT(this, "MovingEntity::handleMessage: null this");
+
+	switch(Telegram_getMessage(telegram))
+    {
+		case kMovingEntityStartMoving:
+            {
+                VBVec3D position = this->transform.globalPosition;
+                VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
+
+            	switch(this->movingEntityDefinition->axis)
+                {
+            		case __XAXIS:
+                        position.x = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * this->direction.x;
+                        break;
+
+            		case __YAXIS:
+                        position.y = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * this->direction.y;
+                        break;
+                }
+
+                Actor_setPosition(__SAFE_CAST(Actor, this), &position);
+            }
+
+        	MovingEntity_startMovement(this);
+        	return true;
+			break;
+	}
+
+	return false;
 }
 
 // unregister the shape with the collision detection system
@@ -157,6 +204,8 @@ int MovingEntity_getAxisFreeForMovement(MovingEntity this __attribute__ ((unused
 	return 0;
 }
 
+#include <TimerManager.h>
+
 void MovingEntity_checkDisplacement(MovingEntity this)
 {
 	// update position
@@ -169,20 +218,9 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
 					// make sure that I don't get stuck moving back and forth
-					VBVec3D position = this->transform.globalPosition;
-					VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
-					position.x -= lastDisplacement.x << 1;
+                	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
-					Actor_setPosition(__SAFE_CAST(Actor, this), &position);
-
-                    if(this->movingEntityDefinition->idleDuration)
-                    {
-    					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
-                    }
-                    else
-                    {
-                        MovingEntity_startMovement(this);
-                    }
+                    MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
 				}
 			}
 			break;
@@ -194,20 +232,9 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
 					// make sure that I don't get stuck moving back and forth
-					VBVec3D position = this->transform.globalPosition;
-					VBVec3D lastDisplacement = Body_getLastDisplacement(this->body);
-					position.y -= lastDisplacement.y << 1;
+                	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
-					Actor_setPosition(__SAFE_CAST(Actor, this), &position);
-
-                    if(this->movingEntityDefinition->idleDuration)
-                    {
-    					StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, MovingEntityIdle_getInstance()));
-                    }
-                    else
-                    {
-                        MovingEntity_startMovement(this);
-                    }
+                    MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
 				}
 			}
 			break;
