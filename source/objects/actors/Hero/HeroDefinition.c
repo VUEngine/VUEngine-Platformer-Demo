@@ -281,6 +281,28 @@ AnimationFunctionROMDef HERO_WALKING_BACK_ANIM =
 	"WalkingBack",
 };
 
+// a function which defines the frames to play
+AnimationFunctionROMDef HERO_TRANSITION_ANIM =
+{
+	// number of frames of this animation function
+	5,
+
+	// frames to play in animation
+	{19, 20, 21, 22, 23},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	(EventListener)&Hero_onPowerUpTransitionComplete,
+
+	// function's name
+	"Transition",
+};
+
 
 // an animation definition
 AnimationDescriptionROMDef HERO_ANIM =
@@ -298,6 +320,7 @@ AnimationDescriptionROMDef HERO_ANIM =
 		(AnimationFunction*)&HERO_BACK_ANIM,
 		(AnimationFunction*)&HERO_WALKING_FRONT_ANIM,
 		(AnimationFunction*)&HERO_WALKING_BACK_ANIM,
+		(AnimationFunction*)&HERO_TRANSITION_ANIM,
 		NULL,
 	}
 };

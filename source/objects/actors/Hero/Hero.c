@@ -601,8 +601,8 @@ void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, 
 
             if(pause)
             {
-                // commented out because if the input stops while paused
-                // I will continue to move even if there is no user's input
+                // commented out because if the input stops while paused I will continue to move even if
+                // there is no user input
 	        	//Game_disableKeypad(Game_getInstance());
                 GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
                 Body_setActive(this->body, false);
@@ -764,9 +764,11 @@ void Hero_enterDoor(Hero this)
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "WalkingBack");
 
     // move towards door
+    /*
     Body_setAxisSubjectToGravity(this->body, 0);
-    Velocity velocity = {0, 0, ITOFIX19_13(16)};
+    Velocity velocity = {0, 0, ITOFIX19_13(8)};
     Body_moveUniformly(this->body, velocity);
+    */
 
 	// inform the door entity
 	if(this->currentlyOverlappedDoor != NULL)
@@ -897,12 +899,11 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 	this->powerUp = powerUp;
 	Hero_updateSprite(this);
 
+	//Game_disableKeypad(Game_getInstance());
     GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
     Body_setActive(this->body, false);
-	MessageDispatcher_dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 
-	// TODO: play "get powerup" animation
-    //AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
+    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
 }
 
 // lose a power-up
@@ -913,7 +914,7 @@ void Hero_losePowerUp(Hero this)
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
 }
 
-// update sprite, i.e. after collecting a power-up
+// update sprite, e.g. after collecting a power-up
 void Hero_updateSprite(Hero this)
 {
     CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
@@ -1342,4 +1343,11 @@ void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObject
 u32 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
 {
 	return __XAXIS;
+}
+
+void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "Hero::onPowerUpTransitionComplete: null this");
+
+	MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 }

@@ -54,7 +54,7 @@ AnimationFunctionROMDef HINT_OPEN_ANIM =
 	false,
 
 	// method to call on function completion
-	(EventListener)&Hint_playActiveLanguageHint,
+	(EventListener)&Hint_onHintOpened,
 
 	// function's name
 	"Open",

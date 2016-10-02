@@ -167,7 +167,7 @@ void GUI_printLevel(GUI this __attribute__ ((unused)))
 	Printing_text(Printing_getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 35, GUI_Y_POS, GUI_FONT);
 }
 
-// update sprite, i.e. after collecting a power-up
+// update sprite, e.g. after collecting a power-up
 void GUI_updateSprite(GUI this)
 {
     CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);

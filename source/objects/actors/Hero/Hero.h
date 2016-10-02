@@ -151,5 +151,7 @@ void Hero_update(Hero this, u32 elapsedTime);
 bool Hero_isAboveEntity(Hero this, Entity entity);
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
 u32 Hero_getAxisForFlipping(Hero this);
+void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
+
 
 #endif

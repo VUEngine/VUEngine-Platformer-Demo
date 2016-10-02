@@ -107,7 +107,6 @@ void Bandana_removeFromStage(Bandana this)
 {
 	ASSERT(this, "Bandana::removeFromStage: null this");
 
-	// play collect sound
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));

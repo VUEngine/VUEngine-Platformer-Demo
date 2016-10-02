@@ -70,7 +70,7 @@ void Hint_resume(Hint this);
 void Hint_open(Hint this, u8 hintType);
 void Hint_close(Hint this);
 void Hint_onCloseDone(Hint this, Object eventFirer);
-void Hint_playActiveLanguageHint(Hint this, Object eventFirer);
+void Hint_onHintOpened(Hint this, Object eventFirer);
 
 
 #endif
