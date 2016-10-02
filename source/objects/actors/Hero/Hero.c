@@ -568,7 +568,6 @@ void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, 
     return;
 #endif
 
-energyToReduce= 0;
     if(!Hero_isInvincible(this) || !invincibleWins)
     {
     	if(alignToEnemy && inGameEntity && Body_isMoving(this->body))
