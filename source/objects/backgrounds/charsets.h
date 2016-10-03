@@ -60,5 +60,9 @@ extern CharSetDefinition LEVEL_1_TOWER_BACK_1_CH;
 extern CharSetDefinition LEVEL_1_TOWER_MAIN_BACK_CH;
 extern CharSetDefinition LEVEL_1_TOWER_MAIN_CH;
 
+extern CharSetDefinition RUN_SIGN_CH;
+extern CharSetDefinition JUMP_SIGN_CH;
+extern CharSetDefinition DOUBLE_JUMP_SIGN_CH;
+
 
 #endif

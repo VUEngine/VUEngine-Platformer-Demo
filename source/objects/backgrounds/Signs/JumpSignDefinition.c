@@ -20,48 +20,50 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
+#include <ObjectSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_HouseTiles[];
-extern BYTE Level_1_HouseMap[];
+extern BYTE JumpSignTiles[];
+extern BYTE JumpSignMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_HOUSE_CH =
+CharSetROMDef JUMP_SIGN_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    53,
+    16,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_HouseTiles,
+    JumpSignTiles,
 };
 
-TextureROMDef LEVEL_1_HOUSE_TX =
+TextureROMDef JUMP_SIGN_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_HOUSE_CH,
+    (CharSetDefinition*)&JUMP_SIGN_CH,
 
     // bgmap definition
-    Level_1_HouseMap,
+    JumpSignMap,
 
     // cols (max 64)
-    19,
+    4,
 
     // rows (max 64)
-    11,
+    4,
 
     // padding for affine transformations
 	{0, 0},
@@ -75,34 +77,34 @@ TextureROMDef LEVEL_1_HOUSE_TX =
     1,
 };
 
-BgmapSpriteROMDef LEVEL_1_HOUSE_IM_SPRITE =
+ObjectSpriteROMDef JUMP_SIGN_IM_SPRITE =
 {
     {
         // sprite's type
-        __TYPE(BgmapSprite),
+        __TYPE(ObjectSprite),
 
         // texture definition
-        (TextureDefinition*)&LEVEL_1_HOUSE_TX,
+        (TextureDefinition*)&JUMP_SIGN_TX,
 
         // displacement
-        {0, 0, FTOFIX19_13(2)},
-	},
+        {0, 0, 0},
+    },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-	__WORLD_BGMAP,
+	__WORLD_OBJ,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_HOUSE_IM_SPRITES[] =
+ObjectSpriteROMDef* const JUMP_SIGN_IM_SPRITES[] =
 {
-	&LEVEL_1_HOUSE_IM_SPRITE,
+	&JUMP_SIGN_IM_SPRITE,
 	NULL
 };
 
-ImageROMDef LEVEL_1_HOUSE_IM =
+ImageROMDef JUMP_SIGN_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_HOUSE_IM_SPRITES,
+	(SpriteROMDef**)JUMP_SIGN_IM_SPRITES,
 };
