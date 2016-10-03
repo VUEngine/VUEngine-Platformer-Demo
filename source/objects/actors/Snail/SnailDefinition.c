@@ -184,7 +184,7 @@ MovingEntityROMDef SNAIL_4_AC =
 	ITOFIX19_13(3 * 8),
 
 	// time to rest idle
-	3000,
+	1000,
 
     // axis
     __XAXIS,

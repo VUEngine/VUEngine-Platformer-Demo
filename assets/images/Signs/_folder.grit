@@ -1,0 +1,4 @@
+-fh! -ftc -gB2 -p!   -mB16:hv_i11 -mRt
+
+// Creates map and reduced tileset (unique tiles)
+// Use case: affine images

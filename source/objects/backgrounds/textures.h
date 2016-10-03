@@ -94,5 +94,9 @@ extern TextureDefinition TORCH_TX;
 
 extern TextureDefinition LANE_V_6_TX;
 
+extern TextureDefinition RUN_SIGN_TX;
+extern TextureDefinition JUMP_SIGN_TX;
+extern TextureDefinition DOUBLE_JUMP_SIGN_TX;
+
 
 #endif

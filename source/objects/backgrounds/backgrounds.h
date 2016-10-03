@@ -84,5 +84,9 @@ extern EntityDefinition TORCH_AG;
 
 extern EntityDefinition LANE_V_6_IM;
 
+extern EntityDefinition RUN_SIGN_IM;
+extern EntityDefinition JUMP_SIGN_IM;
+extern EntityDefinition DOUBLE_JUMP_SIGN_IM;
+
 
 #endif
