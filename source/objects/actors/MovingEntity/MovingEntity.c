@@ -125,7 +125,7 @@ void MovingEntity_update(MovingEntity this, u32 elapsedTime)
 
 	Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
 
-    if(Body_isMoving(this->body))
+    if(Body_isAwake(this->body))
     {
     	MovingEntity_checkDisplacement(this);
     }
@@ -203,8 +203,6 @@ int MovingEntity_getAxisFreeForMovement(MovingEntity this __attribute__ ((unused
 	return 0;
 }
 
-#include <TimerManager.h>
-
 void MovingEntity_checkDisplacement(MovingEntity this)
 {
 	// update position
@@ -212,7 +210,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
     {
 		case __XAXIS:
 			{
-				fix19_13 distance = abs(this->transform.globalPosition.x - this->initialPosition);
+				fix19_13 distance = abs((this->transform.globalPosition.x - this->initialPosition));
 
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
@@ -226,7 +224,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 
 		case __YAXIS:
 			{
-				fix19_13 distance = abs(this->transform.globalPosition.y - this->initialPosition);
+				fix19_13 distance = abs((this->transform.globalPosition.y - this->initialPosition));
 
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
