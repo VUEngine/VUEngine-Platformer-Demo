@@ -67,6 +67,7 @@ extern TextureDefinition LEVEL_1_MAIN_1_BACK_5_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_6_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_6_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_6_TX;
+extern TextureDefinition LEVEL_1_TOWER_TX;
 
 extern TextureDefinition LEVEL_1_TOWER_MAIN_1_TX;
 extern TextureDefinition LEVEL_1_TOWER_MAIN_BACK_1_TX;

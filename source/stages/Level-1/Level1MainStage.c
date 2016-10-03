@@ -51,14 +51,6 @@ extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 // Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
 // know that it must stop reading the stage's/ui's textures and entities.
 
-PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_ENTITIES[] =
-{
-	{&LEVEL_1_MAIN_1_MAIN_1_IM,     {FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false},
-    {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(-140), FTOFIX19_13(-176), 	FTOFIX19_13(0)},    "House", NULL, NULL, false},
-
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
-};
-
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 {
 	{&COLLISION_34x30x1,            {FTOFIX19_13(-136), FTOFIX19_13(-12), 	FTOFIX19_13(0)},    NULL, NULL, NULL, false}, // left floor
@@ -231,7 +223,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
     // part 1
     {&SMOKE_PS,						{FTOFIX19_13(88),   FTOFIX19_13(150), 	FTOFIX19_13(LAYER_0_FOREGROUND + 16)},  NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,     {FTOFIX19_13(256), 	FTOFIX19_13(368), 	FTOFIX19_13(LAYER_0_FOREGROUND)},       NULL, NULL, NULL, false},
-    {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(88),   FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0_FOREGROUND)},       "House", NULL, NULL, false},
+    {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(88),   FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       "House", NULL, NULL, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)},       NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
 	{&RUN_SIGN_IM,					{FTOFIX19_13(232),  FTOFIX19_13(220), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       NULL, NULL, NULL, false},
@@ -328,6 +320,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	{&COIN_AG,						{FTOFIX19_13(2732), FTOFIX19_13(232), 	FTOFIX19_13(LAYER_0_ITEMS)},            NULL, NULL, (void*)24, false},
 	{&COIN_AG,						{FTOFIX19_13(2748), FTOFIX19_13(232), 	FTOFIX19_13(LAYER_0_ITEMS)},            NULL, NULL, (void*)25, false},
 	{&COIN_AG,						{FTOFIX19_13(2764), FTOFIX19_13(232), 	FTOFIX19_13(LAYER_0_ITEMS)},            NULL, NULL, (void*)26, false},
+
+    {&LEVEL_1_TOWER_IM,             {FTOFIX19_13(2893), FTOFIX19_13(152), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       NULL, NULL, NULL, false},
 	{&KEY_DOOR_AG,					{FTOFIX19_13(2893), FTOFIX19_13(228), 	FTOFIX19_13(LAYER_0_DOORS - SORT_INCREMENT)}, "TowrEnt", NULL, (void*)&LEVEL_1_TOWER_MAIN_EP, false},
 	{&GRASS_AG,						{FTOFIX19_13(2960), FTOFIX19_13(237), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       NULL, NULL, NULL, false},
 
