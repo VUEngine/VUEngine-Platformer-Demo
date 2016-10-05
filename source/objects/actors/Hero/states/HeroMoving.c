@@ -200,11 +200,11 @@ void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* ow
     {
         Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, owner));
 
-        if(abs(velocity.x))
+        if(__ABS(velocity.x))
         {
             Hero_stopAddingForce(__SAFE_CAST(Hero, owner));
         }
-        else if(!abs(velocity.y))
+        else if(!__ABS(velocity.y))
         {
             StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, HeroIdle_getInstance()));
         }

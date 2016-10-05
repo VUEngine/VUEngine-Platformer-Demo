@@ -297,8 +297,8 @@ void Hero_addForce(Hero this, int axis)
 	Velocity velocity = Body_getVelocity(this->body);
 
 	if(this->direction.x != this->inputDirection.x ||
-        ((__XAXIS & axis) && maxVelocity > abs(velocity.x)) ||
-        ((__ZAXIS & axis) && maxVelocity > abs(velocity.z)) ||
+        ((__XAXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
+        ((__ZAXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
         Actor_changedDirection(__SAFE_CAST(Actor, this), __XAXIS) ||
         Actor_changedDirection(__SAFE_CAST(Actor, this), __ZAXIS))
     {
@@ -324,7 +324,7 @@ void Hero_addForce(Hero this, int axis)
 			(__ZAXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
 		};
 
-		if(__UNIFORM_MOVEMENT != movementType || (abs(velocity.x) > maxVelocity && !(__YAXIS & Body_isMoving(this->body))))
+		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__YAXIS & Body_isMoving(this->body))))
         {
 			movementType = __UNIFORM_MOVEMENT;
 			Body_moveUniformly(this->body, newVelocity);
@@ -534,7 +534,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 		this->inputDirection.x = __RIGHT;
 
 		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
-		position.x = abs(position.x) * -1;
+		position.x = __ABS(position.x) * -1;
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 	}
 	else if(K_LL & pressedKey)
@@ -542,7 +542,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 		this->inputDirection.x = __LEFT;
 
 		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
-		position.x = abs(position.x);
+		position.x = __ABS(position.x);
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 	}
 	else if(K_LU & pressedKey)

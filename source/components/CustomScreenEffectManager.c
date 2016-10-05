@@ -249,7 +249,7 @@ static void CustomScreenEffectManager_onScreenShake(CustomScreenEffectManager th
 
 	long seed = Utilities_randomSeed();
 
-    int nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, abs(SHAKE_DELAY_DELTA));
+    int nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, __ABS(SHAKE_DELAY_DELTA));
 
     // subtract time until next shake
     this->shakeTimeLeft = (this->shakeTimeLeft <= nextShakeDelay) ? 0 : this->shakeTimeLeft - nextShakeDelay;
