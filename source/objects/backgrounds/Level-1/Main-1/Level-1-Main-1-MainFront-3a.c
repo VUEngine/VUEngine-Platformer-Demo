@@ -19,51 +19,34 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <MBgmapSprite.h>
-#include <macros.h>
+#include <MBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_BackTiles[];
-extern BYTE Level_1_Main_1_Back_5Map[];
+extern BYTE Level_1_Main_1_MainFront_3aMap[];
+extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_FRONT_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_BACK_5_CH =
-{
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    152,
-
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
-
-    // char definition
-    Level_1_Main_1_BackTiles,
-};
-
-TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
+TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_BACK_5_CH,
+    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
 
     // bgmap definition
-    Level_1_Main_1_Back_5Map,
+    Level_1_Main_1_MainFront_3aMap,
 
     // cols (max 64)
-    61,
+    50,
 
     // rows (max 64)
-    24,
+    10,
 
     // padding for affine transformations
 	{0, 0},
@@ -74,17 +57,16 @@ TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
     1,
 
     // palette number (0-3)
-    2,
+    1,
 };
 
-
-TextureROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES[] =
+TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_TEXTURES[] =
 {
-	(TextureDefinition*)&LEVEL_1_MAIN_1_BACK_5_TX,
+	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX,
 	NULL
 };
 
-MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
+MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_SPRITE =
 {
 	{
         {
@@ -95,7 +77,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
             NULL,
 
             // displacement
-            {0, 0, 0},
+            {ITOFIX19_13(-8), ITOFIX19_13(24), FTOFIX19_13(-1)},
         },
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
@@ -105,7 +87,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
 		__WORLD_ON,
 	},
 
-	(TextureDefinition**)LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES,
+	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_TEXTURES,
 
 	// SCX/SCY
 	__WORLD_1x1,
@@ -115,16 +97,4 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
 
 	// y loop
 	false,
-};
-
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_BACK_5_IM_SPRITE,
-	NULL
-};
-
-ImageROMDef LEVEL_1_MAIN_1_BACK_5_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_BACK_5_IM_SPRITES,
 };

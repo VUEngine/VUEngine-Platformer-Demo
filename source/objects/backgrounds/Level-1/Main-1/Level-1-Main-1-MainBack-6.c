@@ -46,10 +46,10 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_TX =
     Level_1_Main_1_MainBack_6Map,
 
     // cols (max 64)
-    47,
+    11,
 
     // rows (max 64)
-    40,
+    8,
 
     // padding for affine transformations
 	{0, 0},
@@ -80,7 +80,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
             NULL,
 
             // displacement
-            {ITOFIX19_13(86), ITOFIX19_13(-200), FTOFIX19_13(2)},
+            {ITOFIX19_13(-60), ITOFIX19_13(-72), FTOFIX19_13(2)},
         },
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)

@@ -34,7 +34,8 @@ extern BYTE Level_1_Main_1_Main_2Map[];
 extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH;
 
 extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE;
-extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2A_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2B_IM_SPRITE;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -110,7 +111,8 @@ BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_2_IM_SPRITES[] =
 {
 	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_2_IM_SPRITE,
 	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE,
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_2_IM_SPRITE,
+	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_2A_IM_SPRITE,
+	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_2B_IM_SPRITE,
 	NULL
 };
 

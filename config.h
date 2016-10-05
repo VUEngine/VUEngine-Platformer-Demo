@@ -77,6 +77,7 @@
 // alert transformation - VIP unsync warning
 #define __ALERT_TRANSFORMATIONS_NOT_IN_SYNC_WITH_VIP
 
+
 //---------------------------------------------------------------------------------------------------------
 // 											OPTICS / PROJECTION
 //---------------------------------------------------------------------------------------------------------
@@ -175,11 +176,11 @@
 	__BLOCK_DEFINITION(100, 28)																			\
 	__BLOCK_DEFINITION(88, 80)																			\
 	__BLOCK_DEFINITION(76, 10)																			\
-	__BLOCK_DEFINITION(68, 54)																			\
+	__BLOCK_DEFINITION(68, 58)																			\
 	__BLOCK_DEFINITION(32, 10)																			\
 	__BLOCK_DEFINITION(28, 200)																			\
 	__BLOCK_DEFINITION(24, 100)																			\
-	__BLOCK_DEFINITION(20, 650)																			\
+	__BLOCK_DEFINITION(20, 670)																			\
 	__BLOCK_DEFINITION(16, 450)						    												\
 
 

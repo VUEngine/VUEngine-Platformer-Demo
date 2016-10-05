@@ -70,8 +70,8 @@ extern EntityDefinition HINT_MC;
 #define HERO_MAX_VELOCITY_Y						ITOFIX19_13(300)
 #define HERO_MAX_VELOCITY_Z						ITOFIX19_13(40)
 #define HERO_BOOST_VELOCITY_X					FTOFIX19_13(100)
-#define HERO_NORMAL_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-25000)
-#define HERO_BOOST_JUMP_HERO_INPUT_FORCE		ITOFIX19_13(-30000)
+#define HERO_NORMAL_JUMP_INPUT_FORCE			ITOFIX19_13(-25000)
+#define HERO_BOOST_JUMP_INPUT_FORCE				ITOFIX19_13(-30000)
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT		{ITOFIX19_13(0), ITOFIX19_13(-24), 0}
 
@@ -140,6 +140,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const
 	this->invincible = false;
 	this->currentlyOverlappedDoor = NULL;
 	this->boost = false;
+	this->jumps = 0;
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
@@ -248,38 +249,65 @@ void Hero_locateOverNextFloor(Hero this)
 }
 
 // make him jump
-void Hero_jump(Hero this, int checkIfYMovement)
+void Hero_jump(Hero this, bool checkIfYMovement)
 {
 	ASSERT(this, "Hero::jump: null this");
 
 	if(this->body)
     {
+        // get the hero's body velocity
         Velocity velocity = Body_getVelocity(this->body);
 
-		Acceleration acceleration =
-        {
-        	0,
-			__1I_FIX19_13,
-			0
-		};
+        // determine the maximum number of possible jumps before reaching ground again
+	    u32 allowedNumberOfJumps = (this->powerUp == kPowerUpBandana) ? 2 : 1;
 
-		if((!checkIfYMovement || !velocity.y) && !(__YAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, this), &acceleration)))
+        // check if more jumps are allowed
+		if(this->jumps < allowedNumberOfJumps)
         {
-			Hero_startedMovingOnAxis(this, __YAXIS);
+            // init a force to add to the hero's momentum
+			Force force = {0, 0, 0};
 
-			Force force =
+            // is this the first jump from ground or a double jump from mid-air?
+            if(this->jumps == 0)
             {
-                0,
-                this->boost ? HERO_BOOST_JUMP_HERO_INPUT_FORCE : HERO_NORMAL_JUMP_HERO_INPUT_FORCE,
-                0
-            };
+			    // don't allow a first jump from mid-air without bandana
+			    if(checkIfYMovement && velocity.y && (allowedNumberOfJumps == 1))
+			    {
+			        return;
+			    }
 
+                // set first jump performed
+                this->jumps = 1;
+
+                // we're leaving ground with this jump
+			    Hero_startedMovingOnAxis(this, __YAXIS);
+
+			    // add more force when running, normal force otherwise
+			    force.y = this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE;
+            }
+            else
+            {
+                // stop movement to gain full momentum of the jump force that will be added
+                Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+
+                // set second jump performed
+                // this gets reset to 0 in Actor_stopMovement, so we set it to 2 here
+                this->jumps = 2;
+
+	            // double jumps can never have boost
+                force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
+            }
+
+            // add the force to actually make the hero jump
 			Actor_addForce(__SAFE_CAST(Actor, this), &force);
 
-	    	Hero_hideDust(this);
+            // show dust
+            Hero_showDust(this, true);
 
+            // play jump animation
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Jump");
 
+            // play jump sound
 			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transform.globalPosition);
 		}
 	}
@@ -429,43 +457,6 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	}
 }
 
-void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
-{
-	if(this->cameraBoundingBox)
-	{
-        VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
-
-		VBVec3DFlag positionFlag = CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager_getInstance());
-
-        if(__XAXIS & axisToLockUp)
-        {
-            overridePositionFlag.x = locked;
-
-		    positionFlag.x = !locked;
-        }
-
-	    CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
-	    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
-	}
-}
-
-// retrieve friction of colliding objects
-void Hero_updateSurroundingFriction(Hero this)
-{
-	ASSERT(this, "Hero::updateSurroundingFriction: null this");
-	ASSERT(this->body, "Hero::updateSurroundingFriction: null body");
-
-	Force totalFriction = {this->actorDefinition->friction, this->actorDefinition->friction, this->actorDefinition->friction};
-
-	if(this->collisionSolver)
-	{
-		Force surroundingFriction = CollisionSolver_getSurroundingFriction(this->collisionSolver);
-		totalFriction.x += surroundingFriction.x;
-	}
-
-	Body_setFriction(this->body, totalFriction);
-}
-
 // stop moving over axis
 bool Hero_stopMovingOnAxis(Hero this, int axis)
 {
@@ -479,7 +470,6 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 	bool movementState = Body_isMoving(this->body);
 
-
 	if((__XAXIS & axis) && !(__YAXIS & movementState))
     {
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
@@ -490,6 +480,8 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 	if(__YAXIS & axis)
     {
     	Hero_lockCameraTriggerMovement(this, __YAXIS, true);
+
+    	this->jumps = 0;
 
 		if(__XAXIS & Body_isMoving(this->body))
 		{
@@ -563,6 +555,43 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
     {
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), animation);
 	}
+}
+
+void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
+{
+	if(this->cameraBoundingBox)
+	{
+        VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
+
+		VBVec3DFlag positionFlag = CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager_getInstance());
+
+        if(__XAXIS & axisToLockUp)
+        {
+            overridePositionFlag.x = locked;
+
+		    positionFlag.x = !locked;
+        }
+
+	    CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
+	    CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
+	}
+}
+
+// retrieve friction of colliding objects
+void Hero_updateSurroundingFriction(Hero this)
+{
+	ASSERT(this, "Hero::updateSurroundingFriction: null this");
+	ASSERT(this->body, "Hero::updateSurroundingFriction: null body");
+
+	Force totalFriction = {this->actorDefinition->friction, this->actorDefinition->friction, this->actorDefinition->friction};
+
+	if(this->collisionSolver)
+	{
+		Force surroundingFriction = CollisionSolver_getSurroundingFriction(this->collisionSolver);
+		totalFriction.x += surroundingFriction.x;
+	}
+
+	Body_setFriction(this->body, totalFriction);
 }
 
 void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
@@ -801,7 +830,7 @@ static void Hero_addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
 
-	VBVec3D position = {FTOFIX19_13(-6), FTOFIX19_13(10), FTOFIX19_13(1)};
+	VBVec3D position = {FTOFIX19_13(-6), FTOFIX19_13(12), FTOFIX19_13(1)};
 
 	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");

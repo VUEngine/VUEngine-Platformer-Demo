@@ -59,6 +59,7 @@ extern EntityDefinition LEVEL_1_MAIN_1_MAIN_4_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_5_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_BACK_5_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_6_IM;
+extern EntityDefinition LEVEL_1_TOWER_IM;
 
 extern EntityDefinition LEVEL_1_TOWER_MAIN_1_IM;
 extern EntityDefinition LEVEL_1_TOWER_MAIN_2_IM;

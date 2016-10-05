@@ -20,50 +20,48 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <MBgmapSprite.h>
-#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_BackTiles[];
-extern BYTE Level_1_Main_1_Back_5Map[];
+extern BYTE Level_1_TowerTiles[];
+extern BYTE Level_1_TowerMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_BACK_5_CH =
+CharSetROMDef LEVEL_1_TOWER_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    152,
+    30,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_Main_1_BackTiles,
+    Level_1_TowerTiles,
 };
 
-TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
+TextureROMDef LEVEL_1_TOWER_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_BACK_5_CH,
+    (CharSetDefinition*)&LEVEL_1_TOWER_CH,
 
     // bgmap definition
-    Level_1_Main_1_Back_5Map,
+    Level_1_TowerMap,
 
     // cols (max 64)
-    61,
+    28,
 
     // rows (max 64)
-    24,
+    23,
 
     // padding for affine transformations
 	{0, 0},
@@ -74,57 +72,37 @@ TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
     1,
 
     // palette number (0-3)
-    2,
+    1,
 };
 
-
-TextureROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES[] =
+BgmapSpriteROMDef LEVEL_1_TOWER_IM_SPRITE =
 {
-	(TextureDefinition*)&LEVEL_1_MAIN_1_BACK_5_TX,
-	NULL
-};
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
-{
-	{
-        {
-            // sprite's type
-            __TYPE(MBgmapSprite),
+        // texture definition
+        (TextureDefinition*)&LEVEL_1_TOWER_TX,
 
-            // texture definition
-            NULL,
-
-            // displacement
-            {0, 0, 0},
-        },
-
-		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-		__WORLD_BGMAP,
-
-		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
+        // displacement
+        {0, 0, FTOFIX19_13(2)},
 	},
 
-	(TextureDefinition**)LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-	// SCX/SCY
-	__WORLD_1x1,
-
-	// x loop
-	false,
-
-	// y loop
-	false,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_TOWER_IM_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_BACK_5_IM_SPRITE,
+	&LEVEL_1_TOWER_IM_SPRITE,
 	NULL
 };
 
-ImageROMDef LEVEL_1_MAIN_1_BACK_5_IM =
+ImageROMDef LEVEL_1_TOWER_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_BACK_5_IM_SPRITES,
+	(SpriteROMDef**)LEVEL_1_TOWER_IM_SPRITES,
 };

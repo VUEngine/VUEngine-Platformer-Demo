@@ -93,6 +93,8 @@ __CLASS(Hero);
         bool hasKey;																					\
         /* currently active power-up */																	\
         u8 powerUp;																						\
+        /* number of jumps performed (for double jump) */												\
+        u8 jumps;																						\
         /* flag for invincible mode (after being hit) */												\
         bool invincible;																				\
 
@@ -113,7 +115,7 @@ void Hero_stopAddingForce(Hero this);
 void Hero_startedMovingOnAxis(Hero this, int axis);
 bool Hero_stopMovingOnAxis(Hero this, int axis);
 void Hero_move(Hero this);
-void Hero_jump(Hero this, int checkIfYMovement);
+void Hero_jump(Hero this, bool checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u32 currentPressedKey, char * animation);
 void Hero_synchronizeDirectionWithVelocity(Hero this);

@@ -219,13 +219,13 @@ ParticleSystemROMDef DUST_PS =
     true,
 
 	// minimum generation delay in milliseconds
-	20,
+	0,
 
 	// generation delay delta in milliseconds
-	60,
+	5,
 
 	// maximum total particles
-	5,
+	4,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)DUST_PARTICLE_IM_SPRITES,
@@ -253,6 +253,6 @@ ParticleSystemROMDef DUST_PS =
 	// use int values in the definition to avoid overflow
 	{(0), (0), (0)},
 
-	// movement type: __UNIFORM_MOVEMENT or __UNIFORM_MOVEMENT
+	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
 	__UNIFORM_MOVEMENT
 };
