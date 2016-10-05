@@ -180,7 +180,7 @@
 	__BLOCK_DEFINITION(32, 10)																			\
 	__BLOCK_DEFINITION(28, 200)																			\
 	__BLOCK_DEFINITION(24, 100)																			\
-	__BLOCK_DEFINITION(20, 650)																			\
+	__BLOCK_DEFINITION(20, 670)																			\
 	__BLOCK_DEFINITION(16, 450)						    												\
 
 
