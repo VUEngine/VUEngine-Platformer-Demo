@@ -181,7 +181,7 @@
 	__BLOCK_DEFINITION(28, 200)																			\
 	__BLOCK_DEFINITION(24, 100)																			\
 	__BLOCK_DEFINITION(20, 670)																			\
-	__BLOCK_DEFINITION(16, 450)						    												\
+	__BLOCK_DEFINITION(16, 460)						    												\
 
 
 #undef __SET_MEMORY_POOL_ARRAYS
