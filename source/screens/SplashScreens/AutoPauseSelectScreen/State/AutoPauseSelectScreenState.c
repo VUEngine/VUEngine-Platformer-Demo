@@ -126,8 +126,9 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
     Printing_text(Printing_getInstance(), strOff, selectionStart + 3 + strOnSize.x, 17, NULL);
 
     // print selector
-    u8 optionStart = this->selection ? selectionStart - 1 : selectionStart - 1 + optionsGap + strOnSize.x;
-    u8 optionEnd = this->selection ? optionStart + 1 + strOnSize.x : optionStart + 1 + strOffSize.x;
+    u8 optionStart = this->selection ? selectionStart : selectionStart + optionsGap + strOnSize.x;
+    u8 optionEnd = this->selection ? optionStart + strOnSize.x : optionStart + strOffSize.x;
+    optionStart--;
     Printing_text(Printing_getInstance(), "\x03\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08", optionStart, 16, NULL);
     Printing_text(Printing_getInstance(), "\x04               ", optionEnd, 16, NULL);
     Printing_text(Printing_getInstance(), "\x07", optionStart, 17, NULL);
