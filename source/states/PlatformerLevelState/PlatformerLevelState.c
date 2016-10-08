@@ -63,8 +63,9 @@ void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onFadeOutComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
 
@@ -362,7 +363,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
                 0, // initial delay (in ms)
                 NULL, // target brightness
                 __FADE_DELAY, // delay between fading steps (in ms)
-                (void (*)(Object, Object))PlatformerLevelState_onFadeInComplete, // callback function
+                (void (*)(Object, Object))PlatformerLevelState_onLevelStartedFadeInComplete, // callback function
                 __SAFE_CAST(Object, this) // callback scope
             );
 
@@ -436,14 +437,16 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 	// unset the hero as focus entity from the custom screen movement manager
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
-    // fade out
-    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
-
-    // go to overworld
-    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
-
-    // reset progress
-    ProgressManager_reset(ProgressManager_getInstance());
+    // start a fade out effect
+    Brightness brightness = (Brightness){0, 0, 0};
+    Screen_startEffect(Screen_getInstance(),
+        kFadeTo, // effect type
+        0, // initial delay (in ms)
+        &brightness, // target brightness
+        __FADE_DELAY, // delay between fading steps (in ms)
+        (void (*)(Object, Object))PlatformerLevelState_onHeroDiedFadeOutComplete, // callback function
+        __SAFE_CAST(Object, this) // callback scope
+    );
 }
 
 // get current level's definition
@@ -473,7 +476,7 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
         0, // initial delay (in ms)
         &brightness, // target brightness
         __FADE_DELAY, // delay between fading steps (in ms)
-        (void (*)(Object, Object))PlatformerLevelState_onFadeOutComplete, // callback function
+        (void (*)(Object, Object))PlatformerLevelState_onEnterStageFadeOutComplete, // callback function
         __SAFE_CAST(Object, this) // callback scope
     );
 }
@@ -497,9 +500,9 @@ void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this)
 }
 
 // handle event
-static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
+static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::onFadeInComplete: null this");
+	ASSERT(this, "PlatformerLevelState::onLevelStartedFadeInComplete: null this");
 
     // erase level message in n milliseconds
     MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
@@ -524,9 +527,18 @@ static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Obj
 }
 
 // handle event
-static void PlatformerLevelState_onFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::onFadeOutComplete: null this");
+	ASSERT(this, "PlatformerLevelState::onEnterStageFadeOutComplete: null this");
 
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
+}
+
+// handle event
+static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "PlatformerLevelState::onEnterStageFadeOutComplete: null this");
+
+	// go to overworld
+    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }

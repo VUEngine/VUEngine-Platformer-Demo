@@ -31,7 +31,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define GoalDoor_METHODS(ClassName)																		\
-	    Door_METHODS(ClassName)																		\
+	    Door_METHODS(ClassName)																			\
 
 #define GoalDoor_SET_VTABLE(ClassName)																	\
         Door_SET_VTABLE(ClassName)																		\

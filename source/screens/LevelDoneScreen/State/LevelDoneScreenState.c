@@ -45,6 +45,8 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner);
 static void LevelDoneScreenState_print(LevelDoneScreenState this);
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner);
 static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this, void* owner, Telegram telegram);
+static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this, Object eventFirer);
+static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,24 +77,32 @@ static void LevelDoneScreenState_destructor(LevelDoneScreenState this)
 // state's enter
 static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
+	// call base
+	GameState_enter(__SAFE_CAST(GameState, this), owner);
+
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_DONE_SCREEN_ST, NULL, true);
 
+	// print stats
 	LevelDoneScreenState_print(this);
 
-	ProgressManager_reset(ProgressManager_getInstance());
+	// disable user input
+    Game_disableKeypad(Game_getInstance());
 
-    Game_enableKeypad(Game_getInstance());
-
-    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
+    // fade in screen
+    Screen_startEffect(Screen_getInstance(),
+        kFadeTo, // effect type
+        0, // initial delay (in ms)
+        NULL, // target brightness
+        __FADE_DELAY, // delay between fading steps (in ms)
+        (void (*)(Object, Object))LevelDoneScreenState_onFadeInComplete, // callback function
+        __SAFE_CAST(Object, this) // callback scope
+    );
 }
 
 // state's exit
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
-	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
-
 	// destroy the state
 	__DELETE(this);
 }
@@ -127,11 +137,42 @@ static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this __attr
 	switch(Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
+		{
+		    // disable user input
+            Game_disableKeypad(Game_getInstance());
 
-            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+		    // fade out screen
+            Brightness brightness = (Brightness){0, 0, 0};
+            Screen_startEffect(Screen_getInstance(),
+                kFadeTo, // effect type
+                0, // initial delay (in ms)
+                &brightness, // target brightness
+                __FADE_DELAY, // delay between fading steps (in ms)
+                (void (*)(Object, Object))LevelDoneScreenState_onFadeOutComplete, // callback function
+                __SAFE_CAST(Object, this) // callback scope
+            );
+
 			return true;
 			break;
+		}
 	}
 
 	return false;
+}
+
+// handle event
+static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
+
+    Game_enableKeypad(Game_getInstance());
+}
+
+// handle event
+static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
+
+    // switch to next screen
+    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }

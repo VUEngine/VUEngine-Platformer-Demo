@@ -43,7 +43,8 @@ const char* const spanishStrings[] =
     //STR_PRECAUTION_SCREEN_TEXT:
     "     Lea los libros de\n\nInstrucciones y precauciones\n\n       antes de jugar",
     //STR_AUTOMATIC_PAUSE:
-    "Pausa Automática",
+    //"Pausa Automática",
+    "Pausa Automatica",
     //STR_AUTOMATIC_PAUSE_EXPLANATION:
     " La función automática de pausa le\nrecordará que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
     //STR_AUTOMATIC_PAUSE_TEXT:
