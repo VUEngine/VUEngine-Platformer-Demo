@@ -163,7 +163,7 @@ void GUI_printKey(GUI this __attribute__ ((unused)))
 // print current level to gui
 void GUI_printLevel(GUI this __attribute__ ((unused)))
 {
-    PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getLevel(PlatformerLevelState_getInstance());
+    PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
 	Printing_text(Printing_getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 35, GUI_Y_POS, GUI_FONT);
 }
 

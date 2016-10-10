@@ -31,6 +31,7 @@
 #include <AutoPauseScreenState.h>
 #include <Languages.h>
 #include <KeyPadManager.h>
+#include <ProgressManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,6 +83,8 @@ static void AutoPauseSelectScreenState_destructor(AutoPauseSelectScreenState thi
 
 static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 {
+    this->selection = ProgressManager_getAutomaticPauseStatus(ProgressManager_getInstance());
+
     const char* strAutomaticPause = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
     const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION);
     Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPause, "GUIFont");
@@ -158,7 +161,11 @@ void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u3
 	}
 	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-		Game_setAutomaticPauseState(Game_getInstance(), this->selection ? __SAFE_CAST(GameState, AutoPauseScreenState_getInstance()): NULL);
+		Game_setAutomaticPauseState(Game_getInstance(), this->selection
+			? __SAFE_CAST(GameState, AutoPauseScreenState_getInstance())
+			: NULL
+		);
+	    ProgressManager_setAutomaticPauseStatus(ProgressManager_getInstance(), (bool)this->selection);
 	    SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
 	}
 }

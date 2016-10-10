@@ -55,12 +55,12 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_MAIN_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_COIN_ROOM_MAIN_COLLISIONS[] =
 {
-    {&COLLISION_48x2x1,             {FTOFIX19_13(0), 	FTOFIX19_13(-110),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top ceiling
+    {&COLLISION_48x2x1,             {FTOFIX19_13(0), 	FTOFIX19_13(-86), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top ceiling
     {&COLLISION_48x2x1,             {FTOFIX19_13(0), 	FTOFIX19_13(88), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom floor
     {&COLLISION_2x28x1,             {FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // left wall
     {&COLLISION_2x28x1,             {FTOFIX19_13(184), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // right wall
-    {&COLLISION_12x12x1,            {FTOFIX19_13(-208), FTOFIX19_13(-112),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top left block
-    {&COLLISION_12x12x1,            {FTOFIX19_13(208), 	FTOFIX19_13(-112),  FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top right block
+    {&COLLISION_12x12x1,            {FTOFIX19_13(-208), FTOFIX19_13(-94),	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top left block
+    {&COLLISION_12x12x1,            {FTOFIX19_13(208), 	FTOFIX19_13(-94),	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top right block
     {&COLLISION_12x12x1,            {FTOFIX19_13(-160), FTOFIX19_13(96), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // bottom left block
     {&COLLISION_12x12x1,            {FTOFIX19_13(160), 	FTOFIX19_13(96), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false}, // top right block
 

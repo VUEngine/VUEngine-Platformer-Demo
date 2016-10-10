@@ -29,7 +29,7 @@
 #include <EventManager.h>
 
 #include <objects.h>
-#include "Bandana.h"
+#include <Bandana.h>
 
 #include <PlatformerLevelState.h>
 
@@ -38,14 +38,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Bandana, AnimatedInGameEntity);
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Bandana_removeFromStage(Bandana this);
+__CLASS_DEFINITION(Bandana, Collectable);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -62,10 +55,7 @@ void Bandana_constructor(Bandana this, AnimatedInGameEntityDefinition* animatedI
 	ASSERT(this, "Bandana::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -78,36 +68,13 @@ void Bandana_destructor(Bandana this)
 	__DESTROY_BASE;
 }
 
-// state's handle message
-bool Bandana_handleMessage(Bandana this, Telegram telegram)
+void Bandana_collect(Bandana this)
 {
-	ASSERT(this, "Bandana::handleMessage: null this");
+	ASSERT(this, "Collectable::collect: null this");
 
-    extern const u16 COLLECT_SND[];
-
-	switch(Telegram_getMessage(telegram))
-    {
-		case kItemTaken:
-
-            SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
-            Shape_setActive(this->shape, false);
-            MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeBandana, NULL);
-            break;
-
-        case kTakeBandana:
-
-			Bandana_removeFromStage(this);
-			break;
-	}
-
-	return false;
-}
-
-void Bandana_removeFromStage(Bandana this)
-{
-	ASSERT(this, "Bandana::removeFromStage: null this");
-
+	// fire item taken event
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
 
-	Container_deleteMyself(__SAFE_CAST(Container, this));
+	// call base
+	Collectable_collect(__SAFE_CAST(Collectable, this));
 }

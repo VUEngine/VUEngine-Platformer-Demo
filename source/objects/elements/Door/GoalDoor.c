@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
@@ -26,7 +27,8 @@
 #include <PhysicalWorld.h>
 #include <Screen.h>
 #include <objects.h>
-#include "GoalDoor.h"
+#include <EventManager.h>
+#include <GoalDoor.h>
 #include <PlatformerLevelState.h>
 #include <LevelDoneScreenState.h>
 
@@ -119,6 +121,9 @@ bool GoalDoor_canEnter(GoalDoor this __attribute__ ((unused)))
 static void GoalDoor_onFadeOutComplete(GoalDoor this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "GoalDoor::onFadeOutComplete: null this");
+
+    // announce level completion
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventLevelCompleted);
 
     // switch to next screen
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState_getInstance()));

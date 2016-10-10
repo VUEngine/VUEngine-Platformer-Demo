@@ -52,32 +52,55 @@ __CLASS(ProgressManager);
         bool heroHasKey;																				\
         /* flag that tells if the hero has already used the current level's key */						\
         bool heroHasUsedKey;																			\
+        /* bitstring that holds collected item flags */													\
+        u16 collectedItems;																				\
+        /* time in current level */																		\
+        u32 currentLevelTime;																			\
+        /* bitstrings that hold collected coin flags */													\
+        u32 collectedCoins[2];																			\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define COIN_NAME_LENGTH		10
-#define STAGE_NAME_LENGTH		20
-#define SAVE_STAMP_LENGTH		20
-#define TOTAL_COINS_IN_GAME		64
-#define SAVE_STAMP				"GameSaved"
+#define COINS_PER_LEVEL							64
 
-typedef struct CoinStatus
+#define SAVE_STAMP								"VBJaEPlD"
+#define SAVE_STAMP_LENGTH						8
+
+typedef struct LevelStatus
 {
-	char name[COIN_NAME_LENGTH];
-	bool taken;
-} CoinStatus;
+	// flag that tells whether the level was ever completed
+	u8 levelCompleted;
 
+	// the best time the level was ever completed in
+	u32 bestTime;
+
+    // bitstrings that hold collected coin flags
+    // 0 = not collected, 1 = collected
+    u32 collectedCoins[2];
+
+} LevelStatus;
+
+// this struct is never instantiated, its sole purpose is to determine offsets of its members.
+// therefore it acts as kind of like a map of sram content.
 typedef struct UserData
 {
 	// flag to know if there is data saved
-	u32 saveStamp[SAVE_STAMP_LENGTH];
+	u8 saveStamp[SAVE_STAMP_LENGTH];
 
-	// number of coins
-	int numberOfCollectedCoins;
-	CoinStatus coinStatus[TOTAL_COINS_IN_GAME];
+	// active language id
+	u8 languageId;
+
+	// auto pause status (0: on, 1: off)
+	u8 autoPauseStatus;
+
+	// total number of collected coins
+	u16 numberOfCollectedCoins;
+
+	// completion statuses for every level in the game
+	LevelStatus levelStatuses[];
 
 } UserData;
 
@@ -91,13 +114,19 @@ ProgressManager ProgressManager_getInstance();
 void ProgressManager_destructor(ProgressManager this);
 void ProgressManager_reset(ProgressManager this);
 int ProgressManager_getNumberOfCollectedCoins(ProgressManager this);
-void ProgressManager_setNumberOfCollectedCoins(ProgressManager this, int numberOfCollectedCoins);
-bool ProgressManager_getCoinStatus(ProgressManager this, const char* coinName);
-bool ProgressManager_setCoinStatus(ProgressManager this, char* coinName, bool status);
+void ProgressManager_setTotalNumberOfCollectedCoins(ProgressManager this, int numberOfCollectedCoins);
+bool ProgressManager_getCoinStatus(ProgressManager this, u8 itemNumber);
+bool ProgressManager_setCoinStatus(ProgressManager this, u8 itemNumber, bool taken);
+bool ProgressManager_getItemStatus(ProgressManager this, u8 itemNumber);
+bool ProgressManager_setItemStatus(ProgressManager this, u8 itemNumber, bool taken);
 u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this);
 u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
 bool ProgressManager_heroHasKey(ProgressManager this);
 bool ProgressManager_heroHasUsedKey(ProgressManager this);
+u8 ProgressManager_getLanguage(ProgressManager this);
+void ProgressManager_setLanguage(ProgressManager this, u8 language);
+bool ProgressManager_getAutomaticPauseStatus(ProgressManager this);
+void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
 
 
 #endif

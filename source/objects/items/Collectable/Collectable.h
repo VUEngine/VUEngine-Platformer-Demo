@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HIDE_LAYER_H_
-#define HIDE_LAYER_H_
+#ifndef COLLECTABLE_H_
+#define COLLECTABLE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -27,43 +27,42 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												MACROS
-//---------------------------------------------------------------------------------------------------------
-
-#define HIDE_LAYER_OVERLAPPING_CHECK_DELAY  100
-
-
-//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define HideLayer_METHODS(ClassName)																	\
-	    AnimatedInGameEntity_METHODS(ClassName)															\
+#define Collectable_METHODS(ClassName)																	\
+	    AnimatedInGameEntity_METHODS(ClassName)														    \
+		__VIRTUAL_DEC(ClassName, void, collect);														\
 
-#define HideLayer_SET_VTABLE(ClassName)																	\
+#define Collectable_SET_VTABLE(ClassName)																\
         AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, HideLayer, handleMessage);												\
+        __VIRTUAL_SET(ClassName, Collectable, setExtraInfo);											\
+        __VIRTUAL_SET(ClassName, Collectable, handleMessage);											\
+        __VIRTUAL_SET(ClassName, Collectable, ready);													\
+        __VIRTUAL_SET(ClassName, Collectable, collect);													\
 
-__CLASS(HideLayer);
+__CLASS(Collectable);
 
-#define HideLayer_ATTRIBUTES																			\
+#define Collectable_ATTRIBUTES																			\
         /* it is derived from */																		\
         AnimatedInGameEntity_ATTRIBUTES																	\
-        /* is hide layer currently being overlapped by hero? */											\
-        bool currentlyOverlappingHero;																	\
+        /* the item's id number in the current stage */													\
+        u8 itemNumber;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(HideLayer, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Collectable, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
 
-void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
-void HideLayer_destructor(HideLayer this);
-bool HideLayer_handleMessage(HideLayer this, Telegram telegram);
-void HideLayer_setOverlapping(HideLayer this);
-bool HideLayer_isOverlapping(HideLayer this);
+void Collectable_constructor(Collectable this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Collectable_destructor(Collectable this);
+void Collectable_collect(Collectable this);
+bool Collectable_handleMessage(Collectable this, Telegram telegram);
+void Collectable_ready(Collectable this, u32 recursive);
+void Collectable_removeFromStage(Collectable this);
+void Collectable_setExtraInfo(Collectable this, void* extraInfo);
 
 
 #endif

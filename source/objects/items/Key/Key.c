@@ -39,14 +39,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Key, AnimatedInGameEntity);
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Key_removeFromStage(Key this);
+__CLASS_DEFINITION(Key, Collectable);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,10 +56,7 @@ void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	ASSERT(this, "Key::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -86,44 +76,20 @@ void Key_ready(Key this, u32 recursive)
 {
 	ASSERT(this, "Key::ready: null this");
 
-    AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+	// call base
+	Collectable_ready(__SAFE_CAST(Collectable, this), recursive);
 
     // add post processing effect to make key emit rhombuses
     Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
-// state's handle message
-bool Key_handleMessage(Key this, Telegram telegram)
+void Key_collect(Key this)
 {
-	ASSERT(this, "Key::handleMessage: null this");
+	ASSERT(this, "Key::collect: null this");
 
-    extern const u16 COLLECT_SND[];
-
-	switch(Telegram_getMessage(telegram))
-    {
-		case kItemTaken:
-
-            // play collect sound
-            SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
-
-            Shape_setActive(this->shape, false);
-            MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeKey, NULL);
-            break;
-
-        case kTakeKey:
-
-			Key_removeFromStage(this);
-			break;
-	}
-
-	return false;
-}
-
-void Key_removeFromStage(Key this)
-{
-	ASSERT(this, "Key::removeFromStage: null this");
-
+	// fire item taken event
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventKeyTaken);
 
-	Container_deleteMyself(__SAFE_CAST(Container, this));
+	// call base
+	Collectable_collect(__SAFE_CAST(Collectable, this));
 }

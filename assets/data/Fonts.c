@@ -36,6 +36,20 @@ extern BYTE FontLargeTiles[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
+/*
+CharSetROMDef PLATFORMER_DEFAULT_FONT_CH =
+{
+    // number of chars
+    (sizeof(FontDefaultTiles) >> 2),
+
+    // allocation type
+    __NOT_ANIMATED,
+
+    // char definition
+    FontDefaultTiles,
+};
+*/
+
 FontROMDef PLATFORMER_DEFAULT_FONT =
 {
     // font chars definition pointer

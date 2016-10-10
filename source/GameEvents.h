@@ -23,6 +23,7 @@
 
 #include <Events.h>
 
+
 //---------------------------------------------------------------------------------------------------------
 // 											 DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
@@ -41,6 +42,9 @@ enum GameEvents
     kEventKeyTaken,
     kEventPowerUp,
     kEventHeroDied,
+    kEventLevelStarted,
+    kEventLevelCompleted,
+
 };
 
 #endif

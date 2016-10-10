@@ -3,6 +3,6 @@
 
 #include <debugUtilities.h>
 
-#undef INVINCIBLE_JOHN
+#define GOD_MODE
 
 #endif

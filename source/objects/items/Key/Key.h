@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <Collectable.h>
 #include <macros.h>
 
 
@@ -31,19 +31,18 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Key_METHODS(ClassName)																			\
-	    AnimatedInGameEntity_METHODS(ClassName)														    \
-
+	Collectable_METHODS(ClassName)																		\
 
 #define Key_SET_VTABLE(ClassName)																		\
-        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, Key, handleMessage);													\
-        __VIRTUAL_SET(ClassName, Key, ready);													        \
+	Collectable_SET_VTABLE(ClassName)																	\
+	__VIRTUAL_SET(ClassName, Key, ready);																\
+	__VIRTUAL_SET(ClassName, Key, collect);																\
 
 __CLASS(Key);
 
 #define Key_ATTRIBUTES																					\
-        /* it is derived from */																		\
-        AnimatedInGameEntity_ATTRIBUTES																	\
+	/* it is derived from */																			\
+	Collectable_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,8 +54,7 @@ __CLASS_NEW_DECLARE(Key, AnimatedInGameEntityDefinition* animatedEntityDefinitio
 void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Key_destructor(Key this);
 void Key_ready(Key this, u32 recursive);
-bool Key_handleMessage(Key this, Telegram telegram);
-void Key_removeFromStage(Key this);
+void Key_collect(Key this);
 
 
 #endif

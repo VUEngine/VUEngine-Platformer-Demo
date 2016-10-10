@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <Collectable.h>
 #include <macros.h>
 
 
@@ -31,17 +31,18 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Coin_METHODS(ClassName)																			\
-    	AnimatedInGameEntity_METHODS(ClassName)															\
+    	Collectable_METHODS(ClassName)																	\
 
 #define Coin_SET_VTABLE(ClassName)																		\
-        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, Coin, handleMessage);													\
+        Collectable_SET_VTABLE(ClassName)																\
+        __VIRTUAL_SET(ClassName, Coin, ready);															\
+        __VIRTUAL_SET(ClassName, Coin, collect);														\
 
 __CLASS(Coin);
 
 #define Coin_ATTRIBUTES																					\
         /* it is derived from */																		\
-        AnimatedInGameEntity_ATTRIBUTES																	\
+        Collectable_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,8 +53,8 @@ __CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefiniti
 
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Coin_destructor(Coin this);
-bool Coin_handleMessage(Coin this, Telegram telegram);
-void Coin_removeFromStage(Coin this);
+void Coin_ready(Coin this, u32 recursive);
+void Coin_collect(Coin this);
 
 
 #endif

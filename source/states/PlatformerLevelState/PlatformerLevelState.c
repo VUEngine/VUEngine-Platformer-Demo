@@ -127,12 +127,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 	Game_disableKeypad(Game_getInstance());
 
-	// reset progress manager if this is a level start entry point
-	if(PlatformerLevelState_isStartingLevel(this))
-	{
-		ProgressManager_reset(ProgressManager_getInstance());
-	}
-
     // get list of entities that should not be loaded
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
 	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
@@ -450,7 +444,7 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 }
 
 // get current level's definition
-PlatformerLevelDefinition* PlatformerLevelState_getLevel(PlatformerLevelState this)
+PlatformerLevelDefinition* PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState this)
 {
 	return this->currentLevel;
 }
@@ -460,6 +454,9 @@ void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelD
 {
 	this->currentLevel = platformerLevelDefinition;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+
+    // announce level start
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventLevelStarted);
 
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }

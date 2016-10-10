@@ -212,7 +212,7 @@
 // 											CHAR MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
-// number of chars per char segment
+// the last 512 chars are used for text allocation
 #define __CHAR_SEGMENT_TOTAL_CHARS 				(2048 - 512)
 
 

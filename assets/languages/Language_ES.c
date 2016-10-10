@@ -34,7 +34,7 @@
  * form part of a valid UTF-8 byte sequence: £
  */
 
-const char* const spanishStrings[] =
+const char* const LANGUAGE_ES_STRINGS[] =
 {
     /* Splash Screens */
 
@@ -78,5 +78,5 @@ const LangROMDef LANGUAGE_ES =
     "Español",
 
     // Strings
-    (const char**)spanishStrings
+    (const char**)LANGUAGE_ES_STRINGS
 };
