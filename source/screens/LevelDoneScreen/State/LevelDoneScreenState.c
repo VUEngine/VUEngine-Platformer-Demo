@@ -112,7 +112,7 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ (
 {
 	ASSERT(this, "LevelDoneScreenState::print: null this");
 
-    u8 numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
+    u8 numberOfCollectedCoins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
 
     // "level completed/conquered"
     const char* strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_DONE);

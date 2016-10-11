@@ -978,12 +978,6 @@ u8 Hero_getPowerUp(Hero this)
 	return this->powerUp;
 }
 
-// get number of collected coins
-u8 Hero_getCoins(Hero this __attribute__ ((unused)))
-{
-	return ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
-}
-
 // get energy
 u8 Hero_getEnergy(Hero this)
 {

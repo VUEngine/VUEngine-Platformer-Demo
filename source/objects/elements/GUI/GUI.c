@@ -31,6 +31,7 @@
 #include "GUI.h"
 
 #include <PlatformerLevelState.h>
+#include <ProgressManager.h>
 #include <EventManager.h>
 
 
@@ -76,7 +77,7 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
 
     // add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, kEventHitTaken);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, kEventCoinTaken);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, kEventKeyTaken);
@@ -87,7 +88,7 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 void GUI_destructor(GUI this)
 {
     // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, kEventHitTaken);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, kEventCoinTaken);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, kEventKeyTaken);
@@ -114,13 +115,13 @@ void GUI_ready(GUI this, u32 recursive)
 // print elapsed time to gui
 void GUI_printClock(GUI this __attribute__ ((unused)))
 {
-	Clock_print(Game_getMessagingClock(Game_getInstance()), GUI_X_POS + 42, GUI_Y_POS, GUI_FONT);
+	Clock_print(PlatformerLevelState_getClock(PlatformerLevelState_getInstance()), GUI_X_POS + 42, GUI_Y_POS, GUI_FONT);
 }
 
 // print number of coins to gui
 void GUI_printCoins(GUI this __attribute__ ((unused)))
 {
-    u8 coins = Hero_getCoins(Hero_getInstance());
+    u8 coins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
 
     // bound to 64
     if(coins > 64)

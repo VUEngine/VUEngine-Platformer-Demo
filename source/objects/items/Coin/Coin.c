@@ -62,6 +62,7 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 // class's constructor
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
+/*
     // if coin has already been collected, only show silhouette representation
     if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
     {
@@ -74,6 +75,7 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
             animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
         }
     }
+    */
 
 	// construct base
 	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
@@ -93,7 +95,6 @@ void Coin_ready(Coin this, u32 recursive)
 	ASSERT(this, "Coin::ready: null this");
 
     // if coin has already been collected, show silhouette representation
-    /*
     if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
     {
 	    CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
@@ -105,7 +106,6 @@ void Coin_ready(Coin this, u32 recursive)
 	    CharSet_setCharSetDefinition(charSet, charSetDefinition);
 		CharSet_rewrite(charSet);
     }
-    */
 
 	// call base method to start animation
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
@@ -118,11 +118,6 @@ void Coin_collect(Coin this)
 	// "collect" coin if it wasn't already
     if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
     {
-        // increment the number of collected coins
-        int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
-        numberOfCollectedCoins++;
-        ProgressManager_setTotalNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
-
         // set coin status to taken
         ProgressManager_setCoinStatus(ProgressManager_getInstance(), this->itemNumber, true);
 

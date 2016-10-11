@@ -43,6 +43,7 @@ __CLASS_DEFINITION(ProgressManager, Object);
 static void ProgressManager_constructor(ProgressManager this);
 bool ProgressManager_verifySaveStamp(ProgressManager this);
 static void ProgressManager_initialize(ProgressManager this);
+static void ProgressManager_onSecondChange(ProgressManager this, Object eventFirer);
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
@@ -72,6 +73,7 @@ static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManag
     Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 
     // add event listeners
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
@@ -88,6 +90,7 @@ void ProgressManager_destructor(ProgressManager this)
     Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 
     // remove event listeners
+    Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
     Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
@@ -104,6 +107,7 @@ void ProgressManager_reset(ProgressManager this)
 	this->heroCurrentPowerUp = kPowerUpNone;
 	this->heroHasKey = false;
 	this->heroHasUsedKey = false;
+	this->currentLevelTime = 0;
 	this->collectedItems = 0;
 	this->collectedCoins[0] = 0;
 	this->collectedCoins[1] = 0;
@@ -134,11 +138,25 @@ static void ProgressManager_initialize(ProgressManager this __attribute__ ((unus
 	}
 }
 
-int ProgressManager_getNumberOfCollectedCoins(ProgressManager this __attribute__ ((unused)))
+u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getNumberOfCollectedCoins: null this");
 
-	int numberOfCollectedCoins;
+	u8 numberOfCollectedCoins = 0;
+	for(int i = 0; i < COINS_PER_LEVEL; i++)
+	{
+	    numberOfCollectedCoins += GET_BIT(this->collectedCoins[i >> 5], i);
+	}
+
+	return numberOfCollectedCoins;
+}
+
+
+u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this __attribute__ ((unused)))
+{
+	ASSERT(this, "ProgressManager::getNumberOfCollectedCoins: null this");
+
+	u16 numberOfCollectedCoins;
 	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct UserData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 	return numberOfCollectedCoins;
 }
@@ -271,23 +289,44 @@ void ProgressManager_loadLevelStatus(ProgressManager this, u8 levelId)
 
 	ProgressManager_reset(this);
 
-	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], offsetof(struct UserData, levelStatuses->collectedCoins[(levelId - 1)]), sizeof(this->collectedCoins[0]));
-	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[1], offsetof(struct UserData, levelStatuses->collectedCoins[(levelId - 1)]), sizeof(this->collectedCoins[1]));
+    u16 currentLevelOffset = offsetof(struct UserData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
+
+	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
+	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[1], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[1]), sizeof(this->collectedCoins[1]));
 }
 
 void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
 {
 	ASSERT(this, "ProgressManager::persistLevelStatus: null this");
 
-	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], offsetof(struct UserData, levelStatuses->collectedCoins[(levelId - 1)]), sizeof(this->collectedCoins[0]));
-	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], offsetof(struct UserData, levelStatuses->collectedCoins[(levelId - 1)]), sizeof(this->collectedCoins[0]));
+    u8 i = 0, numberOfCollectedCoins = 0, levelCompleted = 1;
+	u16 currentLevelOffset = 0, totalNumberOfCollectedCoins = 0;
+    u32 currentBestTime = 0;
 
-	u8 levelCompleted = 1;
-	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&levelCompleted, offsetof(struct UserData, levelStatuses->levelCompleted), sizeof(levelCompleted));
+    currentLevelOffset = offsetof(struct UserData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
 
-	// TODO: save best time
+	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
+	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[1], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[1]), sizeof(this->collectedCoins[1]));
 
-	ProgressManager_reset(this);
+	numberOfCollectedCoins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(this);
+	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
+
+	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
+
+ 	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&currentBestTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(currentBestTime));
+    if(!currentBestTime || (currentBestTime > this->currentLevelTime))
+    {
+	    SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->currentLevelTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelTime));
+    }
+
+    numberOfCollectedCoins = 0;
+    for(i = 0; i < LEVELS_IN_GAME; i++)
+    {
+        currentLevelOffset = offsetof(struct UserData, levelStatuses) + (i * sizeof(struct LevelStatus));
+        SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
+        totalNumberOfCollectedCoins += numberOfCollectedCoins;
+    }
+    ProgressManager_setTotalNumberOfCollectedCoins(this, totalNumberOfCollectedCoins);
 }
 
 // get hero's current energy
@@ -310,6 +349,18 @@ bool ProgressManager_heroHasKey(ProgressManager this)
 bool ProgressManager_heroHasUsedKey(ProgressManager this)
 {
 	return this->heroHasUsedKey;
+}
+
+// get current level time
+u32 ProgressManager_getCurrentLevelTime(ProgressManager this)
+{
+	return this->currentLevelTime;
+}
+
+// handle event
+static void ProgressManager_onSecondChange(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+{
+	this->currentLevelTime = Clock_getTime(PlatformerLevelState_getClock(PlatformerLevelState_getInstance()));
 }
 
 // handle event

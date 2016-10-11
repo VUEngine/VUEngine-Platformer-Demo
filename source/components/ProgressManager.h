@@ -65,6 +65,7 @@ __CLASS(ProgressManager);
 //---------------------------------------------------------------------------------------------------------
 
 #define COINS_PER_LEVEL							64
+#define LEVELS_IN_GAME							1
 
 #define SAVE_STAMP								"VBJaEPlD"
 #define SAVE_STAMP_LENGTH						8
@@ -73,6 +74,9 @@ typedef struct LevelStatus
 {
 	// flag that tells whether the level was ever completed
 	u8 levelCompleted;
+
+    // number of collected coins in this level
+    u8 numberOfCollectedCoins;
 
 	// the best time the level was ever completed in
 	u32 bestTime;
@@ -113,7 +117,8 @@ ProgressManager ProgressManager_getInstance();
 
 void ProgressManager_destructor(ProgressManager this);
 void ProgressManager_reset(ProgressManager this);
-int ProgressManager_getNumberOfCollectedCoins(ProgressManager this);
+u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this);
+u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this);
 void ProgressManager_setTotalNumberOfCollectedCoins(ProgressManager this, int numberOfCollectedCoins);
 bool ProgressManager_getCoinStatus(ProgressManager this, u8 itemNumber);
 bool ProgressManager_setCoinStatus(ProgressManager this, u8 itemNumber, bool taken);
@@ -121,6 +126,7 @@ bool ProgressManager_getItemStatus(ProgressManager this, u8 itemNumber);
 bool ProgressManager_setItemStatus(ProgressManager this, u8 itemNumber, bool taken);
 u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this);
 u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
+u32 ProgressManager_getCurrentLevelTime(ProgressManager this);
 bool ProgressManager_heroHasKey(ProgressManager this);
 bool ProgressManager_heroHasUsedKey(ProgressManager this);
 u8 ProgressManager_getLanguage(ProgressManager this);

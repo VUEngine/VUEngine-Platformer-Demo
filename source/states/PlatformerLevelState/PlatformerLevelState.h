@@ -53,6 +53,8 @@ __CLASS(PlatformerLevelState);
         StageEntryPointDefinition* currentStageEntryPoint;												\
         /* to allow moving the screen */																\
         u8 mode;																						\
+        /* in-game clock */																				\
+        Clock clock;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -139,6 +141,7 @@ enum PlatformerLevelStateMessageTypes
 
 PlatformerLevelState PlatformerLevelState_getInstance(void);
 
+Clock PlatformerLevelState_getClock(PlatformerLevelState this);
 PlatformerLevelDefinition* PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState this);
 void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition);
 void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);

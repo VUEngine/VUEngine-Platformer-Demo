@@ -87,6 +87,9 @@ static void __attribute__ ((noinline)) PlatformerLevelState_constructor(Platform
 {
 	__CONSTRUCT_BASE(GameState);
 
+	// clock
+	this->clock = __NEW(Clock);
+
 	// set default entry point
 	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
@@ -95,6 +98,8 @@ static void __attribute__ ((noinline)) PlatformerLevelState_constructor(Platform
 // class's destructor
 static void PlatformerLevelState_destructor(PlatformerLevelState this)
 {
+	__DELETE(this->clock);
+
 	// destroy base
 	__SINGLETON_DESTROY;
 }
@@ -125,6 +130,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 	Screen_setScreenEffectManager(Screen_getInstance(), __SAFE_CAST(ScreenEffectManager, CustomScreenEffectManager_getInstance()));
 
+    // disable user input
 	Game_disableKeypad(Game_getInstance());
 
     // get list of entities that should not be loaded
@@ -192,7 +198,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
                 Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
             }
 
-            // make sure that fucusing gets completed inmediatly
+            // make sure that focusing gets completed immediately
             CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
             CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager_getInstance());
 
@@ -225,9 +231,12 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// show up level after a little delay
 	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 
-	// reset clocks
+	// start clocks
+	Clock_start(this->clock);
+	Clock_setTimeInMilliSeconds(this->clock, ProgressManager_getCurrentLevelTime(ProgressManager_getInstance()));
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
+    // register event listeners
     Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
 
     // TODO: attach enduring effects to stages instead of doing it the hacky way as below
@@ -256,6 +265,9 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 {
+    // pause in-game clock
+    Clock_pause(this->messagingClock, true);
+
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
 
@@ -277,6 +289,9 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 {
+    // resume in-game clock
+    Clock_pause(this->messagingClock, false);
+
 	GameState_resume(__SAFE_CAST(GameState, this), owner);
 
 #ifdef __DEBUG_TOOLS
@@ -443,6 +458,12 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
     );
 }
 
+// get in-game clock
+Clock PlatformerLevelState_getClock(PlatformerLevelState this)
+{
+	return this->clock;
+}
+
 // get current level's definition
 PlatformerLevelDefinition* PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState this)
 {
@@ -504,15 +525,8 @@ static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelSta
     // erase level message in n milliseconds
     MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
 
-    // reset clock and restart
-    //Clock_reset(this->inGameClock);
-
     // tell any interested entity
     GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
-
-    // restart clock
-    // pause physical simulations
-    //GameState_startInGameClock(__SAFE_CAST(GameState, this));
 
     PlatformerLevelState_setModeToPlaying(this);
 

@@ -186,7 +186,7 @@ static void OverworldState_print(OverworldState this __attribute__ ((unused)))
 	ASSERT(this, "OverworldState::print: null this");
 
     // coins
-    u8 coins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
+    u8 coins = ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager_getInstance());
     Printing_int(Printing_getInstance(), coins, 4, 26, "GUIFont");
 
     // level name
