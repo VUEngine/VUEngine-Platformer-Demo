@@ -121,10 +121,11 @@ void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedK
 static void LangSelectScreenState_print(LangSelectScreenState this)
 {
 	// print header
-    const char* strLanguageSelect = I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT);
-    Size size = Printing_getTextSize(Printing_getInstance(), strLanguageSelect, "GUIFont");
+    const char* strLanguageSelectTitle = I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT);
+    const char* strLanguageSelectTitleFont = "GUIFont";
+    Size size = Printing_getTextSize(Printing_getInstance(), strLanguageSelectTitle, strLanguageSelectTitleFont);
     u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (size.x >> 1);
-    Printing_text(Printing_getInstance(), strLanguageSelect, strHeaderXPos, 8, "GUIFont");
+    Printing_text(Printing_getInstance(), strLanguageSelectTitle, strHeaderXPos, 8, strLanguageSelectTitleFont);
 
 	// print options
 	OptionsSelector_showOptions(this->languageSelector, strHeaderXPos, 9 + size.y);

@@ -48,7 +48,7 @@ CharSetROMDef PLATFORMER_LARGE_FONT_CH =
 FontROMDef PLATFORMER_LARGE_FONT =
 {
     // font charset definition pointer
-    (CharSetROMDef*)&PLATFORMER_LARGE_FONT_CH,
+    (CharSetDefinition*)&PLATFORMER_LARGE_FONT_CH,
 
     // character number at which the font starts, allows you to skip the control characters for example
     32,

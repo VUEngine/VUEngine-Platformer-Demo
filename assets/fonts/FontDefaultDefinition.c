@@ -49,7 +49,7 @@ CharSetROMDef PLATFORMER_DEFAULT_FONT_CH =
 FontROMDef PLATFORMER_DEFAULT_FONT =
 {
     // font charset definition pointer
-    (CharSetROMDef*)&PLATFORMER_DEFAULT_FONT_CH,
+    (CharSetDefinition*)&PLATFORMER_DEFAULT_FONT_CH,
 
     // character number at which the font starts, allows you to skip the control characters for example
     0,

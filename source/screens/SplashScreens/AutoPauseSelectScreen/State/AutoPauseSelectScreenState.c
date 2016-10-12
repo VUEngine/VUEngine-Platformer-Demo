@@ -85,13 +85,15 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 {
     this->selection = ProgressManager_getAutomaticPauseStatus(ProgressManager_getInstance());
 
-    const char* strAutomaticPause = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
+    const char* strAutomaticPauseTitle = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
+    const char* strAutomaticPauseTitleFont = "GUIFont";
+    Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
+
     const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION);
-    Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPause, "GUIFont");
     Size strAutomaticPauseExplanationSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseExplanation, NULL);
 
     u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseSize.x >> 1);
-    Printing_text(Printing_getInstance(), strAutomaticPause, strHeaderXPos, 8, "GUIFont");
+    Printing_text(Printing_getInstance(), strAutomaticPauseTitle, strHeaderXPos, 8, strAutomaticPauseTitleFont);
 
     u8 strExplanationXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseExplanationSize.x >> 1);
     Printing_text(Printing_getInstance(), strAutomaticPauseExplanation, strExplanationXPos, 9 + strAutomaticPauseSize.y, NULL);
@@ -107,49 +109,48 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
     // get strings and determine sizes
     Size strOnSize = Printing_getTextSize(Printing_getInstance(), strOn, NULL);
     Size strOffSize = Printing_getTextSize(Printing_getInstance(), strOff, NULL);
-    u8 optionsGap = 3;
-    u8 selectionStart = (48 - (strOnSize.x + optionsGap + strOffSize.x)) >> 1;
+    u8 selectionStart = (48 - (strOnSize.x + __OPTIONS_GAP + strOffSize.x)) >> 1;
 
     // clear options area
-    Printing_text(Printing_getInstance(), "                                                ", 0, 16, NULL);
-    Printing_text(Printing_getInstance(), "                                                ", 0, 17, NULL);
-    Printing_text(Printing_getInstance(), "                                                ", 0, 18, NULL);
+    Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS, NULL);
+    Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 1, NULL);
+    Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 2, NULL);
     if(strOnSize.y > 1) {
-        Printing_text(Printing_getInstance(), "                                                ", 0, 19, NULL);
+        Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 3, NULL);
         if(strOnSize.y > 2) {
-            Printing_text(Printing_getInstance(), "                                                ", 0, 20, NULL);
+            Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 4, NULL);
             if(strOnSize.y > 3) {
-                Printing_text(Printing_getInstance(), "                                                ", 0, 21, NULL);
+                Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 5, NULL);
             }
         }
     }
 
     // print options
-    Printing_text(Printing_getInstance(), strOn, selectionStart, 17, NULL);
-    Printing_text(Printing_getInstance(), strOff, selectionStart + 3 + strOnSize.x, 17, NULL);
+    Printing_text(Printing_getInstance(), strOn, selectionStart, __OPTIONS_Y_POS + 1, NULL);
+    Printing_text(Printing_getInstance(), strOff, selectionStart + 3 + strOnSize.x, __OPTIONS_Y_POS + 1, NULL);
 
     // print selector
-    u8 optionStart = this->selection ? selectionStart : selectionStart + optionsGap + strOnSize.x;
+    u8 optionStart = this->selection ? selectionStart : selectionStart + __OPTIONS_GAP + strOnSize.x;
     u8 optionEnd = this->selection ? optionStart + strOnSize.x : optionStart + strOffSize.x;
     optionStart--;
-    Printing_text(Printing_getInstance(), "\x03\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08", optionStart, 16, NULL);
-    Printing_text(Printing_getInstance(), "\x04               ", optionEnd, 16, NULL);
-    Printing_text(Printing_getInstance(), "\x07", optionStart, 17, NULL);
-    Printing_text(Printing_getInstance(), "\x07", optionEnd, 17, NULL);
+    Printing_text(Printing_getInstance(), "\x03\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08", optionStart, __OPTIONS_Y_POS, NULL);
+    Printing_text(Printing_getInstance(), "\x04               ", optionEnd, __OPTIONS_Y_POS, NULL);
+    Printing_text(Printing_getInstance(), "\x07", optionStart, __OPTIONS_Y_POS + 1, NULL);
+    Printing_text(Printing_getInstance(), "\x07", optionEnd, __OPTIONS_Y_POS + 1, NULL);
     if(strOnSize.y > 1) {
-        Printing_text(Printing_getInstance(), "\x07", optionStart, 18, NULL);
-        Printing_text(Printing_getInstance(), "\x07", optionEnd, 18, NULL);
+        Printing_text(Printing_getInstance(), "\x07", optionStart, __OPTIONS_Y_POS + 2, NULL);
+        Printing_text(Printing_getInstance(), "\x07", optionEnd, __OPTIONS_Y_POS + 2, NULL);
         if(strOnSize.y > 2) {
-            Printing_text(Printing_getInstance(), "\x07", optionStart, 19, NULL);
-            Printing_text(Printing_getInstance(), "\x07", optionEnd, 19, NULL);
+            Printing_text(Printing_getInstance(), "\x07", optionStart, __OPTIONS_Y_POS + 3, NULL);
+            Printing_text(Printing_getInstance(), "\x07", optionEnd, __OPTIONS_Y_POS + 3, NULL);
             if(strOnSize.y > 3) {
-                Printing_text(Printing_getInstance(), "\x07", optionStart, 20, NULL);
-                Printing_text(Printing_getInstance(), "\x07", optionEnd, 20, NULL);
+                Printing_text(Printing_getInstance(), "\x07", optionStart, __OPTIONS_Y_POS + 4, NULL);
+                Printing_text(Printing_getInstance(), "\x07", optionEnd, __OPTIONS_Y_POS + 4, NULL);
             }
         }
     }
-    Printing_text(Printing_getInstance(), "\x05\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08", optionStart, 17 + strOnSize.y, NULL);
-    Printing_text(Printing_getInstance(), "\x06               ", optionEnd, 17 + strOnSize.y, NULL);
+    Printing_text(Printing_getInstance(), "\x05\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08", optionStart, __OPTIONS_Y_POS + 1 + strOnSize.y, NULL);
+    Printing_text(Printing_getInstance(), "\x06               ", optionEnd, __OPTIONS_Y_POS + 1 + strOnSize.y, NULL);
 }
 
 void AutoPauseSelectScreenState_processInput(AutoPauseSelectScreenState this, u32 pressedKey)
