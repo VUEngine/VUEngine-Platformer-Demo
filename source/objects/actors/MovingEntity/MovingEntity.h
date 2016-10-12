@@ -93,6 +93,7 @@ __CLASS_NEW_DECLARE(MovingEntity, MovingEntityDefinition* MovingEntityDefinition
 
 void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name);
 void MovingEntity_destructor(MovingEntity this);
+void MovingEntity_setDefinition(MovingEntity this, MovingEntityDefinition* movingEntityDefinition);
 void MovingEntity_ready(MovingEntity this, u32 recursive);
 void MovingEntity_update(MovingEntity this, u32 elapsedTime);
 bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram);

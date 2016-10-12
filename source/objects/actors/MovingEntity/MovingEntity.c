@@ -94,6 +94,18 @@ void MovingEntity_destructor(MovingEntity this)
 	__DESTROY_BASE;
 }
 
+// set definition
+void MovingEntity_setDefinition(MovingEntity this, MovingEntityDefinition* movingEntityDefinition)
+{
+	ASSERT(this, "MovingEntity::setDefinition: null this");
+	ASSERT(movingEntityDefinition, "MovingEntity::setDefinition: null definition");
+
+	// save definition
+	this->movingEntityDefinition = movingEntityDefinition;
+
+	Actor_setDefinition(__SAFE_CAST(Actor, this), &movingEntityDefinition->actorDefinition);
+}
+
 // register a shape with the collision detection system
 static void MovingEntity_registerShape(MovingEntity this)
 {
