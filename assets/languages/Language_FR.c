@@ -69,6 +69,8 @@ const char* const LANGUAGE_FR_STRINGS[] =
     "Niveau conquis!",
     //STR_LEVEL_1_NAME:
     "Woohoo Hills",
+    //STR_NEW_BEST:
+    "Set Record!",
 };
 
 const LangROMDef LANGUAGE_FR =

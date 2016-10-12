@@ -89,6 +89,9 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __
 	// disable user input
     Game_disableKeypad(Game_getInstance());
 
+	// start clocks to start animations
+	GameState_startClocks(__SAFE_CAST(GameState, this));
+
     // fade in screen
     Screen_startEffect(Screen_getInstance(),
         kFadeTo, // effect type
@@ -125,9 +128,20 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ (
     Printing_text(Printing_getInstance(), strLevelDone, strHeaderXPos, 9, "GUIFont");
 
     // number of coins
-    Printing_text(Printing_getInstance(), "x   /64", 22, 13, NULL);
-    u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 25 : 24;
+    Printing_text(Printing_getInstance(), "00/64", 22, 13, NULL);
+    u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
     Printing_int(Printing_getInstance(), numberOfCollectedCoins, numberPrintPos, 13, NULL);
+
+	// print time
+    Clock inGameClock = PlatformerLevelState_getClock(PlatformerLevelState_getInstance());
+	Clock_print(inGameClock, 22, 15, NULL);
+
+	// if new best time, print label (do not if first time beating level)
+	u32 bestTime = ProgressManager_getCurrentLevelBestTime(ProgressManager_getInstance());
+	if(Clock_getTime(inGameClock) < bestTime)
+	{
+		Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_BEST), 22, 16, NULL);
+	}
 }
 
 // state's handle message

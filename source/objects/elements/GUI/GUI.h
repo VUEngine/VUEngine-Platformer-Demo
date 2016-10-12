@@ -64,6 +64,7 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 void GUI_destructor(GUI this);
 void GUI_ready(GUI this, u32 recursive);
 void GUI_printClock(GUI this);
+void GUI_printBestTime(GUI this);
 void GUI_printCoins(GUI this);
 void GUI_printEnergy(GUI this);
 void GUI_printKey(GUI this);

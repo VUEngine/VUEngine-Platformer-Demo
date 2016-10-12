@@ -38,9 +38,10 @@
 #define ProgressManager_SET_VTABLE(ClassName)															\
     	Object_SET_VTABLE(ClassName)																	\
 
-// declare a ProgressManager
+// declare class
 __CLASS(ProgressManager);
 
+// declare class attributes
 #define ProgressManager_ATTRIBUTES																		\
         /* super's attributes */																		\
         Object_ATTRIBUTES																				\
@@ -56,6 +57,8 @@ __CLASS(ProgressManager);
         u16 collectedItems;																				\
         /* time in current level */																		\
         u32 currentLevelTime;																			\
+        /* best time in current level */																\
+        u32 currentLevelBestTime;																		\
         /* bitstrings that hold collected coin flags */													\
         u32 collectedCoins[2];																			\
 
@@ -63,9 +66,6 @@ __CLASS(ProgressManager);
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
-
-#define COINS_PER_LEVEL							64
-#define LEVELS_IN_GAME							1
 
 #define SAVE_STAMP								"VBJaEPlD"
 #define SAVE_STAMP_LENGTH						8
@@ -89,7 +89,7 @@ typedef struct LevelStatus
 
 // this struct is never instantiated, its sole purpose is to determine offsets of its members.
 // therefore it acts as kind of like a map of sram content.
-typedef struct UserData
+typedef struct SaveData
 {
 	// flag to know if there is data saved
 	u8 saveStamp[SAVE_STAMP_LENGTH];
@@ -104,9 +104,9 @@ typedef struct UserData
 	u16 numberOfCollectedCoins;
 
 	// completion statuses for every level in the game
-	LevelStatus levelStatuses[];
+	LevelStatus levelStatuses[LEVELS_IN_GAME];
 
-} UserData;
+} SaveData;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -116,22 +116,23 @@ typedef struct UserData
 ProgressManager ProgressManager_getInstance();
 
 void ProgressManager_destructor(ProgressManager this);
-void ProgressManager_reset(ProgressManager this);
-u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this);
-u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this);
-void ProgressManager_setTotalNumberOfCollectedCoins(ProgressManager this, int numberOfCollectedCoins);
+bool ProgressManager_getAutomaticPauseStatus(ProgressManager this);
 bool ProgressManager_getCoinStatus(ProgressManager this, u8 itemNumber);
-bool ProgressManager_setCoinStatus(ProgressManager this, u8 itemNumber, bool taken);
+u32  ProgressManager_getCurrentLevelBestTime(ProgressManager this);
+u8   ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this);
+u32  ProgressManager_getCurrentLevelTime(ProgressManager this);
+u8   ProgressManager_getHeroCurrentEnergy(ProgressManager this);
+u8   ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
 bool ProgressManager_getItemStatus(ProgressManager this, u8 itemNumber);
+u16  ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this);
+bool ProgressManager_setCoinStatus(ProgressManager this, u8 itemNumber, bool taken);
 bool ProgressManager_setItemStatus(ProgressManager this, u8 itemNumber, bool taken);
-u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this);
-u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
-u32 ProgressManager_getCurrentLevelTime(ProgressManager this);
+void ProgressManager_setTotalNumberOfCollectedCoins(ProgressManager this, u16 numberOfCollectedCoins);
 bool ProgressManager_heroHasKey(ProgressManager this);
 bool ProgressManager_heroHasUsedKey(ProgressManager this);
-u8 ProgressManager_getLanguage(ProgressManager this);
+void ProgressManager_resetCurrentLevelProgress(ProgressManager this);
+u8   ProgressManager_getLanguage(ProgressManager this);
 void ProgressManager_setLanguage(ProgressManager this, u8 language);
-bool ProgressManager_getAutomaticPauseStatus(ProgressManager this);
 void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
 
 

@@ -69,6 +69,8 @@ const char* const LANGUAGE_DE_STRINGS[] =
     "Level gemeistert!",
     //STR_LEVEL_1_NAME:
     "Woohoo-Berge",
+    //STR_NEW_BEST:
+    "Neue Bestleistung!",
 };
 
 const LangROMDef LANGUAGE_DE =

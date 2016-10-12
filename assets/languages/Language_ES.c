@@ -70,6 +70,8 @@ const char* const LANGUAGE_ES_STRINGS[] =
     "¡Nivel conquistado!",
     //STR_LEVEL_1_NAME:
     "Woohoo Hills",
+    //STR_NEW_BEST:
+    "Conjunto de récord",
 };
 
 const LangROMDef LANGUAGE_ES =
