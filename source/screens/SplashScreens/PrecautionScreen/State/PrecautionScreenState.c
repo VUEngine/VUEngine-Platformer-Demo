@@ -26,10 +26,11 @@
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
 #include <I18n.h>
+#include <SoundManager.h>
 #include <PrecautionScreenState.h>
 #include <AdjustmentScreenState.h>
 #include <Languages.h>
- #include <debugUtilities.h>
+#include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -37,6 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef EMPTY_ST;
+extern const u16 COLLECT_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -83,27 +85,33 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 	switch(Telegram_getMessage(telegram))
 	{
 		case kScreenStarted:
+			{
+	            // play start-up sound
+	            VBVec3D position = {0, 0, 0};
+				SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, position);
 
-            // wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual
-            Game_wait(Game_getInstance(), 3000);
+	            // wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual
+	            Game_wait(Game_getInstance(), 3000);
 
-			// start fade in effect
-			Screen_startEffect(Screen_getInstance(),
-			    kFadeTo, // effect type
-			    0, // initial delay (in ms)
-			    NULL, // target brightness
-			    __FADE_DELAY, // delay between fading steps (in ms)
-			    NULL, // callback function
-			    NULL // callback scope
-			);
+				// start fade in effect
+				Screen_startEffect(Screen_getInstance(),
+				    kFadeTo, // effect type
+				    0, // initial delay (in ms)
+				    NULL, // target brightness
+				    __FADE_DELAY, // delay between fading steps (in ms)
+				    NULL, // callback function
+				    NULL // callback scope
+				);
 
-            // show this screen for at least 2 seconds, as defined by Nintendo in the official development manual (Appendix 1)
-            MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
+	            // show this screen for at least 2 seconds, as defined by Nintendo in the official development manual (Appendix 1)
+	            MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
+            }
 			break;
 
 		case kScreenAllowUserInput:
-
-            Game_enableKeypad(Game_getInstance());
+			{
+                Game_enableKeypad(Game_getInstance());
+            }
 			break;
 
 		case kKeyPressed:

@@ -177,7 +177,7 @@
 	__BLOCK_DEFINITION(88, 80)																			\
 	__BLOCK_DEFINITION(76, 10)																			\
 	__BLOCK_DEFINITION(68, 58)																			\
-	__BLOCK_DEFINITION(32, 10)																			\
+	__BLOCK_DEFINITION(32, 12)																			\
 	__BLOCK_DEFINITION(28, 200)																			\
 	__BLOCK_DEFINITION(24, 100)																			\
 	__BLOCK_DEFINITION(20, 670)																			\
