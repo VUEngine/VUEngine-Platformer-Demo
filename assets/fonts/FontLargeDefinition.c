@@ -14,7 +14,6 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef __CUSTOM_FONTS
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
@@ -27,8 +26,6 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FontDefaultTiles[];
-extern BYTE FontGUITiles[];
 extern BYTE FontLargeTiles[];
 
 
@@ -36,63 +33,22 @@ extern BYTE FontLargeTiles[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-/*
-CharSetROMDef PLATFORMER_DEFAULT_FONT_CH =
+CharSetROMDef PLATFORMER_LARGE_FONT_CH =
 {
     // number of chars
-    (sizeof(FontDefaultTiles) >> 2),
+    256,
 
     // allocation type
     __NOT_ANIMATED,
 
     // char definition
-    FontDefaultTiles,
-};
-*/
-
-FontROMDef PLATFORMER_DEFAULT_FONT =
-{
-    // font chars definition pointer
-    FontDefaultTiles,
-
-	// number of characters in font
-    256,
-
-    // character number at which the font starts, allows you to skip the control characters for example
-    0,
-
-	// size of a single character (in chars) ({width, height})
-    {1, 1},
-
-	// font's name
-    "DefaultFont",
-};
-
-FontROMDef PLATFORMER_GUI_FONT =
-{
-    // font chars definition pointer
-    FontGUITiles,
-
-	// number of characters in font
-    96,
-
-    // character number at which the font starts, allows you to skip the control characters for example
-    32,
-
-	// size of a single character (in chars) ({width, height})
-    {1, 2},
-
-	// font's name
-    "GUIFont",
-};
-
-const FontROMDef PLATFORMER_LARGE_FONT =
-{
-    // font chars definition pointer
     FontLargeTiles,
+};
 
-	// number of characters in font
-    64,
+FontROMDef PLATFORMER_LARGE_FONT =
+{
+    // font charset definition pointer
+    (CharSetROMDef*)&PLATFORMER_LARGE_FONT_CH,
 
     // character number at which the font starts, allows you to skip the control characters for example
     32,
@@ -103,14 +59,3 @@ const FontROMDef PLATFORMER_LARGE_FONT =
 	// font's name
     "LargeFont",
 };
-
-FontROMDef* const __FONTS[] =
-{
-    &PLATFORMER_DEFAULT_FONT,
-    &PLATFORMER_GUI_FONT,
-    //&PLATFORMER_LARGE_FONT,
-    NULL
-};
-
-
-#endif

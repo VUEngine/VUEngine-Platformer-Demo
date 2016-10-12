@@ -180,7 +180,7 @@
 	__BLOCK_DEFINITION(32, 12)																			\
 	__BLOCK_DEFINITION(28, 200)																			\
 	__BLOCK_DEFINITION(24, 100)																			\
-	__BLOCK_DEFINITION(20, 670)																			\
+	__BLOCK_DEFINITION(20, 680)																			\
 	__BLOCK_DEFINITION(16, 460)						    												\
 
 
@@ -212,15 +212,15 @@
 // 											CHAR MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
-// the last 512 chars are used for text allocation
-#define __CHAR_SEGMENT_TOTAL_CHARS 				(2048 - 512)
+// total number of available chars in char memory
+#define __CHAR_MEMORY_TOTAL_CHARS 				2048
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											SPRITE MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
-// total number of layers (basically the number of Worlds)
+// total number of layers (basically the number of worlds)
 #define __TOTAL_LAYERS							32
 
 
@@ -386,14 +386,6 @@
 // the automatic pause state is not pushed until there is only one state in the game's stack.
 // the following defines the time between checks whether the condition is met (in milliseconds)
 #define __AUTO_PAUSE_RECHECK_DELAY				(60 * 1000)
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												FONTS
-//---------------------------------------------------------------------------------------------------------
-
-// when this is defined, custom fonts are loaded instead of the default one
-#define __CUSTOM_FONTS
 
 
 //---------------------------------------------------------------------------------------------------------

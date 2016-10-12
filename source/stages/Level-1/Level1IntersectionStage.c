@@ -24,6 +24,7 @@
 #include <PlatformerLevelState.h>
 #include <Languages.h>
 #include <VIPManager.h>
+#include <Fonts.h>
 
 #include <objects.h>
 #include <sound.h>
@@ -124,6 +125,9 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_ST_UI_CHILDREN[] =
 
 CharSetROMDef* const LEVEL_1_INTERSECTION_ST_CHARSETS[] =
 {
+	&PLATFORMER_DEFAULT_FONT_CH,
+	&PLATFORMER_GUI_FONT_CH,
+
 	&LEVEL_1_INTERSECTION_BACK_CH,
 	&LEVEL_1_INTERSECTION_MAIN_BACK_CH,
 	&LEVEL_1_INTERSECTION_MAIN_CH,

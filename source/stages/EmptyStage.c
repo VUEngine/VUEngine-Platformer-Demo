@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <Fonts.h>
 #include <Stage.h>
 #include <VIPManager.h>
 
@@ -35,6 +36,19 @@ PositionedEntityROMDef EMPTY_ST_CHILDREN[] =
 PositionedEntityROMDef EMPTY_ST_UI_CHILDREN[] =
 {
 	{NULL, {0,0,0}, NULL, NULL, NULL, false}
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 											PRELOAD LISTS
+//---------------------------------------------------------------------------------------------------------
+
+CharSetROMDef* const EMPTY_ST_CHARSETS[] =
+{
+	// fonts
+	&PLATFORMER_DEFAULT_FONT_CH,
+	&PLATFORMER_GUI_FONT_CH,
+	&PLATFORMER_LARGE_FONT_CH,
 };
 
 StageTextureEntryROMDef EMPTY_ST_TEXTURES[] =
@@ -199,7 +213,7 @@ StageROMDef EMPTY_ST =
     // assets
     {
         // char sets to preload
-        (CharSetDefinition**)NULL,
+        (CharSetDefinition**)EMPTY_ST_CHARSETS,
 
         // textures to preload
         (StageTextureEntryDefinition*)EMPTY_ST_TEXTURES,
