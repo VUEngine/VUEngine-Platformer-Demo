@@ -38,7 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define HideLayer_METHODS(ClassName)																	\
-	    AnimatedInGameEntity_METHODS(ClassName)														\
+	    AnimatedInGameEntity_METHODS(ClassName)															\
 
 #define HideLayer_SET_VTABLE(ClassName)																	\
         AnimatedInGameEntity_SET_VTABLE(ClassName)														\

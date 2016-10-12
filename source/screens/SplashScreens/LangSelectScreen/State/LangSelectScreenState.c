@@ -28,6 +28,7 @@
 #include <TitleScreenState.h>
 #include <Languages.h>
 #include <KeyPadManager.h>
+#include <ProgressManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,7 +61,6 @@ __SINGLETON_DYNAMIC(LangSelectScreenState);
 // 												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSelectScreenState this)
 {
 	__CONSTRUCT_BASE(SplashScreenState);
@@ -68,10 +68,11 @@ static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSel
 	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
 
-    u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
-	this->languageSelector = OptionsSelector_new(1, 8, "\xB", kString);
+	// create options selector and populate with language names
+	this->languageSelector = __NEW(OptionsSelector, 1, 8, "\xB", kString);
+	VirtualList languageNames = __NEW(VirtualList);
 
-	VirtualList languageNames = VirtualList_new();
+    u8 activeLanguage = ProgressManager_getLanguage(ProgressManager_getInstance());
 
 	int i = 0;
 	for(; __LANGUAGES[i]; i++)
@@ -80,13 +81,13 @@ static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSel
 		VirtualList_pushBack(languageNames, I18n_getActiveLanguageName(I18n_getInstance()));
 	}
 
-	I18n_setActiveLanguage(I18n_getInstance(), activeLanguage);
-
     OptionsSelector_setOptions(this->languageSelector, languageNames);
 	__DELETE(languageNames);
+
+	I18n_setActiveLanguage(I18n_getInstance(), activeLanguage);
+    OptionsSelector_setSelectedOption(this->languageSelector, activeLanguage);
 }
 
-// class's destructor
 static void LangSelectScreenState_destructor(LangSelectScreenState this)
 {
 	if(this->languageSelector)
@@ -110,20 +111,22 @@ void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedK
 	}
 	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-	    I18n_setActiveLanguage(I18n_getInstance(), OptionsSelector_getSelectedOption(this->languageSelector));
+		int selectedLanguage = OptionsSelector_getSelectedOption(this->languageSelector);
+	    I18n_setActiveLanguage(I18n_getInstance(), selectedLanguage);
+	    ProgressManager_setLanguage(ProgressManager_getInstance(), selectedLanguage);
 	    SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
 	}
 }
 
 static void LangSelectScreenState_print(LangSelectScreenState this)
 {
+	// print header
     const char* strLanguageSelect = I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT);
     Size size = Printing_getTextSize(Printing_getInstance(), strLanguageSelect, "GUIFont");
-
     u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (size.x >> 1);
-
     Printing_text(Printing_getInstance(), strLanguageSelect, strHeaderXPos, 8, "GUIFont");
 
+	// print options
 	OptionsSelector_showOptions(this->languageSelector, strHeaderXPos, 9 + size.y);
 }
 

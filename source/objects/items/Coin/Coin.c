@@ -48,14 +48,7 @@ extern AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG;
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Coin, AnimatedInGameEntity);
-
-
-//---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Coin_removeFromStage(Coin this);
+__CLASS_DEFINITION(Coin, Collectable);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -69,12 +62,9 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 // class's constructor
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
+/*
     // if coin has already been collected, only show silhouette representation
-    if(
-        //&COIN_SILHOUETTE_AG == animatedInGameEntityDefinition ||
-        //&COIN_BACK_SILHOUETTE_AG == animatedInGameEntityDefinition ||
-        ProgressManager_getCoinStatus(ProgressManager_getInstance(), name)
-    )
+    if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
     {
         if((AnimatedInGameEntityDefinition*)&COIN_BACK_AG == animatedInGameEntityDefinition)
         {
@@ -85,12 +75,10 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
             animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
         }
     }
+    */
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
-
-	// register a shape for collision detection
-    this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -101,50 +89,39 @@ void Coin_destructor(Coin this)
 	__DESTROY_BASE;
 }
 
-// state's handle message
-bool Coin_handleMessage(Coin this, Telegram telegram)
+// ready method
+void Coin_ready(Coin this, u32 recursive)
 {
-	ASSERT(this, "Coin::handleMessage: null this");
+	ASSERT(this, "Coin::ready: null this");
 
-    extern const u16 COLLECT_SND[];
-
-	switch(Telegram_getMessage(telegram))
+    // if coin has already been collected, show silhouette representation
+    if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
     {
-		case kItemTaken:
+	    CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
 
-            // play collect sound
-            SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+	    CharSetDefinition* charSetDefinition = (CharSet_getCharSetDefinition(charSet) == &COIN_BACK_CH)
+			? &COIN_BACK_SILHOUETTE_CH
+			: &COIN_SILHOUETTE_CH;
 
-            Shape_setActive(this->shape, false);
-            MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kTakeCoin, NULL);
-            break;
+	    CharSet_setCharSetDefinition(charSet, charSetDefinition);
+		CharSet_rewrite(charSet);
+    }
 
-        case kTakeCoin:
-
-			Coin_removeFromStage(this);
-			break;
-	}
-
-	return false;
+	// call base method to start animation
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 }
 
-void Coin_removeFromStage(Coin this)
+void Coin_collect(Coin this)
 {
-	ASSERT(this, "Coin::removeFromStage: null this");
+	ASSERT(this, "Collectable::collect: null this");
 
-    if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, this))))
+	// "collect" coin if it wasn't already
+    if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
     {
-        // increment the number of collected coins
-        int numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
-        numberOfCollectedCoins++;
-        ProgressManager_setNumberOfCollectedCoins(ProgressManager_getInstance(), numberOfCollectedCoins);
-
         // set coin status to taken
-        ProgressManager_setCoinStatus(ProgressManager_getInstance(), Container_getName(__SAFE_CAST(Container, this)), true);
+        ProgressManager_setCoinStatus(ProgressManager_getInstance(), this->itemNumber, true);
 
         // fire "taken" event
         Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);
     }
-
-	Container_deleteMyself(__SAFE_CAST(Container, this));
 }

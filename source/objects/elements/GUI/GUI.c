@@ -31,6 +31,7 @@
 #include "GUI.h"
 
 #include <PlatformerLevelState.h>
+#include <ProgressManager.h>
 #include <EventManager.h>
 
 
@@ -76,7 +77,7 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, name);
 
     // add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, kEventHitTaken);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, kEventCoinTaken);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, kEventKeyTaken);
@@ -87,7 +88,7 @@ void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEnt
 void GUI_destructor(GUI this)
 {
     // remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)GUI_onSecondChange, kEventSecondChanged);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onHitTaken, kEventHitTaken);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onCoinTaken, kEventCoinTaken);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)GUI_onKeyTaken, kEventKeyTaken);
@@ -106,21 +107,36 @@ void GUI_ready(GUI this, u32 recursive)
 	Entity_ready(__SAFE_CAST(Entity, this), recursive);
 
 	// initially print gui
-	// GUI_printAll calls GUI_updateSprite, which modifies Sprites. These are not yet available in the entity's
-	// construction phase, so we need to utilize the ready method.
     GUI_printAll(this);
 }
 
 // print elapsed time to gui
 void GUI_printClock(GUI this __attribute__ ((unused)))
 {
-	Clock_print(Game_getMessagingClock(Game_getInstance()), GUI_X_POS + 42, GUI_Y_POS, GUI_FONT);
+	Clock_print(PlatformerLevelState_getClock(PlatformerLevelState_getInstance()), GUI_X_POS + 36, GUI_Y_POS, GUI_FONT);
+}
+
+// print best time to gui
+void GUI_printBestTime(GUI this __attribute__ ((unused)))
+{
+	u32 bestTime = ProgressManager_getCurrentLevelBestTime(ProgressManager_getInstance());
+
+	if(bestTime)
+	{
+		Clock clock = __NEW(Clock);
+		Clock_setTimeInMilliSeconds(clock, bestTime);
+		Clock_print(clock, GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
+	}
+	else
+	{
+		Printing_text(Printing_getInstance(), "--:--", GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
+	}
 }
 
 // print number of coins to gui
 void GUI_printCoins(GUI this __attribute__ ((unused)))
 {
-    u8 coins = Hero_getCoins(Hero_getInstance());
+    u8 coins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
 
     // bound to 64
     if(coins > 64)
@@ -152,19 +168,19 @@ void GUI_printKey(GUI this __attribute__ ((unused)))
 {
     if(Hero_hasKey(Hero_getInstance()))
     {
-	    Printing_text(Printing_getInstance(), "\x7E\x7F", GUI_X_POS + 24, GUI_Y_POS, GUI_FONT);
+	    Printing_text(Printing_getInstance(), "\x7E\x7F", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
     }
     else
     {
-	    Printing_text(Printing_getInstance(), "  ", GUI_X_POS + 24, GUI_Y_POS, GUI_FONT);
+	    Printing_text(Printing_getInstance(), "  ", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
     }
 }
 
 // print current level to gui
 void GUI_printLevel(GUI this __attribute__ ((unused)))
 {
-    PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getLevel(PlatformerLevelState_getInstance());
-	Printing_text(Printing_getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 35, GUI_Y_POS, GUI_FONT);
+    PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+	Printing_text(Printing_getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 29, GUI_Y_POS, GUI_FONT);
 }
 
 // update sprite, e.g. after collecting a power-up
@@ -195,8 +211,12 @@ void GUI_updateSprite(GUI this)
 // print current level to gui
 void GUI_printAll(GUI this)
 {
+	// calls GUI_updateSprite, which modifies Sprites. These are not yet available in the entity's
+	// construction phase, so we need to utilize the ready method.
 	GUI_updateSprite(this);
+
 	GUI_printClock(this);
+	GUI_printBestTime(this);
 	GUI_printCoins(this);
 	GUI_printEnergy(this);
 	GUI_printKey(this);
@@ -206,6 +226,16 @@ void GUI_printAll(GUI this)
 // handle event
 static void GUI_onSecondChange(GUI this, Object eventFirer __attribute__ ((unused)))
 {
+#ifdef __DEBUG_TOOLS
+	if(!Game_isInSpecialMode(Game_getInstance()))
+#endif
+#ifdef __STAGE_EDITOR
+	if(!Game_isInSpecialMode(Game_getInstance()))
+#endif
+#ifdef __ANIMATION_EDITOR
+	if(!Game_isInSpecialMode(Game_getInstance()))
+#endif
+
 	GUI_printClock(this);
 }
 

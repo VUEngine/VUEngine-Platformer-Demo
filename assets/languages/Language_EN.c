@@ -34,8 +34,7 @@
  * form part of a valid UTF-8 byte sequence: £
  */
 
-const char* const englishStrings[] =
-// Strings
+const char* const LANGUAGE_EN_STRINGS[] =
 {
     /* Splash Screens */
 
@@ -70,6 +69,8 @@ const char* const englishStrings[] =
     "Level Conquered!",
     //STR_LEVEL_1_NAME:
     "Woohoo Hills",
+    //STR_NEW_BEST:
+    "New Best!",
 };
 
 const LangROMDef LANGUAGE_EN =
@@ -78,5 +79,5 @@ const LangROMDef LANGUAGE_EN =
     "English",
 
     // Strings
-    (const char**)englishStrings
+    (const char**)LANGUAGE_EN_STRINGS
 };

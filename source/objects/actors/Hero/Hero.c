@@ -261,6 +261,10 @@ void Hero_jump(Hero this, bool checkIfYMovement)
         // determine the maximum number of possible jumps before reaching ground again
 	    u32 allowedNumberOfJumps = (this->powerUp == kPowerUpBandana) ? 2 : 1;
 
+#ifdef GOD_MODE
+    allowedNumberOfJumps = 999999999;
+#endif
+
         // check if more jumps are allowed
 		if(this->jumps < allowedNumberOfJumps)
         {
@@ -596,7 +600,7 @@ void Hero_updateSurroundingFriction(Hero this)
 
 void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
-#ifdef INVINCIBLE_JOHN
+#ifdef GOD_MODE
     return;
 #endif
 
@@ -972,12 +976,6 @@ void Hero_updateSprite(Hero this)
 u8 Hero_getPowerUp(Hero this)
 {
 	return this->powerUp;
-}
-
-// get number of collected coins
-u8 Hero_getCoins(Hero this __attribute__ ((unused)))
-{
-	return ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
 }
 
 // get energy

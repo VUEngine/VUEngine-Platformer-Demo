@@ -46,7 +46,7 @@ DUMP_ELF                = 0
 # Since only 8KB of SRAM is available on real carts, more than that will only work on emulators.
 # To make effective any change to these options, the whole project needs to be recompiled.
 # DRAM can be used as WRAM too, you must edit the linker script vb.ld to accommodate this
-# taking into account that the Param Table's last address normally is 0x0003D800, were
+# taking into account that the Param Table's last address normally is 0x0003D800, where
 # the WORLD attributes start.
 
 # valid options are [/.bss/.sbss/.dram_bss/.sram_bss]

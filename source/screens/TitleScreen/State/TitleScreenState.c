@@ -271,8 +271,9 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
                     __SAFE_CAST(Object, this) // callback scope
                 );
 			}
-		}
+
 			break;
+		}
 	}
 
 	return false;
@@ -308,6 +309,6 @@ static void TitleScreenState_onFadeOutComplete(TitleScreenState this __attribute
 {
 	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
 
-    // swtich to next screen
+    // switch to next screen
     Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }

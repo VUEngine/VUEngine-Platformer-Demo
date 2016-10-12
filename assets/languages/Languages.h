@@ -49,6 +49,7 @@ enum LanguageStrings
     STR_LEVEL_DONE,
     STR_LEVEL_CONQUERED,
     STR_LEVEL_1_NAME,
+    STR_NEW_BEST,
 };
 
 

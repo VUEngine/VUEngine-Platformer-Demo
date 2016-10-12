@@ -19,6 +19,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
@@ -26,7 +27,8 @@
 #include <PhysicalWorld.h>
 #include <Screen.h>
 #include <objects.h>
-#include "GoalDoor.h"
+#include <EventManager.h>
+#include <GoalDoor.h>
 #include <PlatformerLevelState.h>
 #include <LevelDoneScreenState.h>
 
@@ -36,6 +38,13 @@
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(GoalDoor, Door);
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+static void GoalDoor_onFadeOutComplete(GoalDoor this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -80,13 +89,24 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 	switch(Telegram_getMessage(telegram))
     {
 		case kHeroEnterDoor:
+		{
+		    // disable user input
+            Game_disableKeypad(Game_getInstance());
 
-            // make a fade out
-            Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
+		    // fade out screen
+            Brightness brightness = (Brightness){0, 0, 0};
+            Screen_startEffect(Screen_getInstance(),
+                kFadeTo, // effect type
+                0, // initial delay (in ms)
+                &brightness, // target brightness
+                __FADE_DELAY, // delay between fading steps (in ms)
+                (void (*)(Object, Object))GoalDoor_onFadeOutComplete, // callback function
+                __SAFE_CAST(Object, this) // callback scope
+            );
 
-			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState_getInstance()));
 			return true;
 			break;
+		}
 	}
 
 	return Door_handleMessage(__SAFE_CAST(Door, this), telegram);
@@ -95,4 +115,16 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 bool GoalDoor_canEnter(GoalDoor this __attribute__ ((unused)))
 {
 	return true;
+}
+
+// handle event
+static void GoalDoor_onFadeOutComplete(GoalDoor this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "GoalDoor::onFadeOutComplete: null this");
+
+    // announce level completion
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventLevelCompleted);
+
+    // switch to next screen
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState_getInstance()));
 }

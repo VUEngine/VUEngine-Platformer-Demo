@@ -22,6 +22,11 @@
 // 												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
+// general
+#define COINS_PER_LEVEL							64
+#define LEVELS_IN_GAME							1
+
+// layers
 #define LAYER_INCREMENT		32
 #define SORT_INCREMENT		0.001f
 #define LAYER_0 			1
@@ -45,10 +50,12 @@
 #define LAYER_2_DOORS		LAYER_2 - (SORT_INCREMENT * 4)
 #define LAYER_2_FOREGROUND	LAYER_2 - (SORT_INCREMENT * 4)
 
+// physics
 #define NO_FRICTION 		0
 #define FLOOR_FRICTION 		150.0f
 #define FLOOR_ELASTICITY 	1.0f
 
+// entity collision types
 enum PlatformerTypes
 {
 	kHero = 1,
@@ -71,13 +78,6 @@ enum PlatformerTypes
 	kCannonBallStartMoving,
 	kMovingPlatform,
 	kMovingEntityStartMoving,
-};
-
-enum GameWorldModes
-{
-	kPlaying = 1,
-	kShowingUp,
-	kPaused,
 };
 
 

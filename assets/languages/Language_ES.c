@@ -34,7 +34,7 @@
  * form part of a valid UTF-8 byte sequence: £
  */
 
-const char* const spanishStrings[] =
+const char* const LANGUAGE_ES_STRINGS[] =
 {
     /* Splash Screens */
 
@@ -43,7 +43,8 @@ const char* const spanishStrings[] =
     //STR_PRECAUTION_SCREEN_TEXT:
     "     Lea los libros de\n\nInstrucciones y precauciones\n\n       antes de jugar",
     //STR_AUTOMATIC_PAUSE:
-    "Pausa Automática",
+    //"Pausa Automática",
+    "Pausa Automatica",
     //STR_AUTOMATIC_PAUSE_EXPLANATION:
     " La función automática de pausa le\nrecordará que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
     //STR_AUTOMATIC_PAUSE_TEXT:
@@ -69,6 +70,8 @@ const char* const spanishStrings[] =
     "¡Nivel conquistado!",
     //STR_LEVEL_1_NAME:
     "Woohoo Hills",
+    //STR_NEW_BEST:
+    "Conjunto de récord",
 };
 
 const LangROMDef LANGUAGE_ES =
@@ -77,5 +80,5 @@ const LangROMDef LANGUAGE_ES =
     "Español",
 
     // Strings
-    (const char**)spanishStrings
+    (const char**)LANGUAGE_ES_STRINGS
 };

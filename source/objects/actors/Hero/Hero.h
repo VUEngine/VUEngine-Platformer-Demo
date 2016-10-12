@@ -136,7 +136,6 @@ void Hero_collectKey(Hero this);
 bool Hero_hasKey(Hero this);
 void Hero_collectPowerUp(Hero this, u8 powerUp);
 u8 Hero_getPowerUp(Hero this);
-u8 Hero_getCoins(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);

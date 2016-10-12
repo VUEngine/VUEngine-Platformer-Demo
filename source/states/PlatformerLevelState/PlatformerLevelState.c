@@ -63,8 +63,9 @@ void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onFadeOutComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
 
@@ -86,6 +87,9 @@ static void __attribute__ ((noinline)) PlatformerLevelState_constructor(Platform
 {
 	__CONSTRUCT_BASE(GameState);
 
+	// clock
+	this->clock = __NEW(Clock);
+
 	// set default entry point
 	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
@@ -94,6 +98,8 @@ static void __attribute__ ((noinline)) PlatformerLevelState_constructor(Platform
 // class's destructor
 static void PlatformerLevelState_destructor(PlatformerLevelState this)
 {
+	__DELETE(this->clock);
+
 	// destroy base
 	__SINGLETON_DESTROY;
 }
@@ -124,13 +130,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
 	Screen_setScreenEffectManager(Screen_getInstance(), __SAFE_CAST(ScreenEffectManager, CustomScreenEffectManager_getInstance()));
 
+    // disable user input
 	Game_disableKeypad(Game_getInstance());
-
-	// reset progress manager if this is a level start entry point
-	if(PlatformerLevelState_isStartingLevel(this))
-	{
-		ProgressManager_reset(ProgressManager_getInstance());
-	}
 
     // get list of entities that should not be loaded
 	VirtualList entityNamesToIgnore = __NEW(VirtualList);
@@ -197,7 +198,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
                 Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
             }
 
-            // make sure that fucusing gets completed inmediatly
+            // make sure that focusing gets completed immediately
             CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
             CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager_getInstance());
 
@@ -230,9 +231,12 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// show up level after a little delay
 	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 
-	// reset clocks
+	// start clocks
+	Clock_start(this->clock);
+	Clock_setTimeInMilliSeconds(this->clock, ProgressManager_getCurrentLevelTime(ProgressManager_getInstance()));
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
+    // register event listeners
     Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
 
     // TODO: attach enduring effects to stages instead of doing it the hacky way as below
@@ -261,6 +265,9 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 {
+    // pause in-game clock
+    Clock_pause(this->messagingClock, true);
+
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
 
@@ -282,6 +289,9 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 {
+    // resume in-game clock
+    Clock_pause(this->messagingClock, false);
+
 	GameState_resume(__SAFE_CAST(GameState, this), owner);
 
 #ifdef __DEBUG_TOOLS
@@ -362,7 +372,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
                 0, // initial delay (in ms)
                 NULL, // target brightness
                 __FADE_DELAY, // delay between fading steps (in ms)
-                (void (*)(Object, Object))PlatformerLevelState_onFadeInComplete, // callback function
+                (void (*)(Object, Object))PlatformerLevelState_onLevelStartedFadeInComplete, // callback function
                 __SAFE_CAST(Object, this) // callback scope
             );
 
@@ -436,18 +446,26 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 	// unset the hero as focus entity from the custom screen movement manager
 	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
 
-    // fade out
-    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
+    // start a fade out effect
+    Brightness brightness = (Brightness){0, 0, 0};
+    Screen_startEffect(Screen_getInstance(),
+        kFadeTo, // effect type
+        0, // initial delay (in ms)
+        &brightness, // target brightness
+        __FADE_DELAY, // delay between fading steps (in ms)
+        (void (*)(Object, Object))PlatformerLevelState_onHeroDiedFadeOutComplete, // callback function
+        __SAFE_CAST(Object, this) // callback scope
+    );
+}
 
-    // go to overworld
-    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
-
-    // reset progress
-    ProgressManager_reset(ProgressManager_getInstance());
+// get in-game clock
+Clock PlatformerLevelState_getClock(PlatformerLevelState this)
+{
+	return this->clock;
 }
 
 // get current level's definition
-PlatformerLevelDefinition* PlatformerLevelState_getLevel(PlatformerLevelState this)
+PlatformerLevelDefinition* PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState this)
 {
 	return this->currentLevel;
 }
@@ -457,6 +475,9 @@ void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelD
 {
 	this->currentLevel = platformerLevelDefinition;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+
+    // announce level start
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventLevelStarted);
 
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }
@@ -473,7 +494,7 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
         0, // initial delay (in ms)
         &brightness, // target brightness
         __FADE_DELAY, // delay between fading steps (in ms)
-        (void (*)(Object, Object))PlatformerLevelState_onFadeOutComplete, // callback function
+        (void (*)(Object, Object))PlatformerLevelState_onEnterStageFadeOutComplete, // callback function
         __SAFE_CAST(Object, this) // callback scope
     );
 }
@@ -497,22 +518,15 @@ void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this)
 }
 
 // handle event
-static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
+static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::onFadeInComplete: null this");
+	ASSERT(this, "PlatformerLevelState::onLevelStartedFadeInComplete: null this");
 
     // erase level message in n milliseconds
     MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
 
-    // reset clock and restart
-    //Clock_reset(this->inGameClock);
-
     // tell any interested entity
     GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
-
-    // restart clock
-    // pause physical simulations
-    //GameState_startInGameClock(__SAFE_CAST(GameState, this));
 
     PlatformerLevelState_setModeToPlaying(this);
 
@@ -524,9 +538,18 @@ static void PlatformerLevelState_onFadeInComplete(PlatformerLevelState this, Obj
 }
 
 // handle event
-static void PlatformerLevelState_onFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::onFadeOutComplete: null this");
+	ASSERT(this, "PlatformerLevelState::onEnterStageFadeOutComplete: null this");
 
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
+}
+
+// handle event
+static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "PlatformerLevelState::onEnterStageFadeOutComplete: null this");
+
+	// go to overworld
+    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }

@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <Collectable.h>
 #include <macros.h>
 
 
@@ -31,18 +31,17 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Bandana_METHODS(ClassName)																		\
-	    AnimatedInGameEntity_METHODS(ClassName)														    \
-
+	    Collectable_METHODS(ClassName)														    		\
 
 #define Bandana_SET_VTABLE(ClassName)																	\
-        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, Bandana, handleMessage);												\
+        Collectable_SET_VTABLE(ClassName)																\
+        __VIRTUAL_SET(ClassName, Bandana, collect);														\
 
 __CLASS(Bandana);
 
 #define Bandana_ATTRIBUTES																				\
         /* it is derived from */																		\
-        AnimatedInGameEntity_ATTRIBUTES																	\
+        Collectable_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,8 +52,7 @@ __CLASS_NEW_DECLARE(Bandana, AnimatedInGameEntityDefinition* animatedEntityDefin
 
 void Bandana_constructor(Bandana this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
 void Bandana_destructor(Bandana this);
-bool Bandana_handleMessage(Bandana this, Telegram telegram);
-void Bandana_removeFromStage(Bandana this);
+void Bandana_collect(Bandana this);
 
 
 #endif

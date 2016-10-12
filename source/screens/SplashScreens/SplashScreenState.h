@@ -35,6 +35,7 @@ enum SplashScreensMessageTypes
 	kScreenAllowUserInput
 };
 
+
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
@@ -55,7 +56,6 @@ enum SplashScreensMessageTypes
         __VIRTUAL_SET(ClassName, SplashScreenState, processMessage);                                    \
         __VIRTUAL_SET(ClassName, SplashScreenState, processInput);										\
         __VIRTUAL_SET(ClassName, SplashScreenState, print);												\
-
 
 __CLASS(SplashScreenState);
 

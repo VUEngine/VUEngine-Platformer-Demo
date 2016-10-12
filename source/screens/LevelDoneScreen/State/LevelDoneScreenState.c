@@ -45,6 +45,8 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner);
 static void LevelDoneScreenState_print(LevelDoneScreenState this);
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner);
 static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this, void* owner, Telegram telegram);
+static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this, Object eventFirer);
+static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,24 +77,35 @@ static void LevelDoneScreenState_destructor(LevelDoneScreenState this)
 // state's enter
 static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
+	// call base
+	GameState_enter(__SAFE_CAST(GameState, this), owner);
+
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_DONE_SCREEN_ST, NULL, true);
 
+	// print stats
 	LevelDoneScreenState_print(this);
 
-	ProgressManager_reset(ProgressManager_getInstance());
+	// disable user input
+    Game_disableKeypad(Game_getInstance());
 
-    Game_enableKeypad(Game_getInstance());
+	// start clocks to start animations
+	GameState_startClocks(__SAFE_CAST(GameState, this));
 
-    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
+    // fade in screen
+    Screen_startEffect(Screen_getInstance(),
+        kFadeTo, // effect type
+        0, // initial delay (in ms)
+        NULL, // target brightness
+        __FADE_DELAY, // delay between fading steps (in ms)
+        (void (*)(Object, Object))LevelDoneScreenState_onFadeInComplete, // callback function
+        __SAFE_CAST(Object, this) // callback scope
+    );
 }
 
 // state's exit
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
-	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
-
 	// destroy the state
 	__DELETE(this);
 }
@@ -102,7 +115,7 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ (
 {
 	ASSERT(this, "LevelDoneScreenState::print: null this");
 
-    u8 numberOfCollectedCoins = ProgressManager_getNumberOfCollectedCoins(ProgressManager_getInstance());
+    u8 numberOfCollectedCoins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
 
     // "level completed/conquered"
     const char* strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_DONE);
@@ -115,9 +128,20 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ (
     Printing_text(Printing_getInstance(), strLevelDone, strHeaderXPos, 9, "GUIFont");
 
     // number of coins
-    Printing_text(Printing_getInstance(), "x   /64", 22, 13, NULL);
-    u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 25 : 24;
+    Printing_text(Printing_getInstance(), "00/64", 22, 13, NULL);
+    u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
     Printing_int(Printing_getInstance(), numberOfCollectedCoins, numberPrintPos, 13, NULL);
+
+	// print time
+    Clock inGameClock = PlatformerLevelState_getClock(PlatformerLevelState_getInstance());
+	Clock_print(inGameClock, 22, 15, NULL);
+
+	// if new best time, print label (do not if first time beating level)
+	u32 bestTime = ProgressManager_getCurrentLevelBestTime(ProgressManager_getInstance());
+	if(Clock_getTime(inGameClock) < bestTime)
+	{
+		Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_BEST), 22, 16, NULL);
+	}
 }
 
 // state's handle message
@@ -127,11 +151,42 @@ static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this __attr
 	switch(Telegram_getMessage(telegram))
     {
 		case kKeyPressed:
+		{
+		    // disable user input
+            Game_disableKeypad(Game_getInstance());
 
-            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+		    // fade out screen
+            Brightness brightness = (Brightness){0, 0, 0};
+            Screen_startEffect(Screen_getInstance(),
+                kFadeTo, // effect type
+                0, // initial delay (in ms)
+                &brightness, // target brightness
+                __FADE_DELAY, // delay between fading steps (in ms)
+                (void (*)(Object, Object))LevelDoneScreenState_onFadeOutComplete, // callback function
+                __SAFE_CAST(Object, this) // callback scope
+            );
+
 			return true;
 			break;
+		}
 	}
 
 	return false;
+}
+
+// handle event
+static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
+
+    Game_enableKeypad(Game_getInstance());
+}
+
+// handle event
+static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
+
+    // switch to next screen
+    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }
