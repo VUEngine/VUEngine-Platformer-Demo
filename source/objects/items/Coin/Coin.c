@@ -62,21 +62,6 @@ __CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
 // class's constructor
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
-/*
-    // if coin has already been collected, only show silhouette representation
-    if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
-    {
-        if((AnimatedInGameEntityDefinition*)&COIN_BACK_AG == animatedInGameEntityDefinition)
-        {
-            animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_BACK_SILHOUETTE_AG;
-        }
-        else
-        {
-            animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
-        }
-    }
-    */
-
 	// construct base
 	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
 }
@@ -89,26 +74,29 @@ void Coin_destructor(Coin this)
 	__DESTROY_BASE;
 }
 
-// ready method
-void Coin_ready(Coin this, u32 recursive)
+// setExtraInfo method
+void Coin_setExtraInfo(Coin this, void* extraInfo)
 {
-	ASSERT(this, "Coin::ready: null this");
+	ASSERT(this, "Coin::setExtraInfo: null this");
+
+	Collectable_setExtraInfo(__SAFE_CAST(Collectable, this), extraInfo);
 
     // if coin has already been collected, show silhouette representation
     if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
     {
-	    CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
+        AnimatedInGameEntityDefinition* animatedInGameEntityDefinition = this->animatedInGameEntityDefinition;
 
-	    CharSetDefinition* charSetDefinition = (CharSet_getCharSetDefinition(charSet) == &COIN_BACK_CH)
-			? &COIN_BACK_SILHOUETTE_CH
-			: &COIN_SILHOUETTE_CH;
+        if((AnimatedInGameEntityDefinition*)&COIN_BACK_AG == animatedInGameEntityDefinition)
+        {
+            animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_BACK_SILHOUETTE_AG;
+        }
+        else
+        {
+            animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
+        }
 
-	    CharSet_setCharSetDefinition(charSet, charSetDefinition);
-		CharSet_rewrite(charSet);
+        AnimatedInGameEntity_setDefinition(__SAFE_CAST(AnimatedInGameEntity, this), animatedInGameEntityDefinition);
     }
-
-	// call base method to start animation
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 }
 
 void Coin_collect(Coin this)
