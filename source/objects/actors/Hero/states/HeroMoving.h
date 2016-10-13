@@ -40,8 +40,8 @@
         __VIRTUAL_SET(ClassName, HeroMoving, enter);													\
         __VIRTUAL_SET(ClassName, HeroMoving, processMessage);                           				\
         __VIRTUAL_SET(ClassName, HeroMoving, onKeyPressed);	                                            \
-        __VIRTUAL_SET(ClassName, HeroMoving, onKeyReleased);	                                            \
-        __VIRTUAL_SET(ClassName, HeroMoving, onKeyHold);	                                                \
+        __VIRTUAL_SET(ClassName, HeroMoving, onKeyReleased);	                                        \
+        __VIRTUAL_SET(ClassName, HeroMoving, onKeyHold);	                                            \
 
 #define HeroMoving_ATTRIBUTES																			\
         /* inherits */																					\

@@ -92,9 +92,6 @@ void HeroIdle_exit(HeroIdle this, void* owner __attribute__ ((unused)))
 {
     // discard pending delayed messages
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroSleep);
-
-	// destroy the state
-	__DELETE(this);
 }
 
 // state's handle message
