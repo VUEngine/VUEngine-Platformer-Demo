@@ -223,14 +223,16 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_CHILDREN[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
+FontROMDef* const LEVEL_1_TOWER_ST_FONTS[] =
+{
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+
+	NULL
+};
+
 CharSetROMDef* const LEVEL_1_TOWER_ST_CHARSETS[] =
 {
-	&PLATFORMER_DEFAULT_FONT_CH,
-	&PLATFORMER_GUI_FONT_CH,
-
-	&LEVEL_1_TOWER_BACK_1_CH,
-	&LEVEL_1_TOWER_MAIN_BACK_CH,
-	&LEVEL_1_TOWER_MAIN_CH,
 	NULL
 };
 
@@ -246,6 +248,7 @@ StageTextureEntryROMDef LEVEL_1_TOWER_ST_TEXTURES[] =
 	{&GUI_TX, false},
 	{&LAVA_TX, false},
 	{&LAVA_TOP_TX, false},
+
 	{NULL, false}
 };
 
@@ -409,6 +412,9 @@ StageROMDef LEVEL_1_TOWER_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)LEVEL_1_TOWER_ST_FONTS,
+
         // char sets to preload
         (CharSetDefinition**)LEVEL_1_TOWER_ST_CHARSETS,
 

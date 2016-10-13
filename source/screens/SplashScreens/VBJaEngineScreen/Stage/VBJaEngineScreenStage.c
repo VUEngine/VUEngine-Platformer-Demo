@@ -21,6 +21,7 @@
 
 #include <Stage.h>
 #include <VIPManager.h>
+#include <Fonts.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,6 +46,19 @@ PositionedEntityROMDef VBJAENGINE_SCREEN_ST_CHILDREN[] =
 {
 	{&VBJAENGINE_BG_IM,         {FTOFIX19_13(0),    FTOFIX19_13(92),    FTOFIX19_13(64)}, NULL, NULL, NULL, true},
 	{NULL,{0,0,0}, NULL, NULL, NULL, false},
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												PRELOAD LISTS
+//---------------------------------------------------------------------------------------------------------
+
+FontROMDef* const VBJAENGINE_SCREEN_ST_FONTS[] =
+{
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+
+	NULL
 };
 
 
@@ -204,11 +218,14 @@ StageROMDef VBJAENGINE_SCREEN_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)VBJAENGINE_SCREEN_ST_FONTS,
+
         // char sets to preload
-        NULL,
+        (CharSetDefinition**)NULL,
 
         // textures to preload
-        NULL,
+        (StageTextureEntryDefinition*)NULL,
 
         // background music
         NULL,

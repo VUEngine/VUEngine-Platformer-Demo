@@ -25,6 +25,7 @@
 #include <PauseScreenState.h>
 #include <screens.h>
 #include <VIPManager.h>
+#include <Fonts.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,6 +61,19 @@ PositionedEntityROMDef PAUSE_SCREEN_ST_UI_CHILDREN[] =
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
 
+
+//---------------------------------------------------------------------------------------------------------
+// 												PRELOAD LISTS
+//---------------------------------------------------------------------------------------------------------
+
+FontROMDef* const PAUSE_SCREEN_ST_FONTS[] =
+{
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+
+	NULL
+};
+
 StageTextureEntryROMDef PAUSE_SCREEN_ST_TEXTURES[] =
 {
 	{&VBJAENGINE_TX, false},
@@ -67,6 +81,7 @@ StageTextureEntryROMDef PAUSE_SCREEN_ST_TEXTURES[] =
 	{&LOGO_R_TX, false},
 	{&LOGO_OUTLINE_L_TX, false},
 	{&LOGO_OUTLINE_R_TX, false},
+
 	{NULL, false}
 };
 
@@ -233,6 +248,9 @@ StageROMDef PAUSE_SCREEN_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)PAUSE_SCREEN_ST_FONTS,
+
         // char sets to preload
         (CharSetDefinition**)NULL,
 

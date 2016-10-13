@@ -24,6 +24,7 @@
 #include <PlatformerLevelState.h>
 #include <TitleScreenState.h>
 #include <VIPManager.h>
+#include <Fonts.h>
 #include <objects.h>
 #include <screens.h>
 #include <sound.h>
@@ -89,6 +90,19 @@ PositionedEntityROMDef TITLE_SCREEN_ST_UI_CHILDREN[] =
 	{&GUI_BLANK_IM,			{FTOFIX19_13(192), 	FTOFIX19_13(208), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{&GUI_BLANK_IM,			{FTOFIX19_13(192), 	FTOFIX19_13(216), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												PRELOAD LISTS
+//---------------------------------------------------------------------------------------------------------
+
+FontROMDef* const TITLE_SCREEN_ST_FONTS[] =
+{
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+
+	NULL
 };
 
 StageTextureEntryROMDef TITLE_SCREEN_ST_TEXTURES[] =
@@ -257,8 +271,11 @@ StageROMDef TITLE_SCREEN_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)TITLE_SCREEN_ST_FONTS,
+
         // char sets to preload
-        NULL,
+        (CharSetDefinition**)NULL,
 
         // textures to preload
         (StageTextureEntryDefinition*)TITLE_SCREEN_ST_TEXTURES,

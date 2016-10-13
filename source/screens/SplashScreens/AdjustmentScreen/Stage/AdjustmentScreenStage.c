@@ -21,6 +21,7 @@
 
 #include <Stage.h>
 #include <VIPManager.h>
+#include <Fonts.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -47,6 +48,19 @@ PositionedEntityROMDef ADJUSTMENT_SCREEN_ST_CHILDREN[] =
 	{&ADJUSTMENT_SCREEN_ICON_IM_R,  {FTOFIX19_13(8),	FTOFIX19_13(216), 	FTOFIX19_13(0)},    NULL, NULL, NULL, true},
 
 	{NULL,{0,0,0}, NULL, NULL, NULL, false},
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												PRELOAD LISTS
+//---------------------------------------------------------------------------------------------------------
+
+FontROMDef* const ADJUSTMENT_SCREEN_ST_FONTS[] =
+{
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+
+	NULL
 };
 
 
@@ -206,6 +220,9 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)ADJUSTMENT_SCREEN_ST_FONTS,
+
         // char sets to preload
         (CharSetDefinition**)NULL,
 

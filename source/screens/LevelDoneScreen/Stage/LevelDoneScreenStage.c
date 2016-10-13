@@ -25,6 +25,7 @@
 #include <LevelDoneScreenState.h>
 #include <screens.h>
 #include <VIPManager.h>
+#include <Fonts.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +45,19 @@ PositionedEntityROMDef LEVEL_DONE_SCREEN_ST_CHILDREN[] =
 PositionedEntityROMDef LEVEL_DONE_SCREEN_ST_UI_CHILDREN[] =
 {
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												PRELOAD LISTS
+//---------------------------------------------------------------------------------------------------------
+
+FontROMDef* const LEVEL_DONE_SCREEN_ST_FONTS[] =
+{
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+
+	NULL
 };
 
 
@@ -206,6 +220,9 @@ StageROMDef LEVEL_DONE_SCREEN_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)LEVEL_DONE_SCREEN_ST_FONTS,
+
         // char sets to preload
         (CharSetDefinition**)NULL,
 

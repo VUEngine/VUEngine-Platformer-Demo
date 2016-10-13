@@ -77,7 +77,6 @@ TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
     2,
 };
 
-
 TextureROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES[] =
 {
 	(TextureDefinition*)&LEVEL_1_MAIN_1_BACK_5_TX,

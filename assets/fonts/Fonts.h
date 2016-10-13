@@ -30,10 +30,6 @@
 // 											  DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern CharSetDefinition PLATFORMER_DEFAULT_FONT_CH;
-extern CharSetDefinition PLATFORMER_GUI_FONT_CH;
-extern CharSetDefinition PLATFORMER_LARGE_FONT_CH;
-
 extern FontDefinition PLATFORMER_DEFAULT_FONT;
 extern FontDefinition PLATFORMER_GUI_FONT;
 extern FontDefinition PLATFORMER_LARGE_FONT;

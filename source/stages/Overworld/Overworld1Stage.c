@@ -23,6 +23,7 @@
 #include <PlatformerLevelState.h>
 #include <OverworldState.h>
 #include <VIPManager.h>
+#include <Fonts.h>
 
 #include <objects.h>
 #include <screens.h>
@@ -60,6 +61,19 @@ PositionedEntityROMDef OVERWORLD_1_ST_UI_CHILDREN[] =
 	{&GUI_OVERWORLD_AG,		{FTOFIX19_13(192), 	FTOFIX19_13(216), 	FTOFIX19_13(0)}, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												PRELOAD LISTS
+//---------------------------------------------------------------------------------------------------------
+
+FontROMDef* const OVERWORLD_1_ST_FONTS[] =
+{
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+
+	NULL
 };
 
 StageTextureEntryROMDef OVERWORLD_1_ST_TEXTURES[] =
@@ -228,8 +242,11 @@ StageROMDef OVERWORLD_1_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)OVERWORLD_1_ST_FONTS,
+
         // char sets to preload
-        NULL,
+        (CharSetDefinition**)NULL,
 
         // textures to preload
         (StageTextureEntryDefinition*)OVERWORLD_1_ST_TEXTURES,

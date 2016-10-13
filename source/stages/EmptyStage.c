@@ -43,12 +43,13 @@ PositionedEntityROMDef EMPTY_ST_UI_CHILDREN[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef* const EMPTY_ST_CHARSETS[] =
+FontROMDef* const EMPTY_ST_FONTS[] =
 {
-	// fonts
-	&PLATFORMER_DEFAULT_FONT_CH,
-	&PLATFORMER_GUI_FONT_CH,
-	&PLATFORMER_LARGE_FONT_CH,
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+	&PLATFORMER_LARGE_FONT,
+
+	NULL
 };
 
 StageTextureEntryROMDef EMPTY_ST_TEXTURES[] =
@@ -212,8 +213,11 @@ StageROMDef EMPTY_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)EMPTY_ST_FONTS,
+
         // char sets to preload
-        (CharSetDefinition**)EMPTY_ST_CHARSETS,
+        (CharSetDefinition**)NULL,
 
         // textures to preload
         (StageTextureEntryDefinition*)EMPTY_ST_TEXTURES,

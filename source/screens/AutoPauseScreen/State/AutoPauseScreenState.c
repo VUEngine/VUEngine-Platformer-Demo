@@ -99,6 +99,9 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __
 // state's exit
 static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
+	// call base
+	GameState_exit(__SAFE_CAST(GameState, this), owner);
+
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
 }

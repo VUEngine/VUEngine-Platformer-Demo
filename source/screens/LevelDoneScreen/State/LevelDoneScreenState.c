@@ -106,6 +106,9 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __
 // state's exit
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
+	// call base
+	GameState_exit(__SAFE_CAST(GameState, this), owner);
+
 	// destroy the state
 	__DELETE(this);
 }

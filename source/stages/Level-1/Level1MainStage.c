@@ -346,11 +346,16 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_CHILDREN[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
+FontROMDef* const LEVEL_1_MAIN_ST_FONTS[] =
+{
+	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_GUI_FONT,
+
+	NULL
+};
+
 CharSetROMDef* const LEVEL_1_MAIN_ST_CHARSETS[] =
 {
-	&PLATFORMER_DEFAULT_FONT_CH,
-	&PLATFORMER_GUI_FONT_CH,
-
 	&LEVEL_1_MAIN_1_MAIN_CH,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
 	&LEVEL_1_MAIN_1_MAIN_BACK_CH,
@@ -373,7 +378,8 @@ CharSetROMDef* const LEVEL_1_MAIN_ST_CHARSETS[] =
 	&HERO_BANDANA_CH,
 	&CANNON_CH,
     &CANNON_BALL_CH,
-	NULL,
+
+	NULL
 };
 
 StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
@@ -407,6 +413,7 @@ StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 	{&CANNON_TX, false},
 	{&CANNON_BALL_TX, false},
 	{&KEY_TX, false},
+
 	{NULL, false}
 };
 
@@ -570,6 +577,9 @@ StageROMDef LEVEL_1_MAIN_ST =
 
     // assets
     {
+        // fonts to preload
+        (FontDefinition**)LEVEL_1_MAIN_ST_FONTS,
+
         // char sets to preload
         (CharSetDefinition**)LEVEL_1_MAIN_ST_CHARSETS,
 
