@@ -28,10 +28,6 @@
 #include <KeyPadManager.h>
 #include <Printing.h>
 
-#ifdef __DEBUG
-//#include "../../levels/game/GameLevel.h"
-#endif
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES
@@ -80,7 +76,7 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 
     // start sleeping after 6 seconds of inactivity
-    MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
+    MessageDispatcher_dispatchMessage(6024, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
 
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
@@ -93,8 +89,8 @@ void HeroIdle_exit(HeroIdle this, void* owner __attribute__ ((unused)))
     // discard pending delayed messages
     MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroSleep);
 
-	// destroy the state
-	__DELETE(this);
+	// call base
+	State_exit(__SAFE_CAST(State, this), owner);
 }
 
 // state's handle message

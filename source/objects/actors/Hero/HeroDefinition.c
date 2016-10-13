@@ -617,7 +617,6 @@ AnimatedInGameEntityROMDef HERO_BANDANA_AG =
     "Idle",
 };
 
-
 CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 {
     {
