@@ -36,7 +36,6 @@
 void HeroMoving_constructor(HeroMoving this);
 void HeroMoving_destructor(HeroMoving this);
 void HeroMoving_enter(HeroMoving this, void* owner);
-void HeroMoving_exit(HeroMoving this, void* owner);
 bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram);
 
 
