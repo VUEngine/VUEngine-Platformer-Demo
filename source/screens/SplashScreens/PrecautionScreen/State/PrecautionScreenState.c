@@ -29,6 +29,7 @@
 #include <SoundManager.h>
 #include <PrecautionScreenState.h>
 #include <AdjustmentScreenState.h>
+#include <Utilities.h>
 #include <Languages.h>
 #include <debugUtilities.h>
 
@@ -132,7 +133,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 static void PrecautionScreenState_print(PrecautionScreenState this __attribute__ ((unused)))
 {
     const char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TITLE);
-    const char* strPrecautionTitleFont = "GUIFont";
+    const char* strPrecautionTitleFont = "LargeFont";
     Size titleSize = Printing_getTextSize(Printing_getInstance(), strPrecautionTitle, strPrecautionTitleFont);
 
     const char* strPrecautionText = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TEXT);
@@ -142,7 +143,7 @@ static void PrecautionScreenState_print(PrecautionScreenState this __attribute__
 
     Printing_text(
         Printing_getInstance(),
-        strPrecautionTitle,
+        Utilities_toUppercase(strPrecautionTitle),
         (__SCREEN_WIDTH >> 4) - (titleSize.x >> 1),
         (__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) - 1,
         strPrecautionTitleFont

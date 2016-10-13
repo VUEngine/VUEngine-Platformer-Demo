@@ -25,6 +25,7 @@
 #include <Screen.h>
 #include <Printing.h>
 #include <MessageDispatcher.h>
+#include <Utilities.h>
 #include <I18n.h>
 #include <AutoPauseSelectScreenState.h>
 #include <VBJaEngineScreenState.h>
@@ -86,14 +87,20 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
     this->selection = ProgressManager_getAutomaticPauseStatus(ProgressManager_getInstance());
 
     const char* strAutomaticPauseTitle = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
-    const char* strAutomaticPauseTitleFont = "GUIFont";
+    const char* strAutomaticPauseTitleFont = "LargeFont";
     Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
 
     const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION);
     Size strAutomaticPauseExplanationSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseExplanation, NULL);
 
     u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseSize.x >> 1);
-    Printing_text(Printing_getInstance(), strAutomaticPauseTitle, strHeaderXPos, 8, strAutomaticPauseTitleFont);
+    Printing_text(
+    	Printing_getInstance(),
+    	Utilities_toUppercase(strAutomaticPauseTitle),
+    	strHeaderXPos,
+    	8,
+    	strAutomaticPauseTitleFont
+	);
 
     u8 strExplanationXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseExplanationSize.x >> 1);
     Printing_text(Printing_getInstance(), strAutomaticPauseExplanation, strExplanationXPos, 9 + strAutomaticPauseSize.y, NULL);

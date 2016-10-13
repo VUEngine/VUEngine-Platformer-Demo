@@ -39,7 +39,7 @@ const char* const LANGUAGE_EN_STRINGS[] =
     /* Splash Screens */
 
     //STR_PRECAUTION_SCREEN_TITLE:
-    "Important:",
+    "Important",
     //STR_PRECAUTION_SCREEN_TEXT:
     "Read Instruction and\n\nPrecaution Booklets\n\n  before operating",
     //STR_AUTOMATIC_PAUSE:
@@ -55,7 +55,7 @@ const char* const LANGUAGE_EN_STRINGS[] =
     //STR_OFF:
     "Off",
     //STR_LANGUAGE_SELECT:
-    "Language Select",
+    "Language\nSelect",
     //STR_PRESS_START_BUTTON:
     "Press Start Button",
 
