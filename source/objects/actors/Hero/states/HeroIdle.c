@@ -79,9 +79,22 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
     // show animation
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 
+    // start sleeping after 6 seconds of inactivity
+    MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
+
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
+}
+
+// state's exit
+void HeroIdle_exit(HeroIdle this, void* owner __attribute__ ((unused)))
+{
+    // discard pending delayed messages
+    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroSleep);
+
+	// destroy the state
+	__DELETE(this);
 }
 
 // state's handle message
@@ -102,6 +115,12 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 		case kBodyStopped:
 
 			return true;
+			break;
+
+		case kHeroSleep:
+
+			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Sleep");
+            return true;
 			break;
 	}
 

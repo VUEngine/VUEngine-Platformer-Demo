@@ -303,6 +303,28 @@ AnimationFunctionROMDef HERO_TRANSITION_ANIM =
 	"Transition",
 };
 
+// a function which defines the frames to play
+AnimationFunctionROMDef HERO_SLEEP_ANIM =
+{
+	// number of frames of this animation function
+	10,
+
+	// frames to play in animation
+	{24, 24, 24, 24, 24, 25, 26, 27, 26, 25},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Sleep",
+};
+
 
 // an animation definition
 AnimationDescriptionROMDef HERO_ANIM =
@@ -321,6 +343,7 @@ AnimationDescriptionROMDef HERO_ANIM =
 		(AnimationFunction*)&HERO_WALKING_FRONT_ANIM,
 		(AnimationFunction*)&HERO_WALKING_BACK_ANIM,
 		(AnimationFunction*)&HERO_TRANSITION_ANIM,
+		(AnimationFunction*)&HERO_SLEEP_ANIM,
 		NULL,
 	}
 };

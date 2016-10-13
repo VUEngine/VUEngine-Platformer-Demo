@@ -123,6 +123,7 @@ enum PlatformerLevelStateMessageTypes
     kHeroStopFeetDust,
     kHeroStopInvincibility,
     kHeroFlash,
+    kHeroSleep,
 	kItemTaken,
 	kTakeKey,
 	kTakeCoin,

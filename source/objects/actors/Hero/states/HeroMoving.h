@@ -68,4 +68,5 @@ void HeroMoving_onKeyPressed(HeroMoving this, void* owner);
 void HeroMoving_onKeyReleased(HeroMoving this, void* owner);
 void HeroMoving_onKeyHold(HeroMoving this, void* owner);
 
+
 #endif

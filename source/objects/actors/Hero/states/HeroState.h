@@ -30,7 +30,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define HeroState_METHODS(ClassName)																		\
+#define HeroState_METHODS(ClassName)																	\
 	    State_METHODS(ClassName)																		\
 		__VIRTUAL_DEC(ClassName, void, onKeyPressed, void* owner);										\
 		__VIRTUAL_DEC(ClassName, void, onKeyReleased, void* owner);										\
@@ -42,7 +42,7 @@
 
 __CLASS(HeroState);
 
-#define HeroState_ATTRIBUTES																				\
+#define HeroState_ATTRIBUTES																			\
         /* inherits */																					\
         State_ATTRIBUTES																				\
 

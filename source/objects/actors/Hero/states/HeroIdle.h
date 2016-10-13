@@ -37,6 +37,7 @@
 #define HeroIdle_SET_VTABLE(ClassName)																	\
         HeroState_SET_VTABLE(ClassName)																	\
         __VIRTUAL_SET(ClassName, HeroIdle, enter);														\
+        __VIRTUAL_SET(ClassName, HeroIdle, exit);														\
         __VIRTUAL_SET(ClassName, HeroIdle, processMessage);	                                            \
         __VIRTUAL_SET(ClassName, HeroIdle, onKeyPressed);	                                            \
         __VIRTUAL_SET(ClassName, HeroIdle, onKeyReleased);	                                            \
@@ -58,5 +59,6 @@ HeroIdle HeroIdle_getInstance();
 void HeroIdle_onKeyPressed(HeroIdle this, void* owner);
 void HeroIdle_onKeyReleased(HeroIdle this, void* owner);
 void HeroIdle_onKeyHold(HeroIdle this, void* owner);
+
 
 #endif
