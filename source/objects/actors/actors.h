@@ -36,7 +36,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntityDefinition HERO_AC;
-extern EntityDefinition HERO_AG;
+extern EntityDefinition HERO_IDLE_AG;
+extern EntityDefinition HERO_SLEEPING_AG;
 extern EntityDefinition HERO_BANDANA_AG;
 extern EntityDefinition CAMERA_BOUNDING_BOX_IG;
 extern EntityDefinition SAW_BLADE_V3_AC;

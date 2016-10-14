@@ -42,7 +42,7 @@ PositionedEntityROMDef OVERWORLD_1_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
     {&OVERWORLD_1_IM,		{FTOFIX19_13(192),  FTOFIX19_13(96), 	FTOFIX19_13(LAYER_1 + SORT_INCREMENT)}, NULL, NULL, NULL, false},
-	{&HERO_AG, 		        {FTOFIX19_13(158),  FTOFIX19_13(76), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
+	{&HERO_IDLE_AG, 		{FTOFIX19_13(158),  FTOFIX19_13(76), 	FTOFIX19_13(LAYER_1)}, NULL, NULL, NULL, false},
     {&SMOKE_PS,				{FTOFIX19_13(226),  FTOFIX19_13(29), 	FTOFIX19_13(LAYER_1)},   NULL, NULL, NULL, false},
 
     {&WATER_A_AG,		    {FTOFIX19_13(80),   FTOFIX19_13(-8), 	FTOFIX19_13(LAYER_1)},   NULL, NULL, NULL, false},

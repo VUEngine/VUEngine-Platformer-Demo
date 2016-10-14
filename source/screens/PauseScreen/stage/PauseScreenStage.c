@@ -29,19 +29,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINES
-//---------------------------------------------------------------------------------------------------------
-
-#define LEVEL_X_SIZE 	    __SCREEN_WIDTH
-#define LEVEL_Y_SIZE 	    __SCREEN_HEIGHT
-#define LEVEL_Z_SIZE 	    __SCREEN_WIDTH
-
-#define SCREEN_X_POSITION 	0
-#define SCREEN_Y_POSITION 	0
-#define SCREEN_Z_POSITION 	0
-
-
-//---------------------------------------------------------------------------------------------------------
 // 												ASSETS
 //---------------------------------------------------------------------------------------------------------
 
@@ -50,8 +37,7 @@
 
 PositionedEntityROMDef PAUSE_SCREEN_ST_CHILDREN[] =
 {
-	{&VBJAENGINE_IM,        {FTOFIX19_13(192), FTOFIX19_13(42), FTOFIX19_13(LAYER_0 + 32)}, NULL, NULL, NULL, true},
-	{&LOGO_IM, 			    {FTOFIX19_13(192), FTOFIX19_13(88), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
+	{&HERO_SLEEPING_AG, 	{FTOFIX19_13(192), FTOFIX19_13(92), FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0}, NULL, NULL, NULL, false},
 };
@@ -76,12 +62,6 @@ FontROMDef* const PAUSE_SCREEN_ST_FONTS[] =
 
 StageTextureEntryROMDef PAUSE_SCREEN_ST_TEXTURES[] =
 {
-	{&VBJAENGINE_TX, false},
-	{&LOGO_L_TX, false},
-	{&LOGO_R_TX, false},
-	{&LOGO_OUTLINE_L_TX, false},
-	{&LOGO_OUTLINE_R_TX, false},
-
 	{NULL, false}
 };
 

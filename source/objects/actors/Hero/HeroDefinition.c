@@ -551,7 +551,7 @@ ActorROMDef HERO_AC =
 	ITOFIX19_13(10)
 };
 
-AnimatedInGameEntityROMDef HERO_AG =
+AnimatedInGameEntityROMDef HERO_IDLE_AG =
 {
     {
         {
@@ -582,6 +582,39 @@ AnimatedInGameEntityROMDef HERO_AG =
 
     // initial animation
     "Idle",
+};
+
+AnimatedInGameEntityROMDef HERO_SLEEPING_AG =
+{
+    {
+        {
+            __TYPE(AnimatedInGameEntity),
+            (SpriteROMDef**)HERO_SPRITES,
+        },
+
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
+
+        // in game type
+        kHero,
+
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
+
+    	// depth
+        1,
+    },
+
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&HERO_ANIM,
+
+    // initial animation
+    "Sleep",
 };
 
 AnimatedInGameEntityROMDef HERO_BANDANA_AG =
