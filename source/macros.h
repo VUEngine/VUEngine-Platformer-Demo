@@ -23,8 +23,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 // general
-#define COINS_PER_LEVEL							64
-#define LEVELS_IN_GAME							1
+#define COINS_PER_LEVEL		64
+#define LEVELS_IN_GAME		1
 
 // layers
 #define LAYER_INCREMENT		32
