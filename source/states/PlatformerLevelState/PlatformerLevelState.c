@@ -265,8 +265,9 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 {
-    // pause in-game clock
+    // pause clocks
     Clock_pause(this->messagingClock, true);
+    Clock_pause(this->clock, true);
 
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
@@ -291,6 +292,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 {
     // resume in-game clock
     Clock_pause(this->messagingClock, false);
+    Clock_pause(this->clock, false);
 
 	GameState_resume(__SAFE_CAST(GameState, this), owner);
 
