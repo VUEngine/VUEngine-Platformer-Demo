@@ -73,9 +73,6 @@ void HeroIdle_destructor(HeroIdle this)
 // state's enter
 void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 {
-	// make sure it's not moving anymore
-	Actor_stopMovement(__SAFE_CAST(Actor, owner), false);
-
     // show animation
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 

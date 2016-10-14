@@ -511,6 +511,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 	if(!Body_isMoving(this->body) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
     {
 		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+		return true;
 	}
 
 	return false;
