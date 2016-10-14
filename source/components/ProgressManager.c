@@ -22,12 +22,15 @@
 #include <string.h>
 #include <stddef.h>
 
+#include <Game.h>
+#include <I18n.h>
 #include <GameEvents.h>
 #include <ProgressManager.h>
 #include <SRAMManager.h>
 #include <EventManager.h>
 #include <Utilities.h>
 #include <macros.h>
+#include <AutoPauseScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -134,6 +137,15 @@ static void ProgressManager_initialize(ProgressManager this __attribute__ ((unus
 		char saveStamp[SAVE_STAMP_LENGTH];
 		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)SAVE_STAMP, offsetof(struct SaveData, saveStamp), sizeof(saveStamp));
 	}
+
+	// load and set active language
+	I18n_setActiveLanguage(I18n_getInstance(), ProgressManager_getLanguage(this));
+
+	// load and set auto pause state
+	Game_setAutomaticPauseState(Game_getInstance(), ProgressManager_getAutomaticPauseStatus(this)
+		? __SAFE_CAST(GameState, AutoPauseScreenState_getInstance())
+		: NULL
+	);
 }
 
 u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
