@@ -89,7 +89,8 @@ void Cannon_ready(Cannon this, u32 recursive)
 {
 	ASSERT(this, "Cannon::ready: null this");
 
-	Entity_ready(__SAFE_CAST(Entity, this), recursive);
+	// call base
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
     // send delayed message to self to trigger first shot
     MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);

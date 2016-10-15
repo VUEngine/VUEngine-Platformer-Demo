@@ -66,6 +66,9 @@ void KeyDoor_ready(KeyDoor this, u32 recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "KeyDoor::ready: null this");
 
+	// call base
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+
     if(ProgressManager_heroHasUsedKey(ProgressManager_getInstance()))
     {
         AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");

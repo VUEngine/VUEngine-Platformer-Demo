@@ -95,6 +95,9 @@ void Door_ready(Door this, u32 recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "Door::ready: null this");
 
+	// call base
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+
     if(__VIRTUAL_CALL(Door, hasDestination, this))
     {
         AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");

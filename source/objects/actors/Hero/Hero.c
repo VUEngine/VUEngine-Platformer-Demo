@@ -195,7 +195,8 @@ void Hero_ready(Hero this, u32 recursive)
 {
 	ASSERT(this, "Hero::ready: null this");
 
-	Entity_ready(__SAFE_CAST(Entity, this), recursive);
+	// call base
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
 	// override with progress from progress manager
 	ProgressManager progressManager = ProgressManager_getInstance();
