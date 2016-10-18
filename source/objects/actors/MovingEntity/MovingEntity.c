@@ -125,6 +125,7 @@ void MovingEntity_ready(MovingEntity this, u32 recursive)
 	Body_setElasticity(this->body, this->movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
+	// call base
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
 	MovingEntity_startMovement(this);

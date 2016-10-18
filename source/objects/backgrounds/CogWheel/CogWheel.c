@@ -76,7 +76,8 @@ void CogWheel_ready(CogWheel this, u32 recursive)
 {
 	ASSERT(this, "CogWheel::ready: null this");
 
-	Entity_ready(__SAFE_CAST(Entity, this), recursive);
+	// call base
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
 	// start moving
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);

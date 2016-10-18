@@ -78,6 +78,7 @@ void CannonBall_ready(CannonBall this, u32 recursive)
 {
 	ASSERT(this, "CannonBall::ready: null this");
 
+	// call base
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
 	CannonBall_startMovement(this);

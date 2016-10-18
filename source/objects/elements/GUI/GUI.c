@@ -104,7 +104,7 @@ void GUI_ready(GUI this, u32 recursive)
 	ASSERT(this, "GUI::ready: null this");
 
 	// call base
-	Entity_ready(__SAFE_CAST(Entity, this), recursive);
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
 	// initially print gui
     GUI_printAll(this);

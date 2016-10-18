@@ -75,6 +75,9 @@ void GoalDoor_ready(Door this, u32 recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "GoalDoor::ready: null this");
 
+	// call base
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+
     AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Goal");
 }
 

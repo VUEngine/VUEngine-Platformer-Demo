@@ -176,7 +176,7 @@
 	__BLOCK_DEFINITION(100, 28)																			\
 	__BLOCK_DEFINITION(88, 80)																			\
 	__BLOCK_DEFINITION(76, 10)																			\
-	__BLOCK_DEFINITION(68, 58)																			\
+	__BLOCK_DEFINITION(68, 60)																			\
 	__BLOCK_DEFINITION(32, 12)																			\
 	__BLOCK_DEFINITION(28, 200)																			\
 	__BLOCK_DEFINITION(24, 100)																			\
@@ -354,7 +354,6 @@
 #define __PRINTING_PALETTE						0
 
 // default palette values, actual values are set in stage definitions
-// it's 2 bits per
 
 #define __BGMAP_PALETTE_0						0b11100100 // normal progression
 #define __BGMAP_PALETTE_1						0b11100000 // show dark red as black

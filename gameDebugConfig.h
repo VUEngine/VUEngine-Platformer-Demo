@@ -3,6 +3,6 @@
 
 #include <debugUtilities.h>
 
-#undef GOD_MODE
+#define GOD_MODE
 
 #endif
