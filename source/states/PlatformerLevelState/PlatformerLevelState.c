@@ -489,6 +489,12 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
 {
 	this->currentStageEntryPoint = entryPointDefinition;
 
+    // disable user input
+    Game_disableKeypad(Game_getInstance());
+
+	// pause physical simulations
+	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
+
     // start a fade out effect
     Brightness brightness = (Brightness){0, 0, 0};
     Screen_startEffect(Screen_getInstance(),
