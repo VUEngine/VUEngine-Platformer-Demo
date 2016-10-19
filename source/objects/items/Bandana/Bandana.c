@@ -38,7 +38,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Bandana, Collectable);
+__CLASS_DEFINITION(Bandana, Item);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ void Bandana_constructor(Bandana this, AnimatedInGameEntityDefinition* animatedI
 	ASSERT(this, "Bandana::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Item, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
@@ -70,11 +70,11 @@ void Bandana_destructor(Bandana this)
 
 void Bandana_collect(Bandana this)
 {
-	ASSERT(this, "Collectable::collect: null this");
+	ASSERT(this, "Bandana::collect: null this");
 
 	// fire item taken event
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
 
 	// call base
-	Collectable_collect(__SAFE_CAST(Collectable, this));
+	Item_collect(__SAFE_CAST(Item, this));
 }

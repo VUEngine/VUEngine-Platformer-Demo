@@ -257,7 +257,7 @@ bool ProgressManager_getItemStatus(ProgressManager this __attribute__ ((unused))
 {
 	ASSERT(this, "ProgressManager::getItemStatus: null this");
 
-	if(itemNumber > 0 && itemNumber <= COINS_PER_LEVEL)
+	if(itemNumber > 0 && itemNumber <= sizeof(this->collectedItems))
 	{
 		return GET_BIT(this->collectedItems, (itemNumber - 1));
 	}

@@ -22,24 +22,32 @@
 #include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
-#include <SoundManager.h>
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <SoundManager.h>
 #include <EventManager.h>
+#include <ProgressManager.h>
 
 #include <objects.h>
-#include "Key.h"
+#include "Item.h"
 
 #include <PlatformerLevelState.h>
-#include <PostProcessingEffects.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Key, Item);
+__CLASS_DEFINITION(Item, Collectable);
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												PROTOTYPES
+//---------------------------------------------------------------------------------------------------------
+
+void Item_collect(Item this);
+void Item_removeFromStage(Item this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -47,49 +55,49 @@ __CLASS_DEFINITION(Key, Item);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Key, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(Key, animatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(Item, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+__CLASS_NEW_END(Item, animatedInGameEntityDefinition, id, name);
 
 // class's constructor
-void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+void Item_constructor(Item this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
 {
-	ASSERT(this, "Key::constructor: null this");
+	ASSERT(this, "Item::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Item, animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
 }
 
 // class's destructor
-void Key_destructor(Key this)
+void Item_destructor(Item this)
 {
-	ASSERT(this, "Key::destructor: null this");
-
-    // remove post processing effect
-    Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	ASSERT(this, "Item::destructor: null this");
 
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 
-void Key_ready(Key this, u32 recursive)
+// ready method
+void Item_ready(Item this, u32 recursive)
 {
-	ASSERT(this, "Key::ready: null this");
+	ASSERT(this, "Item::ready: null this");
 
-	// call base
-	Item_ready(__SAFE_CAST(Item, this), recursive);
-
-    // add post processing effect to make key emit rhombuses
-    Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+    // if item has already been collected, remove it
+    if(ProgressManager_getItemStatus(ProgressManager_getInstance(), this->itemNumber))
+    {
+        Collectable_removeFromStage(__SAFE_CAST(Collectable, this));
+    }
+    else
+    {
+        // call base method to start animation
+        Collectable_ready(__SAFE_CAST(Collectable, this), recursive);
+    }
 }
 
-void Key_collect(Key this)
+void Item_collect(Item this)
 {
-	ASSERT(this, "Key::collect: null this");
+	ASSERT(this, "Item::collect: null this");
 
-	// fire item taken event
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventKeyTaken);
-
-	// call base
-	Item_collect(__SAFE_CAST(Item, this));
+    // set item status to taken
+    ProgressManager_setItemStatus(ProgressManager_getInstance(), this->itemNumber, true);
 }

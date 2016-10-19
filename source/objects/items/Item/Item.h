@@ -14,15 +14,16 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BANDANA_H_
-#define BANDANA_H_
+#ifndef ITEM_H_
+#define ITEM_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Item.h>
+#include <AnimatedInGameEntity.h>
+#include <Collectable.h>
 #include <macros.h>
 
 
@@ -30,29 +31,31 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Bandana_METHODS(ClassName)																		\
-	    Item_METHODS(ClassName)														    				\
+#define Item_METHODS(ClassName)																			\
+	    Collectable_METHODS(ClassName)														    		\
 
-#define Bandana_SET_VTABLE(ClassName)																	\
-        Item_SET_VTABLE(ClassName)																		\
-        __VIRTUAL_SET(ClassName, Bandana, collect);														\
+#define Item_SET_VTABLE(ClassName)																		\
+        Collectable_SET_VTABLE(ClassName)																\
+        __VIRTUAL_SET(ClassName, Item, ready);															\
+        __VIRTUAL_SET(ClassName, Item, collect);														\
 
-__CLASS(Bandana);
+__CLASS(Item);
 
-#define Bandana_ATTRIBUTES																				\
+#define Item_ATTRIBUTES																					\
         /* it is derived from */																		\
-        Item_ATTRIBUTES																					\
+        Collectable_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Bandana, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Item, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
 
-void Bandana_constructor(Bandana this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
-void Bandana_destructor(Bandana this);
-void Bandana_collect(Bandana this);
+void Item_constructor(Item this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Item_destructor(Item this);
+void Item_collect(Item this);
+void Item_ready(Item this, u32 recursive);
 
 
 #endif
