@@ -22,7 +22,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Collectable.h>
+#include <Item.h>
 #include <macros.h>
 
 
@@ -31,10 +31,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Key_METHODS(ClassName)																			\
-	Collectable_METHODS(ClassName)																		\
+	Item_METHODS(ClassName)																				\
 
 #define Key_SET_VTABLE(ClassName)																		\
-	Collectable_SET_VTABLE(ClassName)																	\
+	Item_SET_VTABLE(ClassName)																			\
 	__VIRTUAL_SET(ClassName, Key, ready);																\
 	__VIRTUAL_SET(ClassName, Key, collect);																\
 
@@ -42,7 +42,7 @@ __CLASS(Key);
 
 #define Key_ATTRIBUTES																					\
 	/* it is derived from */																			\
-	Collectable_ATTRIBUTES																				\
+	Item_ATTRIBUTES																						\
 
 
 //---------------------------------------------------------------------------------------------------------
