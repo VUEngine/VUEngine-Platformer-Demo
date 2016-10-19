@@ -48,9 +48,9 @@ __CLASS(LavaTrigger);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(LavaTrigger, InanimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(LavaTrigger, InanimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition* definition, int id, const char* const name);
+void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void LavaTrigger_destructor(LavaTrigger this);
 bool LavaTrigger_handleMessage(LavaTrigger this, Telegram telegram);
 

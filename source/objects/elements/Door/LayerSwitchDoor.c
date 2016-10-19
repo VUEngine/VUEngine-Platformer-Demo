@@ -41,14 +41,14 @@ __CLASS_DEFINITION(LayerSwitchDoor, Door);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(LayerSwitchDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(LayerSwitchDoor, animatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(LayerSwitchDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(LayerSwitchDoor, animatedInGameEntityDefinition, id, internalId, name);
 
 // class's constructor
-void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor

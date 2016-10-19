@@ -52,16 +52,16 @@ static void MovingEntity_registerShape(MovingEntity this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(MovingEntity, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(MovingEntity, MovingEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(MovingEntity, MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(MovingEntity, MovingEntityDefinition, id, internalId, name);
 
 // class's constructor
-void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingEntityDefinition, int id, const char* const name)
+void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "MovingEntity::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, (ActorDefinition*)&movingEntityDefinition->actorDefinition, id, name);
+	__CONSTRUCT_BASE(Actor, (ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
 
 	this->movingEntityDefinition = movingEntityDefinition;
 

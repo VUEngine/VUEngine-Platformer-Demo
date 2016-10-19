@@ -48,9 +48,9 @@ __CLASS(LayerSwitchDoor);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(LayerSwitchDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(LayerSwitchDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 void LayerSwitchDoor_destructor(LayerSwitchDoor this);
 bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram);
 

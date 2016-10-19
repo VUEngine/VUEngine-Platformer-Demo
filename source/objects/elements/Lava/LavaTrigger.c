@@ -56,14 +56,14 @@ void LavaTrigger_triggerEventEnd(LavaTrigger this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(LavaTrigger, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(LavaTrigger, inanimatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(LavaTrigger, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(LavaTrigger, inanimatedInGameEntityDefinition, id, internalId, name);
 
 // class's constructor
-void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, int id, const char* const name)
+void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(InanimatedInGameEntity, inanimatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(InanimatedInGameEntity, inanimatedInGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor

@@ -179,6 +179,7 @@ PositionedEntityROMDef CANNON_BALL =
 {
     (EntityDefinition*)&CANNON_BALL_AC,
     {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
+    0,
     NULL,
     NULL,
     NULL,

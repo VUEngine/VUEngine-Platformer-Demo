@@ -42,17 +42,17 @@ __CLASS_DEFINITION(CameraTriggerEntity, TriggerEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, const char* const name)
-__CLASS_NEW_END(CameraTriggerEntity, cameraTriggerEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(CameraTriggerEntity, cameraTriggerEntityDefinition, id, internalId, name);
 
 // class's constructor
-void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, const char* const name)
+void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "CameraTriggerEntity::constructor: null this");
 	ASSERT(cameraTriggerEntityDefinition, "CameraTriggerEntity::constructor: null definition");
 
 	// construct base object
-	__CONSTRUCT_BASE(TriggerEntity, (TriggerEntityDefinition*)cameraTriggerEntityDefinition, id, name);
+	__CONSTRUCT_BASE(TriggerEntity, (TriggerEntityDefinition*)cameraTriggerEntityDefinition, id, internalId, name);
 
 	this->overridePositionFlag.x = false;
 	this->overridePositionFlag.y = false;

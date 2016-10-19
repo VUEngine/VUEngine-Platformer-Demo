@@ -105,9 +105,9 @@ __CLASS(Hero);
 
 Hero Hero_getInstance();
 
-__CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Hero_constructor(Hero this, ActorDefinition* definition, int id, const char* const name);
+void Hero_constructor(Hero this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Hero_destructor(Hero this);
 void Hero_ready(Hero this, u32 recursive);
 void Hero_addForce(Hero this, int axis);

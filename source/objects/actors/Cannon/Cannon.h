@@ -57,9 +57,9 @@ __CLASS(Cannon);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Cannon, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Cannon, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Cannon_destructor(Cannon this);
 bool Cannon_handleMessage(Cannon this, Telegram telegram);
 void Cannon_ready(Cannon this, u32 recursive);

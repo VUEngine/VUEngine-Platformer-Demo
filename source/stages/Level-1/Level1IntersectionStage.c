@@ -49,33 +49,33 @@ extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
 PositionedEntityROMDef LEVEL_1_INTERSECTION_MAIN_ENTITIES[] =
 {
-    {&LEVEL_1_INTERSECTION_MAIN_IM,   {FTOFIX19_13(0), 	FTOFIX19_13(-16), 	FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&LEVEL_1_INTERSECTION_MAIN_IM,   {FTOFIX19_13(0), 	FTOFIX19_13(-16), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
 
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_INTERSECTION_MAIN_COLLISIONS[] =
 {
     // bottom floor
-    {&COLLISION_48x2x1,             {FTOFIX19_13(0),    FTOFIX19_13(72),    FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_48x2x1,             {FTOFIX19_13(0),    FTOFIX19_13(72),    FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // top ceiling
-    {&COLLISION_48x2x1,             {FTOFIX19_13(0),    FTOFIX19_13(-104),  FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_48x2x1,             {FTOFIX19_13(0),    FTOFIX19_13(-104),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // right ceiling/floor
-    {&COLLISION_14x18x1,            {FTOFIX19_13(136),  FTOFIX19_13(24),     FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_14x18x1,            {FTOFIX19_13(136),  FTOFIX19_13(24),     FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // top left wall
-    {&COLLISION_28x8x1,             {FTOFIX19_13(-144), FTOFIX19_13(-72),   FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_28x8x1,             {FTOFIX19_13(-144), FTOFIX19_13(-72),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // left ceiling/floor
-    {&COLLISION_28x8x1,             {FTOFIX19_13(-80),  FTOFIX19_13(-16),   FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_28x8x1,             {FTOFIX19_13(-80),  FTOFIX19_13(-16),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // top one way floor
-    {&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(56),   FTOFIX19_13(-40),   FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(56),   FTOFIX19_13(-40),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // bottom one way floor
-    {&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(56),   FTOFIX19_13(16),    FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(56),   FTOFIX19_13(16),    FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // outermost left wall
-    {&COLLISION_2x28x1,             {FTOFIX19_13(-184), FTOFIX19_13(0),     FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_2x28x1,             {FTOFIX19_13(-184), FTOFIX19_13(0),     FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // outermost right wall
-    {&COLLISION_2x28x1,             {FTOFIX19_13(184),  FTOFIX19_13(0),     FTOFIX19_13(0)}, NULL, NULL, NULL, false},
+    {&COLLISION_2x28x1,             {FTOFIX19_13(184),  FTOFIX19_13(0),     FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
 
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 
@@ -87,35 +87,35 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_ST_CHILDREN[] =
 {
     // since these are always visible it doesn't matter that they are not logically placed in this definition
 
-    {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(112),   FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_ENTITIES, NULL, false},
-    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(111),   FTOFIX19_13(LAYER_0)}, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_COLLISIONS, NULL, false},
+    {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(112),   FTOFIX19_13(LAYER_0)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_ENTITIES, NULL, false},
+    {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(111),   FTOFIX19_13(LAYER_0)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_COLLISIONS, NULL, false},
 
-    {&HERO_AC,                      {FTOFIX19_13(32),   FTOFIX19_13(159),   FTOFIX19_13(LAYER_0)}, HERO_NAME, NULL, NULL, false},
+    {&HERO_AC,                      {FTOFIX19_13(32),   FTOFIX19_13(159),   FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false},
 
-    {&DOOR_AG,                      {FTOFIX19_13(176),  FTOFIX19_13(47),    FTOFIX19_13(LAYER_0_DOORS)}, "UpperEntryDoor", NULL, NULL, false},
-    {&TORCH_AG,                     {FTOFIX19_13(200),  FTOFIX19_13(44),    FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&DOOR_AG,                      {FTOFIX19_13(176),  FTOFIX19_13(47),    FTOFIX19_13(LAYER_0_DOORS)}, 0, "UpperEntryDoor", NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(200),  FTOFIX19_13(44),    FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
 
-    {&DOOR_AG,                      {FTOFIX19_13(32),   FTOFIX19_13(159),   FTOFIX19_13(LAYER_0_DOORS)}, "LowerEntryDoor", NULL, NULL, false},
-    {&TORCH_AG,                     {FTOFIX19_13(56),   FTOFIX19_13(156),   FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&DOOR_AG,                      {FTOFIX19_13(32),   FTOFIX19_13(159),   FTOFIX19_13(LAYER_0_DOORS)}, 0, "LowerEntryDoor", NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(56),   FTOFIX19_13(156),   FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
 
-    {&SAW_BLADE_H8_AC,              {FTOFIX19_13(130),  FTOFIX19_13(174),   FTOFIX19_13(LAYER_0_ENEMIES)}, NULL, NULL, NULL, false},
+    {&SAW_BLADE_H8_AC,              {FTOFIX19_13(130),  FTOFIX19_13(174),   FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
 
-    {&TORCH_AG,                     {FTOFIX19_13(200),  FTOFIX19_13(156),   FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
+    {&TORCH_AG,                     {FTOFIX19_13(200),  FTOFIX19_13(156),   FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
 
-    {&COIN_AG,                      {FTOFIX19_13(240),  FTOFIX19_13(104),    FTOFIX19_13(LAYER_0_ITEMS)}, NULL, NULL, (void*)46, false},
-    {&COIN_AG,                      {FTOFIX19_13(256),  FTOFIX19_13(104),    FTOFIX19_13(LAYER_0_ITEMS)}, NULL, NULL, (void*)47, false},
+    {&COIN_AG,                      {FTOFIX19_13(240),  FTOFIX19_13(104),    FTOFIX19_13(LAYER_0_ITEMS)}, 0, NULL, NULL, (void*)46, false},
+    {&COIN_AG,                      {FTOFIX19_13(256),  FTOFIX19_13(104),    FTOFIX19_13(LAYER_0_ITEMS)}, 0, NULL, NULL, (void*)47, false},
 
-    {&TORCH_AG,                     {FTOFIX19_13(328),  FTOFIX19_13(44),    FTOFIX19_13(LAYER_0)}, NULL, NULL, NULL, false},
-    {&DOOR_AG,                      {FTOFIX19_13(352),  FTOFIX19_13(47),    FTOFIX19_13(LAYER_0_DOORS)}, NULL, NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false},
+    {&TORCH_AG,                     {FTOFIX19_13(328),  FTOFIX19_13(44),    FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
+    {&DOOR_AG,                      {FTOFIX19_13(352),  FTOFIX19_13(47),    FTOFIX19_13(LAYER_0_DOORS)}, 0, NULL, NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false},
 
-    {NULL, {0,0,0}, NULL, NULL, NULL, false},
+    {NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_INTERSECTION_ST_UI_CHILDREN[] =
 {
-    {&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(215), FTOFIX19_13(-4)}, NULL, NULL, NULL, true},
+    {&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(215), FTOFIX19_13(-4)}, 0, NULL, NULL, NULL, true},
 
-    {NULL, {0,0,0}, NULL, NULL, NULL, false},
+    {NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 

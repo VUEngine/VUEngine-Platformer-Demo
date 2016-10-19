@@ -56,14 +56,14 @@ __CLASS_DEFINITION(Coin, Collectable);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Coin, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(Coin, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor

@@ -54,9 +54,9 @@ __CLASS(Collectable);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Collectable, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Collectable, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Collectable_constructor(Collectable this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Collectable_constructor(Collectable this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Collectable_destructor(Collectable this);
 void Collectable_collect(Collectable this);
 bool Collectable_handleMessage(Collectable this, Telegram telegram);

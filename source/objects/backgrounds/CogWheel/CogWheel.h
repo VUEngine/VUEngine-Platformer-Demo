@@ -56,9 +56,9 @@ __CLASS(CogWheel);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(CogWheel, ImageDefinition* imageDefinition, s16 id, const char* const name);
+__CLASS_NEW_DECLARE(CogWheel, ImageDefinition* imageDefinition, s16 id, s16 internalId, const char* const name);
 
-void CogWheel_constructor(CogWheel this, ImageDefinition* definition, s16 id, const char* const name);
+void CogWheel_constructor(CogWheel this, ImageDefinition* definition, s16 id, s16 internalId, const char* const name);
 void CogWheel_destructor(CogWheel this);
 void CogWheel_ready(CogWheel this, u32 recursive);
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram);

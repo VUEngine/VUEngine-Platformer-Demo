@@ -115,16 +115,16 @@ void Hero_setInstance(Hero instance)
 }
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hero, ActorDefinition* actorDefinition, int id, const char* const name)
-__CLASS_NEW_END(Hero, actorDefinition, id, name);
+__CLASS_NEW_DEFINITION(Hero, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Hero, actorDefinition, id, internalId, name);
 
 // class's constructor
-void Hero_constructor(Hero this, ActorDefinition* actorDefinition, int id, const char* const name)
+void Hero_constructor(Hero this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Hero::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, actorDefinition, id, name);
+	__CONSTRUCT_BASE(Actor, actorDefinition, id, internalId, name);
 
 	// construct the game state machine
 	this->stateMachine = __NEW(StateMachine, this);

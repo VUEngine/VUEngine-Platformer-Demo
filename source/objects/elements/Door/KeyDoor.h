@@ -53,9 +53,9 @@ __CLASS(KeyDoor);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(KeyDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(KeyDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void KeyDoor_constructor(KeyDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+void KeyDoor_constructor(KeyDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 void KeyDoor_destructor(KeyDoor this);
 void KeyDoor_ready(KeyDoor this, u32 recursive);
 bool KeyDoor_hasDestination(KeyDoor this);

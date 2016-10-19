@@ -71,9 +71,9 @@ typedef const CloudsDefinition CloudsROMDef;
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Clouds, CloudsDefinition* cloudsDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Clouds, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name);
 
-void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, int id, const char* const name);
+void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name);
 void Clouds_destructor(Clouds this);
 void Clouds_update(Clouds this, u32 elapsedTime);
 bool Clouds_isVisible(Clouds this, int pad, bool recursive);

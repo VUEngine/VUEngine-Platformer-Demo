@@ -52,14 +52,14 @@ static void GoalDoor_onFadeOutComplete(GoalDoor this, Object eventFirer);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(GoalDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(GoalDoor, animatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(GoalDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(GoalDoor, animatedInGameEntityDefinition, id, internalId, name);
 
 // class's constructor
-void GoalDoor_constructor(GoalDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+void GoalDoor_constructor(GoalDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor

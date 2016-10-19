@@ -62,9 +62,9 @@ __CLASS(Hint);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Hint, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Hint, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Hint_destructor(Hint this);
 void Hint_resume(Hint this);
 void Hint_open(Hint this, u8 hintType);

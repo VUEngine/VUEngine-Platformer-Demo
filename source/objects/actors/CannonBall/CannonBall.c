@@ -42,16 +42,16 @@ __CLASS_DEFINITION(CannonBall, Actor);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CannonBall, ActorDefinition* definition, int id, const char* const name)
-__CLASS_NEW_END(CannonBall, definition, id, name);
+__CLASS_NEW_DEFINITION(CannonBall, ActorDefinition* definition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(CannonBall, definition, id, internalId, name);
 
 // class's constructor
-void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id, const char* const name)
+void CannonBall_constructor(CannonBall this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "CannonBall::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, definition, id, name);
+	__CONSTRUCT_BASE(Actor, definition, id, internalId, name);
 
 	// register a shape for collision detection
 	CannonBall_registerShape(this);

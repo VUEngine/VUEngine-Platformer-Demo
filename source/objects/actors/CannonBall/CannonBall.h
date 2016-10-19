@@ -61,9 +61,9 @@ __CLASS(CannonBall);
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(CannonBall, ActorDefinition* definition, int id, const char* const name);
+__CLASS_NEW_DECLARE(CannonBall, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
 
-void CannonBall_constructor(CannonBall this, ActorDefinition* definition, int id, const char* const name);
+void CannonBall_constructor(CannonBall this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
 void CannonBall_destructor(CannonBall this);
 void CannonBall_ready(CannonBall this, u32 recursive);
 void CannonBall_update(CannonBall this, u32 elapsedTime);

@@ -30,12 +30,12 @@
 
 PositionedEntityROMDef EMPTY_ST_CHILDREN[] =
 {
-	{NULL, {0,0,0}, NULL, NULL, NULL, false},
+	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef EMPTY_ST_UI_CHILDREN[] =
 {
-	{NULL, {0,0,0}, NULL, NULL, NULL, false}
+	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false}
 };
 
 

@@ -36,14 +36,14 @@ __CLASS_DEFINITION(Clouds, Image);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Clouds, CloudsDefinition* cloudsDefinition, int id, const char* const name)
-__CLASS_NEW_END(Clouds, cloudsDefinition, id, name);
+__CLASS_NEW_DEFINITION(Clouds, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Clouds, cloudsDefinition, id, internalId, name);
 
 // class's constructor
-void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, int id, const char* const name)
+void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Image, &cloudsDefinition->imageDefinition, id, name);
+	__CONSTRUCT_BASE(Image, &cloudsDefinition->imageDefinition, id, internalId, name);
 
 	this->displacement = cloudsDefinition->displacement;
 }

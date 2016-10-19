@@ -49,9 +49,9 @@ __CLASS(Coin);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Coin_destructor(Coin this);
 void Coin_setExtraInfo(Coin this, void* extraInfo);
 void Coin_collect(Coin this);

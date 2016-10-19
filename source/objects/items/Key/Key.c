@@ -47,16 +47,16 @@ __CLASS_DEFINITION(Key, Collectable);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Key, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
-__CLASS_NEW_END(Key, animatedInGameEntityDefinition, id, name);
+__CLASS_NEW_DEFINITION(Key, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Key, animatedInGameEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name)
+void Key_constructor(Key this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Key::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, name);
+	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor

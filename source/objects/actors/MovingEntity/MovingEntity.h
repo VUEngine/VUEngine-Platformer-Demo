@@ -89,9 +89,9 @@ typedef const MovingEntityDefinition MovingEntityROMDef;
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(MovingEntity, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(MovingEntity, MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, int id, const char* const name);
+void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
 void MovingEntity_destructor(MovingEntity this);
 void MovingEntity_setDefinition(MovingEntity this, MovingEntityDefinition* movingEntityDefinition);
 void MovingEntity_ready(MovingEntity this, u32 recursive);
