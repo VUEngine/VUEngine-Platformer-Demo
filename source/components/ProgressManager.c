@@ -46,6 +46,9 @@ __CLASS_DEFINITION(ProgressManager, Object);
 
 static void ProgressManager_constructor(ProgressManager this);
 bool ProgressManager_verifySaveStamp(ProgressManager this);
+u32 ProgressManager_computeChecksum(ProgressManager this);
+void ProgressManager_writeChecksum(ProgressManager this);
+bool ProgressManager_verifyChecksum(ProgressManager this);
 static void ProgressManager_initialize(ProgressManager this);
 static void ProgressManager_onSecondChange(ProgressManager this, Object eventFirer);
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
@@ -124,11 +127,56 @@ bool ProgressManager_verifySaveStamp(ProgressManager this __attribute__ ((unused
 	return !strncmp(saveStamp, SAVE_STAMP, SAVE_STAMP_LENGTH);
 }
 
-static void ProgressManager_initialize(ProgressManager this __attribute__ ((unused)))
+u32 ProgressManager_computeChecksum(ProgressManager this __attribute__ ((unused)))
+{
+	u32 crc32 = ~0;
+
+	// iterate over whole sram content, starting right after the previously saved checksum
+    int i = (offsetof(struct SaveData, checksum) + sizeof(crc32));
+    for(; i < __TOTAL_SAVE_RAM; i++)
+    {
+    	// get the current byte
+		u8 currentByte;
+		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&currentByte, i, sizeof(currentByte));
+
+		// loop over all bits of the current byte and add to checksum
+		u8 bit = 0;
+		for(; bit < sizeof(currentByte); bit++)
+		{
+			if((crc32 & 1) != GET_BIT(currentByte, bit))
+			{
+				crc32 = (crc32 >> 1) ^ 0xEDB88320;
+			}
+			else
+			{
+				crc32 = (crc32 >> 1);
+			}
+		}
+    }
+
+    return ~crc32;
+}
+
+void ProgressManager_writeChecksum(ProgressManager this)
+{
+	u32 checksum = ProgressManager_computeChecksum(this);
+	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&checksum, offsetof(struct SaveData, checksum), sizeof(checksum));
+}
+
+bool ProgressManager_verifyChecksum(ProgressManager this)
+{
+	u32 computedChecksum = ProgressManager_computeChecksum(this);
+	u32 savedChecksum = 0;
+	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&savedChecksum, offsetof(struct SaveData, checksum), sizeof(savedChecksum));
+
+	return (computedChecksum == savedChecksum);
+}
+
+static void ProgressManager_initialize(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::initialize: null this");
 
-	if(!ProgressManager_verifySaveStamp(this))
+	if(!ProgressManager_verifySaveStamp(this) || !ProgressManager_verifyChecksum(this))
 	{
 		// if no previous save could be verified, completely erase sram to start clean
 		SRAMManager_clear(SRAMManager_getInstance());
@@ -136,6 +184,9 @@ static void ProgressManager_initialize(ProgressManager this __attribute__ ((unus
 		// write save stamp
 		char saveStamp[SAVE_STAMP_LENGTH];
 		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)SAVE_STAMP, offsetof(struct SaveData, saveStamp), sizeof(saveStamp));
+
+		// write checksum
+		ProgressManager_writeChecksum(this);
 	}
 
 	// load and set active language
@@ -161,7 +212,7 @@ u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
 	return numberOfCollectedCoins;
 }
 
-u32 ProgressManager_getCurrentLevelBestTime(ProgressManager this __attribute__ ((unused)))
+u32 ProgressManager_getCurrentLevelBestTime(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getCurrentLevelBestTime: null this");
 
@@ -198,6 +249,9 @@ void ProgressManager_setLanguage(ProgressManager this __attribute__ ((unused)), 
 	ASSERT(this, "ProgressManager::setLanguage: null this");
 
 	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&languageId, offsetof(struct SaveData, languageId), sizeof(languageId));
+
+	// write checksum
+	ProgressManager_writeChecksum(this);
 }
 
 bool ProgressManager_getAutomaticPauseStatus(ProgressManager this __attribute__ ((unused)))
@@ -218,9 +272,12 @@ void ProgressManager_setAutomaticPauseStatus(ProgressManager this __attribute__ 
 	autoPauseStatus = !autoPauseStatus;
 
 	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&autoPauseStatus, offsetof(struct SaveData, autoPauseStatus), sizeof(autoPauseStatus));
+
+	// write checksum
+	ProgressManager_writeChecksum(this);
 }
 
-bool ProgressManager_getCoinStatus(ProgressManager this __attribute__ ((unused)), u8 itemNumber)
+bool ProgressManager_getCoinStatus(ProgressManager this, u8 itemNumber)
 {
 	ASSERT(this, "ProgressManager::getCoinStatus: null this");
 
@@ -232,7 +289,7 @@ bool ProgressManager_getCoinStatus(ProgressManager this __attribute__ ((unused))
 	return false;
 }
 
-bool ProgressManager_setCoinStatus(ProgressManager this __attribute__ ((unused)), u8 itemNumber, bool taken)
+bool ProgressManager_setCoinStatus(ProgressManager this, u8 itemNumber, bool taken)
 {
 	ASSERT(this, "ProgressManager::setCoinStatus: null this");
 
@@ -253,7 +310,7 @@ bool ProgressManager_setCoinStatus(ProgressManager this __attribute__ ((unused))
 	return false;
 }
 
-bool ProgressManager_getItemStatus(ProgressManager this __attribute__ ((unused)), u8 itemNumber)
+bool ProgressManager_getItemStatus(ProgressManager this, u8 itemNumber)
 {
 	ASSERT(this, "ProgressManager::getItemStatus: null this");
 
@@ -265,7 +322,7 @@ bool ProgressManager_getItemStatus(ProgressManager this __attribute__ ((unused))
 	return false;
 }
 
-bool ProgressManager_setItemStatus(ProgressManager this __attribute__ ((unused)), u8 itemNumber, bool taken)
+bool ProgressManager_setItemStatus(ProgressManager this, u8 itemNumber, bool taken)
 {
 	ASSERT(this, "ProgressManager::setItemStatus: null this");
 
@@ -304,7 +361,6 @@ void ProgressManager_loadLevelStatus(ProgressManager this, u8 levelId)
 
 	// load best time
 	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->currentLevelBestTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelBestTime));
-
 }
 
 void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
@@ -343,6 +399,9 @@ void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
         totalNumberOfCollectedCoins += numberOfCollectedCoins;
     }
     ProgressManager_setTotalNumberOfCollectedCoins(this, totalNumberOfCollectedCoins);
+
+	// write checksum
+	ProgressManager_writeChecksum(this);
 }
 
 // get hero's current energy

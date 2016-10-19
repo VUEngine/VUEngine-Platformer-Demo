@@ -94,6 +94,9 @@ typedef struct SaveData
 	// flag to know if there is data saved
 	u8 saveStamp[SAVE_STAMP_LENGTH];
 
+	// checksum over sram content to prevent save data manipulation
+	u32 checksum;
+
 	// active language id
 	u8 languageId;
 
