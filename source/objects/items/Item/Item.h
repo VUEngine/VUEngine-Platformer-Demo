@@ -50,9 +50,9 @@ __CLASS(Item);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Item, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, int id, const char* const name);
+__CLASS_NEW_DECLARE(Item, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Item_constructor(Item this, AnimatedInGameEntityDefinition* definition, int id, const char* const name);
+void Item_constructor(Item this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Item_destructor(Item this);
 void Item_collect(Item this);
 void Item_ready(Item this, u32 recursive);
