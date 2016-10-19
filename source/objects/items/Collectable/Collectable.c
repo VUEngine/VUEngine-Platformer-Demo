@@ -132,13 +132,12 @@ void Collectable_ready(Collectable this, u32 recursive)
     // if item has already been collected, remove it
     if(ProgressManager_getItemStatus(ProgressManager_getInstance(), this->itemNumber))
     {
-        // send message to remove item in next game frame
-        MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kRemoveFromStage, NULL);
+        Collectable_removeFromStage(this);
     }
     else
     {
-		// call base method to start animation
-		AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+        // call base method to start animation
+        AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
     }
 }
 
