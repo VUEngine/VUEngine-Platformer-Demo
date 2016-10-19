@@ -131,9 +131,9 @@ u32 ProgressManager_computeChecksum(ProgressManager this __attribute__ ((unused)
 {
 	u32 crc32 = ~0;
 
-	// iterate over whole sram content, starting right after the previously saved checksum
+	// iterate over whole save data, starting right after the previously saved checksum
     int i = (offsetof(struct SaveData, checksum) + sizeof(crc32));
-    for(; i < __TOTAL_SAVE_RAM; i++)
+    for(; i < (int)sizeof(SaveData); i++)
     {
     	// get the current byte
 		u8 currentByte;
@@ -179,7 +179,7 @@ static void ProgressManager_initialize(ProgressManager this)
 	if(!ProgressManager_verifySaveStamp(this) || !ProgressManager_verifyChecksum(this))
 	{
 		// if no previous save could be verified, completely erase sram to start clean
-		SRAMManager_clear(SRAMManager_getInstance());
+		SRAMManager_clear(SRAMManager_getInstance(), 0, (int)sizeof(SaveData));
 
 		// write save stamp
 		char saveStamp[SAVE_STAMP_LENGTH];
