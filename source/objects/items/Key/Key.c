@@ -77,7 +77,7 @@ void Key_ready(Key this, u32 recursive)
 	ASSERT(this, "Key::ready: null this");
 
 	// call base
-	Item_ready(__SAFE_CAST(Item, this), recursive);
+	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
     // add post processing effect to make key emit rhombuses
     Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
