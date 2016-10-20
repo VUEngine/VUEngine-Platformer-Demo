@@ -277,31 +277,31 @@ void ProgressManager_setAutomaticPauseStatus(ProgressManager this __attribute__ 
 	ProgressManager_writeChecksum(this);
 }
 
-bool ProgressManager_getCoinStatus(ProgressManager this, u16 itemNumber)
+bool ProgressManager_getCoinStatus(ProgressManager this, u16 id)
 {
 	ASSERT(this, "ProgressManager::getCoinStatus: null this");
 
-	if(itemNumber > 0 && itemNumber <= COINS_PER_LEVEL)
+	if(id > 0 && id <= COINS_PER_LEVEL)
 	{
-		return GET_BIT(this->collectedCoins[(itemNumber - 1) >> 5], (itemNumber - 1));
+		return GET_BIT(this->collectedCoins[(id - 1) >> 5], (id - 1));
 	}
 
 	return false;
 }
 
-bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool taken)
+bool ProgressManager_setCoinStatus(ProgressManager this, u16 id, bool taken)
 {
 	ASSERT(this, "ProgressManager::setCoinStatus: null this");
 
-	if(itemNumber > 0 && itemNumber <= COINS_PER_LEVEL)
+	if(id > 0 && id <= COINS_PER_LEVEL)
 	{
 		if(taken)
 		{
-			SET_BIT(this->collectedCoins[(itemNumber - 1) >> 5], (itemNumber - 1));
+			SET_BIT(this->collectedCoins[(id - 1) >> 5], (id - 1));
 		}
 		else
 		{
-			CLEAR_BIT(this->collectedCoins[(itemNumber - 1) >> 5], (itemNumber - 1));
+			CLEAR_BIT(this->collectedCoins[(id - 1) >> 5], (id - 1));
 		}
 
 		return true;
@@ -310,31 +310,31 @@ bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool ta
 	return false;
 }
 
-bool ProgressManager_getItemStatus(ProgressManager this, u16 itemNumber)
+bool ProgressManager_getItemStatus(ProgressManager this, u16 id)
 {
 	ASSERT(this, "ProgressManager::getItemStatus: null this");
 
-	if(itemNumber > 0 && itemNumber <= sizeof(this->collectedItems))
+	if(id > 0 && id <= sizeof(this->collectedItems))
 	{
-		return GET_BIT(this->collectedItems, (itemNumber - 1));
+		return GET_BIT(this->collectedItems, (id - 1));
 	}
 
 	return false;
 }
 
-bool ProgressManager_setItemStatus(ProgressManager this, u16 itemNumber, bool taken)
+bool ProgressManager_setItemStatus(ProgressManager this, u16 id, bool taken)
 {
 	ASSERT(this, "ProgressManager::setItemStatus: null this");
 
-	if(itemNumber > 0 && itemNumber <= sizeof(this->collectedItems))
+	if(id > 0 && id <= sizeof(this->collectedItems))
 	{
 		if(taken)
 		{
-			SET_BIT(this->collectedItems, (itemNumber - 1));
+			SET_BIT(this->collectedItems, (id - 1));
 		}
 		else
 		{
-			CLEAR_BIT(this->collectedItems, (itemNumber - 1));
+			CLEAR_BIT(this->collectedItems, (id - 1));
 		}
 
 		return true;

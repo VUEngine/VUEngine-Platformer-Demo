@@ -61,7 +61,7 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_MAIN_COLLISIONS[] =
     // top ceiling
     {&COLLISION_48x2x1,             {FTOFIX19_13(0),    FTOFIX19_13(-104),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // right ceiling/floor
-    {&COLLISION_14x18x1,            {FTOFIX19_13(136),  FTOFIX19_13(24),     FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
+    {&COLLISION_14x18x1,            {FTOFIX19_13(136),  FTOFIX19_13(24),    FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // top left wall
     {&COLLISION_28x8x1,             {FTOFIX19_13(-144), FTOFIX19_13(-72),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // left ceiling/floor
@@ -102,8 +102,8 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_ST_CHILDREN[] =
 
     {&TORCH_AG,                     {FTOFIX19_13(200),  FTOFIX19_13(156),   FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
 
-    {&COIN_AG,                      {FTOFIX19_13(240),  FTOFIX19_13(104),    FTOFIX19_13(LAYER_0_ITEMS)}, 46, NULL, NULL, NULL, false},
-    {&COIN_AG,                      {FTOFIX19_13(256),  FTOFIX19_13(104),    FTOFIX19_13(LAYER_0_ITEMS)}, 47, NULL, NULL, NULL, false},
+    {&COIN_AG,                      {FTOFIX19_13(240),  FTOFIX19_13(104),   FTOFIX19_13(LAYER_0_ITEMS)}, 46, NULL, NULL, NULL, false},
+    {&COIN_AG,                      {FTOFIX19_13(256),  FTOFIX19_13(104),   FTOFIX19_13(LAYER_0_ITEMS)}, 47, NULL, NULL, NULL, false},
 
     {&TORCH_AG,                     {FTOFIX19_13(328),  FTOFIX19_13(44),    FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
     {&DOOR_AG,                      {FTOFIX19_13(352),  FTOFIX19_13(47),    FTOFIX19_13(LAYER_0_DOORS)}, 0, NULL, NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false},

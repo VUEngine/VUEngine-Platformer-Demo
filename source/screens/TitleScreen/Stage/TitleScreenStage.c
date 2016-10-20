@@ -78,10 +78,6 @@ PositionedEntityROMDef TITLE_SCREEN_ST_CHILDREN[] =
 	{&VBJAENGINE_IM,        {FTOFIX19_13(192),  FTOFIX19_13(18), 	FTOFIX19_13(LAYER_1)},  0, NULL, NULL, NULL, true},
 	{&LOGO_IM, 			    {FTOFIX19_13(192),  FTOFIX19_13(54), 	FTOFIX19_13(LAYER_0)},  0, NULL, NULL, NULL, true},
 
-	// samples of ignored entities
-	{&COIN_AG, 		        {FTOFIX19_13(57), 	FTOFIX19_13(108), 	FTOFIX19_13(LAYER_0)},  0, "IgnoreMeCoin", NULL, NULL, true},
-	{&DOOR_AG,				{FTOFIX19_13(192), 	FTOFIX19_13(152), 	FTOFIX19_13(LAYER_0)},  0, "IgnoreMeDoor", NULL, NULL, true},
-
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
