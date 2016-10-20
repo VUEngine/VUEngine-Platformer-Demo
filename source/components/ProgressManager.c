@@ -277,7 +277,7 @@ void ProgressManager_setAutomaticPauseStatus(ProgressManager this __attribute__ 
 	ProgressManager_writeChecksum(this);
 }
 
-bool ProgressManager_getCoinStatus(ProgressManager this, u8 itemNumber)
+bool ProgressManager_getCoinStatus(ProgressManager this, u16 itemNumber)
 {
 	ASSERT(this, "ProgressManager::getCoinStatus: null this");
 
@@ -289,7 +289,7 @@ bool ProgressManager_getCoinStatus(ProgressManager this, u8 itemNumber)
 	return false;
 }
 
-bool ProgressManager_setCoinStatus(ProgressManager this, u8 itemNumber, bool taken)
+bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool taken)
 {
 	ASSERT(this, "ProgressManager::setCoinStatus: null this");
 
@@ -310,7 +310,7 @@ bool ProgressManager_setCoinStatus(ProgressManager this, u8 itemNumber, bool tak
 	return false;
 }
 
-bool ProgressManager_getItemStatus(ProgressManager this, u8 itemNumber)
+bool ProgressManager_getItemStatus(ProgressManager this, u16 itemNumber)
 {
 	ASSERT(this, "ProgressManager::getItemStatus: null this");
 
@@ -322,7 +322,7 @@ bool ProgressManager_getItemStatus(ProgressManager this, u8 itemNumber)
 	return false;
 }
 
-bool ProgressManager_setItemStatus(ProgressManager this, u8 itemNumber, bool taken)
+bool ProgressManager_setItemStatus(ProgressManager this, u16 itemNumber, bool taken)
 {
 	ASSERT(this, "ProgressManager::setItemStatus: null this");
 

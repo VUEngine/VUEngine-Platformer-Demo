@@ -74,15 +74,13 @@ void Coin_destructor(Coin this)
 	__DESTROY_BASE;
 }
 
-// setExtraInfo method
-void Coin_setExtraInfo(Coin this, void* extraInfo)
+// initialize method
+void Coin_initialize(Coin this, u32 recursive)
 {
-	ASSERT(this, "Coin::setExtraInfo: null this");
-
-	Collectable_setExtraInfo(__SAFE_CAST(Collectable, this), extraInfo);
+	ASSERT(this, "Coin::initialize: null this");
 
     // if coin has already been collected, show silhouette representation
-    if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
+    if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
     {
         AnimatedInGameEntityDefinition* animatedInGameEntityDefinition = this->animatedInGameEntityDefinition;
 
@@ -97,6 +95,8 @@ void Coin_setExtraInfo(Coin this, void* extraInfo)
 
         AnimatedInGameEntity_setDefinition(__SAFE_CAST(AnimatedInGameEntity, this), animatedInGameEntityDefinition);
     }
+
+    Entity_initialize(__SAFE_CAST(Entity, this), recursive);
 }
 
 void Coin_collect(Coin this)
@@ -104,10 +104,10 @@ void Coin_collect(Coin this)
 	ASSERT(this, "Collectable::collect: null this");
 
 	// "collect" coin if it wasn't already
-    if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->itemNumber))
+    if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
     {
         // set coin status to taken
-        ProgressManager_setCoinStatus(ProgressManager_getInstance(), this->itemNumber, true);
+        ProgressManager_setCoinStatus(ProgressManager_getInstance(), this->id, true);
 
         // fire "taken" event
         Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);

@@ -35,7 +35,7 @@
 
 #define Coin_SET_VTABLE(ClassName)																		\
         Collectable_SET_VTABLE(ClassName)																\
-        __VIRTUAL_SET(ClassName, Coin, setExtraInfo);													\
+        __VIRTUAL_SET(ClassName, Coin, initialize);													    \
         __VIRTUAL_SET(ClassName, Coin, collect);														\
 
 __CLASS(Coin);
@@ -53,7 +53,7 @@ __CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefiniti
 
 void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Coin_destructor(Coin this);
-void Coin_setExtraInfo(Coin this, void* extraInfo);
+void Coin_initialize(Coin this, u32 recursive);
 void Coin_collect(Coin this);
 
 

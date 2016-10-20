@@ -83,14 +83,14 @@ void Item_ready(Item this, u32 recursive)
 	ASSERT(this, "Item::ready: null this");
 
     // if item has already been collected, remove it
-    if(ProgressManager_getItemStatus(ProgressManager_getInstance(), this->itemNumber))
+    if(ProgressManager_getItemStatus(ProgressManager_getInstance(), this->id))
     {
         Collectable_removeFromStage(__SAFE_CAST(Collectable, this));
     }
     else
     {
         // call base method to start animation
-        Collectable_ready(__SAFE_CAST(Collectable, this), recursive);
+    	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
     }
 }
 
@@ -99,5 +99,5 @@ void Item_collect(Item this)
 	ASSERT(this, "Item::collect: null this");
 
     // set item status to taken
-    ProgressManager_setItemStatus(ProgressManager_getInstance(), this->itemNumber, true);
+    ProgressManager_setItemStatus(ProgressManager_getInstance(), this->id, true);
 }

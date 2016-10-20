@@ -36,9 +36,7 @@
 
 #define Collectable_SET_VTABLE(ClassName)																\
         AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, Collectable, setExtraInfo);											\
         __VIRTUAL_SET(ClassName, Collectable, handleMessage);											\
-        __VIRTUAL_SET(ClassName, Collectable, ready);													\
         __VIRTUAL_SET(ClassName, Collectable, collect);													\
 
 __CLASS(Collectable);
@@ -46,8 +44,6 @@ __CLASS(Collectable);
 #define Collectable_ATTRIBUTES																			\
         /* it is derived from */																		\
         AnimatedInGameEntity_ATTRIBUTES																	\
-        /* the item's id number in the current stage */													\
-        u8 itemNumber;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,9 +56,7 @@ void Collectable_constructor(Collectable this, AnimatedInGameEntityDefinition* d
 void Collectable_destructor(Collectable this);
 void Collectable_collect(Collectable this);
 bool Collectable_handleMessage(Collectable this, Telegram telegram);
-void Collectable_ready(Collectable this, u32 recursive);
 void Collectable_removeFromStage(Collectable this);
-void Collectable_setExtraInfo(Collectable this, void* extraInfo);
 
 
 #endif

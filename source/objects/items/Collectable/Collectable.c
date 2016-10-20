@@ -63,9 +63,6 @@ void Collectable_constructor(Collectable this, AnimatedInGameEntityDefinition* a
 {
 	ASSERT(this, "Collectable::constructor: null this");
 
-	// init class variable
-    this->itemNumber = 0;
-
 	// construct base
 	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
 
@@ -81,14 +78,6 @@ void Collectable_destructor(Collectable this)
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
-}
-
-// set id from extra info
-void Collectable_setExtraInfo(Collectable this, void* extraInfo)
-{
-	ASSERT(this, "Collectable::setExtraInfo: null this");
-
-    this->itemNumber = (u8)(int)extraInfo;
 }
 
 // state's handle message
@@ -122,15 +111,6 @@ bool Collectable_handleMessage(Collectable this, Telegram telegram)
 	}
 
 	return false;
-}
-
-// ready method
-void Collectable_ready(Collectable this, u32 recursive)
-{
-	ASSERT(this, "Collectable::ready: null this");
-
-	// call base method to start animation
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 }
 
 void Collectable_collect(Collectable this __attribute__ ((unused)))
