@@ -77,23 +77,6 @@ void Item_destructor(Item this)
 	__DESTROY_BASE;
 }
 
-// ready method
-void Item_ready(Item this, u32 recursive)
-{
-	ASSERT(this, "Item::ready: null this");
-
-    // if item has already been collected, remove it
-    if(ProgressManager_getItemStatus(ProgressManager_getInstance(), this->id))
-    {
-        Collectable_removeFromStage(__SAFE_CAST(Collectable, this));
-    }
-    else
-    {
-        // call base method to start animation
-    	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
-    }
-}
-
 void Item_collect(Item this)
 {
 	ASSERT(this, "Item::collect: null this");

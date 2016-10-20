@@ -97,15 +97,8 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
     // disable user input
 	Game_disableKeypad(Game_getInstance());
 
-    // sample code that shows how to ignore selected entities when loading a stage
-	VirtualList entityNamesToIgnore = __NEW(VirtualList);
-	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeDoor");
-	VirtualList_pushBack(entityNamesToIgnore, "IgnoreMeCoin");
-
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, entityNamesToIgnore, true);
-
-	__DELETE(entityNamesToIgnore);
+	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, NULL, true);
 
 	// sample code to show how to animate multiple sprites at the same time by just playing an animation in a single
 	// entity when various share the same __ANIMATED_SHARED charset

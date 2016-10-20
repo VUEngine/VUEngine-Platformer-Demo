@@ -57,7 +57,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
 static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner, Telegram telegram);
-static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this, VirtualList entityNamesToIgnore);
+static void PlatformerLevelState_getPositionedEntitiesToIngnore(PlatformerLevelState this, VirtualList positionedEntitiesToIgnore);
 bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
@@ -104,21 +104,29 @@ static void PlatformerLevelState_destructor(PlatformerLevelState this)
 	__SINGLETON_DESTROY;
 }
 
-static void PlatformerLevelState_getEntityNamesToIngnore(PlatformerLevelState this  __attribute__ ((unused)), VirtualList entityNamesToIgnore __attribute__ ((unused)))
+static void PlatformerLevelState_getPositionedEntitiesToIngnore(PlatformerLevelState this  __attribute__ ((unused)), VirtualList positionedEntitiesToIgnore __attribute__ ((unused)))
 {
-	ASSERT(entityNamesToIgnore, "PlatformerLevelState::getEntityNamesToIngnore: null entityNamesToIgnore");
+	ASSERT(this, "PlatformerLevelState::getPositionedEntitiesToIngnore: null this");
+	ASSERT(positionedEntitiesToIgnore, "PlatformerLevelState::getPositionedEntitiesToIngnore: null positionedEntitiesToIgnore");
 
-	/*
-	int i = 0;
-	for(;this->currentStageEntryPoint->stageDefinition->entities[i].entityDefinition; i++)
-	{
-		if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->currentStageEntryPoint->stageDefinition->entities[i].name))
-		{
-			VirtualList_pushBack(entityNamesToIgnore, this->stageDefinition->stageDefinition->entities[i].name);
-		}
-	}
-	*/
+    if(positionedEntitiesToIgnore)
+    {
+        // TODO: fix me Chris!
+        // sample code
+        extern EntityDefinition BANDANA_AG;
+
+        int i = 0;
+        for(; this->currentStageEntryPoint->stageDefinition->entities.children[i].entityDefinition; i++)
+        {
+            if(this->currentStageEntryPoint->stageDefinition->entities.children[i].entityDefinition == (EntityDefinition*)&BANDANA_AG)
+            {
+                VirtualList_pushBack(positionedEntitiesToIgnore, &this->currentStageEntryPoint->stageDefinition->entities.children[i]);
+                break;
+            }
+        }
+    }
 }
+
 
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
@@ -134,8 +142,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	Game_disableKeypad(Game_getInstance());
 
     // get list of entities that should not be loaded
-	VirtualList entityNamesToIgnore = __NEW(VirtualList);
-	PlatformerLevelState_getEntityNamesToIngnore(this, entityNamesToIgnore);
+	VirtualList positionedEntitiesToIgnore = __NEW(VirtualList);
+	PlatformerLevelState_getPositionedEntitiesToIngnore(this, positionedEntitiesToIgnore);
 
 	// check if destination entity name is given
 	if(this->currentStageEntryPoint->destinationName)
@@ -166,7 +174,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
             Screen_setPosition(Screen_getInstance(), screenPosition);
 
     	    // load stage
-    	    GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, entityNamesToIgnore, false);
+    	    GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
 
             // get hero entity
             Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
@@ -218,13 +226,13 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	else
 	{
 	    // load stage
-	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->currentStageEntryPoint->stageDefinition), entityNamesToIgnore, true);
+	    GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->currentStageEntryPoint->stageDefinition), positionedEntitiesToIgnore, true);
 	}
 
     CustomScreenMovementManager_disable(CustomScreenMovementManager_getInstance());
 
     // free some memory
-	__DELETE(entityNamesToIgnore);
+	__DELETE(positionedEntitiesToIgnore);
 
 	// level is paused
 	PlatformerLevelState_setModeToPaused(this);

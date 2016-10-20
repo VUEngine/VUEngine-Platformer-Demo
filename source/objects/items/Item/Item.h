@@ -36,7 +36,6 @@
 
 #define Item_SET_VTABLE(ClassName)																		\
         Collectable_SET_VTABLE(ClassName)																\
-        __VIRTUAL_SET(ClassName, Item, ready);															\
         __VIRTUAL_SET(ClassName, Item, collect);														\
 
 __CLASS(Item);
@@ -55,7 +54,6 @@ __CLASS_NEW_DECLARE(Item, AnimatedInGameEntityDefinition* animatedInGameEntityDe
 void Item_constructor(Item this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Item_destructor(Item this);
 void Item_collect(Item this);
-void Item_ready(Item this, u32 recursive);
 
 
 #endif
