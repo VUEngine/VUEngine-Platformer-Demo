@@ -22,7 +22,7 @@
 #include <libgccvb.h>
 #include <AnimatedInGameEntity.h>
 #include <BgmapAnimatedSprite.h>
-#include <GUI.h>
+#include <Gui.h>
 #include <macros.h>
 
 
@@ -224,7 +224,7 @@ AnimatedInGameEntityROMDef GUI_AG =
 {
     {
         {
-            __TYPE(GUI),
+            __TYPE(Gui),
             (SpriteROMDef**)GUI_SPRITES,
         },
 

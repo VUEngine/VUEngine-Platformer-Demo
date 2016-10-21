@@ -30,17 +30,17 @@
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define GUI_METHODS(ClassName)																			\
+#define Gui_METHODS(ClassName)																			\
 	    AnimatedInGameEntity_METHODS(ClassName)															\
 
-#define GUI_SET_VTABLE(ClassName)																		\
+#define Gui_SET_VTABLE(ClassName)																		\
         AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, GUI, ready);															\
-        __VIRTUAL_SET(ClassName, GUI, handlePropagatedMessage);											\
+        __VIRTUAL_SET(ClassName, Gui, ready);															\
+        __VIRTUAL_SET(ClassName, Gui, handlePropagatedMessage);											\
 
-__CLASS(GUI);
+__CLASS(Gui);
 
-#define GUI_ATTRIBUTES																					\
+#define Gui_ATTRIBUTES																					\
         /* it is derived from */																		\
         AnimatedInGameEntity_ATTRIBUTES																	\
 
@@ -58,19 +58,19 @@ __CLASS(GUI);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(GUI, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Gui, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void GUI_constructor(GUI this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
-void GUI_destructor(GUI this);
-void GUI_ready(GUI this, u32 recursive);
-void GUI_printClock(GUI this);
-void GUI_printBestTime(GUI this);
-void GUI_printCoins(GUI this);
-void GUI_printEnergy(GUI this);
-void GUI_printKey(GUI this);
-void GUI_printLevel(GUI this);
-void GUI_printAll(GUI this);
-bool GUI_handlePropagatedMessage(GUI this, int message);
+void Gui_constructor(Gui this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+void Gui_destructor(Gui this);
+void Gui_ready(Gui this, u32 recursive);
+void Gui_printClock(Gui this);
+void Gui_printBestTime(Gui this);
+void Gui_printCoins(Gui this);
+void Gui_printEnergy(Gui this);
+void Gui_printKey(Gui this);
+void Gui_printLevel(Gui this);
+void Gui_printAll(Gui this);
+bool Gui_handlePropagatedMessage(Gui this, int message);
 
 
 #endif

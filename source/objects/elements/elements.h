@@ -24,7 +24,7 @@
 
 #include "Door/Door.h"
 #include "HideLayer/HideLayer.h"
-#include "GUI/GUI.h"
+#include "Gui/Gui.h"
 #include "Hint/Hint.h"
 
 #include "textures.h"
