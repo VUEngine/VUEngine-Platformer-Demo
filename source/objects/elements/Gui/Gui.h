@@ -49,7 +49,7 @@ __CLASS(Gui);
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define GUI_FONT    "GUIFont"
+#define GUI_FONT    "GuiFont"
 #define GUI_X_POS   0
 #define GUI_Y_POS   26
 

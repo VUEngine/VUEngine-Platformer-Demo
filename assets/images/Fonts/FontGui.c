@@ -1,9 +1,9 @@
 
-//{{BLOCK(FontGUI)
+//{{BLOCK(FontGui)
 
 //======================================================================
 //
-//	FontGUI, 256x48@2, 
+//	FontGui, 256x48@2,
 //	+ 192 tiles not compressed
 //	Total size: 3072 = 3072
 //
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int FontGUITiles[768] __attribute__((aligned(4)))=
+const unsigned int FontGuiTiles[768] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x03E003E0,0x03E003E0,0x03E003E0,
 	0x00000000,0x3E3E3E3E,0x3E3E3E3E,0x3E3E3E3E,0x00000000,0x3EF83EF8,0xFFFEFFFE,0x3EF83EF8,
@@ -124,4 +124,4 @@ const unsigned int FontGUITiles[768] __attribute__((aligned(4)))=
 	0x8000E3E0,0xA0008000,0x8000E000,0x00000000,0x003F000F,0x03FB00FE,0x000B03EE,0x00000000,
 };
 
-//}}BLOCK(FontGUI)
+//}}BLOCK(FontGui)

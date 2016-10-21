@@ -187,11 +187,11 @@ static void OverworldState_print(OverworldState this __attribute__ ((unused)))
 
     // coins
     u8 coins = ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager_getInstance());
-    Printing_int(Printing_getInstance(), coins, 4, 26, "GUIFont");
+    Printing_int(Printing_getInstance(), coins, 4, 26, "GuiFont");
 
     // level name
-    Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_LEVEL_1_NAME), 16, 26, "GUIFont");
-    Printing_text(Printing_getInstance(), "1-1", 12, 26, "GUIFont");
+    Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_LEVEL_1_NAME), 16, 26, "GuiFont");
+    Printing_text(Printing_getInstance(), "1-1", 12, 26, "GuiFont");
 }
 
 // state's handle message

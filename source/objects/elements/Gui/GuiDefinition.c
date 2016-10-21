@@ -30,10 +30,10 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GUITiles[];
-extern BYTE GUIOverworldTiles[];
-extern BYTE GUIBandanaTiles[];
-extern BYTE GUIMap[];
+extern BYTE GuiTiles[];
+extern BYTE GuiOverworldTiles[];
+extern BYTE GuiBandanaTiles[];
+extern BYTE GuiMap[];
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
@@ -83,7 +83,7 @@ CharSetROMDef GUI_CH =
     __ANIMATED_SINGLE,
 
     // char definition
-    GUITiles,
+    GuiTiles,
 };
 
 CharSetROMDef GUI_BANDANA_CH =
@@ -98,7 +98,7 @@ CharSetROMDef GUI_BANDANA_CH =
     __ANIMATED_SINGLE,
 
     // char definition
-    GUIBandanaTiles,
+    GuiBandanaTiles,
 };
 
 CharSetROMDef GUI_OVERWORLD_CH =
@@ -113,7 +113,7 @@ CharSetROMDef GUI_OVERWORLD_CH =
     __ANIMATED_SINGLE,
 
     // char definition
-    GUIOverworldTiles,
+    GuiOverworldTiles,
 };
 
 TextureROMDef GUI_TX =
@@ -122,7 +122,7 @@ TextureROMDef GUI_TX =
     (CharSetDefinition*)&GUI_CH,
 
     // bgmap definition
-    GUIMap,
+    GuiMap,
 
     // cols (max 64)
     48,
@@ -148,7 +148,7 @@ TextureROMDef GUI_OVERWORLD_TX =
     (CharSetDefinition*)&GUI_OVERWORLD_CH,
 
     // bgmap definition
-    GUIMap,
+    GuiMap,
 
     // cols (max 64)
     48,

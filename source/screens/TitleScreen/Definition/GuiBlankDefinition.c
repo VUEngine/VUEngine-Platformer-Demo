@@ -26,8 +26,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GUIBlankTiles[];
-extern BYTE GUIBlankMap[];
+extern BYTE GuiBlankTiles[];
+extern BYTE GuiBlankMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ CharSetROMDef GUI_BLANK_CH =
     __NOT_ANIMATED,
 
     // char definition
-    GUIBlankTiles,
+    GuiBlankTiles,
 };
 
 TextureROMDef GUI_BLANK_TX =
@@ -55,7 +55,7 @@ TextureROMDef GUI_BLANK_TX =
     (CharSetDefinition*)&GUI_BLANK_CH,
 
     // bgmap definition
-    GUIBlankMap,
+    GuiBlankMap,
 
     // cols (max 64)
     48,

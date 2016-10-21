@@ -26,7 +26,7 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FontGUITiles[];
+extern BYTE FontGuiTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ CharSetROMDef PLATFORMER_GUI_FONT_CH =
     __NOT_ANIMATED,
 
     // char definition
-    FontGUITiles,
+    FontGuiTiles,
 };
 
 FontROMDef PLATFORMER_GUI_FONT =
@@ -57,5 +57,5 @@ FontROMDef PLATFORMER_GUI_FONT =
     {1, 2},
 
 	// font's name
-    "GUIFont",
+    "GuiFont",
 };

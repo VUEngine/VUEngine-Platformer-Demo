@@ -1,11 +1,11 @@
 
-//{{BLOCK(GUIOverworld)
+//{{BLOCK(GuiOverworld)
 
 //======================================================================
 //
-//	GUIOverworld, 384x80@2, 
+//	GuiOverworld, 384x80@2,
 //	+ 481 tiles not compressed
-//	+ regular map (flat), not compressed, 48x10 
+//	+ regular map (flat), not compressed, 48x10
 //	Total size: 7696 + 960 = 8656
 //
 //	Time-stamp: 2016-10-12, 14:29:36
@@ -14,7 +14,7 @@
 //
 //======================================================================
 
-const unsigned int GUIOverworldTiles[1924] __attribute__((aligned(4)))=
+const unsigned int GuiOverworldTiles[1924] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x55555555,0x55555555,0x55555555,0x55555555,
 	0x55555555,0xFE555555,0x57E5FFE5,0xFAF9A9F9,0x55555555,0x55575555,0x957D557F,0x95FAE5F6,
@@ -289,7 +289,7 @@ const unsigned int GUIOverworldTiles[1924] __attribute__((aligned(4)))=
 	0x55555555,0x55555555,0x55555555,0x55555555,
 };
 
-const unsigned short GUIOverworldMap[480] __attribute__((aligned(4)))=
+const unsigned short GuiOverworldMap[480] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x0010,
@@ -360,4 +360,4 @@ const unsigned short GUIOverworldMap[480] __attribute__((aligned(4)))=
 	0x01D9,0x01DA,0x01DB,0x01DC,0x01DD,0x01DE,0x01DF,0x01E0,
 };
 
-//}}BLOCK(GUIOverworld)
+//}}BLOCK(GuiOverworld)
