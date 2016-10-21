@@ -595,7 +595,7 @@ StageROMDef LEVEL_1_MAIN_ST =
         // ui
         {
             LEVEL_1_MAIN_ST_UI_CHILDREN,
-            __TYPE(UI),
+            __TYPE(UiContainer),
         },
 
         // children

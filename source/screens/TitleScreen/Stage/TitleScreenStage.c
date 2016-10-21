@@ -285,7 +285,7 @@ StageROMDef TITLE_SCREEN_ST =
         // ui
         {
         	TITLE_SCREEN_ST_UI_CHILDREN,
-            __TYPE(UI),
+            __TYPE(UiContainer),
         },
 
         // children
