@@ -39,6 +39,8 @@ extern TextureDefinition MOUND_BG_CASTLE_FLAG_TX;
 extern TextureDefinition CLOUDS_A_TX;
 extern TextureDefinition CLOUDS_B_TX;
 
+extern TextureDefinition LEVEL_1_HOUSE_MAIN_TX;
+
 extern TextureDefinition LEVEL_1_COIN_ROOM_MAIN_TX;
 extern TextureDefinition LEVEL_1_COIN_ROOM_MAIN_BACK_TX;
 extern TextureDefinition LEVEL_1_COIN_ROOM_BACK_TX;
@@ -94,6 +96,7 @@ extern TextureDefinition GRASS_TX;
 extern TextureDefinition BUSH_TX;
 extern TextureDefinition FENCE_TX;
 extern TextureDefinition TORCH_TX;
+extern TextureDefinition FIRE_SMALL_TX;
 
 extern TextureDefinition LANE_V_6_TX;
 

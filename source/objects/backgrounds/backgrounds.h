@@ -46,6 +46,8 @@ extern EntityDefinition MOUND_BG_CASTLE_FLAG_AG;
 extern EntityDefinition CLOUDS_SB;
 extern EntityDefinition STAR_AG;
 
+extern EntityDefinition LEVEL_1_HOUSE_MAIN_IM;
+
 extern EntityDefinition LEVEL_1_COIN_ROOM_MAIN_IM;
 
 extern EntityDefinition LEVEL_1_INTERSECTION_MAIN_IM;
@@ -82,6 +84,7 @@ extern EntityDefinition GRASS_AG;
 extern EntityDefinition BUSH_AG;
 extern EntityDefinition FENCE_IM;
 extern EntityDefinition TORCH_AG;
+extern EntityDefinition FIRE_SMALL_AG;
 
 extern EntityDefinition LANE_V_6_IM;
 

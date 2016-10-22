@@ -34,6 +34,7 @@
 // 											    DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern StageEntryPointROMDef LEVEL_1_HOUSE_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_INTERSECTION_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
@@ -225,6 +226,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
     {&SMOKE_PS,						{FTOFIX19_13(88),   FTOFIX19_13(150), 	FTOFIX19_13(LAYER_0_FOREGROUND + 16)},  0, NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,     {FTOFIX19_13(256), 	FTOFIX19_13(368), 	FTOFIX19_13(LAYER_0_FOREGROUND)},       0, NULL, NULL, NULL, false},
     {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(88),   FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       0, "House", NULL, NULL, false},
+	{&KEY_DOOR_AG,					{FTOFIX19_13(44), 	FTOFIX19_13(220), 	FTOFIX19_13(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL_1_HOUSE_MAIN_EP, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)},       0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
 	{&RUN_SIGN_IM,					{FTOFIX19_13(232),  FTOFIX19_13(220), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       0, NULL, NULL, NULL, false},
@@ -324,7 +326,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	{&LAYER_SWITCH_DOOR_AG,			{FTOFIX19_13(2669), FTOFIX19_13(308), 	FTOFIX19_13(LAYER_0_DOORS - SORT_INCREMENT)}, 0, "DoorFt1", NULL, (void*)&LEVEL_1_MAIN_LS_BACK_EP, false},
 	{&COIN_AG,						{FTOFIX19_13(2732), FTOFIX19_13(232), 	FTOFIX19_13(LAYER_0_ITEMS)},            24, NULL, NULL, NULL, false},
 	{&COIN_AG,						{FTOFIX19_13(2748), FTOFIX19_13(232), 	FTOFIX19_13(LAYER_0_ITEMS)},            25, NULL, NULL, NULL, false},
-	{&COIN_AG,						{FTOFIX19_13(2764), FTOFIX19_13(232), 	FTOFIX19_13(LAYER_0_ITEMS)},            26, NULL, NULL, NULL, false},
 
     {&LEVEL_1_TOWER_IM,             {FTOFIX19_13(2893), FTOFIX19_13(152), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       0, NULL, NULL, NULL, false},
 	{&KEY_DOOR_AG,					{FTOFIX19_13(2893), FTOFIX19_13(228), 	FTOFIX19_13(LAYER_0_DOORS - SORT_INCREMENT)}, 0, "TowrEnt", NULL, (void*)&LEVEL_1_TOWER_MAIN_EP, false},
@@ -619,7 +620,19 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
     "House",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(-48), FTOFIX19_13(-38), FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(-22), FTOFIX19_13(-38), FTOFIX19_13(-SORT_INCREMENT)},
+}};
+
+StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP[] =
+{{
+	// the stage to load
+    (StageDefinition*)&LEVEL_1_MAIN_ST,
+
+	// name of the entity to start at
+    "HouseEnt",
+
+    // offset from entry point (x, y, z)
+    {FTOFIX19_13(14), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
 }};
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =

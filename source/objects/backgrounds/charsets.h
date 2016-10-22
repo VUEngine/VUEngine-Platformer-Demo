@@ -48,6 +48,8 @@ extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_CH;
 
+extern CharSetDefinition LEVEL_1_HOUSE_MAIN_CH;
+
 extern CharSetDefinition LEVEL_1_TOWER_CH;
 
 extern CharSetDefinition LEVEL_1_INTERSECTION_BACK_CH;

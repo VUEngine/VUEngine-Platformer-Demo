@@ -34,6 +34,7 @@ extern StageROMDef EMPTY_ST;
 extern StageROMDef OVERWORLD_1_ST;
 
 extern StageROMDef LEVEL_1_MAIN_ST;
+extern StageROMDef LEVEL_1_HOUSE_ST;
 extern StageROMDef LEVEL_1_COIN_ROOM_ST;
 extern StageROMDef LEVEL_1_INTERSECTION_ST;
 extern StageROMDef LEVEL_1_TOWER_ST;

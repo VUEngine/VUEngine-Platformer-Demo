@@ -19,84 +19,52 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
-#include <AnimatedInGameEntity.h>
-#include <ObjectAnimatedSprite.h>
-#include <macros.h>
+#include <MBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TorchTiles[];
-extern BYTE TorchMap[];
+extern BYTE Level_1_House_MainTiles[];
+extern BYTE Level_1_House_MainMap[];
+
+extern BgmapSpriteROMDef LEVEL_1_HOUSE_PIPE_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMDef TORCH_BURN_ANIM =
-{
-	// number of frames of this animation function
-	3,
-
-	// frames to play in animation
-	{0, 1, 2},
-
-	// number of cycles a frame of animation is displayed
-	6,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Burn",
-};
-
-// an animation definition
-AnimationDescriptionROMDef TORCH_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&TORCH_BURN_ANIM,
-		NULL,
-	}
-};
-
-CharSetROMDef TORCH_CH =
+CharSetROMDef LEVEL_1_HOUSE_MAIN_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    3,
+    38,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED,
+    __NOT_ANIMATED,
 
     // char definition
-    TorchTiles,
+    Level_1_House_MainTiles,
 };
 
-TextureROMDef TORCH_TX =
+TextureROMDef LEVEL_1_HOUSE_MAIN_TX =
 {
     // charset definition
-    (CharSetDefinition*)&TORCH_CH,
+    (CharSetDefinition*)&LEVEL_1_HOUSE_MAIN_CH,
 
     // bgmap definition
-    TorchMap,
+    Level_1_House_MainMap,
 
     // cols (max 64)
-    1,
+    48,
 
     // rows (max 64)
-    3,
+    28,
 
     // padding for affine transformations
 	{0, 0},
@@ -107,64 +75,39 @@ TextureROMDef TORCH_TX =
     1,
 
     // palette number (0-3)
-    0,
+    1,
 };
 
-ObjectSpriteROMDef TORCH_SPRITE =
+BgmapSpriteROMDef LEVEL_1_HOUSE_MAIN_IM_SPRITE =
 {
     {
         // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+        __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&TORCH_TX,
+        (TextureDefinition*)&LEVEL_1_HOUSE_MAIN_TX,
 
         // displacement
-        {0, 0, FTOFIX19_13(1)},
+        {0, 0, ITOFIX19_13(2)},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-	__WORLD_OBJ,
+	__WORLD_BGMAP,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const TORCH_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_HOUSE_MAIN_IM_SPRITES[] =
 {
-	&TORCH_SPRITE,
+	&LEVEL_1_HOUSE_MAIN_IM_SPRITE,
+	&LEVEL_1_HOUSE_PIPE_IM_SPRITE,
+	&LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef TORCH_AG =
+MBackgroundROMDef LEVEL_1_HOUSE_MAIN_IM =
 {
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)TORCH_SPRITES,
-        },
-
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
-
-        // in game type
-        kNotSolid,
-
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
-
-    	// depth
-        1,
-    },
-
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&TORCH_ANIM,
-
-    // initial animation
-    "Burn",
+	__TYPE(MBackground),
+	(SpriteROMDef**)LEVEL_1_HOUSE_MAIN_IM_SPRITES,
 };

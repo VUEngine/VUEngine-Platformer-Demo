@@ -51,8 +51,6 @@ __CLASS(ProgressManager);
         u8 heroCurrentPowerUp;																			\
         /* flag that tells if the hero has collected the current level's key */							\
         bool heroHasKey;																				\
-        /* flag that tells if the hero has already used the current level's key */						\
-        bool heroHasUsedKey;																			\
         /* bitstring that holds collected item flags */													\
         u16 collectedItems;																				\
         /* time in current level */																		\
@@ -132,7 +130,6 @@ bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool ta
 bool ProgressManager_setItemStatus(ProgressManager this, u16 itemNumber, bool taken);
 void ProgressManager_setTotalNumberOfCollectedCoins(ProgressManager this, u16 numberOfCollectedCoins);
 bool ProgressManager_heroHasKey(ProgressManager this);
-bool ProgressManager_heroHasUsedKey(ProgressManager this);
 void ProgressManager_resetCurrentLevelProgress(ProgressManager this);
 u8   ProgressManager_getLanguage(ProgressManager this);
 void ProgressManager_setLanguage(ProgressManager this, u8 language);

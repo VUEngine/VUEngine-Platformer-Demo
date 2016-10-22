@@ -29,8 +29,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TorchTiles[];
-extern BYTE TorchMap[];
+extern BYTE FireSmallTiles[];
+extern BYTE FireSmallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ extern BYTE TorchMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef TORCH_BURN_ANIM =
+AnimationFunctionROMDef FIRE_SMALL_BURN_ANIM =
 {
 	// number of frames of this animation function
 	3,
@@ -60,43 +60,43 @@ AnimationFunctionROMDef TORCH_BURN_ANIM =
 };
 
 // an animation definition
-AnimationDescriptionROMDef TORCH_ANIM =
+AnimationDescriptionROMDef FIRE_SMALL_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&TORCH_BURN_ANIM,
+		(AnimationFunction*)&FIRE_SMALL_BURN_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef TORCH_CH =
+CharSetROMDef FIRE_SMALL_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    3,
+    1,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __ANIMATED_SHARED,
 
     // char definition
-    TorchTiles,
+    FireSmallTiles,
 };
 
-TextureROMDef TORCH_TX =
+TextureROMDef FIRE_SMALL_TX =
 {
     // charset definition
-    (CharSetDefinition*)&TORCH_CH,
+    (CharSetDefinition*)&FIRE_SMALL_CH,
 
     // bgmap definition
-    TorchMap,
+    FireSmallMap,
 
     // cols (max 64)
     1,
 
     // rows (max 64)
-    3,
+    1,
 
     // padding for affine transformations
 	{0, 0},
@@ -110,14 +110,14 @@ TextureROMDef TORCH_TX =
     0,
 };
 
-ObjectSpriteROMDef TORCH_SPRITE =
+ObjectSpriteROMDef FIRE_SMALL_SPRITE =
 {
     {
         // sprite's type
         __TYPE(ObjectAnimatedSprite),
 
         // texture definition
-        (TextureDefinition*)&TORCH_TX,
+        (TextureDefinition*)&FIRE_SMALL_TX,
 
         // displacement
         {0, 0, FTOFIX19_13(1)},
@@ -130,18 +130,18 @@ ObjectSpriteROMDef TORCH_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const TORCH_SPRITES[] =
+ObjectSpriteROMDef* const FIRE_SMALL_SPRITES[] =
 {
-	&TORCH_SPRITE,
+	&FIRE_SMALL_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef TORCH_AG =
+AnimatedInGameEntityROMDef FIRE_SMALL_AG =
 {
     {
         {
             __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)TORCH_SPRITES,
+            (SpriteROMDef**)FIRE_SMALL_SPRITES,
         },
 
         // collision detection gap (up, down, left, right)
@@ -163,7 +163,7 @@ AnimatedInGameEntityROMDef TORCH_AG =
     },
 
     // pointer to the animation definition for the item
-    (AnimationDescription*)&TORCH_ANIM,
+    (AnimationDescription*)&FIRE_SMALL_ANIM,
 
     // initial animation
     "Burn",

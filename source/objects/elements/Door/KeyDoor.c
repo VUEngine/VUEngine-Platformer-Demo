@@ -69,14 +69,7 @@ void KeyDoor_ready(KeyDoor this, u32 recursive __attribute__ ((unused)))
 	// call base
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
-    if(ProgressManager_heroHasUsedKey(ProgressManager_getInstance()))
-    {
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
-    }
-    else
-    {
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Key");
-    }
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Key");
 }
 
 bool KeyDoor_hasDestination(KeyDoor this __attribute__ ((unused)))

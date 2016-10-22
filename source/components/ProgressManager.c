@@ -31,6 +31,7 @@
 #include <Utilities.h>
 #include <macros.h>
 #include <AutoPauseScreenState.h>
+#include <gameDebugConfig.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -110,11 +111,14 @@ void ProgressManager_resetCurrentLevelProgress(ProgressManager this)
 	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
 	this->heroCurrentPowerUp = kPowerUpNone;
 	this->heroHasKey = false;
-	this->heroHasUsedKey = false;
 	this->currentLevelTime = 0;
 	this->collectedItems = 0;
 	this->collectedCoins[0] = 0;
 	this->collectedCoins[1] = 0;
+
+#ifdef GOD_MODE
+    this->heroHasKey = true;
+#endif
 }
 
 // verify save stamp in sram
@@ -419,11 +423,6 @@ u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this)
 bool ProgressManager_heroHasKey(ProgressManager this)
 {
 	return this->heroHasKey;
-}
-
-bool ProgressManager_heroHasUsedKey(ProgressManager this)
-{
-	return this->heroHasUsedKey;
 }
 
 // get current level time
