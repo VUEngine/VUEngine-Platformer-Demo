@@ -3,12 +3,12 @@
 
 //======================================================================
 //
-//	Level_1_Intersection_Main, 384x192@2,
+//	Level_1_Intersection_Main, 384x192@2, 
 //	+ 24 tiles (t|f reduced) not compressed
-//	+ regular map (flat), not compressed, 48x24
+//	+ regular map (flat), not compressed, 48x24 
 //	Total size: 384 + 2304 = 2688
 //
-//	Time-stamp: 2016-09-18, 12:55:46
+//	Time-stamp: 2016-10-22, 14:45:30
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //

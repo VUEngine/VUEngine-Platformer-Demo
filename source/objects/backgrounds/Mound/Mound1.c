@@ -40,7 +40,7 @@ CharSetROMDef MOUND_1_CH =
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    14,
+    7,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -62,7 +62,7 @@ TextureROMDef MOUND_1_TX =
     6,
 
     // rows (max 64)
-    9,
+    5,
 
     // padding for affine transformations
 	{0, 0},
@@ -73,7 +73,7 @@ TextureROMDef MOUND_1_TX =
     1,
 
     // palette number (0-3)
-    0,
+    1,
 };
 
 BgmapSpriteROMDef MOUND_1_IM_SPRITE =

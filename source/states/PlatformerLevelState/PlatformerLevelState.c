@@ -342,9 +342,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 				if(PlatformerLevelState_isStartingLevel(this) && this->currentLevel->name)
 	            {
 				    const char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->currentLevel->name);
-	                Printing_text(Printing_getInstance(), "\"", 17, 6, "GuiFont");
 	                Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GuiFont");
-	                Printing_text(Printing_getInstance(), "\"", 18 + strlen(strLevelName), 6, "GuiFont");
 
                     if(this->currentLevel->identifier)
                     {
