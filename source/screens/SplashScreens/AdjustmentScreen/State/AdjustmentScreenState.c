@@ -76,6 +76,7 @@ static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 p
     // TODO: replace this ugly hack with a proper Game_isPaused check or something similar
     if(this->nextState == NULL)
     {
+		Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
         Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
     }
     else

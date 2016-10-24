@@ -63,7 +63,6 @@ void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onPauseFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
@@ -130,7 +129,6 @@ static void PlatformerLevelState_getPositionedEntitiesToIgnore(PlatformerLevelSt
         }
     }
 }
-
 
 // state's enter
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
@@ -281,22 +279,38 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 	// set pause mode
 	PlatformerLevelState_setModeToPaused(this);
 
-	// pause in-game clock
+	// pause clocks
+	Clock_pause(this->messagingClock, true);
 	Clock_pause(this->clock, true);
 
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
 
-	// start a fade out effect
-	Brightness brightness = (Brightness){0, 0, 0};
-	Screen_startEffect(Screen_getInstance(),
-		kFadeTo, // effect type
-		0, // initial delay (in ms)
-		&brightness, // target brightness
-		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState_onPauseFadeOutComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
-	);
+#ifdef __DEBUG_TOOLS
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __STAGE_EDITOR
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __ANIMATION_EDITOR
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+
+	// do a fade out effect
+    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
+
+#ifdef __DEBUG_TOOLS
+	}
+#endif
+#ifdef __STAGE_EDITOR
+	}
+#endif
+#ifdef __ANIMATION_EDITOR
+	}
+#endif
 
 	// call base
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
@@ -311,20 +325,43 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	// call base
 	GameState_resume(__SAFE_CAST(GameState, this), owner);
 
+#ifdef __DEBUG_TOOLS
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __STAGE_EDITOR
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+#ifdef __ANIMATION_EDITOR
+	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	{
+#endif
+
 	// tell any interested entity
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
-	// fade in screen
-	Screen_startEffect(Screen_getInstance(),
-		kFadeTo, // effect type
-		0, // initial delay (in ms)
-		NULL, // target brightness
-		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState_onLevelStartedFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
-	);
+    // start a fade in effect
+    Screen_startEffect(Screen_getInstance(),
+        kFadeTo, // effect type
+        0, // initial delay (in ms)
+        NULL, // target brightness
+        __FADE_DELAY, // delay between fading steps (in ms)
+        NULL, // callback function
+        NULL // callback scope
+    );
 
-	// resume physical simulations
+#ifdef __DEBUG_TOOLS
+	}
+#endif
+#ifdef __STAGE_EDITOR
+	}
+#endif
+#ifdef __ANIMATION_EDITOR
+	}
+#endif
+
+	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
 
 	PlatformerLevelState_setModeToPlaying(this);
@@ -394,25 +431,17 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 				{
     				// adjustment screen
 	                PlatformerLevelState_setModeToPaused(this);
+
+	                // set next state of adjustment screen state to null so it can differentiate between
+	                // being called the splash screen sequence or from within the game (a bit hacky...)
 					SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
 
-					// start a fade out effect
-					Brightness brightness = (Brightness){0, 0, 0};
-					Screen_startEffect(Screen_getInstance(),
-						kFadeTo, // effect type
-						0, // initial delay (in ms)
-						&brightness, // target brightness
-						__FADE_DELAY, // delay between fading steps (in ms)
-						(void (*)(Object, Object))PlatformerLevelState_onHeroDiedFadeOutComplete, // callback function
-						__SAFE_CAST(Object, this) // callback scope
-					);
-
+					// pause game and switch to adjustment screen state
 					Game_pause(Game_getInstance(), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
 					break;
             	}
 				else if(K_STA & pressedKey)
                 {
-
 					// pause game and switch to pause screen state
 					Game_pause(Game_getInstance(), __SAFE_CAST(GameState, PauseScreenState_getInstance()));
 
@@ -445,15 +474,6 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 	}
 
 	return false;
-}
-
-// handle event
-static void PlatformerLevelState_onPauseFadeOutComplete(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
-{
-	ASSERT(this, "PlatformerLevelState::onPauseFadeInComplete: null this");
-
-    // pause messaging clock
-    Clock_pause(this->messagingClock, true);
 }
 
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
@@ -508,6 +528,12 @@ void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelD
 void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition)
 {
 	this->currentStageEntryPoint = entryPointDefinition;
+
+    // disable user input
+    Game_disableKeypad(Game_getInstance());
+
+	// pause physical simulations
+	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
 
     // start a fade out effect
     Brightness brightness = (Brightness){0, 0, 0};
@@ -570,7 +596,7 @@ static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelStat
 // handle event
 static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::onEnterStageFadeOutComplete: null this");
+	ASSERT(this, "PlatformerLevelState::onHeroDiedFadeOutComplete: null this");
 
 	// go to overworld
     Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
