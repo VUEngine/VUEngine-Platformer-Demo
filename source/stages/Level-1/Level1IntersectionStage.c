@@ -67,9 +67,9 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_MAIN_COLLISIONS[] =
     // left ceiling/floor
     {&COLLISION_28x8x1,             {FTOFIX19_13(-80),  FTOFIX19_13(-16),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // top one way floor
-    {&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(56),   FTOFIX19_13(-40),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
+    {&COLLISION_ONEWAY_7x2x1,       {FTOFIX19_13(56),   FTOFIX19_13(-40),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // bottom one way floor
-    {&COLLISION_ONEWAY_7x7x1,       {FTOFIX19_13(56),   FTOFIX19_13(16),    FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
+    {&COLLISION_ONEWAY_7x2x1,       {FTOFIX19_13(56),   FTOFIX19_13(16),    FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // outermost left wall
     {&COLLISION_2x28x1,             {FTOFIX19_13(-184), FTOFIX19_13(0),     FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
     // outermost right wall

@@ -27,7 +27,7 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_ONEWAY_7x7x1 =
+InanimatedInGameEntityROMDef COLLISION_ONEWAY_7x2x1 =
 {
     {
         {

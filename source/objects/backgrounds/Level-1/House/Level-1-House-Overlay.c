@@ -19,53 +19,49 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <MBackground.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_House_MainTiles[];
-extern BYTE Level_1_House_MainMap[];
-
-extern BgmapSpriteROMDef LEVEL_1_HOUSE_PIPE_IM_SPRITE;
-extern BgmapSpriteROMDef LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE;
-extern BgmapSpriteROMDef LEVEL_1_HOUSE_OVERLAY_IM_SPRITE;
+extern BYTE Level_1_House_OverlayTiles[];
+extern BYTE Level_1_House_OverlayMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_HOUSE_MAIN_CH =
+CharSetROMDef LEVEL_1_HOUSE_OVERLAY_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    32,
+    15,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    Level_1_House_MainTiles,
+    Level_1_House_OverlayTiles,
 };
 
-TextureROMDef LEVEL_1_HOUSE_MAIN_TX =
+TextureROMDef LEVEL_1_HOUSE_OVERLAY_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_HOUSE_MAIN_CH,
+    (CharSetDefinition*)&LEVEL_1_HOUSE_OVERLAY_CH,
 
     // bgmap definition
-    Level_1_House_MainMap,
+    Level_1_House_OverlayMap,
 
     // cols (max 64)
-    18,
+    48,
 
     // rows (max 64)
-    8,
+    28,
 
     // padding for affine transformations
 	{0, 0},
@@ -79,17 +75,17 @@ TextureROMDef LEVEL_1_HOUSE_MAIN_TX =
     1,
 };
 
-BgmapSpriteROMDef LEVEL_1_HOUSE_MAIN_IM_SPRITE =
+BgmapSpriteROMDef LEVEL_1_HOUSE_OVERLAY_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&LEVEL_1_HOUSE_MAIN_TX,
+        (TextureDefinition*)&LEVEL_1_HOUSE_OVERLAY_TX,
 
         // displacement
-        {0, ITOFIX19_13(16), ITOFIX19_13(2)},
+        {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
@@ -97,19 +93,4 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_MAIN_IM_SPRITE =
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
-};
-
-BgmapSpriteROMDef* const LEVEL_1_HOUSE_MAIN_IM_SPRITES[] =
-{
-	&LEVEL_1_HOUSE_MAIN_IM_SPRITE,
-	&LEVEL_1_HOUSE_PIPE_IM_SPRITE,
-	&LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE,
-	&LEVEL_1_HOUSE_OVERLAY_IM_SPRITE,
-	NULL
-};
-
-ImageROMDef LEVEL_1_HOUSE_MAIN_IM =
-{
-	__TYPE(Image),
-	(SpriteROMDef**)LEVEL_1_HOUSE_MAIN_IM_SPRITES,
 };

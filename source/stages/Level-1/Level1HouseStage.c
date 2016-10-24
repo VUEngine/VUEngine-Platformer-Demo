@@ -45,7 +45,7 @@ PositionedEntityROMDef LEVEL_1_HOUSE_ST_CHILDREN[] =
 {
     // since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&MOUND_BG_BACK_IM,				{FTOFIX19_13(0),    FTOFIX19_13(80), 	FTOFIX19_13(LAYER_5)},            	0, NULL, NULL, NULL, true},
-	{&CLOUDS_IM,					{FTOFIX19_13(0),    FTOFIX19_13(140), 	FTOFIX19_13(LAYER_4)},            	0, NULL, NULL, NULL, true},
+	{&CLOUDS_IM,					{FTOFIX19_13(0),    FTOFIX19_13(144), 	FTOFIX19_13(LAYER_4)},            	0, NULL, NULL, NULL, true},
 	{&MOUND_BG_FRONT_IM,			{FTOFIX19_13(18),   FTOFIX19_13(138), 	FTOFIX19_13(LAYER_3)},            	0, NULL, NULL, NULL, true},
 
     {&LEVEL_1_HOUSE_MAIN_IM,    	{FTOFIX19_13(192), 	FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0_BACKGROUND)}, 	0, NULL, NULL, NULL, true},
@@ -53,12 +53,13 @@ PositionedEntityROMDef LEVEL_1_HOUSE_ST_CHILDREN[] =
     {&COLLISION_48x2x1,             {FTOFIX19_13(192), 	FTOFIX19_13(168), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, true}, // bottom floor
     {&COLLISION_2x28x1,             {FTOFIX19_13(120), 	FTOFIX19_13(80), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, true}, // left wall
     {&COLLISION_2x28x1,             {FTOFIX19_13(264), 	FTOFIX19_13(80), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, true}, // right wall
+    {&COLLISION_ONEWAY_3x2x1,       {FTOFIX19_13(240),  FTOFIX19_13(148),   FTOFIX19_13(LAYER_0)},    			0, NULL, NULL, NULL, true}, // fireplace
 
 	{&COIN_AG,						{FTOFIX19_13(204),  FTOFIX19_13(148), 	FTOFIX19_13(LAYER_0_ITEMS)},       26, NULL, NULL, NULL, true},
 
     {&HERO_AC,                      {FTOFIX19_13(148),  FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0)}, 				0, HERO_NAME, NULL, NULL, true},
 
-	{&CLOCK_AG,						{FTOFIX19_13(180), 	FTOFIX19_13(128),   FTOFIX19_13(LAYER_0 + 8)},   0, NULL, NULL, NULL, true},
+	{&CLOCK_AG,						{FTOFIX19_13(180), 	FTOFIX19_13(128),   FTOFIX19_13(LAYER_0 + 16)},   		0, NULL, NULL, NULL, true},
 
     {&KEY_DOOR_AG,                  {FTOFIX19_13(148),  FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, 		0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, true},
 
