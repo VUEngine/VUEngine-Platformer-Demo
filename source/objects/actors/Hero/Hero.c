@@ -289,6 +289,9 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 
 			    // add more force when running, normal force otherwise
 			    force.y = this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE;
+
+				// add the force to actually make the hero jump
+				Actor_addForce(__SAFE_CAST(Actor, this), &force);
             }
             else
             {
@@ -301,13 +304,13 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 
 	            // double jumps can never have boost
                 force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
+
+				// add the force to actually make the hero jump
+				Actor_addForce(__SAFE_CAST(Actor, this), &force);
+
+				// show dust
+				Hero_showDust(this, true);
             }
-
-            // add the force to actually make the hero jump
-			Actor_addForce(__SAFE_CAST(Actor, this), &force);
-
-            // show dust
-            Hero_showDust(this, true);
 
             // play jump animation
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Jump");
