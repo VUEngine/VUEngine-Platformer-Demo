@@ -176,6 +176,11 @@ bool ProgressManager_verifyChecksum(ProgressManager this)
 	return (computedChecksum == savedChecksum);
 }
 
+void ProgressManager_clearProgress(ProgressManager this __attribute__ ((unused)))
+{
+	SRAMManager_clear(SRAMManager_getInstance(), offsetof(struct SaveData, numberOfCompletedLevels), (int)sizeof(SaveData));
+}
+
 static void ProgressManager_initialize(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::initialize: null this");

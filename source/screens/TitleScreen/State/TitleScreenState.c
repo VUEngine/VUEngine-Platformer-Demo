@@ -77,6 +77,10 @@ __SINGLETON_DYNAMIC(TitleScreenState);
 static void __attribute__ ((noinline)) TitleScreenState_constructor(TitleScreenState this)
 {
 	__CONSTRUCT_BASE(GameState);
+
+	// init members
+	this->mode = kShowPressStart;
+	this->optionSelector = NULL;
 }
 
 // class's destructor
@@ -89,6 +93,7 @@ static void TitleScreenState_destructor(TitleScreenState this)
 // state's enter
 static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
+	// add event listener for "press start" message
 	Object_addEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, kEventSecondChanged);
 
 	// call base
@@ -100,14 +105,17 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, NULL, true);
 
-	// sample code to show how to animate multiple sprites at the same time by just playing an animation in a single
-	// entity when various share the same __ANIMATED_SHARED charset
-	/*
-	if(Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true))
-	{
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, Container_getChildByName(__SAFE_CAST(Container, this->stage), "DummyHero", true)), "Idle");
-	}
-	*/
+	// create and populate main menu
+	// TODO: "continue" should be "new game" when no saved progress is found (saveData->numberOfCompletedLevels == 0), and the third option not added in that case
+	this->optionSelector = __NEW(OptionsSelector, 3, 1, "\xB", kString);
+	VirtualList options = __NEW(VirtualList);
+
+	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_CONTINUE));
+	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
+	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
+
+    OptionsSelector_setOptions(this->optionSelector, options);
+	__DELETE(options);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	GameState_startClocks(__SAFE_CAST(GameState, this));
@@ -208,7 +216,9 @@ static void TitleScreenState_hideMessage(TitleScreenState this __attribute__ ((u
 {
 	ASSERT(this, "TitleScreenState::hideMessage: null this");
 
-    Printing_text(Printing_getInstance(), "                                           ", 0, 26, NULL);
+    Printing_text(Printing_getInstance(), "                                                ", 0, 25, NULL);
+    Printing_text(Printing_getInstance(), "                                                ", 0, 26, NULL);
+    Printing_text(Printing_getInstance(), "                                                ", 0, 27, NULL);
 }
 
 // state's handle message
@@ -244,25 +254,130 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 		{
 			u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
 
-			if(K_STA & pressedKey)
+			if((K_STA & pressedKey) || (K_A & pressedKey))
 			{
-                // disable blinking "press start button"
-                Object_removeEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, kEventSecondChanged);
-                TitleScreenState_hideMessage(this);
+				switch(this->mode)
+				{
+					case kShowPressStart:
+					{
+						// disable blinking "press start button"
+						Object_removeEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, kEventSecondChanged);
+						TitleScreenState_hideMessage(this);
 
-                // disable user input
-                Game_disableKeypad(Game_getInstance());
+						// print options
+						OptionsSelector_showOptions(this->optionSelector, 1, 26);
 
-			    // fade out screen
-                Brightness brightness = (Brightness){0, 0, 0};
-                Screen_startEffect(Screen_getInstance(),
-                    kFadeTo, // effect type
-                    0, // initial delay (in ms)
-                    &brightness, // target brightness
-                    __FADE_DELAY, // delay between fading steps (in ms)
-                    (void (*)(Object, Object))TitleScreenState_onFadeOutComplete, // callback function
-                    __SAFE_CAST(Object, this) // callback scope
-                );
+						// set mode to showing options
+						this->mode = kShowOptions;
+
+						break;
+					}
+					case kShowOptions:
+					{
+						int selectedOption = OptionsSelector_getSelectedOption(this->optionSelector);
+
+						switch(selectedOption)
+						{
+							case kOptionContinue:
+							case kOptionOptions:
+
+								// disable user input
+								Game_disableKeypad(Game_getInstance());
+
+								// fade out screen
+								Brightness brightness = (Brightness){0, 0, 0};
+								Screen_startEffect(Screen_getInstance(),
+									kFadeTo, // effect type
+									0, // initial delay (in ms)
+									&brightness, // target brightness
+									__FADE_DELAY, // delay between fading steps (in ms)
+									(void (*)(Object, Object))TitleScreenState_onFadeOutComplete, // callback function
+									__SAFE_CAST(Object, this) // callback scope
+								);
+
+								break;
+
+							case kOptionNewGame:
+
+								// remove main menu
+								TitleScreenState_hideMessage(this);
+
+								// set mode to new game confirm
+								this->mode = kShowConfirmNewGame;
+
+								// print warning
+								const char* strNewGameConfirm = I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME_CONFIRM);
+								Size strNewGameConfirmSize = Printing_getTextSize(Printing_getInstance(), strNewGameConfirm, NULL);
+								u8 strNewGameConfirmXPos = ((__SCREEN_WIDTH >> 4) - (strNewGameConfirmSize.x >> 1));
+								Printing_text(
+									Printing_getInstance(),
+									strNewGameConfirm,
+									strNewGameConfirmXPos,
+									25,
+									NULL
+								);
+
+								// print warning options
+								const char* strYes = I18n_getText(I18n_getInstance(), STR_YES);
+								Size strYesSize = Printing_getTextSize(Printing_getInstance(), strYes, NULL);
+								const char* strNo = I18n_getText(I18n_getInstance(), STR_NO);
+								Size strNoSize = Printing_getTextSize(Printing_getInstance(), strNo, NULL);
+
+								u8 strYesXPos = ((__SCREEN_WIDTH >> 4) - ((strYesSize.x + strNoSize.x + 3) >> 1));
+								u8 strNoXPos = strYesXPos + strYesSize.x + 2;
+
+								Printing_text(Printing_getInstance(), "\x13", strYesXPos - 1, 27, NULL);
+								Printing_text(Printing_getInstance(), strYes, strYesXPos, 27, NULL);
+								Printing_text(Printing_getInstance(), "\x14", strNoXPos - 1, 27, NULL);
+								Printing_text(Printing_getInstance(), strNo, strNoXPos, 27, NULL);
+
+								break;
+						}
+
+						break;
+					}
+					case kShowConfirmNewGame:
+					{
+						// clear progress
+						ProgressManager_clearProgress(ProgressManager_getInstance());
+
+						// disable user input
+						Game_disableKeypad(Game_getInstance());
+
+						// fade out screen
+						Brightness brightness = (Brightness){0, 0, 0};
+						Screen_startEffect(Screen_getInstance(),
+							kFadeTo, // effect type
+							0, // initial delay (in ms)
+							&brightness, // target brightness
+							__FADE_DELAY, // delay between fading steps (in ms)
+							(void (*)(Object, Object))TitleScreenState_onFadeOutComplete, // callback function
+							__SAFE_CAST(Object, this) // callback scope
+						);
+
+						break;
+					}
+				}
+			}
+			else if((this->mode == kShowOptions) && ((pressedKey & K_LL) || (pressedKey & K_RL)))
+			{
+				OptionsSelector_selectPrevious(this->optionSelector);
+			}
+			else if((this->mode == kShowOptions) && ((pressedKey & K_LR) || (pressedKey & K_RR)))
+			{
+				OptionsSelector_selectNext(this->optionSelector);
+			}
+			else if((this->mode == kShowConfirmNewGame) && (pressedKey & K_B))
+			{
+				// remove message
+				TitleScreenState_hideMessage(this);
+
+				// print options
+				OptionsSelector_setSelectedOption(this->optionSelector, kOptionContinue);
+				OptionsSelector_showOptions(this->optionSelector, 1, 26);
+
+				// set mode to showing options
+				this->mode = kShowOptions;
 			}
 
 			break;
@@ -302,6 +417,25 @@ static void TitleScreenState_onFadeOutComplete(TitleScreenState this __attribute
 {
 	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
 
-    // switch to next screen
-    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+
+	int selectedOption = OptionsSelector_getSelectedOption(this->optionSelector);
+
+	switch(selectedOption)
+	{
+		case kOptionContinue:
+		case kOptionNewGame:
+
+			// switch to overworld
+    		Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+
+			break;
+
+		case kOptionOptions:
+
+			// switch to options screen
+			// TODO
+			//Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OptionsScreenState_getInstance()));
+
+			break;
+	}
 }

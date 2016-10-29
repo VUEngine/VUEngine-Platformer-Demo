@@ -36,6 +36,19 @@
 
 const char* const LANGUAGE_FR_STRINGS[] =
 {
+	/* General */
+
+    //STR_YES:
+    "Oui",
+    //STR_NO:
+    "Non",
+    //STR_ON:
+    "Activé",
+    //STR_OFF:
+    "Desactivé",
+    //STR_PAUSE:
+    "Pause",
+
     /* Splash Screens */
 
     //STR_PRECAUTION_SCREEN_TITLE:
@@ -48,16 +61,23 @@ const char* const LANGUAGE_FR_STRINGS[] =
     "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
     //STR_AUTOMATIC_PAUSE_TEXT:
     "Se il vous plaît, prendre un repos!",
-    //STR_PAUSE:
-    "Pause",
-    //STR_ON:
-    "Activé",
-    //STR_OFF:
-    "Desactivé",
     //STR_LANGUAGE_SELECT:
     "Choix de\nla langue",
+
+    /* Title Screen */
+
     //STR_PRESS_START_BUTTON:
     "Appuyer sur Start",
+	//STR_MAIN_MENU_CONTINUE:
+	"Continuer",
+	//STR_MAIN_MENU_NEW_GAME:
+	"Nouveau Jeu",
+	//STR_MAIN_MENU_OPTIONS:
+	"Options",
+	//STR_MAIN_MENU_CREDITS:
+	"Crédits",
+	//STR_MAIN_MENU_NEW_GAME_CONFIRM:
+	"Tout vôtre progrès sera effacé.\n          Es tu sûr?",
 
     /* Levels */
 

@@ -101,6 +101,9 @@ typedef struct SaveData
 	// auto pause status (0: on, 1: off)
 	u8 autoPauseStatus;
 
+	// total number of completed levels
+	u8 numberOfCompletedLevels;
+
 	// total number of collected coins
 	u16 numberOfCollectedCoins;
 
@@ -117,6 +120,7 @@ typedef struct SaveData
 ProgressManager ProgressManager_getInstance();
 
 void ProgressManager_destructor(ProgressManager this);
+void ProgressManager_clearProgress(ProgressManager this);
 bool ProgressManager_getAutomaticPauseStatus(ProgressManager this);
 bool ProgressManager_getCoinStatus(ProgressManager this, u16 itemNumber);
 u32  ProgressManager_getCurrentLevelBestTime(ProgressManager this);

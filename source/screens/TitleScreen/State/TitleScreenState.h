@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameState.h>
+#include <OptionsSelector.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -31,6 +32,20 @@
 
 #define PRESS_START_BLINK_DELAY 500
 
+enum TitleScreenModes
+{
+	kShowPressStart,
+	kShowOptions,
+	kShowConfirmNewGame
+};
+
+enum TitleScreenOptions
+{
+	kOptionContinue,
+	kOptionOptions,
+	kOptionNewGame
+};
+
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
@@ -38,23 +53,25 @@
 
 // declare the virtual methods
 #define TitleScreenState_METHODS(ClassName)																\
-    	GameState_METHODS(ClassName)											    				    \
+ 		GameState_METHODS(ClassName)											 						\
 
 // declare the virtual methods which are redefined
 #define TitleScreenState_SET_VTABLE(ClassName)															\
-        GameState_SET_VTABLE(ClassName)								    								\
-        __VIRTUAL_SET(ClassName, TitleScreenState, enter);												\
-        __VIRTUAL_SET(ClassName, TitleScreenState, exit);												\
-        __VIRTUAL_SET(ClassName, TitleScreenState, execute);											\
-        __VIRTUAL_SET(ClassName, TitleScreenState, resume);												\
-        __VIRTUAL_SET(ClassName, TitleScreenState, suspend);											\
-        __VIRTUAL_SET(ClassName, TitleScreenState, processMessage);                                     \
+		GameState_SET_VTABLE(ClassName)								 									\
+		__VIRTUAL_SET(ClassName, TitleScreenState, enter);												\
+		__VIRTUAL_SET(ClassName, TitleScreenState, exit);												\
+		__VIRTUAL_SET(ClassName, TitleScreenState, execute);											\
+		__VIRTUAL_SET(ClassName, TitleScreenState, resume);												\
+		__VIRTUAL_SET(ClassName, TitleScreenState, suspend);											\
+		__VIRTUAL_SET(ClassName, TitleScreenState, processMessage);									 	\
 
 __CLASS(TitleScreenState);
 
-#define TitleScreenState_ATTRIBUTES							        									\
-        /* inherits */																					\
-        GameState_ATTRIBUTES																			\
+#define TitleScreenState_ATTRIBUTES								 										\
+		/* inherits */																					\
+		GameState_ATTRIBUTES																			\
+		u8 mode;																						\
+		OptionsSelector optionSelector;																	\
 
 
 //---------------------------------------------------------------------------------------------------------
