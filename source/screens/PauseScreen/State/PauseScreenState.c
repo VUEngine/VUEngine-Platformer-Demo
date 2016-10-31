@@ -31,6 +31,7 @@
 #include <Hero.h>
 #include <screens.h>
 #include <macros.h>
+#include <OverworldState.h>
 #include <PlatformerLevelState.h>
 #include <Languages.h>
 #include <KeyPadManager.h>
@@ -214,11 +215,21 @@ static void PauseScreenState_onFadeOutComplete(PauseScreenState this __attribute
 	switch(selectedOption)
 	{
 		case kOptionContinue:
-		case kOptionOptions:
-		case kOptionQuitLevel:
 
 			// resume game
 			Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
+			break;
+
+		case kOptionOptions:
+
+			// switch to options state
+			//Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OptionsScreenState_getInstance()));
+			break;
+
+		case kOptionQuitLevel:
+
+			// switch to overworld after deleting paused game state
+    		Game_cleanAndChangeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 
 			break;
 	}
