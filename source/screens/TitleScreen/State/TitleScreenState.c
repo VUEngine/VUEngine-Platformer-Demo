@@ -106,13 +106,22 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_ST, NULL, true);
 
 	// create and populate main menu
-	// TODO: "continue" should be "new game" when no saved progress is found (saveData->numberOfCompletedLevels == 0), and the third option not added in that case
-	this->optionSelector = __NEW(OptionsSelector, 3, 1, "\xB", kString);
-	VirtualList options = __NEW(VirtualList);
+    VirtualList options = __NEW(VirtualList);
+	if(ProgressManager_hasProgress(ProgressManager_getInstance()))
+	{
+        this->optionSelector = __NEW(OptionsSelector, 3, 1, "\xB", kString);
 
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_CONTINUE));
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_CONTINUE));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
+	}
+	else
+	{
+        this->optionSelector = __NEW(OptionsSelector, 2, 1, "\xB", kString);
+
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
+	}
 
     OptionsSelector_setOptions(this->optionSelector, options);
 	__DELETE(options);

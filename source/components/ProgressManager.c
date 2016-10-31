@@ -181,6 +181,14 @@ void ProgressManager_clearProgress(ProgressManager this __attribute__ ((unused))
 	SRAMManager_clear(SRAMManager_getInstance(), offsetof(struct SaveData, numberOfCompletedLevels), (int)sizeof(SaveData));
 }
 
+bool ProgressManager_hasProgress(ProgressManager this __attribute__ ((unused)))
+{
+	u8 numberOfCompletedLevels;
+	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(numberOfCompletedLevels));
+
+	return (numberOfCompletedLevels > 0);
+}
+
 static void ProgressManager_initialize(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::initialize: null this");
@@ -235,13 +243,6 @@ u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this __attrib
 	u16 numberOfCollectedCoins;
 	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 	return numberOfCollectedCoins;
-}
-
-void ProgressManager_setTotalNumberOfCollectedCoins(ProgressManager this __attribute__ ((unused)), u16 numberOfCollectedCoins)
-{
-	ASSERT(this, "ProgressManager::setNumberOfCollectedCoins: null this");
-
-	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 }
 
 u8 ProgressManager_getLanguage(ProgressManager this __attribute__ ((unused)))
@@ -376,8 +377,8 @@ void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
 {
 	ASSERT(this, "ProgressManager::persistLevelStatus: null this");
 
-    u8 i = 0, numberOfCollectedCoins = 0, levelCompleted = 1;
-	u16 currentLevelOffset = 0, totalNumberOfCollectedCoins = 0;
+    u8 i, numberOfCollectedCoins, levelCompleted, totalNumberOfCompletedLevels;
+	u16 currentLevelOffset, totalNumberOfCollectedCoins;
 
 	// determine offset of current level in sram
     currentLevelOffset = offsetof(struct SaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
@@ -391,6 +392,7 @@ void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
 	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 
 	// save level completed flag
+	levelCompleted = 1;
 	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
 
 	// save new best time, if it's the first time beating this level or if time beats the previous time
@@ -399,15 +401,28 @@ void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
 	    SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->currentLevelTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelTime));
     }
 
-	// determine and save total number of collected coins
+	// determine and save total number of collected coins and completed levels
     numberOfCollectedCoins = 0;
+    totalNumberOfCollectedCoins = 0;
+    levelCompleted = 0;
+    totalNumberOfCompletedLevels = 0;
     for(i = 0; i < LEVELS_IN_GAME; i++)
     {
         currentLevelOffset = offsetof(struct SaveData, levelStatuses) + (i * sizeof(struct LevelStatus));
+
+        // collected coins
         SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
         totalNumberOfCollectedCoins += numberOfCollectedCoins;
+
+        // level completed
+        SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
+        if(levelCompleted > 0)
+        {
+            totalNumberOfCompletedLevels++;
+        }
     }
-    ProgressManager_setTotalNumberOfCollectedCoins(this, totalNumberOfCollectedCoins);
+	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&totalNumberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(totalNumberOfCompletedLevels));
+	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&totalNumberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(totalNumberOfCollectedCoins));
 
 	// write checksum
 	ProgressManager_writeChecksum(this);

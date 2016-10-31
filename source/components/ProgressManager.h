@@ -119,8 +119,8 @@ typedef struct SaveData
 
 ProgressManager ProgressManager_getInstance();
 
-void ProgressManager_destructor(ProgressManager this);
 void ProgressManager_clearProgress(ProgressManager this);
+void ProgressManager_destructor(ProgressManager this);
 bool ProgressManager_getAutomaticPauseStatus(ProgressManager this);
 bool ProgressManager_getCoinStatus(ProgressManager this, u16 itemNumber);
 u32  ProgressManager_getCurrentLevelBestTime(ProgressManager this);
@@ -129,15 +129,15 @@ u32  ProgressManager_getCurrentLevelTime(ProgressManager this);
 u8   ProgressManager_getHeroCurrentEnergy(ProgressManager this);
 u8   ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
 bool ProgressManager_getItemStatus(ProgressManager this, u16 itemNumber);
+u8   ProgressManager_getLanguage(ProgressManager this);
 u16  ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this);
+bool ProgressManager_hasProgress(ProgressManager this);
+bool ProgressManager_heroHasKey(ProgressManager this);
+void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
 bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool taken);
 bool ProgressManager_setItemStatus(ProgressManager this, u16 itemNumber, bool taken);
-void ProgressManager_setTotalNumberOfCollectedCoins(ProgressManager this, u16 numberOfCollectedCoins);
-bool ProgressManager_heroHasKey(ProgressManager this);
-void ProgressManager_resetCurrentLevelProgress(ProgressManager this);
-u8   ProgressManager_getLanguage(ProgressManager this);
 void ProgressManager_setLanguage(ProgressManager this, u8 language);
-void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
+void ProgressManager_resetCurrentLevelProgress(ProgressManager this);
 
 
 #endif
