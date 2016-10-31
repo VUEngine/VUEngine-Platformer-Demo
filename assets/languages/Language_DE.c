@@ -46,8 +46,6 @@ const char* const LANGUAGE_DE_STRINGS[] =
     "An",
     //STR_OFF:
     "Aus",
-    //STR_PAUSE:
-    "Pause",
 
     /* Splash Screens */
 
@@ -78,6 +76,17 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	"Mitwirkende",
 	//STR_MAIN_MENU_NEW_GAME_CONFIRM:
 	"Dein kompletter Fortschritt wird gelöscht.\n             Bist Du sicher?",
+
+	/* Pause Screen */
+
+    //STR_PAUSE:
+    "Pause",
+	//STR_PAUSE_SCREEN_CONTINUE:
+	"Fortsetzen",
+	//STR_PAUSE_SCREEN_OPTIONS:
+	"Optionen",
+	//STR_PAUSE_SCREEN_QUIT_LEVEL:
+	"Level beenden",
 
     /* Levels */
 

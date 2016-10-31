@@ -46,8 +46,6 @@ const char* const LANGUAGE_EN_STRINGS[] =
     "On",
     //STR_OFF:
     "Off",
-    //STR_PAUSE:
-    "Pause",
 
     /* Splash Screens */
 
@@ -78,6 +76,17 @@ const char* const LANGUAGE_EN_STRINGS[] =
 	"Credits",
 	//STR_MAIN_MENU_NEW_GAME_CONFIRM:
 	"This will erase all your progress.\n          Are you sure?",
+
+	/* Pause Screen */
+
+    //STR_PAUSE:
+    "Pause",
+	//STR_PAUSE_SCREEN_CONTINUE:
+	"Continue",
+	//STR_PAUSE_SCREEN_OPTIONS:
+	"Options",
+	//STR_PAUSE_SCREEN_QUIT_LEVEL:
+	"Quit Level",
 
     /* Levels */
 

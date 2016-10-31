@@ -46,8 +46,6 @@ const char* const LANGUAGE_FR_STRINGS[] =
     "Activé",
     //STR_OFF:
     "Desactivé",
-    //STR_PAUSE:
-    "Pause",
 
     /* Splash Screens */
 
@@ -78,6 +76,17 @@ const char* const LANGUAGE_FR_STRINGS[] =
 	"Crédits",
 	//STR_MAIN_MENU_NEW_GAME_CONFIRM:
 	"Tout vôtre progrès sera effacé.\n          Es tu sûr?",
+
+	/* Pause Screen */
+
+    //STR_PAUSE:
+    "Pause",
+	//STR_PAUSE_SCREEN_CONTINUE:
+	"Continuer",
+	//STR_PAUSE_SCREEN_OPTIONS:
+	"Options",
+	//STR_PAUSE_SCREEN_QUIT_LEVEL:
+	"Quitter Niveau",
 
     /* Levels */
 
