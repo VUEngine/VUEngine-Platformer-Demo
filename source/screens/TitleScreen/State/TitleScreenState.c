@@ -114,6 +114,13 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_CONTINUE));
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
+
+        Size strContinueSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_CONTINUE), NULL);
+        Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS), NULL);
+        Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME), NULL);
+        u8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
+        width = (width > strNewGameSize.x) ? width : strNewGameSize.x;
+        OptionsSelector_setColumnWidth(this->optionSelector, width + 1);
 	}
 	else
 	{
@@ -121,6 +128,11 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
+
+        Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS), NULL);
+        Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME), NULL);
+        u8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
+        OptionsSelector_setColumnWidth(this->optionSelector, width + 1);
 	}
 
     OptionsSelector_setOptions(this->optionSelector, options);
@@ -274,7 +286,11 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 						TitleScreenState_hideMessage(this);
 
 						// print options
-						OptionsSelector_showOptions(this->optionSelector, 1, 26);
+						OptionsSelector_showOptions(
+						    this->optionSelector,
+						    1 + (((__SCREEN_WIDTH >> 3) - OptionsSelector_getWidth(this->optionSelector)) >> 1),
+						    26
+                        );
 
 						// set mode to showing options
 						this->mode = kShowOptions;
@@ -383,7 +399,11 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 
 				// print options
 				OptionsSelector_setSelectedOption(this->optionSelector, kOptionContinue);
-				OptionsSelector_showOptions(this->optionSelector, 1, 26);
+                OptionsSelector_showOptions(
+                    this->optionSelector,
+                    1 + (((__SCREEN_WIDTH >> 3) - OptionsSelector_getWidth(this->optionSelector)) >> 1),
+                    26
+                );
 
 				// set mode to showing options
 				this->mode = kShowOptions;
