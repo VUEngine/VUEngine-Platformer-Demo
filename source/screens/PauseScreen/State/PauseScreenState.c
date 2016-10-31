@@ -69,6 +69,7 @@ static void __attribute__ ((noinline)) PauseScreenState_constructor(PauseScreenS
 	__CONSTRUCT_BASE(GameState);
 
 	// init members
+	this->mode = kShowOptions;
 	this->optionSelector = __NEW(OptionsSelector, 1, 3, "\xB", kString);
 }
 
@@ -98,7 +99,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strPause),
-		(__SCREEN_WIDTH >> 4) - (strPauseSize.x >> 1),
+		(((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1),
 		14,
 		strPauseFont
 	);
@@ -113,7 +114,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 
 	OptionsSelector_showOptions(
 		this->optionSelector,
-		(__SCREEN_WIDTH >> 4) - (strPauseSize.x >> 1) - 1,
+		(((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1) - 1,
 		17
 	);
 
@@ -153,36 +154,88 @@ static bool PauseScreenState_processMessage(PauseScreenState this, void* owner _
 
 				if((K_STA & pressedKey) || (K_A & pressedKey))
 				{
-					int selectedOption = OptionsSelector_getSelectedOption(this->optionSelector);
-
-					switch(selectedOption)
+					if(this->mode == kShowOptions)
 					{
-						case kOptionContinue:
-						case kOptionOptions:
-						case kOptionQuitLevel:
+						int selectedOption = OptionsSelector_getSelectedOption(this->optionSelector);
 
-							// disable user input
-							Game_disableKeypad(Game_getInstance());
+						switch(selectedOption)
+						{
+							case kOptionContinue:
+							case kOptionOptions:
 
-							// fade out screen
-							Brightness brightness = (Brightness){0, 0, 0};
-							Screen_startEffect(Screen_getInstance(),
-								kFadeTo, // effect type
-								0, // initial delay (in ms)
-								&brightness, // target brightness
-								__FADE_DELAY, // delay between fading steps (in ms)
-								(void (*)(Object, Object))PauseScreenState_onFadeOutComplete, // callback function
-								__SAFE_CAST(Object, this) // callback scope
-							);
+								// disable user input
+								Game_disableKeypad(Game_getInstance());
 
-							break;
+								// fade out screen
+								Brightness brightness = (Brightness){0, 0, 0};
+								Screen_startEffect(Screen_getInstance(),
+									kFadeTo, // effect type
+									0, // initial delay (in ms)
+									&brightness, // target brightness
+									__FADE_DELAY, // delay between fading steps (in ms)
+									(void (*)(Object, Object))PauseScreenState_onFadeOutComplete, // callback function
+									__SAFE_CAST(Object, this) // callback scope
+								);
+
+								break;
+
+							case kOptionQuitLevel:
+							{
+								// print confirmation message
+								const char* strYes = I18n_getText(I18n_getInstance(), STR_YES);
+								Size strYesSize = Printing_getTextSize(Printing_getInstance(), strYes, NULL);
+								const char* strNo = I18n_getText(I18n_getInstance(), STR_NO);
+								const char* strAreYouSure = I18n_getText(I18n_getInstance(), STR_ARE_YOU_SURE);
+								const char* strPause = I18n_getText(I18n_getInstance(), STR_PAUSE);
+								const char* strPauseFont = "LargeFont";
+								Size strPauseSize = Printing_getTextSize(Printing_getInstance(), strPause, strPauseFont);
+
+								u8 strXPos = ((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1;
+								u8 strNoXPos = strXPos + strYesSize.x + 2;
+
+								Printing_text(Printing_getInstance(), strAreYouSure, strXPos, 21, NULL);
+								Printing_text(Printing_getInstance(), "\x13", strXPos, 22, NULL);
+								Printing_text(Printing_getInstance(), strYes, strXPos + 1, 22, NULL);
+								Printing_text(Printing_getInstance(), "\x14", strNoXPos, 22, NULL);
+								Printing_text(Printing_getInstance(), strNo, strNoXPos + 1, 22, NULL);
+
+								// set mode accordingly
+								this->mode = kShowConfirmQuit;
+								break;
+							}
+						}
+					}
+					else if(this->mode == kShowConfirmQuit)
+					{
+						// disable user input
+						Game_disableKeypad(Game_getInstance());
+
+						// fade out screen
+						Brightness brightness = (Brightness){0, 0, 0};
+						Screen_startEffect(Screen_getInstance(),
+							kFadeTo, // effect type
+							0, // initial delay (in ms)
+							&brightness, // target brightness
+							__FADE_DELAY, // delay between fading steps (in ms)
+							(void (*)(Object, Object))PauseScreenState_onFadeOutComplete, // callback function
+							__SAFE_CAST(Object, this) // callback scope
+						);
 					}
 				}
-				else if((pressedKey & K_LU) || (pressedKey & K_RU))
+				else if((this->mode == kShowConfirmQuit) && (pressedKey & K_B))
+				{
+					// remove confirmation message
+					Printing_text(Printing_getInstance(), "                                                ", 0, 21, NULL);
+					Printing_text(Printing_getInstance(), "                                                ", 0, 22, NULL);
+
+					// set mode back to main menu
+					this->mode = kShowOptions;
+				}
+				else if((this->mode == kShowOptions) && ((pressedKey & K_LU) || (pressedKey & K_RU)))
 				{
 					OptionsSelector_selectPrevious(this->optionSelector);
 				}
-				else if((pressedKey & K_LD) || (pressedKey & K_RD))
+				else if((this->mode == kShowOptions) && ((pressedKey & K_LD) || (pressedKey & K_RD)))
 				{
 					OptionsSelector_selectNext(this->optionSelector);
 				}
@@ -223,6 +276,7 @@ static void PauseScreenState_onFadeOutComplete(PauseScreenState this __attribute
 		case kOptionOptions:
 
 			// switch to options state
+			//TODO
 			//Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OptionsScreenState_getInstance()));
 			break;
 

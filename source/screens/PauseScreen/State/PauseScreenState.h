@@ -32,6 +32,12 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+enum PauseScreenModes
+{
+	kShowOptions,
+	kShowConfirmQuit
+};
+
 enum PauseScreenOptions
 {
 	kOptionContinue,
@@ -60,6 +66,7 @@ __CLASS(PauseScreenState);
 #define PauseScreenState_ATTRIBUTES							        									\
         /* inherits */																					\
         GameState_ATTRIBUTES																			\
+		u8 mode;																						\
 		OptionsSelector optionSelector;																	\
 
 

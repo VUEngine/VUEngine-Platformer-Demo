@@ -331,14 +331,24 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 								this->mode = kShowConfirmNewGame;
 
 								// print warning
-								const char* strNewGameConfirm = I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME_CONFIRM);
+								const char* strNewGameConfirm = I18n_getText(I18n_getInstance(), STR_ALL_PROGRESS_WILL_BE_ERASED);
 								Size strNewGameConfirmSize = Printing_getTextSize(Printing_getInstance(), strNewGameConfirm, NULL);
-								u8 strNewGameConfirmXPos = ((__SCREEN_WIDTH >> 4) - (strNewGameConfirmSize.x >> 1));
+								u8 strNewGameConfirmXPos = (((__SCREEN_WIDTH >> 3) - strNewGameConfirmSize.x) >> 1);
+								const char* strAreYouSure = I18n_getText(I18n_getInstance(), STR_ARE_YOU_SURE);
+								Size strAreYouSureSize = Printing_getTextSize(Printing_getInstance(), strAreYouSure, NULL);
+								u8 strAreYouSureXPos = (((__SCREEN_WIDTH >> 3) - strAreYouSureSize.x) >> 1);
 								Printing_text(
 									Printing_getInstance(),
 									strNewGameConfirm,
 									strNewGameConfirmXPos,
 									25,
+									NULL
+								);
+								Printing_text(
+									Printing_getInstance(),
+									strAreYouSure,
+									strAreYouSureXPos,
+									26,
 									NULL
 								);
 
@@ -348,7 +358,7 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 								const char* strNo = I18n_getText(I18n_getInstance(), STR_NO);
 								Size strNoSize = Printing_getTextSize(Printing_getInstance(), strNo, NULL);
 
-								u8 strYesXPos = ((__SCREEN_WIDTH >> 4) - ((strYesSize.x + strNoSize.x + 3) >> 1));
+								u8 strYesXPos = ((__SCREEN_WIDTH >> 3) - (strYesSize.x + strNoSize.x + 3)) >> 1;
 								u8 strNoXPos = strYesXPos + strYesSize.x + 2;
 
 								Printing_text(Printing_getInstance(), "\x13", strYesXPos - 1, 27, NULL);

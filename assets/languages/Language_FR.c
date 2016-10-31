@@ -46,6 +46,8 @@ const char* const LANGUAGE_FR_STRINGS[] =
     "Activé",
     //STR_OFF:
     "Desactivé",
+    //STR_ARE_YOU_SURE:
+    "Es tu sûr?",
 
     /* Splash Screens */
 
@@ -74,8 +76,8 @@ const char* const LANGUAGE_FR_STRINGS[] =
 	"Options",
 	//STR_MAIN_MENU_CREDITS:
 	"Crédits",
-	//STR_MAIN_MENU_NEW_GAME_CONFIRM:
-	"Tout vôtre progrès sera effacé.\n          Es tu sûr?",
+	//STR_ALL_PROGRESS_WILL_BE_ERASED:
+	"Tout vôtre progrès sera effacé.",
 
 	/* Pause Screen */
 

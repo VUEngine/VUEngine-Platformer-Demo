@@ -46,6 +46,8 @@ const char* const LANGUAGE_ES_STRINGS[] =
     "Encendido",
     //STR_OFF:
     "Apagado",
+    //STR_ARE_YOU_SURE:
+    "¿Estás seguro?",
 
     /* Splash Screens */
 
@@ -75,8 +77,8 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	"Opciones",
 	//STR_MAIN_MENU_CREDITS:
 	"Créditos",
-	//STR_MAIN_MENU_NEW_GAME_CONFIRM:
-	"Esto eliminará todo tu progreso.\n         ¿Estás seguro?",
+	//STR_ALL_PROGRESS_WILL_BE_ERASED:
+	"Esto eliminará todo tu progreso.",
 
 	/* Pause Screen */
 

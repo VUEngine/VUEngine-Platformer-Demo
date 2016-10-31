@@ -46,6 +46,8 @@ const char* const LANGUAGE_DE_STRINGS[] =
     "An",
     //STR_OFF:
     "Aus",
+    //STR_ARE_YOU_SURE:
+    "Bist Du sicher?",
 
     /* Splash Screens */
 
@@ -74,8 +76,8 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	"Optionen",
 	//STR_MAIN_MENU_CREDITS:
 	"Mitwirkende",
-	//STR_MAIN_MENU_NEW_GAME_CONFIRM:
-	"Dein kompletter Fortschritt wird gelöscht.\n             Bist Du sicher?",
+	//STR_ALL_PROGRESS_WILL_BE_ERASED:
+	"Dein kompletter Fortschritt wird gelöscht.",
 
 	/* Pause Screen */
 

@@ -37,6 +37,7 @@ enum LanguageStrings
     STR_NO,
     STR_ON,
     STR_OFF,
+    STR_ARE_YOU_SURE,
 
     /* Splash Screens */
 	STR_PRECAUTION_SCREEN_TITLE,
@@ -52,7 +53,7 @@ enum LanguageStrings
 	STR_MAIN_MENU_NEW_GAME,
 	STR_MAIN_MENU_OPTIONS,
 	STR_MAIN_MENU_CREDITS,
-	STR_MAIN_MENU_NEW_GAME_CONFIRM,
+	STR_ALL_PROGRESS_WILL_BE_ERASED,
 
 	/* Pause Screen */
 	STR_PAUSE,
