@@ -14,8 +14,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PAUSE_SCREEN_STATE_H_
-#define PAUSE_SCREEN_STATE_H_
+#ifndef OPTIONS_SCREEN_STATE_H_
+#define OPTIONS_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,17 +30,10 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-enum PauseScreenModes
+enum OptionsScreenOptions
 {
-	kPauseScreenModeShowOptions,
-	kPauseScreenModeShowConfirmQuit
-};
-
-enum PauseScreenOptions
-{
-	kPauseScreenOptionContinue,
-	kPauseScreenOptionOptions,
-	kPauseScreenOptionQuitLevel
+	kOptionsScreenOptionAutoPauseSelectScreen,
+	kOptionsScreenOptionLanguage
 };
 
 
@@ -49,22 +42,22 @@ enum PauseScreenOptions
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define PauseScreenState_METHODS(ClassName)																\
-	    GameState_METHODS(ClassName)												    				\
+#define OptionsScreenState_METHODS(ClassName)															\
+		GameState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
-#define PauseScreenState_SET_VTABLE(ClassName)															\
-        GameState_SET_VTABLE(ClassName)								    								\
-        __VIRTUAL_SET(ClassName, PauseScreenState, enter);												\
-        __VIRTUAL_SET(ClassName, PauseScreenState, exit);												\
-        __VIRTUAL_SET(ClassName, PauseScreenState, processMessage);                                     \
+#define OptionsScreenState_SET_VTABLE(ClassName)														\
+		GameState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, OptionsScreenState, enter);											\
+		__VIRTUAL_SET(ClassName, OptionsScreenState, exit);												\
+		__VIRTUAL_SET(ClassName, OptionsScreenState, processMessage);									\
 
-__CLASS(PauseScreenState);
+__CLASS(OptionsScreenState);
 
-#define PauseScreenState_ATTRIBUTES							        									\
-        /* inherits */																					\
-        GameState_ATTRIBUTES																			\
-		u8 mode;																						\
+#define OptionsScreenState_ATTRIBUTES																	\
+		/* inherits */																					\
+		GameState_ATTRIBUTES																			\
+        GameState nextState;																			\
 		OptionsSelector optionsSelector;																\
 
 
@@ -72,7 +65,7 @@ __CLASS(PauseScreenState);
 // 										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-PauseScreenState PauseScreenState_getInstance(void);
-
+OptionsScreenState OptionsScreenState_getInstance(void);
+void OptionsScreenState_setNextState(OptionsScreenState this, GameState nextState);
 
 #endif

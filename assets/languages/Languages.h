@@ -38,6 +38,8 @@ enum LanguageStrings
     STR_ON,
     STR_OFF,
     STR_ARE_YOU_SURE,
+    STR_BACK,
+    STR_SELECT,
 
     /* Splash Screens */
 	STR_PRECAUTION_SCREEN_TITLE,
@@ -45,6 +47,7 @@ enum LanguageStrings
 	STR_AUTOMATIC_PAUSE,
 	STR_AUTOMATIC_PAUSE_EXPLANATION,
     STR_AUTOMATIC_PAUSE_TEXT,
+    STR_LANGUAGE,
     STR_LANGUAGE_SELECT,
 
 	/* Title Screen */

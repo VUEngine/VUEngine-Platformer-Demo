@@ -48,6 +48,10 @@ const char* const LANGUAGE_DE_STRINGS[] =
     "Aus",
     //STR_ARE_YOU_SURE:
     "Bist Du sicher?",
+    //STR_BACK:
+    "Zurück",
+    //STR_SELECT:
+    "Auswählen",
 
     /* Splash Screens */
 
@@ -61,8 +65,10 @@ const char* const LANGUAGE_DE_STRINGS[] =
     " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
     //STR_AUTOMATIC_PAUSE_TEXT:
     "Bitte mache eine Pause!",
+    //STR_LANGUAGE:
+    "Sprache",
     //STR_LANGUAGE_SELECT:
-    "Sprach-\nauswahl",
+    "Sprachauswahl",
 
     /* Title Screen */
 

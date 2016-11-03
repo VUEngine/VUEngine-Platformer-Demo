@@ -70,7 +70,7 @@ static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSel
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
 
 	// create options selector and populate with language names
-	this->languageSelector = __NEW(OptionsSelector, 1, 8, "\xB", kString);
+	this->languageSelector = __NEW(OptionsSelector, 1, 8, "\xB", kString, NULL);
 	VirtualList languageNames = __NEW(VirtualList);
 
     u8 activeLanguage = ProgressManager_getLanguage(ProgressManager_getInstance());
@@ -122,7 +122,7 @@ void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedK
 static void LangSelectScreenState_print(LangSelectScreenState this)
 {
 	// print header
-    const char* strLanguageSelectTitle = I18n_getText(I18n_getInstance(), STR_LANGUAGE_SELECT);
+    const char* strLanguageSelectTitle = I18n_getText(I18n_getInstance(), STR_LANGUAGE);
     const char* strLanguageSelectTitleFont = "LargeFont";
     Size size = Printing_getTextSize(Printing_getInstance(), strLanguageSelectTitle, strLanguageSelectTitleFont);
     u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (size.x >> 1);
@@ -135,6 +135,6 @@ static void LangSelectScreenState_print(LangSelectScreenState this)
 	);
 
 	// print options
-	OptionsSelector_showOptions(this->languageSelector, strHeaderXPos, 9 + size.y);
+	OptionsSelector_printOptions(this->languageSelector, strHeaderXPos, 9 + size.y);
 }
 

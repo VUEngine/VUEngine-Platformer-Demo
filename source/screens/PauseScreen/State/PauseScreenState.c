@@ -32,6 +32,7 @@
 #include <screens.h>
 #include <macros.h>
 #include <OverworldState.h>
+#include <OptionsScreenState.h>
 #include <PlatformerLevelState.h>
 #include <Languages.h>
 #include <KeyPadManager.h>
@@ -69,8 +70,8 @@ static void __attribute__ ((noinline)) PauseScreenState_constructor(PauseScreenS
 	__CONSTRUCT_BASE(GameState);
 
 	// init members
-	this->mode = kShowOptions;
-	this->optionSelector = __NEW(OptionsSelector, 1, 3, "\xB", kString);
+	this->mode = kPauseScreenModeShowOptions;
+	this->optionsSelector = __NEW(OptionsSelector, 1, 3, "\xB", kString, NULL);
 }
 
 // class's destructor
@@ -109,11 +110,11 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_PAUSE_SCREEN_CONTINUE));
 	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_PAUSE_SCREEN_OPTIONS));
 	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_PAUSE_SCREEN_QUIT_LEVEL));
-	OptionsSelector_setOptions(this->optionSelector, options);
+	OptionsSelector_setOptions(this->optionsSelector, options);
 	__DELETE(options);
 
-	OptionsSelector_showOptions(
-		this->optionSelector,
+	OptionsSelector_printOptions(
+		this->optionsSelector,
 		(((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1) - 1,
 		17
 	);
@@ -154,14 +155,14 @@ static bool PauseScreenState_processMessage(PauseScreenState this, void* owner _
 
 				if((K_STA & pressedKey) || (K_A & pressedKey))
 				{
-					if(this->mode == kShowOptions)
+					if(this->mode == kPauseScreenModeShowOptions)
 					{
-						int selectedOption = OptionsSelector_getSelectedOption(this->optionSelector);
+						int selectedOption = OptionsSelector_getSelectedOption(this->optionsSelector);
 
 						switch(selectedOption)
 						{
-							case kOptionContinue:
-							case kOptionOptions:
+							case kPauseScreenOptionContinue:
+							case kPauseScreenOptionOptions:
 
 								// disable user input
 								Game_disableKeypad(Game_getInstance());
@@ -179,7 +180,7 @@ static bool PauseScreenState_processMessage(PauseScreenState this, void* owner _
 
 								break;
 
-							case kOptionQuitLevel:
+							case kPauseScreenOptionQuitLevel:
 							{
 								// print confirmation message
 								const char* strYes = I18n_getText(I18n_getInstance(), STR_YES);
@@ -200,12 +201,12 @@ static bool PauseScreenState_processMessage(PauseScreenState this, void* owner _
 								Printing_text(Printing_getInstance(), strNo, strNoXPos + 1, 22, NULL);
 
 								// set mode accordingly
-								this->mode = kShowConfirmQuit;
+								this->mode = kPauseScreenModeShowConfirmQuit;
 								break;
 							}
 						}
 					}
-					else if(this->mode == kShowConfirmQuit)
+					else if(this->mode == kPauseScreenModeShowConfirmQuit)
 					{
 						// disable user input
 						Game_disableKeypad(Game_getInstance());
@@ -222,22 +223,22 @@ static bool PauseScreenState_processMessage(PauseScreenState this, void* owner _
 						);
 					}
 				}
-				else if((this->mode == kShowConfirmQuit) && (pressedKey & K_B))
+				else if((this->mode == kPauseScreenModeShowConfirmQuit) && (pressedKey & K_B))
 				{
 					// remove confirmation message
 					Printing_text(Printing_getInstance(), "                                                ", 0, 21, NULL);
 					Printing_text(Printing_getInstance(), "                                                ", 0, 22, NULL);
 
 					// set mode back to main menu
-					this->mode = kShowOptions;
+					this->mode = kPauseScreenModeShowOptions;
 				}
-				else if((this->mode == kShowOptions) && ((pressedKey & K_LU) || (pressedKey & K_RU)))
+				else if((this->mode == kPauseScreenModeShowOptions) && ((pressedKey & K_LU) || (pressedKey & K_RU)))
 				{
-					OptionsSelector_selectPrevious(this->optionSelector);
+					OptionsSelector_selectPrevious(this->optionsSelector);
 				}
-				else if((this->mode == kShowOptions) && ((pressedKey & K_LD) || (pressedKey & K_RD)))
+				else if((this->mode == kPauseScreenModeShowOptions) && ((pressedKey & K_LD) || (pressedKey & K_RD)))
 				{
-					OptionsSelector_selectNext(this->optionSelector);
+					OptionsSelector_selectNext(this->optionsSelector);
 				}
 			}
 			return true;
@@ -264,23 +265,23 @@ static void PauseScreenState_onFadeOutComplete(PauseScreenState this __attribute
 	Game_enableKeypad(Game_getInstance());
 
 	// switch state according to selection
-	int selectedOption = OptionsSelector_getSelectedOption(this->optionSelector);
+	int selectedOption = OptionsSelector_getSelectedOption(this->optionsSelector);
 	switch(selectedOption)
 	{
-		case kOptionContinue:
+		case kPauseScreenOptionContinue:
 
 			// resume game
 			Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
 			break;
 
-		case kOptionOptions:
+		case kPauseScreenOptionOptions:
 
 			// switch to options state
-			//TODO
-			//Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OptionsScreenState_getInstance()));
+			OptionsScreenState_setNextState(OptionsScreenState_getInstance(), __SAFE_CAST(GameState, this));
+			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OptionsScreenState_getInstance()));
 			break;
 
-		case kOptionQuitLevel:
+		case kPauseScreenOptionQuitLevel:
 
 			// switch to overworld after deleting paused game state
     		Game_cleanAndChangeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));

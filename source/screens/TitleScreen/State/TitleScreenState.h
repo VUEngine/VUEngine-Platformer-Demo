@@ -34,16 +34,16 @@
 
 enum TitleScreenModes
 {
-	kShowPressStart,
-	kShowOptions,
-	kShowConfirmNewGame
+	kTitleScreenModeShowPressStart,
+	kTitleScreenModeShowOptions,
+	kTitleScreenModeShowConfirmNewGame
 };
 
 enum TitleScreenOptions
 {
-	kOptionContinue,
-	kOptionOptions,
-	kOptionNewGame
+	kTitleScreenOptionContinue,
+	kTitleScreenOptionOptions,
+	kTitleScreenOptionNewGame
 };
 
 
@@ -71,7 +71,7 @@ __CLASS(TitleScreenState);
 		/* inherits */																					\
 		GameState_ATTRIBUTES																			\
 		u8 mode;																						\
-		OptionsSelector optionSelector;																	\
+		OptionsSelector optionsSelector;																\
 
 
 //---------------------------------------------------------------------------------------------------------

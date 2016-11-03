@@ -48,6 +48,10 @@ const char* const LANGUAGE_EN_STRINGS[] =
     "Off",
     //STR_ARE_YOU_SURE:
     "Are you sure?",
+    //STR_BACK:
+    "Back",
+    //STR_SELECT:
+    "Select",
 
     /* Splash Screens */
 
@@ -61,8 +65,10 @@ const char* const LANGUAGE_EN_STRINGS[] =
     "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
     //STR_AUTOMATIC_PAUSE_TEXT:
     "Please take a rest!",
+    //STR_LANGUAGE:
+    "Language",
     //STR_LANGUAGE_SELECT:
-    "Language\nSelect",
+    "Language Select",
 
     /* Title Screen */
 

@@ -35,6 +35,7 @@
 #include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
+#include <OptionsScreenState.h>
 #include <CustomScreenMovementManager.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
@@ -79,8 +80,8 @@ static void __attribute__ ((noinline)) TitleScreenState_constructor(TitleScreenS
 	__CONSTRUCT_BASE(GameState);
 
 	// init members
-	this->mode = kShowPressStart;
-	this->optionSelector = NULL;
+	this->mode = kTitleScreenModeShowPressStart;
+	this->optionsSelector = NULL;
 }
 
 // class's destructor
@@ -109,7 +110,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
     VirtualList options = __NEW(VirtualList);
 	if(ProgressManager_hasProgress(ProgressManager_getInstance()))
 	{
-        this->optionSelector = __NEW(OptionsSelector, 3, 1, "\xB", kString);
+        this->optionsSelector = __NEW(OptionsSelector, 3, 1, "\xB", kString, NULL);
 
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_CONTINUE));
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
@@ -120,11 +121,11 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
         Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME), NULL);
         u8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
         width = (width > strNewGameSize.x) ? width : strNewGameSize.x;
-        OptionsSelector_setColumnWidth(this->optionSelector, width + 1);
+        OptionsSelector_setColumnWidth(this->optionsSelector, width + 1);
 	}
 	else
 	{
-        this->optionSelector = __NEW(OptionsSelector, 2, 1, "\xB", kString);
+        this->optionsSelector = __NEW(OptionsSelector, 2, 1, "\xB", kString, NULL);
 
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
         VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
@@ -132,10 +133,10 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
         Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS), NULL);
         Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME), NULL);
         u8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
-        OptionsSelector_setColumnWidth(this->optionSelector, width + 1);
+        OptionsSelector_setColumnWidth(this->optionsSelector, width + 1);
 	}
 
-    OptionsSelector_setOptions(this->optionSelector, options);
+    OptionsSelector_setOptions(this->optionsSelector, options);
 	__DELETE(options);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
@@ -279,32 +280,32 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 			{
 				switch(this->mode)
 				{
-					case kShowPressStart:
+					case kTitleScreenModeShowPressStart:
 					{
 						// disable blinking "press start button"
 						Object_removeEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (void (*)(Object, Object))TitleScreenState_onSecondChange, kEventSecondChanged);
 						TitleScreenState_hideMessage(this);
 
 						// print options
-						OptionsSelector_showOptions(
-						    this->optionSelector,
-						    1 + (((__SCREEN_WIDTH >> 3) - OptionsSelector_getWidth(this->optionSelector)) >> 1),
+						OptionsSelector_printOptions(
+						    this->optionsSelector,
+						    1 + (((__SCREEN_WIDTH >> 3) - OptionsSelector_getWidth(this->optionsSelector)) >> 1),
 						    26
                         );
 
 						// set mode to showing options
-						this->mode = kShowOptions;
+						this->mode = kTitleScreenModeShowOptions;
 
 						break;
 					}
-					case kShowOptions:
+					case kTitleScreenModeShowOptions:
 					{
-						int selectedOption = OptionsSelector_getSelectedOption(this->optionSelector);
+						int selectedOption = OptionsSelector_getSelectedOption(this->optionsSelector);
 
 						switch(selectedOption)
 						{
-							case kOptionContinue:
-							case kOptionOptions:
+							case kTitleScreenOptionContinue:
+							case kTitleScreenOptionOptions:
 
 								// disable user input
 								Game_disableKeypad(Game_getInstance());
@@ -322,13 +323,13 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 
 								break;
 
-							case kOptionNewGame:
+							case kTitleScreenOptionNewGame:
 
 								// remove main menu
 								TitleScreenState_hideMessage(this);
 
 								// set mode to new game confirm
-								this->mode = kShowConfirmNewGame;
+								this->mode = kTitleScreenModeShowConfirmNewGame;
 
 								// print warning
 								const char* strNewGameConfirm = I18n_getText(I18n_getInstance(), STR_ALL_PROGRESS_WILL_BE_ERASED);
@@ -371,7 +372,7 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 
 						break;
 					}
-					case kShowConfirmNewGame:
+					case kTitleScreenModeShowConfirmNewGame:
 					{
 						// clear progress
 						ProgressManager_clearProgress(ProgressManager_getInstance());
@@ -394,29 +395,29 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 					}
 				}
 			}
-			else if((this->mode == kShowOptions) && ((pressedKey & K_LL) || (pressedKey & K_RL)))
+			else if((this->mode == kTitleScreenModeShowOptions) && ((pressedKey & K_LL) || (pressedKey & K_RL)))
 			{
-				OptionsSelector_selectPrevious(this->optionSelector);
+				OptionsSelector_selectPrevious(this->optionsSelector);
 			}
-			else if((this->mode == kShowOptions) && ((pressedKey & K_LR) || (pressedKey & K_RR)))
+			else if((this->mode == kTitleScreenModeShowOptions) && ((pressedKey & K_LR) || (pressedKey & K_RR)))
 			{
-				OptionsSelector_selectNext(this->optionSelector);
+				OptionsSelector_selectNext(this->optionsSelector);
 			}
-			else if((this->mode == kShowConfirmNewGame) && (pressedKey & K_B))
+			else if((this->mode == kTitleScreenModeShowConfirmNewGame) && (pressedKey & K_B))
 			{
 				// remove message
 				TitleScreenState_hideMessage(this);
 
 				// print options
-				OptionsSelector_setSelectedOption(this->optionSelector, kOptionContinue);
-                OptionsSelector_showOptions(
-                    this->optionSelector,
-                    1 + (((__SCREEN_WIDTH >> 3) - OptionsSelector_getWidth(this->optionSelector)) >> 1),
+				OptionsSelector_setSelectedOption(this->optionsSelector, kTitleScreenOptionContinue);
+                OptionsSelector_printOptions(
+                    this->optionsSelector,
+                    1 + (((__SCREEN_WIDTH >> 3) - OptionsSelector_getWidth(this->optionsSelector)) >> 1),
                     26
                 );
 
 				// set mode to showing options
-				this->mode = kShowOptions;
+				this->mode = kTitleScreenModeShowOptions;
 			}
 
 			break;
@@ -457,23 +458,23 @@ static void TitleScreenState_onFadeOutComplete(TitleScreenState this __attribute
 	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
 
 
-	int selectedOption = OptionsSelector_getSelectedOption(this->optionSelector);
+	int selectedOption = OptionsSelector_getSelectedOption(this->optionsSelector);
 
 	switch(selectedOption)
 	{
-		case kOptionContinue:
-		case kOptionNewGame:
+		case kTitleScreenOptionContinue:
+		case kTitleScreenOptionNewGame:
 
 			// switch to overworld
     		Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 
 			break;
 
-		case kOptionOptions:
+		case kTitleScreenOptionOptions:
 
 			// switch to options screen
-			// TODO
-			//Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OptionsScreenState_getInstance()));
+			OptionsScreenState_setNextState(OptionsScreenState_getInstance(), __SAFE_CAST(GameState, this));
+			Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OptionsScreenState_getInstance()));
 
 			break;
 	}
