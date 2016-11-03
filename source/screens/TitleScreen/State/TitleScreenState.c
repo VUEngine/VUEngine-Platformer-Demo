@@ -112,13 +112,13 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	{
         this->optionsSelector = __NEW(OptionsSelector, 3, 1, "\xB", kString, NULL);
 
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_CONTINUE));
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_CONTINUE));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_OPTIONS));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_NEW_GAME));
 
-        Size strContinueSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_CONTINUE), NULL);
-        Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS), NULL);
-        Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME), NULL);
+        Size strContinueSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_CONTINUE), NULL);
+        Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_OPTIONS), NULL);
+        Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_GAME), NULL);
         u8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
         width = (width > strNewGameSize.x) ? width : strNewGameSize.x;
         OptionsSelector_setColumnWidth(this->optionsSelector, width + 1);
@@ -127,11 +127,11 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	{
         this->optionsSelector = __NEW(OptionsSelector, 2, 1, "\xB", kString, NULL);
 
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME));
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_NEW_GAME));
+        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_OPTIONS));
 
-        Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_OPTIONS), NULL);
-        Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_MAIN_MENU_NEW_GAME), NULL);
+        Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_OPTIONS), NULL);
+        Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_GAME), NULL);
         u8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
         OptionsSelector_setColumnWidth(this->optionsSelector, width + 1);
 	}
@@ -332,7 +332,7 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 								this->mode = kTitleScreenModeShowConfirmNewGame;
 
 								// print warning
-								const char* strNewGameConfirm = I18n_getText(I18n_getInstance(), STR_ALL_PROGRESS_WILL_BE_ERASED);
+								const char* strNewGameConfirm = I18n_getText(I18n_getInstance(), STR_PROGRESS_WILL_BE_ERASED);
 								Size strNewGameConfirmSize = Printing_getTextSize(Printing_getInstance(), strNewGameConfirm, NULL);
 								u8 strNewGameConfirmXPos = (((__SCREEN_WIDTH >> 3) - strNewGameConfirmSize.x) >> 1);
 								const char* strAreYouSure = I18n_getText(I18n_getInstance(), STR_ARE_YOU_SURE);

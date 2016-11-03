@@ -30,7 +30,7 @@
  * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
  * of the full extended ASCII character set including special characters of European languages.
  *
- * The following character is meant to prevent editors to load this file as UTF-8, since it doesn't
+ * The following character is meant to prevent editors from loading this file as UTF-8, since it doesn't
  * form part of a valid UTF-8 byte sequence: £
  */
 
@@ -38,83 +38,46 @@ const char* const LANGUAGE_FR_STRINGS[] =
 {
 	/* General */
 
-    //STR_YES:
-    "Oui",
-    //STR_NO:
-    "Non",
-    //STR_ON:
-    "Activé",
-    //STR_OFF:
-    "Desactivé",
-    //STR_ARE_YOU_SURE:
-    "Es tu sûr?",
-    //STR_BACK:
-    "Back",
-    //STR_SELECT:
-    "Select",
+	/* STR_ARE_YOU_SURE */				"Es tu sûr?",
+	/* STR_AUTOMATIC_PAUSE */			"Pause Automatique",
+	/* STR_BACK */						"Arrière",
+	/* STR_CONTINUE */					"Continuer",
+	/* STR_CREDITS */					"Crédits",
+	/* STR_IMPORTANT */					"Important",
+	/* STR_LANGUAGE */					"Langue",
+	/* STR_LANGUAGE_SELECT */			"Choix de la langue",
+	/* STR_LEVEL */						"Niveau",
+	/* STR_LEVEL_CONQUERED */			"Niveau conquis!",
+	/* STR_LEVEL_DONE */				"Niveau terminé!",
+	/* STR_NEW_BEST */					"Set Record!",
+	/* STR_NEW_GAME */					"Nouveau Jeu",
+	/* STR_NO */						"Non",
+	/* STR_OFF */						"Desactivé",
+	/* STR_ON */						"Activé",
+	/* STR_OPTIONS */					"Options",
+	/* STR_PAUSE */						"Pause",
+	/* STR_PRESS_START_BUTTON */		"Appuyer sur Start",
+	/* STR_PROGRESS_WILL_BE_ERASED */	"Tout vôtre progrès sera effacé.",
+	/* STR_QUIT_LEVEL */				"Quitter Niveau",
+	/* STR_SELECT */					"Sélectionner",
+	/* STR_TAKE_A_REST */				"Se il vous plaît, prendre un repos!",
+	/* STR_YES */						"Oui",
 
-    /* Splash Screens */
+	/* Splash Screens */
 
-    //STR_PRECAUTION_SCREEN_TITLE:
-    "Important",
-    //STR_PRECAUTION_SCREEN_TEXT:
-    "Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
-    //STR_AUTOMATIC_PAUSE:
-    "Pause Automatique",
-    //STR_AUTOMATIC_PAUSE_EXPLANATION:
-    "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
-    //STR_AUTOMATIC_PAUSE_TEXT:
-    "Se il vous plaît, prendre un repos!",
-    //STR_LANGUAGE:
-    "Langue",
-    //STR_LANGUAGE_SELECT:
-    "Choix de la langue",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
+	/* STR_AUTO_PAUSE_EXPLANATION */	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
 
-    /* Title Screen */
+	/* Levels */
 
-    //STR_PRESS_START_BUTTON:
-    "Appuyer sur Start",
-	//STR_MAIN_MENU_CONTINUE:
-	"Continuer",
-	//STR_MAIN_MENU_NEW_GAME:
-	"Nouveau Jeu",
-	//STR_MAIN_MENU_OPTIONS:
-	"Options",
-	//STR_MAIN_MENU_CREDITS:
-	"Crédits",
-	//STR_ALL_PROGRESS_WILL_BE_ERASED:
-	"Tout vôtre progrès sera effacé.",
-
-	/* Pause Screen */
-
-    //STR_PAUSE:
-    "Pause",
-	//STR_PAUSE_SCREEN_CONTINUE:
-	"Continuer",
-	//STR_PAUSE_SCREEN_OPTIONS:
-	"Options",
-	//STR_PAUSE_SCREEN_QUIT_LEVEL:
-	"Quitter Niveau",
-
-    /* Levels */
-
-    //STR_LEVEL:
-    "Niveau",
-    //STR_LEVEL_DONE:
-    "Niveau terminé!",
-    //STR_LEVEL_CONQUERED:
-    "Niveau conquis!",
-    //STR_LEVEL_1_NAME:
-    "Woohoo Hills",
-    //STR_NEW_BEST:
-    "Set Record!",
+	/* STR_LEVEL_1_NAME */				"Woohoo Hills",
 };
 
 const LangROMDef LANGUAGE_FR =
 {
-    // Language Name
-    "Français",
+	// Language Name
+	"Français",
 
-    // Strings
-    (const char**)LANGUAGE_FR_STRINGS
+	// Strings
+	(const char**)LANGUAGE_FR_STRINGS
 };

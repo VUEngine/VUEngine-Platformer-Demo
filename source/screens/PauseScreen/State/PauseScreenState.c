@@ -107,9 +107,9 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 
 	// show menu
 	VirtualList options = __NEW(VirtualList);
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_PAUSE_SCREEN_CONTINUE));
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_PAUSE_SCREEN_OPTIONS));
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_PAUSE_SCREEN_QUIT_LEVEL));
+	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_CONTINUE));
+	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_OPTIONS));
+	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_QUIT_LEVEL));
 	OptionsSelector_setOptions(this->optionsSelector, options);
 	__DELETE(options);
 
@@ -251,13 +251,13 @@ static bool PauseScreenState_processMessage(PauseScreenState this, void* owner _
 // handle event
 static void PauseScreenState_onFadeInComplete(PauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PauseScreenState::onFadeOutComplete: null this");
+	ASSERT(this, "PauseScreenState::onFadeInComplete: null this");
 
 	Game_enableKeypad(Game_getInstance());
 }
 
 // handle event
-static void PauseScreenState_onFadeOutComplete(PauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void PauseScreenState_onFadeOutComplete(PauseScreenState this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "PauseScreenState::onFadeOutComplete: null this");
 

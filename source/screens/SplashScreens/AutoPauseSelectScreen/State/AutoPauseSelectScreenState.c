@@ -90,7 +90,7 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
     const char* strAutomaticPauseTitleFont = "LargeFont";
     Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
 
-    const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE_EXPLANATION);
+    const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTO_PAUSE_EXPLANATION);
     Size strAutomaticPauseExplanationSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseExplanation, NULL);
 
     u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseSize.x >> 1);

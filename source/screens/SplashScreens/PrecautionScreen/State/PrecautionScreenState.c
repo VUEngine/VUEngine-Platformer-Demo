@@ -132,7 +132,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 
 static void PrecautionScreenState_print(PrecautionScreenState this __attribute__ ((unused)))
 {
-    const char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TITLE);
+    const char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_IMPORTANT);
     const char* strPrecautionTitleFont = "LargeFont";
     Size titleSize = Printing_getTextSize(Printing_getInstance(), strPrecautionTitle, strPrecautionTitleFont);
 
