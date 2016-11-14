@@ -392,9 +392,9 @@ static bool TitleScreenState_processMessage(TitleScreenState this, void* owner _
 								u8 strYesXPos = ((__SCREEN_WIDTH >> 3) - (strYesSize.x + strNoSize.x + 3)) >> 1;
 								u8 strNoXPos = strYesXPos + strYesSize.x + 2;
 
-								Printing_text(Printing_getInstance(), "\x13", strYesXPos - 1, 27, NULL);
+								Printing_text(Printing_getInstance(), __CHAR_A_BUTTON, strYesXPos - 1, 27, NULL);
 								Printing_text(Printing_getInstance(), strYes, strYesXPos, 27, NULL);
-								Printing_text(Printing_getInstance(), "\x14", strNoXPos - 1, 27, NULL);
+								Printing_text(Printing_getInstance(), __CHAR_B_BUTTON, strNoXPos - 1, 27, NULL);
 								Printing_text(Printing_getInstance(), strNo, strNoXPos, 27, NULL);
 
 								break;

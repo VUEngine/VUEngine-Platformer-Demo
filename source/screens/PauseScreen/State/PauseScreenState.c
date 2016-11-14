@@ -215,9 +215,9 @@ static bool PauseScreenState_processMessage(PauseScreenState this, void* owner _
 								u8 strNoXPos = strXPos + strYesSize.x + 2;
 
 								Printing_text(Printing_getInstance(), strAreYouSure, strXPos, 21, NULL);
-								Printing_text(Printing_getInstance(), "\x13", strXPos, 22, NULL);
+								Printing_text(Printing_getInstance(), __CHAR_A_BUTTON, strXPos, 22, NULL);
 								Printing_text(Printing_getInstance(), strYes, strXPos + 1, 22, NULL);
-								Printing_text(Printing_getInstance(), "\x14", strNoXPos, 22, NULL);
+								Printing_text(Printing_getInstance(), __CHAR_B_BUTTON, strNoXPos, 22, NULL);
 								Printing_text(Printing_getInstance(), strNo, strNoXPos + 1, 22, NULL);
 
 								// set mode accordingly

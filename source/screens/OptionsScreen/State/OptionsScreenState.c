@@ -185,9 +185,9 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
     u8 strSelectXPos = ((__SCREEN_WIDTH >> 3) - strOptionsTextSize.x) >> 1;
     u8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
 
-    Printing_text(Printing_getInstance(), "\x13", strSelectXPos, 15, NULL);
+    Printing_text(Printing_getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, NULL);
     Printing_text(Printing_getInstance(), strSelect, strSelectXPos + 1, 15, NULL);
-    Printing_text(Printing_getInstance(), "\x14", strBackXPos, 15, NULL);
+    Printing_text(Printing_getInstance(), __CHAR_B_BUTTON, strBackXPos, 15, NULL);
     Printing_text(Printing_getInstance(), strBack, strBackXPos + 1, 15, NULL);
 }
 
