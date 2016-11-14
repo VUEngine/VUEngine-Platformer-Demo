@@ -71,7 +71,7 @@ static void __attribute__ ((noinline)) PauseScreenState_constructor(PauseScreenS
 
 	// init members
 	this->mode = kPauseScreenModeShowOptions;
-	this->optionsSelector = __NEW(OptionsSelector, 1, 3, "\xB", kString, NULL);
+	this->optionsSelector = __NEW(OptionsSelector, 1, 3, NULL);
 }
 
 // class's destructor
@@ -107,9 +107,29 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 
 	// show menu
 	VirtualList options = __NEW(VirtualList);
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_CONTINUE));
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_OPTIONS));
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_QUIT_LEVEL));
+    Option* option = NULL;
+
+    option = __NEW_BASIC(Option);
+    option->value = (char*)I18n_getText(I18n_getInstance(), STR_CONTINUE);
+    option->type = kString;
+    option->callback = NULL;
+    option->callbackScope = NULL;
+    VirtualList_pushBack(options, option);
+
+    option = __NEW_BASIC(Option);
+    option->value = (char*)I18n_getText(I18n_getInstance(), STR_OPTIONS);
+    option->type = kString;
+    option->callback = NULL;
+    option->callbackScope = NULL;
+    VirtualList_pushBack(options, option);
+
+    option = __NEW_BASIC(Option);
+    option->value = (char*)I18n_getText(I18n_getInstance(), STR_QUIT_LEVEL);
+    option->type = kString;
+    option->callback = NULL;
+    option->callbackScope = NULL;
+    VirtualList_pushBack(options, option);
+
 	OptionsSelector_setOptions(this->optionsSelector, options);
 	__DELETE(options);
 

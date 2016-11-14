@@ -57,6 +57,8 @@ static bool OptionsScreenState_processMessage(OptionsScreenState this, void* own
 static void OptionsScreenState_onFadeInComplete(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onExitFadeOutComplete(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer);
+static void OptionsScreenState_onOptionAutoPauseSelect(OptionsScreenState this);
+static void OptionsScreenState_onOptionLanguageSelect(OptionsScreenState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -148,11 +150,23 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
     );
 
 	// menu
-    this->optionsSelector = __NEW(OptionsSelector, 1, 2, "\xB", kString, NULL);
+    this->optionsSelector = __NEW(OptionsSelector, 1, 2, NULL);
 	VirtualList options = __NEW(VirtualList);
+    Option* option = NULL;
 
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE));
-	VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_LANGUAGE));
+    option = __NEW_BASIC(Option);
+    option->value = (char*)I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
+    option->type = kString;
+    option->callback = (void (*)(Object))OptionsScreenState_onOptionAutoPauseSelect;
+    option->callbackScope = __SAFE_CAST(Object, this);
+	VirtualList_pushBack(options, option);
+
+    option = __NEW_BASIC(Option);
+    option->value = (char*)I18n_getText(I18n_getInstance(), STR_LANGUAGE);
+    option->type = kString;
+    option->callback = (void (*)(Object))OptionsScreenState_onOptionLanguageSelect;
+    option->callbackScope = __SAFE_CAST(Object, this);
+	VirtualList_pushBack(options, option);
 
 	OptionsSelector_setOptions(this->optionsSelector, options);
 	__DELETE(options);
@@ -258,20 +272,21 @@ static void OptionsScreenState_onOptionSelectedFadeOutComplete(OptionsScreenStat
 {
 	ASSERT(this, "OptionsScreenState::onOptionSelectedFadeOutComplete: null this");
 
-    // switch state according to selection
-    int selectedOption = OptionsSelector_getSelectedOption(this->optionsSelector);
-    switch(selectedOption)
-    {
-        case kOptionsScreenOptionAutoPauseSelectScreen:
+    OptionsSelector_doCurrentSelectionCallback(this->optionsSelector);
+}
 
-	        SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AutoPauseSelectScreenState_getInstance()), __SAFE_CAST(GameState, this));
-            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
-            break;
+static void OptionsScreenState_onOptionAutoPauseSelect(OptionsScreenState this)
+{
+	ASSERT(this, "OptionsScreenState::onOptionAutoPauseSelect: null this");
 
-        case kOptionsScreenOptionLanguage:
+    SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AutoPauseSelectScreenState_getInstance()), __SAFE_CAST(GameState, this));
+    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
+}
 
-	        SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, LangSelectScreenState_getInstance()), __SAFE_CAST(GameState, this));
-            Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LangSelectScreenState_getInstance()));
-            break;
-    }
+static void OptionsScreenState_onOptionLanguageSelect(OptionsScreenState this)
+{
+	ASSERT(this, "OptionsScreenState::onOptionLanguageSelect: null this");
+
+    SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, LangSelectScreenState_getInstance()), __SAFE_CAST(GameState, this));
+    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LangSelectScreenState_getInstance()));
 }

@@ -110,11 +110,29 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
     VirtualList options = __NEW(VirtualList);
 	if(ProgressManager_hasProgress(ProgressManager_getInstance()))
 	{
-        this->optionsSelector = __NEW(OptionsSelector, 3, 1, "\xB", kString, NULL);
+        this->optionsSelector = __NEW(OptionsSelector, 3, 1, NULL);
+        Option* option = NULL;
 
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_CONTINUE));
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_OPTIONS));
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_NEW_GAME));
+        option = __NEW_BASIC(Option);
+        option->value = (char*)I18n_getText(I18n_getInstance(), STR_CONTINUE);
+        option->type = kString;
+        option->callback = NULL;
+        option->callbackScope = NULL;
+        VirtualList_pushBack(options, option);
+
+        option = __NEW_BASIC(Option);
+        option->value = (char*)I18n_getText(I18n_getInstance(), STR_OPTIONS);
+        option->type = kString;
+        option->callback = NULL;
+        option->callbackScope = NULL;
+        VirtualList_pushBack(options, option);
+
+        option = __NEW_BASIC(Option);
+        option->value = (char*)I18n_getText(I18n_getInstance(), STR_NEW_GAME);
+        option->type = kString;
+        option->callback = NULL;
+        option->callbackScope = NULL;
+        VirtualList_pushBack(options, option);
 
         Size strContinueSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_CONTINUE), NULL);
         Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_OPTIONS), NULL);
@@ -125,10 +143,22 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	}
 	else
 	{
-        this->optionsSelector = __NEW(OptionsSelector, 2, 1, "\xB", kString, NULL);
+        this->optionsSelector = __NEW(OptionsSelector, 2, 1, NULL);
+        Option* option = NULL;
 
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_NEW_GAME));
-        VirtualList_pushBack(options, I18n_getText(I18n_getInstance(), STR_OPTIONS));
+        option = __NEW_BASIC(Option);
+        option->value = (char*)I18n_getText(I18n_getInstance(), STR_NEW_GAME);
+        option->type = kString;
+        option->callback = NULL;
+        option->callbackScope = NULL;
+        VirtualList_pushBack(options, option);
+
+        option = __NEW_BASIC(Option);
+        option->value = (char*)I18n_getText(I18n_getInstance(), STR_OPTIONS);
+        option->type = kString;
+        option->callback = NULL;
+        option->callbackScope = NULL;
+        VirtualList_pushBack(options, option);
 
         Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_OPTIONS), NULL);
         Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_GAME), NULL);

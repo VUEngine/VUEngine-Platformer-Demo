@@ -27,17 +27,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-enum OptionsScreenOptions
-{
-	kOptionsScreenOptionAutoPauseSelectScreen,
-	kOptionsScreenOptionLanguage
-};
-
-
-//---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
@@ -54,8 +43,8 @@ enum OptionsScreenOptions
 
 __CLASS(OptionsScreenState);
 
+// declare the class attributes
 #define OptionsScreenState_ATTRIBUTES																	\
-		/* inherits */																					\
 		GameState_ATTRIBUTES																			\
         GameState nextState;																			\
 		OptionsSelector optionsSelector;																\
@@ -67,5 +56,6 @@ __CLASS(OptionsScreenState);
 
 OptionsScreenState OptionsScreenState_getInstance(void);
 void OptionsScreenState_setNextState(OptionsScreenState this, GameState nextState);
+
 
 #endif
