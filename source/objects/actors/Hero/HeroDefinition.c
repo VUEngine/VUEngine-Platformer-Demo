@@ -93,7 +93,7 @@ AnimationFunctionROMDef HERO_JUMPING_ANIM =
 	{6},
 
 	// number of cycles a frame of animation is displayed
-	0,
+	8,
 
 	// whether to play it in loop or not
 	false,
@@ -115,7 +115,7 @@ AnimationFunctionROMDef HERO_FALLING_ANIM =
 	{7},
 
 	// number of cycles a frame of animation is displayed
-	0,
+	8,
 
 	// whether to play it in loop or not
 	false,
@@ -137,7 +137,7 @@ AnimationFunctionROMDef HERO_SLIDING_ANIM =
 	{7},
 
 	// number of cycles a frame of animation is displayed
-	0,
+	8,
 
 	// whether to play it in loop or not
 	false,
@@ -159,10 +159,10 @@ AnimationFunctionROMDef HERO_HIT_ANIM =
 	{8},
 
 	// number of cycles a frame of animation is displayed
-	80,
+	8,
 
 	// whether to play it in loop or not
-	true,
+	false,
 
 	// method to call on function completion
 	NULL,
@@ -372,7 +372,7 @@ CharSetROMDef HERO_BANDANA_CH =
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED,
+    __ANIMATED_SINGLE,
 
     // char definition
     HeroBandanaTiles,
