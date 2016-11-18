@@ -149,8 +149,8 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner)
     {
         Acceleration acceleration =
         {
-            K_LL & pressedKey? ITOFIX19_13(-1) : K_LR & pressedKey? __1I_FIX19_13: 0,
-            K_A & pressedKey? ITOFIX19_13(-1): 0,
+            K_LL & pressedKey ? ITOFIX19_13(-1) : K_LR & pressedKey ? __1I_FIX19_13 : 0,
+            K_A & pressedKey ? ITOFIX19_13(-1) : 0,
             0,
         };
 
@@ -203,8 +203,8 @@ void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner)
     {
         Acceleration acceleration =
         {
-            K_LL & holdKey ? ITOFIX19_13(-1) : K_LR & holdKey ? __1I_FIX19_13: 0,
-            K_A & holdKey ? ITOFIX19_13(-1): 0,
+            K_LL & holdKey ? ITOFIX19_13(-1) : K_LR & holdKey ? __1I_FIX19_13 : 0,
+            K_A & holdKey ? ITOFIX19_13(-1) : 0,
             0,
         };
 
