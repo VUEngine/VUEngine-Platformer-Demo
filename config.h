@@ -144,7 +144,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // max length of an animation function's name
-#define __MAX_ANIMATION_FUNCTION_NAME_LENGTH	20
+#define __MAX_ANIMATION_FUNCTION_NAME_LENGTH	16
 
 // max number of frames per animation function
 #define __MAX_FRAMES_PER_ANIMATION_FUNCTION		16
@@ -180,8 +180,8 @@
 	__BLOCK_DEFINITION(32, 12)																			\
 	__BLOCK_DEFINITION(28, 200)																			\
 	__BLOCK_DEFINITION(24, 100)																			\
-	__BLOCK_DEFINITION(20, 700)																			\
-	__BLOCK_DEFINITION(16, 480)						    												\
+	__BLOCK_DEFINITION(20, 720)																			\
+	__BLOCK_DEFINITION(16, 500)						    												\
 
 
 #undef __SET_MEMORY_POOL_ARRAYS
