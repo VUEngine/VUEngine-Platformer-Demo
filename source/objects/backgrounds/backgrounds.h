@@ -49,6 +49,7 @@ extern EntityDefinition CLOUDS_SB;
 extern EntityDefinition STAR_AG;
 
 extern EntityDefinition LEVEL_1_HOUSE_MAIN_IM;
+extern EntityDefinition LEVEL_1_HOUSE_LIGHT_IM;
 
 extern EntityDefinition LEVEL_1_COIN_ROOM_MAIN_IM;
 

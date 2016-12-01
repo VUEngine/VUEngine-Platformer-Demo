@@ -60,11 +60,13 @@ PositionedEntityROMDef LEVEL_1_HOUSE_ST_CHILDREN[] =
     {&COLLISION_CL,             	{FTOFIX19_13(264), 	FTOFIX19_13(80), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, (void*)&collision_2_28_1, true}, // right wall
     {&COLLISION_TOP_CL,       		{FTOFIX19_13(240),  FTOFIX19_13(148),   FTOFIX19_13(LAYER_0)},    			0, NULL, NULL, (void*)&collision_3_2_1, true}, // fireplace
 
+	{&LEVEL_1_HOUSE_LIGHT_IM,		{FTOFIX19_13(196),  FTOFIX19_13(140), 	FTOFIX19_13(LAYER_0_ITEMS - 1)},    0, NULL, NULL, NULL, true},
+
 	{&COIN_AG,						{FTOFIX19_13(204),  FTOFIX19_13(148), 	FTOFIX19_13(LAYER_0_ITEMS)},       26, NULL, NULL, NULL, true},
 
     {&HERO_AC,                      {FTOFIX19_13(148),  FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0)}, 				0, HERO_NAME, NULL, NULL, true},
 
-	{&CLOCK_AG,						{FTOFIX19_13(180), 	FTOFIX19_13(128),   FTOFIX19_13(LAYER_0 + 16)},   		0, NULL, NULL, NULL, true},
+	{&CLOCK_AG,						{FTOFIX19_13(180), 	FTOFIX19_13(128),   FTOFIX19_13(LAYER_0 + 24)},   		0, NULL, NULL, NULL, true},
 
     {&KEY_DOOR_AG,                  {FTOFIX19_13(148),  FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, 		0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, true},
 
