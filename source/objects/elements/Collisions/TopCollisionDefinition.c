@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
+#include <Collision.h>
 #include <macros.h>
 
 
@@ -27,11 +28,11 @@
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_16x2x1 =
+InanimatedInGameEntityROMDef COLLISION_TOP_CL =
 {
     {
         {
-            __TYPE(InanimatedInGameEntity),
+            __TYPE(Collision),
             NULL,
         },
 
@@ -39,18 +40,18 @@ InanimatedInGameEntityROMDef COLLISION_16x2x1 =
         {1, 1, 1, 1},
 
         // in game type
-        kSolid,
+        kTopSolid,
 
-    	// width
+        // width
         // if 0, width and height will be inferred from the texture's size
-    	16 * 8,
+    	64,
 
     	// height
         // if 0, width and height will be inferred from the texture's size
-    	2 * 8,
+    	64,
 
     	// depth
-    	1 * 8
+    	64
     },
 
     // friction
@@ -60,5 +61,5 @@ InanimatedInGameEntityROMDef COLLISION_16x2x1 =
     FTOFIX19_13(FLOOR_ELASTICITY),
 
     // register shape
-    true,
+    false,
 };

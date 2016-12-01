@@ -39,6 +39,10 @@ extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
+extern VBVec3D collision_2_28_1;
+extern VBVec3D collision_12_12_1;
+extern VBVec3D collision_48_2_1;
+
 
 //---------------------------------------------------------------------------------------------------------
 //                                                 ASSETS
@@ -56,14 +60,14 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_MAIN_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_COIN_ROOM_MAIN_COLLISIONS[] =
 {
-    {&COLLISION_48x2x1,             {FTOFIX19_13(0), 	FTOFIX19_13(-86), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top ceiling
-    {&COLLISION_48x2x1,             {FTOFIX19_13(0), 	FTOFIX19_13(88), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // bottom floor
-    {&COLLISION_2x28x1,             {FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // left wall
-    {&COLLISION_2x28x1,             {FTOFIX19_13(184), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // right wall
-    {&COLLISION_12x12x1,            {FTOFIX19_13(-208), FTOFIX19_13(-94),	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top left block
-    {&COLLISION_12x12x1,            {FTOFIX19_13(208), 	FTOFIX19_13(-94),	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top right block
-    {&COLLISION_12x12x1,            {FTOFIX19_13(-160), FTOFIX19_13(96), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // bottom left block
-    {&COLLISION_12x12x1,            {FTOFIX19_13(160), 	FTOFIX19_13(96), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top right block
+    {&COLLISION_CL,             	{FTOFIX19_13(0), 	FTOFIX19_13(-86), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_2_1, false}, // top ceiling
+    {&COLLISION_CL,             	{FTOFIX19_13(0), 	FTOFIX19_13(88), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_2_1, false}, // bottom floor
+    {&COLLISION_CL,             	{FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_2_28_1, false}, // left wall
+    {&COLLISION_CL,             	{FTOFIX19_13(184), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_2_28_1, false}, // right wall
+    {&COLLISION_CL,            		{FTOFIX19_13(-208), FTOFIX19_13(-94),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_12_12_1, false}, // top left block
+    {&COLLISION_CL,            		{FTOFIX19_13(208), 	FTOFIX19_13(-94),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_12_12_1, false}, // top right block
+    {&COLLISION_CL,            		{FTOFIX19_13(-160), FTOFIX19_13(96), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_12_12_1, false}, // bottom left block
+    {&COLLISION_CL,            		{FTOFIX19_13(160), 	FTOFIX19_13(96), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_12_12_1, false}, // top right block
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };

@@ -36,6 +36,10 @@
 
 extern StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP;
 
+extern VBVec3D collision_2_28_1;
+extern VBVec3D collision_3_2_1;
+extern VBVec3D collision_48_2_1;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
@@ -49,11 +53,12 @@ PositionedEntityROMDef LEVEL_1_HOUSE_ST_CHILDREN[] =
 	{&MOUND_BG_FRONT_IM,			{FTOFIX19_13(18),   FTOFIX19_13(138), 	FTOFIX19_13(LAYER_3)},            	0, NULL, NULL, NULL, true},
 
     {&LEVEL_1_HOUSE_MAIN_IM,    	{FTOFIX19_13(192), 	FTOFIX19_13(112), 	FTOFIX19_13(LAYER_0_BACKGROUND)}, 	0, NULL, NULL, NULL, true},
-    {&COLLISION_48x2x1,             {FTOFIX19_13(192), 	FTOFIX19_13(90), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, true}, // top ceiling
-    {&COLLISION_48x2x1,             {FTOFIX19_13(192), 	FTOFIX19_13(168), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, true}, // bottom floor
-    {&COLLISION_2x28x1,             {FTOFIX19_13(120), 	FTOFIX19_13(80), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, true}, // left wall
-    {&COLLISION_2x28x1,             {FTOFIX19_13(264), 	FTOFIX19_13(80), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, true}, // right wall
-    {&COLLISION_ONEWAY_3x2x1,       {FTOFIX19_13(240),  FTOFIX19_13(148),   FTOFIX19_13(LAYER_0)},    			0, NULL, NULL, NULL, true}, // fireplace
+
+    {&COLLISION_CL,             	{FTOFIX19_13(192), 	FTOFIX19_13(90), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, (void*)&collision_48_2_1, true}, // top ceiling
+    {&COLLISION_CL,             	{FTOFIX19_13(192), 	FTOFIX19_13(168), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, (void*)&collision_48_2_1, true}, // bottom floor
+    {&COLLISION_CL,             	{FTOFIX19_13(120), 	FTOFIX19_13(80), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, (void*)&collision_2_28_1, true}, // left wall
+    {&COLLISION_CL,             	{FTOFIX19_13(264), 	FTOFIX19_13(80), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, (void*)&collision_2_28_1, true}, // right wall
+    {&COLLISION_TOP_CL,       		{FTOFIX19_13(240),  FTOFIX19_13(148),   FTOFIX19_13(LAYER_0)},    			0, NULL, NULL, (void*)&collision_3_2_1, true}, // fireplace
 
 	{&COIN_AG,						{FTOFIX19_13(204),  FTOFIX19_13(148), 	FTOFIX19_13(LAYER_0_ITEMS)},       26, NULL, NULL, NULL, true},
 

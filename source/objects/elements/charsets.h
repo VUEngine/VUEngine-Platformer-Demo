@@ -23,7 +23,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern CharSetDefinition HIDE_LAYER_10x7_CH;
-extern CharSetDefinition CLOCK_CH;
 extern CharSetDefinition DOOR_CH;
 extern CharSetDefinition DOOR_BACK_CH;
 

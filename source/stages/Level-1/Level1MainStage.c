@@ -45,6 +45,28 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[];
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
+extern VBVec3D collision_2_28_1;
+extern VBVec3D collision_3_2_1;
+extern VBVec3D collision_7_2_1;
+extern VBVec3D collision_8_3_1;
+extern VBVec3D collision_12_4_1;
+extern VBVec3D collision_14_6_1;
+extern VBVec3D collision_14_18_1;
+extern VBVec3D collision_18_6_1;
+extern VBVec3D collision_20_2_1;
+extern VBVec3D collision_20_6_1;
+extern VBVec3D collision_20_32_1;
+extern VBVec3D collision_28_16_1;
+extern VBVec3D collision_32_14_1;
+extern VBVec3D collision_34_30_1;
+extern VBVec3D collision_38_10_1;
+extern VBVec3D collision_47_3_1;
+extern VBVec3D collision_48_10_1;
+extern VBVec3D collision_48_18_1;
+extern VBVec3D collision_48_28_1;
+extern VBVec3D collision_49_5_1;
+extern VBVec3D collision_67_25_1;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												ASSETS
@@ -55,105 +77,105 @@ extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 {
-	{&COLLISION_34x30x1,            {FTOFIX19_13(-136), FTOFIX19_13(-12), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // left floor
-	{&COLLISION_34x30x1,            {FTOFIX19_13(112),  FTOFIX19_13(12), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // right floor
+	{&COLLISION_CL,            		{FTOFIX19_13(-136), FTOFIX19_13(-12), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_34_30_1, false}, // left floor
+	{&COLLISION_CL,            		{FTOFIX19_13(112),  FTOFIX19_13(12), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_34_30_1, false}, // right floor
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_ONEWAY_7x2x1,       {FTOFIX19_13(-226), FTOFIX19_13(-104),  FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // left top one-way
-	{&COLLISION_14x18x1, 	        {FTOFIX19_13(-145), FTOFIX19_13(-56),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floor left to spikes
-	{&COLLISION_14x18x1, 	        {FTOFIX19_13(127),  FTOFIX19_13(-56),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floor right to spikes
+	{&COLLISION_TOP_CL,       		{FTOFIX19_13(-226), FTOFIX19_13(-104),  FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_7_2_1, false}, // left top one-way
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-145), FTOFIX19_13(-56),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_18_1, false}, // floor left to spikes
+	{&COLLISION_CL, 	        	{FTOFIX19_13(127),  FTOFIX19_13(-56),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_18_1, false}, // floor right to spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 {
-	{&COLLISION_8x3x1, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-132),  FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floating block over spikes
-	{&HIT_COLLISION_20x2x1,         {FTOFIX19_13(-8),   FTOFIX19_13(-94),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // spikes hit collision
-	{&COLLISION_32x14x1, 	        {FTOFIX19_13(-8),   FTOFIX19_13(-40),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floor below spikes
+	{&COLLISION_CL, 	            {FTOFIX19_13(-8),   FTOFIX19_13(-132),  FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_8_3_1, false}, // floating block over spikes
+	{&COLLISION_HIT_CL,         	{FTOFIX19_13(-8),   FTOFIX19_13(-94),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_20_2_1, false}, // spikes hit collision
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-8),   FTOFIX19_13(-40),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_32_14_1, false}, // floor below spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_ONEWAY_7x2x1,       {FTOFIX19_13(-226), FTOFIX19_13(72),    FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // left bottom one-way
-	{&COLLISION_48x18x1, 	        {FTOFIX19_13(-10),  FTOFIX19_13(136),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // secret bottom floor
-	{&COLLISION_ONEWAY_7x2x1,       {FTOFIX19_13(210),  FTOFIX19_13(-72),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // right top one-way
+	{&COLLISION_TOP_CL,       		{FTOFIX19_13(-226), FTOFIX19_13(72),    FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_7_2_1, false}, // left bottom one-way
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-10),  FTOFIX19_13(136),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_48_18_1, false}, // secret bottom floor
+	{&COLLISION_TOP_CL,       		{FTOFIX19_13(210),  FTOFIX19_13(-72),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_7_2_1, false}, // right top one-way
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 {
-	{&COLLISION_ONEWAY_7x2x1,       {FTOFIX19_13(210),  FTOFIX19_13(24),    FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // right bottom one-way
-	{&COLLISION_14x6x1,		        {FTOFIX19_13(127),  FTOFIX19_13(38),    FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // wall right to the secret door
-	{&COLLISION_18x6x1,		        {FTOFIX19_13(238),  FTOFIX19_13(88),    FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floor under the one-way passage
+	{&COLLISION_TOP_CL,       		{FTOFIX19_13(210),  FTOFIX19_13(24),    FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_7_2_1, false}, // right bottom one-way
+	{&COLLISION_CL,		       		{FTOFIX19_13(127),  FTOFIX19_13(38),    FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_6_1, false}, // wall right to the secret door
+	{&COLLISION_CL,		        	{FTOFIX19_13(238),  FTOFIX19_13(88),    FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_18_6_1, false}, // floor under the one-way passage
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1[] =
 {
-	{&COLLISION_ONEWAY_7x2x1, 	    {FTOFIX19_13(-226), FTOFIX19_13(-8),    FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // top one-way
-	{&COLLISION_ONEWAY_7x2x1, 	    {FTOFIX19_13(-226), FTOFIX19_13(88),    FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // bottom one-way
-	{&COLLISION_48x18x1, 	        {FTOFIX19_13(-8),   FTOFIX19_13(-138),  FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // above hidden area
+	{&COLLISION_TOP_CL, 	    	{FTOFIX19_13(-226), FTOFIX19_13(-8),    FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_7_2_1, false}, // top one-way
+	{&COLLISION_TOP_CL, 	    	{FTOFIX19_13(-226), FTOFIX19_13(88),    FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_7_2_1, false}, // bottom one-way
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-8),   FTOFIX19_13(-138),  FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_48_18_1, false}, // above hidden area
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_2[] =
 {
-	{&COLLISION_38x10x1, 	        {FTOFIX19_13(-48),  FTOFIX19_13(24),    FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
-	{&COLLISION_28x16x1, 	        {FTOFIX19_13(-8),   FTOFIX19_13(-13),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
-	{&COLLISION_38x10x1, 	        {FTOFIX19_13(32),   FTOFIX19_13(-41),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-48),  FTOFIX19_13(24),    FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_38_10_1, false},
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-8),   FTOFIX19_13(-13),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_28_16_1, false},
+	{&COLLISION_CL, 	        	{FTOFIX19_13(32),   FTOFIX19_13(-41),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_38_10_1, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_3[] =
 {
-	{&COLLISION_48x10x1, 	        {FTOFIX19_13(-8),   FTOFIX19_13(88),    FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // ceiling above steps area
-	{&COLLISION_14x6x1,		        {FTOFIX19_13(-162), FTOFIX19_13(232),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // 2nd lowest left step
-	{&COLLISION_14x6x1,		        {FTOFIX19_13(-112), FTOFIX19_13(264),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // lowest left step
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-8),   FTOFIX19_13(88),    FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_48_10_1, false}, // ceiling above steps area
+	{&COLLISION_CL,		        	{FTOFIX19_13(-162), FTOFIX19_13(232),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_6_1, false}, // 2nd lowest left step
+	{&COLLISION_CL,		        	{FTOFIX19_13(-112), FTOFIX19_13(264),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_6_1, false}, // lowest left step
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_4[] =
 {
-	{&COLLISION_14x6x1,		        {FTOFIX19_13(48),   FTOFIX19_13(264),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // lowest right step
-	{&COLLISION_14x6x1,		        {FTOFIX19_13(128),  FTOFIX19_13(232),   FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // 2nd lowest right step
+	{&COLLISION_CL,		        	{FTOFIX19_13(48),   FTOFIX19_13(264),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_6_1, false}, // lowest right step
+	{&COLLISION_CL,		        	{FTOFIX19_13(128),  FTOFIX19_13(232),   FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_6_1, false}, // 2nd lowest right step
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_1[] =
 {
-	{&COLLISION_14x6x1,		        {FTOFIX19_13(-296), FTOFIX19_13(40), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // lowest step after ceiling
-	{&COLLISION_14x6x1,		        {FTOFIX19_13(-216), FTOFIX19_13(8), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // middle step after ceiling
-	{&COLLISION_14x6x1,		        {FTOFIX19_13(-136), FTOFIX19_13(-24), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // highest step after ceiling
+	{&COLLISION_CL,		        	{FTOFIX19_13(-296), FTOFIX19_13(40), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_6_1, false}, // lowest step after ceiling
+	{&COLLISION_CL,		        	{FTOFIX19_13(-216), FTOFIX19_13(8), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_6_1, false}, // middle step after ceiling
+	{&COLLISION_CL,		        	{FTOFIX19_13(-136), FTOFIX19_13(-24), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_14_6_1, false}, // highest step after ceiling
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2[] =
 {
-	{&COLLISION_20x6x1,		        {FTOFIX19_13(-32),  FTOFIX19_13(-56), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floor left to spikes
-	{&COLLISION_8x3x1, 	            {FTOFIX19_13(128),  FTOFIX19_13(-84), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floating block over spikes
-	{&COLLISION_20x6x1,		        {FTOFIX19_13(124),  FTOFIX19_13(-24), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floor right to spikes
+	{&COLLISION_CL,		        	{FTOFIX19_13(-32),  FTOFIX19_13(-56), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_20_6_1, false}, // floor left to spikes
+	{&COLLISION_CL, 	            {FTOFIX19_13(128),  FTOFIX19_13(-84), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_8_3_1, false}, // floating block over spikes
+	{&COLLISION_CL,		        	{FTOFIX19_13(124),  FTOFIX19_13(-24), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_20_6_1, false}, // floor right to spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3[] =
 {
-	{&HIT_COLLISION_20x2x1, 	    {FTOFIX19_13(128),  FTOFIX19_13(-46), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // spikes hit collision
-	{&COLLISION_20x32x1, 	        {FTOFIX19_13(288),  FTOFIX19_13(48), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // floor below spikes
+	{&COLLISION_HIT_CL, 	    	{FTOFIX19_13(128),  FTOFIX19_13(-46), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_20_2_1, false}, // spikes hit collision
+	{&COLLISION_CL, 	        	{FTOFIX19_13(288),  FTOFIX19_13(48), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_20_32_1, false}, // floor below spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -168,35 +190,35 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1[] =
 {
-	{&COLLISION_47x3x1, 	        {FTOFIX19_13(-5),   FTOFIX19_13(-120), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
-	{&COLLISION_49x5x1, 	        {FTOFIX19_13(-76),  FTOFIX19_13(-89), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-5),   FTOFIX19_13(-120), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_47_3_1, false},
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-76),  FTOFIX19_13(-89), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_49_5_1, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2[] =
 {
-	{&COLLISION_67x25x1, 	        {FTOFIX19_13(0),    FTOFIX19_13(32), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x2x1, 	    {FTOFIX19_13(190), 	FTOFIX19_13(-112), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
+	{&COLLISION_CL, 	        	{FTOFIX19_13(0),    FTOFIX19_13(32), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_67_25_1, false},
+	{&COLLISION_TOP_CL, 	    	{FTOFIX19_13(190), 	FTOFIX19_13(-112), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_7_2_1, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_5_COLLISIONS[] =
 {
-	{&COLLISION_8x3x1, 	            {FTOFIX19_13(-28),  FTOFIX19_13(-84), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // left floating block
-	{&COLLISION_8x3x1, 	            {FTOFIX19_13(74),   FTOFIX19_13(-84), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // middle floating block
-	{&COLLISION_8x3x1, 	            {FTOFIX19_13(196),  FTOFIX19_13(-84), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false}, // right floating block
+	{&COLLISION_CL, 	            {FTOFIX19_13(-28),  FTOFIX19_13(-84), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_8_3_1, false}, // left floating block
+	{&COLLISION_CL, 	            {FTOFIX19_13(74),   FTOFIX19_13(-84), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_8_3_1, false}, // middle floating block
+	{&COLLISION_CL, 	            {FTOFIX19_13(196),  FTOFIX19_13(-84), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_8_3_1, false}, // right floating block
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 {
-	{&COLLISION_48x28x1, 	        {FTOFIX19_13(-56),  FTOFIX19_13(64), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
-	{&COLLISION_ONEWAY_7x2x1, 	    {FTOFIX19_13(-130), FTOFIX19_13(-104), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
-	{&COLLISION_12x4x1,             {FTOFIX19_13(-56),  FTOFIX19_13(-112), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
-	{&COLLISION_48x28x1, 	        {FTOFIX19_13(168),  FTOFIX19_13(-16), 	FTOFIX19_13(0)},    0, NULL, NULL, NULL, false},
+	{&COLLISION_CL, 	        	{FTOFIX19_13(-56),  FTOFIX19_13(64), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_48_28_1, false},
+	{&COLLISION_TOP_CL, 	    	{FTOFIX19_13(-130), FTOFIX19_13(-104), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_7_2_1, false},
+	{&COLLISION_CL,             	{FTOFIX19_13(-56),  FTOFIX19_13(-112), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_12_4_1, false},
+	{&COLLISION_CL, 	        	{FTOFIX19_13(168),  FTOFIX19_13(-16), 	FTOFIX19_13(0)},    0, NULL, NULL, (void*)&collision_48_28_1, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -220,7 +242,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	// for the streaming to work properly. beware of edge case scenarios!
 
     // left border
-	{&COLLISION_2x28x1,				{FTOFIX19_13(-8),   FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)},                  0, NULL, NULL, NULL, false},
+	{&COLLISION_CL,					{FTOFIX19_13(-8),   FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)},                  0, NULL, NULL, (void*)&collision_2_28_1, false},
 
     // part 1
     {&SMOKE_PS,						{FTOFIX19_13(88),   FTOFIX19_13(150), 	FTOFIX19_13(LAYER_0_FOREGROUND + 16)},  0, NULL, NULL, NULL, false},
@@ -332,7 +354,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	{&GRASS_AG,						{FTOFIX19_13(2960), FTOFIX19_13(237), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       0, NULL, NULL, NULL, false},
 
     // right border
-	{&COLLISION_2x28x1,				{FTOFIX19_13(2996), FTOFIX19_13(116), 	FTOFIX19_13(LAYER_0)},                  0, NULL, NULL, NULL, false},
+	{&COLLISION_CL,					{FTOFIX19_13(2996), FTOFIX19_13(116), 	FTOFIX19_13(LAYER_0)},                  0, NULL, NULL, (void*)&collision_2_28_1, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };

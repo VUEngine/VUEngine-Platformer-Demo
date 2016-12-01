@@ -38,8 +38,6 @@
 extern EntityDefinition GUI_AG;
 extern EntityDefinition GUI_OVERWORLD_AG;
 
-extern EntityDefinition CLOCK_AG;
-
 extern EntityDefinition DOOR_AG;
 extern EntityDefinition DOOR_BACK_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_AG;
@@ -55,6 +53,10 @@ extern EntityDefinition LAVA_TRIGGER_IG;
 extern EntityDefinition HIDE_LAYER_10x7_AG;
 
 extern EntityDefinition HINT_MC;
+
+extern EntityDefinition COLLISION_CL;
+extern EntityDefinition COLLISION_TOP_CL;
+extern EntityDefinition COLLISION_HIT_CL;
 
 
 #endif

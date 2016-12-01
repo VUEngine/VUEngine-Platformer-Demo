@@ -22,7 +22,6 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern TextureDefinition CLOCK_TX;
 extern TextureDefinition GUI_TX;
 extern TextureDefinition GUI_OVERWORLD_TX;
 extern TextureDefinition DOOR_TX;

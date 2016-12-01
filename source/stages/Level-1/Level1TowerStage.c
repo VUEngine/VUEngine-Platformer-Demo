@@ -39,6 +39,22 @@ extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 
+extern VBVec3D collision_2_64_1;
+extern VBVec3D collision_4_2_1;
+extern VBVec3D collision_4_4_1;
+extern VBVec3D collision_4_8_1;
+extern VBVec3D collision_6_4_1;
+extern VBVec3D collision_7_2_1;
+extern VBVec3D collision_8_4_1;
+extern VBVec3D collision_8_20_1;
+extern VBVec3D collision_14_6_1;
+extern VBVec3D collision_16_2_1;
+extern VBVec3D collision_20_2_1;
+extern VBVec3D collision_32_4_1;
+extern VBVec3D collision_48_2_1;
+extern VBVec3D collision_48_4_1;
+extern VBVec3D collision_48_28_1;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINES
@@ -74,60 +90,60 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_1[] =
 {
-	{&COLLISION_2x64x1,	    		{FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // outer left wall
-	{&COLLISION_2x64x1,	    		{FTOFIX19_13(184),  FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // outer right wall
-	{&COLLISION_48x28x1,			{FTOFIX19_13(-128), FTOFIX19_13(288), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // bottom left floor
-	{&COLLISION_48x28x1,			{FTOFIX19_13(302),  FTOFIX19_13(256), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // bottom right floor
-	{&COLLISION_4x8x1,				{FTOFIX19_13(160),  FTOFIX19_13(144), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // step stone bottom right
-	{&COLLISION_4x2x1,				{FTOFIX19_13(80),   FTOFIX19_13(72), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // floating stone
+	{&COLLISION_CL,	    			{FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_2_64_1, false}, // outer left wall
+	{&COLLISION_CL,	    			{FTOFIX19_13(184),  FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_2_64_1, false}, // outer right wall
+	{&COLLISION_CL,					{FTOFIX19_13(-128), FTOFIX19_13(288), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_28_1, false}, // bottom left floor
+	{&COLLISION_CL,					{FTOFIX19_13(302),  FTOFIX19_13(256), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_28_1, false}, // bottom right floor
+	{&COLLISION_CL,					{FTOFIX19_13(160),  FTOFIX19_13(144), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_4_8_1, false}, // step stone bottom right
+	{&COLLISION_CL,					{FTOFIX19_13(80),   FTOFIX19_13(72), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_4_2_1, false}, // floating stone
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_2[] =
 {
-	{&COLLISION_48x4x1,				{FTOFIX19_13(-172), FTOFIX19_13(32), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // 2nd level floor left
-	{&COLLISION_32x4x1,				{FTOFIX19_13(32),   FTOFIX19_13(-96),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // 3rd level floor right
-	{&COLLISION_16x2x1,				{FTOFIX19_13(160),  FTOFIX19_13(-40), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // small stone right under 3rd
-	{&COLLISION_48x4x1,				{FTOFIX19_13(-80),  FTOFIX19_13(-176),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // 4th level floor left
-	{&COLLISION_48x2x1,				{FTOFIX19_13(-82),  FTOFIX19_13(-248),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // floor below spikes
-	{&COLLISION_14x6x1,				{FTOFIX19_13(-136), FTOFIX19_13(-216),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // left wall below spikes
+	{&COLLISION_CL,					{FTOFIX19_13(-172), FTOFIX19_13(32), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_4_1, false}, // 2nd level floor left
+	{&COLLISION_CL,					{FTOFIX19_13(32),   FTOFIX19_13(-96),   FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_32_4_1, false}, // 3rd level floor right
+	{&COLLISION_CL,					{FTOFIX19_13(160),  FTOFIX19_13(-40), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_16_2_1, false}, // small stone right under 3rd
+	{&COLLISION_CL,					{FTOFIX19_13(-80),  FTOFIX19_13(-176),  FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_4_1, false}, // 4th level floor left
+	{&COLLISION_CL,					{FTOFIX19_13(-82),  FTOFIX19_13(-248),  FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_2_1, false}, // floor below spikes
+	{&COLLISION_CL,					{FTOFIX19_13(-136), FTOFIX19_13(-216),  FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_14_6_1, false}, // left wall below spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_2x64x1,	    		{FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // outer left wall
-	{&COLLISION_2x64x1,	    		{FTOFIX19_13(184),  FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // outer right wall
-	{&COLLISION_6x4x1,	    		{FTOFIX19_13(-104), FTOFIX19_13(256), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // block between spikes left
-	{&COLLISION_4x4x1,	    		{FTOFIX19_13(-16),  FTOFIX19_13(256), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // block between spikes middle
-	{&COLLISION_8x4x1,	    		{FTOFIX19_13(78),   FTOFIX19_13(256), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // block between spikes right
-	{&HIT_COLLISION_20x2x1,         {FTOFIX19_13(-104), FTOFIX19_13(256),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // spikes
-	{&HIT_COLLISION_20x2x1,         {FTOFIX19_13(-16),  FTOFIX19_13(256),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // spikes
+	{&COLLISION_CL,	    			{FTOFIX19_13(-184), FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_2_64_1, false}, // outer left wall
+	{&COLLISION_CL,	    			{FTOFIX19_13(184),  FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_2_64_1, false}, // outer right wall
+	{&COLLISION_CL,	    			{FTOFIX19_13(-104), FTOFIX19_13(256), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_6_4_1, false}, // block between spikes left
+	{&COLLISION_CL,	    			{FTOFIX19_13(-16),  FTOFIX19_13(256), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_4_4_1, false}, // block between spikes middle
+	{&COLLISION_CL,	    			{FTOFIX19_13(78),   FTOFIX19_13(256), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_8_4_1, false}, // block between spikes right
+	{&COLLISION_HIT_CL,         	{FTOFIX19_13(-104), FTOFIX19_13(256),   FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_20_2_1, false}, // spikes
+	{&COLLISION_HIT_CL,         	{FTOFIX19_13(-16),  FTOFIX19_13(256),   FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_20_2_1, false}, // spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_2[] =
 {
-	{&COLLISION_4x2x1,				{FTOFIX19_13(-176), FTOFIX19_13(200), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // stepstone left
-	{&COLLISION_4x2x1,				{FTOFIX19_13(-96),  FTOFIX19_13(168), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // floating stone 1
-	{&COLLISION_4x2x1,				{FTOFIX19_13(-16),  FTOFIX19_13(136),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // floating stone 2
-	{&COLLISION_4x2x1,				{FTOFIX19_13(64),   FTOFIX19_13(104), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // floating stone 3
-	{&COLLISION_16x2x1,				{FTOFIX19_13(192),  FTOFIX19_13(72), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // stepstone right
-	{&COLLISION_48x4x1,				{FTOFIX19_13(-80),  FTOFIX19_13(-16),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // floor above floating platforms
+	{&COLLISION_CL,					{FTOFIX19_13(-176), FTOFIX19_13(200), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_4_2_1, false}, // stepstone left
+	{&COLLISION_CL,					{FTOFIX19_13(-96),  FTOFIX19_13(168), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_4_2_1, false}, // floating stone 1
+	{&COLLISION_CL,					{FTOFIX19_13(-16),  FTOFIX19_13(136),   FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_4_2_1, false}, // floating stone 2
+	{&COLLISION_CL,					{FTOFIX19_13(64),   FTOFIX19_13(104), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_4_2_1, false}, // floating stone 3
+	{&COLLISION_CL,					{FTOFIX19_13(192),  FTOFIX19_13(72), 	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_16_2_1, false}, // stepstone right
+	{&COLLISION_CL,					{FTOFIX19_13(-80),  FTOFIX19_13(-16),   FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_4_1, false}, // floor above floating platforms
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_ONEWAY_7x2x1,		{FTOFIX19_13(-80),  FTOFIX19_13(-152),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top room one way
-	{&COLLISION_48x4x1,				{FTOFIX19_13(144),  FTOFIX19_13(-144),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top room right floor
-	{&COLLISION_8x20x1,				{FTOFIX19_13(-144), FTOFIX19_13(-80),   FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top room left floor
-	{&COLLISION_48x2x1,				{FTOFIX19_13(0),    FTOFIX19_13(-232),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top room ceiling
-	{&COLLISION_4x8x1,				{FTOFIX19_13(80),   FTOFIX19_13(-192),  FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // top room right wall
+	{&COLLISION_TOP_CL,				{FTOFIX19_13(-80),  FTOFIX19_13(-152),  FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_7_2_1, false}, // top room one way
+	{&COLLISION_CL,					{FTOFIX19_13(144),  FTOFIX19_13(-144),  FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_4_1, false}, // top room right floor
+	{&COLLISION_CL,					{FTOFIX19_13(-144), FTOFIX19_13(-80),   FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_8_20_1, false}, // top room left floor
+	{&COLLISION_CL,					{FTOFIX19_13(0),    FTOFIX19_13(-232),  FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_2_1, false}, // top room ceiling
+	{&COLLISION_CL,					{FTOFIX19_13(80),   FTOFIX19_13(-192),  FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_4_8_1, false}, // top room right wall
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };

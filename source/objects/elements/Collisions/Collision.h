@@ -14,6 +14,9 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef COLLISION_H_
+#define COLLISION_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 // 												INCLUDES
@@ -24,41 +27,31 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+// 											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_12x12x1 =
-{
-    {
-        {
-            __TYPE(InanimatedInGameEntity),
-            NULL,
-        },
+#define Collision_METHODS(ClassName)																	\
+    	InanimatedInGameEntity_METHODS(ClassName)														\
 
-        // collision detection gap (up, down, left, right)
-        {1, 1, 1, 1},
+#define Collision_SET_VTABLE(ClassName)																	\
+        InanimatedInGameEntity_SET_VTABLE(ClassName)													\
+        __VIRTUAL_SET(ClassName, Collision, setExtraInfo);												\
 
-        // in game type
-        kSolid,
+__CLASS(Collision);
 
-    	// width
-        // if 0, width and height will be inferred from the texture's size
-    	12 * 8,
+#define Collision_ATTRIBUTES																			\
+        InanimatedInGameEntity_ATTRIBUTES																\
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	12 * 8,
 
-    	// depth
-    	1 * 8
-    },
+//---------------------------------------------------------------------------------------------------------
+// 										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
 
-    // friction
-    FTOFIX19_13(FLOOR_FRICTION),
+__CLASS_NEW_DECLARE(Collision, InanimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-    // elasticity
-    FTOFIX19_13(FLOOR_ELASTICITY),
+void Collision_constructor(Collision this, InanimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Collision_destructor(Collision this);
+void Collision_setExtraInfo(Collision this, void* extraInfo);
 
-    // register shape
-    true,
-};
+
+#endif
