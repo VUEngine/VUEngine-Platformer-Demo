@@ -67,7 +67,7 @@ static void TitleScreenState_onFadeOutComplete(TitleScreenState this, Object eve
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(TitleScreenState, GameState);
-__SINGLETON_DYNAMIC(TitleScreenState);
+__SINGLETON(TitleScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -188,9 +188,6 @@ static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
-
-	// destroy the state
-	__DELETE(this);
 }
 
 // state's resume

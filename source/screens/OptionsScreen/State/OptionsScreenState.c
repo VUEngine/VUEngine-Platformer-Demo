@@ -66,7 +66,7 @@ static void OptionsScreenState_onOptionLanguageSelect(OptionsScreenState this);
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(OptionsScreenState, GameState);
-__SINGLETON_DYNAMIC(OptionsScreenState);
+__SINGLETON(OptionsScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -121,9 +121,6 @@ static void OptionsScreenState_exit(OptionsScreenState this, void* owner __attri
 {
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
-
-	// destroy the state
-	__DELETE(this);
 }
 
 // set next state
