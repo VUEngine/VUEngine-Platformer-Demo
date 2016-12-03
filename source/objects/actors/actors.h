@@ -26,7 +26,7 @@
 #include "charsets.h"
 
 #include "Cannon/Cannon.h"
-#include "CannonBall/CannonBall.h"
+#include "Cannon/CannonBall.h"
 #include "Hero/Hero.h"
 #include "MovingEntity/MovingEntity.h"
 

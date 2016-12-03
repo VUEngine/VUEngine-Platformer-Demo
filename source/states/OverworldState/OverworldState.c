@@ -31,7 +31,6 @@
 #include <OverworldState.h>
 #include <TitleScreenState.h>
 #include <Hero.h>
-#include <screens.h>
 #include <macros.h>
 #include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
@@ -41,7 +40,12 @@
 #include <EventManager.h>
 #include <KeyPadManager.h>
 
-#include "../stages/stages.h"
+
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern StageROMDef OVERWORLD_1_ST;
 
 
 //---------------------------------------------------------------------------------------------------------

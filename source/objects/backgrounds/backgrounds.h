@@ -23,7 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include "Lava/Lava.h"
-#include "MoundBG/Clouds.h"
+#include "BackgroundMound/Clouds.h"
 #include <Entity.h>
 #include "textures.h"
 #include "charsets.h"
@@ -69,12 +69,6 @@ extern EntityDefinition LEVEL_1_TOWER_IM;
 extern EntityDefinition LEVEL_1_TOWER_MAIN_1_IM;
 extern EntityDefinition LEVEL_1_TOWER_MAIN_2_IM;
 extern EntityDefinition LEVEL_1_TOWER_MAIN_BACK_IM;
-
-extern EntityDefinition FLOOR_22x12_IG;
-extern EntityDefinition FLOOR_22x5_IG;
-extern EntityDefinition FLOOR_16x12_IG;
-extern EntityDefinition FLOOR_4x12_IG;
-extern EntityDefinition FLOOR_4x7_IG;
 
 extern EntityDefinition ONE_WAY_PLATFORM_4_IG;
 

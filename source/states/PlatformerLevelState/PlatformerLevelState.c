@@ -33,7 +33,6 @@
 #include <OverworldState.h>
 #include <PauseScreenState.h>
 #include <Hero.h>
-#include "../stages/stages.h"
 #include <macros.h>
 #include <Languages.h>
 #include <objects.h>
