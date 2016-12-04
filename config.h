@@ -173,15 +173,15 @@
 	__BLOCK_DEFINITION(136, 10)																			\
 	__BLOCK_DEFINITION(128, 45)																			\
 	__BLOCK_DEFINITION(112, 40)																			\
-	__BLOCK_DEFINITION(100, 28)																			\
+	__BLOCK_DEFINITION(100, 25)																			\
 	__BLOCK_DEFINITION(88, 80)																			\
 	__BLOCK_DEFINITION(76, 10)																			\
 	__BLOCK_DEFINITION(68, 64)																			\
 	__BLOCK_DEFINITION(32, 12)																			\
-	__BLOCK_DEFINITION(28, 200)																			\
-	__BLOCK_DEFINITION(24, 100)																			\
-	__BLOCK_DEFINITION(20, 720)																			\
-	__BLOCK_DEFINITION(16, 500)						    												\
+	__BLOCK_DEFINITION(28, 190)																			\
+	__BLOCK_DEFINITION(24, 90)																			\
+	__BLOCK_DEFINITION(20, 690)																			\
+	__BLOCK_DEFINITION(16, 480)						    												\
 
 
 #undef __SET_MEMORY_POOL_ARRAYS

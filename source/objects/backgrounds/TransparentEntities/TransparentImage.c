@@ -24,6 +24,9 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <VirtualNode.h>
+#include <VirtualList.h>
+#include <Sprite.h>
 
 #include <objects.h>
 #include "TransparentImage.h"
@@ -66,13 +69,21 @@ void TransparentImage_update(TransparentImage this)
 {
 	ASSERT(this, "TransparentImage::update: null this");
 
+	VirtualNode node = VirtualList_begin(this->sprites);
+
 	if(this->visible)
 	{
-		Entity_hide(__SAFE_CAST(Entity, this));
+		for(; node; node = VirtualNode_getNext(node))
+		{
+			__VIRTUAL_CALL(Sprite, hide, __SAFE_CAST(Sprite, VirtualNode_getData(node)));
+		}
 	}
 	else
 	{
-		Entity_show(__SAFE_CAST(Entity, this));
+		for(; node; node = VirtualNode_getNext(node))
+		{
+			__VIRTUAL_CALL(Sprite, show, __SAFE_CAST(Sprite, VirtualNode_getData(node)));
+		}
 	}
 
 	this->visible = !this->visible;

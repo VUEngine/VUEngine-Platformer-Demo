@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="16" tileheight="16" nextobjectid="37">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="37">
  <properties>
-  <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, objects.h, sound.h"/>
+  <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, objects.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
   <property name="stage.assets.charSets" value="LEVEL_1_HOUSE_MAIN_CH"/>
   <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT"/>
@@ -60,49 +60,49 @@
    <properties>
     <property name="entityName" value="CANNON_AC"/>
    </properties>
-   <image width="24" height="24" source="../images/Cannon/Preview/Cannon.png"/>
+   <image width="24" height="24" source="../../images/Cannon/Preview/Cannon.png"/>
   </tile>
   <tile id="2">
    <properties>
     <property name="entityName" value="HERO_AC"/>
    </properties>
-   <image width="24" height="24" source="../images/Hero/Preview/Hero.png"/>
+   <image width="24" height="24" source="../../images/Hero/Preview/Hero.png"/>
   </tile>
   <tile id="5">
    <properties>
     <property name="entityName" value="SAW_BLADE_H8_AC"/>
    </properties>
-   <image width="152" height="24" source="../images/SawBlade/Preview/SawBladeH8.png"/>
+   <image width="152" height="24" source="../../images/SawBlade/Preview/SawBladeH8.png"/>
   </tile>
   <tile id="6">
    <properties>
     <property name="entityName" value="SNAIL_8_AC"/>
    </properties>
-   <image width="152" height="16" source="../images/Snail/Preview/Snail8.png"/>
+   <image width="152" height="16" source="../../images/Snail/Preview/Snail8.png"/>
   </tile>
   <tile id="7">
    <properties>
     <property name="entityName" value="MOVING_PLATFORM_V6_AC"/>
    </properties>
-   <image width="32" height="104" source="../images/MovingPlatform/Preview/MovingPlatformV6.png"/>
+   <image width="32" height="104" source="../../images/MovingPlatform/Preview/MovingPlatformV6.png"/>
   </tile>
   <tile id="8">
    <properties>
     <property name="entityName" value="SNAIL_4_AC"/>
    </properties>
-   <image width="88" height="16" source="../images/Snail/Preview/Snail4.png"/>
+   <image width="88" height="16" source="../../images/Snail/Preview/Snail4.png"/>
   </tile>
   <tile id="9">
    <properties>
     <property name="entityName" value="SAW_BLADE_H3_AC"/>
    </properties>
-   <image width="72" height="24" source="../images/SawBlade/Preview/SawBladeH3.png"/>
+   <image width="72" height="24" source="../../images/SawBlade/Preview/SawBladeH3.png"/>
   </tile>
   <tile id="10">
    <properties>
     <property name="entityName" value="SAW_BLADE_V3_AC"/>
    </properties>
-   <image width="24" height="72" source="../images/SawBlade/Preview/SawBladeV3.png"/>
+   <image width="24" height="72" source="../../images/SawBlade/Preview/SawBladeV3.png"/>
   </tile>
  </tileset>
  <tileset firstgid="12" name="Objects" tilewidth="80" tileheight="64" tilecount="11" columns="32">
@@ -110,61 +110,61 @@
    <properties>
     <property name="entityName" value="BUSH_AG"/>
    </properties>
-   <image width="24" height="8" source="../images/Bush/Preview/Bush.png"/>
+   <image width="24" height="8" source="../../images/Bush/Preview/Bush.png"/>
   </tile>
   <tile id="3">
    <properties>
     <property name="entityName" value="DOOR_AG"/>
    </properties>
-   <image width="24" height="32" source="../images/Door/Preview/Door.png"/>
+   <image width="24" height="32" source="../../images/Door/Preview/Door.png"/>
   </tile>
   <tile id="4">
-   <image width="24" height="16" source="../images/Fence/Preview/Fence.png"/>
+   <image width="24" height="16" source="../../images/Fence/Preview/Fence.png"/>
   </tile>
   <tile id="5">
    <properties>
     <property name="entityName" value="GOAL_DOOR_AG"/>
    </properties>
-   <image width="24" height="32" source="../images/Door/Preview/GoalDoor.png"/>
+   <image width="24" height="32" source="../../images/Door/Preview/GoalDoor.png"/>
   </tile>
   <tile id="6">
    <properties>
     <property name="entityName" value="GRASS_AG"/>
    </properties>
-   <image width="16" height="16" source="../images/Grass/Preview/Grass.png"/>
+   <image width="16" height="16" source="../../images/Grass/Preview/Grass.png"/>
   </tile>
   <tile id="7">
    <properties>
     <property name="entityName" value="HIDE_LAYER_10x7_AG"/>
    </properties>
-   <image width="80" height="56" source="../images/HideLayer/Preview/HideLayer10x7.png"/>
+   <image width="80" height="56" source="../../images/HideLayer/Preview/HideLayer10x7.png"/>
   </tile>
   <tile id="8">
-   <image width="24" height="16" source="../images/JumpPad/Preview/JumpPad.png"/>
+   <image width="24" height="16" source="../../images/JumpPad/Preview/JumpPad.png"/>
   </tile>
   <tile id="9">
    <properties>
     <property name="entityName" value="KEY_DOOR_AG"/>
    </properties>
-   <image width="24" height="32" source="../images/Door/Preview/KeyDoor.png"/>
+   <image width="24" height="32" source="../../images/Door/Preview/KeyDoor.png"/>
   </tile>
   <tile id="16">
    <properties>
     <property name="entityName" value="TORCH_AG"/>
    </properties>
-   <image width="8" height="24" source="../images/Torch/Preview/Torch.png"/>
+   <image width="8" height="24" source="../../images/Torch/Preview/Torch.png"/>
   </tile>
   <tile id="17">
    <properties>
     <property name="entityName" value="CLOCK_AG"/>
    </properties>
-   <image width="16" height="64" source="../images/Clock/Clock.png"/>
+   <image width="16" height="64" source="../../images/Clock/Clock.png"/>
   </tile>
   <tile id="18">
    <properties>
     <property name="entityName" value="FIRE_SMALL_AG"/>
    </properties>
-   <image width="8" height="8" source="../images/Fire/Preview/FireSmall.png"/>
+   <image width="8" height="8" source="../../images/Fire/Preview/FireSmall.png"/>
   </tile>
  </tileset>
  <tileset firstgid="31" name="Items" tilewidth="16" tileheight="16" tilecount="3" columns="32">
@@ -172,19 +172,19 @@
    <properties>
     <property name="entityName" value="BANDANA_AG"/>
    </properties>
-   <image width="16" height="16" source="../images/Bandana/Preview/Bandana.png"/>
+   <image width="16" height="16" source="../../images/Bandana/Preview/Bandana.png"/>
   </tile>
   <tile id="1">
    <properties>
     <property name="entityName" value="COIN_AG"/>
    </properties>
-   <image width="16" height="16" source="../images/Coin/Preview/Coin.png"/>
+   <image width="16" height="16" source="../../images/Coin/Preview/Coin.png"/>
   </tile>
   <tile id="2">
    <properties>
     <property name="entityName" value="KEY_AG"/>
    </properties>
-   <image width="16" height="16" source="../images/Key/Preview/Key.png"/>
+   <image width="16" height="16" source="../../images/Key/Preview/Key.png"/>
   </tile>
  </tileset>
  <tileset firstgid="34" name="Elements" tilewidth="384" tileheight="64" tilecount="4" columns="32">
@@ -192,29 +192,29 @@
    <properties>
     <property name="entityName" value="GUI_AG"/>
    </properties>
-   <image width="384" height="16" source="../images/Gui/Preview/Gui.png"/>
+   <image width="384" height="16" source="../../images/Gui/Preview/Gui.png"/>
   </tile>
   <tile id="1">
    <properties>
     <property name="entityName" value="COLLISION_CL"/>
    </properties>
-   <image width="64" height="64" source="../images/Collision/Preview/collision.png"/>
+   <image width="64" height="64" source="../../images/Collision/Preview/collision.png"/>
   </tile>
   <tile id="2">
    <properties>
     <property name="entityName" value="COLLISION_TOP_CL"/>
    </properties>
-   <image width="64" height="64" source="../images/Collision/Preview/collisionTop.png"/>
+   <image width="64" height="64" source="../../images/Collision/Preview/collisionTop.png"/>
   </tile>
   <tile id="3">
    <properties>
     <property name="entityName" value="COLLISION_HIT_CL"/>
    </properties>
-   <image width="64" height="64" source="../images/Collision/Preview/collisionHit.png"/>
+   <image width="64" height="64" source="../../images/Collision/Preview/collisionHit.png"/>
   </tile>
  </tileset>
- <tileset firstgid="38" name="InnerTiles" tilewidth="16" tileheight="16" tilecount="18" columns="6">
-  <image source="../images/Tilesets/InnerTiles.png" trans="000000" width="96" height="48"/>
+ <tileset firstgid="38" name="InnerTiles" tilewidth="16" tileheight="16" tilecount="98" columns="14">
+  <image source="../../images/Tilesets/InnerTiles.png" trans="000000" width="232" height="112"/>
   <terraintypes>
    <terrain name="Walls" tile="-1"/>
   </terraintypes>
@@ -223,33 +223,47 @@
   <tile id="2" terrain=",,0,"/>
   <tile id="3" terrain=",0,0,0"/>
   <tile id="4" terrain="0,,0,0"/>
-  <tile id="6" terrain=",0,,0"/>
-  <tile id="7" terrain="0,0,0,0"/>
-  <tile id="8" terrain="0,,0,"/>
-  <tile id="9" terrain="0,0,,0"/>
-  <tile id="10" terrain="0,0,0,"/>
-  <tile id="12" terrain=",0,,"/>
-  <tile id="13" terrain="0,0,,"/>
-  <tile id="14" terrain="0,,,"/>
+  <tile id="14" terrain=",0,,0"/>
+  <tile id="15" terrain="0,0,0,0"/>
+  <tile id="16" terrain="0,,0,"/>
+  <tile id="17" terrain="0,0,,0"/>
+  <tile id="18" terrain="0,0,0,"/>
+  <tile id="28" terrain=",0,,"/>
+  <tile id="29" terrain="0,0,,"/>
+  <tile id="30" terrain="0,,,"/>
  </tileset>
- <tileset firstgid="56" name="Outer Tiles" tilewidth="16" tileheight="16" tilecount="15" columns="5">
-  <image source="../images/Tilesets/OuterTiles.png" trans="000000" width="88" height="48"/>
+ <tileset firstgid="136" name="Outer Tiles" tilewidth="16" tileheight="16" tilecount="101" columns="14">
+  <image source="../../images/Tilesets/OuterTiles.png" trans="000000" width="232" height="112"/>
   <terraintypes>
    <terrain name="Platform" tile="-1"/>
   </terraintypes>
-  <tile id="0" terrain=",,,0"/>
-  <tile id="1" terrain=",,0,0"/>
-  <tile id="2" terrain=",,0,"/>
-  <tile id="5" terrain=",0,,0"/>
-  <tile id="6" terrain="0,0,0,0"/>
-  <tile id="7" terrain="0,,0,"/>
-  <tile id="10" terrain=",0,,"/>
-  <tile id="11" terrain="0,0,,"/>
-  <tile id="12" terrain="0,,,"/>
+  <tile id="56" terrain=",,,0"/>
+  <tile id="57" terrain=",,0,0"/>
+  <tile id="58" terrain=",,0,"/>
+  <tile id="70" terrain=",0,,0"/>
+  <tile id="71" terrain="0,0,0,0"/>
+  <tile id="72" terrain="0,,0,"/>
+  <tile id="84" terrain=",0,,"/>
+  <tile id="85" terrain="0,0,,"/>
+  <tile id="86" terrain="0,,,"/>
+ </tileset>
+ <tileset firstgid="239" name="Other" tilewidth="224" tileheight="184" tilecount="2" columns="0">
+  <tile id="0">
+   <properties>
+    <property name="entityName" value="LEVEL_1_HOUSE_IM"/>
+   </properties>
+   <image width="152" height="88" source="../../images/Level-1/Main-1/Other/Level-1-House.png"/>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entityName" value="LEVEL_1_TOWER_IM"/>
+   </properties>
+   <image width="224" height="184" source="../../images/Level-1/Main-1/Other/Level-1-Tower.png"/>
+  </tile>
  </tileset>
  <layer name="(1) Main Layer Walls" width="48" height="28">
   <properties>
-   <property name="compositeLayer" type="bool" value="true"/>
+   <property name="containerType" value="Composite"/>
    <property name="id" type="int" value="1"/>
   </properties>
   <data encoding="csv">
@@ -258,25 +272,25 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,48,51,51,51,51,51,51,51,51,51,51,51,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,46,0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-48,51,51,51,51,51,51,51,51,52,0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,39,39,39,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,44,45,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-42,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,41,45,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,0,67,0,67,0,67,0,67,0,67,0,67,0,67,0,67,0,67,0,67,0,67,0,55,0,0,0,0,0,
+53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+56,0,67,0,67,0,67,0,67,0,67,0,67,0,67,0,67,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,0,39,0,39,0,39,0,41,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+42,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,39,0,41,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -285,12 +299,12 @@
  </layer>
  <objectgroup draworder="index" name="Main Layer">
   <properties>
-   <property name="childContainer" type="bool" value="false"/>
+   <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_0"/>
   </properties>
-  <object id="28" name="Main Layer" type="Background" x="0" y="80" width="352" height="112">
+  <object id="28" name="Main Layer" type="Composite" x="0" y="80" width="352" height="112">
    <properties>
-    <property name="compositeLayerId" value="1"/>
+    <property name="containerId" value="1"/>
    </properties>
   </object>
   <object id="21" name="Entry Door" type="Entity" gid="15" x="24" y="176" width="24" height="32">
@@ -311,7 +325,7 @@
  </objectgroup>
  <objectgroup name="Collisions">
   <properties>
-   <property name="childContainer" type="bool" value="false"/>
+   <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
   <object id="25" type="Collision" gid="35" x="0" y="192" width="16" height="80"/>
@@ -323,20 +337,22 @@
   <object id="34" type="Collision" gid="35" x="336" y="160" width="16" height="80"/>
   <object id="35" type="Collision" gid="35" x="288" y="160" width="48" height="16"/>
  </objectgroup>
- <objectgroup name="UI">
+ <objectgroup name="UI" opacity="0.5">
   <properties>
+   <property name="containerType" value="Ui"/>
    <property name="position.z" value="0"/>
-   <property name="uiContainer" type="bool" value="true"/>
   </properties>
-  <object id="18" name="GUI" type="Entity" gid="34" x="0" y="208" width="384" height="16"/>
+  <object id="18" name="GUI" type="Entity" gid="34" x="0" y="224" width="384" height="16"/>
  </objectgroup>
  <objectgroup name="Entry Points">
+  <properties>
+   <property name="containerType" value="Main"/>
+  </properties>
   <object id="22" name="Main" type="EntryPoint" x="26" y="148" width="20" height="28">
    <properties>
     <property name="destinationName" value="EntryDoor"/>
     <property name="name" value="MAIN"/>
     <property name="offset.z" value="-SORT_INCREMENT"/>
-    <property name="stageDefinition" value="SOME_STAGE"/>
    </properties>
   </object>
  </objectgroup>
