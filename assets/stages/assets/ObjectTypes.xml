@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="Entity" color="#a0a0a4">
+  <property name="childrenDefinitions" type="string" default="NULL"/>
+  <property name="extraInfo" type="string" default="NULL"/>
+  <property name="id" type="int" default="0"/>
+  <property name="loadRegardlessOfPosition" type="bool" default="false"/>
+  <property name="name" type="string" default="NULL"/>
+  <property name="position.z" type="string" default="0"/>
+ </objecttype>
+ <objecttype name="EntryPoint" color="#00ff00">
+  <property name="destinationName" type="string" default="NULL"/>
+  <property name="name" type="string" default="ENTRY_POINT"/>
+  <property name="offset.x" type="string" default="0"/>
+  <property name="offset.y" type="string" default="0"/>
+  <property name="offset.z" type="string" default="0"/>
+ </objecttype>
+ <objecttype name="Composite" color="#ffff00">
+  <property name="containerId" type="string" default="0"/>
+ </objecttype>
+ <objecttype name="Collision" color="#a0a0a4">
+  <property name="childrenDefinitions" type="string" default="NULL"/>
+  <property name="extraInfo" type="string" default="NULL"/>
+  <property name="id" type="int" default="0"/>
+  <property name="loadRegardlessOfPosition" type="bool" default="false"/>
+  <property name="name" type="string" default="NULL"/>
+  <property name="position.z" type="string" default="0"/>
+ </objecttype>
+</objecttypes>
