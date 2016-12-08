@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="39">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="61">
  <properties>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, objects.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
@@ -75,10 +75,39 @@
  </tileset>
  <tileset firstgid="41" source="../assets/tilesets/InnerTiles.tsx"/>
  <tileset firstgid="139" source="../assets/tilesets/OuterTiles.tsx"/>
- <layer name="(1) Main Layer Walls" width="48" height="28">
+ <objectgroup name="(C2) Test Object Composite">
+  <object id="40" gid="42" x="64" y="112" width="16" height="16"/>
+  <object id="41" gid="42" x="48" y="112" width="16" height="16"/>
+  <object id="42" gid="70" x="64" y="48" width="16" height="16"/>
+  <object id="43" gid="70" x="48" y="48" width="16" height="16"/>
+  <object id="44" gid="70" x="80" y="48" width="16" height="16"/>
+  <object id="45" gid="42" x="80" y="112" width="16" height="16"/>
+  <object id="46" gid="55" x="96" y="64" width="16" height="16"/>
+  <object id="47" gid="55" x="96" y="80" width="16" height="16"/>
+  <object id="48" gid="55" x="96" y="96" width="16" height="16"/>
+  <object id="49" gid="57" x="32" y="64" width="16" height="16"/>
+  <object id="50" gid="57" x="32" y="80" width="16" height="16"/>
+  <object id="51" gid="57" x="32" y="96" width="16" height="16"/>
+  <object id="52" gid="45" x="32" y="112" width="16" height="16"/>
+  <object id="53" gid="44" x="96" y="112" width="16" height="16"/>
+  <object id="54" gid="58" x="96" y="48" width="16" height="16"/>
+  <object id="55" gid="59" x="32" y="48" width="16" height="16"/>
+  <object id="56" gid="21" x="60" y="96" width="24" height="32"/>
+ </objectgroup>
+ <layer name="(C1) Main Layer Walls" width="48" height="28">
   <properties>
+   <property name="bgmapMode" value="__WORLD_BGMAP"/>
+   <property name="class" value="Image"/>
    <property name="containerType" value="Composite"/>
+   <property name="displacement.x" value="0"/>
+   <property name="displacement.y" value="0"/>
+   <property name="displacement.z" value="0"/>
+   <property name="display" value="__WORLD_ON"/>
+   <property name="entityName" value="MAIN"/>
    <property name="id" type="int" value="1"/>
+   <property name="include" value="macros.h"/>
+   <property name="name" value="Main"/>
+   <property name="paletteId" type="int" value="1"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -116,9 +145,19 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_0"/>
   </properties>
-  <object id="28" name="Main Layer" type="Composite" x="0" y="80" width="352" height="112">
+  <object id="60" name="Main Layer (2)" type="Composite" x="288" y="80" width="80" height="80">
    <properties>
     <property name="containerId" value="1"/>
+   </properties>
+  </object>
+  <object id="28" name="Main Layer (1)" type="Composite" x="0" y="80" width="288" height="112">
+   <properties>
+    <property name="containerId" value="1"/>
+   </properties>
+  </object>
+  <object id="57" name="Test Composite" type="Composite" x="32" y="32" width="80" height="80">
+   <properties>
+    <property name="containerId" value="2"/>
    </properties>
   </object>
   <object id="21" name="Entry Door" type="Entity" gid="15" x="24" y="176" width="24" height="32">
