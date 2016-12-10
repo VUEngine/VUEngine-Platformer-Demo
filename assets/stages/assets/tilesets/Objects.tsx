@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<tileset name="Objects" tilewidth="80" tileheight="64" tilecount="11" columns="32">
+<tileset name="Objects" tilewidth="80" tileheight="56" tilecount="14" columns="32">
  <tile id="0">
   <properties>
    <property name="entityName" value="BUSH_AG"/>
@@ -53,12 +53,30 @@
   <properties>
    <property name="entityName" value="CLOCK_AG"/>
   </properties>
-  <image width="16" height="64" source="../../../images/Clock/Clock.png"/>
+  <image width="16" height="16" source="../../../images/Clock/Preview/Clock.png"/>
  </tile>
  <tile id="18">
   <properties>
    <property name="entityName" value="FIRE_SMALL_AG"/>
   </properties>
   <image width="8" height="8" source="../../../images/Fire/Preview/FireSmall.png"/>
+ </tile>
+ <tile id="19">
+  <properties>
+   <property name="entityName" value="HERO_BANDANA_AG"/>
+  </properties>
+  <image width="24" height="24" source="../../../images/Hero/Preview/HeroBandana.png"/>
+ </tile>
+ <tile id="20">
+  <properties>
+   <property name="entityName" value="HERO_IDLE_AG"/>
+  </properties>
+  <image width="24" height="24" source="../../../images/Hero/Preview/HeroIdle.png"/>
+ </tile>
+ <tile id="21">
+  <properties>
+   <property name="entityName" value="HERO_SLEEPING_AG"/>
+  </properties>
+  <image width="24" height="24" source="../../../images/Hero/Preview/HeroSleeping.png"/>
  </tile>
 </tileset>
