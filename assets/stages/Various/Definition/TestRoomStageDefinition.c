@@ -20,8 +20,36 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Stage.h>
-#include <Fonts.h>
 #include <macros.h>
+#include <PlatformerLevelState.h>
+#include <Languages.h>
+#include <VIPManager.h>
+#include <Fonts.h>
+#include <objects.h>
+
+
+//---------------------------------------------------------------------------------------------------------
+//											DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+StageEntryPointROMDef TEST_ROOM_MAIN_EP[];
+VBVec3D test_room_collision_16_2_1 = {128, 16, 8};
+VBVec3D test_room_collision_22_2_1 = {176, 16, 8};
+VBVec3D test_room_collision_2_10_1 = {16, 80, 8};
+VBVec3D test_room_collision_2_4_1 = {16, 32, 8};
+VBVec3D test_room_collision_2_6_1 = {16, 48, 8};
+VBVec3D test_room_collision_34_2_1 = {272, 16, 8};
+VBVec3D test_room_collision_6_2_1 = {48, 16, 8};
+extern EntityDefinition COIN_AG;
+extern EntityDefinition COLLISION_CL;
+extern EntityDefinition DOOR_AG;
+extern EntityDefinition GUI_AG;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition SAW_BLADE_H8_AC;
+extern EntityDefinition TEST_ROOM_MAIN_1_IM;
+extern EntityDefinition TEST_ROOM_MAIN_2_IM;
+extern EntityDefinition TEST_ROOM_TEST_1_IM;
+extern u16 KRISSE_BGM[][2];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,13 +63,31 @@
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef EMPTY_ST_ENTITIES[] =
+PositionedEntityROMDef TEST_ROOM_ST_ENTITIES[] =
 {
+	{&COLLISION_CL, {FTOFIX19_13(8), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_2_10_1, false}, 
+	{&DOOR_AG, {FTOFIX19_13(36), FTOFIX19_13(160), FTOFIX19_13(LAYER_0)}, 0, "EntryDoor", NULL, NULL, false}, // Entry Door
+	{&HERO_AC, {FTOFIX19_13(44), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
+	{&TEST_ROOM_TEST_1_IM, {FTOFIX19_13(72), FTOFIX19_13(72), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Test Composite
+	{&COIN_AG, {FTOFIX19_13(80), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&COLLISION_CL, {FTOFIX19_13(80), FTOFIX19_13(120), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_16_2_1, false}, 
+	{&COIN_AG, {FTOFIX19_13(96), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&TEST_ROOM_MAIN_1_IM, {FTOFIX19_13(144), FTOFIX19_13(136), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (1)
+	{&COLLISION_CL, {FTOFIX19_13(152), FTOFIX19_13(104), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_2_6_1, false}, 
+	{&COLLISION_CL, {FTOFIX19_13(152), FTOFIX19_13(184), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_34_2_1, false}, 
+	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&SAW_BLADE_H8_AC, {FTOFIX19_13(196), FTOFIX19_13(176), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // SawBlade
+	{&COLLISION_CL, {FTOFIX19_13(248), FTOFIX19_13(88), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_22_2_1, false}, 
+	{&COLLISION_CL, {FTOFIX19_13(280), FTOFIX19_13(160), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_2_4_1, false}, 
+	{&COLLISION_CL, {FTOFIX19_13(312), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_6_2_1, false}, 
+	{&DOOR_AG, {FTOFIX19_13(316), FTOFIX19_13(128), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Exit Door
+	{&TEST_ROOM_MAIN_2_IM, {FTOFIX19_13(328), FTOFIX19_13(120), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (2)
+	{&COLLISION_CL, {FTOFIX19_13(344), FTOFIX19_13(120), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_2_10_1, false}, 
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef EMPTY_ST_UI_ENTITIES[] =
+PositionedEntityROMDef TEST_ROOM_ST_UI_ENTITIES[] =
 {
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
@@ -52,11 +98,17 @@ PositionedEntityROMDef EMPTY_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const EMPTY_ST_FONTS[] =
+FontROMDef* const TEST_ROOM_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
-	&PLATFORMER_LARGE_FONT,
+
+	NULL
+};
+
+CharSetROMDef* const TEST_ROOM_ST_CHARSETS[] =
+{
+	&LEVEL_1_HOUSE_MAIN_CH,
 
 	NULL
 };
@@ -66,7 +118,7 @@ FontROMDef* const EMPTY_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef EMPTY_ST =
+StageROMDef TEST_ROOM_ST =
 {
 	// level
 	{
@@ -222,27 +274,49 @@ StageROMDef EMPTY_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)EMPTY_ST_FONTS,
+		(FontDefinition**)TEST_ROOM_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)NULL,
+		(CharSetDefinition**)TEST_ROOM_ST_CHARSETS,
 
 		// textures to preload
 		(StageTextureEntryDefinition*)NULL,
 
 		// background music
-		(const u16 (*)[])NULL,
+		(const u16 (*)[])KRISSE_BGM,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			EMPTY_ST_UI_ENTITIES,
+			TEST_ROOM_ST_UI_ENTITIES,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		EMPTY_ST_ENTITIES,
+		TEST_ROOM_ST_ENTITIES,
 	},
 };
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												ENTRY POINTS
+//---------------------------------------------------------------------------------------------------------
+
+StageEntryPointROMDef TEST_ROOM_MAIN_EP[] =
+{{
+    // the stage to load
+    (StageDefinition*)&TEST_ROOM_ST,
+
+    // name of the entity to start at
+    "EntryDoor",
+
+    // offset from entry point (x, y, z)
+    {
+        FTOFIX19_13(0),
+        FTOFIX19_13(0),
+        FTOFIX19_13(-SORT_INCREMENT)
+    },
+}};
+

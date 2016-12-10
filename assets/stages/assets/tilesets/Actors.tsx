@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<tileset name="Actors" tilewidth="152" tileheight="104" tilecount="8" columns="32">
+<tileset name="Actors" tilewidth="152" tileheight="104" tilecount="10" columns="32">
  <tile id="0">
   <properties>
    <property name="entityName" value="CANNON_AC"/>
@@ -48,5 +48,17 @@
    <property name="entityName" value="SAW_BLADE_V3_AC"/>
   </properties>
   <image width="24" height="72" source="../../../images/SawBlade/Preview/SawBladeV3.png"/>
+ </tile>
+ <tile id="11">
+  <properties>
+   <property name="entityName" value="HERO_SLEEPING_AG"/>
+  </properties>
+  <image width="24" height="24" source="../../../images/Hero/Preview/HeroSleeping.png"/>
+ </tile>
+ <tile id="12">
+  <properties>
+   <property name="entityName" value="HERO_IDLE_AG"/>
+  </properties>
+  <image width="24" height="24" source="../../../images/Hero/Preview/HeroIdle.png"/>
  </tile>
 </tileset>
