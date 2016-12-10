@@ -38,6 +38,7 @@ extern EntityDefinition WATER_A_AG;
 extern EntityDefinition FLOWER_A_AG;
 
 extern EntityDefinition CLOCK_AG;
+extern EntityDefinition CLOUD_A_IM;
 
 extern EntityDefinition MOUND_BG_BACK_IM;
 extern EntityDefinition MOUND_BG_MIDDLE_IM;
