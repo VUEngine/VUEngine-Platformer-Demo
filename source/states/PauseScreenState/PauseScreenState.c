@@ -63,7 +63,7 @@ static void PauseScreenState_onFadeOutComplete(PauseScreenState this, Object eve
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(PauseScreenState, GameState);
-__SINGLETON_DYNAMIC(PauseScreenState);
+__SINGLETON(PauseScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -165,8 +165,8 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 // state's exit
 static void PauseScreenState_exit(PauseScreenState this, void* owner __attribute__ ((unused)))
 {
-	// destroy the state
-	__DELETE(this);
+ 	// call base
+ 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 }
 
 // state's handle message
