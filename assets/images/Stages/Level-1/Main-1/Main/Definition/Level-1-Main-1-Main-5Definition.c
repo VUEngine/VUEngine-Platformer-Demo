@@ -28,7 +28,6 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainTiles[];
 extern BYTE Level_1_Main_1_Main_5Map[];
 
 extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH;
