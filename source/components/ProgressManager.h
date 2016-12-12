@@ -45,20 +45,22 @@ __CLASS(ProgressManager);
 #define ProgressManager_ATTRIBUTES																		\
         /* super's attributes */																		\
         Object_ATTRIBUTES																				\
-        /* hero's current energy */																		\
-        u8 heroCurrentEnergy;																			\
-        /* hero's currently active power-up */															\
-        u8 heroCurrentPowerUp;																			\
-        /* flag that tells if the hero has collected the current level's key */							\
-        bool heroHasKey;																				\
-        /* bitstring that holds collected item flags */													\
-        u16 collectedItems;																				\
         /* time in current level */																		\
         u32 currentLevelTime;																			\
         /* best time in current level */																\
         u32 currentLevelBestTime;																		\
         /* bitstrings that hold collected coin flags */													\
         u32 collectedCoins[2];																			\
+        /* bitstring that holds collected item flags */													\
+        u16 collectedItems;																				\
+        /* flag that tells if the hero has collected the current level's key */							\
+        bool heroHasKey;																				\
+        /* flag that tells if sram is available on the current cartridge */								\
+        bool sramAvailable;																				\
+        /* hero's current energy */																		\
+        u8 heroCurrentEnergy;																			\
+        /* hero's currently active power-up */															\
+        u8 heroCurrentPowerUp;																			\
 
 
 //---------------------------------------------------------------------------------------------------------
