@@ -139,6 +139,11 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
         Hero_enableBoost(__SAFE_CAST(Hero, owner));
     }
 
+    if(K_A & pressedKey)
+    {
+        Hero_jump(__SAFE_CAST(Hero, owner), !this->bouncing);
+    }
+
     // check direction
     if((K_LL | K_LR ) & pressedKey)
     {
@@ -168,11 +173,6 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
                 return;
             }
         }
-    }
-
-    if(K_A & pressedKey)
-    {
-        Hero_jump(__SAFE_CAST(Hero, owner), !this->bouncing);
     }
 }
 

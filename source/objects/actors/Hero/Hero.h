@@ -94,7 +94,7 @@ __CLASS(Hero);
         /* currently active power-up */																	\
         u8 powerUp;																						\
         /* number of jumps performed (for double jump) */												\
-        u8 jumps;																						\
+        s8 jumps;																						\
         /* flag for invincible mode (after being hit) */												\
         bool invincible;																				\
 

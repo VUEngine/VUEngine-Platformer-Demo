@@ -260,7 +260,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
         Velocity velocity = Body_getVelocity(this->body);
 
         // determine the maximum number of possible jumps before reaching ground again
-	    u32 allowedNumberOfJumps = (this->powerUp == kPowerUpBandana) ? 2 : 1;
+	    s8 allowedNumberOfJumps = (this->powerUp == kPowerUpBandana) ? 2 : 1;
 
 #ifdef GOD_MODE
     allowedNumberOfJumps = 999999999;
@@ -295,11 +295,13 @@ void Hero_jump(Hero this, bool checkIfYMovement)
             }
             else
             {
+                // hack to avoid the processing of kBodyStopped message triggered by the call to Actor_stopMovement
+                this->jumps = -1;
+
                 // stop movement to gain full momentum of the jump force that will be added
                 Actor_stopMovement(__SAFE_CAST(Actor, this), false);
 
                 // set second jump performed
-                // this gets reset to 0 in Actor_stopMovement, so we set it to 2 here
                 this->jumps = 2;
 
 	            // double jumps can never have boost
@@ -1232,6 +1234,14 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 
         	Hero_die(this);
         	break;
+
+		case kBodyStopped:
+
+			if(-1 == this->jumps)
+			{
+				return true;
+			}
+			break;
     }
 
 	return Actor_handleMessage(__SAFE_CAST(Actor, this), telegram);
