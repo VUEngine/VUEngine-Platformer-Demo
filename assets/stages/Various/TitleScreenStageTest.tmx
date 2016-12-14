@@ -170,6 +170,7 @@
    <property name="include" value="macros.h"/>
    <property name="name" value="Main"/>
    <property name="paletteId" type="int" value="0"/>
+   <property name="transparent" type="bool" value="false"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -216,6 +217,7 @@
    <property name="include" value="macros.h"/>
    <property name="name" value="Main"/>
    <property name="paletteId" type="int" value="0"/>
+   <property name="transparent" type="bool" value="false"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
