@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <TransparentAnimatedInGameEntity.h>
+#include <AnimatedInGameEntity.h>
 #include <BgmapAnimatedSprite.h>
 #include <macros.h>
 
@@ -119,6 +119,9 @@ BgmapSpriteROMDef TORCH_LIGHT_SPRITE =
         // texture definition
         (TextureDefinition*)&TORCH_LIGHT_TX,
 
+        // transparent
+		true,
+
         // displacement
         {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0)},
     },
@@ -140,7 +143,7 @@ AnimatedInGameEntityROMDef TORCH_LIGHT_AG =
 {
     {
         {
-            __TYPE(TransparentAnimatedInGameEntity),
+            __TYPE(AnimatedInGameEntity),
             (SpriteROMDef**)TORCH_LIGHT_SPRITES,
         },
 
