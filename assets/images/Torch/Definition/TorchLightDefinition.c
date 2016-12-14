@@ -21,7 +21,7 @@
 
 #include <libgccvb.h>
 #include <TransparentAnimatedInGameEntity.h>
-#include <ObjectAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include <macros.h>
 
 
@@ -110,11 +110,11 @@ TextureROMDef TORCH_LIGHT_TX =
     0,
 };
 
-ObjectSpriteROMDef TORCH_LIGHT_SPRITE =
+BgmapSpriteROMDef TORCH_LIGHT_SPRITE =
 {
     {
         // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+        __TYPE(BgmapAnimatedSprite),
 
         // texture definition
         (TextureDefinition*)&TORCH_LIGHT_TX,
@@ -130,7 +130,7 @@ ObjectSpriteROMDef TORCH_LIGHT_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const TORCH_LIGHT_SPRITES[] =
+BgmapSpriteROMDef* const TORCH_LIGHT_SPRITES[] =
 {
 	&TORCH_LIGHT_SPRITE,
 	NULL

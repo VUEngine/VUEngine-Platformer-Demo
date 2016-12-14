@@ -21,7 +21,7 @@
 
 #include <libgccvb.h>
 #include <AnimatedInGameEntity.h>
-#include <ObjectAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include <macros.h>
 
 
@@ -41,10 +41,10 @@ extern BYTE WaterfallTopMap[];
 AnimationFunctionROMDef WATERFALL_TOP_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
-	4,
+	3,
 
 	// frames to play in animation
-	{0, 1, 2, 1},
+	{0, 1, 2},
 
 	// number of cycles a frame of animation is displayed
 	8,
@@ -110,11 +110,11 @@ TextureROMDef WATERFALL_TOP_TX =
     1,
 };
 
-ObjectSpriteROMDef WATERFALL_TOP_SPRITE =
+BgmapSpriteROMDef WATERFALL_TOP_SPRITE =
 {
     {
         // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+        __TYPE(BgmapAnimatedSprite),
 
         // texture definition
         (TextureDefinition*)&WATERFALL_TOP_TX,
@@ -134,7 +134,7 @@ ObjectSpriteROMDef WATERFALL_TOP_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const WATERFALL_TOP_SPRITES[] =
+BgmapSpriteROMDef* const WATERFALL_TOP_SPRITES[] =
 {
 	&WATERFALL_TOP_SPRITE,
 	NULL

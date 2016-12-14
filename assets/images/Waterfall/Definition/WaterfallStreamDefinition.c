@@ -21,7 +21,7 @@
 
 #include <libgccvb.h>
 #include <TransparentAnimatedInGameEntity.h>
-#include <ObjectAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include <macros.h>
 
 
@@ -47,7 +47,7 @@ AnimationFunctionROMDef WATERFALL_STREAM_DEFAULT_ANIM =
 	{0, 1, 2},
 
 	// number of cycles a frame of animation is displayed
-	8,
+	6,
 
 	// whether to play it in loop or not
 	true,
@@ -110,11 +110,11 @@ TextureROMDef WATERFALL_STREAM_TX =
     0,
 };
 
-ObjectSpriteROMDef WATERFALL_STREAM_SPRITE =
+BgmapSpriteROMDef WATERFALL_STREAM_SPRITE =
 {
     {
         // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+        __TYPE(BgmapAnimatedSprite),
 
         // texture definition
         (TextureDefinition*)&WATERFALL_STREAM_TX,
@@ -134,7 +134,7 @@ ObjectSpriteROMDef WATERFALL_STREAM_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const WATERFALL_STREAM_SPRITES[] =
+BgmapSpriteROMDef* const WATERFALL_STREAM_SPRITES[] =
 {
 	&WATERFALL_STREAM_SPRITE,
 	NULL
