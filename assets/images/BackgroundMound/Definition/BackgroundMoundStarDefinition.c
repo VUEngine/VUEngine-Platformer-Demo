@@ -142,7 +142,10 @@ ObjectSpriteROMDef STAR_SPRITE =
         // texture definition
         (TextureDefinition*)&STAR_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

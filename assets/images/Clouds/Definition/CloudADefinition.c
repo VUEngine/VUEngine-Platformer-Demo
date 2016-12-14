@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <TransparentImage.h>
+#include <Image.h>
 #include <BgmapSprite.h>
 
 
@@ -86,7 +86,10 @@ BgmapSpriteROMDef CLOUD_A_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&CLOUD_A_TX,
 
-        // displacement
+        // transparent
+		true,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -105,6 +108,6 @@ BgmapSpriteROMDef* const CLOUD_A_IM_SPRITES[] =
 
 ImageROMDef CLOUD_A_IM =
 {
-	__TYPE(TransparentImage),
+	__TYPE(Image),
 	(SpriteROMDef**)CLOUD_A_IM_SPRITES,
 };

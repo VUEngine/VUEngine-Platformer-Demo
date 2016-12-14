@@ -84,7 +84,10 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_OVERLAY_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LEVEL_1_HOUSE_OVERLAY_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
     },
 

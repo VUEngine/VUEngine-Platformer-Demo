@@ -116,7 +116,10 @@ BgmapSpriteROMDef SAW_BLADE_SPRITE =
         // texture definition
         (TextureDefinition*)&SAW_BLADE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

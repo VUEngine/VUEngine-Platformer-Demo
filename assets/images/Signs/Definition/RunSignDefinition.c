@@ -86,7 +86,10 @@ ObjectSpriteROMDef RUN_SIGN_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&RUN_SIGN_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

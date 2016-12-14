@@ -88,7 +88,10 @@ BgmapSpriteROMDef FLOOR_16x12_SPRITE =
         // texture definition
         (TextureDefinition*)&FLOOR_16x12_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -149,7 +152,10 @@ BgmapSpriteROMDef FLOOR_16x12_TOP_SPRITE =
         // texture definition
         (TextureDefinition*)&FLOOR_16_TOP_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, FTOFIX19_13(-40), FTOFIX19_13(-1)},
     },
 

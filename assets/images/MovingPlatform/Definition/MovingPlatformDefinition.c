@@ -116,7 +116,10 @@ BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
         // texture definition
         (TextureDefinition*)&MOVING_PLATFORM_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, ITOFIX19_13(-4), 0},
     },
 

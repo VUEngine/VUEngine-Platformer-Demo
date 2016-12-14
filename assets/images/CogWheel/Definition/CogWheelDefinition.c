@@ -88,7 +88,10 @@ BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =
         // texture definition
         (TextureDefinition*)&COG_WHEEL_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, FTOFIX19_13(1)},
     },
 

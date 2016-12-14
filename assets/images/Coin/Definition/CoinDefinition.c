@@ -292,7 +292,10 @@ ObjectSpriteROMDef COIN_SPRITE =
         // texture definition
         (TextureDefinition*)&COIN_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -318,7 +321,10 @@ ObjectSpriteROMDef COIN_SILHOUETTE_SPRITE =
         // texture definition
         (TextureDefinition*)&COIN_SILHOUETTE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -414,7 +420,10 @@ ObjectSpriteROMDef COIN_BACK_SPRITE =
         // texture definition
         (TextureDefinition*)&COIN_BACK_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -440,7 +449,10 @@ ObjectSpriteROMDef COIN_BACK_SILHOUETTE_SPRITE =
         // texture definition
         (TextureDefinition*)&COIN_BACK_SILHOUETTE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -537,7 +549,10 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
         // texture definition
         (TextureDefinition*)&AFFINE_COIN_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

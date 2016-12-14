@@ -142,7 +142,10 @@ ObjectSpriteROMDef BUSH_SPRITE =
         // texture definition
         (TextureDefinition*)&BUSH_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

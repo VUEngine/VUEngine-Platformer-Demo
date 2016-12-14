@@ -84,7 +84,10 @@ BgmapSpriteROMDef GUI_BLANK_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&GUI_BLANK_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

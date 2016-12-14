@@ -84,7 +84,10 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LEVEL_1_HOUSE_FIREPLACE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {ITOFIX19_13(48), ITOFIX19_13(36), ITOFIX19_13(0)},
     },
 

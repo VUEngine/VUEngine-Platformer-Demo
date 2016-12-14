@@ -84,7 +84,10 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&ADJUSTMENT_SCREEN_LOGO_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

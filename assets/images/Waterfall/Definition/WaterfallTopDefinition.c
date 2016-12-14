@@ -119,7 +119,10 @@ ObjectSpriteROMDef WATERFALL_TOP_SPRITE =
         // texture definition
         (TextureDefinition*)&WATERFALL_TOP_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {
         	0,
         	0,

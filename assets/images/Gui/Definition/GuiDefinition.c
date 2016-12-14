@@ -177,7 +177,10 @@ BgmapSpriteROMDef GUI_SPRITE =
         // texture definition
         (TextureDefinition*)&GUI_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -197,7 +200,10 @@ BgmapSpriteROMDef GUI_OVERWORLD_SPRITE =
         // texture definition
         (TextureDefinition*)&GUI_OVERWORLD_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

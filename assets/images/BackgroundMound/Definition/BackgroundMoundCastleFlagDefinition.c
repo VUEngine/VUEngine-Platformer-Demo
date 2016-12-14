@@ -119,7 +119,10 @@ ObjectSpriteROMDef MOUND_BG_CASTLE_FLAG_SPRITE =
         // texture definition
         (TextureDefinition*)&MOUND_BG_CASTLE_FLAG_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

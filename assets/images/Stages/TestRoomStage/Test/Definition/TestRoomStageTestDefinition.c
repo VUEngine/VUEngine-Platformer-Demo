@@ -86,7 +86,10 @@ BgmapSpriteROMDef TEST_ROOM_TEST_1_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&TEST_ROOM_TEST_1_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {
             FTOFIX19_13(0),
             FTOFIX19_13(0),

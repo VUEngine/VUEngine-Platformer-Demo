@@ -119,7 +119,10 @@ ObjectSpriteROMDef TORCH_SPRITE =
         // texture definition
         (TextureDefinition*)&TORCH_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, FTOFIX19_13(1)},
     },
 

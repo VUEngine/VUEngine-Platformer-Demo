@@ -81,6 +81,9 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_2_IM_SPRITE =
             // texture definition
             NULL,
 
+            // transparent
+            false,
+
             // displacement
             {0, 0, FTOFIX19_13(SORT_INCREMENT)},
         },

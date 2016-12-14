@@ -90,7 +90,10 @@ ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -151,7 +154,10 @@ ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

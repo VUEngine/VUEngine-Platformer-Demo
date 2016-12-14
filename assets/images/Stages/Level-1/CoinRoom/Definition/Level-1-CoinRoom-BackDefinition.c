@@ -84,7 +84,10 @@ BgmapSpriteROMDef LEVEL_1_COIN_ROOM_BACK_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LEVEL_1_COIN_ROOM_BACK_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, FTOFIX19_13(2)},
     },
 

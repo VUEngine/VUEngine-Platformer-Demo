@@ -93,6 +93,9 @@ MBgmapSpriteROMDef OVERWORLD_1_IM_SPRITE =
             // texture definition
             NULL,
 
+            // transparent
+            false,
+
             // displacement
             {0, 0, 0},
         },

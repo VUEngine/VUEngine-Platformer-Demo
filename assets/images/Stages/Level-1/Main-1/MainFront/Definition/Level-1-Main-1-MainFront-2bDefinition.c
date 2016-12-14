@@ -77,6 +77,9 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2B_IM_SPRITE =
             // texture definition
             NULL,
 
+            // transparent
+            false,
+
             // displacement
             {ITOFIX19_13(-64), ITOFIX19_13(72), FTOFIX19_13(-1)},
         },

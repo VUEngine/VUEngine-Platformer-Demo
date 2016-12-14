@@ -124,7 +124,10 @@ ObjectSpriteROMDef OBJECT_TEST_PARTICLE_SPRITE =
         // texture definition
         (TextureDefinition*)&OBJECT_TEST_PARTICLE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

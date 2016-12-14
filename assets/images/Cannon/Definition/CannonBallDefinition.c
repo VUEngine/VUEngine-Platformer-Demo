@@ -116,7 +116,10 @@ BgmapSpriteROMDef CANNON_BALL_SPRITE =
         // texture definition
         (TextureDefinition*)&CANNON_BALL_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

@@ -84,7 +84,10 @@ BgmapSpriteROMDef VBJAENGINE_IM_L_SPRITE =
         // texture definition
         (TextureDefinition*)&VBJAENGINE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -104,7 +107,10 @@ BgmapSpriteROMDef VBJAENGINE_IM_R_SPRITE =
         // texture definition
         (TextureDefinition*)&VBJAENGINE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

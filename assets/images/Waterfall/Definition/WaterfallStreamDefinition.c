@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <TransparentAnimatedInGameEntity.h>
+#include <AnimatedInGameEntity.h>
 #include <ObjectAnimatedSprite.h>
 #include <macros.h>
 
@@ -119,7 +119,10 @@ ObjectSpriteROMDef WATERFALL_STREAM_SPRITE =
         // texture definition
         (TextureDefinition*)&WATERFALL_STREAM_TX,
 
-        // displacement
+        // transparent
+		true,
+
+		// displacement
         {
         	0,
         	0,
@@ -144,7 +147,7 @@ AnimatedInGameEntityROMDef WATERFALL_STREAM_AG =
 {
     {
         {
-            __TYPE(TransparentAnimatedInGameEntity),
+            __TYPE(AnimatedInGameEntity),
             (SpriteROMDef**)WATERFALL_STREAM_SPRITES,
         },
 

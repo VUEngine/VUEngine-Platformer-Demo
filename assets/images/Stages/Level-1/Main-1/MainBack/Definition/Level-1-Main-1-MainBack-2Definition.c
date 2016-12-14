@@ -85,7 +85,10 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_2_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {ITOFIX19_13(-50), ITOFIX19_13(40), FTOFIX19_13(2)},
     },
 

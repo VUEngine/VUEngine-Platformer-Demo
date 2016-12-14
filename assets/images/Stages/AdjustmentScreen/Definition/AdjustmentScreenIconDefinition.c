@@ -84,7 +84,10 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
         // texture definition
         (TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -110,7 +113,10 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
         // texture definition
         (TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

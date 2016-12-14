@@ -437,6 +437,9 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
         // texture definition
         (TextureDefinition*)&HERO_TX,
 
+        // transparent
+		false,
+
         // displacement
         {0, 0, 0},
     },
@@ -458,7 +461,10 @@ BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
         // texture definition
         (TextureDefinition*)&HERO_BANDANA_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -478,7 +484,10 @@ BgmapSpriteROMDef HERO_SPRITE =
         // texture definition
         (TextureDefinition*)&HERO_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

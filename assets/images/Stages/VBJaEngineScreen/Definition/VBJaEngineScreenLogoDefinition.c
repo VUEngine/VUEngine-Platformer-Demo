@@ -129,7 +129,10 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, FTOFIX19_13(SORT_INCREMENT)},
     },
 
@@ -149,7 +152,10 @@ BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {FTOFIX19_13(13), FTOFIX19_13(1), 0},
     },
 

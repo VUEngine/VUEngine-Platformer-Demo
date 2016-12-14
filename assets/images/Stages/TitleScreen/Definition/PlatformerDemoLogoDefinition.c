@@ -213,7 +213,10 @@ BgmapSpriteROMDef LOGO_L_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LOGO_L_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -233,7 +236,10 @@ BgmapSpriteROMDef LOGO_R_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LOGO_R_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -253,7 +259,10 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LOGO_OUTLINE_L_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, FTOFIX19_13(1)},
     },
 
@@ -273,7 +282,10 @@ BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LOGO_OUTLINE_R_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, FTOFIX19_13(1)},
     },
 

@@ -93,6 +93,9 @@ MBgmapSpriteROMDef MOUND_BG_FRONT_SB_SPRITE =
             // texture definition
             NULL,
 
+            // transparent
+            false,
+
             // displacement
             {0, 0, 0},
         },

@@ -20,7 +20,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <TransparentImage.h>
+#include <Image.h>
 #include <BgmapSprite.h>
 
 
@@ -86,7 +86,10 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_LIGHT_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&LEVEL_1_HOUSE_LIGHT_TX,
 
-        // displacement
+        // transparent
+		true,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -105,6 +108,6 @@ BgmapSpriteROMDef* const LEVEL_1_HOUSE_LIGHT_IM_SPRITES[] =
 
 ImageROMDef LEVEL_1_HOUSE_LIGHT_IM =
 {
-	__TYPE(TransparentImage),
+	__TYPE(Image),
 	(SpriteROMDef**)LEVEL_1_HOUSE_LIGHT_IM_SPRITES,
 };

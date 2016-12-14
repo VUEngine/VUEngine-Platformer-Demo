@@ -238,7 +238,10 @@ BgmapSpriteROMDef DOOR_SPRITE =
         // texture definition
         (TextureDefinition*)&DOOR_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, FTOFIX19_13(2)},
     },
 
@@ -396,7 +399,10 @@ BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
         // texture definition
         (TextureDefinition*)&DOOR_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
@@ -496,7 +502,10 @@ BgmapSpriteROMDef DOOR_BACK_SPRITE =
         // texture definition
         (TextureDefinition*)&DOOR_BACK_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

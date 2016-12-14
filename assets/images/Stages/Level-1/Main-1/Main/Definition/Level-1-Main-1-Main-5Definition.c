@@ -82,6 +82,9 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_5_IM_SPRITE =
             // texture definition
             NULL,
 
+            // transparent
+            false,
+
             // displacement
             {0, 0, 0},
         },

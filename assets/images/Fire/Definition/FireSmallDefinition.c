@@ -119,7 +119,10 @@ ObjectSpriteROMDef FIRE_SMALL_SPRITE =
         // texture definition
         (TextureDefinition*)&FIRE_SMALL_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, FTOFIX19_13(1)},
     },
 

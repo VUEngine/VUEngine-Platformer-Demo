@@ -192,7 +192,10 @@ BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =
         // texture definition
         (TextureDefinition*)&HIDE_LAYER_10x7_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

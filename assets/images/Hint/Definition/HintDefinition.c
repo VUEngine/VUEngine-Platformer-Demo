@@ -373,7 +373,10 @@ BgmapSpriteROMDef HINT_SPRITE =
         // texture definition
         (TextureDefinition*)&HINT_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {FTOFIX19_13(28), FTOFIX19_13(-21), 0},
     },
 

@@ -85,7 +85,10 @@ BgmapSpriteROMDef MOUND_1_IM_SPRITE =
         // texture definition
         (TextureDefinition*)&MOUND_1_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 

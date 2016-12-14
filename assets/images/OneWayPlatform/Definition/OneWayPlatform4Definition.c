@@ -85,7 +85,10 @@ BgmapSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =
         // texture definition
         (TextureDefinition*)&ONE_WAY_PLATFORM_4_TX,
 
-        // displacement
+        // transparent
+		false,
+
+		// displacement
         {0, 0, 0},
     },
 
