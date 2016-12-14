@@ -82,7 +82,11 @@ extern EntityDefinition GRASS_AG;
 extern EntityDefinition BUSH_AG;
 extern EntityDefinition FENCE_IM;
 extern EntityDefinition TORCH_AG;
+extern EntityDefinition TORCH_LIGHT_AG;
 extern EntityDefinition FIRE_SMALL_AG;
+
+extern EntityDefinition WATERFALL_TOP_AG;
+extern EntityDefinition WATERFALL_STREAM_AG;
 
 extern EntityDefinition LANE_V_6_IM;
 

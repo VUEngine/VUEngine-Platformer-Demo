@@ -88,7 +88,10 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_ST_CHILDREN[] =
     {&DOOR_AG,                      {FTOFIX19_13(42),  	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, 0, "EntryDoor", NULL, NULL, false},
     {&DOOR_AG,                      {FTOFIX19_13(347), 	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, 0, NULL, NULL, (void*)&LEVEL_1_INTERSECTION_LOWER_EP, false},
 
+    {&TORCH_LIGHT_AG,               {FTOFIX19_13(64),  	FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(64),  	FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
+
+    {&TORCH_LIGHT_AG,               {FTOFIX19_13(320), 	FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(320), 	FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
 
     {&COIN_AG,                      {FTOFIX19_13(144),  FTOFIX19_13(112),  	FTOFIX19_13(LAYER_0_ITEMS)}, 27, NULL, NULL, NULL, false},

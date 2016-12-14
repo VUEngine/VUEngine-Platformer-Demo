@@ -41,10 +41,10 @@ extern BYTE TorchMap[];
 AnimationFunctionROMDef TORCH_BURN_ANIM =
 {
 	// number of frames of this animation function
-	3,
+	4,
 
 	// frames to play in animation
-	{0, 1, 2},
+	{0, 1, 2, 1},
 
 	// number of cycles a frame of animation is displayed
 	6,

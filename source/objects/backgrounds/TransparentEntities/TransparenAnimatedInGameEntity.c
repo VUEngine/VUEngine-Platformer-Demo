@@ -29,14 +29,14 @@
 #include <Sprite.h>
 
 #include <objects.h>
-#include "TransparentImage.h"
+#include "TransparentAnimatedInGameEntity.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(TransparentImage, Image);
+__CLASS_DEFINITION(TransparentAnimatedInGameEntity, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,34 +44,36 @@ __CLASS_DEFINITION(TransparentImage, Image);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(TransparentImage, ImageDefinition* imageDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(TransparentImage, imageDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(TransparentAnimatedInGameEntity, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(TransparentAnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
 
 // class's constructor
-void TransparentImage_constructor(TransparentImage this, ImageDefinition* imageDefinition, s16 id, s16 internalId, const char* const name)
+void TransparentAnimatedInGameEntity_constructor(TransparentAnimatedInGameEntity this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "TransparentImage::constructor: null this");
+	ASSERT(this, "TransparentAnimatedInGameEntity::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Image, imageDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
 
 	// init members
 	this->visible = true;
 }
 
 // class's destructor
-void TransparentImage_destructor(TransparentImage this)
+void TransparentAnimatedInGameEntity_destructor(TransparentAnimatedInGameEntity this)
 {
-	ASSERT(this, "TransparentImage::destructor: null this");
+	ASSERT(this, "TransparentAnimatedInGameEntity::destructor: null this");
 
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
 
-void TransparentImage_update(TransparentImage this)
+void TransparentAnimatedInGameEntity_update(TransparentAnimatedInGameEntity this, u32 elapsedTime)
 {
-	ASSERT(this, "TransparentImage::update: null this");
+	ASSERT(this, "TransparentAnimatedInGameEntity::update: null this");
+
+	AnimatedInGameEntity_update(__SAFE_CAST(AnimatedInGameEntity, this), elapsedTime);
 
 	VirtualNode node = VirtualList_begin(this->sprites);
 

@@ -19,53 +19,84 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBackground.h>
-#include <ManagedMBackground.h>
-#include <MBgmapSprite.h>
+#include <libgccvb.h>
+#include <TransparentAnimatedInGameEntity.h>
+#include <ObjectAnimatedSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainTiles[];
-extern BYTE Level_1_Main_1_Main_1Map[];
-
-extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
+extern BYTE WaterfallStreamTiles[];
+extern BYTE WaterfallStreamMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH =
+// a function which defines the frames to play
+AnimationFunctionROMDef WATERFALL_STREAM_DEFAULT_ANIM =
+{
+	// number of frames of this animation function
+	3,
+
+	// frames to play in animation
+	{0, 1, 2},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Default",
+};
+
+// an animation definition
+AnimationDescriptionROMDef WATERFALL_STREAM_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&WATERFALL_STREAM_DEFAULT_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef WATERFALL_STREAM_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    50,
+    56,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+    __ANIMATED_SHARED,
 
     // char definition
-    Level_1_Main_1_MainTiles,
+    WaterfallStreamTiles,
 };
 
-TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
+TextureROMDef WATERFALL_STREAM_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_CH,
+    (CharSetDefinition*)&WATERFALL_STREAM_CH,
 
     // bgmap definition
-    Level_1_Main_1_Main_1Map,
+    WaterfallStreamMap,
 
     // cols (max 64)
-    64,
+    2,
 
     // rows (max 64)
-    33,
+    28,
 
     // padding for affine transformations
 	{0, 0},
@@ -76,57 +107,68 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
     1,
 
     // palette number (0-3)
-    1,
+    0,
 };
 
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_TEXTURES[] =
+ObjectSpriteROMDef WATERFALL_STREAM_SPRITE =
 {
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_1_TX,
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
+
+        // texture definition
+        (TextureDefinition*)&WATERFALL_STREAM_TX,
+
+        // displacement
+        {
+        	0,
+        	0,
+        	FTOFIX19_13(-1),
+        },
+    },
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+ObjectSpriteROMDef* const WATERFALL_STREAM_SPRITES[] =
+{
+	&WATERFALL_STREAM_SPRITE,
 	NULL
 };
 
-MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
+AnimatedInGameEntityROMDef WATERFALL_STREAM_AG =
 {
-	{
+    {
         {
-            // sprite's type
-            __TYPE(MBgmapSprite),
-
-            // texture definition
-            NULL,
-
-            // displacement
-            {0, 0, 0},
+            __TYPE(TransparentAnimatedInGameEntity),
+            (SpriteROMDef**)WATERFALL_STREAM_SPRITES,
         },
 
-		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-		__WORLD_BGMAP,
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
-	},
+        // in game type
+        kNotSolid,
 
-	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_1_IM_TEXTURES,
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
 
-	// SCX/SCY
-	__WORLD_1x1,
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
 
-	// x loop
-	false,
+    	// depth
+        1,
+    },
 
-	// y loop
-	false,
-};
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&WATERFALL_STREAM_ANIM,
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE,
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE,
-	NULL
-};
-
-MBackgroundROMDef LEVEL_1_MAIN_1_MAIN_1_IM =
-{
-	__TYPE(ManagedMBackground),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES,
+    // initial animation
+    "Default",
 };

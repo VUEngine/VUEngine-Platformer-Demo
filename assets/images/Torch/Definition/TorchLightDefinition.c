@@ -19,53 +19,84 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBackground.h>
-#include <ManagedMBackground.h>
-#include <MBgmapSprite.h>
+#include <libgccvb.h>
+#include <TransparentAnimatedInGameEntity.h>
+#include <ObjectAnimatedSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainTiles[];
-extern BYTE Level_1_Main_1_Main_1Map[];
-
-extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
+extern BYTE TorchLightTiles[];
+extern BYTE TorchLightMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH =
+// a function which defines the frames to play
+AnimationFunctionROMDef TORCH_LIGHT_DEFAULT_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{0, 1, 2, 1},
+
+	// number of cycles a frame of animation is displayed
+	6,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Default",
+};
+
+// an animation definition
+AnimationDescriptionROMDef TORCH_LIGHT_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&TORCH_LIGHT_DEFAULT_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef TORCH_LIGHT_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    50,
+    100,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+    __ANIMATED_SHARED,
 
     // char definition
-    Level_1_Main_1_MainTiles,
+    TorchLightTiles,
 };
 
-TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
+TextureROMDef TORCH_LIGHT_TX =
 {
     // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_CH,
+    (CharSetDefinition*)&TORCH_LIGHT_CH,
 
     // bgmap definition
-    Level_1_Main_1_Main_1Map,
+    TorchLightMap,
 
     // cols (max 64)
-    64,
+    10,
 
     // rows (max 64)
-    33,
+    10,
 
     // padding for affine transformations
 	{0, 0},
@@ -76,57 +107,64 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
     1,
 
     // palette number (0-3)
-    1,
+    0,
 };
 
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_TEXTURES[] =
+ObjectSpriteROMDef TORCH_LIGHT_SPRITE =
 {
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_1_TX,
+    {
+        // sprite's type
+        __TYPE(ObjectAnimatedSprite),
+
+        // texture definition
+        (TextureDefinition*)&TORCH_LIGHT_TX,
+
+        // displacement
+        {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0)},
+    },
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+ObjectSpriteROMDef* const TORCH_LIGHT_SPRITES[] =
+{
+	&TORCH_LIGHT_SPRITE,
 	NULL
 };
 
-MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
+AnimatedInGameEntityROMDef TORCH_LIGHT_AG =
 {
-	{
+    {
         {
-            // sprite's type
-            __TYPE(MBgmapSprite),
-
-            // texture definition
-            NULL,
-
-            // displacement
-            {0, 0, 0},
+            __TYPE(TransparentAnimatedInGameEntity),
+            (SpriteROMDef**)TORCH_LIGHT_SPRITES,
         },
 
-		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-		__WORLD_BGMAP,
+        // collision detection gap (up, down, left, right)
+        {0, 0, 0, 0},
 
-		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
-	},
+        // in game type
+        kNotSolid,
 
-	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_1_IM_TEXTURES,
+        // width
+        // if 0, width and height will be inferred from the texture's size
+    	0,
 
-	// SCX/SCY
-	__WORLD_1x1,
+    	// height
+        // if 0, width and height will be inferred from the texture's size
+    	0,
 
-	// x loop
-	false,
+    	// depth
+        1,
+    },
 
-	// y loop
-	false,
-};
+    // pointer to the animation definition for the item
+    (AnimationDescription*)&TORCH_LIGHT_ANIM,
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE,
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE,
-	NULL
-};
-
-MBackgroundROMDef LEVEL_1_MAIN_1_MAIN_1_IM =
-{
-	__TYPE(ManagedMBackground),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES,
+    // initial animation
+    "Default",
 };
