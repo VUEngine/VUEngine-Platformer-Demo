@@ -263,7 +263,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 	    s8 allowedNumberOfJumps = (this->powerUp == kPowerUpBandana) ? 2 : 1;
 
 #ifdef GOD_MODE
-    allowedNumberOfJumps = 999999999;
+    allowedNumberOfJumps = 127;
 #endif
 
         // check if more jumps are allowed
