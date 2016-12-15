@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="66">
  <properties>
   <property name="include" value="Fonts.h, macros.h"/>
@@ -56,9 +55,10 @@
   <property name="stageName" value="PAUSE_SCREEN"/>
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
- <tileset firstgid="13" source="../assets/tilesets/Objects.tsx"/>
- <tileset firstgid="35" source="../assets/tilesets/Items.tsx"/>
- <tileset firstgid="38" source="../assets/tilesets/Elements.tsx"/>
+ <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
+ <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
+ <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
+ <tileset firstgid="42" source="../assets/tilesets/Particles.tsx"/>
  <tileset firstgid="43" source="../assets/tilesets/InnerTiles.tsx"/>
  <tileset firstgid="141" source="../assets/tilesets/OuterTiles.tsx"/>
  <objectgroup draworder="index" name="UI" opacity="0.5">
@@ -72,6 +72,6 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_0"/>
   </properties>
-  <object id="64" name="Hero Sleeping" type="Entity" gid="34" x="180" y="104" width="24" height="24"/>
+  <object id="64" name="Hero Sleeping" type="Entity" gid="33" x="180" y="104" width="24" height="24"/>
  </objectgroup>
 </map>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="61">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="78">
  <properties>
   <property name="include" value="Fonts.h, macros.h"/>
   <property name="stage.assets.bgm" value="NULL"/>
   <property name="stage.assets.charSets" value="NULL"/>
-  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, PLATFORMER_LARGE_FONT"/>
+  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT"/>
   <property name="stage.assets.stageTextureEntryDefinitions" value="NULL"/>
   <property name="stage.entities.uiContainerDefinition" value="UI"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>
@@ -52,25 +52,41 @@
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
-  <property name="stageName" value="EMPTY"/>
+  <property name="stageName" value="VBJAENGINE_SCREEN"/>
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
  <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
  <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
  <tileset firstgid="42" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="43" source="../assets/tilesets/InnerTiles.tsx"/>
- <tileset firstgid="141" source="../assets/tilesets/OuterTiles.tsx"/>
+ <tileset firstgid="43" name="Other" tilewidth="512" tileheight="224" tilecount="2" columns="0">
+  <tile id="7">
+   <properties>
+    <property name="entityName" value="VBJAENGINE_BG_IM"/>
+   </properties>
+   <image width="512" height="224" source="../../images/Stages/VBJaEngineScreen/Preview/VBJaEngineScreenBG.png"/>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="entityName" value="VBJAENGINE_LOGO_3D_IM"/>
+   </properties>
+   <image width="144" height="72" source="../../images/Stages/VBJaEngineScreen/Preview/VBJaEngineScreenLogo.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="52" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="150" source="../assets/tilesets/OuterTiles.tsx"/>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
    <property name="containerType" value="Ui"/>
    <property name="position.z" value="0"/>
   </properties>
+  <object id="75" name="Scrolling BG" type="Entity" gid="50" x="-64" y="224" width="512" height="224"/>
  </objectgroup>
  <objectgroup draworder="index" name="Main">
   <properties>
    <property name="containerType" value="Main"/>
-   <property name="position.z" value="LAYER_0"/>
+   <property name="position.z" value="0"/>
   </properties>
+  <object id="77" name="Logo" type="Entity" gid="51" x="116" y="148" width="144" height="72"/>
  </objectgroup>
 </map>

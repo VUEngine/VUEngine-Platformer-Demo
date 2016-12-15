@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="61">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="69">
  <properties>
   <property name="include" value="Fonts.h, macros.h"/>
   <property name="stage.assets.bgm" value="NULL"/>
   <property name="stage.assets.charSets" value="NULL"/>
-  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, PLATFORMER_LARGE_FONT"/>
+  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT"/>
   <property name="stage.assets.stageTextureEntryDefinitions" value="NULL"/>
   <property name="stage.entities.uiContainerDefinition" value="UI"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>
@@ -52,7 +52,7 @@
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
-  <property name="stageName" value="EMPTY"/>
+  <property name="stageName" value="LEVEL_DONE_SCREEN"/>
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
@@ -72,5 +72,15 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_0"/>
   </properties>
+  <object id="66" name="Coin" type="Entity" gid="35" x="156" y="116" width="16" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0_ITEMS"/>
+   </properties>
+  </object>
+  <object id="68" name="Clock" type="Entity" gid="29" x="156" y="132" width="16" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0_ITEMS"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

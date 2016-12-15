@@ -95,7 +95,7 @@ BgmapSpriteROMDef TEST_ROOM_MAIN_1_IM_SPRITE =
             FTOFIX19_13(0),
             FTOFIX19_13(0),
             FTOFIX19_13(0),
-            FTOFIX19_13(0)
+            0,
         },
     },
 
@@ -161,6 +161,7 @@ BgmapSpriteROMDef TEST_ROOM_MAIN_2_IM_SPRITE =
             FTOFIX19_13(0),
             FTOFIX19_13(0),
             FTOFIX19_13(0),
+            0,
         },
     },
 
