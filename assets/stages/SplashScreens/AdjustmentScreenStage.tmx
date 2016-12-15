@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="75">
  <properties>
+  <property name="declaration" value="NULL"/>
   <property name="include" value="Fonts.h, macros.h"/>
   <property name="stage.assets.bgm" value="NULL"/>
   <property name="stage.assets.charSets" value="NULL"/>
@@ -58,8 +60,9 @@
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
  <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
  <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
- <tileset firstgid="42" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="43" name="Other" tilewidth="208" tileheight="112" tilecount="4" columns="0">
+ <tileset firstgid="42" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="52" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="53" name="Other" tilewidth="208" tileheight="112" tilecount="4" columns="0">
   <tile id="0">
    <properties>
     <property name="entityName" value="ADJUSTMENT_SCREEN_BG_IM"/>
@@ -85,8 +88,8 @@
    <image width="16" height="16" source="../../images/Stages/AdjustmentScreen/Preview/AdjustmentScreenIcon.png"/>
   </tile>
  </tileset>
- <tileset firstgid="50" source="../assets/tilesets/InnerTiles.tsx"/>
- <tileset firstgid="148" source="../assets/tilesets/OuterTiles.tsx"/>
+ <tileset firstgid="60" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="158" source="../assets/tilesets/OuterTiles.tsx"/>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
    <property name="containerType" value="Ui"/>
@@ -98,27 +101,27 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="69" name="BG" type="Entity" gid="43" x="136" y="168" width="112" height="112">
+  <object id="69" name="BG" type="Entity" gid="53" x="136" y="168" width="112" height="112">
    <properties>
     <property name="position.z" value="64"/>
    </properties>
   </object>
-  <object id="70" name="Logo" type="Entity" gid="45" x="88" y="130" width="208" height="40"/>
+  <object id="70" name="Logo" type="Entity" gid="55" x="88" y="130" width="208" height="40"/>
  </objectgroup>
  <objectgroup name="Icons Left Eye">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="71" name="Icon Top Left" type="Entity" gid="48" x="0" y="16" width="16" height="16"/>
-  <object id="72" name="Icon Bottom Right" type="Entity" gid="48" x="368" y="224" width="16" height="16"/>
+  <object id="71" name="Icon Top Left" type="Entity" gid="58" x="0" y="16" width="16" height="16"/>
+  <object id="72" name="Icon Bottom Right" type="Entity" gid="58" x="368" y="224" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="Icons Right Eye">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="73" name="Icon Top Right" type="Entity" gid="49" x="368" y="16" width="16" height="16"/>
-  <object id="74" name="Icon Bottom Left" type="Entity" gid="49" x="0" y="224" width="16" height="16"/>
+  <object id="73" name="Icon Top Right" type="Entity" gid="59" x="368" y="16" width="16" height="16"/>
+  <object id="74" name="Icon Bottom Left" type="Entity" gid="59" x="0" y="224" width="16" height="16"/>
  </objectgroup>
 </map>

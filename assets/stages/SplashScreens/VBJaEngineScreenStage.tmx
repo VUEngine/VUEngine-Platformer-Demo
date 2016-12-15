@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="78">
  <properties>
+  <property name="declaration" value="NULL"/>
   <property name="include" value="Fonts.h, macros.h"/>
   <property name="stage.assets.bgm" value="NULL"/>
   <property name="stage.assets.charSets" value="NULL"/>
@@ -58,8 +60,9 @@
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
  <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
  <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
- <tileset firstgid="42" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="43" name="Other" tilewidth="512" tileheight="224" tilecount="2" columns="0">
+ <tileset firstgid="42" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="52" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="53" name="Other" tilewidth="512" tileheight="224" tilecount="2" columns="0">
   <tile id="7">
    <properties>
     <property name="entityName" value="VBJAENGINE_BG_IM"/>
@@ -73,20 +76,24 @@
    <image width="144" height="72" source="../../images/Stages/VBJaEngineScreen/Preview/VBJaEngineScreenLogo.png"/>
   </tile>
  </tileset>
- <tileset firstgid="52" source="../assets/tilesets/InnerTiles.tsx"/>
- <tileset firstgid="150" source="../assets/tilesets/OuterTiles.tsx"/>
- <objectgroup draworder="index" name="UI" opacity="0.5">
-  <properties>
-   <property name="containerType" value="Ui"/>
-   <property name="position.z" value="0"/>
-  </properties>
-  <object id="75" name="Scrolling BG" type="Entity" gid="50" x="-64" y="224" width="512" height="224"/>
- </objectgroup>
+ <tileset firstgid="62" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="160" source="../assets/tilesets/OuterTiles.tsx"/>
  <objectgroup draworder="index" name="Main">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="77" name="Logo" type="Entity" gid="51" x="116" y="148" width="144" height="72"/>
+  <object id="75" name="Scrolling BG" type="Entity" gid="60" x="-64" y="224" width="512" height="224">
+   <properties>
+    <property name="position.z" value="64"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" name="UI" opacity="0.5">
+  <properties>
+   <property name="containerType" value="Ui"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="77" name="Logo" type="Entity" gid="61" x="110" y="144" width="144" height="72"/>
  </objectgroup>
 </map>

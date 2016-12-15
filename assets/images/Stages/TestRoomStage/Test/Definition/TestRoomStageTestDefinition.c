@@ -87,14 +87,14 @@ BgmapSpriteROMDef TEST_ROOM_TEST_1_IM_SPRITE =
         (TextureDefinition*)&TEST_ROOM_TEST_1_TX,
 
         // transparent
-		false,
+        false,
 
-		// displacement
+        // displacement
         {
-            FTOFIX19_13(0),
-            FTOFIX19_13(0),
-            FTOFIX19_13(0),
-            0,
+            FTOFIX19_13(0), // x
+            FTOFIX19_13(0), // y
+            FTOFIX19_13(0), // z
+            FTOFIX19_13(0), // parallax
         },
     },
 

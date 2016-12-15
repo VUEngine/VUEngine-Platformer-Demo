@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<tileset name="Objects" tilewidth="80" tileheight="56" tilecount="14" columns="32">
+<tileset name="Objects" tilewidth="80" tileheight="56" tilecount="13" columns="32">
  <tile id="0">
   <properties>
    <property name="entityName" value="BUSH_AG"/>
@@ -12,9 +12,6 @@
    <property name="entityName" value="DOOR_AG"/>
   </properties>
   <image width="24" height="32" source="../../../images/Door/Preview/Door.png"/>
- </tile>
- <tile id="4">
-  <image width="24" height="16" source="../../../images/Fence/Preview/Fence.png"/>
  </tile>
  <tile id="5">
   <properties>

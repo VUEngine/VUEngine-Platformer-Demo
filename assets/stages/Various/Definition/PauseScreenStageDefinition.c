@@ -31,12 +31,6 @@
 extern EntityDefinition HERO_SLEEPING_AG;
 
 
-//---------------------------------------------------------------------------------------------------------
-//												ASSETS
-//---------------------------------------------------------------------------------------------------------
-
-// child templates
-
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
@@ -44,7 +38,7 @@ extern EntityDefinition HERO_SLEEPING_AG;
 
 PositionedEntityROMDef PAUSE_SCREEN_ST_ENTITIES[] =
 {
-	{&HERO_SLEEPING_AG, {FTOFIX19_13(192), FTOFIX19_13(92), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, true}, // Hero Sleeping
+	{&HERO_SLEEPING_AG, {FTOFIX19_13(192), FTOFIX19_13(92), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero Sleeping
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };

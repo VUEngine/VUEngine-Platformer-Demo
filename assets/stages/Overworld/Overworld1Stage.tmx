@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="94">
  <properties>
+  <property name="declaration" value="NULL"/>
   <property name="include" value="Fonts.h, macros.h"/>
   <property name="stage.assets.bgm" value="NULL"/>
   <property name="stage.assets.charSets" value="NULL"/>
@@ -58,8 +60,9 @@
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
  <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
  <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
- <tileset firstgid="42" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="43" name="Overworld" tilewidth="384" tileheight="224" tilecount="4" columns="0">
+ <tileset firstgid="42" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="52" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="53" name="Overworld" tilewidth="384" tileheight="224" tilecount="4" columns="0">
   <tile id="9">
    <properties>
     <property name="entityName" value="OVERWORLD_1_IM"/>
@@ -79,34 +82,41 @@
    <image width="32" height="16" source="../../images/Stages/Overworld/Preview/WaterA.png"/>
   </tile>
   <tile id="12">
+   <properties>
+    <property name="entityName" value="GUI_OVERWORLD_AG"/>
+   </properties>
    <image width="384" height="16" source="../../images/Gui/Preview/GuiOverworld.png"/>
   </tile>
  </tileset>
- <tileset firstgid="56" source="../assets/tilesets/InnerTiles.tsx"/>
- <tileset firstgid="154" source="../assets/tilesets/OuterTiles.tsx"/>
+ <tileset firstgid="66" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="164" source="../assets/tilesets/OuterTiles.tsx"/>
  <objectgroup draworder="index" name="Main">
   <properties>
    <property name="containerType" value="Main"/>
-   <property name="position.z" value="0"/>
+   <property name="position.z" value="LAYER_0"/>
   </properties>
-  <object id="78" name="Overworld Static Image" type="Entity" gid="52" x="0" y="224" width="384" height="224"/>
+  <object id="78" name="Overworld Static Image" type="Entity" gid="62" x="0" y="224" width="384" height="224">
+   <properties>
+    <property name="position.z" value="LAYER_0_BACKGROUND"/>
+   </properties>
+  </object>
   <object id="79" name="Hero (Idle)" type="Entity" gid="32" x="148" y="104" width="24" height="24"/>
-  <object id="81" name="Flower" type="Entity" gid="53" x="116" y="122" width="16" height="8"/>
-  <object id="82" name="Flower" type="Entity" gid="53" x="218" y="136" width="16" height="8"/>
-  <object id="83" name="Flower" type="Entity" gid="53" x="210" y="172" width="16" height="8"/>
-  <object id="84" name="Flower" type="Entity" gid="53" x="122" y="86" width="16" height="8"/>
-  <object id="85" name="Flower" type="Entity" gid="53" x="148" y="204" width="16" height="8"/>
-  <object id="86" name="Flower" type="Entity" gid="53" x="282" y="140" width="16" height="8"/>
-  <object id="87" name="Water" type="Entity" gid="54" x="54" y="26" width="32" height="16"/>
-  <object id="88" name="Water" type="Entity" gid="54" x="10" y="94" width="32" height="16"/>
-  <object id="89" name="Water" type="Entity" gid="54" x="58" y="184" width="32" height="16"/>
-  <object id="91" name="Smoke" type="Entity" gid="42" x="177" y="89" width="91" height="82"/>
+  <object id="81" name="Flower" type="Entity" gid="63" x="116" y="122" width="16" height="8"/>
+  <object id="82" name="Flower" type="Entity" gid="63" x="218" y="136" width="16" height="8"/>
+  <object id="83" name="Flower" type="Entity" gid="63" x="210" y="172" width="16" height="8"/>
+  <object id="84" name="Flower" type="Entity" gid="63" x="122" y="86" width="16" height="8"/>
+  <object id="85" name="Flower" type="Entity" gid="63" x="148" y="204" width="16" height="8"/>
+  <object id="86" name="Flower" type="Entity" gid="63" x="282" y="140" width="16" height="8"/>
+  <object id="87" name="Water" type="Entity" gid="64" x="54" y="26" width="32" height="16"/>
+  <object id="88" name="Water" type="Entity" gid="64" x="10" y="94" width="32" height="16"/>
+  <object id="89" name="Water" type="Entity" gid="64" x="58" y="184" width="32" height="16"/>
+  <object id="91" name="Smoke" type="Entity" gid="52" x="177" y="89" width="91" height="82"/>
  </objectgroup>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
    <property name="containerType" value="Ui"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="80" name="GUI" type="Entity" gid="55" x="0" y="224" width="384" height="16"/>
+  <object id="80" name="GUI" type="Entity" gid="65" x="0" y="224" width="384" height="16"/>
  </objectgroup>
 </map>

@@ -33,13 +33,11 @@
 //---------------------------------------------------------------------------------------------------------
 
 StageEntryPointROMDef TEST_ROOM_MAIN_EP[];
-VBVec3D test_room_collision_16_2_1 = {128, 16, 8};
-VBVec3D test_room_collision_22_2_1 = {176, 16, 8};
-VBVec3D test_room_collision_2_10_1 = {16, 80, 8};
-VBVec3D test_room_collision_2_4_1 = {16, 32, 8};
-VBVec3D test_room_collision_2_6_1 = {16, 48, 8};
-VBVec3D test_room_collision_34_2_1 = {272, 16, 8};
-VBVec3D test_room_collision_6_2_1 = {48, 16, 8};
+VBVec3D test_room_collision_160_48_8 = {160, 48, 8};
+VBVec3D test_room_collision_16_64_8 = {16, 64, 8};
+VBVec3D test_room_collision_176_16_8 = {176, 16, 8};
+VBVec3D test_room_collision_256_16_8 = {256, 16, 8};
+VBVec3D test_room_collision_80_48_8 = {80, 48, 8};
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition DOOR_AG;
@@ -52,12 +50,6 @@ extern EntityDefinition TEST_ROOM_TEST_1_IM;
 extern u16 KRISSE_BGM[][2];
 
 
-//---------------------------------------------------------------------------------------------------------
-//												ASSETS
-//---------------------------------------------------------------------------------------------------------
-
-// child templates
-
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
@@ -65,30 +57,28 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef TEST_ROOM_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {FTOFIX19_13(8), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_2_10_1, false}, 
+	{&COLLISION_CL, {FTOFIX19_13(8), FTOFIX19_13(160), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_16_64_8, false}, // Left
 	{&DOOR_AG, {FTOFIX19_13(36), FTOFIX19_13(160), FTOFIX19_13(LAYER_0)}, 0, "EntryDoor", NULL, NULL, false}, // Entry Door
 	{&HERO_AC, {FTOFIX19_13(44), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&TEST_ROOM_TEST_1_IM, {FTOFIX19_13(72), FTOFIX19_13(72), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Test Composite
 	{&COIN_AG, {FTOFIX19_13(80), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&COLLISION_CL, {FTOFIX19_13(80), FTOFIX19_13(120), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_16_2_1, false}, 
+	{&COLLISION_CL, {FTOFIX19_13(80), FTOFIX19_13(104), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_160_48_8, false}, // Top Left
 	{&COIN_AG, {FTOFIX19_13(96), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&COLLISION_CL, {FTOFIX19_13(144), FTOFIX19_13(184), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_256_16_8, false}, // Bottom
 	{&TEST_ROOM_MAIN_1_IM, {FTOFIX19_13(144), FTOFIX19_13(136), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (1)
-	{&COLLISION_CL, {FTOFIX19_13(152), FTOFIX19_13(104), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_2_6_1, false}, 
-	{&COLLISION_CL, {FTOFIX19_13(152), FTOFIX19_13(184), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_34_2_1, false}, 
-	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
 	{&SAW_BLADE_H8_AC, {FTOFIX19_13(196), FTOFIX19_13(176), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // SawBlade
-	{&COLLISION_CL, {FTOFIX19_13(248), FTOFIX19_13(88), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_22_2_1, false}, 
-	{&COLLISION_CL, {FTOFIX19_13(280), FTOFIX19_13(160), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_2_4_1, false}, 
-	{&COLLISION_CL, {FTOFIX19_13(312), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_6_2_1, false}, 
+	{&COLLISION_CL, {FTOFIX19_13(248), FTOFIX19_13(88), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_176_16_8, false}, // Top
+	{&COLLISION_CL, {FTOFIX19_13(312), FTOFIX19_13(168), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_80_48_8, false}, // Bottom Right
 	{&DOOR_AG, {FTOFIX19_13(316), FTOFIX19_13(128), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Exit Door
-	{&TEST_ROOM_MAIN_2_IM, {FTOFIX19_13(328), FTOFIX19_13(120), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (2)
-	{&COLLISION_CL, {FTOFIX19_13(344), FTOFIX19_13(120), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_2_10_1, false}, 
+	{&TEST_ROOM_MAIN_2_IM, {FTOFIX19_13(320), FTOFIX19_13(120), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (2)
+	{&COLLISION_CL, {FTOFIX19_13(344), FTOFIX19_13(112), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_collision_16_64_8, false}, // Right
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef TEST_ROOM_ST_UI_ENTITIES[] =
 {
+	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };

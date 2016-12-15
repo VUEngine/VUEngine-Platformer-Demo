@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="71">
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" nextobjectid="81">
  <properties>
+  <property name="declaration" value="StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, objects.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
   <property name="stage.assets.charSets" value="LEVEL_1_HOUSE_MAIN_CH"/>
@@ -52,14 +54,15 @@
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
-  <property name="stageName" value="TEST_ROOM"/>
+  <property name="stageName" value="LEVEL_1_HOUSE"/>
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
  <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
  <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
- <tileset firstgid="42" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="43" name="Other" tilewidth="384" tileheight="224" tilecount="2" columns="0">
+ <tileset firstgid="42" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="52" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="53" name="Other" tilewidth="384" tileheight="224" tilecount="2" columns="0">
   <tile id="2">
    <properties>
     <property name="entityName" value="LEVEL_1_HOUSE_LIGHT_IM"/>
@@ -73,30 +76,82 @@
    <image width="384" height="224" source="../../images/Stages/Level-1/House/Preview/Level-1-House-Main.png"/>
   </tile>
  </tileset>
- <tileset firstgid="47" source="../assets/tilesets/InnerTiles.tsx"/>
- <tileset firstgid="145" source="../assets/tilesets/OuterTiles.tsx"/>
+ <tileset firstgid="57" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="155" source="../assets/tilesets/OuterTiles.tsx"/>
+ <objectgroup draworder="index" name="Background">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="LAYER_0"/>
+  </properties>
+  <object id="77" name="Mountains" type="Entity" gid="46" x="-1" y="152" width="512" height="144">
+   <properties>
+    <property name="position.z" value="LAYER_5"/>
+   </properties>
+  </object>
+  <object id="78" name="Clouds" type="Entity" gid="49" x="-62" y="165" width="512" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_4"/>
+   </properties>
+  </object>
+  <object id="79" name="Front" type="Entity" gid="48" x="-272" y="181" width="512" height="48" visible="0">
+   <properties>
+    <property name="position.z" value="LAYER_3"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup draworder="index" name="Main">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_0"/>
   </properties>
-  <object id="61" name="House Background" type="Entity" gid="46" x="0" y="224" width="384" height="224"/>
-  <object id="63" name="Door" type="Entity" gid="21" x="136" y="160" width="24" height="32"/>
-  <object id="65" name="Clock" type="Entity" gid="29" x="172" y="136" width="16" height="16"/>
-  <object id="67" name="Coin" type="Entity" gid="35" x="196" y="154" width="16" height="16"/>
-  <object id="68" name="Light" type="Entity" gid="45" x="168" y="160" width="56" height="40"/>
-  <object id="69" name="Hero" type="Entity" gid="3" x="151" y="160" width="24" height="24"/>
+  <object id="61" name="House Background" type="Entity" gid="56" x="0" y="224" width="384" height="224">
+   <properties>
+    <property name="position.z" value="LAYER_0_BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="63" name="Door" type="Entity" gid="21" x="136" y="160" width="24" height="32">
+   <properties>
+    <property name="extraInfo" value="(void*)&amp;LEVEL_1_MAIN_HOUSE_EP"/>
+    <property name="name" value="&quot;EntryDoor&quot;"/>
+    <property name="position.z" value="LAYER_0_DOORS"/>
+   </properties>
+  </object>
+  <object id="65" name="Clock" type="Entity" gid="29" x="172" y="136" width="16" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0 + 24"/>
+   </properties>
+  </object>
+  <object id="67" name="Coin" type="Entity" gid="35" x="196" y="154" width="16" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0_ITEMS"/>
+   </properties>
+  </object>
+  <object id="68" name="Light" type="Entity" gid="55" x="170" y="160" width="56" height="40">
+   <properties>
+    <property name="position.z" value="LAYER_0_ITEMS - 1"/>
+   </properties>
+  </object>
+  <object id="69" name="Hero" type="Entity" gid="3" x="151" y="160" width="24" height="24">
+   <properties>
+    <property name="name" value="HERO_NAME"/>
+   </properties>
+  </object>
+  <object id="80" name="Fire" type="Entity" gid="30" x="236" y="158" width="8" height="8">
+   <properties>
+    <property name="position.z" value="LAYER_0_FOREGROUND"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Collisions">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="25" name="Left" type="Collision" gid="38" x="112" y="176" width="16" height="96"/>
-  <object id="27" name="Bottom" type="Collision" gid="38" x="128" y="176" width="128" height="16"/>
-  <object id="32" name="Top" type="Collision" gid="38" x="128" y="96" width="128" height="16"/>
-  <object id="34" name="Right" type="Collision" gid="38" x="256" y="176" width="16" height="96"/>
-  <object id="62" name="Fireplace" type="Collision" gid="39" x="228" y="160" width="24" height="20"/>
+  <object id="25" name="Left Collision" type="Collision" gid="38" x="112" y="176" width="16" height="96"/>
+  <object id="27" name="Bottom Collision" type="Collision" gid="38" x="128" y="176" width="128" height="16"/>
+  <object id="32" name="Top Collision" type="Collision" gid="38" x="128" y="96" width="128" height="16"/>
+  <object id="34" name="Right Collision" type="Collision" gid="38" x="256" y="176" width="16" height="96"/>
+  <object id="62" name="Fireplace Collision" type="Collision" gid="39" x="228" y="164" width="24" height="24"/>
  </objectgroup>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
@@ -113,6 +168,7 @@
    <properties>
     <property name="destinationName" value="EntryDoor"/>
     <property name="name" value="MAIN"/>
+    <property name="offset.x" value="14"/>
     <property name="offset.z" value="-SORT_INCREMENT"/>
    </properties>
   </object>

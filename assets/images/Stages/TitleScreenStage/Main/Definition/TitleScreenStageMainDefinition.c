@@ -28,110 +28,43 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TestRoomStageMainTiles[];
-extern BYTE TestRoomStageMain1Map[];
-extern BYTE TestRoomStageMain2Map[];
+extern BYTE TitleScreenStageMainTiles[];
+extern BYTE TitleScreenStageMain1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef TEST_ROOM_MAIN_CH =
+CharSetROMDef TITLE_SCREEN_MAIN_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    22,
+    16,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    TestRoomStageMainTiles,
+    TitleScreenStageMainTiles,
 };
 
-TextureROMDef TEST_ROOM_MAIN_1_TX =
+TextureROMDef TITLE_SCREEN_MAIN_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&TEST_ROOM_MAIN_CH,
+    (CharSetDefinition*)&TITLE_SCREEN_MAIN_CH,
 
     // bgmap definition
-    TestRoomStageMain1Map,
+    TitleScreenStageMain1Map,
 
     // cols (max 64)
-    36,
+    48,
 
     // rows (max 64)
-    14,
-
-    // padding for affine transformations
-    {0, 0},
-
-    // number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
-
-    // palette number (0-3)
-    0,
-};
-
-BgmapSpriteROMDef TEST_ROOM_MAIN_1_IM_SPRITE =
-{
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
-
-        // texture definition
-        (TextureDefinition*)&TEST_ROOM_MAIN_1_TX,
-
-        // transparent
-        false,
-
-        // displacement
-        {
-            FTOFIX19_13(0), // x
-            FTOFIX19_13(0), // y
-            FTOFIX19_13(0), // z
-            FTOFIX19_13(0), // parallax
-        },
-    },
-
-    // bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-    __WORLD_BGMAP,
-
-    // display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-    __WORLD_ON,
-};
-
-BgmapSpriteROMDef* const TEST_ROOM_MAIN_1_IM_SPRITES[] =
-{
-    &TEST_ROOM_MAIN_1_IM_SPRITE,
-    NULL
-};
-
-ImageROMDef TEST_ROOM_MAIN_1_IM =
-{
-    __TYPE(Image),
-    (SpriteROMDef**)TEST_ROOM_MAIN_1_IM_SPRITES,
-};
-
-TextureROMDef TEST_ROOM_MAIN_2_TX =
-{
-    // charset definition
-    (CharSetDefinition*)&TEST_ROOM_MAIN_CH,
-
-    // bgmap definition
-    TestRoomStageMain2Map,
-
-    // cols (max 64)
     8,
 
-    // rows (max 64)
-    10,
-
     // padding for affine transformations
     {0, 0},
 
@@ -141,17 +74,17 @@ TextureROMDef TEST_ROOM_MAIN_2_TX =
     1,
 
     // palette number (0-3)
-    0,
+    1,
 };
 
-BgmapSpriteROMDef TEST_ROOM_MAIN_2_IM_SPRITE =
+BgmapSpriteROMDef TITLE_SCREEN_MAIN_1_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&TEST_ROOM_MAIN_2_TX,
+        (TextureDefinition*)&TITLE_SCREEN_MAIN_1_TX,
 
         // transparent
         false,
@@ -172,15 +105,15 @@ BgmapSpriteROMDef TEST_ROOM_MAIN_2_IM_SPRITE =
     __WORLD_ON,
 };
 
-BgmapSpriteROMDef* const TEST_ROOM_MAIN_2_IM_SPRITES[] =
+BgmapSpriteROMDef* const TITLE_SCREEN_MAIN_1_IM_SPRITES[] =
 {
-    &TEST_ROOM_MAIN_2_IM_SPRITE,
+    &TITLE_SCREEN_MAIN_1_IM_SPRITE,
     NULL
 };
 
-ImageROMDef TEST_ROOM_MAIN_2_IM =
+ImageROMDef TITLE_SCREEN_MAIN_1_IM =
 {
     __TYPE(Image),
-    (SpriteROMDef**)TEST_ROOM_MAIN_2_IM_SPRITES,
+    (SpriteROMDef**)TITLE_SCREEN_MAIN_1_IM_SPRITES,
 };
 
