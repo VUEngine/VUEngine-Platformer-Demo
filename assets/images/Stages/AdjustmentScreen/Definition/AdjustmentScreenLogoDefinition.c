@@ -88,7 +88,7 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITE =
 		false,
 
 		// displacement
-        {0, 0, 0},
+        {0, 0, 0, 0},
     },
 
 	// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)

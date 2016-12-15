@@ -296,7 +296,7 @@ ObjectSpriteROMDef COIN_SPRITE =
 		false,
 
 		// displacement
-        {0, 0, 0},
+        {0, 0, 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
@@ -325,7 +325,7 @@ ObjectSpriteROMDef COIN_SILHOUETTE_SPRITE =
 		false,
 
 		// displacement
-        {0, 0, 0},
+        {0, 0, 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
@@ -424,7 +424,7 @@ ObjectSpriteROMDef COIN_BACK_SPRITE =
 		false,
 
 		// displacement
-        {0, 0, 0},
+        {0, 0, 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
@@ -453,7 +453,7 @@ ObjectSpriteROMDef COIN_BACK_SILHOUETTE_SPRITE =
 		false,
 
 		// displacement
-        {0, 0, 0},
+        {0, 0, 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
@@ -553,7 +553,7 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 		false,
 
 		// displacement
-        {0, 0, 0},
+        {0, 0, 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)

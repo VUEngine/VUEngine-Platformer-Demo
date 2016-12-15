@@ -92,7 +92,7 @@ BgmapSpriteROMDef FLOOR_22x12_SPRITE =
 		false,
 
 		// displacement
-        {0, 0, 0},
+        {0, 0, 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
@@ -156,7 +156,7 @@ BgmapSpriteROMDef FLOOR_22x12_TOP_SPRITE =
 		false,
 
 		// displacement
-        {0, FTOFIX19_13(-40), FTOFIX19_13(-1)},
+        {0, FTOFIX19_13(-40), FTOFIX19_13(-1), 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)

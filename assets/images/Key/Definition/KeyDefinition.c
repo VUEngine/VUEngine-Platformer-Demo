@@ -122,7 +122,7 @@ ObjectSpriteROMDef KEY_SPRITE =
 		false,
 
 		// displacement
-        {0, 0, 0},
+        {0, 0, 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)

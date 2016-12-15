@@ -123,7 +123,7 @@ BgmapSpriteROMDef TORCH_LIGHT_SPRITE =
         true,
 
         // displacement
-        {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0)},
+        {0, 0, 0, FTOFIX19_13(5)},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)

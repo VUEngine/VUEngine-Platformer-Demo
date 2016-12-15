@@ -127,6 +127,7 @@ BgmapSpriteROMDef WATERFALL_STREAM_SPRITE =
         	0,
         	0,
         	FTOFIX19_13(-1),
+        	0
         },
     },
 

@@ -377,7 +377,7 @@ BgmapSpriteROMDef HINT_SPRITE =
 		false,
 
 		// displacement
-        {FTOFIX19_13(28), FTOFIX19_13(-21), 0},
+        {FTOFIX19_13(28), FTOFIX19_13(-21), 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)

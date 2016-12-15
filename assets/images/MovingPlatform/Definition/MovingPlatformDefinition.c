@@ -120,7 +120,7 @@ BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
 		false,
 
 		// displacement
-        {0, ITOFIX19_13(-4), 0},
+        {0, ITOFIX19_13(-4), 0, 0},
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
