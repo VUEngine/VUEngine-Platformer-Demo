@@ -93,30 +93,30 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_ST_CHILDREN[] =
 {
     // since these are always visible it doesn't matter that they are not logically placed in this definition
 
-    {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(112),   FTOFIX19_13(LAYER_0)}, 	0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_ENTITIES, NULL, false},
+    {&MANAGED_ENTITY,               {FTOFIX19_13(192),  FTOFIX19_13(112),   FTOFIX19_13(LAYER_0 - 1.1f)}, 	0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_ENTITIES, NULL, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),  FTOFIX19_13(111),   FTOFIX19_13(LAYER_0)}, 	0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_COLLISIONS, NULL, false},
 
     {&HERO_AC,                      {FTOFIX19_13(32),   FTOFIX19_13(159),   FTOFIX19_13(LAYER_0)}, 	0, HERO_NAME, NULL, NULL, false},
 
     {&DOOR_AG,                      {FTOFIX19_13(176),  FTOFIX19_13(47),    FTOFIX19_13(LAYER_0_DOORS)}, 0, "UpperEntryDoor", NULL, NULL, false},
 
-    {&TORCH_LIGHT_AG,               {FTOFIX19_13(200),  FTOFIX19_13(44),    FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
+    {&TORCH_LIGHT_AG,               {FTOFIX19_13(200),  FTOFIX19_13(43),    FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(200),  FTOFIX19_13(44),    FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
 
     {&DOOR_AG,                      {FTOFIX19_13(32),   FTOFIX19_13(159),   FTOFIX19_13(LAYER_0_DOORS)}, 0, "LowerEntryDoor", NULL, NULL, false},
 
-    {&TORCH_LIGHT_AG,               {FTOFIX19_13(56),   FTOFIX19_13(156),   FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
+    {&TORCH_LIGHT_AG,               {FTOFIX19_13(56),   FTOFIX19_13(155),   FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(56),   FTOFIX19_13(156),   FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
 
     {&SAW_BLADE_H8_AC,              {FTOFIX19_13(130),  FTOFIX19_13(174),   FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
 
-    {&TORCH_LIGHT_AG,               {FTOFIX19_13(200),  FTOFIX19_13(156),   FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
+    {&TORCH_LIGHT_AG,               {FTOFIX19_13(200),  FTOFIX19_13(155),   FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(200),  FTOFIX19_13(156),   FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
 
     {&COIN_AG,                      {FTOFIX19_13(240),  FTOFIX19_13(104),   FTOFIX19_13(LAYER_0_ITEMS)}, 46, NULL, NULL, NULL, false},
     {&COIN_AG,                      {FTOFIX19_13(256),  FTOFIX19_13(104),   FTOFIX19_13(LAYER_0_ITEMS)}, 47, NULL, NULL, NULL, false},
 
-    {&TORCH_LIGHT_AG,               {FTOFIX19_13(328),  FTOFIX19_13(44),    FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
+    {&TORCH_LIGHT_AG,               {FTOFIX19_13(328),  FTOFIX19_13(43),    FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
     {&TORCH_AG,                     {FTOFIX19_13(328),  FTOFIX19_13(44),    FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
     {&DOOR_AG,                      {FTOFIX19_13(352),  FTOFIX19_13(47),    FTOFIX19_13(LAYER_0_DOORS)}, 0, NULL, NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false},
 
