@@ -1,20 +1,19 @@
 
-//{{BLOCK(AdjustmentScreenBG)
+//{{BLOCK(AdjustmentScreenPvbBG)
 
 //======================================================================
 //
-//	AdjustmentScreenBG, 112x112@2, 
+//	AdjustmentScreenPvbBG, 112x112@2, 
 //	+ 37 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 14x14 
 //	Total size: 592 + 392 = 984
 //
-//	Time-stamp: 2016-12-05, 20:35:49
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-const unsigned int AdjustmentScreenBGTiles[148] __attribute__((aligned(4)))=
+const unsigned int AdjustmentScreenPvbBGTiles[148] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00003000,
 	0x00000000,0x00003000,0x00003330,0x00003333,0x00003000,0x00003333,0x00003333,0x00003333,
@@ -39,7 +38,7 @@ const unsigned int AdjustmentScreenBGTiles[148] __attribute__((aligned(4)))=
 	0x00000003,0x00000000,0x00000000,0x00000000,
 };
 
-const unsigned short AdjustmentScreenBGMap[196] __attribute__((aligned(4)))=
+const unsigned short AdjustmentScreenPvbBGMap[196] __attribute__((aligned(4)))=
 {
 	0x0000,0x0000,0x0000,0x0001,0x0002,0x0003,0x0004,0x0004,
 	0x0005,0x0006,0x0007,0x0000,0x0000,0x0000,0x0000,0x0000,
@@ -71,4 +70,4 @@ const unsigned short AdjustmentScreenBGMap[196] __attribute__((aligned(4)))=
 	0x0024,0x0000,0x0000,0x0000,
 };
 
-//}}BLOCK(AdjustmentScreenBG)
+//}}BLOCK(AdjustmentScreenPvbBG)

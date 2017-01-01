@@ -1,4 +1,4 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+/* VBJaEngine: bitmap graphics engine for the Pvb Virtual Boy
  *
  * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
  *
@@ -26,36 +26,36 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE AdjustmentScreenLogoTiles[];
-extern BYTE AdjustmentScreenLogoMap[];
+extern BYTE AdjustmentScreenPvbLogoTiles[];
+extern BYTE AdjustmentScreenPvbLogoMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef ADJUSTMENT_SCREEN_LOGO_CH =
+CharSetROMDef ADJUSTMENT_SCREEN_PVB_LOGO_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    73,
+    72,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    AdjustmentScreenLogoTiles,
+    AdjustmentScreenPvbLogoTiles,
 };
 
-TextureROMDef ADJUSTMENT_SCREEN_LOGO_TX =
+TextureROMDef ADJUSTMENT_SCREEN_PVB_LOGO_TX =
 {
     // charset definition
-    (CharSetDefinition*)&ADJUSTMENT_SCREEN_LOGO_CH,
+    (CharSetDefinition*)&ADJUSTMENT_SCREEN_PVB_LOGO_CH,
 
     // bgmap definition
-    AdjustmentScreenLogoMap,
+    AdjustmentScreenPvbLogoMap,
 
     // cols (max 64)
     26,
@@ -75,14 +75,14 @@ TextureROMDef ADJUSTMENT_SCREEN_LOGO_TX =
     1,
 };
 
-BgmapSpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITE =
+BgmapSpriteROMDef ADJUSTMENT_SCREEN_PVB_LOGO_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&ADJUSTMENT_SCREEN_LOGO_TX,
+        (TextureDefinition*)&ADJUSTMENT_SCREEN_PVB_LOGO_TX,
 
         // transparent
 		false,
@@ -98,14 +98,14 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_LOGO_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_LOGO_IM_SPRITES[] =
+BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_PVB_LOGO_IM_SPRITES[] =
 {
-	&ADJUSTMENT_SCREEN_LOGO_IM_SPRITE,
+	&ADJUSTMENT_SCREEN_PVB_LOGO_IM_SPRITE,
 	NULL
 };
 
-ImageROMDef ADJUSTMENT_SCREEN_LOGO_IM =
+ImageROMDef ADJUSTMENT_SCREEN_PVB_LOGO_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**) ADJUSTMENT_SCREEN_LOGO_IM_SPRITES,
+	(SpriteROMDef**) ADJUSTMENT_SCREEN_PVB_LOGO_IM_SPRITES,
 };

@@ -26,42 +26,42 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE AdjustmentScreenIconTiles[];
-extern BYTE AdjustmentScreenIconMap[];
+extern BYTE AdjustmentScreenNintendoBGTiles[];
+extern BYTE AdjustmentScreenNintendoBGMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef ADJUSTMENT_SCREEN_ICON_CH =
+CharSetROMDef ADJUSTMENT_SCREEN_NINTENDO_BG_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    5,
+    2,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    AdjustmentScreenIconTiles,
+    AdjustmentScreenNintendoBGTiles,
 };
 
-TextureROMDef ADJUSTMENT_SCREEN_ICON_TX =
+TextureROMDef ADJUSTMENT_SCREEN_NINTENDO_BG_TX =
 {
     // charset definition
-    (CharSetDefinition*)&ADJUSTMENT_SCREEN_ICON_CH,
+    (CharSetDefinition*)&ADJUSTMENT_SCREEN_NINTENDO_BG_CH,
 
     // bgmap definition
-    AdjustmentScreenIconMap,
+    AdjustmentScreenNintendoBGMap,
 
     // cols (max 64)
-    2,
+    12,
 
     // rows (max 64)
-    2,
+    12,
 
     // padding for affine transformations
 	{0, 0},
@@ -75,14 +75,14 @@ TextureROMDef ADJUSTMENT_SCREEN_ICON_TX =
     0,
 };
 
-BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
+BgmapSpriteROMDef ADJUSTMENT_SCREEN_NINTENDO_BG_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
+        (TextureDefinition*)&ADJUSTMENT_SCREEN_NINTENDO_BG_TX,
 
         // transparent
 		false,
@@ -95,53 +95,17 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE =
 	__WORLD_BGMAP,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_LON,
+	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES[] =
+BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_NINTENDO_BG_IM_SPRITES[] =
 {
-	&ADJUSTMENT_SCREEN_ICON_IM_L_SPRITE,
+	&ADJUSTMENT_SCREEN_NINTENDO_BG_IM_SPRITE,
 	NULL
 };
 
-BgmapSpriteROMDef const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE =
-{
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
-
-        // texture definition
-        (TextureDefinition*)&ADJUSTMENT_SCREEN_ICON_TX,
-
-        // transparent
-		false,
-
-		// displacement
-        {0, 0, 0, 0},
-    },
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-	__WORLD_BGMAP,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_RON,
-};
-
-BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES[] =
-{
-	&ADJUSTMENT_SCREEN_ICON_IM_R_SPRITE,
-	NULL
-
-};
-
-ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_L =
+ImageROMDef ADJUSTMENT_SCREEN_NINTENDO_BG_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**) ADJUSTMENT_SCREEN_ICON_IM_L_SPRITES,
-};
-
-ImageROMDef ADJUSTMENT_SCREEN_ICON_IM_R =
-{
-	__TYPE(Image),
-	(SpriteROMDef**) ADJUSTMENT_SCREEN_ICON_IM_R_SPRITES,
+	(SpriteROMDef**) ADJUSTMENT_SCREEN_NINTENDO_BG_IM_SPRITES,
 };

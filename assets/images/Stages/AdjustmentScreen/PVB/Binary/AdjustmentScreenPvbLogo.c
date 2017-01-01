@@ -1,20 +1,19 @@
 
-//{{BLOCK(AdjustmentScreenLogo)
+//{{BLOCK(AdjustmentScreenPvbLogo)
 
 //======================================================================
 //
-//	AdjustmentScreenLogo, 208x40@2, 
+//	AdjustmentScreenPvbLogo, 208x40@2, 
 //	+ 73 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 26x5 
 //	Total size: 1168 + 260 = 1428
 //
-//	Time-stamp: 2016-12-05, 20:35:49
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-const unsigned int AdjustmentScreenLogoTiles[292] __attribute__((aligned(4)))=
+const unsigned int AdjustmentScreenPvbLogoTiles[292] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x555EFFFE,0x555E555E,0x555E555E,0x555E555E,
 	0x5555FFFF,0x55555555,0x55555555,0x55555555,0xD555FFFF,0xD555D555,0xD555D555,0xD555D555,
@@ -59,7 +58,7 @@ const unsigned int AdjustmentScreenLogoTiles[292] __attribute__((aligned(4)))=
 	0xD555D555,0xD555D555,0xD555D555,0x0000FFFF,
 };
 
-const unsigned short AdjustmentScreenLogoMap[130] __attribute__((aligned(4)))=
+const unsigned short AdjustmentScreenPvbLogoMap[130] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0002,0x0002,0x0002,0x0002,0x0002,0x0002,
 	0x0002,0x0002,0x0002,0x0002,0x0002,0x0002,0x0002,0x0002,
@@ -82,4 +81,4 @@ const unsigned short AdjustmentScreenLogoMap[130] __attribute__((aligned(4)))=
 	0x0047,0x0048,
 };
 
-//}}BLOCK(AdjustmentScreenLogo)
+//}}BLOCK(AdjustmentScreenPvbLogo)
