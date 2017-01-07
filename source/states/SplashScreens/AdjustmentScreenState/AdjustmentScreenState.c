@@ -25,6 +25,7 @@
 #include <AdjustmentScreenState.h>
 #include <AutoPauseSelectScreenState.h>
 #include <Languages.h>
+#include <PostProcessingEffects.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -41,6 +42,7 @@ extern StageROMDef ADJUSTMENT_SCREEN_ST;
 static void AdjustmentScreenState_destructor(AdjustmentScreenState this);
 static void AdjustmentScreenState_constructor(AdjustmentScreenState this);
 static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey);
+void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -71,6 +73,16 @@ static void AdjustmentScreenState_destructor(AdjustmentScreenState this)
 	__SINGLETON_DESTROY;
 }
 
+// state's enter
+void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner)
+{
+	// call base
+	SplashScreenState_enter(__SAFE_CAST(SplashScreenState, this), owner);
+
+	// add rhombus effect
+    Game_addPostProcessingEffect(Game_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);
+}
+
 static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey __attribute__ ((unused)))
 {
     // TODO: replace this ugly hack with a proper Game_isPaused check or something similar
@@ -83,4 +95,50 @@ static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 p
     {
 	    SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
     }
+}
+
+void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+{
+    u32 color;
+
+    // runtime working variables
+    // negative value to achieve an initial delay
+    static int radius = -256;
+
+    // increase radius by 1 in each cycle
+    radius++;
+
+    // gradually decrease color with larger radius
+    if(radius < 68)
+    {
+        return;
+    }
+    else if(radius < 160)
+    {
+        color = __COLOR_BRIGHT_RED;
+    }
+    else if(radius < 224)
+    {
+        color = __COLOR_MEDIUM_RED;
+    }
+    else if(radius < 280)
+    {
+        color = __COLOR_DARK_RED;
+    }
+    else if(radius < 400)
+    {
+        // pause for a little bit before restarting
+        return;
+    }
+    else
+    {
+        // reset radius when reaching a certain length
+        radius = 68;
+        return;
+    }
+
+    // draw rhombuses around object with given radius and color
+    VBVec3D spatialObjectPosition = {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(0)};
+    PostProcessingEffects_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
+	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius + radius - 72), color, spatialObjectPosition);
 }

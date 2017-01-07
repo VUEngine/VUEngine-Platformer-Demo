@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#222222" nextobjectid="105">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="117">
  <properties>
   <property name="declaration" value="NULL"/>
   <property name="include" value="Fonts.h, macros.h"/>
@@ -21,7 +21,7 @@
   <property name="stage.physics.gravity.z" value="0"/>
   <property name="stage.rendering.colorConfig.backgroundColor" value="__COLOR_BLACK"/>
   <property name="stage.rendering.colorConfig.brightness.brightRed" value="__BRIGHTNESS_BRIGHT_RED"/>
-  <property name="stage.rendering.colorConfig.brightness.darkRed" value="__BRIGHTNESS_DARK_RED"/>
+  <property name="stage.rendering.colorConfig.brightness.darkRed" value="16"/>
   <property name="stage.rendering.colorConfig.brightness.mediumRed" value="__BRIGHTNESS_MEDIUM_RED"/>
   <property name="stage.rendering.colorConfig.brightnessRepeat" value="NULL"/>
   <property name="stage.rendering.cyclesToWaitForTextureWriting" value="__TARGET_FPS / 10"/>
@@ -56,7 +56,33 @@
   <property name="stage.streaming.unloadPadding" value="16"/>
   <property name="stageName" value="ADJUSTMENT_SCREEN"/>
  </properties>
- <tileset firstgid="1" name="PVB" tilewidth="208" tileheight="112" tilecount="2" columns="0">
+ <tileset firstgid="1" name="VUEngine" tilewidth="384" tileheight="224" tilecount="4" columns="0">
+  <tile id="0">
+   <properties>
+    <property name="entityName" value="ADJUSTMENT_SCREEN_VUENGINE_BG_IM"/>
+   </properties>
+   <image width="384" height="224" source="../../images/Stages/AdjustmentScreen/VUEngine/Preview/AdjustmentScreenVUEngineBG.png"/>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="entityName" value="ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM"/>
+   </properties>
+   <image width="144" height="144" source="../../images/Stages/AdjustmentScreen/VUEngine/Preview/AdjustmentScreenVUEngineLogo.png"/>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="entityName" value="ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L"/>
+   </properties>
+   <image width="24" height="24" source="../../images/Stages/AdjustmentScreen/VUEngine/Preview/AdjustmentScreenVUEngineIcon.png"/>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="entityName" value="ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R"/>
+   </properties>
+   <image width="24" height="24" source="../../images/Stages/AdjustmentScreen/VUEngine/Preview/AdjustmentScreenVUEngineIcon.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="5" name="PVB" tilewidth="208" tileheight="112" tilecount="2" columns="0">
   <tile id="0">
    <properties>
     <property name="entityName" value="ADJUSTMENT_SCREEN_PVB_BG_IM"/>
@@ -70,7 +96,7 @@
    <image width="208" height="40" source="../../images/Stages/AdjustmentScreen/PVB/Preview/AdjustmentScreenPvbLogo.png"/>
   </tile>
  </tileset>
- <tileset firstgid="4" name="Nintendo" tilewidth="144" tileheight="96" tilecount="4" columns="0">
+ <tileset firstgid="8" name="Nintendo" tilewidth="144" tileheight="96" tilecount="4" columns="0">
   <tile id="0">
    <properties>
     <property name="entityName" value="ADJUSTMENT_SCREEN_NINTENDO_BG_IM"/>
@@ -96,7 +122,7 @@
    <image width="16" height="16" source="../../images/Stages/AdjustmentScreen/Nintendo/Preview/AdjustmentScreenNintendoIcon.png"/>
   </tile>
  </tileset>
- <tileset firstgid="8" name="Prototype" tilewidth="144" tileheight="96" tilecount="4" columns="0">
+ <tileset firstgid="12" name="Prototype" tilewidth="144" tileheight="96" tilecount="4" columns="0">
   <tile id="0">
    <properties>
     <property name="entityName" value="ADJUSTMENT_SCREEN_PROTOTYPE_BG_IM"/>
@@ -127,47 +153,63 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="100" name="Icon Top Left (Left Eye)" type="Entity" gid="10" x="0" y="16" width="16" height="16"/>
-  <object id="99" name="Icon Bottom Right (Left Eye)" type="Entity" gid="10" x="368" y="224" width="16" height="16"/>
-  <object id="101" name="Icon Bottom Left (Right Eye)" type="Entity" gid="11" x="0" y="224" width="16" height="16"/>
-  <object id="102" name="Icon Top Right (Right Eye)" type="Entity" gid="11" x="368" y="16" width="16" height="16"/>
-  <object id="103" name="Background" type="Entity" gid="8" x="144" y="160" width="96" height="96">
+  <object id="100" name="Icon Top Left (Left Eye)" type="Entity" gid="14" x="0" y="16" width="16" height="16"/>
+  <object id="99" name="Icon Bottom Right (Left Eye)" type="Entity" gid="14" x="368" y="224" width="16" height="16"/>
+  <object id="101" name="Icon Bottom Left (Right Eye)" type="Entity" gid="15" x="0" y="224" width="16" height="16"/>
+  <object id="102" name="Icon Top Right (Right Eye)" type="Entity" gid="15" x="368" y="16" width="16" height="16"/>
+  <object id="103" name="Background" type="Entity" gid="12" x="144" y="160" width="96" height="96">
    <properties>
     <property name="position.z" value="0.01f"/>
    </properties>
   </object>
-  <object id="104" name="Logo" type="Entity" gid="9" x="120" y="128" width="144" height="48"/>
+  <object id="104" name="Logo" type="Entity" gid="13" x="120" y="128" width="144" height="48"/>
  </objectgroup>
  <objectgroup draworder="index" name="Nintendo" visible="0">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="85" name="Icon Top Right (Right Eye)" type="Entity" gid="7" x="368" y="16" width="16" height="16"/>
-  <object id="86" name="Icon Bottom Left (Right Eye)" type="Entity" gid="7" x="0" y="224" width="16" height="16"/>
-  <object id="87" name="Icon Top Left (Left Eye)" type="Entity" gid="6" x="0" y="16" width="16" height="16"/>
-  <object id="88" name="Icon Bottom Right (Left Eye)" type="Entity" gid="6" x="368" y="224" width="16" height="16"/>
-  <object id="92" name="Background" type="Entity" gid="4" x="144" y="160" width="96" height="96">
+  <object id="85" name="Icon Top Right (Right Eye)" type="Entity" gid="11" x="368" y="16" width="16" height="16"/>
+  <object id="86" name="Icon Bottom Left (Right Eye)" type="Entity" gid="11" x="0" y="224" width="16" height="16"/>
+  <object id="87" name="Icon Top Left (Left Eye)" type="Entity" gid="10" x="0" y="16" width="16" height="16"/>
+  <object id="88" name="Icon Bottom Right (Left Eye)" type="Entity" gid="10" x="368" y="224" width="16" height="16"/>
+  <object id="92" name="Background" type="Entity" gid="8" x="144" y="160" width="96" height="96">
    <properties>
     <property name="position.z" value="0.01f"/>
    </properties>
   </object>
-  <object id="91" name="Logo" type="Entity" gid="5" x="120" y="120" width="144" height="40"/>
+  <object id="91" name="Logo" type="Entity" gid="9" x="120" y="120" width="144" height="40"/>
  </objectgroup>
- <objectgroup draworder="index" name="PVB">
+ <objectgroup draworder="index" name="PVB" visible="0">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="81" name="Icon Top Right (Right Eye)" type="Entity" gid="7" x="368" y="16" width="16" height="16"/>
-  <object id="82" name="Icon Bottom Left (Right Eye)" type="Entity" gid="7" x="0" y="224" width="16" height="16"/>
-  <object id="83" name="Icon Top Left (Left Eye)" type="Entity" gid="6" x="0" y="16" width="16" height="16"/>
-  <object id="84" name="Icon Bottom Right (Left Eye)" type="Entity" gid="6" x="368" y="224" width="16" height="16"/>
-  <object id="69" name="Background" type="Entity" gid="1" x="136" y="168" width="112" height="112">
+  <object id="81" name="Icon Top Right (Right Eye)" type="Entity" gid="11" x="368" y="16" width="16" height="16"/>
+  <object id="82" name="Icon Bottom Left (Right Eye)" type="Entity" gid="11" x="0" y="224" width="16" height="16"/>
+  <object id="83" name="Icon Top Left (Left Eye)" type="Entity" gid="10" x="0" y="16" width="16" height="16"/>
+  <object id="84" name="Icon Bottom Right (Left Eye)" type="Entity" gid="10" x="368" y="224" width="16" height="16"/>
+  <object id="69" name="Background" type="Entity" gid="5" x="136" y="168" width="112" height="112">
    <properties>
     <property name="position.z" value="64"/>
    </properties>
   </object>
-  <object id="70" name="Logo" type="Entity" gid="3" x="88" y="130" width="208" height="40"/>
+  <object id="70" name="Logo" type="Entity" gid="7" x="88" y="130" width="208" height="40"/>
+ </objectgroup>
+ <objectgroup draworder="index" name="VUEngine">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="115" name="Background" type="Entity" gid="1" x="0" y="224" width="384" height="224">
+   <properties>
+    <property name="position.z" value="16"/>
+   </properties>
+  </object>
+  <object id="111" name="Icon Bottom Right (Left Eye)" type="Entity" gid="3" x="361" y="224" width="24" height="24"/>
+  <object id="112" name="Icon Top Left (Left Eye)" type="Entity" gid="3" x="0" y="24" width="24" height="24"/>
+  <object id="113" name="Icon Bottom Left (Right Eye)" type="Entity" gid="4" x="0" y="224" width="24" height="24"/>
+  <object id="114" name="Icon Top Right (Right Eye)" type="Entity" gid="4" x="360" y="24" width="24" height="24"/>
+  <object id="116" name="Logo" type="Entity" gid="2" x="120" y="184" width="144" height="144"/>
  </objectgroup>
 </map>

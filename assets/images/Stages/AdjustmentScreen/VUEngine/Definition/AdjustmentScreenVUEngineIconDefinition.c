@@ -20,49 +20,48 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <MBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE VBJaEngineScreenBGTiles[];
-extern BYTE VBJaEngineScreenBGMap[];
+extern BYTE AdjustmentScreenVUEngineIconTiles[];
+extern BYTE AdjustmentScreenVUEngineIconMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef VBJAENGINE_BG_CH =
+CharSetROMDef ADJUSTMENT_SCREEN_VUENGINE_ICON_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    148,
+    8,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    VBJaEngineScreenBGTiles,
+    AdjustmentScreenVUEngineIconTiles,
 };
 
-TextureROMDef VBJAENGINE_BG_TX =
+TextureROMDef ADJUSTMENT_SCREEN_VUENGINE_ICON_TX =
 {
     // charset definition
-    (CharSetDefinition*)&VBJAENGINE_BG_CH,
+    (CharSetDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_ICON_CH,
 
     // bgmap definition
-    VBJaEngineScreenBGMap,
+    AdjustmentScreenVUEngineIconMap,
 
     // cols (max 64)
-    64,
+    3,
 
     // rows (max 64)
-    28,
+    3,
 
     // padding for affine transformations
 	{0, 0},
@@ -76,58 +75,73 @@ TextureROMDef VBJAENGINE_BG_TX =
     0,
 };
 
-TextureROMDef* const VBJAENGINE_BG_IM_SPRITE_TEXTURES[] =
+BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L_SPRITE =
 {
-	(TextureDefinition*)&VBJAENGINE_BG_TX,
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
+
+        // texture definition
+        (TextureDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_ICON_TX,
+
+        // transparent
+		false,
+
+		// displacement
+        {0, 0, 0, 0},
+    },
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_LON,
+};
+
+BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L_SPRITES[] =
+{
+	&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L_SPRITE,
 	NULL
 };
 
-MBgmapSpriteROMDef VBJAENGINE_BG_IM_SPRITE =
+BgmapSpriteROMDef const ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R_SPRITE =
 {
-	{
-        {
-            // sprite's type
-            __TYPE(MBgmapSprite),
+    {
+        // sprite's type
+        __TYPE(BgmapSprite),
 
-            // texture definition
-            NULL,
+        // texture definition
+        (TextureDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_ICON_TX,
 
-            // transparent
-            false,
+        // transparent
+		false,
 
-            // displacement
-            {0, 0, 0, 0},
-        },
+		// displacement
+        {0, 0, 0, 0},
+    },
 
-		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-		__WORLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
-	},
-
-	(TextureDefinition**)VBJAENGINE_BG_IM_SPRITE_TEXTURES,
-
-	// SCX/SCY
-	__WORLD_1x1,
-
-	// x loop
-	true,
-
-	// y loop
-	false,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_RON,
 };
 
-BgmapSpriteROMDef* const VBJAENGINE_BG_IM_SPRITES[] =
+BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&VBJAENGINE_BG_IM_SPRITE,
+	&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R_SPRITE,
 	NULL
+
 };
 
-ImageROMDef VBJAENGINE_BG_IM =
+ImageROMDef ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)VBJAENGINE_BG_IM_SPRITES,
+	(SpriteROMDef**) ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L_SPRITES,
 };
 
+ImageROMDef ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R =
+{
+	__TYPE(Image),
+	(SpriteROMDef**) ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R_SPRITES,
+};

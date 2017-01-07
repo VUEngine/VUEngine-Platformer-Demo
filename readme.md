@@ -1,7 +1,7 @@
-VBJaEngine Platformer Demo
-==========================
+VUEngine Platformer Demo
+========================
 
-A platform demo game created using the VBJaEngine to show off some of the engine's capabilities.
+A platform demo game created using the VUEngine to show off some of the engine's capabilities.
 
 
 LICENSE
@@ -31,7 +31,7 @@ See See GPL-license.txt for the full GNU GENERAL PUBLIC LICENSE.
 COMPILING ON WIN32
 ------------------
 
-The VBJaEngine Platformer Demo as well as the VBJaEngine come bundled with VBDE (http://vbde.planetvb.com). 
+The VUEngine Platformer Demo as well as the VUEngine come bundled with VBDE (http://vbde.planetvb.com). 
 Compile by starting the VBDE build system.
 
 

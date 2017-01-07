@@ -36,6 +36,7 @@
 // declare the virtual methods which are redefined
 #define AdjustmentScreenState_SET_VTABLE(ClassName)														\
         SplashScreenState_SET_VTABLE(ClassName)															\
+        __VIRTUAL_SET(ClassName, AdjustmentScreenState, enter);											\
         __VIRTUAL_SET(ClassName, AdjustmentScreenState, processInput);									\
 
 
@@ -51,6 +52,8 @@ __CLASS(AdjustmentScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 AdjustmentScreenState AdjustmentScreenState_getInstance(void);
+
+void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner);
 
 
 #endif

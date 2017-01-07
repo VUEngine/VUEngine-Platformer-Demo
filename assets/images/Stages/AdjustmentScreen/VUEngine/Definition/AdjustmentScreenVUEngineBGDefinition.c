@@ -20,93 +20,48 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <BgmapSprite.h>
-#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE VBJaEngineScreenLogoTiles[];
-extern BYTE VBJaEngineScreenLogoMap[];
-extern BYTE VBJaEngineScreenLogoOutlineTiles[];
-extern BYTE VBJaEngineScreenLogoOutlineMap[];
+extern BYTE AdjustmentScreenVUEngineBGTiles[];
+extern BYTE AdjustmentScreenVUEngineBGMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef VBJAENGINE_LOGO_3D_CH =
+CharSetROMDef ADJUSTMENT_SCREEN_VUENGINE_BG_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    49,
+    313,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    VBJaEngineScreenLogoTiles,
+    AdjustmentScreenVUEngineBGTiles,
 };
 
-TextureROMDef VBJAENGINE_LOGO_3D_TX =
+TextureROMDef ADJUSTMENT_SCREEN_VUENGINE_BG_TX =
 {
     // charset definition
-    (CharSetDefinition*)&VBJAENGINE_LOGO_3D_CH,
+    (CharSetDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_BG_CH,
 
     // bgmap definition
-    VBJaEngineScreenLogoMap,
+    AdjustmentScreenVUEngineBGMap,
 
     // cols (max 64)
-    8,
+    48,
 
     // rows (max 64)
-    9,
-
-    // padding for affine transformations
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
-
-   // palette number (0-3)
-    0,
-};
-
-CharSetROMDef VBJAENGINE_LOGO_OUTLINE_CH =
-{
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    80,
-
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
-
-    // char definition
-    VBJaEngineScreenLogoOutlineTiles,
-};
-
-TextureROMDef VBJAENGINE_LOGO_OUTLINE_TX =
-{
-    // charset definition
-    (CharSetDefinition*)&VBJAENGINE_LOGO_OUTLINE_CH,
-
-    // bgmap definition
-    VBJaEngineScreenLogoOutlineMap,
-
-    // cols (max 64)
-    18,
-
-    // rows (max 64)
-    9,
+    28,
 
     // padding for affine transformations
 	{0, 0},
@@ -117,64 +72,40 @@ TextureROMDef VBJAENGINE_LOGO_OUTLINE_TX =
     1,
 
     // palette number (0-3)
-    1,
+    0,
 };
 
-BgmapSpriteROMDef VBJAENGINE_LOGO_3D_IM_SPRITE =
+BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_BG_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&VBJAENGINE_LOGO_3D_TX,
+        (TextureDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_BG_TX,
 
         // transparent
 		false,
 
 		// displacement
-        {0, 0, FTOFIX19_13(SORT_INCREMENT), 0},
+        {0, 0, 0, 0},
     },
 
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	__WORLD_BGMAP,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef VBJAENGINE_LOGO_OUTLINE_IM_SPRITE =
+BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_VUENGINE_BG_IM_SPRITES[] =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
-
-        // texture definition
-        (TextureDefinition*)&VBJAENGINE_LOGO_OUTLINE_TX,
-
-        // transparent
-		false,
-
-		// displacement
-        {FTOFIX19_13(13), FTOFIX19_13(1), 0, 0},
-    },
-
-	// bgmap mode (BGMAP, AFFINE or H-BIAS)
-	__WORLD_BGMAP,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
-
-BgmapSpriteROMDef* const VBJAENGINE_LOGO_3D_IM_SPRITES[] =
-{
-	&VBJAENGINE_LOGO_OUTLINE_IM_SPRITE,
-	&VBJAENGINE_LOGO_3D_IM_SPRITE,
+	&ADJUSTMENT_SCREEN_VUENGINE_BG_IM_SPRITE,
 	NULL
 };
 
-ImageROMDef VBJAENGINE_LOGO_3D_IM =
+ImageROMDef ADJUSTMENT_SCREEN_VUENGINE_BG_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)VBJAENGINE_LOGO_3D_IM_SPRITES,
+	(SpriteROMDef**) ADJUSTMENT_SCREEN_VUENGINE_BG_IM_SPRITES,
 };

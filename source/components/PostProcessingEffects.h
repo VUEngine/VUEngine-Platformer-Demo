@@ -35,5 +35,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialO
 void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 
+void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition);
+
 
 #endif

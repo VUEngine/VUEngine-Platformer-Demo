@@ -26,42 +26,42 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE VBJaEngineLogoTiles[];
-extern BYTE VBJaEngineLogoMap[];
+extern BYTE VUEngineLogoTiles[];
+extern BYTE VUEngineLogoMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef VBJAENGINE_CH =
+CharSetROMDef VUENGINE_LOGO_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    56,
+    24,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
     __NOT_ANIMATED,
 
     // char definition
-    VBJaEngineLogoTiles,
+    VUEngineLogoTiles,
 };
 
-TextureROMDef VBJAENGINE_TX =
+TextureROMDef VUENGINE_LOGO_TX =
 {
     // charset definition
-    (CharSetDefinition*)&VBJAENGINE_CH,
+    (CharSetDefinition*)&VUENGINE_LOGO_CH,
 
     // bgmap definition
-    VBJaEngineLogoMap,
+    VUEngineLogoMap,
 
     // cols (max 64)
-    16,
+    12,
 
     // rows (max 64)
-    4,
+    2,
 
     // padding for affine transformations
 	{0, 0},
@@ -75,14 +75,14 @@ TextureROMDef VBJAENGINE_TX =
     0,
 };
 
-BgmapSpriteROMDef VBJAENGINE_IM_L_SPRITE =
+BgmapSpriteROMDef VUENGINE_LOGO_IM_SPRITE =
 {
     {
 	    // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&VBJAENGINE_TX,
+        (TextureDefinition*)&VUENGINE_LOGO_TX,
 
         // transparent
 		false,
@@ -95,41 +95,17 @@ BgmapSpriteROMDef VBJAENGINE_IM_L_SPRITE =
 	__WORLD_BGMAP,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_LON,
+	__WORLD_ON,
 };
 
-BgmapSpriteROMDef VBJAENGINE_IM_R_SPRITE =
+BgmapSpriteROMDef* const VUENGINE_LOGO_IM_SPRITES[] =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
-
-        // texture definition
-        (TextureDefinition*)&VBJAENGINE_TX,
-
-        // transparent
-		false,
-
-		// displacement
-        {0, 0, 0, 0},
-    },
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-	__WORLD_BGMAP,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_RON,
-};
-
-BgmapSpriteROMDef* const VBJAENGINE_IM_SPRITES[] =
-{
-	&VBJAENGINE_IM_L_SPRITE,
-	&VBJAENGINE_IM_R_SPRITE,
+	&VUENGINE_LOGO_IM_SPRITE,
 	NULL
 };
 
-ImageROMDef VBJAENGINE_IM =
+ImageROMDef VUENGINE_LOGO_IM =
 {
 	__TYPE(Image),
-	(SpriteROMDef**)VBJAENGINE_IM_SPRITES,
+	(SpriteROMDef**)VUENGINE_LOGO_IM_SPRITES,
 };

@@ -28,7 +28,7 @@
 #include <Utilities.h>
 #include <I18n.h>
 #include <AutoPauseSelectScreenState.h>
-#include <VBJaEngineScreenState.h>
+#include <LangSelectScreenState.h>
 #include <AutoPauseScreenState.h>
 #include <Languages.h>
 #include <KeyPadManager.h>
@@ -70,7 +70,7 @@ static void __attribute__ ((noinline)) AutoPauseSelectScreenState_constructor(Au
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, VBJaEngineScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, LangSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_ST;
     this->selection = true;
 }

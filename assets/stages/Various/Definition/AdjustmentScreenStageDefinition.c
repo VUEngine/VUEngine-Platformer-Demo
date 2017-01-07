@@ -28,10 +28,10 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L;
-extern EntityDefinition ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R;
-extern EntityDefinition ADJUSTMENT_SCREEN_PVB_BG_IM;
-extern EntityDefinition ADJUSTMENT_SCREEN_PVB_LOGO_IM;
+extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_BG_IM;
+extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L;
+extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R;
+extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM;
 
 
 
@@ -41,12 +41,12 @@ extern EntityDefinition ADJUSTMENT_SCREEN_PVB_LOGO_IM;
 
 PositionedEntityROMDef ADJUSTMENT_SCREEN_ST_ENTITIES[] =
 {
-	{&ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R, {FTOFIX19_13(8), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Left (Right Eye)
-	{&ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L, {FTOFIX19_13(8), FTOFIX19_13(8), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Left (Left Eye)
-	{&ADJUSTMENT_SCREEN_PVB_BG_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(64)}, 0, NULL, NULL, NULL, false}, // Background
-	{&ADJUSTMENT_SCREEN_PVB_LOGO_IM, {FTOFIX19_13(192), FTOFIX19_13(110), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Logo
-	{&ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R, {FTOFIX19_13(376), FTOFIX19_13(8), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Right (Right Eye)
-	{&ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L, {FTOFIX19_13(376), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Right (Left Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {FTOFIX19_13(12), FTOFIX19_13(12), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Left (Left Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {FTOFIX19_13(12), FTOFIX19_13(212), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Left (Right Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_BG_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(16)}, 0, NULL, NULL, NULL, false}, // Background
+	{&ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Logo
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {FTOFIX19_13(372), FTOFIX19_13(12), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Right (Right Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {FTOFIX19_13(373), FTOFIX19_13(212), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Right (Left Eye)
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -135,7 +135,7 @@ StageROMDef ADJUSTMENT_SCREEN_ST =
 			// brightness values on the respective regions of the screen. maximum brightness is 128.
 			{
 				// dark red
-				__BRIGHTNESS_DARK_RED,
+				16,
 				// medium red
 				__BRIGHTNESS_MEDIUM_RED,
 				// bright red
