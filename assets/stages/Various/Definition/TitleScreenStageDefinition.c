@@ -1,17 +1,22 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+ * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
+ * Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 3 of the License,
- * or (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
- * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
  *
- * You should have received a copy of the GNU General Public License along with this program. If not,
- * see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 
@@ -43,8 +48,8 @@ extern EntityDefinition MOUND_BG_CASTLE_FLAG_AG;
 extern EntityDefinition MOUND_BG_CASTLE_IM;
 extern EntityDefinition MOUND_BG_FRONT_IM;
 extern EntityDefinition STAR_AG;
-extern EntityDefinition TITLE_SCREEN_MAIN_1_IM;
-extern EntityDefinition TITLE_SCREEN_MAIN_FRONT_1_IM;
+extern EntityDefinition TITLE_SCREEN_STAGE_MAIN_1_IM;
+extern EntityDefinition TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM;
 extern EntityDefinition VUENGINE_LOGO_IM;
 extern u16 KRISSE_BGM[][2];
 
@@ -54,17 +59,17 @@ extern u16 KRISSE_BGM[][2];
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
+PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
 	{&MOUND_BG_FRONT_IM, {FTOFIX19_13(-16), FTOFIX19_13(144), FTOFIX19_13(LAYER_3)}, 0, NULL, NULL, NULL, false}, // Front
 	{&GRASS_AG, {FTOFIX19_13(32), FTOFIX19_13(152), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Grass
 	{&COIN_AG, {FTOFIX19_13(56), FTOFIX19_13(134), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {FTOFIX19_13(72), FTOFIX19_13(134), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&TITLE_SCREEN_MAIN_1_IM, {FTOFIX19_13(192), FTOFIX19_13(168), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer
+	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {FTOFIX19_13(192), FTOFIX19_13(168), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer
 	{&LOGO_IM, {FTOFIX19_13(192), FTOFIX19_13(53), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Logo
-	{&VUENGINE_LOGO_IM, {FTOFIX19_13(192), FTOFIX19_13(18), FTOFIX19_13(LAYER_1)}, 0, NULL, NULL, NULL, false}, // VBJaEngine
+	{&VUENGINE_LOGO_IM, {FTOFIX19_13(192), FTOFIX19_13(18), FTOFIX19_13(LAYER_1)}, 0, NULL, NULL, NULL, false}, // VUEngine
 	{&HERO_BANDANA_AG, {FTOFIX19_13(192), FTOFIX19_13(157), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero
-	{&TITLE_SCREEN_MAIN_FRONT_1_IM, {FTOFIX19_13(192), FTOFIX19_13(168), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
+	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {FTOFIX19_13(192), FTOFIX19_13(168), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
 	{&CLOUDS_IM, {FTOFIX19_13(194), FTOFIX19_13(136), FTOFIX19_13(LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&MOUND_BG_BACK_IM, {FTOFIX19_13(255), FTOFIX19_13(67), FTOFIX19_13(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
 	{&MOUND_BG_CASTLE_FLAG_AG, {FTOFIX19_13(287), FTOFIX19_13(84), FTOFIX19_13(LAYER_3 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
@@ -77,7 +82,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_ENTITIES[] =
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef TITLE_SCREEN_ST_UI_ENTITIES[] =
+PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 {
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
@@ -88,7 +93,7 @@ PositionedEntityROMDef TITLE_SCREEN_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const TITLE_SCREEN_ST_FONTS[] =
+FontROMDef* const TITLE_SCREEN_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
@@ -96,7 +101,7 @@ FontROMDef* const TITLE_SCREEN_ST_FONTS[] =
 	NULL
 };
 
-CharSetROMDef* const TITLE_SCREEN_ST_CHARSETS[] =
+CharSetROMDef* const TITLE_SCREEN_STAGE_ST_CHARSETS[] =
 {
 	&LEVEL_1_HOUSE_MAIN_CH,
 
@@ -108,7 +113,7 @@ CharSetROMDef* const TITLE_SCREEN_ST_CHARSETS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef TITLE_SCREEN_ST =
+StageROMDef TITLE_SCREEN_STAGE_ST =
 {
 	// level
 	{
@@ -264,10 +269,10 @@ StageROMDef TITLE_SCREEN_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)TITLE_SCREEN_ST_FONTS,
+		(FontDefinition**)TITLE_SCREEN_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)TITLE_SCREEN_ST_CHARSETS,
+		(CharSetDefinition**)TITLE_SCREEN_STAGE_ST_CHARSETS,
 
 		// textures to preload
 		(StageTextureEntryDefinition*)NULL,
@@ -280,11 +285,11 @@ StageROMDef TITLE_SCREEN_ST =
 	{
 		// ui
 		{
-			TITLE_SCREEN_ST_UI_ENTITIES,
+			TITLE_SCREEN_STAGE_ST_UI_ENTITIES,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		TITLE_SCREEN_ST_ENTITIES,
+		TITLE_SCREEN_STAGE_ST_ENTITIES,
 	},
 };

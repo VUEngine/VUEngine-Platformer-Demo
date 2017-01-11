@@ -9,7 +9,7 @@ COMPILER_OUTPUT         = c
 # release:              Removes most asserts. For shipping only!
 # tools:                Adds debugging tools without all the debug checking.
 # preprocessor:         The .o files are preprocessor's output instead of compiler's.
-TYPE                    = release
+TYPE                    = tools
 
 # Optimization level
 OPTIMIZATION            = Ofast

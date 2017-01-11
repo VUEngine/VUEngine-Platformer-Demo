@@ -1,17 +1,22 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+ * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
+ * Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 3 of the License,
- * or (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
- * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
  *
- * You should have received a copy of the GNU General Public License along with this program. If not,
- * see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 
@@ -155,7 +160,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
+PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&LEVEL_1_TOWER_MAIN_BACK_IM,  	{FTOFIX19_13(192),  FTOFIX19_13(LEVEL_1_TOWER_HEIGHT), 	        FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, true},
@@ -231,7 +236,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_CHILDREN[] =
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_CHILDREN[] =
+PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN[] =
 {
 	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(215), FTOFIX19_13(-4)}, 0, NULL, NULL, NULL, true},
 
@@ -243,7 +248,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_ST_UI_CHILDREN[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const LEVEL_1_TOWER_ST_FONTS[] =
+FontROMDef* const LEVEL_1_TOWER_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
@@ -251,12 +256,12 @@ FontROMDef* const LEVEL_1_TOWER_ST_FONTS[] =
 	NULL
 };
 
-CharSetROMDef* const LEVEL_1_TOWER_ST_CHARSETS[] =
+CharSetROMDef* const LEVEL_1_TOWER_STAGE_ST_CHARSETS[] =
 {
 	NULL
 };
 
-StageTextureEntryROMDef LEVEL_1_TOWER_ST_TEXTURES[] =
+StageTextureEntryROMDef LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 {
 	{&COG_WHEEL_TX, false},
 	{&LEVEL_1_TOWER_BACK_1_TX, false},
@@ -277,7 +282,7 @@ StageTextureEntryROMDef LEVEL_1_TOWER_ST_TEXTURES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef LEVEL_1_TOWER_ST =
+StageROMDef LEVEL_1_TOWER_STAGE_ST =
 {
     // level
     {
@@ -433,13 +438,13 @@ StageROMDef LEVEL_1_TOWER_ST =
     // assets
     {
         // fonts to preload
-        (FontDefinition**)LEVEL_1_TOWER_ST_FONTS,
+        (FontDefinition**)LEVEL_1_TOWER_STAGE_ST_FONTS,
 
         // char sets to preload
-        (CharSetDefinition**)LEVEL_1_TOWER_ST_CHARSETS,
+        (CharSetDefinition**)LEVEL_1_TOWER_STAGE_ST_CHARSETS,
 
         // textures to preload
-        (StageTextureEntryDefinition*)LEVEL_1_TOWER_ST_TEXTURES,
+        (StageTextureEntryDefinition*)LEVEL_1_TOWER_STAGE_ST_TEXTURES,
 
         // background music
         (const u16 (*)[])KRISSE_BGM,
@@ -449,12 +454,12 @@ StageROMDef LEVEL_1_TOWER_ST =
     {
         // ui
         {
-            LEVEL_1_TOWER_ST_UI_CHILDREN,
+            LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN,
             __TYPE(UiContainer),
         },
 
         // children
-        LEVEL_1_TOWER_ST_CHILDREN,
+        LEVEL_1_TOWER_STAGE_ST_CHILDREN,
     },
 };
 
@@ -466,7 +471,7 @@ StageROMDef LEVEL_1_TOWER_ST =
 StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
 {{
 	// the stage to load
-    (StageDefinition*)&LEVEL_1_TOWER_ST,
+    (StageDefinition*)&LEVEL_1_TOWER_STAGE_ST,
 
 	// name of the entity to start at
     "EntryDoor",

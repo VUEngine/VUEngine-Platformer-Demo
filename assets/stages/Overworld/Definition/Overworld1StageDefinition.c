@@ -1,17 +1,22 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+ * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
+ * Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 3 of the License,
- * or (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
- * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
  *
- * You should have received a copy of the GNU General Public License along with this program. If not,
- * see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 
@@ -41,7 +46,7 @@ extern EntityDefinition WATER_A_AG;
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef OVERWORLD_1_ST_ENTITIES[] =
+PositionedEntityROMDef OVERWORLD1_STAGE_ST_ENTITIES[] =
 {
 	{&WATER_A_AG, {FTOFIX19_13(26), FTOFIX19_13(86), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
 	{&WATER_A_AG, {FTOFIX19_13(70), FTOFIX19_13(18), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
@@ -59,7 +64,7 @@ PositionedEntityROMDef OVERWORLD_1_ST_ENTITIES[] =
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef OVERWORLD_1_ST_UI_ENTITIES[] =
+PositionedEntityROMDef OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
 {
 	{&GUI_OVERWORLD_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
 
@@ -71,7 +76,7 @@ PositionedEntityROMDef OVERWORLD_1_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const OVERWORLD_1_ST_FONTS[] =
+FontROMDef* const OVERWORLD1_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
@@ -84,7 +89,7 @@ FontROMDef* const OVERWORLD_1_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef OVERWORLD_1_ST =
+StageROMDef OVERWORLD1_STAGE_ST =
 {
 	// level
 	{
@@ -240,7 +245,7 @@ StageROMDef OVERWORLD_1_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)OVERWORLD_1_ST_FONTS,
+		(FontDefinition**)OVERWORLD1_STAGE_ST_FONTS,
 
 		// char sets to preload
 		(CharSetDefinition**)NULL,
@@ -256,11 +261,11 @@ StageROMDef OVERWORLD_1_ST =
 	{
 		// ui
 		{
-			OVERWORLD_1_ST_UI_ENTITIES,
+			OVERWORLD1_STAGE_ST_UI_ENTITIES,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		OVERWORLD_1_ST_ENTITIES,
+		OVERWORLD1_STAGE_ST_ENTITIES,
 	},
 };

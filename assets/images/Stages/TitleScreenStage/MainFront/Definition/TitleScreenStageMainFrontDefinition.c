@@ -1,18 +1,23 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
-*
-* Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
-*
-* This program is free software; you can redistribute it and/or modify it under the terms of the GNU
-* General Public License as published by the Free Software Foundation; either version 3 of the License,
-* or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
-* the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
-* License for more details.
-*
-* You should have received a copy of the GNU General Public License along with this program. If not,
-* see <http://www.gnu.org/licenses/>.
-*/
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+ * A universal game engine for the Nintendo Virtual Boy
+ *
+ * Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -36,7 +41,7 @@ extern BYTE TitleScreenStageMainFront1Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef TITLE_SCREEN_MAIN_FRONT_CH =
+CharSetROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
@@ -51,10 +56,10 @@ CharSetROMDef TITLE_SCREEN_MAIN_FRONT_CH =
     TitleScreenStageMainFrontTiles,
 };
 
-TextureROMDef TITLE_SCREEN_MAIN_FRONT_1_TX =
+TextureROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&TITLE_SCREEN_MAIN_FRONT_CH,
+    (CharSetDefinition*)&TITLE_SCREEN_STAGE_MAIN_FRONT_CH,
 
     // bgmap definition
     TitleScreenStageMainFront1Map,
@@ -77,14 +82,14 @@ TextureROMDef TITLE_SCREEN_MAIN_FRONT_1_TX =
     1,
 };
 
-BgmapSpriteROMDef TITLE_SCREEN_MAIN_FRONT_1_IM_SPRITE =
+BgmapSpriteROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&TITLE_SCREEN_MAIN_FRONT_1_TX,
+        (TextureDefinition*)&TITLE_SCREEN_STAGE_MAIN_FRONT_1_TX,
 
         // transparent
         false,
@@ -105,15 +110,15 @@ BgmapSpriteROMDef TITLE_SCREEN_MAIN_FRONT_1_IM_SPRITE =
     __WORLD_ON,
 };
 
-BgmapSpriteROMDef* const TITLE_SCREEN_MAIN_FRONT_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITES[] =
 {
-    &TITLE_SCREEN_MAIN_FRONT_1_IM_SPRITE,
+    &TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITE,
     NULL
 };
 
-ImageROMDef TITLE_SCREEN_MAIN_FRONT_1_IM =
+ImageROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM =
 {
     __TYPE(Image),
-    (SpriteROMDef**)TITLE_SCREEN_MAIN_FRONT_1_IM_SPRITES,
+    (SpriteROMDef**)TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITES,
 };
 

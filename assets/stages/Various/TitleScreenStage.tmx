@@ -54,7 +54,6 @@
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
-  <property name="stageName" value="TITLE_SCREEN"/>
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
@@ -248,7 +247,7 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_3"/>
   </properties>
-  <object id="70" name="VBJaEngine" type="Entity" gid="56" x="144" y="26" width="96" height="16">
+  <object id="70" name="VUEngine" type="Entity" gid="56" x="144" y="26" width="96" height="16">
    <properties>
     <property name="position.z" value="LAYER_1"/>
    </properties>

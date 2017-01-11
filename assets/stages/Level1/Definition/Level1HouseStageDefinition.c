@@ -1,17 +1,22 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+ * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
+ * Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 3 of the License,
- * or (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
- * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
  *
- * You should have received a copy of the GNU General Public License along with this program. If not,
- * see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 
@@ -32,10 +37,10 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_HOUSE_MAIN_EP[];
-VBVec3D level_1_house_collision_128_16_8 = {128, 16, 8};
-VBVec3D level_1_house_collision_16_96_8 = {16, 96, 8};
-VBVec3D level_1_house_collision_24_24_8 = {24, 24, 8};
+StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP[];
+VBVec3D level1_house_stage_collision_128_16_8 = {128, 16, 8};
+VBVec3D level1_house_stage_collision_16_96_8 = {16, 96, 8};
+VBVec3D level1_house_stage_collision_24_24_8 = {24, 24, 8};
 extern EntityDefinition CLOCK_AG;
 extern EntityDefinition CLOUDS_IM;
 extern EntityDefinition COIN_AG;
@@ -57,27 +62,27 @@ extern u16 KRISSE_BGM[][2];
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef LEVEL_1_HOUSE_ST_ENTITIES[] =
+PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {FTOFIX19_13(120), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level_1_house_collision_16_96_8, false}, // Left Collision
+	{&COLLISION_CL, {FTOFIX19_13(120), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
 	{&KEY_DOOR_AG, {FTOFIX19_13(148), FTOFIX19_13(144), FTOFIX19_13(LAYER_0_DOORS)}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
 	{&HERO_AC, {FTOFIX19_13(163), FTOFIX19_13(148), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&CLOCK_AG, {FTOFIX19_13(180), FTOFIX19_13(128), FTOFIX19_13(LAYER_0 + 24)}, 0, NULL, NULL, NULL, false}, // Clock
 	{&LEVEL_1_HOUSE_MAIN_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // House Background
-	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(168), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level_1_house_collision_128_16_8, false}, // Bottom Collision
-	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(88), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level_1_house_collision_128_16_8, false}, // Top Collision
+	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(168), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
+	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(88), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
 	{&CLOUDS_IM, {FTOFIX19_13(194), FTOFIX19_13(149), FTOFIX19_13(LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&LEVEL_1_HOUSE_LIGHT_IM, {FTOFIX19_13(198), FTOFIX19_13(140), FTOFIX19_13(LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
 	{&COIN_AG, {FTOFIX19_13(204), FTOFIX19_13(146), FTOFIX19_13(LAYER_0_ITEMS)}, 0, NULL, NULL, NULL, false}, // Coin
 	{&FIRE_SMALL_AG, {FTOFIX19_13(240), FTOFIX19_13(154), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Fire
-	{&COLLISION_TOP_CL, {FTOFIX19_13(240), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level_1_house_collision_24_24_8, false}, // Fireplace Collision
+	{&COLLISION_TOP_CL, {FTOFIX19_13(240), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
 	{&MOUND_BG_BACK_IM, {FTOFIX19_13(255), FTOFIX19_13(80), FTOFIX19_13(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&COLLISION_CL, {FTOFIX19_13(264), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level_1_house_collision_16_96_8, false}, // Right Collision
+	{&COLLISION_CL, {FTOFIX19_13(264), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_HOUSE_ST_UI_ENTITIES[] =
+PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 {
 	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
 
@@ -89,7 +94,7 @@ PositionedEntityROMDef LEVEL_1_HOUSE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const LEVEL_1_HOUSE_ST_FONTS[] =
+FontROMDef* const LEVEL1_HOUSE_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
@@ -97,7 +102,7 @@ FontROMDef* const LEVEL_1_HOUSE_ST_FONTS[] =
 	NULL
 };
 
-CharSetROMDef* const LEVEL_1_HOUSE_ST_CHARSETS[] =
+CharSetROMDef* const LEVEL1_HOUSE_STAGE_ST_CHARSETS[] =
 {
 	&LEVEL_1_HOUSE_MAIN_CH,
 
@@ -109,7 +114,7 @@ CharSetROMDef* const LEVEL_1_HOUSE_ST_CHARSETS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef LEVEL_1_HOUSE_ST =
+StageROMDef LEVEL1_HOUSE_STAGE_ST =
 {
 	// level
 	{
@@ -265,10 +270,10 @@ StageROMDef LEVEL_1_HOUSE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)LEVEL_1_HOUSE_ST_FONTS,
+		(FontDefinition**)LEVEL1_HOUSE_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)LEVEL_1_HOUSE_ST_CHARSETS,
+		(CharSetDefinition**)LEVEL1_HOUSE_STAGE_ST_CHARSETS,
 
 		// textures to preload
 		(StageTextureEntryDefinition*)NULL,
@@ -281,12 +286,12 @@ StageROMDef LEVEL_1_HOUSE_ST =
 	{
 		// ui
 		{
-			LEVEL_1_HOUSE_ST_UI_ENTITIES,
+			LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		LEVEL_1_HOUSE_ST_ENTITIES,
+		LEVEL1_HOUSE_STAGE_ST_ENTITIES,
 	},
 };
 
@@ -295,10 +300,10 @@ StageROMDef LEVEL_1_HOUSE_ST =
 // 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_HOUSE_MAIN_EP[] =
+StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP[] =
 {{
     // the stage to load
-    (StageDefinition*)&LEVEL_1_HOUSE_ST,
+    (StageDefinition*)&LEVEL1_HOUSE_STAGE_ST,
 
     // name of the entity to start at
     "EntryDoor",

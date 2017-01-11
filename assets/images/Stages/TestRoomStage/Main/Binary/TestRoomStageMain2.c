@@ -8,7 +8,7 @@
 //	External tile file: (null).
 //	Total size: 160 = 160
 //
-//	Time-stamp: 2016-12-15, 23:31:56
+//	Time-stamp: 2017-01-09, 22:26:51
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //

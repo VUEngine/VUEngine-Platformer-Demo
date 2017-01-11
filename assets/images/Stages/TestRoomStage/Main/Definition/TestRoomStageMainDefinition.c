@@ -1,18 +1,23 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
-*
-* Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
-*
-* This program is free software; you can redistribute it and/or modify it under the terms of the GNU
-* General Public License as published by the Free Software Foundation; either version 3 of the License,
-* or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
-* the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
-* License for more details.
-*
-* You should have received a copy of the GNU General Public License along with this program. If not,
-* see <http://www.gnu.org/licenses/>.
-*/
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+ * A universal game engine for the Nintendo Virtual Boy
+ *
+ * Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -37,7 +42,7 @@ extern BYTE TestRoomStageMain2Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef TEST_ROOM_MAIN_CH =
+CharSetROMDef TEST_ROOM_STAGE_MAIN_CH =
 {
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
@@ -52,10 +57,10 @@ CharSetROMDef TEST_ROOM_MAIN_CH =
     TestRoomStageMainTiles,
 };
 
-TextureROMDef TEST_ROOM_MAIN_1_TX =
+TextureROMDef TEST_ROOM_STAGE_MAIN_1_TX =
 {
     // charset definition
-    (CharSetDefinition*)&TEST_ROOM_MAIN_CH,
+    (CharSetDefinition*)&TEST_ROOM_STAGE_MAIN_CH,
 
     // bgmap definition
     TestRoomStageMain1Map,
@@ -78,14 +83,14 @@ TextureROMDef TEST_ROOM_MAIN_1_TX =
     0,
 };
 
-BgmapSpriteROMDef TEST_ROOM_MAIN_1_IM_SPRITE =
+BgmapSpriteROMDef TEST_ROOM_STAGE_MAIN_1_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&TEST_ROOM_MAIN_1_TX,
+        (TextureDefinition*)&TEST_ROOM_STAGE_MAIN_1_TX,
 
         // transparent
         false,
@@ -106,22 +111,22 @@ BgmapSpriteROMDef TEST_ROOM_MAIN_1_IM_SPRITE =
     __WORLD_ON,
 };
 
-BgmapSpriteROMDef* const TEST_ROOM_MAIN_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const TEST_ROOM_STAGE_MAIN_1_IM_SPRITES[] =
 {
-    &TEST_ROOM_MAIN_1_IM_SPRITE,
+    &TEST_ROOM_STAGE_MAIN_1_IM_SPRITE,
     NULL
 };
 
-ImageROMDef TEST_ROOM_MAIN_1_IM =
+ImageROMDef TEST_ROOM_STAGE_MAIN_1_IM =
 {
     __TYPE(Image),
-    (SpriteROMDef**)TEST_ROOM_MAIN_1_IM_SPRITES,
+    (SpriteROMDef**)TEST_ROOM_STAGE_MAIN_1_IM_SPRITES,
 };
 
-TextureROMDef TEST_ROOM_MAIN_2_TX =
+TextureROMDef TEST_ROOM_STAGE_MAIN_2_TX =
 {
     // charset definition
-    (CharSetDefinition*)&TEST_ROOM_MAIN_CH,
+    (CharSetDefinition*)&TEST_ROOM_STAGE_MAIN_CH,
 
     // bgmap definition
     TestRoomStageMain2Map,
@@ -144,14 +149,14 @@ TextureROMDef TEST_ROOM_MAIN_2_TX =
     0,
 };
 
-BgmapSpriteROMDef TEST_ROOM_MAIN_2_IM_SPRITE =
+BgmapSpriteROMDef TEST_ROOM_STAGE_MAIN_2_IM_SPRITE =
 {
     {
         // sprite's type
         __TYPE(BgmapSprite),
 
         // texture definition
-        (TextureDefinition*)&TEST_ROOM_MAIN_2_TX,
+        (TextureDefinition*)&TEST_ROOM_STAGE_MAIN_2_TX,
 
         // transparent
         false,
@@ -172,15 +177,15 @@ BgmapSpriteROMDef TEST_ROOM_MAIN_2_IM_SPRITE =
     __WORLD_ON,
 };
 
-BgmapSpriteROMDef* const TEST_ROOM_MAIN_2_IM_SPRITES[] =
+BgmapSpriteROMDef* const TEST_ROOM_STAGE_MAIN_2_IM_SPRITES[] =
 {
-    &TEST_ROOM_MAIN_2_IM_SPRITE,
+    &TEST_ROOM_STAGE_MAIN_2_IM_SPRITE,
     NULL
 };
 
-ImageROMDef TEST_ROOM_MAIN_2_IM =
+ImageROMDef TEST_ROOM_STAGE_MAIN_2_IM =
 {
     __TYPE(Image),
-    (SpriteROMDef**)TEST_ROOM_MAIN_2_IM_SPRITES,
+    (SpriteROMDef**)TEST_ROOM_STAGE_MAIN_2_IM_SPRITES,
 };
 

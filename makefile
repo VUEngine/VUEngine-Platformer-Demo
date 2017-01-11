@@ -105,25 +105,24 @@ endif
 DATA_SECTION_ATTRIBUTES = $(MEMORY_POOL_SECTION_ATTRIBUTE) $(NON_INITIALIZED_DATA_SECTION_ATTRIBUTE) $(INITIALIZED_DATA_SECTION_ATTRIBUTE) $(STATIC_SINGLETONS_DATA_SECTION_ATTRIBUTE) $(VIRTUAL_TABLES_DATA_SECTION_ATTRIBUTE)
 
 # linker script
-LINKER_SCRIPT = $(VBJAENGINE_HOME)/lib/compiler/vb.ld
+LINKER_SCRIPT = $(VUENGINE_HOME)/lib/compiler/vb.ld
 ifneq ($(USE_CUSTOM_LINKER_SCRIPT),)
 LINKER_SCRIPT = $(shell pwd)/lib/compiler/vb.ld
 endif
 
 # engine's home
-VBJAENGINE_HOME = $(VBDE)libs/vbjaengine
+VUENGINE_HOME = $(VBDE)libs/vuengine
 
 # Which directories contain source files
 DIRS = $(shell find ./source ./assets -type d -print)
 
 # Which libraries are linked
-LIBS =  vbjae
-ROMHEADER=lib/vb.hdr
+LIBS = vuengine
 
 # Obligatory headers
 CONFIG_FILE =       $(shell pwd)/config.h
 ESSENTIAL_HEADERS = -include $(CONFIG_FILE) \
-					-include $(VBJAENGINE_HOME)/libvbjae.h
+					-include $(VUENGINE_HOME)/libvuengine.h
 
 # Common macros for all build types
 COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
@@ -148,19 +147,19 @@ MACROS = __TOOLS $(COMMON_MACROS)
 endif
 
 ifeq ($(TYPE),preprocessor)
-ALL_TARGET_PREREQUISITES = dirs $(VBJAENGINE) $(C_OBJECTS) printPostPreprocessorInfo
+ALL_TARGET_PREREQUISITES = dirs $(VUENGINE) $(C_OBJECTS) printPostPreprocessorInfo
 LD_PARAMS =
 C_PARAMS = -std=gnu99 -mv810 -nodefaultlibs -Wall -Wextra -E
 MACROS = $(COMMON_MACROS)
 endif
 
 # Add directories to the include and library paths
-VBJAENGINE_INCLUDE_PATHS = $(VBJAENGINE_HOME) $(shell find $(VBJAENGINE_HOME)/source -type d -print)
+VUENGINE_INCLUDE_PATHS = $(VUENGINE_HOME) $(shell find $(VUENGINE_HOME)/source -type d -print)
 GAME_INCLUDE_PATHS = $(shell find assets source -type d -print)
 GAME_INCLUDE_PATHS += .
 
 # linked engine's home
-VBJAENGINE_LIBRARY_PATH = $(BUILD_DIR)
+VUENGINE_LIBRARY_PATH = $(BUILD_DIR)
 
 # Where to store object and dependency files.
 STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFIX)
@@ -186,14 +185,14 @@ D_FILES = $(addprefix $(STORE)/,$(C_SOURCE:.c=.d))
 # Main target. The @ in front of a command prevents make from displaying it to the standard output.
 
 # first build the engine
-ENGINE = libvbjae.a
+ENGINE = libvuengine.a
 
 # the target file
 TARGET_FILE = output
 TARGET = $(STORE)/$(TARGET_FILE)-$(TYPE)
 
 # define the engine
-VBJAENGINE = $(BUILD_DIR)/libvbjae.a
+VUENGINE = $(BUILD_DIR)/libvuengine.a
 
 all: printBuildingInfo $(ALL_TARGET_PREREQUISITES)
 
@@ -214,7 +213,7 @@ dump: $(TARGET).elf
 
 pad: $(TARGET).vb
 	@echo Padding $(BUILD_DIR)/$(TARGET_FILE).vb
-	@$(VBJAENGINE_HOME)/lib/utilities/padder $(BUILD_DIR)/$(TARGET_FILE).vb 3
+	@$(VUENGINE_HOME)/lib/utilities/padder $(BUILD_DIR)/$(TARGET_FILE).vb 3
 	@echo " "
 
 $(TARGET).vb: $(TARGET).elf
@@ -223,16 +222,16 @@ $(TARGET).vb: $(TARGET).elf
 	@cp $(TARGET).vb $(BUILD_DIR)/$(TARGET_FILE).vb
 	@echo Done creating $(BUILD_DIR)/$(TARGET_FILE).vb in $(TYPE) mode with GCC $(COMPILER_VERSION)
 
-$(TARGET).elf: dirs $(VBJAENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
+$(TARGET).elf: dirs $(VUENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
 	@echo Linking $(TARGET).elf
 	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(LD_PARAMS) \
-		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(VBJAENGINE_LIBRARY_PATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
+		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(VUENGINE_LIBRARY_PATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.
 $(STORE)/%.o: %.c
 	@echo Compiling $<
-	@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(foreach INC,$(VBJAENGINE_INCLUDE_PATHS) $(GAME_INCLUDE_PATHS),-I$(INC))\
+	@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(foreach INC,$(VUENGINE_INCLUDE_PATHS) $(GAME_INCLUDE_PATHS),-I$(INC))\
         $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS)  -$(COMPILER_OUTPUT) $< -o $@
 	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
 	@rm -f $(STORE)/$*.dd
@@ -241,12 +240,12 @@ $(STORE)/%.o: %.s
 	@echo Creating object file for $*
 	@$(AS) -o $@ $<
 
-$(VBJAENGINE): deleteEngine
-	@echo Building VBJaEngine...
-	@$(MAKE) all -f $(VBJAENGINE_HOME)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE)
+$(VUENGINE): deleteEngine
+	@echo Building VUEngine...
+	@$(MAKE) all -f $(VUENGINE_HOME)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE)
 
 deleteEngine:
-	@rm -f $(VBJAENGINE)
+	@rm -f $(VUENGINE)
 
 # Empty rule to prevent problems when a header is deleted.
 %.h: ;

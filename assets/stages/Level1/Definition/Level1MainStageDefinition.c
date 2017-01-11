@@ -1,17 +1,22 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+ * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
+ * Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 3 of the License,
- * or (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
- * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
  *
- * You should have received a copy of the GNU General Public License along with this program. If not,
- * see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 
@@ -33,7 +38,7 @@
 // 											    DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointROMDef LEVEL_1_HOUSE_MAIN_EP;
+extern StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_INTERSECTION_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
@@ -228,7 +233,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
+PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
@@ -248,7 +253,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
     {&SMOKE_PS,						{FTOFIX19_13(88),   FTOFIX19_13(150), 	FTOFIX19_13(LAYER_0_FOREGROUND + 16)},  0, NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,     {FTOFIX19_13(256), 	FTOFIX19_13(368), 	FTOFIX19_13(LAYER_0_FOREGROUND)},       0, NULL, NULL, NULL, false},
     {&LEVEL_1_HOUSE_IM,             {FTOFIX19_13(88),   FTOFIX19_13(192), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       0, "House", NULL, NULL, false},
-	{&KEY_DOOR_AG,					{FTOFIX19_13(44), 	FTOFIX19_13(220), 	FTOFIX19_13(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL_1_HOUSE_MAIN_EP, false},
+	{&KEY_DOOR_AG,					{FTOFIX19_13(44), 	FTOFIX19_13(220), 	FTOFIX19_13(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
     {&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(256),  FTOFIX19_13(368),   FTOFIX19_13(LAYER_0_FOREGROUND)},       0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
 	{&RUN_SIGN_IM,					{FTOFIX19_13(232),  FTOFIX19_13(220), 	FTOFIX19_13(LAYER_0_BACKGROUND)},       0, NULL, NULL, NULL, false},
@@ -369,7 +374,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_CHILDREN[] =
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_CHILDREN[] =
+PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 {
 	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(215), FTOFIX19_13(-4)}, 0, NULL, NULL, NULL, true},
 
@@ -381,7 +386,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_ST_UI_CHILDREN[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const LEVEL_1_MAIN_ST_FONTS[] =
+FontROMDef* const LEVEL_1_MAIN_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
@@ -389,7 +394,7 @@ FontROMDef* const LEVEL_1_MAIN_ST_FONTS[] =
 	NULL
 };
 
-CharSetROMDef* const LEVEL_1_MAIN_ST_CHARSETS[] =
+CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 {
 	&LEVEL_1_MAIN_1_MAIN_CH,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
@@ -417,7 +422,7 @@ CharSetROMDef* const LEVEL_1_MAIN_ST_CHARSETS[] =
 	NULL
 };
 
-StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
+StageTextureEntryROMDef LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 {
 	{&LEVEL_1_MAIN_1_MAIN_3_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX, true},
@@ -457,7 +462,7 @@ StageTextureEntryROMDef LEVEL_1_MAIN_ST_TEXTURES[] =
 // 											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef LEVEL_1_MAIN_ST =
+StageROMDef LEVEL_1_MAIN_STAGE_ST =
 {
     // level
     {
@@ -613,13 +618,13 @@ StageROMDef LEVEL_1_MAIN_ST =
     // assets
     {
         // fonts to preload
-        (FontDefinition**)LEVEL_1_MAIN_ST_FONTS,
+        (FontDefinition**)LEVEL_1_MAIN_STAGE_ST_FONTS,
 
         // char sets to preload
-        (CharSetDefinition**)LEVEL_1_MAIN_ST_CHARSETS,
+        (CharSetDefinition**)LEVEL_1_MAIN_STAGE_ST_CHARSETS,
 
         // textures to preload
-        (StageTextureEntryDefinition*)LEVEL_1_MAIN_ST_TEXTURES,
+        (StageTextureEntryDefinition*)LEVEL_1_MAIN_STAGE_ST_TEXTURES,
 
         // background music
         (const u16 (*)[])WORLD_0_0_0_BGM,
@@ -629,12 +634,12 @@ StageROMDef LEVEL_1_MAIN_ST =
     {
         // ui
         {
-            LEVEL_1_MAIN_ST_UI_CHILDREN,
+            LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN,
             __TYPE(UiContainer),
         },
 
         // children
-        LEVEL_1_MAIN_ST_CHILDREN,
+        LEVEL_1_MAIN_STAGE_ST_CHILDREN,
     },
 };
 
@@ -646,7 +651,7 @@ StageROMDef LEVEL_1_MAIN_ST =
 StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
 {{
 	// the stage to load
-    (StageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
 	// name of the entity to start at
     "House",
@@ -658,7 +663,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
 StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP[] =
 {{
 	// the stage to load
-    (StageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
 	// name of the entity to start at
     "HouseEnt",
@@ -670,7 +675,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP[] =
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =
 {{
 	// the stage to load
-    (StageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
 	// name of the entity to start at
     "IntExitD",
@@ -682,7 +687,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =
 StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
 {{
 	// the stage to load
-    (StageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
 	// name of the entity to start at
     "DoorFt1",
@@ -694,7 +699,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
 StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
 {{
 	// the stage to load
-    (StageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
 	// name of the entity to start at
     "DoorBk1",
@@ -706,7 +711,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
 StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP[] =
 {{
 	// the stage to load
-    (StageDefinition*)&LEVEL_1_MAIN_ST,
+    (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
 	// name of the entity to start at
     "TowrEnt",

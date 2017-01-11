@@ -1,17 +1,22 @@
-/* VBJaEngine: bitmap graphics engine for the Nintendo Virtual Boy
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+ * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007 Jorge Eremiev <jorgech3@gmail.com>
+ * Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
- * General Public License as published by the Free Software Foundation; either version 3 of the License,
- * or (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
- * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
  *
- * You should have received a copy of the GNU General Public License along with this program. If not,
- * see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 
@@ -28,6 +33,11 @@
 
 extern BYTE AdjustmentScreenVUEngineBGTiles[];
 extern BYTE AdjustmentScreenVUEngineBGMap[];
+extern BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_SMALL_CHIP_IM_SPRITE_1;
+extern BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_SMALL_CHIP_IM_SPRITE_2;
+extern BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_CAPACITOR_IM_SPRITE_1;
+extern BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_CAPACITOR_IM_SPRITE_2;
+extern BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_CAPACITOR_IM_SPRITE_3;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,7 +49,7 @@ CharSetROMDef ADJUSTMENT_SCREEN_VUENGINE_BG_CH =
     // number of chars, depending on allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
     // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    313,
+    334,
 
     // allocation type
     // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -101,6 +111,11 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_BG_IM_SPRITE =
 BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_VUENGINE_BG_IM_SPRITES[] =
 {
 	&ADJUSTMENT_SCREEN_VUENGINE_BG_IM_SPRITE,
+	&ADJUSTMENT_SCREEN_VUENGINE_SMALL_CHIP_IM_SPRITE_1,
+	&ADJUSTMENT_SCREEN_VUENGINE_SMALL_CHIP_IM_SPRITE_2,
+	&ADJUSTMENT_SCREEN_VUENGINE_CAPACITOR_IM_SPRITE_1,
+	&ADJUSTMENT_SCREEN_VUENGINE_CAPACITOR_IM_SPRITE_2,
+	&ADJUSTMENT_SCREEN_VUENGINE_CAPACITOR_IM_SPRITE_3,
 	NULL
 };
 
