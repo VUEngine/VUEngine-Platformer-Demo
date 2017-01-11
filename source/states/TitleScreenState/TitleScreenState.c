@@ -35,7 +35,6 @@
 #include <PhysicalWorld.h>
 #include <TitleScreenState.h>
 #include <Hero.h>
-#include <macros.h>
 #include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>

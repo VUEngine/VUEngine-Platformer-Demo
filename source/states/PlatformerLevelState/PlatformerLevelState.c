@@ -38,7 +38,6 @@
 #include <OverworldState.h>
 #include <PauseScreenState.h>
 #include <Hero.h>
-#include <macros.h>
 #include <Languages.h>
 #include <objects.h>
 #include <ProgressManager.h>

@@ -32,7 +32,6 @@
 #include <I18n.h>
 #include <Utilities.h>
 #include <Languages.h>
-#include <macros.h>
 #include <SplashScreenState.h>
 #include <AutoPauseSelectScreenState.h>
 #include <LangSelectScreenState.h>

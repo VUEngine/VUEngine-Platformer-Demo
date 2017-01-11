@@ -30,7 +30,7 @@
 #include <AdjustmentScreenState.h>
 #include <AutoPauseSelectScreenState.h>
 #include <Languages.h>
-#include <PostProcessingEffects.h>
+#include <DirectDraw.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -102,13 +102,46 @@ static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 p
     }
 }
 
+void AdjustmentScreenState_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition)
+{
+    DirectDraw directDraw = DirectDraw_getInstance();
+
+	DirectDraw_drawLine(
+        directDraw,
+        (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
+        color
+    );
+
+    DirectDraw_drawLine(
+        directDraw,
+        (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
+        color
+    );
+
+    DirectDraw_drawLine(
+        directDraw,
+        (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
+        color
+    );
+
+    DirectDraw_drawLine(
+        directDraw,
+        (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
+        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
+        color
+    );
+}
+
 void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
     u32 color;
 
     // runtime working variables
     // negative value to achieve an initial delay
-    static int radius = -256;
+    static int radius = -160;
 
     // increase radius by 1 in each cycle
     radius++;
@@ -144,6 +177,6 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 
     // draw rhombuses around object with given radius and color
     VBVec3D spatialObjectPosition = {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(0)};
-    PostProcessingEffects_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
-	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius + radius - 72), color, spatialObjectPosition);
+    AdjustmentScreenState_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
+	AdjustmentScreenState_drawRhombus(ITOFIX19_13(radius + radius - 72), color, spatialObjectPosition);
 }

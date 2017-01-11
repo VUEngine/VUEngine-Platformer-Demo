@@ -40,6 +40,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
+void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition);
 
 
 //---------------------------------------------------------------------------------------------------------

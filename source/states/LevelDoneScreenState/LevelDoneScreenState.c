@@ -31,7 +31,6 @@
 #include <Printing.h>
 #include <I18n.h>
 #include <Languages.h>
-#include <macros.h>
 #include <PlatformerLevelState.h>
 #include <OverworldState.h>
 #include <ProgressManager.h>

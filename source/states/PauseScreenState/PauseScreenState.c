@@ -34,7 +34,6 @@
 #include <PhysicalWorld.h>
 #include <PauseScreenState.h>
 #include <Hero.h>
-#include <macros.h>
 #include <OverworldState.h>
 #include <OptionsScreenState.h>
 #include <PlatformerLevelState.h>

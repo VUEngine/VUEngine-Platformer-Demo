@@ -35,7 +35,6 @@
 #include <KeyPadManager.h>
 #include <Languages.h>
 #include <Utilities.h>
-#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------

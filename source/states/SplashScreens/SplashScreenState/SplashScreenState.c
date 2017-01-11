@@ -29,7 +29,6 @@
 #include <MessageDispatcher.h>
 #include <SplashScreenState.h>
 #include <KeypadManager.h>
-#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
