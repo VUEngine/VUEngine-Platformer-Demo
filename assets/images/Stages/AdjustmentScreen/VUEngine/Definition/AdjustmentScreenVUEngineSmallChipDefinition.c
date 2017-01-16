@@ -101,7 +101,8 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_SMALL_CHIP_IM_SPRITE_1 =
 		},
     },
 
-	// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
@@ -129,7 +130,8 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_SMALL_CHIP_IM_SPRITE_2 =
 		},
     },
 
-	// LOGOmap mode ( LOGOMAP, AFFINE, H-BIAS)
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)

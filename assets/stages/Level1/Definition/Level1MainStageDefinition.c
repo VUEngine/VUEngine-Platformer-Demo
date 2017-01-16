@@ -44,8 +44,8 @@ extern StageEntryPointROMDef LEVEL_1_INTERSECTION_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
 extern u16 WORLD_0_0_0_BGM[][2];
 
-StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[];
-StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[];
+StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP;
+StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP;
 
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
@@ -648,8 +648,8 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 // 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -658,10 +658,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(-22), FTOFIX19_13(-38), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -670,10 +670,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP[] =
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(14), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -682,10 +682,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =
 
     // offset from entry point (x, y, z)
     {0, FTOFIX19_13(-5), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -694,10 +694,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
 
     // offset from entry point (x, y, z)
     {0, ITOFIX19_13(-1), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -706,10 +706,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
 
     // offset from entry point (x, y, z)
     {0, FTOFIX19_13(-0.5f), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -718,4 +718,4 @@ StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP[] =
 
     // offset from entry point (x, y, z)
     {0, FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};

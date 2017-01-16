@@ -468,8 +468,8 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 // 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_TOWER_STAGE_ST,
 
@@ -478,4 +478,4 @@ StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP[] =
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(0), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};

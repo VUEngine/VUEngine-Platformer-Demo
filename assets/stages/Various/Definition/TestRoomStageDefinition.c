@@ -37,7 +37,7 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP[];
+StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP;
 VBVec3D test_room_stage_collision_160_48_8 = {160, 48, 8};
 VBVec3D test_room_stage_collision_16_64_8 = {16, 64, 8};
 VBVec3D test_room_stage_collision_176_16_8 = {176, 16, 8};
@@ -299,8 +299,8 @@ StageROMDef TEST_ROOM_STAGE_ST =
 // 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP[] =
-{{
+StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP =
+{
     // the stage to load
     (StageDefinition*)&TEST_ROOM_STAGE_ST,
 
@@ -313,5 +313,4 @@ StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP[] =
         FTOFIX19_13(0),
         FTOFIX19_13(-SORT_INCREMENT)
     },
-}};
-
+};

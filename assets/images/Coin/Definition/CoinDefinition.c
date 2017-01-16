@@ -305,6 +305,7 @@ ObjectSpriteROMDef COIN_SPRITE =
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_OBJ,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
@@ -334,6 +335,7 @@ ObjectSpriteROMDef COIN_SILHOUETTE_SPRITE =
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_OBJ,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
@@ -433,6 +435,7 @@ ObjectSpriteROMDef COIN_BACK_SPRITE =
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_OBJ,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
@@ -462,6 +465,7 @@ ObjectSpriteROMDef COIN_BACK_SILHOUETTE_SPRITE =
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_OBJ,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
@@ -562,6 +566,7 @@ ObjectSpriteROMDef AFFINE_COIN_SPRITE =
     },
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_AFFINE,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
