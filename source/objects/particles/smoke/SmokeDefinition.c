@@ -27,7 +27,6 @@
 #include <libgccvb.h>
 #include <ParticleSystem.h>
 #include <ObjectAnimatedSprite.h>
-#include "../behaviors.h"
 #include <macros.h>
 
 

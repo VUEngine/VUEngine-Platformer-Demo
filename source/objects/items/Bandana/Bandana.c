@@ -32,10 +32,7 @@
 #include <PhysicalWorld.h>
 #include <SoundManager.h>
 #include <EventManager.h>
-
-#include <objects.h>
 #include <Bandana.h>
-
 #include <PlatformerLevelState.h>
 
 

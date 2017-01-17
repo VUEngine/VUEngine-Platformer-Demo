@@ -30,10 +30,10 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <Hint.h>
-#include <objects.h>
 #include "KeyDoor.h"
 #include <PlatformerLevelState.h>
 #include <LevelDoneScreenState.h>
+#include <ProgressManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

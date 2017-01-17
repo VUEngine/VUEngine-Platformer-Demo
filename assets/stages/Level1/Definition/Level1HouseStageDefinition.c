@@ -30,7 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-#include <objects.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,6 +55,7 @@ extern EntityDefinition LEVEL_1_HOUSE_MAIN_IM;
 extern EntityDefinition MOUND_BG_BACK_IM;
 extern StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP;
 extern u16 KRISSE_BGM[][2];
+extern CharSetDefinition LEVEL_1_HOUSE_MAIN_CH;
 
 
 

@@ -30,8 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-
-#include <objects.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,9 +39,23 @@
 
 extern StageEntryPointROMDef LEVEL_1_INTERSECTION_LOWER_EP;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
-extern EntityDefinition MANAGED_ENTITY;
-extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 extern u16 KRISSE_BGM[][2];
+
+extern EntityDefinition COIN_AG;
+extern EntityDefinition COLLISION_CL;
+extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
+extern EntityDefinition DOOR_AG;
+extern EntityDefinition GUI_AG;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition LEVEL_1_COIN_ROOM_MAIN_IM;
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition SAW_BLADE_H8_AC;
+extern EntityDefinition TORCH_AG;
+extern EntityDefinition TORCH_LIGHT_AG;
+
+extern CharSetDefinition LEVEL_1_COIN_ROOM_BACK_CH;
+extern CharSetDefinition LEVEL_1_COIN_ROOM_MAIN_BACK_CH;
+extern CharSetDefinition LEVEL_1_COIN_ROOM_MAIN_CH;
 
 extern VBVec3D collision_2_28_1;
 extern VBVec3D collision_12_12_1;

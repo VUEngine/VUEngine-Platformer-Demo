@@ -30,8 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-
-#include <objects.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,9 +39,40 @@
 
 extern StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
-extern EntityDefinition MANAGED_ENTITY;
-extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
 extern u16 KRISSE_BGM[][2];
+
+extern EntityDefinition BANDANA_AG;
+extern EntityDefinition COIN_AG;
+extern EntityDefinition COLLISION_CL;
+extern EntityDefinition COLLISION_HIT_CL;
+extern EntityDefinition COLLISION_TOP_CL;
+extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
+extern EntityDefinition DOOR_AG;
+extern EntityDefinition GOAL_DOOR_AG;
+extern EntityDefinition GRASS_AG;
+extern EntityDefinition GUI_AG;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition LAVA_IG;
+extern EntityDefinition LAVA_TOP_AG;
+extern EntityDefinition LAVA_TRIGGER_IG;
+extern EntityDefinition LEVEL_1_TOWER_MAIN_1_IM;
+extern EntityDefinition LEVEL_1_TOWER_MAIN_2_IM;
+extern EntityDefinition LEVEL_1_TOWER_MAIN_BACK_IM;
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition MOVING_PLATFORM_V6_AC;
+extern EntityDefinition SAW_BLADE_H8_AC;
+extern EntityDefinition SNAIL_8_AC;
+extern EntityDefinition TORCH_AG;
+extern EntityDefinition TORCH_LIGHT_AG;
+
+extern TextureDefinition COG_WHEEL_TX;
+extern TextureDefinition DOOR_TX;
+extern TextureDefinition GUI_TX;
+extern TextureDefinition LAVA_TOP_TX;
+extern TextureDefinition LAVA_TX;
+extern TextureDefinition LEVEL_1_TOWER_BACK_1_TX;
+extern TextureDefinition LEVEL_1_TOWER_MAIN_1_TX;
+extern TextureDefinition LEVEL_1_TOWER_MAIN_BACK_1_TX;
 
 extern VBVec3D collision_2_64_1;
 extern VBVec3D collision_4_2_1;

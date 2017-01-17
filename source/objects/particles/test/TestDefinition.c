@@ -27,7 +27,6 @@
 #include <libgccvb.h>
 #include <ParticleSystem.h>
 #include <ObjectAnimatedSprite.h>
-#include "../behaviors.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -36,6 +35,7 @@
 
 extern BYTE CoinTiles[];
 extern BYTE CoinMap[];
+extern void testParticleBehavior(Particle particle);
 
 
 //---------------------------------------------------------------------------------------------------------

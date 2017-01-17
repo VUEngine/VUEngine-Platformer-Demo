@@ -30,8 +30,34 @@
 #include <AnimationEditor.h>
 #include <ManagedEntity.h>
 #include <CollisionsContainerEntity.h>
+#include <Bandana.h>
+#include <Cannon.h>
+#include <CannonBall.h>
+#include <Coin.h>
+#include <Door.h>
+#include <Gui.h>
+#include <Hero.h>
+#include <HideLayer.h>
+#include <Key.h>
+#include <MovingEntity.h>
 
-#include <objects.h>
+
+//---------------------------------------------------------------------------------------------------------
+//											DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern EntityDefinition LEVEL_1_HOUSE_IM;
+extern EntityDefinition CANNON_BALL_AC;
+extern EntityDefinition COIN_AG;
+extern EntityDefinition DOOR_AG;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition HERO_AG;
+extern EntityDefinition KEY_AG;
+extern EntityDefinition SAW_BLADE_V3_AC;
+extern EntityDefinition SAW_BLADE_H3_AC;
+extern EntityDefinition LAVA_TOP_AG;
+extern EntityDefinition LANE_V_6_IM;
+extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 
 
 //---------------------------------------------------------------------------------------------------------

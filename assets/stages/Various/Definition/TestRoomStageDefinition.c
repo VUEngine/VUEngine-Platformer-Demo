@@ -30,7 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-#include <objects.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -103,7 +103,6 @@ FontROMDef* const TEST_ROOM_STAGE_ST_FONTS[] =
 
 CharSetROMDef* const TEST_ROOM_STAGE_ST_CHARSETS[] =
 {
-	&LEVEL_1_HOUSE_MAIN_CH,
 
 	NULL
 };

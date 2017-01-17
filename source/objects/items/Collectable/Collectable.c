@@ -33,10 +33,7 @@
 #include <SoundManager.h>
 #include <EventManager.h>
 #include <ProgressManager.h>
-
-#include <objects.h>
 #include "Collectable.h"
-
 #include <PlatformerLevelState.h>
 
 

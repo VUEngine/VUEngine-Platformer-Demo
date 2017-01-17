@@ -32,7 +32,6 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <KeypadManager.h>
-#include <objects.h>
 #include "Hero.h"
 #include "states/HeroIdle.h"
 #include "states/HeroMoving.h"
@@ -44,6 +43,7 @@
 #include <SoundManager.h>
 #include <debugUtilities.h>
 #include <gameDebugConfig.h>
+#include <HideLayer.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -67,6 +67,7 @@ extern CharSetDefinition HERO_BANDANA_CH;
 
 extern EntityDefinition DUST_PS;
 extern EntityDefinition HINT_MC;
+extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 
 #define HERO_INPUT_FORCE 						ITOFIX19_13(5050)
 #define HERO_X_INPUT_FORCE_WHILE_JUMPING		ITOFIX19_13(3050)

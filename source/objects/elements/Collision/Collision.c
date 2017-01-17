@@ -29,8 +29,6 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
-
-#include <objects.h>
 #include "Collision.h"
 
 

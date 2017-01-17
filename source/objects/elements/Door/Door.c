@@ -30,7 +30,7 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <Hint.h>
-#include <objects.h>
+#include <Hero.h>
 #include "Door.h"
 #include <PlatformerLevelState.h>
 
