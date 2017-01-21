@@ -205,7 +205,7 @@
     <property name="position.z" value="16"/>
    </properties>
   </object>
-  <object id="111" name="Icon Bottom Right (Left Eye)" type="Entity" gid="3" x="361" y="224" width="24" height="24"/>
+  <object id="111" name="Icon Bottom Right (Left Eye)" type="Entity" gid="3" x="360" y="224" width="24" height="24"/>
   <object id="112" name="Icon Top Left (Left Eye)" type="Entity" gid="3" x="0" y="24" width="24" height="24"/>
   <object id="113" name="Icon Bottom Left (Right Eye)" type="Entity" gid="4" x="0" y="224" width="24" height="24"/>
   <object id="114" name="Icon Top Right (Right Eye)" type="Entity" gid="4" x="360" y="24" width="24" height="24"/>
