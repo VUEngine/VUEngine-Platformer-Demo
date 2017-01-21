@@ -30,14 +30,14 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-#include <objects.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP[];
+StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP;
 VBVec3D level1_house_stage_collision_128_16_8 = {128, 16, 8};
 VBVec3D level1_house_stage_collision_16_96_8 = {16, 96, 8};
 VBVec3D level1_house_stage_collision_24_24_8 = {24, 24, 8};
@@ -55,6 +55,7 @@ extern EntityDefinition LEVEL_1_HOUSE_MAIN_IM;
 extern EntityDefinition MOUND_BG_BACK_IM;
 extern StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP;
 extern u16 KRISSE_BGM[][2];
+extern CharSetDefinition LEVEL_1_HOUSE_MAIN_CH;
 
 
 
@@ -300,8 +301,8 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 // 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP[] =
-{{
+StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
+{
     // the stage to load
     (StageDefinition*)&LEVEL1_HOUSE_STAGE_ST,
 
@@ -314,5 +315,5 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP[] =
         FTOFIX19_13(0),
         FTOFIX19_13(-SORT_INCREMENT)
     },
-}};
+};
 

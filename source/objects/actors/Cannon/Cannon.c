@@ -34,12 +34,9 @@
 #include <Screen.h>
 #include <ParticleSystem.h>
 #include <SoundManager.h>
-
 #include <CustomScreenEffectManager.h>
-#include <objects.h>
 #include <CannonBall.h>
 #include "Cannon.h"
-
 #include <PlatformerLevelState.h>
 
 

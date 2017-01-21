@@ -34,10 +34,7 @@
 #include <PhysicalWorld.h>
 #include <Lava.h>
 #include <CustomScreenEffectManager.h>
-
-#include <objects.h>
 #include "LavaTrigger.h"
-
 #include <PlatformerLevelState.h>
 
 

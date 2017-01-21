@@ -32,10 +32,7 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <EventManager.h>
-
-#include <objects.h>
 #include "Key.h"
-
 #include <PlatformerLevelState.h>
 #include <PostProcessingEffects.h>
 

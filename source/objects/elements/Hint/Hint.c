@@ -30,7 +30,6 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <I18n.h>
-#include <objects.h>
 #include "Hint.h"
 #include <PlatformerLevelState.h>
 

@@ -29,9 +29,9 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
-#include <objects.h>
 #include "LayerSwitchDoor.h"
 #include <PlatformerLevelState.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------

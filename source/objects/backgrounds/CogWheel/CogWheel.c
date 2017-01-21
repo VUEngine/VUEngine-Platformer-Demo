@@ -29,10 +29,7 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
-
-#include <objects.h>
 #include "CogWheel.h"
-
 #include <PlatformerLevelState.h>
 
 

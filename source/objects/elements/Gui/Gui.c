@@ -31,10 +31,7 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <Printing.h>
-
-#include <objects.h>
 #include "Gui.h"
-
 #include <PlatformerLevelState.h>
 #include <ProgressManager.h>
 #include <EventManager.h>

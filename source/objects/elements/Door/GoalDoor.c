@@ -31,7 +31,6 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <Screen.h>
-#include <objects.h>
 #include <EventManager.h>
 #include <GoalDoor.h>
 #include <PlatformerLevelState.h>

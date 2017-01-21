@@ -39,7 +39,6 @@
 #include <PauseScreenState.h>
 #include <Hero.h>
 #include <Languages.h>
-#include <objects.h>
 #include <ProgressManager.h>
 #include <CustomScreenMovementManager.h>
 #include <CustomScreenEffectManager.h>
@@ -71,6 +70,13 @@ static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelStat
 static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
+
+
+//---------------------------------------------------------------------------------------------------------
+//											DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern EntityDefinition HERO_AC;
 
 
 //---------------------------------------------------------------------------------------------------------

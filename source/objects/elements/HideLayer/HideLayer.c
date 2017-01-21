@@ -29,9 +29,9 @@
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
 #include <MessageDispatcher.h>
-#include <objects.h>
 #include "HideLayer.h"
 #include <PlatformerLevelState.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -34,17 +34,16 @@
 #include <ProgressManager.h>
 #include <Container.h>
 #include <SoundManager.h>
-
-#include <objects.h>
 #include "Coin.h"
-
 #include <PlatformerLevelState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											 CLASS' MACROS
+//											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition LEVEL_1_HOUSE_IM;
+extern AnimatedInGameEntityROMDef COIN_BACK_AG;
 extern AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG;
 extern AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG;
 

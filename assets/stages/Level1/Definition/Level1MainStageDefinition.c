@@ -30,8 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-
-#include <objects.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,11 +43,110 @@ extern StageEntryPointROMDef LEVEL_1_INTERSECTION_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
 extern u16 WORLD_0_0_0_BGM[][2];
 
-StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[];
-StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[];
+StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP;
+StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP;
 
-extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition BANDANA_AG;
+extern EntityDefinition BUSH_AG;
+extern EntityDefinition CANNON_AC;
+extern EntityDefinition CLOUD_A_IM;
+extern EntityDefinition CLOUDS_IM;
+extern EntityDefinition COIN_AG;
+extern EntityDefinition COIN_BACK_AG;
+extern EntityDefinition COLLISION_CL;
+extern EntityDefinition COLLISION_HIT_CL;
+extern EntityDefinition COLLISION_TOP_CL;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
+extern EntityDefinition DOOR_AG;
+extern EntityDefinition DOUBLE_JUMP_SIGN_IM;
+extern EntityDefinition GRASS_AG;
+extern EntityDefinition GUI_AG;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition HIDE_LAYER_10x7_AG;
+extern EntityDefinition JUMP_SIGN_IM;
+extern EntityDefinition KEY_AG;
+extern EntityDefinition KEY_DOOR_AG;
+extern EntityDefinition LANE_V_6_IM;
+extern EntityDefinition LAYER_SWITCH_DOOR_AG;
+extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
+extern EntityDefinition LEVEL_1_HOUSE_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_BACK_1_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_BACK_5_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_1_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_2_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_3_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_4_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_5_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_6_IM;
+extern EntityDefinition LEVEL_1_TOWER_IM;
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition MOUND_1_IM;
+extern EntityDefinition MOUND_2_IM;
+extern EntityDefinition MOUND_BG_BACK_IM;
+extern EntityDefinition MOUND_BG_FRONT_IM;
+extern EntityDefinition RUN_SIGN_IM;
+extern EntityDefinition SAW_BLADE_H3_AC;
+extern EntityDefinition SAW_BLADE_H8_AC;
+extern EntityDefinition SAW_BLADE_V3_AC;
+extern EntityDefinition SMOKE_PS;
+extern EntityDefinition SNAIL_4_AC;
+extern EntityDefinition STAR_AG;
+extern EntityDefinition WATERFALL_STREAM_AG;
+extern EntityDefinition WATERFALL_TOP_AG;
+
+extern CharSetDefinition BUSH_CH;
+extern CharSetDefinition CANNON_BALL_CH;
+extern CharSetDefinition CANNON_CH;
+extern CharSetDefinition COIN_BACK_CH;
+extern CharSetDefinition COIN_BACK_SILHOUETTE_CH;
+extern CharSetDefinition COIN_CH;
+extern CharSetDefinition COIN_SILHOUETTE_CH;
+extern CharSetDefinition DOOR_BACK_CH;
+extern CharSetDefinition DOOR_CH;
+extern CharSetDefinition GRASS_CH;
+extern CharSetDefinition HERO_BANDANA_CH;
+extern CharSetDefinition HIDE_LAYER_10x7_CH;
+extern CharSetDefinition KEY_CH;
+extern CharSetDefinition LEVEL_1_HOUSE_CH;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_CH;
+extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_CH;
+extern CharSetDefinition MOUND_BG_BACK_CH;
+extern CharSetDefinition MOUND_BG_FRONT_CH;
+extern CharSetDefinition MOUND_BG_MIDDLE_CH;
+extern CharSetDefinition SAW_BLADE_CH;
+extern CharSetDefinition SNAIL_CH;
+
+extern TextureDefinition CANNON_BALL_TX;
+extern TextureDefinition CANNON_TX;
+extern TextureDefinition COIN_BACK_SILHOUETTE_TX;
+extern TextureDefinition COIN_BACK_TX;
+extern TextureDefinition COIN_SILHOUETTE_TX;
+extern TextureDefinition COIN_TX;
+extern TextureDefinition DOOR_BACK_TX;
+extern TextureDefinition DOOR_TX;
+extern TextureDefinition DUST_PARTICLE_SMALL_TX;
+extern TextureDefinition HERO_BANDANA_TX;
+extern TextureDefinition HIDE_LAYER_10x7_TX;
+extern TextureDefinition JUMP_SIGN_TX;
+extern TextureDefinition KEY_TX;
+extern TextureDefinition LEVEL_1_HOUSE_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_BACK_1_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_1_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_2_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_3_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_3_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_1_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2A_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2B_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX;
+extern TextureDefinition MOUND_BG_BACK_TX;
+extern TextureDefinition MOUND_BG_FRONT_TX;
+extern TextureDefinition MOUND_BG_MIDDLE_TX;
+extern TextureDefinition RUN_SIGN_TX;
+extern TextureDefinition SAW_BLADE_TX;
 
 extern VBVec3D collision_2_28_1;
 extern VBVec3D collision_3_2_1;
@@ -648,8 +746,8 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 // 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -658,10 +756,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP[] =
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(-22), FTOFIX19_13(-38), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -670,10 +768,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP[] =
 
     // offset from entry point (x, y, z)
     {FTOFIX19_13(14), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -682,10 +780,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP[] =
 
     // offset from entry point (x, y, z)
     {0, FTOFIX19_13(-5), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -694,10 +792,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP[] =
 
     // offset from entry point (x, y, z)
     {0, ITOFIX19_13(-1), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -706,10 +804,10 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP[] =
 
     // offset from entry point (x, y, z)
     {0, FTOFIX19_13(-0.5f), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};
 
-StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP[] =
-{{
+StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
+{
 	// the stage to load
     (StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
@@ -718,4 +816,4 @@ StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP[] =
 
     // offset from entry point (x, y, z)
     {0, FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
-}};
+};

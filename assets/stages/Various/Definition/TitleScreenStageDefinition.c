@@ -30,7 +30,6 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-#include <objects.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -103,8 +102,6 @@ FontROMDef* const TITLE_SCREEN_STAGE_ST_FONTS[] =
 
 CharSetROMDef* const TITLE_SCREEN_STAGE_ST_CHARSETS[] =
 {
-	&LEVEL_1_HOUSE_MAIN_CH,
-
 	NULL
 };
 
