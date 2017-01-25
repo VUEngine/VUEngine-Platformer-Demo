@@ -363,7 +363,7 @@ TextureROMDef HINT_TX =
 	// number of frames, depending on charset's allocation type:
     // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
     // __ANIMATED_MULTI: total number of frames
-    23,
+    1,
 
     // palette number (0-3)
     1,

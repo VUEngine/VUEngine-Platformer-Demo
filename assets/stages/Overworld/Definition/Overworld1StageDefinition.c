@@ -39,6 +39,7 @@ extern EntityDefinition HERO_IDLE_AG;
 extern EntityDefinition OVERWORLD_1_IM;
 extern EntityDefinition SMOKE_PS;
 extern EntityDefinition WATER_A_AG;
+extern u16 KRISSE_BGM[][2];
 
 
 
@@ -254,7 +255,7 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		(StageTextureEntryDefinition*)NULL,
 
 		// background music
-		(const u16 (*)[])NULL,
+		(const u16 (*)[])KRISSE_BGM,
 	},
 
 	// entities

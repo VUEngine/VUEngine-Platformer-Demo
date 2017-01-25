@@ -96,7 +96,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 				SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, position);
 
 	            // wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual
-	            Game_wait(Game_getInstance(), 3000);
+	            Game_wait(Game_getInstance(), 1500);
 
 				// start fade in effect
 				Screen_startEffect(Screen_getInstance(),

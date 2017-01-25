@@ -30,6 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -97,11 +98,6 @@ FontROMDef* const TITLE_SCREEN_STAGE_ST_FONTS[] =
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
 
-	NULL
-};
-
-CharSetROMDef* const TITLE_SCREEN_STAGE_ST_CHARSETS[] =
-{
 	NULL
 };
 
@@ -269,7 +265,7 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		(FontDefinition**)TITLE_SCREEN_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)TITLE_SCREEN_STAGE_ST_CHARSETS,
+		(CharSetDefinition**)NULL,
 
 		// textures to preload
 		(StageTextureEntryDefinition*)NULL,

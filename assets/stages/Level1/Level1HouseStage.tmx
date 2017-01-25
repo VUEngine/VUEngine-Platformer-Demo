@@ -122,10 +122,11 @@
   </object>
   <object id="67" name="Coin" type="Entity" gid="35" x="196" y="154" width="16" height="16">
    <properties>
+    <property name="id" type="int" value="26"/>
     <property name="position.z" value="LAYER_0_ITEMS"/>
    </properties>
   </object>
-  <object id="68" name="Light" type="Entity" gid="55" x="170" y="160" width="56" height="40">
+  <object id="68" name="Light" type="Entity" gid="55" x="168" y="160" width="56" height="40">
    <properties>
     <property name="position.z" value="LAYER_0_ITEMS - 1"/>
    </properties>

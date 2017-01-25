@@ -37,10 +37,10 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP;
 VBVec3D level1_house_stage_collision_128_16_8 = {128, 16, 8};
 VBVec3D level1_house_stage_collision_16_96_8 = {16, 96, 8};
 VBVec3D level1_house_stage_collision_24_24_8 = {24, 24, 8};
+extern CharSetDefinition LEVEL_1_HOUSE_MAIN_CH;
 extern EntityDefinition CLOCK_AG;
 extern EntityDefinition CLOUDS_IM;
 extern EntityDefinition COIN_AG;
@@ -55,7 +55,6 @@ extern EntityDefinition LEVEL_1_HOUSE_MAIN_IM;
 extern EntityDefinition MOUND_BG_BACK_IM;
 extern StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP;
 extern u16 KRISSE_BGM[][2];
-extern CharSetDefinition LEVEL_1_HOUSE_MAIN_CH;
 
 
 
@@ -73,8 +72,8 @@ PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(168), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
 	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(88), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
 	{&CLOUDS_IM, {FTOFIX19_13(194), FTOFIX19_13(149), FTOFIX19_13(LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&LEVEL_1_HOUSE_LIGHT_IM, {FTOFIX19_13(198), FTOFIX19_13(140), FTOFIX19_13(LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
-	{&COIN_AG, {FTOFIX19_13(204), FTOFIX19_13(146), FTOFIX19_13(LAYER_0_ITEMS)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&LEVEL_1_HOUSE_LIGHT_IM, {FTOFIX19_13(196), FTOFIX19_13(140), FTOFIX19_13(LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
+	{&COIN_AG, {FTOFIX19_13(204), FTOFIX19_13(146), FTOFIX19_13(LAYER_0_ITEMS)}, 26, NULL, NULL, NULL, false}, // Coin
 	{&FIRE_SMALL_AG, {FTOFIX19_13(240), FTOFIX19_13(154), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Fire
 	{&COLLISION_TOP_CL, {FTOFIX19_13(240), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
 	{&MOUND_BG_BACK_IM, {FTOFIX19_13(255), FTOFIX19_13(80), FTOFIX19_13(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
