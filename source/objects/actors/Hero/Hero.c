@@ -69,18 +69,6 @@ extern EntityDefinition DUST_PS;
 extern EntityDefinition HINT_MC;
 extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 
-#define HERO_INPUT_FORCE 						ITOFIX19_13(5050)
-#define HERO_X_INPUT_FORCE_WHILE_JUMPING		ITOFIX19_13(3050)
-
-#define HERO_MAX_VELOCITY_X						ITOFIX19_13(70)
-#define HERO_MAX_VELOCITY_Y						ITOFIX19_13(300)
-#define HERO_MAX_VELOCITY_Z						ITOFIX19_13(40)
-#define HERO_BOOST_VELOCITY_X					FTOFIX19_13(100)
-#define HERO_NORMAL_JUMP_INPUT_FORCE			ITOFIX19_13(-25000)
-#define HERO_BOOST_JUMP_INPUT_FORCE				ITOFIX19_13(-30000)
-
-#define CAMERA_BOUNDING_BOX_DISPLACEMENT		{ITOFIX19_13(0), ITOFIX19_13(-24), 0}
-
 
 //---------------------------------------------------------------------------------------------------------
 // 												PROTOTYPES

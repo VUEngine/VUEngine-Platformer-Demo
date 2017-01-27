@@ -559,13 +559,13 @@ ActorROMDef HERO_AC =
 	},
 
 	// friction for physics
-	ITOFIX19_13(0),
+	ITOFIX19_13(HERO_FRICTION),
 
 	// elasticity for physics
-	FTOFIX19_13(0.0f),
+	FTOFIX19_13(HERO_ELASTICITY),
 
 	// mass
-	ITOFIX19_13(10)
+	ITOFIX19_13(HERO_MASS)
 };
 
 AnimatedInGameEntityROMDef HERO_IDLE_AG =
