@@ -38,18 +38,34 @@
 // 												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define HERO_NAME               "John Hero"
-#define HERO_INITIAL_ENERGY  	3
-
-#define HERO_FLASH_PALETTE      3
-#define HERO_FLASH_DURATION     2000
-#define HERO_FLASH_INTERVAL     100
-
 enum HeroPowerUps
 {
 	kPowerUpNone,
 	kPowerUpBandana,
 };
+
+#define HERO_NAME							"John Hero"
+#define HERO_INITIAL_ENERGY					3
+
+#define HERO_MASS							10
+#define HERO_ELASTICITY						0.0f
+#define HERO_FRICTION						0
+
+#define HERO_FLASH_PALETTE					3
+#define HERO_FLASH_DURATION					2000
+#define HERO_FLASH_INTERVAL					100
+
+#define HERO_INPUT_FORCE 					ITOFIX19_13(5050)
+#define HERO_X_INPUT_FORCE_WHILE_JUMPING	ITOFIX19_13(3050)
+
+#define HERO_MAX_VELOCITY_X					ITOFIX19_13(70)
+#define HERO_MAX_VELOCITY_Y					ITOFIX19_13(300)
+#define HERO_MAX_VELOCITY_Z					ITOFIX19_13(40)
+#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(100)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		ITOFIX19_13(-25000)
+#define HERO_BOOST_JUMP_INPUT_FORCE			ITOFIX19_13(-30000)
+
+#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{ITOFIX19_13(0), ITOFIX19_13(-24), 0}
 
 
 //---------------------------------------------------------------------------------------------------------
