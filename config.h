@@ -137,7 +137,7 @@
 #define __TIMER_RESOLUTION						1
 
 // options are __TIMER_20US and __TIMER_100US
-#define __TIMER_FREQUENCY                       __TIMER_20US
+#define __TIMER_FREQUENCY						__TIMER_20US
 
 // target frames per second
 // __FRAME_CYCLE = 0 means __TARGET_FPS = 50
@@ -146,7 +146,7 @@
 
 #define __TARGET_FPS 							(50 >> __FRAME_CYCLE)
 
-#define __GAME_FRAME_DURATION                   __MILLISECONDS_IN_SECOND / __TARGET_FPS
+#define __GAME_FRAME_DURATION					__MILLISECONDS_IN_SECOND / __TARGET_FPS
 
 // target frames per second
 #define __OPTIMUM_FPS 							(__TARGET_FPS >> __FRAME_CYCLE)
@@ -197,7 +197,7 @@
 	__BLOCK_DEFINITION(28, 190)																			\
 	__BLOCK_DEFINITION(24, 90)																			\
 	__BLOCK_DEFINITION(20, 720)																			\
-	__BLOCK_DEFINITION(16, 520)						    												\
+	__BLOCK_DEFINITION(16, 520)																			\
 
 
 #undef __SET_MEMORY_POOL_ARRAYS
@@ -218,7 +218,7 @@
 	__SET_MEMORY_POOL_ARRAY(24)																			\
 	__SET_MEMORY_POOL_ARRAY(20)																			\
 	__SET_MEMORY_POOL_ARRAY(16)
-                                                                        \
+																		\
 
 
 // percentage (0-100) above which the memory pool's status shows the pool usage
@@ -290,7 +290,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											    STREAMING
+// 												STREAMING
 //---------------------------------------------------------------------------------------------------------
 
 // the number of total calls to the streaming method which completes a cycle
@@ -315,14 +315,14 @@
 #define __GRAVITY								13000
 
 // number of bodies to check for gravity on each cycle
-#define __BODIES_TO_CHECK_FOR_GRAVITY		    10
+#define __BODIES_TO_CHECK_FOR_GRAVITY			10
 
 #define __MAX_SHAPES_PER_LEVEL					32
 #define __MAX_BODIES_PER_LEVEL					32
 
 // used to make an approximation of Lorentz' contraction
 // to handle collisions on very fast moving shapes
-#define __LIGHT_SPEED		                    ITOFIX19_13(50000)
+#define __LIGHT_SPEED							ITOFIX19_13(50000)
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -361,7 +361,7 @@
 #define __FADE_DURATION							320
 
 // default delay between steps in asynchronous fade effect
-#define __FADE_DELAY					        16
+#define __FADE_DELAY							16
 
 
 //---------------------------------------------------------------------------------------------------------
