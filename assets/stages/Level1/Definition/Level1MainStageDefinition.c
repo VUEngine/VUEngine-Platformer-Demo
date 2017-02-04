@@ -588,11 +588,11 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
     // streaming
     {
         // minimum free ms in the current game frame to allow streaming to quick in
-        10,
+        15,
         // load padding
-        128,
+        80,
         // unload padding
-        16,
+        32,
         // streaming amplitude
         16,
 		// particle removal delay cycles
@@ -755,7 +755,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
     "House",
 
     // offset from entry point (x, y, z)
-    {FTOFIX19_13(-22), FTOFIX19_13(-38), FTOFIX19_13(-SORT_INCREMENT)},
+    {FTOFIX19_13(-22), FTOFIX19_13(-16), FTOFIX19_13(-SORT_INCREMENT)},
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
