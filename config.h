@@ -30,48 +30,34 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											DEBUGGING TOOLS
+// 											DEBUGGING/ PROFILING
 //---------------------------------------------------------------------------------------------------------
-
-#ifdef __TOOLS
-
-// print frame rate
-#define __PRINT_FRAMERATE
 
 // print memory pool's status
-#define __PRINT_MEMORY_POOL_STATUS
-#define __PRINT_DETAILED_MEMORY_POOL_STATUS
-
-// alert stack overflows
-#define __ALERT_STACK_OVERFLOW
-
-// tools
-#define __DEBUG_TOOLS
-#define __STAGE_EDITOR
-#define __ANIMATION_EDITOR
-
-#endif
-
-
-//---------------------------------------------------------------------------------------------------------
-// 											PROFILING
-//---------------------------------------------------------------------------------------------------------
+#undef __PRINT_MEMORY_POOL_STATUS
+#undef __PRINT_DETAILED_MEMORY_POOL_STATUS
 
 // print frame rate
 #undef __PRINT_FRAMERATE
 
-// show game's process profiling
+// alert stack overflows
+#undef __ALERT_STACK_OVERFLOW
+
+// enable detailed profiling of each of the game's main processes
+// it is more useful when __TIMER_RESOLUTION approaches 1
 #undef __PROFILE_GAME
 
-// show detailed profiling of each of the game's main processes
-// it is more useful when __TIMER_RESOLUTION approaches 1
-#undef __PROFILE_GAME_DETAILED
+// enable streaming's profiling
+#undef __PROFILE_STREAMING
+
+// show games's profiling during game
+#undef __SHOW_GAME_PROFILING
+
+// show streaming's profiling during game
+#undef __SHOW_STREAMING_PROFILING
 
 // to make it easier to read the profiling output
 #undef __DIMM_FOR_PROFILING
-
-// show streaming's process profiling
-#undef __PROFILE_STREAMING
 
 // print the game's current process while the VIP's frame start
 // and idle interrupts are fired, but the game frame is still pending
@@ -84,6 +70,29 @@
 // alert transformation - VIP unsync warning
 #define __ALERT_TRANSFORMATIONS_NOT_IN_SYNC_WITH_VIP
 
+
+//---------------------------------------------------------------------------------------------------------
+// 											DEBUGGING TOOLS
+//---------------------------------------------------------------------------------------------------------
+
+#ifdef __TOOLS
+
+// print frame rate
+#define __PRINT_FRAMERATE
+
+// enable detailed profiling of each of the game's main processes
+// it is more useful when __TIMER_RESOLUTION approaches 1
+#define __PROFILE_GAME
+
+// enable streaming's profiling
+#define __PROFILE_STREAMING
+
+// tools
+#define __DEBUG_TOOLS
+#define __STAGE_EDITOR
+#define __ANIMATION_EDITOR
+
+#endif
 
 //---------------------------------------------------------------------------------------------------------
 // 											OPTICS / PROJECTION
@@ -187,7 +196,7 @@
 	__BLOCK_DEFINITION(32, 12)																			\
 	__BLOCK_DEFINITION(28, 190)																			\
 	__BLOCK_DEFINITION(24, 90)																			\
-	__BLOCK_DEFINITION(20, 740)																			\
+	__BLOCK_DEFINITION(20, 720)																			\
 	__BLOCK_DEFINITION(16, 520)						    												\
 
 
