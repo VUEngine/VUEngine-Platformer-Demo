@@ -87,6 +87,8 @@ static void __attribute__ ((noinline)) PauseScreenState_constructor(PauseScreenS
 // class's destructor
 static void PauseScreenState_destructor(PauseScreenState this)
 {
+	__DELETE(this->optionsSelector);
+
 	// destroy base
 	__SINGLETON_DESTROY;
 }

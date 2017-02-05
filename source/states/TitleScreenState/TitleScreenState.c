@@ -97,6 +97,11 @@ static void __attribute__ ((noinline)) TitleScreenState_constructor(TitleScreenS
 // class's destructor
 static void TitleScreenState_destructor(TitleScreenState this)
 {
+	if(this->optionsSelector)
+	{
+		__DELETE(this->optionsSelector);
+	}
+
 	// destroy base
 	__SINGLETON_DESTROY;
 }
@@ -118,6 +123,11 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
+
+	if(this->optionsSelector)
+	{
+		__DELETE(this->optionsSelector);
+	}
 
 	// create and populate main menu
     VirtualList options = __NEW(VirtualList);

@@ -100,10 +100,7 @@ static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSel
 
 static void LangSelectScreenState_destructor(LangSelectScreenState this)
 {
-	if(this->languageSelector)
-	{
-		__DELETE(this->languageSelector);
-	}
+	__DELETE(this->languageSelector);
 
 	// destroy base
 	__SINGLETON_DESTROY;

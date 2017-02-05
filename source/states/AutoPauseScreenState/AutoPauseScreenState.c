@@ -62,7 +62,7 @@ static void AutoPauseScreenState_onFadeInComplete(AutoPauseScreenState this, Obj
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(AutoPauseScreenState, GameState);
-__SINGLETON(AutoPauseScreenState);
+__SINGLETON_DYNAMIC(AutoPauseScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -129,6 +129,9 @@ static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((
 {
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
+
+	// destroy the state
+	__DELETE(this);
 }
 
 // state's handle message

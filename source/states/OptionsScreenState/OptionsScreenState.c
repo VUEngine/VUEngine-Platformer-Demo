@@ -82,13 +82,15 @@ static void __attribute__ ((noinline)) OptionsScreenState_constructor(OptionsScr
 	__CONSTRUCT_BASE(GameState);
 
 	// init members
-	this->optionsSelector = NULL;
+    this->optionsSelector = __NEW(OptionsSelector, 1, 2, NULL);
 	OptionsScreenState_setNextState(this, __SAFE_CAST(GameState, TitleScreenState_getInstance()));
 }
 
 // class's destructor
 static void OptionsScreenState_destructor(OptionsScreenState this)
 {
+	__DELETE(this->optionsSelector);
+
 	// destroy base
 	__SINGLETON_DESTROY;
 }
@@ -150,7 +152,6 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
     );
 
 	// menu
-    this->optionsSelector = __NEW(OptionsSelector, 1, 2, NULL);
 	VirtualList options = __NEW(VirtualList);
     Option* option = NULL;
 
