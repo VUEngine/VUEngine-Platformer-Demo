@@ -46,13 +46,13 @@ extern BYTE WaterfallStreamMap[];
 AnimationFunctionROMDef WATERFALL_STREAM_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
-	3,
+	4,
 
 	// frames to play in animation
-	{0, 1, 2},
+	{0, 1, 2, 3},
 
 	// number of cycles a frame of animation is displayed
-	6,
+	4,
 
 	// whether to play it in loop or not
 	true,
