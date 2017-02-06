@@ -54,6 +54,7 @@
 #define Door_SET_VTABLE(ClassName)																		\
         AnimatedInGameEntity_SET_VTABLE(ClassName)														\
         __VIRTUAL_SET(ClassName, Door, setExtraInfo);													\
+		__VIRTUAL_SET(ClassName, Door, resume);															\
         __VIRTUAL_SET(ClassName, Door, ready);															\
         __VIRTUAL_SET(ClassName, Door, handleMessage);													\
         __VIRTUAL_SET(ClassName, Door, hasDestination);													\
@@ -84,6 +85,7 @@ void Door_destructor(Door this);
 StageEntryPointDefinition* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);
 void Door_ready(Door this, u32 recursive);
+void Door_resume(Door this);
 bool Door_handleMessage(Door this, Telegram telegram);
 bool Door_hasDestination(Door this);
 void Door_onOverlapping(Door this);
