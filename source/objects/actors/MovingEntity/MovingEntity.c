@@ -94,6 +94,8 @@ void MovingEntity_destructor(MovingEntity this)
 {
 	ASSERT(this, "MovingEntity::destructor: null this");
 
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMovingEntityStartMoving);
+
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
