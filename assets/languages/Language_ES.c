@@ -63,9 +63,9 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_PAUSE: */					"Pausa",
 	/* STR_PRESS_START_BUTTON: */		"Presionar Start",
 	/* STR_PROGRESS_WILL_BE_ERASED: */	"Esto eliminará todo tu progreso.",
-	/* STR_QUIT_LEVEL: */				"Dejar De Nivel",
+	/* STR_QUIT_LEVEL: */				"Salir del nivel",
 	/* STR_SELECT: */					"Seleccionar",
-	/* STR_TAKE_A_REST: */				"¡Por favor, tómese un descanso!",
+	/* STR_TAKE_A_REST: */				"¡Por favor, tómate un descanso!",
 	/* STR_YES: */						"Sí",
 
 	/* Splash Screens */
