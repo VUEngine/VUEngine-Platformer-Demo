@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBackground.h>
+#include <RecyclableImage.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -115,8 +115,8 @@ BgmapSpriteROMDef* const LEVEL_1_INTERSECTION_MAIN_IM_SPRITES[] =
 	NULL
 };
 
-MBackgroundROMDef LEVEL_1_INTERSECTION_MAIN_IM =
+RecyclableImageROMDef LEVEL_1_INTERSECTION_MAIN_IM =
 {
-	__TYPE(MBackground),
+	__TYPE(RecyclableImage),
 	(SpriteROMDef**)LEVEL_1_INTERSECTION_MAIN_IM_SPRITES,
 };

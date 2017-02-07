@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Image.h>
-#include <MBackground.h>
+#include <RecyclableImage.h>
 #include <MBgmapSprite.h>
 
 

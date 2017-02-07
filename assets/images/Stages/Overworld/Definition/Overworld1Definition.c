@@ -24,8 +24,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBackground.h>
-#include <ManagedMBackground.h>
+#include <RecyclableImage.h>
+#include <ManagedRecyclableImage.h>
 #include <MBgmapSprite.h>
 
 
@@ -131,8 +131,8 @@ BgmapSpriteROMDef* const OVERWORLD_1_IM_SPRITES[] =
 	NULL
 };
 
-MBackgroundROMDef OVERWORLD_1_IM =
+RecyclableImageROMDef OVERWORLD_1_IM =
 {
-	__TYPE(ManagedMBackground),
+	__TYPE(ManagedRecyclableImage),
 	(SpriteROMDef**)OVERWORLD_1_IM_SPRITES,
 };

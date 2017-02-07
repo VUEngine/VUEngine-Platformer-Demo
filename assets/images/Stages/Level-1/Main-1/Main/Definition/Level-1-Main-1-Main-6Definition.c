@@ -24,8 +24,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBackground.h>
-#include <ManagedMBackground.h>
+#include <RecyclableImage.h>
+#include <ManagedRecyclableImage.h>
 #include <MBgmapSprite.h>
 
 
@@ -122,8 +122,8 @@ BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_6_IM_SPRITES[] =
 	NULL
 };
 
-MBackgroundROMDef LEVEL_1_MAIN_1_MAIN_6_IM =
+RecyclableImageROMDef LEVEL_1_MAIN_1_MAIN_6_IM =
 {
-	__TYPE(ManagedMBackground),
+	__TYPE(ManagedRecyclableImage),
 	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_6_IM_SPRITES,
 };
