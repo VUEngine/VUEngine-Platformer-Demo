@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <RecyclableImage.h>
-#include <ManagedRecyclableImage.h>
+#include <ManagedStaticImage.h>
 #include <MBgmapSprite.h>
 
 
@@ -133,6 +133,6 @@ BgmapSpriteROMDef* const OVERWORLD_1_IM_SPRITES[] =
 
 RecyclableImageROMDef OVERWORLD_1_IM =
 {
-	__TYPE(ManagedRecyclableImage),
+	__TYPE(ManagedStaticImage),
 	(SpriteROMDef**)OVERWORLD_1_IM_SPRITES,
 };
