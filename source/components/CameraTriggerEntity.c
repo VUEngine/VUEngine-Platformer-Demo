@@ -95,13 +95,6 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 	}
 
     __VIRTUAL_CALL(Shape, position, this->shape);
-
-/*
-	if(this->shape)
-	{
-		__VIRTUAL_CALL(Shape, draw, this->shape);
-	}
-*/
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)
