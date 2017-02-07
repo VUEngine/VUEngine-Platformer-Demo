@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -110,8 +110,8 @@ BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM_SPRITES[] =
 	NULL
 };
 
-ImageROMDef ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM =
+StaticImageROMDef ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**) ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM_SPRITES,
 };

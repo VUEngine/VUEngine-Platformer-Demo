@@ -24,8 +24,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <Image.h>
+#include <StaticImage.h>
+#include <StaticImage.h>
 #include <BgmapSprite.h>
 
 
@@ -112,8 +112,8 @@ BgmapSpriteROMDef* const LEVEL_1_HOUSE_LIGHT_IM_SPRITES[] =
 	NULL
 };
 
-ImageROMDef LEVEL_1_HOUSE_LIGHT_IM =
+StaticImageROMDef LEVEL_1_HOUSE_LIGHT_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)LEVEL_1_HOUSE_LIGHT_IM_SPRITES,
 };

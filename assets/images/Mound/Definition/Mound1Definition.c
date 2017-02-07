@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <BgmapSprite.h>
 
 
@@ -111,8 +111,8 @@ BgmapSpriteROMDef* const MOUND_1_IM_SPRITES[] =
 	NULL
 };
 
-ImageROMDef MOUND_1_IM =
+StaticImageROMDef MOUND_1_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)MOUND_1_IM_SPRITES,
 };

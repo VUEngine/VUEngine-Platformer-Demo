@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <macros.h>
 
 
@@ -111,8 +111,8 @@ BgmapSpriteROMDef* const LANE_V_6_IM_SPRITES[] =
 	NULL
 };
 
-ImageROMDef LANE_V_6_IM =
+StaticImageROMDef LANE_V_6_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)LANE_V_6_IM_SPRITES,
 };

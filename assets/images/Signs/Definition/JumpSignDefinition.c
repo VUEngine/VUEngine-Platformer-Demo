@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <ObjectSprite.h>
 #include <macros.h>
 
@@ -112,8 +112,8 @@ ObjectSpriteROMDef* const JUMP_SIGN_IM_SPRITES[] =
 	NULL
 };
 
-ImageROMDef JUMP_SIGN_IM =
+StaticImageROMDef JUMP_SIGN_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)JUMP_SIGN_IM_SPRITES,
 };

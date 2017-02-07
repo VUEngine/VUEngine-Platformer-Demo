@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <BgmapSprite.h>
 #include <macros.h>
 
@@ -116,9 +116,9 @@ BgmapSpriteROMDef* const TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES[] =
     NULL
 };
 
-ImageROMDef TITLE_SCREEN_STAGE_MAIN_1_IM =
+StaticImageROMDef TITLE_SCREEN_STAGE_MAIN_1_IM =
 {
-    __TYPE(Image),
+    __TYPE(StaticImage),
     (SpriteROMDef**)TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES,
 };
 

@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <InAnimatedInGameEntity.h>
 #include <macros.h>
 #include <Lava.h>

@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -314,8 +314,8 @@ BgmapSpriteROMDef* const LOGO_IM_SPRITES[] =
 	NULL
 };
 
-ImageROMDef LOGO_IM =
+StaticImageROMDef LOGO_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)LOGO_IM_SPRITES,
 };

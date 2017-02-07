@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <InAnimatedInGameEntity.h>
 #include <CogWheel.h>
 #include <macros.h>
@@ -114,7 +114,7 @@ BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =
 	NULL
 };
 
-ImageROMDef COG_WHEEL_IM =
+StaticImageROMDef COG_WHEEL_IM =
 {
     __TYPE(CogWheel),
     (SpriteROMDef**)COG_WHEEL_BG_SPRITES,

@@ -37,7 +37,7 @@
 // 											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(CogWheel, Image);
+__CLASS_DEFINITION(CogWheel, StaticImage);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,14 +52,14 @@ static void CogWheel_rotate(CogWheel this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CogWheel, ImageDefinition* imageDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(CogWheel, imageDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(CogWheel, StaticImageDefinition* StaticImageDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(CogWheel, StaticImageDefinition, id, internalId, name);
 
 // class's constructor
-void CogWheel_constructor(CogWheel this, ImageDefinition* imageDefinition, s16 id, s16 internalId, const char* const name)
+void CogWheel_constructor(CogWheel this, StaticImageDefinition* StaticImageDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Image, imageDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(StaticImage, StaticImageDefinition, id, internalId, name);
 }
 
 // class's destructor

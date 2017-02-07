@@ -27,7 +27,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <macros.h>
 
 
@@ -43,10 +43,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Clouds_METHODS(ClassName)																		\
-		Image_METHODS(ClassName)																		\
+		StaticImage_METHODS(ClassName)																		\
 
 #define Clouds_SET_VTABLE(ClassName)																	\
-		Image_SET_VTABLE(ClassName)																		\
+		StaticImage_SET_VTABLE(ClassName)																		\
 		__VIRTUAL_SET(ClassName, Clouds, update);														\
 		__VIRTUAL_SET(ClassName, Clouds, isVisible);													\
 
@@ -54,15 +54,15 @@ __CLASS(Clouds);
 
 #define Clouds_ATTRIBUTES																			   \
 		/* it is derived from */																		\
-		Image_ATTRIBUTES																				\
+		StaticImage_ATTRIBUTES																				\
 		/* displacement per cycle */																	\
 		fix19_13 displacement;																			\
 
 
 typedef struct CloudsDefinition
 {
-	// it has an Image at the beginning
-	ImageDefinition imageDefinition;
+	// it has an StaticImage at the beginning
+	StaticImageDefinition StaticImageDefinition;
 
 	// displacement per cycle
 	fix19_13 displacement;

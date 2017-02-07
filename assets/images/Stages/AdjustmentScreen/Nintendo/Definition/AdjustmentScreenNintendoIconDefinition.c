@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -141,14 +141,14 @@ BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R_SPRITES[] =
 
 };
 
-ImageROMDef ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L =
+StaticImageROMDef ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**) ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L_SPRITES,
 };
 
-ImageROMDef ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R =
+StaticImageROMDef ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**) ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R_SPRITES,
 };

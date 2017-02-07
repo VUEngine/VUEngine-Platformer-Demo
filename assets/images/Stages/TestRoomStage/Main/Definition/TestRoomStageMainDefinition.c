@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <BgmapSprite.h>
 #include <macros.h>
 
@@ -117,9 +117,9 @@ BgmapSpriteROMDef* const TEST_ROOM_STAGE_MAIN_1_IM_SPRITES[] =
     NULL
 };
 
-ImageROMDef TEST_ROOM_STAGE_MAIN_1_IM =
+StaticImageROMDef TEST_ROOM_STAGE_MAIN_1_IM =
 {
-    __TYPE(Image),
+    __TYPE(StaticImage),
     (SpriteROMDef**)TEST_ROOM_STAGE_MAIN_1_IM_SPRITES,
 };
 
@@ -183,9 +183,9 @@ BgmapSpriteROMDef* const TEST_ROOM_STAGE_MAIN_2_IM_SPRITES[] =
     NULL
 };
 
-ImageROMDef TEST_ROOM_STAGE_MAIN_2_IM =
+StaticImageROMDef TEST_ROOM_STAGE_MAIN_2_IM =
 {
-    __TYPE(Image),
+    __TYPE(StaticImage),
     (SpriteROMDef**)TEST_ROOM_STAGE_MAIN_2_IM_SPRITES,
 };
 

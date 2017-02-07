@@ -24,8 +24,8 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
-#include <Image.h>
+#include <StaticImage.h>
+#include <StaticImage.h>
 #include <BgmapSprite.h>
 
 
@@ -112,8 +112,8 @@ BgmapSpriteROMDef* const CLOUD_A_IM_SPRITES[] =
 	NULL
 };
 
-ImageROMDef CLOUD_A_IM =
+StaticImageROMDef CLOUD_A_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)CLOUD_A_IM_SPRITES,
 };

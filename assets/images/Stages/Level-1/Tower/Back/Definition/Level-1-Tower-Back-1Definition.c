@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Image.h>
+#include <StaticImage.h>
 #include <RecyclableImage.h>
 #include <MBgmapSprite.h>
 
@@ -133,8 +133,8 @@ BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES[] =
 };
 
 
-ImageROMDef LEVEL_1_TOWER_MAIN_BACK_IM =
+StaticImageROMDef LEVEL_1_TOWER_MAIN_BACK_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES,
 };

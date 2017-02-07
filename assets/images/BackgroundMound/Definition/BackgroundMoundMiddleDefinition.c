@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Clouds.h>
-#include <Image.h>
+#include <StaticImage.h>
 #include <MBgmapSprite.h>
 #include <InanimatedInGameEntity.h>
 
@@ -132,9 +132,9 @@ BgmapSpriteROMDef* const MOUND_BG_MIDDLE_SB_SPRITES[] =
 	NULL
 };
 
-ImageROMDef MOUND_BG_MIDDLE_IM =
+StaticImageROMDef MOUND_BG_MIDDLE_IM =
 {
-	__TYPE(Image),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
 };
 
