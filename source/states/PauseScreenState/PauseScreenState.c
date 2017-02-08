@@ -166,6 +166,8 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 		(void (*)(Object, Object))PauseScreenState_onFadeInComplete, // callback function
 		__SAFE_CAST(Object, this) // callback scope
 	);
+
+	this->mode = kPauseScreenModeShowOptions;
 }
 
 // state's exit
