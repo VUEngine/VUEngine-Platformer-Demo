@@ -309,7 +309,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 #endif
 
 	// do a fade out effect
-    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
+    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}

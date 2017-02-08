@@ -152,7 +152,7 @@ static void OverworldState_resume(OverworldState this, void* owner)
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// make a fade in
-    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
+    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DELAY);
 
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
@@ -185,7 +185,7 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 #endif
 
 	// make a fade out
-    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DURATION);
+    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
 
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }

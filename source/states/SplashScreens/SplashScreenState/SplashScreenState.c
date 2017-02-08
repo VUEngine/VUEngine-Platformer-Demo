@@ -124,7 +124,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 
 	// start a fade in effect
-	Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DURATION);
+	Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}
