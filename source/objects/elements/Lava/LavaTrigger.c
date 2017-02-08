@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -39,14 +39,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(LavaTrigger, InanimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 void LavaTrigger_triggerEventStart(LavaTrigger this);
@@ -54,7 +54,7 @@ void LavaTrigger_triggerEventEnd(LavaTrigger this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -71,8 +71,8 @@ void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition*
 // class's destructor
 void LavaTrigger_destructor(LavaTrigger this)
 {
-    // discard pending delayed messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kLavaTriggerEnd);
+	// discard pending delayed messages
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kLavaTriggerEnd);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -83,15 +83,15 @@ void LavaTrigger_destructor(LavaTrigger this)
 bool LavaTrigger_handleMessage(LavaTrigger this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kLavaTriggerStart:
 
-            LavaTrigger_triggerEventStart(this);
+			LavaTrigger_triggerEventStart(this);
 			break;
 
 		case kLavaTriggerEnd:
 
-            LavaTrigger_triggerEventEnd(this);
+			LavaTrigger_triggerEventEnd(this);
 			break;
 	}
 
@@ -100,35 +100,35 @@ bool LavaTrigger_handleMessage(LavaTrigger this, Telegram telegram)
 
 void LavaTrigger_triggerEventStart(LavaTrigger this)
 {
-    // set level mode to paused so that player can't move
-    PlatformerLevelState platformerState = (PlatformerLevelState)Game_getCurrentState(Game_getInstance());
-    PlatformerLevelState_setModeToPaused(platformerState);
+	// set level mode to paused so that player can't move
+	PlatformerLevelState platformerState = (PlatformerLevelState)Game_getCurrentState(Game_getInstance());
+	PlatformerLevelState_setModeToPaused(platformerState);
 
-    // initialize a dramatic screen shake effect
-    Screen_startEffect(Screen_getInstance(), kShake, 3000);
+	// initialize a dramatic screen shake effect
+	Screen_startEffect(Screen_getInstance(), kShake, 3000);
 
-    // TODO: play rumble BGM
+	// TODO: play rumble BGM
 
-    // remind myself to stop the trigger event soon
-    MessageDispatcher_dispatchMessage(3000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaTriggerEnd, NULL);
+	// remind myself to stop the trigger event soon
+	MessageDispatcher_dispatchMessage(3000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaTriggerEnd, NULL);
 
-    // deactivate shape so I won't get triggered again
-    Shape_setActive(this->shape, false);
+	// deactivate shape so I won't get triggered again
+	Shape_setActive(this->shape, false);
 }
 
 void LavaTrigger_triggerEventEnd(LavaTrigger this)
 {
-    // TODO: stop rumble BGM
-    // TODO: start rotating cogwheel
+	// TODO: stop rumble BGM
+	// TODO: start rotating cogwheel
 
-    // get lava entity from stage and start its movement
-    Lava lava = (Lava)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Lava", true);
-    Lava_startMoving(lava);
+	// get lava entity from stage and start its movement
+	Lava lava = (Lava)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Lava", true);
+	Lava_startMoving(lava);
 
-    // release player
-    PlatformerLevelState platformerState = (PlatformerLevelState)Game_getCurrentState(Game_getInstance());
-    PlatformerLevelState_setModeToPlaying(platformerState);
+	// release player
+	PlatformerLevelState platformerState = (PlatformerLevelState)Game_getCurrentState(Game_getInstance());
+	PlatformerLevelState_setModeToPlaying(platformerState);
 
-    // remove me from stage so I don't waste resources
+	// remove me from stage so I don't waste resources
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 }

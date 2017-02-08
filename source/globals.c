@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -61,46 +61,46 @@ extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										DEFINITIONS
+//										DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 // only need to define one for all containers
 EntityROMDef SIMPLE_CONTAINER =
 {
-    __TYPE(Entity),
-    NULL
+	__TYPE(Entity),
+	NULL
 };
 
 
 // only need to define one for all managed entities
 ManagedEntityROMDef MANAGED_ENTITY =
 {
-    __TYPE(ManagedEntity),
-    NULL
+	__TYPE(ManagedEntity),
+	NULL
 };
 
 // only need to define one for all entities
 CollisionsContainerEntityROMDef COLLISIONS_CONTAINER_ENTITY =
 {
-    __TYPE(CollisionsContainerEntity),
-    NULL
+	__TYPE(CollisionsContainerEntity),
+	NULL
 };
 
 
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] =
 {
-	{&Bandana_getObjectSize,        "Bandana"},
-	{&Cannon_getObjectSize,         "Cannon"},
-	{&CannonBall_getObjectSize,     "CannonBall"},
-	{&Coin_getObjectSize,           "Coin"},
-	{&Door_getObjectSize,           "Door"},
-	{&Gui_getObjectSize,            "GUI"},
-	{&Hero_getObjectSize,           "Hero"},
-	{&HideLayer_getObjectSize,      "HideLayer"},
-	{&HideLayer_getObjectSize,      "Hint"},
-	{&Key_getObjectSize,            "Key"},
-	{&MovingEntity_getObjectSize,   "MovingEntity"},
+	{&Bandana_getObjectSize,		"Bandana"},
+	{&Cannon_getObjectSize,			"Cannon"},
+	{&CannonBall_getObjectSize,		"CannonBall"},
+	{&Coin_getObjectSize,			"Coin"},
+	{&Door_getObjectSize,			"Door"},
+	{&Gui_getObjectSize,			"GUI"},
+	{&Hero_getObjectSize,			"Hero"},
+	{&HideLayer_getObjectSize,		"HideLayer"},
+	{&HideLayer_getObjectSize,		"Hint"},
+	{&Key_getObjectSize,			"Key"},
+	{&MovingEntity_getObjectSize,	"MovingEntity"},
 	{NULL, ""},
 };
 #endif
@@ -108,15 +108,15 @@ const ClassSizeData _userClassesSizeData[] =
 #ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
-	{&LEVEL_1_HOUSE_IM,     "House"},
-	{&CANNON_BALL_AC,       "CannonBall"},
-	{&COIN_AG,              "Coin"},
-	{&DOOR_AG,              "Door"},
-	{&HERO_AC,              "Hero"},
-	{&KEY_AG,               "Key"},
-	{&SAW_BLADE_V3_AC,      "SawBlade V3"},
-	{&SAW_BLADE_H3_AC,      "SawBlade H3"},
-	{&LANE_V_6_IM,          "SawBlade Lane V6"},
+	{&LEVEL_1_HOUSE_IM,		"House"},
+	{&CANNON_BALL_AC,		"CannonBall"},
+	{&COIN_AG,				"Coin"},
+	{&DOOR_AG,				"Door"},
+	{&HERO_AC,				"Hero"},
+	{&KEY_AG,				"Key"},
+	{&SAW_BLADE_V3_AC,		"SawBlade V3"},
+	{&SAW_BLADE_H3_AC,		"SawBlade H3"},
+	{&LANE_V_6_IM,			"SawBlade Lane V6"},
 	{NULL, ""},
 };
 #endif
@@ -124,13 +124,13 @@ const UserObject _userObjects[] =
 #ifdef __ANIMATION_EDITOR
 const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
 {
-	{(AnimatedInGameEntityDefinition*)&COIN_AG,                     "Coin"},
-	{(AnimatedInGameEntityDefinition*)&DOOR_AG,                     "Door"},
-	{(AnimatedInGameEntityDefinition*)&LAYER_SWITCH_DOOR_BACK_AG,   "Back Door"},
-	{(AnimatedInGameEntityDefinition*)&HERO_AC,                     "Hero"},
-	{(AnimatedInGameEntityDefinition*)&KEY_AG,                      "Key"},
-	{(AnimatedInGameEntityDefinition*)&SAW_BLADE_V3_AC,             "SawBlade"},
-	{(AnimatedInGameEntityDefinition*)&LAVA_TOP_AG,                 "Lava top"},
+	{(AnimatedInGameEntityDefinition*)&COIN_AG,						"Coin"},
+	{(AnimatedInGameEntityDefinition*)&DOOR_AG,						"Door"},
+	{(AnimatedInGameEntityDefinition*)&LAYER_SWITCH_DOOR_BACK_AG,	"Back Door"},
+	{(AnimatedInGameEntityDefinition*)&HERO_AC,						"Hero"},
+	{(AnimatedInGameEntityDefinition*)&KEY_AG,						"Key"},
+	{(AnimatedInGameEntityDefinition*)&SAW_BLADE_V3_AC,				"SawBlade"},
+	{(AnimatedInGameEntityDefinition*)&LAVA_TOP_AG,					"Lava top"},
 	{NULL, ""},
 };
 #endif

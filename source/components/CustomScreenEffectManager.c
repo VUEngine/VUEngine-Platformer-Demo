@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <CustomScreenEffectManager.h>
@@ -39,7 +39,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(CustomScreenEffectManager, ScreenEffectManager);
@@ -47,7 +47,7 @@ __CLASS_FRIEND_DEFINITION(Screen);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void CustomScreenEffectManager_constructor(CustomScreenEffectManager this);
@@ -64,23 +64,23 @@ extern BrightnessRepeatROMDef EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												GLOBALS
+//												GLOBALS
 //---------------------------------------------------------------------------------------------------------
 
 static Screen _screen = NULL;
 
 BrightnessRepeatROMDef* SCREEN_PULSATE_STEPS[] =
 {
-    &EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
-    &EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
-    //&EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT,
-    //&EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
-    NULL
+	&EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
+	&EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
+	//&EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT,
+	//&EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
+	NULL
 };
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // it's a singleton
@@ -171,12 +171,12 @@ bool CustomScreenEffectManager_handleMessage(CustomScreenEffectManager this, Tel
 		case kShake:
 
 			CustomScreenEffectManager_onScreenShake(this);
-            break;
+			break;
 
 		case kScreenPulsate:
 
 			CustomScreenEffectManager_onScreenPulsate(this);
-            break;
+			break;
 	}
 
 	return false;
@@ -189,18 +189,18 @@ static void CustomScreenEffectManager_FXShakeStart(CustomScreenEffectManager thi
 
 	// don't follow the focus entity while shaking
 	//Screen _screen = Screen_getInstance();
-    CustomScreenMovementManager_disable(CustomScreenMovementManager_getInstance());
+	CustomScreenMovementManager_disable(CustomScreenMovementManager_getInstance());
 
-    // set desired fx duration
-    this->shakeTimeLeft = duration;
+	// set desired fx duration
+	this->shakeTimeLeft = duration;
 
-    this->lastShakeOffset.x = ITOFIX19_13(4);
+	this->lastShakeOffset.x = ITOFIX19_13(4);
 
-    // discard pending messages from previously started fx
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kShake);
+	// discard pending messages from previously started fx
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kShake);
 
-    // instantly send message to self to start fx
-    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
+	// instantly send message to self to start fx
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
 }
 
 // start screen pulsating effect
@@ -208,13 +208,13 @@ static void CustomScreenEffectManager_FXScreenPulsateStart(CustomScreenEffectMan
 {
 	ASSERT(this, "CustomScreenEffectManager::FXScreenPulsateStart: null this");
 
-    // discard pending messages from previously started fx
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
+	// discard pending messages from previously started fx
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
 
-    this->pulsateNextStep = 0;
+	this->pulsateNextStep = 0;
 
-    // instantly send message to self to start fx
-    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
+	// instantly send message to self to start fx
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
 }
 
 // stop shaking the _screen
@@ -222,7 +222,7 @@ void CustomScreenEffectManager_FXShakeStop(CustomScreenEffectManager this)
 {
 	ASSERT(this, "CustomScreenEffectManager::FXShakeStop: null this");
 
-    this->shakeTimeLeft = 0;
+	this->shakeTimeLeft = 0;
 }
 
 // stop shaking the _screen
@@ -230,8 +230,8 @@ void CustomScreenEffectManager_FXScreenPulsateStop(CustomScreenEffectManager thi
 {
 	ASSERT(this, "CustomScreenEffectManager::FXScreenPulsateStop: null this");
 
-    this->pulsateNextStep = 0;
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
+	this->pulsateNextStep = 0;
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
 }
 
 // shake the _screen
@@ -239,33 +239,33 @@ static void CustomScreenEffectManager_onScreenShake(CustomScreenEffectManager th
 {
 	ASSERT(this, "CustomScreenEffectManager::onScreenShake: null this");
 
-    // stop if no shaking time left
-    if(this->shakeTimeLeft == 0)
-    {
-        // if needed, undo last offset
-        if(this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
-        {
-            this->lastShakeOffset.x = 0;
-        }
+	// stop if no shaking time left
+	if(this->shakeTimeLeft == 0)
+	{
+		// if needed, undo last offset
+		if(this->lastShakeOffset.x != 0 || this->lastShakeOffset.y != 0)
+		{
+			this->lastShakeOffset.x = 0;
+		}
 
-        CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
-        return;
-    }
+		CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
+		return;
+	}
 
 	long seed = Utilities_randomSeed();
 
-    int nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, __ABS(SHAKE_DELAY_DELTA));
+	int nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities_random(seed, __ABS(SHAKE_DELAY_DELTA));
 
-    // subtract time until next shake
-    this->shakeTimeLeft = (this->shakeTimeLeft <= nextShakeDelay) ? 0 : this->shakeTimeLeft - nextShakeDelay;
+	// subtract time until next shake
+	this->shakeTimeLeft = (this->shakeTimeLeft <= nextShakeDelay) ? 0 : this->shakeTimeLeft - nextShakeDelay;
 
-    // new offset
-    this->lastShakeOffset.x = -this->lastShakeOffset.x;
+	// new offset
+	this->lastShakeOffset.x = -this->lastShakeOffset.x;
 
-    // move screen a bit
-    Screen_move(_screen, this->lastShakeOffset, false);
+	// move screen a bit
+	Screen_move(_screen, this->lastShakeOffset, false);
 
-    // send message for next screen movement
+	// send message for next screen movement
 	MessageDispatcher_dispatchMessage(nextShakeDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
 }
 
@@ -274,11 +274,11 @@ static void CustomScreenEffectManager_onScreenPulsate(CustomScreenEffectManager 
 {
 	ASSERT(this, "CustomScreenEffectManager::onScreenPulsate: null this");
 
-    VIPManager_setupBrightnessRepeat(VIPManager_getInstance(), (BrightnessRepeatDefinition*)SCREEN_PULSATE_STEPS[this->pulsateNextStep]);
+	VIPManager_setupBrightnessRepeat(VIPManager_getInstance(), (BrightnessRepeatDefinition*)SCREEN_PULSATE_STEPS[this->pulsateNextStep]);
 
-    // send message for next fx step
-    this->pulsateNextStep = (SCREEN_PULSATE_STEPS[this->pulsateNextStep + 1] != NULL)
-        ? this->pulsateNextStep + 1
-        : 0;
+	// send message for next fx step
+	this->pulsateNextStep = (SCREEN_PULSATE_STEPS[this->pulsateNextStep + 1] != NULL)
+		? this->pulsateNextStep + 1
+		: 0;
 	MessageDispatcher_dispatchMessage(SCREEN_PULSATE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
 }

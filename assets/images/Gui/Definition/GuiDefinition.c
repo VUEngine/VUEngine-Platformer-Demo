@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -32,7 +32,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE GuiTiles[];
@@ -41,7 +41,7 @@ extern BYTE GuiBandanaTiles[];
 extern BYTE GuiMap[];
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
@@ -78,116 +78,116 @@ AnimationDescriptionROMDef GUI_ANIM =
 
 CharSetROMDef GUI_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    96,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	96,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SINGLE,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
 
-    // char definition
-    GuiTiles,
+	// char definition
+	GuiTiles,
 };
 
 CharSetROMDef GUI_BANDANA_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    96,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	96,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SINGLE,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
 
-    // char definition
-    GuiBandanaTiles,
+	// char definition
+	GuiBandanaTiles,
 };
 
 CharSetROMDef GUI_OVERWORLD_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    96,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	96,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SINGLE,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
 
-    // char definition
-    GuiOverworldTiles,
+	// char definition
+	GuiOverworldTiles,
 };
 
 TextureROMDef GUI_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&GUI_CH,
+	// charset definition
+	(CharSetDefinition*)&GUI_CH,
 
-    // bgmap definition
-    GuiMap,
+	// bgmap definition
+	GuiMap,
 
-    // cols (max 64)
-    48,
+	// cols (max 64)
+	48,
 
-    // rows (max 64)
-    2,
+	// rows (max 64)
+	2,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 TextureROMDef GUI_OVERWORLD_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&GUI_OVERWORLD_CH,
+	// charset definition
+	(CharSetDefinition*)&GUI_OVERWORLD_CH,
 
-    // bgmap definition
-    GuiMap,
+	// bgmap definition
+	GuiMap,
 
-    // cols (max 64)
-    48,
+	// cols (max 64)
+	48,
 
-    // rows (max 64)
-    2,
+	// rows (max 64)
+	2,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef GUI_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&GUI_TX,
+		// texture definition
+		(TextureDefinition*)&GUI_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -199,19 +199,19 @@ BgmapSpriteROMDef GUI_SPRITE =
 
 BgmapSpriteROMDef GUI_OVERWORLD_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&GUI_OVERWORLD_TX,
+		// texture definition
+		(TextureDefinition*)&GUI_OVERWORLD_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -235,66 +235,66 @@ BgmapSpriteROMDef* const GUI_OVERWORLD_SPRITES[] =
 
 AnimatedInGameEntityROMDef GUI_AG =
 {
-    {
-        {
-            __TYPE(Gui),
-            (SpriteROMDef**)GUI_SPRITES,
-        },
+	{
+		{
+			__TYPE(Gui),
+			(SpriteROMDef**)GUI_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kNotSolid,
+		// in game type
+		kNotSolid,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&GUI_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&GUI_ANIM,
 
-    // initial animation
-    "Default",
+	// initial animation
+	"Default",
 };
 
 AnimatedInGameEntityROMDef GUI_OVERWORLD_AG =
 {
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)GUI_OVERWORLD_SPRITES,
-        },
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)GUI_OVERWORLD_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kNotSolid,
+		// in game type
+		kNotSolid,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&GUI_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&GUI_ANIM,
 
-    // initial animation
-    "Default",
+	// initial animation
+	"Default",
 };

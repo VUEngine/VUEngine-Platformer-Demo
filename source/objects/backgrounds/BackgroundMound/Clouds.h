@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
@@ -32,29 +32,29 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 #define CLOUDS_MOVE_DELAY 100
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Clouds_METHODS(ClassName)																		\
-		StaticImage_METHODS(ClassName)																		\
+		StaticImage_METHODS(ClassName)																	\
 
 #define Clouds_SET_VTABLE(ClassName)																	\
-		StaticImage_SET_VTABLE(ClassName)																		\
+		StaticImage_SET_VTABLE(ClassName)																\
 		__VIRTUAL_SET(ClassName, Clouds, update);														\
 		__VIRTUAL_SET(ClassName, Clouds, isVisible);													\
 
 __CLASS(Clouds);
 
-#define Clouds_ATTRIBUTES																			   \
+#define Clouds_ATTRIBUTES																				\
 		/* it is derived from */																		\
-		StaticImage_ATTRIBUTES																				\
+		StaticImage_ATTRIBUTES																			\
 		/* displacement per cycle */																	\
 		fix19_13 displacement;																			\
 
@@ -73,7 +73,7 @@ typedef const CloudsDefinition CloudsROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Clouds, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name);

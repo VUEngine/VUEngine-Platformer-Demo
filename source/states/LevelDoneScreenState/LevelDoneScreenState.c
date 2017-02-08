@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
@@ -39,14 +39,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef LEVEL_DONE_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void LevelDoneScreenState_destructor(LevelDoneScreenState this);
@@ -60,7 +60,7 @@ static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this, Ob
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(LevelDoneScreenState, GameState);
@@ -68,7 +68,7 @@ __SINGLETON_DYNAMIC(LevelDoneScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
@@ -97,20 +97,20 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __
 	LevelDoneScreenState_print(this);
 
 	// disable user input
-    Game_disableKeypad(Game_getInstance());
+	Game_disableKeypad(Game_getInstance());
 
 	// start clocks to start animations
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
-    // fade in screen
-    Screen_startEffect(Screen_getInstance(),
-        kFadeTo, // effect type
-        0, // initial delay (in ms)
-        NULL, // target brightness
-        __FADE_DELAY, // delay between fading steps (in ms)
-        (void (*)(Object, Object))LevelDoneScreenState_onFadeInComplete, // callback function
-        __SAFE_CAST(Object, this) // callback scope
-    );
+	// fade in screen
+	Screen_startEffect(Screen_getInstance(),
+		kFadeTo, // effect type
+		0, // initial delay (in ms)
+		NULL, // target brightness
+		__FADE_DELAY, // delay between fading steps (in ms)
+		(void (*)(Object, Object))LevelDoneScreenState_onFadeInComplete, // callback function
+		__SAFE_CAST(Object, this) // callback scope
+	);
 }
 
 // state's exit
@@ -128,25 +128,25 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ (
 {
 	ASSERT(this, "LevelDoneScreenState::print: null this");
 
-    u8 numberOfCollectedCoins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
+	u8 numberOfCollectedCoins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
 
-    // "level completed/conquered"
-    const char* strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_DONE);
-    if(numberOfCollectedCoins == 64)
-    {
-        strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_CONQUERED);
-    }
-    Size strLevelDoneSize = Printing_getTextSize(Printing_getInstance(), strLevelDone, "GuiFont");
-    u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (strLevelDoneSize.x >> 1);
-    Printing_text(Printing_getInstance(), strLevelDone, strHeaderXPos, 9, "GuiFont");
+	// "level completed/conquered"
+	const char* strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_DONE);
+	if(numberOfCollectedCoins == 64)
+	{
+		strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_CONQUERED);
+	}
+	Size strLevelDoneSize = Printing_getTextSize(Printing_getInstance(), strLevelDone, "GuiFont");
+	u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (strLevelDoneSize.x >> 1);
+	Printing_text(Printing_getInstance(), strLevelDone, strHeaderXPos, 9, "GuiFont");
 
-    // number of coins
-    Printing_text(Printing_getInstance(), "00/64", 22, 13, NULL);
-    u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
-    Printing_int(Printing_getInstance(), numberOfCollectedCoins, numberPrintPos, 13, NULL);
+	// number of coins
+	Printing_text(Printing_getInstance(), "00/64", 22, 13, NULL);
+	u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
+	Printing_int(Printing_getInstance(), numberOfCollectedCoins, numberPrintPos, 13, NULL);
 
 	// print time
-    Clock inGameClock = PlatformerLevelState_getClock(PlatformerLevelState_getInstance());
+	Clock inGameClock = PlatformerLevelState_getClock(PlatformerLevelState_getInstance());
 	Clock_print(inGameClock, 22, 15, NULL);
 
 	// if new best time, print label (do not if first time beating level)
@@ -162,22 +162,22 @@ static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this __attr
 {
 	// process message
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kKeyPressed:
 		{
-		    // disable user input
-            Game_disableKeypad(Game_getInstance());
+			// disable user input
+			Game_disableKeypad(Game_getInstance());
 
-		    // fade out screen
-            Brightness brightness = (Brightness){0, 0, 0};
-            Screen_startEffect(Screen_getInstance(),
-                kFadeTo, // effect type
-                0, // initial delay (in ms)
-                &brightness, // target brightness
-                __FADE_DELAY, // delay between fading steps (in ms)
-                (void (*)(Object, Object))LevelDoneScreenState_onFadeOutComplete, // callback function
-                __SAFE_CAST(Object, this) // callback scope
-            );
+			// fade out screen
+			Brightness brightness = (Brightness){0, 0, 0};
+			Screen_startEffect(Screen_getInstance(),
+				kFadeTo, // effect type
+				0, // initial delay (in ms)
+				&brightness, // target brightness
+				__FADE_DELAY, // delay between fading steps (in ms)
+				(void (*)(Object, Object))LevelDoneScreenState_onFadeOutComplete, // callback function
+				__SAFE_CAST(Object, this) // callback scope
+			);
 
 			return true;
 			break;
@@ -192,7 +192,7 @@ static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this __at
 {
 	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
 
-    Game_enableKeypad(Game_getInstance());
+	Game_enableKeypad(Game_getInstance());
 }
 
 // handle event
@@ -200,6 +200,6 @@ static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this __a
 {
 	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
 
-    // switch to next screen
-    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+	// switch to next screen
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 }

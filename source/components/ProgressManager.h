@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Object.h>
@@ -32,44 +32,44 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define ProgressManager_METHODS(ClassName)																\
-    	Object_METHODS(ClassName)																		\
+		Object_METHODS(ClassName)																		\
 
 // declare the virtual methods which are redefined
 #define ProgressManager_SET_VTABLE(ClassName)															\
-    	Object_SET_VTABLE(ClassName)																	\
+		Object_SET_VTABLE(ClassName)																	\
 
 // declare class
 __CLASS(ProgressManager);
 
 // declare class attributes
 #define ProgressManager_ATTRIBUTES																		\
-        /* super's attributes */																		\
-        Object_ATTRIBUTES																				\
-        /* time in current level */																		\
-        u32 currentLevelTime;																			\
-        /* best time in current level */																\
-        u32 currentLevelBestTime;																		\
-        /* bitstrings that hold collected coin flags */													\
-        u32 collectedCoins[2];																			\
-        /* bitstring that holds collected item flags */													\
-        u16 collectedItems;																				\
-        /* flag that tells if the hero has collected the current level's key */							\
-        bool heroHasKey;																				\
-        /* flag that tells if sram is available on the current cartridge */								\
-        bool sramAvailable;																				\
-        /* hero's current energy */																		\
-        u8 heroCurrentEnergy;																			\
-        /* hero's currently active power-up */															\
-        u8 heroCurrentPowerUp;																			\
+		/* super's attributes */																		\
+		Object_ATTRIBUTES																				\
+		/* time in current level */																		\
+		u32 currentLevelTime;																			\
+		/* best time in current level */																\
+		u32 currentLevelBestTime;																		\
+		/* bitstrings that hold collected coin flags */													\
+		u32 collectedCoins[2];																			\
+		/* bitstring that holds collected item flags */													\
+		u16 collectedItems;																				\
+		/* flag that tells if the hero has collected the current level's key */							\
+		bool heroHasKey;																				\
+		/* flag that tells if sram is available on the current cartridge */								\
+		bool sramAvailable;																				\
+		/* hero's current energy */																		\
+		u8 heroCurrentEnergy;																			\
+		/* hero's currently active power-up */															\
+		u8 heroCurrentPowerUp;																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 #define SAVE_STAMP								"VUEngine"
@@ -80,15 +80,15 @@ typedef struct LevelStatus
 	// flag that tells whether the level was ever completed
 	u8 levelCompleted;
 
-    // number of collected coins in this level
-    u8 numberOfCollectedCoins;
+	// number of collected coins in this level
+	u8 numberOfCollectedCoins;
 
 	// the best time the level was ever completed in
 	u32 bestTime;
 
-    // bitstrings that hold collected coin flags
-    // 0 = not collected, 1 = collected
-    u32 collectedCoins[2];
+	// bitstrings that hold collected coin flags
+	// 0 = not collected, 1 = collected
+	u32 collectedCoins[2];
 
 } LevelStatus;
 
@@ -121,7 +121,7 @@ typedef struct SaveData
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 ProgressManager ProgressManager_getInstance();

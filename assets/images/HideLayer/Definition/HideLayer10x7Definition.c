@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -32,14 +32,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 void HideLayer_onToTransparentAnimationComplete(HideLayer this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE HideLayer10x7Tiles[];
@@ -47,7 +47,7 @@ extern BYTE HideLayer10x7Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 AnimationFunctionROMDef HIDE_LAYER_10x7_SOLID_ANIM =
@@ -149,60 +149,60 @@ AnimationDescriptionROMDef HIDE_LAYER_10x7_ANIM =
 
 CharSetROMDef HIDE_LAYER_10x7_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    70,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	70,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SINGLE,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
 
-    // char definition
-    HideLayer10x7Tiles,
+	// char definition
+	HideLayer10x7Tiles,
 };
 
 TextureROMDef HIDE_LAYER_10x7_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&HIDE_LAYER_10x7_CH,
+	// charset definition
+	(CharSetDefinition*)&HIDE_LAYER_10x7_CH,
 
-    // bgmap definition
-    HideLayer10x7Map,
+	// bgmap definition
+	HideLayer10x7Map,
 
-    // cols (max 64)
-    10,
+	// cols (max 64)
+	10,
 
-    // rows (max 64)
-    7,
+	// rows (max 64)
+	7,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&HIDE_LAYER_10x7_TX,
+		// texture definition
+		(TextureDefinition*)&HIDE_LAYER_10x7_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -220,34 +220,34 @@ BgmapSpriteROMDef* const HIDE_LAYER_10x7_SPRITES[] =
 
 AnimatedInGameEntityROMDef HIDE_LAYER_10x7_AG =
 {
-    {
-        {
-            __TYPE(HideLayer),
-            (SpriteROMDef**)HIDE_LAYER_10x7_SPRITES,
-        },
+	{
+		{
+			__TYPE(HideLayer),
+			(SpriteROMDef**)HIDE_LAYER_10x7_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {8, 8, 8, 8},
+		// collision detection gap (up, down, left, right)
+		{8, 8, 8, 8},
 
-        // in game type
-        kHideLayer,
+		// in game type
+		kHideLayer,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        8
-    },
+		// depth
+		8
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&HIDE_LAYER_10x7_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&HIDE_LAYER_10x7_ANIM,
 
-    // initial animation
-    "Solid",
+	// initial animation
+	"Solid",
 };
 

@@ -21,46 +21,46 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE FontLargeTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef PLATFORMER_LARGE_FONT_CH =
 {
-    // number of chars
-    256,
+	// number of chars
+	256,
 
-    // allocation type
-    __NOT_ANIMATED,
+	// allocation type
+	__NOT_ANIMATED,
 
-    // char definition
-    FontLargeTiles,
+	// char definition
+	FontLargeTiles,
 };
 
 FontROMDef PLATFORMER_LARGE_FONT =
 {
-    // font charset definition pointer
-    (CharSetDefinition*)&PLATFORMER_LARGE_FONT_CH,
+	// font charset definition pointer
+	(CharSetDefinition*)&PLATFORMER_LARGE_FONT_CH,
 
-    // character number at which the font starts, allows you to skip the control characters for example
-    32,
+	// character number at which the font starts, allows you to skip the control characters for example
+	32,
 
 	// size of a single character (in chars) ({width, height})
-    {2, 2},
+	{2, 2},
 
 	// font's name
-    "LargeFont",
+	"LargeFont",
 };

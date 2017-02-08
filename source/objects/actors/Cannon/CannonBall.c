@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -36,14 +36,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(CannonBall, Actor);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -65,7 +65,7 @@ void CannonBall_constructor(CannonBall this, ActorDefinition* definition, s16 id
 	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), definition->mass);
 
 	// I start my life hidden
-    this->hidden = true;
+	this->hidden = true;
 }
 
 // class's constructor
@@ -93,13 +93,13 @@ void CannonBall_update(CannonBall this, u32 elapsedTime)
 {
 	ASSERT(this, "CannonBall::udpate: null this");
 
-    Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
+	Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
 
-    if(Body_isMoving(this->body) && this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
-    {
-        // set state to idle
-        CannonBall_stopMovement(this);
-    }
+	if(Body_isMoving(this->body) && this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
+	{
+		// set state to idle
+		CannonBall_stopMovement(this);
+	}
 }
 
 // register a shape with the collision detection system
@@ -134,22 +134,22 @@ void CannonBall_startMovement(CannonBall this)
 
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
-    // show me
+	// show me
 	Entity_show(__SAFE_CAST(Entity, this));
 }
 
 // move back to cannon
 void CannonBall_stopMovement(CannonBall this)
 {
-    // stop movement
-    Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+	// stop movement
+	Actor_stopMovement(__SAFE_CAST(Actor, this), false);
 
-    // set back local position
-    VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
-    Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
+	// set back local position
+	VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
+	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
 
-    // hide me
-    Entity_hide(__SAFE_CAST(Entity, this));
+	// hide me
+	Entity_hide(__SAFE_CAST(Entity, this));
 }
 
 // state's handle message
@@ -158,10 +158,10 @@ bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
 	ASSERT(this, "CannonBall::handleMessage: null this");
 
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kCannonShoot:
 
-        	CannonBall_startMovement(this);
+			CannonBall_startMovement(this);
 			break;
 	}
 

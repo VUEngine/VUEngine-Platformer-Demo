@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
@@ -38,14 +38,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Item, Collectable);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 void Item_collect(Item this);
@@ -53,7 +53,7 @@ void Item_removeFromStage(Item this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -83,6 +83,6 @@ void Item_collect(Item this)
 {
 	ASSERT(this, "Item::collect: null this");
 
-    // set item status to taken
-    ProgressManager_setItemStatus(ProgressManager_getInstance(), this->id, true);
+	// set item status to taken
+	ProgressManager_setItemStatus(ProgressManager_getInstance(), this->id, true);
 }

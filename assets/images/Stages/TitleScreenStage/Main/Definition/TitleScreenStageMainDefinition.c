@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
@@ -30,7 +30,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE TitleScreenStageMainTiles[];
@@ -38,87 +38,87 @@ extern BYTE TitleScreenStageMain1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef TITLE_SCREEN_STAGE_MAIN_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    16,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	16,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    TitleScreenStageMainTiles,
+	// char definition
+	TitleScreenStageMainTiles,
 };
 
 TextureROMDef TITLE_SCREEN_STAGE_MAIN_1_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&TITLE_SCREEN_STAGE_MAIN_CH,
+	// charset definition
+	(CharSetDefinition*)&TITLE_SCREEN_STAGE_MAIN_CH,
 
-    // bgmap definition
-    TitleScreenStageMain1Map,
+	// bgmap definition
+	TitleScreenStageMain1Map,
 
-    // cols (max 64)
-    48,
+	// cols (max 64)
+	48,
 
-    // rows (max 64)
-    8,
+	// rows (max 64)
+	8,
 
-    // padding for affine transformations
-    {0, 0},
+	// padding for affine transformations
+	{0, 0},
 
-    // number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&TITLE_SCREEN_STAGE_MAIN_1_TX,
+		// texture definition
+		(TextureDefinition*)&TITLE_SCREEN_STAGE_MAIN_1_TX,
 
-        // transparent
-        false,
+		// transparent
+		false,
 
-        // displacement
-        {
-            FTOFIX19_13(0), // x
-            FTOFIX19_13(0), // y
-            FTOFIX19_13(0), // z
-            FTOFIX19_13(0), // parallax
-        },
-    },
+		// displacement
+		{
+			FTOFIX19_13(0), // x
+			FTOFIX19_13(0), // y
+			FTOFIX19_13(0), // z
+			FTOFIX19_13(0), // parallax
+		},
+	},
 
-    // bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-    __WORLD_BGMAP,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	__WORLD_BGMAP,
 
-    // display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-    __WORLD_ON,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
 
 BgmapSpriteROMDef* const TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES[] =
 {
-    &TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITE,
-    NULL
+	&TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITE,
+	NULL
 };
 
 StaticImageROMDef TITLE_SCREEN_STAGE_MAIN_1_IM =
 {
-    __TYPE(StaticImage),
-    (SpriteROMDef**)TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES,
+	__TYPE(StaticImage),
+	(SpriteROMDef**)TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES,
 };
 

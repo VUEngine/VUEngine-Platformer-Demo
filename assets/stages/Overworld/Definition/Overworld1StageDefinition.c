@@ -44,7 +44,7 @@ extern u16 KRISSE_BGM[][2];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											ENTITY LISTS
+//											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef OVERWORLD1_STAGE_ST_ENTITIES[] =
@@ -74,7 +74,7 @@ PositionedEntityROMDef OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											PRELOAD LISTS
+//											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
 FontROMDef* const OVERWORLD1_STAGE_ST_FONTS[] =
@@ -99,9 +99,9 @@ StageROMDef OVERWORLD1_STAGE_ST =
 			// x
 			__SCREEN_WIDTH,
 			// y
-            __SCREEN_HEIGHT,
+			__SCREEN_HEIGHT,
 			// z
-            __SCREEN_DEPTH,
+			__SCREEN_DEPTH,
 		},
 
 		// screen's initial position inside the game world
@@ -118,27 +118,27 @@ StageROMDef OVERWORLD1_STAGE_ST =
 	// streaming
 	{
 		// minimum free ms in the current game frame to allow streaming to quick in
-        10,
+		10,
 		// load padding
 		40,
 		// unload padding
-        16,
+		16,
 		// streaming amplitude
-        24,
+		24,
 		// particle removal delay cycles
-        0,
+		0,
 	},
 
 	// rendering
 	{
 		// number of cycles the texture writing is idle
-        __TARGET_FPS / 10,
+		__TARGET_FPS / 10,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-        12,
+		12,
 
 		// maximum number of rows to compute on each call to the affine functions
-        16,
+		16,
 
 		// colors config
 		{
@@ -192,13 +192,13 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		// obj segments sizes (must total 1024)
 		{
 			// __spt0
-            __AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 			// __spt1
-            __AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 			// __spt2
-            __AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 			// __spt3
-            __AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 		},
 
 		// obj segments z coordinates

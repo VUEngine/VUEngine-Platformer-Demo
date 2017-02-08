@@ -24,14 +24,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <TriggerEntity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define CameraTriggerEntity_METHODS(ClassName)															\
@@ -42,16 +42,16 @@
 		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);										\
 
 #define CameraTriggerEntity_ATTRIBUTES																	\
-        /* super's attributes */																		\
-        TriggerEntity_ATTRIBUTES																		\
-        /* update axis flag */																			\
-        VBVec3DFlag overridePositionFlag;																\
+		/* super's attributes */																		\
+		TriggerEntity_ATTRIBUTES																		\
+		/* update axis flag */																			\
+		VBVec3DFlag overridePositionFlag;																\
 
 __CLASS(CameraTriggerEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S ROM DECLARATION
+//											CLASS'S ROM DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 typedef TriggerEntityDefinition CameraTriggerEntityDefinition;
@@ -59,7 +59,7 @@ typedef const CameraTriggerEntityDefinition CameraTriggerEntityROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, s16 internalId, const char* const name);

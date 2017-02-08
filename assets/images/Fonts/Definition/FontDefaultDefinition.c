@@ -21,47 +21,47 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE FontDefaultTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef PLATFORMER_DEFAULT_FONT_CH =
 {
-    // number of chars
-    //(sizeof(FontDefaultTiles) >> 2),
-    256,
+	// number of chars
+	//(sizeof(FontDefaultTiles) >> 2),
+	256,
 
-    // allocation type
-    __NOT_ANIMATED,
+	// allocation type
+	__NOT_ANIMATED,
 
-    // char definition
-    FontDefaultTiles,
+	// char definition
+	FontDefaultTiles,
 };
 
 FontROMDef PLATFORMER_DEFAULT_FONT =
 {
-    // font charset definition pointer
-    (CharSetDefinition*)&PLATFORMER_DEFAULT_FONT_CH,
+	// font charset definition pointer
+	(CharSetDefinition*)&PLATFORMER_DEFAULT_FONT_CH,
 
-    // character number at which the font starts, allows you to skip the control characters for example
-    0,
+	// character number at which the font starts, allows you to skip the control characters for example
+	0,
 
 	// size of a single character (in chars) ({width, height})
-    {1, 1},
+	{1, 1},
 
 	// font's name
-    "DefaultFont",
+	"DefaultFont",
 };

@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Door.h>
@@ -32,28 +32,28 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define GoalDoor_METHODS(ClassName)																		\
-	    Door_METHODS(ClassName)																			\
+		Door_METHODS(ClassName)																			\
 
 #define GoalDoor_SET_VTABLE(ClassName)																	\
-        Door_SET_VTABLE(ClassName)																		\
-        __VIRTUAL_SET(ClassName, GoalDoor, handleMessage);												\
-        __VIRTUAL_SET(ClassName, GoalDoor, ready);														\
-        __VIRTUAL_SET(ClassName, GoalDoor, hasDestination);												\
-        __VIRTUAL_SET(ClassName, GoalDoor, canEnter);													\
+		Door_SET_VTABLE(ClassName)																		\
+		__VIRTUAL_SET(ClassName, GoalDoor, handleMessage);												\
+		__VIRTUAL_SET(ClassName, GoalDoor, ready);														\
+		__VIRTUAL_SET(ClassName, GoalDoor, hasDestination);												\
+		__VIRTUAL_SET(ClassName, GoalDoor, canEnter);													\
 
 __CLASS(GoalDoor);
 
 #define GoalDoor_ATTRIBUTES																				\
-        /* it is derived from */																		\
-        Door_ATTRIBUTES																					\
+		/* it is derived from */																		\
+		Door_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(GoalDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);

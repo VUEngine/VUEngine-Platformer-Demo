@@ -24,39 +24,39 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <HeroState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define HeroIdle_METHODS(ClassName)																		\
-	    HeroState_METHODS(ClassName)																    \
+		HeroState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define HeroIdle_SET_VTABLE(ClassName)																	\
-        HeroState_SET_VTABLE(ClassName)																	\
-        __VIRTUAL_SET(ClassName, HeroIdle, enter);														\
-        __VIRTUAL_SET(ClassName, HeroIdle, exit);														\
-        __VIRTUAL_SET(ClassName, HeroIdle, processMessage);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyPressed);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyReleased);	                                            \
-        __VIRTUAL_SET(ClassName, HeroIdle, onKeyHold);	                                                \
+		HeroState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, HeroIdle, enter);														\
+		__VIRTUAL_SET(ClassName, HeroIdle, exit);														\
+		__VIRTUAL_SET(ClassName, HeroIdle, processMessage);												\
+		__VIRTUAL_SET(ClassName, HeroIdle, onKeyPressed);												\
+		__VIRTUAL_SET(ClassName, HeroIdle, onKeyReleased);												\
+		__VIRTUAL_SET(ClassName, HeroIdle, onKeyHold);													\
 
 __CLASS(HeroIdle);
 
 #define HeroIdle_ATTRIBUTES																				\
-        /* inherits */																					\
-        HeroState_ATTRIBUTES																			\
+		/* inherits */																					\
+		HeroState_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 HeroIdle HeroIdle_getInstance();

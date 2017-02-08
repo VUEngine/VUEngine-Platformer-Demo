@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
@@ -38,21 +38,21 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(GoalDoor, Door);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void GoalDoor_onFadeOutComplete(GoalDoor this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -82,7 +82,7 @@ void GoalDoor_ready(Door this, u32 recursive __attribute__ ((unused)))
 	// call base
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
-    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Goal");
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Goal");
 }
 
 bool GoalDoor_hasDestination(Door this __attribute__ ((unused)))
@@ -94,22 +94,22 @@ bool GoalDoor_hasDestination(Door this __attribute__ ((unused)))
 bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kHeroEnterDoor:
 		{
-		    // disable user input
-            Game_disableKeypad(Game_getInstance());
+			// disable user input
+			Game_disableKeypad(Game_getInstance());
 
-		    // fade out screen
-            Brightness brightness = (Brightness){0, 0, 0};
-            Screen_startEffect(Screen_getInstance(),
-                kFadeTo, // effect type
-                0, // initial delay (in ms)
-                &brightness, // target brightness
-                __FADE_DELAY, // delay between fading steps (in ms)
-                (void (*)(Object, Object))GoalDoor_onFadeOutComplete, // callback function
-                __SAFE_CAST(Object, this) // callback scope
-            );
+			// fade out screen
+			Brightness brightness = (Brightness){0, 0, 0};
+			Screen_startEffect(Screen_getInstance(),
+				kFadeTo, // effect type
+				0, // initial delay (in ms)
+				&brightness, // target brightness
+				__FADE_DELAY, // delay between fading steps (in ms)
+				(void (*)(Object, Object))GoalDoor_onFadeOutComplete, // callback function
+				__SAFE_CAST(Object, this) // callback scope
+			);
 
 			return true;
 			break;
@@ -129,9 +129,9 @@ static void GoalDoor_onFadeOutComplete(GoalDoor this __attribute__ ((unused)), O
 {
 	ASSERT(this, "GoalDoor::onFadeOutComplete: null this");
 
-    // announce level completion
+	// announce level completion
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventLevelCompleted);
 
-    // switch to next screen
+	// switch to next screen
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState_getInstance()));
 }

@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -41,21 +41,21 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Cannon, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 void Cannon_shoot(Cannon this);
 static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer);
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -76,11 +76,11 @@ void Cannon_destructor(Cannon this)
 {
 	ASSERT(this, "Cannon::destructor: null this");
 
-    // discard pending delayed messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCannonShoot);
+	// discard pending delayed messages
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCannonShoot);
 
-    // not necessary to manually destroy the CannonBall here as all children are automatically
-    // destroyed as well when an entity is unloaded
+	// not necessary to manually destroy the CannonBall here as all children are automatically
+	// destroyed as well when an entity is unloaded
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -94,8 +94,8 @@ void Cannon_ready(Cannon this, u32 recursive)
 	// call base
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
-    // send delayed message to self to trigger first shot
-    MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	// send delayed message to self to trigger first shot
+	MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // state's handle message
@@ -104,10 +104,10 @@ bool Cannon_handleMessage(Cannon this, Telegram telegram)
 	ASSERT(this, "Cannon::handleMessage: null this");
 
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kCannonShoot:
 
-            Cannon_shoot(this);
+			Cannon_shoot(this);
 			break;
 	}
 
@@ -121,29 +121,29 @@ void Cannon_shoot(Cannon this)
 
 	if(!this->children)
 	{
-	    // add cannon ball as child
-	    extern PositionedEntityROMDef CANNON_BALL;
+		// add cannon ball as child
+		extern PositionedEntityROMDef CANNON_BALL;
 
-        Stage_spawnEntity(Game_getStage(Game_getInstance()), &CANNON_BALL, __SAFE_CAST(Container, this), (EventListener)Cannon_onCannonBallSpawned);
-        return;
+		Stage_spawnEntity(Game_getStage(Game_getInstance()), &CANNON_BALL, __SAFE_CAST(Container, this), (EventListener)Cannon_onCannonBallSpawned);
+		return;
 	}
 
-    // start shooting sequence
+	// start shooting sequence
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");
 
-    // send delayed message to self to trigger next shot
-    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	// send delayed message to self to trigger next shot
+	MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Cannon::onCannonBallSpawned: null this");
 
-    // start shooting sequence
+	// start shooting sequence
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");
 
-    // send delayed message to self to trigger next shot
-    MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	// send delayed message to self to trigger next shot
+	MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // spawn a cannon ball, this is the callback of the "Shoot" animation
@@ -151,16 +151,16 @@ void Cannon_spawnCannonBall(Cannon this)
 {
 	ASSERT(this, "Cannon::spawnCannonBall: null this");
 
-    // start short screen shake
-    Screen_startEffect(Screen_getInstance(), kShake, 250);
+	// start short screen shake
+	Screen_startEffect(Screen_getInstance(), kShake, 250);
 
-    // play boom sound
-    extern const u16 FIRE_SND[];
-    SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
+	// play boom sound
+	extern const u16 FIRE_SND[];
+	SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
-    // set cannon ball to moving state
-    ASSERT(1 == VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
-    CannonBall cannonBall = __SAFE_CAST(CannonBall, VirtualList_front(this->children));
+	// set cannon ball to moving state
+	ASSERT(1 == VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
+	CannonBall cannonBall = __SAFE_CAST(CannonBall, VirtualList_front(this->children));
 
-    MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, cannonBall), kCannonShoot, NULL);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, cannonBall), kCannonShoot, NULL);
 }

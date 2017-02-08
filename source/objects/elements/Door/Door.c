@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -36,21 +36,21 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Door, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 bool Door_checkStillOverlapping(Door this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -66,7 +66,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 
-    // init class variables
+	// init class variables
 	this->destinationDefinition = NULL;
 	this->currentlyOverlappingHero = false;
 }
@@ -103,14 +103,14 @@ void Door_ready(Door this, u32 recursive __attribute__ ((unused)))
 	// call base
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
-    if(__VIRTUAL_CALL(Door, hasDestination, this))
-    {
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
-    }
-    else
-    {
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closed");
-    }
+	if(__VIRTUAL_CALL(Door, hasDestination, this))
+	{
+		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
+	}
+	else
+	{
+		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closed");
+	}
 }
 
 void Door_resume(Door this)
@@ -123,17 +123,17 @@ void Door_resume(Door this)
 bool Door_handleMessage(Door this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
-    {
-        case kHeroCheckOverlapping:
+	{
+		case kHeroCheckOverlapping:
 
-            if(Door_checkStillOverlapping(this))
-            {
-                // delayed check if still overlapped by hero
-                MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
-            }
+			if(Door_checkStillOverlapping(this))
+			{
+				// delayed check if still overlapped by hero
+				MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
+			}
 
-            return true;
-            break;
+			return true;
+			break;
 
 		case kHeroEnterDoor:
 
@@ -155,29 +155,29 @@ bool Door_hasDestination(Door this)
 
 void Door_onOverlapping(Door this)
 {
-    // first contact with hero?
-    if(!Door_isOverlapping(this) && __VIRTUAL_CALL(Door, hasDestination, this))
-    {
-        MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kHeroStartOverlapping, NULL);
+	// first contact with hero?
+	if(!Door_isOverlapping(this) && __VIRTUAL_CALL(Door, hasDestination, this))
+	{
+		MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kHeroStartOverlapping, NULL);
 
-	    __VIRTUAL_CALL(Door, setOverlapping, this);
-    }
+		__VIRTUAL_CALL(Door, setOverlapping, this);
+	}
 }
 
 void Door_setOverlapping(Door this)
 {
 	this->currentlyOverlappingHero = true;
 
-    // delayed check if still overlapped by hero
-    MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
+	// delayed check if still overlapped by hero
+	MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
 }
 
 void Door_unsetOverlapping(Door this)
 {
-    this->currentlyOverlappingHero = false;
+	this->currentlyOverlappingHero = false;
 
-    // inform the hero
-    MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kHeroEndOverlapping, NULL);
+	// inform the hero
+	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kHeroEndOverlapping, NULL);
 }
 
 bool Door_isOverlapping(Door this)
@@ -193,7 +193,7 @@ bool Door_checkStillOverlapping(Door this)
 		!__VIRTUAL_CALL(Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, Hero_getInstance())), Entity_getShape(__SAFE_CAST(Entity, this)))
 	)
 	{
-	    __VIRTUAL_CALL(Door, unsetOverlapping, this);
+		__VIRTUAL_CALL(Door, unsetOverlapping, this);
 	}
 
 	return this->currentlyOverlappingHero;

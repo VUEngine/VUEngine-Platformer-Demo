@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE FireSmallTiles[];
@@ -76,60 +76,60 @@ AnimationDescriptionROMDef FIRE_SMALL_ANIM =
 
 CharSetROMDef FIRE_SMALL_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    1,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	1,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SHARED,
 
-    // char definition
-    FireSmallTiles,
+	// char definition
+	FireSmallTiles,
 };
 
 TextureROMDef FIRE_SMALL_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&FIRE_SMALL_CH,
+	// charset definition
+	(CharSetDefinition*)&FIRE_SMALL_CH,
 
-    // bgmap definition
-    FireSmallMap,
+	// bgmap definition
+	FireSmallMap,
 
-    // cols (max 64)
-    1,
+	// cols (max 64)
+	1,
 
-    // rows (max 64)
-    1,
+	// rows (max 64)
+	1,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    0,
+	// palette number (0-3)
+	0,
 };
 
 ObjectSpriteROMDef FIRE_SMALL_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&FIRE_SMALL_TX,
+		// texture definition
+		(TextureDefinition*)&FIRE_SMALL_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, FTOFIX19_13(1), 0},
-    },
+		{0, 0, FTOFIX19_13(1), 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -147,33 +147,33 @@ ObjectSpriteROMDef* const FIRE_SMALL_SPRITES[] =
 
 AnimatedInGameEntityROMDef FIRE_SMALL_AG =
 {
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)FIRE_SMALL_SPRITES,
-        },
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)FIRE_SMALL_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kNotSolid,
+		// in game type
+		kNotSolid,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&FIRE_SMALL_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&FIRE_SMALL_ANIM,
 
-    // initial animation
-    "Burn",
+	// initial animation
+	"Burn",
 };

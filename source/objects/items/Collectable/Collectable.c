@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
@@ -38,14 +38,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Collectable, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 void Collectable_collect(Collectable this);
@@ -53,7 +53,7 @@ void Collectable_removeFromStage(Collectable this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -87,26 +87,26 @@ bool Collectable_handleMessage(Collectable this, Telegram telegram)
 {
 	ASSERT(this, "Collectable::handleMessage: null this");
 
-    extern const u16 COLLECT_SND[];
+	extern const u16 COLLECT_SND[];
 
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kItemTaken:
 
-            // play collect sound
-            SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+			// play collect sound
+			SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 
 			// set shape to inactive so no other hits with this item can occur
-            Shape_setActive(this->shape, false);
+			Shape_setActive(this->shape, false);
 
-            // additional action
+			// additional action
 			__VIRTUAL_CALL(Collectable, collect, this);
 
-            // send message to remove item in next game frame
-            MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kRemoveFromStage, NULL);
-            break;
+			// send message to remove item in next game frame
+			MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kRemoveFromStage, NULL);
+			break;
 
-        case kRemoveFromStage:
+		case kRemoveFromStage:
 
 			Collectable_removeFromStage(this);
 			break;

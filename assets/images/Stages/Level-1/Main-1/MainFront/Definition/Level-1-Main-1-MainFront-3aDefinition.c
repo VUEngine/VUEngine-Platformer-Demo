@@ -21,14 +21,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <RecyclableImage.h>
 #include <MBgmapSprite.h>
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE Level_1_Main_1_MainFront_3aMap[];
@@ -36,33 +36,33 @@ extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_FRONT_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
+	// charset definition
+	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
 
-    // bgmap definition
-    Level_1_Main_1_MainFront_3aMap,
+	// bgmap definition
+	Level_1_Main_1_MainFront_3aMap,
 
-    // cols (max 64)
-    50,
+	// cols (max 64)
+	50,
 
-    // rows (max 64)
-    10,
+	// rows (max 64)
+	10,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_TEXTURES[] =
@@ -74,19 +74,19 @@ TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_TEXTURES[] =
 MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_SPRITE =
 {
 	{
-        {
-            // sprite's type
-            __TYPE(MBgmapSprite),
+		{
+			// sprite's type
+			__TYPE(MBgmapSprite),
 
-            // texture definition
-            NULL,
+			// texture definition
+			NULL,
 
-            // transparent
-            false,
+			// transparent
+			false,
 
-            // displacement
-            {ITOFIX19_13(-8), ITOFIX19_13(24), FTOFIX19_13(-1), 0},
-        },
+			// displacement
+			{ITOFIX19_13(-8), ITOFIX19_13(24), FTOFIX19_13(-1), 0},
+		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)

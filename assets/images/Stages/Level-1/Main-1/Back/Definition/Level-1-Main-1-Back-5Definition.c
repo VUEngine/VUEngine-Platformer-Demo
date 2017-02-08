@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
@@ -30,7 +30,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE Level_1_Main_1_BackTiles[];
@@ -38,48 +38,48 @@ extern BYTE Level_1_Main_1_Back_5Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef LEVEL_1_MAIN_1_BACK_5_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    152,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	152,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    Level_1_Main_1_BackTiles,
+	// char definition
+	Level_1_Main_1_BackTiles,
 };
 
 TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LEVEL_1_MAIN_1_BACK_5_CH,
+	// charset definition
+	(CharSetDefinition*)&LEVEL_1_MAIN_1_BACK_5_CH,
 
-    // bgmap definition
-    Level_1_Main_1_Back_5Map,
+	// bgmap definition
+	Level_1_Main_1_Back_5Map,
 
-    // cols (max 64)
-    61,
+	// cols (max 64)
+	61,
 
-    // rows (max 64)
-    24,
+	// rows (max 64)
+	24,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    2,
+	// palette number (0-3)
+	2,
 };
 
 TextureROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES[] =
@@ -91,19 +91,19 @@ TextureROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES[] =
 MBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
 {
 	{
-        {
-            // sprite's type
-            __TYPE(MBgmapSprite),
+		{
+			// sprite's type
+			__TYPE(MBgmapSprite),
 
-            // texture definition
-            NULL,
+			// texture definition
+			NULL,
 
-            // transparent
-            false,
+			// transparent
+			false,
 
-            // displacement
-            {0, 0, 0, 0},
-        },
+			// displacement
+			{0, 0, 0, 0},
+		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)

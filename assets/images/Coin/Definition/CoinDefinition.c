@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -30,7 +30,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE CoinTiles[];
@@ -44,7 +44,7 @@ extern BYTE CoinBackSilhouetteMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
@@ -81,228 +81,228 @@ AnimationDescriptionROMDef COIN_ANIM =
 
 CharSetROMDef COIN_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    4,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	4,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED_COORDINATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SHARED_COORDINATED,
 
-    // char definition
-    CoinTiles,
+	// char definition
+	CoinTiles,
 };
 
 TextureROMDef COIN_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&COIN_CH,
+	// charset definition
+	(CharSetDefinition*)&COIN_CH,
 
-    // bgmap definition
-    CoinMap,
+	// bgmap definition
+	CoinMap,
 
-    // cols (max 64)
-    2,
+	// cols (max 64)
+	2,
 
-    // rows (max 64)
-    2,
+	// rows (max 64)
+	2,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 CharSetROMDef COIN_SILHOUETTE_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    4,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	4,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED_COORDINATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SHARED_COORDINATED,
 
-    // char definition
-    CoinSilhouetteTiles,
+	// char definition
+	CoinSilhouetteTiles,
 };
 
 TextureROMDef COIN_SILHOUETTE_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&COIN_SILHOUETTE_CH,
+	// charset definition
+	(CharSetDefinition*)&COIN_SILHOUETTE_CH,
 
-    // bgmap definition
-    CoinSilhouetteMap,
+	// bgmap definition
+	CoinSilhouetteMap,
 
-    // cols (max 64)
-    2,
+	// cols (max 64)
+	2,
 
-    // rows (max 64)
-    2,
+	// rows (max 64)
+	2,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 CharSetROMDef AFFINE_COIN_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    16,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	16,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_MULTI,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_MULTI,
 
-    // char definition
-    CoinTiles,
+	// char definition
+	CoinTiles,
 };
 
 TextureROMDef AFFINE_COIN_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&AFFINE_COIN_CH,
+	// charset definition
+	(CharSetDefinition*)&AFFINE_COIN_CH,
 
-    // bgmap definition
-    CoinMap,
+	// bgmap definition
+	CoinMap,
 
-    // cols (max 64)
-    2,
+	// cols (max 64)
+	2,
 
-    // rows (max 64)
-    2,
+	// rows (max 64)
+	2,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 CharSetROMDef COIN_BACK_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    4,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	4,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED_COORDINATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SHARED_COORDINATED,
 
-    // char definition
-    CoinBackTiles,
+	// char definition
+	CoinBackTiles,
 };
 
 TextureROMDef COIN_BACK_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&COIN_BACK_CH,
+	// charset definition
+	(CharSetDefinition*)&COIN_BACK_CH,
 
-    // bgmap definition
-    CoinBackMap,
+	// bgmap definition
+	CoinBackMap,
 
-    // cols (max 64)
-    2,
+	// cols (max 64)
+	2,
 
-    // rows (max 64)
-    2,
+	// rows (max 64)
+	2,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    2,
+	// palette number (0-3)
+	2,
 };
 
 CharSetROMDef COIN_BACK_SILHOUETTE_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    4,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	4,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED_COORDINATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SHARED_COORDINATED,
 
-    // char definition
-    CoinBackSilhouetteTiles,
+	// char definition
+	CoinBackSilhouetteTiles,
 };
 
 TextureROMDef COIN_BACK_SILHOUETTE_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&COIN_BACK_SILHOUETTE_CH,
+	// charset definition
+	(CharSetDefinition*)&COIN_BACK_SILHOUETTE_CH,
 
-    // bgmap definition
-    CoinBackSilhouetteMap,
+	// bgmap definition
+	CoinBackSilhouetteMap,
 
-    // cols (max 64)
-    2,
+	// cols (max 64)
+	2,
 
-    // rows (max 64)
-    2,
+	// rows (max 64)
+	2,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    2,
+	// palette number (0-3)
+	2,
 };
 
 //---------------------------------------------------------------------------------------------------------
-// 										  OBJECT COIN
+//											OBJECT COIN
 //---------------------------------------------------------------------------------------------------------
 
 ObjectSpriteROMDef COIN_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&COIN_TX,
+		// texture definition
+		(TextureDefinition*)&COIN_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -320,19 +320,19 @@ ObjectSpriteROMDef* const COIN_SPRITES[] =
 
 ObjectSpriteROMDef COIN_SILHOUETTE_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&COIN_SILHOUETTE_TX,
+		// texture definition
+		(TextureDefinition*)&COIN_SILHOUETTE_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -350,89 +350,89 @@ ObjectSpriteROMDef* const COIN_SILHOUETTE_SPRITES[] =
 
 AnimatedInGameEntityROMDef COIN_AG =
 {
-    {
-        {
-            __TYPE(Coin),
-            (SpriteROMDef**)COIN_SPRITES,
-        },
+	{
+		{
+			__TYPE(Coin),
+			(SpriteROMDef**)COIN_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {3, 3, 3, 3},
+		// collision detection gap (up, down, left, right)
+		{3, 3, 3, 3},
 
-        // in game type
-        kCoin,
+		// in game type
+		kCoin,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&COIN_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&COIN_ANIM,
 
-    // initial animation
-    "Spin",
+	// initial animation
+	"Spin",
 };
 
 AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG =
 {
-    {
-        {
-            __TYPE(Coin),
-            (SpriteROMDef**)COIN_SILHOUETTE_SPRITES,
-        },
+	{
+		{
+			__TYPE(Coin),
+			(SpriteROMDef**)COIN_SILHOUETTE_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {3, 3, 3, 3},
+		// collision detection gap (up, down, left, right)
+		{3, 3, 3, 3},
 
-        // in game type
-        kCoin,
+		// in game type
+		kCoin,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&COIN_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&COIN_ANIM,
 
-    // initial animation
-    "Spin",
+	// initial animation
+	"Spin",
 };
 
 //---------------------------------------------------------------------------------------------------------
-// 										  OBJECT COIN BACKGROUND
+//											OBJECT COIN BACKGROUND
 //---------------------------------------------------------------------------------------------------------
 
 ObjectSpriteROMDef COIN_BACK_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&COIN_BACK_TX,
+		// texture definition
+		(TextureDefinition*)&COIN_BACK_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -450,19 +450,19 @@ ObjectSpriteROMDef* const COIN_BACK_SPRITES[] =
 
 ObjectSpriteROMDef COIN_BACK_SILHOUETTE_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&COIN_BACK_SILHOUETTE_TX,
+		// texture definition
+		(TextureDefinition*)&COIN_BACK_SILHOUETTE_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -480,90 +480,90 @@ ObjectSpriteROMDef* const COIN_BACK_SILHOUETTE_SPRITES[] =
 
 AnimatedInGameEntityROMDef COIN_BACK_AG =
 {
-    {
-        {
-            __TYPE(Coin),
-            (SpriteROMDef**)COIN_BACK_SPRITES,
-        },
+	{
+		{
+			__TYPE(Coin),
+			(SpriteROMDef**)COIN_BACK_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {3, 4, 3, 4},
+		// collision detection gap (up, down, left, right)
+		{3, 4, 3, 4},
 
-        // in game type
-        kCoin,
+		// in game type
+		kCoin,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&COIN_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&COIN_ANIM,
 
-    // initial animation
-    "Spin",
+	// initial animation
+	"Spin",
 };
 
 AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG =
 {
-    {
-        {
-            __TYPE(Coin),
-            (SpriteROMDef**)COIN_BACK_SILHOUETTE_SPRITES,
-        },
+	{
+		{
+			__TYPE(Coin),
+			(SpriteROMDef**)COIN_BACK_SILHOUETTE_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {3, 4, 3, 4},
+		// collision detection gap (up, down, left, right)
+		{3, 4, 3, 4},
 
-        // in game type
-        kCoin,
+		// in game type
+		kCoin,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&COIN_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&COIN_ANIM,
 
-    // initial animation
-    "Spin",
+	// initial animation
+	"Spin",
 };
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										  AFFINE COIN
+//											AFFINE COIN
 //---------------------------------------------------------------------------------------------------------
 
 ObjectSpriteROMDef AFFINE_COIN_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&AFFINE_COIN_TX,
+		// texture definition
+		(TextureDefinition*)&AFFINE_COIN_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -581,33 +581,33 @@ ObjectSpriteROMDef* const AFFINE_COIN_SPRITES[] =
 
 AnimatedInGameEntityROMDef AFFINE_COIN_AG =
 {
-    {
-        {
-            __TYPE(Coin),
-            (SpriteROMDef**)AFFINE_COIN_SPRITES,
-        },
+	{
+		{
+			__TYPE(Coin),
+			(SpriteROMDef**)AFFINE_COIN_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {3, 3, 3, 3},
+		// collision detection gap (up, down, left, right)
+		{3, 3, 3, 3},
 
-        // in game type
-        kCoin,
+		// in game type
+		kCoin,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&COIN_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&COIN_ANIM,
 
-    // initial animation
-    "Spin",
+	// initial animation
+	"Spin",
 };

@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Actor.h>
@@ -32,36 +32,36 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												MACROS
+//												MACROS
 //---------------------------------------------------------------------------------------------------------
 
 #define MOVING_ENTITY_WAIT_DELAY 1000
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define MovingEntity_METHODS(ClassName)																	\
-    	Actor_METHODS(ClassName)																		\
+		Actor_METHODS(ClassName)																		\
 
 #define MovingEntity_SET_VTABLE(ClassName)																\
-        Actor_SET_VTABLE(ClassName)																	    \
-        __VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);										\
-        __VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);									\
-        __VIRTUAL_SET(ClassName, MovingEntity, ready);													\
-        __VIRTUAL_SET(ClassName, MovingEntity, update);													\
-        __VIRTUAL_SET(ClassName, MovingEntity, handleMessage);											\
+		Actor_SET_VTABLE(ClassName)																		\
+		__VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);										\
+		__VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);									\
+		__VIRTUAL_SET(ClassName, MovingEntity, ready);													\
+		__VIRTUAL_SET(ClassName, MovingEntity, update);													\
+		__VIRTUAL_SET(ClassName, MovingEntity, handleMessage);											\
 
 __CLASS(MovingEntity);
 
 #define MovingEntity_ATTRIBUTES																			\
-        /* it is derived from */																		\
-        Actor_ATTRIBUTES																				\
-        /* save my initial position */																	\
-        int initialPosition;																			\
-        /* definition pointer */																		\
-        MovingEntityDefinition* movingEntityDefinition;													\
+		/* it is derived from */																		\
+		Actor_ATTRIBUTES																				\
+		/* save my initial position */																	\
+		int initialPosition;																			\
+		/* definition pointer */																		\
+		MovingEntityDefinition* movingEntityDefinition;													\
 
 // definition in ROM memory
 typedef struct MovingEntityDefinition
@@ -90,7 +90,7 @@ typedef const MovingEntityDefinition MovingEntityROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 // allocator

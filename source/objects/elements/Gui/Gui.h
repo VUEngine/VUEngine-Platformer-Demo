@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
@@ -32,35 +32,35 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Gui_METHODS(ClassName)																			\
-	    AnimatedInGameEntity_METHODS(ClassName)															\
+		AnimatedInGameEntity_METHODS(ClassName)															\
 
 #define Gui_SET_VTABLE(ClassName)																		\
-        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, Gui, ready);															\
-        __VIRTUAL_SET(ClassName, Gui, handlePropagatedMessage);											\
+		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		__VIRTUAL_SET(ClassName, Gui, ready);															\
+		__VIRTUAL_SET(ClassName, Gui, handlePropagatedMessage);											\
 
 __CLASS(Gui);
 
 #define Gui_ATTRIBUTES																					\
-        /* it is derived from */																		\
-        AnimatedInGameEntity_ATTRIBUTES																	\
+		/* it is derived from */																		\
+		AnimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define GUI_FONT    "GuiFont"
-#define GUI_X_POS   0
-#define GUI_Y_POS   26
+#define GUI_FONT	"GuiFont"
+#define GUI_X_POS	0
+#define GUI_Y_POS	26
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Gui, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);

@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE LavaTiles[];
@@ -39,65 +39,65 @@ extern BYTE LavaMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef LAVA_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    15,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	15,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    LavaTiles,
+	// char definition
+	LavaTiles,
 };
 
 TextureROMDef LAVA_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LAVA_CH,
+	// charset definition
+	(CharSetDefinition*)&LAVA_CH,
 
-    // bgmap definition
-    LavaMap,
+	// bgmap definition
+	LavaMap,
 
-    // cols (max 64)
-    48,
+	// cols (max 64)
+	48,
 
-    // rows (max 64)
-    28,
+	// rows (max 64)
+	28,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef LAVA_BG_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&LAVA_TX,
+		// texture definition
+		(TextureDefinition*)&LAVA_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, FTOFIX19_13(-1), 0},
-    },
+		{0, 0, FTOFIX19_13(-1), 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -115,36 +115,36 @@ BgmapSpriteROMDef* const LAVA_BG_SPRITES[] =
 
 InanimatedInGameEntityROMDef LAVA_IG =
 {
-    {
-        {
-            __TYPE(Lava),
-            (SpriteROMDef**)LAVA_BG_SPRITES,
-        },
+	{
+		{
+			__TYPE(Lava),
+			(SpriteROMDef**)LAVA_BG_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {6, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{6, 0, 0, 0},
 
-        // in game type
-        kLava,
+		// in game type
+		kLava,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-        // depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // friction
-    FTOFIX19_13(FLOOR_FRICTION),
+	// friction
+	FTOFIX19_13(FLOOR_FRICTION),
 
-    // elasticity
-    FTOFIX19_13(FLOOR_ELASTICITY),
+	// elasticity
+	FTOFIX19_13(FLOOR_ELASTICITY),
 
-    // register shape
-    true,
+	// register shape
+	true,
 };

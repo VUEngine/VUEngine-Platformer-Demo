@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -37,14 +37,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(KeyDoor, Door);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -84,21 +84,21 @@ bool KeyDoor_hasDestination(KeyDoor this __attribute__ ((unused)))
 
 void KeyDoor_setOverlapping(KeyDoor this)
 {
-    if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
-    }
+	if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
+		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
+	}
 
-    Door_setOverlapping(__SAFE_CAST(Door, this));
+	Door_setOverlapping(__SAFE_CAST(Door, this));
 }
 
 void KeyDoor_unsetOverlapping(KeyDoor this)
 {
 
-    if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closing");
-    }
+	if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
+		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closing");
+	}
 
-    Door_unsetOverlapping(__SAFE_CAST(Door, this));
+	Door_unsetOverlapping(__SAFE_CAST(Door, this));
 }
 
 bool KeyDoor_canEnter(KeyDoor this __attribute__ ((unused)))
@@ -108,12 +108,12 @@ bool KeyDoor_canEnter(KeyDoor this __attribute__ ((unused)))
 
 u32 KeyDoor_getHintType(KeyDoor this __attribute__ ((unused)))
 {
-    if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
-    {
-	    return kEnterHint;
-    }
-    else
-    {
-	    return kKeyHint;
-    }
+	if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
+	{
+		return kEnterHint;
+	}
+	else
+	{
+		return kKeyHint;
+	}
 }

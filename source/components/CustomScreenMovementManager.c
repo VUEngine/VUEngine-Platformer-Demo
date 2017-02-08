@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
@@ -39,7 +39,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 // define the CustomScreenMovementManager
@@ -49,7 +49,7 @@ __CLASS_FRIEND_DEFINITION(Screen);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void CustomScreenMovementManager_constructor(CustomScreenMovementManager this);
@@ -60,7 +60,7 @@ static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomS
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												GLOBALS
+//												GLOBALS
 //---------------------------------------------------------------------------------------------------------
 
 static Screen _screen = NULL;
@@ -70,7 +70,7 @@ extern const Optical* _optical;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // it's a singleton
@@ -89,7 +89,7 @@ static void __attribute__ ((noinline)) CustomScreenMovementManager_constructor(C
 	this->positionFlag.z = 0;
 
 	this->focusFunction = &CustomScreenMovementManager_doFocus;
-    this->previuosFocusFunction = this->focusFunction;
+	this->previuosFocusFunction = this->focusFunction;
 
 	_screen = Screen_getInstance();
 
@@ -110,22 +110,22 @@ void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u32 che
 {
 	ASSERT(this, "CustomScreenMovementManager::focus: null this");
 
-    this->focusFunction(this, checkIfFocusEntityIsMoving, false);
+	this->focusFunction(this, checkIfFocusEntityIsMoving, false);
 }
 
 static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomScreenMovementManager::doFocusWithNoEasing: null this");
 
-    const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
-    Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
-    _screen->position.x = focusInGameEntityPosition->x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
-    _screen->position.y = focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
+	const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
+	Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
+	_screen->position.x = focusInGameEntityPosition->x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
+	_screen->position.y = focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
 
-    Screen_capPosition(_screen);
-    Screen_forceDisplacement(_screen, true);
+	Screen_capPosition(_screen);
+	Screen_forceDisplacement(_screen, true);
 
-    return true;
+	return true;
 }
 
 // center world's _screen in function of focus actor's position
@@ -133,7 +133,7 @@ static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager th
 {
 	ASSERT(this, "CustomScreenMovementManager::dontFocus: null this");
 
-    return false;
+	return false;
 }
 
 // center world's _screen in function of focus actor's position
@@ -156,34 +156,34 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 
 		VBVec3DFlag reachedTargetFlag = {true, true, true};
 
-        const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
+		const VBVec3D* focusInGameEntityPosition = __VIRTUAL_CALL(SpatialObject, getPosition, _screen->focusInGameEntity);
 
-        VBVec3D position3D = *focusInGameEntityPosition;
-        VBVec2D position2D;
+		VBVec3D position3D = *focusInGameEntityPosition;
+		VBVec2D position2D;
 
-        // normalize the position to screen coordinates
-        __OPTICS_NORMALIZE(position3D);
+		// normalize the position to screen coordinates
+		__OPTICS_NORMALIZE(position3D);
 
-        // project position to 2D space
-        __OPTICS_PROJECT_TO_2D(position3D, position2D);
+		// project position to 2D space
+		__OPTICS_PROJECT_TO_2D(position3D, position2D);
 
 		{
 			bool focusEntityOutOfBounds = (unsigned)(FIX19_13TOI(position2D.x) - SCREEN_WIDTH_REDUCTION) > __SCREEN_WIDTH - SCREEN_WIDTH_REDUCTION;
 
 			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
-                // calculate the target position
+				// calculate the target position
 				fix19_13 horizontalPosition = _screen->position.x;
-    			fix19_13 horizontalTarget = focusInGameEntityPosition->x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
+				fix19_13 horizontalTarget = focusInGameEntityPosition->x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
 
 				fix19_13 easingDisplacement = ITOFIX19_13(7);
 
 				if(introFocusing)
 				{
-				    easingDisplacement = __1I_FIX19_13;
+					easingDisplacement = __1I_FIX19_13;
 				}
 
-                reachedTargetFlag.x = false;
+				reachedTargetFlag.x = false;
 
 				if(horizontalPosition + easingDisplacement < horizontalTarget)
 				{
@@ -199,53 +199,53 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 					reachedTargetFlag.x = true;
 				}
 
-                if(0 > _screen->position.x)
-                {
-                    _screen->position.x = 0;
-                    reachedTargetFlag.x = true;
-                }
-                else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
-                {
-                    _screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
-                    reachedTargetFlag.x = true;
-                }
+				if(0 > _screen->position.x)
+				{
+					_screen->position.x = 0;
+					reachedTargetFlag.x = true;
+				}
+				else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+				{
+					_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
+					reachedTargetFlag.x = true;
+				}
 
 				_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
 			}
 		}
 
 		{
-            bool focusEntityOutOfBounds = FIX19_13TOI(position2D.y) > __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION ||  FIX19_13TOI(position2D.y) < SCREEN_HEIGHT_REDUCTION / 4;
+			bool focusEntityOutOfBounds = FIX19_13TOI(position2D.y) > __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION || FIX19_13TOI(position2D.y) < SCREEN_HEIGHT_REDUCTION / 4;
 
 			if(this->positionFlag.y || focusEntityOutOfBounds)
 			{
-                // calculate the target position
-                fix19_13 verticalPosition = _screen->position.y;
-                fix19_13 verticalTarget = focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
+				// calculate the target position
+				fix19_13 verticalPosition = _screen->position.y;
+				fix19_13 verticalTarget = focusInGameEntityPosition->y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
 
 				fix19_13 downEasingDisplacement = ITOFIX19_13(3);
 				fix19_13 upEasingDisplacement = ITOFIX19_13(3);
 
 				if(introFocusing)
 				{
-				    downEasingDisplacement = __1I_FIX19_13;
-                    upEasingDisplacement = __1I_FIX19_13;
+					downEasingDisplacement = __1I_FIX19_13;
+					upEasingDisplacement = __1I_FIX19_13;
 				}
 				else
 				{
-                    Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusInGameEntity));
+					Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusInGameEntity));
 
-                    if(0 < velocity.y)
-                    {
-                        downEasingDisplacement = ITOFIX19_13(8);
-                    }
+					if(0 < velocity.y)
+					{
+						downEasingDisplacement = ITOFIX19_13(8);
+					}
 				}
 
-                reachedTargetFlag.y = false;
+				reachedTargetFlag.y = false;
 
 				if(focusEntityOutOfBounds)
 				{
-				    this->positionFlag.y = true;
+					this->positionFlag.y = true;
 				}
 
 				if(verticalPosition + downEasingDisplacement < verticalTarget)
@@ -263,38 +263,38 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 					reachedTargetFlag.y = true;
 				}
 
-                if(0 > _screen->position.y)
-                {
-                    _screen->position.y = 0;
+				if(0 > _screen->position.y)
+				{
+					_screen->position.y = 0;
 					reachedTargetFlag.y = true;
-                }
-                else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
-                {
-                    _screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
+				}
+				else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
+				{
+					_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
 					reachedTargetFlag.y = true;
-                }
+				}
 
 				_screen->lastDisplacement.y = _screen->position.y - screenPreviousPosition.y;
 			}
 		}
 
-        if(reachedTargetFlag.x && reachedTargetFlag.y)
-        {
-            return true;
-        }
-    }
+		if(reachedTargetFlag.x && reachedTargetFlag.y)
+		{
+			return true;
+		}
+	}
 
-    return false;
+	return false;
 }
 
 // center world's _screen in function of focus actor's position
 static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
-    if(CustomScreenMovementManager_doFocus(this, checkIfFocusEntityIsMoving, true))
-    {
-        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventScreenFocused);
+	if(CustomScreenMovementManager_doFocus(this, checkIfFocusEntityIsMoving, true))
+	{
+		Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventScreenFocused);
 
-        return true;
+		return true;
 	}
 
 	return false;
@@ -318,46 +318,46 @@ void CustomScreenMovementManager_enable(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::enable: null this");
 
-    this->focusFunction = this->previuosFocusFunction;
-    this->previuosFocusFunction = this->focusFunction;
+	this->focusFunction = this->previuosFocusFunction;
+	this->previuosFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_disable(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::disable: null this");
 
-    if(&CustomScreenMovementManager_dontFocus != this->focusFunction)
-    {
-        this->previuosFocusFunction = this->focusFunction;
-    }
+	if(&CustomScreenMovementManager_dontFocus != this->focusFunction)
+	{
+		this->previuosFocusFunction = this->focusFunction;
+	}
 
-    this->focusFunction = &CustomScreenMovementManager_dontFocus;
+	this->focusFunction = &CustomScreenMovementManager_dontFocus;
 }
 
 void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::enableFocusEasing: null this");
 
-    this->focusFunction = &CustomScreenMovementManager_doFocus;
-    this->previuosFocusFunction = this->focusFunction;
+	this->focusFunction = &CustomScreenMovementManager_doFocus;
+	this->previuosFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::disableFocusEasing: null this");
 
-    this->focusFunction = &CustomScreenMovementManager_doFocusWithNoEasing;
-    this->previuosFocusFunction = this->focusFunction;
+	this->focusFunction = &CustomScreenMovementManager_doFocusWithNoEasing;
+	this->previuosFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::alertWhenTargetFocused: null this");
 
-    if(&CustomScreenMovementManager_doFocusAndAlertWhenTargetReached != this->focusFunction)
-    {
-        this->previuosFocusFunction = this->focusFunction;
-    }
+	if(&CustomScreenMovementManager_doFocusAndAlertWhenTargetReached != this->focusFunction)
+	{
+		this->previuosFocusFunction = this->focusFunction;
+	}
 
 	this->focusFunction = &CustomScreenMovementManager_doFocusAndAlertWhenTargetReached;
 }

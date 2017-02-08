@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
@@ -38,14 +38,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Gui, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 void Gui_printAll(Gui this);
@@ -57,7 +57,7 @@ static void Gui_onPowerUp(Gui this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern CharSetDefinition GUI_CH;
@@ -65,7 +65,7 @@ extern CharSetDefinition GUI_BANDANA_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -78,7 +78,7 @@ void Gui_constructor(Gui this, AnimatedInGameEntityDefinition* animatedInGameEnt
 	// construct base
 	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
 
-    // add event listeners
+	// add event listeners
 	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onCoinTaken, kEventCoinTaken);
@@ -89,12 +89,12 @@ void Gui_constructor(Gui this, AnimatedInGameEntityDefinition* animatedInGameEnt
 // class's destructor
 void Gui_destructor(Gui this)
 {
-    // remove event listeners
+	// remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onCoinTaken, kEventCoinTaken);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onKeyTaken, kEventKeyTaken);
-    Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onPowerUp, kEventPowerUp);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onPowerUp, kEventPowerUp);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -109,7 +109,7 @@ void Gui_ready(Gui this, u32 recursive)
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
 	// initially print gui
-    Gui_printAll(this);
+	Gui_printAll(this);
 }
 
 // print elapsed time to gui
@@ -138,75 +138,75 @@ void Gui_printBestTime(Gui this __attribute__ ((unused)))
 // print number of coins to gui
 void Gui_printCoins(Gui this __attribute__ ((unused)))
 {
-    u8 coins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
+	u8 coins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
 
-    // bound to 64
-    if(coins > 64)
-    {
-        coins = 64;
-    }
+	// bound to 64
+	if(coins > 64)
+	{
+		coins = 64;
+	}
 
-    // compute x position
-    u8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
+	// compute x position
+	u8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
 
-    // print
+	// print
 	Printing_text(Printing_getInstance(), "00/64", GUI_X_POS + 11, GUI_Y_POS, GUI_FONT);
-    Printing_int(Printing_getInstance(), coins, printPos, GUI_Y_POS, GUI_FONT);
+	Printing_int(Printing_getInstance(), coins, printPos, GUI_Y_POS, GUI_FONT);
 }
 
 // print hero's energy to gui
 void Gui_printEnergy(Gui this __attribute__ ((unused)))
 {
 	Printing_text(Printing_getInstance(), "\x7B\x7B\x7B", GUI_X_POS + 4, GUI_Y_POS, GUI_FONT);
-    u8 i;
+	u8 i;
 	for(i=0; i < Hero_getEnergy(Hero_getInstance()); i++)
 	{
-    	Printing_text(Printing_getInstance(), "\x60", GUI_X_POS + 4 + i, GUI_Y_POS, GUI_FONT);
+		Printing_text(Printing_getInstance(), "\x60", GUI_X_POS + 4 + i, GUI_Y_POS, GUI_FONT);
 	}
 }
 
 // print keys icon to gui
 void Gui_printKey(Gui this __attribute__ ((unused)))
 {
-    if(Hero_hasKey(Hero_getInstance()))
-    {
-	    Printing_text(Printing_getInstance(), "\x7E\x7F", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
-    }
-    else
-    {
-	    Printing_text(Printing_getInstance(), "  ", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
-    }
+	if(Hero_hasKey(Hero_getInstance()))
+	{
+		Printing_text(Printing_getInstance(), "\x7E\x7F", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
+	}
+	else
+	{
+		Printing_text(Printing_getInstance(), "  ", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
+	}
 }
 
 // print current level to gui
 void Gui_printLevel(Gui this __attribute__ ((unused)))
 {
-    PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
 	Printing_text(Printing_getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 29, GUI_Y_POS, GUI_FONT);
 }
 
 // update sprite, e.g. after collecting a power-up
 void Gui_updateSprite(Gui this)
 {
-    CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
+	CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
 
-    CharSetDefinition* charSetDefinition = NULL;
+	CharSetDefinition* charSetDefinition = NULL;
 
 	switch(Hero_getPowerUp(Hero_getInstance()))
 	{
 		case kPowerUpBandana:
 
-		    charSetDefinition = &GUI_BANDANA_CH;
+			charSetDefinition = &GUI_BANDANA_CH;
 			break;
 
 		default:
 		case kPowerUpNone:
 
-		    charSetDefinition = &GUI_CH;
+			charSetDefinition = &GUI_CH;
 			break;
 	}
 
-    CharSet_setCharSetDefinition(charSet, charSetDefinition);
+	CharSet_setCharSetDefinition(charSet, charSetDefinition);
 	CharSet_rewrite(charSet);
 }
 

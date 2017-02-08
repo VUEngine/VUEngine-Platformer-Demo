@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE DustParticleSmallTiles[];
@@ -41,65 +41,65 @@ extern BYTE DustParticleLargeMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef DUST_PARTICLE_SMALL_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    1,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	1,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    DustParticleSmallTiles,
+	// char definition
+	DustParticleSmallTiles,
 };
 
 TextureROMDef DUST_PARTICLE_SMALL_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&DUST_PARTICLE_SMALL_CH,
+	// charset definition
+	(CharSetDefinition*)&DUST_PARTICLE_SMALL_CH,
 
-    // bgmap definition
-    DustParticleSmallMap,
+	// bgmap definition
+	DustParticleSmallMap,
 
-    // cols (max 64)
-    1,
+	// cols (max 64)
+	1,
 
-    // rows (max 64)
-    1,
+	// rows (max 64)
+	1,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectSprite),
 
-        // texture definition
-        (TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
+		// texture definition
+		(TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -111,60 +111,60 @@ ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
 
 CharSetROMDef DUST_PARTICLE_LARGE_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    1,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	1,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    DustParticleLargeTiles,
+	// char definition
+	DustParticleLargeTiles,
 };
 
 TextureROMDef DUST_PARTICLE_LARGE_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&DUST_PARTICLE_LARGE_CH,
+	// charset definition
+	(CharSetDefinition*)&DUST_PARTICLE_LARGE_CH,
 
-    // bgmap definition
-    DustParticleLargeMap,
+	// bgmap definition
+	DustParticleLargeMap,
 
-    // cols (max 64)
-    1,
+	// cols (max 64)
+	1,
 
-    // rows (max 64)
-    1,
+	// rows (max 64)
+	1,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectSprite),
 
-        // texture definition
-        (TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
+		// texture definition
+		(TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -184,14 +184,14 @@ ObjectSpriteROMDef* const DUST_PARTICLE_IM_SPRITES[] =
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										  OBJECT DUST_PARTICLE
+//											OBJECT DUST_PARTICLE
 //---------------------------------------------------------------------------------------------------------
 
 // particle's definition
 ParticleROMDef DUST_PARTICLE =
 {
 	// allocator
-    __TYPE(Particle),
+	__TYPE(Particle),
 
 	// particle's minimum life span in milliseconds
 	100,
@@ -222,13 +222,13 @@ ParticleROMDef DUST_PARTICLE =
 
 ParticleSystemROMDef DUST_PS =
 {
-    {
-        __TYPE(ParticleSystem),
-        NULL,
-    },
+	{
+		__TYPE(ParticleSystem),
+		NULL,
+	},
 
 	// reuse expired particles?
-    true,
+	true,
 
 	// minimum generation delay in milliseconds
 	0,

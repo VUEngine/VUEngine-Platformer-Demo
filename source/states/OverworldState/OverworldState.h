@@ -24,46 +24,46 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 #define PRESS_START_BLINK_DELAY 500
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define OverworldState_METHODS(ClassName)																\
-	    GameState_METHODS(ClassName)											    					\
+		GameState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define OverworldState_SET_VTABLE(ClassName)															\
-        GameState_SET_VTABLE(ClassName)								    								\
-        __VIRTUAL_SET(ClassName, OverworldState, enter);												\
-        __VIRTUAL_SET(ClassName, OverworldState, exit);													\
-        __VIRTUAL_SET(ClassName, OverworldState, execute);												\
-        __VIRTUAL_SET(ClassName, OverworldState, resume);												\
-        __VIRTUAL_SET(ClassName, OverworldState, suspend);												\
-        __VIRTUAL_SET(ClassName, OverworldState, processMessage);                                       \
+		GameState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, OverworldState, enter);												\
+		__VIRTUAL_SET(ClassName, OverworldState, exit);													\
+		__VIRTUAL_SET(ClassName, OverworldState, execute);												\
+		__VIRTUAL_SET(ClassName, OverworldState, resume);												\
+		__VIRTUAL_SET(ClassName, OverworldState, suspend);												\
+		__VIRTUAL_SET(ClassName, OverworldState, processMessage);										\
 
 __CLASS(OverworldState);
 
-#define OverworldState_ATTRIBUTES							        									\
-        /* inherits */																					\
-        GameState_ATTRIBUTES																			\
+#define OverworldState_ATTRIBUTES																		\
+		/* inherits */																					\
+		GameState_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 OverworldState OverworldState_getInstance(void);

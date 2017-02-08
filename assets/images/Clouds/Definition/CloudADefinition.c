@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
@@ -30,7 +30,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE CloudATiles[];
@@ -38,65 +38,65 @@ extern BYTE CloudAMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef CLOUD_A_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    24,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	24,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    CloudATiles,
+	// char definition
+	CloudATiles,
 };
 
 TextureROMDef CLOUD_A_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&CLOUD_A_CH,
+	// charset definition
+	(CharSetDefinition*)&CLOUD_A_CH,
 
-    // bgmap definition
-    CloudAMap,
+	// bgmap definition
+	CloudAMap,
 
-    // cols (max 64)
-    8,
+	// cols (max 64)
+	8,
 
-    // rows (max 64)
-    4,
+	// rows (max 64)
+	4,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    0,
+	// palette number (0-3)
+	0,
 };
 
 BgmapSpriteROMDef CLOUD_A_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&CLOUD_A_TX,
+		// texture definition
+		(TextureDefinition*)&CLOUD_A_TX,
 
-        // transparent
+		// transparent
 		true,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)

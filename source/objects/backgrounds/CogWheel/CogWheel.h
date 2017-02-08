@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
@@ -32,33 +32,33 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 #define COG_WHEEL_ROTATION_DELAY 400
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define CogWheel_METHODS(ClassName)																		\
-    	StaticImage_METHODS(ClassName)																		\
+		StaticImage_METHODS(ClassName)																	\
 
 #define CogWheel_SET_VTABLE(ClassName)																	\
-        StaticImage_SET_VTABLE(ClassName)																		\
-        __VIRTUAL_SET(ClassName, CogWheel, ready);														\
-        __VIRTUAL_SET(ClassName, CogWheel, handleMessage);												\
+		StaticImage_SET_VTABLE(ClassName)																\
+		__VIRTUAL_SET(ClassName, CogWheel, ready);														\
+		__VIRTUAL_SET(ClassName, CogWheel, handleMessage);												\
 
 __CLASS(CogWheel);
 
 #define CogWheel_ATTRIBUTES																				\
-        /* it is derived from */																    	\
-        StaticImage_ATTRIBUTES																				\
+		/* it is derived from */																		\
+		StaticImage_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(CogWheel, StaticImageDefinition* StaticImageDefinition, s16 id, s16 internalId, const char* const name);

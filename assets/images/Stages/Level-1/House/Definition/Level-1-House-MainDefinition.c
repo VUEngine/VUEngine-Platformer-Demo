@@ -21,14 +21,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE Level_1_House_MainTiles[];
@@ -40,65 +40,65 @@ extern BgmapSpriteROMDef LEVEL_1_HOUSE_OVERLAY_IM_SPRITE;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef LEVEL_1_HOUSE_MAIN_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    32,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	32,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    Level_1_House_MainTiles,
+	// char definition
+	Level_1_House_MainTiles,
 };
 
 TextureROMDef LEVEL_1_HOUSE_MAIN_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LEVEL_1_HOUSE_MAIN_CH,
+	// charset definition
+	(CharSetDefinition*)&LEVEL_1_HOUSE_MAIN_CH,
 
-    // bgmap definition
-    Level_1_House_MainMap,
+	// bgmap definition
+	Level_1_House_MainMap,
 
-    // cols (max 64)
-    18,
+	// cols (max 64)
+	18,
 
-    // rows (max 64)
-    8,
+	// rows (max 64)
+	8,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef LEVEL_1_HOUSE_MAIN_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&LEVEL_1_HOUSE_MAIN_TX,
+		// texture definition
+		(TextureDefinition*)&LEVEL_1_HOUSE_MAIN_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, ITOFIX19_13(16), ITOFIX19_13(2), 0},
-    },
+		{0, ITOFIX19_13(16), ITOFIX19_13(2), 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)

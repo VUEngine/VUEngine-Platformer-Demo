@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
@@ -33,25 +33,25 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Item_METHODS(ClassName)																			\
-	    Collectable_METHODS(ClassName)														    		\
+		Collectable_METHODS(ClassName)																	\
 
 #define Item_SET_VTABLE(ClassName)																		\
-        Collectable_SET_VTABLE(ClassName)																\
-        __VIRTUAL_SET(ClassName, Item, collect);														\
+		Collectable_SET_VTABLE(ClassName)																\
+		__VIRTUAL_SET(ClassName, Item, collect);														\
 
 __CLASS(Item);
 
 #define Item_ATTRIBUTES																					\
-        /* it is derived from */																		\
-        Collectable_ATTRIBUTES																			\
+		/* it is derived from */																		\
+		Collectable_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Item, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);

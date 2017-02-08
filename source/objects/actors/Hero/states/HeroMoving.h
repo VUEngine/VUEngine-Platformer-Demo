@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <HeroState.h>
@@ -32,27 +32,27 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define HeroMoving_METHODS(ClassName)																	\
-    	HeroState_METHODS(ClassName)																	\
+		HeroState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define HeroMoving_SET_VTABLE(ClassName)																\
-        HeroState_SET_VTABLE(ClassName)																	\
-        __VIRTUAL_SET(ClassName, HeroMoving, enter);													\
-        __VIRTUAL_SET(ClassName, HeroMoving, processMessage);                           				\
-        __VIRTUAL_SET(ClassName, HeroMoving, onKeyPressed);	                                            \
-        __VIRTUAL_SET(ClassName, HeroMoving, onKeyReleased);	                                        \
-        __VIRTUAL_SET(ClassName, HeroMoving, onKeyHold);	                                            \
+		HeroState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, HeroMoving, enter);													\
+		__VIRTUAL_SET(ClassName, HeroMoving, processMessage);											\
+		__VIRTUAL_SET(ClassName, HeroMoving, onKeyPressed);												\
+		__VIRTUAL_SET(ClassName, HeroMoving, onKeyReleased);											\
+		__VIRTUAL_SET(ClassName, HeroMoving, onKeyHold);												\
 
 #define HeroMoving_ATTRIBUTES																			\
-        /* inherits */																					\
-        HeroState_ATTRIBUTES																			\
-        /* flag to allow jump on bouncing */															\
-        bool bouncing;																					\
+		/* inherits */																					\
+		HeroState_ATTRIBUTES																			\
+		/* flag to allow jump on bouncing */															\
+		bool bouncing;																					\
 
  __CLASS(HeroMoving);
 
@@ -64,7 +64,7 @@ enum HeroMovingMessages
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 HeroMoving HeroMoving_getInstance();

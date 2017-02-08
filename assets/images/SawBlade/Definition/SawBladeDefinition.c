@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
@@ -29,7 +29,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE SawBladeTiles[];
@@ -37,7 +37,7 @@ extern BYTE SawBladeMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 AnimationFunctionROMDef SAW_BLADE_SPIN_ANIM =
@@ -73,60 +73,60 @@ AnimationDescriptionROMDef SAW_BLADE_ANIM =
 
 CharSetROMDef SAW_BLADE_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    18,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	18,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_MULTI,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_MULTI,
 
-    // char definition
-    SawBladeTiles,
+	// char definition
+	SawBladeTiles,
 };
 
 TextureROMDef SAW_BLADE_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&SAW_BLADE_CH,
+	// charset definition
+	(CharSetDefinition*)&SAW_BLADE_CH,
 
-    // bgmap definition
-    SawBladeMap,
+	// bgmap definition
+	SawBladeMap,
 
-    // cols (max 64)
-    3,
+	// cols (max 64)
+	3,
 
-    // rows (max 64)
-    3,
+	// rows (max 64)
+	3,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    2,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	2,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef SAW_BLADE_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&SAW_BLADE_TX,
+		// texture definition
+		(TextureDefinition*)&SAW_BLADE_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -145,35 +145,35 @@ BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 MovingEntityROMDef SAW_BLADE_V3_AC =
 {
 	{
-	    {
-	        {
-	            {
-	                __TYPE(MovingEntity),
-	                (SpriteROMDef**)SAW_BLADE_SPRITES,
-	            },
+		{
+			{
+				{
+					__TYPE(MovingEntity),
+					(SpriteROMDef**)SAW_BLADE_SPRITES,
+				},
 
-	            // collision detection gap (up, down, left, right)
-	            {5, 2, 2, 5},
+				// collision detection gap (up, down, left, right)
+				{5, 2, 2, 5},
 
-	            // in game type
-	            kSawBlade,
+				// in game type
+				kSawBlade,
 
-	            // width
-	            0,
+				// width
+				0,
 
-	            // height
-	            0,
+				// height
+				0,
 
-	            // depth
-	            8,
-	        },
+				// depth
+				8,
+			},
 
-	        // pointer to the animation definition for the character
-	        (AnimationDescription*)&SAW_BLADE_ANIM,
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&SAW_BLADE_ANIM,
 
-	        // initial animation
-	        "Spin"
-	    },
+			// initial animation
+			"Spin"
+		},
 
 		// friction for physics
 		ITOFIX19_13(0),
@@ -194,45 +194,45 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	// time to rest idle
 	500,
 
-    // axis
-    __YAXIS,
+	// axis
+	__YAXIS,
 
-    // direction
-    __DOWN
+	// direction
+	__DOWN
 };
 
 MovingEntityROMDef SAW_BLADE_H3_AC =
 {
 	{
-	    {
-	        {
-	            {
-	                __TYPE(MovingEntity),
-	                (SpriteROMDef**)SAW_BLADE_SPRITES,
-	            },
+		{
+			{
+				{
+					__TYPE(MovingEntity),
+					(SpriteROMDef**)SAW_BLADE_SPRITES,
+				},
 
-	            // collision detection gap (up, down, left, right)
-	            {5, 2, 2, 5},
+				// collision detection gap (up, down, left, right)
+				{5, 2, 2, 5},
 
-	            // in game type
-	            kSawBlade,
+				// in game type
+				kSawBlade,
 
-	            // width
-	            0,
+				// width
+				0,
 
-	            // height
-	            0,
+				// height
+				0,
 
-	            // depth
-	            8,
-	        },
+				// depth
+				8,
+			},
 
-	        // pointer to the animation definition for the character
-	        (AnimationDescription*)&SAW_BLADE_ANIM,
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&SAW_BLADE_ANIM,
 
-	        // initial animation
-	        "Spin"
-	    },
+			// initial animation
+			"Spin"
+		},
 
 		// friction for physics
 		ITOFIX19_13(0),
@@ -253,45 +253,45 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	// time to rest idle
 	1000,
 
-    // axis
-    __XAXIS,
+	// axis
+	__XAXIS,
 
-    // direction
-    __LEFT
+	// direction
+	__LEFT
 };
 
 MovingEntityROMDef SAW_BLADE_H8_AC =
 {
 	{
-	    {
-	        {
-	            {
-	                __TYPE(MovingEntity),
-	                (SpriteROMDef**)SAW_BLADE_SPRITES,
-	            },
+		{
+			{
+				{
+					__TYPE(MovingEntity),
+					(SpriteROMDef**)SAW_BLADE_SPRITES,
+				},
 
-	            // collision detection gap (up, down, left, right)
-	            {5, 2, 2, 5},
+				// collision detection gap (up, down, left, right)
+				{5, 2, 2, 5},
 
-	            // in game type
-	            kSawBlade,
+				// in game type
+				kSawBlade,
 
-	            // width
-	            0,
+				// width
+				0,
 
-	            // height
-	            0,
+				// height
+				0,
 
-	            // depth
-	            8,
-	        },
+				// depth
+				8,
+			},
 
-	        // pointer to the animation definition for the character
-	        (AnimationDescription*)&SAW_BLADE_ANIM,
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&SAW_BLADE_ANIM,
 
-	        // initial animation
-	        "Spin"
-	    },
+			// initial animation
+			"Spin"
+		},
 
 		// friction for physics
 		ITOFIX19_13(0),
@@ -312,9 +312,9 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	// time to rest idle
 	0,
 
-    // axis
-    __XAXIS,
+	// axis
+	__XAXIS,
 
-    // direction
-    __LEFT
+	// direction
+	__LEFT
 };

@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
@@ -29,13 +29,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 FontDefinition* const __FONTS[] =
 {
-    (FontDefinition*)&PLATFORMER_DEFAULT_FONT,
-    (FontDefinition*)&PLATFORMER_GUI_FONT,
-    (FontDefinition*)&PLATFORMER_LARGE_FONT,
-    NULL
+	(FontDefinition*)&PLATFORMER_DEFAULT_FONT,
+	(FontDefinition*)&PLATFORMER_GUI_FONT,
+	(FontDefinition*)&PLATFORMER_LARGE_FONT,
+	NULL
 };

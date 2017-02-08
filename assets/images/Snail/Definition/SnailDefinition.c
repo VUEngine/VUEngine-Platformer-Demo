@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <ObjectAnimatedSprite.h>
@@ -30,7 +30,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE SnailTiles[];
@@ -38,7 +38,7 @@ extern BYTE SnailMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 AnimationFunctionROMDef SNAIL_MOVE_ANIM =
@@ -74,60 +74,60 @@ AnimationDescriptionROMDef SNAIL_ANIM =
 
 CharSetROMDef SNAIL_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    6,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	6,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED_COORDINATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SHARED_COORDINATED,
 
-    // char definition
-    SnailTiles,
+	// char definition
+	SnailTiles,
 };
 
 TextureROMDef SNAIL_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&SNAIL_CH,
+	// charset definition
+	(CharSetDefinition*)&SNAIL_CH,
 
-    // bgmap definition
-    SnailMap,
+	// bgmap definition
+	SnailMap,
 
-    // cols (max 64)
-    3,
+	// cols (max 64)
+	3,
 
-    // rows (max 64)
-    2,
+	// rows (max 64)
+	2,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 ObjectSpriteROMDef SNAIL_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&SNAIL_TX,
+		// texture definition
+		(TextureDefinition*)&SNAIL_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -146,35 +146,35 @@ ObjectSpriteROMDef* const SNAIL_SPRITES[] =
 MovingEntityROMDef SNAIL_4_AC =
 {
 	{
-	    {
-	        {
-	            {
-	                __TYPE(MovingEntity),
-	                (SpriteROMDef**)SNAIL_SPRITES,
-	            },
+		{
+			{
+				{
+					__TYPE(MovingEntity),
+					(SpriteROMDef**)SNAIL_SPRITES,
+				},
 
-	            // collision detection gap (up, down, left, right)
-	            {6, 0, 5, 3},
+				// collision detection gap (up, down, left, right)
+				{6, 0, 5, 3},
 
-	            // in game type
-	            kSnail,
+				// in game type
+				kSnail,
 
-	            // width
-	            0,
+				// width
+				0,
 
-	            // height
-	            0,
+				// height
+				0,
 
-	            // depth
-	            8,
-	        },
+				// depth
+				8,
+			},
 
-	        // pointer to the animation definition for the character
-	        (AnimationDescription*)&SNAIL_ANIM,
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&SNAIL_ANIM,
 
-	        // initial animation
-	        "Move"
-	    },
+			// initial animation
+			"Move"
+		},
 
 		// friction for physics
 		ITOFIX19_13(0),
@@ -195,46 +195,46 @@ MovingEntityROMDef SNAIL_4_AC =
 	// time to rest idle
 	1000,
 
-    // axis
-    __XAXIS,
+	// axis
+	__XAXIS,
 
-    // direction
-    __LEFT
+	// direction
+	__LEFT
 
 };
 
 MovingEntityROMDef SNAIL_8_AC =
 {
 	{
-	    {
-	        {
-	            {
-	                __TYPE(MovingEntity),
-	                (SpriteROMDef**)SNAIL_SPRITES,
-	            },
+		{
+			{
+				{
+					__TYPE(MovingEntity),
+					(SpriteROMDef**)SNAIL_SPRITES,
+				},
 
-	            // collision detection gap (up, down, left, right)
-	            {6, 0, 5, 3},
+				// collision detection gap (up, down, left, right)
+				{6, 0, 5, 3},
 
-	            // in game type
-	            kSnail,
+				// in game type
+				kSnail,
 
-	            // width
-	            0,
+				// width
+				0,
 
-	            // height
-	            0,
+				// height
+				0,
 
-	            // depth
-	            8,
-	        },
+				// depth
+				8,
+			},
 
-	        // pointer to the animation definition for the character
-	        (AnimationDescription*)&SNAIL_ANIM,
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&SNAIL_ANIM,
 
-	        // initial animation
-	        "Move"
-	    },
+			// initial animation
+			"Move"
+		},
 
 		// friction for physics
 		ITOFIX19_13(0),
@@ -255,9 +255,9 @@ MovingEntityROMDef SNAIL_8_AC =
 	// time to rest idle
 	3000,
 
-    // axis
-    __XAXIS,
+	// axis
+	__XAXIS,
 
-    // direction
-    __LEFT
+	// direction
+	__LEFT
 };

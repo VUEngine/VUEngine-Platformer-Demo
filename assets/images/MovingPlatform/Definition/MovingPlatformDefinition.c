@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapSprite.h>
@@ -29,7 +29,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE MovingPlatform4Tiles[];
@@ -37,7 +37,7 @@ extern BYTE MovingPlatform4Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 AnimationFunctionROMDef MOVING_PLATFORM_MOVE_ANIM =
@@ -73,60 +73,60 @@ AnimationDescriptionROMDef MOVING_PLATFORM_ANIM =
 
 CharSetROMDef MOVING_PLATFORM_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    4,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	4,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SINGLE,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
 
-    // char definition
-    MovingPlatform4Tiles,
+	// char definition
+	MovingPlatform4Tiles,
 };
 
 TextureROMDef MOVING_PLATFORM_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&MOVING_PLATFORM_CH,
+	// charset definition
+	(CharSetDefinition*)&MOVING_PLATFORM_CH,
 
-    // bgmap definition
-    MovingPlatform4Map,
+	// bgmap definition
+	MovingPlatform4Map,
 
-    // cols (max 64)
-    4,
+	// cols (max 64)
+	4,
 
-    // rows (max 64)
-    1,
+	// rows (max 64)
+	1,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&MOVING_PLATFORM_TX,
+		// texture definition
+		(TextureDefinition*)&MOVING_PLATFORM_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, ITOFIX19_13(-4), 0, 0},
-    },
+		{0, ITOFIX19_13(-4), 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -145,35 +145,35 @@ BgmapSpriteROMDef* const MOVING_PLATFORM_SPRITES[] =
 MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 {
 	{
-	    {
-	        {
-	            {
-	                __TYPE(MovingEntity),
-	                (SpriteROMDef**)MOVING_PLATFORM_SPRITES,
-	            },
+		{
+			{
+				{
+					__TYPE(MovingEntity),
+					(SpriteROMDef**)MOVING_PLATFORM_SPRITES,
+				},
 
-	            // collision detection gap (up, down, left, right)
-	            {1, 1, 1, 1},
+				// collision detection gap (up, down, left, right)
+				{1, 1, 1, 1},
 
-	            // in game type
-	            kMovingPlatform,
+				// in game type
+				kMovingPlatform,
 
-	            // width
-	            4 * 8,
+				// width
+				4 * 8,
 
-	            // height
-	            2 * 8,
+				// height
+				2 * 8,
 
-	            // depth
-	            4
-	        },
+				// depth
+				4
+			},
 
-	        // pointer to the animation definition for the character
-	        (AnimationDescription*)&MOVING_PLATFORM_ANIM,
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&MOVING_PLATFORM_ANIM,
 
-	        // initial animation
-	        "Move"
-	    },
+			// initial animation
+			"Move"
+		},
 
 		// friction for physics
 		FTOFIX19_13(FLOOR_FRICTION),
@@ -194,9 +194,9 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 	// time to rest idle
 	1000,
 
-    // axis
-    __YAXIS,
+	// axis
+	__YAXIS,
 
-    // direction
-    __DOWN
+	// direction
+	__DOWN
 };

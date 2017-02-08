@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -32,7 +32,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE HeroTiles[];
@@ -41,7 +41,7 @@ extern BYTE HeroMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
@@ -355,99 +355,99 @@ AnimationDescriptionROMDef HERO_ANIM =
 
 CharSetROMDef HERO_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    9,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	9,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SINGLE,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
 
-    // char definition
-    HeroTiles,
+	// char definition
+	HeroTiles,
 };
 
 CharSetROMDef HERO_BANDANA_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    9,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	9,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SINGLE,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
 
-    // char definition
-    HeroBandanaTiles,
+	// char definition
+	HeroBandanaTiles,
 };
 
 TextureROMDef HERO_TX =
 {
-    (CharSetDefinition*)&HERO_CH,
+	(CharSetDefinition*)&HERO_CH,
 
-    // bgmap definition
-    HeroMap,
+	// bgmap definition
+	HeroMap,
 
-    // cols (max 64)
-    3,
+	// cols (max 64)
+	3,
 
-    // rows (max 64)
-    3,
+	// rows (max 64)
+	3,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 TextureROMDef HERO_BANDANA_TX =
 {
-    (CharSetDefinition*)&HERO_BANDANA_CH,
+	(CharSetDefinition*)&HERO_BANDANA_CH,
 
-    // bgmap definition
-    HeroMap,
+	// bgmap definition
+	HeroMap,
 
-    // cols (max 64)
-    3,
+	// cols (max 64)
+	3,
 
-    // rows (max 64)
-    3,
+	// rows (max 64)
+	3,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&HERO_TX,
+		// texture definition
+		(TextureDefinition*)&HERO_TX,
 
-        // transparent
+		// transparent
 		false,
 
-        // displacement
-        {0, 0, 0, 0},
-    },
+		// displacement
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -460,19 +460,19 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 
 BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&HERO_BANDANA_TX,
+		// texture definition
+		(TextureDefinition*)&HERO_BANDANA_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -484,19 +484,19 @@ BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
 
 BgmapSpriteROMDef HERO_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&HERO_TX,
+		// texture definition
+		(TextureDefinition*)&HERO_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -527,35 +527,35 @@ BgmapSpriteROMDef* const HERO_SPRITES[] =
 ActorROMDef HERO_AC =
 {
 	{
-	    {
-	        {
-	            __TYPE(Hero),
-	            (SpriteROMDef**)HERO_AFFINE_SPRITES,
-	        },
+		{
+			{
+				__TYPE(Hero),
+				(SpriteROMDef**)HERO_AFFINE_SPRITES,
+			},
 
-	        // collision detection gap (up, down, left, right)
-	        {3, 1, 6, 6},
+			// collision detection gap (up, down, left, right)
+			{3, 1, 6, 6},
 
-	        // in game type
-	        kHero,
+			// in game type
+			kHero,
 
-	        // width
-	        // if 0, width and height will be inferred from the texture's size
-	    	0,
+			// width
+			// if 0, width and height will be inferred from the texture's size
+			0,
 
-	    	// height
-	        // if 0, width and height will be inferred from the texture's size
-	    	0,
+			// height
+			// if 0, width and height will be inferred from the texture's size
+			0,
 
-	    	// depth
-	        1 * 8
-	    },
+			// depth
+			1 * 8
+		},
 
-	    // pointer to the animation definition for the character
-	    (AnimationDescription*)&HERO_ANIM,
+		// pointer to the animation definition for the character
+		(AnimationDescription*)&HERO_ANIM,
 
-	    // initial animation
-	    "Idle",
+		// initial animation
+		"Idle",
 	},
 
 	// friction for physics
@@ -570,132 +570,132 @@ ActorROMDef HERO_AC =
 
 AnimatedInGameEntityROMDef HERO_IDLE_AG =
 {
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)HERO_SPRITES,
-        },
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)HERO_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kHero,
+		// in game type
+		kHero,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&HERO_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&HERO_ANIM,
 
-    // initial animation
-    "Idle",
+	// initial animation
+	"Idle",
 };
 
 AnimatedInGameEntityROMDef HERO_SLEEPING_AG =
 {
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)HERO_SPRITES,
-        },
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)HERO_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kHero,
+		// in game type
+		kHero,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&HERO_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&HERO_ANIM,
 
-    // initial animation
-    "Sleep",
+	// initial animation
+	"Sleep",
 };
 
 AnimatedInGameEntityROMDef HERO_BANDANA_AG =
 {
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)HERO_BANDANA_AFFINE_SPRITES,
-        },
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)HERO_BANDANA_AFFINE_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kHero,
+		// in game type
+		kHero,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&HERO_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&HERO_ANIM,
 
-    // initial animation
-    "Idle",
+	// initial animation
+	"Idle",
 };
 
 CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 {
-    {
-        {
-            __TYPE(CameraTriggerEntity),
-            NULL,
-        },
+	{
+		{
+			__TYPE(CameraTriggerEntity),
+			NULL,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kCameraTarget,
+		// in game type
+		kCameraTarget,
 
-    	// width
-        // if 0, width and height will be inferred from the texture's size
-    	12 * 8,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		12 * 8,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	20 * 8,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		20 * 8,
 
-    	// depth
-    	4 * 8
-    },
+		// depth
+		4 * 8
+	},
 
-    // shape type
-    kInverseCuboid,
+	// shape type
+	kInverseCuboid,
 
-    // moves
-    true
+	// moves
+	true
 };

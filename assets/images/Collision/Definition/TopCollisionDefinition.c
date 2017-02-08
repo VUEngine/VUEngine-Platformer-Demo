@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
@@ -30,41 +30,41 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 InanimatedInGameEntityROMDef COLLISION_TOP_CL =
 {
-    {
-        {
-            __TYPE(Collision),
-            NULL,
-        },
+	{
+		{
+			__TYPE(Collision),
+			NULL,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {1, 1, 1, 1},
+		// collision detection gap (up, down, left, right)
+		{1, 1, 1, 1},
 
-        // in game type
-        kTopSolid,
+		// in game type
+		kTopSolid,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	64,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		64,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	64,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		64,
 
-    	// depth
-    	64
-    },
+		// depth
+		64
+	},
 
-    // friction
-    FTOFIX19_13(FLOOR_FRICTION),
+	// friction
+	FTOFIX19_13(FLOOR_FRICTION),
 
-    // elasticity
-    FTOFIX19_13(FLOOR_ELASTICITY),
+	// elasticity
+	FTOFIX19_13(FLOOR_ELASTICITY),
 
-    // register shape
-    false,
+	// register shape
+	false,
 };

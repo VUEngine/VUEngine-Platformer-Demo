@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
@@ -32,7 +32,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 #define CANNON_INITIAL_SHOOT_DELAY 500
@@ -40,26 +40,26 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Cannon_METHODS(ClassName)																		\
-    	AnimatedInGameEntity_METHODS(ClassName)														    \
+		AnimatedInGameEntity_METHODS(ClassName)															\
 
 #define Cannon_SET_VTABLE(ClassName)																	\
-        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, Cannon, handleMessage);												\
-        __VIRTUAL_SET(ClassName, Cannon, ready);														\
+		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		__VIRTUAL_SET(ClassName, Cannon, handleMessage);												\
+		__VIRTUAL_SET(ClassName, Cannon, ready);														\
 
 __CLASS(Cannon);
 
 #define Cannon_ATTRIBUTES																				\
-        /* it is derived from */																		\
-        AnimatedInGameEntity_ATTRIBUTES																	\
+		/* it is derived from */																		\
+		AnimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Cannon, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);

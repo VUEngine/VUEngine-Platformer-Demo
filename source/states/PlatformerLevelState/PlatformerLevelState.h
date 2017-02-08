@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameState.h>
@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINES
+//												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
 enum PlatformerLevelModes
@@ -45,39 +45,39 @@ enum PlatformerLevelModes
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define PlatformerLevelState_METHODS(ClassName)															\
-	    GameState_METHODS(ClassName)																	\
+		GameState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define PlatformerLevelState_SET_VTABLE(ClassName)														\
-        GameState_SET_VTABLE(ClassName)																	\
-        __VIRTUAL_SET(ClassName, PlatformerLevelState, enter);											\
-        __VIRTUAL_SET(ClassName, PlatformerLevelState, exit);											\
-        __VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);										\
-        __VIRTUAL_SET(ClassName, PlatformerLevelState, resume);											\
-        __VIRTUAL_SET(ClassName, PlatformerLevelState, processMessage);                                 \
+		GameState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);											\
+		__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);											\
+		__VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);										\
+		__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);											\
+		__VIRTUAL_SET(ClassName, PlatformerLevelState, processMessage);									\
 
 __CLASS(PlatformerLevelState);
 
 #define PlatformerLevelState_ATTRIBUTES																	\
-        /* inherits */																					\
-        GameState_ATTRIBUTES																			\
-        /* the current loaded level */																	\
-        PlatformerLevelDefinition* currentLevel;														\
-        /* the current loaded entry point */															\
-        StageEntryPointDefinition* currentStageEntryPoint;												\
-        /* to allow moving the screen */																\
-        u8 mode;																						\
-        /* in-game clock */																				\
-        Clock clock;																					\
+		/* inherits */																					\
+		GameState_ATTRIBUTES																			\
+		/* the current loaded level */																	\
+		PlatformerLevelDefinition* currentLevel;														\
+		/* the current loaded entry point */															\
+		StageEntryPointDefinition* currentStageEntryPoint;												\
+		/* to allow moving the screen */																\
+		u8 mode;																						\
+		/* in-game clock */																				\
+		Clock clock;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S ROM DECLARATION
+//											CLASS'S ROM DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 typedef struct StageEntryPointDefinition
@@ -88,8 +88,8 @@ typedef struct StageEntryPointDefinition
 	// name of the entity to start at
 	char* destinationName;
 
-    // offset from entry point (x, y, z)
-    VBVec3D offset;
+	// offset from entry point (x, y, z)
+	VBVec3D offset;
 
 } StageEntryPointDefinition;
 
@@ -101,8 +101,8 @@ typedef struct PlatformerLevelDefinition
 	// starting entry point
 	StageEntryPointDefinition* entryPoint;
 
-    // id
-    u8 id;
+	// id
+	u8 id;
 
 	// identifier
 	void* identifier;
@@ -125,10 +125,10 @@ enum PlatformerLevelStateMessageTypes
 	kHeroDied,
 	kHeroFall,
 	kHeroEnterDoor,
-    kHeroStopFeetDust,
-    kHeroStopInvincibility,
-    kHeroFlash,
-    kHeroSleep,
+	kHeroStopFeetDust,
+	kHeroStopInvincibility,
+	kHeroFlash,
+	kHeroSleep,
 	kItemTaken,
 	kTakeKey,
 	kTakeCoin,
@@ -139,10 +139,10 @@ enum PlatformerLevelStateMessageTypes
 	kCogWheelMove,
 	kLavaMove,
 	kCannonShoot,
-    kHeroCheckOverlapping,
-    kHeroStartOverlapping,
-    kHeroEndOverlapping,
-    kMovingEntityStartMovement,
+	kHeroCheckOverlapping,
+	kHeroStartOverlapping,
+	kHeroEndOverlapping,
+	kMovingEntityStartMovement,
 
 	// don't remove me
 	kLastPlatformerMessage
@@ -150,7 +150,7 @@ enum PlatformerLevelStateMessageTypes
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 PlatformerLevelState PlatformerLevelState_getInstance(void);

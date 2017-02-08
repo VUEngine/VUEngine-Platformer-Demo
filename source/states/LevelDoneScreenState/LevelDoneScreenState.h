@@ -24,36 +24,36 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define LevelDoneScreenState_METHODS(ClassName)															\
-	    GameState_METHODS(ClassName)												    				\
+		GameState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define LevelDoneScreenState_SET_VTABLE(ClassName)														\
-        GameState_SET_VTABLE(ClassName)								    								\
-        __VIRTUAL_SET(ClassName, LevelDoneScreenState, enter);											\
-        __VIRTUAL_SET(ClassName, LevelDoneScreenState, exit);											\
-        __VIRTUAL_SET(ClassName, LevelDoneScreenState, processMessage);	                                \
+		GameState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, LevelDoneScreenState, enter);											\
+		__VIRTUAL_SET(ClassName, LevelDoneScreenState, exit);											\
+		__VIRTUAL_SET(ClassName, LevelDoneScreenState, processMessage);									\
 
 __CLASS(LevelDoneScreenState);
 
-#define LevelDoneScreenState_ATTRIBUTES							        								\
-        /* inherits */																					\
-        GameState_ATTRIBUTES																			\
+#define LevelDoneScreenState_ATTRIBUTES																	\
+		/* inherits */																					\
+		GameState_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 LevelDoneScreenState LevelDoneScreenState_getInstance(void);

@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <RecyclableImage.h>
@@ -29,7 +29,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE Level_1_Tower_MainTiles[];
@@ -40,33 +40,33 @@ extern CharSetROMDef LEVEL_1_TOWER_MAIN_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 TextureROMDef LEVEL_1_TOWER_MAIN_2_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LEVEL_1_TOWER_MAIN_CH,
+	// charset definition
+	(CharSetDefinition*)&LEVEL_1_TOWER_MAIN_CH,
 
-    // bgmap definition
-    Level_1_Tower_Main_2Map,
+	// bgmap definition
+	Level_1_Tower_Main_2Map,
 
-    // cols (max 64)
-    48,
+	// cols (max 64)
+	48,
 
-    // rows (max 64)
-    64,
+	// rows (max 64)
+	64,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    0,
+	// palette number (0-3)
+	0,
 };
 
 TextureROMDef* const LEVEL_1_TOWER_MAIN_2_IM_TEXTURES[] =
@@ -78,19 +78,19 @@ TextureROMDef* const LEVEL_1_TOWER_MAIN_2_IM_TEXTURES[] =
 MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_2_IM_SPRITE =
 {
 	{
-        {
-            // sprite's type
-            __TYPE(MBgmapSprite),
+		{
+			// sprite's type
+			__TYPE(MBgmapSprite),
 
-            // texture definition
-            NULL,
+			// texture definition
+			NULL,
 
-            // transparent
-            false,
+			// transparent
+			false,
 
-            // displacement
-            {0, 0, 0, 0},
-        },
+			// displacement
+			{0, 0, 0, 0},
+		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)

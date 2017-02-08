@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
@@ -32,25 +32,25 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define LavaTrigger_METHODS(ClassName)																	\
-	    InanimatedInGameEntity_METHODS(ClassName)														\
+		InanimatedInGameEntity_METHODS(ClassName)														\
 
 #define LavaTrigger_SET_VTABLE(ClassName)																\
-        InanimatedInGameEntity_SET_VTABLE(ClassName)													\
-        __VIRTUAL_SET(ClassName, LavaTrigger, handleMessage);											\
+		InanimatedInGameEntity_SET_VTABLE(ClassName)													\
+		__VIRTUAL_SET(ClassName, LavaTrigger, handleMessage);											\
 
 __CLASS(LavaTrigger);
 
 #define LavaTrigger_ATTRIBUTES																			\
-        /* it is derived from */																		\
-        InanimatedInGameEntity_ATTRIBUTES																\
+		/* it is derived from */																		\
+		InanimatedInGameEntity_ATTRIBUTES																\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(LavaTrigger, InanimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);

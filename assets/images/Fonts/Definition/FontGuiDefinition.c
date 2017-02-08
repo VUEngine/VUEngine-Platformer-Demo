@@ -21,46 +21,46 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE FontGuiTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef PLATFORMER_GUI_FONT_CH =
 {
-    // number of chars
-    192,
+	// number of chars
+	192,
 
-    // allocation type
-    __NOT_ANIMATED,
+	// allocation type
+	__NOT_ANIMATED,
 
-    // char definition
-    FontGuiTiles,
+	// char definition
+	FontGuiTiles,
 };
 
 FontROMDef PLATFORMER_GUI_FONT =
 {
-    // font charset definition pointer
-    (CharSetDefinition*)&PLATFORMER_GUI_FONT_CH,
+	// font charset definition pointer
+	(CharSetDefinition*)&PLATFORMER_GUI_FONT_CH,
 
-    // character number at which the font starts, allows you to skip the control characters for example
-    32,
+	// character number at which the font starts, allows you to skip the control characters for example
+	32,
 
 	// size of a single character (in chars) ({width, height})
-    {1, 2},
+	{1, 2},
 
 	// font's name
-    "GuiFont",
+	"GuiFont",
 };

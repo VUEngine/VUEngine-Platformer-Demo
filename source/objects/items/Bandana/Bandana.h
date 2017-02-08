@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Item.h>
@@ -32,25 +32,25 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Bandana_METHODS(ClassName)																		\
-	    Item_METHODS(ClassName)														    				\
+		Item_METHODS(ClassName)																			\
 
 #define Bandana_SET_VTABLE(ClassName)																	\
-        Item_SET_VTABLE(ClassName)																		\
-        __VIRTUAL_SET(ClassName, Bandana, collect);														\
+		Item_SET_VTABLE(ClassName)																		\
+		__VIRTUAL_SET(ClassName, Bandana, collect);														\
 
 __CLASS(Bandana);
 
 #define Bandana_ATTRIBUTES																				\
-        /* it is derived from */																		\
-        Item_ATTRIBUTES																					\
+		/* it is derived from */																		\
+		Item_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Bandana, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);

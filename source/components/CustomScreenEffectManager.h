@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <ScreenEffectManager.h>
@@ -33,13 +33,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												MACROS
+//												MACROS
 //---------------------------------------------------------------------------------------------------------
 
 // delay between screen movements during shaking effect (in ms)
 #define MINIMUM_SHAKE_DELAY				20
 #define SHAKE_DELAY_DELTA				60
-#define SCREEN_PULSATE_DELAY            200
+#define SCREEN_PULSATE_DELAY			200
 
 enum CustomScreenFX
 {
@@ -49,38 +49,38 @@ enum CustomScreenFX
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define CustomScreenEffectManager_METHODS(ClassName)													\
-    	ScreenEffectManager_METHODS(ClassName)															\
+		ScreenEffectManager_METHODS(ClassName)															\
 
 // declare the virtual methods which are redefined
 #define CustomScreenEffectManager_SET_VTABLE(ClassName)													\
-    	ScreenEffectManager_SET_VTABLE(ClassName)														\
+		ScreenEffectManager_SET_VTABLE(ClassName)														\
 		__VIRTUAL_SET(ClassName, CustomScreenEffectManager, startEffect);								\
 		__VIRTUAL_SET(ClassName, CustomScreenEffectManager, stopEffect);								\
 		__VIRTUAL_SET(ClassName, CustomScreenEffectManager, handleMessage);								\
 
 #define CustomScreenEffectManager_ATTRIBUTES															\
-        /* super's attributes */																		\
-        ScreenEffectManager_ATTRIBUTES																	\
-        /* temporary variable to hold the focus entity during shaking fx */								\
-        InGameEntity tempFocusInGameEntity;																\
-        /* last offset set by shake function */															\
-        VBVec3D lastShakeOffset;																		\
-        /* time left in current shaking fx (in ms) */													\
-        int shakeTimeLeft;																				\
-        /* values to load on next pulsate fx step */													\
-        u8 pulsateNextStep;																				\
+		/* super's attributes */																		\
+		ScreenEffectManager_ATTRIBUTES																	\
+		/* temporary variable to hold the focus entity during shaking fx */								\
+		InGameEntity tempFocusInGameEntity;																\
+		/* last offset set by shake function */															\
+		VBVec3D lastShakeOffset;																		\
+		/* time left in current shaking fx (in ms) */													\
+		int shakeTimeLeft;																				\
+		/* values to load on next pulsate fx step */													\
+		u8 pulsateNextStep;																				\
 
 // declare a CustomScreenEffectManager
 __CLASS(CustomScreenEffectManager);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 CustomScreenEffectManager CustomScreenEffectManager_getInstance();

@@ -24,36 +24,36 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <SplashScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define PrecautionScreenState_METHODS(ClassName)														\
-	    SplashScreenState_METHODS(ClassName)										    				\
+		SplashScreenState_METHODS(ClassName)															\
 
 // declare the virtual methods which are redefined
 #define PrecautionScreenState_SET_VTABLE(ClassName)														\
-        SplashScreenState_SET_VTABLE(ClassName)								    						\
-        __VIRTUAL_SET(ClassName, PrecautionScreenState, print);											\
-        __VIRTUAL_SET(ClassName, PrecautionScreenState, processMessage);								\
+		SplashScreenState_SET_VTABLE(ClassName)															\
+		__VIRTUAL_SET(ClassName, PrecautionScreenState, print);											\
+		__VIRTUAL_SET(ClassName, PrecautionScreenState, processMessage);								\
 
 
 __CLASS(PrecautionScreenState);
 
-#define PrecautionScreenState_ATTRIBUTES							   									\
-        /* inherits */																					\
-        SplashScreenState_ATTRIBUTES																	\
+#define PrecautionScreenState_ATTRIBUTES																\
+		/* inherits */																					\
+		SplashScreenState_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 PrecautionScreenState PrecautionScreenState_getInstance(void);

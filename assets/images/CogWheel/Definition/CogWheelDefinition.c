@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE CogWheelTiles[];
@@ -39,66 +39,66 @@ extern BYTE CogWheelMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 
 CharSetROMDef COG_WHEEL_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    184,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	184,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    CogWheelTiles,
+	// char definition
+	CogWheelTiles,
 };
 
 TextureROMDef COG_WHEEL_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&COG_WHEEL_CH,
+	// charset definition
+	(CharSetDefinition*)&COG_WHEEL_CH,
 
-    // bgmap definition
-    CogWheelMap,
+	// bgmap definition
+	CogWheelMap,
 
-    // cols (max 64)
-    25,
+	// cols (max 64)
+	25,
 
-    // rows (max 64)
-    25,
+	// rows (max 64)
+	25,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{12, 12},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&COG_WHEEL_TX,
+		// texture definition
+		(TextureDefinition*)&COG_WHEEL_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, FTOFIX19_13(1), 0},
-    },
+		{0, 0, FTOFIX19_13(1), 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -116,6 +116,6 @@ BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =
 
 StaticImageROMDef COG_WHEEL_IM =
 {
-    __TYPE(CogWheel),
-    (SpriteROMDef**)COG_WHEEL_BG_SPRITES,
+	__TYPE(CogWheel),
+	(SpriteROMDef**)COG_WHEEL_BG_SPRITES,
 };

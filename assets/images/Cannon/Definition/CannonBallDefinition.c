@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
@@ -29,7 +29,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE CannonBallTiles[];
@@ -37,7 +37,7 @@ extern BYTE CannonBallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 AnimationFunctionROMDef CANNON_BALL_FLY_ANIM =
@@ -73,60 +73,60 @@ AnimationDescriptionROMDef CANNON_BALL_ANIM =
 
 CharSetROMDef CANNON_BALL_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    10,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	10,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_MULTI,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_MULTI,
 
-    // char definition
-    CannonBallTiles,
+	// char definition
+	CannonBallTiles,
 };
 
 TextureROMDef CANNON_BALL_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&CANNON_BALL_CH,
+	// charset definition
+	(CharSetDefinition*)&CANNON_BALL_CH,
 
-    // bgmap definition
-    CannonBallMap,
+	// bgmap definition
+	CannonBallMap,
 
-    // cols (max 64)
-    3,
+	// cols (max 64)
+	3,
 
-    // rows (max 64)
-    3,
+	// rows (max 64)
+	3,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef CANNON_BALL_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&CANNON_BALL_TX,
+		// texture definition
+		(TextureDefinition*)&CANNON_BALL_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -186,11 +186,11 @@ ActorROMDef CANNON_BALL_AC =
 
 PositionedEntityROMDef CANNON_BALL =
 {
-    (EntityDefinition*)&CANNON_BALL_AC,
-    {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
-    0,
-    NULL,
-    NULL,
-    NULL,
-    false
+	(EntityDefinition*)&CANNON_BALL_AC,
+	{FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
+	0,
+	NULL,
+	NULL,
+	NULL,
+	false
 };

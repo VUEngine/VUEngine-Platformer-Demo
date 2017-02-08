@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -39,7 +39,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef EMPTY_STAGE_ST;
@@ -47,7 +47,7 @@ extern const u16 COLLECT_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void PrecautionScreenState_destructor(PrecautionScreenState this);
@@ -57,7 +57,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(PrecautionScreenState, SplashScreenState);
@@ -65,7 +65,7 @@ __SINGLETON_DYNAMIC(PrecautionScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
@@ -91,44 +91,44 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 	{
 		case kScreenStarted:
 			{
-	            // play start-up sound
-	            VBVec3D position = {0, 0, 0};
+				// play start-up sound
+				VBVec3D position = {0, 0, 0};
 				SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, position);
 
-	            // wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual
-	            Game_wait(Game_getInstance(), 1500);
+				// wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual
+				Game_wait(Game_getInstance(), 1500);
 
 				// start fade in effect
 				Screen_startEffect(Screen_getInstance(),
-				    kFadeTo, // effect type
-				    0, // initial delay (in ms)
-				    NULL, // target brightness
-				    __FADE_DELAY, // delay between fading steps (in ms)
-				    NULL, // callback function
-				    NULL // callback scope
+					kFadeTo, // effect type
+					0, // initial delay (in ms)
+					NULL, // target brightness
+					__FADE_DELAY, // delay between fading steps (in ms)
+					NULL, // callback function
+					NULL // callback scope
 				);
 
-	            // show this screen for at least 2 seconds, as defined by Nintendo in the official development manual (Appendix 1)
-	            MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
-            }
+				// show this screen for at least 2 seconds, as defined by Nintendo in the official development manual (Appendix 1)
+				MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
+			}
 			break;
 
 		case kScreenAllowUserInput:
 			{
-                Game_enableKeypad(Game_getInstance());
-            }
+				Game_enableKeypad(Game_getInstance());
+			}
 			break;
 
 		case kKeyPressed:
-		    {
-                u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
+			{
+				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
 
-                if(pressedKey & ~K_PWR)
-                {
-                    __VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
-                }
-            }
-            break;
+				if(pressedKey & ~K_PWR)
+				{
+					__VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
+				}
+			}
+			break;
 	}
 
 	return false;
@@ -136,28 +136,28 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 
 static void PrecautionScreenState_print(PrecautionScreenState this __attribute__ ((unused)))
 {
-    const char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_IMPORTANT);
-    const char* strPrecautionTitleFont = "LargeFont";
-    Size titleSize = Printing_getTextSize(Printing_getInstance(), strPrecautionTitle, strPrecautionTitleFont);
+	const char* strPrecautionTitle = I18n_getText(I18n_getInstance(), STR_IMPORTANT);
+	const char* strPrecautionTitleFont = "LargeFont";
+	Size titleSize = Printing_getTextSize(Printing_getInstance(), strPrecautionTitle, strPrecautionTitleFont);
 
-    const char* strPrecautionText = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TEXT);
-    Size textSize = Printing_getTextSize(Printing_getInstance(), strPrecautionText, NULL);
+	const char* strPrecautionText = I18n_getText(I18n_getInstance(), STR_PRECAUTION_SCREEN_TEXT);
+	Size textSize = Printing_getTextSize(Printing_getInstance(), strPrecautionText, NULL);
 
-    u8 totalHeight = titleSize.y + textSize.y;
+	u8 totalHeight = titleSize.y + textSize.y;
 
-    Printing_text(
-        Printing_getInstance(),
-        Utilities_toUppercase(strPrecautionTitle),
-        (__SCREEN_WIDTH >> 4) - (titleSize.x >> 1),
-        (__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) - 1,
-        strPrecautionTitleFont
-    );
+	Printing_text(
+		Printing_getInstance(),
+		Utilities_toUppercase(strPrecautionTitle),
+		(__SCREEN_WIDTH >> 4) - (titleSize.x >> 1),
+		(__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) - 1,
+		strPrecautionTitleFont
+	);
 
-    Printing_text(
-        Printing_getInstance(),
-        strPrecautionText,
-        (__SCREEN_WIDTH >> 4) - (textSize.x >> 1),
-        (__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) + titleSize.y,
-        NULL
-    );
+	Printing_text(
+		Printing_getInstance(),
+		strPrecautionText,
+		(__SCREEN_WIDTH >> 4) - (textSize.x >> 1),
+		(__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) + titleSize.y,
+		NULL
+	);
 }

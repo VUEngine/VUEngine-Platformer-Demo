@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include "HeroIdle.h"
@@ -39,7 +39,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void HeroIdle_constructor(HeroIdle this);
@@ -50,7 +50,7 @@ bool HeroIdle_processMessage(HeroIdle this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(HeroIdle, HeroState);
@@ -58,7 +58,7 @@ __SINGLETON(HeroIdle);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
@@ -78,11 +78,11 @@ void HeroIdle_destructor(HeroIdle this)
 // state's enter
 void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 {
-    // show animation
-    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
+	// show animation
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
 
-    // start sleeping after 6 seconds of inactivity
-    MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
+	// start sleeping after 6 seconds of inactivity
+	MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
 
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
@@ -92,15 +92,15 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 // state's exit
 void HeroIdle_exit(HeroIdle this, void* owner __attribute__ ((unused)))
 {
-    // discard pending delayed messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroSleep);
+	// discard pending delayed messages
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroSleep);
 }
 
 // state's handle message
 bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kCollision:
 
 			return Hero_processCollision(__SAFE_CAST(Hero, owner), telegram);
@@ -119,7 +119,7 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 		case kHeroSleep:
 
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Sleep");
-            return true;
+			return true;
 			break;
 	}
 
@@ -130,94 +130,94 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner)
 {
 	u32 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
 
-    if(K_B & pressedKey)
-    {
-        Hero_enableBoost(__SAFE_CAST(Hero, owner));
-    }
+	if(K_B & pressedKey)
+	{
+		Hero_enableBoost(__SAFE_CAST(Hero, owner));
+	}
 
-    // check if in front of door and possibly enter it
-    if(K_LU & pressedKey)
-    {
-        Hero_lookBack(__SAFE_CAST(Hero, owner));
+	// check if in front of door and possibly enter it
+	if(K_LU & pressedKey)
+	{
+		Hero_lookBack(__SAFE_CAST(Hero, owner));
 
-        if(NULL != Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner)))
-        {
-            if(__VIRTUAL_CALL(Door, canEnter, Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
-            {
-                Hero_enterDoor(__SAFE_CAST(Hero, owner));
-                return;
-            }
-        }
-    }
+		if(NULL != Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner)))
+		{
+			if(__VIRTUAL_CALL(Door, canEnter, Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
+			{
+				Hero_enterDoor(__SAFE_CAST(Hero, owner));
+				return;
+			}
+		}
+	}
 
-    if((K_LL | K_LR | K_A) & pressedKey)
-    {
-        Acceleration acceleration =
-        {
-            K_LL & pressedKey ? ITOFIX19_13(-1) : K_LR & pressedKey ? __1I_FIX19_13 : 0,
-            K_A & pressedKey ? ITOFIX19_13(-1) : 0,
-            0,
-        };
+	if((K_LL | K_LR | K_A) & pressedKey)
+	{
+		Acceleration acceleration =
+		{
+			K_LL & pressedKey ? ITOFIX19_13(-1) : K_LR & pressedKey ? __1I_FIX19_13 : 0,
+			K_A & pressedKey ? ITOFIX19_13(-1) : 0,
+			0,
+		};
 
-        if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
-        {
-            Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Idle");
+		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+		{
+			Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Idle");
 
-            Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
+			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
 
-            if(K_A & pressedKey)
-            {
-                Hero_jump(__SAFE_CAST(Hero, owner), true);
-            }
-        }
+			if(K_A & pressedKey)
+			{
+				Hero_jump(__SAFE_CAST(Hero, owner), true);
+			}
+		}
 
-        return;
-    }
+		return;
+	}
 
 
-    if(K_LU & pressedKey)
-    {
-        Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Back");
+	if(K_LU & pressedKey)
+	{
+		Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Back");
 
-        return;
-    }
+		return;
+	}
 
-    if(K_LD & pressedKey)
-    {
-        Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Front");
+	if(K_LD & pressedKey)
+	{
+		Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Front");
 
-        return;
-    }
+		return;
+	}
 }
 
 void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner)
 {
 	u32 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
 
-    if(K_B & releasedKey)
-    {
-        Hero_disableBoost(__SAFE_CAST(Hero, owner));
-    }
+	if(K_B & releasedKey)
+	{
+		Hero_disableBoost(__SAFE_CAST(Hero, owner));
+	}
 }
 
 void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner)
 {
 	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
-    if((K_LL | K_LR) & holdKey)
-    {
-        Acceleration acceleration =
-        {
-            K_LL & holdKey ? ITOFIX19_13(-1) : K_LR & holdKey ? __1I_FIX19_13 : 0,
-            K_A & holdKey ? ITOFIX19_13(-1) : 0,
-            0,
-        };
+	if((K_LL | K_LR) & holdKey)
+	{
+		Acceleration acceleration =
+		{
+			K_LL & holdKey ? ITOFIX19_13(-1) : K_LR & holdKey ? __1I_FIX19_13 : 0,
+			K_A & holdKey ? ITOFIX19_13(-1) : 0,
+			0,
+		};
 
-        if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
-        {
-            Hero_checkDirection(__SAFE_CAST(Hero, owner), holdKey, "Idle");
+		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+		{
+			Hero_checkDirection(__SAFE_CAST(Hero, owner), holdKey, "Idle");
 
-            Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
-        }
-    }
+			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
+		}
+	}
 }

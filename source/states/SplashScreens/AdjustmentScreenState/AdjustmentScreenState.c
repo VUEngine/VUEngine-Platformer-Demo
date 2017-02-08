@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -34,14 +34,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef ADJUSTMENT_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void AdjustmentScreenState_destructor(AdjustmentScreenState this);
@@ -51,7 +51,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(AdjustmentScreenState, SplashScreenState);
@@ -59,7 +59,7 @@ __SINGLETON_DYNAMIC(AdjustmentScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
@@ -85,98 +85,98 @@ void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner)
 	SplashScreenState_enter(__SAFE_CAST(SplashScreenState, this), owner);
 
 	// add rhombus effect
-    Game_addPostProcessingEffect(Game_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);
+	Game_addPostProcessingEffect(Game_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);
 }
 
 static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey __attribute__ ((unused)))
 {
-    // TODO: replace this ugly hack with a proper Game_isPaused check or something similar
-    if(this->nextState == NULL)
-    {
+	// TODO: replace this ugly hack with a proper Game_isPaused check or something similar
+	if(this->nextState == NULL)
+	{
 		Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
-        Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
-    }
-    else
-    {
-	    SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
-    }
+		Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
+	}
+	else
+	{
+		SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
+	}
 }
 
 void AdjustmentScreenState_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition)
 {
-    DirectDraw directDraw = DirectDraw_getInstance();
+	DirectDraw directDraw = DirectDraw_getInstance();
 
 	DirectDraw_drawLine(
-        directDraw,
-        (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
-        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
-        color
-    );
+		directDraw,
+		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
+		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, 0},
+		color
+	);
 
-    DirectDraw_drawLine(
-        directDraw,
-        (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
-        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y - radiusFix19_13,   spatialObjectPosition.z, 0},
-        color
-    );
+	DirectDraw_drawLine(
+		directDraw,
+		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
+		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, 0},
+		color
+	);
 
-    DirectDraw_drawLine(
-        directDraw,
-        (VBVec2D) {spatialObjectPosition.x + radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
-        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
-        color
-    );
+	DirectDraw_drawLine(
+		directDraw,
+		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
+		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, 0},
+		color
+	);
 
-    DirectDraw_drawLine(
-        directDraw,
-        (VBVec2D) {spatialObjectPosition.x - radiusFix19_13,    spatialObjectPosition.y,                    spatialObjectPosition.z, 0},
-        (VBVec2D) {spatialObjectPosition.x,                     spatialObjectPosition.y + radiusFix19_13,   spatialObjectPosition.z, 0},
-        color
-    );
+	DirectDraw_drawLine(
+		directDraw,
+		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
+		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, 0},
+		color
+	);
 }
 
 void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
-    u32 color;
+	u32 color;
 
-    // runtime working variables
-    // negative value to achieve an initial delay
-    static int radius = -160;
+	// runtime working variables
+	// negative value to achieve an initial delay
+	static int radius = -160;
 
-    // increase radius by 1 in each cycle
-    radius++;
+	// increase radius by 1 in each cycle
+	radius++;
 
-    // gradually decrease color with larger radius
-    if(radius < 68)
-    {
-        return;
-    }
-    else if(radius < 160)
-    {
-        color = __COLOR_BRIGHT_RED;
-    }
-    else if(radius < 224)
-    {
-        color = __COLOR_MEDIUM_RED;
-    }
-    else if(radius < 280)
-    {
-        color = __COLOR_DARK_RED;
-    }
-    else if(radius < 400)
-    {
-        // pause for a little bit before restarting
-        return;
-    }
-    else
-    {
-        // reset radius when reaching a certain length
-        radius = 68;
-        return;
-    }
+	// gradually decrease color with larger radius
+	if(radius < 68)
+	{
+		return;
+	}
+	else if(radius < 160)
+	{
+		color = __COLOR_BRIGHT_RED;
+	}
+	else if(radius < 224)
+	{
+		color = __COLOR_MEDIUM_RED;
+	}
+	else if(radius < 280)
+	{
+		color = __COLOR_DARK_RED;
+	}
+	else if(radius < 400)
+	{
+		// pause for a little bit before restarting
+		return;
+	}
+	else
+	{
+		// reset radius when reaching a certain length
+		radius = 68;
+		return;
+	}
 
-    // draw rhombuses around object with given radius and color
-    VBVec3D spatialObjectPosition = {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(0)};
-    AdjustmentScreenState_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
+	// draw rhombuses around object with given radius and color
+	VBVec3D spatialObjectPosition = {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(0)};
+	AdjustmentScreenState_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
 	AdjustmentScreenState_drawRhombus(ITOFIX19_13(radius + radius - 72), color, spatialObjectPosition);
 }

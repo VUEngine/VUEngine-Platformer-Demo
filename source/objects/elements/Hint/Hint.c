@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -35,14 +35,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Hint, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -82,11 +82,11 @@ void Hint_open(Hint this, u8 hintType)
 {
 	ASSERT(this, "Hint::open: null this");
 
-    this->type = hintType;
+	this->type = hintType;
 
 	Entity_show(__SAFE_CAST(Entity, this));
 
-    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
 }
 
 void Hint_close(Hint this)
@@ -107,59 +107,59 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Hint::onHintOpened: null this");
 
-    char* LanguageAnimName = "";
+	char* LanguageAnimName = "";
 
-    switch(this->type)
-    {
-        default:
-        case kEnterHint:
-            switch(I18n_getActiveLanguage(I18n_getInstance()))
-            {
-                default:
-                case 0:
-                    LanguageAnimName = "EnterEnglish";
-                    break;
+	switch(this->type)
+	{
+		default:
+		case kEnterHint:
+			switch(I18n_getActiveLanguage(I18n_getInstance()))
+			{
+				default:
+				case 0:
+					LanguageAnimName = "EnterEnglish";
+					break;
 
-                case 1:
-                    LanguageAnimName = "EnterDeutsch";
-                    break;
+				case 1:
+					LanguageAnimName = "EnterDeutsch";
+					break;
 
-                case 2:
-                    LanguageAnimName = "EnterEspanol";
-                    break;
+				case 2:
+					LanguageAnimName = "EnterEspanol";
+					break;
 
-                case 3:
-                    LanguageAnimName = "EnterFrancais";
-                    break;
-            }
-            break;
+				case 3:
+					LanguageAnimName = "EnterFrancais";
+					break;
+			}
+			break;
 
-        case kPickUpHint:
-            switch(I18n_getActiveLanguage(I18n_getInstance()))
-            {
-                default:
-                case 0:
-                    LanguageAnimName = "PickUpEnglish";
-                    break;
+		case kPickUpHint:
+			switch(I18n_getActiveLanguage(I18n_getInstance()))
+			{
+				default:
+				case 0:
+					LanguageAnimName = "PickUpEnglish";
+					break;
 
-                case 1:
-                    LanguageAnimName = "PickUpDeutsch";
-                    break;
+				case 1:
+					LanguageAnimName = "PickUpDeutsch";
+					break;
 
-                case 2:
-                    LanguageAnimName = "PickUpEspanol";
-                    break;
+				case 2:
+					LanguageAnimName = "PickUpEspanol";
+					break;
 
-                case 3:
-                    LanguageAnimName = "PickUpFrancais";
-                    break;
-            }
-            break;
+				case 3:
+					LanguageAnimName = "PickUpFrancais";
+					break;
+			}
+			break;
 
-        case kKeyHint:
-            LanguageAnimName = "Key";
-            break;
-    }
+		case kKeyHint:
+			LanguageAnimName = "Key";
+			break;
+	}
 
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), LanguageAnimName);
 }

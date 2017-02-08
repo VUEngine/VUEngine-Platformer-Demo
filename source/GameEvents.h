@@ -23,32 +23,32 @@
 #define GAME_EVENTS_H_
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Events.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											 DEFINITIONS
+//											 DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 
 enum GameEvents
 {
-    kEventScreenFocused = kLastEngineEvent + 1,
+	kEventScreenFocused = kLastEngineEvent + 1,
 
-    kEventKeyPressed,
-    kEventKeyReleased,
-    kEventKeyHold,
+	kEventKeyPressed,
+	kEventKeyReleased,
+	kEventKeyHold,
 
-    kEventHitTaken,
-    kEventCoinTaken,
-    kEventKeyTaken,
-    kEventPowerUp,
-    kEventHeroDied,
-    kEventLevelStarted,
-    kEventLevelCompleted,
+	kEventHitTaken,
+	kEventCoinTaken,
+	kEventKeyTaken,
+	kEventPowerUp,
+	kEventHeroDied,
+	kEventLevelStarted,
+	kEventLevelCompleted,
 
 };
 

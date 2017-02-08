@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <ScreenMovementManager.h>
@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												MACROS
+//												MACROS
 //---------------------------------------------------------------------------------------------------------
 
 #define SCREEN_EASING_X_DISPLACEMENT				200
@@ -47,33 +47,33 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define CustomScreenMovementManager_METHODS(ClassName)													\
-    	ScreenMovementManager_METHODS(ClassName)														\
+		ScreenMovementManager_METHODS(ClassName)														\
 
 // declare the virtual methods which are redefined
 #define CustomScreenMovementManager_SET_VTABLE(ClassName)												\
-    	ScreenMovementManager_SET_VTABLE(ClassName)														\
-		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, focus);								    \
+		ScreenMovementManager_SET_VTABLE(ClassName)														\
+		__VIRTUAL_SET(ClassName, CustomScreenMovementManager, focus);									\
 
 #define CustomScreenMovementManager_ATTRIBUTES															\
-        /* super's attributes */																		\
-        ScreenMovementManager_ATTRIBUTES																\
-        /* update axis flag */																			\
-        VBVec3DFlag positionFlag;																		\
-        /* pointer to function that implements the required focusing */									\
-        bool (*focusFunction)(CustomScreenMovementManager, u32, u32);                                   \
-        bool (*previuosFocusFunction)(CustomScreenMovementManager, u32, u32);                           \
+		/* super's attributes */																		\
+		ScreenMovementManager_ATTRIBUTES																\
+		/* update axis flag */																			\
+		VBVec3DFlag positionFlag;																		\
+		/* pointer to function that implements the required focusing */									\
+		bool (*focusFunction)(CustomScreenMovementManager, u32, u32);									\
+		bool (*previuosFocusFunction)(CustomScreenMovementManager, u32, u32);							\
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 CustomScreenMovementManager CustomScreenMovementManager_getInstance();

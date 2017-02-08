@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -35,21 +35,21 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(HideLayer, AnimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 bool HideLayer_checkStillOverlapping(HideLayer this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -65,7 +65,7 @@ void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* anima
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 
-    // init class variables
+	// init class variables
 	this->currentlyOverlappingHero = false;
 }
 
@@ -81,17 +81,17 @@ void HideLayer_destructor(HideLayer this)
 bool HideLayer_handleMessage(HideLayer this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
-    {
-        case kHeroCheckOverlapping:
+	{
+		case kHeroCheckOverlapping:
 
-            if(HideLayer_checkStillOverlapping(this))
-            {
-                // delayed check if still overlapping hero
-                MessageDispatcher_dispatchMessage(HIDE_LAYER_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
-            }
+			if(HideLayer_checkStillOverlapping(this))
+			{
+				// delayed check if still overlapping hero
+				MessageDispatcher_dispatchMessage(HIDE_LAYER_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
+			}
 
-            return true;
-            break;
+			return true;
+			break;
 	}
 
 	return false;
@@ -101,13 +101,13 @@ void HideLayer_setOverlapping(HideLayer this)
 {
 	this->currentlyOverlappingHero = true;
 
-    AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "ToTransparent");
+	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "ToTransparent");
 }
 
 void HideLayer_onToTransparentAnimationComplete(HideLayer this)
 {
-    // delayed check if still overlapping hero
-    MessageDispatcher_dispatchMessage(HIDE_LAYER_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
+	// delayed check if still overlapping hero
+	MessageDispatcher_dispatchMessage(HIDE_LAYER_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
 }
 
 bool HideLayer_isOverlapping(HideLayer this)
@@ -125,7 +125,7 @@ bool HideLayer_checkStillOverlapping(HideLayer this)
 	{
 		this->currentlyOverlappingHero = false;
 
-        AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "ToSolid");
+		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "ToSolid");
 	}
 
 	return this->currentlyOverlappingHero;

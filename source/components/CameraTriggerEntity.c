@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <CameraTriggerEntity.h>
@@ -35,7 +35,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 // define the CameraTriggerEntity
@@ -43,7 +43,7 @@ __CLASS_DEFINITION(CameraTriggerEntity, TriggerEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -94,7 +94,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 		this->transform.globalPosition.y = currentGlobalPosition.y;
 	}
 
-    __VIRTUAL_CALL(Shape, position, this->shape);
+	__VIRTUAL_CALL(Shape, position, this->shape);
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)
@@ -105,7 +105,7 @@ void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec
 
 	Transformation environmentTransform = Container_getEnvironmentTransform(this->parent);
 
-    // don't lock yet, allow the global position to be calculated before locking
+	// don't lock yet, allow the global position to be calculated before locking
 	this->overridePositionFlag.y = false;
 	CameraTriggerEntity_transform(this, &environmentTransform);
 

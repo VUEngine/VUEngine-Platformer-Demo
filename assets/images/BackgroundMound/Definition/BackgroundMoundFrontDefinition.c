@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
@@ -29,7 +29,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE BackgroundMoundFrontTiles[];
@@ -37,49 +37,49 @@ extern BYTE BackgroundMoundFrontMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef MOUND_BG_FRONT_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    64,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	64,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    BackgroundMoundFrontTiles,
+	// char definition
+	BackgroundMoundFrontTiles,
 };
 
 TextureROMDef MOUND_BG_FRONT_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&MOUND_BG_FRONT_CH,
+	// charset definition
+	(CharSetDefinition*)&MOUND_BG_FRONT_CH,
 
-    // bgmap definition
-    BackgroundMoundFrontMap,
+	// bgmap definition
+	BackgroundMoundFrontMap,
 
-    // cols (max 64)
-    64,
+	// cols (max 64)
+	64,
 
-    // rows (max 64)
-    // cut to reduce the load in the VIP
-    6,
+	// rows (max 64)
+	// cut to reduce the load in the VIP
+	6,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 TextureROMDef* const MOUND_BG_FRONT_SB_TEXTURES[] =
@@ -91,19 +91,19 @@ TextureROMDef* const MOUND_BG_FRONT_SB_TEXTURES[] =
 MBgmapSpriteROMDef MOUND_BG_FRONT_SB_SPRITE =
 {
 	{
-        {
-            // sprite's type
-            __TYPE(MBgmapSprite),
+		{
+			// sprite's type
+			__TYPE(MBgmapSprite),
 
-            // texture definition
-            NULL,
+			// texture definition
+			NULL,
 
-            // transparent
-            false,
+			// transparent
+			false,
 
-            // displacement
-            {0, 0, 0, 0},
-        },
+			// displacement
+			{0, 0, 0, 0},
+		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)

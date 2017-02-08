@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameState.h>
@@ -32,7 +32,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
@@ -51,12 +51,12 @@ __CLASS(OptionsScreenState);
 // declare the class attributes
 #define OptionsScreenState_ATTRIBUTES																	\
 		GameState_ATTRIBUTES																			\
-        GameState nextState;																			\
+		GameState nextState;																			\
 		OptionsSelector optionsSelector;																\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 OptionsScreenState OptionsScreenState_getInstance(void);

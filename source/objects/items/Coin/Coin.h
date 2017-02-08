@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Collectable.h>
@@ -32,26 +32,26 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Coin_METHODS(ClassName)																			\
-    	Collectable_METHODS(ClassName)																	\
+		Collectable_METHODS(ClassName)																	\
 
 #define Coin_SET_VTABLE(ClassName)																		\
-        Collectable_SET_VTABLE(ClassName)																\
-        __VIRTUAL_SET(ClassName, Coin, initialize);													    \
-        __VIRTUAL_SET(ClassName, Coin, collect);														\
+		Collectable_SET_VTABLE(ClassName)																\
+		__VIRTUAL_SET(ClassName, Coin, initialize);														\
+		__VIRTUAL_SET(ClassName, Coin, collect);														\
 
 __CLASS(Coin);
 
 #define Coin_ATTRIBUTES																					\
-        /* it is derived from */																		\
-        Collectable_ATTRIBUTES																			\
+		/* it is derived from */																		\
+		Collectable_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);

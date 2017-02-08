@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -35,14 +35,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(LayerSwitchDoor, Door);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -68,23 +68,23 @@ void LayerSwitchDoor_destructor(LayerSwitchDoor this)
 bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kHeroEnterDoor:
 
 			if(this->destinationDefinition)
 			{
-			    // get global position of destination door
-                LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), (char *)this->destinationDefinition->destinationName, true);
-                VBVec3D destinationDoorPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
+				// get global position of destination door
+				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), (char *)this->destinationDefinition->destinationName, true);
+				VBVec3D destinationDoorPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
 
-                // apply offset
-                destinationDoorPosition.x += this->destinationDefinition->offset.x;
-                destinationDoorPosition.y += this->destinationDefinition->offset.y;
-                destinationDoorPosition.z += this->destinationDefinition->offset.z;
+				// apply offset
+				destinationDoorPosition.x += this->destinationDefinition->offset.x;
+				destinationDoorPosition.y += this->destinationDefinition->offset.y;
+				destinationDoorPosition.z += this->destinationDefinition->offset.z;
 
-                // set hero's position
-                Hero_getOutOfDoor(Hero_getInstance(), &destinationDoorPosition);
-                // TODO: switch hero's palette according to new layer
+				// set hero's position
+				Hero_getOutOfDoor(Hero_getInstance(), &destinationDoorPosition);
+				// TODO: switch hero's palette according to new layer
 
 				return true;
 			}

@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
@@ -32,39 +32,39 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											DECLARATIONS
+//											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 enum HintTypes
 {
 	kEnterHint = 0,
-    kPickUpHint,
-    kKeyHint
+	kPickUpHint,
+	kKeyHint
 };
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Hint_METHODS(ClassName)																			\
-    	AnimatedInGameEntity_METHODS(ClassName)															\
+		AnimatedInGameEntity_METHODS(ClassName)															\
 
 #define Hint_SET_VTABLE(ClassName)																		\
-        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, Hint, resume);															\
+		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		__VIRTUAL_SET(ClassName, Hint, resume);															\
 
 __CLASS(Hint);
 
 #define Hint_ATTRIBUTES																					\
-        /* it is derived from */																		\
-        AnimatedInGameEntity_ATTRIBUTES																	\
-        /* the current hint type to show */																\
-        u8 type;																						\
+		/* it is derived from */																		\
+		AnimatedInGameEntity_ATTRIBUTES																	\
+		/* the current hint type to show */																\
+		u8 type;																						\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Hint, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);

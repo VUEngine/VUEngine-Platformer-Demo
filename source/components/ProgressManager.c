@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
@@ -40,14 +40,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(ProgressManager, Object);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void ProgressManager_constructor(ProgressManager this);
@@ -65,7 +65,7 @@ static void ProgressManager_onLevelCompleted(ProgressManager this, Object eventF
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // it's a singleton
@@ -86,8 +86,8 @@ static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManag
 	// init progress
 	ProgressManager_initialize(this);
 
-    // add event listeners
-    Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
+	// add event listeners
+	Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
@@ -102,14 +102,14 @@ void ProgressManager_destructor(ProgressManager this)
 	ASSERT(this, "ProgressManager::destructor: null this");
 	ASSERT(EventManager_getInstance(), "ProgressManager::destructor: null eventManager");
 
-    // remove event listeners
-    Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
-    Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
+	// remove event listeners
+	Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
-    Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
-    Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelStarted, kEventLevelStarted);
-    Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelCompleted, kEventLevelCompleted);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelStarted, kEventLevelStarted);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelCompleted, kEventLevelCompleted);
 
 	// destroy base
 	__SINGLETON_DESTROY;
@@ -126,7 +126,7 @@ void ProgressManager_resetCurrentLevelProgress(ProgressManager this)
 	this->collectedCoins[1] = 0;
 
 #ifdef GOD_MODE
-    this->heroHasKey = true;
+	this->heroHasKey = true;
 #endif
 }
 
@@ -149,10 +149,10 @@ u32 ProgressManager_computeChecksum(ProgressManager this __attribute__ ((unused)
 	u32 crc32 = ~0;
 
 	// iterate over whole save data, starting right after the previously saved checksum
-    int i = (offsetof(struct SaveData, checksum) + sizeof(crc32));
-    for(; i < (int)sizeof(SaveData); i++)
-    {
-    	// get the current byte
+	int i = (offsetof(struct SaveData, checksum) + sizeof(crc32));
+	for(; i < (int)sizeof(SaveData); i++)
+	{
+		// get the current byte
 		u8 currentByte;
 		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&currentByte, i, sizeof(currentByte));
 
@@ -169,9 +169,9 @@ u32 ProgressManager_computeChecksum(ProgressManager this __attribute__ ((unused)
 				crc32 = (crc32 >> 1);
 			}
 		}
-    }
+	}
 
-    return ~crc32;
+	return ~crc32;
 }
 
 void ProgressManager_writeChecksum(ProgressManager this)
@@ -247,7 +247,7 @@ u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
 	u8 numberOfCollectedCoins = 0;
 	for(int i = 0; i < COINS_PER_LEVEL; i++)
 	{
-	    numberOfCollectedCoins += GET_BIT(this->collectedCoins[i >> 5], i);
+		numberOfCollectedCoins += GET_BIT(this->collectedCoins[i >> 5], i);
 	}
 
 	return numberOfCollectedCoins;
@@ -528,7 +528,7 @@ static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer __
 // handle event
 static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-    PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
 
 	ProgressManager_loadLevelStatus(this, platformerLevelDefinition->id);
 }
@@ -536,7 +536,7 @@ static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFir
 // handle event
 static void ProgressManager_onLevelCompleted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-    PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
 
 	ProgressManager_persistLevelStatus(this, platformerLevelDefinition->id);
 }

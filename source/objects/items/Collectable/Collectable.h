@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
@@ -32,27 +32,27 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Collectable_METHODS(ClassName)																	\
-	    AnimatedInGameEntity_METHODS(ClassName)														    \
+		AnimatedInGameEntity_METHODS(ClassName)															\
 		__VIRTUAL_DEC(ClassName, void, collect);														\
 
 #define Collectable_SET_VTABLE(ClassName)																\
-        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, Collectable, handleMessage);											\
-        __VIRTUAL_SET(ClassName, Collectable, collect);													\
+		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		__VIRTUAL_SET(ClassName, Collectable, handleMessage);											\
+		__VIRTUAL_SET(ClassName, Collectable, collect);													\
 
 __CLASS(Collectable);
 
 #define Collectable_ATTRIBUTES																			\
-        /* it is derived from */																		\
-        AnimatedInGameEntity_ATTRIBUTES																	\
+		/* it is derived from */																		\
+		AnimatedInGameEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Collectable, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);

@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Door.h>
@@ -32,25 +32,25 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define LayerSwitchDoor_METHODS(ClassName)																\
-	    Door_METHODS(ClassName)																		\
+		Door_METHODS(ClassName)																		\
 
 #define LayerSwitchDoor_SET_VTABLE(ClassName)															\
-        Door_SET_VTABLE(ClassName)																		\
-        __VIRTUAL_SET(ClassName, LayerSwitchDoor, handleMessage);										\
+		Door_SET_VTABLE(ClassName)																		\
+		__VIRTUAL_SET(ClassName, LayerSwitchDoor, handleMessage);										\
 
 __CLASS(LayerSwitchDoor);
 
 #define LayerSwitchDoor_ATTRIBUTES																		\
-        /* it is derived from */																		\
-        Door_ATTRIBUTES																					\
+		/* it is derived from */																		\
+		Door_ATTRIBUTES																					\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(LayerSwitchDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);

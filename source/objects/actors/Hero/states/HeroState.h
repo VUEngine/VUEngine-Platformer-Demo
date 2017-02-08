@@ -24,36 +24,36 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <State.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define HeroState_METHODS(ClassName)																	\
-	    State_METHODS(ClassName)																		\
+		State_METHODS(ClassName)																		\
 		__VIRTUAL_DEC(ClassName, void, onKeyPressed, void* owner);										\
 		__VIRTUAL_DEC(ClassName, void, onKeyReleased, void* owner);										\
-		__VIRTUAL_DEC(ClassName, void, onKeyHold, void* owner);										    \
+		__VIRTUAL_DEC(ClassName, void, onKeyHold, void* owner);											\
 
 // declare the virtual methods which are redefined
 #define HeroState_SET_VTABLE(ClassName)																	\
-        State_SET_VTABLE(ClassName)																		\
+		State_SET_VTABLE(ClassName)																		\
 
 __CLASS(HeroState);
 
 #define HeroState_ATTRIBUTES																			\
-        /* inherits */																					\
-        State_ATTRIBUTES																				\
+		/* inherits */																					\
+		State_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 void HeroState_constructor(HeroState this);

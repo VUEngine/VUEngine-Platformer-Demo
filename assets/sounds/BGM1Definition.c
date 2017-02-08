@@ -21,105 +21,105 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <SoundManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 const u16 WORLD_0_0_0_BGM[][2] =
 {
 	{
-        //songlength
+		//songlength
 		68,
-        //stdwait
+		//stdwait
 		0x0D,
 	},
 	{
-        //stdSxLRV
+		//stdSxLRV
 		0x33,
-        //stdSxEV0
+		//stdSxEV0
 		0x80,
 	},
 	{
-        //stdSxEV1
+		//stdSxEV1
 		0x01,
-        //stdSxRAM
+		//stdSxRAM
 		0x00,
 	},
-    //stdS5SWP
-    //0x00,
-    //song's notes
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {F_4,F_5,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,D_4,},
-    {NONE,F_6,},
-    {NONE,NONE,},
-    {NONE,E_3,},
-    {NONE,F_5,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,F_6,},
-    {NONE,NONE,},
-    {C_4,F_5,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,NONE,},
-    {F_4,F_5,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,D_4,},
-    {NONE,F_6,},
-    {NONE,NONE,},
-    {NONE,E_4,},
-    {NONE,F_5,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,F_6,},
-    {NONE,NONE,},
-    {C_4,F_5,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,NONE,},
-    {F_4,F_6,},
-    {NONE,F_5,},
-    {NONE,NONE,},
-    {NONE,D_4,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,E_4,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,NONE,},
-    {NONE,F_4,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,D_4,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,E_4,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,NONE,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,NONE,},
-    {NONE,C_4,},
-    {NONE,NONE},
+	//stdS5SWP
+	//0x00,
+	//song's notes
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{F_4,F_5,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,D_4,},
+	{NONE,F_6,},
+	{NONE,NONE,},
+	{NONE,E_3,},
+	{NONE,F_5,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,F_6,},
+	{NONE,NONE,},
+	{C_4,F_5,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,NONE,},
+	{F_4,F_5,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,D_4,},
+	{NONE,F_6,},
+	{NONE,NONE,},
+	{NONE,E_4,},
+	{NONE,F_5,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,F_6,},
+	{NONE,NONE,},
+	{C_4,F_5,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,NONE,},
+	{F_4,F_6,},
+	{NONE,F_5,},
+	{NONE,NONE,},
+	{NONE,D_4,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,E_4,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,NONE,},
+	{NONE,F_4,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,D_4,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,E_4,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,NONE,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,NONE,},
+	{NONE,C_4,},
+	{NONE,NONE},
 };

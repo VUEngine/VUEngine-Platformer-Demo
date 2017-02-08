@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -33,7 +33,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE DoorTiles[];
@@ -195,60 +195,60 @@ AnimationDescriptionROMDef DOOR_ANIM =
 
 CharSetROMDef DOOR_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    85,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	85,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_MULTI,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_MULTI,
 
-    // char definition
-    DoorTiles,
+	// char definition
+	DoorTiles,
 };
 
 TextureROMDef DOOR_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&DOOR_CH,
+	// charset definition
+	(CharSetDefinition*)&DOOR_CH,
 
-    // bgmap definition
-    DoorMap,
+	// bgmap definition
+	DoorMap,
 
-    // cols (max 64)
-    3,
+	// cols (max 64)
+	3,
 
-    // rows (max 64)
-    4,
+	// rows (max 64)
+	4,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    7,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	7,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef DOOR_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&DOOR_TX,
+		// texture definition
+		(TextureDefinition*)&DOOR_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, FTOFIX19_13(2), 0},
-    },
+		{0, 0, FTOFIX19_13(2), 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -266,151 +266,151 @@ BgmapSpriteROMDef* const DOOR_SPRITES[] =
 
 AnimatedInGameEntityROMDef DOOR_AG =
 {
-    {
-        {
-            __TYPE(Door),
-            (SpriteROMDef**)DOOR_SPRITES,
-        },
+	{
+		{
+			__TYPE(Door),
+			(SpriteROMDef**)DOOR_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
+		// collision detection gap (up, down, left, right)
+		{6, 0, 6, 6},
 
-        // in game type
-        kDoor,
+		// in game type
+		kDoor,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&DOOR_ANIM,
 
-    // initial animation
-    "Closed",
+	// initial animation
+	"Closed",
 };
 
 AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_AG =
 {
-    {
-        {
-            __TYPE(LayerSwitchDoor),
-            (SpriteROMDef**)DOOR_SPRITES,
-        },
+	{
+		{
+			__TYPE(LayerSwitchDoor),
+			(SpriteROMDef**)DOOR_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
+		// collision detection gap (up, down, left, right)
+		{6, 0, 6, 6},
 
-        // in game type
-        kDoor,
+		// in game type
+		kDoor,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&DOOR_ANIM,
 
-    // initial animation
-    "Closed",
+	// initial animation
+	"Closed",
 };
 
 AnimatedInGameEntityROMDef GOAL_DOOR_AG =
 {
-    {
-        {
-            __TYPE(GoalDoor),
-            (SpriteROMDef**)DOOR_SPRITES,
-        },
+	{
+		{
+			__TYPE(GoalDoor),
+			(SpriteROMDef**)DOOR_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {1, 0, 1, 1},
+		// collision detection gap (up, down, left, right)
+		{1, 0, 1, 1},
 
-        // in game type
-        kDoor,
+		// in game type
+		kDoor,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&DOOR_ANIM,
 
-    // initial animation
-    "Open",
+	// initial animation
+	"Open",
 };
 
 AnimatedInGameEntityROMDef KEY_DOOR_AG =
 {
-    {
-        {
-            __TYPE(KeyDoor),
-            (SpriteROMDef**)DOOR_SPRITES,
-        },
+	{
+		{
+			__TYPE(KeyDoor),
+			(SpriteROMDef**)DOOR_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
+		// collision detection gap (up, down, left, right)
+		{6, 0, 6, 6},
 
-        // in game type
-        kDoor,
+		// in game type
+		kDoor,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4
-    },
+		// depth
+		4
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&DOOR_ANIM,
 
-    // initial animation
-    "Closed",
+	// initial animation
+	"Closed",
 };
 
 BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&DOOR_TX,
+		// texture definition
+		(TextureDefinition*)&DOOR_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -428,93 +428,93 @@ BgmapSpriteROMDef* const AFFINE_DOOR_SPRITES[] =
 
 AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
 {
-    {
-        {
-            __TYPE(Door),
-            (SpriteROMDef**)AFFINE_DOOR_SPRITES,
-        },
+	{
+		{
+			__TYPE(Door),
+			(SpriteROMDef**)AFFINE_DOOR_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {6, 0, 6, 6},
+		// collision detection gap (up, down, left, right)
+		{6, 0, 6, 6},
 
-        // in game type
-        kDoor,
+		// in game type
+		kDoor,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        4,
-    },
+		// depth
+		4,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&DOOR_ANIM,
 
-    // initial animation
-    "Closed",
+	// initial animation
+	"Closed",
 };
 
 CharSetROMDef DOOR_BACK_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    25,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	25,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_MULTI,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_MULTI,
 
-    // char definition
-    DoorBackTiles,
+	// char definition
+	DoorBackTiles,
 };
 
 TextureROMDef DOOR_BACK_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&DOOR_BACK_CH,
+	// charset definition
+	(CharSetDefinition*)&DOOR_BACK_CH,
 
-    // bgmap definition
-    DoorBackMap,
+	// bgmap definition
+	DoorBackMap,
 
-    // cols (max 64)
-    2,
+	// cols (max 64)
+	2,
 
-    // rows (max 64)
-    3,
+	// rows (max 64)
+	3,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    7,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	7,
 
-    // palette number (0-3)
-    2,
+	// palette number (0-3)
+	2,
 };
 
 BgmapSpriteROMDef DOOR_BACK_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&DOOR_BACK_TX,
+		// texture definition
+		(TextureDefinition*)&DOOR_BACK_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -532,66 +532,66 @@ BgmapSpriteROMDef* const DOOR_BACK_SPRITES[] =
 
 AnimatedInGameEntityROMDef DOOR_BACK_AG =
 {
-    {
-        {
-            __TYPE(Door),
-            (SpriteROMDef**)DOOR_BACK_SPRITES,
-        },
+	{
+		{
+			__TYPE(Door),
+			(SpriteROMDef**)DOOR_BACK_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {5, 0, 2, 3},
+		// collision detection gap (up, down, left, right)
+		{5, 0, 2, 3},
 
-        // in game type
-        kDoor,
+		// in game type
+		kDoor,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&DOOR_ANIM,
 
-    // initial animation
-    "Closed",
+	// initial animation
+	"Closed",
 };
 
 AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_BACK_AG =
 {
-    {
-        {
-            __TYPE(LayerSwitchDoor),
-            (SpriteROMDef**)DOOR_BACK_SPRITES,
-        },
+	{
+		{
+			__TYPE(LayerSwitchDoor),
+			(SpriteROMDef**)DOOR_BACK_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {5, 0, 2, 3},
+		// collision detection gap (up, down, left, right)
+		{5, 0, 2, 3},
 
-        // in game type
-        kDoor,
+		// in game type
+		kDoor,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&DOOR_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&DOOR_ANIM,
 
-    // initial animation
-    "Open",
+	// initial animation
+	"Open",
 };

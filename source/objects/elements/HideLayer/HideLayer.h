@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <AnimatedInGameEntity.h>
@@ -32,34 +32,34 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												MACROS
+//												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define HIDE_LAYER_OVERLAPPING_CHECK_DELAY  100
+#define HIDE_LAYER_OVERLAPPING_CHECK_DELAY	100
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define HideLayer_METHODS(ClassName)																	\
-	    AnimatedInGameEntity_METHODS(ClassName)															\
+		AnimatedInGameEntity_METHODS(ClassName)															\
 
 #define HideLayer_SET_VTABLE(ClassName)																	\
-        AnimatedInGameEntity_SET_VTABLE(ClassName)														\
-        __VIRTUAL_SET(ClassName, HideLayer, handleMessage);												\
+		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		__VIRTUAL_SET(ClassName, HideLayer, handleMessage);												\
 
 __CLASS(HideLayer);
 
 #define HideLayer_ATTRIBUTES																			\
-        /* it is derived from */																		\
-        AnimatedInGameEntity_ATTRIBUTES																	\
-        /* is hide layer currently being overlapped by hero? */											\
-        bool currentlyOverlappingHero;																	\
+		/* it is derived from */																		\
+		AnimatedInGameEntity_ATTRIBUTES																	\
+		/* is hide layer currently being overlapped by hero? */											\
+		bool currentlyOverlappingHero;																	\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(HideLayer, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);

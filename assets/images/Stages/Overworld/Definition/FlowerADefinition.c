@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE FlowerATiles[];
@@ -76,65 +76,65 @@ AnimationDescriptionROMDef FLOWER_A_ANIM =
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											SPRITE DEFINITION
+//											SPRITE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef FLOWER_A_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    2,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	2,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SHARED,
 
-    // char definition
-    FlowerATiles,
+	// char definition
+	FlowerATiles,
 };
 
 TextureROMDef FLOWER_A_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&FLOWER_A_CH,
+	// charset definition
+	(CharSetDefinition*)&FLOWER_A_CH,
 
-    // bgmap definition
-    FlowerAMap,
+	// bgmap definition
+	FlowerAMap,
 
-    // cols (max 64)
-    2,
+	// cols (max 64)
+	2,
 
-    // rows (max 64)
-    1,
+	// rows (max 64)
+	1,
 
-        // padding for affine transformations
+		// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-        // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-        // __ANIMATED_MULTI: total number of frames
-    1,
+		// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+		// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    0
+	// palette number (0-3)
+	0
 };
 
 BgmapSpriteROMDef FLOWER_A_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&FLOWER_A_TX,
+		// texture definition
+		(TextureDefinition*)&FLOWER_A_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0), 0},
-    },
+		{FTOFIX19_13(0), FTOFIX19_13(0), FTOFIX19_13(0), 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -152,38 +152,38 @@ BgmapSpriteROMDef* const FLOWER_A_SPRITES[] =
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											ENTITY DEFINITION
+//											ENTITY DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 AnimatedInGameEntityROMDef FLOWER_A_AG =
 {
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)FLOWER_A_SPRITES,
-        },
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)FLOWER_A_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kNotSolid,
+		// in game type
+		kNotSolid,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        8
-    },
+		// depth
+		8
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&FLOWER_A_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&FLOWER_A_ANIM,
 
-    // initial animation
-    "Default",
+	// initial animation
+	"Default",
 };

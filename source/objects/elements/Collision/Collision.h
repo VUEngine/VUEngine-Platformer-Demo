@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
@@ -32,24 +32,24 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Collision_METHODS(ClassName)																	\
-    	InanimatedInGameEntity_METHODS(ClassName)														\
+		InanimatedInGameEntity_METHODS(ClassName)														\
 
 #define Collision_SET_VTABLE(ClassName)																	\
-        InanimatedInGameEntity_SET_VTABLE(ClassName)													\
-        __VIRTUAL_SET(ClassName, Collision, setExtraInfo);												\
+		InanimatedInGameEntity_SET_VTABLE(ClassName)													\
+		__VIRTUAL_SET(ClassName, Collision, setExtraInfo);												\
 
 __CLASS(Collision);
 
 #define Collision_ATTRIBUTES																			\
-        InanimatedInGameEntity_ATTRIBUTES																\
+		InanimatedInGameEntity_ATTRIBUTES																\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Collision, InanimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);

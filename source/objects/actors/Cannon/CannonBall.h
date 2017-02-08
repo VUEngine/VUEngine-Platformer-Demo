@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Actor.h>
@@ -33,25 +33,25 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 #define CANNON_BALL_MINIMUM_Z_VALUE -64
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define CannonBall_METHODS(ClassName)																	\
-    	Actor_METHODS(ClassName)																		\
+		Actor_METHODS(ClassName)																		\
 
 #define CannonBall_SET_VTABLE(ClassName)																\
-        Actor_SET_VTABLE(ClassName)																	    \
-        __VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);									\
-        __VIRTUAL_SET(ClassName, CannonBall, ready);													\
-        __VIRTUAL_SET(ClassName, CannonBall, update);											        \
-        __VIRTUAL_SET(ClassName, CannonBall, handleMessage);											\
+		Actor_SET_VTABLE(ClassName)																		\
+		__VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);									\
+		__VIRTUAL_SET(ClassName, CannonBall, ready);													\
+		__VIRTUAL_SET(ClassName, CannonBall, update);													\
+		__VIRTUAL_SET(ClassName, CannonBall, handleMessage);											\
 
 __CLASS(CannonBall);
 
@@ -62,7 +62,7 @@ __CLASS(CannonBall);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 // allocator

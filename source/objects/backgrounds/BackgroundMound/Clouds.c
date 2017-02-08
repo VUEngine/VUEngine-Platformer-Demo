@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -30,14 +30,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Clouds, StaticImage);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -66,7 +66,7 @@ bool Clouds_isVisible(Clouds this __attribute__ ((unused)), int pad __attribute_
 {
 	ASSERT(this, "Clouds::isVisible: null this");
 
-    // always return true so the Clouds is never unloaded from the stage when it is not visible on screen
+	// always return true so the Clouds is never unloaded from the stage when it is not visible on screen
 	return true;
 }
 
@@ -75,12 +75,12 @@ void Clouds_update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
 {
 	ASSERT(this, "Clouds::update: null this");
 
-    // get local position of clouds and subtract defined displacement from x value
-    VBVec3D offset = this->transform.localPosition;
-    offset.x -= FIX19_13_MULT(this->displacement, elapsedTime);
+	// get local position of clouds and subtract defined displacement from x value
+	VBVec3D offset = this->transform.localPosition;
+	offset.x -= FIX19_13_MULT(this->displacement, elapsedTime);
 
-    // update clouds' position
-    Container_setLocalPosition(__SAFE_CAST(Container, this), &offset);
+	// update clouds' position
+	Container_setLocalPosition(__SAFE_CAST(Container, this), &offset);
 }
 
 // does it move?

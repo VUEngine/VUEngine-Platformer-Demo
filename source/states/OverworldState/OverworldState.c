@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
@@ -46,14 +46,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef OVERWORLD1_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void OverworldState_destructor(OverworldState this);
@@ -70,7 +70,7 @@ static void OverworldState_onReturnToTitleFadeOutComplete(OverworldState this, O
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(OverworldState, GameState);
@@ -78,7 +78,7 @@ __SINGLETON_DYNAMIC(OverworldState);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
@@ -100,7 +100,7 @@ static void OverworldState_enter(OverworldState this, void* owner)
 	// call base
 	GameState_enter(__SAFE_CAST(GameState, this), owner);
 
-    // disable user input
+	// disable user input
 	Game_disableKeypad(Game_getInstance());
 
 	// load stage
@@ -152,7 +152,7 @@ static void OverworldState_resume(OverworldState this, void* owner)
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// make a fade in
-    Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DELAY);
 
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
@@ -185,7 +185,7 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 #endif
 
 	// make a fade out
-    Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
+	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
 
 	GameState_suspend(__SAFE_CAST(GameState, this), owner);
 }
@@ -195,13 +195,13 @@ static void OverworldState_print(OverworldState this __attribute__ ((unused)))
 {
 	ASSERT(this, "OverworldState::print: null this");
 
-    // coins
-    u8 coins = ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager_getInstance());
-    Printing_int(Printing_getInstance(), coins, 4, 26, "GuiFont");
+	// coins
+	u8 coins = ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager_getInstance());
+	Printing_int(Printing_getInstance(), coins, 4, 26, "GuiFont");
 
-    // level name
-    Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_LEVEL_1_NAME), 16, 26, "GuiFont");
-    Printing_text(Printing_getInstance(), "1-1", 12, 26, "GuiFont");
+	// level name
+	Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_LEVEL_1_NAME), 16, 26, "GuiFont");
+	Printing_text(Printing_getInstance(), "1-1", 12, 26, "GuiFont");
 }
 
 // state's handle message
@@ -209,7 +209,7 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 {
 	// process message
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kLevelSetUp:
 
 			// tell any interested entity
@@ -221,17 +221,17 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 
 		case kLevelStarted:
 
-            OverworldState_print(this);
+			OverworldState_print(this);
 
 			// fade in screen
-            Screen_startEffect(Screen_getInstance(),
-                kFadeTo, // effect type
-                0, // initial delay (in ms)
-                NULL, // target brightness
-                __FADE_DELAY, // delay between fading steps (in ms)
-                (void (*)(Object, Object))OverworldState_onFadeInComplete, // callback function
-                __SAFE_CAST(Object, this) // callback scope
-            );
+			Screen_startEffect(Screen_getInstance(),
+				kFadeTo, // effect type
+				0, // initial delay (in ms)
+				NULL, // target brightness
+				__FADE_DELAY, // delay between fading steps (in ms)
+				(void (*)(Object, Object))OverworldState_onFadeInComplete, // callback function
+				__SAFE_CAST(Object, this) // callback scope
+			);
 
 			break;
 
@@ -241,35 +241,35 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 
 			if((K_STA & pressedKey) || (K_A & pressedKey))
 			{
-			    // disable user input
-                Game_disableKeypad(Game_getInstance());
+				// disable user input
+				Game_disableKeypad(Game_getInstance());
 
-                // start a fade out effect
-                Brightness brightness = (Brightness){0, 0, 0};
-                Screen_startEffect(Screen_getInstance(),
-                    kFadeTo, // effect type
-                    0, // initial delay (in ms)
-                    &brightness, // target brightness
-                    __FADE_DELAY, // delay between fading steps (in ms)
-                    (void (*)(Object, Object))OverworldState_onStartLevelFadeOutComplete, // callback function
-                    __SAFE_CAST(Object, this) // callback scope
-                );
+				// start a fade out effect
+				Brightness brightness = (Brightness){0, 0, 0};
+				Screen_startEffect(Screen_getInstance(),
+					kFadeTo, // effect type
+					0, // initial delay (in ms)
+					&brightness, // target brightness
+					__FADE_DELAY, // delay between fading steps (in ms)
+					(void (*)(Object, Object))OverworldState_onStartLevelFadeOutComplete, // callback function
+					__SAFE_CAST(Object, this) // callback scope
+				);
 
 			} else if(K_B & pressedKey) {
 
-			    // disable user input
-                Game_disableKeypad(Game_getInstance());
+				// disable user input
+				Game_disableKeypad(Game_getInstance());
 
-                // start a fade out effect
-                Brightness brightness = (Brightness){0, 0, 0};
-                Screen_startEffect(Screen_getInstance(),
-                    kFadeTo, // effect type
-                    0, // initial delay (in ms)
-                    &brightness, // target brightness
-                    __FADE_DELAY, // delay between fading steps (in ms)
-                    (void (*)(Object, Object))OverworldState_onReturnToTitleFadeOutComplete, // callback function
-                    __SAFE_CAST(Object, this) // callback scope
-                );
+				// start a fade out effect
+				Brightness brightness = (Brightness){0, 0, 0};
+				Screen_startEffect(Screen_getInstance(),
+					kFadeTo, // effect type
+					0, // initial delay (in ms)
+					&brightness, // target brightness
+					__FADE_DELAY, // delay between fading steps (in ms)
+					(void (*)(Object, Object))OverworldState_onReturnToTitleFadeOutComplete, // callback function
+					__SAFE_CAST(Object, this) // callback scope
+				);
 			}
 		}
 			break;
@@ -283,11 +283,11 @@ static void OverworldState_onFadeInComplete(OverworldState this, Object eventFir
 {
 	ASSERT(this, "OverworldState::onFadeInComplete: null this");
 
-    // tell any interested entity
-    GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
+	// tell any interested entity
+	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
-    // enable user input
-    Game_enableKeypad(Game_getInstance());
+	// enable user input
+	Game_enableKeypad(Game_getInstance());
 }
 
 // handle event
@@ -295,9 +295,9 @@ static void OverworldState_onStartLevelFadeOutComplete(OverworldState this __att
 {
 	ASSERT(this, "OverworldState::onFadeOutComplete: null this");
 
-    // load platformer level
-    extern PlatformerLevelDefinition LEVEL_1_LV;
-    PlatformerLevelState_startLevel(PlatformerLevelState_getInstance(), &LEVEL_1_LV);
+	// load platformer level
+	extern PlatformerLevelDefinition LEVEL_1_LV;
+	PlatformerLevelState_startLevel(PlatformerLevelState_getInstance(), &LEVEL_1_LV);
 }
 
 // handle event
@@ -306,5 +306,5 @@ static void OverworldState_onReturnToTitleFadeOutComplete(OverworldState this __
 	ASSERT(this, "OverworldState::onFadeOutComplete: null this");
 
 	// load title screen state
-    Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
 }

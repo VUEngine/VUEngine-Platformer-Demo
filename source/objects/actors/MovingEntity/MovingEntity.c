@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -39,21 +39,21 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											 CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(MovingEntity, Actor);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void MovingEntity_registerShape(MovingEntity this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -76,7 +76,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	MovingEntity_registerShape(this);
 
 	switch(this->movingEntityDefinition->axis)
-    {
+	{
 		case __XAXIS:
 
 			this->direction.x = this->movingEntityDefinition->direction;
@@ -145,10 +145,10 @@ void MovingEntity_update(MovingEntity this, u32 elapsedTime)
 
 	Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
 
-    if(Body_isAwake(this->body))
-    {
-    	MovingEntity_checkDisplacement(this);
-    }
+	if(Body_isAwake(this->body))
+	{
+		MovingEntity_checkDisplacement(this);
+	}
 }
 
 bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
@@ -156,27 +156,27 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 	ASSERT(this, "MovingEntity::handleMessage: null this");
 
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kMovingEntityStartMoving:
-            {
-                VBVec3D position = this->transform.globalPosition;
+			{
+				VBVec3D position = this->transform.globalPosition;
 
-            	switch(this->movingEntityDefinition->axis)
-                {
-            		case __XAXIS:
-                        position.x = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * this->direction.x;
-                        break;
+				switch(this->movingEntityDefinition->axis)
+				{
+					case __XAXIS:
+						position.x = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * this->direction.x;
+						break;
 
-            		case __YAXIS:
-                        position.y = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * this->direction.y;
-                        break;
-                }
+					case __YAXIS:
+						position.y = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * this->direction.y;
+						break;
+				}
 
-                Actor_setPosition(__SAFE_CAST(Actor, this), &position);
-            }
+				Actor_setPosition(__SAFE_CAST(Actor, this), &position);
+			}
 
-        	MovingEntity_startMovement(this);
-        	return true;
+			MovingEntity_startMovement(this);
+			return true;
 			break;
 	}
 
@@ -204,7 +204,7 @@ void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 
 	// save initial position
 	switch(this->movingEntityDefinition->axis)
-    {
+	{
 		case __XAXIS:
 
 			this->initialPosition = position->x;
@@ -227,7 +227,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 {
 	// update position
 	switch(this->movingEntityDefinition->axis)
-    {
+	{
 		case __XAXIS:
 			{
 				fix19_13 distance = __ABS((this->transform.globalPosition.x - this->initialPosition));
@@ -235,9 +235,9 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
 					// make sure that I don't get stuck moving back and forth
-                	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
+					Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
-                    MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
 				}
 			}
 			break;
@@ -249,24 +249,24 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
 					// make sure that I don't get stuck moving back and forth
-                	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
+					Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
-                    MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
 				}
 			}
 			break;
-    }
+	}
 }
 
 // start moving
 void MovingEntity_startMovement(MovingEntity this)
 {
 	switch(this->movingEntityDefinition->axis)
-    {
+	{
 		case __XAXIS:
 
 			switch(this->direction.x)
-            {
+			{
 				case __LEFT:
 
 					this->direction.x = __RIGHT;
@@ -276,11 +276,11 @@ void MovingEntity_startMovement(MovingEntity this)
 
 					this->direction.x = __LEFT;
 					break;
-            }
+			}
 
 			{
 				Velocity velocity =
-                {
+				{
 					((int)this->movingEntityDefinition->velocity * this->direction.x),
 					0,
 					0,
@@ -293,7 +293,7 @@ void MovingEntity_startMovement(MovingEntity this)
 		case __YAXIS:
 
 			switch(this->direction.y)
-            {
+			{
 				case __UP:
 
 					this->direction.y = __DOWN;
@@ -303,11 +303,11 @@ void MovingEntity_startMovement(MovingEntity this)
 
 					this->direction.y = __UP;
 					break;
-            }
+			}
 
 			{
 				Velocity velocity =
-                {
+				{
 					0,
 					((int)this->movingEntityDefinition->velocity * this->direction.y),
 					0,

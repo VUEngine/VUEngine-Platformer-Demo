@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -34,21 +34,21 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Lava, InanimatedInGameEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 void Lava_moveUpwards(Lava this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -65,8 +65,8 @@ void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInG
 // class's destructor
 void Lava_destructor(Lava this)
 {
-    // discard pending delayed messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kLavaMove);
+	// discard pending delayed messages
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kLavaMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -93,7 +93,7 @@ bool Lava_isVisible(Lava this __attribute__ ((unused)), int pad __attribute__ ((
 {
 	ASSERT(this, "Lava::isVisible: null this");
 
-    // always return true so the Lava is never unloaded from the stage when it is not visible on screen
+	// always return true so the Lava is never unloaded from the stage when it is not visible on screen
 	return true;
 }
 
@@ -101,10 +101,10 @@ bool Lava_isVisible(Lava this __attribute__ ((unused)), int pad __attribute__ ((
 bool Lava_handleMessage(Lava this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kLavaMove:
 
-            Lava_moveUpwards(this);
+			Lava_moveUpwards(this);
 			break;
 	}
 
@@ -114,15 +114,15 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
 // move lava up
 void Lava_moveUpwards(Lava this)
 {
-    // get local position of lava and subtract 1 from y value
-    VBVec3D offset = *Container_getLocalPosition(__SAFE_CAST(Container, this));
-    offset.y -= __1I_FIX19_13;
+	// get local position of lava and subtract 1 from y value
+	VBVec3D offset = *Container_getLocalPosition(__SAFE_CAST(Container, this));
+	offset.y -= __1I_FIX19_13;
 
-    // update lava's position
-   __VIRTUAL_CALL(Container, setLocalPosition, __SAFE_CAST(Container, this), &offset);
+	// update lava's position
+	__VIRTUAL_CALL(Container, setLocalPosition, __SAFE_CAST(Container, this), &offset);
 
-    // send delayed message to self to trigger next movement
-    MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
+	// send delayed message to self to trigger next movement
+	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
 }
 
 // does it move?

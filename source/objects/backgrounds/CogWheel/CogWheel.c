@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
@@ -34,21 +34,21 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(CogWheel, StaticImage);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void CogWheel_rotate(CogWheel this);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -65,8 +65,8 @@ void CogWheel_constructor(CogWheel this, StaticImageDefinition* StaticImageDefin
 // class's destructor
 void CogWheel_destructor(CogWheel this)
 {
-    // discard pending delayed messages
-    MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
+	// discard pending delayed messages
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -89,10 +89,10 @@ void CogWheel_ready(CogWheel this, u32 recursive)
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
-    {
+	{
 		case kCogWheelMove:
 
-            CogWheel_rotate(this);
+			CogWheel_rotate(this);
 			break;
 	}
 
@@ -105,6 +105,6 @@ static void CogWheel_rotate(CogWheel this)
 	this->transform.localRotation.z += 1;
 	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 
-    // send delayed message to self to trigger next movement
-    MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
+	// send delayed message to self to trigger next movement
+	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }

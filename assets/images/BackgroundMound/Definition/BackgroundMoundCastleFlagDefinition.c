@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
@@ -31,7 +31,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE BackgroundMoundCastleFlagTiles[];
@@ -76,60 +76,60 @@ AnimationDescriptionROMDef MOUND_BG_CASTLE_FLAG_ANIM =
 
 CharSetROMDef MOUND_BG_CASTLE_FLAG_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    1,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	1,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __ANIMATED_SHARED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SHARED,
 
-    // char definition
-    BackgroundMoundCastleFlagTiles,
+	// char definition
+	BackgroundMoundCastleFlagTiles,
 };
 
 TextureROMDef MOUND_BG_CASTLE_FLAG_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&MOUND_BG_CASTLE_FLAG_CH,
+	// charset definition
+	(CharSetDefinition*)&MOUND_BG_CASTLE_FLAG_CH,
 
-    // bgmap definition
-    BackgroundMoundCastleFlagMap,
+	// bgmap definition
+	BackgroundMoundCastleFlagMap,
 
-    // cols (max 64)
-    1,
+	// cols (max 64)
+	1,
 
-    // rows (max 64)
-    1,
+	// rows (max 64)
+	1,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 ObjectSpriteROMDef MOUND_BG_CASTLE_FLAG_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(ObjectAnimatedSprite),
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
 
-        // texture definition
-        (TextureDefinition*)&MOUND_BG_CASTLE_FLAG_TX,
+		// texture definition
+		(TextureDefinition*)&MOUND_BG_CASTLE_FLAG_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -147,33 +147,33 @@ ObjectSpriteROMDef* const MOUND_BG_CASTLE_FLAG_SPRITES[] =
 
 AnimatedInGameEntityROMDef MOUND_BG_CASTLE_FLAG_AG =
 {
-    {
-        {
-            __TYPE(AnimatedInGameEntity),
-            (SpriteROMDef**)MOUND_BG_CASTLE_FLAG_SPRITES,
-        },
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)MOUND_BG_CASTLE_FLAG_SPRITES,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kNotSolid,
+		// in game type
+		kNotSolid,
 
-        // width
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	0,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
 
-    	// depth
-        1,
-    },
+		// depth
+		1,
+	},
 
-    // pointer to the animation definition for the item
-    (AnimationDescription*)&MOUND_BG_CASTLE_FLAG_ANIM,
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&MOUND_BG_CASTLE_FLAG_ANIM,
 
-    // initial animation
-    "Wave",
+	// initial animation
+	"Wave",
 };

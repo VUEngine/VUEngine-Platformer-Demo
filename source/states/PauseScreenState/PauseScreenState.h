@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameState.h>
@@ -32,7 +32,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 enum PauseScreenModes
@@ -50,31 +50,31 @@ enum PauseScreenOptions
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define PauseScreenState_METHODS(ClassName)																\
-	    GameState_METHODS(ClassName)												    				\
+		GameState_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define PauseScreenState_SET_VTABLE(ClassName)															\
-        GameState_SET_VTABLE(ClassName)								    								\
-        __VIRTUAL_SET(ClassName, PauseScreenState, enter);												\
-        __VIRTUAL_SET(ClassName, PauseScreenState, exit);												\
-        __VIRTUAL_SET(ClassName, PauseScreenState, processMessage);                                     \
+		GameState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, PauseScreenState, enter);												\
+		__VIRTUAL_SET(ClassName, PauseScreenState, exit);												\
+		__VIRTUAL_SET(ClassName, PauseScreenState, processMessage);									 \
 
 __CLASS(PauseScreenState);
 
-#define PauseScreenState_ATTRIBUTES							        									\
-        /* inherits */																					\
-        GameState_ATTRIBUTES																			\
+#define PauseScreenState_ATTRIBUTES																		\
+		/* inherits */																					\
+		GameState_ATTRIBUTES																			\
 		u8 mode;																						\
 		OptionsSelector optionsSelector;																\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 PauseScreenState PauseScreenState_getInstance(void);

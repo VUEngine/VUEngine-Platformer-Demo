@@ -24,7 +24,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
@@ -32,34 +32,34 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 #define LAVA_MOVE_DELAY 	100
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 #define Lava_METHODS(ClassName)																			\
-    	InanimatedInGameEntity_METHODS(ClassName)														\
+		InanimatedInGameEntity_METHODS(ClassName)														\
 
 #define Lava_SET_VTABLE(ClassName)																		\
-        InanimatedInGameEntity_SET_VTABLE(ClassName)													\
-        __VIRTUAL_SET(ClassName, Lava, handleMessage);													\
-        __VIRTUAL_SET(ClassName, Lava, isVisible);														\
-        __VIRTUAL_SET(ClassName, Lava, moves);															\
+		InanimatedInGameEntity_SET_VTABLE(ClassName)													\
+		__VIRTUAL_SET(ClassName, Lava, handleMessage);													\
+		__VIRTUAL_SET(ClassName, Lava, isVisible);														\
+		__VIRTUAL_SET(ClassName, Lava, moves);															\
 
 __CLASS(Lava);
 
 #define Lava_ATTRIBUTES																					\
-        /* it is derived from */																		\
-        InanimatedInGameEntity_ATTRIBUTES																\
+		/* it is derived from */																		\
+		InanimatedInGameEntity_ATTRIBUTES																\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);

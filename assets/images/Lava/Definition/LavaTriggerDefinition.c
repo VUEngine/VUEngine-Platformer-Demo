@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <InanimatedInGameEntity.h>
@@ -30,41 +30,41 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 InanimatedInGameEntityROMDef LAVA_TRIGGER_IG =
 {
-    {
-        {
-            __TYPE(LavaTrigger),
-            NULL,
-        },
+	{
+		{
+			__TYPE(LavaTrigger),
+			NULL,
+		},
 
-        // collision detection gap (up, down, left, right)
-        {0, 0, 0, 0},
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
 
-        // in game type
-        kLavaTrigger,
+		// in game type
+		kLavaTrigger,
 
-    	// width
-        // if 0, width and height will be inferred from the texture's size
-    	2 * 8,
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		2 * 8,
 
-    	// height
-        // if 0, width and height will be inferred from the texture's size
-    	12 * 8,
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		12 * 8,
 
-    	// depth
-    	1 * 8
-    },
+		// depth
+		1 * 8
+	},
 
-    // friction
-    FTOFIX19_13(NO_FRICTION),
+	// friction
+	FTOFIX19_13(NO_FRICTION),
 
-    // elasticity
-    FTOFIX19_13(FLOOR_ELASTICITY),
+	// elasticity
+	FTOFIX19_13(FLOOR_ELASTICITY),
 
-    // register shape
-    true,
+	// register shape
+	true,
 };

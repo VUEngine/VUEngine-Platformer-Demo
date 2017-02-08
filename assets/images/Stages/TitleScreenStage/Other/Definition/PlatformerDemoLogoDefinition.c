@@ -21,14 +21,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE PlatformerDemoLogoLTiles[];
@@ -42,188 +42,188 @@ extern BYTE PlatformerDemoLogoOutlineRMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DEFINITIONS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 CharSetROMDef LOGO_L_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    168,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	168,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    PlatformerDemoLogoLTiles,
+	// char definition
+	PlatformerDemoLogoLTiles,
 };
 
 TextureROMDef LOGO_L_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LOGO_L_CH,
+	// charset definition
+	(CharSetDefinition*)&LOGO_L_CH,
 
-    // bgmap definition
-    PlatformerDemoLogoLMap,
+	// bgmap definition
+	PlatformerDemoLogoLMap,
 
-    // cols (max 64)
-    36,
+	// cols (max 64)
+	36,
 
-    // rows (max 64)
-    7,
+	// rows (max 64)
+	7,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-   // palette number (0-3)
-    0,
+	// palette number (0-3)
+	0,
 };
 
 CharSetROMDef LOGO_R_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    165,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	165,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    PlatformerDemoLogoRTiles,
+	// char definition
+	PlatformerDemoLogoRTiles,
 };
 
 TextureROMDef LOGO_R_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LOGO_R_CH,
+	// charset definition
+	(CharSetDefinition*)&LOGO_R_CH,
 
-    // bgmap definition
-    PlatformerDemoLogoRMap,
+	// bgmap definition
+	PlatformerDemoLogoRMap,
 
-    // cols (max 64)
-    36,
+	// cols (max 64)
+	36,
 
-    // rows (max 64)
-    7,
+	// rows (max 64)
+	7,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    0,
+	// palette number (0-3)
+	0,
 };
 
 CharSetROMDef LOGO_OUTLINE_L_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    90,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	90,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    PlatformerDemoLogoOutlineLTiles,
+	// char definition
+	PlatformerDemoLogoOutlineLTiles,
 };
 
 TextureROMDef LOGO_OUTLINE_L_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LOGO_OUTLINE_L_CH,
+	// charset definition
+	(CharSetDefinition*)&LOGO_OUTLINE_L_CH,
 
-    // bgmap definition
-    PlatformerDemoLogoOutlineLMap,
+	// bgmap definition
+	PlatformerDemoLogoOutlineLMap,
 
-    // cols (max 64)
-    36,
+	// cols (max 64)
+	36,
 
-    // rows (max 64)
-    7,
+	// rows (max 64)
+	7,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-   // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 CharSetROMDef LOGO_OUTLINE_R_CH =
 {
-    // number of chars, depending on allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
-    // __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-    91,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	91,
 
-    // allocation type
-    // (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-    __NOT_ANIMATED,
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-    // char definition
-    PlatformerDemoLogoOutlineRTiles,
+	// char definition
+	PlatformerDemoLogoOutlineRTiles,
 };
 
 TextureROMDef LOGO_OUTLINE_R_TX =
 {
-    // charset definition
-    (CharSetDefinition*)&LOGO_OUTLINE_R_CH,
+	// charset definition
+	(CharSetDefinition*)&LOGO_OUTLINE_R_CH,
 
-    // bgmap definition
-    PlatformerDemoLogoOutlineRMap,
+	// bgmap definition
+	PlatformerDemoLogoOutlineRMap,
 
-    // cols (max 64)
-    36,
+	// cols (max 64)
+	36,
 
-    // rows (max 64)
-    7,
+	// rows (max 64)
+	7,
 
-    // padding for affine transformations
+	// padding for affine transformations
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-    // __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
-    // __ANIMATED_MULTI: total number of frames
-    1,
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-    // palette number (0-3)
-    1,
+	// palette number (0-3)
+	1,
 };
 
 BgmapSpriteROMDef LOGO_L_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&LOGO_L_TX,
+		// texture definition
+		(TextureDefinition*)&LOGO_L_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -235,19 +235,19 @@ BgmapSpriteROMDef LOGO_L_IM_SPRITE =
 
 BgmapSpriteROMDef LOGO_R_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&LOGO_R_TX,
+		// texture definition
+		(TextureDefinition*)&LOGO_R_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, 0, 0},
-    },
+		{0, 0, 0, 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -259,19 +259,19 @@ BgmapSpriteROMDef LOGO_R_IM_SPRITE =
 
 BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&LOGO_OUTLINE_L_TX,
+		// texture definition
+		(TextureDefinition*)&LOGO_OUTLINE_L_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, FTOFIX19_13(1), 0},
-    },
+		{0, 0, FTOFIX19_13(1), 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
@@ -283,19 +283,19 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 
 BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 {
-    {
-        // sprite's type
-        __TYPE(BgmapSprite),
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-        // texture definition
-        (TextureDefinition*)&LOGO_OUTLINE_R_TX,
+		// texture definition
+		(TextureDefinition*)&LOGO_OUTLINE_R_TX,
 
-        // transparent
+		// transparent
 		false,
 
 		// displacement
-        {0, 0, FTOFIX19_13(1), 0},
-    },
+		{0, 0, FTOFIX19_13(1), 0},
+	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)

@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
@@ -49,14 +49,14 @@ extern AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(Coin, Collectable);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
@@ -83,24 +83,24 @@ void Coin_initialize(Coin this, u32 recursive)
 {
 	ASSERT(this, "Coin::initialize: null this");
 
-    // if coin has already been collected, show silhouette representation
-    if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
-    {
-        AnimatedInGameEntityDefinition* animatedInGameEntityDefinition = this->animatedInGameEntityDefinition;
+	// if coin has already been collected, show silhouette representation
+	if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
+	{
+		AnimatedInGameEntityDefinition* animatedInGameEntityDefinition = this->animatedInGameEntityDefinition;
 
-        if((AnimatedInGameEntityDefinition*)&COIN_BACK_AG == animatedInGameEntityDefinition)
-        {
-            animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_BACK_SILHOUETTE_AG;
-        }
-        else
-        {
-            animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
-        }
+		if((AnimatedInGameEntityDefinition*)&COIN_BACK_AG == animatedInGameEntityDefinition)
+		{
+			animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_BACK_SILHOUETTE_AG;
+		}
+		else
+		{
+			animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
+		}
 
-        AnimatedInGameEntity_setDefinition(__SAFE_CAST(AnimatedInGameEntity, this), animatedInGameEntityDefinition);
-    }
+		AnimatedInGameEntity_setDefinition(__SAFE_CAST(AnimatedInGameEntity, this), animatedInGameEntityDefinition);
+	}
 
-    Entity_initialize(__SAFE_CAST(Entity, this), recursive);
+	Entity_initialize(__SAFE_CAST(Entity, this), recursive);
 }
 
 void Coin_collect(Coin this)
@@ -108,12 +108,12 @@ void Coin_collect(Coin this)
 	ASSERT(this, "Collectable::collect: null this");
 
 	// "collect" coin if it wasn't already
-    if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
-    {
-        // set coin status to taken
-        ProgressManager_setCoinStatus(ProgressManager_getInstance(), this->id, true);
+	if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
+	{
+		// set coin status to taken
+		ProgressManager_setCoinStatus(ProgressManager_getInstance(), this->id, true);
 
-        // fire "taken" event
-        Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);
-    }
+		// fire "taken" event
+		Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);
+	}
 }

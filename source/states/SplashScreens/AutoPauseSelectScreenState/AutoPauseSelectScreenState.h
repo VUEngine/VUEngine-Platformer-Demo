@@ -24,14 +24,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <SplashScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S MACROS
+//												CLASS'S MACROS
 //---------------------------------------------------------------------------------------------------------
 
 #define __OPTIONS_GAP		3
@@ -39,30 +39,30 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DECLARATION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
 #define AutoPauseSelectScreenState_METHODS(ClassName)													\
-    	SplashScreenState_METHODS(ClassName)															\
+		SplashScreenState_METHODS(ClassName)															\
 
 // declare the virtual methods which are redefined
 #define AutoPauseSelectScreenState_SET_VTABLE(ClassName)												\
-        SplashScreenState_SET_VTABLE(ClassName)															\
-        __VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, print);									\
-        __VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, processInput);								\
+		SplashScreenState_SET_VTABLE(ClassName)															\
+		__VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, print);									\
+		__VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, processInput);								\
 
 
 __CLASS(AutoPauseSelectScreenState);
 
-#define AutoPauseSelectScreenState_ATTRIBUTES							   		                        \
-        /* inherits */														    		                \
-        SplashScreenState_ATTRIBUTES										    	                	\
-        bool selection;														    		                \
+#define AutoPauseSelectScreenState_ATTRIBUTES															\
+		/* inherits */																					\
+		SplashScreenState_ATTRIBUTES																	\
+		bool selection;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
-// 										PUBLIC INTERFACE
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 AutoPauseSelectScreenState AutoPauseSelectScreenState_getInstance(void);

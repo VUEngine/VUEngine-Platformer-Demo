@@ -21,7 +21,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												INCLUDES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
@@ -43,14 +43,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												DECLARATIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef PAUSE_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												PROTOTYPES
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void PauseScreenState_destructor(PauseScreenState this);
@@ -63,7 +63,7 @@ static void PauseScreenState_onFadeOutComplete(PauseScreenState this, Object eve
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											CLASS'S DEFINITION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 __CLASS_DEFINITION(PauseScreenState, GameState);
@@ -71,7 +71,7 @@ __SINGLETON(PauseScreenState);
 
 
 //---------------------------------------------------------------------------------------------------------
-// 												CLASS'S METHODS
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
@@ -119,28 +119,28 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 
 	// show menu
 	VirtualList options = __NEW(VirtualList);
-    Option* option = NULL;
+	Option* option = NULL;
 
-    option = __NEW_BASIC(Option);
-    option->value = (char*)I18n_getText(I18n_getInstance(), STR_CONTINUE);
-    option->type = kString;
-    option->callback = NULL;
-    option->callbackScope = NULL;
-    VirtualList_pushBack(options, option);
+	option = __NEW_BASIC(Option);
+	option->value = (char*)I18n_getText(I18n_getInstance(), STR_CONTINUE);
+	option->type = kString;
+	option->callback = NULL;
+	option->callbackScope = NULL;
+	VirtualList_pushBack(options, option);
 
-    option = __NEW_BASIC(Option);
-    option->value = (char*)I18n_getText(I18n_getInstance(), STR_OPTIONS);
-    option->type = kString;
-    option->callback = NULL;
-    option->callbackScope = NULL;
-    VirtualList_pushBack(options, option);
+	option = __NEW_BASIC(Option);
+	option->value = (char*)I18n_getText(I18n_getInstance(), STR_OPTIONS);
+	option->type = kString;
+	option->callback = NULL;
+	option->callbackScope = NULL;
+	VirtualList_pushBack(options, option);
 
-    option = __NEW_BASIC(Option);
-    option->value = (char*)I18n_getText(I18n_getInstance(), STR_QUIT_LEVEL);
-    option->type = kString;
-    option->callback = NULL;
-    option->callbackScope = NULL;
-    VirtualList_pushBack(options, option);
+	option = __NEW_BASIC(Option);
+	option->value = (char*)I18n_getText(I18n_getInstance(), STR_QUIT_LEVEL);
+	option->type = kString;
+	option->callback = NULL;
+	option->callbackScope = NULL;
+	VirtualList_pushBack(options, option);
 
 	OptionsSelector_setOptions(this->optionsSelector, options);
 	__DELETE(options);
@@ -173,8 +173,8 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 // state's exit
 static void PauseScreenState_exit(PauseScreenState this, void* owner __attribute__ ((unused)))
 {
- 	// call base
- 	GameState_exit(__SAFE_CAST(GameState, this), owner);
+	// call base
+	GameState_exit(__SAFE_CAST(GameState, this), owner);
 }
 
 // state's handle message
@@ -318,7 +318,7 @@ static void PauseScreenState_onFadeOutComplete(PauseScreenState this, Object eve
 		case kPauseScreenOptionQuitLevel:
 
 			// switch to overworld after deleting paused game state
-    		Game_cleanAndChangeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+			Game_cleanAndChangeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
 
 			break;
 	}
