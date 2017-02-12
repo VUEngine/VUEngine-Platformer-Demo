@@ -749,7 +749,7 @@ void Hero_setAnimationDelta(Hero this, int delta __attribute__ ((unused)))
 
 	for(; node; node = VirtualNode_getNext(node))
 	{
-		Sprite_setFrameDelayDelta(__SAFE_CAST(Sprite, VirtualNode_getData(node)), this->boost ? 2 : 1);
+		Sprite_setFrameCycleDecrement(__SAFE_CAST(Sprite, VirtualNode_getData(node)), this->boost ? 2 : 1);
 	}
 }
 
