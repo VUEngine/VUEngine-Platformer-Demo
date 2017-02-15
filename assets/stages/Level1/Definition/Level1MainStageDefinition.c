@@ -136,7 +136,9 @@ extern TextureDefinition LEVEL_1_MAIN_1_BACK_1_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_1_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_2_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_3_TX;
-extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_3_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_3A_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_3B_TX;
+extern TextureDefinition LEVEL_1_MAIN_1_MAIN_BACK_3C_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_1_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2A_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2B_TX;
@@ -525,7 +527,9 @@ StageTextureEntryROMDef LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 	{&LEVEL_1_MAIN_1_MAIN_3_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX, true},
-	{&LEVEL_1_MAIN_1_MAIN_BACK_3_TX, true},
+	{&LEVEL_1_MAIN_1_MAIN_BACK_3A_TX, true},
+	{&LEVEL_1_MAIN_1_MAIN_BACK_3B_TX, true},
+	{&LEVEL_1_MAIN_1_MAIN_BACK_3C_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_1_TX, true},
 	{&LEVEL_1_MAIN_1_BACK_1_TX, true},
 	{&LEVEL_1_MAIN_1_MAIN_2_TX, true},
@@ -588,11 +592,11 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// minimum free ms in the current game frame to allow streaming to quick in
-		15,
+		5,
 		// load padding
 		80,
 		// unload padding
-		32,
+		24,
 		// streaming amplitude
 		16,
 		// particle removal delay cycles
@@ -605,7 +609,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		2,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		6,
+		5,
 
 		// maximum number of rows to compute on each call to the affine functions
 		4,
@@ -755,7 +759,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 	"House",
 
 	// offset from entry point (x, y, z)
-	{FTOFIX19_13(-22), FTOFIX19_13(-16), FTOFIX19_13(-SORT_INCREMENT)},
+	{FTOFIX19_13(-22), FTOFIX19_13(-20), FTOFIX19_13(-SORT_INCREMENT)},
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =

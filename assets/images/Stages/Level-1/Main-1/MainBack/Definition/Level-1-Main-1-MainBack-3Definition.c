@@ -41,7 +41,7 @@ extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_BACK_CH;
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3_TX =
+TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_TX =
 {
 	// charset definition
 	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
@@ -50,10 +50,10 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3_TX =
 	Level_1_Main_1_MainBack_3Map,
 
 	// cols (max 64)
-	48,
+	10,
 
 	// rows (max 64)
-	41,
+	6,
 
 	// padding for affine transformations
 	{0, 0},
@@ -67,45 +67,126 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3_TX =
 	1,
 };
 
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_BACK_3_IM_TEXTURES[] =
+TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
 {
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_3_TX,
-	NULL
+	// charset definition
+	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+
+	// bgmap definition
+	Level_1_Main_1_MainBack_3Map,
+
+	// cols (max 64)
+	48,
+
+	// rows (max 64)
+	6,
+
+	// padding for affine transformations
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
 };
 
-MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3_IM_SPRITE =
+TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+
+	// bgmap definition
+	Level_1_Main_1_MainBack_3Map,
+
+	// cols (max 64)
+	48,
+
+	// rows (max 64)
+	16,
+
+	// padding for affine transformations
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+};
+
+BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =
 {
 	{
-		{
-			// sprite's type
-			__TYPE(MBgmapSprite),
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-			// texture definition
-			NULL,
+		// texture definition
+		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_3A_TX,
 
-			// transparent
-			false,
+		// transparent
+		false,
 
-			// displacement
-			{ITOFIX19_13(-8), ITOFIX19_13(94), FTOFIX19_13(2), 0},
-		},
-
-		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
-		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-		__WORLD_BGMAP,
-
-		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
+		// displacement
+		{ITOFIX19_13(-158), ITOFIX19_13(-40), FTOFIX19_13(2), 0},
 	},
 
-	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_BACK_3_IM_TEXTURES,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
 
-	// SCX/SCY
-	__WORLD_1x1,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
 
-	// x loop
-	false,
+BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_IM_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-	// y loop
-	false,
+		// texture definition
+		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_3A_TX,
+
+		// transparent
+		false,
+
+		// displacement
+		{ITOFIX19_13(142), ITOFIX19_13(24), FTOFIX19_13(2), 0},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_IM_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_3C_TX,
+
+		// transparent
+		false,
+
+		// displacement
+		{ITOFIX19_13(-8), ITOFIX19_13(192), FTOFIX19_13(2), 0},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
