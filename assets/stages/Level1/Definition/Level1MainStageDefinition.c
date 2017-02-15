@@ -666,13 +666,13 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// obj segments sizes (must total 1024)
 		{
 			// __spt0
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			0,
 			// __spt1
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			0,
 			// __spt2
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			64,
 			// __spt3
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			64,
 		},
 
 		// obj segments z coordinates
