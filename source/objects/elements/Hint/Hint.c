@@ -178,5 +178,5 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 			break;
 	}
 
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, &LanguageAnimName);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, LanguageAnimName);
 }
