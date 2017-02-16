@@ -6,6 +6,9 @@ TYPE = debug
 #TYPE = release-tools
 #TYPE = preprocessor
 
+# Were I live
+GAME_HOME = $(shell pwd)
+
 # output dir
 BUILD_DIR = build
 
@@ -114,7 +117,7 @@ endif
 VUENGINE_HOME = $(VBDE)libs/vuengine
 
 # Which directories contain source files
-DIRS = $(shell find ./source ./assets ./lib/compiler -type d -print)
+DIRS = $(shell find ./source ./assets -type d -print)
 
 # Which libraries are linked
 LIBS = vuengine
@@ -175,13 +178,15 @@ HEADERS = $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.h))
 
 # Makes a list of the object files that will have to be created.
 C_OBJECTS = $(addprefix $(STORE)/, $(C_SOURCE:.c=.o))
-# C_OBJECTS += $(STORE)/./lib/compiler/setupClasses.o
 
 # Makes a list of the object files that will have to be created.
 ASSEMBLY_OBJECTS = $(addprefix $(STORE)/, $(ASSEMBLY_SOURCE:.s=.o))
 
 # Same for the .d (dependency) files.
 D_FILES = $(addprefix $(STORE)/,$(C_SOURCE:.c=.d))
+
+# Class setup file
+SETUP_CLASSES = $(GAME_HOME)/lib/compiler/setupClasses
 
 # Main target. The @ in front of a command prevents make from displaying it to the standard output.
 
@@ -223,10 +228,14 @@ $(TARGET).vb: $(TARGET).elf
 	@cp $(TARGET).vb $(BUILD_DIR)/$(TARGET_FILE).vb
 	@echo Done creating $(BUILD_DIR)/$(TARGET_FILE).vb in $(TYPE) mode with GCC $(COMPILER_VERSION)
 
-$(TARGET).elf: dirs $(VUENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS)
+$(TARGET).elf: dirs $(VUENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(SETUP_CLASSES).o
 	@echo Linking $(TARGET).elf
-	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(LD_PARAMS) \
+	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(SETUP_CLASSES).o $(LD_PARAMS) \
 		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(VUENGINE_LIBRARY_PATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
+
+$(SETUP_CLASSES).o: $(SETUP_CLASSES).c
+	@$(GCC) $(foreach INC,$(VUENGINE_INCLUDE_PATHS) $(GAME_INCLUDE_PATHS),-I$(INC))\
+        $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS) -$(COMPILER_OUTPUT) $(SETUP_CLASSES).c -o $@
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.
@@ -243,7 +252,7 @@ $(STORE)/%.o: %.s
 
 $(VUENGINE): deleteEngine
 	@echo Building VUEngine...
-	@$(MAKE) all -f $(VUENGINE_HOME)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE)
+	@$(MAKE) all -f $(VUENGINE_HOME)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) -e GAME_HOME=$(GAME_HOME)
 
 deleteEngine:
 	@rm -f $(VUENGINE)
