@@ -48,7 +48,7 @@ extern EntityDefinition COLLISION_CL;
 extern EntityDefinition COLLISION_HIT_CL;
 extern EntityDefinition COLLISION_TOP_CL;
 extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
-extern EntityDefinition DOOR_AG;
+extern EntityDefinition KEY_DOOR_AG;
 extern EntityDefinition GOAL_DOOR_AG;
 extern EntityDefinition GRASS_AG;
 extern EntityDefinition GUI_AG;
@@ -116,8 +116,8 @@ PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_ENTITIES[] =
 {
 	{&LEVEL_1_TOWER_MAIN_1_IM,		{FTOFIX19_13(0), 	FTOFIX19_13(0), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
-//	{&DOOR_AG,						{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
-	{&DOOR_AG,						{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, 0, "EntryDoor", NULL, NULL, false},
+	{&KEY_DOOR_AG,					{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
+//	{&DOOR_AG,						{FTOFIX19_13(-144), FTOFIX19_13(159), 	FTOFIX19_13(0)}, 0, "EntryDoor", NULL, NULL, false},
 	{&TORCH_LIGHT_AG,				{FTOFIX19_13(-107), FTOFIX19_13(136), 	FTOFIX19_13(-SORT_INCREMENT)}, 0, NULL, NULL, NULL, false},
 	{&TORCH_AG,						{FTOFIX19_13(-107), FTOFIX19_13(136), 	FTOFIX19_13(SORT_INCREMENT)}, 0, NULL, NULL, NULL, false},
 	{&TORCH_LIGHT_AG,				{FTOFIX19_13(12), 	FTOFIX19_13(136), 	FTOFIX19_13(-SORT_INCREMENT)}, 0, NULL, NULL, NULL, false},
@@ -508,5 +508,5 @@ StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP =
 	"EntryDoor",
 
 	// offset from entry point (x, y, z)
-	{FTOFIX19_13(0), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
+	{FTOFIX19_13(16), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
 };
