@@ -131,12 +131,13 @@ static void CogWheel_stop(CogWheel this)
 
 	// discard pending delayed messages
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
+
+	// change sprite's mode
+//	__VIRTUAL_CALL(Sprite, setMode, __SAFE_CAST(Sprite, VirtualList_front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
 }
 
 static void CogWheel_onShakeCompleted(CogWheel this, Object eventFirer __attribute__ ((unused)))
 {
-	__VIRTUAL_CALL(Sprite, setMode, __SAFE_CAST(Sprite, VirtualList_front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
-
 	// stop moving
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelStop, NULL);
 }
