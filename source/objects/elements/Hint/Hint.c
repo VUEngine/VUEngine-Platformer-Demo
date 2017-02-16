@@ -70,6 +70,23 @@ void Hint_destructor(Hint this)
 	__DESTROY_BASE;
 }
 
+bool Hint_handleMessage(Hint this, void* telegram)
+{
+	ASSERT(this, "Hint::handleMessage: null this");
+
+	// handle messages that any state would handle here
+	switch(Telegram_getMessage(telegram))
+	{
+		case kHintPlayAnimation:
+
+			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), Telegram_getExtraInfo(telegram));
+			return true;
+			break;
+	}
+
+	return false;
+}
+
 void Hint_resume(Hint this)
 {
 	ASSERT(this, "Hint::resume: null this");
@@ -107,7 +124,7 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Hint::onHintOpened: null this");
 
-	char* LanguageAnimName = "";
+	static char* LanguageAnimName = "";
 
 	switch(this->type)
 	{
@@ -161,5 +178,5 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 			break;
 	}
 
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), LanguageAnimName);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, &LanguageAnimName);
 }
