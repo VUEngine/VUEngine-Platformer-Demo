@@ -89,7 +89,7 @@ static void __attribute__ ((noinline)) CustomScreenMovementManager_constructor(C
 	this->positionFlag.z = 0;
 
 	this->focusFunction = &CustomScreenMovementManager_doFocus;
-	this->previuosFocusFunction = this->focusFunction;
+	this->previousFocusFunction = this->focusFunction;
 
 	_screen = Screen_getInstance();
 
@@ -318,8 +318,8 @@ void CustomScreenMovementManager_enable(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::enable: null this");
 
-	this->focusFunction = this->previuosFocusFunction;
-	this->previuosFocusFunction = this->focusFunction;
+	this->focusFunction = this->previousFocusFunction;
+	this->previousFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_disable(CustomScreenMovementManager this)
@@ -328,7 +328,7 @@ void CustomScreenMovementManager_disable(CustomScreenMovementManager this)
 
 	if(&CustomScreenMovementManager_dontFocus != this->focusFunction)
 	{
-		this->previuosFocusFunction = this->focusFunction;
+		this->previousFocusFunction = this->focusFunction;
 	}
 
 	this->focusFunction = &CustomScreenMovementManager_dontFocus;
@@ -339,7 +339,7 @@ void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager t
 	ASSERT(this, "CustomScreenMovementManager::enableFocusEasing: null this");
 
 	this->focusFunction = &CustomScreenMovementManager_doFocus;
-	this->previuosFocusFunction = this->focusFunction;
+	this->previousFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager this)
@@ -347,7 +347,7 @@ void CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager 
 	ASSERT(this, "CustomScreenMovementManager::disableFocusEasing: null this");
 
 	this->focusFunction = &CustomScreenMovementManager_doFocusWithNoEasing;
-	this->previuosFocusFunction = this->focusFunction;
+	this->previousFocusFunction = this->focusFunction;
 }
 
 void CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager this)
@@ -356,7 +356,7 @@ void CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementMana
 
 	if(&CustomScreenMovementManager_doFocusAndAlertWhenTargetReached != this->focusFunction)
 	{
-		this->previuosFocusFunction = this->focusFunction;
+		this->previousFocusFunction = this->focusFunction;
 	}
 
 	this->focusFunction = &CustomScreenMovementManager_doFocusAndAlertWhenTargetReached;
@@ -366,5 +366,5 @@ void CustomScreenMovementManager_dontAlertWhenTargetFocused(CustomScreenMovement
 {
 	ASSERT(this, "CustomScreenMovementManager::dontAlertWhenTargetFocused: null this");
 
-	this->focusFunction = this->previuosFocusFunction;
+	this->focusFunction = this->previousFocusFunction;
 }

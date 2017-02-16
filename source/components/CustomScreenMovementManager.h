@@ -66,7 +66,7 @@
 		VBVec3DFlag positionFlag;																		\
 		/* pointer to function that implements the required focusing */									\
 		bool (*focusFunction)(CustomScreenMovementManager, u32, u32);									\
-		bool (*previuosFocusFunction)(CustomScreenMovementManager, u32, u32);							\
+		bool (*previousFocusFunction)(CustomScreenMovementManager, u32, u32);							\
 
 // declare a CustomScreenMovementManager
 __CLASS(CustomScreenMovementManager);
