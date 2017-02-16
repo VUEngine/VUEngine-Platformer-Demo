@@ -114,7 +114,7 @@ endif
 VUENGINE_HOME = $(VBDE)libs/vuengine
 
 # Which directories contain source files
-DIRS = $(shell find ./source ./assets -type d -print)
+DIRS = $(shell find ./source ./assets ./lib/compiler -type d -print)
 
 # Which libraries are linked
 LIBS = vuengine
@@ -175,6 +175,7 @@ HEADERS = $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.h))
 
 # Makes a list of the object files that will have to be created.
 C_OBJECTS = $(addprefix $(STORE)/, $(C_SOURCE:.c=.o))
+# C_OBJECTS += $(STORE)/./lib/compiler/setupClasses.o
 
 # Makes a list of the object files that will have to be created.
 ASSEMBLY_OBJECTS = $(addprefix $(STORE)/, $(ASSEMBLY_SOURCE:.s=.o))
