@@ -206,13 +206,13 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			FTOFIX19_13(LAYER_0_PARTICLES),
+			FTOFIX19_13(LAYER_0 - 1),
 			// __spt1
-			FTOFIX19_13(LAYER_0_PARTICLES),
+			FTOFIX19_13(LAYER_0 - 1),
 			// __spt2
-			FTOFIX19_13(LAYER_0_PARTICLES),
+			FTOFIX19_13(LAYER_0 - 1),
 			// __spt3
-			FTOFIX19_13(LAYER_0_PARTICLES),
+			FTOFIX19_13(LAYER_0 - 1),
 		},
 
 		// optical configuration values
