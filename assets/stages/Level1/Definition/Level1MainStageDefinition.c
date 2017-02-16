@@ -819,5 +819,5 @@ StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
 	"TowrEnt",
 
 	// offset from entry point (x, y, z)
-	{0, FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
+	{FTOFIX19_13(-16), FTOFIX19_13(0), FTOFIX19_13(-SORT_INCREMENT)},
 };
