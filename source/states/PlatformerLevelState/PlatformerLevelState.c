@@ -430,6 +430,11 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 			Printing_text(Printing_getInstance(), "                                                ", 0, 7, NULL);
 			break;
 
+		case kScreenFocused:
+
+			Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
+			break;
+
 		case kKeyPressed:
 
 			if(kPlaying == this->mode)
@@ -487,7 +492,8 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
 {
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenFocused, NULL);
+
 	CustomScreenMovementManager_dontAlertWhenTargetFocused(CustomScreenMovementManager_getInstance());
 	Game_enableKeypad(Game_getInstance());
 }

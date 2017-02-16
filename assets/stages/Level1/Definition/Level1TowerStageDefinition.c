@@ -294,7 +294,7 @@ CharSetROMDef* const LEVEL_1_TOWER_STAGE_ST_CHARSETS[] =
 
 StageTextureEntryROMDef LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 {
-//	{&COG_WHEEL_TX, false},
+	{&COG_WHEEL_TX, false},
 	{&LEVEL_1_TOWER_BACK_1_TX, false},
 	{&LEVEL_1_TOWER_MAIN_BACK_1_TX, true},
 	{&LEVEL_1_TOWER_MAIN_1_TX, true},

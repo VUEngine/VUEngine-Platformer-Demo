@@ -96,7 +96,7 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_PIPE_IM_SPRITE =
 		{ITOFIX19_13(48), ITOFIX19_13(16), ITOFIX19_13(1), 0},
 	},
 
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 

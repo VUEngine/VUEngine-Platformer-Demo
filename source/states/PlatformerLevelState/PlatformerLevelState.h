@@ -122,6 +122,7 @@ enum PlatformerLevelStateMessageTypes
 	kLevelResumed,
 	kHeroResumePhysics,
 	kHideLevelMessage,
+	kScreenFocused,
 	kHeroDied,
 	kHeroFall,
 	kHeroEnterDoor,
