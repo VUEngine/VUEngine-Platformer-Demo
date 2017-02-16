@@ -86,7 +86,6 @@ CollisionsContainerEntityROMDef COLLISIONS_CONTAINER_ENTITY =
 	NULL
 };
 
-
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] =
 {
@@ -105,7 +104,6 @@ const ClassSizeData _userClassesSizeData[] =
 };
 #endif
 
-#ifdef __STAGE_EDITOR
 const UserObject _userObjects[] =
 {
 	{&LEVEL_1_HOUSE_IM,		"House"},
@@ -119,9 +117,7 @@ const UserObject _userObjects[] =
 	{&LANE_V_6_IM,			"SawBlade Lane V6"},
 	{NULL, ""},
 };
-#endif
 
-#ifdef __ANIMATION_EDITOR
 const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
 {
 	{(AnimatedInGameEntityDefinition*)&COIN_AG,						"Coin"},
@@ -133,4 +129,3 @@ const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
 	{(AnimatedInGameEntityDefinition*)&LAVA_TOP_AG,					"Lava top"},
 	{NULL, ""},
 };
-#endif

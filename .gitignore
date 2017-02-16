@@ -14,3 +14,4 @@ cproject
 *.asm
 *.map
 sections*.txt
+setupClasses.c
