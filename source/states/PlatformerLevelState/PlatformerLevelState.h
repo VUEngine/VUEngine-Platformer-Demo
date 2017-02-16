@@ -138,6 +138,7 @@ enum PlatformerLevelStateMessageTypes
 	kLavaTriggerStart,
 	kLavaTriggerEnd,
 	kCogWheelMove,
+	kCogWheelStop,
 	kLavaMove,
 	kCannonShoot,
 	kHeroCheckOverlapping,

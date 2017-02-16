@@ -49,6 +49,7 @@ enum GameEvents
 	kEventHeroDied,
 	kEventLevelStarted,
 	kEventLevelCompleted,
+	kEventShakeCompleted,
 
 };
 

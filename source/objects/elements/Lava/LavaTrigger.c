@@ -36,6 +36,8 @@
 #include <CustomScreenEffectManager.h>
 #include "LavaTrigger.h"
 #include <PlatformerLevelState.h>
+#include <EventManager.h>
+#include <GameEvents.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -128,6 +130,9 @@ void LavaTrigger_triggerEventEnd(LavaTrigger this)
 	// release player
 	PlatformerLevelState platformerState = (PlatformerLevelState)Game_getCurrentState(Game_getInstance());
 	PlatformerLevelState_setModeToPlaying(platformerState);
+
+	// tell anyone interested about
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventShakeCompleted);
 
 	// remove me from stage so I don't waste resources
 	Container_deleteMyself(__SAFE_CAST(Container, this));
