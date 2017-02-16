@@ -419,9 +419,9 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 			// __spt1
 			0,
 			// __spt2
-			40,
+			0,
 			// __spt3
-			40,
+			80,
 		},
 
 		// obj segments z coordinates
