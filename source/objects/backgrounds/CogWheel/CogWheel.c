@@ -31,6 +31,9 @@
 #include <PhysicalWorld.h>
 #include "CogWheel.h"
 #include <PlatformerLevelState.h>
+#include <EventManager.h>
+#include <GameEvents.h>
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,6 +48,9 @@ __CLASS_DEFINITION(CogWheel, StaticImage);
 //---------------------------------------------------------------------------------------------------------
 
 static void CogWheel_rotate(CogWheel this);
+static void CogWheel_stop(CogWheel this);
+
+static void CogWheel_onShakeCompleted(CogWheel this, Object eventFirer __attribute__ ((unused)));
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -83,6 +89,9 @@ void CogWheel_ready(CogWheel this, u32 recursive)
 
 	// start moving
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
+
+	// listen for the shake end event
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
 }
 
 // state's handle message
@@ -93,6 +102,11 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 		case kCogWheelMove:
 
 			CogWheel_rotate(this);
+			break;
+
+		case kCogWheelStop:
+
+			CogWheel_stop(this);
 			break;
 	}
 
@@ -108,3 +122,23 @@ static void CogWheel_rotate(CogWheel this)
 	// send delayed message to self to trigger next movement
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
+
+// stop cogwheel
+static void CogWheel_stop(CogWheel this)
+{
+	// stop listening for the shake end event
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
+
+	// discard pending delayed messages
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
+}
+
+static void CogWheel_onShakeCompleted(CogWheel this, Object eventFirer __attribute__ ((unused)))
+{
+	__VIRTUAL_CALL(Sprite, setMode, __SAFE_CAST(Sprite, VirtualList_front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
+
+	// stop moving
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelStop, NULL);
+}
+
+
