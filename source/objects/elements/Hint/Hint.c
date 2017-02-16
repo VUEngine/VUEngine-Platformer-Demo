@@ -58,6 +58,7 @@ void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameE
 	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
 
 	this->type = kEnterHint;
+	this->languageAnimName = NULL;
 }
 
 // class's destructor
@@ -79,7 +80,7 @@ bool Hint_handleMessage(Hint this, void* telegram)
 	{
 		case kHintPlayAnimation:
 
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), Telegram_getExtraInfo(telegram));
+			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), this->languageAnimName);
 			return true;
 			break;
 	}
@@ -124,7 +125,7 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Hint::onHintOpened: null this");
 
-	static char* LanguageAnimName = "";
+	this->languageAnimName = "";
 
 	switch(this->type)
 	{
@@ -134,19 +135,19 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 			{
 				default:
 				case 0:
-					LanguageAnimName = "EnterEnglish";
+					this->languageAnimName = "EnterEnglish";
 					break;
 
 				case 1:
-					LanguageAnimName = "EnterDeutsch";
+					this->languageAnimName = "EnterDeutsch";
 					break;
 
 				case 2:
-					LanguageAnimName = "EnterEspanol";
+					this->languageAnimName = "EnterEspanol";
 					break;
 
 				case 3:
-					LanguageAnimName = "EnterFrancais";
+					this->languageAnimName = "EnterFrancais";
 					break;
 			}
 			break;
@@ -156,27 +157,27 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 			{
 				default:
 				case 0:
-					LanguageAnimName = "PickUpEnglish";
+					this->languageAnimName = "PickUpEnglish";
 					break;
 
 				case 1:
-					LanguageAnimName = "PickUpDeutsch";
+					this->languageAnimName = "PickUpDeutsch";
 					break;
 
 				case 2:
-					LanguageAnimName = "PickUpEspanol";
+					this->languageAnimName = "PickUpEspanol";
 					break;
 
 				case 3:
-					LanguageAnimName = "PickUpFrancais";
+					this->languageAnimName = "PickUpFrancais";
 					break;
 			}
 			break;
 
 		case kKeyHint:
-			LanguageAnimName = "Key";
+			this->languageAnimName = "Key";
 			break;
 	}
 
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, LanguageAnimName);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, NULL);
 }

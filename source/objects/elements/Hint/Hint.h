@@ -62,7 +62,8 @@ __CLASS(Hint);
 		AnimatedInGameEntity_ATTRIBUTES																	\
 		/* the current hint type to show */																\
 		u8 type;																						\
-
+		/* name of the animation to play */																\
+		char* languageAnimName;
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
