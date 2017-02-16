@@ -115,6 +115,8 @@ void Door_ready(Door this, u32 recursive __attribute__ ((unused)))
 
 void Door_resume(Door this)
 {
+	AnimatedInGameEntity_resume(__SAFE_CAST(AnimatedInGameEntity, this));
+
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckOverlapping);
 	MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
 }
