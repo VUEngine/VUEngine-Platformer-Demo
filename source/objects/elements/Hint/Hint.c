@@ -111,6 +111,8 @@ void Hint_close(Hint this)
 {
 	ASSERT(this, "Hint::close: null this");
 
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHintPlayAnimation);
+
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Close");
 }
 
