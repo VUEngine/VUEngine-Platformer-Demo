@@ -592,7 +592,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// minimum free ms in the current game frame to allow streaming to quick in
-		5,
+		4,
 		// load padding
 		80,
 		// unload padding
@@ -609,7 +609,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		2,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		5,
+		6,
 
 		// maximum number of rows to compute on each call to the affine functions
 		4,
