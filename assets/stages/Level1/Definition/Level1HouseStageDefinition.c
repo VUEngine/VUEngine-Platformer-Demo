@@ -59,7 +59,7 @@ extern u16 KRISSE_BGM[][2];
 
 
 //---------------------------------------------------------------------------------------------------------
-//											ENTITY LISTS
+// 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
@@ -74,7 +74,7 @@ PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 	{&CLOUDS_IM, {FTOFIX19_13(194), FTOFIX19_13(149), FTOFIX19_13(LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&LEVEL_1_HOUSE_LIGHT_IM, {FTOFIX19_13(196), FTOFIX19_13(140), FTOFIX19_13(LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
 	{&COIN_AG, {FTOFIX19_13(204), FTOFIX19_13(146), FTOFIX19_13(LAYER_0_ITEMS)}, 26, NULL, NULL, NULL, false}, // Coin
-	{&FIRE_SMALL_AG, {FTOFIX19_13(240), FTOFIX19_13(154), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Fire
+	{&FIRE_SMALL_AG, {FTOFIX19_13(240), FTOFIX19_13(155), FTOFIX19_13(12)}, 0, NULL, NULL, NULL, false}, // Fire
 	{&COLLISION_TOP_CL, {FTOFIX19_13(240), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
 	{&MOUND_BG_BACK_IM, {FTOFIX19_13(255), FTOFIX19_13(80), FTOFIX19_13(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
 	{&COLLISION_CL, {FTOFIX19_13(264), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
@@ -91,7 +91,7 @@ PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 
 
 //---------------------------------------------------------------------------------------------------------
-//											PRELOAD LISTS
+// 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
 FontROMDef* const LEVEL1_HOUSE_STAGE_ST_FONTS[] =
@@ -230,13 +230,13 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			FTOFIX19_13(LAYER_0_PARTICLES),
+			FTOFIX19_13(0),
 			// __spt1
-			FTOFIX19_13(LAYER_0_PARTICLES),
+			FTOFIX19_13(0),
 			// __spt2
-			FTOFIX19_13(LAYER_0_PARTICLES),
+			FTOFIX19_13(0),
 			// __spt3
-			FTOFIX19_13(LAYER_0_PARTICLES),
+			FTOFIX19_13(0),
 		},
 
 		// optical configuration values
@@ -297,7 +297,7 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 
 
 //---------------------------------------------------------------------------------------------------------
-//												ENTRY POINTS
+// 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
 StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =

@@ -37,6 +37,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP;
+extern StageEntryPointROMDef LEVEL_1_COIN_ROOM_EXIT_EP;
+extern StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern u16 KRISSE_BGM[][2];
 
@@ -112,17 +114,17 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_STAGE_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 
-	{&MANAGED_ENTITY,				{FTOFIX19_13(192),	FTOFIX19_13(112),	FTOFIX19_13(LAYER_0 - 1.1f)}, 	0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_ENTITIES, NULL, false},
+	{&MANAGED_ENTITY,				{FTOFIX19_13(192),	FTOFIX19_13(112),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 	0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_ENTITIES, NULL, false},
 	{&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(111),	FTOFIX19_13(LAYER_0)}, 	0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_COLLISIONS, NULL, false},
 
 	{&HERO_AC,						{FTOFIX19_13(32),	FTOFIX19_13(159),	FTOFIX19_13(LAYER_0)}, 	0, HERO_NAME, NULL, NULL, false},
 
-	{&DOOR_AG,						{FTOFIX19_13(176),	FTOFIX19_13(47),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "UpperEntryDoor", NULL, NULL, false},
+	{&DOOR_AG,						{FTOFIX19_13(176),	FTOFIX19_13(47),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntEntr1", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, false},
 
 	{&TORCH_LIGHT_AG,				{FTOFIX19_13(200),	FTOFIX19_13(43),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
 	{&TORCH_AG,						{FTOFIX19_13(200),	FTOFIX19_13(44),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
 
-	{&DOOR_AG,						{FTOFIX19_13(32),	FTOFIX19_13(159),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "LowerEntryDoor", NULL, NULL, false},
+	{&DOOR_AG,						{FTOFIX19_13(32),	FTOFIX19_13(159),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntEntr2", NULL, (void*)&LEVEL_1_COIN_ROOM_EXIT_EP, false},
 
 	{&TORCH_LIGHT_AG,				{FTOFIX19_13(56),	FTOFIX19_13(155),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
 	{&TORCH_AG,						{FTOFIX19_13(56),	FTOFIX19_13(156),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
@@ -137,7 +139,7 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_STAGE_ST_CHILDREN[] =
 
 	{&TORCH_LIGHT_AG,				{FTOFIX19_13(328),	FTOFIX19_13(43),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
 	{&TORCH_AG,						{FTOFIX19_13(328),	FTOFIX19_13(44),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
-	{&DOOR_AG,						{FTOFIX19_13(352),	FTOFIX19_13(47),	FTOFIX19_13(LAYER_0_DOORS)}, 0, NULL, NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false},
+	{&DOOR_AG,						{FTOFIX19_13(352),	FTOFIX19_13(47),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntExit", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -364,16 +366,20 @@ StageROMDef LEVEL_1_INTERSECTION_STAGE_ST =
 //												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_INTERSECTION_MAIN_EP =
+StageEntryPointROMDef LEVEL_1_INTERSECTION_UPPER_EP =
 {
 	// the stage to load
 	(StageDefinition*)&LEVEL_1_INTERSECTION_STAGE_ST,
 
 	// name of the entity to start at
-	"UpperEntryDoor",
+	"IntEntr1",
 
 	// offset from entry point (x, y, z)
-	{0, 0, FTOFIX19_13(-SORT_INCREMENT)},
+	{
+		FTOFIX19_13(16),
+		FTOFIX19_13(0),
+		FTOFIX19_13(-SORT_INCREMENT),
+	},
 };
 
 StageEntryPointROMDef LEVEL_1_INTERSECTION_LOWER_EP =
@@ -382,8 +388,28 @@ StageEntryPointROMDef LEVEL_1_INTERSECTION_LOWER_EP =
 	(StageDefinition*)&LEVEL_1_INTERSECTION_STAGE_ST,
 
 	// name of the entity to start at
-	"LowerEntryDoor",
+	"IntEntr2",
 
 	// offset from entry point (x, y, z)
-	{0, 0, FTOFIX19_13(-SORT_INCREMENT)},
+	{
+		FTOFIX19_13(16),
+		FTOFIX19_13(0),
+		FTOFIX19_13(-SORT_INCREMENT),
+	},
+};
+
+StageEntryPointROMDef LEVEL_1_INTERSECTION_EXIT_EP =
+{
+	// the stage to load
+	(StageDefinition*)&LEVEL_1_INTERSECTION_STAGE_ST,
+
+	// name of the entity to start at
+	"IntExit",
+
+	// offset from entry point (x, y, z)
+	{
+		FTOFIX19_13(-16),
+		FTOFIX19_13(0),
+		FTOFIX19_13(-SORT_INCREMENT),
+	},
 };

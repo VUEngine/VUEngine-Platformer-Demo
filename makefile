@@ -6,7 +6,7 @@ TYPE = debug
 #TYPE = release-tools
 #TYPE = preprocessor
 
-# Were I live
+# Where I live
 GAME_HOME = $(shell pwd)
 
 # output dir

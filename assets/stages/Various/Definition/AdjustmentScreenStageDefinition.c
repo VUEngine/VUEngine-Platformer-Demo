@@ -41,7 +41,7 @@ extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM;
 
 
 //---------------------------------------------------------------------------------------------------------
-//											ENTITY LISTS
+// 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_ENTITIES[] =
@@ -64,7 +64,7 @@ PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_UI_ENTITIES[] =
 
 
 //---------------------------------------------------------------------------------------------------------
-//											PRELOAD LISTS
+// 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
 FontROMDef* const ADJUSTMENT_SCREEN_STAGE_ST_FONTS[] =

@@ -30,10 +30,10 @@
   <property name="stage.rendering.objectSpritesContainersSize.1" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
   <property name="stage.rendering.objectSpritesContainersSize.2" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
   <property name="stage.rendering.objectSpritesContainersSize.3" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
-  <property name="stage.rendering.objectSpritesContainersZPosition.0" value="LAYER_0_PARTICLES"/>
-  <property name="stage.rendering.objectSpritesContainersZPosition.1" value="LAYER_0_PARTICLES"/>
-  <property name="stage.rendering.objectSpritesContainersZPosition.2" value="LAYER_0_PARTICLES"/>
-  <property name="stage.rendering.objectSpritesContainersZPosition.3" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.0" value="0"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.1" value="0"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.2" value="0"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.3" value="0"/>
   <property name="stage.rendering.optical.baseDistance" value="__BASE_FACTOR"/>
   <property name="stage.rendering.optical.distanceEyeScreen" value="__DISTANCE_EYE_SCREEN"/>
   <property name="stage.rendering.optical.horizontalViewPointCenter" value="__HORIZONTAL_VIEW_POINT_CENTER"/>
@@ -50,7 +50,7 @@
   <property name="stage.rendering.paramTableSegments" value="1"/>
   <property name="stage.rendering.texturesMaximumRowsToWrite" value="12"/>
   <property name="stage.streaming.loadPadding" value="40"/>
-  <property name="stage.streaming.minimumSpareMilliSecondsToAllowStreaming" value="10"/>
+  <property name="stage.streaming.minimumSpareMilliSecondsToAllowStreaming" value="5"/>
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
@@ -136,9 +136,9 @@
     <property name="name" value="HERO_NAME"/>
    </properties>
   </object>
-  <object id="80" name="Fire" type="Entity" gid="30" x="236" y="158" width="8" height="8">
+  <object id="80" name="Fire" type="Entity" gid="30" x="236" y="159" width="8" height="8">
    <properties>
-    <property name="position.z" value="LAYER_0_FOREGROUND"/>
+    <property name="position.z" value="12"/>
    </properties>
   </object>
  </objectgroup>

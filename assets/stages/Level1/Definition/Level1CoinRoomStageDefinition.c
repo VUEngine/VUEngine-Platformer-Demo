@@ -38,6 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageEntryPointROMDef LEVEL_1_INTERSECTION_LOWER_EP;
+extern StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern u16 KRISSE_BGM[][2];
 
@@ -103,8 +104,8 @@ PositionedEntityROMDef LEVEL_1_COIN_ROOM_STAGE_ST_CHILDREN[] =
 
 	{&HERO_AC,						{FTOFIX19_13(44),	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false},
 
-	{&DOOR_AG,						{FTOFIX19_13(42),	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, 0, "EntryDoor", NULL, NULL, false},
-	{&DOOR_AG,						{FTOFIX19_13(347), 	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, 0, NULL, NULL, (void*)&LEVEL_1_INTERSECTION_LOWER_EP, false},
+	{&DOOR_AG,						{FTOFIX19_13(42),	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, 0, "CoinEntr", NULL, (void*)&LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP, false},
+	{&DOOR_AG,						{FTOFIX19_13(347), 	FTOFIX19_13(144), 	FTOFIX19_13(LAYER_0_DOORS)}, 0, "CoinExit", NULL, (void*)&LEVEL_1_INTERSECTION_LOWER_EP, false},
 
 	{&TORCH_LIGHT_AG,				{FTOFIX19_13(64),	FTOFIX19_13(128), 	FTOFIX19_13(0)}, 			0, NULL, NULL, NULL, false},
 	{&TORCH_AG,						{FTOFIX19_13(64),	FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)}, 		0, NULL, NULL, NULL, false},
@@ -364,8 +365,26 @@ StageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP =
 	(StageDefinition*)&LEVEL_1_COIN_ROOM_STAGE_ST,
 
 	// name of the entity to start at
-	"EntryDoor",
+	"CoinEntr",
 
 	// offset from entry point (x, y, z)
-	{0, 0, FTOFIX19_13(-SORT_INCREMENT)},
+	{
+		FTOFIX19_13(16),
+		FTOFIX19_13(0),
+		FTOFIX19_13(-SORT_INCREMENT)},
+};
+
+StageEntryPointROMDef LEVEL_1_COIN_ROOM_EXIT_EP =
+{
+	// the stage to load
+	(StageDefinition*)&LEVEL_1_COIN_ROOM_STAGE_ST,
+
+	// name of the entity to start at
+	"CoinExit",
+
+	// offset from entry point (x, y, z)
+	{
+		FTOFIX19_13(-16),
+		FTOFIX19_13(0),
+		FTOFIX19_13(-SORT_INCREMENT)},
 };
