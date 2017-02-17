@@ -96,6 +96,8 @@ extern EntityDefinition STAR_AG;
 extern EntityDefinition WATERFALL_STREAM_AG;
 extern EntityDefinition WATERFALL_TOP_AG;
 
+extern CharSetDefinition WATERFALL_STREAM_CH;
+extern CharSetDefinition WATERFALL_TOP_CH;
 extern CharSetDefinition BUSH_CH;
 extern CharSetDefinition CANNON_BALL_CH;
 extern CharSetDefinition CANNON_CH;
@@ -119,6 +121,8 @@ extern CharSetDefinition MOUND_BG_MIDDLE_CH;
 extern CharSetDefinition SAW_BLADE_CH;
 extern CharSetDefinition SNAIL_CH;
 
+extern TextureDefinition WATERFALL_STREAM_TX;
+extern TextureDefinition WATERFALL_TOP_TX;
 extern TextureDefinition CANNON_BALL_TX;
 extern TextureDefinition CANNON_TX;
 extern TextureDefinition COIN_BACK_SILHOUETTE_TX;
@@ -500,6 +504,7 @@ CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 	&LEVEL_1_MAIN_1_MAIN_CH,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
 	&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+	&WATERFALL_TOP_CH,
 	&DOOR_CH,
 	&DOOR_BACK_CH,
 	&COIN_CH,
@@ -556,6 +561,8 @@ StageTextureEntryROMDef LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 	{&CANNON_TX, false},
 	{&CANNON_BALL_TX, false},
 	{&KEY_TX, false},
+	{&WATERFALL_STREAM_TX, false},
+	{&WATERFALL_TOP_TX, false},
 
 	{NULL, false}
 };
