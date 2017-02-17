@@ -141,7 +141,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 
 	// runtime working variables
 	// negative value to achieve an initial delay
-	static int radius = -160;
+	static int radius = -32;
 
 	// increase radius by 1 in each cycle
 	radius++;
