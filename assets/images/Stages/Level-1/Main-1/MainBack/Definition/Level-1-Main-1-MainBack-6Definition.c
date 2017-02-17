@@ -88,7 +88,7 @@ MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
 			false,
 
 			// displacement
-			{ITOFIX19_13(-60), ITOFIX19_13(-72), FTOFIX19_13(2), 0},
+			{ITOFIX19_13(-59), ITOFIX19_13(-72), FTOFIX19_13(2), 0},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
