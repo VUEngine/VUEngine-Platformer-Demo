@@ -31,6 +31,8 @@
 #include <Prototypes.h>
 #include <PlatformerLevelState.h>
 #include <CollisionManager.h>
+#include <MessageDispatcher.h>
+
 
 #include "CannonBall.h"
 
@@ -73,6 +75,8 @@ void CannonBall_destructor(CannonBall this)
 {
 	ASSERT(this, "CannonBall::destructor: null this");
 
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement);
+
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
@@ -87,19 +91,6 @@ void CannonBall_ready(CannonBall this, u32 recursive)
 	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
 
 	CannonBall_startMovement(this);
-}
-
-void CannonBall_update(CannonBall this, u32 elapsedTime)
-{
-	ASSERT(this, "CannonBall::udpate: null this");
-
-	Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
-
-	if(Body_isMoving(this->body) && this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
-	{
-		// set state to idle
-		CannonBall_stopMovement(this);
-	}
 }
 
 // register a shape with the collision detection system
@@ -136,6 +127,8 @@ void CannonBall_startMovement(CannonBall this)
 
 	// show me
 	Entity_show(__SAFE_CAST(Entity, this));
+
+	MessageDispatcher_dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
 }
 
 // move back to cannon
@@ -152,6 +145,19 @@ void CannonBall_stopMovement(CannonBall this)
 	Entity_hide(__SAFE_CAST(Entity, this));
 }
 
+static void CannonBall_checkIfDistanceTraveled(CannonBall this)
+{
+	if(this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
+	{
+		// set state to idle
+		CannonBall_stopMovement(this);
+	}
+	else
+	{
+		MessageDispatcher_dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
+	}
+}
+
 // state's handle message
 bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
 {
@@ -162,6 +168,11 @@ bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
 		case kCannonShoot:
 
 			CannonBall_startMovement(this);
+			break;
+
+		case kCannonBallCheckDisplacement:
+
+			CannonBall_checkIfDistanceTraveled(this);
 			break;
 	}
 

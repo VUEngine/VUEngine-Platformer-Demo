@@ -36,7 +36,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define CANNON_BALL_MINIMUM_Z_VALUE -64
+#define CANNON_BALL_MINIMUM_Z_VALUE				-64
+#define CANNON_BALL_DISPLACEMENT_CHECK_DELAY	500
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,7 +51,6 @@
 		Actor_SET_VTABLE(ClassName)																		\
 		__VIRTUAL_SET(ClassName, CannonBall, getAxisFreeForMovement);									\
 		__VIRTUAL_SET(ClassName, CannonBall, ready);													\
-		__VIRTUAL_SET(ClassName, CannonBall, update);													\
 		__VIRTUAL_SET(ClassName, CannonBall, handleMessage);											\
 
 __CLASS(CannonBall);
@@ -71,7 +71,6 @@ __CLASS_NEW_DECLARE(CannonBall, ActorDefinition* definition, s16 id, s16 interna
 void CannonBall_constructor(CannonBall this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
 void CannonBall_destructor(CannonBall this);
 void CannonBall_ready(CannonBall this, u32 recursive);
-void CannonBall_update(CannonBall this, u32 elapsedTime);
 void CannonBall_registerShape(CannonBall this);
 void CannonBall_unregisterShape(CannonBall this);
 int CannonBall_getAxisFreeForMovement(CannonBall this);
