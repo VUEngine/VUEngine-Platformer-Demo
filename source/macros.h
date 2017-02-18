@@ -82,8 +82,6 @@ enum PlatformerTypes
 	kCannonBall,
 	kCannonBallStartMoving,
 	kMovingPlatform,
-	kMovingEntityStartMoving,
-	kMovingEntityCheckDirection,
 };
 
 

@@ -145,7 +145,8 @@ enum PlatformerLevelStateMessageTypes
 	kHeroCheckOverlapping,
 	kHeroStartOverlapping,
 	kHeroEndOverlapping,
-	kMovingEntityStartMovement,
+	kMovingEntityStartMoving,
+	kMovingEntityCheckDirection,
 	kHintPlayAnimation,
 
 	// don't remove me
