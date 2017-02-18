@@ -172,6 +172,7 @@ void Hero_destructor(Hero this)
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHeroDied);
 
 	// discard pending delayed messages
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
 	// free the instance pointers
@@ -422,6 +423,8 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	if(__YAXIS & axis)
 	{
 		Hero_hideDust(this);
+		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
+		MessageDispatcher_dispatchMessage(HERO_CHECK_Y_VELOCITY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
 	}
 
 	// start movement
@@ -1159,6 +1162,32 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
 	{
+		case kHeroCheckVelocity:
+			{
+				if(Body_isActive(this->body))
+				{
+					Velocity velocity = Body_getVelocity(this->body);
+
+					if(velocity.y)
+					{
+						if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
+						{
+							velocity.x = 0;
+							velocity.y = HERO_MAX_VELOCITY_Y;
+							velocity.z = 0;
+
+							Body_moveUniformly(this->body, velocity);
+						}
+						else
+						{
+							MessageDispatcher_dispatchMessage(HERO_CHECK_Y_VELOCITY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
+						}
+					}
+				}
+			}
+
+			break;
+
 		case kHeroStartOverlapping:
 		{
 			Door door = __SAFE_CAST(Door, Telegram_getSender(telegram));
@@ -1296,24 +1325,6 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 
 	Body_setAxisSubjectToGravity(this->body, __YAXIS);
 
-}
-
-void Hero_update(Hero this, u32 elapsedTime)
-{
-	ASSERT(this, "Hero::update: null this");
-
-	Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
-
-	Velocity velocity = Body_getVelocity(this->body);
-
-	if(Body_isActive(this->body) && HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
-	{
-		velocity.x = 0;
-		velocity.y = HERO_MAX_VELOCITY_Y;
-		velocity.z = 0;
-
-		Body_moveUniformly(this->body, velocity);
-	}
 }
 
 void Hero_suspend(Hero this)

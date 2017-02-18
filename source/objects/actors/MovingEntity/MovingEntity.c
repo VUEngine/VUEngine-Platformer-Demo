@@ -95,6 +95,7 @@ void MovingEntity_destructor(MovingEntity this)
 	ASSERT(this, "MovingEntity::destructor: null this");
 
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMovingEntityStartMoving);
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMovingEntityCheckDirection);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -138,25 +139,20 @@ void MovingEntity_ready(MovingEntity this, u32 recursive)
 	MovingEntity_startMovement(this);
 }
 
-// update method
-void MovingEntity_update(MovingEntity this, u32 elapsedTime)
-{
-	ASSERT(this, "MovingEntity::update: null this");
-
-	Actor_update(__SAFE_CAST(Actor, this), elapsedTime);
-
-	if(Body_isAwake(this->body))
-	{
-		MovingEntity_checkDisplacement(this);
-	}
-}
-
 bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 {
 	ASSERT(this, "MovingEntity::handleMessage: null this");
 
 	switch(Telegram_getMessage(telegram))
 	{
+		case kMovingEntityCheckDirection:
+
+			if(Body_isAwake(this->body))
+			{
+				MovingEntity_checkDisplacement(this);
+			}
+			break;
+
 		case kMovingEntityStartMoving:
 			{
 				VBVec3D position = this->transform.globalPosition;
@@ -239,6 +235,10 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 
 					MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
 				}
+				else
+				{
+					MessageDispatcher_dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityCheckDirection, NULL);
+				}
 			}
 			break;
 
@@ -252,6 +252,10 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 					Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
 					MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
+				}
+				else
+				{
+					MessageDispatcher_dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityCheckDirection, NULL);
 				}
 			}
 			break;
@@ -317,13 +321,6 @@ void MovingEntity_startMovement(MovingEntity this)
 			}
 			break;
 	}
-}
 
-// stop moving
-void MovingEntity_stopMovement(MovingEntity this)
-{
-	// stop moving
-	Actor_stopMovement(__SAFE_CAST(Actor, this), false);
-
-	MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMovement, NULL);
+	MessageDispatcher_dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityCheckDirection, NULL);
 }

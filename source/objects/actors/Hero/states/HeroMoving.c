@@ -129,7 +129,6 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 
 			return Hero_processCollision(__SAFE_CAST(Hero, owner), telegram);
 			break;
-
 	}
 
 	return false;

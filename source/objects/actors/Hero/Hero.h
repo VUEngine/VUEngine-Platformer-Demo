@@ -67,6 +67,7 @@ enum HeroPowerUps
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{ITOFIX19_13(0), ITOFIX19_13(-24), 0}
 
+#define HERO_CHECK_Y_VELOCITY				10
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
@@ -78,7 +79,6 @@ enum HeroPowerUps
 #define Hero_SET_VTABLE(ClassName)																		\
 		Actor_SET_VTABLE(ClassName)																		\
 		__VIRTUAL_SET(ClassName, Hero, ready);															\
-		__VIRTUAL_SET(ClassName, Hero, update);															\
 		__VIRTUAL_SET(ClassName, Hero, takeHitFrom);													\
 		__VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);										\
 		__VIRTUAL_SET(ClassName, Hero, handleMessage);													\
@@ -169,7 +169,6 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
 void Hero_updateSurroundingFriction(Hero this);
 u8 Hero_getAxisAllowedForBouncing(Hero this);
 void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition);
-void Hero_update(Hero this, u32 elapsedTime);
 bool Hero_isAboveEntity(Hero this, Entity entity);
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
 u32 Hero_getAxisForFlipping(Hero this);

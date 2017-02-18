@@ -35,7 +35,8 @@
 //												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define MOVING_ENTITY_WAIT_DELAY 1000
+#define MOVING_ENTITY_WAIT_DELAY				1000
+#define MOVING_ENTITY_DIRECTION_CHECK_DELAY		10
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,7 +51,6 @@
 		__VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);										\
 		__VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);									\
 		__VIRTUAL_SET(ClassName, MovingEntity, ready);													\
-		__VIRTUAL_SET(ClassName, MovingEntity, update);													\
 		__VIRTUAL_SET(ClassName, MovingEntity, handleMessage);											\
 
 __CLASS(MovingEntity);
@@ -100,12 +100,10 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingE
 void MovingEntity_destructor(MovingEntity this);
 void MovingEntity_setDefinition(MovingEntity this, MovingEntityDefinition* movingEntityDefinition);
 void MovingEntity_ready(MovingEntity this, u32 recursive);
-void MovingEntity_update(MovingEntity this, u32 elapsedTime);
 bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram);
 void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position);
 int MovingEntity_getAxisFreeForMovement(MovingEntity this);
 void MovingEntity_startMovement(MovingEntity this);
-void MovingEntity_stopMovement(MovingEntity this);
 void MovingEntity_checkDisplacement(MovingEntity this);
 
 
