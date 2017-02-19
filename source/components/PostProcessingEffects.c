@@ -61,7 +61,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	// runtime working variable
 	static int radius = 12;
 
-	if(!spatialObject || !*(u32*)spatialObject)
+	if(!__IS_OBJECT_ALIVE(spatialObject))
 	{
 		return;
 	}
