@@ -94,7 +94,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE =
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		__TYPE((TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_1_TX),
+		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_1_TX,
 
 		// transparent
 		false,

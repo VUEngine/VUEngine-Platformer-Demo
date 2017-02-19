@@ -76,10 +76,10 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2B_IM_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE((TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_2B_TX),
+		__TYPE(BgmapSprite),
 
 		// texture definition
-		NULL,
+		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_2B_TX,
 
 		// transparent
 		false,
