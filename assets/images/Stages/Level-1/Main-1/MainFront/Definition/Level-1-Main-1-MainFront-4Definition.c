@@ -66,45 +66,26 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_TX =
 	1,
 };
 
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_TEXTURES[] =
-{
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_4_TX,
-	NULL
-};
-
-MBgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE =
+BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE =
 {
 	{
-		{
-			// sprite's type
-			__TYPE(MBgmapSprite),
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-			// texture definition
-			NULL,
+		// texture definition
+		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_4_TX,
 
-			// transparent
-			false,
+		// transparent
+		false,
 
-			// displacement
-			{ITOFIX19_13(-36), ITOFIX19_13(-32), FTOFIX19_13(-1), 0},
-		},
-
-		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-		__WORLD_BGMAP,
-
-		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
+		// displacement
+		{ITOFIX19_13(-36), ITOFIX19_13(-32), FTOFIX19_13(-1), 0},
 	},
 
-	(TextureDefinition**)LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_TEXTURES,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
 
-	// SCX/SCY
-	__WORLD_1x1,
-
-	// x loop
-	false,
-
-	// y loop
-	false,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
 };
