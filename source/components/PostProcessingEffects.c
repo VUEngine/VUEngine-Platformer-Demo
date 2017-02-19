@@ -59,7 +59,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	u32 color;
 
 	// runtime working variable
-	static int radius = 12;
+	static int radius = -62;
 
 	if(!__IS_OBJECT_ALIVE(spatialObject))
 	{
@@ -74,15 +74,15 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	radius++;
 
 	// gradually decrease color with larger radius
-	if(radius < 96)
+	if(radius < 50)
 	{
 		color = __COLOR_BRIGHT_RED;
 	}
-	else if(radius < 140)
+	else if(radius < 100)
 	{
 		color = __COLOR_MEDIUM_RED;
 	}
-	else if(radius < 192)
+	else if(radius < 150)
 	{
 		color = __COLOR_DARK_RED;
 	}
