@@ -37,7 +37,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP;
-extern StageEntryPointROMDef LEVEL_1_COIN_ROOM_EXIT_EP;
+extern StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP;
 extern StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern u16 KRISSE_BGM[][2];
@@ -124,7 +124,7 @@ PositionedEntityROMDef LEVEL_1_INTERSECTION_STAGE_ST_CHILDREN[] =
 	{&TORCH_LIGHT_AG,				{FTOFIX19_13(200),	FTOFIX19_13(43),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
 	{&TORCH_AG,						{FTOFIX19_13(200),	FTOFIX19_13(44),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
 
-	{&DOOR_AG,						{FTOFIX19_13(32),	FTOFIX19_13(159),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntEntr2", NULL, (void*)&LEVEL_1_COIN_ROOM_EXIT_EP, false},
+	{&DOOR_AG,						{FTOFIX19_13(32),	FTOFIX19_13(159),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntEntr2", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_EXIT_EP, false},
 
 	{&TORCH_LIGHT_AG,				{FTOFIX19_13(56),	FTOFIX19_13(155),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
 	{&TORCH_AG,						{FTOFIX19_13(56),	FTOFIX19_13(156),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},

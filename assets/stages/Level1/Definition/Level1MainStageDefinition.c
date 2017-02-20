@@ -38,7 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP;
-extern StageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP;
+extern StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP;
 extern StageEntryPointROMDef LEVEL_1_INTERSECTION_UPPER_EP;
 extern StageEntryPointROMDef LEVEL_1_INTERSECTION_EXIT_EP;
 extern StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP;
@@ -391,7 +391,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COIN_AG,						{FTOFIX19_13(780),	FTOFIX19_13(196), 	FTOFIX19_13(LAYER_0_ITEMS)},			8, NULL, NULL, NULL, false},
 
 	{&BUSH_AG,						{FTOFIX19_13(600),	FTOFIX19_13(412), 	FTOFIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
-	{&DOOR_AG,						{FTOFIX19_13(798),	FTOFIX19_13(401), 	FTOFIX19_13(LAYER_0_DOORS)},			0, "CoinEntr", NULL, (void*)&LEVEL_1_COIN_ROOM_MAIN_EP, false},
+	{&DOOR_AG,						{FTOFIX19_13(798),	FTOFIX19_13(401), 	FTOFIX19_13(LAYER_0_DOORS)},			0, "CoinEntr", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_MAIN_EP, false},
 
 	// part 3
 	{&LEVEL_1_MAIN_1_MAIN_3_IM, 	{FTOFIX19_13(1228), FTOFIX19_13(240),	FTOFIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},

@@ -359,7 +359,7 @@ StageROMDef LEVEL_1_COIN_ROOM_STAGE_ST =
 //												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP =
+StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
 {
 	// the stage to load
 	(StageDefinition*)&LEVEL_1_COIN_ROOM_STAGE_ST,
@@ -374,7 +374,7 @@ StageEntryPointROMDef LEVEL_1_COIN_ROOM_MAIN_EP =
 		FTOFIX19_13(-SORT_INCREMENT)},
 };
 
-StageEntryPointROMDef LEVEL_1_COIN_ROOM_EXIT_EP =
+StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP =
 {
 	// the stage to load
 	(StageDefinition*)&LEVEL_1_COIN_ROOM_STAGE_ST,
