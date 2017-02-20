@@ -98,35 +98,20 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 				// wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual
 				Game_wait(Game_getInstance(), 1500);
 
-				// start fade in effect
-				Screen_startEffect(Screen_getInstance(),
-					kFadeTo, // effect type
-					0, // initial delay (in ms)
-					NULL, // target brightness
-					__FADE_DELAY, // delay between fading steps (in ms)
-					NULL, // callback function
-					NULL // callback scope
-				);
-
 				// show this screen for at least 2 seconds, as defined by Nintendo in the official development manual (Appendix 1)
 				MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
+
+				// call base class' method
+				SplashScreenState_processMessage(__SAFE_CAST(SplashScreenState, this), owner, telegram);
+
+				// make sure that keypad is not yet enabled
+				Game_disableKeypad(Game_getInstance());
 			}
 			break;
 
 		case kScreenAllowUserInput:
 			{
 				Game_enableKeypad(Game_getInstance());
-			}
-			break;
-
-		case kKeyPressed:
-			{
-				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
-
-				if(pressedKey & ~K_PWR)
-				{
-					__VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
-				}
 			}
 			break;
 	}

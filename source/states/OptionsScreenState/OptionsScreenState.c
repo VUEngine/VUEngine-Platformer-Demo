@@ -36,7 +36,7 @@
 #include <AutoPauseSelectScreenState.h>
 #include <LangSelectScreenState.h>
 #include <TitleScreenState.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include "OptionsScreenState.h"
 
 
@@ -56,7 +56,7 @@ static void OptionsScreenState_constructor(OptionsScreenState this);
 static void OptionsScreenState_enter(OptionsScreenState this, void* owner);
 static void OptionsScreenState_print(OptionsScreenState this);
 static void OptionsScreenState_exit(OptionsScreenState this, void* owner);
-static bool OptionsScreenState_processMessage(OptionsScreenState this, void* owner, Telegram telegram);
+static void OptionsScreenState_onUserInput(OptionsScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
 static void OptionsScreenState_onFadeInComplete(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onExitFadeOutComplete(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer);
@@ -124,6 +124,8 @@ static void OptionsScreenState_enter(OptionsScreenState this, void* owner __attr
 // state's exit
 static void OptionsScreenState_exit(OptionsScreenState this, void* owner __attribute__ ((unused)))
 {
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OptionsScreenState_onUserInput, kEventUserInput);
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 }
@@ -192,65 +194,50 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
 	Printing_text(Printing_getInstance(), strBack, strBackXPos + 1, 15, NULL);
 }
 
-// state's handle message
-static bool OptionsScreenState_processMessage(OptionsScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), Telegram telegram)
+static void OptionsScreenState_onUserInput(OptionsScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-	// process message
-	switch(Telegram_getMessage(telegram))
+	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
+
+	if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-		case kKeyPressed:
-		{
-			u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
+		// disable user input
+		Game_disableKeypad(Game_getInstance());
 
-			if((pressedKey & K_A) || (pressedKey & K_STA))
-			{
-				// disable user input
-				Game_disableKeypad(Game_getInstance());
-
-				// fade out screen
-				Brightness brightness = (Brightness){0, 0, 0};
-				Screen_startEffect(Screen_getInstance(),
-					kFadeTo, // effect type
-					0, // initial delay (in ms)
-					&brightness, // target brightness
-					__FADE_DELAY, // delay between fading steps (in ms)
-					(void (*)(Object, Object))OptionsScreenState_onOptionSelectedFadeOutComplete, // callback function
-					__SAFE_CAST(Object, this) // callback scope
-				);
-
-				break;
-			}
-			else if((pressedKey & K_B) || (pressedKey & K_SEL))
-			{
-				// disable user input
-				Game_disableKeypad(Game_getInstance());
-
-				// fade out screen
-				Brightness brightness = (Brightness){0, 0, 0};
-				Screen_startEffect(Screen_getInstance(),
-					kFadeTo, // effect type
-					0, // initial delay (in ms)
-					&brightness, // target brightness
-					__FADE_DELAY, // delay between fading steps (in ms)
-					(void (*)(Object, Object))OptionsScreenState_onExitFadeOutComplete, // callback function
-					__SAFE_CAST(Object, this) // callback scope
-				);
-			}
-			else if((pressedKey & K_LU) || (pressedKey & K_RU))
-			{
-				OptionsSelector_selectPrevious(this->optionsSelector);
-			}
-			else if((pressedKey & K_LD) || (pressedKey & K_RD))
-			{
-				OptionsSelector_selectNext(this->optionsSelector);
-			}
-
-			return true;
-			break;
-		}
+		// fade out screen
+		Brightness brightness = (Brightness){0, 0, 0};
+		Screen_startEffect(Screen_getInstance(),
+			kFadeTo, // effect type
+			0, // initial delay (in ms)
+			&brightness, // target brightness
+			__FADE_DELAY, // delay between fading steps (in ms)
+			(void (*)(Object, Object))OptionsScreenState_onOptionSelectedFadeOutComplete, // callback function
+			__SAFE_CAST(Object, this) // callback scope
+		);
 	}
+	else if((pressedKey & K_B) || (pressedKey & K_SEL))
+	{
+		// disable user input
+		Game_disableKeypad(Game_getInstance());
 
-	return false;
+		// fade out screen
+		Brightness brightness = (Brightness){0, 0, 0};
+		Screen_startEffect(Screen_getInstance(),
+			kFadeTo, // effect type
+			0, // initial delay (in ms)
+			&brightness, // target brightness
+			__FADE_DELAY, // delay between fading steps (in ms)
+			(void (*)(Object, Object))OptionsScreenState_onExitFadeOutComplete, // callback function
+			__SAFE_CAST(Object, this) // callback scope
+		);
+	}
+	else if((pressedKey & K_LU) || (pressedKey & K_RU))
+	{
+		OptionsSelector_selectPrevious(this->optionsSelector);
+	}
+	else if((pressedKey & K_LD) || (pressedKey & K_RD))
+	{
+		OptionsSelector_selectNext(this->optionsSelector);
+	}
 }
 
 // handle event
@@ -259,6 +246,8 @@ static void OptionsScreenState_onFadeInComplete(OptionsScreenState this __attrib
 	ASSERT(this, "OptionsScreenState::onOptionSelectedFadeOutComplete: null this");
 
 	Game_enableKeypad(Game_getInstance());
+
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OptionsScreenState_onUserInput, kEventUserInput);
 }
 
 static void OptionsScreenState_onExitFadeOutComplete(OptionsScreenState this, Object eventFirer __attribute__ ((unused)))

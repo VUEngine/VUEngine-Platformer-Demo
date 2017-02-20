@@ -74,9 +74,7 @@ extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void Hero_onKeyPressed(Hero this, Object eventFirer);
-static void Hero_onKeyReleased(Hero this, Object eventFirer);
-static void Hero_onKeyHold(Hero this, Object eventFirer);
+static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused)));
 void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
 void Hero_updateSprite(Hero this);
@@ -149,9 +147,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, s16 id, s16 i
 
 	Hero_setInstance(this);
 
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, kEventKeyPressed);
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, kEventKeyReleased);
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, kEventKeyHold);
+	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onUserInput, kEventUserInput);
 
 	this->inputDirection = this->direction;
 }
@@ -164,9 +160,7 @@ void Hero_destructor(Hero this)
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
 	// remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyPressed, kEventKeyPressed);
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyReleased, kEventKeyReleased);
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onKeyHold, kEventKeyHold);
+	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onUserInput, kEventUserInput);
 
 	// announce my dead
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHeroDied);
@@ -906,21 +900,24 @@ void Hero_die(Hero this)
 }
 
 // process user input
-static void Hero_onKeyPressed(Hero this, Object eventFirer __attribute__ ((unused)))
+static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused)))
 {
-	__VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this);
-}
+	UserInput userInput = KeypadManager_getUserInput(KeypadManager_getInstance());
 
-// process user input
-static void Hero_onKeyReleased(Hero this, Object eventFirer __attribute__ ((unused)))
-{
-	__VIRTUAL_CALL(HeroState, onKeyReleased, StateMachine_getCurrentState(this->stateMachine), this);
-}
+	if(userInput.pressedKey)
+	{
+		__VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this);
+	}
 
-// process user input
-static void Hero_onKeyHold(Hero this, Object eventFirer __attribute__ ((unused)))
-{
-	__VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this);
+	if(userInput.releasedKey)
+	{
+		__VIRTUAL_CALL(HeroState, onKeyReleased, StateMachine_getCurrentState(this->stateMachine), this);
+	}
+
+	if(userInput.holdKey)
+	{
+		__VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this);
+	}
 }
 
 // does the hero have a key?

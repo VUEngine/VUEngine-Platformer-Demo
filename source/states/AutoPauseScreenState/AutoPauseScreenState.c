@@ -32,7 +32,7 @@
 #include <PhysicalWorld.h>
 #include <I18n.h>
 #include <AutoPauseScreenState.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include <Languages.h>
 #include <Utilities.h>
 
@@ -52,7 +52,7 @@ static void AutoPauseScreenState_destructor(AutoPauseScreenState this);
 static void AutoPauseScreenState_constructor(AutoPauseScreenState this);
 static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner);
 static void AutoPauseScreenState_exit(AutoPauseScreenState this, void* owner);
-static bool AutoPauseScreenState_processMessage(AutoPauseScreenState this, void* owner, Telegram telegram);
+static void AutoPauseScreenState_onUserInput(AutoPauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
 static void AutoPauseScreenState_onFadeOutComplete(AutoPauseScreenState this, Object eventFirer);
 static void AutoPauseScreenState_onFadeInComplete(AutoPauseScreenState this, Object eventFirer);
 
@@ -127,6 +127,8 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __
 // state's exit
 static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)AutoPauseScreenState_onUserInput, kEventUserInput);
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 
@@ -134,38 +136,34 @@ static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((
 	__DELETE(this);
 }
 
-// state's handle message
-static bool AutoPauseScreenState_processMessage(AutoPauseScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
+
+/**
+ * Process user input
+ *
+ * @memberof			AutoPauseScreenState
+ * @private
+ *
+ * @param this			Function scope
+ * @param eventFirer	KeypadManager
+ */
+static void AutoPauseScreenState_onUserInput(AutoPauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-	// process message
-	switch(Telegram_getMessage(telegram))
+	if(K_STA & KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey)
 	{
-		case kKeyPressed:
-			{
-				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
+		// disable user input
+		Game_disableKeypad(Game_getInstance());
 
-				if(K_STA & pressedKey)
-				{
-					// disable user input
-					Game_disableKeypad(Game_getInstance());
-
-					// fade out screen
-					Brightness brightness = (Brightness){0, 0, 0};
-					Screen_startEffect(Screen_getInstance(),
-						kFadeTo, // effect type
-						0, // initial delay (in ms)
-						&brightness, // target brightness
-						__FADE_DELAY, // delay between fading steps (in ms)
-						(void (*)(Object, Object))AutoPauseScreenState_onFadeOutComplete, // callback function
-						__SAFE_CAST(Object, this) // callback scope
-					);
-				}
-			}
-			return true;
-			break;
+		// fade out screen
+		Brightness brightness = (Brightness){0, 0, 0};
+		Screen_startEffect(Screen_getInstance(),
+			kFadeTo, // effect type
+			0, // initial delay (in ms)
+			&brightness, // target brightness
+			__FADE_DELAY, // delay between fading steps (in ms)
+			(void (*)(Object, Object))AutoPauseScreenState_onFadeOutComplete, // callback function
+			__SAFE_CAST(Object, this) // callback scope
+		);
 	}
-
-	return false;
 }
 
 // handle event
@@ -174,6 +172,8 @@ static void AutoPauseScreenState_onFadeInComplete(AutoPauseScreenState this __at
 	ASSERT(this, "AutoPauseScreenState::onFadeOutComplete: null this");
 
 	Game_enableKeypad(Game_getInstance());
+
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)AutoPauseScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event

@@ -44,7 +44,6 @@
 		GameState_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, OptionsScreenState, enter);											\
 		__VIRTUAL_SET(ClassName, OptionsScreenState, exit);												\
-		__VIRTUAL_SET(ClassName, OptionsScreenState, processMessage);									\
 
 __CLASS(OptionsScreenState);
 

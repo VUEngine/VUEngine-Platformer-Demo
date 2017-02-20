@@ -58,6 +58,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
+static void PlatformerLevelState_onUserInput(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
 static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_getPositionedEntitiesToIgnore(PlatformerLevelState this, VirtualList positionedEntitiesToIgnore);
 bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this);
@@ -277,6 +278,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 // state's exit
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 {
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onUserInput, kEventUserInput);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
 
 	// call base
@@ -376,6 +378,41 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_setModeToPlaying(this);
 }
 
+static void PlatformerLevelState_onUserInput(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	if(kPlaying == this->mode)
+	{
+		UserInput userInput = KeypadManager_getUserInput(KeypadManager_getInstance());
+
+		if(userInput.pressedKey)
+		{
+			if(K_SEL & userInput.pressedKey)
+			{
+				// adjustment screen
+				PlatformerLevelState_setModeToPaused(this);
+
+				// set next state of adjustment screen state to null so it can differentiate between
+				// being called the splash screen sequence or from within the game (a bit hacky...)
+				SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
+
+				// pause game and switch to adjustment screen state
+				Game_pause(Game_getInstance(), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
+
+				return;
+			}
+			else if(K_STA & userInput.pressedKey)
+			{
+				// pause game and switch to pause screen state
+				Game_pause(Game_getInstance(), __SAFE_CAST(GameState, PauseScreenState_getInstance()));
+
+				return;
+			}
+		}
+
+		Object_fireEvent(__SAFE_CAST(Object, this), kEventUserInput);
+	}
+}
+
 // state's handle message
 static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
@@ -434,57 +471,6 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 			Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
 			break;
-
-		case kKeyPressed:
-
-			if(kPlaying == this->mode)
-			{
-				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
-
-				if(K_SEL & pressedKey)
-				{
-					// adjustment screen
-					PlatformerLevelState_setModeToPaused(this);
-
-					// set next state of adjustment screen state to null so it can differentiate between
-					// being called the splash screen sequence or from within the game (a bit hacky...)
-					SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
-
-					// pause game and switch to adjustment screen state
-					Game_pause(Game_getInstance(), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
-					break;
-				}
-				else if(K_STA & pressedKey)
-				{
-					// pause game and switch to pause screen state
-					Game_pause(Game_getInstance(), __SAFE_CAST(GameState, PauseScreenState_getInstance()));
-
-					break;
-				}
-
-				Object_fireEvent(__SAFE_CAST(Object, this), kEventKeyPressed);
-			}
-			return true;
-			break;
-
-		case kKeyReleased:
-
-			if(kPlaying == this->mode)
-			{
-				Object_fireEvent(__SAFE_CAST(Object, this), kEventKeyReleased);
-			}
-			return true;
-			break;
-
-
-		case kKeyHold:
-
-			if(kPlaying == this->mode)
-			{
-				Object_fireEvent(__SAFE_CAST(Object, this), kEventKeyHold);
-			}
-			return true;
-			break;
 	}
 
 	return false;
@@ -495,7 +481,10 @@ void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object even
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenFocused, NULL);
 
 	CustomScreenMovementManager_dontAlertWhenTargetFocused(CustomScreenMovementManager_getInstance());
+
 	Game_enableKeypad(Game_getInstance());
+
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onUserInput, kEventUserInput);
 }
 
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
@@ -546,6 +535,8 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
 
 	// disable user input
 	Game_disableKeypad(Game_getInstance());
+
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onUserInput, kEventUserInput);
 
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);

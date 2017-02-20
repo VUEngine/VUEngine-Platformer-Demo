@@ -37,6 +37,7 @@
 
 static void SplashScreenState_onFadeInComplete(SplashScreenState this, Object eventFirer);
 static void SplashScreenState_onFadeOutComplete(SplashScreenState this, Object eventFirer);
+static void SplashScreenState_onUserInput(SplashScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -96,6 +97,8 @@ void SplashScreenState_execute(SplashScreenState this, void* owner)
 // state's exit
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)SplashScreenState_onUserInput, kEventUserInput);
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 
@@ -137,6 +140,16 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 }
 
+static void SplashScreenState_onUserInput(SplashScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
+
+	if(pressedKey & ~K_PWR)
+	{
+		__VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
+	}
+}
+
 // state's handle message
 bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
@@ -154,16 +167,6 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 				__SAFE_CAST(Object, this) // callback scope
 			);
 
-			break;
-
-		case kKeyPressed:
-			{
-				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
-				if(pressedKey & ~K_PWR)
-				{
-					__VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
-				}
-			}
 			break;
 	}
 
@@ -208,6 +211,8 @@ static void SplashScreenState_onFadeInComplete(SplashScreenState this __attribut
 
 	// enable user input
 	Game_enableKeypad(Game_getInstance());
+
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)SplashScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event

@@ -57,7 +57,7 @@ static void PauseScreenState_destructor(PauseScreenState this);
 static void PauseScreenState_constructor(PauseScreenState this);
 static void PauseScreenState_enter(PauseScreenState this, void* owner);
 static void PauseScreenState_exit(PauseScreenState this, void* owner);
-static bool PauseScreenState_processMessage(PauseScreenState this, void* owner, Telegram telegram);
+static void PauseScreenState_onUserInput(PauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
 static void PauseScreenState_onFadeInComplete(PauseScreenState this, Object eventFirer);
 static void PauseScreenState_onFadeOutComplete(PauseScreenState this, Object eventFirer);
 
@@ -173,113 +173,103 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 // state's exit
 static void PauseScreenState_exit(PauseScreenState this, void* owner __attribute__ ((unused)))
 {
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)PauseScreenState_onUserInput, kEventUserInput);
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 }
 
-// state's handle message
-static bool PauseScreenState_processMessage(PauseScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
+static void PauseScreenState_onUserInput(PauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-	// process message
-	switch(Telegram_getMessage(telegram))
+	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
+
+	if((K_STA & pressedKey) || (K_A & pressedKey))
 	{
-		case kKeyPressed:
+		if(this->mode == kPauseScreenModeShowOptions)
+		{
+			int selectedOption = OptionsSelector_getSelectedOption(this->optionsSelector);
+
+			switch(selectedOption)
 			{
-				u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
+				case kPauseScreenOptionContinue:
+				case kPauseScreenOptionOptions:
 
-				if((K_STA & pressedKey) || (K_A & pressedKey))
+					// disable user input
+					Game_disableKeypad(Game_getInstance());
+
+					// fade out screen
+					Brightness brightness = (Brightness){0, 0, 0};
+					Screen_startEffect(Screen_getInstance(),
+						kFadeTo, // effect type
+						0, // initial delay (in ms)
+						&brightness, // target brightness
+						__FADE_DELAY, // delay between fading steps (in ms)
+						(void (*)(Object, Object))PauseScreenState_onFadeOutComplete, // callback function
+						__SAFE_CAST(Object, this) // callback scope
+					);
+
+					break;
+
+				case kPauseScreenOptionQuitLevel:
 				{
-					if(this->mode == kPauseScreenModeShowOptions)
-					{
-						int selectedOption = OptionsSelector_getSelectedOption(this->optionsSelector);
+					// print confirmation message
+					const char* strYes = I18n_getText(I18n_getInstance(), STR_YES);
+					Size strYesSize = Printing_getTextSize(Printing_getInstance(), strYes, NULL);
+					const char* strNo = I18n_getText(I18n_getInstance(), STR_NO);
+					const char* strAreYouSure = I18n_getText(I18n_getInstance(), STR_ARE_YOU_SURE);
+					const char* strPause = I18n_getText(I18n_getInstance(), STR_PAUSE);
+					const char* strPauseFont = "LargeFont";
+					Size strPauseSize = Printing_getTextSize(Printing_getInstance(), strPause, strPauseFont);
 
-						switch(selectedOption)
-						{
-							case kPauseScreenOptionContinue:
-							case kPauseScreenOptionOptions:
+					u8 strXPos = ((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1;
+					u8 strNoXPos = strXPos + strYesSize.x + 2;
 
-								// disable user input
-								Game_disableKeypad(Game_getInstance());
+					Printing_text(Printing_getInstance(), strAreYouSure, strXPos, 21, NULL);
+					Printing_text(Printing_getInstance(), __CHAR_A_BUTTON, strXPos, 22, NULL);
+					Printing_text(Printing_getInstance(), strYes, strXPos + 1, 22, NULL);
+					Printing_text(Printing_getInstance(), __CHAR_B_BUTTON, strNoXPos, 22, NULL);
+					Printing_text(Printing_getInstance(), strNo, strNoXPos + 1, 22, NULL);
 
-								// fade out screen
-								Brightness brightness = (Brightness){0, 0, 0};
-								Screen_startEffect(Screen_getInstance(),
-									kFadeTo, // effect type
-									0, // initial delay (in ms)
-									&brightness, // target brightness
-									__FADE_DELAY, // delay between fading steps (in ms)
-									(void (*)(Object, Object))PauseScreenState_onFadeOutComplete, // callback function
-									__SAFE_CAST(Object, this) // callback scope
-								);
-
-								break;
-
-							case kPauseScreenOptionQuitLevel:
-							{
-								// print confirmation message
-								const char* strYes = I18n_getText(I18n_getInstance(), STR_YES);
-								Size strYesSize = Printing_getTextSize(Printing_getInstance(), strYes, NULL);
-								const char* strNo = I18n_getText(I18n_getInstance(), STR_NO);
-								const char* strAreYouSure = I18n_getText(I18n_getInstance(), STR_ARE_YOU_SURE);
-								const char* strPause = I18n_getText(I18n_getInstance(), STR_PAUSE);
-								const char* strPauseFont = "LargeFont";
-								Size strPauseSize = Printing_getTextSize(Printing_getInstance(), strPause, strPauseFont);
-
-								u8 strXPos = ((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1;
-								u8 strNoXPos = strXPos + strYesSize.x + 2;
-
-								Printing_text(Printing_getInstance(), strAreYouSure, strXPos, 21, NULL);
-								Printing_text(Printing_getInstance(), __CHAR_A_BUTTON, strXPos, 22, NULL);
-								Printing_text(Printing_getInstance(), strYes, strXPos + 1, 22, NULL);
-								Printing_text(Printing_getInstance(), __CHAR_B_BUTTON, strNoXPos, 22, NULL);
-								Printing_text(Printing_getInstance(), strNo, strNoXPos + 1, 22, NULL);
-
-								// set mode accordingly
-								this->mode = kPauseScreenModeShowConfirmQuit;
-								break;
-							}
-						}
-					}
-					else if(this->mode == kPauseScreenModeShowConfirmQuit)
-					{
-						// disable user input
-						Game_disableKeypad(Game_getInstance());
-
-						// fade out screen
-						Brightness brightness = (Brightness){0, 0, 0};
-						Screen_startEffect(Screen_getInstance(),
-							kFadeTo, // effect type
-							0, // initial delay (in ms)
-							&brightness, // target brightness
-							__FADE_DELAY, // delay between fading steps (in ms)
-							(void (*)(Object, Object))PauseScreenState_onFadeOutComplete, // callback function
-							__SAFE_CAST(Object, this) // callback scope
-						);
-					}
-				}
-				else if((this->mode == kPauseScreenModeShowConfirmQuit) && (pressedKey & K_B))
-				{
-					// remove confirmation message
-					Printing_text(Printing_getInstance(), "                                                ", 0, 21, NULL);
-					Printing_text(Printing_getInstance(), "                                                ", 0, 22, NULL);
-
-					// set mode back to main menu
-					this->mode = kPauseScreenModeShowOptions;
-				}
-				else if((this->mode == kPauseScreenModeShowOptions) && ((pressedKey & K_LU) || (pressedKey & K_RU)))
-				{
-					OptionsSelector_selectPrevious(this->optionsSelector);
-				}
-				else if((this->mode == kPauseScreenModeShowOptions) && ((pressedKey & K_LD) || (pressedKey & K_RD)))
-				{
-					OptionsSelector_selectNext(this->optionsSelector);
+					// set mode accordingly
+					this->mode = kPauseScreenModeShowConfirmQuit;
+					break;
 				}
 			}
-			return true;
-			break;
-	}
+		}
+		else if(this->mode == kPauseScreenModeShowConfirmQuit)
+		{
+			// disable user input
+			Game_disableKeypad(Game_getInstance());
 
-	return false;
+			// fade out screen
+			Brightness brightness = (Brightness){0, 0, 0};
+			Screen_startEffect(Screen_getInstance(),
+				kFadeTo, // effect type
+				0, // initial delay (in ms)
+				&brightness, // target brightness
+				__FADE_DELAY, // delay between fading steps (in ms)
+				(void (*)(Object, Object))PauseScreenState_onFadeOutComplete, // callback function
+				__SAFE_CAST(Object, this) // callback scope
+			);
+		}
+	}
+	else if((this->mode == kPauseScreenModeShowConfirmQuit) && (pressedKey & K_B))
+	{
+		// remove confirmation message
+		Printing_text(Printing_getInstance(), "                                                ", 0, 21, NULL);
+		Printing_text(Printing_getInstance(), "                                                ", 0, 22, NULL);
+
+		// set mode back to main menu
+		this->mode = kPauseScreenModeShowOptions;
+	}
+	else if((this->mode == kPauseScreenModeShowOptions) && ((pressedKey & K_LU) || (pressedKey & K_RU)))
+	{
+		OptionsSelector_selectPrevious(this->optionsSelector);
+	}
+	else if((this->mode == kPauseScreenModeShowOptions) && ((pressedKey & K_LD) || (pressedKey & K_RD)))
+	{
+		OptionsSelector_selectNext(this->optionsSelector);
+	}
 }
 
 // handle event
@@ -288,6 +278,8 @@ static void PauseScreenState_onFadeInComplete(PauseScreenState this __attribute_
 	ASSERT(this, "PauseScreenState::onFadeInComplete: null this");
 
 	Game_enableKeypad(Game_getInstance());
+
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)PauseScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event

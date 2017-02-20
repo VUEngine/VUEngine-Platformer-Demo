@@ -34,7 +34,7 @@
 #include <PlatformerLevelState.h>
 #include <OverworldState.h>
 #include <ProgressManager.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include "LevelDoneScreenState.h"
 
 
@@ -54,7 +54,7 @@ static void LevelDoneScreenState_constructor(LevelDoneScreenState this);
 static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner);
 static void LevelDoneScreenState_print(LevelDoneScreenState this);
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner);
-static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this, void* owner, Telegram telegram);
+static void LevelDoneScreenState_onUserInput(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
 static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this, Object eventFirer);
 static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this, Object eventFirer);
 
@@ -116,6 +116,8 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __
 // state's exit
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)LevelDoneScreenState_onUserInput, kEventUserInput);
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 
@@ -157,34 +159,24 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ (
 	}
 }
 
-// state's handle message
-static bool LevelDoneScreenState_processMessage(LevelDoneScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), Telegram telegram)
+static void LevelDoneScreenState_onUserInput(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-	// process message
-	switch(Telegram_getMessage(telegram))
+	if(KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey)
 	{
-		case kKeyPressed:
-		{
-			// disable user input
-			Game_disableKeypad(Game_getInstance());
+		// disable user input
+		Game_disableKeypad(Game_getInstance());
 
-			// fade out screen
-			Brightness brightness = (Brightness){0, 0, 0};
-			Screen_startEffect(Screen_getInstance(),
-				kFadeTo, // effect type
-				0, // initial delay (in ms)
-				&brightness, // target brightness
-				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))LevelDoneScreenState_onFadeOutComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
-			);
-
-			return true;
-			break;
-		}
+		// fade out screen
+		Brightness brightness = (Brightness){0, 0, 0};
+		Screen_startEffect(Screen_getInstance(),
+			kFadeTo, // effect type
+			0, // initial delay (in ms)
+			&brightness, // target brightness
+			__FADE_DELAY, // delay between fading steps (in ms)
+			(void (*)(Object, Object))LevelDoneScreenState_onFadeOutComplete, // callback function
+			__SAFE_CAST(Object, this) // callback scope
+		);
 	}
-
-	return false;
 }
 
 // handle event
@@ -193,6 +185,8 @@ static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this __at
 	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
 
 	Game_enableKeypad(Game_getInstance());
+
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)LevelDoneScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event

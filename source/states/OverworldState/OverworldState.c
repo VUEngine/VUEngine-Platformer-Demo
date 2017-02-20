@@ -63,6 +63,7 @@ static void OverworldState_execute(OverworldState this, void* owner);
 static void OverworldState_exit(OverworldState this, void* owner);
 static void OverworldState_resume(OverworldState this, void* owner);
 static void OverworldState_suspend(OverworldState this, void* owner);
+static void OverworldState_onUserInput(OverworldState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
 static bool OverworldState_processMessage(OverworldState this, void* owner, Telegram telegram);
 static void OverworldState_onFadeInComplete(OverworldState this, Object eventFirer);
 static void OverworldState_onStartLevelFadeOutComplete(OverworldState this, Object eventFirer);
@@ -123,6 +124,8 @@ static void OverworldState_execute(OverworldState this, void* owner)
 // state's exit
 static void OverworldState_exit(OverworldState this, void* owner)
 {
+	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OverworldState_onUserInput, kEventUserInput);
+
 	// call base
 	GameState_exit(__SAFE_CAST(GameState, this), owner);
 
@@ -204,6 +207,44 @@ static void OverworldState_print(OverworldState this __attribute__ ((unused)))
 	Printing_text(Printing_getInstance(), "1-1", 12, 26, "GuiFont");
 }
 
+static void OverworldState_onUserInput(OverworldState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+{
+	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
+
+	if((K_STA & pressedKey) || (K_A & pressedKey))
+	{
+		// disable user input
+		Game_disableKeypad(Game_getInstance());
+
+		// start a fade out effect
+		Brightness brightness = (Brightness){0, 0, 0};
+		Screen_startEffect(Screen_getInstance(),
+			kFadeTo, // effect type
+			0, // initial delay (in ms)
+			&brightness, // target brightness
+			__FADE_DELAY, // delay between fading steps (in ms)
+			(void (*)(Object, Object))OverworldState_onStartLevelFadeOutComplete, // callback function
+			__SAFE_CAST(Object, this) // callback scope
+		);
+
+	} else if(K_B & pressedKey) {
+
+		// disable user input
+		Game_disableKeypad(Game_getInstance());
+
+		// start a fade out effect
+		Brightness brightness = (Brightness){0, 0, 0};
+		Screen_startEffect(Screen_getInstance(),
+			kFadeTo, // effect type
+			0, // initial delay (in ms)
+			&brightness, // target brightness
+			__FADE_DELAY, // delay between fading steps (in ms)
+			(void (*)(Object, Object))OverworldState_onReturnToTitleFadeOutComplete, // callback function
+			__SAFE_CAST(Object, this) // callback scope
+		);
+	}
+}
+
 // state's handle message
 static bool OverworldState_processMessage(OverworldState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
@@ -234,45 +275,6 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 			);
 
 			break;
-
-		case kKeyPressed:
-		{
-			u32 pressedKey = *((u32*)Telegram_getExtraInfo(telegram));
-
-			if((K_STA & pressedKey) || (K_A & pressedKey))
-			{
-				// disable user input
-				Game_disableKeypad(Game_getInstance());
-
-				// start a fade out effect
-				Brightness brightness = (Brightness){0, 0, 0};
-				Screen_startEffect(Screen_getInstance(),
-					kFadeTo, // effect type
-					0, // initial delay (in ms)
-					&brightness, // target brightness
-					__FADE_DELAY, // delay between fading steps (in ms)
-					(void (*)(Object, Object))OverworldState_onStartLevelFadeOutComplete, // callback function
-					__SAFE_CAST(Object, this) // callback scope
-				);
-
-			} else if(K_B & pressedKey) {
-
-				// disable user input
-				Game_disableKeypad(Game_getInstance());
-
-				// start a fade out effect
-				Brightness brightness = (Brightness){0, 0, 0};
-				Screen_startEffect(Screen_getInstance(),
-					kFadeTo, // effect type
-					0, // initial delay (in ms)
-					&brightness, // target brightness
-					__FADE_DELAY, // delay between fading steps (in ms)
-					(void (*)(Object, Object))OverworldState_onReturnToTitleFadeOutComplete, // callback function
-					__SAFE_CAST(Object, this) // callback scope
-				);
-			}
-		}
-			break;
 	}
 
 	return false;
@@ -288,6 +290,8 @@ static void OverworldState_onFadeInComplete(OverworldState this, Object eventFir
 
 	// enable user input
 	Game_enableKeypad(Game_getInstance());
+
+	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OverworldState_onUserInput, kEventUserInput);
 }
 
 // handle event
