@@ -803,7 +803,7 @@ void Hero_enterDoor(Hero this)
 	// inform the door entity
 	if(this->currentlyOverlappedDoor != NULL)
 	{
-		MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappedDoor), kHeroEnterDoor, NULL);
+		MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappedDoor), kHeroEnterDoor, NULL);
 	}
 
 	// hide hint immediately
