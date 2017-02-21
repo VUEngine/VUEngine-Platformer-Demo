@@ -63,9 +63,6 @@
 // Alert VIP's overtime
 #define __ALERT_VIP_OVERTIME
 
-// Alert transformation - VIP unsync warning
-#define __ALERT_TRANSFORMATIONS_NOT_IN_SYNC_WITH_VIP
-
 
 //---------------------------------------------------------------------------------------------------------
 //											DEBUGGING TOOLS
@@ -131,10 +128,10 @@
  * the current game frame is done, the engine skips to the next
  * game frame.
  */
-#define __ALLOW_TORN_FRAMES
+#define __FORCE_VIP_SYNC
 
 // Timer resolution
-#define __TIMER_RESOLUTION						1
+#define __TIMER_RESOLUTION						5
 
 // Options are __TIMER_20US and __TIMER_100US
 #define __TIMER_FREQUENCY						__TIMER_20US
