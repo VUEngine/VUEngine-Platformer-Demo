@@ -96,10 +96,15 @@ extern EntityDefinition STAR_AG;
 extern EntityDefinition WATERFALL_STREAM_AG;
 extern EntityDefinition WATERFALL_TOP_AG;
 
+
+extern CharSetDefinition RUN_SIGN_CH;
+extern CharSetDefinition JUMP_SIGN_CH;
+extern CharSetDefinition DOUBLE_JUMP_SIGN_CH;
 extern CharSetDefinition WATERFALL_STREAM_CH;
 extern CharSetDefinition WATERFALL_TOP_CH;
 extern CharSetDefinition BUSH_CH;
 extern CharSetDefinition CANNON_BALL_CH;
+extern CharSetDefinition SMOKE_PARTICLE_SMALL_CH;
 extern CharSetDefinition CANNON_CH;
 extern CharSetDefinition COIN_BACK_CH;
 extern CharSetDefinition COIN_BACK_SILHOUETTE_CH;
@@ -109,7 +114,6 @@ extern CharSetDefinition DOOR_BACK_CH;
 extern CharSetDefinition DOOR_CH;
 extern CharSetDefinition GRASS_CH;
 extern CharSetDefinition HERO_BANDANA_CH;
-extern CharSetDefinition HIDE_LAYER_10x7_CH;
 extern CharSetDefinition KEY_CH;
 extern CharSetDefinition LEVEL_1_HOUSE_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
@@ -133,8 +137,6 @@ extern TextureDefinition DOOR_BACK_TX;
 extern TextureDefinition DOOR_TX;
 extern TextureDefinition DUST_PARTICLE_SMALL_TX;
 extern TextureDefinition HERO_BANDANA_TX;
-extern TextureDefinition HIDE_LAYER_10x7_TX;
-extern TextureDefinition JUMP_SIGN_TX;
 extern TextureDefinition KEY_TX;
 extern TextureDefinition LEVEL_1_HOUSE_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_BACK_1_TX;
@@ -152,7 +154,6 @@ extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX;
 extern TextureDefinition MOUND_BG_BACK_TX;
 extern TextureDefinition MOUND_BG_FRONT_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
-extern TextureDefinition RUN_SIGN_TX;
 extern TextureDefinition SAW_BLADE_TX;
 
 extern VBVec3D collision_2_28_1;
@@ -504,7 +505,6 @@ CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 	&LEVEL_1_MAIN_1_MAIN_CH,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
 	&LEVEL_1_MAIN_1_MAIN_BACK_CH,
-	&WATERFALL_TOP_CH,
 	&DOOR_CH,
 	&DOOR_BACK_CH,
 	&COIN_CH,
@@ -514,7 +514,6 @@ CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 	&MOUND_BG_BACK_CH,
 	&MOUND_BG_MIDDLE_CH,
 	&MOUND_BG_FRONT_CH,
-	&HIDE_LAYER_10x7_CH,
 	&SNAIL_CH,
 	&GRASS_CH,
 	&BUSH_CH,
@@ -524,6 +523,12 @@ CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 	&HERO_BANDANA_CH,
 	&CANNON_CH,
 	&CANNON_BALL_CH,
+	&SMOKE_PARTICLE_SMALL_CH,
+	&RUN_SIGN_CH,
+	&JUMP_SIGN_CH,
+	&DOUBLE_JUMP_SIGN_CH,
+	&WATERFALL_STREAM_CH,
+	&WATERFALL_TOP_CH,
 
 	NULL
 };
@@ -547,12 +552,9 @@ StageTextureEntryROMDef LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 	{&MOUND_BG_FRONT_TX, false},
 	{&DUST_PARTICLE_SMALL_TX, false},
 	{&SAW_BLADE_TX, false},
-	{&RUN_SIGN_TX, false},
-	{&JUMP_SIGN_TX, false},
 	{&DOOR_TX, false},
 	{&DOOR_BACK_TX, false},
 	{&LEVEL_1_HOUSE_TX, false},
-	{&HIDE_LAYER_10x7_TX, false},
 	{&COIN_TX, false},
 	{&COIN_BACK_TX, false},
 	{&COIN_SILHOUETTE_TX, false},
@@ -602,11 +604,11 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// minimum free ms in the current game frame to allow streaming to quick in
 		6,
 		// load padding
-		90,
+		80,
 		// unload padding
 		24,
 		// streaming amplitude
-		14,
+		16,
 		// particle removal delay cycles
 		4,
 	},
@@ -614,10 +616,10 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// rendering
 	{
 		// number of cycles the texture writing is idle
-		0,
+		1,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		3,
+		6,
 
 		// maximum number of rows to compute on each call to the affine functions
 		4,
