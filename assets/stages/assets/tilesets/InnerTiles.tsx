@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<tileset name="Inner Tiles" tilewidth="16" tileheight="16" tilecount="105" columns="15">
+<tileset name="InnerTiles" tilewidth="16" tileheight="16" tilecount="105" columns="15">
  <image source="../../../images/Tilesets/InnerTiles.png" trans="000000" width="240" height="112"/>
  <terraintypes>
   <terrain name="Walls" tile="-1"/>

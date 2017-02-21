@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="128">
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="130">
  <properties>
-  <property name="declaration" value="StageEntryPointROMDef LEVEL_1_INTERSECTION_LOWER_EP, StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP, BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
+  <property name="declaration" value="StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP, StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
   <property name="stage.assets.charSets" value="NULL"/>
@@ -60,7 +61,6 @@
  <tileset firstgid="38" source="../assets/tilesets/Elements.tsx"/>
  <tileset firstgid="43" source="../assets/tilesets/Backgrounds.tsx"/>
  <tileset firstgid="53" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="54" name="Other" tilewidth="0" tileheight="0" tilecount="0" columns="0"/>
  <tileset firstgid="54" source="../assets/tilesets/InnerTiles.tsx"/>
  <tileset firstgid="159" source="../assets/tilesets/OuterTiles.tsx"/>
  <layer name="(C3) Background" width="48" height="28">
@@ -80,24 +80,51 @@
    <property name="paletteId" type="int" value="0"/>
    <property name="transparent" type="bool" value="false"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztlM0KgkAURn3XBEslXRRlLYJ+pLSeoB42F2dhAzIE6jjyHbic4TJz76y+IPCfsKMf4SVe4RgnTaXGmzXOcI4XPe2yzfGZDd4a/R3eN1VwPuCjZeZpxF2+csYXfMU3XLbu3vEDV7jGT/wacFd7jvjljT9Of+EXyv9poPx3g/J/Pij//0f5Pw2U/25Q/s8H5b8Q4/EFNGxQ5g==
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,100,0,0,0,0,0,103,0,104,0,105,0,106,0,107,108,0,0,0,110,0,111,0,112,0,99,0,100,0,0,0,0,0,103,0,104,0,105,0,106,0,107,108,99,0,100,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,116,0,117,0,0,0,119,0,120,121,0,122,0,123,0,0,0,0,0,0,0,127,0,0,0,0,0,116,0,117,0,0,0,119,0,120,121,0,122,0,123,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,130,0,131,0,132,0,133,0,134,0,0,136,0,137,0,138,0,139,0,140,0,141,0,0,0,0,0,130,0,131,0,132,0,133,0,134,0,0,136,0,137,0,138,0,0,130,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,155,0,156,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,100,0,0,0,0,0,103,0,104,0,105,0,106,0,107,108,0,0,0,110,0,111,0,112,0,99,0,100,0,0,0,0,0,103,0,104,0,105,0,106,0,107,108,99,0,100,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,116,0,117,0,0,0,119,0,120,121,0,122,0,123,0,0,0,0,0,0,0,127,0,0,0,0,0,116,0,117,0,0,0,119,0,120,121,0,122,0,123,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,130,0,131,0,132,0,133,0,134,0,0,136,0,137,0,138,0,139,0,140,0,141,0,0,0,0,0,130,0,131,0,132,0,133,0,134,0,0,136,0,137,0,138,0,0,130,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,155,0,156,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,100,0,0,0,0,0,103,0,104,0,105,0,106,0,107,108,0,0,0,110,0,111,0,112,0,99,0,100,0,0,0,0,0,103,0,104,0,105,0,106,0,107,108,99,0,100,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,116,0,117,0,0,0,119,0,120,121,0,122,0,123,0,0,0,0,0,0,0,127,0,0,0,0,0,116,0,117,0,0,0,119,0,120,121,0,122,0,123,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,130,0,131,0,132,0,133,0,134,0,0,136,0,137,0,138,0,139,0,140,0,141,0,0,0,0,0,130,0,131,0,132,0,133,0,134,0,0,136,0,137,0,138,0,0,130,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,155,0,156,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <objectgroup draworder="index" name="Main">
   <properties>
    <property name="containerType" value="Main"/>
-   <property name="position.z" value="LAYER_0"/>
+   <property name="position.z" value="0"/>
   </properties>
   <object id="109" name="Coin" type="Entity" gid="36" x="228" y="116" width="16" height="16">
    <properties>
-    <property name="id" type="int" value="44"/>
+    <property name="id" type="int" value="47"/>
     <property name="position.z" value="LAYER_0_ITEMS"/>
    </properties>
   </object>
   <object id="110" name="Coin" type="Entity" gid="36" x="252" y="116" width="16" height="16">
    <properties>
-    <property name="id" type="int" value="45"/>
+    <property name="id" type="int" value="46"/>
     <property name="position.z" value="LAYER_0_ITEMS"/>
    </properties>
   </object>
@@ -112,36 +139,42 @@
     <property name="position.z" value="LAYER_0"/>
    </properties>
   </object>
+  <object id="113" name="Upper Right Torch Light" type="Entity" gid="34" x="280" y="76" width="80" height="80"/>
   <object id="99" name="Upper Right Torch" type="Entity" gid="28" x="316" y="46" width="8" height="24">
    <properties>
     <property name="position.z" value="LAYER_0"/>
    </properties>
   </object>
-  <object id="113" name="Upper Right Torch Light" type="Entity" gid="34" x="280" y="76" width="80" height="80"/>
   <object id="121" name="Upper Left Torch Light" type="Entity" gid="34" x="166" y="76" width="80" height="80"/>
   <object id="122" name="Upper Left Torch" type="Entity" gid="28" x="202" y="46" width="8" height="24">
    <properties>
     <property name="position.z" value="LAYER_0"/>
    </properties>
   </object>
+  <object id="127" name="Lower Right Torch Light" type="Entity" gid="34" x="166" y="188" width="80" height="80"/>
+  <object id="126" name="Lower Right Torch" type="Entity" gid="28" x="202" y="158" width="8" height="24">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
   <object id="119" name="Door (Exit)" type="Entity" gid="15" x="338" y="64" width="24" height="32">
    <properties>
-    <property name="extraInfo" value="(void*)&amp;LEVEL_1_INTERSECTION_LOWER_EP"/>
-    <property name="name" value="&quot;CoinExit&quot;"/>
+    <property name="extraInfo" value="(void*)&amp;LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP"/>
+    <property name="name" value="&quot;IntExit&quot;"/>
     <property name="position.z" value="LAYER_0_DOORS"/>
    </properties>
   </object>
   <object id="117" name="Door (Lower Entrance)" type="Entity" gid="15" x="24" y="176" width="24" height="32">
    <properties>
-    <property name="extraInfo" value="(void*)&amp;LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP"/>
-    <property name="name" value="&quot;CoinEntr&quot;"/>
+    <property name="extraInfo" value="(void*)&amp;LEVEL1_COIN_ROOM_STAGE_EXIT_EP"/>
+    <property name="name" value="&quot;IntEntr2&quot;"/>
     <property name="position.z" value="LAYER_0_DOORS"/>
    </properties>
   </object>
   <object id="120" name="Door (Upper Entrance)" type="Entity" gid="15" x="166" y="64" width="24" height="32">
    <properties>
-    <property name="extraInfo" value="(void*)&amp;LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP"/>
-    <property name="name" value="&quot;CoinEntr&quot;"/>
+    <property name="extraInfo" value="(void*)&amp;LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP"/>
+    <property name="name" value="&quot;IntEntr1&quot;"/>
     <property name="position.z" value="LAYER_0_DOORS"/>
    </properties>
   </object>
@@ -151,29 +184,24 @@
     <property name="position.z" value="LAYER_0"/>
    </properties>
   </object>
-  <object id="116" name="Back" type="Composite" x="0" y="0" width="384" height="192" visible="0">
+  <object id="116" name="Back" type="Composite" x="0" y="0" width="384" height="192">
    <properties>
     <property name="containerId" type="int" value="3"/>
-    <property name="position.z" value="0"/>
+    <property name="position.z" value="LAYER_0_BACKGROUND"/>
    </properties>
   </object>
-  <object id="114" name="MainBack" type="Composite" x="0" y="0" width="384" height="192" visible="0">
+  <object id="114" name="MainBack" type="Composite" x="0" y="0" width="384" height="192">
    <properties>
     <property name="containerId" type="int" value="2"/>
-    <property name="position.z" value="SORT_INCREMENT"/>
+    <property name="position.z" value="-SORT_INCREMENT"/>
    </properties>
   </object>
-  <object id="115" name="Main" type="Composite" x="0" y="0" width="384" height="192" visible="0">
+  <object id="115" name="Main" type="Composite" x="0" y="0" width="384" height="192">
    <properties>
     <property name="containerId" type="int" value="1"/>
+    <property name="position.z" value="-SORT_INCREMENT * 2"/>
    </properties>
   </object>
-  <object id="126" name="Upper Left Torch" type="Entity" gid="28" x="202" y="158" width="8" height="24">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="127" name="Upper Left Torch Light" type="Entity" gid="34" x="166" y="188" width="80" height="80"/>
  </objectgroup>
  <layer name="(C2) Main Back" width="48" height="28">
   <properties>
@@ -192,9 +220,36 @@
    <property name="paletteId" type="int" value="1"/>
    <property name="transparent" type="bool" value="false"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztlkkKgDAMRb1XnXXlgMP9D+PC300guGjaGpoH8jbSlk/9pqp00yi3dqTzWOEukheyn3ak89+kD0jYyX7akc6/hlvGHNz71A5Prvx7eITnwPVS9zX9Puh9/nv/n/AF34Hr5f5fastful/t/ucldf4D7PtzClxPO6nmRu8Dpv1Zev6x50YO65+Xr7kxlh05R6n5a7VhlMwDhplAfg==
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,75,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,74,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,76,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,77,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,60,0,62,0,62,0,62,0,0,0,0,0,0,0,62,0,62,0,62,0,62,0,62,0,59,59,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,66,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,76,0,0,0,77,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,0,81,0,82,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,0,0,0,0,77,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,76,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,76,0,0,0,77,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,65,0,66,0,67,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,75,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,79,0,81,0,82,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,76,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,77,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,60,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,59,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <layer name="(C1) Main Walls" width="48" height="28">
   <properties>
@@ -213,22 +268,51 @@
    <property name="paletteId" type="int" value="0"/>
    <property name="transparent" type="bool" value="false"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFIOAJpUPpRHtQ4thhCNzpbJ8rne0b7GA0/AcWjIb/wAIrKG2Og7YgoN+MgH502pIMN45kQCh/jKZn2oLR8McO6NVuDCPgjpEa/vSuN3GB0fAfWDAa/gMLRmr4E2o30osebU+OglFAOgAAAK0Unw==
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,73,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,72,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,0,55,0,55,0,55,0,56,0,0,0,0,0,0,0,54,0,55,0,55,0,55,0,55,0,55,0,57,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+73,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,85,0,86,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+58,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,55,0,57,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <objectgroup name="Collisions">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="25" name="Left Collision" type="Collision" gid="39" x="0" y="176" width="16" height="48"/>
-  <object id="27" name="Bottom Collision" type="Collision" gid="39" x="0" y="192" width="272" height="16"/>
-  <object id="32" name="Top Collision" type="Collision" gid="39" x="160" y="16" width="224" height="16"/>
-  <object id="82" name="Bottom Right Collision" type="Collision" gid="39" x="272" y="192" width="112" height="128"/>
-  <object id="83" name="Center Collision" type="Collision" gid="39" x="0" y="128" width="224" height="64"/>
-  <object id="84" name="Top Left Collision" type="Collision" gid="39" x="128" y="64" width="32" height="64"/>
-  <object id="85" name="Top Right Collision" type="Collision" gid="39" x="368" y="64" width="16" height="48"/>
+  <object id="25" name="Left Collision" type="Collision" gid="39" x="1" y="176" width="16" height="48"/>
+  <object id="27" name="Bottom Collision" type="Collision" gid="39" x="0" y="191" width="272" height="16"/>
+  <object id="32" name="Top Collision" type="Collision" gid="39" x="160" y="17" width="224" height="16"/>
+  <object id="82" name="Bottom Right Collision" type="Collision" gid="39" x="271" y="191" width="112" height="128"/>
+  <object id="83" name="Center Collision" type="Collision" gid="39" x="1" y="129" width="224" height="66"/>
+  <object id="84" name="Top Left Collision" type="Collision" gid="39" x="129" y="64" width="32" height="64"/>
+  <object id="85" name="Top Right Collision" type="Collision" gid="39" x="367" y="64" width="16" height="48"/>
+  <object id="129" name="Lower One-Way" type="Collision" gid="40" x="224" y="151" width="48" height="32"/>
+  <object id="128" name="Upper One-Way" type="Collision" gid="40" x="224" y="95" width="48" height="32"/>
  </objectgroup>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
@@ -243,24 +327,24 @@
   </properties>
   <object id="22" name="Exit" type="EntryPoint" x="340" y="36" width="20" height="28">
    <properties>
-    <property name="destinationName" value="CoinExit"/>
+    <property name="destinationName" value="IntExit"/>
     <property name="name" value="EXIT"/>
     <property name="offset.x" value="-16"/>
     <property name="offset.z" value="-SORT_INCREMENT"/>
    </properties>
   </object>
-  <object id="89" name="Upper" type="EntryPoint" x="26" y="148" width="20" height="28">
+  <object id="89" name="Lower" type="EntryPoint" x="26" y="148" width="20" height="28">
    <properties>
-    <property name="destinationName" value="CoinEntr"/>
-    <property name="name" value="MAIN"/>
+    <property name="destinationName" value="IntEntr2"/>
+    <property name="name" value="LOWER"/>
     <property name="offset.x" value="16"/>
     <property name="offset.z" value="-SORT_INCREMENT"/>
    </properties>
   </object>
-  <object id="123" name="Lower" type="EntryPoint" x="168" y="36" width="20" height="28">
+  <object id="123" name="Upper" type="EntryPoint" x="168" y="36" width="20" height="28">
    <properties>
-    <property name="destinationName" value="CoinEntr"/>
-    <property name="name" value="MAIN"/>
+    <property name="destinationName" value="IntEntr1"/>
+    <property name="name" value="UPPER"/>
     <property name="offset.x" value="16"/>
     <property name="offset.z" value="-SORT_INCREMENT"/>
    </properties>
