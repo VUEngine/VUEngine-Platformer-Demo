@@ -127,10 +127,11 @@
 //											FRAME RATE CONTROL
 //---------------------------------------------------------------------------------------------------------
 
-/* Disable VIP's __XPEND interrupt, and thus rendering
- * while transformation operations have not finished
+/* If defined, when the VIP's GAMESTART interrupt is fired before
+ * the current game frame is done, the engine skips to the next
+ * game frame.
  */
-#undef __FORCE_VIP_SYNC
+#define __ALLOW_TORN_FRAMES
 
 // Timer resolution
 #define __TIMER_RESOLUTION						1
