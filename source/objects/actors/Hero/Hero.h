@@ -67,7 +67,7 @@ enum HeroPowerUps
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{ITOFIX19_13(0), ITOFIX19_13(-24), 0}
 
-#define HERO_CHECK_Y_VELOCITY				10
+#define HERO_CHECK_Y_VELOCITY				20
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
@@ -173,6 +173,7 @@ bool Hero_isAboveEntity(Hero this, Entity entity);
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
 u32 Hero_getAxisForFlipping(Hero this);
 void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
+void Hero_capVelocity(Hero this, bool discardPreviousMessages);
 
 
 #endif

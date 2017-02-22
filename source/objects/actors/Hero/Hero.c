@@ -417,8 +417,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	if(__YAXIS & axis)
 	{
 		Hero_hideDust(this);
-		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
-		MessageDispatcher_dispatchMessage(HERO_CHECK_Y_VELOCITY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
+		Hero_capVelocity(this, true);
 	}
 
 	// start movement
@@ -480,6 +479,8 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 	if(__YAXIS & axis)
 	{
+		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
+
 		Hero_lockCameraTriggerMovement(this, __YAXIS, true);
 
 		this->jumps = 0;
@@ -1152,6 +1153,42 @@ int Hero_processCollision(Hero this, Telegram telegram)
 	return !VirtualList_getSize(collidingObjects);
 }
 
+
+void Hero_capVelocity(Hero this, bool discardPreviousMessages)
+{
+	ASSERT(this, "Hero::checkCapVelocity: null this");
+
+	if(discardPreviousMessages)
+	{
+		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
+	}
+
+	if(Body_isActive(this->body))
+	{
+		Velocity velocity = Body_getVelocity(this->body);
+
+		if(velocity.y)
+		{
+			if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
+			{
+				velocity.x = 0;
+				velocity.y = HERO_MAX_VELOCITY_Y;
+				velocity.z = 0;
+
+				Body_moveUniformly(this->body, velocity);
+			}
+			else if(0 < velocity.y)
+			{
+				MessageDispatcher_dispatchMessage(HERO_CHECK_Y_VELOCITY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
+			}
+		}
+		else
+		{
+			MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
+		}
+	}
+}
+
 bool Hero_handleMessage(Hero this, Telegram telegram)
 {
 	ASSERT(this, "Hero::handleMessage: null this");
@@ -1160,29 +1197,9 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 	switch(Telegram_getMessage(telegram))
 	{
 		case kHeroCheckVelocity:
-			{
-				if(Body_isActive(this->body))
-				{
-					Velocity velocity = Body_getVelocity(this->body);
 
-					if(velocity.y)
-					{
-						if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
-						{
-							velocity.x = 0;
-							velocity.y = HERO_MAX_VELOCITY_Y;
-							velocity.z = 0;
-
-							Body_moveUniformly(this->body, velocity);
-						}
-						else
-						{
-							MessageDispatcher_dispatchMessage(HERO_CHECK_Y_VELOCITY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
-						}
-					}
-				}
-			}
-
+			Hero_capVelocity(this, false);
+			return true;
 			break;
 
 		case kHeroStartOverlapping:

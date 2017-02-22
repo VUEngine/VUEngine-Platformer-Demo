@@ -75,6 +75,8 @@ void HeroMoving_destructor(HeroMoving this)
 	__SINGLETON_DESTROY;
 }
 
+#include <debugUtilities.h>
+
 // state's enter
 void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 {
@@ -101,11 +103,9 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 			break;
 
 		case kBodyStartedMoving:
-			{
-				int axis = *(int*)Telegram_getExtraInfo(telegram);
-				// start movement
-				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), axis);
-			}
+
+			// start movement
+			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kBodyChangedDirection:
@@ -115,14 +115,8 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 
 		case kBodyBounced:
 
-			this->bouncing = true;
-			MessageDispatcher_dispatchMessage(100, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kDisallowJumpOnBouncing, NULL);
-			return true;
-			break;
-
-		case kDisallowJumpOnBouncing:
-
-			this->bouncing = false;
+			Hero_capVelocity(__SAFE_CAST(Hero, owner), true);
+			return false;
 			break;
 
 		case kCollision:
