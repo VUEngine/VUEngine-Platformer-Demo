@@ -21,8 +21,8 @@
   <property name="stage.physics.gravity.z" value="0"/>
   <property name="stage.rendering.colorConfig.backgroundColor" value="__COLOR_BLACK"/>
   <property name="stage.rendering.colorConfig.brightness.brightRed" value="8"/>
-  <property name="stage.rendering.colorConfig.brightness.darkRed" value="4"/>
-  <property name="stage.rendering.colorConfig.brightness.mediumRed" value="2"/>
+  <property name="stage.rendering.colorConfig.brightness.darkRed" value="2"/>
+  <property name="stage.rendering.colorConfig.brightness.mediumRed" value="4"/>
   <property name="stage.rendering.colorConfig.brightnessRepeat" value="EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
   <property name="stage.rendering.cyclesToWaitForTextureWriting" value="__TARGET_FPS / 10"/>
   <property name="stage.rendering.maximumAffineRowsToComputePerCall" value="16"/>

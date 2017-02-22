@@ -186,9 +186,9 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			// brightness values on the respective regions of the screen. maximum brightness is 128.
 			{
 				// dark red
-				4,
-				// medium red
 				2,
+				// medium red
+				4,
 				// bright red
 				8,
 			},

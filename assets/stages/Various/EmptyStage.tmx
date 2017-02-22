@@ -50,7 +50,7 @@
   <property name="stage.rendering.paramTableSegments" value="1"/>
   <property name="stage.rendering.texturesMaximumRowsToWrite" value="12"/>
   <property name="stage.streaming.loadPadding" value="40"/>
-  <property name="stage.streaming.minimumSpareMilliSecondsToAllowStreaming" value="10"/>
+  <property name="stage.streaming.minimumSpareMilliSecondsToAllowStreaming" value="5"/>
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
