@@ -53,10 +53,10 @@ __CLASS_FRIEND_DEFINITION(Screen);
 //---------------------------------------------------------------------------------------------------------
 
 static void CustomScreenMovementManager_constructor(CustomScreenMovementManager this);
-static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)));
-static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)));
-static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)));
-static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)));
+static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving, u32 introFocusing);
+static bool CustomScreenMovementManager_dontFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving, u32 introFocusing);
+static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving, u32 introFocusing);
+static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving, u32 introFocusing);
 
 
 //---------------------------------------------------------------------------------------------------------

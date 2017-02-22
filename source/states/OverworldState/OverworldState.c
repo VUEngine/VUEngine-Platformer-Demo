@@ -63,7 +63,7 @@ static void OverworldState_execute(OverworldState this, void* owner);
 static void OverworldState_exit(OverworldState this, void* owner);
 static void OverworldState_resume(OverworldState this, void* owner);
 static void OverworldState_suspend(OverworldState this, void* owner);
-static void OverworldState_onUserInput(OverworldState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
+static void OverworldState_onUserInput(OverworldState this, Object eventFirer);
 static bool OverworldState_processMessage(OverworldState this, void* owner, Telegram telegram);
 static void OverworldState_onFadeInComplete(OverworldState this, Object eventFirer);
 static void OverworldState_onStartLevelFadeOutComplete(OverworldState this, Object eventFirer);

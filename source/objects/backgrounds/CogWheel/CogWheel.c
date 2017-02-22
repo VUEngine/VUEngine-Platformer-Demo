@@ -47,10 +47,9 @@ __CLASS_DEFINITION(CogWheel, StaticImage);
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
+static void CogWheel_onShakeCompleted(CogWheel this, Object eventFirer);
 static void CogWheel_rotate(CogWheel this);
 static void CogWheel_stop(CogWheel this);
-
-static void CogWheel_onShakeCompleted(CogWheel this, Object eventFirer __attribute__ ((unused)));
 
 
 //---------------------------------------------------------------------------------------------------------
