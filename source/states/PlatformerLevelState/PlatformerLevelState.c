@@ -58,7 +58,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner);
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
-static void PlatformerLevelState_onUserInput(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
+static void PlatformerLevelState_onUserInput(PlatformerLevelState this, Object eventFirer);
 static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner, Telegram telegram);
 static void PlatformerLevelState_getPositionedEntitiesToIgnore(PlatformerLevelState this, VirtualList positionedEntitiesToIgnore);
 bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this);

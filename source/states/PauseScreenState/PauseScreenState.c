@@ -57,7 +57,7 @@ static void PauseScreenState_destructor(PauseScreenState this);
 static void PauseScreenState_constructor(PauseScreenState this);
 static void PauseScreenState_enter(PauseScreenState this, void* owner);
 static void PauseScreenState_exit(PauseScreenState this, void* owner);
-static void PauseScreenState_onUserInput(PauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
+static void PauseScreenState_onUserInput(PauseScreenState this, Object eventFirer);
 static void PauseScreenState_onFadeInComplete(PauseScreenState this, Object eventFirer);
 static void PauseScreenState_onFadeOutComplete(PauseScreenState this, Object eventFirer);
 

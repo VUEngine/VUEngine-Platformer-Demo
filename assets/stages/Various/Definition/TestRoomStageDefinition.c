@@ -56,7 +56,7 @@ extern u16 KRISSE_BGM[][2];
 
 
 //---------------------------------------------------------------------------------------------------------
-//											ENTITY LISTS
+// 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef TEST_ROOM_STAGE_ST_ENTITIES[] =
@@ -89,7 +89,7 @@ PositionedEntityROMDef TEST_ROOM_STAGE_ST_UI_ENTITIES[] =
 
 
 //---------------------------------------------------------------------------------------------------------
-//											PRELOAD LISTS
+// 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
 FontROMDef* const TEST_ROOM_STAGE_ST_FONTS[] =
@@ -133,7 +133,7 @@ StageROMDef TEST_ROOM_STAGE_ST =
 	// streaming
 	{
 		// minimum free ms in the current game frame to allow streaming to quick in
-		5,
+		10,
 		// load padding
 		40,
 		// unload padding
@@ -288,7 +288,7 @@ StageROMDef TEST_ROOM_STAGE_ST =
 
 
 //---------------------------------------------------------------------------------------------------------
-//												ENTRY POINTS
+// 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
 StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP =
@@ -303,7 +303,7 @@ StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP =
 	{
 		FTOFIX19_13(0),
 		FTOFIX19_13(0),
-		FTOFIX19_13(-SORT_INCREMENT)
+		FTOFIX19_13(-SORT_INCREMENT),
 	},
 };
 

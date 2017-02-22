@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<tileset name="Outer Tiles" tilewidth="8" tileheight="8" tilecount="406" columns="29">
- <image source="../../../images/Tilesets/OuterTiles.png" trans="000000" width="232" height="112"/>
+<tileset name="OuterTiles" tilewidth="8" tileheight="8" tilecount="4096" columns="64">
+ <image source="../../../images/Tilesets/OuterTiles.png" trans="000000" width="512" height="512"/>
  <terraintypes>
   <terrain name="Platform" tile="-1"/>
  </terraintypes>

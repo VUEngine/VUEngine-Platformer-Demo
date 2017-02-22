@@ -56,7 +56,7 @@ static void OptionsScreenState_constructor(OptionsScreenState this);
 static void OptionsScreenState_enter(OptionsScreenState this, void* owner);
 static void OptionsScreenState_print(OptionsScreenState this);
 static void OptionsScreenState_exit(OptionsScreenState this, void* owner);
-static void OptionsScreenState_onUserInput(OptionsScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)));
+static void OptionsScreenState_onUserInput(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onFadeInComplete(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onExitFadeOutComplete(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer);

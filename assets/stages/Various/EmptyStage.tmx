@@ -50,19 +50,19 @@
   <property name="stage.rendering.paramTableSegments" value="1"/>
   <property name="stage.rendering.texturesMaximumRowsToWrite" value="12"/>
   <property name="stage.streaming.loadPadding" value="40"/>
-  <property name="stage.streaming.minimumSpareMilliSecondsToAllowStreaming" value="10"/>
+  <property name="stage.streaming.minimumSpareMilliSecondsToAllowStreaming" value="5"/>
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
- <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
- <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
- <tileset firstgid="42" source="../assets/tilesets/Backgrounds.tsx"/>
- <tileset firstgid="52" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="53" source="../assets/tilesets/InnerTiles.tsx"/>
- <tileset firstgid="151" source="../assets/tilesets/OuterTiles.tsx"/>
+ <tileset firstgid="35" source="../assets/tilesets/Items.tsx"/>
+ <tileset firstgid="38" source="../assets/tilesets/Elements.tsx"/>
+ <tileset firstgid="43" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="53" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="54" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="1078" source="../assets/tilesets/OuterTiles.tsx"/>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
    <property name="containerType" value="Ui"/>

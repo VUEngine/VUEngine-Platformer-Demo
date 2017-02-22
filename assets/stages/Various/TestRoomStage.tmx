@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="61">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="83">
  <properties>
   <property name="declaration" value="NULL"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
@@ -57,11 +57,11 @@
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
- <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
- <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
- <tileset firstgid="42" source="../assets/tilesets/Backgrounds.tsx"/>
- <tileset firstgid="52" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="53" name="Other" tilewidth="224" tileheight="184" tilecount="2" columns="0">
+ <tileset firstgid="35" source="../assets/tilesets/Items.tsx"/>
+ <tileset firstgid="38" source="../assets/tilesets/Elements.tsx"/>
+ <tileset firstgid="43" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="53" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="54" name="Other" tilewidth="224" tileheight="200" tilecount="2" columns="0">
   <tile id="0">
    <properties>
     <property name="entityName" value="LEVEL_1_HOUSE_IM"/>
@@ -72,11 +72,11 @@
    <properties>
     <property name="entityName" value="LEVEL_1_TOWER_IM"/>
    </properties>
-   <image width="224" height="184" source="../../images/Stages/Level-1/Main-1/Other/Level-1-Tower.png"/>
+   <image width="224" height="200" source="../../images/Stages/Level-1/Main-1/Other/Level-1-Tower.png"/>
   </tile>
  </tileset>
- <tileset firstgid="55" source="../assets/tilesets/InnerTiles.tsx"/>
- <tileset firstgid="153" source="../assets/tilesets/OuterTiles.tsx"/>
+ <tileset firstgid="56" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="1080" source="../assets/tilesets/OuterTiles.tsx"/>
  <objectgroup name="(C2) Test Object Composite">
   <properties>
    <property name="bgmapMode" value="__WORLD_BGMAP"/>
@@ -94,23 +94,25 @@
    <property name="paletteId" type="int" value="0"/>
    <property name="transparent" type="bool" value="false"/>
   </properties>
-  <object id="40" gid="56" x="64" y="112" width="16" height="16"/>
-  <object id="41" gid="56" x="48" y="112" width="16" height="16"/>
-  <object id="42" gid="84" x="64" y="48" width="16" height="16"/>
-  <object id="43" gid="84" x="48" y="48" width="16" height="16"/>
-  <object id="44" gid="84" x="80" y="48" width="16" height="16"/>
-  <object id="45" gid="56" x="80" y="112" width="16" height="16"/>
-  <object id="46" gid="69" x="96" y="64" width="16" height="16"/>
-  <object id="47" gid="69" x="96" y="80" width="16" height="16"/>
-  <object id="48" gid="69" x="96" y="96" width="16" height="16"/>
-  <object id="49" gid="71" x="32" y="64" width="16" height="16"/>
-  <object id="50" gid="71" x="32" y="80" width="16" height="16"/>
-  <object id="51" gid="71" x="32" y="96" width="16" height="16"/>
-  <object id="52" gid="59" x="32" y="112" width="16" height="16"/>
-  <object id="53" gid="58" x="96" y="112" width="16" height="16"/>
-  <object id="54" gid="72" x="96" y="48" width="16" height="16"/>
-  <object id="55" gid="73" x="32" y="48" width="16" height="16"/>
+  <object id="40" gid="57" x="64" y="112" width="16" height="16"/>
+  <object id="41" gid="57" x="48" y="112" width="16" height="16"/>
+  <object id="45" gid="57" x="80" y="112" width="16" height="16"/>
+  <object id="52" gid="60" x="32" y="112" width="16" height="16"/>
+  <object id="53" gid="59" x="96" y="112" width="16" height="16"/>
   <object id="56" gid="21" x="60" y="96" width="24" height="32"/>
+  <object id="70" gid="74" x="96" y="48" width="16" height="16"/>
+  <object id="71" gid="75" x="32" y="48" width="16" height="16"/>
+  <object id="72" gid="90" x="32" y="96" width="16" height="16"/>
+  <object id="73" gid="90" x="32" y="80" width="16" height="16"/>
+  <object id="74" gid="90" x="32" y="64" width="16" height="16"/>
+  <object id="75" gid="88" x="96" y="96" width="16" height="16"/>
+  <object id="76" gid="88" x="96" y="80" width="16" height="16"/>
+  <object id="77" gid="88" x="96" y="64" width="16" height="16"/>
+  <object id="78" gid="92" x="32" y="48" width="16" height="16"/>
+  <object id="79" gid="91" x="96" y="48" width="16" height="16"/>
+  <object id="80" gid="121" x="48" y="48" width="16" height="16"/>
+  <object id="81" gid="121" x="64" y="48" width="16" height="16"/>
+  <object id="82" gid="121" x="80" y="48" width="16" height="16"/>
  </objectgroup>
  <layer name="(C1) Main Layer Walls" width="48" height="28">
   <properties>
@@ -141,19 +143,19 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,73,0,84,0,84,0,84,0,84,0,84,0,84,0,84,0,84,0,84,0,84,0,84,0,72,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,0,121,0,121,0,121,0,121,0,121,0,121,0,121,0,121,0,121,0,121,0,121,0,91,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-73,0,84,0,84,0,84,0,84,0,84,0,84,0,84,0,84,0,85,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,
+92,92,121,0,121,0,121,0,121,0,121,0,121,0,121,0,121,0,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,
+90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,56,0,56,0,56,0,58,0,0,0,0,0,
+90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,0,57,0,57,0,57,0,59,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,
+90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-59,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,56,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,
+60,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,57,0,59,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -195,8 +197,8 @@
    </properties>
   </object>
   <object id="9" name="SawBlade" type="Entity" gid="6" x="120" y="188" width="152" height="24"/>
-  <object id="19" name="Coin" type="Entity" gid="35" x="72" y="172" width="16" height="16"/>
-  <object id="20" name="Coin" type="Entity" gid="35" x="88" y="172" width="16" height="16"/>
+  <object id="19" name="Coin" type="Entity" gid="36" x="72" y="172" width="16" height="16"/>
+  <object id="20" name="Coin" type="Entity" gid="36" x="88" y="172" width="16" height="16"/>
   <object id="30" name="Exit Door" type="Entity" gid="15" x="304" y="144" width="24" height="32"/>
  </objectgroup>
  <objectgroup name="Collisions">
@@ -204,19 +206,19 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="25" name="Left" type="Collision" gid="38" x="0" y="192" width="16" height="64"/>
-  <object id="26" name="Top Left" type="Collision" gid="38" x="0" y="128" width="160" height="48"/>
-  <object id="27" name="Bottom" type="Collision" gid="38" x="16" y="192" width="256" height="16"/>
-  <object id="32" name="Top" type="Collision" gid="38" x="160" y="96" width="176" height="16"/>
-  <object id="33" name="Bottom Right" type="Collision" gid="38" x="272" y="192" width="80" height="48"/>
-  <object id="34" name="Right" type="Collision" gid="38" x="336" y="144" width="16" height="64"/>
+  <object id="25" name="Left" type="Collision" gid="39" x="0" y="192" width="16" height="64"/>
+  <object id="26" name="Top Left" type="Collision" gid="39" x="0" y="128" width="160" height="48"/>
+  <object id="27" name="Bottom" type="Collision" gid="39" x="16" y="192" width="256" height="16"/>
+  <object id="32" name="Top" type="Collision" gid="39" x="160" y="96" width="176" height="16"/>
+  <object id="33" name="Bottom Right" type="Collision" gid="39" x="272" y="192" width="80" height="48"/>
+  <object id="34" name="Right" type="Collision" gid="39" x="336" y="144" width="16" height="64"/>
  </objectgroup>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
    <property name="containerType" value="Ui"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="38" name="GUI" type="Entity" gid="41" x="0" y="224" width="384" height="16"/>
+  <object id="38" name="GUI" type="Entity" gid="42" x="0" y="224" width="384" height="16"/>
  </objectgroup>
  <objectgroup name="Entry Points">
   <properties>

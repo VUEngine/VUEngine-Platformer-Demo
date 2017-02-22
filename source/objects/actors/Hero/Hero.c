@@ -74,7 +74,7 @@ extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused)));
+static void Hero_onUserInput(Hero this, Object eventFirer);
 void Hero_enterDoor(Hero this);
 void Hero_hideHint(Hero this);
 void Hero_updateSprite(Hero this);

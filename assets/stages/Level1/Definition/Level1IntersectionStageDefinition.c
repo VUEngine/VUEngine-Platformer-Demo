@@ -32,143 +32,91 @@
 #include <Fonts.h>
 #include <Hero.h>
 
+
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
+//											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP;
-extern StageEntryPointROMDef LEVEL_1_COIN_ROOM_EXIT_EP;
-extern StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP;
+VBVec3D level1_intersection_stage_collision_112_128_8 = {112, 128, 8};
+VBVec3D level1_intersection_stage_collision_16_48_8 = {16, 48, 8};
+VBVec3D level1_intersection_stage_collision_224_16_8 = {224, 16, 8};
+VBVec3D level1_intersection_stage_collision_224_66_8 = {224, 66, 8};
+VBVec3D level1_intersection_stage_collision_272_16_8 = {272, 16, 8};
+VBVec3D level1_intersection_stage_collision_32_64_8 = {32, 64, 8};
+VBVec3D level1_intersection_stage_collision_48_32_8 = {48, 32, 8};
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
-extern u16 KRISSE_BGM[][2];
-
-extern EntityDefinition MANAGED_ENTITY;
-extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
-
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition COLLISION_TOP_CL;
 extern EntityDefinition DOOR_AG;
 extern EntityDefinition GUI_AG;
 extern EntityDefinition HERO_AC;
-extern EntityDefinition LEVEL_1_INTERSECTION_MAIN_IM;
+extern EntityDefinition LEVEL1_INTERSECTION_STAGE_BACK_1_IM;
+extern EntityDefinition LEVEL1_INTERSECTION_STAGE_MAIN_1_IM;
+extern EntityDefinition LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM;
 extern EntityDefinition SAW_BLADE_H8_AC;
 extern EntityDefinition TORCH_AG;
 extern EntityDefinition TORCH_LIGHT_AG;
+extern StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP;
+extern StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP;
+extern StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP;
+extern u16 KRISSE_BGM[][2];
 
-extern CharSetDefinition LEVEL_1_INTERSECTION_BACK_CH;
-extern CharSetDefinition LEVEL_1_INTERSECTION_MAIN_BACK_CH;
-extern CharSetDefinition LEVEL_1_INTERSECTION_MAIN_CH;
-
-extern VBVec3D collision_2_28_1;
-extern VBVec3D collision_7_2_1;
-extern VBVec3D collision_14_18_1;
-extern VBVec3D collision_28_8_1;
-extern VBVec3D collision_48_2_1;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												ASSETS
+// 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-// Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
-// know that it must stop reading the stage's/ui's textures and entities.
-
-PositionedEntityROMDef LEVEL_1_INTERSECTION_MAIN_ENTITIES[] =
+PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 {
-	{&LEVEL_1_INTERSECTION_MAIN_IM,	{FTOFIX19_13(0), 	FTOFIX19_13(-16), 	FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false},
+	{&COLLISION_CL, {FTOFIX19_13(9), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Left Collision
+	{&DOOR_AG, {FTOFIX19_13(36), FTOFIX19_13(160), FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntEntr2", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_EXIT_EP, false}, // Door (Lower Entrance)
+	{&TORCH_LIGHT_AG, {FTOFIX19_13(56), FTOFIX19_13(148), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Lower Left Torch Light
+	{&TORCH_AG, {FTOFIX19_13(56), FTOFIX19_13(146), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Lower Left Torch
+	{&HERO_AC, {FTOFIX19_13(56), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
+	{&COLLISION_CL, {FTOFIX19_13(113), FTOFIX19_13(96), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_66_8, false}, // Center Collision
+	{&COLLISION_CL, {FTOFIX19_13(136), FTOFIX19_13(183), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_272_16_8, false}, // Bottom Collision
+	{&COLLISION_CL, {FTOFIX19_13(145), FTOFIX19_13(32), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_32_64_8, false}, // Top Left Collision
+	{&SAW_BLADE_H8_AC, {FTOFIX19_13(162), FTOFIX19_13(175), FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Cog Wheel
+	{&DOOR_AG, {FTOFIX19_13(178), FTOFIX19_13(48), FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntEntr1", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, false}, // Door (Upper Entrance)
+	{&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM, {FTOFIX19_13(192), FTOFIX19_13(96), FTOFIX19_13(-SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // MainBack
+	{&LEVEL1_INTERSECTION_STAGE_BACK_1_IM, {FTOFIX19_13(192), FTOFIX19_13(96), FTOFIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Back
+	{&LEVEL1_INTERSECTION_STAGE_MAIN_1_IM, {FTOFIX19_13(192), FTOFIX19_13(96), FTOFIX19_13(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false}, // Main
+	{&TORCH_AG, {FTOFIX19_13(206), FTOFIX19_13(146), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Lower Right Torch
+	{&TORCH_LIGHT_AG, {FTOFIX19_13(206), FTOFIX19_13(148), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Lower Right Torch Light
+	{&TORCH_AG, {FTOFIX19_13(206), FTOFIX19_13(34), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Upper Left Torch
+	{&TORCH_LIGHT_AG, {FTOFIX19_13(206), FTOFIX19_13(36), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Upper Left Torch Light
+	{&COIN_AG, {FTOFIX19_13(236), FTOFIX19_13(108), FTOFIX19_13(LAYER_0_ITEMS)}, 47, NULL, NULL, NULL, false}, // Coin
+	{&COLLISION_TOP_CL, {FTOFIX19_13(248), FTOFIX19_13(135), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_32_8, false}, // Lower One-Way
+	{&COLLISION_TOP_CL, {FTOFIX19_13(248), FTOFIX19_13(79), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_32_8, false}, // Upper One-Way
+	{&COIN_AG, {FTOFIX19_13(260), FTOFIX19_13(108), FTOFIX19_13(LAYER_0_ITEMS)}, 46, NULL, NULL, NULL, false}, // Coin
+	{&COLLISION_CL, {FTOFIX19_13(272), FTOFIX19_13(9), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_16_8, false}, // Top Collision
+	{&TORCH_AG, {FTOFIX19_13(320), FTOFIX19_13(34), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Upper Right Torch
+	{&TORCH_LIGHT_AG, {FTOFIX19_13(320), FTOFIX19_13(36), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Upper Right Torch Light
+	{&COLLISION_CL, {FTOFIX19_13(327), FTOFIX19_13(127), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_112_128_8, false}, // Bottom Right Collision
+	{&DOOR_AG, {FTOFIX19_13(350), FTOFIX19_13(48), FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntExit", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false}, // Door (Exit)
+	{&COLLISION_CL, {FTOFIX19_13(375), FTOFIX19_13(40), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Top Right Collision
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LEVEL_1_INTERSECTION_MAIN_COLLISIONS[] =
+PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES[] =
 {
-	// bottom floor
-	{&COLLISION_CL,				{FTOFIX19_13(0),	FTOFIX19_13(72),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_2_1, false},
-	// top ceiling
-	{&COLLISION_CL,				{FTOFIX19_13(0),	FTOFIX19_13(-104),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_48_2_1, false},
-	// right ceiling/floor
-	{&COLLISION_CL,				{FTOFIX19_13(136),	FTOFIX19_13(24),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_14_18_1, false},
-	// top left wall
-	{&COLLISION_CL,				{FTOFIX19_13(-144), FTOFIX19_13(-72),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_28_8_1, false},
-	// left ceiling/floor
-	{&COLLISION_CL,				{FTOFIX19_13(-80),	FTOFIX19_13(-16),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_28_8_1, false},
-	// top one way floor
-	{&COLLISION_TOP_CL,			{FTOFIX19_13(56),	FTOFIX19_13(-40),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_7_2_1, false},
-	// bottom one way floor
-	{&COLLISION_TOP_CL,			{FTOFIX19_13(56),	FTOFIX19_13(16),	FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_7_2_1, false},
-	// outermost left wall
-	{&COLLISION_CL,				{FTOFIX19_13(-184), FTOFIX19_13(0),		FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_2_28_1, false},
-	// outermost right wall
-	{&COLLISION_CL,				{FTOFIX19_13(184),	FTOFIX19_13(0),		FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&collision_2_28_1, false},
-
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
-};
-
-
-//---------------------------------------------------------------------------------------------------------
-//											ENTITY LISTS
-//---------------------------------------------------------------------------------------------------------
-
-PositionedEntityROMDef LEVEL_1_INTERSECTION_STAGE_ST_CHILDREN[] =
-{
-	// since these are always visible it doesn't matter that they are not logically placed in this definition
-
-	{&MANAGED_ENTITY,				{FTOFIX19_13(192),	FTOFIX19_13(112),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 	0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_ENTITIES, NULL, false},
-	{&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(111),	FTOFIX19_13(LAYER_0)}, 	0, NULL, (struct PositionedEntity*)LEVEL_1_INTERSECTION_MAIN_COLLISIONS, NULL, false},
-
-	{&HERO_AC,						{FTOFIX19_13(32),	FTOFIX19_13(159),	FTOFIX19_13(LAYER_0)}, 	0, HERO_NAME, NULL, NULL, false},
-
-	{&DOOR_AG,						{FTOFIX19_13(176),	FTOFIX19_13(47),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntEntr1", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, false},
-
-	{&TORCH_LIGHT_AG,				{FTOFIX19_13(200),	FTOFIX19_13(43),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
-	{&TORCH_AG,						{FTOFIX19_13(200),	FTOFIX19_13(44),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
-
-	{&DOOR_AG,						{FTOFIX19_13(32),	FTOFIX19_13(159),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntEntr2", NULL, (void*)&LEVEL_1_COIN_ROOM_EXIT_EP, false},
-
-	{&TORCH_LIGHT_AG,				{FTOFIX19_13(56),	FTOFIX19_13(155),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
-	{&TORCH_AG,						{FTOFIX19_13(56),	FTOFIX19_13(156),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
-
-	{&SAW_BLADE_H8_AC,				{FTOFIX19_13(130),	FTOFIX19_13(174),	FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
-
-	{&TORCH_LIGHT_AG,				{FTOFIX19_13(200),	FTOFIX19_13(155),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
-	{&TORCH_AG,						{FTOFIX19_13(200),	FTOFIX19_13(156),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
-
-	{&COIN_AG,						{FTOFIX19_13(240),	FTOFIX19_13(104),	FTOFIX19_13(LAYER_0_ITEMS)}, 46, NULL, NULL, NULL, false},
-	{&COIN_AG,						{FTOFIX19_13(256),	FTOFIX19_13(104),	FTOFIX19_13(LAYER_0_ITEMS)}, 47, NULL, NULL, NULL, false},
-
-	{&TORCH_LIGHT_AG,				{FTOFIX19_13(328),	FTOFIX19_13(43),	FTOFIX19_13(0)}, 		0, NULL, NULL, NULL, false},
-	{&TORCH_AG,						{FTOFIX19_13(328),	FTOFIX19_13(44),	FTOFIX19_13(LAYER_0)}, 	0, NULL, NULL, NULL, false},
-	{&DOOR_AG,						{FTOFIX19_13(352),	FTOFIX19_13(47),	FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntExit", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false},
-
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
-};
-
-PositionedEntityROMDef LEVEL_1_INTERSECTION_STAGE_ST_UI_CHILDREN[] =
-{
-	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(215), FTOFIX19_13(-4)}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 
 //---------------------------------------------------------------------------------------------------------
-//											PRELOAD LISTS
+// 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const LEVEL_1_INTERSECTION_STAGE_ST_FONTS[] =
+FontROMDef* const LEVEL1_INTERSECTION_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
-
-	NULL
-};
-
-CharSetROMDef* const LEVEL_1_INTERSECTION_STAGE_ST_CHARSETS[] =
-{
-	&LEVEL_1_INTERSECTION_BACK_CH,
-	&LEVEL_1_INTERSECTION_MAIN_BACK_CH,
-	&LEVEL_1_INTERSECTION_MAIN_CH,
 
 	NULL
 };
@@ -178,9 +126,7 @@ CharSetROMDef* const LEVEL_1_INTERSECTION_STAGE_ST_CHARSETS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-
-
-StageROMDef LEVEL_1_INTERSECTION_STAGE_ST =
+StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 {
 	// level
 	{
@@ -201,7 +147,7 @@ StageROMDef LEVEL_1_INTERSECTION_STAGE_ST =
 			// y
 			ITOFIX19_13(0),
 			// z
-			ITOFIX19_13(0)
+			ITOFIX19_13(0),
 		},
 	},
 
@@ -292,8 +238,8 @@ StageROMDef LEVEL_1_INTERSECTION_STAGE_ST =
 		},
 
 		// obj segments z coordinates
-		// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
-		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
+		// note that each spt's z coordinate much be larger than or equal to the previous one's,
+		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
 			FTOFIX19_13(LAYER_0_PARTICLES),
@@ -336,10 +282,10 @@ StageROMDef LEVEL_1_INTERSECTION_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)LEVEL_1_INTERSECTION_STAGE_ST_FONTS,
+		(FontDefinition**)LEVEL1_INTERSECTION_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)LEVEL_1_INTERSECTION_STAGE_ST_CHARSETS,
+		(CharSetDefinition**)NULL,
 
 		// textures to preload
 		(StageTextureEntryDefinition*)NULL,
@@ -352,40 +298,40 @@ StageROMDef LEVEL_1_INTERSECTION_STAGE_ST =
 	{
 		// ui
 		{
-			LEVEL_1_INTERSECTION_STAGE_ST_UI_CHILDREN,
+			LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		LEVEL_1_INTERSECTION_STAGE_ST_CHILDREN,
+		LEVEL1_INTERSECTION_STAGE_ST_ENTITIES,
 	},
 };
 
 
 //---------------------------------------------------------------------------------------------------------
-//												ENTRY POINTS
+// 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_INTERSECTION_UPPER_EP =
+StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_EXIT_EP =
 {
 	// the stage to load
-	(StageDefinition*)&LEVEL_1_INTERSECTION_STAGE_ST,
+	(StageDefinition*)&LEVEL1_INTERSECTION_STAGE_ST,
 
 	// name of the entity to start at
-	"IntEntr1",
+	"IntExit",
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(-16),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
 };
 
-StageEntryPointROMDef LEVEL_1_INTERSECTION_LOWER_EP =
+StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_LOWER_EP =
 {
 	// the stage to load
-	(StageDefinition*)&LEVEL_1_INTERSECTION_STAGE_ST,
+	(StageDefinition*)&LEVEL1_INTERSECTION_STAGE_ST,
 
 	// name of the entity to start at
 	"IntEntr2",
@@ -398,18 +344,19 @@ StageEntryPointROMDef LEVEL_1_INTERSECTION_LOWER_EP =
 	},
 };
 
-StageEntryPointROMDef LEVEL_1_INTERSECTION_EXIT_EP =
+StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP =
 {
 	// the stage to load
-	(StageDefinition*)&LEVEL_1_INTERSECTION_STAGE_ST,
+	(StageDefinition*)&LEVEL1_INTERSECTION_STAGE_ST,
 
 	// name of the entity to start at
-	"IntExit",
+	"IntEntr1",
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(-16),
+		FTOFIX19_13(16),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
 };
+

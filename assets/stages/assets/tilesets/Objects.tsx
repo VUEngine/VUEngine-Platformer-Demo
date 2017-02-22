@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<tileset name="Objects" tilewidth="80" tileheight="56" tilecount="13" columns="32">
+<tileset name="Objects" tilewidth="80" tileheight="80" tilecount="14" columns="32">
  <tile id="0">
   <properties>
    <property name="entityName" value="BUSH_AG"/>
@@ -75,5 +74,11 @@
    <property name="entityName" value="HERO_SLEEPING_AG"/>
   </properties>
   <image width="24" height="24" source="../../../images/Hero/Preview/HeroSleeping.png"/>
+ </tile>
+ <tile id="22">
+  <properties>
+   <property name="entityName" value="TORCH_LIGHT_AG"/>
+  </properties>
+  <image width="80" height="80" source="../../../images/Torch/Preview/TorchLight.png"/>
  </tile>
 </tileset>

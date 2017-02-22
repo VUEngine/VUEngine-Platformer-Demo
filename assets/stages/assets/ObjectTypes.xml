@@ -16,7 +16,8 @@
   <property name="offset.z" type="string" default="0"/>
  </objecttype>
  <objecttype name="Composite" color="#ffff00">
-  <property name="containerId" type="string" default="0"/>
+  <property name="containerId" type="int" default="0"/>
+  <property name="position.z" type="string" default="0"/>
  </objecttype>
  <objecttype name="Collision" color="#a0a0a4">
   <property name="childrenDefinitions" type="string" default="NULL"/>
