@@ -57,42 +57,42 @@
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
- <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
- <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
- <tileset firstgid="42" source="../assets/tilesets/Backgrounds.tsx"/>
- <tileset firstgid="52" source="../assets/tilesets/Particles.tsx"/>
- <tileset firstgid="53" name="Other" tilewidth="384" tileheight="224" tilecount="2" columns="0">
+ <tileset firstgid="35" source="../assets/tilesets/Items.tsx"/>
+ <tileset firstgid="38" source="../assets/tilesets/Elements.tsx"/>
+ <tileset firstgid="43" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="53" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="54" name="Other" tilewidth="384" tileheight="224" tilecount="2" columns="0">
   <tile id="2">
    <properties>
     <property name="entityName" value="LEVEL_1_HOUSE_LIGHT_IM"/>
    </properties>
-   <image width="56" height="40" source="../../images/Stages/Level-1/House/Preview/Level-1-House-Light.png"/>
+   <image width="56" height="40" source="../../images/Stages/Level1HouseStage/Preview/Level-1-House-Light.png"/>
   </tile>
   <tile id="3">
    <properties>
     <property name="entityName" value="LEVEL_1_HOUSE_MAIN_IM"/>
    </properties>
-   <image width="384" height="224" source="../../images/Stages/Level-1/House/Preview/Level-1-House-Main.png"/>
+   <image width="384" height="224" source="../../images/Stages/Level1HouseStage/Preview/Level-1-House-Main.png"/>
   </tile>
  </tileset>
- <tileset firstgid="57" source="../assets/tilesets/InnerTiles.tsx"/>
- <tileset firstgid="155" source="../assets/tilesets/OuterTiles.tsx"/>
+ <tileset firstgid="58" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="1082" source="../assets/tilesets/OuterTiles.tsx"/>
  <objectgroup draworder="index" name="Background">
   <properties>
    <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_0"/>
   </properties>
-  <object id="77" name="Mountains" type="Entity" gid="46" x="-1" y="152" width="512" height="144">
+  <object id="77" name="Mountains" type="Entity" gid="47" x="-1" y="152" width="512" height="144">
    <properties>
     <property name="position.z" value="LAYER_5"/>
    </properties>
   </object>
-  <object id="78" name="Clouds" type="Entity" gid="49" x="-62" y="165" width="512" height="32">
+  <object id="78" name="Clouds" type="Entity" gid="50" x="-62" y="165" width="512" height="32">
    <properties>
     <property name="position.z" value="LAYER_4"/>
    </properties>
   </object>
-  <object id="79" name="Front" type="Entity" gid="48" x="-272" y="181" width="512" height="48" visible="0">
+  <object id="79" name="Front" type="Entity" gid="49" x="-272" y="181" width="512" height="48" visible="0">
    <properties>
     <property name="position.z" value="LAYER_3"/>
    </properties>
@@ -103,7 +103,7 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_0"/>
   </properties>
-  <object id="61" name="House Background" type="Entity" gid="56" x="0" y="224" width="384" height="224">
+  <object id="61" name="House Background" type="Entity" gid="57" x="0" y="224" width="384" height="224">
    <properties>
     <property name="position.z" value="LAYER_0_BACKGROUND"/>
    </properties>
@@ -120,13 +120,13 @@
     <property name="position.z" value="LAYER_0 + 24"/>
    </properties>
   </object>
-  <object id="67" name="Coin" type="Entity" gid="35" x="196" y="154" width="16" height="16">
+  <object id="67" name="Coin" type="Entity" gid="36" x="196" y="154" width="16" height="16">
    <properties>
     <property name="id" type="int" value="26"/>
     <property name="position.z" value="LAYER_0_ITEMS"/>
    </properties>
   </object>
-  <object id="68" name="Light" type="Entity" gid="55" x="168" y="160" width="56" height="40">
+  <object id="68" name="Light" type="Entity" gid="56" x="168" y="160" width="56" height="40">
    <properties>
     <property name="position.z" value="LAYER_0_ITEMS - 1"/>
    </properties>
@@ -147,18 +147,18 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="25" name="Left Collision" type="Collision" gid="38" x="112" y="176" width="16" height="96"/>
-  <object id="27" name="Bottom Collision" type="Collision" gid="38" x="128" y="176" width="128" height="16"/>
-  <object id="32" name="Top Collision" type="Collision" gid="38" x="128" y="96" width="128" height="16"/>
-  <object id="34" name="Right Collision" type="Collision" gid="38" x="256" y="176" width="16" height="96"/>
-  <object id="62" name="Fireplace Collision" type="Collision" gid="39" x="228" y="164" width="24" height="24"/>
+  <object id="25" name="Left Collision" type="Collision" gid="39" x="112" y="176" width="16" height="96"/>
+  <object id="27" name="Bottom Collision" type="Collision" gid="39" x="128" y="176" width="128" height="16"/>
+  <object id="32" name="Top Collision" type="Collision" gid="39" x="128" y="96" width="128" height="16"/>
+  <object id="34" name="Right Collision" type="Collision" gid="39" x="256" y="176" width="16" height="96"/>
+  <object id="62" name="Fireplace Collision" type="Collision" gid="40" x="228" y="164" width="24" height="24"/>
  </objectgroup>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
    <property name="containerType" value="Ui"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="38" name="GUI" type="Entity" gid="41" x="0" y="224" width="384" height="16"/>
+  <object id="38" name="GUI" type="Entity" gid="42" x="0" y="224" width="384" height="16"/>
  </objectgroup>
  <objectgroup name="Entry Points">
   <properties>
