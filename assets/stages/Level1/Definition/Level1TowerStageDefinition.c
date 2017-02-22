@@ -360,7 +360,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 		16,
 
 		// maximum number of rows to compute on each call to the affine functions
-		16,
+		24,
 
 		// colors config
 		{
@@ -498,7 +498,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 //												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef LEVEL_1_TOWER_MAIN_EP =
+StageEntryPointROMDef LEVEL1_TOWER_STAGE_MAIN_EP =
 {
 	// the stage to load
 	(StageDefinition*)&LEVEL_1_TOWER_STAGE_ST,
