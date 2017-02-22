@@ -37,11 +37,11 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-VBVec3D test_room_stage_collision_160_48_8 = {160, 48, 8};
-VBVec3D test_room_stage_collision_16_64_8 = {16, 64, 8};
-VBVec3D test_room_stage_collision_176_16_8 = {176, 16, 8};
-VBVec3D test_room_stage_collision_256_16_8 = {256, 16, 8};
-VBVec3D test_room_stage_collision_80_48_8 = {80, 48, 8};
+const VBVec3D test_room_stage_collision_160_48_8 = {160, 48, 8};
+const VBVec3D test_room_stage_collision_16_64_8 = {16, 64, 8};
+const VBVec3D test_room_stage_collision_176_16_8 = {176, 16, 8};
+const VBVec3D test_room_stage_collision_256_16_8 = {256, 16, 8};
+const VBVec3D test_room_stage_collision_80_48_8 = {80, 48, 8};
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition DOOR_AG;
