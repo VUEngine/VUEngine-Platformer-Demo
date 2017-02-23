@@ -46,7 +46,7 @@ CharSetROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	23,
+	27,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)

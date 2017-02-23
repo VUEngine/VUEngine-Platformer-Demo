@@ -37,9 +37,9 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-VBVec3D level1_house_stage_collision_128_16_8 = {128, 16, 8};
-VBVec3D level1_house_stage_collision_16_96_8 = {16, 96, 8};
-VBVec3D level1_house_stage_collision_24_24_8 = {24, 24, 8};
+const VBVec3D level1_house_stage_collision_128_16_8 = {128, 16, 8};
+const VBVec3D level1_house_stage_collision_16_96_8 = {16, 96, 8};
+const VBVec3D level1_house_stage_collision_24_24_8 = {24, 24, 8};
 extern CharSetDefinition LEVEL_1_HOUSE_MAIN_CH;
 extern EntityDefinition CLOCK_AG;
 extern EntityDefinition CLOUDS_IM;
