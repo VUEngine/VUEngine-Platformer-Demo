@@ -74,7 +74,11 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	radius++;
 
 	// gradually decrease color with larger radius
-	if(radius < 50)
+	if(radius < 0)
+	{
+		return;
+	}
+	else if(radius < 50)
 	{
 		color = __COLOR_BRIGHT_RED;
 	}
