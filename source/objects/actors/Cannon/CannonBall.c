@@ -135,7 +135,7 @@ void CannonBall_startMovement(CannonBall this)
 void CannonBall_stopMovement(CannonBall this)
 {
 	// stop movement
-	Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+	Actor_stopAllMovement(__SAFE_CAST(Actor, this), false);
 
 	// set back local position
 	VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};

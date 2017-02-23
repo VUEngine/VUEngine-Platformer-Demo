@@ -288,7 +288,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				this->jumps = -1;
 
 				// stop movement to gain full momentum of the jump force that will be added
-				Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+				Actor_stopMovement(__SAFE_CAST(Actor, this), __YAXIS, false);
 
 				// set second jump performed
 				this->jumps = 2;
@@ -633,7 +633,7 @@ void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, 
 
 			if(pause)
 			{
-				Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+				Actor_stopAllMovement(__SAFE_CAST(Actor, this), false);
 				Game_disableKeypad(Game_getInstance());
 				GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
 				Body_setActive(this->body, false);
@@ -933,7 +933,7 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 	this->powerUp = powerUp;
 	Hero_updateSprite(this);
 
-	Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+	Actor_stopAllMovement(__SAFE_CAST(Actor, this), false);
 	Game_disableKeypad(Game_getInstance());
 	GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
 	Body_setActive(this->body, false);
@@ -1322,7 +1322,7 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 	ASSERT(this, "Hero::setPosition: null this");
 
 	// stop all movement
-	Actor_stopMovement(__SAFE_CAST(Actor, this), false);
+	Actor_stopAllMovement(__SAFE_CAST(Actor, this), false);
 
 	// set new position
 	Actor_setPosition(__SAFE_CAST(Actor, this), outOfDoorPosition);
