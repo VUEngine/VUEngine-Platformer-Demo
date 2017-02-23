@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="130">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="148">
  <properties>
   <property name="declaration" value="StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP, StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
@@ -63,6 +63,30 @@
  <tileset firstgid="53" source="../assets/tilesets/Particles.tsx"/>
  <tileset firstgid="54" source="../assets/tilesets/InnerTiles.tsx"/>
  <tileset firstgid="1078" source="../assets/tilesets/OuterTiles.tsx"/>
+ <objectgroup draworder="index" name="Composites">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="145" name="Back" type="Composite" x="0" y="0" width="384" height="192">
+   <properties>
+    <property name="containerId" type="int" value="3"/>
+    <property name="position.z" value="LAYER_0_BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="146" name="MainBack" type="Composite" x="0" y="0" width="384" height="192">
+   <properties>
+    <property name="containerId" type="int" value="2"/>
+    <property name="position.z" value="-SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="147" name="Main" type="Composite" x="0" y="0" width="384" height="192">
+   <properties>
+    <property name="containerId" type="int" value="1"/>
+    <property name="position.z" value="-SORT_INCREMENT * 2"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer name="(C3) Background" width="48" height="28">
   <properties>
    <property name="bgmapMode" value="__WORLD_BGMAP"/>
@@ -128,7 +152,7 @@
     <property name="position.z" value="LAYER_0_ITEMS"/>
    </properties>
   </object>
-  <object id="86" name="Cog Wheel" type="Entity" gid="6" x="86" y="187" width="152" height="24">
+  <object id="86" name="Cog Wheel" type="Entity" gid="6" x="86" y="188" width="152" height="24">
    <properties>
     <property name="position.z" value="LAYER_0_ENEMIES"/>
    </properties>
@@ -184,24 +208,6 @@
     <property name="position.z" value="LAYER_0"/>
    </properties>
   </object>
-  <object id="116" name="Back" type="Composite" x="0" y="0" width="384" height="192">
-   <properties>
-    <property name="containerId" type="int" value="3"/>
-    <property name="position.z" value="LAYER_0_BACKGROUND"/>
-   </properties>
-  </object>
-  <object id="114" name="MainBack" type="Composite" x="0" y="0" width="384" height="192">
-   <properties>
-    <property name="containerId" type="int" value="2"/>
-    <property name="position.z" value="-SORT_INCREMENT"/>
-   </properties>
-  </object>
-  <object id="115" name="Main" type="Composite" x="0" y="0" width="384" height="192">
-   <properties>
-    <property name="containerId" type="int" value="1"/>
-    <property name="position.z" value="-SORT_INCREMENT * 2"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer name="(C2) Main Back" width="48" height="28">
   <properties>
@@ -222,29 +228,29 @@
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,92,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,91,0,61,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,94,0,61,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,60,0,62,0,62,0,62,0,0,0,0,0,0,0,62,0,62,0,62,0,62,0,62,0,59,59,61,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,66,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,93,0,0,0,94,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,97,0,98,0,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,0,0,0,0,94,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,93,0,0,0,94,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,65,0,66,0,67,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,61,0,62,0,63,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,92,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,63,0,96,0,98,0,99,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,0,0,0,0,0,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,94,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,0,0,0,0,0,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,60,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,62,0,59,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,93,0,94,0,95,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,61,0,
+124,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+124,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+124,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,124,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -304,15 +310,15 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="0"/>
   </properties>
-  <object id="25" name="Left Collision" type="Collision" gid="39" x="1" y="176" width="16" height="48"/>
-  <object id="27" name="Bottom Collision" type="Collision" gid="39" x="0" y="191" width="272" height="16"/>
-  <object id="32" name="Top Collision" type="Collision" gid="39" x="160" y="17" width="224" height="16"/>
-  <object id="82" name="Bottom Right Collision" type="Collision" gid="39" x="271" y="191" width="112" height="128"/>
-  <object id="83" name="Center Collision" type="Collision" gid="39" x="1" y="129" width="224" height="66"/>
-  <object id="84" name="Top Left Collision" type="Collision" gid="39" x="129" y="64" width="32" height="64"/>
-  <object id="85" name="Top Right Collision" type="Collision" gid="39" x="367" y="64" width="16" height="48"/>
-  <object id="129" name="Lower One-Way" type="Collision" gid="40" x="224" y="151" width="48" height="32"/>
-  <object id="128" name="Upper One-Way" type="Collision" gid="40" x="224" y="95" width="48" height="32"/>
+  <object id="25" name="Left Collision" type="Collision" gid="39" x="0" y="176" width="16" height="48"/>
+  <object id="27" name="Bottom Collision" type="Collision" gid="39" x="0" y="192" width="272" height="16"/>
+  <object id="32" name="Top Collision" type="Collision" gid="39" x="160" y="16" width="224" height="16"/>
+  <object id="82" name="Bottom Right Collision" type="Collision" gid="39" x="272" y="192" width="112" height="128"/>
+  <object id="83" name="Center Collision" type="Collision" gid="39" x="0" y="128" width="224" height="64"/>
+  <object id="84" name="Top Left Collision" type="Collision" gid="39" x="128" y="64" width="32" height="64"/>
+  <object id="85" name="Top Right Collision" type="Collision" gid="39" x="368" y="64" width="16" height="48"/>
+  <object id="129" name="Lower One-Way" type="Collision" gid="40" x="224" y="152" width="48" height="34"/>
+  <object id="128" name="Upper One-Way" type="Collision" gid="40" x="224" y="96" width="48" height="32"/>
  </objectgroup>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>

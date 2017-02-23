@@ -37,11 +37,11 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-VBVec3D level1_coin_room_stage_collision_16_96_8 = {16, 96, 8};
-VBVec3D level1_coin_room_stage_collision_224_16_8 = {224, 16, 8};
-VBVec3D level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
-VBVec3D level1_coin_room_stage_collision_32_48_8 = {32, 48, 8};
-VBVec3D level1_coin_room_stage_collision_80_48_8 = {80, 48, 8};
+const VBVec3D level1_coin_room_stage_collision_16_96_8 = {16, 96, 8};
+const VBVec3D level1_coin_room_stage_collision_224_16_8 = {224, 16, 8};
+const VBVec3D level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
+const VBVec3D level1_coin_room_stage_collision_32_48_8 = {32, 48, 8};
+const VBVec3D level1_coin_room_stage_collision_80_48_8 = {80, 48, 8};
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
@@ -66,10 +66,10 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {FTOFIX19_13(9), FTOFIX19_13(112), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Left Collision
-	{&COLLISION_CL, {FTOFIX19_13(17), FTOFIX19_13(41), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Left Collision
+	{&COLLISION_CL, {FTOFIX19_13(8), FTOFIX19_13(112), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Left Collision
+	{&COLLISION_CL, {FTOFIX19_13(16), FTOFIX19_13(40), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Left Collision
 	{&DOOR_AG, {FTOFIX19_13(36), FTOFIX19_13(144), FTOFIX19_13(LAYER_0_DOORS)}, 0, "CoinEntr", NULL, (void*)&LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP, false}, // Door (Entrance)
-	{&COLLISION_CL, {FTOFIX19_13(41), FTOFIX19_13(183), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Left Collision
+	{&COLLISION_CL, {FTOFIX19_13(40), FTOFIX19_13(184), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Left Collision
 	{&HERO_AC, {FTOFIX19_13(62), FTOFIX19_13(148), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&TORCH_LIGHT_AG, {FTOFIX19_13(64), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Left Torch Light
 	{&TORCH_AG, {FTOFIX19_13(64), FTOFIX19_13(126), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Left Torch
@@ -83,11 +83,11 @@ PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 	{&COIN_AG, {FTOFIX19_13(176), FTOFIX19_13(136), FTOFIX19_13(LAYER_0_ITEMS)}, 33, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {FTOFIX19_13(176), FTOFIX19_13(152), FTOFIX19_13(LAYER_0_ITEMS)}, 32, NULL, NULL, NULL, false}, // Coin
 	{&LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(-SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // MainBack
-	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(25), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_320_16_8, false}, // Top Collision
-	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(199), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_224_16_8, false}, // Bottom Collision
+	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(24), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_320_16_8, false}, // Top Collision
+	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(200), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_224_16_8, false}, // Bottom Collision
 	{&LEVEL1_COIN_ROOM_STAGE_BACK_1_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Back
 	{&LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false}, // Main
-	{&SAW_BLADE_H8_AC, {FTOFIX19_13(193), FTOFIX19_13(191), FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Cog Wheel
+	{&SAW_BLADE_H8_AC, {FTOFIX19_13(193), FTOFIX19_13(192), FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Cog Wheel
 	{&COIN_AG, {FTOFIX19_13(208), FTOFIX19_13(152), FTOFIX19_13(LAYER_0_ITEMS)}, 39, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {FTOFIX19_13(208), FTOFIX19_13(104), FTOFIX19_13(LAYER_0_ITEMS)}, 36, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {FTOFIX19_13(208), FTOFIX19_13(120), FTOFIX19_13(LAYER_0_ITEMS)}, 37, NULL, NULL, NULL, false}, // Coin
@@ -100,10 +100,10 @@ PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 	{&COIN_AG, {FTOFIX19_13(240), FTOFIX19_13(152), FTOFIX19_13(LAYER_0_ITEMS)}, 45, NULL, NULL, NULL, false}, // Coin
 	{&TORCH_AG, {FTOFIX19_13(320), FTOFIX19_13(128), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Right Torch
 	{&TORCH_LIGHT_AG, {FTOFIX19_13(320), FTOFIX19_13(130), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Right Torch Light
-	{&COLLISION_CL, {FTOFIX19_13(343), FTOFIX19_13(183), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Right Collision
+	{&COLLISION_CL, {FTOFIX19_13(344), FTOFIX19_13(184), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Right Collision
 	{&DOOR_AG, {FTOFIX19_13(348), FTOFIX19_13(144), FTOFIX19_13(LAYER_0_DOORS)}, 0, "CoinExit", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_LOWER_EP, false}, // Door (Exit)
-	{&COLLISION_CL, {FTOFIX19_13(367), FTOFIX19_13(41), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Right Collision
-	{&COLLISION_CL, {FTOFIX19_13(375), FTOFIX19_13(112), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Right Collision
+	{&COLLISION_CL, {FTOFIX19_13(368), FTOFIX19_13(40), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Right Collision
+	{&COLLISION_CL, {FTOFIX19_13(376), FTOFIX19_13(112), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Right Collision
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
