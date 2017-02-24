@@ -5,19 +5,19 @@
   <properties>
    <property name="entityName" value="COLLISION_CL"/>
   </properties>
-  <image width="64" height="64" source="../../../images/Collision/Preview/collision.png"/>
+  <image width="64" height="64" source="../../../images/Other/Preview/collision.png"/>
  </tile>
  <tile id="2">
   <properties>
    <property name="entityName" value="COLLISION_TOP_CL"/>
   </properties>
-  <image width="64" height="64" source="../../../images/Collision/Preview/collisionTop.png"/>
+  <image width="64" height="64" source="../../../images/Other/Preview/collisionTop.png"/>
  </tile>
  <tile id="3">
   <properties>
    <property name="entityName" value="COLLISION_HIT_CL"/>
   </properties>
-  <image width="64" height="64" source="../../../images/Collision/Preview/collisionHit.png"/>
+  <image width="64" height="64" source="../../../images/Other/Preview/collisionHit.png"/>
  </tile>
  <tile id="4">
   <properties>
