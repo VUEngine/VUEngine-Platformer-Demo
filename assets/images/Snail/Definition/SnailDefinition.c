@@ -143,7 +143,7 @@ ObjectSpriteROMDef* const SNAIL_SPRITES[] =
 	NULL
 };
 
-MovingEntityROMDef SNAIL_4_AC =
+MovingEntityROMDef SNAIL_3_AC =
 {
 	{
 		{
@@ -250,7 +250,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	ITOFIX19_13(20),
 
 	// maximum deviation from initial position
-	ITOFIX19_13(64),
+	ITOFIX19_13(8 * 8),
 
 	// time to rest idle
 	3000,

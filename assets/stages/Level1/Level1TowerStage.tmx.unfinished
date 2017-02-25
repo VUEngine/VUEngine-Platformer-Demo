@@ -89,48 +89,6 @@
  </tileset>
  <tileset firstgid="61" source="../assets/tilesets/InnerTiles.tsx"/>
  <tileset firstgid="1085" source="../assets/tilesets/OuterTiles.tsx"/>
- <objectgroup draworder="index" name="Composites">
-  <properties>
-   <property name="containerType" value="Main"/>
-   <property name="position.z" value="0"/>
-  </properties>
-  <object id="246" name="Back 2" type="Composite" x="0" y="0" width="384" height="512">
-   <properties>
-    <property name="containerId" type="int" value="3"/>
-    <property name="position.z" value="LAYER_0_BACKGROUND"/>
-   </properties>
-  </object>
-  <object id="209" name="Back 1" type="Composite" x="0" y="512" width="384" height="512">
-   <properties>
-    <property name="containerId" type="int" value="3"/>
-    <property name="position.z" value="LAYER_0_BACKGROUND"/>
-   </properties>
-  </object>
-  <object id="245" name="MainBack 2" type="Composite" x="0" y="8" width="384" height="512">
-   <properties>
-    <property name="containerId" type="int" value="2"/>
-    <property name="position.z" value="LAYER_0_FOREGROUND - SORT_INCREMENT"/>
-   </properties>
-  </object>
-  <object id="210" name="MainBack 1" type="Composite" x="0" y="512" width="384" height="512">
-   <properties>
-    <property name="containerId" type="int" value="2"/>
-    <property name="position.z" value="LAYER_0_FOREGROUND - SORT_INCREMENT"/>
-   </properties>
-  </object>
-  <object id="244" name="Main 2" type="Composite" x="0" y="8" width="384" height="512">
-   <properties>
-    <property name="containerId" type="int" value="1"/>
-    <property name="position.z" value="LAYER_0_FOREGROUND - SORT_INCREMENT * 2"/>
-   </properties>
-  </object>
-  <object id="211" name="Main 1" type="Composite" x="0" y="512" width="384" height="512">
-   <properties>
-    <property name="containerId" type="int" value="1"/>
-    <property name="position.z" value="LAYER_0_FOREGROUND - SORT_INCREMENT * 2"/>
-   </properties>
-  </object>
- </objectgroup>
  <layer name="(C3) Background" width="48" height="128">
   <properties>
    <property name="bgmapMode" value="__WORLD_BGMAP"/>
@@ -575,6 +533,194 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,95,0,0,0,0,0,0,0,93,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup draworder="index" name="Composites">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="246" name="Back 2" type="Composite" x="0" y="0" width="384" height="512">
+   <properties>
+    <property name="containerId" type="int" value="3"/>
+    <property name="position.z" value="LAYER_0_BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="209" name="Back 1" type="Composite" x="0" y="512" width="384" height="512">
+   <properties>
+    <property name="containerId" type="int" value="3"/>
+    <property name="position.z" value="LAYER_0_BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="245" name="MainBack 2" type="Composite" x="0" y="8" width="384" height="512">
+   <properties>
+    <property name="containerId" type="int" value="2"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND - SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="210" name="MainBack 1" type="Composite" x="0" y="512" width="384" height="512">
+   <properties>
+    <property name="containerId" type="int" value="2"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND - SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="244" name="Main 2" type="Composite" x="0" y="8" width="384" height="512">
+   <properties>
+    <property name="containerId" type="int" value="1"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND - SORT_INCREMENT * 2"/>
+   </properties>
+  </object>
+  <object id="211" name="Main 1" type="Composite" x="0" y="512" width="384" height="512">
+   <properties>
+    <property name="containerId" type="int" value="1"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND - SORT_INCREMENT * 2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Collisions">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="130" name="Bottom Left Collision" type="Collision" gid="39" x="0" y="1024" width="256" height="80">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="131" name="Bottom Right Collision" type="Collision" gid="39" x="304" y="1024" width="80" height="112">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="132" name="Bottom Right Stepstone Collision" type="Collision" gid="39" x="336" y="912" width="48" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="133" name="Lower Left Wall Collision" type="Collision" gid="39" x="0" y="944" width="16" height="336">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="134" type="Collision" gid="39" x="16" y="816" width="192" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="135" name="Bottom Floating Collision" type="Collision" gid="39" x="256" y="848" width="32" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="136" name="Items Floor Collision" type="Collision" gid="39" x="288" y="736" width="80" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="137" name="Lower Right Wall Collision" type="Collision" gid="39" x="368" y="880" width="16" height="352">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="138" type="Collision" gid="39" x="96" y="688" width="256" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="139" type="Collision" gid="39" x="0" y="608" width="288" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="140" type="Collision" gid="39" x="0" y="528" width="240" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="144" type="Collision" gid="39" x="368" y="528" width="16" height="400">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="145" type="Collision" gid="39" x="96" y="576" width="16" height="48">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="146" type="Collision" gid="39" x="240" y="528" width="48" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="147" type="Collision" gid="39" x="160" y="512" width="32" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="148" type="Collision" gid="39" x="64" y="512" width="48" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="149" type="Collision" gid="39" x="0" y="512" width="16" height="272">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="150" type="Collision" gid="39" x="16" y="464" width="16" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="151" type="Collision" gid="39" x="80" y="432" width="32" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="152" type="Collision" gid="39" x="160" y="400" width="32" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="154" type="Collision" gid="39" x="240" y="368" width="32" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="155" type="Collision" gid="39" x="320" y="336" width="48" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="156" type="Collision" gid="39" x="16" y="256" width="288" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="157" type="Collision" gid="39" x="0" y="224" width="80" height="128">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="158" type="Collision" gid="39" x="144" y="128" width="240" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="159" type="Collision" gid="39" x="0" y="96" width="16" height="64">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="160" type="Collision" gid="39" x="0" y="32" width="272" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="161" type="Collision" gid="39" x="256" y="96" width="16" height="64">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup draworder="index" name="Child: Lava">
   <properties>
    <property name="containerName" value="Lava"/>
@@ -801,152 +947,6 @@
   </object>
   <object id="198" name="Torch Light" type="Entity" gid="34" x="14" y="106" width="80" height="80"/>
   <object id="197" name="Torch" type="Entity" gid="28" x="50" y="76" width="8" height="24">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="Collisions">
-  <properties>
-   <property name="containerType" value="Main"/>
-   <property name="position.z" value="0"/>
-  </properties>
-  <object id="130" name="Bottom Left Collision" type="Collision" gid="39" x="0" y="1024" width="256" height="80">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="131" name="Bottom Right Collision" type="Collision" gid="39" x="304" y="1024" width="80" height="112">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="132" name="Bottom Right Stepstone Collision" type="Collision" gid="39" x="336" y="912" width="48" height="32">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="133" name="Lower Left Wall Collision" type="Collision" gid="39" x="0" y="944" width="16" height="336">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="134" type="Collision" gid="39" x="16" y="816" width="192" height="32">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="135" name="Bottom Floating Collision" type="Collision" gid="39" x="256" y="848" width="32" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="136" name="Items Floor Collision" type="Collision" gid="39" x="288" y="736" width="80" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="137" name="Lower Right Wall Collision" type="Collision" gid="39" x="368" y="880" width="16" height="352">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="138" type="Collision" gid="39" x="96" y="688" width="256" height="32">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="139" type="Collision" gid="39" x="0" y="608" width="288" height="32">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="140" type="Collision" gid="39" x="0" y="528" width="240" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="144" type="Collision" gid="39" x="368" y="528" width="16" height="400">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="145" type="Collision" gid="39" x="96" y="576" width="16" height="48">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="146" type="Collision" gid="39" x="240" y="528" width="48" height="32">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="147" type="Collision" gid="39" x="160" y="512" width="32" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="148" type="Collision" gid="39" x="64" y="512" width="48" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="149" type="Collision" gid="39" x="0" y="512" width="16" height="272">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="150" type="Collision" gid="39" x="16" y="464" width="16" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="151" type="Collision" gid="39" x="80" y="432" width="32" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="152" type="Collision" gid="39" x="160" y="400" width="32" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="154" type="Collision" gid="39" x="240" y="368" width="32" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="155" type="Collision" gid="39" x="320" y="336" width="48" height="16">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="156" type="Collision" gid="39" x="16" y="256" width="288" height="32">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="157" type="Collision" gid="39" x="0" y="224" width="80" height="128">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="158" type="Collision" gid="39" x="144" y="128" width="240" height="32">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="159" type="Collision" gid="39" x="0" y="96" width="16" height="64">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="160" type="Collision" gid="39" x="0" y="32" width="272" height="32">
-   <properties>
-    <property name="position.z" value="LAYER_0"/>
-   </properties>
-  </object>
-  <object id="161" type="Collision" gid="39" x="256" y="96" width="16" height="64">
    <properties>
     <property name="position.z" value="LAYER_0"/>
    </properties>

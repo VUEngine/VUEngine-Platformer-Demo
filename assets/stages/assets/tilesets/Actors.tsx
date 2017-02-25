@@ -33,9 +33,9 @@
  </tile>
  <tile id="8">
   <properties>
-   <property name="entityName" value="SNAIL_4_AC"/>
+   <property name="entityName" value="SNAIL_3_AC"/>
   </properties>
-  <image width="88" height="16" source="../../../images/Snail/Preview/Snail4.png"/>
+  <image width="88" height="16" source="../../../images/Snail/Preview/Snail3.png"/>
  </tile>
  <tile id="9">
   <properties>

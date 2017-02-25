@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="Objects" tilewidth="80" tileheight="80" tilecount="14" columns="32">
+<!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<tileset name="Objects" tilewidth="88" tileheight="224" tilecount="22" columns="32">
  <tile id="0">
   <properties>
    <property name="entityName" value="BUSH_AG"/>
@@ -80,5 +81,53 @@
    <property name="entityName" value="TORCH_LIGHT_AG"/>
   </properties>
   <image width="80" height="80" source="../../../images/Torch/Preview/TorchLight.png"/>
+ </tile>
+ <tile id="23">
+  <properties>
+   <property name="entityName" value="DOUBLE_JUMP_SIGN_IM"/>
+  </properties>
+  <image width="32" height="32" source="../../../images/Signs/Preview/DoubleJumpSign.png"/>
+ </tile>
+ <tile id="24">
+  <properties>
+   <property name="entityName" value="JUMP_SIGN_IM"/>
+  </properties>
+  <image width="32" height="32" source="../../../images/Signs/Preview/JumpSign.png"/>
+ </tile>
+ <tile id="25">
+  <properties>
+   <property name="entityName" value="RUN_SIGN_IM"/>
+  </properties>
+  <image width="32" height="32" source="../../../images/Signs/Preview/RunSign.png"/>
+ </tile>
+ <tile id="26">
+  <properties>
+   <property name="entityName" value="CLOUD_A_IM"/>
+  </properties>
+  <image width="64" height="32" source="../../../images/Clouds/Preview/CloudA.png"/>
+ </tile>
+ <tile id="27">
+  <properties>
+   <property name="entityName" value="WATERFALL_TOP_AG"/>
+  </properties>
+  <image width="32" height="8" source="../../../images/Waterfall/Preview/WaterfallTop.png"/>
+ </tile>
+ <tile id="28">
+  <properties>
+   <property name="entityName" value="WATERFALL_STREAM_AG"/>
+  </properties>
+  <image width="16" height="224" source="../../../images/Waterfall/Preview/WaterfallStream.png"/>
+ </tile>
+ <tile id="29">
+  <properties>
+   <property name="entityName" value="MOUND_1_IM"/>
+  </properties>
+  <image width="48" height="40" source="../../../images/Mound/Preview/Mound1.png"/>
+ </tile>
+ <tile id="30">
+  <properties>
+   <property name="entityName" value="MOUND_2_IM"/>
+  </properties>
+  <image width="88" height="40" source="../../../images/Mound/Preview/Mound2.png"/>
  </tile>
 </tileset>

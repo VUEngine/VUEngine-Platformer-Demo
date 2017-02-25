@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="94">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="100">
  <properties>
   <property name="declaration" value="NULL"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
@@ -162,6 +162,42 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup draworder="index" name="Composites">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="LAYER_0"/>
+  </properties>
+  <object id="94" name="Main Layer (1)" type="Composite" x="0" y="80" width="288" height="112">
+   <properties>
+    <property name="containerId" value="1"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="95" name="Main Layer (2)" type="Composite" x="288" y="80" width="64" height="80">
+   <properties>
+    <property name="containerId" value="1"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="85" name="Test Composite" type="Composite" x="32" y="32" width="80" height="80">
+   <properties>
+    <property name="containerId" value="2"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Collisions">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="25" name="Left" type="Collision" gid="39" x="0" y="192" width="16" height="64"/>
+  <object id="26" name="Top Left" type="Collision" gid="39" x="0" y="128" width="160" height="48"/>
+  <object id="27" name="Bottom" type="Collision" gid="39" x="16" y="192" width="256" height="16"/>
+  <object id="32" name="Top" type="Collision" gid="39" x="160" y="96" width="176" height="16"/>
+  <object id="33" name="Bottom Right" type="Collision" gid="39" x="272" y="192" width="80" height="48"/>
+  <object id="34" name="Right" type="Collision" gid="39" x="336" y="144" width="16" height="64"/>
+ </objectgroup>
  <objectgroup draworder="index" name="Child: Test">
   <properties>
    <property name="containerName" value="Test"/>
@@ -178,24 +214,6 @@
    <property name="containerType" value="Main"/>
    <property name="position.z" value="LAYER_0"/>
   </properties>
-  <object id="83" name="Main Layer (1)" type="Composite" x="0" y="80" width="288" height="112">
-   <properties>
-    <property name="containerId" value="1"/>
-    <property name="position.z" value="LAYER_0_FOREGROUND"/>
-   </properties>
-  </object>
-  <object id="84" name="Main Layer (2)" type="Composite" x="288" y="80" width="64" height="80">
-   <properties>
-    <property name="containerId" value="1"/>
-    <property name="position.z" value="LAYER_0_FOREGROUND"/>
-   </properties>
-  </object>
-  <object id="85" name="Test Composite" type="Composite" x="32" y="32" width="80" height="80">
-   <properties>
-    <property name="containerId" value="2"/>
-    <property name="position.z" value="LAYER_0_FOREGROUND"/>
-   </properties>
-  </object>
   <object id="86" name="Entry Door" type="Entity" gid="15" x="24" y="176" width="24" height="32">
    <properties>
     <property name="name" value="&quot;EntryDoor&quot;"/>
@@ -212,18 +230,6 @@
     <property name="childrenDefinitions" value="Test"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup name="Collisions">
-  <properties>
-   <property name="containerType" value="Main"/>
-   <property name="position.z" value="0"/>
-  </properties>
-  <object id="25" name="Left" type="Collision" gid="39" x="0" y="192" width="16" height="64"/>
-  <object id="26" name="Top Left" type="Collision" gid="39" x="0" y="128" width="160" height="48"/>
-  <object id="27" name="Bottom" type="Collision" gid="39" x="16" y="192" width="256" height="16"/>
-  <object id="32" name="Top" type="Collision" gid="39" x="160" y="96" width="176" height="16"/>
-  <object id="33" name="Bottom Right" type="Collision" gid="39" x="272" y="192" width="80" height="48"/>
-  <object id="34" name="Right" type="Collision" gid="39" x="336" y="144" width="16" height="64"/>
  </objectgroup>
  <objectgroup draworder="index" name="UI" opacity="0.5">
   <properties>
