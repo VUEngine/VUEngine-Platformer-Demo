@@ -37,9 +37,8 @@ extern EntityDefinition CLOCK_AG;
 extern EntityDefinition COIN_AG;
 
 
-
 //---------------------------------------------------------------------------------------------------------
-//											ENTITY LISTS
+// 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES[] =
@@ -58,7 +57,7 @@ PositionedEntityROMDef LEVEL_DONE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 
 
 //---------------------------------------------------------------------------------------------------------
-//											PRELOAD LISTS
+// 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
 FontROMDef* const LEVEL_DONE_SCREEN_STAGE_ST_FONTS[] =
@@ -102,7 +101,7 @@ StageROMDef LEVEL_DONE_SCREEN_STAGE_ST =
 	// streaming
 	{
 		// minimum free ms in the current game frame to allow streaming to quick in
-		5,
+		10,
 		// load padding
 		40,
 		// unload padding

@@ -39,7 +39,6 @@ extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R;
 extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM;
 
 
-
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------

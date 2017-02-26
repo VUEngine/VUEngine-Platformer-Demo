@@ -7,6 +7,9 @@
   <property name="loadRegardlessOfPosition" type="bool" default="false"/>
   <property name="name" type="string" default="NULL"/>
   <property name="position.z" type="string" default="0"/>
+  <property name="preloadCharset" type="bool" default="false"/>
+  <property name="preloadTexture" type="bool" default="false"/>
+  <property name="preloadTextureIsManaged" type="bool" default="false"/>
  </objecttype>
  <objecttype name="EntryPoint" color="#00ff00">
   <property name="destinationName" type="string" default="NULL"/>
@@ -16,8 +19,16 @@
   <property name="offset.z" type="string" default="0"/>
  </objecttype>
  <objecttype name="Composite" color="#ffff00">
+  <property name="childrenDefinitions" type="string" default="NULL"/>
   <property name="containerId" type="int" default="0"/>
+  <property name="extraInfo" type="string" default="NULL"/>
+  <property name="id" type="int" default="0"/>
+  <property name="loadRegardlessOfPosition" type="bool" default="false"/>
+  <property name="name" type="string" default="NULL"/>
   <property name="position.z" type="string" default="0"/>
+  <property name="preloadCharset" type="bool" default="false"/>
+  <property name="preloadTexture" type="bool" default="false"/>
+  <property name="preloadTextureIsManaged" type="bool" default="false"/>
  </objecttype>
  <objecttype name="Collision" color="#a0a0a4">
   <property name="childrenDefinitions" type="string" default="NULL"/>

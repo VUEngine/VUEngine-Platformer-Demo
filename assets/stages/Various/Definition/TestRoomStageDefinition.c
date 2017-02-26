@@ -42,6 +42,7 @@ const VBVec3D test_room_stage_collision_16_64_8 = {16, 64, 8};
 const VBVec3D test_room_stage_collision_176_16_8 = {176, 16, 8};
 const VBVec3D test_room_stage_collision_256_16_8 = {256, 16, 8};
 const VBVec3D test_room_stage_collision_80_48_8 = {80, 48, 8};
+extern CharSetDefinition DOOR_CH;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition DOOR_AG;
@@ -52,6 +53,10 @@ extern EntityDefinition SAW_BLADE_H8_AC;
 extern EntityDefinition TEST_ROOM_STAGE_MAIN_1_IM;
 extern EntityDefinition TEST_ROOM_STAGE_MAIN_2_IM;
 extern EntityDefinition TEST_ROOM_STAGE_TEST_1_IM;
+extern TextureDefinition DOOR_TX;
+extern TextureDefinition HERO_TX;
+extern TextureDefinition TEST_ROOM_STAGE_MAIN_1_TX;
+extern TextureDefinition TEST_ROOM_STAGE_TEST_1_TX;
 extern u16 KRISSE_BGM[][2];
 
 
@@ -105,6 +110,23 @@ FontROMDef* const TEST_ROOM_STAGE_ST_FONTS[] =
 	&PLATFORMER_GUI_FONT,
 
 	NULL
+};
+
+CharSetROMDef* const TEST_ROOM_STAGE_ST_CHARSETS[] =
+{
+	&DOOR_CH,
+
+	NULL
+};
+
+StageTextureEntryROMDef TEST_ROOM_STAGE_ST_TEXTURES[] =
+{
+	{&DOOR_TX, false},
+	{&HERO_TX, false},
+	{&TEST_ROOM_STAGE_TEST_1_TX, true},
+	{&TEST_ROOM_STAGE_MAIN_1_TX, true},
+
+	{NULL, false}
 };
 
 
@@ -271,10 +293,10 @@ StageROMDef TEST_ROOM_STAGE_ST =
 		(FontDefinition**)TEST_ROOM_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)NULL,
+		(CharSetDefinition**)TEST_ROOM_STAGE_ST_CHARSETS,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)NULL,
+		(StageTextureEntryDefinition*)TEST_ROOM_STAGE_ST_TEXTURES,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,

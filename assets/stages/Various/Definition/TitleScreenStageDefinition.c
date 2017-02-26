@@ -51,8 +51,11 @@ extern EntityDefinition STAR_AG;
 extern EntityDefinition TITLE_SCREEN_STAGE_MAIN_1_IM;
 extern EntityDefinition TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM;
 extern EntityDefinition VUENGINE_LOGO_IM;
+extern TextureDefinition LOGO_L_TX;
+extern TextureDefinition LOGO_OUTLINE_L_TX;
+extern TextureDefinition LOGO_OUTLINE_R_TX;
+extern TextureDefinition LOGO_R_TX;
 extern u16 KRISSE_BGM[][2];
-
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -99,6 +102,16 @@ FontROMDef* const TITLE_SCREEN_STAGE_ST_FONTS[] =
 	&PLATFORMER_GUI_FONT,
 
 	NULL
+};
+
+StageTextureEntryROMDef TITLE_SCREEN_STAGE_ST_TEXTURES[] =
+{
+	{&LOGO_L_TX, false},
+	{&LOGO_R_TX, false},
+	{&LOGO_OUTLINE_L_TX, false},
+	{&LOGO_OUTLINE_R_TX, false},
+
+	{NULL, false}
 };
 
 
@@ -268,7 +281,7 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		(CharSetDefinition**)NULL,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)NULL,
+		(StageTextureEntryDefinition*)TITLE_SCREEN_STAGE_ST_TEXTURES,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,
