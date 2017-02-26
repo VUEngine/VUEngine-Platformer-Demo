@@ -42,7 +42,9 @@ const VBVec3D test_room_stage_collision_16_64_8 = {16, 64, 8};
 const VBVec3D test_room_stage_collision_176_16_8 = {176, 16, 8};
 const VBVec3D test_room_stage_collision_256_16_8 = {256, 16, 8};
 const VBVec3D test_room_stage_collision_80_48_8 = {80, 48, 8};
+extern CharSetDefinition COG_WHEEL_CH;
 extern CharSetDefinition DOOR_CH;
+extern CharSetDefinition GUI_CH;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition DOOR_AG;
@@ -53,7 +55,9 @@ extern EntityDefinition SAW_BLADE_H8_AC;
 extern EntityDefinition TEST_ROOM_STAGE_MAIN_1_IM;
 extern EntityDefinition TEST_ROOM_STAGE_MAIN_2_IM;
 extern EntityDefinition TEST_ROOM_STAGE_TEST_1_IM;
+extern TextureDefinition COG_WHEEL_TX;
 extern TextureDefinition DOOR_TX;
+extern TextureDefinition GUI_TX;
 extern TextureDefinition HERO_TX;
 extern TextureDefinition TEST_ROOM_STAGE_MAIN_1_TX;
 extern TextureDefinition TEST_ROOM_STAGE_TEST_1_TX;
@@ -114,6 +118,8 @@ FontROMDef* const TEST_ROOM_STAGE_ST_FONTS[] =
 
 CharSetROMDef* const TEST_ROOM_STAGE_ST_CHARSETS[] =
 {
+	&COG_WHEEL_CH,
+	&GUI_CH,
 	&DOOR_CH,
 
 	NULL
@@ -121,6 +127,8 @@ CharSetROMDef* const TEST_ROOM_STAGE_ST_CHARSETS[] =
 
 StageTextureEntryROMDef TEST_ROOM_STAGE_ST_TEXTURES[] =
 {
+	{&COG_WHEEL_TX, false},
+	{&GUI_TX, false},
 	{&DOOR_TX, false},
 	{&HERO_TX, false},
 	{&TEST_ROOM_STAGE_TEST_1_TX, true},
