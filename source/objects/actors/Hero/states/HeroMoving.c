@@ -92,7 +92,7 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 #endif
 }
 
-void HeroMoving_execute(HeroMoving this, void* owner)
+void HeroMoving_execute(HeroMoving this __attribute__ ((unused)), void* owner)
 {
 	// check direction
 	Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS);
