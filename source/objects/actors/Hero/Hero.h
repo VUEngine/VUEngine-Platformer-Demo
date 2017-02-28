@@ -118,6 +118,8 @@ __CLASS(Hero);
 		s8 jumps;																						\
 		/* flag for invincible mode (after being hit) */												\
 		bool invincible;																				\
+		/* flag to keep applying force to the x axis */													\
+		bool keepAddingForce;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
