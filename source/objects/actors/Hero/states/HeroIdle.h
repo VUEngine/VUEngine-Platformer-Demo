@@ -46,7 +46,6 @@
 		__VIRTUAL_SET(ClassName, HeroIdle, processMessage);												\
 		__VIRTUAL_SET(ClassName, HeroIdle, onKeyPressed);												\
 		__VIRTUAL_SET(ClassName, HeroIdle, onKeyReleased);												\
-		__VIRTUAL_SET(ClassName, HeroIdle, onKeyHold);													\
 
 __CLASS(HeroIdle);
 
@@ -63,7 +62,6 @@ HeroIdle HeroIdle_getInstance();
 
 void HeroIdle_onKeyPressed(HeroIdle this, void* owner);
 void HeroIdle_onKeyReleased(HeroIdle this, void* owner);
-void HeroIdle_onKeyHold(HeroIdle this, void* owner);
 
 
 #endif

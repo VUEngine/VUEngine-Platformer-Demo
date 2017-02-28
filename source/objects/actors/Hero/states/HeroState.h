@@ -39,7 +39,6 @@
 		State_METHODS(ClassName)																		\
 		__VIRTUAL_DEC(ClassName, void, onKeyPressed, void* owner);										\
 		__VIRTUAL_DEC(ClassName, void, onKeyReleased, void* owner);										\
-		__VIRTUAL_DEC(ClassName, void, onKeyHold, void* owner);											\
 
 // declare the virtual methods which are redefined
 #define HeroState_SET_VTABLE(ClassName)																	\

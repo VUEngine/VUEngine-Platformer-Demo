@@ -133,6 +133,7 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, s16 id, s16 i
 	this->currentlyOverlappedDoor = NULL;
 	this->boost = false;
 	this->jumps = 0;
+	this->keepAddingForce = false;
 
 	// register a shape for collision detection
 	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
@@ -316,6 +317,11 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 void Hero_addForce(Hero this, int axis)
 {
 	ASSERT(this, "Hero::addForce: null this");
+
+	if(!this->keepAddingForce)
+	{
+		return;
+	}
 
 	static int movementType = 0;
 
@@ -907,18 +913,29 @@ static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused
 
 	if(userInput.pressedKey)
 	{
+		if(((K_LL | K_LR) & userInput.pressedKey))
+    	{
+    		this->keepAddingForce = true;
+    	}
+
 		__VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this);
 	}
 
 	if(userInput.releasedKey)
 	{
+		if(((K_LL | K_LR) & userInput.releasedKey))
+    	{
+    		this->keepAddingForce = false;
+    	}
+
 		__VIRTUAL_CALL(HeroState, onKeyReleased, StateMachine_getCurrentState(this->stateMachine), this);
 	}
-
+/*
 	if(userInput.holdKey)
 	{
 		__VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this);
 	}
+	*/
 }
 
 // does the hero have a key?

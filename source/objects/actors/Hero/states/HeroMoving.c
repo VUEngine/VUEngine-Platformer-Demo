@@ -41,6 +41,7 @@
 void HeroMoving_constructor(HeroMoving this);
 void HeroMoving_destructor(HeroMoving this);
 void HeroMoving_enter(HeroMoving this, void* owner);
+void HeroMoving_execute(HeroMoving this, void* owner);
 bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram);
 
 
@@ -89,6 +90,12 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
+}
+
+void HeroMoving_execute(HeroMoving this, void* owner)
+{
+	// check direction
+	Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS);
 }
 
 // state's handle message
@@ -208,13 +215,3 @@ void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* ow
 	}
 }
 
-void HeroMoving_onKeyHold(HeroMoving this __attribute__ ((unused)), void* owner)
-{
-	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
-
-	// check direction
-	if((K_LL | K_LR ) & holdKey)
-	{
-		Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS);
-	}
-}

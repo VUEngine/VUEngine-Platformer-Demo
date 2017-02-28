@@ -43,10 +43,10 @@
 #define HeroMoving_SET_VTABLE(ClassName)																\
 		HeroState_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, HeroMoving, enter);													\
+		__VIRTUAL_SET(ClassName, HeroMoving, execute);													\
 		__VIRTUAL_SET(ClassName, HeroMoving, processMessage);											\
 		__VIRTUAL_SET(ClassName, HeroMoving, onKeyPressed);												\
 		__VIRTUAL_SET(ClassName, HeroMoving, onKeyReleased);											\
-		__VIRTUAL_SET(ClassName, HeroMoving, onKeyHold);												\
 
 #define HeroMoving_ATTRIBUTES																			\
 		/* inherits */																					\
@@ -71,7 +71,7 @@ HeroMoving HeroMoving_getInstance();
 
 void HeroMoving_onKeyPressed(HeroMoving this, void* owner);
 void HeroMoving_onKeyReleased(HeroMoving this, void* owner);
-void HeroMoving_onKeyHold(HeroMoving this, void* owner);
+//void HeroMoving_onKeyHold(HeroMoving this, void* owner);
 
 
 #endif

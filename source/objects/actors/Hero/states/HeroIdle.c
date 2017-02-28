@@ -199,25 +199,3 @@ void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner)
 		Hero_disableBoost(__SAFE_CAST(Hero, owner));
 	}
 }
-
-void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner)
-{
-	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
-
-	if((K_LL | K_LR) & holdKey)
-	{
-		Acceleration acceleration =
-		{
-			K_LL & holdKey ? ITOFIX19_13(-1) : K_LR & holdKey ? __1I_FIX19_13 : 0,
-			K_A & holdKey ? ITOFIX19_13(-1) : 0,
-			0,
-		};
-
-		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
-		{
-			Hero_checkDirection(__SAFE_CAST(Hero, owner), holdKey, "Idle");
-
-			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
-		}
-	}
-}
