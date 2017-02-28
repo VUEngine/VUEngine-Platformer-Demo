@@ -70,6 +70,14 @@ extern EntityDefinition HINT_MC;
 extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 
 
+#define HERO_MAX_VELOCITY_X					ITOFIX19_13(75)
+#define HERO_MAX_VELOCITY_Y					ITOFIX19_13(305)
+#define HERO_MAX_VELOCITY_Z					ITOFIX19_13(40)
+#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(95)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		ITOFIX19_13(-25000)
+#define HERO_BOOST_JUMP_INPUT_FORCE			ITOFIX19_13(-30000)
+
+
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
@@ -281,7 +289,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				force.y = this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE;
 
 				// add the force to actually make the hero jump
-				Actor_addForce(__SAFE_CAST(Actor, this), &force);
+				Actor_addForce(__SAFE_CAST(Actor, this), &force, false);
 			}
 			else
 			{
@@ -298,7 +306,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
 
 				// add the force to actually make the hero jump
-				Actor_addForce(__SAFE_CAST(Actor, this), &force);
+				Actor_addForce(__SAFE_CAST(Actor, this), &force, false);
 
 				// show dust
 				Hero_showDust(this, true);
@@ -345,20 +353,19 @@ void Hero_addForce(Hero this, int axis)
 			zForce
 		};
 
-		Actor_addForce(__SAFE_CAST(Actor, this), &force);
+		Actor_addForce(__SAFE_CAST(Actor, this), &force, false);
 		movementType = __ACCELERATED_MOVEMENT;
 	}
 	else
 	{
-		Velocity newVelocity =
-		{
-			(__XAXIS & axis) ? ((int)maxVelocity * this->inputDirection.x) : 0,
-			0,
-			(__ZAXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
-		};
-
 		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__YAXIS & Body_isMoving(this->body))))
 		{
+			Velocity newVelocity =
+			{
+				(__XAXIS & axis) ? ((int)maxVelocity * this->inputDirection.x) : 0,
+				0,
+				(__ZAXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
+			};
 			movementType = __UNIFORM_MOVEMENT;
 			Body_moveUniformly(this->body, newVelocity);
 		}
