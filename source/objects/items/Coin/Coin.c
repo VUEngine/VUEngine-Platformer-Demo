@@ -68,20 +68,6 @@ void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameE
 {
 	// construct base
 	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, internalId, name);
-}
-
-// class's destructor
-void Coin_destructor(Coin this)
-{
-	// delete the super object
-	// must always be called at the end of the destructor
-	__DESTROY_BASE;
-}
-
-// initialize method
-void Coin_initialize(Coin this, u32 recursive)
-{
-	ASSERT(this, "Coin::initialize: null this");
 
 	// if coin has already been collected, show silhouette representation
 	if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
@@ -99,8 +85,14 @@ void Coin_initialize(Coin this, u32 recursive)
 
 		AnimatedInGameEntity_setDefinition(__SAFE_CAST(AnimatedInGameEntity, this), animatedInGameEntityDefinition);
 	}
+}
 
-	Entity_initialize(__SAFE_CAST(Entity, this), recursive);
+// class's destructor
+void Coin_destructor(Coin this)
+{
+	// delete the super object
+	// must always be called at the end of the destructor
+	__DESTROY_BASE;
 }
 
 void Coin_collect(Coin this)
