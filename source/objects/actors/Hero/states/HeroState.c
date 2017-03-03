@@ -52,3 +52,8 @@ void HeroState_destructor(HeroState this)
 	// destroy base
 	__DESTROY_BASE;
 }
+
+void HeroState_onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
+{
+
+}

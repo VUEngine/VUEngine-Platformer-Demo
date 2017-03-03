@@ -70,10 +70,10 @@ extern EntityDefinition HINT_MC;
 extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 
 
-#define HERO_MAX_VELOCITY_X					ITOFIX19_13(75)
+#define HERO_MAX_VELOCITY_X					ITOFIX19_13(80)
 #define HERO_MAX_VELOCITY_Y					ITOFIX19_13(305)
 #define HERO_MAX_VELOCITY_Z					ITOFIX19_13(40)
-#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(95)
+#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(110)
 #define HERO_NORMAL_JUMP_INPUT_FORCE		ITOFIX19_13(-25000)
 #define HERO_BOOST_JUMP_INPUT_FORCE			ITOFIX19_13(-30000)
 
@@ -322,9 +322,14 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 }
 
 // keep movement
-void Hero_addForce(Hero this, int axis)
+void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 {
 	ASSERT(this, "Hero::addForce: null this");
+
+	if(enableAddingForce)
+	{
+		this->keepAddingForce = true;
+	}
 
 	if(!this->keepAddingForce)
 	{
@@ -402,6 +407,8 @@ void Hero_stopAddingForce(Hero this)
 
 	Velocity velocity = Body_getVelocity(this->body);
 
+	this->keepAddingForce = false;
+
 	// no input
 //	this->inputDirection.x = 0;
 //	this->inputDirection.y = 0;
@@ -438,6 +445,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	{
 		if(__XAXIS & axis)
 		{
+			this->keepAddingForce = true;
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
 		}
 		else if(__YAXIS & axis)
@@ -452,9 +460,16 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	{
 		bool movementState = Body_isMoving(this->body);
 
-		if((__XAXIS & axis) && !(__YAXIS & movementState))
+		if(__XAXIS & axis)
 		{
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+			this->keepAddingForce = true;
+
+			if(!(__YAXIS & movementState))
+			{
+				this->keepAddingForce = true;
+
+				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+			}
 		}
 
 		if(__YAXIS & axis)
@@ -515,12 +530,14 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 	if(__ZAXIS & axis)
 	{
+		this->keepAddingForce = false;
 		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 		return true;
 	}
 
 	if(!Body_isMoving(this->body) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
 	{
+		this->keepAddingForce = false;
 		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 		return true;
 	}
@@ -920,29 +937,18 @@ static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused
 
 	if(userInput.pressedKey)
 	{
-		if(((K_LL | K_LR) & userInput.pressedKey))
-    	{
-    		this->keepAddingForce = true;
-    	}
-
 		__VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this);
 	}
 
 	if(userInput.releasedKey)
 	{
-		if(((K_LL | K_LR) & userInput.releasedKey))
-    	{
-    		this->keepAddingForce = false;
-    	}
-
 		__VIRTUAL_CALL(HeroState, onKeyReleased, StateMachine_getCurrentState(this->stateMachine), this);
 	}
-/*
+
 	if(userInput.holdKey)
 	{
 		__VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this);
 	}
-	*/
 }
 
 // does the hero have a key?
@@ -1147,6 +1153,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kLavaTriggerStart, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				Hero_stopAddingForce(this);
+				//Hero_stopMovingOnAxis(this, __XAXIS);
 				break;
 
 			case kMovingPlatform:

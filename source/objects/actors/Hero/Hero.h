@@ -133,7 +133,7 @@ __CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, s16 id, s16
 void Hero_constructor(Hero this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Hero_destructor(Hero this);
 void Hero_ready(Hero this, u32 recursive);
-void Hero_addForce(Hero this, int axis);
+void Hero_addForce(Hero this, int axis, bool enableAddingForce);
 void Hero_stopAddingForce(Hero this);
 void Hero_startedMovingOnAxis(Hero this, int axis);
 bool Hero_stopMovingOnAxis(Hero this, int axis);

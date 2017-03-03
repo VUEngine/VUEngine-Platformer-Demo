@@ -30,7 +30,7 @@
 
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include <Printing.h>
 
 #ifdef __DEBUG
@@ -87,6 +87,8 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
+
+	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
 }
 
 // state's exit
@@ -159,15 +161,18 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner)
 			0,
 		};
 
-		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+		if(K_A & pressedKey)
 		{
-			Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Idle");
+			Hero_jump(__SAFE_CAST(Hero, owner), true);
+		}
 
-			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
-
-			if(K_A & pressedKey)
+		if((K_LL | K_LR) & pressedKey)
+		{
+			if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			{
-				Hero_jump(__SAFE_CAST(Hero, owner), true);
+				Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Idle");
+
+				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
 			}
 		}
 
@@ -198,4 +203,26 @@ void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner)
 	{
 		Hero_disableBoost(__SAFE_CAST(Hero, owner));
 	}
+}
+
+void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner)
+{
+	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+
+    if((K_LL | K_LR) & holdKey)
+    {
+        Acceleration acceleration =
+        {
+            K_LL & holdKey ? ITOFIX19_13(-1) : K_LR & holdKey ? __1I_FIX19_13 : 0,
+            K_A & holdKey ? ITOFIX19_13(-1) : 0,
+            0,
+        };
+
+        if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+        {
+            Hero_checkDirection(__SAFE_CAST(Hero, owner), holdKey, "Idle");
+
+            Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
+        }
+    }
 }

@@ -30,7 +30,7 @@
 
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include <Printing.h>
 
 
@@ -76,12 +76,11 @@ void HeroMoving_destructor(HeroMoving this)
 	__SINGLETON_DESTROY;
 }
 
-#include <debugUtilities.h>
-
 // state's enter
 void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 {
 	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+
 	if(K_B & holdKey)
 	{
 		Hero_enableBoost(__SAFE_CAST(Hero, owner));
@@ -90,12 +89,14 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroMoving::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
 #endif
+
+	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED);
 }
 
 void HeroMoving_execute(HeroMoving this __attribute__ ((unused)), void* owner)
 {
 	// check direction
-	Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS);
+	Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS, false);
 }
 
 // state's handle message
@@ -161,7 +162,7 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 
 		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 		{
-			Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS);
+			Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS, true);
 		}
 
 		Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Walk");
@@ -184,23 +185,13 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner)
 {
 	u32 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
-	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
 	if(K_B & releasedKey)
 	{
 		Hero_disableBoost(__SAFE_CAST(Hero, owner));
 	}
 
-	if(((K_LL | K_LR) & releasedKey) && ((K_LL | K_LR) & holdKey))
-	{
-		if(!((K_LL & holdKey) && ( K_LR & holdKey)))
-		{
-			Hero_checkDirection(__SAFE_CAST(Hero, owner), holdKey, "Walk");
-			return;
-		}
-	}
-
-	if(((K_LL | K_LR) & releasedKey) && !((K_LL | K_LR) & holdKey))
+	if((K_LL | K_LR) & releasedKey)
 	{
 		Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, owner));
 
