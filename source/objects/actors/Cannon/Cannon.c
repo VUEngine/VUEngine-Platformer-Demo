@@ -87,7 +87,7 @@ void Cannon_destructor(Cannon this)
 	__DESTROY_BASE;
 }
 
-void Cannon_ready(Cannon this, u32 recursive)
+void Cannon_ready(Cannon this, bool recursive)
 {
 	ASSERT(this, "Cannon::ready: null this");
 

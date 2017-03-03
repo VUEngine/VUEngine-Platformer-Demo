@@ -99,7 +99,7 @@ __CLASS_NEW_DECLARE(MovingEntity, MovingEntityDefinition* MovingEntityDefinition
 void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
 void MovingEntity_destructor(MovingEntity this);
 void MovingEntity_setDefinition(MovingEntity this, MovingEntityDefinition* movingEntityDefinition);
-void MovingEntity_ready(MovingEntity this, u32 recursive);
+void MovingEntity_ready(MovingEntity this, bool recursive);
 bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram);
 void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position);
 int MovingEntity_getAxisFreeForMovement(MovingEntity this);

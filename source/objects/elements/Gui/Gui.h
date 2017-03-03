@@ -67,7 +67,7 @@ __CLASS_NEW_DECLARE(Gui, AnimatedInGameEntityDefinition* animatedInGameEntityDef
 
 void Gui_constructor(Gui this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 void Gui_destructor(Gui this);
-void Gui_ready(Gui this, u32 recursive);
+void Gui_ready(Gui this, bool recursive);
 void Gui_printClock(Gui this);
 void Gui_printBestTime(Gui this);
 void Gui_printCoins(Gui this);

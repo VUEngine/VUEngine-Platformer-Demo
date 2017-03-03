@@ -70,7 +70,7 @@ __CLASS_NEW_DECLARE(CannonBall, ActorDefinition* definition, s16 id, s16 interna
 
 void CannonBall_constructor(CannonBall this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
 void CannonBall_destructor(CannonBall this);
-void CannonBall_ready(CannonBall this, u32 recursive);
+void CannonBall_ready(CannonBall this, bool recursive);
 void CannonBall_registerShape(CannonBall this);
 void CannonBall_unregisterShape(CannonBall this);
 int CannonBall_getAxisFreeForMovement(CannonBall this);

@@ -84,7 +84,7 @@ void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameE
 void Door_destructor(Door this);
 StageEntryPointDefinition* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);
-void Door_ready(Door this, u32 recursive);
+void Door_ready(Door this, bool recursive);
 void Door_resume(Door this);
 bool Door_handleMessage(Door this, Telegram telegram);
 bool Door_hasDestination(Door this);

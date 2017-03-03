@@ -61,7 +61,7 @@ enum HeroPowerUps
 #define HERO_MAX_VELOCITY_X					ITOFIX19_13(80)
 #define HERO_MAX_VELOCITY_Y					ITOFIX19_13(305)
 #define HERO_MAX_VELOCITY_Z					ITOFIX19_13(40)
-#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(110)
+#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(105)
 #define HERO_NORMAL_JUMP_INPUT_FORCE		ITOFIX19_13(-25000)
 #define HERO_BOOST_JUMP_INPUT_FORCE			ITOFIX19_13(-30000)
 
@@ -132,7 +132,7 @@ __CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, s16 id, s16
 
 void Hero_constructor(Hero this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Hero_destructor(Hero this);
-void Hero_ready(Hero this, u32 recursive);
+void Hero_ready(Hero this, bool recursive);
 void Hero_addForce(Hero this, int axis, bool enableAddingForce);
 void Hero_stopAddingForce(Hero this);
 void Hero_startedMovingOnAxis(Hero this, int axis);

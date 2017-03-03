@@ -101,7 +101,7 @@ void Gui_destructor(Gui this)
 	__DESTROY_BASE;
 }
 
-void Gui_ready(Gui this, u32 recursive)
+void Gui_ready(Gui this, bool recursive)
 {
 	ASSERT(this, "Gui::ready: null this");
 

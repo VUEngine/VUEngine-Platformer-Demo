@@ -181,7 +181,7 @@ void Hero_destructor(Hero this)
 	__DESTROY_BASE;
 }
 
-void Hero_ready(Hero this, u32 recursive)
+void Hero_ready(Hero this, bool recursive)
 {
 	ASSERT(this, "Hero::ready: null this");
 

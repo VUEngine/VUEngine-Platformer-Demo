@@ -79,7 +79,7 @@ void CogWheel_destructor(CogWheel this)
 }
 
 // ready method
-void CogWheel_ready(CogWheel this, u32 recursive)
+void CogWheel_ready(CogWheel this, bool recursive)
 {
 	ASSERT(this, "CogWheel::ready: null this");
 

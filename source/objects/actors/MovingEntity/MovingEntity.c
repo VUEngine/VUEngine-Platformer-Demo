@@ -124,7 +124,7 @@ static void MovingEntity_registerShape(MovingEntity this)
 }
 
 // ready method
-void MovingEntity_ready(MovingEntity this, u32 recursive)
+void MovingEntity_ready(MovingEntity this, bool recursive)
 {
 	ASSERT(this, "MovingEntity::ready: null this");
 

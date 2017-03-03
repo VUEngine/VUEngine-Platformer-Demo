@@ -67,7 +67,7 @@ void KeyDoor_destructor(KeyDoor this)
 }
 
 // ready
-void KeyDoor_ready(KeyDoor this, u32 recursive __attribute__ ((unused)))
+void KeyDoor_ready(KeyDoor this, bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "KeyDoor::ready: null this");
 

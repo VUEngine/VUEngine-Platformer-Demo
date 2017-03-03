@@ -75,7 +75,7 @@ void GoalDoor_destructor(GoalDoor this)
 }
 
 // ready
-void GoalDoor_ready(Door this, u32 recursive __attribute__ ((unused)))
+void GoalDoor_ready(Door this, bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "GoalDoor::ready: null this");
 

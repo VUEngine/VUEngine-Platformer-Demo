@@ -74,7 +74,7 @@ void Key_destructor(Key this)
 	__DESTROY_BASE;
 }
 
-void Key_ready(Key this, u32 recursive)
+void Key_ready(Key this, bool recursive)
 {
 	ASSERT(this, "Key::ready: null this");
 

@@ -65,7 +65,7 @@ __CLASS_NEW_DECLARE(CogWheel, StaticImageDefinition* StaticImageDefinition, s16 
 
 void CogWheel_constructor(CogWheel this, StaticImageDefinition* definition, s16 id, s16 internalId, const char* const name);
 void CogWheel_destructor(CogWheel this);
-void CogWheel_ready(CogWheel this, u32 recursive);
+void CogWheel_ready(CogWheel this, bool recursive);
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram);
 
 

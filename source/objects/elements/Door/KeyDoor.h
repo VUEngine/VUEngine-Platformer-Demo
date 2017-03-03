@@ -62,7 +62,7 @@ __CLASS_NEW_DECLARE(KeyDoor, AnimatedInGameEntityDefinition* animatedInGameEntit
 
 void KeyDoor_constructor(KeyDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 void KeyDoor_destructor(KeyDoor this);
-void KeyDoor_ready(KeyDoor this, u32 recursive);
+void KeyDoor_ready(KeyDoor this, bool recursive);
 bool KeyDoor_hasDestination(KeyDoor this);
 void KeyDoor_setOverlapping(KeyDoor this);
 void KeyDoor_unsetOverlapping(KeyDoor this);

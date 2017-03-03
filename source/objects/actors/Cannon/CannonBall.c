@@ -83,7 +83,7 @@ void CannonBall_destructor(CannonBall this)
 }
 
 // ready method
-void CannonBall_ready(CannonBall this, u32 recursive)
+void CannonBall_ready(CannonBall this, bool recursive)
 {
 	ASSERT(this, "CannonBall::ready: null this");
 
