@@ -1408,7 +1408,7 @@ bool Hero_isAboveEntity(Hero this, Entity entity)
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
-	int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y * 2;
+	int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y * 4;
 	int entityTopPosition = Entity_getPosition(entity)->y - ITOFIX19_13(Entity_getHeight(entity) >> 1);
 
 	return (heroBottomPosition >= entityTopPosition);
