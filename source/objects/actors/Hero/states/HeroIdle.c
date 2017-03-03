@@ -166,7 +166,9 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner)
 			Hero_jump(__SAFE_CAST(Hero, owner), true);
 		}
 
-		if((K_LL | K_LR) & pressedKey)
+		u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+
+		if((K_LL | K_LR) & (pressedKey | holdKey))
 		{
 			if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			{
