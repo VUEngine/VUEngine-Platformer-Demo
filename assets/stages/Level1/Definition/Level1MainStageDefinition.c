@@ -318,7 +318,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_5_COLLISIONS[] =
 {
 	{&COLLISION_CL, 				{FTOFIX19_13(-28),	FTOFIX19_13(-84), 	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // left floating block
-	{&COLLISION_CL, 				{FTOFIX19_13(74),	FTOFIX19_13(-84), 	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // middle floating block
+	{&COLLISION_CL, 				{FTOFIX19_13(82),	FTOFIX19_13(-84), 	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // middle floating block
 	{&COLLISION_CL, 				{FTOFIX19_13(196),	FTOFIX19_13(-84), 	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // right floating block
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
