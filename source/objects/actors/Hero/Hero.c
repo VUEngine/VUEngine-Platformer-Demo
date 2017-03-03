@@ -70,14 +70,6 @@ extern EntityDefinition HINT_MC;
 extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 
 
-#define HERO_MAX_VELOCITY_X					ITOFIX19_13(80)
-#define HERO_MAX_VELOCITY_Y					ITOFIX19_13(305)
-#define HERO_MAX_VELOCITY_Z					ITOFIX19_13(40)
-#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(110)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		ITOFIX19_13(-25000)
-#define HERO_BOOST_JUMP_INPUT_FORCE			ITOFIX19_13(-30000)
-
-
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
