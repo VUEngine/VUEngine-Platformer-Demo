@@ -58,10 +58,10 @@ enum HeroPowerUps
 #define HERO_INPUT_FORCE 					ITOFIX19_13(5050)
 #define HERO_X_INPUT_FORCE_WHILE_JUMPING	ITOFIX19_13(3050)
 
-#define HERO_MAX_VELOCITY_X					ITOFIX19_13(80)
+#define HERO_MAX_VELOCITY_X					ITOFIX19_13(65)
 #define HERO_MAX_VELOCITY_Y					ITOFIX19_13(305)
 #define HERO_MAX_VELOCITY_Z					ITOFIX19_13(40)
-#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(105)
+#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(85)
 #define HERO_NORMAL_JUMP_INPUT_FORCE		ITOFIX19_13(-25000)
 #define HERO_BOOST_JUMP_INPUT_FORCE			ITOFIX19_13(-30000)
 
@@ -88,6 +88,7 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, getAxisAllowedForBouncing);										\
 		__VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);										\
 		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
+		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
 
 __CLASS(Hero);
 
@@ -176,6 +177,7 @@ void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObject
 u32 Hero_getAxisForFlipping(Hero this);
 void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
 void Hero_capVelocity(Hero this, bool discardPreviousMessages);
+bool Hero_isAffectedByRelativity(Hero this);
 
 
 #endif

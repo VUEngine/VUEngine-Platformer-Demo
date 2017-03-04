@@ -1435,3 +1435,10 @@ void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer __attribute__
 
 	MessageDispatcher_dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 }
+
+bool Hero_isAffectedByRelativity(Hero this)
+{
+	ASSERT(this, "Hero::isAffectedByRelativity: null this");
+
+	return true;
+}
