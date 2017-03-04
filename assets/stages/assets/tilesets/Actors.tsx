@@ -4,48 +4,64 @@
  <tile id="0">
   <properties>
    <property name="entityName" value="CANNON_AC"/>
+   <property name="textureName" value="CANNON_TX"/>
+   <property name="charsetName" value="CANNON_CH"/>
   </properties>
   <image width="24" height="24" source="../../../images/Cannon/Preview/Cannon.png"/>
  </tile>
  <tile id="2">
   <properties>
    <property name="entityName" value="HERO_AC"/>
+   <property name="textureName" value="HERO_TX"/>
+   <property name="charsetName" value="HERO_CH"/>
   </properties>
   <image width="24" height="24" source="../../../images/Hero/Preview/Hero.png"/>
  </tile>
  <tile id="5">
   <properties>
    <property name="entityName" value="SAW_BLADE_H8_AC"/>
+   <property name="textureName" value="SAW_BLADE_TX"/>
+   <property name="charsetName" value="SAW_BLADE_CH"/>
   </properties>
   <image width="152" height="24" source="../../../images/SawBlade/Preview/SawBladeH8.png"/>
  </tile>
  <tile id="6">
   <properties>
    <property name="entityName" value="SNAIL_8_AC"/>
+   <property name="textureName" value="SNAIL_TX"/>
+   <property name="charsetName" value="SNAIL_CH"/>
   </properties>
   <image width="152" height="16" source="../../../images/Snail/Preview/Snail8.png"/>
  </tile>
  <tile id="7">
   <properties>
    <property name="entityName" value="MOVING_PLATFORM_V6_AC"/>
+   <property name="textureName" value="MOVING_PLATFORM_V6_TX"/>
+   <property name="charsetName" value="MOVING_PLATFORM_V6_CH"/>
   </properties>
   <image width="32" height="104" source="../../../images/MovingPlatform/Preview/MovingPlatformV6.png"/>
  </tile>
  <tile id="8">
   <properties>
-   <property name="entityName" value="SNAIL_4_AC"/>
+   <property name="entityName" value="SNAIL_3_AC"/>
+   <property name="textureName" value="SNAIL_TX"/>
+   <property name="charsetName" value="SNAIL_CH"/>
   </properties>
-  <image width="88" height="16" source="../../../images/Snail/Preview/Snail4.png"/>
+  <image width="88" height="16" source="../../../images/Snail/Preview/Snail3.png"/>
  </tile>
  <tile id="9">
   <properties>
    <property name="entityName" value="SAW_BLADE_H3_AC"/>
+   <property name="textureName" value="SAW_BLADE_TX"/>
+   <property name="charsetName" value="SAW_BLADE_CH"/>
   </properties>
   <image width="72" height="24" source="../../../images/SawBlade/Preview/SawBladeH3.png"/>
  </tile>
  <tile id="10">
   <properties>
    <property name="entityName" value="SAW_BLADE_V3_AC"/>
+   <property name="textureName" value="SAW_BLADE_TX"/>
+   <property name="charsetName" value="SAW_BLADE_CH"/>
   </properties>
   <image width="24" height="72" source="../../../images/SawBlade/Preview/SawBladeV3.png"/>
  </tile>

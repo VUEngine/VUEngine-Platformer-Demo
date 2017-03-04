@@ -36,9 +36,8 @@
 extern EntityDefinition HERO_SLEEPING_AG;
 
 
-
 //---------------------------------------------------------------------------------------------------------
-//											ENTITY LISTS
+// 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef PAUSE_SCREEN_STAGE_ST_ENTITIES[] =
@@ -56,7 +55,7 @@ PositionedEntityROMDef PAUSE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 
 
 //---------------------------------------------------------------------------------------------------------
-//											PRELOAD LISTS
+// 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
 FontROMDef* const PAUSE_SCREEN_STAGE_ST_FONTS[] =

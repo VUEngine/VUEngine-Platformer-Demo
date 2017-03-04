@@ -3,6 +3,8 @@
  <tile id="0">
   <properties>
    <property name="entityName" value="SMOKE_PS"/>
+   <property name="textureName" value="SMOKE_PARTICLE_SMALL_TX"/>
+   <property name="charsetName" value="SMOKE_PARTICLE_SMALL_CH"/>
   </properties>
   <image width="91" height="82" source="../../../images/Particles/Smoke/Preview/SmokeParticleSystem.png"/>
  </tile>

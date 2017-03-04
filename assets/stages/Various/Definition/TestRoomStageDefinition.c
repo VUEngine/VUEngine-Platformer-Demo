@@ -42,22 +42,41 @@ const VBVec3D test_room_stage_collision_16_64_8 = {16, 64, 8};
 const VBVec3D test_room_stage_collision_176_16_8 = {176, 16, 8};
 const VBVec3D test_room_stage_collision_256_16_8 = {256, 16, 8};
 const VBVec3D test_room_stage_collision_80_48_8 = {80, 48, 8};
+extern CharSetDefinition COG_WHEEL_CH;
+extern CharSetDefinition DOOR_CH;
+extern CharSetDefinition GUI_CH;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition DOOR_AG;
 extern EntityDefinition GUI_AG;
 extern EntityDefinition HERO_AC;
+extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition SAW_BLADE_H8_AC;
 extern EntityDefinition TEST_ROOM_STAGE_MAIN_1_IM;
 extern EntityDefinition TEST_ROOM_STAGE_MAIN_2_IM;
 extern EntityDefinition TEST_ROOM_STAGE_TEST_1_IM;
+extern TextureDefinition COG_WHEEL_TX;
+extern TextureDefinition DOOR_TX;
+extern TextureDefinition GUI_TX;
+extern TextureDefinition HERO_TX;
+extern TextureDefinition TEST_ROOM_STAGE_MAIN_1_TX;
+extern TextureDefinition TEST_ROOM_STAGE_TEST_1_TX;
 extern u16 KRISSE_BGM[][2];
-
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
+
+PositionedEntityROMDef TEST_ROOM_STAGE_ST_CHILD_ENTITIES_TEST[] =
+{
+	{&COIN_AG, {FTOFIX19_13(-100), FTOFIX19_13(32), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {FTOFIX19_13(-84), FTOFIX19_13(32), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&SAW_BLADE_H8_AC, {FTOFIX19_13(16), FTOFIX19_13(44), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // SawBlade
+	{&DOOR_AG, {FTOFIX19_13(136), FTOFIX19_13(-4), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Exit Door
+
+	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+};
 
 PositionedEntityROMDef TEST_ROOM_STAGE_ST_ENTITIES[] =
 {
@@ -65,15 +84,12 @@ PositionedEntityROMDef TEST_ROOM_STAGE_ST_ENTITIES[] =
 	{&DOOR_AG, {FTOFIX19_13(36), FTOFIX19_13(160), FTOFIX19_13(LAYER_0)}, 0, "EntryDoor", NULL, NULL, false}, // Entry Door
 	{&HERO_AC, {FTOFIX19_13(44), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&TEST_ROOM_STAGE_TEST_1_IM, {FTOFIX19_13(72), FTOFIX19_13(72), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Test Composite
-	{&COIN_AG, {FTOFIX19_13(80), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
 	{&COLLISION_CL, {FTOFIX19_13(80), FTOFIX19_13(104), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_160_48_8, false}, // Top Left
-	{&COIN_AG, {FTOFIX19_13(96), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
 	{&COLLISION_CL, {FTOFIX19_13(144), FTOFIX19_13(184), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_256_16_8, false}, // Bottom
 	{&TEST_ROOM_STAGE_MAIN_1_IM, {FTOFIX19_13(144), FTOFIX19_13(136), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (1)
-	{&SAW_BLADE_H8_AC, {FTOFIX19_13(196), FTOFIX19_13(176), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // SawBlade
+	{&MANAGED_ENTITY, {FTOFIX19_13(180), FTOFIX19_13(132), FTOFIX19_13(LAYER_0)}, 0, NULL, (struct PositionedEntity*)TEST_ROOM_STAGE_ST_CHILD_ENTITIES_TEST, NULL, false}, // Child: Test
 	{&COLLISION_CL, {FTOFIX19_13(248), FTOFIX19_13(88), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_176_16_8, false}, // Top
 	{&COLLISION_CL, {FTOFIX19_13(312), FTOFIX19_13(168), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_80_48_8, false}, // Bottom Right
-	{&DOOR_AG, {FTOFIX19_13(316), FTOFIX19_13(128), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Exit Door
 	{&TEST_ROOM_STAGE_MAIN_2_IM, {FTOFIX19_13(320), FTOFIX19_13(120), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (2)
 	{&COLLISION_CL, {FTOFIX19_13(344), FTOFIX19_13(112), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Right
 
@@ -98,6 +114,27 @@ FontROMDef* const TEST_ROOM_STAGE_ST_FONTS[] =
 	&PLATFORMER_GUI_FONT,
 
 	NULL
+};
+
+CharSetROMDef* const TEST_ROOM_STAGE_ST_CHARSETS[] =
+{
+	&COG_WHEEL_CH,
+	&GUI_CH,
+	&DOOR_CH,
+
+	NULL
+};
+
+StageTextureEntryROMDef TEST_ROOM_STAGE_ST_TEXTURES[] =
+{
+	{&COG_WHEEL_TX, false},
+	{&GUI_TX, false},
+	{&DOOR_TX, false},
+	{&HERO_TX, false},
+	{&TEST_ROOM_STAGE_TEST_1_TX, true},
+	{&TEST_ROOM_STAGE_MAIN_1_TX, true},
+
+	{NULL, false}
 };
 
 
@@ -264,10 +301,10 @@ StageROMDef TEST_ROOM_STAGE_ST =
 		(FontDefinition**)TEST_ROOM_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)NULL,
+		(CharSetDefinition**)TEST_ROOM_STAGE_ST_CHARSETS,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)NULL,
+		(StageTextureEntryDefinition*)TEST_ROOM_STAGE_ST_TEXTURES,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,

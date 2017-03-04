@@ -59,7 +59,6 @@ extern StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP;
 extern u16 KRISSE_BGM[][2];
 
 
-
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
@@ -86,8 +85,8 @@ PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(24), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_320_16_8, false}, // Top Collision
 	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(200), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_224_16_8, false}, // Bottom Collision
 	{&LEVEL1_COIN_ROOM_STAGE_BACK_1_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Back
+	{&SAW_BLADE_H8_AC, {FTOFIX19_13(192), FTOFIX19_13(192), FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Saw Blade
 	{&LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false}, // Main
-	{&SAW_BLADE_H8_AC, {FTOFIX19_13(193), FTOFIX19_13(192), FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Cog Wheel
 	{&COIN_AG, {FTOFIX19_13(208), FTOFIX19_13(152), FTOFIX19_13(LAYER_0_ITEMS)}, 39, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {FTOFIX19_13(208), FTOFIX19_13(104), FTOFIX19_13(LAYER_0_ITEMS)}, 36, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {FTOFIX19_13(208), FTOFIX19_13(120), FTOFIX19_13(LAYER_0_ITEMS)}, 37, NULL, NULL, NULL, false}, // Coin

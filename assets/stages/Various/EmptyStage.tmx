@@ -5,10 +5,9 @@
   <property name="declaration" value="NULL"/>
   <property name="include" value="Fonts.h, macros.h"/>
   <property name="stage.assets.bgm" value="NULL"/>
-  <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, PLATFORMER_LARGE_FONT"/>
+  <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.stageTextureEntryDefinitions" value="NULL"/>
-  <property name="stage.entities.uiContainerDefinition" value="UI"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>
   <property name="stage.level.screenInitialPosition.y" value="0"/>
   <property name="stage.level.screenInitialPosition.z" value="0"/>
