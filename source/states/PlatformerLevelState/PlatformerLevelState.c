@@ -69,6 +69,7 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFire
 static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)));
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
 
@@ -218,6 +219,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			{
 				Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
 			}
+
+			Object_addEventListener(__SAFE_CAST(Object, hero), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroStreamedOut, kStageChildStreamedOut);
 
 			// make sure that focusing gets completed immediately
 			CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
@@ -502,6 +505,11 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 		(void (*)(Object, Object))PlatformerLevelState_onHeroDiedFadeOutComplete, // callback function
 		__SAFE_CAST(Object, this) // callback scope
 	);
+}
+
+static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
+{
+	PlatformerLevelState_setModeToPaused(this);
 }
 
 // get in-game clock
