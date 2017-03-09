@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameState.h>
-
+#include <KeyPadManager.h>
 
 
 
@@ -74,6 +74,8 @@ __CLASS(PlatformerLevelState);
 		u8 mode;																						\
 		/* in-game clock */																				\
 		Clock clock;																					\
+		/* previous user input */																		\
+		UserInput userInput;																			\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -167,6 +169,6 @@ void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelD
 void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
 void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
 void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
-
+UserInput PlatformerLevelState_getUserInput(PlatformerLevelState this);
 
 #endif

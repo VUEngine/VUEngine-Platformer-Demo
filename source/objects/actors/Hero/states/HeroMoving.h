@@ -69,9 +69,8 @@ enum HeroMovingMessages
 
 HeroMoving HeroMoving_getInstance();
 
-void HeroMoving_onKeyPressed(HeroMoving this, void* owner);
-void HeroMoving_onKeyReleased(HeroMoving this, void* owner);
-//void HeroMoving_onKeyHold(HeroMoving this, void* owner);
+void HeroMoving_onKeyPressed(HeroMoving this, void* owner, const UserInput* userInput);
+void HeroMoving_onKeyReleased(HeroMoving this, void* owner, const UserInput* userInput);
 
 
 #endif

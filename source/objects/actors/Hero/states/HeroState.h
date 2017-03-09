@@ -28,6 +28,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <State.h>
+#include <KeyPadManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -37,9 +38,9 @@
 // declare the virtual methods
 #define HeroState_METHODS(ClassName)																	\
 		State_METHODS(ClassName)																		\
-		__VIRTUAL_DEC(ClassName, void, onKeyPressed, void* owner);										\
-		__VIRTUAL_DEC(ClassName, void, onKeyReleased, void* owner);										\
-		__VIRTUAL_DEC(ClassName, void, onKeyHold, void* owner);											\
+		__VIRTUAL_DEC(ClassName, void, onKeyPressed, void* owner, const UserInput* userInput);			\
+		__VIRTUAL_DEC(ClassName, void, onKeyReleased, void* owner, const UserInput* userInput);			\
+		__VIRTUAL_DEC(ClassName, void, onKeyHold, void* owner, const UserInput* userInput);				\
 
 // declare the virtual methods which are redefined
 #define HeroState_SET_VTABLE(ClassName)																	\
@@ -59,7 +60,7 @@ __CLASS(HeroState);
 
 void HeroState_constructor(HeroState this);
 void HeroState_destructor(HeroState this);
-void HeroState_onKeyHold(HeroState this, void* owner);
+void HeroState_onKeyHold(HeroState this, void* owner, const UserInput* userInput);
 
 
 #endif

@@ -46,6 +46,7 @@
 #include <KeyPadManager.h>
 #include <Utilities.h>
 #include <PostProcessingEffects.h>
+#include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -104,6 +105,7 @@ static void __attribute__ ((noinline)) PlatformerLevelState_constructor(Platform
 	// set default entry point
 	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+	this->userInput = (UserInput){0, 0, 0, 0, 0};
 }
 
 // class's destructor
@@ -379,17 +381,31 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
 
 	PlatformerLevelState_setModeToPlaying(this);
+
+	UserInput userInput = KeypadManager_getUserInput(KeypadManager_getInstance());
+
+	this->userInput.pressedKey 	= userInput.allKeys & ~this->userInput.previousKey;
+	this->userInput.releasedKey = ~userInput.allKeys & this->userInput.previousKey;
+	this->userInput.holdKey 	= userInput.allKeys & this->userInput.previousKey;
+
+	// make sure that user input is taken into account
+	Object_fireEvent(__SAFE_CAST(Object, this), kEventUserInput);
+}
+
+UserInput PlatformerLevelState_getUserInput(PlatformerLevelState this)
+{
+	return this->userInput;
 }
 
 static void PlatformerLevelState_onUserInput(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	if(kPlaying == this->mode)
 	{
-		UserInput userInput = KeypadManager_getUserInput(KeypadManager_getInstance());
+		this->userInput = KeypadManager_getUserInput(KeypadManager_getInstance());
 
-		if(userInput.pressedKey)
+		if(this->userInput.pressedKey)
 		{
-			if(K_SEL & userInput.pressedKey)
+			if(K_SEL & this->userInput.pressedKey)
 			{
 				// adjustment screen
 				PlatformerLevelState_setModeToPaused(this);
@@ -403,7 +419,7 @@ static void PlatformerLevelState_onUserInput(PlatformerLevelState this __attribu
 
 				return;
 			}
-			else if(K_STA & userInput.pressedKey)
+			else if(K_STA & this->userInput.pressedKey)
 			{
 				// pause game and switch to pause screen state
 				Game_pause(Game_getInstance(), __SAFE_CAST(GameState, PauseScreenState_getInstance()));

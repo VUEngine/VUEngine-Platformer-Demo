@@ -53,7 +53,7 @@ void HeroState_destructor(HeroState this)
 	__DESTROY_BASE;
 }
 
-void HeroState_onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
+void HeroState_onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
 {
 
 }

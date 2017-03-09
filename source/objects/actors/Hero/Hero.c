@@ -925,21 +925,21 @@ void Hero_die(Hero this)
 // process user input
 static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused)))
 {
-	UserInput userInput = KeypadManager_getUserInput(KeypadManager_getInstance());
+	UserInput userInput = PlatformerLevelState_getUserInput(PlatformerLevelState_getInstance());
 
 	if(userInput.pressedKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this);
+		__VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this, &userInput);
 	}
 
 	if(userInput.releasedKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyReleased, StateMachine_getCurrentState(this->stateMachine), this);
+		__VIRTUAL_CALL(HeroState, onKeyReleased, StateMachine_getCurrentState(this->stateMachine), this, &userInput);
 	}
 
 	if(userInput.holdKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this);
+		__VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this, &userInput);
 	}
 }
 

@@ -32,6 +32,7 @@
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
 #include <Printing.h>
+#include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -136,27 +137,24 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 	return false;
 }
 
-void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
-	u32 pressedKey = KeypadManager_getPressedKey(KeypadManager_getInstance());
-	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
-
-	if(K_B & pressedKey)
+	if(K_B & userInput->pressedKey)
 	{
 		Hero_enableBoost(__SAFE_CAST(Hero, owner));
 	}
 
-	if(K_A & pressedKey)
+	if(K_A & userInput->pressedKey)
 	{
 		Hero_jump(__SAFE_CAST(Hero, owner), !this->bouncing);
 	}
 
 	// check direction
-	if((K_LL | K_LR ) & (pressedKey | holdKey))
+	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
 		Acceleration acceleration =
 		{
-			K_LL & pressedKey? ITOFIX19_13(-1) : K_LR & pressedKey? __1I_FIX19_13: 0,
+			K_LL & userInput->pressedKey? ITOFIX19_13(-1) : K_LR & userInput->pressedKey? __1I_FIX19_13: 0,
 			0,
 			0,
 		};
@@ -166,9 +164,9 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 			Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS, true);
 		}
 
-		Hero_checkDirection(__SAFE_CAST(Hero, owner), pressedKey, "Walk");
+		Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Walk");
 	}
-	else if(K_LU & pressedKey)
+	else if(K_LU & userInput->pressedKey)
 	{
 		Hero_lookBack(__SAFE_CAST(Hero, owner));
 
@@ -183,16 +181,14 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 	}
 }
 
-void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
-	u32 releasedKey = KeypadManager_getReleasedKey(KeypadManager_getInstance());
-
-	if(K_B & releasedKey)
+	if(K_B & userInput->releasedKey)
 	{
 		Hero_disableBoost(__SAFE_CAST(Hero, owner));
 	}
 
-	if((K_LL | K_LR) & releasedKey)
+	if((K_LL | K_LR) & userInput->releasedKey)
 	{
 		Hero_stopAddingForce(__SAFE_CAST(Hero, owner));
 /*		Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, owner));
