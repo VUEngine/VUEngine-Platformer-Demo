@@ -44,6 +44,7 @@
 		GameState_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, OptionsScreenState, enter);											\
 		__VIRTUAL_SET(ClassName, OptionsScreenState, exit);												\
+		__VIRTUAL_SET(ClassName, OptionsScreenState, processUserInput);									\
 
 __CLASS(OptionsScreenState);
 
@@ -60,6 +61,6 @@ __CLASS(OptionsScreenState);
 
 OptionsScreenState OptionsScreenState_getInstance(void);
 void OptionsScreenState_setNextState(OptionsScreenState this, GameState nextState);
-
+void OptionsScreenState_processUserInput(OptionsScreenState this, UserInput userInput);
 
 #endif

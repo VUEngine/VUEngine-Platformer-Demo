@@ -43,6 +43,7 @@
 		GameState_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, LevelDoneScreenState, enter);											\
 		__VIRTUAL_SET(ClassName, LevelDoneScreenState, exit);											\
+		__VIRTUAL_SET(ClassName, LevelDoneScreenState, processUserInput);								\
 
 __CLASS(LevelDoneScreenState);
 
@@ -56,6 +57,6 @@ __CLASS(LevelDoneScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 LevelDoneScreenState LevelDoneScreenState_getInstance(void);
-
+void LevelDoneScreenState_processUserInput(LevelDoneScreenState this, UserInput userInput);
 
 #endif

@@ -57,7 +57,6 @@ static void PauseScreenState_destructor(PauseScreenState this);
 static void PauseScreenState_constructor(PauseScreenState this);
 static void PauseScreenState_enter(PauseScreenState this, void* owner);
 static void PauseScreenState_exit(PauseScreenState this, void* owner);
-static void PauseScreenState_onUserInput(PauseScreenState this, Object eventFirer);
 static void PauseScreenState_onFadeInComplete(PauseScreenState this, Object eventFirer);
 static void PauseScreenState_onFadeOutComplete(PauseScreenState this, Object eventFirer);
 
@@ -173,17 +172,13 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 // state's exit
 static void PauseScreenState_exit(PauseScreenState this, void* owner __attribute__ ((unused)))
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)PauseScreenState_onUserInput, kEventUserInput);
-
 	// call base
 	__CALL_BASE_METHOD(GameState, exit, this, owner);
 }
 
-static void PauseScreenState_onUserInput(PauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void PauseScreenState_processUserInput(PauseScreenState this, UserInput userInput)
 {
-	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
-
-	if((K_STA & pressedKey) || (K_A & pressedKey))
+	if((K_STA & userInput.pressedKey) || (K_A & userInput.pressedKey))
 	{
 		if(this->mode == kPauseScreenModeShowOptions)
 		{
@@ -253,7 +248,7 @@ static void PauseScreenState_onUserInput(PauseScreenState this __attribute__ ((u
 			);
 		}
 	}
-	else if((this->mode == kPauseScreenModeShowConfirmQuit) && (pressedKey & K_B))
+	else if((this->mode == kPauseScreenModeShowConfirmQuit) && (userInput.pressedKey & K_B))
 	{
 		// remove confirmation message
 		Printing_text(Printing_getInstance(), "                                                ", 0, 21, NULL);
@@ -262,11 +257,11 @@ static void PauseScreenState_onUserInput(PauseScreenState this __attribute__ ((u
 		// set mode back to main menu
 		this->mode = kPauseScreenModeShowOptions;
 	}
-	else if((this->mode == kPauseScreenModeShowOptions) && ((pressedKey & K_LU) || (pressedKey & K_RU)))
+	else if((this->mode == kPauseScreenModeShowOptions) && ((userInput.pressedKey & K_LU) || (userInput.pressedKey & K_RU)))
 	{
 		OptionsSelector_selectPrevious(this->optionsSelector);
 	}
-	else if((this->mode == kPauseScreenModeShowOptions) && ((pressedKey & K_LD) || (pressedKey & K_RD)))
+	else if((this->mode == kPauseScreenModeShowOptions) && ((userInput.pressedKey & K_LD) || (userInput.pressedKey & K_RD)))
 	{
 		OptionsSelector_selectNext(this->optionsSelector);
 	}
@@ -278,8 +273,6 @@ static void PauseScreenState_onFadeInComplete(PauseScreenState this __attribute_
 	ASSERT(this, "PauseScreenState::onFadeInComplete: null this");
 
 	Game_enableKeypad(Game_getInstance());
-
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)PauseScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event

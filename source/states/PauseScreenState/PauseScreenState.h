@@ -62,6 +62,7 @@ enum PauseScreenOptions
 		GameState_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, PauseScreenState, enter);												\
 		__VIRTUAL_SET(ClassName, PauseScreenState, exit);												\
+		__VIRTUAL_SET(ClassName, PauseScreenState, processUserInput);									\
 
 __CLASS(PauseScreenState);
 
@@ -77,6 +78,6 @@ __CLASS(PauseScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 PauseScreenState PauseScreenState_getInstance(void);
-
+void PauseScreenState_processUserInput(PauseScreenState this, UserInput userInput);
 
 #endif

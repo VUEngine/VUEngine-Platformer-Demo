@@ -60,6 +60,7 @@ enum SplashScreensMessageTypes
 		__VIRTUAL_SET(ClassName, SplashScreenState, processMessage);									\
 		__VIRTUAL_SET(ClassName, SplashScreenState, processInput);										\
 		__VIRTUAL_SET(ClassName, SplashScreenState, print);												\
+		__VIRTUAL_SET(ClassName, SplashScreenState, processUserInput);									\
 
 __CLASS(SplashScreenState);
 
@@ -86,6 +87,6 @@ void SplashScreenState_processInput(SplashScreenState this, u32 releasedKey);
 void SplashScreenState_print(SplashScreenState this);
 void SplashScreenState_setNextState(SplashScreenState this, GameState nextState);
 void SplashScreenState_loadNextState(SplashScreenState this);
-
+void SplashScreenState_processUserInput(SplashScreenState this, UserInput userInput);
 
 #endif

@@ -52,7 +52,6 @@ static void AutoPauseScreenState_destructor(AutoPauseScreenState this);
 static void AutoPauseScreenState_constructor(AutoPauseScreenState this);
 static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner);
 static void AutoPauseScreenState_exit(AutoPauseScreenState this, void* owner);
-static void AutoPauseScreenState_onUserInput(AutoPauseScreenState this, Object eventFirer);
 static void AutoPauseScreenState_onFadeOutComplete(AutoPauseScreenState this, Object eventFirer);
 static void AutoPauseScreenState_onFadeInComplete(AutoPauseScreenState this, Object eventFirer);
 
@@ -127,9 +126,6 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __
 // state's exit
 static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
-	// remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)AutoPauseScreenState_onUserInput, kEventUserInput);
-
 	// call base
 	__CALL_BASE_METHOD(GameState, exit, this, owner);
 
@@ -137,18 +133,9 @@ static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((
 	__DELETE(this);
 }
 
-/**
- * Process user input
- *
- * @memberof			AutoPauseScreenState
- * @private
- *
- * @param this			Function scope
- * @param eventFirer	KeypadManager
- */
-static void AutoPauseScreenState_onUserInput(AutoPauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void AutoPauseScreenState_processUserInput(AutoPauseScreenState this, UserInput userInput)
 {
-	if(K_STA & KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey)
+	if(K_STA & userInput.pressedKey)
 	{
 		// disable user input
 		Game_disableKeypad(Game_getInstance());
@@ -173,9 +160,6 @@ static void AutoPauseScreenState_onFadeInComplete(AutoPauseScreenState this __at
 
 	// re-enable user input
 	Game_enableKeypad(Game_getInstance());
-
-	// add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)AutoPauseScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event

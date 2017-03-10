@@ -68,6 +68,7 @@ enum TitleScreenOptions
 		__VIRTUAL_SET(ClassName, TitleScreenState, resume);												\
 		__VIRTUAL_SET(ClassName, TitleScreenState, suspend);											\
 		__VIRTUAL_SET(ClassName, TitleScreenState, processMessage);									 	\
+		__VIRTUAL_SET(ClassName, TitleScreenState, processUserInput);									 \
 
 __CLASS(TitleScreenState);
 
@@ -83,6 +84,7 @@ __CLASS(TitleScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 TitleScreenState TitleScreenState_getInstance(void);
+void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInput);
 
 
 #endif

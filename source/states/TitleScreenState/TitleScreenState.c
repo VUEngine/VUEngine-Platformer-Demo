@@ -63,7 +63,6 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
 static void TitleScreenState_resume(TitleScreenState this, void* owner);
 static void TitleScreenState_suspend(TitleScreenState this, void* owner);
-static void TitleScreenState_onUserInput(TitleScreenState this, Object eventFirer);
 static bool TitleScreenState_processMessage(TitleScreenState this, void* owner, Telegram telegram);
 static void TitleScreenState_showMessage(TitleScreenState this);
 static void TitleScreenState_hideMessage(TitleScreenState this);
@@ -202,8 +201,6 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 // state's exit
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onUserInput, kEventUserInput);
-
 	// call base
 	__CALL_BASE_METHOD(GameState, exit, this, owner);
 }
@@ -288,11 +285,9 @@ static void TitleScreenState_hideMessage(TitleScreenState this __attribute__ ((u
 	Printing_text(Printing_getInstance(), "                                                ", 0, 27, NULL);
 }
 
-static void TitleScreenState_onUserInput(TitleScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInput)
 {
-	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
-
-	if((K_STA & pressedKey) || (K_A & pressedKey))
+	if((K_STA & userInput.pressedKey) || (K_A & userInput.pressedKey))
 	{
 		switch(this->mode)
 		{
@@ -411,15 +406,15 @@ static void TitleScreenState_onUserInput(TitleScreenState this __attribute__ ((u
 			}
 		}
 	}
-	else if((this->mode == kTitleScreenModeShowOptions) && ((pressedKey & K_LL) || (pressedKey & K_RL)))
+	else if((this->mode == kTitleScreenModeShowOptions) && ((userInput.pressedKey & K_LL) || (userInput.pressedKey & K_RL)))
 	{
 		OptionsSelector_selectPrevious(this->optionsSelector);
 	}
-	else if((this->mode == kTitleScreenModeShowOptions) && ((pressedKey & K_LR) || (pressedKey & K_RR)))
+	else if((this->mode == kTitleScreenModeShowOptions) && ((userInput.pressedKey & K_LR) || (userInput.pressedKey & K_RR)))
 	{
 		OptionsSelector_selectNext(this->optionsSelector);
 	}
-	else if((this->mode == kTitleScreenModeShowConfirmNewGame) && (pressedKey & K_B))
+	else if((this->mode == kTitleScreenModeShowConfirmNewGame) && (userInput.pressedKey & K_B))
 	{
 		// remove message
 		TitleScreenState_hideMessage(this);
@@ -492,15 +487,12 @@ static void TitleScreenState_onFadeInComplete(TitleScreenState this, Object even
 
 	// enable user input
 	Game_enableKeypad(Game_getInstance());
-
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event
 static void TitleScreenState_onFadeOutComplete(TitleScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
-
 
 	int selectedOption = OptionsSelector_getSelectedOption(this->optionsSelector);
 

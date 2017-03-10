@@ -38,9 +38,7 @@ enum GameEvents
 {
 	kEventScreenFocused = kLastEngineEvent + 1,
 
-	kEventKeyPressed,
-	kEventKeyReleased,
-	kEventKeyHold,
+	kEventUserInput,
 
 	kEventHitTaken,
 	kEventCoinTaken,

@@ -43,6 +43,7 @@
 		GameState_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, AutoPauseScreenState, enter);											\
 		__VIRTUAL_SET(ClassName, AutoPauseScreenState, exit);											\
+		__VIRTUAL_SET(ClassName, AutoPauseScreenState, processUserInput);								\
 
 __CLASS(AutoPauseScreenState);
 
@@ -55,6 +56,6 @@ __CLASS(AutoPauseScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 AutoPauseScreenState AutoPauseScreenState_getInstance(void);
-
+void AutoPauseScreenState_processUserInput(AutoPauseScreenState this, UserInput userInput);
 
 #endif

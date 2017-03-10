@@ -54,7 +54,6 @@ static void LevelDoneScreenState_constructor(LevelDoneScreenState this);
 static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner);
 static void LevelDoneScreenState_print(LevelDoneScreenState this);
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner);
-static void LevelDoneScreenState_onUserInput(LevelDoneScreenState this, Object eventFirer);
 static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this, Object eventFirer);
 static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this, Object eventFirer);
 
@@ -116,8 +115,6 @@ static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __
 // state's exit
 static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)LevelDoneScreenState_onUserInput, kEventUserInput);
-
 	// call base
 	__CALL_BASE_METHOD(GameState, exit, this, owner);
 
@@ -159,9 +156,9 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ (
 	}
 }
 
-static void LevelDoneScreenState_onUserInput(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void LevelDoneScreenState_processUserInput(LevelDoneScreenState this, UserInput userInput)
 {
-	if(KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey)
+	if(userInput.pressedKey)
 	{
 		// disable user input
 		Game_disableKeypad(Game_getInstance());
@@ -185,8 +182,6 @@ static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this __at
 	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
 
 	Game_enableKeypad(Game_getInstance());
-
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)LevelDoneScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event

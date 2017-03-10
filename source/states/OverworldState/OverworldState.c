@@ -62,7 +62,6 @@ static void OverworldState_enter(OverworldState this, void* owner);
 static void OverworldState_exit(OverworldState this, void* owner);
 static void OverworldState_resume(OverworldState this, void* owner);
 static void OverworldState_suspend(OverworldState this, void* owner);
-static void OverworldState_onUserInput(OverworldState this, Object eventFirer);
 static bool OverworldState_processMessage(OverworldState this, void* owner, Telegram telegram);
 static void OverworldState_onFadeInComplete(OverworldState this, Object eventFirer);
 static void OverworldState_onStartLevelFadeOutComplete(OverworldState this, Object eventFirer);
@@ -116,8 +115,6 @@ static void OverworldState_enter(OverworldState this, void* owner)
 // state's exit
 static void OverworldState_exit(OverworldState this, void* owner)
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OverworldState_onUserInput, kEventUserInput);
-
 	// call base
 	__CALL_BASE_METHOD(GameState, exit, this, owner);
 
@@ -199,11 +196,9 @@ static void OverworldState_print(OverworldState this __attribute__ ((unused)))
 	Printing_text(Printing_getInstance(), "1-1", 12, 26, "GuiFont");
 }
 
-static void OverworldState_onUserInput(OverworldState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void OverworldState_processUserInput(OverworldState this, UserInput userInput)
 {
-	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
-
-	if((K_STA & pressedKey) || (K_A & pressedKey))
+	if((K_STA & userInput.pressedKey) || (K_A & userInput.pressedKey))
 	{
 		// disable user input
 		Game_disableKeypad(Game_getInstance());
@@ -219,7 +214,7 @@ static void OverworldState_onUserInput(OverworldState this __attribute__ ((unuse
 			__SAFE_CAST(Object, this) // callback scope
 		);
 
-	} else if(K_B & pressedKey) {
+	} else if(K_B & userInput.pressedKey) {
 
 		// disable user input
 		Game_disableKeypad(Game_getInstance());
@@ -282,8 +277,6 @@ static void OverworldState_onFadeInComplete(OverworldState this, Object eventFir
 
 	// enable user input
 	Game_enableKeypad(Game_getInstance());
-
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OverworldState_onUserInput, kEventUserInput);
 }
 
 // handle event

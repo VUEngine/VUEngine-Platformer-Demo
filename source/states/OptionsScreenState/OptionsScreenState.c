@@ -56,7 +56,6 @@ static void OptionsScreenState_constructor(OptionsScreenState this);
 static void OptionsScreenState_enter(OptionsScreenState this, void* owner);
 static void OptionsScreenState_print(OptionsScreenState this);
 static void OptionsScreenState_exit(OptionsScreenState this, void* owner);
-static void OptionsScreenState_onUserInput(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onFadeInComplete(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onExitFadeOutComplete(OptionsScreenState this, Object eventFirer);
 static void OptionsScreenState_onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer);
@@ -124,8 +123,6 @@ static void OptionsScreenState_enter(OptionsScreenState this, void* owner __attr
 // state's exit
 static void OptionsScreenState_exit(OptionsScreenState this, void* owner __attribute__ ((unused)))
 {
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OptionsScreenState_onUserInput, kEventUserInput);
-
 	// call base
 	__CALL_BASE_METHOD(GameState, exit, this, owner);
 }
@@ -194,11 +191,9 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
 	Printing_text(Printing_getInstance(), strBack, strBackXPos + 1, 15, NULL);
 }
 
-static void OptionsScreenState_onUserInput(OptionsScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void OptionsScreenState_processUserInput(OptionsScreenState this, UserInput userInput)
 {
-	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
-
-	if((pressedKey & K_A) || (pressedKey & K_STA))
+	if((userInput.pressedKey & K_A) || (userInput.pressedKey & K_STA))
 	{
 		// disable user input
 		Game_disableKeypad(Game_getInstance());
@@ -214,7 +209,7 @@ static void OptionsScreenState_onUserInput(OptionsScreenState this __attribute__
 			__SAFE_CAST(Object, this) // callback scope
 		);
 	}
-	else if((pressedKey & K_B) || (pressedKey & K_SEL))
+	else if((userInput.pressedKey & K_B) || (userInput.pressedKey & K_SEL))
 	{
 		// disable user input
 		Game_disableKeypad(Game_getInstance());
@@ -230,11 +225,11 @@ static void OptionsScreenState_onUserInput(OptionsScreenState this __attribute__
 			__SAFE_CAST(Object, this) // callback scope
 		);
 	}
-	else if((pressedKey & K_LU) || (pressedKey & K_RU))
+	else if((userInput.pressedKey & K_LU) || (userInput.pressedKey & K_RU))
 	{
 		OptionsSelector_selectPrevious(this->optionsSelector);
 	}
-	else if((pressedKey & K_LD) || (pressedKey & K_RD))
+	else if((userInput.pressedKey & K_LD) || (userInput.pressedKey & K_RD))
 	{
 		OptionsSelector_selectNext(this->optionsSelector);
 	}
@@ -246,8 +241,6 @@ static void OptionsScreenState_onFadeInComplete(OptionsScreenState this __attrib
 	ASSERT(this, "OptionsScreenState::onOptionSelectedFadeOutComplete: null this");
 
 	Game_enableKeypad(Game_getInstance());
-
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OptionsScreenState_onUserInput, kEventUserInput);
 }
 
 static void OptionsScreenState_onExitFadeOutComplete(OptionsScreenState this, Object eventFirer __attribute__ ((unused)))

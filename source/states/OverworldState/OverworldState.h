@@ -53,6 +53,7 @@
 		__VIRTUAL_SET(ClassName, OverworldState, resume);												\
 		__VIRTUAL_SET(ClassName, OverworldState, suspend);												\
 		__VIRTUAL_SET(ClassName, OverworldState, processMessage);										\
+		__VIRTUAL_SET(ClassName, OverworldState, processUserInput);										\
 
 __CLASS(OverworldState);
 
@@ -66,6 +67,6 @@ __CLASS(OverworldState);
 //---------------------------------------------------------------------------------------------------------
 
 OverworldState OverworldState_getInstance(void);
-
+void OverworldState_processUserInput(OverworldState this, UserInput userInput);
 
 #endif

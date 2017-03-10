@@ -37,7 +37,6 @@
 
 static void SplashScreenState_onFadeInComplete(SplashScreenState this, Object eventFirer);
 static void SplashScreenState_onFadeOutComplete(SplashScreenState this, Object eventFirer);
-static void SplashScreenState_onUserInput(SplashScreenState this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -90,9 +89,6 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 // state's exit
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
-	// remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)SplashScreenState_onUserInput, kEventUserInput);
-
 	// call base
 	__CALL_BASE_METHOD(GameState, exit, this, owner);
 
@@ -134,13 +130,11 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 }
 
-static void SplashScreenState_onUserInput(SplashScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void SplashScreenState_processUserInput(SplashScreenState this, UserInput userInput)
 {
-	u32 pressedKey = KeypadManager_getUserInput(KeypadManager_getInstance()).pressedKey;
-
-	if(pressedKey & ~K_PWR)
+	if(userInput.pressedKey & ~K_PWR)
 	{
-		__VIRTUAL_CALL(SplashScreenState, processInput, this, pressedKey);
+		__VIRTUAL_CALL(SplashScreenState, processInput, this, userInput.pressedKey);
 	}
 }
 
@@ -205,9 +199,6 @@ static void SplashScreenState_onFadeInComplete(SplashScreenState this __attribut
 
 	// enable user input
 	Game_enableKeypad(Game_getInstance());
-
-	// add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)SplashScreenState_onUserInput, kEventUserInput);
 }
 
 // handle event
