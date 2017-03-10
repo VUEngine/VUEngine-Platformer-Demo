@@ -95,3 +95,23 @@ void Key_collect(Key this)
 	// call base
 	Item_collect(__SAFE_CAST(Item, this));
 }
+
+void Key_suspend(Key this)
+{
+	ASSERT(this, "Key::suspend: null this");
+
+	Entity_suspend(__SAFE_CAST(Entity, this));
+
+	// remove post processing effect
+	Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+}
+
+void Key_resume(Key this)
+{
+	ASSERT(this, "Key::resume: null this");
+
+	AnimatedInGameEntity_resume(__SAFE_CAST(AnimatedInGameEntity, this));
+
+	// add post processing effect to make key emit rhombuses
+	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+}
