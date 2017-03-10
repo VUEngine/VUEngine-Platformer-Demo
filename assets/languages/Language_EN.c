@@ -70,8 +70,8 @@ const char* const LANGUAGE_EN_STRINGS[] =
 
 	/* Splash Screens */
 
-	/* STR_PRECAUTION_SCREEN_TEXT */	"Read Instruction and\n\nPrecaution Booklets\n\n  before operating",
-	/* STR_AUTO_PAUSE_EXPLANATION */	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"Read Instruction and\n\nPrecaution Booklets\n\n  before operating.",
+	/* STR_AUTO_PAUSE_EXPLANATION */	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes.",
 
 	/* Levels */
 

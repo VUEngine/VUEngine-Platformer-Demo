@@ -44,8 +44,8 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* General */
 
 	/* STR_ARE_YOU_SURE: */				"¿Estás seguro?",
-	/* STR_AUTOMATIC_PAUSE: */			"Pausa Automatica", //"Pausa Automática",
-	/* STR_BACK: */						"Espalda",
+	/* STR_AUTOMATIC_PAUSE: */			"Pausa Automática", //"Pausa Automática",
+	/* STR_BACK: */						"Regresar",
 	/* STR_CONTINUE: */					"Continuar",
 	/* STR_CREDITS: */					"Créditos",
 	/* STR_IMPORTANT: */				"Importante",
@@ -54,7 +54,7 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_LEVEL: */					"Nivel",
 	/* STR_LEVEL_CONQUERED: */			"¡Nivel conquistado!",
 	/* STR_LEVEL_DONE: */				"¡Nivel completo!",
-	/* STR_NEW_BEST: */					"Conjunto de récord",
+	/* STR_NEW_BEST: */					"¡Nuevo récord!",
 	/* STR_NEW_GAME: */					"Nuevo Juego",
 	/* STR_NO: */						"No",
 	/* STR_OFF: */						"Apagado",
@@ -70,8 +70,8 @@ const char* const LANGUAGE_ES_STRINGS[] =
 
 	/* Splash Screens */
 
-	/* STR_PRECAUTION_SCREEN_TEXT: */	"     Lea los libros de\n\nInstrucciones y precauciones\n\n       antes de jugar",
-	/* STR_AUTO_PAUSE_EXPLANATION: */	" La función automática de pausa le\nrecordará que debe tomar un descanso\n  de jugar approx. cada 30 minutos",
+	/* STR_PRECAUTION_SCREEN_TEXT: */	"     Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar.",
+	/* STR_AUTO_PAUSE_EXPLANATION: */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  de jugar approximadamente cada 30 minutos.",
 
 	/* Levels */
 

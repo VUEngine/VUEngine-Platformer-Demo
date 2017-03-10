@@ -54,7 +54,7 @@ const char* const LANGUAGE_FR_STRINGS[] =
 	/* STR_LEVEL */						"Niveau",
 	/* STR_LEVEL_CONQUERED */			"Niveau conquis!",
 	/* STR_LEVEL_DONE */				"Niveau terminé!",
-	/* STR_NEW_BEST */					"Set Record!",
+	/* STR_NEW_BEST */					"Nouveau Record!",
 	/* STR_NEW_GAME */					"Nouveau Jeu",
 	/* STR_NO */						"Non",
 	/* STR_OFF */						"Desactivé",
@@ -70,8 +70,8 @@ const char* const LANGUAGE_FR_STRINGS[] =
 
 	/* Splash Screens */
 
-	/* STR_PRECAUTION_SCREEN_TEXT */	"Prenez conaissance de la\n\nnotice et des précautions\n\na prendre avant de jouer",
-	/* STR_AUTO_PAUSE_EXPLANATION */	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"Prenez conaissance de la\n\nnotice et des précautions\n\na avant de jouer.",
+	/* STR_AUTO_PAUSE_EXPLANATION */	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ.",
 
 	/* Levels */
 

@@ -70,8 +70,8 @@ const char* const LANGUAGE_DE_STRINGS[] =
 
 	/* Splash Screens */
 
-	/* STR_PRECAUTION_SCREEN_TEXT */	"   Lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
-	/* STR_AUTO_PAUSE_EXPLANATION */	" Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"   Lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise.",
+	/* STR_AUTO_PAUSE_EXPLANATION */	" Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren.",
 
 	/* Levels */
 
