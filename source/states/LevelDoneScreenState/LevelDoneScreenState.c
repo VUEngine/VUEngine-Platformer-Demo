@@ -88,7 +88,7 @@ static void LevelDoneScreenState_destructor(LevelDoneScreenState this)
 static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
 	// call base
-	GameState_enter(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, enter, this, owner);
 
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_DONE_SCREEN_STAGE_ST, NULL, true);
@@ -119,7 +119,7 @@ static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __a
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)LevelDoneScreenState_onUserInput, kEventUserInput);
 
 	// call base
-	GameState_exit(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, exit, this, owner);
 
 	// destroy the state
 	__DELETE(this);

@@ -56,7 +56,6 @@ enum SplashScreensMessageTypes
 		GameState_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, SplashScreenState, enter);												\
 		__VIRTUAL_SET(ClassName, SplashScreenState, exit);												\
-		__VIRTUAL_SET(ClassName, SplashScreenState, execute);											\
 		__VIRTUAL_SET(ClassName, SplashScreenState, resume);											\
 		__VIRTUAL_SET(ClassName, SplashScreenState, processMessage);									\
 		__VIRTUAL_SET(ClassName, SplashScreenState, processInput);										\
@@ -80,7 +79,6 @@ __CLASS(SplashScreenState);
 void SplashScreenState_constructor(SplashScreenState this);
 void SplashScreenState_destructor(SplashScreenState this);
 void SplashScreenState_enter(SplashScreenState this, void* owner);
-void SplashScreenState_execute(SplashScreenState this, void* owner);
 void SplashScreenState_exit(SplashScreenState this, void* owner);
 void SplashScreenState_resume(SplashScreenState this, void* owner);
 bool SplashScreenState_processMessage(SplashScreenState this, void* owner, Telegram telegram);

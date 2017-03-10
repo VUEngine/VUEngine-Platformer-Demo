@@ -79,7 +79,7 @@ void Key_ready(Key this, bool recursive)
 	ASSERT(this, "Key::ready: null this");
 
 	// call base
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+	__CALL_BASE_METHOD(Item, ready, this, recursive);
 
 	// add post processing effect to make key emit rhombuses
 	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
@@ -93,14 +93,14 @@ void Key_collect(Key this)
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventKeyTaken);
 
 	// call base
-	Item_collect(__SAFE_CAST(Item, this));
+	__CALL_BASE_METHOD(Item, collect, this);
 }
 
 void Key_suspend(Key this)
 {
 	ASSERT(this, "Key::suspend: null this");
 
-	Entity_suspend(__SAFE_CAST(Entity, this));
+	__CALL_BASE_METHOD(Item, suspend, this);
 
 	// remove post processing effect
 	Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
@@ -110,7 +110,7 @@ void Key_resume(Key this)
 {
 	ASSERT(this, "Key::resume: null this");
 
-	AnimatedInGameEntity_resume(__SAFE_CAST(AnimatedInGameEntity, this));
+	__CALL_BASE_METHOD(Item, resume, this);
 
 	// add post processing effect to make key emit rhombuses
 	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));

@@ -84,7 +84,7 @@ void CogWheel_ready(CogWheel this, bool recursive)
 	ASSERT(this, "CogWheel::ready: null this");
 
 	// call base
-	Entity_ready(__SAFE_CAST(Entity, this), recursive);
+	__CALL_BASE_METHOD(StaticImage, ready, this, recursive);
 
 	// start moving
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);

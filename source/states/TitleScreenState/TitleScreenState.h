@@ -65,7 +65,6 @@ enum TitleScreenOptions
 		GameState_SET_VTABLE(ClassName)								 									\
 		__VIRTUAL_SET(ClassName, TitleScreenState, enter);												\
 		__VIRTUAL_SET(ClassName, TitleScreenState, exit);												\
-		__VIRTUAL_SET(ClassName, TitleScreenState, execute);											\
 		__VIRTUAL_SET(ClassName, TitleScreenState, resume);												\
 		__VIRTUAL_SET(ClassName, TitleScreenState, suspend);											\
 		__VIRTUAL_SET(ClassName, TitleScreenState, processMessage);									 	\

@@ -59,7 +59,6 @@ extern StageROMDef OVERWORLD1_STAGE_ST;
 static void OverworldState_destructor(OverworldState this);
 static void OverworldState_constructor(OverworldState this);
 static void OverworldState_enter(OverworldState this, void* owner);
-static void OverworldState_execute(OverworldState this, void* owner);
 static void OverworldState_exit(OverworldState this, void* owner);
 static void OverworldState_resume(OverworldState this, void* owner);
 static void OverworldState_suspend(OverworldState this, void* owner);
@@ -99,7 +98,7 @@ static void OverworldState_destructor(OverworldState this)
 static void OverworldState_enter(OverworldState this, void* owner)
 {
 	// call base
-	GameState_enter(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, enter, this, owner);
 
 	// disable user input
 	Game_disableKeypad(Game_getInstance());
@@ -114,20 +113,13 @@ static void OverworldState_enter(OverworldState this, void* owner)
 	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 }
 
-// state's execute
-static void OverworldState_execute(OverworldState this, void* owner)
-{
-	// call base
-	GameState_execute(__SAFE_CAST(GameState, this), owner);
-}
-
 // state's exit
 static void OverworldState_exit(OverworldState this, void* owner)
 {
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)OverworldState_onUserInput, kEventUserInput);
 
 	// call base
-	GameState_exit(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, exit, this, owner);
 
 	// destroy the state
 	__DELETE(this);
@@ -136,7 +128,7 @@ static void OverworldState_exit(OverworldState this, void* owner)
 // state's resume
 static void OverworldState_resume(OverworldState this, void* owner)
 {
-	GameState_resume(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, resume, this, owner);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
@@ -190,7 +182,7 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
 
-	GameState_suspend(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, suspend, this, owner);
 }
 
 // print gui

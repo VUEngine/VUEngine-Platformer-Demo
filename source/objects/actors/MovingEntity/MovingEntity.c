@@ -103,7 +103,7 @@ void MovingEntity_destructor(MovingEntity this)
 }
 
 // set definition
-void MovingEntity_setDefinition(MovingEntity this, MovingEntityDefinition* movingEntityDefinition)
+void MovingEntity_setDefinition(MovingEntity this, void* movingEntityDefinition)
 {
 	ASSERT(this, "MovingEntity::setDefinition: null this");
 	ASSERT(movingEntityDefinition, "MovingEntity::setDefinition: null definition");
@@ -111,7 +111,7 @@ void MovingEntity_setDefinition(MovingEntity this, MovingEntityDefinition* movin
 	// save definition
 	this->movingEntityDefinition = movingEntityDefinition;
 
-	Actor_setDefinition(__SAFE_CAST(Actor, this), &movingEntityDefinition->actorDefinition);
+	__CALL_BASE_METHOD(Actor, setDefinition, this, &((MovingEntityDefinition*)movingEntityDefinition)->actorDefinition);
 }
 
 // register a shape with the collision detection system
@@ -134,7 +134,7 @@ void MovingEntity_ready(MovingEntity this, bool recursive)
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
 	// call base
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+	__CALL_BASE_METHOD(Actor, ready, this, recursive);
 
 	MovingEntity_startMovement(this);
 }
@@ -196,7 +196,7 @@ void MovingEntity_takeHit(MovingEntity this __attribute__ ((unused)), int axis _
 void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 {
 	// set my position
-	Actor_setLocalPosition(__SAFE_CAST(Actor, this), position);
+	__CALL_BASE_METHOD(Actor, setLocalPosition, this, position);
 
 	// save initial position
 	switch(this->movingEntityDefinition->axis)

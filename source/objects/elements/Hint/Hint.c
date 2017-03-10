@@ -92,7 +92,8 @@ void Hint_resume(Hint this)
 {
 	ASSERT(this, "Hint::resume: null this");
 
-	Entity_resume(__SAFE_CAST(Entity, this));
+	__CALL_BASE_METHOD(AnimatedInGameEntity, resume, this);
+
 	Hint_onHintOpened(this, NULL);
 }
 

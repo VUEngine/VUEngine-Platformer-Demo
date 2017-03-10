@@ -82,7 +82,7 @@ static void AdjustmentScreenState_destructor(AdjustmentScreenState this)
 void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner)
 {
 	// call base
-	SplashScreenState_enter(__SAFE_CAST(SplashScreenState, this), owner);
+	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
 
 	// add rhombus effect
 	Game_addPostProcessingEffect(Game_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);

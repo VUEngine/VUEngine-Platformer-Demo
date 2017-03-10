@@ -101,7 +101,7 @@ void Door_ready(Door this, bool recursive __attribute__ ((unused)))
 	ASSERT(this, "Door::ready: null this");
 
 	// call base
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+	__CALL_BASE_METHOD(AnimatedInGameEntity, ready, this, recursive);
 
 	if(__VIRTUAL_CALL(Door, hasDestination, this))
 	{
@@ -115,7 +115,7 @@ void Door_ready(Door this, bool recursive __attribute__ ((unused)))
 
 void Door_resume(Door this)
 {
-	AnimatedInGameEntity_resume(__SAFE_CAST(AnimatedInGameEntity, this));
+	__CALL_BASE_METHOD(AnimatedInGameEntity, resume, this);
 
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckOverlapping);
 	MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);

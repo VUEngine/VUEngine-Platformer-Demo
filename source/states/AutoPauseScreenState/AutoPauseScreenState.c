@@ -131,7 +131,7 @@ static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)AutoPauseScreenState_onUserInput, kEventUserInput);
 
 	// call base
-	GameState_exit(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, exit, this, owner);
 
 	// destroy the state
 	__DELETE(this);

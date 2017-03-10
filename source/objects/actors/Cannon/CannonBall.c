@@ -88,7 +88,7 @@ void CannonBall_ready(CannonBall this, bool recursive)
 	ASSERT(this, "CannonBall::ready: null this");
 
 	// call base
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+	__CALL_BASE_METHOD(AnimatedInGameEntity, ready, this, recursive);
 
 	CannonBall_startMovement(this);
 }

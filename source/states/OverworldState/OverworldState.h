@@ -50,7 +50,6 @@
 		GameState_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, OverworldState, enter);												\
 		__VIRTUAL_SET(ClassName, OverworldState, exit);													\
-		__VIRTUAL_SET(ClassName, OverworldState, execute);												\
 		__VIRTUAL_SET(ClassName, OverworldState, resume);												\
 		__VIRTUAL_SET(ClassName, OverworldState, suspend);												\
 		__VIRTUAL_SET(ClassName, OverworldState, processMessage);										\

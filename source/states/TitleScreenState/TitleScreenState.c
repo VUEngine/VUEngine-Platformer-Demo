@@ -60,7 +60,6 @@ extern StageROMDef TITLE_SCREEN_STAGE_ST;
 static void TitleScreenState_destructor(TitleScreenState this);
 static void TitleScreenState_constructor(TitleScreenState this);
 static void TitleScreenState_enter(TitleScreenState this, void* owner);
-static void TitleScreenState_execute(TitleScreenState this, void* owner);
 static void TitleScreenState_exit(TitleScreenState this, void* owner);
 static void TitleScreenState_resume(TitleScreenState this, void* owner);
 static void TitleScreenState_suspend(TitleScreenState this, void* owner);
@@ -117,7 +116,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	Object_addEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, kEventSecondChanged);
 
 	// call base
-	GameState_enter(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, enter, this, owner);
 
 	// disable user input
 	Game_disableKeypad(Game_getInstance());
@@ -200,26 +199,19 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 }
 
-// state's execute
-static void TitleScreenState_execute(TitleScreenState this, void* owner)
-{
-	// call base
-	GameState_execute(__SAFE_CAST(GameState, this), owner);
-}
-
 // state's exit
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onUserInput, kEventUserInput);
 
 	// call base
-	GameState_exit(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, exit, this, owner);
 }
 
 // state's resume
 static void TitleScreenState_resume(TitleScreenState this, void* owner)
 {
-	GameState_resume(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, resume, this, owner);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
@@ -274,7 +266,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	// make a fade out
 	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
 
-	GameState_suspend(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, suspend, this, owner);
 }
 
 static void TitleScreenState_showMessage(TitleScreenState this __attribute__ ((unused)))

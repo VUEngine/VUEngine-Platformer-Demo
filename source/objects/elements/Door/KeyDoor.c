@@ -72,7 +72,7 @@ void KeyDoor_ready(KeyDoor this, bool recursive __attribute__ ((unused)))
 	ASSERT(this, "KeyDoor::ready: null this");
 
 	// call base
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+	__CALL_BASE_METHOD(Door, ready, this, recursive);
 
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Key");
 }
@@ -88,7 +88,7 @@ void KeyDoor_setOverlapping(KeyDoor this)
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
 	}
 
-	Door_setOverlapping(__SAFE_CAST(Door, this));
+	__CALL_BASE_METHOD(Door, setOverlapping, this);
 }
 
 void KeyDoor_unsetOverlapping(KeyDoor this)
@@ -98,7 +98,7 @@ void KeyDoor_unsetOverlapping(KeyDoor this)
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closing");
 	}
 
-	Door_unsetOverlapping(__SAFE_CAST(Door, this));
+	__CALL_BASE_METHOD(Door, unsetOverlapping, this);
 }
 
 bool KeyDoor_canEnter(KeyDoor this __attribute__ ((unused)))

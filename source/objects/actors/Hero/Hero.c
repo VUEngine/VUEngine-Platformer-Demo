@@ -186,7 +186,7 @@ void Hero_ready(Hero this, bool recursive)
 	ASSERT(this, "Hero::ready: null this");
 
 	// call base
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+	__CALL_BASE_METHOD(Actor, ready, this, recursive);
 
 	// override with progress from progress manager
 	ProgressManager progressManager = ProgressManager_getInstance();
@@ -1368,7 +1368,7 @@ void Hero_suspend(Hero this)
 {
 	ASSERT(this, "Hero::suspend: null this");
 
-	Entity_suspend(__SAFE_CAST(Entity, this));
+	__CALL_BASE_METHOD(Actor, suspend, this);
 
 	ParticleSystem_pause(this->feetDust);
 }
@@ -1377,7 +1377,7 @@ void Hero_resume(Hero this)
 {
 	ASSERT(this, "Hero::resume: null this");
 
-	Actor_resume(__SAFE_CAST(Actor, this));
+	__CALL_BASE_METHOD(Actor, resume, this);
 
 	Screen_focus(Screen_getInstance(), false);
 

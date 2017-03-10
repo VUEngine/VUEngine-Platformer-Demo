@@ -97,7 +97,7 @@ static void PauseScreenState_destructor(PauseScreenState this)
 static void PauseScreenState_enter(PauseScreenState this, void* owner __attribute__ ((unused)))
 {
 	// call base
-	GameState_enter(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, enter, this, owner);
 
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
@@ -176,7 +176,7 @@ static void PauseScreenState_exit(PauseScreenState this, void* owner __attribute
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)PauseScreenState_onUserInput, kEventUserInput);
 
 	// call base
-	GameState_exit(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, exit, this, owner);
 }
 
 static void PauseScreenState_onUserInput(PauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))

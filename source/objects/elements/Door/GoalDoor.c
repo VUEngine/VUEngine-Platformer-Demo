@@ -80,7 +80,7 @@ void GoalDoor_ready(Door this, bool recursive __attribute__ ((unused)))
 	ASSERT(this, "GoalDoor::ready: null this");
 
 	// call base
-	AnimatedInGameEntity_ready(__SAFE_CAST(AnimatedInGameEntity, this), recursive);
+	__CALL_BASE_METHOD(Door, ready, this, recursive);
 
 	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Goal");
 }
@@ -116,7 +116,7 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 		}
 	}
 
-	return Door_handleMessage(__SAFE_CAST(Door, this), telegram);
+	return __CALL_BASE_METHOD(Door, handleMessage, this, telegram);
 }
 
 bool GoalDoor_canEnter(GoalDoor this __attribute__ ((unused)))

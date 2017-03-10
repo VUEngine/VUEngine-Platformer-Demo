@@ -102,7 +102,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 				MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
 
 				// call base class' method
-				SplashScreenState_processMessage(__SAFE_CAST(SplashScreenState, this), owner, telegram);
+				__CALL_BASE_METHOD(SplashScreenState, processMessage, this, owner, telegram);
 
 				// make sure that keypad is not yet enabled
 				Game_disableKeypad(Game_getInstance());

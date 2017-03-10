@@ -78,5 +78,5 @@ void Bandana_collect(Bandana this)
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
 
 	// call base
-	Item_collect(__SAFE_CAST(Item, this));
+	__CALL_BASE_METHOD(Item, collect, this);
 }

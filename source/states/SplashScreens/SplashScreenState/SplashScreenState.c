@@ -72,7 +72,7 @@ void SplashScreenState_destructor(SplashScreenState this)
 void SplashScreenState_enter(SplashScreenState this, void* owner)
 {
 	// call base
-	GameState_enter(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, enter, this, owner);
 
 	if(this->stageDefinition)
 	{
@@ -87,13 +87,6 @@ void SplashScreenState_enter(SplashScreenState this, void* owner)
 	Game_disableKeypad(Game_getInstance());
 }
 
-// state's execute
-void SplashScreenState_execute(SplashScreenState this, void* owner)
-{
-	// call base
-	GameState_execute(__SAFE_CAST(GameState, this), owner);
-}
-
 // state's exit
 void SplashScreenState_exit(SplashScreenState this, void* owner)
 {
@@ -101,7 +94,7 @@ void SplashScreenState_exit(SplashScreenState this, void* owner)
 	Object_removeEventListener(__SAFE_CAST(Object, Game_getInstance()), __SAFE_CAST(Object, this), (EventListener)SplashScreenState_onUserInput, kEventUserInput);
 
 	// call base
-	GameState_exit(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, exit, this, owner);
 
 	// destroy the state
 	__DELETE(this);
@@ -110,7 +103,7 @@ void SplashScreenState_exit(SplashScreenState this, void* owner)
 // state's resume
 void SplashScreenState_resume(SplashScreenState this, void* owner)
 {
-	GameState_resume(__SAFE_CAST(GameState, this), owner);
+	__CALL_BASE_METHOD(GameState, resume, this, owner);
 
 	__VIRTUAL_CALL(SplashScreenState, print, this);
 

@@ -157,7 +157,7 @@ void CustomScreenEffectManager_stopEffect(CustomScreenEffectManager this, int ef
 
 		default:
 
-			ScreenEffectManager_stopEffect(__SAFE_CAST(ScreenEffectManager, this), effect);
+			__CALL_BASE_METHOD(ScreenEffectManager, stopEffect, this, effect);
 			break;
 	}
 }
