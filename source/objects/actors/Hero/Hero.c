@@ -937,8 +937,6 @@ static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused
 {
 	UserInput userInput = PlatformerLevelState_getUserInput(PlatformerLevelState_getInstance());
 
-	Printing_hex(Printing_getInstance(), userInput.pressedKey, 10, 0, 8, NULL);
-
 	if(userInput.pressedKey)
 	{
 		__VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this, &userInput);
