@@ -531,6 +531,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 	if(__ZAXIS & axis)
 	{
 		this->keepAddingForce = false;
+		this->jumps = 0;
 		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 		return true;
 	}
@@ -538,6 +539,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 	if(!Body_isMoving(this->body) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
 	{
 		this->keepAddingForce = false;
+		this->jumps = 0;
 		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 		return true;
 	}
@@ -934,6 +936,8 @@ void Hero_die(Hero this)
 static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused)))
 {
 	UserInput userInput = PlatformerLevelState_getUserInput(PlatformerLevelState_getInstance());
+
+	Printing_hex(Printing_getInstance(), userInput.pressedKey, 10, 0, 8, NULL);
 
 	if(userInput.pressedKey)
 	{
