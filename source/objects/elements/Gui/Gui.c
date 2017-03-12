@@ -128,6 +128,7 @@ void Gui_printBestTime(Gui this __attribute__ ((unused)))
 		Clock clock = __NEW(Clock);
 		Clock_setTimeInMilliSeconds(clock, bestTime);
 		Clock_print(clock, GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
+		__DELETE(clock);
 	}
 	else
 	{
