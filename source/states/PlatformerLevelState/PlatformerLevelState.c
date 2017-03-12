@@ -182,7 +182,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			{
 				initialPosition->x - ITOFIX19_13(__SCREEN_WIDTH >> 1),
 				initialPosition->y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
-				initialPosition->z
+				this->currentStageEntryPoint->stageDefinition->level.screenInitialPosition.z
 			};
 
 			Screen_setPosition(Screen_getInstance(), screenPosition);
