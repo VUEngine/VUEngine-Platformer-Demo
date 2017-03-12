@@ -419,8 +419,16 @@ void Hero_stopAddingForce(Hero this)
 	int axisOfDeacceleration = 0;
 	axisOfDeacceleration |= velocity.x? __XAXIS: 0;
 	axisOfDeacceleration |= velocity.z? __ZAXIS: 0;
-	Body_clearAcceleration(this->body, __XAXIS);
-	Body_moveAccelerated(this->body, axisOfDeacceleration);
+
+	if(axisOfDeacceleration)
+	{
+		Body_clearAcceleration(this->body, __XAXIS);
+		Body_moveAccelerated(this->body, axisOfDeacceleration);
+	}
+	else
+	{
+		Hero_stopMovingOnAxis(this, __XAXIS | __ZAXIS);
+	}
 }
 
 // started moving over axis
