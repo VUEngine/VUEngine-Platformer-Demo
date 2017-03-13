@@ -49,8 +49,6 @@ __CLASS_DEFINITION(MovingEntity, Actor);
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void MovingEntity_registerShape(MovingEntity this);
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -73,7 +71,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	this->initialPosition = 0;
 
 	// register a shape for collision detection
-	MovingEntity_registerShape(this);
+	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 
 	switch(this->movingEntityDefinition->axis)
 	{
@@ -114,22 +112,13 @@ void MovingEntity_setDefinition(MovingEntity this, void* movingEntityDefinition)
 	__CALL_BASE_METHOD(Actor, setDefinition, this, &((MovingEntityDefinition*)movingEntityDefinition)->actorDefinition);
 }
 
-// register a shape with the collision detection system
-static void MovingEntity_registerShape(MovingEntity this)
-{
-	ASSERT(this, "MovingEntity::registerShape: null this");
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
-}
-
 // ready method
 void MovingEntity_ready(MovingEntity this, bool recursive)
 {
 	ASSERT(this, "MovingEntity::ready: null this");
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), this->movingEntityDefinition->actorDefinition.mass);
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), this->movingEntityDefinition->actorDefinition.mass);
 	Body_setElasticity(this->body, this->movingEntityDefinition->actorDefinition.elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 
@@ -177,14 +166,6 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 	}
 
 	return false;
-}
-
-// unregister the shape with the collision detection system
-void MovingEntity_unregisterShape(MovingEntity this)
-{
-	ASSERT(this, "MovingEntity::unregisterShape: null this");
-
-	Shape_setActive(this->shape, false);
 }
 
 // tell me I've been hit

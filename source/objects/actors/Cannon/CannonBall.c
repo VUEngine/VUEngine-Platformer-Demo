@@ -61,10 +61,10 @@ void CannonBall_constructor(CannonBall this, ActorDefinition* definition, s16 id
 	__CONSTRUCT_BASE(Actor, definition, id, internalId, name);
 
 	// register a shape for collision detection
-	CannonBall_registerShape(this);
+	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), definition->mass);
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), definition->mass);
 
 	// I start my life hidden
 	this->hidden = true;
@@ -92,25 +92,6 @@ void CannonBall_ready(CannonBall this, bool recursive)
 
 	CannonBall_startMovement(this);
 }
-
-// register a shape with the collision detection system
-void CannonBall_registerShape(CannonBall this)
-{
-	ASSERT(this, "CannonBall::registerShape: null this");
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
-}
-
-// unregister the shape with the collision detection system
-void CannonBall_unregisterShape(CannonBall this)
-{
-	ASSERT(this, "CannonBall::unregisterShape: null this");
-
-	Shape_setActive(this->shape, false);
-}
-
-// tell me I've been hit
 
 // retrieve axis free for movement
 int CannonBall_getAxisFreeForMovement(CannonBall this __attribute__ ((unused)))

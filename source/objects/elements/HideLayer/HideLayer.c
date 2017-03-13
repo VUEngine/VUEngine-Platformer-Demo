@@ -63,7 +63,7 @@ void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* anima
 	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 
 	// init class variables
 	this->currentlyOverlappingHero = false;

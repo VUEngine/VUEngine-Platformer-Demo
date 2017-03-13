@@ -116,5 +116,5 @@ void Collision_setExtraInfo(Collision this, void* extraInfo)
 	this->size.z = size->z;
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 }

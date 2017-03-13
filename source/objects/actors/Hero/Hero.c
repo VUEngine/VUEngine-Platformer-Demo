@@ -136,12 +136,13 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, s16 id, s16 i
 	this->keepAddingForce = false;
 
 	// register a shape for collision detection
-	this->shape = CollisionManager_registerShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
 	ASSERT(this->shape, "Hero::constructor: null shape");
 	Shape_setCheckForCollisions(this->shape, true);
 
 	// register a body for physics
-	this->body = PhysicalWorld_registerBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
+	Body_setAxisSubjectToGravity(this->body, __YAXIS);
 	Body_setElasticity(this->body, actorDefinition->elasticity);
 	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
 	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.globalPosition);
