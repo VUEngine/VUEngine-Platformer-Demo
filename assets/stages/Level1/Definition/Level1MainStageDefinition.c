@@ -224,8 +224,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 {
 	{&COLLISION_TOP_CL,				{FTOFIX19_13(210),	FTOFIX19_13(24),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // right bottom one-way
-	{&COLLISION_CL,						{FTOFIX19_13(127),	FTOFIX19_13(38),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // wall right to the secret door
-	{&COLLISION_CL,					{FTOFIX19_13(238),	FTOFIX19_13(88),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_18_6_1, false}, // floor under the one-way passage
+	{&COLLISION_CL,					{FTOFIX19_13(127),	FTOFIX19_13(38),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // wall right to the secret door
+	{&COLLISION_CL,					{FTOFIX19_13(239),	FTOFIX19_13(88),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_18_6_1, false}, // floor under the one-way passage
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -260,7 +260,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_2[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_3[] =
 {
 	{&COLLISION_CL, 				{FTOFIX19_13(-8),	FTOFIX19_13(88),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_10_1, false}, // ceiling above steps area
-	{&COLLISION_CL,					{FTOFIX19_13(-162), FTOFIX19_13(232),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // 2nd lowest left step
+	{&COLLISION_CL,					{FTOFIX19_13(-161), FTOFIX19_13(232),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // 2nd lowest left step
 	{&COLLISION_CL,					{FTOFIX19_13(-112), FTOFIX19_13(264),	FTOFIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // lowest left step
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
