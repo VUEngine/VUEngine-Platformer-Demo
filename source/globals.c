@@ -27,7 +27,7 @@
 #include <Game.h>
 #include <Debug.h>
 #include <StageEditor.h>
-#include <AnimationEditor.h>
+#include <AnimationInspector.h>
 #include <ManagedEntity.h>
 #include <CollisionsContainerEntity.h>
 #include <Bandana.h>

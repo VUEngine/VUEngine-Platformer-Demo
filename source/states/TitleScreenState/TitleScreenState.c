@@ -218,7 +218,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
@@ -238,7 +238,7 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 #ifdef __STAGE_EDITOR
 	}
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	}
 #endif
 }
@@ -256,7 +256,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 #ifdef __STAGE_EDITOR
 	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
 

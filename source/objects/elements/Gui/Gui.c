@@ -235,7 +235,7 @@ static void Gui_onSecondChange(Gui this, Object eventFirer __attribute__ ((unuse
 #ifdef __STAGE_EDITOR
 	if(!Game_isInSpecialMode(Game_getInstance()))
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	if(!Game_isInSpecialMode(Game_getInstance()))
 #endif
 

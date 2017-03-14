@@ -308,7 +308,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
@@ -322,7 +322,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 #ifdef __STAGE_EDITOR
 	}
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	}
 #endif
 
@@ -347,7 +347,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
@@ -371,7 +371,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 #ifdef __STAGE_EDITOR
 	}
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	}
 #endif
 

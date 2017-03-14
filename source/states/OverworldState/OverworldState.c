@@ -135,7 +135,7 @@ static void OverworldState_resume(OverworldState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
@@ -155,7 +155,7 @@ static void OverworldState_resume(OverworldState this, void* owner)
 #ifdef __STAGE_EDITOR
 	}
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	}
 #endif
 }
@@ -172,7 +172,7 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 #ifdef __STAGE_EDITOR
 	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	if(!Game_isEnteringSpecialMode(Game_getInstance()))
 #endif
 

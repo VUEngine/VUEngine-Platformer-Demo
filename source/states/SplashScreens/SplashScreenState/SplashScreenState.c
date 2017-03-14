@@ -111,7 +111,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
 	{
 #endif
@@ -125,7 +125,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #ifdef __STAGE_EDITOR
 	}
 #endif
-#ifdef __ANIMATION_EDITOR
+#ifdef __ANIMATION_INSPECTOR
 	}
 #endif
 }
