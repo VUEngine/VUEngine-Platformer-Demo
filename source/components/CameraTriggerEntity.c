@@ -93,6 +93,9 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 	{
 		this->transform.globalPosition.y = currentGlobalPosition.y;
 	}
+
+	Gap gap = {0, 0, 0, 0};
+	__VIRTUAL_CALL(Shape, position, this->shape, Entity_getPosition(this), false, gap);
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)
