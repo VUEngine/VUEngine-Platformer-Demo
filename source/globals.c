@@ -56,7 +56,6 @@ extern EntityDefinition KEY_AG;
 extern EntityDefinition SAW_BLADE_V3_AC;
 extern EntityDefinition SAW_BLADE_H3_AC;
 extern EntityDefinition LAVA_TOP_AG;
-extern EntityDefinition LANE_V_6_IM;
 extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 
 
@@ -114,7 +113,6 @@ const UserObject _userObjects[] =
 	{&KEY_AG,				"Key"},
 	{&SAW_BLADE_V3_AC,		"SawBlade V3"},
 	{&SAW_BLADE_H3_AC,		"SawBlade H3"},
-	{&LANE_V_6_IM,			"SawBlade Lane V6"},
 	{NULL, ""},
 };
 

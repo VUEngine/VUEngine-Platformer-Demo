@@ -60,7 +60,7 @@ enum PlatformerLevelModes
 		__VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);										\
 		__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);											\
 		__VIRTUAL_SET(ClassName, PlatformerLevelState, processMessage);									\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, processUserInput);									\
+		__VIRTUAL_SET(ClassName, PlatformerLevelState, processUserInput);								\
 
 __CLASS(PlatformerLevelState);
 
