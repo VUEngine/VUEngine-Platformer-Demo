@@ -95,7 +95,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 	}
 
 	Gap gap = {0, 0, 0, 0};
-	__VIRTUAL_CALL(Shape, position, this->shape, Entity_getPosition(this), false, gap);
+	__VIRTUAL_CALL(Shape, position, this->shape, &this->transform.globalPosition, false, gap);
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)
