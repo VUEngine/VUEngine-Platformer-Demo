@@ -16,3 +16,4 @@ cproject
 sections*.txt
 setupClasses.c
 headerFiles.txt
+release.bat
