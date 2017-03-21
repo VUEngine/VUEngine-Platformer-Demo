@@ -13,13 +13,15 @@ SET LDT=%LDT:~0,4%-%LDT:~4,2%-%LDT:~6,2%
 ECHO STARTING RELEASE PROCESS...
 ECHO.
 
-FOR %%M IN (Release, Tools, Debug) DO (
+FOR %%M IN (debug, release, tools) DO (
 
 	ECHO Mode: %%M
 
 	::BUILD ROM
+	SET BUILD_MODE=%%M
+
 	ECHO|SET /p="Building... "
-	CALL "%VBDE%\system\batch\build.bat" "%PROJECT_DIR%" >nul 2>&1
+	CALL "%VBDE%\system\batch\build.bat" "%PROJECT_DIR%" "%BUILD_MODE%" >nul 2>&1
 	ECHO done
 
 	::PAD ROM
