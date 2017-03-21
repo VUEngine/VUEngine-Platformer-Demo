@@ -13,6 +13,7 @@ cproject
 *.lnk
 *.asm
 *.map
+*.ftp
 sections*.txt
 setupClasses.c
 headerFiles.txt
