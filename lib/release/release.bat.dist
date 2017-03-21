@@ -13,32 +13,42 @@ SET LDT=%LDT:~0,4%-%LDT:~4,2%-%LDT:~6,2%
 ECHO STARTING RELEASE PROCESS...
 ECHO.
 
-FOR %%M IN (Release, Tools, Debug) DO (
+FOR %%M IN (debug, release, tools) DO (
 
+	::OUTPUT MODE
 	ECHO Mode: %%M
 
 	::BUILD ROM
 	ECHO|SET /p="Building... "
+	SET BUILD_MODE=%%M
 	CALL "%VBDE%\system\batch\build.bat" "%PROJECT_DIR%" >nul 2>&1
-	ECHO done
+	ECHO done.
 
 	::PAD ROM
 	ECHO|SET /p="Padding... "
 	START "" "%VBDE%\tools\rom\Pad_VB\Pad_VB.exe" "%PROJECT_DIR%\build\output.vb" 3 >nul 2>&1
-	ECHO done
+	ECHO done.
 
 	::UPLOAD TO FTP
 	ECHO|SET /p="Uploading... "
+	IF EXIST %SCRIPT_DIR%upload.ftp DEL %SCRIPT_DIR%upload.ftp
 	ECHO open planetvb.com>>%SCRIPT_DIR%upload.ftp
 	ECHO [USERNAME]>>%SCRIPT_DIR%upload.ftp
 	ECHO [PASSWORD]>>%SCRIPT_DIR%upload.ftp
 	ECHO mkdir %%M>>%SCRIPT_DIR%upload.ftp
 	ECHO cd %%M>>%SCRIPT_DIR%upload.ftp
-	ECHO put %PROJECT_DIR%\build\output_pad.vb "VUEngine Platformer Demo (%%M) (%LDT%).vb">>%SCRIPT_DIR%upload.ftp
+	ECHO binary>>%SCRIPT_DIR%upload.ftp
+	IF %%M==debug (
+		ECHO put %PROJECT_DIR%\build\output_pad.vb "VUEngine Platformer Demo (Debug) (%LDT%).vb">>%SCRIPT_DIR%upload.ftp
+	) ELSE IF %%M==tools (
+		ECHO put %PROJECT_DIR%\build\output_pad.vb "VUEngine Platformer Demo (Tools) (%LDT%).vb">>%SCRIPT_DIR%upload.ftp
+	) ELSE (
+		ECHO put %PROJECT_DIR%\build\output_pad.vb "VUEngine Platformer Demo (Release) (%LDT%).vb">>%SCRIPT_DIR%upload.ftp
+	)
 	ECHO bye>>%SCRIPT_DIR%upload.ftp
 	FTP -s:%SCRIPT_DIR%upload.ftp >nul 2>&1
 	DEL %SCRIPT_DIR%upload.ftp
-	ECHO done
+	ECHO done.
 
 	ECHO.
 )
