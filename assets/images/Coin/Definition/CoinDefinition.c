@@ -82,7 +82,7 @@ AnimationDescriptionROMDef COIN_ANIM =
 CharSetROMDef COIN_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	4,
 
@@ -112,7 +112,7 @@ TextureROMDef COIN_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -123,7 +123,7 @@ TextureROMDef COIN_TX =
 CharSetROMDef COIN_SILHOUETTE_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	4,
 
@@ -153,7 +153,7 @@ TextureROMDef COIN_SILHOUETTE_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -164,7 +164,7 @@ TextureROMDef COIN_SILHOUETTE_TX =
 CharSetROMDef AFFINE_COIN_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	16,
 
@@ -194,7 +194,7 @@ TextureROMDef AFFINE_COIN_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -205,7 +205,7 @@ TextureROMDef AFFINE_COIN_TX =
 CharSetROMDef COIN_BACK_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	4,
 
@@ -235,7 +235,7 @@ TextureROMDef COIN_BACK_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -246,7 +246,7 @@ TextureROMDef COIN_BACK_TX =
 CharSetROMDef COIN_BACK_SILHOUETTE_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	4,
 
@@ -276,7 +276,7 @@ TextureROMDef COIN_BACK_SILHOUETTE_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 

@@ -44,7 +44,7 @@ extern BYTE Level1CoinRoomStageMain1Map[];
 CharSetROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	27,
 
@@ -74,7 +74,7 @@ TextureROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_1_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 

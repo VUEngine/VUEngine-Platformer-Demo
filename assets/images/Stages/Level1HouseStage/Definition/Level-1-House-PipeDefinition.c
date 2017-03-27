@@ -42,7 +42,7 @@ extern BYTE Level_1_House_PipeMap[];
 CharSetROMDef LEVEL_1_HOUSE_PIPE_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	6,
 
@@ -72,7 +72,7 @@ TextureROMDef LEVEL_1_HOUSE_PIPE_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
