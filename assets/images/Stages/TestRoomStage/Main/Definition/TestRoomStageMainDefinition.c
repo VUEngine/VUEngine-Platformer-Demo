@@ -107,6 +107,10 @@ BgmapSpriteROMDef TEST_ROOM_STAGE_MAIN_1_IM_SPRITE =
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	__WORLD_BGMAP,
 
+	// pointer to affine / hbias manipulation function
+	// void (*)(BgmapSprite);
+	NULL,
+
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
@@ -172,6 +176,10 @@ BgmapSpriteROMDef TEST_ROOM_STAGE_MAIN_2_IM_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	__WORLD_BGMAP,
+
+	// pointer to affine / hbias manipulation function
+	// void (*)(BgmapSprite);
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,

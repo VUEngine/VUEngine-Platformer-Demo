@@ -100,6 +100,10 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L_SPRITE =
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
+	// pointer to affine / hbias manipulation function
+	// void (*)(BgmapSprite);
+	NULL,
+
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_LON,
 };
@@ -129,6 +133,10 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R_SPRITE =
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
+
+	// pointer to affine / hbias manipulation function
+	// void (*)(BgmapSprite);
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_RON,

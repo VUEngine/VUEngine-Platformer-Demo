@@ -254,6 +254,10 @@ BgmapSpriteROMDef DOOR_SPRITE =
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
+	// pointer to affine / hbias manipulation function
+	// void (*)(BgmapSprite);
+	NULL,
+
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
@@ -414,7 +418,11 @@ BgmapSpriteROMDef AFFINE_DOOR_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
+	__WORLD_AFFINE,
+
+	// pointer to affine / hbias manipulation function
+	// void (*)(BgmapSprite);
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
@@ -519,6 +527,10 @@ BgmapSpriteROMDef DOOR_BACK_SPRITE =
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
+
+	// pointer to affine / hbias manipulation function
+	// void (*)(BgmapSprite);
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,

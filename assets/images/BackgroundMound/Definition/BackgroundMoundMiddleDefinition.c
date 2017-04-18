@@ -110,6 +110,10 @@ MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
 		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 		__WORLD_BGMAP,
 
+		// pointer to affine / hbias manipulation function
+		// void (*)(BgmapSprite);
+		NULL,
+
 		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 		__WORLD_ON,
 	},
