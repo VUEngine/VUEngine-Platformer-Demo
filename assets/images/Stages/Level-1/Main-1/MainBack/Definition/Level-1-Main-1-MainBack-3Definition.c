@@ -60,7 +60,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -86,7 +86,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -112,7 +112,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 

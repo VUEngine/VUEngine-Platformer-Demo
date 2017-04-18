@@ -48,7 +48,7 @@ extern BYTE PlatformerDemoLogoOutlineRMap[];
 CharSetROMDef LOGO_L_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	168,
 
@@ -78,7 +78,7 @@ TextureROMDef LOGO_L_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -89,7 +89,7 @@ TextureROMDef LOGO_L_TX =
 CharSetROMDef LOGO_R_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	165,
 
@@ -119,7 +119,7 @@ TextureROMDef LOGO_R_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -130,7 +130,7 @@ TextureROMDef LOGO_R_TX =
 CharSetROMDef LOGO_OUTLINE_L_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	90,
 
@@ -160,7 +160,7 @@ TextureROMDef LOGO_OUTLINE_L_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -171,7 +171,7 @@ TextureROMDef LOGO_OUTLINE_L_TX =
 CharSetROMDef LOGO_OUTLINE_R_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	91,
 
@@ -201,7 +201,7 @@ TextureROMDef LOGO_OUTLINE_R_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 

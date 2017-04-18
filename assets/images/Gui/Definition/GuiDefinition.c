@@ -79,7 +79,7 @@ AnimationDescriptionROMDef GUI_ANIM =
 CharSetROMDef GUI_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	96,
 
@@ -94,7 +94,7 @@ CharSetROMDef GUI_CH =
 CharSetROMDef GUI_BANDANA_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	96,
 
@@ -109,7 +109,7 @@ CharSetROMDef GUI_BANDANA_CH =
 CharSetROMDef GUI_OVERWORLD_CH =
 {
 	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, _SHARED, _SHARED_COORDINATED: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	96,
 
@@ -139,7 +139,7 @@ TextureROMDef GUI_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 
@@ -165,7 +165,7 @@ TextureROMDef GUI_OVERWORLD_TX =
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE, _SHARED, _SHARED_COORDINATED, __NOT_ANIMATED: 1
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
 	1,
 

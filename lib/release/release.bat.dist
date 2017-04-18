@@ -52,3 +52,6 @@ FOR %%M IN (debug, release, tools) DO (
 
 	ECHO.
 )
+
+ECHO ALL DONE.
+ECHO.
