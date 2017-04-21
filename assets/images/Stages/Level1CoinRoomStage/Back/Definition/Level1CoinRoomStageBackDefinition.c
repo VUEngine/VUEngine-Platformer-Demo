@@ -70,7 +70,7 @@ TextureROMDef LEVEL1_COIN_ROOM_STAGE_BACK_1_TX =
 	// rows (max 64)
 	20,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
@@ -106,8 +106,7 @@ BgmapSpriteROMDef LEVEL1_COIN_ROOM_STAGE_BACK_1_IM_SPRITE =
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJ or __WORLD_HBIAS)
 	__WORLD_BGMAP,
 
-	// pointer to affine / hbias manipulation function
-	// void (*)(BgmapSprite);
+	// pointer to affine/hbias manipulation function
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)

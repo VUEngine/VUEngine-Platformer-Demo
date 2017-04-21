@@ -24,76 +24,63 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
-#include <MBgmapSprite.h>
-
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern BYTE Level_1_Main_1_MainFront_3aMap[];
-extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_FRONT_CH;
+#include <HbiasEffects.h>
+#include <SpriteManager.h>
+#include <ParamTableManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX =
+s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
 {
-	// charset definition
-	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
+	u32 param = BgmapSprite_getParam(bgmapSprite);
+	s16 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, bgmapSprite));
+	s16 i = BgmapSprite_getParamTableRow(bgmapSprite);
+	int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
 
-	// bgmap definition
-	Level_1_Main_1_MainFront_3aMap,
-
-	// cols (max 64)
-	50,
-
-	// rows (max 64)
-	10,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	1,
-};
-
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_TEXTURES[] =
-{
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX,
-	NULL
-};
-
-BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_SPRITE =
-{
+	// look up table of wave shifts
+	#define LOGO_WAVE_LUT_LENGTH 32
+	const s16 logoWaveLut[LOGO_WAVE_LUT_LENGTH] =
 	{
-		// sprite's type
-		__TYPE(BgmapSprite),
+		-2, -2, -2, -2,
+        -1, -1, -1,
+        0, 0,
+        1, 1, 1,
+        2, 2, 2, 2,
+        2, 2, 2, 2,
+        1, 1, 1,
+        0, 0,
+        -1, -1, -1,
+        -2, -2, -2, -2,
+	};
 
-		// texture definition
-		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX,
+	// look up table offset
+	static u8 step = 0;
+	step = (step < (LOGO_WAVE_LUT_LENGTH - 1)) ? step + 1 : 0;
 
-		// transparent
-		false,
+	// write param table rows
+	for(; counter && i < spriteHeight; i++, counter--)
+	{
+		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
+		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = logoWaveLut[(i + step) & (LOGO_WAVE_LUT_LENGTH - 1)];
+	}
 
-		// displacement
-		{ITOFIX19_13(-8), ITOFIX19_13(24), FTOFIX19_13(-1), 0},
-	},
+	// return 0 to ensure that this effect never finishes and thus runs continuously.
+	// avoids having to call applyHbiasEffects manually every cycle.
+	return 0;
 
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
+	// return -1 if the last row was computed, or i (the last computed row) if not
+	/*
+	if(i < spriteHeight)
+	{
+		return i;
+	}
 
-	// pointer to affine/hbias manipulation function
-	NULL,
+	return -1;
+	*/
 
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
+	// if you want to bypass the deferring, just write the whole table without paying attention to the
+	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
+}

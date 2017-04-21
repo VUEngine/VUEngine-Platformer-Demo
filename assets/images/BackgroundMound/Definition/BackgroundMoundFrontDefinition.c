@@ -70,7 +70,7 @@ TextureROMDef MOUND_BG_FRONT_TX =
 	// cut to reduce the load in the VIP
 	6,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
@@ -109,7 +109,7 @@ MBgmapSpriteROMDef MOUND_BG_FRONT_SB_SPRITE =
 		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 		__WORLD_BGMAP,
 
-		// pointer to affine / hbias manipulation function
+		// pointer to affine/hbias manipulation function
 		// void (*)(BgmapSprite);
 		NULL,
 

@@ -56,7 +56,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_TX =
 	// rows (max 64)
 	6,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
@@ -82,7 +82,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
 	// rows (max 64)
 	6,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
@@ -108,7 +108,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
 	// rows (max 64)
 	16,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
@@ -140,8 +140,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
-	// pointer to affine / hbias manipulation function
-	// void (*)(BgmapSprite);
+	// pointer to affine/hbias manipulation function
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
@@ -168,8 +167,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_IM_SPRITE =
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
-	// pointer to affine / hbias manipulation function
-	// void (*)(BgmapSprite);
+	// pointer to affine/hbias manipulation function
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
@@ -196,8 +194,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_IM_SPRITE =
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
-	// pointer to affine / hbias manipulation function
-	// void (*)(BgmapSprite);
+	// pointer to affine/hbias manipulation function
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)

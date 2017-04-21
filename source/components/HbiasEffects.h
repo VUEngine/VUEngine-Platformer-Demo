@@ -19,81 +19,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef HBIAS_EFFECTS_H_
+#define HBIAS_EFFECTS_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
-#include <MBgmapSprite.h>
-
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern BYTE Level_1_Main_1_MainFront_3aMap[];
-extern CharSetROMDef LEVEL_1_MAIN_1_MAIN_FRONT_CH;
+#include <BgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//										FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
+s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite);
 
-	// bgmap definition
-	Level_1_Main_1_MainFront_3aMap,
 
-	// cols (max 64)
-	50,
-
-	// rows (max 64)
-	10,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	1,
-};
-
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_TEXTURES[] =
-{
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX,
-	NULL
-};
-
-BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_SPRITE =
-{
-	{
-		// sprite's type
-		__TYPE(BgmapSprite),
-
-		// texture definition
-		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX,
-
-		// transparent
-		false,
-
-		// displacement
-		{ITOFIX19_13(-8), ITOFIX19_13(24), FTOFIX19_13(-1), 0},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
+#endif

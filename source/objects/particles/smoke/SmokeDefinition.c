@@ -104,7 +104,7 @@ TextureROMDef SMOKE_PARTICLE_SMALL_TX =
 	// rows (max 64)
 	1,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:

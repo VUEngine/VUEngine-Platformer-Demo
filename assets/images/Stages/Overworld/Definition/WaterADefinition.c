@@ -108,7 +108,7 @@ TextureROMDef WATER_A_TX =
 	// rows (max 64)
 	2,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
@@ -140,8 +140,7 @@ BgmapSpriteROMDef WATER_A_SPRITE =
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
-	// pointer to affine / hbias manipulation function
-	// void (*)(BgmapSprite);
+	// pointer to affine/hbias manipulation function
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)

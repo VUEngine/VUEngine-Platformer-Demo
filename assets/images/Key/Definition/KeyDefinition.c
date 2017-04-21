@@ -102,7 +102,7 @@ TextureROMDef KEY_TX =
 	// rows (max 64)
 	2,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:

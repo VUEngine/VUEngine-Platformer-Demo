@@ -68,7 +68,7 @@ TextureROMDef ADJUSTMENT_SCREEN_VUENGINE_ICON_TX =
 	// rows (max 64)
 	3,
 
-	// padding for affine transformations
+	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
@@ -100,8 +100,7 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L_SPRITE =
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
-	// pointer to affine / hbias manipulation function
-	// void (*)(BgmapSprite);
+	// pointer to affine/hbias manipulation function
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
@@ -134,8 +133,7 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R_SPRITE =
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
-	// pointer to affine / hbias manipulation function
-	// void (*)(BgmapSprite);
+	// pointer to affine/hbias manipulation function
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
