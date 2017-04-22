@@ -38,7 +38,8 @@ s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
 	u32 param = BgmapSprite_getParam(bgmapSprite);
 	s16 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, bgmapSprite));
 	s16 i = BgmapSprite_getParamTableRow(bgmapSprite);
-	int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
+	// if you want to defer the effect, compute up to counter rows
+	// int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
 
 	// look up table of wave shifts
 	#define LOGO_WAVE_LUT_LENGTH 32
@@ -60,8 +61,10 @@ s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
 	static u8 step = 0;
 	step = (step < (LOGO_WAVE_LUT_LENGTH - 1)) ? step + 1 : 0;
 
+	// if you want to defer the effect, compute up to counter rows
+	// for(; counter && i < spriteHeight; i++, counter--)
 	// write param table rows
-	for(; counter && i < spriteHeight; i++, counter--)
+	for(; i < spriteHeight; i++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
 		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = logoWaveLut[(i + step) & (LOGO_WAVE_LUT_LENGTH - 1)];
