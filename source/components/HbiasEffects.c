@@ -63,6 +63,8 @@ s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
 
 	// if you want to defer the effect, compute up to counter rows
 	// for(; counter && i < spriteHeight; i++, counter--)
+	// if you want to bypass the deferring, just write the whole table without paying attention to the
+	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
 	// write param table rows
 	for(; i < spriteHeight; i++)
 	{
@@ -72,9 +74,9 @@ s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
 
 	// return 0 to ensure that this effect never finishes and thus runs continuously.
 	// avoids having to call applyHbiasEffects manually every cycle.
+	// return -1 if the last row was computed, or i (the last computed row) if not
 	return 0;
 
-	// return -1 if the last row was computed, or i (the last computed row) if not
 	/*
 	if(i < spriteHeight)
 	{
@@ -83,7 +85,4 @@ s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
 
 	return -1;
 	*/
-
-	// if you want to bypass the deferring, just write the whole table without paying attention to the
-	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
 }
