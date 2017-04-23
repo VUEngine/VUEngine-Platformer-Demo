@@ -33,7 +33,7 @@
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
+s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 {
 	u32 param = BgmapSprite_getParam(bgmapSprite);
 	s16 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, bgmapSprite));
@@ -42,8 +42,9 @@ s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
 	// int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
 
 	// look up table of wave shifts
-	#define LOGO_WAVE_LUT_LENGTH 32
-	const s16 logoWaveLut[LOGO_WAVE_LUT_LENGTH] =
+	#define HBIAS_WAVE_LUT_LENGTH 	32
+	#define HBIAS_WAVE_THROTTLE 	1
+	const s16 smallWaveLut[HBIAS_WAVE_LUT_LENGTH] =
 	{
 		-2, -2, -2, -2,
         -1, -1, -1,
@@ -59,17 +60,17 @@ s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite)
 
 	// look up table offset
 	static u8 step = 0;
-	step = (step < (LOGO_WAVE_LUT_LENGTH - 1)) ? step + 1 : 0;
+	step = (step < ((HBIAS_WAVE_LUT_LENGTH << HBIAS_WAVE_THROTTLE) - 1)) ? step + 1 : 0;
 
+	// write param table rows
 	// if you want to defer the effect, compute up to counter rows
 	// for(; counter && i < spriteHeight; i++, counter--)
 	// if you want to bypass the deferring, just write the whole table without paying attention to the
 	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
-	// write param table rows
 	for(; i < spriteHeight; i++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = logoWaveLut[(i + step) & (LOGO_WAVE_LUT_LENGTH - 1)];
+		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = smallWaveLut[((i + step) >> HBIAS_WAVE_THROTTLE) & (HBIAS_WAVE_LUT_LENGTH - 1)];
 	}
 
 	// return 0 to ensure that this effect never finishes and thus runs continuously.

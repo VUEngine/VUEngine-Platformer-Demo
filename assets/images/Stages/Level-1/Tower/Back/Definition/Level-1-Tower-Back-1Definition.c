@@ -111,7 +111,6 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 		__WORLD_BGMAP,
 
 		// pointer to affine/hbias manipulation function
-		// void (*)(BgmapSprite);
 		NULL,
 
 		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)

@@ -34,7 +34,7 @@
 //										FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-s16 HbiasEffects_logoWave(BgmapSprite bgmapSprite);
+s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite);
 
 
 #endif
