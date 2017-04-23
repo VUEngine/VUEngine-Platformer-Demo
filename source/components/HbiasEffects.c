@@ -73,9 +73,18 @@ s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = smallWaveLut[((i + step) >> HBIAS_WAVE_THROTTLE) & (HBIAS_WAVE_LUT_LENGTH - 1)];
 	}
 
-	// return 0 to ensure that this effect never finishes and thus runs continuously.
-	// avoids having to call applyHbiasEffects manually every cycle.
-	// return -1 if the last row was computed, or i (the last computed row) if not
+	// Possible return values and their effects:
+	//
+	// 0:  forces the effect to be triggered on the next rendering cycle without having to call
+	//     Sprite_applyHbiasEffects.
+	//
+	// >0: forces the effect to be triggered on the next rendering cycle without having to call
+	//     Sprite_applyHbiasEffects. The returned value means the next param table row to compute.
+	//     Only used when deferring the effect across multiple rendering cycles.
+	//
+	// -1: means that the param table writing has been completed. To trigger the effect again,
+	//     Sprite_applyHbiasEffects must be called.
+
 	return 0;
 
 	/*
