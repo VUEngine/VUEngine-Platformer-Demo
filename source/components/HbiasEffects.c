@@ -36,7 +36,7 @@
 s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 {
 	u32 param = BgmapSprite_getParam(bgmapSprite);
-	s16 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, bgmapSprite));
+	s32 spriteHeight = Texture_getRows(Sprite_getTexture(__SAFE_CAST(Sprite, bgmapSprite))) << 3;
 	s16 i = BgmapSprite_getParamTableRow(bgmapSprite);
 	// if you want to defer the effect, compute up to counter rows
 	// int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
