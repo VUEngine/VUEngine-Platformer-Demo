@@ -80,7 +80,7 @@ TextureROMDef LEVEL_1_TOWER_BACK_1_TX =
 	1,
 
 	// palette number (0-3)
-	0,
+	2,
 };
 
 
