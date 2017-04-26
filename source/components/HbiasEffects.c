@@ -99,7 +99,7 @@ s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 	*/
 }
 
-s16 HbiasEffects_lavaHotAir(BgmapSprite bgmapSprite)
+s16 HotAirMBgmapSprite_lavaHotAir2(BgmapSprite bgmapSprite)
 {
 	static Entity lava = NULL;
 
@@ -136,7 +136,7 @@ s16 HbiasEffects_lavaHotAir(BgmapSprite bgmapSprite)
 	#define HBIAS_WAVE_THROTTLE 	1
 	const s16 smallWaveLut[HBIAS_WAVE_LUT_LENGTH] =
 	{
-        1, 1, 1, 1, 1,
+        1, 1, 1, 1,
         -1, -1, -1,
         0, 0,
         1, 1, 1,
@@ -145,7 +145,7 @@ s16 HbiasEffects_lavaHotAir(BgmapSprite bgmapSprite)
         1, 1, 1,
         0, 0,
         -1, -1, -1,
-        1, 1, 1, 1, 1
+        1, 1, 1, 1,
 	};
 
 	// look up table offset
@@ -202,3 +202,4 @@ s16 HbiasEffects_lavaHotAir(BgmapSprite bgmapSprite)
 	return -1;
 	*/
 }
+

@@ -37,6 +37,11 @@
 extern BYTE LavaTiles[];
 extern BYTE LavaMap[];
 
+extern BgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE;
+extern BgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_2_HOT_AIR_IM_SPRITE;
+
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
@@ -113,6 +118,10 @@ BgmapSpriteROMDef LAVA_BG_SPRITE =
 BgmapSpriteROMDef* const LAVA_BG_SPRITES[] =
 {
 	&LAVA_BG_SPRITE,
+	&LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE,
+	&LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE,
+	&LEVEL_1_TOWER_MAIN_BACK_2_HOT_AIR_IM_SPRITE,
+	&LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE,
 	NULL
 };
 
@@ -132,11 +141,11 @@ InanimatedInGameEntityROMDef LAVA_IG =
 
 		// width
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		48 * 8,
 
 		// height
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		28 * 8,
 
 		// depth
 		4

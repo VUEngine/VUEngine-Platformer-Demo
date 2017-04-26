@@ -26,7 +26,7 @@
 
 #include <RecyclableImage.h>
 #include <MBgmapSprite.h>
-#include <HbiasEffects.h>
+#include <HotAirMBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -109,10 +109,10 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_IM_SPRITE =
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-		__WORLD_HBIAS,
+		__WORLD_BGMAP,
 
 		// pointer to affine/hbias manipulation function
-		HbiasEffects_lavaHotAir,
+		NULL,
 
 		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 		__WORLD_ON,
@@ -128,6 +128,51 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_IM_SPRITE =
 
 	// y loop
 	false,
+};
+
+HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE =
+{
+	{
+		{
+			{
+				// sprite's type
+				__TYPE(HotAirMBgmapSprite),
+
+				// texture definition
+				NULL,
+
+				// transparent
+				false,
+
+				// displacement
+				{0, 0, ITOFIX19_13(-1), 0},
+			},
+
+			// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+			// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+			__WORLD_HBIAS,
+
+			// pointer to affine/hbias manipulation function
+			HotAirMBgmapSprite_lavaHotAir,
+
+			// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+			__WORLD_ON,
+		},
+
+		(TextureDefinition**)LEVEL_1_TOWER_MAIN_1_IM_TEXTURES,
+
+		// SCX/SCY
+		__WORLD_1x1,
+
+		// x loop
+		false,
+
+		// y loop
+		false,
+	},
+
+	// name of the owner of the reference sprite
+	"Main_1"
 };
 
 BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_1_IM_SPRITES[] =

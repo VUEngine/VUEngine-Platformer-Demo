@@ -35,7 +35,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite);
-s16 HbiasEffects_lavaHotAir(BgmapSprite bgmapSprite);
 
 
 #endif

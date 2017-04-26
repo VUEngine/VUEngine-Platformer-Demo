@@ -30,7 +30,6 @@
 #include <Optics.h>
 #include <PhysicalWorld.h>
 #include <MessageDispatcher.h>
-#include <Prototypes.h>
 #include <PlatformerLevelState.h>
 #include <debugUtilities.h>
 

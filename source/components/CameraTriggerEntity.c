@@ -28,7 +28,6 @@
 #include <CollisionManager.h>
 #include <Optics.h>
 #include <Shape.h>
-#include <Prototypes.h>
 #include <Screen.h>
 #include <PlatformerLevelState.h>
 #include <CustomScreenMovementManager.h>

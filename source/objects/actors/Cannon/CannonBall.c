@@ -28,7 +28,6 @@
 #include <CollisionManager.h>
 #include <Optics.h>
 #include <PhysicalWorld.h>
-#include <Prototypes.h>
 #include <PlatformerLevelState.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
