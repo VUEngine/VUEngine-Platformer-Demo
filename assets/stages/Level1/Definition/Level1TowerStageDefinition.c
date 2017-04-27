@@ -361,7 +361,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 		__TARGET_FPS / 10,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		16,
+		32,
 
 		// maximum number of rows to compute on each call to the affine functions
 		24,
