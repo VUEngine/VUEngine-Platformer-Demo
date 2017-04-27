@@ -28,6 +28,7 @@
 #include <RecyclableImage.h>
 #include <MBgmapSprite.h>
 #include <HotAirMBgmapSprite.h>
+#include <HotAirAffectedMBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -90,12 +91,12 @@ TextureROMDef* const LEVEL_1_TOWER_BACK_1_IM_TEXTURES[] =
 	NULL
 };
 
-MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
+HotAirAffectedMBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 {
 	{
 		{
 			// sprite's type
-			__TYPE(MBgmapSprite),
+			__TYPE(HotAirAffectedMBgmapSprite),
 
 			// texture definition
 			NULL,

@@ -185,7 +185,7 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 	worldPointer->gy = laveSpriteGY - EFFECT_HEIGHT > referenceSpriteWorldPointer->gy ? laveSpriteGY - EFFECT_HEIGHT : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp;
 
-	if(laveSpriteGY < worldPointer->gy || __SCREEN_HEIGHT <= laveSpriteGY - EFFECT_HEIGHT || referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy || __WORLD_OFF == referenceSpriteWorldPointer->head)
+	if(laveSpriteGY < worldPointer->gy || __SCREEN_HEIGHT <= laveSpriteGY - EFFECT_HEIGHT || referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy)
 	{
 		worldPointer->head = __WORLD_OFF;
 #ifdef __PROFILE_GAME
