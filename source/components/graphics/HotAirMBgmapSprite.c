@@ -38,7 +38,7 @@
 //											 CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EFFECT_HEIGHT 			45
+#define EFFECT_HEIGHT 			64
 #define EFFECT_HEIGHT_EXCESS	5
 
 
@@ -49,7 +49,6 @@
 /**
  * @class	HotAirMBgmapSprite
  * @extends BgmapSprite
- * @ingroup graphics-2d-sprites-bgmap
  * @brief	Sprite which holds a texture and a drawing specification.
  */
 __CLASS_DEFINITION(HotAirMBgmapSprite, MBgmapSprite);
@@ -220,10 +219,6 @@ s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 	s32 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, this));
 	s16 i = BgmapSprite_getParamTableRow(__SAFE_CAST(BgmapSprite, this));
 	s16 j = 0;
-	// if you want to defer the effect, compute up to counter rows
-	// int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
-
-	#define HBIAS_LAVA_HEAT_EFFECT_HEIGHT	64
 
 	// look up table of wave shifts
 	#define HBIAS_LAVA_HEAT_LUT_LENGTH 	32
@@ -247,11 +242,7 @@ s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 	step = (step < ((HBIAS_LAVA_HEAT_LUT_LENGTH << HBIAS_LAVA_HEAT_THROTTLE) - 1)) ? step + 1 : 0;
 
 	// write param table rows
-	// if you want to defer the effect, compute up to counter rows
-	// for(; counter && i < spriteHeight; i++, counter--)
-	// if you want to bypass the deferring, just write the whole table without paying attention to the
-	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
-	for(; i < spriteHeight; i++)
+	for(j = 0; i < spriteHeight; i++, j++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
 		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
@@ -269,26 +260,6 @@ s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 		}
 	}
 
-	// Possible return values and their effects:
-	//
-	// 0:  forces the effect to be triggered on the next rendering cycle without having to call
-	//     Sprite_applyHbiasEffects.
-	//
-	// >0: forces the effect to be triggered on the next rendering cycle without having to call
-	//     Sprite_applyHbiasEffects. The returned value means the next param table row to compute.
-	//     Only used when deferring the effect across multiple rendering cycles.
-	//
-	// -1: means that the param table writing has been completed. To trigger the effect again,
-	//     Sprite_applyHbiasEffects must be called.
-
+	// return 0 so this effect never stops
 	return 0;
-
-	/*
-	if(i < spriteHeight)
-	{
-		return i;
-	}
-
-	return -1;
-	*/
 }

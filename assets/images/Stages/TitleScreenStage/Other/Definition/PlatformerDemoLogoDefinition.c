@@ -231,7 +231,7 @@ BgmapSpriteROMDef LOGO_L_IM_SPRITE =
 	__WORLD_HBIAS,
 
 	// pointer to affine/hbias manipulation function
-	HbiasEffects_smallWave,
+	(ParamTableEffectMethod)HbiasEffects_wave,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_LON,
@@ -258,7 +258,7 @@ BgmapSpriteROMDef LOGO_R_IM_SPRITE =
 	__WORLD_HBIAS,
 
 	// pointer to affine/hbias manipulation function
-	HbiasEffects_smallWave,
+	(ParamTableEffectMethod)HbiasEffects_wave,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_RON,
@@ -285,7 +285,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_L_IM_SPRITE =
 	__WORLD_HBIAS,
 
 	// pointer to affine/hbias manipulation function
-	HbiasEffects_smallWave,
+	(ParamTableEffectMethod)HbiasEffects_wave,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_LON,
@@ -312,7 +312,7 @@ BgmapSpriteROMDef LOGO_OUTLINE_R_IM_SPRITE =
 	__WORLD_HBIAS,
 
 	// pointer to affine/hbias manipulation function
-	HbiasEffects_smallWave,
+	(ParamTableEffectMethod)HbiasEffects_wave,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_RON,

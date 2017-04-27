@@ -35,7 +35,7 @@
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
+s16 HbiasEffects_wave(BgmapSprite bgmapSprite)
 {
 	u32 param = BgmapSprite_getParam(bgmapSprite);
 	s32 spriteHeight = Texture_getRows(Sprite_getTexture(__SAFE_CAST(Sprite, bgmapSprite))) << 3;
@@ -45,8 +45,8 @@ s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 
 	// look up table of wave shifts
 	#define HBIAS_WAVE_LUT_LENGTH 	32
-	#define HBIAS_WAVE_THROTTLE 	3
-	const s16 smallWaveLut[HBIAS_WAVE_LUT_LENGTH] =
+	#define HBIAS_WAVE_THROTTLE 	2
+	const s16 waveLut[HBIAS_WAVE_LUT_LENGTH] =
 	{
 		-2, -2, -2, -2,
         -1, -1, -1,
@@ -72,126 +72,9 @@ s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 	for(; i < spriteHeight; i++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = smallWaveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
+		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = waveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
 	}
 
-	// Possible return values and their effects:
-	//
-	// 0:  forces the effect to be triggered on the next rendering cycle without having to call
-	//     Sprite_applyHbiasEffects.
-	//
-	// >0: forces the effect to be triggered on the next rendering cycle without having to call
-	//     Sprite_applyHbiasEffects. The returned value means the next param table row to compute.
-	//     Only used when deferring the effect across multiple rendering cycles.
-	//
-	// -1: means that the param table writing has been completed. To trigger the effect again,
-	//     Sprite_applyHbiasEffects must be called.
-
-	return 0;
-
-	/*
-	if(i < spriteHeight)
-	{
-		return i;
-	}
-
-	return -1;
-	*/
-}
-
-s16 HbiasEffects_lavaHotAir(BgmapSprite bgmapSprite)
-{
-	static Entity lava = NULL;
-
-	if(!lava)
-	{
-		lava = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Lava", true));
-	}
-
-	if(!__IS_OBJECT_ALIVE(lava))
-	{
-		lava = NULL;
-		return 0;
-	}
-
-	Sprite lavaSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(lava)));
-	s16 laveSpriteGY = Sprite_getWorldGY(lavaSprite);
-
-	u32 param = BgmapSprite_getParam(bgmapSprite);
-	s16 spriteGY = Sprite_getWorldGY(__SAFE_CAST(Sprite, bgmapSprite));
-
-	s32 spriteHeight = __SCREEN_HEIGHT; //Texture_getRows(Sprite_getTexture(__SAFE_CAST(Sprite, bgmapSprite))) << 3;
-	s16 i = spriteGY;
-	s16 j = 0;
-
-	if (spriteGY > spriteHeight)
-	{
-		return 0;
-	}
-
-	// if you want to defer the effect, compute up to counter rows
-	// int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
-
-	#define HBIAS_LAVA_HEAT_EFFECT_HEIGHT	64
-
-	// look up table of wave shifts
-	#define HBIAS_LAVA_HEAT_LUT_LENGTH 	32
-	#define HBIAS_LAVA_HEAT_THROTTLE 	2
-	const s16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
-	{
-		-2, -2, -2, -2,
-        -1, -1, -1,
-        0, 0,
-        1, 1, 1,
-        2, 2, 2, 2,
-        2, 2, 2, 2,
-        1, 1, 1,
-        0, 0,
-        -1, -1, -1,
-        -2, -2, -2, -2,
-	};
-
-	// look up table offset
-	static u8 step = 0;
-	step = (step < ((HBIAS_LAVA_HEAT_LUT_LENGTH << HBIAS_LAVA_HEAT_THROTTLE) - 1)) ? step + 1 : 0;
-
-	// write param table rows
-	// if you want to defer the effect, compute up to counter rows
-	// for(; counter && i < spriteHeight; i++, counter--)
-	// if you want to bypass the deferring, just write the whole table without paying attention to the
-	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
-	spriteHeight = spriteHeight < __SCREEN_HEIGHT ? spriteHeight : __SCREEN_HEIGHT;
-
-	for(i = 0; i < (laveSpriteGY - spriteGY) - HBIAS_LAVA_HEAT_EFFECT_HEIGHT && i < (spriteHeight - spriteGY); i++)
-	{
-		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = 0;
-	}
-
-	for(j = 0; i < (laveSpriteGY - spriteGY) && i < (spriteHeight - spriteGY); i++, j++)
-	{
-		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
-		if((j < 8) && (hbiasEntry[i].offsetLeft < -1))
-		{
-			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 2;
-		}
-		else if((j < 16) && (hbiasEntry[i].offsetLeft < 0))
-		{
-			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 1;
-		}
-		else if((j < 16) && (hbiasEntry[i].offsetLeft > 0))
-		{
-			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft - 1;
-		}
-	}
-/*
-	for(; i < (spriteHeight - spriteGY); i++)
-	{
-		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = 0;
-	}
-*/
 	// Possible return values and their effects:
 	//
 	// 0:  forces the effect to be triggered on the next rendering cycle without having to call

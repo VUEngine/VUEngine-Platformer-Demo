@@ -75,7 +75,7 @@ TextureROMDef LAVA_TX =
 	48,
 
 	// rows (max 64)
-	14,
+	16,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -110,7 +110,7 @@ BgmapSpriteROMDef LAVA_BG_SPRITE =
 	__WORLD_HBIAS,
 
 	// pointer to affine/hbias manipulation function
-	HbiasEffects_smallWave,
+	(ParamTableEffectMethod)HbiasEffects_wave,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,

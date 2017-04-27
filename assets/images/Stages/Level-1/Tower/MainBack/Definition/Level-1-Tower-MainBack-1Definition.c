@@ -103,7 +103,7 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 			false,
 
 			// displacement
-			{0, 0, FTOFIX19_13(SORT_INCREMENT), 0},
+			{0, 0, FTOFIX19_13(-0.01f), 0},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

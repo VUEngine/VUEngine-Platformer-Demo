@@ -131,7 +131,7 @@ HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE =
 				false,
 
 				// displacement
-				{0, 0, ITOFIX19_13(-1), 0},
+				{0, 0, FTOFIX19_13(-0.05f), 0},
 			},
 
 			// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
