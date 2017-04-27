@@ -46,23 +46,29 @@
 #define HotAirMBgmapSprite_ATTRIBUTES																	\
 		MBgmapSprite_ATTRIBUTES																			\
 		/**
-		 * @var Sprite 					lavaSprite
-		 * @brief						sprite to follow
-		 * @memberof 					HotAirMBgmapSprite
+		 * @var Sprite 	lavaSprite
+		 * @brief		sprite to follow
+		 * @memberof 	HotAirMBgmapSprite
 		 */																								\
 		Sprite lavaSprite;																				\
 		/**
-		 * @var Sprite 					sprite
-		 * @brief						reference Sprite
-		 * @memberof 					HotAirMBgmapSprite
+		 * @var Sprite 	sprite
+		 * @brief		reference Sprite
+		 * @memberof 	HotAirMBgmapSprite
 		 */																								\
 		Sprite referenceSprite;																			\
 		/**
-		 * @var Sprite 					sprite
-		 * @brief						reference Sprite
-		 * @memberof 					HotAirMBgmapSprite
+		 * @var Sprite 	sprite
+		 * @brief		reference Sprite
+		 * @memberof 	HotAirMBgmapSprite
 		 */																								\
-		const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition;
+		const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition;								\
+		/**
+		 * @var u8		step
+		 * @brief		current lut index
+		 * @memberof 	HotAirMBgmapSprite
+		 */																								\
+		u8 step;																						\
 
 __CLASS(HotAirMBgmapSprite);
 
