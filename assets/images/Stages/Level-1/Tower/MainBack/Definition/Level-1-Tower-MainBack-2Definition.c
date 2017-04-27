@@ -28,7 +28,7 @@
 #include <MBgmapSprite.h>
 #include <macros.h>
 #include <HotAirMBgmapSprite.h>
-#include <HotAirAffectedMBgmapSprite.h>
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -78,12 +78,12 @@ TextureROMDef* const LEVEL_1_TOWER_MAIN_BACK_2_IM_TEXTURES[] =
 	NULL
 };
 
-HotAirAffectedMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_2_IM_SPRITE =
+MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_2_IM_SPRITE =
 {
 	{
 		{
 			// sprite's type
-			__TYPE(HotAirAffectedMBgmapSprite),
+			__TYPE(MBgmapSprite),
 
 			// texture definition
 			NULL,
