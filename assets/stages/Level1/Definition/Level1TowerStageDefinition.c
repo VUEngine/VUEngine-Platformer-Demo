@@ -65,6 +65,7 @@ extern EntityDefinition SAW_BLADE_H8_AC;
 extern EntityDefinition SNAIL_8_AC;
 extern EntityDefinition TORCH_AG;
 extern EntityDefinition TORCH_LIGHT_AG;
+extern EntityDefinition DARKNESS_OVERLAY_IM;
 
 extern TextureDefinition COG_WHEEL_TX;
 extern TextureDefinition DOOR_TX;
@@ -74,6 +75,7 @@ extern TextureDefinition LAVA_TX;
 extern TextureDefinition LEVEL_1_TOWER_BACK_1_TX;
 extern TextureDefinition LEVEL_1_TOWER_MAIN_1_TX;
 extern TextureDefinition LEVEL_1_TOWER_MAIN_BACK_1_TX;
+extern TextureDefinition DARKNESS_OVERLAY_TX;
 
 extern VBVec3D collision_2_64_1;
 extern VBVec3D collision_4_2_1;
@@ -110,6 +112,7 @@ extern VBVec3D collision_48_28_1;
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
 	{&LAVA_TOP_AG, 					{FTOFIX19_13(0), 	FTOFIX19_13(-72), 	FTOFIX19_13(-1)}, 0, NULL, NULL, NULL, false},
+	{&DARKNESS_OVERLAY_IM, 			{FTOFIX19_13(0), 	FTOFIX19_13(-400), 	FTOFIX19_13(-2)}, 0, NULL, NULL, NULL, false},
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
@@ -303,6 +306,7 @@ StageTextureEntryROMDef LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 	{&GUI_TX, false},
 	{&LAVA_TX, false},
 	{&LAVA_TOP_TX, false},
+	{&DARKNESS_OVERLAY_TX, false},
 
 	{NULL, false}
 };
