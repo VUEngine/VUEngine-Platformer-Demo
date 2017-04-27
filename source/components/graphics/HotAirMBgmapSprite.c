@@ -38,7 +38,7 @@
 //											 CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EFFECT_HEIGHT 			80
+#define EFFECT_HEIGHT 			64
 #define EFFECT_HEIGHT_EXCESS	5
 
 
@@ -246,19 +246,15 @@ s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
 		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
-		if(j < 16)
-		{
-			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = 0;
-		}
-		else if((j < 24) && (hbiasEntry[i].offsetLeft < -1))
+		if((j < 8) && (hbiasEntry[i].offsetLeft < -1))
 		{
 			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 2;
 		}
-		else if((j < 32) && (hbiasEntry[i].offsetLeft < 0))
+		else if((j < 16) && (hbiasEntry[i].offsetLeft < 0))
 		{
 			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 1;
 		}
-		else if((j < 32) && (hbiasEntry[i].offsetLeft > 0))
+		else if((j < 16) && (hbiasEntry[i].offsetLeft > 0))
 		{
 			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft - 1;
 		}
