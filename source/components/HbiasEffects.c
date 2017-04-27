@@ -45,7 +45,7 @@ s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 
 	// look up table of wave shifts
 	#define HBIAS_WAVE_LUT_LENGTH 	32
-	#define HBIAS_WAVE_THROTTLE 	1
+	#define HBIAS_WAVE_THROTTLE 	3
 	const s16 smallWaveLut[HBIAS_WAVE_LUT_LENGTH] =
 	{
 		-2, -2, -2, -2,
@@ -72,7 +72,7 @@ s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 	for(; i < spriteHeight; i++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = smallWaveLut[((i + step) >> HBIAS_WAVE_THROTTLE) & (HBIAS_WAVE_LUT_LENGTH - 1)];
+		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = smallWaveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
 	}
 
 	// Possible return values and their effects:
@@ -99,7 +99,7 @@ s16 HbiasEffects_smallWave(BgmapSprite bgmapSprite)
 	*/
 }
 
-s16 HotAirMBgmapSprite_lavaHotAir2(BgmapSprite bgmapSprite)
+s16 HbiasEffects_lavaHotAir(BgmapSprite bgmapSprite)
 {
 	static Entity lava = NULL;
 
@@ -122,6 +122,7 @@ s16 HotAirMBgmapSprite_lavaHotAir2(BgmapSprite bgmapSprite)
 
 	s32 spriteHeight = __SCREEN_HEIGHT; //Texture_getRows(Sprite_getTexture(__SAFE_CAST(Sprite, bgmapSprite))) << 3;
 	s16 i = spriteGY;
+	s16 j = 0;
 
 	if (spriteGY > spriteHeight)
 	{
@@ -131,26 +132,28 @@ s16 HotAirMBgmapSprite_lavaHotAir2(BgmapSprite bgmapSprite)
 	// if you want to defer the effect, compute up to counter rows
 	// int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
 
+	#define HBIAS_LAVA_HEAT_EFFECT_HEIGHT	64
+
 	// look up table of wave shifts
-	#define HBIAS_WAVE_LUT_LENGTH 	32
-	#define HBIAS_WAVE_THROTTLE 	1
-	const s16 smallWaveLut[HBIAS_WAVE_LUT_LENGTH] =
+	#define HBIAS_LAVA_HEAT_LUT_LENGTH 	32
+	#define HBIAS_LAVA_HEAT_THROTTLE 	2
+	const s16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
 	{
-        1, 1, 1, 1,
+		-2, -2, -2, -2,
         -1, -1, -1,
         0, 0,
         1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
+        2, 2, 2, 2,
+        2, 2, 2, 2,
         1, 1, 1,
         0, 0,
         -1, -1, -1,
-        1, 1, 1, 1,
+        -2, -2, -2, -2,
 	};
 
 	// look up table offset
 	static u8 step = 0;
-	step = (step < ((HBIAS_WAVE_LUT_LENGTH << HBIAS_WAVE_THROTTLE) - 1)) ? step + 1 : 0;
+	step = (step < ((HBIAS_LAVA_HEAT_LUT_LENGTH << HBIAS_LAVA_HEAT_THROTTLE) - 1)) ? step + 1 : 0;
 
 	// write param table rows
 	// if you want to defer the effect, compute up to counter rows
@@ -159,18 +162,28 @@ s16 HotAirMBgmapSprite_lavaHotAir2(BgmapSprite bgmapSprite)
 	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
 	spriteHeight = spriteHeight < __SCREEN_HEIGHT ? spriteHeight : __SCREEN_HEIGHT;
 
-	#define EFFECT_HEIGHT	50
-
-	for(i = 0; i < (laveSpriteGY - spriteGY) - EFFECT_HEIGHT && i < (spriteHeight - spriteGY); i++)
+	for(i = 0; i < (laveSpriteGY - spriteGY) - HBIAS_LAVA_HEAT_EFFECT_HEIGHT && i < (spriteHeight - spriteGY); i++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
 		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = 0;
 	}
 
-	for(; i < (laveSpriteGY - spriteGY) && i < (spriteHeight - spriteGY); i++)
+	for(j = 0; i < (laveSpriteGY - spriteGY) && i < (spriteHeight - spriteGY); i++, j++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = smallWaveLut[((i + step) >> HBIAS_WAVE_THROTTLE) & (HBIAS_WAVE_LUT_LENGTH - 1)];
+		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
+		if((j < 8) && (hbiasEntry[i].offsetLeft < -1))
+		{
+			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 2;
+		}
+		else if((j < 16) && (hbiasEntry[i].offsetLeft < 0))
+		{
+			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 1;
+		}
+		else if((j < 16) && (hbiasEntry[i].offsetLeft > 0))
+		{
+			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft - 1;
+		}
 	}
 /*
 	for(; i < (spriteHeight - spriteGY); i++)
@@ -202,4 +215,3 @@ s16 HotAirMBgmapSprite_lavaHotAir2(BgmapSprite bgmapSprite)
 	return -1;
 	*/
 }
-

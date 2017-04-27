@@ -28,6 +28,7 @@
 #include <InAnimatedInGameEntity.h>
 #include <macros.h>
 #include <Lava.h>
+#include <HbiasEffects.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,7 +53,7 @@ CharSetROMDef LAVA_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	15,
+	19,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -74,7 +75,7 @@ TextureROMDef LAVA_TX =
 	48,
 
 	// rows (max 64)
-	28,
+	14,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -106,10 +107,10 @@ BgmapSpriteROMDef LAVA_BG_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
+	__WORLD_HBIAS,
 
 	// pointer to affine/hbias manipulation function
-	NULL,
+	HbiasEffects_smallWave,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
