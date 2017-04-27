@@ -35,7 +35,6 @@
 #include <GameEvents.h>
 
 
-
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
@@ -91,6 +90,8 @@ void CogWheel_ready(CogWheel this, bool recursive)
 
 	// listen for the shake end event
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
+
+	this->transform.localScale = (Scale){(__1I_FIX7_9 >> 1), (__1I_FIX7_9 >> 1)};
 }
 
 // state's handle message
