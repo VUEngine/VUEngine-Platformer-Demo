@@ -90,6 +90,7 @@ void HotAirMBgmapSprite_constructor(HotAirMBgmapSprite this, const HotAirMBgmapS
 	this->hotAirMBgmapSpriteDefinition = hotAirMBgmapSpriteDefinition;
 	this->lavaSprite = NULL;
 	this->referenceSprite = NULL;
+	this->step = 0;
 }
 
 /**
@@ -225,38 +226,25 @@ s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 	#define HBIAS_LAVA_HEAT_THROTTLE 	2
 	const s16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
 	{
-		-2, -2, -2, -2,
-        -1, -1, -1,
-        0, 0,
-        1, 1, 1,
-        2, 2, 2, 2,
-        2, 2, 2, 2,
-        1, 1, 1,
-        0, 0,
-        -1, -1, -1,
-        -2, -2, -2, -2,
+		-1, -1, -1, -1, -1, -1,
+		 0,  0,  0,  0,
+		 1,  1,  1,  1,  1,  1,
+		 1,  1,  1,  1,  1,  1,
+		 0,  0,  0,  0,
+		-1, -1, -1, -1, -1, -1,
 	};
 
 	// look up table offset
-	static u8 step = 0;
-	step = (step < ((HBIAS_LAVA_HEAT_LUT_LENGTH << HBIAS_LAVA_HEAT_THROTTLE) - 1)) ? step + 1 : 0;
+	this->step = (this->step < ((HBIAS_LAVA_HEAT_LUT_LENGTH << HBIAS_LAVA_HEAT_THROTTLE) - 1)) ? this->step + 1 : 0;
 
 	// write param table rows
 	for(j = 0; i < spriteHeight; i++, j++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
-		if((j < 8) && (hbiasEntry[i].offsetLeft < -1))
-		{
-			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 2;
-		}
-		else if((j < 16) && (hbiasEntry[i].offsetLeft < 0))
+		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
+		if((j < 16) && (hbiasEntry[i].offsetLeft < 0))
 		{
 			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 1;
-		}
-		else if((j < 16) && (hbiasEntry[i].offsetLeft > 0))
-		{
-			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft - 1;
 		}
 	}
 
