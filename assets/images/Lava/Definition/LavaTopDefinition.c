@@ -129,7 +129,7 @@ BgmapSpriteROMDef LAVA_TOP_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, FTOFIX19_13(-1), 0},
+		{0, 0, FTOFIX19_13(-2), 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

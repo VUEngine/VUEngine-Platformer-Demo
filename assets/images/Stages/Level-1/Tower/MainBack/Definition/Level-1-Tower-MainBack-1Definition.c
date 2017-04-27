@@ -27,6 +27,7 @@
 #include <RecyclableImage.h>
 #include <MBgmapSprite.h>
 #include <macros.h>
+#include <HotAirMBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -103,7 +104,7 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 			false,
 
 			// displacement
-			{0, 0, FTOFIX19_13(-0.01f), 0},
+			{0, 0, FTOFIX19_13(SORT_INCREMENT), 0},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -127,4 +128,49 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 
 	// y loop
 	false,
+};
+
+HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_1_HOT_AIR_IM_SPRITE =
+{
+	{
+		{
+			{
+				// sprite's type
+				__TYPE(HotAirMBgmapSprite),
+
+				// texture definition
+				NULL,
+
+				// transparent
+				false,
+
+				// displacement
+				{0, 0, FTOFIX19_13(-1.1f), 0},
+			},
+
+			// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+			// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+			__WORLD_HBIAS,
+
+			// pointer to affine/hbias manipulation function
+			(ParamTableEffectMethod)HotAirMBgmapSprite_lavaHotAir,
+
+			// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+			__WORLD_ON,
+		},
+
+		(TextureDefinition**)LEVEL_1_TOWER_MAIN_BACK_1_IM_TEXTURES,
+
+		// SCX/SCY
+		__WORLD_1x1,
+
+		// x loop
+		false,
+
+		// y loop
+		false,
+	},
+
+	// name of the owner of the reference sprite
+	"Main_1"
 };
