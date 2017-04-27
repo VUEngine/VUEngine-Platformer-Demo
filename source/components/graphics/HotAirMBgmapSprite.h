@@ -88,7 +88,7 @@ __CLASS_NEW_DECLARE(HotAirMBgmapSprite, const HotAirMBgmapSpriteDefinition* hotA
 void HotAirMBgmapSprite_constructor(HotAirMBgmapSprite this, const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner);
 void HotAirMBgmapSprite_destructor(HotAirMBgmapSprite this);
 void HotAirMBgmapSprite_render(HotAirMBgmapSprite this);
-s16 HotAirMBgmapSprite_lavaHotAir(BgmapSprite bgmapSprite);
+s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this);
 
 
 #endif

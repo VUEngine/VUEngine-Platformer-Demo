@@ -38,7 +38,9 @@
 //											 CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EFFECT_HEIGHT 	50
+#define EFFECT_HEIGHT 			40
+#define EFFECT_HEIGHT_EXCESS	5
+
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
@@ -129,22 +131,6 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 		return;
 	}
 
-	static WorldAttributes* worldPointer = NULL;
-	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
-
-	// TODO: check if required, causes that the sprite is turned off
-	// when changing the texture definition
-/*
-	if(!this->texture->written)
-	{
-		worldPointer->head = 0x0000;
-		return;
-	}
-*/
-
-	// set the head
-	worldPointer->head = this->head | (__SAFE_CAST(BgmapTexture, this->texture))->segment;
-
 	if(!this->lavaSprite)
 	{
 		Entity referenceSpriteOwner = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), this->hotAirMBgmapSpriteDefinition->referenceSpriteOwnerName, true));
@@ -154,17 +140,28 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(referenceSpriteOwner)));
 
 			Entity lava = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Lava", true));
-			VirtualNode node = VirtualList_begin(Entity_getSprites(lava));
-			for(; node; node = VirtualNode_getNext(node))
+
+			if(lava)
 			{
-				this->lavaSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(lava)));
-				if(this->lavaSprite != __SAFE_CAST(Sprite, this))
+				VirtualNode node = VirtualList_begin(Entity_getSprites(lava));
+
+				for(; node; node = VirtualNode_getNext(node))
 				{
-					break;
+					this->lavaSprite = __SAFE_CAST(Sprite, VirtualNode_getData(node));
+
+					extern TextureROMDef LAVA_TX;
+
+					if(&LAVA_TX == Texture_getTextureDefinition(Sprite_getTexture(this->lavaSprite)))
+					{
+						break;
+					}
 				}
 			}
 		}
 	}
+
+	static WorldAttributes* worldPointer = NULL;
+	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
 
 	if(!__IS_OBJECT_ALIVE(this->lavaSprite) || !__IS_OBJECT_ALIVE(this->referenceSprite))
 	{
@@ -189,7 +186,7 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 	worldPointer->gy = laveSpriteGY - EFFECT_HEIGHT > referenceSpriteWorldPointer->gy ? laveSpriteGY - EFFECT_HEIGHT : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp;
 
-	if(__SCREEN_HEIGHT <= laveSpriteGY - EFFECT_HEIGHT || referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy)
+	if(laveSpriteGY < worldPointer->gy || __SCREEN_HEIGHT <= laveSpriteGY - EFFECT_HEIGHT || referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy || __WORLD_OFF == referenceSpriteWorldPointer->head)
 	{
 		worldPointer->head = __WORLD_OFF;
 #ifdef __PROFILE_GAME
@@ -199,30 +196,39 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 		return;
 	}
 
-
 	worldPointer->mx = referenceSpriteWorldPointer->mx;
 	worldPointer->my = referenceSpriteWorldPointer->my - referenceSpriteWorldPointer->gy + worldPointer->gy;
 	worldPointer->mp = referenceSpriteWorldPointer->mp;
 
 	worldPointer->w = referenceSpriteWorldPointer->w;
-	worldPointer->h = __SCREEN_HEIGHT - worldPointer->gy;
+	worldPointer->h = laveSpriteGY - worldPointer->gy + EFFECT_HEIGHT_EXCESS;
+
+	if(referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy + worldPointer->h)
+	{
+		worldPointer->h = referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h - worldPointer->gy;
+	}
+
+	// set the head
+	worldPointer->head = this->head | (__SAFE_CAST(BgmapTexture, this->texture))->segment;
 
 	BgmapSprite_processHbiasEffects(__SAFE_CAST(BgmapSprite, this));
 }
 
-
-s16 HotAirMBgmapSprite_lavaHotAir(BgmapSprite bgmapSprite)
+s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 {
-	u32 param = BgmapSprite_getParam(bgmapSprite);
-	s32 spriteHeight = 224;
-	s16 i = BgmapSprite_getParamTableRow(bgmapSprite);
+	u32 param = BgmapSprite_getParam(__SAFE_CAST(BgmapSprite, this));
+	s32 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, this));
+	s16 i = BgmapSprite_getParamTableRow(__SAFE_CAST(BgmapSprite, this));
+	s16 j = 0;
 	// if you want to defer the effect, compute up to counter rows
 	// int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
 
+	#define HBIAS_LAVA_HEAT_EFFECT_HEIGHT	64
+
 	// look up table of wave shifts
-	#define HBIAS_WAVE_LUT_LENGTH 	32
-	#define HBIAS_WAVE_THROTTLE 	1
-	const s16 smallWaveLut[HBIAS_WAVE_LUT_LENGTH] =
+	#define HBIAS_LAVA_HEAT_LUT_LENGTH 	32
+	#define HBIAS_LAVA_HEAT_THROTTLE 	2
+	const s16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
 	{
 		-2, -2, -2, -2,
         -1, -1, -1,
@@ -238,7 +244,7 @@ s16 HotAirMBgmapSprite_lavaHotAir(BgmapSprite bgmapSprite)
 
 	// look up table offset
 	static u8 step = 0;
-	step = (step < ((HBIAS_WAVE_LUT_LENGTH << HBIAS_WAVE_THROTTLE) - 1)) ? step + 1 : 0;
+	step = (step < ((HBIAS_LAVA_HEAT_LUT_LENGTH << HBIAS_LAVA_HEAT_THROTTLE) - 1)) ? step + 1 : 0;
 
 	// write param table rows
 	// if you want to defer the effect, compute up to counter rows
@@ -248,7 +254,19 @@ s16 HotAirMBgmapSprite_lavaHotAir(BgmapSprite bgmapSprite)
 	for(; i < spriteHeight; i++)
 	{
 		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = smallWaveLut[((i + step) >> HBIAS_WAVE_THROTTLE) & (HBIAS_WAVE_LUT_LENGTH - 1)];
+		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
+		if((j < 8) && (hbiasEntry[i].offsetLeft < -1))
+		{
+			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 2;
+		}
+		else if((j < 16) && (hbiasEntry[i].offsetLeft < 0))
+		{
+			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 1;
+		}
+		else if((j < 16) && (hbiasEntry[i].offsetLeft > 0))
+		{
+			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft - 1;
+		}
 	}
 
 	// Possible return values and their effects:

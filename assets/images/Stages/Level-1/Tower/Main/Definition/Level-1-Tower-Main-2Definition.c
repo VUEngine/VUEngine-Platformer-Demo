@@ -131,7 +131,7 @@ HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE =
 				false,
 
 				// displacement
-				{0, 0, 0, 0},
+				{0, 0, ITOFIX19_13(-1), 0},
 			},
 
 			// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -139,7 +139,7 @@ HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE =
 			__WORLD_HBIAS,
 
 			// pointer to affine/hbias manipulation function
-			HotAirMBgmapSprite_lavaHotAir,
+			(ParamTableEffectMethod)HotAirMBgmapSprite_lavaHotAir,
 
 			// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 			__WORLD_ON,

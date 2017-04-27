@@ -153,7 +153,7 @@ HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE =
 			__WORLD_HBIAS,
 
 			// pointer to affine/hbias manipulation function
-			HotAirMBgmapSprite_lavaHotAir,
+			(ParamTableEffectMethod)HotAirMBgmapSprite_lavaHotAir,
 
 			// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 			__WORLD_ON,
