@@ -27,6 +27,7 @@
 #include <libgccvb.h>
 #include <AnimatedInGameEntity.h>
 #include <ObjectAnimatedSprite.h>
+#include <StaticImage.h>
 #include <macros.h>
 
 
@@ -34,74 +35,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TorchTiles[];
-extern BYTE TorchMap[];
+extern BYTE TorchOffTiles[];
+extern BYTE TorchOffMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMDef TORCH_BURN_ANIM =
-{
-	// number of frames of this animation function
-	4,
-
-	// frames to play in animation
-	{0, 1, 2, 1},
-
-	// number of cycles a frame of animation is displayed
-	6,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Burn",
-};
-
-// an animation definition
-AnimationDescriptionROMDef TORCH_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&TORCH_BURN_ANIM,
-		NULL,
-	}
-};
-
-CharSetROMDef TORCH_CH =
+CharSetROMDef TORCH_OFF_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	3,
+	2,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SHARED,
+	__NOT_ANIMATED,
 
 	// char definition
-	TorchTiles,
+	TorchOffTiles,
 };
 
-TextureROMDef TORCH_TX =
+TextureROMDef TORCH_OFF_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&TORCH_CH,
+	(CharSetDefinition*)&TORCH_OFF_CH,
 
 	// bgmap definition
-	TorchMap,
+	TorchOffMap,
 
 	// cols (max 64)
 	1,
 
 	// rows (max 64)
-	3,
+	2,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -115,14 +84,14 @@ TextureROMDef TORCH_TX =
 	0,
 };
 
-ObjectSpriteROMDef TORCH_SPRITE =
+ObjectSpriteROMDef TORCH_OFF_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&TORCH_TX,
+		(TextureDefinition*)&TORCH_OFF_TX,
 
 		// transparent
 		false,
@@ -139,41 +108,15 @@ ObjectSpriteROMDef TORCH_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const TORCH_SPRITES[] =
+ObjectSpriteROMDef* const TORCH_OFF_SPRITES[] =
 {
-	&TORCH_SPRITE,
+	&TORCH_OFF_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef TORCH_AG =
+StaticImageROMDef TORCH_OFF_IM =
 {
-	{
-		{
-			__TYPE(AnimatedInGameEntity),
-			(SpriteROMDef**)TORCH_SPRITES,
-		},
-
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
-
-		// in game type
-		kNotSolid,
-
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		1,
-	},
-
-	// pointer to the animation definition for the item
-	(AnimationDescription*)&TORCH_ANIM,
-
-	// initial animation
-	"Burn",
+	__TYPE(StaticImage),
+	(SpriteROMDef**)TORCH_OFF_SPRITES,
 };
+
