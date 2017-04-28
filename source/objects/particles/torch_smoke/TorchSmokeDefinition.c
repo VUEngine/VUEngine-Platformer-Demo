@@ -44,7 +44,7 @@ extern BYTE SmokeParticleSmallMap[];
 
 
 // a function which defines the frames to play
-AnimationFunctionROMDef SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
+AnimationFunctionROMDef TORCH_SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
 {
 	// number of frames of this animation function
 	8,
@@ -66,16 +66,16 @@ AnimationFunctionROMDef SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
 };
 
 // an animation definition
-AnimationDescriptionROMDef SMOKE_PARTICLE_SMALL_ANIM =
+AnimationDescriptionROMDef TORCH_SMOKE_PARTICLE_SMALL_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&SMOKE_PARTICLE_SMALL_FLOAT_ANIM,
+		(AnimationFunction*)&TORCH_SMOKE_PARTICLE_SMALL_FLOAT_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef SMOKE_PARTICLE_SMALL_CH =
+CharSetROMDef TORCH_SMOKE_PARTICLE_SMALL_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -90,10 +90,10 @@ CharSetROMDef SMOKE_PARTICLE_SMALL_CH =
 	SmokeParticleSmallTiles,
 };
 
-TextureROMDef SMOKE_PARTICLE_SMALL_TX =
+TextureROMDef TORCH_SMOKE_PARTICLE_SMALL_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&SMOKE_PARTICLE_SMALL_CH,
+	(CharSetDefinition*)&TORCH_SMOKE_PARTICLE_SMALL_CH,
 
 	// bgmap definition
 	SmokeParticleSmallMap,
@@ -116,14 +116,14 @@ TextureROMDef SMOKE_PARTICLE_SMALL_TX =
 	0,
 };
 
-ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_SPRITE =
+ObjectSpriteROMDef TORCH_SMOKE_PARTICLE_SMALL_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&SMOKE_PARTICLE_SMALL_TX,
+		(TextureDefinition*)&TORCH_SMOKE_PARTICLE_SMALL_TX,
 
 		// transparent
 		false,
@@ -140,14 +140,14 @@ ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const SMOKE_PARTICLE_SMALL_SPRITES[] =
+ObjectSpriteROMDef* const TORCH_SMOKE_PARTICLE_SMALL_SPRITES[] =
 {
-	&SMOKE_PARTICLE_SMALL_SPRITE,
+	&TORCH_SMOKE_PARTICLE_SMALL_SPRITE,
 	NULL
 };
 
 // particle's definition
-ParticleROMDef SMOKE_PARTICLE =
+ParticleROMDef TORCH_SMOKE_PARTICLE =
 {
 	// allocator
 	__TYPE(Particle),
@@ -173,13 +173,13 @@ ParticleROMDef SMOKE_PARTICLE =
 
 	// animation description
 	// used only if sprite is animated
-	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
+	(AnimationDescription*)&TORCH_SMOKE_PARTICLE_SMALL_ANIM,
 
 	// animation's name to play
 	"Float"
 };
 
-ParticleSystemROMDef SMOKE_PS =
+ParticleSystemROMDef TORCH_SMOKE_PS =
 {
 	{
 		__TYPE(ParticleSystem),
@@ -199,13 +199,13 @@ ParticleSystemROMDef SMOKE_PS =
 	14,
 
 	// array of textures
-	(const ObjectSpriteDefinition**)SMOKE_PARTICLE_SMALL_SPRITES,
+	(const ObjectSpriteDefinition**)TORCH_SMOKE_PARTICLE_SMALL_SPRITES,
 
 	// auto start
 	true,
 
 	// particle definition
-	(ParticleDefinition*)&SMOKE_PARTICLE,
+	(ParticleDefinition*)&TORCH_SMOKE_PARTICLE,
 
 	// minimum random distance from the center of the system for spawn
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
