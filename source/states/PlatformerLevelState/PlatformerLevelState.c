@@ -482,6 +482,10 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 			Printing_text(Printing_getInstance(), "                                                ", 0, 5, NULL);
 			Printing_text(Printing_getInstance(), "                                                ", 0, 6, NULL);
 			Printing_text(Printing_getInstance(), "                                                ", 0, 7, NULL);
+			{
+				extern TextureROMDef GUI_TX;
+				Printing_setWorldCoordinates(Printing_getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
+			}
 			break;
 
 		case kScreenFocused:
