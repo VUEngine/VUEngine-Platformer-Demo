@@ -252,4 +252,7 @@ StageROMDef LEVEL_DONE_SCREEN_STAGE_ST =
 		// children
 		LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	NULL
 };

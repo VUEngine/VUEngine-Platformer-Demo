@@ -31,6 +31,8 @@
 #include <VIPManager.h>
 #include <Fonts.h>
 #include <Hero.h>
+#include <PostProcessingEffects.h>
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -581,6 +583,12 @@ StageTextureEntryROMDef LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 	{NULL, false}
 };
 
+const PostProcessingEffect LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS[] =
+{
+	PostProcessingEffects_rain,
+	NULL
+};
+
 
 //---------------------------------------------------------------------------------------------------------
 //											STAGE DEFINITION
@@ -765,6 +773,9 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// children
 		LEVEL_1_MAIN_STAGE_ST_CHILDREN,
 	},
+
+	// post processing effects
+	LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS
 };
 
 

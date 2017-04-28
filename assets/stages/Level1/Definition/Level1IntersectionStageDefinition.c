@@ -31,6 +31,8 @@
 #include <VIPManager.h>
 #include <Fonts.h>
 #include <Hero.h>
+#include <PostProcessingEffects.h>
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -121,6 +123,11 @@ FontROMDef* const LEVEL1_INTERSECTION_STAGE_ST_FONTS[] =
 	NULL
 };
 
+const PostProcessingEffect LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS[] =
+{
+	PostProcessingEffects_lantern,
+	NULL
+};
 
 //---------------------------------------------------------------------------------------------------------
 //											STAGE DEFINITION
@@ -305,6 +312,9 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 		// children
 		LEVEL1_INTERSECTION_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS
 };
 
 

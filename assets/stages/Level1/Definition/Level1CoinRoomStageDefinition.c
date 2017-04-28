@@ -311,6 +311,9 @@ StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 		// children
 		LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	NULL
 };
 
 

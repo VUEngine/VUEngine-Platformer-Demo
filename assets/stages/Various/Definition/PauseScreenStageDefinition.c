@@ -251,4 +251,7 @@ StageROMDef PAUSE_SCREEN_STAGE_ST =
 		// children
 		PAUSE_SCREEN_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	NULL
 };

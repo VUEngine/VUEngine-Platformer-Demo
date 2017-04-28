@@ -292,6 +292,9 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		// children
 		LEVEL1_HOUSE_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	NULL
 };
 
 

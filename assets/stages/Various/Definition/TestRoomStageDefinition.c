@@ -321,6 +321,9 @@ StageROMDef TEST_ROOM_STAGE_ST =
 		// children
 		TEST_ROOM_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	NULL
 };
 
 

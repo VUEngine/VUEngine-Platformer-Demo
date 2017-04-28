@@ -298,4 +298,7 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		// children
 		TITLE_SCREEN_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	NULL
 };

@@ -243,4 +243,7 @@ StageROMDef EMPTY_STAGE_ST =
 		// children
 		EMPTY_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	NULL
 };

@@ -268,4 +268,7 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		// children
 		OVERWORLD1_STAGE_ST_ENTITIES,
 	},
+
+	// post processing effects
+	NULL
 };

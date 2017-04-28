@@ -501,6 +501,9 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 		// children
 		LEVEL_1_TOWER_STAGE_ST_CHILDREN,
 	},
+
+	// post processing effects
+	NULL
 };
 
 
