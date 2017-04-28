@@ -74,23 +74,19 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	radius++;
 
 	// gradually decrease color with larger radius
-	if(radius < 0)
-	{
-		return;
-	}
-	else if(radius < 50)
+	if(radius < 96)
 	{
 		color = __COLOR_BRIGHT_RED;
 	}
-	else if(radius < 100)
+	else if(radius < 140)
 	{
 		color = __COLOR_MEDIUM_RED;
 	}
-	else if(radius < 150)
+	else if(radius < 192)
 	{
 		color = __COLOR_DARK_RED;
 	}
-	else if(radius < 320)
+	else if(radius < 256)
 	{
 		// pause for a little bit before restarting
 		return;
@@ -98,12 +94,13 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	else
 	{
 		// reset radius when reaching a certain length
-		radius = 12;
+		radius = 24;
 		return;
 	}
 
 	// draw a rhombus around object with given radius and color
 	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
+	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius >> 1), color, spatialObjectPosition);
 }
 
 /**
