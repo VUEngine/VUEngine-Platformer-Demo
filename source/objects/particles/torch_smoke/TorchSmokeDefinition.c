@@ -211,18 +211,18 @@ ParticleSystemROMDef TORCH_SMOKE_PS =
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(-2), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(2), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5), (-10), (0)},
+	{(-2), (-5), (0)},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5), (-20), (0)},
+	{(2), (-10), (0)},
 
 	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
 	__UNIFORM_MOVEMENT
