@@ -169,7 +169,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 		__OPTICS_PROJECT_TO_2D(position3D, position2D);
 
 		{
-			bool focusEntityOutOfBounds = (unsigned)(FIX19_13TOI(position2D.x) - SCREEN_WIDTH_REDUCTION) > _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION;
+			bool focusEntityOutOfBounds = (unsigned)(FIX19_13TOI(position2D.x) - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
 
 			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
