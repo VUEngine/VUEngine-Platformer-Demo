@@ -47,7 +47,7 @@ void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
+void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
 	// the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
  	// 2 per eye) has been written by the VPU and you can work on
@@ -82,24 +82,52 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 		7, 6, 7, 7, 6, 5, 6, 7, 6, 6, 5, 8,
 	};
 
+ 	extern const VBVec3D* _screenPosition;
+ 	static VBVec3D screenPreviousPosition = {0, 0, 0};
+ 	static fix19_13 cumulativeX = 0;
+
+ 	cumulativeX += _screenPosition->x - screenPreviousPosition.x;
+
+	screenPreviousPosition = *_screenPosition;
+
+ 	x = FIX19_13TOI(cumulativeX);
+
+	while(x < 0)
+	{
+		x += X_RANGE;
+	}
+
+	while(x > X_RANGE)
+	{
+		x -= X_RANGE;
+	}
+
+ 	Printing_int(Printing_getInstance(), (x), 20, 26, NULL);
+
 	// write to framebuffers for both screens
 	for(; buffer < 2; buffer++)
 	{
+		int counter = 0;
 		// loop columns that shall be shifted
-		for(x = 0; x <= X_RANGE; x++)
+		for(; counter <= X_RANGE; x++, counter++)
 		{
+			if(x >= X_RANGE)
+			{
+				x = 0;
+			}
+
 			// get pointer to currently manipulated 32 bits of framebuffer
 			u32* columnSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0)) + (x << 4);
 
 			// the shifted out pixels on top should be black
 			//previousSourcePointerValue = 0;
 
-			if(x % (waveLut[waveLutIndex] * 5))
+			if(x % (waveLut[waveLutIndex] * 12))
 			{
 				continue;
 			}
 
-			if(++waveLutIndex >= sizeof(waveLut) / sizeof(u32))
+			if(++waveLutIndex >= (int)(sizeof(waveLut) / sizeof(u32)))
 			{
 				waveLutIndex = 0;
 			}
@@ -108,15 +136,15 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 			// ignore the bottom 16 pixels of the screen (gui)
 			int i = 0;
 
-			for(; i < sizeof(y) / sizeof(int); i++)
+			for(; i < (int)(sizeof(y) / sizeof(int)); i++)
 			{
-				previousSourcePointerValue[i] = PostProcessingEffects_writeToFrameBuffer(y[i], waveLut[waveLutIndex], columnSourcePointer, previousSourcePointerValue[i]);
+				previousSourcePointerValue[i] = PostProcessingEffects_writeToFrameBuffer(y[i], waveLut[waveLutIndex] * 2, columnSourcePointer, previousSourcePointerValue[i]);
 			}
 		}
 
 		int i = 0;
 
-		for(; i < sizeof(y) / sizeof(int); i++)
+		for(; i < (int)(sizeof(y) / sizeof(int)); i++)
 		{
 			if(12 < ++y[i])
 			{
@@ -126,13 +154,8 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	}
 }
 
-
-void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
+void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
-	// the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
- 	// 2 per eye) has been written by the VPU and you can work on
-
- 	// will add a post processing effect around the hero
 	Hero hero = Hero_getInstance();
 
  	if(!hero)
@@ -141,171 +164,183 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  	}
 
  	VBVec3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
-	Direction heroDirection = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, hero));
 
  	extern const VBVec3D* _screenPosition;
  	__OPTICS_NORMALIZE(heroPosition);
  	int heroXPosition = FIX19_13TOI(heroPosition.x);
  	int heroYPosition = FIX19_13TOI(heroPosition.y);
 
- 	#define LIGHT_LENGTH			130
- 	#define HIGH_PENUMBRA_LENGTH	0
- 	#define LOW_PENUMBRA_LENGTH		0
- 	#define BEAM_LENGTH			(LIGHT_LENGTH + HIGH_PENUMBRA_LENGTH + LOW_PENUMBRA_LENGTH)
- 	#define X_RANGE			383
- 	int xLeftLimit = __LEFT == heroDirection.x ? heroXPosition - BEAM_LENGTH : heroXPosition - 10;
- 	int xRightLimit = __LEFT == heroDirection.x ? heroXPosition + 10 : heroXPosition + BEAM_LENGTH;
+	int ySize = sizeof(u32) << 2;
 
-	u8 buffer = 0;
+ 	#define LIGHT_RADIOUS_X				45
+ 	#define HIGH_PENUMBRA_LENGTH_X		60
+ 	#define LOW_PENUMBRA_LENGTH_X		70
+ 	#define LIGHT_RADIOUS_Y				25
+ 	#define HIGH_PENUMBRA_LENGTH_Y		40
+ 	#define LOW_PENUMBRA_LENGTH_Y		50
+ 	#define X_RANGE			383
+ 	#define Y_RANGE			(224-16) / ySize
+
 	int x = 0, y = 0;
 
+	u32 highPenumbraMask = 0x55555555;
+	u32 lowPenumbraMask = 0x55555555;
+
+
+	// write to framebuffers for both screens
+	int xLeftLimit = heroXPosition - LOW_PENUMBRA_LENGTH_X;
+	int xRightLimit = heroXPosition + LOW_PENUMBRA_LENGTH_X;
 	xLeftLimit = 0 < xLeftLimit? xLeftLimit : 0;
 	xRightLimit = X_RANGE > xRightLimit? xRightLimit : X_RANGE - 1;
 
-	#define MAXIMUM_AMPLITUDE		6
+	int yUpperLimit = heroYPosition + LOW_PENUMBRA_LENGTH_Y;
+	int yLowerLimit = heroYPosition + LOW_PENUMBRA_LENGTH_Y;
 
-	// assume left movement
-	int yUpperAmplitude = MAXIMUM_AMPLITUDE;
-	int yLowerAmplitude = MAXIMUM_AMPLITUDE;
-	int xIncrement = -1;
-	int xStart = xRightLimit;
-	int xLimit = xLeftLimit;
-	int yIncrement = -1;
-	int yRange = 13;
-	int yDisplacement = yRange * (heroYPosition - 0) / __SCREEN_HEIGHT - yRange / 2;
-	int step = BEAM_LENGTH / MAXIMUM_AMPLITUDE;
-
-	if(__RIGHT == heroDirection.x)
+	for(x = 0; x <= X_RANGE; x++)
 	{
-		xIncrement = 1;
-		xStart = xLeftLimit;
-		xLimit = xRightLimit;
-	}
+		// get pointer to currently manipulated 32 bits of framebuffer
+		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
+		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
 
-	// write to framebuffers for both screens
-	for(; buffer < 2; buffer++)
-	{
-		// loop columns that shall be shifted
-		for(x = 0; x <= xLeftLimit; x++)
+		if(x < heroXPosition - LOW_PENUMBRA_LENGTH_X || x > heroXPosition + LOW_PENUMBRA_LENGTH_X)
 		{
-			// get pointer to currently manipulated 32 bits of framebuffer
-			u32* columnSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0)) + (x << 4);
-
-			// loop current column in steps of 16 pixels (32 bits)
-			// ignore the bottom 16 pixels of the screen (gui)
-			for(y = 0; y < 13; y++)
+			for(y = 0; y < Y_RANGE; y++)
 			{
-				u32* sourcePointer = columnSourcePointer + y;
-				*sourcePointer = 0;
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
 			}
 		}
-
-		for(x = X_RANGE; x >= xRightLimit; x--)
+		else if(x < heroXPosition - HIGH_PENUMBRA_LENGTH_X || x > heroXPosition + HIGH_PENUMBRA_LENGTH_X)
 		{
-			// get pointer to currently manipulated 32 bits of framebuffer
-			u32* columnSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0)) + (x << 4);
+			yUpperLimit = (heroYPosition - LOW_PENUMBRA_LENGTH_Y) / ySize;
+			yLowerLimit = (heroYPosition + LOW_PENUMBRA_LENGTH_Y) / ySize ;
 
-			// loop current column in steps of 16 pixels (32 bits)
-			// ignore the bottom 16 pixels of the screen (gui)
-			for(y = 0; y < 13; y++)
+			yUpperLimit = 0 < yUpperLimit? yUpperLimit: 0;
+			yLowerLimit = Y_RANGE > yLowerLimit? yLowerLimit : Y_RANGE;
+
+			for(y = 0; y < yUpperLimit + 2; y++)
 			{
-				u32* sourcePointer = columnSourcePointer + y;
-				*sourcePointer = 0;
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
+			}
+
+			for(; y < yLowerLimit; y++)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= lowPenumbraMask;
+				*sourcePointerRight &= lowPenumbraMask;
+			}
+
+			for(y -=2; y < Y_RANGE; y++)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
 			}
 		}
-
-		static int index = 0;
-
-		const s16 lavaWaveLut[] =
+		else if(x < heroXPosition - LIGHT_RADIOUS_X || x > heroXPosition + LIGHT_RADIOUS_X)
 		{
-			-1, -1, -1, -1, -1, -1,
-			-2, -2, -2, -2, -2, -2,
-			-1, -1, -1, -1, -1, -1,
-			 0,  0,  0,  0,
-			 1,  1,  1,  1,  1,  1,
-			 1,  1,  1,  1,  1,  1,
-			 0,  0,  0,  0,
-			-1, -1, -1, -1, -1, -1,
-			-2, -2, -2, -2, -2, -2,
-			-1, -1, -1, -1, -1, -1,
-		};
+			yUpperLimit = (heroYPosition - HIGH_PENUMBRA_LENGTH_Y) / ySize;
+			yLowerLimit = (heroYPosition + HIGH_PENUMBRA_LENGTH_Y) / ySize ;
 
-		int upperStep = 3 * step - lavaWaveLut[index];
-		int lowerStep = 2 * step + lavaWaveLut[index];
+			yUpperLimit = 0 < yUpperLimit? yUpperLimit : 0;
+			yLowerLimit = Y_RANGE > yLowerLimit? yLowerLimit: Y_RANGE;
 
-		if(++index >= (int)(sizeof(lavaWaveLut) / sizeof(s16)))
-		{
-			index = 0;
+			for(y = 0; y < yUpperLimit; y++)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
+			}
+
+			for(; y < yLowerLimit; y++)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= highPenumbraMask;
+				*sourcePointerRight &= highPenumbraMask;
+			}
+
+			for(; y < Y_RANGE; y++)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
+			}
 		}
-
-		fix15_17 upperMaskShiftDelta = FIX15_17_DIV(ITOFIX15_17((sizeof(u32) << 3)), ITOFIX15_17(upperStep));
-		fix15_17 lowerMaskShiftDelta = FIX15_17_DIV(ITOFIX15_17((sizeof(u32) << 3)), ITOFIX15_17(lowerStep));
-		fix15_17 appliedUpperMaskShiftDelta = 0;
-		fix15_17 appliedLowerMaskShiftDelta = 0;
-		int columnCounter = 0;
-
-		// loop columns that shall be shifted
-		for(x = xStart; x != xLimit; x += xIncrement, columnCounter++)
+		else
 		{
-			// get pointer to currently manipulated 32 bits of framebuffer
-			u32* columnSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0)) + (x << 4);
+			yUpperLimit = (heroYPosition - LOW_PENUMBRA_LENGTH_Y) / ySize;
+			yUpperLimit = 0 < yUpperLimit? yUpperLimit: 0;
 
-			if(0 == columnCounter % lowerStep)
+			for(y = 0; y < yUpperLimit; y++)
 			{
-				yLowerAmplitude += yIncrement;
-				appliedLowerMaskShiftDelta = 0;
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
 			}
 
-			if(0 == columnCounter % upperStep)
+			yUpperLimit = (heroYPosition - HIGH_PENUMBRA_LENGTH_Y) / ySize;
+			yUpperLimit = 0 < yUpperLimit? yUpperLimit: 0;
+
+			for(; y < yUpperLimit; y++)
 			{
-				yUpperAmplitude += yIncrement;
-				appliedUpperMaskShiftDelta = 0;
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= lowPenumbraMask;
+				*sourcePointerRight &= lowPenumbraMask;
 			}
 
-			u32* sourcePointer = NULL;
+			yUpperLimit = (heroYPosition - LIGHT_RADIOUS_X) / ySize;
+			yUpperLimit = 0 < yUpperLimit? yUpperLimit: 0;
 
-/*			if(columnCounter > LIGHT_LENGTH)
+			for(; y < yUpperLimit; y++)
 			{
-				u32 mask = 0xAAAAAAAA;
-
-				if(columnCounter > LIGHT_LENGTH + HIGH_PENUMBRA_LENGTH)
-				{
-					mask = 0x55555555;
-				}
-
-				for(y = yUpperAmplitude + yDisplacement; y <= yRange - yLowerAmplitude + yDisplacement; y++)
-				{
-					sourcePointer = columnSourcePointer + y;
-					*sourcePointer &= mask;
-				}
-			}
-*/
-			for(y = 0; y < yUpperAmplitude + yDisplacement; y++)
-			{
-				sourcePointer = columnSourcePointer + y;
-				*sourcePointer = 0;
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= highPenumbraMask;
+				*sourcePointerRight &= highPenumbraMask;
 			}
 
-			if(y)
+			yLowerLimit = (heroYPosition + HIGH_PENUMBRA_LENGTH_Y) / ySize;
+			yLowerLimit = Y_RANGE > yLowerLimit? yLowerLimit : Y_RANGE;
+
+			for(y = (heroYPosition + LIGHT_RADIOUS_Y) / ySize ; y < yLowerLimit; y++)
 			{
-				sourcePointer = columnSourcePointer + y;
-				*sourcePointer &= ~(0xFFFFFFFF >> FIX15_17TOI(appliedUpperMaskShiftDelta));
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= highPenumbraMask;
+				*sourcePointerRight &= highPenumbraMask;
 			}
 
-			appliedUpperMaskShiftDelta += upperMaskShiftDelta;
+			yLowerLimit = (heroYPosition + LOW_PENUMBRA_LENGTH_Y) / ySize;
+			yLowerLimit = Y_RANGE > yLowerLimit? yLowerLimit : Y_RANGE;
 
-			y = yRange - yLowerAmplitude + yDisplacement;
-
-			sourcePointer = columnSourcePointer + y;
-			*sourcePointer &= ~(0xFFFFFFFF << FIX15_17TOI(appliedLowerMaskShiftDelta));
-
-			for(y = y + 1; y < yRange; y++)
+			for(; y < yLowerLimit; y++)
 			{
-				sourcePointer = columnSourcePointer + y;
-				*sourcePointer = 0;
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= lowPenumbraMask;
+				*sourcePointerRight &= lowPenumbraMask;
 			}
 
-			appliedLowerMaskShiftDelta += lowerMaskShiftDelta;
+			for(; y < Y_RANGE; y++)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
+			}
+
 		}
 	}
 }
@@ -374,9 +409,9 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
  */
 void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
-	u8 buffer = 0;
 	u16 x = 0, y = 0;
-	u32 previousSourcePointerValue = 0;
+	u32 previousSourcePointerValueLeft = 0;
+	u32 previousSourcePointerValueRight = 0;
 
 	// runtime working variables
 	static int waveLutIndex = 0;
@@ -398,32 +433,32 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObjec
 	};
 
 	// write to framebuffers for both screens
-	for(; buffer < 2; buffer++)
+	// loop columns
+	for(x = 0; x < 384; x++)
 	{
-		// loop columns
-		for(x = 0; x < 384; x++)
+		// get pointer to currently manipulated 32 bits of framebuffer
+		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
+		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
+
+		// the shifted out pixels on top should be black
+		previousSourcePointerValueLeft = 0;
+		previousSourcePointerValueRight = 0;
+
+		// increase look up table index, wrap around if necessary
+		waveLutIndex += (waveLutIndex < 127) ? 1 : -127;
+
+		// we can skip further processing for the current column if no shifting would be done on it
+		if(waveLut[waveLutIndex] == 0)
 		{
-			// get pointer to currently manipulated 32 bits of framebuffer
-			u32* columnSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0)) + (x << 4);
+			continue;
+		}
 
-			// the shifted out pixels on top should be black
-			previousSourcePointerValue = 0;
-
-			// increase look up table index, wrap around if necessary
-			waveLutIndex += (waveLutIndex < 127) ? 1 : -127;
-
-			// we can skip further processing for the current column if no shifting would be done on it
-			if(waveLut[waveLutIndex] == 0)
-			{
-				continue;
-			}
-
-			// loop current column in steps of 16 pixels (32 bits)
-			// ignore the bottom 16 pixels of the screen (gui)
-			for(y = 0; y < 13; y++)
-			{
-				previousSourcePointerValue = PostProcessingEffects_writeToFrameBuffer(y, waveLut[waveLutIndex], columnSourcePointer, previousSourcePointerValue);
-			}
+		// loop current column in steps of 16 pixels (32 bits)
+		// ignore the bottom 16 pixels of the screen (gui)
+		for(y = 0; y < 13; y++)
+		{
+			previousSourcePointerValueLeft = PostProcessingEffects_writeToFrameBuffer(y, waveLut[waveLutIndex], columnSourcePointerLeft, previousSourcePointerValueLeft);
+			previousSourcePointerValueRight = PostProcessingEffects_writeToFrameBuffer(y, waveLut[waveLutIndex], columnSourcePointerRight, previousSourcePointerValueRight);
 		}
 	}
 
