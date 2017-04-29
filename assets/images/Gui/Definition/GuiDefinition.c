@@ -28,6 +28,7 @@
 #include <AnimatedInGameEntity.h>
 #include <BgmapAnimatedSprite.h>
 #include <Gui.h>
+#include <GUISprite.h>
 #include <macros.h>
 
 
@@ -204,7 +205,7 @@ BgmapSpriteROMDef GUI_OVERWORLD_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(GUISprite),
 
 		// texture definition
 		(TextureDefinition*)&GUI_OVERWORLD_TX,
