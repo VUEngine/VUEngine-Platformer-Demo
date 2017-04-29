@@ -148,7 +148,7 @@ InanimatedInGameEntityROMDef LAVA_IG =
 
 		// height
 		// if 0, width and height will be inferred from the texture's size
-		16 * 8,
+		18 * 8 - 4,
 
 		// depth
 		4
