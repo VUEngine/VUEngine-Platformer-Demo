@@ -175,7 +175,6 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 		worldPointer->w = 0;
 		worldPointer->h = 0;
 #endif
-
 		return;
 	}
 
@@ -218,9 +217,8 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 
 s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 {
-	u32 param = BgmapSprite_getParam(__SAFE_CAST(BgmapSprite, this));
 	s32 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, this));
-	s16 i = BgmapSprite_getParamTableRow(__SAFE_CAST(BgmapSprite, this));
+	s16 i = this->paramTableRow;
 	s16 j = 0;
 
 	// look up table of wave shifts
@@ -239,10 +237,11 @@ s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 	// look up table offset
 	this->step = (this->step < ((HBIAS_LAVA_HEAT_LUT_LENGTH << HBIAS_LAVA_HEAT_THROTTLE) - 1)) ? this->step + 1 : 0;
 
+	HbiasEntry* hbiasEntry = (HbiasEntry*)this->param;
+
 	// write param table rows
 	for(j = 0; i < spriteHeight; i++, j++)
 	{
-		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
 		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
 		if((j < 16) && (hbiasEntry[i].offsetLeft < 0))
 		{
