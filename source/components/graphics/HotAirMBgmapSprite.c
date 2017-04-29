@@ -64,6 +64,7 @@ __CLASS_FRIEND_DEFINITION(BgmapTexture);
 // globals
 extern const VBVec3D* _screenPosition;
 extern Optical* _optical;
+extern const CameraFrustum* _cameraFrustum;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -134,15 +135,15 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 
 	if(!this->lavaSprite)
 	{
-		Entity referenceSpriteOwner = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), this->hotAirMBgmapSpriteDefinition->referenceSpriteOwnerName, true));
+		Container referenceSpriteOwner = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), this->hotAirMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
 
-		if(referenceSpriteOwner)
+		if(__IS_OBJECT_ALIVE(referenceSpriteOwner))
 		{
-			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(referenceSpriteOwner)));
+			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(__SAFE_CAST(Entity, referenceSpriteOwner))));
 
 			Entity lava = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Lava", true));
 
-			if(lava)
+			if(__IS_OBJECT_ALIVE(lava))
 			{
 				VirtualNode node = VirtualList_begin(Entity_getSprites(lava));
 
@@ -187,7 +188,7 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 	worldPointer->gy = laveSpriteGY - EFFECT_HEIGHT > referenceSpriteWorldPointer->gy ? laveSpriteGY - EFFECT_HEIGHT : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp;
 
-	if(laveSpriteGY < worldPointer->gy || __SCREEN_HEIGHT <= laveSpriteGY - EFFECT_HEIGHT || referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy || __WORLD_OFF == referenceSpriteWorldPointer->head)
+	if(laveSpriteGY < worldPointer->gy || _cameraFrustum->y1 <= laveSpriteGY - EFFECT_HEIGHT || referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy || __WORLD_OFF == referenceSpriteWorldPointer->head)
 	{
 		worldPointer->head = __WORLD_OFF;
 #ifdef __PROFILE_GAME
