@@ -272,11 +272,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 		Screen_startEffect(Screen_getInstance(), kScreenPulsate);
 	}
 
-	// activate post processing effect
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_dwarfPlanet, NULL);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_tiltScreen, NULL);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_wobble, NULL);
-//	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_lightingTest, NULL);
+	extern TextureROMDef GUI_TX;
+	CameraFrustum cameraFrustum = {0, 0, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8};
+	Screen_setCameraFrustum(Screen_getInstance(), cameraFrustum);
 }
 
 // state's exit
@@ -484,7 +482,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 			Printing_text(Printing_getInstance(), "                                                ", 0, 7, NULL);
 			{
 				extern TextureROMDef GUI_TX;
-				Printing_setWorldCoordinates(Printing_getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
+				//Printing_setWorldCoordinates(Printing_getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
 			}
 			break;
 
