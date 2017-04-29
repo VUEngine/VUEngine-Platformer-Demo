@@ -178,7 +178,7 @@ BgmapSpriteROMDef GUI_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(GUISprite),
 
 		// texture definition
 		(TextureDefinition*)&GUI_TX,
