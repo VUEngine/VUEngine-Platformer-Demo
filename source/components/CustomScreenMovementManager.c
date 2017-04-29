@@ -67,6 +67,7 @@ static Screen _screen = NULL;
 extern const VBVec3D* _screenPosition;
 extern const VBVec3D* _screenDisplacement;
 extern const Optical* _optical;
+extern const CameraFrustum* _cameraFrustum;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -168,7 +169,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 		__OPTICS_PROJECT_TO_2D(position3D, position2D);
 
 		{
-			bool focusEntityOutOfBounds = (unsigned)(FIX19_13TOI(position2D.x) - SCREEN_WIDTH_REDUCTION) > __SCREEN_WIDTH - SCREEN_WIDTH_REDUCTION;
+			bool focusEntityOutOfBounds = (unsigned)(FIX19_13TOI(position2D.x) - SCREEN_WIDTH_REDUCTION) > _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION;
 
 			if(this->positionFlag.x || focusEntityOutOfBounds)
 			{
@@ -215,7 +216,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 		}
 
 		{
-			bool focusEntityOutOfBounds = FIX19_13TOI(position2D.y) > __SCREEN_HEIGHT - SCREEN_HEIGHT_REDUCTION || FIX19_13TOI(position2D.y) < SCREEN_HEIGHT_REDUCTION / 4;
+			bool focusEntityOutOfBounds = FIX19_13TOI(position2D.y) > _cameraFrustum->y1 - SCREEN_HEIGHT_REDUCTION || FIX19_13TOI(position2D.y) < _cameraFrustum->y0 + SCREEN_HEIGHT_REDUCTION / 4;
 
 			if(this->positionFlag.y || focusEntityOutOfBounds)
 			{
