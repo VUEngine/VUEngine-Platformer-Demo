@@ -38,7 +38,7 @@
 //											 CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EFFECT_HEIGHT 			50
+#define EFFECT_HEIGHT 			60
 
 #define EFFECT_HEIGHT_EXCESS	0
 
@@ -223,7 +223,7 @@ s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
 
 	// look up table of wave shifts
 	#define HBIAS_LAVA_HEAT_LUT_LENGTH 	32
-	#define HBIAS_LAVA_HEAT_THROTTLE 	2
+	#define HBIAS_LAVA_HEAT_THROTTLE 	1
 	const s16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
 	{
 		-1, -1, -1, -1, -1, -1,
