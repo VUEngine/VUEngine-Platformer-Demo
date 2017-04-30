@@ -386,6 +386,10 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 
 	// make sure that user input is taken into account
 	Object_fireEvent(__SAFE_CAST(Object, this), kEventUserInput);
+
+	extern TextureROMDef GUI_TX;
+	CameraFrustum cameraFrustum = {0, 0, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8};
+	Screen_setCameraFrustum(Screen_getInstance(), cameraFrustum);
 }
 
 UserInput PlatformerLevelState_getUserInput(PlatformerLevelState this)
