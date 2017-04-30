@@ -14,7 +14,7 @@ TYPE                    = release
 # Optimization level
 OPTIMIZATION            = Ofast
 
-# Use enable pedantic warnings
+# Enable pedantic warnings
 # 0:                    Omit.
 # 1:                    Use.
 PRINT_PEDANTIC_WARNINGS = 0
