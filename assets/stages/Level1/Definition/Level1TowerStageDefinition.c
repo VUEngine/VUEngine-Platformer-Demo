@@ -114,7 +114,7 @@ extern VBVec3D collision_48_28_1;
 
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
-	{&LAVA_TOP_AG, 					{FTOFIX19_13(0), 	FTOFIX19_13(-88), 	FTOFIX19_13(-1)}, 0, NULL, NULL, NULL, false},
+	{&LAVA_TOP_AG, 					{FTOFIX19_13(0), 	FTOFIX19_13(-102), 	FTOFIX19_13(-1)}, 0, NULL, NULL, NULL, false},
 	{&DARKNESS_OVERLAY_IM, 			{FTOFIX19_13(0), 	FTOFIX19_13(-428), 	FTOFIX19_13(-2)}, 0, NULL, NULL, NULL, false},
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -202,7 +202,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 	{&LEVEL_1_TOWER_MAIN_BACK_IM,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT), 			FTOFIX19_13(LAYER_0)}, 0, "BkgImg", NULL, NULL, true},
 
 	{&HERO_AC, 						{FTOFIX19_13(72), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 128), 	FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, true},
-	{&LAVA_IG,						{FTOFIX19_13(190), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT + 48), 	FTOFIX19_13(LAYER_0)}, 0, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
+	{&LAVA_IG,						{FTOFIX19_13(190), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT + 64), 	FTOFIX19_13(LAYER_0)}, 0, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!

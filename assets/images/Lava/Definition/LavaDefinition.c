@@ -76,7 +76,7 @@ TextureROMDef LAVA_TX =
 	48,
 
 	// rows (max 64)
-	20,
+	24,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -140,7 +140,7 @@ InanimatedInGameEntityROMDef LAVA_IG =
 		{2, 0, 0, 0},
 
 		// in game type
-		kLava+ 123,
+		kLava,
 
 		// width
 		// if 0, width and height will be inferred from the texture's size
@@ -148,7 +148,7 @@ InanimatedInGameEntityROMDef LAVA_IG =
 
 		// height
 		// if 0, width and height will be inferred from the texture's size
-		20 * 8 + 4,
+		24 * 8 + 4,
 
 		// depth
 		4
