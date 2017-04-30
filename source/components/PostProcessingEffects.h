@@ -34,7 +34,8 @@
 //										FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject);
+void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject);
+void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject);
 void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject);
 void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);

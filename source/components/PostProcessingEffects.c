@@ -33,6 +33,7 @@
 #include <Container.h>
 #include <Entity.h>
 #include <VIPManager.h>
+#include <Screen.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -47,40 +48,10 @@ void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), u16 y[], u16 numberOfYs, const u16 ySpeed[], u16 numberOfYSpeeds, u16* ySpeedIndex, u16 yThrottle, u16 const xStep[], u16 numberOfXSteps, u16* xStepIndex, const u16 dropletSize[], u16 numberOfDropletSize, u16* dropletSizeIndex)
 {
-	// the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
- 	// 2 per eye) has been written by the VPU and you can work on
-
-	u8 buffer = 0;
-	int x = 0;
-
-	static int y[] =
-	{
-		1, 2, 3, 0, 4, 6, 7
-	};
-
- 	#define X_RANGE			383
-	static u32 previousSourcePointerValue[] =
-	{
-		0, 0, 0, 0, 0, 0, 0,
-	};
-
-	// runtime working variables
-	static int waveLutIndex = 0;
-
-	// look up table of bitshifts performed on rows
-	// values must be multiples of 2
-	const u32 waveLut[] =
-	{
-		6, 7, 8, 7, 6, 7, 8, 5, 6, 8, 6, 5,
-		5, 6, 8, 7, 7, 6, 5, 5, 6, 6, 7, 8,
-		8, 7, 8, 7, 8, 7, 6, 6, 5, 7, 8, 7,
-		7, 6, 7, 7, 6, 5, 6, 7, 6, 6, 5, 8,
-		5, 6, 8, 7, 7, 6, 5, 5, 6, 6, 7, 8,
-		6, 7, 8, 7, 6, 7, 8, 5, 6, 8, 6, 5,
-		7, 6, 7, 7, 6, 5, 6, 7, 6, 6, 5, 8,
-	};
+ 	#define X_RANGE				383
+	int yIndex = 0;
 
  	extern const VBVec3D* _screenPosition;
  	static VBVec3D screenPreviousPosition = {0, 0, 0};
@@ -90,7 +61,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 
 	screenPreviousPosition = *_screenPosition;
 
- 	x = FIX19_13TOI(cumulativeX);
+ 	int x = FIX19_13TOI(-cumulativeX);
 
 	while(x < 0)
 	{
@@ -102,56 +73,239 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 		x -= X_RANGE;
 	}
 
- 	Printing_int(Printing_getInstance(), (x), 20, 26, NULL);
-
 	// write to framebuffers for both screens
-	for(; buffer < 2; buffer++)
+	int counter = 0;
+
+	// loop columns that shall be shifted
+	for(; counter <= X_RANGE; counter += xStep[*xStepIndex])
 	{
-		int counter = 0;
-		// loop columns that shall be shifted
-		for(; counter <= X_RANGE; x++, counter++)
+		if(++yIndex >= numberOfYs)
 		{
-			if(x >= X_RANGE)
+			yIndex = 0;
+		}
+
+		if(x >= X_RANGE)
+		{
+			x = 0;
+		}
+
+		x += xStep[*xStepIndex];
+
+		if(++*xStepIndex >= numberOfXSteps)
+		{
+			*xStepIndex = 0;
+		}
+
+		int xDisplacement = 0;
+
+		u16 ySpeedValue = ySpeed[*ySpeedIndex] + 1;
+
+		bool pairYSpeedValue = ySpeedValue & 0x00000001;
+
+		u32 lightUpMask = 0x55555555;
+
+		int leftColumn = x;
+		int rightColumn = x;
+
+		if(*xStepIndex % ySpeedValue)
+		{
+			if(pairYSpeedValue)
 			{
-				x = 0;
+				leftColumn -= ySpeedValue + 1;
+				rightColumn += ySpeedValue + 1;
 			}
-
-			// get pointer to currently manipulated 32 bits of framebuffer
-			u32* columnSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0)) + (x << 4);
-
-			// the shifted out pixels on top should be black
-			//previousSourcePointerValue = 0;
-
-			if(x % (waveLut[waveLutIndex] * 12))
+			else
 			{
-				continue;
-			}
-
-			if(++waveLutIndex >= (int)(sizeof(waveLut) / sizeof(u32)))
-			{
-				waveLutIndex = 0;
-			}
-
-			// loop current column in steps of 16 pixels (32 bits)
-			// ignore the bottom 16 pixels of the screen (gui)
-			int i = 0;
-
-			for(; i < (int)(sizeof(y) / sizeof(int)); i++)
-			{
-				previousSourcePointerValue[i] = PostProcessingEffects_writeToFrameBuffer(y[i], waveLut[waveLutIndex] * 2, columnSourcePointer, previousSourcePointerValue[i]);
+				leftColumn += ySpeedValue;
+				rightColumn -= ySpeedValue;
+				lightUpMask = 0;
 			}
 		}
 
-		int i = 0;
-
-		for(; i < (int)(sizeof(y) / sizeof(int)); i++)
+		if(0 >= leftColumn || 0 >= rightColumn)
 		{
-			if(12 < ++y[i])
+			leftColumn = rightColumn = xStep[*xStepIndex] >> 1;
+		}
+		else if(leftColumn >= X_RANGE || rightColumn >= X_RANGE)
+		{
+			leftColumn = X_RANGE - xStep[*xStepIndex];
+			rightColumn = X_RANGE - xStep[*xStepIndex];
+		}
+
+		// get pointer to currently manipulated 32 bits of framebuffer
+		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (leftColumn << 4);
+		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (rightColumn << 4);
+
+		// loop current column in steps of 16 pixels (32 bits)
+		// ignore the bottom 16 pixels of the screen (gui)
+		u32 stepSize = (sizeof(u32) << 2);
+		u32 yStep = y[yIndex] / stepSize;
+
+		u32 subY = (y[yIndex] % stepSize) << 1;
+		u32 firstPartMask = (0xFFFFFFFF << subY);
+
+		u32 dropletMask = 0;
+
+		if(++*dropletSizeIndex >= numberOfDropletSize)
+		{
+			*dropletSizeIndex = 0;
+		}
+
+		int remainder = stepSize - (subY + dropletSize[*dropletSizeIndex]);
+		while(0 <= remainder)
+		{
+			remainder -= 2;
+			dropletMask >>= 2;
+			dropletMask |= 0xC0000000;
+		}
+
+		u32* sourcePointerLeft = columnSourcePointerLeft + yStep;
+		u32* sourcePointerRight = columnSourcePointerRight + yStep;
+		u32 sourceValue = *sourcePointerLeft;
+		u32 dropletDisplacement = 2 << 1;
+		u32 content = (lightUpMask | sourceValue | ((sourceValue >> dropletDisplacement))) & (~dropletMask & firstPartMask);
+
+		*sourcePointerLeft = ((~firstPartMask | dropletMask) & sourceValue) | content;
+		*sourcePointerRight = ((~firstPartMask | dropletMask) & sourceValue) | content;
+
+		bool doubleDropletWidth = !(xStep[*xStepIndex] % dropletSize[*dropletSizeIndex]);
+
+		if(doubleDropletWidth)
+		{
+			columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + ((leftColumn + 1) << 4);
+			columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + ((rightColumn + 1) << 4);
+
+			sourcePointerLeft = columnSourcePointerLeft + yStep;
+			sourcePointerRight = columnSourcePointerRight + yStep;
+			*sourcePointerLeft = ((~firstPartMask | dropletMask) & sourceValue) | content;
+			*sourcePointerRight = ((~firstPartMask | dropletMask) & sourceValue) | content;
+		}
+
+		remainder = stepSize - (subY + dropletSize[*dropletSizeIndex]);
+
+		if(0 > remainder)
+		{
+			dropletMask = 0;
+
+			while(0 > remainder)
 			{
-				y[i] = 0;
+				remainder += 2;
+				dropletMask <<= 2;
+				dropletMask |= 0x00000003;
+			}
+
+			sourceValue = *(sourcePointerLeft + 1);
+			content = ((sourceValue >> dropletDisplacement) | lightUpMask) & dropletMask;
+			*(sourcePointerLeft + 1) = (~dropletMask & sourceValue) | content;
+			*(sourcePointerRight + 1) = (~dropletMask & sourceValue) | content;
+
+			if(doubleDropletWidth)
+			{
+				columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + ((leftColumn + 1) << 4);
+				columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + ((rightColumn + 1) << 4);
+
+				sourcePointerLeft = columnSourcePointerLeft + yStep;
+				sourcePointerRight = columnSourcePointerRight + yStep;
+				*(sourcePointerLeft + 1) = (~dropletMask & sourceValue) | content;
+				*(sourcePointerRight + 1) = (~dropletMask & sourceValue) | content;
 			}
 		}
 	}
+
+	extern const CameraFrustum* _cameraFrustum;
+	u16 i = 0;
+
+	u32 stepSize = (sizeof(u32) << 2);
+
+	for(; i < numberOfYs; i++)
+	{
+		if(++*ySpeedIndex >= numberOfYSpeeds)
+		{
+			*ySpeedIndex = 0;
+		}
+
+		y[i] += ySpeed[*ySpeedIndex] - yThrottle;
+
+		if(_cameraFrustum->y1 - stepSize < y[i])
+		{
+			y[i] = _cameraFrustum->y0;
+		}
+	}
+}
+
+void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+{
+	static u16 ySpeedIndex = 0;
+	static u16 xStepIndex = 0;
+	static u16 dropletSizeIndex = 0;
+	u16 yThrottle = 2;
+
+ 	static u16 dropletSize[] =
+ 	{
+ 		2, 3, 5, 4, 6, 3, 2, 3, 10
+ 	};
+
+	static u16 y[] =
+	{
+		12, 30, 85, 21, 74, 59, 14, 97, 62, 92, 44, 2
+	};
+
+	const u16 ySpeed[] =
+	{
+		9, 7, 8, 7, 6, 7, 8, 5, 6, 8, 4, 5,
+		5, 6, 8, 7, 7, 6, 5, 5, 6, 4, 7, 8,
+		8, 7, 9, 6, 8, 7, 6, 6, 5, 7, 8, 7,
+		7, 6, 7, 7, 6, 5, 6, 7, 6, 6, 5, 8,
+		5, 6, 8, 4, 4, 6, 5, 5, 6, 6, 7, 8,
+		6, 7, 8, 7, 6, 7, 8, 4, 6, 8, 6, 5,
+		7, 6, 7, 5, 6, 5, 6, 7, 6, 9, 5, 8,
+	};
+
+	const u16 xStep[] =
+	{
+		11, 12, 11, 11, 12
+	};
+
+	PostProcessingEffects_rain(currentDrawingFrameBufferSet, y, sizeof(y) / sizeof(u16), ySpeed, sizeof(ySpeed) / sizeof(u16), &ySpeedIndex, yThrottle, xStep, sizeof(xStep) / sizeof(u16), &xStepIndex, dropletSize, sizeof(dropletSize) / sizeof(u16), &dropletSizeIndex);
+}
+
+
+void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+{
+	static u16 ySpeedIndex = 0;
+	static u16 xStepIndex = 0;
+	static u16 dropletSizeIndex = 0;
+	u16 yThrottle = 3;
+
+ 	static u16 dropletSize[] =
+ 	{
+		1, 2, 1, 3, 4, 1, 2
+ 	};
+
+	static u16 y[] =
+	{
+		59, 14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74,
+	};
+
+
+	const u16 ySpeed[] =
+	{
+		5, 6, 8, 7, 7, 6, 5, 5, 6, 4, 7, 8,
+		9, 7, 8, 7, 6, 7, 8, 5, 6, 8, 4, 5,
+		8, 7, 9, 6, 8, 7, 6, 6, 5, 7, 8, 7,
+		7, 6, 7, 7, 6, 5, 6, 7, 6, 6, 5, 8,
+		5, 6, 8, 4, 4, 6, 5, 5, 6, 6, 7, 8,
+		9, 7, 8, 7, 6, 7, 8, 5, 6, 8, 4, 5,
+		6, 7, 8, 7, 6, 7, 8, 4, 6, 8, 6, 5,
+		7, 6, 7, 5, 6, 5, 6, 7, 6, 9, 5, 8,
+	};
+
+	const u16 xStep[] =
+	{
+		9,
+	};
+
+	PostProcessingEffects_rain(currentDrawingFrameBufferSet, y, sizeof(y) / sizeof(u16), ySpeed, sizeof(ySpeed) / sizeof(u16), &ySpeedIndex, yThrottle, xStep, sizeof(xStep) / sizeof(u16), &xStepIndex, dropletSize, sizeof(dropletSize) / sizeof(u16), &dropletSizeIndex);
 }
 
 void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
@@ -175,9 +329,9 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  	#define LIGHT_RADIOUS_X				45
  	#define HIGH_PENUMBRA_LENGTH_X		60
  	#define LOW_PENUMBRA_LENGTH_X		70
- 	#define LIGHT_RADIOUS_Y				25
- 	#define HIGH_PENUMBRA_LENGTH_Y		40
- 	#define LOW_PENUMBRA_LENGTH_Y		50
+ 	#define LIGHT_RADIOUS_Y				30
+ 	#define HIGH_PENUMBRA_LENGTH_Y		45
+ 	#define LOW_PENUMBRA_LENGTH_Y		55
  	#define X_RANGE			383
  	#define Y_RANGE			(224-16) / ySize
 
@@ -372,19 +526,19 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	radius++;
 
 	// gradually decrease color with larger radius
-	if(radius < 96)
+	if(radius < 46)
 	{
 		color = __COLOR_BRIGHT_RED;
 	}
-	else if(radius < 140)
+	else if(radius < 90)
 	{
 		color = __COLOR_MEDIUM_RED;
 	}
-	else if(radius < 192)
+	else if(radius < 140)
 	{
 		color = __COLOR_DARK_RED;
 	}
-	else if(radius < 256)
+	else if(radius < 206)
 	{
 		// pause for a little bit before restarting
 		return;
@@ -398,7 +552,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 
 	// draw a rhombus around object with given radius and color
 	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
-	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius >> 1), color, spatialObjectPosition);
+//	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius >> 1), color, spatialObjectPosition);
 }
 
 /**

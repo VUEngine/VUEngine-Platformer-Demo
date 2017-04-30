@@ -585,6 +585,8 @@ StageTextureEntryROMDef LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 
 const PostProcessingEffect LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 {
+	PostProcessingEffects_rain1,
+	PostProcessingEffects_rain2,
 	NULL
 };
 
