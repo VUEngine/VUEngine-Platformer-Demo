@@ -70,6 +70,8 @@ static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelSta
 static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)));
+void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this);
+void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this);
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
 
@@ -272,6 +274,12 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 		Screen_startEffect(Screen_getInstance(), kScreenPulsate);
 	}
 
+	PlatformerLevelState_setCameraFrustum(this);
+}
+
+void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this __attribute__ ((unused)))
+{
+
 	extern TextureROMDef GUI_TX;
 	CameraFrustum cameraFrustum = {0, 8, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8};
 	Screen_setCameraFrustum(Screen_getInstance(), cameraFrustum);
@@ -387,10 +395,16 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	// make sure that user input is taken into account
 	Object_fireEvent(__SAFE_CAST(Object, this), kEventUserInput);
 
-	extern TextureROMDef GUI_TX;
-	CameraFrustum cameraFrustum = {0, 0, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8};
-	Screen_setCameraFrustum(Screen_getInstance(), cameraFrustum);
+	PlatformerLevelState_setPrintingLayerCoordinates(this);
+	PlatformerLevelState_setCameraFrustum(this);
 }
+
+void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this __attribute__ ((unused)))
+{
+	extern TextureROMDef GUI_TX;
+	Printing_setWorldCoordinates(Printing_getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
+}
+
 
 UserInput PlatformerLevelState_getUserInput(PlatformerLevelState this)
 {
@@ -484,10 +498,8 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 			Printing_text(Printing_getInstance(), "                                                ", 0, 5, NULL);
 			Printing_text(Printing_getInstance(), "                                                ", 0, 6, NULL);
 			Printing_text(Printing_getInstance(), "                                                ", 0, 7, NULL);
-			{
-				extern TextureROMDef GUI_TX;
-				Printing_setWorldCoordinates(Printing_getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
-			}
+
+			PlatformerLevelState_setPrintingLayerCoordinates(this);
 			break;
 
 		case kScreenFocused:
