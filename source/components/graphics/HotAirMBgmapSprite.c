@@ -180,14 +180,26 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 
 	u16 laveSpriteGY = Sprite_getWorldGY(this->lavaSprite);
 
-	WorldAttributes* referenceSpriteWorldPointer = &_worldAttributesBaseAddress[Sprite_getWorldLayer(this->referenceSprite)];
+	u8 referenceSpriteWorldLayer = Sprite_getWorldLayer(this->referenceSprite);
+
+	WorldAttributes* referenceSpriteWorldPointer = &_worldAttributesBaseAddress[referenceSpriteWorldLayer];
 
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
 	worldPointer->gy = laveSpriteGY - EFFECT_HEIGHT > referenceSpriteWorldPointer->gy ? laveSpriteGY - EFFECT_HEIGHT : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp;
 
-	if(laveSpriteGY < worldPointer->gy || _cameraFrustum->y1 <= laveSpriteGY - EFFECT_HEIGHT || referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy || __WORLD_OFF == referenceSpriteWorldPointer->head)
+	if(!referenceSpriteWorldLayer
+    	||
+    	!Texture_isWritten(Sprite_getTexture(this->referenceSprite))
+    	||
+		laveSpriteGY < worldPointer->gy
+		||
+		_cameraFrustum->y1 <= laveSpriteGY - EFFECT_HEIGHT
+		||
+		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy
+		||
+		__WORLD_OFF == referenceSpriteWorldPointer->head)
 	{
 		worldPointer->head = __WORLD_OFF;
 #ifdef __PROFILE_GAME
