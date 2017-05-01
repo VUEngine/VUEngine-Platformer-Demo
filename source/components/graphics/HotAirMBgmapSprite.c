@@ -38,7 +38,7 @@
 //											 CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EFFECT_HEIGHT 			60
+#define EFFECT_HEIGHT 			50
 
 #define EFFECT_HEIGHT_EXCESS	0
 

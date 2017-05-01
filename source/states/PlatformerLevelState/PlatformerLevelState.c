@@ -266,8 +266,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// register event listeners
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
 
-	// TODO: attach enduring effects to stages instead of doing it the hacky way as below
-
 	// activate pulsating effect in indoor stages
 	if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightnessRepeat != NULL)
 	{
@@ -279,7 +277,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this __attribute__ ((unused)))
 {
-
 	extern TextureROMDef GUI_TX;
 	CameraFrustum cameraFrustum = {0, 8, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8};
 	Screen_setCameraFrustum(Screen_getInstance(), cameraFrustum);
