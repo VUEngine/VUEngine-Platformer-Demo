@@ -78,7 +78,7 @@ PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 	//{&TORCH_LIGHT_AG, {FTOFIX19_13(56), FTOFIX19_13(148), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Lower Left Torch Light
 	{&HERO_AC, {FTOFIX19_13(56), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&TORCH_OFF_IM, {FTOFIX19_13(56), FTOFIX19_13(146), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Lower Left Torch
-	{&TORCH_SMOKE_PS, {FTOFIX19_13(56), FTOFIX19_13(146), 	FTOFIX19_13(LAYER_0 - 0.01f)},	0, NULL, NULL, NULL, false},
+	{&TORCH_SMOKE_PS, {FTOFIX19_13(56), FTOFIX19_13(136), 	FTOFIX19_13(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
 	{&COLLISION_CL, {FTOFIX19_13(112), FTOFIX19_13(96), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_64_8, false}, // Center Collision
 	{&COLLISION_CL, {FTOFIX19_13(136), FTOFIX19_13(184), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_272_16_8, false}, // Bottom Collision
 	{&COLLISION_CL, {FTOFIX19_13(144), FTOFIX19_13(32), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_32_64_8, false}, // Top Left Collision
@@ -98,7 +98,7 @@ PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {FTOFIX19_13(272), FTOFIX19_13(8), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_16_8, false}, // Top Collision
 	//{&TORCH_LIGHT_AG, {FTOFIX19_13(320), FTOFIX19_13(36), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Upper Right Torch Light
 	{&TORCH_OFF_IM, {FTOFIX19_13(320), FTOFIX19_13(34), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Upper Right Torch
-	{&TORCH_SMOKE_PS, {FTOFIX19_13(320), FTOFIX19_13(34), 	FTOFIX19_13(LAYER_0 - 0.01f)},	0, NULL, NULL, NULL, false},
+	{&TORCH_SMOKE_PS, {FTOFIX19_13(320), FTOFIX19_13(24), FTOFIX19_13(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
 	{&COLLISION_CL, {FTOFIX19_13(328), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_112_128_8, false}, // Bottom Right Collision
 	{&DOOR_AG, {FTOFIX19_13(350), FTOFIX19_13(48), FTOFIX19_13(LAYER_0_DOORS)}, 0, "IntExit", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false}, // Door (Exit)
 	{&COLLISION_CL, {FTOFIX19_13(376), FTOFIX19_13(40), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Top Right Collision
