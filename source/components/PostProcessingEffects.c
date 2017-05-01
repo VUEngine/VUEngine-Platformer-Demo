@@ -219,7 +219,7 @@ void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ 
  	#define X_RANGE_1			383
  	#define LIGHT_MASK_1		0x55555555
 	static u16 ySpeedIndex = 0;
-	u16 xStep = 20;
+	u16 xStep = 23;
 	static u16 dropletSizeIndex = 0;
 	u16 yThrottle = 2;
 
@@ -267,7 +267,7 @@ void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet __attribute__ 
  	#define X_RANGE_2			383
  	#define LIGHT_MASK_2		0
 	static u16 ySpeedIndex = 0;
-	u16 xStep = 15;
+	u16 xStep = 13;
 	static u16 dropletSizeIndex = 0;
 	u16 yThrottle = 1;
 
