@@ -411,12 +411,191 @@ void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet __attribut
 	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, position.x - (WATER_FALL_X_RANGE >> 1), position.x - (WATER_FALL_X_RANGE >> 1), position.x + (WATER_FALL_X_RANGE >> 1), y, position.y + (WATER_FALL_Y_RANGE >> 1), position.y - (WATER_FALL_Y_RANGE >> 1), sizeof(y) / sizeof(s16), ySpeed, sizeof(ySpeed) / sizeof(u16), &ySpeedIndex, yThrottle, xStep, dropletSize, sizeof(dropletSize) / sizeof(u16), &dropletSizeIndex, WATER_FALL_LIGHT_MASK, dropletParallax, sizeof(dropletParallax) / sizeof(s16));
 }
 
+void PostProcessingEffects_applyMask(u32 currentDrawingFrameBufferSet, int xStart, int xEnd, int yStart, int yEnd, u32 mask)
+{
+	if(xEnd < xStart || yEnd < yStart)
+	{
+		return;
+	}
+
+	if(xStart < _cameraFrustum->x0)
+	{
+		xStart = _cameraFrustum->x0;
+	}
+
+	if(xEnd > _cameraFrustum->x1)
+	{
+		xEnd = _cameraFrustum->x1;
+	}
+
+	if(yStart < _cameraFrustum->y0)
+	{
+		yStart = _cameraFrustum->y0;
+	}
+
+	if(yEnd > _cameraFrustum->y1)
+	{
+		yEnd = _cameraFrustum->y1;
+	}
+
+	for(; xStart <= xEnd; xStart++)
+	{
+		// get pointer to currently manipulated 32 bits of framebuffer
+		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (xStart << 4);
+		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (xStart << 4);
+
+		int y = yStart;
+
+		for(; y < yEnd; y++)
+		{
+			u32* sourcePointerLeft = columnSourcePointerLeft + y;
+			u32* sourcePointerRight = columnSourcePointerRight + y;
+			*sourcePointerLeft &= mask;
+			*sourcePointerRight &= mask;
+		}
+	}
+}
+
+void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VBVec3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask)
+{
+	int pixelsPerU32Pointer = sizeof(u32) << 2;
+ 	int xPosition = FIX19_13TOI(position.x);
+ 	int yPosition = FIX19_13TOI(position.y);
+	// move y position to the closest 16 multiple
+	int tempYPosition = yPosition + (pixelsPerU32Pointer >> 1);
+	yPosition = tempYPosition - tempYPosition % pixelsPerU32Pointer;
+
+	int ellipsisArcIndex = 0 > xPosition - ellipsisHorizontalAxisSize ? (ellipsisHorizontalAxisSize - xPosition) : 0;
+	int ellipsisArcIndexDelta = 1;
+	int x = 0;
+
+	for(x = _cameraFrustum->x0; x < _cameraFrustum->x1; x++)
+	{
+		// get pointer to currently manipulated 32 bits of framebuffer
+		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
+		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
+
+		int yStart = _cameraFrustum->y0 / pixelsPerU32Pointer;
+		int yEnd = _cameraFrustum->y1 / pixelsPerU32Pointer;
+		int y = yStart;
+
+		int ellipsisY = ellipsisArc[ellipsisArcIndex];
+		int maskDisplacement = ellipsisY % pixelsPerU32Pointer * 2;
+		u32 upperMask = ~(0xFFFFFFFF >> maskDisplacement);
+		u32 lowerMask = ~(0xFFFFFFFF << maskDisplacement);
+
+		Printing_setWorldCoordinates(Printing_getInstance(), 0, 0);
+
+		int yLowerLimit =  (yPosition + ellipsisY) / pixelsPerU32Pointer;
+		int yUpperLimit = yPosition / pixelsPerU32Pointer - (yLowerLimit - yPosition / pixelsPerU32Pointer);
+
+		if(yUpperLimit > yEnd)
+		{
+			yUpperLimit = yEnd;
+		}
+
+		if(yLowerLimit < yStart)
+		{
+			yLowerLimit = yStart;
+		}
+
+		u32* sourcePointerLeft = columnSourcePointerLeft + y;
+		u32* sourcePointerRight = columnSourcePointerRight + y;
+
+		if(x < xPosition - ellipsisHorizontalAxisSize || x >= xPosition + ellipsisHorizontalAxisSize)
+		{
+			for(; y < yEnd; y++)
+			{
+				sourcePointerLeft = columnSourcePointerLeft + y ;
+				sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
+			}
+		}
+		else
+		{
+			for(; y < yUpperLimit; y++)
+			{
+				sourcePointerLeft = columnSourcePointerLeft + y;
+				sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
+			}
+
+			if(y == yUpperLimit && y < yEnd)
+			{
+				sourcePointerLeft = columnSourcePointerLeft + y;
+				sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= penumbraMask & upperMask;
+				*sourcePointerRight &= penumbraMask & upperMask;
+			}
+
+			y = yUpperLimit + 1;
+
+			if(y >= yStart && y < yEnd)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= penumbraMask | upperMask;
+				*sourcePointerRight &= penumbraMask | upperMask;
+			}
+
+			y = yLowerLimit - 1;
+
+			if(y >= yStart && y < yEnd)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= penumbraMask | lowerMask;
+				*sourcePointerRight &= penumbraMask | lowerMask;
+			}
+
+			y = yLowerLimit;
+
+			if(y >= yStart && y < yEnd)
+			{
+				sourcePointerLeft = columnSourcePointerLeft + y;
+				sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft &= penumbraMask & lowerMask;
+				*sourcePointerRight &= penumbraMask & lowerMask;
+			}
+
+			for(; ++y < yEnd;)
+			{
+				u32* sourcePointerLeft = columnSourcePointerLeft + y;
+				u32* sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
+			}
+
+			ellipsisArcIndex += ellipsisArcIndexDelta;
+
+			if(ellipsisArcIndex >= ellipsisHorizontalAxisSize)
+			{
+				ellipsisArcIndexDelta = -1;
+				ellipsisArcIndex = ellipsisHorizontalAxisSize - 1;
+			}
+			else if(0 > ellipsisArcIndex)
+			{
+				ellipsisArcIndexDelta = 1;
+				ellipsisArcIndex = 0;
+			}
+		}
+	}
+}
+
 void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
+ 	static bool ellipsisArcCalculated = false;
+
 	Hero hero = Hero_getInstance();
 
  	if(!hero)
  	{
+ 		if(ellipsisArcCalculated)
+ 		{
+ 			PostProcessingEffects_applyMask(currentDrawingFrameBufferSet, _cameraFrustum->x0, _cameraFrustum->x1, _cameraFrustum->y0, _cameraFrustum->y1, 0);
+ 		}
  		return;
  	}
 
@@ -424,182 +603,27 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
 
  	extern const VBVec3D* _screenPosition;
  	__OPTICS_NORMALIZE(heroPosition);
- 	int heroXPosition = FIX19_13TOI(heroPosition.x);
- 	int heroYPosition = FIX19_13TOI(heroPosition.y);
 
-	int ySize = sizeof(u32) << 2;
+ 	#define ELLIPSIS_X_AXIS_LENGTH		65
+ 	#define ELLIPSIS_Y_AXIS_LENGTH		58
+	#define PENUMBRA_MASK				0x55555555
 
- 	#define LIGHT_RADIOUS_X				45
- 	#define HIGH_PENUMBRA_LENGTH_X		60
- 	#define LOW_PENUMBRA_LENGTH_X		70
- 	#define LIGHT_RADIOUS_Y				30
- 	#define HIGH_PENUMBRA_LENGTH_Y		45
- 	#define LOW_PENUMBRA_LENGTH_Y		55
- 	#define X_RANGE			383
- 	#define Y_RANGE			(224-16) / ySize
+ 	static s16 ellipsisArc[ELLIPSIS_X_AXIS_LENGTH];
 
-	int x = 0, y = 0;
-
-	u32 highPenumbraMask = 0x55555555;
-	u32 lowPenumbraMask = 0x55555555;
-
-
-	// write to framebuffers for both screens
-	int xLeftLimit = heroXPosition - LOW_PENUMBRA_LENGTH_X;
-	int xRightLimit = heroXPosition + LOW_PENUMBRA_LENGTH_X;
-	xLeftLimit = 0 < xLeftLimit? xLeftLimit : 0;
-	xRightLimit = X_RANGE > xRightLimit? xRightLimit : X_RANGE - 1;
-
-	int yUpperLimit = heroYPosition + LOW_PENUMBRA_LENGTH_Y;
-	int yLowerLimit = heroYPosition + LOW_PENUMBRA_LENGTH_Y;
-
-	for(x = 0; x <= X_RANGE; x++)
+ 	if(!ellipsisArcCalculated)
 	{
-		// get pointer to currently manipulated 32 bits of framebuffer
-		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
-		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
+		ellipsisArcCalculated = true;
 
-		if(x < heroXPosition - LOW_PENUMBRA_LENGTH_X || x > heroXPosition + LOW_PENUMBRA_LENGTH_X)
+		u16 i = 0;
+		float x = 0;
+
+		for(i = sizeof(ellipsisArc) / sizeof(s16); --i; x++)
 		{
-			for(y = 0; y < Y_RANGE; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft = 0;
-				*sourcePointerRight = 0;
-			}
-		}
-		else if(x < heroXPosition - HIGH_PENUMBRA_LENGTH_X || x > heroXPosition + HIGH_PENUMBRA_LENGTH_X)
-		{
-			yUpperLimit = (heroYPosition - LOW_PENUMBRA_LENGTH_Y) / ySize;
-			yLowerLimit = (heroYPosition + LOW_PENUMBRA_LENGTH_Y) / ySize ;
-
-			yUpperLimit = 0 < yUpperLimit? yUpperLimit: 0;
-			yLowerLimit = Y_RANGE > yLowerLimit? yLowerLimit : Y_RANGE;
-
-			for(y = 0; y < yUpperLimit + 2; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft = 0;
-				*sourcePointerRight = 0;
-			}
-
-			for(; y < yLowerLimit; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= lowPenumbraMask;
-				*sourcePointerRight &= lowPenumbraMask;
-			}
-
-			for(y -=2; y < Y_RANGE; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft = 0;
-				*sourcePointerRight = 0;
-			}
-		}
-		else if(x < heroXPosition - LIGHT_RADIOUS_X || x > heroXPosition + LIGHT_RADIOUS_X)
-		{
-			yUpperLimit = (heroYPosition - HIGH_PENUMBRA_LENGTH_Y) / ySize;
-			yLowerLimit = (heroYPosition + HIGH_PENUMBRA_LENGTH_Y) / ySize ;
-
-			yUpperLimit = 0 < yUpperLimit? yUpperLimit : 0;
-			yLowerLimit = Y_RANGE > yLowerLimit? yLowerLimit: Y_RANGE;
-
-			for(y = 0; y < yUpperLimit; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft = 0;
-				*sourcePointerRight = 0;
-			}
-
-			for(; y < yLowerLimit; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= highPenumbraMask;
-				*sourcePointerRight &= highPenumbraMask;
-			}
-
-			for(; y < Y_RANGE; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft = 0;
-				*sourcePointerRight = 0;
-			}
-		}
-		else
-		{
-			yUpperLimit = (heroYPosition - LOW_PENUMBRA_LENGTH_Y) / ySize;
-			yUpperLimit = 0 < yUpperLimit? yUpperLimit: 0;
-
-			for(y = 0; y < yUpperLimit; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft = 0;
-				*sourcePointerRight = 0;
-			}
-
-			yUpperLimit = (heroYPosition - HIGH_PENUMBRA_LENGTH_Y) / ySize;
-			yUpperLimit = 0 < yUpperLimit? yUpperLimit: 0;
-
-			for(; y < yUpperLimit; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= lowPenumbraMask;
-				*sourcePointerRight &= lowPenumbraMask;
-			}
-
-			yUpperLimit = (heroYPosition - LIGHT_RADIOUS_X) / ySize;
-			yUpperLimit = 0 < yUpperLimit? yUpperLimit: 0;
-
-			for(; y < yUpperLimit; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= highPenumbraMask;
-				*sourcePointerRight &= highPenumbraMask;
-			}
-
-			yLowerLimit = (heroYPosition + HIGH_PENUMBRA_LENGTH_Y) / ySize;
-			yLowerLimit = Y_RANGE > yLowerLimit? yLowerLimit : Y_RANGE;
-
-			for(y = (heroYPosition + LIGHT_RADIOUS_Y) / ySize ; y < yLowerLimit; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= highPenumbraMask;
-				*sourcePointerRight &= highPenumbraMask;
-			}
-
-			yLowerLimit = (heroYPosition + LOW_PENUMBRA_LENGTH_Y) / ySize;
-			yLowerLimit = Y_RANGE > yLowerLimit? yLowerLimit : Y_RANGE;
-
-			for(; y < yLowerLimit; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= lowPenumbraMask;
-				*sourcePointerRight &= lowPenumbraMask;
-			}
-
-			for(; y < Y_RANGE; y++)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft = 0;
-				*sourcePointerRight = 0;
-			}
-
+			ellipsisArc[i] = ELLIPSIS_Y_AXIS_LENGTH * Math_squareRoot(((ELLIPSIS_X_AXIS_LENGTH * ELLIPSIS_X_AXIS_LENGTH) - (x * x)) / (ELLIPSIS_X_AXIS_LENGTH * ELLIPSIS_X_AXIS_LENGTH));
 		}
 	}
+
+	PostProcessingEffects_ellipticalWindow(currentDrawingFrameBufferSet, heroPosition, ellipsisArc, ELLIPSIS_X_AXIS_LENGTH, PENUMBRA_MASK);
 }
 
 /**
