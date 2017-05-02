@@ -269,7 +269,7 @@ void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ 
  	#define RAIN_X_RANGE_1					383
  	#define RAIN_LIGHT_MASK_1				0x55555555
  	#define RAIN_MINIMUM_Y_THROTTLE_1		ITOFIX19_13(-2)
- 	#define RAIN_MAXIMUM_Y_THROTTLE_1		ITOFIX19_13(3)
+ 	#define RAIN_MAXIMUM_Y_THROTTLE_1		ITOFIX19_13(4)
  	#define RAIN_MINIMUM_X_STEP_1			ITOFIX19_13(20)
  	#define RAIN_MAXIMUM_X_STEP_1			ITOFIX19_13(90)
 	static u16 ySpeedIndex = 0;
@@ -331,7 +331,7 @@ void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet __attribute__ 
  	#define RAIN_X_RANGE_2					383
  	#define RAIN_LIGHT_MASK_2				0
  	#define RAIN_MINIMUM_Y_THROTTLE_2		ITOFIX19_13(-2)
- 	#define RAIN_MAXIMUM_Y_THROTTLE_2		ITOFIX19_13(2)
+ 	#define RAIN_MAXIMUM_Y_THROTTLE_2		ITOFIX19_13(3)
  	#define RAIN_MINIMUM_X_STEP_2			ITOFIX19_13(10)
  	#define RAIN_MAXIMUM_X_STEP_2			ITOFIX19_13(80)
 	static u16 ySpeedIndex = 0;
@@ -545,7 +545,6 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 	int ellipsisArcIndex = 0 > xPosition - ellipsisHorizontalAxisSize ? (ellipsisHorizontalAxisSize - xPosition) : 0;
 	int ellipsisArcIndexDelta = 1;
 	int x = 0;
-	u32 mask = penumbraMask? penumbraMask : 0xFFFFFFFF;
 
 	for(x = _cameraFrustum->x0; x < _cameraFrustum->x1; x++)
 	{
@@ -559,8 +558,8 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 
 		int ellipsisY = ellipsisArc[ellipsisArcIndex];
 		int maskDisplacement = ellipsisY % pixelsPerU32Pointer * 2;
-		u32 upperMask = mask & ~(0xFFFFFFFF >> maskDisplacement);
-		u32 lowerMask = mask & ~(0xFFFFFFFF << maskDisplacement);
+		u32 upperMask = ~(0xFFFFFFFF >> maskDisplacement);
+		u32 lowerMask = ~(0xFFFFFFFF << maskDisplacement);
 
 		int yLowerLimit =  (yPosition + ellipsisY) / pixelsPerU32Pointer;
 		int yUpperLimit = yPosition / pixelsPerU32Pointer - (yLowerLimit - yPosition / pixelsPerU32Pointer);
@@ -592,8 +591,8 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 			{
 				sourcePointerLeft = columnSourcePointerLeft + y;
 				sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= upperMask;
-				*sourcePointerRight &= upperMask;
+				*sourcePointerLeft &= upperMask & penumbraMask;
+				*sourcePointerRight &= upperMask & penumbraMask;
 			}
 
 			if(penumbraMask)
@@ -625,8 +624,8 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 			{
 				sourcePointerLeft = columnSourcePointerLeft + y;
 				sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= lowerMask;
-				*sourcePointerRight &= lowerMask;
+				*sourcePointerLeft &= lowerMask & penumbraMask;
+				*sourcePointerRight &= lowerMask & penumbraMask;
 			}
 
 			for(; ++y < yEnd;)
