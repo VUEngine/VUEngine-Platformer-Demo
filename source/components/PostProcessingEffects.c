@@ -52,7 +52,12 @@ void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xStart, int xReset, int xRange, s16 y[], int yRange, s16 yDisplacement, u16 numberOfYs, const u16 ySpeed[], u16 numberOfYSpeeds, u16* ySpeedIndex, u16 yThrottle, u16 xStep, const u16 dropletSize[], u16 numberOfDropletSize, u16* dropletSizeIndex, u32 lightUpMask, s16 dropletParallax[], u16 numberOfDropletParallax)
+void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xStart, int xReset,
+								int xRange, s16 y[], int yRange, s16 yDisplacement, u16 numberOfYs,
+								const u16 ySpeed[], u16 numberOfYSpeeds, u16* ySpeedIndex,
+								s16 yThrottle, u16 xStep, const u16 dropletSize[],
+								u16 numberOfDropletSize, u16* dropletSizeIndex, u32 lightUpMask __attribute__ ((unused)),
+								const s16 dropletParallax[], u16 numberOfDropletParallax)
 {
 	int yIndex = 0;
 
@@ -110,42 +115,48 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (leftColumn << 4);
 		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (rightColumn << 4);
 
-		// loop current column in steps of 16 pixels (32 bits)
-		// ignore the bottom 16 pixels of the screen (gui)
-		u32 stepSize = (sizeof(u32) << 2);
-		u32 yStep = (y[yIndex] + yDisplacement) / stepSize;
-
 		if(_cameraFrustum->y0 > y[yIndex] + yDisplacement)
 		{
 			continue;
 		}
 
-		u32 subY = ((y[yIndex] + yDisplacement) % stepSize) << 1;
-		u32 firstPartMask = (0xFFFFFFFF << subY);
-
-		u32 dropletMask = 0;
+		// loop current column in steps of 16 pixels (32 bits)
+		// ignore the bottom 16 pixels of the screen (gui)
+		u32 stepSize = (sizeof(u32) << 2);
+		u32 yStep = (y[yIndex] + yDisplacement) / stepSize;
+		u32 subY = ((y[yIndex] + yDisplacement) % stepSize);
+		u32 dropletMask = 0xFFFFFFFF << (subY << 1);
 
 		if(++*dropletSizeIndex >= numberOfDropletSize)
 		{
 			*dropletSizeIndex = 0;
 		}
 
-		int remainder = stepSize - (subY + dropletSize[*dropletSizeIndex]);
-		while(0 <= remainder)
+		int effectiveDropletSize = (signed)dropletSize[*dropletSizeIndex] + yThrottle;
+
+		if(0 > effectiveDropletSize)
 		{
-			remainder -= 2;
-			dropletMask >>= 2;
-			dropletMask |= 0xC0000000;
+			continue;
+		}
+
+		if(effectiveDropletSize >= (signed)stepSize)
+		{
+			effectiveDropletSize = stepSize - 1;
+		}
+
+		int dropletSizeDifference = (stepSize - (subY + effectiveDropletSize)) << 1;
+
+		if(0 < dropletSizeDifference)
+		{
+			dropletMask &= (0xFFFFFFFF >> dropletSizeDifference);
 		}
 
 		u32* sourcePointerLeft = columnSourcePointerLeft + yStep;
 		u32* sourcePointerRight = columnSourcePointerRight + yStep;
 		u32 sourceValue = *sourcePointerLeft;
-		u32 dropletDisplacement = 2 << 1;
-		u32 content = (lightUpMask | sourceValue | ((sourceValue >> dropletDisplacement))) & (~dropletMask & firstPartMask);
-
-		*sourcePointerLeft = ((~firstPartMask | dropletMask) & sourceValue) | content;
-		*sourcePointerRight = ((~firstPartMask | dropletMask) & sourceValue) | content;
+		u32 content = (dropletMask & ~sourceValue) | (sourceValue & ~dropletMask);
+		*sourcePointerLeft = content;
+		*sourcePointerRight = content;
 
 		bool doubleDropletWidth = !(ySpeedValue % (*dropletSizeIndex + 1));
 
@@ -153,40 +164,28 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 		{
 			columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + ((leftColumn + 1) << 4);
 			columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + ((rightColumn + 1) << 4);
-
 			sourcePointerLeft = columnSourcePointerLeft + yStep;
 			sourcePointerRight = columnSourcePointerRight + yStep;
-			*sourcePointerLeft = ((~firstPartMask | dropletMask) & sourceValue) | content;
-			*sourcePointerRight = ((~firstPartMask | dropletMask) & sourceValue) | content;
+			*sourcePointerLeft = content;
+			*sourcePointerRight = content;
 		}
 
-		remainder = stepSize - (subY + dropletSize[*dropletSizeIndex]);
-
-		if(0 > remainder)
+		if(0 > dropletSizeDifference)
 		{
-			dropletMask = 0;
-
-			while(0 > remainder)
-			{
-				remainder += 2;
-				dropletMask <<= 2;
-				dropletMask |= 0x00000003;
-			}
-
+			dropletMask = (0xFFFFFFFF << -dropletSizeDifference);
 			sourceValue = *(sourcePointerLeft + 1);
-			content = ((sourceValue >> dropletDisplacement) | lightUpMask) & dropletMask;
-			*(sourcePointerLeft + 1) = (~dropletMask & sourceValue) | content;
-			*(sourcePointerRight + 1) = (~dropletMask & sourceValue) | content;
+			content = (~dropletMask & ~sourceValue) | (sourceValue & dropletMask);
+			*(sourcePointerLeft + 1) = content;
+			*(sourcePointerRight + 1) = content;
 
 			if(doubleDropletWidth)
 			{
 				columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + ((leftColumn + 1) << 4);
 				columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + ((rightColumn + 1) << 4);
-
 				sourcePointerLeft = columnSourcePointerLeft + yStep;
 				sourcePointerRight = columnSourcePointerRight + yStep;
-				*(sourcePointerLeft + 1) = (~dropletMask & sourceValue) | content;
-				*(sourcePointerRight + 1) = (~dropletMask & sourceValue) | content;
+				*(sourcePointerLeft + 1) = content;
+				*(sourcePointerRight + 1) = content;
 			}
 		}
 	}
@@ -214,14 +213,71 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 	}
 }
 
+void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yThrottle, fix19_13* xStep, fix19_13 maximumYThrottle, fix19_13 minimumYThrottle, fix19_13 maximumXStep, fix19_13 minimumXStep)
+{
+	static u32 previousTime = 0;
+	static u8 timePeriodIndex = 0;
+	static u8 rainAccelerationIndex = 0;
+
+	const u8 timePeriod[] =
+	{
+		30, 25, 40, 35, 50, 50, 40, 45,
+		30, 30, 35, 40, 50, 60, 20, 45,
+	};
+
+	const s8 rainAcceleration[] =
+	{
+		1, 0, -1, 0,
+	};
+
+	u32 currentTime = Clock_getTime(PlatformerLevelState_getClock(PlatformerLevelState_getInstance()));
+
+	if((currentTime - previousTime) / 1000 > timePeriod[timePeriodIndex])
+	{
+		previousTime = currentTime;
+
+		if(++timePeriodIndex >= sizeof(timePeriod) / sizeof(u8))
+		{
+			timePeriodIndex = 0;
+		}
+
+		if(++rainAccelerationIndex >= sizeof(rainAcceleration) / sizeof(s8))
+		{
+			rainAccelerationIndex = 0;
+		}
+	}
+
+	// multiply by the game cycle per second
+	int rainPeriod =  ITOFIX19_13(((int)timePeriod[timePeriodIndex] + previousTime % timePeriod[timePeriodIndex]) * 50);
+
+	*yThrottle += FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle), rainPeriod);
+	*xStep -= FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumXStep - minimumXStep), rainPeriod);
+
+	if(*yThrottle < minimumYThrottle)
+	{
+		*yThrottle = minimumYThrottle;
+	}
+
+	if(*xStep < minimumXStep)
+	{
+		*xStep = minimumXStep;
+	}
+}
+
 void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
- 	#define X_RANGE_1			383
- 	#define LIGHT_MASK_1		0x55555555
+ 	#define RAIN_X_RANGE_1					383
+ 	#define RAIN_LIGHT_MASK_1				0x55555555
+ 	#define RAIN_MINIMUM_Y_THROTTLE_1		ITOFIX19_13(-2)
+ 	#define RAIN_MAXIMUM_Y_THROTTLE_1		ITOFIX19_13(3)
+ 	#define RAIN_MINIMUM_X_STEP_1			ITOFIX19_13(20)
+ 	#define RAIN_MAXIMUM_X_STEP_1			ITOFIX19_13(90)
 	static u16 ySpeedIndex = 0;
-	u16 xStep = 23;
 	static u16 dropletSizeIndex = 0;
-	u16 yThrottle = 2;
+	static fix19_13 yThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
+	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_1;
+
+	PostProcessingEffects_calculateRainPrecipitation(&yThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
 
  	static VBVec3D screenPreviousPosition = {0, 0, 0};
  	static fix19_13 cumulativeX = 0;
@@ -229,15 +285,16 @@ void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ 
  	cumulativeX += _screenPosition->x - screenPreviousPosition.x;
 	screenPreviousPosition = *_screenPosition;
 
- 	static s16 dropletParallax[] =
+ 	const s16 dropletParallax[] =
  	{
  		0, 5, -2, 3, -3, 6, 9, -4, 0, 0, 8,
-		7, -3, 1, -1, 0, 5, -3, 4, -4, 6
+		7, -3, 1, -1, 0, 5, -3, 4, -4, 6, -7
+		,
  	};
 
- 	static u16 dropletSize[] =
+ 	const u16 dropletSize[] =
  	{
- 		2, 3, 5, 4, 6, 3, 2, 3, 10
+ 		3, 4, 5, 5, 4, 3, 6, 7, 7, 6, 6, 4, 5,
  	};
 
 	static s16 y[] =
@@ -259,17 +316,30 @@ void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ 
 		7, 6, 7, 5, 6, 5, 6, 7, 6, 9, 5, 8,
 	};
 
-	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, FIX19_13TOI(-cumulativeX), 0, X_RANGE_1, y, __SCREEN_HEIGHT, 0, sizeof(y) / sizeof(s16), ySpeed, sizeof(ySpeed) / sizeof(u16), &ySpeedIndex, yThrottle, xStep, dropletSize, sizeof(dropletSize) / sizeof(u16), &dropletSizeIndex, LIGHT_MASK_1, dropletParallax, sizeof(dropletParallax) / sizeof(s16));
+	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, FIX19_13TOI(-cumulativeX),
+										0, RAIN_X_RANGE_1, y, __SCREEN_HEIGHT, 0,
+										sizeof(y) / sizeof(s16), ySpeed,
+										sizeof(ySpeed) / sizeof(u16), &ySpeedIndex,
+										FIX19_13TOI(yThrottle), FIX19_13TOI(xStep),
+										dropletSize, sizeof(dropletSize) / sizeof(u16),
+										&dropletSizeIndex, RAIN_LIGHT_MASK_1, dropletParallax,
+										sizeof(dropletParallax) / sizeof(s16));
 }
 
 void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
- 	#define X_RANGE_2			383
- 	#define LIGHT_MASK_2		0
+ 	#define RAIN_X_RANGE_2					383
+ 	#define RAIN_LIGHT_MASK_2				0
+ 	#define RAIN_MINIMUM_Y_THROTTLE_2		ITOFIX19_13(-2)
+ 	#define RAIN_MAXIMUM_Y_THROTTLE_2		ITOFIX19_13(2)
+ 	#define RAIN_MINIMUM_X_STEP_2			ITOFIX19_13(10)
+ 	#define RAIN_MAXIMUM_X_STEP_2			ITOFIX19_13(80)
 	static u16 ySpeedIndex = 0;
-	u16 xStep = 13;
 	static u16 dropletSizeIndex = 0;
-	u16 yThrottle = 1;
+	static fix19_13 yThrottle = RAIN_MINIMUM_Y_THROTTLE_2;
+	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_2;
+
+	PostProcessingEffects_calculateRainPrecipitation(&yThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_2, RAIN_MINIMUM_Y_THROTTLE_2, RAIN_MAXIMUM_X_STEP_2, RAIN_MINIMUM_X_STEP_2);
 
  	static VBVec3D screenPreviousPosition = {0, 0, 0};
  	static fix19_13 cumulativeX = 0;
@@ -277,15 +347,15 @@ void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet __attribute__ 
  	cumulativeX += _screenPosition->x - screenPreviousPosition.x;
 	screenPreviousPosition = *_screenPosition;
 
- 	static s16 dropletParallax[] =
+ 	const s16 dropletParallax[] =
  	{
  		 -5, -4, -4, -6, -6, -7, -5, -1, -1, 0,
  		 -3, -5, 0, -5, -6, -6, -9, -4, 0, 0, -8,
  	};
 
- 	static u16 dropletSize[] =
+ 	const u16 dropletSize[] =
  	{
-		0, 1, 2, 1, 0, 0, 1, 2, 0, 0, 1, 0, 0
+ 		6, 5, 6, 7, 8, 8, 7, 7, 6, 5
  	};
 
 	static s16 y[] =
@@ -310,7 +380,14 @@ void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet __attribute__ 
 		7, 6, 7, 5, 6, 5, 6, 7, 6, 9, 5, 8,
 	};
 
-	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, FIX19_13TOI(-cumulativeX), 0, X_RANGE_2, y, __SCREEN_HEIGHT, 0, sizeof(y) / sizeof(s16), ySpeed, sizeof(ySpeed) / sizeof(u16), &ySpeedIndex, yThrottle, xStep, dropletSize, sizeof(dropletSize) / sizeof(u16), &dropletSizeIndex, LIGHT_MASK_1, dropletParallax, sizeof(dropletParallax) / sizeof(s16));
+	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, FIX19_13TOI(-cumulativeX),
+										0, RAIN_X_RANGE_2, y, __SCREEN_HEIGHT, 0,
+										sizeof(y) / sizeof(s16), ySpeed,
+										sizeof(ySpeed) / sizeof(u16), &ySpeedIndex,
+										FIX19_13TOI(yThrottle), FIX19_13TOI(xStep),
+										dropletSize, sizeof(dropletSize) / sizeof(u16),
+										&dropletSizeIndex, RAIN_LIGHT_MASK_2, dropletParallax,
+										sizeof(dropletParallax) / sizeof(s16));
 }
 
 void PostProcessingEffects_glitch1(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
@@ -368,13 +445,13 @@ void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet __attribut
 	position.x = FIX19_13TOI(position.x);
 	position.y = FIX19_13TOI(position.y);
 
- 	#define WATER_FALL_X_RANGE				35
- 	#define WATER_FALL_Y_RANGE				__SCREEN_HEIGHT
+ 	#define WATER_FALL_X_RANGE				20
+ 	#define WATER_FALL_Y_RANGE				90
  	#define WATER_FALL_LIGHT_MASK			0
 	static u16 ySpeedIndex = 0;
 	u16 xStep = 1;
 	static u16 dropletSizeIndex = 0;
-	u16 yThrottle = 1;
+	u16 yThrottle = -2;
 
  	static s16 dropletParallax[] =
  	{
@@ -383,7 +460,7 @@ void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet __attribut
 
  	static u16 dropletSize[] =
  	{
-		0, 1, 2, 1, 0, 0, 1, 2, 0, 0, 1, 0, 0
+		8, 9, 10, 12, 9, 9, 12,
  	};
 
 	static s16 y[] =
@@ -468,6 +545,7 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 	int ellipsisArcIndex = 0 > xPosition - ellipsisHorizontalAxisSize ? (ellipsisHorizontalAxisSize - xPosition) : 0;
 	int ellipsisArcIndexDelta = 1;
 	int x = 0;
+	u32 mask = penumbraMask? penumbraMask : 0xFFFFFFFF;
 
 	for(x = _cameraFrustum->x0; x < _cameraFrustum->x1; x++)
 	{
@@ -481,10 +559,8 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 
 		int ellipsisY = ellipsisArc[ellipsisArcIndex];
 		int maskDisplacement = ellipsisY % pixelsPerU32Pointer * 2;
-		u32 upperMask = ~(0xFFFFFFFF >> maskDisplacement);
-		u32 lowerMask = ~(0xFFFFFFFF << maskDisplacement);
-
-		Printing_setWorldCoordinates(Printing_getInstance(), 0, 0);
+		u32 upperMask = mask & ~(0xFFFFFFFF >> maskDisplacement);
+		u32 lowerMask = mask & ~(0xFFFFFFFF << maskDisplacement);
 
 		int yLowerLimit =  (yPosition + ellipsisY) / pixelsPerU32Pointer;
 		int yUpperLimit = yPosition / pixelsPerU32Pointer - (yLowerLimit - yPosition / pixelsPerU32Pointer);
@@ -502,17 +578,7 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 		u32* sourcePointerLeft = columnSourcePointerLeft + y;
 		u32* sourcePointerRight = columnSourcePointerRight + y;
 
-		if(x < xPosition - ellipsisHorizontalAxisSize || x >= xPosition + ellipsisHorizontalAxisSize)
-		{
-			for(; y < yEnd; y++)
-			{
-				sourcePointerLeft = columnSourcePointerLeft + y ;
-				sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft = 0;
-				*sourcePointerRight = 0;
-			}
-		}
-		else
+		if((unsigned)(x - (xPosition - ellipsisHorizontalAxisSize)) < (unsigned)(ellipsisHorizontalAxisSize << 1))
 		{
 			for(; y < yUpperLimit; y++)
 			{
@@ -526,28 +592,31 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 			{
 				sourcePointerLeft = columnSourcePointerLeft + y;
 				sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= penumbraMask & upperMask;
-				*sourcePointerRight &= penumbraMask & upperMask;
+				*sourcePointerLeft &= upperMask;
+				*sourcePointerRight &= upperMask;
 			}
 
-			y = yUpperLimit + 1;
-
-			if(y >= yStart && y < yEnd)
+			if(penumbraMask)
 			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= penumbraMask | upperMask;
-				*sourcePointerRight &= penumbraMask | upperMask;
-			}
+				y = yUpperLimit + 1;
 
-			y = yLowerLimit - 1;
+				if(y >= yStart && y < yEnd)
+				{
+					u32* sourcePointerLeft = columnSourcePointerLeft + y;
+					u32* sourcePointerRight = columnSourcePointerRight + y;
+					*sourcePointerLeft &= penumbraMask | upperMask;
+					*sourcePointerRight &= penumbraMask | upperMask;
+				}
 
-			if(y >= yStart && y < yEnd)
-			{
-				u32* sourcePointerLeft = columnSourcePointerLeft + y;
-				u32* sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= penumbraMask | lowerMask;
-				*sourcePointerRight &= penumbraMask | lowerMask;
+				y = yLowerLimit - 1;
+
+				if(y >= yStart && y < yEnd)
+				{
+					u32* sourcePointerLeft = columnSourcePointerLeft + y;
+					u32* sourcePointerRight = columnSourcePointerRight + y;
+					*sourcePointerLeft &= penumbraMask | lowerMask;
+					*sourcePointerRight &= penumbraMask | lowerMask;
+				}
 			}
 
 			y = yLowerLimit;
@@ -556,8 +625,8 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 			{
 				sourcePointerLeft = columnSourcePointerLeft + y;
 				sourcePointerRight = columnSourcePointerRight + y;
-				*sourcePointerLeft &= penumbraMask & lowerMask;
-				*sourcePointerRight &= penumbraMask & lowerMask;
+				*sourcePointerLeft &= lowerMask;
+				*sourcePointerRight &= lowerMask;
 			}
 
 			for(; ++y < yEnd;)
@@ -579,6 +648,16 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 			{
 				ellipsisArcIndexDelta = 1;
 				ellipsisArcIndex = 0;
+			}
+		}
+		else
+		{
+			for(; y < yEnd; y++)
+			{
+				sourcePointerLeft = columnSourcePointerLeft + y ;
+				sourcePointerRight = columnSourcePointerRight + y;
+				*sourcePointerLeft = 0;
+				*sourcePointerRight = 0;
 			}
 		}
 	}
@@ -604,8 +683,8 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  	extern const VBVec3D* _screenPosition;
  	__OPTICS_NORMALIZE(heroPosition);
 
- 	#define ELLIPSIS_X_AXIS_LENGTH		65
- 	#define ELLIPSIS_Y_AXIS_LENGTH		58
+ 	#define ELLIPSIS_X_AXIS_LENGTH		80
+ 	#define ELLIPSIS_Y_AXIS_LENGTH		70
 	#define PENUMBRA_MASK				0x55555555
 
  	static s16 ellipsisArc[ELLIPSIS_X_AXIS_LENGTH];
