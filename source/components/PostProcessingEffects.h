@@ -36,8 +36,7 @@
 
 void PostProcessingEffects_glitch1(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);

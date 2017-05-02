@@ -264,37 +264,37 @@ void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yThrottle, fix19
 	}
 }
 
-void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
  	#define RAIN_X_RANGE_1					383
  	#define RAIN_LIGHT_MASK_1				0x55555555
  	#define RAIN_MINIMUM_Y_THROTTLE_1		ITOFIX19_13(-2)
  	#define RAIN_MAXIMUM_Y_THROTTLE_1		ITOFIX19_13(4)
- 	#define RAIN_MINIMUM_X_STEP_1			ITOFIX19_13(20)
+ 	#define RAIN_MINIMUM_X_STEP_1			ITOFIX19_13(10)
  	#define RAIN_MAXIMUM_X_STEP_1			ITOFIX19_13(90)
 	static u16 ySpeedIndex = 0;
 	static u16 dropletSizeIndex = 0;
 	static fix19_13 yThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
 	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_1;
-
-	PostProcessingEffects_calculateRainPrecipitation(&yThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
-
  	static VBVec3D screenPreviousPosition = {0, 0, 0};
  	static fix19_13 cumulativeX = 0;
+ 	fix19_13 yScreenDisplacement = (_screenPosition->y - screenPreviousPosition.y);
 
  	cumulativeX += _screenPosition->x - screenPreviousPosition.x;
+	PostProcessingEffects_calculateRainPrecipitation(&yThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
 	screenPreviousPosition = *_screenPosition;
 
  	const s16 dropletParallax[] =
  	{
  		0, 5, -2, 3, -3, 6, 9, -4, 0, 0, 8,
-		7, -3, 1, -1, 0, 5, -3, 4, -4, 6, -7
+		7, -3, 2, -2, 0, 5, -3, 4, -4, 6, -7,
+		0, 6, -6, 1, 0, 0, 5, -5, -7, 8, 9, 0
 		,
  	};
 
  	const u16 dropletSize[] =
  	{
- 		3, 4, 5, 5, 4, 3, 6, 7, 7, 6, 6, 4, 5,
+ 		4, 5, 6, 6, 5, 4, 7, 8, 9, 7, 8, 6, 6,
  	};
 
 	static s16 y[] =
@@ -316,6 +316,9 @@ void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ 
 		7, 6, 7, 5, 6, 5, 6, 7, 6, 9, 5, 8,
 	};
 
+	// must account for the screen displacement
+	yThrottle -= yScreenDisplacement;
+
 	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, FIX19_13TOI(-cumulativeX),
 										0, RAIN_X_RANGE_1, y, __SCREEN_HEIGHT, 0,
 										sizeof(y) / sizeof(s16), ySpeed,
@@ -324,70 +327,7 @@ void PostProcessingEffects_rain1(u32 currentDrawingFrameBufferSet __attribute__ 
 										dropletSize, sizeof(dropletSize) / sizeof(u16),
 										&dropletSizeIndex, RAIN_LIGHT_MASK_1, dropletParallax,
 										sizeof(dropletParallax) / sizeof(s16));
-}
-
-void PostProcessingEffects_rain2(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
-{
- 	#define RAIN_X_RANGE_2					383
- 	#define RAIN_LIGHT_MASK_2				0
- 	#define RAIN_MINIMUM_Y_THROTTLE_2		ITOFIX19_13(-2)
- 	#define RAIN_MAXIMUM_Y_THROTTLE_2		ITOFIX19_13(3)
- 	#define RAIN_MINIMUM_X_STEP_2			ITOFIX19_13(10)
- 	#define RAIN_MAXIMUM_X_STEP_2			ITOFIX19_13(80)
-	static u16 ySpeedIndex = 0;
-	static u16 dropletSizeIndex = 0;
-	static fix19_13 yThrottle = RAIN_MINIMUM_Y_THROTTLE_2;
-	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_2;
-
-	PostProcessingEffects_calculateRainPrecipitation(&yThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_2, RAIN_MINIMUM_Y_THROTTLE_2, RAIN_MAXIMUM_X_STEP_2, RAIN_MINIMUM_X_STEP_2);
-
- 	static VBVec3D screenPreviousPosition = {0, 0, 0};
- 	static fix19_13 cumulativeX = 0;
-
- 	cumulativeX += _screenPosition->x - screenPreviousPosition.x;
-	screenPreviousPosition = *_screenPosition;
-
- 	const s16 dropletParallax[] =
- 	{
- 		 -5, -4, -4, -6, -6, -7, -5, -1, -1, 0,
- 		 -3, -5, 0, -5, -6, -6, -9, -4, 0, 0, -8,
- 	};
-
- 	const u16 dropletSize[] =
- 	{
- 		6, 5, 6, 7, 8, 8, 7, 7, 6, 5
- 	};
-
-	static s16 y[] =
-	{
-		59, 14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74,
-		12, 30, 85, 21, 74, 59, 14, 97, 62, 92, 44, 2,
-		59, 14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74,
-		12, 30, 85, 92, 44, 2, 74, 59, 14, 97, 62, 92,
-		12, 30, 85, 21, 21, 74, 59, 14, 97, 62, 44, 2,
-		59, 14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74,
-	};
-
-	const u16 ySpeed[] =
-	{
-		5, 6, 8, 7, 7, 6, 5, 5, 6, 4, 7, 8,
-		9, 7, 8, 7, 6, 7, 8, 5, 6, 8, 4, 5,
-		8, 7, 9, 6, 8, 7, 6, 6, 5, 7, 8, 7,
-		7, 6, 7, 7, 6, 5, 6, 7, 6, 6, 5, 8,
-		5, 6, 8, 4, 4, 6, 5, 5, 6, 6, 7, 8,
-		9, 7, 8, 7, 6, 7, 8, 5, 6, 8, 4, 5,
-		6, 7, 8, 7, 6, 7, 8, 4, 6, 8, 6, 5,
-		7, 6, 7, 5, 6, 5, 6, 7, 6, 9, 5, 8,
-	};
-
-	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, FIX19_13TOI(-cumulativeX),
-										0, RAIN_X_RANGE_2, y, __SCREEN_HEIGHT, 0,
-										sizeof(y) / sizeof(s16), ySpeed,
-										sizeof(ySpeed) / sizeof(u16), &ySpeedIndex,
-										FIX19_13TOI(yThrottle), FIX19_13TOI(xStep),
-										dropletSize, sizeof(dropletSize) / sizeof(u16),
-										&dropletSizeIndex, RAIN_LIGHT_MASK_2, dropletParallax,
-										sizeof(dropletParallax) / sizeof(s16));
+	yThrottle += yScreenDisplacement;
 }
 
 void PostProcessingEffects_glitch1(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
