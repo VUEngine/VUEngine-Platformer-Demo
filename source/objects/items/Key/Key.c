@@ -113,5 +113,5 @@ void Key_resume(Key this)
 	__CALL_BASE_METHOD(Item, resume, this);
 
 	// add post processing effect to make key emit rhombuses
-	Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	//Game_addPostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
