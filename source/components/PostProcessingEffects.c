@@ -375,8 +375,6 @@ void PostProcessingEffects_glitch1(u32 currentDrawingFrameBufferSet __attribute_
 
 void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
-	spatialObject = Hero_getInstance();
-
 	if(!__IS_OBJECT_ALIVE(spatialObject))
 	{
 		return;
@@ -655,7 +653,7 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
 		}
 	}
 
-	PostProcessingEffects_ellipticalWindow(currentDrawingFrameBufferSet, heroPosition, ellipsisArc, ELLIPSIS_X_AXIS_LENGTH, PENUMBRA_MASK, false);
+	PostProcessingEffects_ellipticalWindow(currentDrawingFrameBufferSet, heroPosition, ellipsisArc, ELLIPSIS_X_AXIS_LENGTH, PENUMBRA_MASK, true);
 }
 
 /**
