@@ -473,7 +473,7 @@ void PostProcessingEffects_applyMask(u32 currentDrawingFrameBufferSet, int xStar
 	}
 }
 
-void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VBVec3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask)
+void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VBVec3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask, bool roundBorder)
 {
 	int pixelsPerU32Pointer = sizeof(u32) << 2;
  	int xPosition = FIX19_13TOI(position.x);
@@ -498,8 +498,8 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 
 		int ellipsisY = ellipsisArc[ellipsisArcIndex];
 		int maskDisplacement = ellipsisY % pixelsPerU32Pointer * 2;
-		u32 upperMask = ~(0xFFFFFFFF >> maskDisplacement);
-		u32 lowerMask = ~(0xFFFFFFFF << maskDisplacement);
+		u32 upperMask = roundBorder ? ~(0xFFFFFFFF >> maskDisplacement) : 0xFFFFFFFF;
+		u32 lowerMask = roundBorder ? ~(0xFFFFFFFF << maskDisplacement) : 0xFFFFFFFF;
 
 		int yLowerLimit =  (yPosition + ellipsisY) / pixelsPerU32Pointer;
 		int yUpperLimit = yPosition / pixelsPerU32Pointer - (yLowerLimit - yPosition / pixelsPerU32Pointer);
@@ -618,12 +618,15 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  	}
 
  	VBVec3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
+ 	Direction heroDirection = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, hero));
+ 	//heroPosition.x += ITOFIX19_13(5 * heroDirection.x);
+ 	//heroPosition.y += ITOFIX19_13(-20);
 
  	extern const VBVec3D* _screenPosition;
  	__OPTICS_NORMALIZE(heroPosition);
 
- 	#define ELLIPSIS_X_AXIS_LENGTH		80
- 	#define ELLIPSIS_Y_AXIS_LENGTH		70
+ 	#define ELLIPSIS_X_AXIS_LENGTH		55
+ 	#define ELLIPSIS_Y_AXIS_LENGTH		60
 	#define PENUMBRA_MASK				0x55555555
 
  	static s16 ellipsisArc[ELLIPSIS_X_AXIS_LENGTH];
@@ -641,7 +644,7 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
 		}
 	}
 
-	PostProcessingEffects_ellipticalWindow(currentDrawingFrameBufferSet, heroPosition, ellipsisArc, ELLIPSIS_X_AXIS_LENGTH, PENUMBRA_MASK);
+	PostProcessingEffects_ellipticalWindow(currentDrawingFrameBufferSet, heroPosition, ellipsisArc, ELLIPSIS_X_AXIS_LENGTH, PENUMBRA_MASK, true);
 }
 
 /**
