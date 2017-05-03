@@ -27,7 +27,7 @@
 #include <StaticImage.h>
 #include <RecyclableImage.h>
 #include <MBgmapSprite.h>
-#include <HotAirMBgmapSprite.h>
+#include <HbiasMaskMBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -130,13 +130,13 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 	true
 };
 
-HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
+HbiasMaskMBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
 {
 	{
 		{
 			{
 				// sprite's type
-				__TYPE(HotAirMBgmapSprite),
+				__TYPE(HbiasMaskMBgmapSprite),
 
 				// texture definition
 				NULL,
@@ -153,7 +153,7 @@ HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
 			__WORLD_HBIAS,
 
 			// pointer to affine/hbias manipulation function
-			(ParamTableEffectMethod)HotAirMBgmapSprite_lavaHotAir,
+			(ParamTableEffectMethod)HbiasMaskMBgmapSprite_lavaHotAir,
 
 			// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 			__WORLD_ON,
@@ -172,7 +172,13 @@ HotAirMBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
 	},
 
 	// name of the owner of the reference sprite
-	"BkgImg"
+	"BkgImg",
+
+	// height of the effect
+	50,
+
+	// height addition
+	0
 };
 
 BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES[] =

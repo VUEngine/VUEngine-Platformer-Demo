@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <HotAirMBgmapSprite.h>
+#include <HbiasMaskMBgmapSprite.h>
 #include <Optics.h>
 #include <Screen.h>
 #include <BgmapTexture.h>
@@ -38,21 +38,17 @@
 //											 CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define EFFECT_HEIGHT 			50
-
-#define EFFECT_HEIGHT_EXCESS	0
-
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
 /**
- * @class	HotAirMBgmapSprite
+ * @class	HbiasMaskMBgmapSprite
  * @extends BgmapSprite
  * @brief	Sprite which holds a texture and a drawing specification.
  */
-__CLASS_DEFINITION(HotAirMBgmapSprite, MBgmapSprite);
+__CLASS_DEFINITION(HbiasMaskMBgmapSprite, MBgmapSprite);
 __CLASS_FRIEND_DEFINITION(Texture);
 __CLASS_FRIEND_DEFINITION(BgmapTexture);
 
@@ -62,9 +58,6 @@ __CLASS_FRIEND_DEFINITION(BgmapTexture);
 //---------------------------------------------------------------------------------------------------------
 
 // globals
-extern const VBVec3D* _screenPosition;
-extern Optical* _optical;
-extern const CameraFrustum* _cameraFrustum;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -72,20 +65,20 @@ extern const CameraFrustum* _cameraFrustum;
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(HotAirMBgmapSprite, const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner)
-__CLASS_NEW_END(HotAirMBgmapSprite, hotAirMBgmapSpriteDefinition, owner);
+__CLASS_NEW_DEFINITION(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner)
+__CLASS_NEW_END(HbiasMaskMBgmapSprite, hotAirMBgmapSpriteDefinition, owner);
 
 /**
  * Class constructor
  *
- * @memberof							HotAirMBgmapSprite
+ * @memberof							HbiasMaskMBgmapSprite
  * @public
  *
  * @param this							Function scope
  * @param mBgmapSpriteDefinition		Definition to use
  * @param owner							Sprite's owner
  */
-void HotAirMBgmapSprite_constructor(HotAirMBgmapSprite this, const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner)
+void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner)
 {
 	__CONSTRUCT_BASE(MBgmapSprite, &hotAirMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
 
@@ -98,14 +91,14 @@ void HotAirMBgmapSprite_constructor(HotAirMBgmapSprite this, const HotAirMBgmapS
 /**
  * Class destructor
  *
- * @memberof		HotAirMBgmapSprite
+ * @memberof		HbiasMaskMBgmapSprite
  * @public
  *
  * @param this		Function scope
  */
-void HotAirMBgmapSprite_destructor(HotAirMBgmapSprite this)
+void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this)
 {
-	ASSERT(this, "HotAirMBgmapSprite::destructor: null this");
+	ASSERT(this, "HbiasMaskMBgmapSprite::destructor: null this");
 
 	this->lavaSprite = NULL;
 	this->referenceSprite = NULL;
@@ -118,14 +111,14 @@ void HotAirMBgmapSprite_destructor(HotAirMBgmapSprite this)
 /**
  * Write WORLD data to DRAM
  *
- * @memberof		HotAirMBgmapSprite
+ * @memberof		HbiasMaskMBgmapSprite
  * @public
  *
  * @param this		Function scope
  */
-void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
+void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 {
-	ASSERT(this, "HotAirMBgmapSprite::render: null this");
+	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
 
 	// if render flag is set
 	if(!this->texture || !this->worldLayer)
@@ -186,7 +179,7 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
-	worldPointer->gy = laveSpriteGY - EFFECT_HEIGHT > referenceSpriteWorldPointer->gy ? laveSpriteGY - EFFECT_HEIGHT : referenceSpriteWorldPointer->gy;
+	worldPointer->gy = laveSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? laveSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp;
 
 	if(!referenceSpriteWorldLayer
@@ -195,7 +188,7 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
     	||
 		laveSpriteGY < worldPointer->gy
 		||
-		_cameraFrustum->y1 <= laveSpriteGY - EFFECT_HEIGHT
+		_cameraFrustum->y1 <= laveSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight
 		||
 		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy
 		||
@@ -214,7 +207,7 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 	worldPointer->mp = referenceSpriteWorldPointer->mp;
 
 	worldPointer->w = referenceSpriteWorldPointer->w;
-	worldPointer->h = laveSpriteGY - worldPointer->gy + EFFECT_HEIGHT_EXCESS;
+	worldPointer->h = laveSpriteGY - worldPointer->gy + this->hotAirMBgmapSpriteDefinition->effectHeightExcess;
 
 	if(referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy + worldPointer->h)
 	{
@@ -227,7 +220,7 @@ void HotAirMBgmapSprite_render(HotAirMBgmapSprite this)
 	BgmapSprite_processHbiasEffects(__SAFE_CAST(BgmapSprite, this));
 }
 
-s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this)
+s16 HbiasMaskMBgmapSprite_lavaHotAir(HbiasMaskMBgmapSprite this)
 {
 	s32 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, this));
 	s16 i = this->paramTableRow;

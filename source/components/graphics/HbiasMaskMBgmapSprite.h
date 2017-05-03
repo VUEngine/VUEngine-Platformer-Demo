@@ -35,44 +35,44 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define HotAirMBgmapSprite_METHODS(ClassName)															\
+#define HbiasMaskMBgmapSprite_METHODS(ClassName)															\
 		MBgmapSprite_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
-#define HotAirMBgmapSprite_SET_VTABLE(ClassName)														\
+#define HbiasMaskMBgmapSprite_SET_VTABLE(ClassName)														\
 		MBgmapSprite_SET_VTABLE(ClassName)																\
-		__VIRTUAL_SET(ClassName, HotAirMBgmapSprite, render);											\
+		__VIRTUAL_SET(ClassName, HbiasMaskMBgmapSprite, render);											\
 
-#define HotAirMBgmapSprite_ATTRIBUTES																	\
+#define HbiasMaskMBgmapSprite_ATTRIBUTES																	\
 		MBgmapSprite_ATTRIBUTES																			\
 		/**
 		 * @var Sprite 	lavaSprite
 		 * @brief		sprite to follow
-		 * @memberof 	HotAirMBgmapSprite
+		 * @memberof 	HbiasMaskMBgmapSprite
 		 */																								\
 		Sprite lavaSprite;																				\
 		/**
 		 * @var Sprite 	sprite
 		 * @brief		reference Sprite
-		 * @memberof 	HotAirMBgmapSprite
+		 * @memberof 	HbiasMaskMBgmapSprite
 		 */																								\
 		Sprite referenceSprite;																			\
 		/**
 		 * @var Sprite 	sprite
 		 * @brief		reference Sprite
-		 * @memberof 	HotAirMBgmapSprite
+		 * @memberof 	HbiasMaskMBgmapSprite
 		 */																								\
-		const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition;								\
+		const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition;								\
 		/**
 		 * @var u8		step
 		 * @brief		current lut index
-		 * @memberof 	HotAirMBgmapSprite
+		 * @memberof 	HbiasMaskMBgmapSprite
 		 */																								\
 		u8 step;																						\
 
-__CLASS(HotAirMBgmapSprite);
+__CLASS(HbiasMaskMBgmapSprite);
 
-typedef struct HotAirMBgmapSpriteDefinition
+typedef struct HbiasMaskMBgmapSpriteDefinition
 {
 	// super class definition
 	MBgmapSpriteDefinition mBgmapSpriteDefinition;
@@ -80,21 +80,27 @@ typedef struct HotAirMBgmapSpriteDefinition
 	// name of the owner of the reference sprite
 	char* referenceSpriteOwnerName;
 
-} HotAirMBgmapSpriteDefinition;
+	// height of the effect
+	u16 effectHeight;
 
-typedef const HotAirMBgmapSpriteDefinition HotAirMBgmapSpriteROMDef;
+	// height addition
+	u16 effectHeightExcess;
+
+} HbiasMaskMBgmapSpriteDefinition;
+
+typedef const HbiasMaskMBgmapSpriteDefinition HbiasMaskMBgmapSpriteROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(HotAirMBgmapSprite, const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object);
+__CLASS_NEW_DECLARE(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object);
 
-void HotAirMBgmapSprite_constructor(HotAirMBgmapSprite this, const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner);
-void HotAirMBgmapSprite_destructor(HotAirMBgmapSprite this);
-void HotAirMBgmapSprite_render(HotAirMBgmapSprite this);
-s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this);
+void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner);
+void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this);
+void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this);
+s16 HbiasMaskMBgmapSprite_lavaHotAir(HbiasMaskMBgmapSprite this);
 
 
 #endif
