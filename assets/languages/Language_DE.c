@@ -77,7 +77,7 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* Levels */
 
 	/* STR_LEVEL_1_NAME */				"Plitsch Platsch Berge",
-	/* STR_LEVEL_1_SLOGAN */			"\nBewölkt mit\nAussicht auf Regen\n",
+	/* STR_LEVEL_1_SLOGAN */			"   \"Bewölkt mit\nAussicht auf Regen\"",
 };
 
 const LangROMDef LANGUAGE_DE =
