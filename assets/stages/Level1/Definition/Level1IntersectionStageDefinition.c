@@ -339,6 +339,9 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_EXIT_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_LOWER_EP =
@@ -355,6 +358,9 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_LOWER_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP =
@@ -371,5 +377,8 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 

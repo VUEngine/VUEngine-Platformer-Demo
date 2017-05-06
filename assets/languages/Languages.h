@@ -41,6 +41,7 @@ enum LanguageStrings
 	STR_ARE_YOU_SURE,
 	STR_AUTOMATIC_PAUSE,
 	STR_BACK,
+	STR_CHECKPOINT,
 	STR_CONTINUE,
 	STR_CREDITS,
 	STR_IMPORTANT,
@@ -69,6 +70,7 @@ enum LanguageStrings
 
 	/* Levels */
 	STR_LEVEL_1_NAME,
+	STR_LEVEL_1_SLOGAN,
 };
 
 

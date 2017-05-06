@@ -46,6 +46,7 @@ const char* const LANGUAGE_FR_STRINGS[] =
 	/* STR_ARE_YOU_SURE */				"Es tu sûr?",
 	/* STR_AUTOMATIC_PAUSE */			"Pause Automatique",
 	/* STR_BACK */						"Arrière",
+	/* STR_CHECKPOINT */				"Poste de contrôle",
 	/* STR_CONTINUE */					"Continuer",
 	/* STR_CREDITS */					"Crédits",
 	/* STR_IMPORTANT */					"Important",
@@ -75,7 +76,8 @@ const char* const LANGUAGE_FR_STRINGS[] =
 
 	/* Levels */
 
-	/* STR_LEVEL_1_NAME */				"Woohoo Hills",
+	/* STR_LEVEL_1_NAME */				"Splish Splash Hills",
+	/* STR_LEVEL_1_SLOGAN */			"\"Nuageux avec un\nrisque de pluie\"",
 };
 
 const LangROMDef LANGUAGE_FR =

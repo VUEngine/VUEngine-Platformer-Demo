@@ -46,6 +46,7 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_ARE_YOU_SURE */				"Bist Du sicher?",
 	/* STR_AUTOMATIC_PAUSE */			"Automatische Pause",
 	/* STR_BACK */						"Zurück",
+	/* STR_CHECKPOINT */				"Kontrollpunkt",
 	/* STR_CONTINUE */					"Fortsetzen",
 	/* STR_CREDITS */					"Mitwirkende",
 	/* STR_IMPORTANT */					"Wichtig",
@@ -75,7 +76,8 @@ const char* const LANGUAGE_DE_STRINGS[] =
 
 	/* Levels */
 
-	/* STR_LEVEL_1_NAME */				"Woohoo-Berge",
+	/* STR_LEVEL_1_NAME */				"Plitsch Platsch Berge",
+	/* STR_LEVEL_1_SLOGAN */			"\nBewölkt mit\nAussicht auf Regen\n",
 };
 
 const LangROMDef LANGUAGE_DE =

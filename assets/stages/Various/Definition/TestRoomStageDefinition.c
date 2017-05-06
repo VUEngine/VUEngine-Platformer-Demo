@@ -345,5 +345,8 @@ StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 

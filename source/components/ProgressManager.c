@@ -62,6 +62,7 @@ static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
 static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFirer);
 static void ProgressManager_onLevelCompleted(ProgressManager this, Object eventFirer);
+static void ProgressManager_onCheckpointLoaded(ProgressManager this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -93,6 +94,7 @@ static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManag
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelStarted, kEventLevelStarted);
+	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onCheckpointLoaded, kEventCheckpointLoaded);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelCompleted, kEventLevelCompleted);
 }
 
@@ -109,21 +111,34 @@ void ProgressManager_destructor(ProgressManager this)
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelStarted, kEventLevelStarted);
+	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onCheckpointLoaded, kEventCheckpointLoaded);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelCompleted, kEventLevelCompleted);
 
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
-void ProgressManager_resetCurrentLevelProgress(ProgressManager this)
+void ProgressManager_resetHeroState(ProgressManager this)
 {
 	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
 	this->heroCurrentPowerUp = kPowerUpNone;
+}
+
+void ProgressManager_resetCurrentLevelProgress(ProgressManager this)
+{
+	ProgressManager_resetHeroState(this);
+
 	this->heroHasKey = false;
 	this->currentLevelTime = 0;
 	this->collectedItems = 0;
 	this->collectedCoins[0] = 0;
 	this->collectedCoins[1] = 0;
+
+	this->checkpointHeroHasKey = false;
+	this->checkpointCurrentLevelTime = 0;
+	this->checkpointCollectedItems = 0;
+	this->checkpointCollectedCoins[0] = 0;
+	this->checkpointCollectedCoins[1] = 0;
 
 #ifdef GOD_MODE
 	this->heroHasKey = true;
@@ -238,6 +253,28 @@ static void ProgressManager_initialize(ProgressManager this)
 			: NULL
 		);
 	}
+}
+
+void ProgressManager_setCheckPointData(ProgressManager this)
+{
+	ASSERT(this, "ProgressManager::setCheckPoint: null this");
+
+	this->checkpointHeroHasKey = this->heroHasKey;
+	this->checkpointCurrentLevelTime = this->currentLevelTime;
+	this->checkpointCollectedItems = this->collectedItems;
+	this->checkpointCollectedCoins[0] = this->collectedCoins[0];
+	this->checkpointCollectedCoins[1] = this->collectedCoins[1];
+}
+
+void ProgressManager_loadCheckPointData(ProgressManager this)
+{
+	ASSERT(this, "ProgressManager::setCheckPoint: null this");
+
+	this->heroHasKey = this->checkpointHeroHasKey;
+	this->currentLevelTime = this->checkpointCurrentLevelTime;
+	this->collectedItems = this->checkpointCollectedItems;
+	this->collectedCoins[0] = this->checkpointCollectedCoins[0];
+	this->collectedCoins[1] = this->checkpointCollectedCoins[1];
 }
 
 u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
@@ -399,7 +436,7 @@ bool ProgressManager_setItemStatus(ProgressManager this, u16 id, bool taken)
 
 void ProgressManager_loadLevelStatus(ProgressManager this, u8 levelId)
 {
-	ASSERT(this, "ProgressManager::persistLevelStatus: null this");
+	ASSERT(this, "ProgressManager::loadLevelStatus: null this");
 
 	u16 currentLevelOffset = 0;
 
@@ -531,6 +568,13 @@ static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFir
 	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
 
 	ProgressManager_loadLevelStatus(this, platformerLevelDefinition->id);
+}
+
+// handle event
+static void ProgressManager_onCheckpointLoaded(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+{
+	ProgressManager_resetHeroState(this);
+	ProgressManager_loadCheckPointData(this);
 }
 
 // handle event

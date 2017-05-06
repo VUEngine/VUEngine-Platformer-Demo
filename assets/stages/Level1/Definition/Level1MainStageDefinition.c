@@ -797,6 +797,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 		FTOFIX19_13(-20),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
@@ -813,6 +816,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP =
@@ -829,6 +835,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP =
@@ -845,6 +854,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP =
 		FTOFIX19_13(-5),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
@@ -861,6 +873,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
@@ -877,6 +892,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
 		ITOFIX19_13(-1),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
@@ -893,6 +911,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
 		FTOFIX19_13(-0.5f),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
@@ -909,4 +930,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };

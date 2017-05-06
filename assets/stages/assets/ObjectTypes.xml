@@ -13,6 +13,7 @@
  </objecttype>
  <objecttype name="EntryPoint" color="#00ff00">
   <property name="destinationName" type="string" default="NULL"/>
+  <property name="isCheckpoint" type="bool" default="false"/>
   <property name="name" type="string" default="ENTRY_POINT"/>
   <property name="offset.x" type="string" default="0"/>
   <property name="offset.y" type="string" default="0"/>

@@ -67,10 +67,12 @@ __CLASS(PlatformerLevelState);
 #define PlatformerLevelState_ATTRIBUTES																	\
 		/* inherits */																					\
 		GameState_ATTRIBUTES																			\
-		/* the current loaded level */																	\
+		/* the currently loaded level */																\
 		PlatformerLevelDefinition* currentLevel;														\
-		/* the current loaded entry point */															\
+		/* the currently loaded entry point */															\
 		StageEntryPointDefinition* currentStageEntryPoint;												\
+		/* the last reached checkpoint */																\
+		StageEntryPointDefinition* currentCheckPoint;													\
 		/* to allow moving the screen */																\
 		u8 mode;																						\
 		/* in-game clock */																				\
@@ -94,6 +96,9 @@ typedef struct StageEntryPointDefinition
 	// offset from entry point (x, y, z)
 	VBVec3D offset;
 
+	// whether this entry point acts as a checkpoint
+	bool isCheckPoint;
+
 } StageEntryPointDefinition;
 
 typedef const StageEntryPointDefinition StageEntryPointROMDef;
@@ -112,6 +117,9 @@ typedef struct PlatformerLevelDefinition
 
 	// name
 	void* name;
+
+	// slogan
+	void* slogan;
 
 } PlatformerLevelDefinition;
 
@@ -152,6 +160,7 @@ enum PlatformerLevelStateMessageTypes
 	kMovingEntityStartMoving,
 	kMovingEntityCheckDirection,
 	kHintPlayAnimation,
+	kLoadCheckPoint,
 
 	// don't remove me
 	kLastPlatformerMessage
