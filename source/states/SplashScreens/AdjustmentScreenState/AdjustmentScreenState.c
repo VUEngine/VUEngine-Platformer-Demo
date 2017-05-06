@@ -47,7 +47,7 @@ extern StageROMDef ADJUSTMENT_SCREEN_STAGE_ST;
 static void AdjustmentScreenState_destructor(AdjustmentScreenState this);
 static void AdjustmentScreenState_constructor(AdjustmentScreenState this);
 static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey);
-void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject);
+void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -102,81 +102,54 @@ static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 p
 	}
 }
 
-void AdjustmentScreenState_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition)
-{
-	DirectDraw directDraw = DirectDraw_getInstance();
-
-	DirectDraw_drawLine(
-		directDraw,
-		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, 0},
-		color
-	);
-
-	DirectDraw_drawLine(
-		directDraw,
-		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, 0},
-		color
-	);
-
-	DirectDraw_drawLine(
-		directDraw,
-		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, 0},
-		color
-	);
-
-	DirectDraw_drawLine(
-		directDraw,
-		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, 0},
-		color
-	);
-}
-
 void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
-	u32 color;
-
 	// runtime working variables
 	// negative value to achieve an initial delay
-	static int radius = -32;
+	static int radius = -64;
 
-	// increase radius by 1 in each cycle
-	radius++;
+	// increase radius in each cycle
+	radius += 2;
 
-	// gradually decrease color with larger radius
 	if(radius < 68)
 	{
 		return;
 	}
-	else if(radius < 160)
-	{
-		color = __COLOR_BRIGHT_RED;
-	}
-	else if(radius < 224)
-	{
-		color = __COLOR_MEDIUM_RED;
-	}
-	else if(radius < 280)
-	{
-		color = __COLOR_DARK_RED;
-	}
-	else if(radius < 400)
-	{
-		// pause for a little bit before restarting
-		return;
-	}
-	else
+	else if(radius > 300)
 	{
 		// reset radius when reaching a certain length
-		radius = 68;
+		radius = -64;
 		return;
 	}
 
-	// draw rhombuses around object with given radius and color
-	VBVec3D spatialObjectPosition = {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(0)};
-	AdjustmentScreenState_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
-	AdjustmentScreenState_drawRhombus(ITOFIX19_13(radius + radius - 72), color, spatialObjectPosition);
+	// draw rhombus around object with given radius
+	DirectDraw directDraw = DirectDraw_getInstance();
+
+	DirectDraw_drawLine(
+		directDraw,
+		(VBVec2D) {ITOFIX19_13(192 - radius),	ITOFIX19_13(112),			0, 0},
+		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 - radius),	0, 0},
+		__COLOR_BRIGHT_RED
+	);
+
+	DirectDraw_drawLine(
+		directDraw,
+		(VBVec2D) {ITOFIX19_13(192 + radius),	ITOFIX19_13(112),			0, 0},
+		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 - radius),	0, 0},
+		__COLOR_BRIGHT_RED
+	);
+
+	DirectDraw_drawLine(
+		directDraw,
+		(VBVec2D) {ITOFIX19_13(192 + radius),	ITOFIX19_13(112),			0, 0},
+		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 + radius),	0, 0},
+		__COLOR_BRIGHT_RED
+	);
+
+	DirectDraw_drawLine(
+		directDraw,
+		(VBVec2D) {ITOFIX19_13(192 - radius),	ITOFIX19_13(112),			0, 0},
+		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 + radius),	0, 0},
+		__COLOR_BRIGHT_RED
+	);
 }

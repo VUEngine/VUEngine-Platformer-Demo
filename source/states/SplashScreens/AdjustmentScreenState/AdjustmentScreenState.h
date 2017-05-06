@@ -48,7 +48,6 @@
 __CLASS(AdjustmentScreenState);
 
 #define AdjustmentScreenState_ATTRIBUTES																\
-		/* inherits */																					\
 		SplashScreenState_ATTRIBUTES																	\
 
 
