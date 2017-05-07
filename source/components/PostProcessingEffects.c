@@ -40,8 +40,6 @@
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-extern const VBVec3D* _screenPosition;
-extern const CameraFrustum* _cameraFrustum;
 
 
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
@@ -52,32 +50,52 @@ void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xStart, int xReset,
-								int xRange, s16 y[], int yRange, s16 yDisplacement, u16 numberOfYs,
-								const u16 ySpeed[], u16 numberOfYSpeeds, u16* ySpeedIndex,
-								s16 yThrottle, u16 xStep, const u16 dropletLength[],
-								u16 numberOfDropletSize, u16* dropletLengthIndex, int minimumDropletLength,
+void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
+								s16 xStart, s16 xEnd, s16 xDisplacement, u16 xStep,
+								s16 yStart, s16 yEnd, s16 yDisplacement,
+								const u16 yStep[], u16 numberOfYSpeeds, u16* yStepIndex, s16 yStepThrottle,
+								s16 y[], u16 numberOfYs,
+								const u16 dropletLength[], u16 numberOfDropletSize, u16* dropletLengthIndex, int minimumDropletLength,
 								const s16 dropletParallax[], u16 numberOfDropletParallax)
 {
 	int yIndex = 0;
 
-	int x = xStart;
-
-	if(x < 0)
+	if(xStart < _cameraFrustum->x0)
 	{
-		x = xRange + x % xRange;
+		xStart = _cameraFrustum->x0;
 	}
 
-	if(x > xRange)
+	if(xEnd > _cameraFrustum->x1 - 1)
 	{
-		x = x % xRange;
+		xEnd = _cameraFrustum->x1 - 1;
+	}
+
+	if(yStart < _cameraFrustum->y0)
+	{
+		yStart = _cameraFrustum->y0;
+	}
+
+	if(yEnd > _cameraFrustum->y1 - 1)
+	{
+		yEnd = _cameraFrustum->y1 - 1;
+	}
+
+	int x = xDisplacement + xStart;
+
+	if(x < _cameraFrustum->x0)
+	{
+		x = xEnd + x % xEnd;
+	}
+
+	if(x > xEnd)
+	{
+		x = x % xEnd;
 	}
 
 	// write to framebuffers for both screens
 	int counter = 1;
 
-	// loop columns that shall be shifted
-	for(; counter <= xRange; counter += xStep)
+	for(; counter <= xEnd; counter += xStep)
 	{
 		if(++yIndex >= numberOfYs)
 		{
@@ -86,10 +104,10 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 
 		x += xStep;
 
-		if(x >= xRange)
+		if(x >= xEnd)
 		{
-			x -= xRange;
-			x += xReset;
+			x -= xEnd;
+			x += xStart;
 		}
 
 		int leftColumn = x;
@@ -104,7 +122,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 		{
 			continue;
 		}
-		else if(leftColumn >= xRange || rightColumn >= xRange)
+		else if(leftColumn >= xEnd || rightColumn >= xEnd)
 		{
 			continue;
 		}
@@ -113,7 +131,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (leftColumn << 4);
 		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (rightColumn << 4);
 
-		if(_cameraFrustum->y0 > y[yIndex] + yDisplacement)
+		if(_cameraFrustum->y0 > y[yIndex] + yStart)
 		{
 			continue;
 		}
@@ -121,8 +139,8 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 		// loop current column in steps of 16 pixels (32 bits)
 		// ignore the bottom 16 pixels of the screen (gui)
 		u32 stepSize = (sizeof(u32) << 2);
-		u32 yStep = (y[yIndex] + yDisplacement) / stepSize;
-		u32 subY = ((y[yIndex] + yDisplacement) % stepSize);
+		u32 yStep = (y[yIndex] + yStart) / stepSize;
+		u32 subY = ((y[yIndex] + yStart) % stepSize);
 		u32 dropletMask = 0xFFFFFFFF << (subY << 1);
 
 		if(++*dropletLengthIndex >= numberOfDropletSize)
@@ -130,7 +148,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 			*dropletLengthIndex = 0;
 		}
 
-		int effectiveDropletLength = (signed)dropletLength[*dropletLengthIndex] + yThrottle;
+		int effectiveDropletLength = (signed)dropletLength[*dropletLengthIndex] + yStepThrottle;
 
 		if(minimumDropletLength > effectiveDropletLength)
 		{
@@ -187,24 +205,23 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet, int xSt
 
 	for(; i < numberOfYs; i++)
 	{
-		if(++*ySpeedIndex >= numberOfYSpeeds)
+		if(++*yStepIndex >= numberOfYSpeeds)
 		{
-			*ySpeedIndex = 0;
+			*yStepIndex = 0;
 		}
 
-		y[i] += ySpeed[*ySpeedIndex] + yThrottle;
+		y[i] += yStep[*yStepIndex] + yStepThrottle;
 
-		if((_cameraFrustum->y1 - stepSize < y[i] + yDisplacement)
-			||
-			(yRange - stepSize < y[i] + yDisplacement)
-		)
+		int cumulativeY = y[i] + yStart + yDisplacement;
+
+		if(yEnd - stepSize < cumulativeY)
 		{
-			y[i] = _cameraFrustum->y0;
+			y[i] = 0;
 		}
 	}
 }
 
-void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yThrottle, fix19_13* xStep, fix19_13 maximumYThrottle, fix19_13 minimumYThrottle, fix19_13 maximumXStep, fix19_13 minimumXStep)
+void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, fix19_13* xStep, fix19_13 maximumYThrottle, fix19_13 minimumYThrottle, fix19_13 maximumXStep, fix19_13 minimumXStep)
 {
 	static u32 previousTime = 0;
 	static u8 timePeriodIndex = 0;
@@ -241,12 +258,12 @@ void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yThrottle, fix19
 	// multiply by the game cycle per second
 	int rainPeriod =  ITOFIX19_13(((int)timePeriod[timePeriodIndex] + previousTime % timePeriod[timePeriodIndex]) * 50);
 
-	*yThrottle += FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle), rainPeriod);
+	*yStepThrottle += FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle), rainPeriod);
 	*xStep -= FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumXStep - minimumXStep), rainPeriod);
 
-	if(*yThrottle < minimumYThrottle)
+	if(*yStepThrottle < minimumYThrottle)
 	{
-		*yThrottle = minimumYThrottle;
+		*yStepThrottle = minimumYThrottle;
 	}
 
 	if(*xStep < minimumXStep)
@@ -263,16 +280,16 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
  	#define RAIN_MAXIMUM_Y_THROTTLE_1		ITOFIX19_13(2)
  	#define RAIN_MINIMUM_X_STEP_1			ITOFIX19_13(5)
  	#define RAIN_MAXIMUM_X_STEP_1			ITOFIX19_13(90)
-	static u16 ySpeedIndex = 0;
+	static u16 yStepIndex = 0;
 	static u16 dropletLengthIndex = 0;
-	static fix19_13 yThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
+	static fix19_13 yStepThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
 	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_1;
  	static VBVec3D screenPreviousPosition = {0, 0, 0};
  	static fix19_13 cumulativeX = 0;
  	fix19_13 yScreenDisplacement = (_screenPosition->y - screenPreviousPosition.y);
 
  	cumulativeX += _screenPosition->x - screenPreviousPosition.x;
-	PostProcessingEffects_calculateRainPrecipitation(&yThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
+	PostProcessingEffects_calculateRainPrecipitation(&yStepThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
 	screenPreviousPosition = *_screenPosition;
 
  	const s16 dropletParallax[] =
@@ -296,7 +313,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 		12, 30, 85, 21, 21, 74, 59, 14, 97, 62, 44, 2,
 	};
 
-	const u16 ySpeed[] =
+	const u16 yStep[] =
 	{
 		4, 5, 6, 6, 7, 8, 8, 6, 5, 4, 4, 5,
 		6, 7, 8, 4, 5, 5, 5, 6, 7, 5, 4, 8,
@@ -317,126 +334,78 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	};
 
 	// must account for the screen displacement
-	yThrottle -= yScreenDisplacement;
+	yStepThrottle -= yScreenDisplacement;
 
-	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, FIX19_13TOI(-cumulativeX),
-										0, RAIN_X_RANGE_1, y, __SCREEN_HEIGHT, 0,
-										sizeof(y) / sizeof(s16), ySpeed,
-										sizeof(ySpeed) / sizeof(u16), &ySpeedIndex,
-										FIX19_13TOI(yThrottle), FIX19_13TOI(xStep),
-										dropletLength, sizeof(dropletLength) / sizeof(u16),
-										&dropletLengthIndex, RAIN_MINIMUM_DROPLET_LENGTH, dropletParallax,
-										sizeof(dropletParallax) / sizeof(s16));
-	yThrottle += yScreenDisplacement;
+	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet,
+										0, __SCREEN_WIDTH -1, FIX19_13TOI(-cumulativeX), FIX19_13TOI(xStep),
+										_cameraFrustum->y0, _cameraFrustum->y1, 0,
+										yStep, sizeof(yStep) / sizeof(u16), &yStepIndex, FIX19_13TOI(yStepThrottle),
+										y, sizeof(y) / sizeof(s16),
+										dropletLength, sizeof(dropletLength) / sizeof(u16), &dropletLengthIndex, RAIN_MINIMUM_DROPLET_LENGTH,
+										dropletParallax, sizeof(dropletParallax) / sizeof(s16));
+	yStepThrottle += yScreenDisplacement;
 }
 
-void PostProcessingEffects_glitch1(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, VBVec3D position, int width, int height, int yStepThrottle)
 {
-	if(!__IS_OBJECT_ALIVE(spatialObject))
-	{
-		return;
-	}
-
-	VBVec3D position = *Container_getGlobalPosition(__SAFE_CAST(Container, spatialObject));
-	__OPTICS_NORMALIZE(position);
-	position.x = FIX19_13TOI(position.x);
-	position.y = FIX19_13TOI(position.y);
-
- 	#define GLITCH_1_X_RANGE				35
- 	#define GLITCH_1_Y_RANGE				70
- 	#define GLITCH_1_LIGHT_MASK			0
-	static u16 ySpeedIndex = 0;
-	u16 xStep = 1;
+	static u16 yStepIndex = 0;
 	static u16 dropletLengthIndex = 0;
-	u16 yThrottle = 1;
 
- 	static s16 dropletParallax[] =
+ 	const s16 dropletParallax[] =
  	{
- 		 -5, -4, -3,
+ 		-2
+		,
  	};
 
- 	static u16 dropletLength[] =
+ 	const u16 dropletLength[] =
  	{
-		0, 1, 2, 1, 0, 0, 1, 2, 0, 0, 1, 0, 0
+ 		5, 6, 9, 11, 4, 13, 11, 4, 7, 9, 5, 12, 9,
+ 		11, 10, 4, 7, 12, 12, 10, 8, 5, 4, 8, 10
  	};
 
 	static s16 y[] =
 	{
-		59, 14, 97,
-	};
-
-	const u16 ySpeed[] =
-	{
-		1,
-	};
-
-	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, position.x - (GLITCH_1_X_RANGE >> 1), position.x - (GLITCH_1_X_RANGE >> 1), position.x + (GLITCH_1_X_RANGE >> 1), y, position.y + (GLITCH_1_Y_RANGE >> 1), position.y - (GLITCH_1_Y_RANGE >> 1), sizeof(y) / sizeof(s16), ySpeed, sizeof(ySpeed) / sizeof(u16), &ySpeedIndex, yThrottle, xStep, dropletLength, sizeof(dropletLength) / sizeof(u16), &dropletLengthIndex, GLITCH_1_LIGHT_MASK, dropletParallax, sizeof(dropletParallax) / sizeof(s16));
-}
-
-void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
-{
-	if(!__IS_OBJECT_ALIVE(spatialObject))
-	{
-		return;
-	}
-
-	VBVec3D position = *Container_getGlobalPosition(__SAFE_CAST(Container, spatialObject));
-	__OPTICS_NORMALIZE(position);
-	position.x = FIX19_13TOI(position.x);
-	position.y = FIX19_13TOI(position.y);
-
- 	#define WATER_FALL_X_RANGE						20
- 	#define WATER_FALL_Y_RANGE						90
- 	#define WATER_FALL_MINIMUM_DROPLET_LENGHT		0
-	static u16 ySpeedIndex = 0;
-	u16 xStep = 1;
-	static u16 dropletLengthIndex = 0;
-	u16 yThrottle = -4;
-
- 	static s16 dropletParallax[] =
- 	{
- 		 -2, -4, -3,
- 	};
-
- 	static u16 dropletLength[] =
- 	{
-		15, 15, 14, 14, 14, 13, 12,
- 	};
-
-	static s16 y[] =
-	{
-		59, 14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74,
 		12, 30, 85, 21, 74, 59, 14, 97, 62, 92, 44, 2,
-		59, 14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74,
+		14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74, 59,
 		12, 30, 85, 92, 44, 2, 74, 59, 14, 97, 62, 92,
 		12, 30, 85, 21, 21, 74, 59, 14, 97, 62, 44, 2,
-		59, 14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74,
+		12, 30, 85, 21, 74, 59, 14, 97, 62, 92, 44, 2,
+		14, 97, 62, 92, 44, 2, 12, 30, 85, 21, 74, 59,
+		12, 30, 85, 92, 44, 2, 74, 59, 14, 97, 62, 92,
+		12, 30, 85, 21, 21, 74, 59, 14, 97, 62, 44, 2,
+
 	};
 
-	const u16 ySpeed[] =
+	const u16 yStep[] =
 	{
-		5, 6, 8, 7, 7, 6, 5, 5, 6, 4, 7, 8,
-		9, 7, 8, 7, 6, 7, 8, 5, 6, 8, 4, 5,
-		8, 7, 9, 6, 8, 7, 6, 6, 5, 7, 8, 7,
-		7, 6, 7, 7, 6, 5, 6, 7, 6, 6, 5, 8,
-		5, 6, 8, 4, 4, 6, 5, 5, 6, 6, 7, 8,
-		9, 7, 8, 7, 6, 7, 8, 5, 6, 8, 4, 5,
-		6, 7, 8, 7, 6, 7, 8, 4, 6, 8, 6, 5,
-		7, 6, 7, 5, 6, 5, 6, 7, 6, 9, 5, 8,
+		4, 5, 6, 6, 7, 8, 8, 6, 5, 4, 4, 5,
+		6, 7, 8, 4, 5, 5, 5, 6, 7, 5, 4, 8,
+		4, 4, 7, 8, 8, 5, 7, 3, 4, 7, 5, 3,
+		6, 7, 4, 5, 6, 8, 5, 5, 6, 7, 8, 6,
+		6, 7, 8, 4, 5, 6, 5, 4, 8, 5, 4, 4,
+		8, 5, 7, 3, 4, 4, 7, 8, 4, 7, 5, 3,
 	};
 
-	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet, position.x - (WATER_FALL_X_RANGE >> 1),
-	 								position.x - (WATER_FALL_X_RANGE >> 1),
-	 								position.x + (WATER_FALL_X_RANGE >> 1), y,
-	 								position.y + (WATER_FALL_Y_RANGE >> 1),
-	 								position.y - (WATER_FALL_Y_RANGE >> 1),
-	 								sizeof(y) / sizeof(s16), ySpeed,
-	 								sizeof(ySpeed) / sizeof(u16),
-	 								&ySpeedIndex, yThrottle, xStep, dropletLength,
-	 								sizeof(dropletLength) / sizeof(u16),
-	 								&dropletLengthIndex,
-	 								WATER_FALL_MINIMUM_DROPLET_LENGHT,
-	 								dropletParallax, sizeof(dropletParallax) / sizeof(s16));
+	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet,
+										FIX19_13TOI(position.x) - (width >> 1), FIX19_13TOI(position.x) + (width >> 1), 0, 1,
+										FIX19_13TOI(position.y) - (height >> 1), FIX19_13TOI(position.y) + (height >> 1), 0,
+										yStep, sizeof(yStep) / sizeof(u16), &yStepIndex, yStepThrottle,
+										y, sizeof(y) / sizeof(s16),
+										dropletLength, sizeof(dropletLength) / sizeof(u16), &dropletLengthIndex, 1,
+										dropletParallax, sizeof(dropletParallax) / sizeof(s16));
+}
+
+void PostProcessingEffects_waterFall20x100(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+{
+	if(!__IS_OBJECT_ALIVE(spatialObject))
+	{
+		return;
+	}
+
+	VBVec3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
+		__OPTICS_NORMALIZE(spatialObjectPosition);
+
+	PostProcessingEffects_waterFall(currentDrawingFrameBufferSet, spatialObjectPosition, 20, 100, 0);
 }
 
 void PostProcessingEffects_applyMask(u32 currentDrawingFrameBufferSet, int xStart, int xEnd, int yStart, int yEnd, u32 mask)
@@ -631,8 +600,7 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  	VBVec3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
  	heroPosition.y -= ITOFIX19_13(10);
 
- 	extern const VBVec3D* _screenPosition;
- 	__OPTICS_NORMALIZE(heroPosition);
+ 	 	__OPTICS_NORMALIZE(heroPosition);
 
  	#define ELLIPSIS_X_AXIS_LENGTH		55
  	#define ELLIPSIS_Y_AXIS_LENGTH		60
@@ -676,7 +644,6 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	}
 
 	VBVec3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
-	extern const VBVec3D* _screenPosition;
 	__OPTICS_NORMALIZE(spatialObjectPosition);
 
 	// increase radius by 1 in each cycle
@@ -919,8 +886,7 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, Spatia
 	}
 
 	VBVec3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
-	extern const VBVec3D* _screenPosition;
-	__OPTICS_NORMALIZE(heroPosition);
+		__OPTICS_NORMALIZE(heroPosition);
 	heroPosition.x = FIX19_13TOI(heroPosition.x);
 	heroPosition.y = FIX19_13TOI(heroPosition.y);
 
@@ -998,7 +964,7 @@ u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSource
 	// save current pointer value to temp var and shift highest x bits of it, according to lut,
 	// to the lowest bits, since we want to insert these
 	u32 sourcePointerCurrentValue = *sourcePointer;
-	u32 previousSourcePointerValueTemp = sourcePointerCurrentValue >> (32 - shift);
+	u32 previousSourcePointerLeftValueTemp = sourcePointerCurrentValue >> (32 - shift);
 
 	// manipulate current 32 bits in frame buffer
 	*sourcePointer =
@@ -1012,7 +978,7 @@ u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSource
 
 	// we need the current source pointer value from _before_ we modified it, therefore we save it
 	// it to a temp variable while modifying
-	return previousSourcePointerValueTemp;
+	return previousSourcePointerLeftValueTemp;
 }
 
 /**
