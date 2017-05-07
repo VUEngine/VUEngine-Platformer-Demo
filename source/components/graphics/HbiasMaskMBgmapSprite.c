@@ -83,9 +83,10 @@ void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMa
 	__CONSTRUCT_BASE(MBgmapSprite, &hotAirMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
 
 	this->hotAirMBgmapSpriteDefinition = hotAirMBgmapSpriteDefinition;
-	this->lavaSprite = NULL;
+	this->owner = NULL;
 	this->referenceSprite = NULL;
 	this->step = 0;
+	this->owner = __SAFE_CAST(Entity, owner);
 }
 
 /**
@@ -100,7 +101,7 @@ void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this)
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::destructor: null this");
 
-	this->lavaSprite = NULL;
+	this->owner = NULL;
 	this->referenceSprite = NULL;
 
 	// destroy the super object
@@ -121,46 +122,27 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
 
 	// if render flag is set
-	if(!this->texture || !this->worldLayer)
+	if(!this->texture || !this->worldLayer || !this->owner)
 	{
 		return;
 	}
 
-	if(!this->lavaSprite)
+	if(!__IS_OBJECT_ALIVE(this->referenceSprite))
 	{
 		Container referenceSpriteOwner = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), this->hotAirMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
 
 		if(__IS_OBJECT_ALIVE(referenceSpriteOwner))
 		{
 			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(__SAFE_CAST(Entity, referenceSpriteOwner))));
-
-			Entity lava = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Lava", true));
-
-			if(__IS_OBJECT_ALIVE(lava))
-			{
-				VirtualNode node = VirtualList_begin(Entity_getSprites(lava));
-
-				for(; node; node = VirtualNode_getNext(node))
-				{
-					this->lavaSprite = __SAFE_CAST(Sprite, VirtualNode_getData(node));
-
-					extern TextureROMDef LAVA_TX;
-
-					if(&LAVA_TX == Texture_getTextureDefinition(Sprite_getTexture(this->lavaSprite)))
-					{
-						break;
-					}
-				}
-			}
 		}
 	}
 
 	static WorldAttributes* worldPointer = NULL;
 	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
 
-	if(!__IS_OBJECT_ALIVE(this->lavaSprite) || !__IS_OBJECT_ALIVE(this->referenceSprite))
+	if(!__IS_OBJECT_ALIVE(this->owner) || !__IS_OBJECT_ALIVE(this->referenceSprite))
 	{
-		this->lavaSprite = NULL;
+		this->owner = NULL;
 		this->referenceSprite = NULL;
 
 		worldPointer->head = __WORLD_OFF;
@@ -171,7 +153,32 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 		return;
 	}
 
-	u16 laveSpriteGY = Sprite_getWorldGY(this->lavaSprite);
+	VirtualList ownerSprites = Entity_getSprites(this->owner);
+
+	u16 ownerSpriteGY = 0;
+	bool ownerSpriteGYSet = false;
+
+	if(ownerSprites)
+	{
+		Sprite ownerFirstSprite = VirtualList_front(ownerSprites);
+
+		if(ownerFirstSprite && ownerFirstSprite != this)
+		{
+			ownerSpriteGY = Sprite_getWorldGY(ownerFirstSprite);
+			ownerSpriteGYSet = true;
+		}
+	}
+
+	if(!ownerSpriteGYSet)
+	{
+		VBVec3D ownerPosition3D = *__VIRTUAL_CALL(SpatialObject, getPosition, this->owner);
+		__OPTICS_NORMALIZE(ownerPosition3D);
+
+		VBVec3D ownerPosition2D;
+		__OPTICS_PROJECT_TO_2D(ownerPosition3D, ownerPosition2D);
+
+		ownerSpriteGY = FIX19_13TOI(ownerPosition2D.y);
+	}
 
 	u8 referenceSpriteWorldLayer = Sprite_getWorldLayer(this->referenceSprite);
 
@@ -179,16 +186,17 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
-	worldPointer->gy = laveSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? laveSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
-	worldPointer->gp = referenceSpriteWorldPointer->gp;
+	worldPointer->gy = ownerSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
+	worldPointer->gp = referenceSpriteWorldPointer->gp + FIX19_13TOI((this->displacement.z + this->displacement.p) & 0xFFFFE000);
+
 
 	if(!referenceSpriteWorldLayer
     	||
     	!Texture_isWritten(Sprite_getTexture(this->referenceSprite))
     	||
-		laveSpriteGY < worldPointer->gy
+		ownerSpriteGY < worldPointer->gy
 		||
-		_cameraFrustum->y1 <= laveSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight
+		_cameraFrustum->y1 <= ownerSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight
 		||
 		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy
 		||
@@ -207,7 +215,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	worldPointer->mp = referenceSpriteWorldPointer->mp;
 
 	worldPointer->w = referenceSpriteWorldPointer->w;
-	worldPointer->h = laveSpriteGY - worldPointer->gy + this->hotAirMBgmapSpriteDefinition->effectHeightExcess;
+	worldPointer->h = ownerSpriteGY - worldPointer->gy + this->hotAirMBgmapSpriteDefinition->effectHeightExcess;
 
 	if(referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy + worldPointer->h)
 	{
@@ -220,7 +228,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	BgmapSprite_processHbiasEffects(__SAFE_CAST(BgmapSprite, this));
 }
 
-s16 HbiasMaskMBgmapSprite_lavaHotAir(HbiasMaskMBgmapSprite this)
+s16 HbiasMaskMBgmapSprite_wave(HbiasMaskMBgmapSprite this)
 {
 	s32 spriteHeight = Sprite_getWorldHeight(__SAFE_CAST(Sprite, this));
 	s16 i = this->paramTableRow;

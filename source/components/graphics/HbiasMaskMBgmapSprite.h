@@ -46,11 +46,11 @@
 #define HbiasMaskMBgmapSprite_ATTRIBUTES																	\
 		MBgmapSprite_ATTRIBUTES																			\
 		/**
-		 * @var Sprite 	lavaSprite
-		 * @brief		sprite to follow
-		 * @memberof 	HbiasMaskMBgmapSprite
+		 * @var SpatialObject 	owner
+		 * @brief				owner
+		 * @memberof 			HbiasMaskMBgmapSprite
 		 */																								\
-		Sprite lavaSprite;																				\
+		Entity owner;																					\
 		/**
 		 * @var Sprite 	sprite
 		 * @brief		reference Sprite
@@ -100,7 +100,7 @@ __CLASS_NEW_DECLARE(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition
 void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner);
 void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this);
 void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this);
-s16 HbiasMaskMBgmapSprite_lavaHotAir(HbiasMaskMBgmapSprite this);
+s16 HbiasMaskMBgmapSprite_wave(HbiasMaskMBgmapSprite this);
 
 
 #endif
