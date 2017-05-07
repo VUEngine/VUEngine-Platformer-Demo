@@ -85,7 +85,7 @@ void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner)
 	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
 
 	// add rhombus effect
-	Game_addPostProcessingEffect(Game_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);
+	Game_pushBackProcessingEffect(Game_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);
 }
 
 static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey __attribute__ ((unused)))
