@@ -3,16 +3,16 @@
 
 //======================================================================
 //
-//	Level_1_Main_1_Main, 8x432@2, 
-//	+ 54 tiles not compressed
-//	Total size: 864 = 864
+//	Level_1_Main_1_Main, 8x488@2, 
+//	+ 61 tiles not compressed
+//	Total size: 976 = 976
 //
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-const unsigned int Level_1_Main_1_MainTiles[216] __attribute__((aligned(4)))=
+const unsigned int Level_1_Main_1_MainTiles[244] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00015555,0x00000000,0x00150005,0x015F0057,
 	0x00005555,0x00000000,0x54005000,0xF540D500,0x00010000,0x00050005,0x00010005,0x00010001,
@@ -43,7 +43,11 @@ const unsigned int Level_1_Main_1_MainTiles[216] __attribute__((aligned(4)))=
 
 	0xFFA9FE95,0xFFFEFFEA,0xEFFFBFFF,0xFEFFFBFF,0x40004000,0x40004000,0x40004000,0x00004000,
 	0xEFFFFBFF,0xFFFEBFFF,0xFFEFFFFF,0x5555FFFB,0xFFEFFFFB,0xFFFEFFFF,0xEFFFBFFF,0x5555FBFF,
-	0x7F5F5505,0x5FAF5AFA,0x77AD57AD,0xBFAF57AD,0x55056A5A,0x40004000,0x40004000,0x00004000,
+	0x7F5F5505,0x5FAF5AFA,0x77AD57AD,0xBFAF57AD,0x00055555,0x00050005,0x00150005,0x01590055,
+	0x15F90579,0x5FF957F9,0xFFE97FF9,0xFEF9FFF9,0x6F546D50,0x6FF56FD5,0x6FFF6FFD,0x6EFF6BFF,
+	0xFFE9FFB9,0xFFF9FFF9,0xEFF9FFF9,0xFEF9BFF9,0x6FFF6FFF,0x6FFE6FFF,0x6FEF6FFB,0x6EFE6FBF,
+	0xEFF9FBF9,0xFFF9BFF9,0xFFE9FFF9,0xFEF9FFF9,0x6FEF6FFB,0x6FFE6FFF,0x6FFF6FFF,0x6EFF6BFF,
+	0x55056A5A,0x40004000,0x40004000,0x00004000,
 };
 
 //}}BLOCK(Level_1_Main_1_Main)

@@ -335,6 +335,9 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
@@ -351,5 +354,8 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 

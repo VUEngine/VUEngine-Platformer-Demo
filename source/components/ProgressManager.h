@@ -52,14 +52,22 @@ __CLASS(ProgressManager);
 		Object_ATTRIBUTES																				\
 		/* time in current level */																		\
 		u32 currentLevelTime;																			\
+		/* time in current level at last checkpoint */													\
+		u32 checkpointCurrentLevelTime;																	\
 		/* best time in current level */																\
 		u32 currentLevelBestTime;																		\
 		/* bitstrings that hold collected coin flags */													\
 		u32 collectedCoins[2];																			\
+		/* bitstrings that hold collected coin flags at last checkpoint */								\
+		u32 checkpointCollectedCoins[2];																\
 		/* bitstring that holds collected item flags */													\
 		u16 collectedItems;																				\
+		/* bitstring that holds collected item flags at last checkpoint */								\
+		u16 checkpointCollectedItems;																	\
 		/* flag that tells if the hero has collected the current level's key */							\
 		bool heroHasKey;																				\
+		/* flag that tells if the hero has collected the current level's key at last checkpoint */		\
+		bool checkpointHeroHasKey;																		\
 		/* flag that tells if sram is available on the current cartridge */								\
 		bool sramAvailable;																				\
 		/* hero's current energy */																		\
@@ -140,7 +148,9 @@ u8   ProgressManager_getLanguage(ProgressManager this);
 u16  ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this);
 bool ProgressManager_hasProgress(ProgressManager this);
 bool ProgressManager_heroHasKey(ProgressManager this);
+void ProgressManager_loadCheckPointData(ProgressManager this);
 void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
+void ProgressManager_setCheckPointData(ProgressManager this);
 bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool taken);
 bool ProgressManager_setItemStatus(ProgressManager this, u16 itemNumber, bool taken);
 void ProgressManager_setLanguage(ProgressManager this, u8 language);

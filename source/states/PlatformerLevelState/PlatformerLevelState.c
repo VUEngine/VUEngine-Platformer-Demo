@@ -35,7 +35,6 @@
 #include <I18n.h>
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
-#include <OverworldState.h>
 #include <PauseScreenState.h>
 #include <Hero.h>
 #include <Languages.h>
@@ -67,11 +66,12 @@ void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
 void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer);
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
+static void PlatformerLevelState_onStartStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)));
 void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this);
 void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this);
+void PlatformerLevelState_startStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
 
 extern PlatformerLevelDefinition LEVEL_1_LV;
 
@@ -106,6 +106,7 @@ static void __attribute__ ((noinline)) PlatformerLevelState_constructor(Platform
 	// set default entry point
 	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+	this->currentCheckPoint = this->currentLevel->entryPoint;
 	this->userInput = (UserInput){0, 0, 0, 0, 0};
 }
 
@@ -402,7 +403,6 @@ void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this 
 	Printing_setWorldCoordinates(Printing_getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
 }
 
-
 UserInput PlatformerLevelState_getUserInput(PlatformerLevelState this)
 {
 	return this->userInput;
@@ -455,15 +455,66 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 				if(PlatformerLevelState_isStartingLevel(this) && this->currentLevel->name)
 				{
 					const char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->currentLevel->name);
-					Printing_text(Printing_getInstance(), strLevelName, 18, 6, "GuiFont");
+					Printing_text(
+						Printing_getInstance(),
+						strLevelName,
+						((__SCREEN_WIDTH >> 3) - strlen(strLevelName)) >> 1,
+						6,
+						"GuiFont"
+					);
 
 					if(this->currentLevel->identifier)
 					{
 						const char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-						const char* strLevelName = this->currentLevel->identifier;
-						Printing_text(Printing_getInstance(), strLevel, 20, 5, NULL);
-						Printing_text(Printing_getInstance(), strLevelName, 21 + strlen(strLevel), 5, NULL);
+						const char* strLevelId = this->currentLevel->identifier;
+						u8 strLevelLength = strlen(strLevel);
+						u8 strLevelIdLength = strlen(strLevelId);
+						Printing_text(
+							Printing_getInstance(),
+							strLevel,
+							((__SCREEN_WIDTH >> 3) - strLevelLength - strLevelIdLength) >> 1,
+							4,
+							NULL
+						);
+						Printing_text(
+							Printing_getInstance(),
+							strLevelId,
+							(((__SCREEN_WIDTH >> 3) - strLevelLength - strLevelIdLength) >> 1) + strLevelLength + 1,
+							4,
+							NULL
+						);
 					}
+
+					if(this->currentLevel->slogan)
+					{
+						const char* strLevelSlogan = I18n_getText(I18n_getInstance(), (int)this->currentLevel->slogan);
+						Size strLevelSloganSize = Printing_getTextSize(Printing_getInstance(), strLevelSlogan, NULL);
+						Printing_text(
+							Printing_getInstance(),
+							strLevelSlogan,
+							((__SCREEN_WIDTH >> 3) - strLevelSloganSize.x) >> 1,
+							9,
+							NULL
+						);
+					}
+
+					// erase level message in 2 seconds
+					MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
+				}
+				else if(this->currentStageEntryPoint->isCheckPoint)
+				{
+					// write checkpoint message to screen
+					const char* strCheckpoint = I18n_getText(I18n_getInstance(), STR_CHECKPOINT);
+					Printing_text(
+						Printing_getInstance(),
+						strCheckpoint,
+						((__SCREEN_WIDTH >> 3) - strlen(strCheckpoint)) >> 1,
+						6,
+						NULL
+					);
+
+					// erase checkpoint message in 2 second
+					MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
 				}
 
 				// tell any interested entity
@@ -502,6 +553,14 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 		case kScreenFocused:
 
 			Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
+			break;
+
+		case kLoadCheckPoint:
+
+			PlatformerLevelState_startStage(this, this->currentCheckPoint);
+
+			// announce checkpoint loaded
+			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCheckpointLoaded);
 			break;
 	}
 
@@ -555,7 +614,7 @@ PlatformerLevelDefinition* PlatformerLevelState_getCurrentLevelDefinition(Platfo
 void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition)
 {
 	this->currentLevel = platformerLevelDefinition;
-	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+	this->currentCheckPoint = this->currentStageEntryPoint = this->currentLevel->entryPoint;
 
 	// announce level start
 	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventLevelStarted);
@@ -563,9 +622,26 @@ void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelD
 	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
 }
 
-// start a given stage
+// enter a given stage
 void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition)
 {
+	// save stats if is checkpoint
+	if(entryPointDefinition->isCheckPoint)
+	{
+		// write checkpoint stats
+		ProgressManager_setCheckPointData(ProgressManager_getInstance());
+
+		// set current checkpoint
+		this->currentCheckPoint = entryPointDefinition;
+	}
+
+	PlatformerLevelState_startStage(this, entryPointDefinition);
+}
+
+// start a given stage
+void PlatformerLevelState_startStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition)
+{
+	// set current entry point
 	this->currentStageEntryPoint = entryPointDefinition;
 
 	// disable user input
@@ -581,7 +657,7 @@ void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointD
 		0, // initial delay (in ms)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState_onEnterStageFadeOutComplete, // callback function
+		(void (*)(Object, Object))PlatformerLevelState_onStartStageFadeOutComplete, // callback function
 		__SAFE_CAST(Object, this) // callback scope
 	);
 }
@@ -609,9 +685,6 @@ static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelSta
 {
 	ASSERT(this, "PlatformerLevelState::onLevelStartedFadeInComplete: null this");
 
-	// erase level message in n milliseconds
-	MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
-
 	// tell any interested entity
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
@@ -625,7 +698,7 @@ static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelSta
 }
 
 // handle event
-static void PlatformerLevelState_onEnterStageFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void PlatformerLevelState_onStartStageFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "PlatformerLevelState::onEnterStageFadeOutComplete: null this");
 
@@ -637,6 +710,5 @@ static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState 
 {
 	ASSERT(this, "PlatformerLevelState::onHeroDiedFadeOutComplete: null this");
 
-	// go to overworld
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLoadCheckPoint, NULL);
 }

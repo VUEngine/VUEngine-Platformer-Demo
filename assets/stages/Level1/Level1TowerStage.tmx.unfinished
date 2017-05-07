@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="128" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="253">
  <properties>
   <property name="declaration" value="StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP, BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
-  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT"/>
   <property name="stage.assets.charSets" value="NULL"/>
+  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT"/>
   <property name="stage.assets.stageTextureEntryDefinitions" value="NULL"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>
   <property name="stage.level.screenInitialPosition.y" value="0"/>
@@ -53,6 +52,7 @@
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="28"/>
   <property name="stage.streaming.unloadPadding" value="32"/>
+  <property name="stage.postProcessingEffects" value="NULL"/>
  </properties>
  <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
  <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
@@ -75,7 +75,7 @@
     <property name="entityName" value="LAVA_IG"/>
     <property name="textureName" value="LAVA_TX"/>
    </properties>
-   <image width="384" height="224" source="../../images/Lava/Preview/Lava.png"/>
+   <image width="384" height="112" source="../../images/Lava/Preview/Lava.png"/>
   </tile>
   <tile id="2">
    <properties>
@@ -987,6 +987,7 @@
   <object id="89" name="Main" type="EntryPoint" x="36" y="916" width="20" height="28">
    <properties>
     <property name="destinationName" value="EntryDoor"/>
+    <property name="isCheckpoint" type="bool" value="true"/>
     <property name="name" value="MAIN"/>
     <property name="offset.x" value="16"/>
     <property name="offset.y" value="-8"/>
