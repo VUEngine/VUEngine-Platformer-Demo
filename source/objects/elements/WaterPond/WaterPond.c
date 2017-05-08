@@ -28,8 +28,8 @@
 #include <Game.h>
 #include <Optics.h>
 #include <Screen.h>
-#include <Utilities.h>
-#include <DirectDraw.h>
+#include <PlatformerLevelState.h>
+#include <MessageDispatcher.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -74,7 +74,9 @@ void WaterPond_constructor(WaterPond this, WaterPondDefinition* mirrorDefinition
 	ASSERT(this, "WaterPond::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(ReflectiveEntity, &mirrorDefinition->inGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(ReflectiveEntity, &mirrorDefinition->reflectiveEntityDefinition, id, internalId, name);
+
+	this->waveLutThrottleFactorIncrement = 0;
 }
 
 // class's destructor
@@ -86,3 +88,53 @@ void WaterPond_destructor(WaterPond this)
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
+
+void WaterPond_ready(WaterPond this, bool recursive)
+{
+	ASSERT(this, "WaterPond::ready: null this");
+
+	// call base
+
+	__CALL_BASE_METHOD(ReflectiveEntity, ready, this, recursive);
+
+//	Shape_setCheckForCollisions(this->shape, true);
+//	Shape_setActive(this->shape, false);
+}
+
+
+bool WaterPond_handleMessage(WaterPond this, void* telegram)
+{
+	ASSERT(this, "WaterPond::handleMessage: null this");
+
+	ReflectiveEntityDefinition* mirrorDefinition = (ReflectiveEntityDefinition*)this->entityDefinition;
+
+	// handle messages that any state would handle here
+	switch(Telegram_getMessage(telegram))
+	{
+//		case kReactToCollision:
+		case kCollision:
+
+			if(!this->waveLutThrottleFactorIncrement)
+			{
+				this->waveLutThrottleFactorIncrement = ((WaterPondDefinition*)this->entityDefinition)->waveLutThrottleFactorIncrement;
+				this->waveLutIndexIncrement = FIX19_13_MULT(this->waveLutThrottleFactorIncrement + mirrorDefinition->waveLutThrottleFactor, FIX19_13_DIV(ITOFIX19_13(mirrorDefinition->numberOfWaveLutEntries), ITOFIX19_13(mirrorDefinition->width)));
+				MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kStopReactToCollision);
+				MessageDispatcher_dispatchMessage(((WaterPondDefinition*)this->entityDefinition)->waveLutThrottleFactorIncrementDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
+				Shape_setActive(this->shape, false);
+			}
+			return true;
+			break;
+
+		case kStopReactToCollision:
+
+			this->waveLutThrottleFactorIncrement = 0;
+			this->waveLutIndexIncrement = FIX19_13_MULT(mirrorDefinition->waveLutThrottleFactor, FIX19_13_DIV(ITOFIX19_13(mirrorDefinition->numberOfWaveLutEntries), ITOFIX19_13(mirrorDefinition->width)));
+			Shape_setActive(this->shape, true);
+			return true;
+			break;
+
+	}
+
+	return false;
+}
+

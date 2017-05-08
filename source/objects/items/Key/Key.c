@@ -103,7 +103,7 @@ void Key_suspend(Key this)
 	__CALL_BASE_METHOD(Item, suspend, this);
 
 	// remove post processing effect
-	Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	//Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
 void Key_resume(Key this)

@@ -40,14 +40,28 @@
 
 #define WaterPond_SET_VTABLE(ClassName)																	\
 		ReflectiveEntity_SET_VTABLE(ClassName)															\
+		__VIRTUAL_SET(ClassName, WaterPond, handleMessage);												\
+		__VIRTUAL_SET(ClassName, WaterPond, ready);														\
 
 __CLASS(WaterPond);
 
 #define WaterPond_ATTRIBUTES																			\
 		/* it is derived from */																		\
 		ReflectiveEntity_ATTRIBUTES																		\
+		fix19_13 waveLutThrottleFactorIncrement;
 
-typedef const ReflectiveEntityDefinition WaterPondDefinition;
+typedef struct WaterPondDefinition
+{
+	ReflectiveEntityDefinition reflectiveEntityDefinition;
+
+	// throttle increment
+	fix19_13 waveLutThrottleFactorIncrement;
+
+	// throttle increment duration
+	u32 waveLutThrottleFactorIncrementDuration;
+
+} WaterPondDefinition;
+
 typedef const WaterPondDefinition WaterPondROMDef;
 
 
@@ -59,6 +73,7 @@ __CLASS_NEW_DECLARE(WaterPond, WaterPondDefinition* mirrorDefinition, s16 id, s1
 
 void WaterPond_constructor(WaterPond this, WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
 void WaterPond_destructor(WaterPond this);
-
+bool WaterPond_handleMessage(WaterPond this, void* telegram);
+void WaterPond_ready(WaterPond this, bool recursive);
 
 #endif
