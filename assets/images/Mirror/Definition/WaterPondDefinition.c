@@ -60,7 +60,7 @@ const u8 WATER_POND_WAVE_LUT[] =
 //#define WATER_POND_WIDTH 				124
 #define WATER_POND_HEIGHT 				24
 #define WATER_POND_REFLECTION_WIDTH		WATER_POND_WIDTH
-#define WATER_POND_REFLECTION_HEIGHT	4
+#define WATER_POND_REFLECTION_HEIGHT	12
 #define WAVING_THROTTLE					FTOFIX19_13(0.75f)
 
 
@@ -198,11 +198,11 @@ ReflectiveEntityROMDef WATER_POND_REFLECTION_EN =
 
 	// the starting point from where start to reflect data
 	// relative to my position
-	{ITOFIX19_13(-WATER_POND_REFLECTION_WIDTH / 2), FTOFIX19_13(-WATER_POND_REFLECTION_HEIGHT*4 + 5), 0, 0},
+	{ITOFIX19_13(-WATER_POND_REFLECTION_WIDTH / 2), FTOFIX19_13(-WATER_POND_REFLECTION_HEIGHT), 0, 0},
 
 	// the starting point from where start to draw data
 	// relative to my position
-	{ITOFIX19_13(-WATER_POND_REFLECTION_WIDTH / 2), FTOFIX19_13(-WATER_POND_REFLECTION_HEIGHT), 0, 0},
+	{ITOFIX19_13(-WATER_POND_REFLECTION_WIDTH / 2), FTOFIX19_13(0), 0, 0},
 
 	// width and height of the reflection
 	WATER_POND_REFLECTION_WIDTH, WATER_POND_REFLECTION_HEIGHT,
@@ -211,16 +211,16 @@ ReflectiveEntityROMDef WATER_POND_REFLECTION_EN =
 	0xFFFFFFFF,
 
 	// mask to apply to the image behind the reflection
-	0xAAAAAAAA,
+	0x55555555,
 
 	// transparent
-	false,
+	true,
 
 	// reflect parallax info
 	false,
 
 	// axis for image reversing
-	0,
+	__YAXIS,
 
 	// pointer to table of vertical displacements
 	// if no displacement, leave as NULL
