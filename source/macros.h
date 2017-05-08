@@ -77,6 +77,7 @@ enum PlatformerTypes
 	kKey,
 	kLava,
 	kLavaTrigger,
+	kWaterPond,
 	kSawBlade,
 	kSnail,
 	kCannonBall,
