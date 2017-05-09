@@ -95,6 +95,9 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 	// write to framebuffers for both screens
 	int counter = 1;
 
+	CACHE_DISABLE;
+	CACHE_ENABLE;
+
 	for(; counter <= xEnd; counter += xStep)
 	{
 		if(++yIndex >= numberOfYs)
@@ -214,7 +217,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 
 		int cumulativeY = y[i] + yStart + yDisplacement;
 
-		if(yEnd - stepSize < cumulativeY)
+		if(yEnd - stepSize / 2 < cumulativeY)
 		{
 			y[i] = 0;
 		}
