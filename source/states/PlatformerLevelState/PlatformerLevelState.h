@@ -161,6 +161,8 @@ enum PlatformerLevelStateMessageTypes
 	kMovingEntityCheckDirection,
 	kHintPlayAnimation,
 	kLoadCheckPoint,
+	kReactToCollision,
+	kStopReactToCollision,
 
 	// don't remove me
 	kLastPlatformerMessage

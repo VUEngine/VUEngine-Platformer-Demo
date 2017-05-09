@@ -19,82 +19,61 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef HOT_AIR_M_BGMAP_SPRITE_H_
-#define HOT_AIR_M_BGMAP_SPRITE_H_
+#ifndef WATER_POND_H_
+#define WATER_POND_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBgmapSprite.h>
+#include <ReflectiveEntity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define HotAirMBgmapSprite_METHODS(ClassName)															\
-		MBgmapSprite_METHODS(ClassName)																	\
+#define WaterPond_METHODS(ClassName)																	\
+		ReflectiveEntity_METHODS(ClassName)																\
 
-// declare the virtual methods which are redefined
-#define HotAirMBgmapSprite_SET_VTABLE(ClassName)														\
-		MBgmapSprite_SET_VTABLE(ClassName)																\
-		__VIRTUAL_SET(ClassName, HotAirMBgmapSprite, render);											\
+#define WaterPond_SET_VTABLE(ClassName)																	\
+		ReflectiveEntity_SET_VTABLE(ClassName)															\
+		__VIRTUAL_SET(ClassName, WaterPond, handleMessage);												\
+		__VIRTUAL_SET(ClassName, WaterPond, ready);														\
 
-#define HotAirMBgmapSprite_ATTRIBUTES																	\
-		MBgmapSprite_ATTRIBUTES																			\
-		/**
-		 * @var Sprite 	lavaSprite
-		 * @brief		sprite to follow
-		 * @memberof 	HotAirMBgmapSprite
-		 */																								\
-		Sprite lavaSprite;																				\
-		/**
-		 * @var Sprite 	sprite
-		 * @brief		reference Sprite
-		 * @memberof 	HotAirMBgmapSprite
-		 */																								\
-		Sprite referenceSprite;																			\
-		/**
-		 * @var Sprite 	sprite
-		 * @brief		reference Sprite
-		 * @memberof 	HotAirMBgmapSprite
-		 */																								\
-		const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition;								\
-		/**
-		 * @var u8		step
-		 * @brief		current lut index
-		 * @memberof 	HotAirMBgmapSprite
-		 */																								\
-		u8 step;																						\
+__CLASS(WaterPond);
 
-__CLASS(HotAirMBgmapSprite);
+#define WaterPond_ATTRIBUTES																			\
+		/* it is derived from */																		\
+		ReflectiveEntity_ATTRIBUTES																		\
+		fix19_13 waveLutThrottleFactorIncrement;
 
-typedef struct HotAirMBgmapSpriteDefinition
+typedef struct WaterPondDefinition
 {
-	// super class definition
-	MBgmapSpriteDefinition mBgmapSpriteDefinition;
+	ReflectiveEntityDefinition reflectiveEntityDefinition;
 
-	// name of the owner of the reference sprite
-	char* referenceSpriteOwnerName;
+	// throttle increment
+	fix19_13 waveLutThrottleFactorIncrement;
 
-} HotAirMBgmapSpriteDefinition;
+	// throttle increment duration
+	u32 waveLutThrottleFactorIncrementDuration;
 
-typedef const HotAirMBgmapSpriteDefinition HotAirMBgmapSpriteROMDef;
+} WaterPondDefinition;
+
+typedef const WaterPondDefinition WaterPondROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(HotAirMBgmapSprite, const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object);
+__CLASS_NEW_DECLARE(WaterPond, WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
 
-void HotAirMBgmapSprite_constructor(HotAirMBgmapSprite this, const HotAirMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner);
-void HotAirMBgmapSprite_destructor(HotAirMBgmapSprite this);
-void HotAirMBgmapSprite_render(HotAirMBgmapSprite this);
-s16 HotAirMBgmapSprite_lavaHotAir(HotAirMBgmapSprite this);
-
+void WaterPond_constructor(WaterPond this, WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
+void WaterPond_destructor(WaterPond this);
+bool WaterPond_handleMessage(WaterPond this, void* telegram);
+void WaterPond_ready(WaterPond this, bool recursive);
 
 #endif

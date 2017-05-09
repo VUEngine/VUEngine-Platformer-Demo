@@ -64,10 +64,6 @@ static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomS
 //---------------------------------------------------------------------------------------------------------
 
 static Screen _screen = NULL;
-extern const VBVec3D* _screenPosition;
-extern const VBVec3D* _screenDisplacement;
-extern const Optical* _optical;
-extern const CameraFrustum* _cameraFrustum;
 
 
 //---------------------------------------------------------------------------------------------------------

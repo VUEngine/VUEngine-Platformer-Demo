@@ -1127,6 +1127,15 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
+			case kWaterPond:
+
+				if(Body_isMoving(this->body))
+				{
+					MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kCollision, NULL);
+				}
+				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				break;
+
 			case kLava:
 
 				Hero_takeHitFrom(this, NULL, this->energy, true, false, true);

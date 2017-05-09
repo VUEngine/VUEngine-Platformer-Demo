@@ -26,6 +26,7 @@
 
 #include <StaticImage.h>
 #include <MBgmapSprite.h>
+#include <HbiasMaskMBgmapSprite.h>
 #include <macros.h>
 
 
@@ -125,4 +126,55 @@ StaticImageROMDef LEVEL_1_MAIN_1_BACK_5_IM =
 {
 	__TYPE(StaticImage),
 	(SpriteROMDef**)LEVEL_1_MAIN_1_BACK_5_IM_SPRITES,
+};
+
+HbiasMaskMBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM =
+{
+	{
+		{
+			{
+				// sprite's type
+				__TYPE(HbiasMaskMBgmapSprite),
+
+				// texture definition
+				NULL,
+
+				// transparent
+				false,
+
+				// displacement
+				{0, 0, 0, ITOFIX19_13(-20)},
+			},
+
+			// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+			// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+			__WORLD_HBIAS,
+
+			// pointer to affine/hbias manipulation function
+			(ParamTableEffectMethod)HbiasMaskMBgmapSprite_wave,
+
+			// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+			__WORLD_ON,
+		},
+
+		(TextureDefinition**)LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES,
+
+		// SCX/SCY
+		__WORLD_1x1,
+
+		// x loop
+		false,
+
+		// y loop
+		false,
+	},
+
+	// name of the owner of the reference sprite
+	"PlatfBk",
+
+	// height of the effect
+	15 * 8,
+
+	// height addition
+	0
 };

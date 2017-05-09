@@ -38,17 +38,17 @@ Compile by starting the VBDE build system.
 CREDITS
 -------
 	
-- Jorge Eremiev
-    * Lead programmer
-    * Debugging and testing
+  - Jorge Eremiev
+    - Lead programmer
+    - Debugging and testing
 		
-- Christian Radke (KR155E)
-    * Programmer
-    * Game designer
-    * Graphics artist
-    * Level designer
-    * Debugging and testing
-    * Documentation
+  - Christian Radke (KR155E)
+    - Programmer
+    - Game designer
+    - Graphics artist
+    - Level designer
+    - Debugging and testing
+    - Documentation
 
 Some graphics are based on open source sprites by Kenney (http://www.kenney.nl).
 

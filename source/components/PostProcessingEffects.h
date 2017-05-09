@@ -34,8 +34,7 @@
 //										FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_glitch1(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+void PostProcessingEffects_waterFall20x100(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
