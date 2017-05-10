@@ -47,11 +47,11 @@ BgmapSpriteROMDef* const WATER_POND_POND_EN_SPRITES[] =
 
 const u8 WATER_POND_WAVE_LUT[] =
 {
-	0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1,
-	0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1,
-	0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1,
-	0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1,
-	0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1,
+	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
+	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
+	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
+	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
+	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
 };
 
 //#define WATER_POND_WIDTH 				175
@@ -75,7 +75,7 @@ WaterPondROMDef WATER_POND_EN =
 				},
 
 				// collision detection gap (up, down, left, right)
-				{0, 0, 0, 0},
+				{12, 10, 4, 4},
 
 				// in game type
 				kWaterPond,
@@ -104,11 +104,11 @@ WaterPondROMDef WATER_POND_EN =
 
 		// the starting point from where start to reflect data
 		// relative to my position
-		{-WATER_POND_WIDTH / 2, 0},
+		{-WATER_POND_WIDTH / 2 - 1, 0},
 
 		// the starting point from where start to draw data
 		// relative to my position
-		{-WATER_POND_WIDTH / 2, 0},
+		{-WATER_POND_WIDTH / 2 - 1, 0},
 
 		// width and height of the reflection
 		WATER_POND_WIDTH, WATER_POND_HEIGHT,
@@ -134,7 +134,7 @@ WaterPondROMDef WATER_POND_EN =
 		WATER_POND_WAVE_LUT,
 
 		// number of wave lut entries
-		16*5,
+		12 * 5,
 
 		// fix19_13 throttle for the waving
 		WAVING_THROTTLE,
@@ -146,21 +146,24 @@ WaterPondROMDef WATER_POND_EN =
 		false, true,
 
 		// border masks: top, bottom, left, right
-		0x00000001,
+		0x00000000,
 		0x00000000,
 		0xC0000000,
 		0x00000003,
 	},
 
 	// throttle increment
-	FTOFIX19_13(0.45f),
+	FTOFIX19_13(0.7f),
 
 	// throttle increment duration
-	500,
+	1000,
 
-	// reflection y displacement
-	-16,
+	// throttle increment duration step
+	10,
 
-	// reflection height
-	4
+	// surface height
+	5,
+
+	// wave amplitude factor
+	FTOFIX19_13(2.0f),
 };

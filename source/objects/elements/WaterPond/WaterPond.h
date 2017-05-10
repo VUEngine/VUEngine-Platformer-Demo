@@ -51,6 +51,7 @@ __CLASS(WaterPond);
 		/* it is derived from */																		\
 		ReflectiveEntity_ATTRIBUTES																		\
 		fix19_13 waveLutThrottleFactorIncrement;														\
+		fix19_13 amplitudeFactor;																		\
 
 typedef struct WaterPondDefinition
 {
@@ -62,11 +63,14 @@ typedef struct WaterPondDefinition
 	// throttle increment duration
 	u32 waveLutThrottleFactorIncrementDuration;
 
-	// reflection y displacement
-	s16 reflectionYDisplacement;
+	// throttle increment duration step
+	u32 waveLutThrottleFactorIncrementDurationStep;
 
-	// reflection height
-	u16 reflectionHeight;
+	// surface height
+	u16 surfaceHeight;
+
+	// wave amplitude factor
+	fix19_13 amplitudeFactor;
 
 } WaterPondDefinition;
 

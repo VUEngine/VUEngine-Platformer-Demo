@@ -1131,8 +1131,9 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 				if(Body_isMoving(this->body))
 				{
-					MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kCollision, NULL);
+					MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kReactToCollision, NULL);
 				}
+
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				break;
 
@@ -1339,7 +1340,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				// set camera
 				VBVec3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 				this->cameraBoundingBox = Entity_addChildEntity(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
-				CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
+				//CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 
 				Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
 			}

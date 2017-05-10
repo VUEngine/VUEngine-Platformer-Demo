@@ -195,7 +195,7 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	ITOFIX19_13(3 * 8),
 
 	// time to rest idle
-	500,
+	750,
 
 	// axis
 	__YAXIS,
