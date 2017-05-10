@@ -38,9 +38,9 @@ const u16 JUMP_SND[] =
 //stdwait
 		0x08,
 //stdSxLRV
-		0xFF,
+		0x55,
 //stdSxEV0
-		0xF1,
+		0x51,
 //stdSxEV1
 		0x01,
 //stdSxRAM
