@@ -24,53 +24,84 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
-#include <ManagedStaticImage.h>
-#include <MBgmapSprite.h>
+#include <libgccvb.h>
+#include <AnimatedInGameEntity.h>
+#include <BgmapAnimatedSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainTiles[];
-extern BYTE Level_1_Main_1_Main_1Map[];
-
-extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
+extern BYTE WaterfallStream2x16Tiles[];
+extern BYTE WaterfallStream2x16Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH =
+// a function which defines the frames to play
+AnimationFunctionROMDef WATERFALL_STREAM_2x16_DEFAULT_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{0, 1, 2, 3},
+
+	// number of cycles a frame of animation is displayed
+	4,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Default",
+};
+
+// an animation definition
+AnimationDescriptionROMDef WATERFALL_STREAM_2x16_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&WATERFALL_STREAM_2x16_DEFAULT_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef WATERFALL_STREAM_2x16_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	56,
+	32,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_SHARED,
 
 	// char definition
-	Level_1_Main_1_MainTiles,
+	WaterfallStream2x16Tiles,
 };
 
-TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
+TextureROMDef WATERFALL_STREAM_2x16_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_CH,
+	(CharSetDefinition*)&WATERFALL_STREAM_2x16_CH,
 
 	// bgmap definition
-	Level_1_Main_1_Main_1Map,
+	WaterfallStream2x16Map,
 
 	// cols (max 64)
-	64,
+	2,
 
 	// rows (max 64)
-	33,
+	16,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -81,29 +112,28 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
 	1,
 
 	// palette number (0-3)
-	1,
+	0,
 };
 
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_TEXTURES[] =
-{
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_1_TX,
-	NULL
-};
-
-BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
+BgmapSpriteROMDef WATERFALL_STREAM_2x16_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_1_TX,
+		(TextureDefinition*)&WATERFALL_STREAM_2x16_TX,
 
 		// transparent
-		false,
+		true,
 
 		// displacement
-		{0, 0, 0, 0},
+		{
+			0,
+			0,
+			FTOFIX19_13(-1),
+			0
+		},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -117,15 +147,41 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const WATERFALL_STREAM_2x16_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE,
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE,
+	&WATERFALL_STREAM_2x16_SPRITE,
 	NULL
 };
 
-RecyclableImageROMDef LEVEL_1_MAIN_1_MAIN_1_IM =
+AnimatedInGameEntityROMDef WATERFALL_STREAM_2x16_AG =
 {
-	__TYPE(ManagedStaticImage),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES,
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)WATERFALL_STREAM_2x16_SPRITES,
+		},
+
+		// collision detection gap (up, down, left, right)
+		{0, 0, 0, 0},
+
+		// in game type
+		kNotSolid,
+
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
+
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
+
+		// depth
+		1,
+	},
+
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&WATERFALL_STREAM_2x16_ANIM,
+
+	// initial animation
+	"Default",
 };

@@ -34,158 +34,20 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DustParticleSmallTiles[];
-extern BYTE DustParticleSmallMap[];
-extern BYTE DustParticleLargeTiles[];
-extern BYTE DustParticleLargeMap[];
+extern ObjectSpriteROMDef DUST_PARTICLE_SMALL_SPRITE;
+extern ObjectSpriteROMDef DUST_PARTICLE_LARGE_SPRITE;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef DUST_PARTICLE_SMALL_CH =
+ObjectSpriteROMDef* const DUST_PARTICLE_SPRITES[] =
 {
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	1,
-
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
-
-	// char definition
-	DustParticleSmallTiles,
-};
-
-TextureROMDef DUST_PARTICLE_SMALL_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&DUST_PARTICLE_SMALL_CH,
-
-	// bgmap definition
-	DustParticleSmallMap,
-
-	// cols (max 64)
-	1,
-
-	// rows (max 64)
-	1,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	1,
-};
-
-ObjectSpriteROMDef DUST_PARTICLE_SMALL_IM_SPRITE =
-{
-	{
-		// sprite's type
-		__TYPE(ObjectSprite),
-
-		// texture definition
-		(TextureDefinition*)&DUST_PARTICLE_SMALL_TX,
-
-		// transparent
-		false,
-
-		// displacement
-		{0, 0, 0, 0},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
-
-CharSetROMDef DUST_PARTICLE_LARGE_CH =
-{
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	1,
-
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
-
-	// char definition
-	DustParticleLargeTiles,
-};
-
-TextureROMDef DUST_PARTICLE_LARGE_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&DUST_PARTICLE_LARGE_CH,
-
-	// bgmap definition
-	DustParticleLargeMap,
-
-	// cols (max 64)
-	1,
-
-	// rows (max 64)
-	1,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	1,
-};
-
-ObjectSpriteROMDef DUST_PARTICLE_LARGE_IM_SPRITE =
-{
-	{
-		// sprite's type
-		__TYPE(ObjectSprite),
-
-		// texture definition
-		(TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
-
-		// transparent
-		false,
-
-		// displacement
-		{0, 0, 0, 0},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
-
-ObjectSpriteROMDef* const DUST_PARTICLE_IM_SPRITES[] =
-{
-	&DUST_PARTICLE_SMALL_IM_SPRITE,
-	&DUST_PARTICLE_LARGE_IM_SPRITE,
+	&DUST_PARTICLE_SMALL_SPRITE,
+	&DUST_PARTICLE_LARGE_SPRITE,
 	NULL
 };
-
-
-
-//---------------------------------------------------------------------------------------------------------
-//											OBJECT DUST_PARTICLE
-//---------------------------------------------------------------------------------------------------------
 
 // particle's definition
 ParticleROMDef DUST_PARTICLE =
@@ -240,7 +102,7 @@ ParticleSystemROMDef DUST_PS =
 	4,
 
 	// array of textures
-	(const ObjectSpriteDefinition**)DUST_PARTICLE_IM_SPRITES,
+	(const ObjectSpriteDefinition**)DUST_PARTICLE_SPRITES,
 
 	// auto start
 	false,
@@ -252,10 +114,10 @@ ParticleSystemROMDef DUST_PS =
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(-1), ITOFIX19_13(-1), ITOFIX19_13(0)},
+	{ITOFIX19_13(-2), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// maximum relative spawn position
-	{__1I_FIX19_13, __1I_FIX19_13, ITOFIX19_13(0)},
+	{__1I_FIX19_13, ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow

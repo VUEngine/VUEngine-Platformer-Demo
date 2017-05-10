@@ -42,14 +42,14 @@ extern ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_SPRITE;
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMDef* const SMOKE_SPRITES[] =
+ObjectSpriteROMDef* const TORCH_SMOKE_SPRITES[] =
 {
 	&SMOKE_PARTICLE_SMALL_SPRITE,
 	NULL
 };
 
 // particle's definition
-ParticleROMDef SMOKE_PARTICLE =
+ParticleROMDef TORCH_SMOKE_PARTICLE =
 {
 	// allocator
 	__TYPE(Particle),
@@ -78,10 +78,10 @@ ParticleROMDef SMOKE_PARTICLE =
 	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
 
 	// animation's name to play
-	"Default"
+	"Float"
 };
 
-ParticleSystemROMDef SMOKE_PS =
+ParticleSystemROMDef TORCH_SMOKE_PS =
 {
 	{
 		__TYPE(ParticleSystem),
@@ -98,33 +98,33 @@ ParticleSystemROMDef SMOKE_PS =
 	200,
 
 	// maximum total particles
-	14,
+	5,
 
 	// array of textures
-	(const ObjectSpriteDefinition**)SMOKE_SPRITES,
+	(const ObjectSpriteDefinition**)TORCH_SMOKE_SPRITES,
 
 	// auto start
 	true,
 
 	// particle definition
-	(ParticleDefinition*)&SMOKE_PARTICLE,
+	(ParticleDefinition*)&TORCH_SMOKE_PARTICLE,
 
 	// minimum random distance from the center of the system for spawn
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(-2), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(2), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5), (-10), (0)},
+	{(-2), (-5), (0)},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5), (-20), (0)},
+	{(2), (-10), (0)},
 
 	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
 	__UNIFORM_MOVEMENT

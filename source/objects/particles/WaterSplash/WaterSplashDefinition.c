@@ -26,7 +26,7 @@
 
 #include <libgccvb.h>
 #include <ParticleSystem.h>
-#include <ObjectAnimatedSprite.h>
+#include <ObjectSprite.h>
 #include <macros.h>
 
 
@@ -34,54 +34,53 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern AnimationDescriptionROMDef SMOKE_PARTICLE_SMALL_ANIM;
-extern ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_SPRITE;
+extern ObjectSpriteROMDef WATER_DROP_SPRITE;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMDef* const SMOKE_SPRITES[] =
+ObjectSpriteROMDef* const WATER_SPLASH_SPRITES[] =
 {
-	&SMOKE_PARTICLE_SMALL_SPRITE,
+	&WATER_DROP_SPRITE,
 	NULL
 };
 
 // particle's definition
-ParticleROMDef SMOKE_PARTICLE =
+ParticleROMDef WATER_SPLASH_PARTICLE =
 {
 	// allocator
 	__TYPE(Particle),
 
 	// particle's minimum life span in milliseconds
-	3000,
+	1000,
 
 	// particle's life span delta in milliseconds
-	3000,
+	500,
 
 	// particle's minimum mass
-	FTOFIX19_13(0),
+	FTOFIX19_13(30.0f),
 
 	// particle's mass delta
-	FTOFIX19_13(0),
+	FTOFIX19_13(30.0f),
 
 	// axis subject to gravity (false to disable)
-	false,
+	true,
 
 	// function pointer to control particle's behavior
-	//(void (*)(Particle))&smokeParticleBehavior,
+	//(void (*)(Particle))&dustParticleBehavior,
 	NULL,
 
 	// animation description
 	// used only if sprite is animated
-	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
+	NULL,
 
 	// animation's name to play
-	"Default"
+	NULL
 };
 
-ParticleSystemROMDef SMOKE_PS =
+ParticleSystemROMDef WATER_SPLASH_PS =
 {
 	{
 		__TYPE(ParticleSystem),
@@ -92,40 +91,40 @@ ParticleSystemROMDef SMOKE_PS =
 	true,
 
 	// minimum generation delay in milliseconds
+	50,
+
+	// maximum generation delay in milliseconds
 	100,
 
-	// generation delay delta in milliseconds
-	200,
-
 	// maximum total particles
-	14,
+	8,
 
 	// array of textures
-	(const ObjectSpriteDefinition**)SMOKE_SPRITES,
+	(const ObjectSpriteDefinition**)WATER_SPLASH_SPRITES,
 
 	// auto start
 	true,
 
 	// particle definition
-	(ParticleDefinition*)&SMOKE_PARTICLE,
+	(ParticleDefinition*)&WATER_SPLASH_PARTICLE,
 
 	// minimum random distance from the center of the system for spawn
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(8), ITOFIX19_13(0), ITOFIX19_13(1)},
 
 	// minimum relative spawn position
-	{ITOFIX19_13(-2), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(-16), ITOFIX19_13(0), ITOFIX19_13(-1)},
 
 	// maximum relative spawn position
-	{ITOFIX19_13(2), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{ITOFIX19_13(16), ITOFIX19_13(0), ITOFIX19_13(1)},
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5), (-10), (0)},
+	{-500, -500, -200},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{(-5), (-20), (0)},
+	{500, -1000, 200},
 
 	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
-	__UNIFORM_MOVEMENT
+	__ACCELERATED_MOVEMENT
 };

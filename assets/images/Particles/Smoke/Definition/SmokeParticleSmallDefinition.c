@@ -24,53 +24,84 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
-#include <ManagedStaticImage.h>
-#include <MBgmapSprite.h>
+#include <libgccvb.h>
+#include <AnimatedInGameEntity.h>
+#include <ObjectAnimatedSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainTiles[];
-extern BYTE Level_1_Main_1_Main_1Map[];
-
-extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
+extern BYTE SmokeParticleSmallTiles[];
+extern BYTE SmokeParticleSmallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH =
+// a function which defines the frames to play
+AnimationFunctionROMDef SMOKE_PARTICLE_SMALL_DEFAULT_ANIM =
+{
+	// number of frames of this animation function
+	8,
+
+	// frames to play in animation
+	{0, 0, 0, 0, 0, 1, 2, 3},
+
+	// number of cycles a frame of animation is displayed
+	32,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Default",
+};
+
+// an animation definition
+AnimationDescriptionROMDef SMOKE_PARTICLE_SMALL_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&SMOKE_PARTICLE_SMALL_DEFAULT_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef SMOKE_PARTICLE_SMALL_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	56,
+	4,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_MULTI,
 
 	// char definition
-	Level_1_Main_1_MainTiles,
+	SmokeParticleSmallTiles,
 };
 
-TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
+TextureROMDef SMOKE_PARTICLE_SMALL_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_CH,
+	(CharSetDefinition*)&SMOKE_PARTICLE_SMALL_CH,
 
 	// bgmap definition
-	Level_1_Main_1_Main_1Map,
+	SmokeParticleSmallMap,
 
 	// cols (max 64)
-	64,
+	1,
 
 	// rows (max 64)
-	33,
+	1,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -78,26 +109,20 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	1,
+	4,
 
 	// palette number (0-3)
-	1,
+	0,
 };
 
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_TEXTURES[] =
-{
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_1_TX,
-	NULL
-};
-
-BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
+ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_1_TX,
+		(TextureDefinition*)&SMOKE_PARTICLE_SMALL_TX,
 
 		// transparent
 		false,
@@ -108,24 +133,47 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES[] =
+ObjectSpriteROMDef* const SMOKE_PARTICLE_SMALL_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE,
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE,
+	&SMOKE_PARTICLE_SMALL_SPRITE,
 	NULL
 };
 
-RecyclableImageROMDef LEVEL_1_MAIN_1_MAIN_1_IM =
+AnimatedInGameEntityROMDef SMOKE_PARTICLE_SMALL_AG =
 {
-	__TYPE(ManagedStaticImage),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES,
+	{
+		{
+			__TYPE(AnimatedInGameEntity),
+			(SpriteROMDef**)SMOKE_PARTICLE_SMALL_SPRITES,
+		},
+
+		// collision detection gap (up, down, left, right)
+		{6, 0, 0, 0},
+
+		// in game type
+		kSolid,
+
+		// width
+		// if 0, width and height will be inferred from the texture's size
+		0,
+
+		// height
+		// if 0, width and height will be inferred from the texture's size
+		0,
+
+		// depth
+		4
+	},
+
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
+
+	// initial animation
+	"Default",
 };
