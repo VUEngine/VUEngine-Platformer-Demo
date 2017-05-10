@@ -854,7 +854,7 @@ static void Hero_addHint(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
-	VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT * 4)};
+	VBVec3D position = {0, 0, FTOFIX19_13(-1)};
 
 	// save the hint entity, so we can remove it later
 	this->hint = Entity_addChildEntity(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
@@ -866,7 +866,7 @@ static void Hero_addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
 
-	VBVec3D position = {FTOFIX19_13(-6), FTOFIX19_13(12), FTOFIX19_13(1)};
+	VBVec3D position = {FTOFIX19_13(-6), FTOFIX19_13(10), FTOFIX19_13(-2)};
 
 	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");

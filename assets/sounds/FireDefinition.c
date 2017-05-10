@@ -38,9 +38,9 @@ const u16 FIRE_SND[] =
 //stdwait
 		0x01,
 //stdSxLRV
-		0xFF,
+		0x5,
 //stdSxEV0
-		0xF1,
+		0x51,
 //stdSxEV1
 		0x01,
 //stdSxRAM

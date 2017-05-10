@@ -24,53 +24,51 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
-#include <ManagedStaticImage.h>
-#include <MBgmapSprite.h>
+#include <libgccvb.h>
+#include <StaticImage.h>
+#include <ObjectSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainTiles[];
-extern BYTE Level_1_Main_1_Main_1Map[];
-
-extern BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE;
+extern BYTE DustParticleLargeTiles[];
+extern BYTE DustParticleLargeMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH =
+CharSetROMDef DUST_PARTICLE_LARGE_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	56,
+	1,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Level_1_Main_1_MainTiles,
+	DustParticleLargeTiles,
 };
 
-TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
+TextureROMDef DUST_PARTICLE_LARGE_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&LEVEL_1_MAIN_1_MAIN_CH,
+	(CharSetDefinition*)&DUST_PARTICLE_LARGE_CH,
 
 	// bgmap definition
-	Level_1_Main_1_Main_1Map,
+	DustParticleLargeMap,
 
 	// cols (max 64)
-	64,
+	1,
 
 	// rows (max 64)
-	33,
+	1,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -84,20 +82,14 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
 	1,
 };
 
-TextureROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_TEXTURES[] =
-{
-	(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_1_TX,
-	NULL
-};
-
-BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
+ObjectSpriteROMDef DUST_PARTICLE_LARGE_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(ObjectSprite),
 
 		// texture definition
-		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_1_TX,
+		(TextureDefinition*)&DUST_PARTICLE_LARGE_TX,
 
 		// transparent
 		false,
@@ -108,24 +100,20 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES[] =
+ObjectSpriteROMDef* const DUST_PARTICLE_LARGE_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_1_IM_SPRITE,
-	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE,
+	&DUST_PARTICLE_LARGE_SPRITE,
 	NULL
 };
 
-RecyclableImageROMDef LEVEL_1_MAIN_1_MAIN_1_IM =
+StaticImageROMDef DUST_PARTICLE_LARGE_IM =
 {
-	__TYPE(ManagedStaticImage),
-	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES,
+	__TYPE(StaticImage),
+	(SpriteROMDef**)DUST_PARTICLE_LARGE_SPRITES,
 };

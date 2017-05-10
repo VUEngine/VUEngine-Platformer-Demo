@@ -34,8 +34,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE WaterfallStreamTiles[];
-extern BYTE WaterfallStreamMap[];
+extern BYTE WaterfallStream2x28Tiles[];
+extern BYTE WaterfallStream2x28Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ extern BYTE WaterfallStreamMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMDef WATERFALL_STREAM_DEFAULT_ANIM =
+AnimationFunctionROMDef WATERFALL_STREAM_2x28_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -65,16 +65,16 @@ AnimationFunctionROMDef WATERFALL_STREAM_DEFAULT_ANIM =
 };
 
 // an animation definition
-AnimationDescriptionROMDef WATERFALL_STREAM_ANIM =
+AnimationDescriptionROMDef WATERFALL_STREAM_2x28_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&WATERFALL_STREAM_DEFAULT_ANIM,
+		(AnimationFunction*)&WATERFALL_STREAM_2x28_DEFAULT_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef WATERFALL_STREAM_CH =
+CharSetROMDef WATERFALL_STREAM_2x28_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -86,16 +86,16 @@ CharSetROMDef WATERFALL_STREAM_CH =
 	__ANIMATED_SHARED,
 
 	// char definition
-	WaterfallStreamTiles,
+	WaterfallStream2x28Tiles,
 };
 
-TextureROMDef WATERFALL_STREAM_TX =
+TextureROMDef WATERFALL_STREAM_2x28_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&WATERFALL_STREAM_CH,
+	(CharSetDefinition*)&WATERFALL_STREAM_2x28_CH,
 
 	// bgmap definition
-	WaterfallStreamMap,
+	WaterfallStream2x28Map,
 
 	// cols (max 64)
 	2,
@@ -115,14 +115,14 @@ TextureROMDef WATERFALL_STREAM_TX =
 	0,
 };
 
-BgmapSpriteROMDef WATERFALL_STREAM_SPRITE =
+BgmapSpriteROMDef WATERFALL_STREAM_2x28_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&WATERFALL_STREAM_TX,
+		(TextureDefinition*)&WATERFALL_STREAM_2x28_TX,
 
 		// transparent
 		true,
@@ -147,18 +147,18 @@ BgmapSpriteROMDef WATERFALL_STREAM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const WATERFALL_STREAM_SPRITES[] =
+BgmapSpriteROMDef* const WATERFALL_STREAM_2x28_SPRITES[] =
 {
-	&WATERFALL_STREAM_SPRITE,
+	&WATERFALL_STREAM_2x28_SPRITE,
 	NULL
 };
 
-AnimatedInGameEntityROMDef WATERFALL_STREAM_AG =
+AnimatedInGameEntityROMDef WATERFALL_STREAM_2x28_AG =
 {
 	{
 		{
 			__TYPE(AnimatedInGameEntity),
-			(SpriteROMDef**)WATERFALL_STREAM_SPRITES,
+			(SpriteROMDef**)WATERFALL_STREAM_2x28_SPRITES,
 		},
 
 		// collision detection gap (up, down, left, right)
@@ -180,7 +180,7 @@ AnimatedInGameEntityROMDef WATERFALL_STREAM_AG =
 	},
 
 	// pointer to the animation definition for the item
-	(AnimationDescription*)&WATERFALL_STREAM_ANIM,
+	(AnimationDescription*)&WATERFALL_STREAM_2x28_ANIM,
 
 	// initial animation
 	"Default",

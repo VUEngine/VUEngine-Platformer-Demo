@@ -1,9 +1,9 @@
 
-//{{BLOCK(WaterfallStream)
+//{{BLOCK(WaterfallStream2x28)
 
 //======================================================================
 //
-//	WaterfallStream, 16x896@2, 
+//	WaterfallStream2x28, 16x896@2, 
 //	+ 225 tiles not compressed
 //	+ regular map (flat), not compressed, 2x112 
 //	Total size: 3600 + 448 = 4048
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int WaterfallStreamTiles[900] __attribute__((aligned(4)))=
+const unsigned int WaterfallStream2x28Tiles[900] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0xA55FAA97,0x555F555F,0x555F555F,0x555F555F,
 	0xD55AF6AA,0xD555D555,0xF555D555,0xF555F555,0x5AAB556F,0xAAABAAAB,0xAAAFAAAB,0xAAABAAAF,
@@ -144,7 +144,7 @@ const unsigned int WaterfallStreamTiles[900] __attribute__((aligned(4)))=
 	0xEAAAFAAA,0xFAAAEAAA,0xF55AF6AA,0xD555D555,
 };
 
-const unsigned short WaterfallStreamMap[224] __attribute__((aligned(4)))=
+const unsigned short WaterfallStream2x28Map[224] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x0010,
@@ -179,4 +179,4 @@ const unsigned short WaterfallStreamMap[224] __attribute__((aligned(4)))=
 	0x00D9,0x00DA,0x00DB,0x00DC,0x00DD,0x00DE,0x00DF,0x00E0,
 };
 
-//}}BLOCK(WaterfallStream)
+//}}BLOCK(WaterfallStream2x28)

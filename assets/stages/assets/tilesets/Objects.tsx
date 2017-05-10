@@ -150,11 +150,11 @@
  </tile>
  <tile id="28">
   <properties>
-   <property name="entityName" value="WATERFALL_STREAM_AG"/>
-   <property name="textureName" value="WATERFALL_STREAM_TX"/>
-   <property name="charsetName" value="WATERFALL_STREAM_CH"/>
+   <property name="entityName" value="WATERFALL_STREAM_2x28_AG"/>
+   <property name="textureName" value="WATERFALL_STREAM_2x28_TX"/>
+   <property name="charsetName" value="WATERFALL_STREAM_2x28_CH"/>
   </properties>
-  <image width="16" height="224" source="../../../images/Waterfall/Preview/WaterfallStream.png"/>
+  <image width="16" height="224" source="../../../images/Waterfall/Preview/WaterfallStream2x28.png"/>
  </tile>
  <tile id="29">
   <properties>

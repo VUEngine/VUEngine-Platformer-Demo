@@ -25,78 +25,44 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <ParticleSystem.h>
-#include <ObjectAnimatedSprite.h>
-#include <macros.h>
+#include <StaticImage.h>
+#include <ObjectSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SmokeParticleSmallTiles[];
-extern BYTE SmokeParticleSmallMap[];
+extern BYTE WaterDropTiles[];
+extern BYTE WaterDropMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
-// a function which defines the frames to play
-AnimationFunctionROMDef TORCH_SMOKE_PARTICLE_SMALL_FLOAT_ANIM =
-{
-	// number of frames of this animation function
-	8,
-
-	// frames to play in animation
-	{0, 0, 0, 0, 0, 1, 2, 3},
-
-	// number of cycles a frame of animation is displayed
-	32,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Float",
-};
-
-// an animation definition
-AnimationDescriptionROMDef TORCH_SMOKE_PARTICLE_SMALL_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&TORCH_SMOKE_PARTICLE_SMALL_FLOAT_ANIM,
-		NULL,
-	}
-};
-
-CharSetROMDef TORCH_SMOKE_PARTICLE_SMALL_CH =
+CharSetROMDef WATER_DROP_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	4,
+	1,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_MULTI,
+	__NOT_ANIMATED,
 
 	// char definition
-	SmokeParticleSmallTiles,
+	WaterDropTiles,
 };
 
-TextureROMDef TORCH_SMOKE_PARTICLE_SMALL_TX =
+TextureROMDef WATER_DROP_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&TORCH_SMOKE_PARTICLE_SMALL_CH,
+	(CharSetDefinition*)&WATER_DROP_CH,
 
 	// bgmap definition
-	SmokeParticleSmallMap,
+	WaterDropMap,
 
 	// cols (max 64)
 	1,
@@ -110,20 +76,20 @@ TextureROMDef TORCH_SMOKE_PARTICLE_SMALL_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	4,
+	1,
 
 	// palette number (0-3)
 	0,
 };
 
-ObjectSpriteROMDef TORCH_SMOKE_PARTICLE_SMALL_SPRITE =
+ObjectSpriteROMDef WATER_DROP_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(ObjectAnimatedSprite),
+		__TYPE(ObjectSprite),
 
 		// texture definition
-		(TextureDefinition*)&TORCH_SMOKE_PARTICLE_SMALL_TX,
+		(TextureDefinition*)&WATER_DROP_TX,
 
 		// transparent
 		false,
@@ -140,90 +106,14 @@ ObjectSpriteROMDef TORCH_SMOKE_PARTICLE_SMALL_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const TORCH_SMOKE_PARTICLE_SMALL_SPRITES[] =
+ObjectSpriteROMDef* const WATER_DROP_SPRITES[] =
 {
-	&TORCH_SMOKE_PARTICLE_SMALL_SPRITE,
+	&WATER_DROP_SPRITE,
 	NULL
 };
 
-// particle's definition
-ParticleROMDef TORCH_SMOKE_PARTICLE =
+StaticImageROMDef WATER_DROP_IM =
 {
-	// allocator
-	__TYPE(Particle),
-
-	// particle's minimum life span in milliseconds
-	3000,
-
-	// particle's life span delta in milliseconds
-	3000,
-
-	// particle's minimum mass
-	FTOFIX19_13(0),
-
-	// particle's mass delta
-	FTOFIX19_13(0),
-
-	// axis subject to gravity (false to disable)
-	false,
-
-	// function pointer to control particle's behavior
-	//(void (*)(Particle))&smokeParticleBehavior,
-	NULL,
-
-	// animation description
-	// used only if sprite is animated
-	(AnimationDescription*)&TORCH_SMOKE_PARTICLE_SMALL_ANIM,
-
-	// animation's name to play
-	"Float"
-};
-
-ParticleSystemROMDef TORCH_SMOKE_PS =
-{
-	{
-		__TYPE(ParticleSystem),
-		NULL,
-	},
-
-	// reuse expired particles?
-	true,
-
-	// minimum generation delay in milliseconds
-	100,
-
-	// generation delay delta in milliseconds
-	200,
-
-	// maximum total particles
-	5,
-
-	// array of textures
-	(const ObjectSpriteDefinition**)TORCH_SMOKE_PARTICLE_SMALL_SPRITES,
-
-	// auto start
-	true,
-
-	// particle definition
-	(ParticleDefinition*)&TORCH_SMOKE_PARTICLE,
-
-	// minimum random distance from the center of the system for spawn
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
-
-	// minimum relative spawn position
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
-
-	// maximum relative spawn position
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
-
-	// minimum force to apply
-	// use int values in the definition to avoid overflow
-	{(-2), (-5), (0)},
-
-	// maximum force to apply
-	// use int values in the definition to avoid overflow
-	{(2), (-10), (0)},
-
-	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
-	__UNIFORM_MOVEMENT
+	__TYPE(StaticImage),
+	(SpriteROMDef**)WATER_DROP_SPRITES,
 };
