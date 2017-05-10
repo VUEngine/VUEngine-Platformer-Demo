@@ -29,7 +29,6 @@
 #include <MessageDispatcher.h>
 #include <AdjustmentScreenState.h>
 #include <AutoPauseSelectScreenState.h>
-#include <Languages.h>
 #include <DirectDraw.h>
 
 
@@ -84,8 +83,11 @@ void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner)
 	// call base
 	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
 
+	// move the printing area out of the visible screen to save CPU resources
+	Printing_setWorldCoordinates(Printing_getInstance(), __SCREEN_WIDTH, __SCREEN_HEIGHT);
+
 	// add rhombus effect
-	Game_pushBackProcessingEffect(Game_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);
+	VIPManager_pushBackPostProcessingEffect(VIPManager_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);
 }
 
 static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey __attribute__ ((unused)))
@@ -106,7 +108,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 {
 	// runtime working variables
 	// negative value to achieve an initial delay
-	static int radius = -64;
+	static int radius = ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE;
 
 	// increase radius in each cycle
 	radius += 2;
@@ -118,7 +120,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 	else if(radius > 300)
 	{
 		// reset radius when reaching a certain length
-		radius = -64;
+		radius = ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE;
 		return;
 	}
 
@@ -127,29 +129,29 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {ITOFIX19_13(192 - radius),	ITOFIX19_13(112),			0, 0},
-		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 - radius),	0, 0},
+		(VBVec2D) {ITOFIX19_13(192 - radius),	ITOFIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {ITOFIX19_13(192 + radius),	ITOFIX19_13(112),			0, 0},
-		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 - radius),	0, 0},
+		(VBVec2D) {ITOFIX19_13(192 + radius),	ITOFIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {ITOFIX19_13(192 + radius),	ITOFIX19_13(112),			0, 0},
-		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 + radius),	0, 0},
+		(VBVec2D) {ITOFIX19_13(192 + radius),	ITOFIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {ITOFIX19_13(192 - radius),	ITOFIX19_13(112),			0, 0},
-		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 + radius),	0, 0},
+		(VBVec2D) {ITOFIX19_13(192 - radius),	ITOFIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 }
