@@ -167,7 +167,11 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 
 		case kReactToCollision:
 
-			if(entityTypeChecked && this->waveLutThrottleFactorIncrement < waterPondDefinition->waveLutThrottleFactorIncrement)
+			if(entityTypeChecked &&
+				(this->waveLutThrottleFactorIncrement < waterPondDefinition->waveLutThrottleFactorIncrement
+				||
+				this->amplitudeFactor < waterPondDefinition->amplitudeFactor)
+			)
 			{
 				this->amplitudeFactor += FIX19_13_DIV(waterPondDefinition->amplitudeFactor - ITOFIX19_13(1), ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
 				this->waveLutThrottleFactorIncrement += FIX19_13_DIV(waterPondDefinition->waveLutThrottleFactorIncrement, ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
@@ -190,7 +194,7 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 			else
 			{
 				this->amplitudeFactor = ITOFIX19_13(1);
-				this->waveLutThrottleFactorIncrement = 0;
+				this->waveLutThrottleFactorIncrement = FIX19_13_DIV(waterPondDefinition->waveLutThrottleFactorIncrement, ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
 			}
 
 			this->waveLutIndexIncrement = FIX19_13_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, FIX19_13_DIV(ITOFIX19_13(reflectiveEntityDefinition->numberOfWaveLutEntries), ITOFIX19_13(reflectiveEntityDefinition->width)));
@@ -439,18 +443,11 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 		u32 surfaceDisplacement = (effectiveContentMaskDisplacement + random % FIX19_13TOI(FIX19_13_MULT(ITOFIX19_13(surfaceHeight * 2), waveLutIndexIncrement)));
 		u32 surfaceMask = 0xFFFFFFFF << (random % surfaceHeight);
 		POINTER_TYPE sourceReflectionValueLeft = (~surfaceMask << surfaceDisplacement);
-		sourceReflectionValueLeft |= ((topBorderMask & (~surfaceMask << (random % 2))) << effectiveContentMaskDisplacement);
 
-		bool readBuffer = random % (surfaceDisplacement + waveLutPixelDisplacement + 2);
+		bool readBuffer = MODULO(surfaceMask, Y_STEP_SIZE_2_EXP);
 
 		if(readBuffer)
 		{
-			if(!(random % (surfaceDisplacement + 1)))
-			{
-				reflectionMask = 0xFFFFFFFF >> (BITS_PER_STEP >> 1) & (0xFFFFFFFF << (effectiveContentMaskDisplacement + waveLutPixelDisplacement));
-				reflectionMask = reflectionMask | reflectionMaskSave;
-			}
-
 			sourceCurrentValueLeft = *columnSourcePointerLeft;
 			sourceNextValueLeft = *(columnSourcePointerLeft + columnSourcePointerLeftIncrement);
 		}
@@ -495,7 +492,6 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 			}
 
 			readBuffer = !readBuffer;
-			reflectionMask = reflectionMaskSave;
 		}
 
 		if(yOutputRemainder)
