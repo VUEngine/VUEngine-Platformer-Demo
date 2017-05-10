@@ -111,9 +111,10 @@ void WaterPond_ready(WaterPond this, bool recursive)
 	// call base
 	__CALL_BASE_METHOD(ReflectiveEntity, ready, this, recursive);
 
-	Shape_setCheckForCollisions(this->shape, true);
+/*	Shape_setCheckForCollisions(this->shape, true);
 	Shape_setMovesFlag(this->shape, true);
 	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
+	*/
 }
 
 void WaterPond_transform(WaterPond this, const Transformation* environmentTransform)
@@ -122,7 +123,7 @@ void WaterPond_transform(WaterPond this, const Transformation* environmentTransf
 
 	__CALL_BASE_METHOD(ReflectiveEntity, transform, this, environmentTransform);
 
-	Shape_setChecked(this->shape, false);
+//	Shape_setChecked(this->shape, false);
 }
 
 bool WaterPond_handleMessage(WaterPond this, void* telegram)
@@ -137,6 +138,7 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
 	{
+	/*
 		case kCollision:
 		{
 			entityTypeChecked = false;
@@ -164,17 +166,27 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 				}
 			}
 		}
-
+	*/
 		case kReactToCollision:
 
-			if(entityTypeChecked &&
+//			if(entityTypeChecked &&
+			if(
 				(this->waveLutThrottleFactorIncrement < waterPondDefinition->waveLutThrottleFactorIncrement
 				||
 				this->amplitudeFactor < waterPondDefinition->amplitudeFactor)
 			)
 			{
-				this->amplitudeFactor += FIX19_13_DIV(waterPondDefinition->amplitudeFactor - ITOFIX19_13(1), ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
-				this->waveLutThrottleFactorIncrement += FIX19_13_DIV(waterPondDefinition->waveLutThrottleFactorIncrement, ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
+				if(this->waveLutThrottleFactorIncrement)
+				{
+					this->amplitudeFactor += FIX19_13_DIV(waterPondDefinition->amplitudeFactor - ITOFIX19_13(1), ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
+					this->waveLutThrottleFactorIncrement += FIX19_13_DIV(waterPondDefinition->waveLutThrottleFactorIncrement, ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
+				}
+				else
+				{
+					this->amplitudeFactor = waterPondDefinition->amplitudeFactor;
+					this->waveLutThrottleFactorIncrement = waterPondDefinition->waveLutThrottleFactorIncrement;
+				}
+
 				this->waveLutIndexIncrement = FIX19_13_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, FIX19_13_DIV(ITOFIX19_13(reflectiveEntityDefinition->numberOfWaveLutEntries), ITOFIX19_13(reflectiveEntityDefinition->width)));
 				MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kStopReactToCollision);
 				MessageDispatcher_dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
@@ -194,7 +206,7 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 			else
 			{
 				this->amplitudeFactor = ITOFIX19_13(1);
-				this->waveLutThrottleFactorIncrement = FIX19_13_DIV(waterPondDefinition->waveLutThrottleFactorIncrement, ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
+				this->waveLutThrottleFactorIncrement = 0;
 			}
 
 			this->waveLutIndexIncrement = FIX19_13_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, FIX19_13_DIV(ITOFIX19_13(reflectiveEntityDefinition->numberOfWaveLutEntries), ITOFIX19_13(reflectiveEntityDefinition->width)));

@@ -41,9 +41,9 @@
 #define WaterPond_SET_VTABLE(ClassName)																	\
 		ReflectiveEntity_SET_VTABLE(ClassName)															\
 		__VIRTUAL_SET(ClassName, WaterPond, handleMessage);												\
-		__VIRTUAL_SET(ClassName, WaterPond, transform);													\
 		__VIRTUAL_SET(ClassName, WaterPond, ready);														\
 		__VIRTUAL_SET(ClassName, WaterPond, applyReflection);											\
+//		__VIRTUAL_SET(ClassName, WaterPond, transform);													\
 
 __CLASS(WaterPond);
 
