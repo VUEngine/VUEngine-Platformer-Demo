@@ -162,7 +162,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	{
 		Sprite ownerFirstSprite = VirtualList_front(ownerSprites);
 
-		if(ownerFirstSprite && ownerFirstSprite != this)
+		if(ownerFirstSprite && ownerFirstSprite != __SAFE_CAST(Sprite, this))
 		{
 			ownerSpriteGY = Sprite_getWorldGY(ownerFirstSprite);
 			ownerSpriteGYSet = true;
@@ -187,7 +187,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
 	worldPointer->gy = ownerSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
-	worldPointer->gp = referenceSpriteWorldPointer->gp + FIX19_13TOI((this->displacement.z + this->displacement.p) & 0xFFFFE000);
+	worldPointer->gp = referenceSpriteWorldPointer->gp + FIX19_13TOI((this->displacement.p) & 0xFFFFE000);
 
 
 	if(!referenceSpriteWorldLayer
