@@ -71,7 +71,7 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 								const u8 waveLut[], int numberOfWaveLutEntries, fix19_13 waveLutThrottleFactor,
 								fix19_13 amplitudeFactor,
 								bool flattenTop __attribute__ ((unused)), bool flattenBottom,
-								u32 topBorderMask, u32 bottomBorderMask,
+								u32 topBorderMask __attribute__ ((unused)), u32 bottomBorderMask __attribute__ ((unused)),
 								u16 surfaceHeight);
 
 //---------------------------------------------------------------------------------------------------------
@@ -133,7 +133,7 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 	ReflectiveEntityDefinition* reflectiveEntityDefinition = (ReflectiveEntityDefinition*)this->entityDefinition;
 	WaterPondDefinition* waterPondDefinition = (WaterPondDefinition*)this->entityDefinition;
 
-	bool entityTypeChecked = true;
+//	bool entityTypeChecked = true;
 
 	// handle messages that any state would handle here
 	switch(Telegram_getMessage(telegram))
@@ -176,13 +176,13 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 				this->amplitudeFactor < waterPondDefinition->amplitudeFactor)
 			)
 			{
-				if(this->waveLutThrottleFactorIncrement)
+/*				if(this->waveLutThrottleFactorIncrement)
 				{
 					this->amplitudeFactor += FIX19_13_DIV(waterPondDefinition->amplitudeFactor - ITOFIX19_13(1), ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
 					this->waveLutThrottleFactorIncrement += FIX19_13_DIV(waterPondDefinition->waveLutThrottleFactorIncrement, ITOFIX19_13(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
 				}
 				else
-				{
+*/				{
 					this->amplitudeFactor = waterPondDefinition->amplitudeFactor;
 					this->waveLutThrottleFactorIncrement = waterPondDefinition->waveLutThrottleFactorIncrement;
 				}
@@ -272,17 +272,17 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 								const u8 waveLut[], int numberOfWaveLutEntries, fix19_13 waveLutThrottleFactor,
 								fix19_13 amplitudeFactor,
 								bool flattenTop __attribute__ ((unused)), bool flattenBottom,
-								u32 topBorderMask, u32 bottomBorderMask,
+								u32 topBorderMask __attribute__ ((unused)), u32 bottomBorderMask __attribute__ ((unused)),
 								u16 surfaceHeight)
 {
 	ASSERT(this, "ReflectiveEntity::drawReflection: null this");
-
-	fix19_13 fixedNumberOfWaveLutEntries = FIX19_13_MULT(waveLutThrottleFactor, ITOFIX19_13(numberOfWaveLutEntries));
 
     s16 xSourceEnd = xSourceStart + width;
     s16 ySourceEnd = ySourceStart + height;
 	s16 xOutputEnd = xOutputStart + width;
 	s16 yOutputEnd = yOutputStart + height;
+
+	int xOutputStartSave = xOutputStart;
 
 	// check if source and destination are not out of bounds
 	if((xSourceStart > _cameraFrustum->x1) | (ySourceStart > _cameraFrustum->y1)
@@ -297,13 +297,11 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 	}
 
 	int xClamping = 0;
-	int xTotalClamping = 0;
 
 	// clamp values to not write out of the screen
 	if(xSourceStart < _cameraFrustum->x0)
 	{
 		xClamping = _cameraFrustum->x0 - xSourceStart;
-		xTotalClamping += xClamping;
 		xOutputStart += xClamping;
 		xSourceStart = _cameraFrustum->x0;
 	}
@@ -311,7 +309,6 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 	if(xSourceEnd > _cameraFrustum->x1 - 1)
 	{
 		xClamping = xSourceEnd - _cameraFrustum->x1 + 1;
-		xTotalClamping += xClamping;
 		xOutputEnd -= xClamping;
 		xSourceEnd = _cameraFrustum->x1 - 1;
 	}
@@ -332,7 +329,6 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 	if(xOutputStart < _cameraFrustum->x0)
 	{
 		xClamping = _cameraFrustum->x0 - xOutputStart;
-		xTotalClamping += xClamping;
 		xSourceStart += xClamping;
 		xOutputStart = _cameraFrustum->x0;
 	}
@@ -340,19 +336,9 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 	if(xOutputEnd > _cameraFrustum->x1)
 	{
 		xClamping = xOutputEnd - _cameraFrustum->x1 + 1;
-		xTotalClamping += xClamping;
 		xSourceEnd -= xClamping;
 		xOutputEnd = _cameraFrustum->x1 - 1;
 	}
-
-	static VBVec3D screenPreviousPosition = {0, 0, 0};
-
-	int xScreenDisplacement = _screenPosition->x - screenPreviousPosition.x;
-	screenPreviousPosition = *_screenPosition;
-
-//	xTotalClamping = FIX19_13TOI(ITOFIX19_13(xTotalClamping) + xScreenDisplacement);
-
-	this->waveLutIndex += FIX19_13_MULT(this->waveLutIndexIncrement, ITOFIX19_13(xTotalClamping));
 
 	// must clamp the output too, but moving the wave lut index accordingly
 	if(yOutputStart < _cameraFrustum->y0)
@@ -396,10 +382,18 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 	u32 time = Game_getTime(Game_getInstance());
 
-	CACHE_DISABLE;
-	CACHE_ENABLE;
+	this->waveLutIndex += waveLutIndexIncrement;
 
-	for(; xTotal--; xOutput += xOutputIncrement, xSource +=xOutputIncrement)
+	fix19_13 fixedNumberOfWaveLutEntries = FIX19_13_MULT(waveLutThrottleFactor, ITOFIX19_13(numberOfWaveLutEntries));
+
+	if(this->waveLutIndex >= fixedNumberOfWaveLutEntries)
+	{
+		this->waveLutIndex = 0;
+	}
+
+	int xCounter = xOutputStart - xOutputStartSave;
+
+	for(; xTotal--; xOutput += xOutputIncrement, xSource +=xOutputIncrement, xCounter++)
 	{
 		int leftColumn = xOutput;
 		int rightColumn = xOutput;
@@ -420,14 +414,9 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 			}
 		}
 
-		this->waveLutIndex += waveLutIndexIncrement;
-
-		if(this->waveLutIndex >= fixedNumberOfWaveLutEntries)
-		{
-			this->waveLutIndex = 0;
-		}
-
-		int waveLutPixelDisplacement = FIX19_13TOI(FIX19_13_MULT(ITOFIX19_13(waveLut[FIX19_13TOI(this->waveLutIndex)]), amplitudeFactor));
+		int xRelativeCoordinate = (xCounter % width) + FIX19_13TOI(this->waveLutIndex);
+		int xIndex = (numberOfWaveLutEntries * xRelativeCoordinate) / width;
+		int waveLutPixelDisplacement = FIX19_13TOI(FIX19_13_MULT(ITOFIX19_13(waveLut[xIndex]), amplitudeFactor));
 
 		int ySource = ySourceStartHelper;
 		int yOutput = (yOutputStart + waveLutPixelDisplacement) >> Y_STEP_SIZE_2_EXP;
@@ -446,25 +435,16 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 		int columnSourcePointerLeftIncrement = ySourceIncrement;
 
-		POINTER_TYPE sourceCurrentValueLeft = reflectionMask;
-		POINTER_TYPE sourceNextValueLeft = reflectionMask;
+		POINTER_TYPE sourceCurrentValueLeft = *columnSourcePointerLeft;
+		POINTER_TYPE sourceNextValueLeft = *(columnSourcePointerLeft + columnSourcePointerLeftIncrement);
+		columnSourcePointerLeft += columnSourcePointerLeftIncrement;
 
 		POINTER_TYPE outputValueLeft = *columnOutputPointerLeft;
 
-		u32 random = time % (xOutput + waveLutPixelDisplacement);
-		u32 surfaceDisplacement = (effectiveContentMaskDisplacement + random % FIX19_13TOI(FIX19_13_MULT(ITOFIX19_13(surfaceHeight * 2), waveLutIndexIncrement)));
+		u32 random = time % (xRelativeCoordinate + waveLutPixelDisplacement + 1);
+		u32 surfaceDisplacement = (effectiveContentMaskDisplacement + random % FIX19_13TOI(FIX19_13_MULT(ITOFIX19_13(surfaceHeight << 1), waveLutIndexIncrement)));
 		u32 surfaceMask = 0xFFFFFFFF << (random % surfaceHeight);
 		POINTER_TYPE sourceReflectionValueLeft = (~surfaceMask << surfaceDisplacement);
-
-		bool readBuffer = MODULO(surfaceMask, Y_STEP_SIZE_2_EXP);
-
-		if(readBuffer)
-		{
-			sourceCurrentValueLeft = *columnSourcePointerLeft;
-			sourceNextValueLeft = *(columnSourcePointerLeft + columnSourcePointerLeftIncrement);
-		}
-
-		columnSourcePointerLeft += columnSourcePointerLeftIncrement;
 
 		waveLutPixelDisplacement =  flattenBottom ? 0 : waveLutPixelDisplacement;
 
@@ -496,14 +476,7 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 			columnSourcePointerLeft += columnSourcePointerLeftIncrement;
 
-			sourceNextValueLeft = reflectionMask;
-
-			if(readBuffer)
-			{
-				sourceNextValueLeft = *columnSourcePointerLeft;
-			}
-
-			readBuffer = !readBuffer;
+			sourceNextValueLeft = *columnSourcePointerLeft;
 		}
 
 		if(yOutputRemainder)
