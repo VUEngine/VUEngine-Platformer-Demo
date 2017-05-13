@@ -94,6 +94,7 @@ void WaterPond_constructor(WaterPond this, WaterPondDefinition* reflectiveEntity
 
 	this->waveLutThrottleFactorIncrement = 0;
 	this->amplitudeFactor = ITOFIX19_13(1);
+	this->waterSplash = NULL;
 }
 
 // class's destructor
@@ -113,14 +114,14 @@ void WaterPond_ready(WaterPond this, bool recursive)
 	// call base
 	__CALL_BASE_METHOD(ReflectiveEntity, ready, this, recursive);
 
-	WaterPond_addSplashParticles(this);
+//	WaterPond_addSplashParticles(this);
 /*	Shape_setCheckForCollisions(this->shape, true);
 	Shape_setMovesFlag(this->shape, true);
 	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
 	*/
 }
 
-static void WaterPond_addSplashParticles(WaterPond this)
+__attribute__ ((unused)) static void WaterPond_addSplashParticles(WaterPond this)
 {
 	ASSERT(this, "WaterPond::addSplashParticles: null this");
 
@@ -294,7 +295,7 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 								fix19_13 amplitudeFactor,
 								bool flattenTop __attribute__ ((unused)), bool flattenBottom,
 								u32 topBorderMask __attribute__ ((unused)), u32 bottomBorderMask __attribute__ ((unused)),
-								u16 surfaceHeight)
+								u16 surfaceHeight __attribute__ ((unused)))
 {
 	ASSERT(this, "ReflectiveEntity::drawReflection: null this");
 
