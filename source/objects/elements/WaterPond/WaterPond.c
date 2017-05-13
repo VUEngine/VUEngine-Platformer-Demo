@@ -135,16 +135,6 @@ __attribute__ ((unused)) static void WaterPond_addSplashParticles(WaterPond this
 	ParticleSystem_start(this->waterSplash);
 }
 
-
-void WaterPond_transform(WaterPond this, const Transformation* environmentTransform)
-{
-	ASSERT(this, "WaterPond::transform: null this");
-
-	__CALL_BASE_METHOD(ReflectiveEntity, transform, this, environmentTransform);
-
-//	Shape_setChecked(this->shape, false);
-}
-
 bool WaterPond_handleMessage(WaterPond this, void* telegram)
 {
 	ASSERT(this, "WaterPond::handleMessage: null this");
@@ -328,11 +318,11 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 		xSourceStart = _cameraFrustum->x0;
 	}
 
-	if(xSourceEnd > _cameraFrustum->x1 - 1)
+	if(xSourceEnd > _cameraFrustum->x1)
 	{
-		xClamping = xSourceEnd - _cameraFrustum->x1 + 1;
+		xClamping = xSourceEnd - _cameraFrustum->x1;
 		xOutputEnd -= xClamping;
-		xSourceEnd = _cameraFrustum->x1 - 1;
+		xSourceEnd = _cameraFrustum->x1;
 	}
 
 	if(ySourceStart < _cameraFrustum->y0)
@@ -357,9 +347,9 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 	if(xOutputEnd > _cameraFrustum->x1)
 	{
-		xClamping = xOutputEnd - _cameraFrustum->x1 + 1;
+		xClamping = xOutputEnd - _cameraFrustum->x1;
 		xSourceEnd -= xClamping;
-		xOutputEnd = _cameraFrustum->x1 - 1;
+		xOutputEnd = _cameraFrustum->x1;
 	}
 
 	// must clamp the output too, but moving the wave lut index accordingly
@@ -420,20 +410,17 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 		int leftColumn = xOutput;
 		int rightColumn = xOutput;
 
-		if(parallaxDisplacement)
+		//leftColumn -= parallaxDisplacement;
+		rightColumn += parallaxDisplacement;
+
+		if((unsigned)(leftColumn - _cameraFrustum->x0) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0))
 		{
-			//leftColumn -= parallaxDisplacement;
-			rightColumn += parallaxDisplacement;
+			continue;
+		}
 
-			if((unsigned)(leftColumn - _cameraFrustum->x0) >= (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0))
-			{
-				continue;
-			}
-
-			if((unsigned)(rightColumn - _cameraFrustum->x0) >= (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0))
-			{
-				continue;
-			}
+		if((unsigned)(rightColumn - _cameraFrustum->x0) >= (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0))
+		{
+			continue;
 		}
 
 		int xRelativeCoordinate = xCounter % width;
