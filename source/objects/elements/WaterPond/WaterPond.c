@@ -62,6 +62,8 @@ __CLASS_DEFINITION(WaterPond, ReflectiveEntity);
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
+static void WaterPond_addSplashParticles(WaterPond this);
+
 void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 								s16 xSourceStart, s16 ySourceStart,
 								s16 xOutputStart, s16 yOutputStart,
@@ -111,11 +113,27 @@ void WaterPond_ready(WaterPond this, bool recursive)
 	// call base
 	__CALL_BASE_METHOD(ReflectiveEntity, ready, this, recursive);
 
+	WaterPond_addSplashParticles(this);
 /*	Shape_setCheckForCollisions(this->shape, true);
 	Shape_setMovesFlag(this->shape, true);
 	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
 	*/
 }
+
+static void WaterPond_addSplashParticles(WaterPond this)
+{
+	ASSERT(this, "WaterPond::addSplashParticles: null this");
+
+	VBVec3D position = {FTOFIX19_13(-2), FTOFIX19_13(-1), FTOFIX19_13(-1)};
+
+	extern EntityDefinition WATER_SPLASH_PS;
+
+	this->waterSplash = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &WATER_SPLASH_PS, -1, NULL, &position, NULL));
+
+	ParticleSystem_spawnAllParticles(this->waterSplash);
+	ParticleSystem_start(this->waterSplash);
+}
+
 
 void WaterPond_transform(WaterPond this, const Transformation* environmentTransform)
 {
@@ -190,6 +208,8 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 				this->waveLutIndexIncrement = FIX19_13_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, FIX19_13_DIV(ITOFIX19_13(reflectiveEntityDefinition->numberOfWaveLutEntries), ITOFIX19_13(reflectiveEntityDefinition->width)));
 				MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kStopReactToCollision);
 				MessageDispatcher_dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
+
+//				ParticleSystem_start(this->waterSplash);
 			}
 
 			break;
@@ -207,6 +227,7 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 			{
 				this->amplitudeFactor = ITOFIX19_13(1);
 				this->waveLutThrottleFactorIncrement = 0;
+//				ParticleSystem_pause(this->waterSplash);
 			}
 
 			this->waveLutIndexIncrement = FIX19_13_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, FIX19_13_DIV(ITOFIX19_13(reflectiveEntityDefinition->numberOfWaveLutEntries), ITOFIX19_13(reflectiveEntityDefinition->width)));
@@ -380,7 +401,7 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 	int xOutputDistance = abs(xOutput - xOutputLimit);
 	int xTotal = xOutputDistance > xSourceDistance ? xSourceDistance : xOutputDistance;
 
-	u32 time = Game_getTime(Game_getInstance());
+	//u32 time = Game_getTime(Game_getInstance());
 
 	this->waveLutIndex += waveLutIndexIncrement;
 
@@ -414,8 +435,10 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 			}
 		}
 
-		int xRelativeCoordinate = (xCounter % width) + FIX19_13TOI(this->waveLutIndex);
-		int xIndex = (numberOfWaveLutEntries * xRelativeCoordinate) / width;
+		int xRelativeCoordinate = xCounter % width;
+		int xIndex = (numberOfWaveLutEntries * xRelativeCoordinate) / width + FIX19_13TOI(this->waveLutIndex);
+		xIndex = xIndex < numberOfWaveLutEntries ? xIndex : xIndex - numberOfWaveLutEntries;
+
 		int waveLutPixelDisplacement = FIX19_13TOI(FIX19_13_MULT(ITOFIX19_13(waveLut[xIndex]), amplitudeFactor));
 
 		int ySource = ySourceStartHelper;
@@ -440,12 +463,12 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 		columnSourcePointerLeft += columnSourcePointerLeftIncrement;
 
 		POINTER_TYPE outputValueLeft = *columnOutputPointerLeft;
-
+/*
 		u32 random = time % (xRelativeCoordinate + waveLutPixelDisplacement + 1);
 		u32 surfaceDisplacement = (effectiveContentMaskDisplacement + random % FIX19_13TOI(FIX19_13_MULT(ITOFIX19_13(surfaceHeight << 1), waveLutIndexIncrement)));
 		u32 surfaceMask = 0xFFFFFFFF << (random % surfaceHeight);
 		POINTER_TYPE sourceReflectionValueLeft = (~surfaceMask << surfaceDisplacement);
-
+*/
 		waveLutPixelDisplacement =  flattenBottom ? 0 : waveLutPixelDisplacement;
 
 		int yOutputRemainder = MODULO((yOutputEnd + waveLutPixelDisplacement), Y_STEP_SIZE) << 1;
@@ -454,14 +477,14 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 		int yOutputLimit = (yOutputEnd + waveLutPixelDisplacement) >> Y_STEP_SIZE_2_EXP;
 
-		for(; yOutput < yOutputLimit; yOutput++, ySource += ySourceIncrement)
+		for(; yOutput < yOutputLimit; ySource += ySourceIncrement)
 		{
 			WaterPond_shiftPixels(pixelShift, &sourceCurrentValueLeft, sourceNextValueLeft, &remainderLeftValue, reflectionMask);
 
 			sourceCurrentValueLeft &= effectiveContentMask;
 			sourceCurrentValueLeft |= (outputValueLeft & effectiveBackgroundMask);
-			sourceCurrentValueLeft |= sourceReflectionValueLeft;
-			sourceReflectionValueLeft = 0;
+//			sourceCurrentValueLeft |= sourceReflectionValueLeft;
+//			sourceReflectionValueLeft = 0;
 
 			effectiveContentMask = 0xFFFFFFFF;
 			effectiveBackgroundMask = 0;
@@ -475,6 +498,11 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 			sourceCurrentValueLeft = sourceNextValueLeft;
 
 			columnSourcePointerLeft += columnSourcePointerLeftIncrement;
+
+			if(++yOutput >= yOutputLimit)
+			{
+				break;
+			}
 
 			sourceNextValueLeft = *columnSourcePointerLeft;
 		}

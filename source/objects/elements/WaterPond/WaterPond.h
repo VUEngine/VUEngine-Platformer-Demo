@@ -28,6 +28,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <ReflectiveEntity.h>
+#include <ParticleSystem.h>
+
 #include <macros.h>
 
 
@@ -52,6 +54,7 @@ __CLASS(WaterPond);
 		ReflectiveEntity_ATTRIBUTES																		\
 		fix19_13 waveLutThrottleFactorIncrement;														\
 		fix19_13 amplitudeFactor;																		\
+		ParticleSystem waterSplash;
 
 typedef struct WaterPondDefinition
 {

@@ -60,13 +60,13 @@ ParticleROMDef WATER_SPLASH_PARTICLE =
 	500,
 
 	// particle's minimum mass
-	FTOFIX19_13(30.0f),
+	FTOFIX19_13(8.0f),
 
 	// particle's mass delta
-	FTOFIX19_13(30.0f),
+	FTOFIX19_13(8.0f),
 
 	// axis subject to gravity (false to disable)
-	true,
+	__YAXIS,
 
 	// function pointer to control particle's behavior
 	//(void (*)(Particle))&dustParticleBehavior,
@@ -119,11 +119,11 @@ ParticleSystemROMDef WATER_SPLASH_PS =
 
 	// minimum force to apply
 	// use int values in the definition to avoid overflow
-	{-500, -500, -200},
+	{-1000, -15000, -200},
 
 	// maximum force to apply
 	// use int values in the definition to avoid overflow
-	{500, -1000, 200},
+	{1000, -15500, 200},
 
 	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
 	__ACCELERATED_MOVEMENT
