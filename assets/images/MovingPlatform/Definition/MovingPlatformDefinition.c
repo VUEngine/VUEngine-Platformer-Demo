@@ -198,7 +198,7 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 	1000,
 
 	// axis
-	__YAXIS,
+	__Y_AXIS,
 
 	// direction
 	__DOWN

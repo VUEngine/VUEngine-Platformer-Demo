@@ -95,7 +95,7 @@ void CannonBall_ready(CannonBall this, bool recursive)
 // retrieve axis free for movement
 int CannonBall_getAxisFreeForMovement(CannonBall this __attribute__ ((unused)))
 {
-	return __ZAXIS;
+	return __Z_AXIS;
 }
 
 // start moving

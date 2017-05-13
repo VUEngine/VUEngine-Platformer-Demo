@@ -142,9 +142,9 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, s16 id, s16 i
 
 	// register a body for physics
 	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
-	Body_setAxisSubjectToGravity(this->body, __YAXIS);
+	Body_setAxisSubjectToGravity(this->body, __Y_AXIS);
 	Body_setElasticity(this->body, actorDefinition->elasticity);
-	Body_stopMovement(this->body, (__XAXIS | __YAXIS | __ZAXIS));
+	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.globalPosition);
 
 	Hero_setInstance(this);
@@ -276,7 +276,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				this->jumps = 1;
 
 				// we're leaving ground with this jump
-				Hero_startedMovingOnAxis(this, __YAXIS);
+				Hero_startedMovingOnAxis(this, __Y_AXIS);
 
 				// add more force when running, normal force otherwise
 				force.y = this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE;
@@ -290,7 +290,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				this->jumps = -1;
 
 				// stop movement to gain full momentum of the jump force that will be added
-				Actor_stopMovement(__SAFE_CAST(Actor, this), __YAXIS, false);
+				Actor_stopMovement(__SAFE_CAST(Actor, this), __Y_AXIS, false);
 
 				// set second jump performed
 				this->jumps = 2;
@@ -336,14 +336,14 @@ void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 	Velocity velocity = Body_getVelocity(this->body);
 
 	if(this->direction.x != this->inputDirection.x ||
-		((__XAXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
-		((__ZAXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
-		Actor_changedDirection(__SAFE_CAST(Actor, this), __XAXIS) ||
-		Actor_changedDirection(__SAFE_CAST(Actor, this), __ZAXIS))
+		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
+		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
+		Actor_changedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
+		Actor_changedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
 	{
-		fix19_13 inputForce = __YAXIS & Body_isMoving(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
-		fix19_13 xForce = (__XAXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
-		fix19_13 zForce = 0; //(__ZAXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
+		fix19_13 inputForce = __Y_AXIS & Body_isMoving(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
+		fix19_13 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
+		fix19_13 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
 		{
 			xForce,
@@ -356,13 +356,13 @@ void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__YAXIS & Body_isMoving(this->body))))
+		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_isMoving(this->body))))
 		{
 			Velocity newVelocity =
 			{
-				(__XAXIS & axis) ? ((int)maxVelocity * this->inputDirection.x) : 0,
+				(__X_AXIS & axis) ? ((int)maxVelocity * this->inputDirection.x) : 0,
 				0,
-				(__ZAXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
+				(__Z_AXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
 			};
 			movementType = __UNIFORM_MOVEMENT;
 			Body_moveUniformly(this->body, newVelocity);
@@ -407,7 +407,7 @@ void Hero_stopAddingForce(Hero this)
 //	this->inputDirection.y = 0;
 //	this->inputDirection.z = 0;
 
-	if(!(__YAXIS & Body_isMoving(this->body)))
+	if(!(__Y_AXIS & Body_isMoving(this->body)))
 	{
 		Hero_slide(this);
 	}
@@ -418,24 +418,24 @@ void Hero_stopAddingForce(Hero this)
 
 	// begin to decelerate
 	int axisOfDeacceleration = 0;
-	axisOfDeacceleration |= velocity.x? __XAXIS: 0;
-	axisOfDeacceleration |= velocity.z? __ZAXIS: 0;
+	axisOfDeacceleration |= velocity.x? __X_AXIS: 0;
+	axisOfDeacceleration |= velocity.z? __Z_AXIS: 0;
 
 	if(axisOfDeacceleration)
 	{
-		Body_clearAcceleration(this->body, __XAXIS);
+		Body_clearAcceleration(this->body, __X_AXIS);
 		Body_moveAccelerated(this->body, axisOfDeacceleration);
 	}
 	else
 	{
-		Hero_stopMovingOnAxis(this, __XAXIS | __ZAXIS);
+		Hero_stopMovingOnAxis(this, __X_AXIS | __Z_AXIS);
 	}
 }
 
 // started moving over axis
 void Hero_startedMovingOnAxis(Hero this, int axis)
 {
-	if(__YAXIS & axis)
+	if(__Y_AXIS & axis)
 	{
 		Hero_hideDust(this);
 		Hero_capVelocity(this, true);
@@ -444,12 +444,12 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	// start movement
 	if(__SAFE_CAST(State, HeroMoving_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
 	{
-		if(__XAXIS & axis)
+		if(__X_AXIS & axis)
 		{
 			this->keepAddingForce = true;
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
 		}
-		else if(__YAXIS & axis)
+		else if(__Y_AXIS & axis)
 		{
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Fall");
 			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
@@ -461,11 +461,11 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	{
 		bool movementState = Body_isMoving(this->body);
 
-		if(__XAXIS & axis)
+		if(__X_AXIS & axis)
 		{
 			this->keepAddingForce = true;
 
-			if(!(__YAXIS & movementState))
+			if(!(__Y_AXIS & movementState))
 			{
 				this->keepAddingForce = true;
 
@@ -473,13 +473,13 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 			}
 		}
 
-		if(__YAXIS & axis)
+		if(__Y_AXIS & axis)
 		{
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Fall");
 			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
 		}
 
-		if(__ZAXIS & axis)
+		if(__Z_AXIS & axis)
 		{
 			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
 		}
@@ -499,22 +499,22 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 	bool movementState = Body_isMoving(this->body);
 
-	if((__XAXIS & axis) && !(__YAXIS & movementState))
+	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
 
 		Hero_hideDust(this);
 	}
 
-	if(__YAXIS & axis)
+	if(__Y_AXIS & axis)
 	{
 		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
 
-		Hero_lockCameraTriggerMovement(this, __YAXIS, true);
+		Hero_lockCameraTriggerMovement(this, __Y_AXIS, true);
 
 		this->jumps = 0;
 
-		if(__XAXIS & Body_isMoving(this->body))
+		if(__X_AXIS & Body_isMoving(this->body))
 		{
 			if(this->inputDirection.x)
 			{
@@ -529,7 +529,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		}
 	}
 
-	if(__ZAXIS & axis)
+	if(__Z_AXIS & axis)
 	{
 		this->keepAddingForce = false;
 		this->jumps = 0;
@@ -584,10 +584,10 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 
 	if(this->direction.x != this->inputDirection.x)
 	{
-		Hero_lockCameraTriggerMovement(this, __XAXIS, true);
+		Hero_lockCameraTriggerMovement(this, __X_AXIS, true);
 	}
 
-	if(animation && !(__YAXIS & movementState))
+	if(animation && !(__Y_AXIS & movementState))
 	{
 		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), animation);
 	}
@@ -601,7 +601,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 
 		VBVec3DFlag positionFlag = CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager_getInstance());
 
-		if(__XAXIS & axisToLockUp)
+		if(__X_AXIS & axisToLockUp)
 		{
 			overridePositionFlag.x = locked;
 
@@ -819,7 +819,7 @@ void Hero_enterDoor(Hero this)
 {
 	ASSERT(this, "Hero::enterDoor: null this");
 
-	if((__YAXIS | __ZAXIS) & Body_isMoving(this->body))
+	if((__Y_AXIS | __Z_AXIS) & Body_isMoving(this->body))
 	{
 		return;
 	}
@@ -1070,18 +1070,18 @@ int Hero_processCollision(Hero this, Telegram telegram)
 						*CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
 					);
 
-					if(axisOfCollision & __YAXIS)
+					if(axisOfCollision & __Y_AXIS)
 					{
-						Hero_lockCameraTriggerMovement(this, __YAXIS, false);
+						Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 					}
 
-					if(axisOfCollision & __XAXIS)
+					if(axisOfCollision & __X_AXIS)
 					{
-						Hero_lockCameraTriggerMovement(this, __XAXIS, false);
+						Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
 					}
 					else
 					{
-						Hero_lockCameraTriggerMovement(this, __YAXIS, false);
+						Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 					}
 
 					VBVec3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
@@ -1166,7 +1166,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kLavaTriggerStart, NULL);
 				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
 				Hero_stopAddingForce(this);
-				//Hero_stopMovingOnAxis(this, __XAXIS);
+				//Hero_stopMovingOnAxis(this, __X_AXIS);
 				break;
 
 			case kMovingPlatform:
@@ -1175,7 +1175,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 					int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, __SAFE_CAST(SpatialObject, inGameEntity), Body_getLastDisplacement(this->body));
 
 					// if hero's moving over the y axis or is above colliding entity
-					if((__XAXIS & axisOfCollision) || ((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity))))
+					if((__X_AXIS & axisOfCollision) || ((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity))))
 					{
 						// don't further process collision
 						VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
@@ -1342,7 +1342,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				this->cameraBoundingBox = Entity_addChildEntity(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
 				//CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 
-				Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
+				Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
 			}
 
 			//Hero_locateOverNextFloor(this);
@@ -1372,16 +1372,16 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 	Actor_setPosition(__SAFE_CAST(Actor, this), outOfDoorPosition);
 
 	// must make sure that collision detection is reset
-	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this), __XAXIS | __YAXIS | __ZAXIS);
+	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this), __X_AXIS | __Y_AXIS | __Z_AXIS);
 
 	// make the camera active for collision detection
-	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, false);
+	Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, false);
 
 	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
 
 	Container_invalidateGlobalTransformation(__SAFE_CAST(Container, this));
 
-	Body_setAxisSubjectToGravity(this->body, __YAXIS);
+	Body_setAxisSubjectToGravity(this->body, __Y_AXIS);
 
 }
 
@@ -1402,7 +1402,7 @@ void Hero_resume(Hero this)
 
 	Screen_focus(Screen_getInstance(), false);
 
-	Hero_lockCameraTriggerMovement(this, __XAXIS | __YAXIS, true);
+	Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
 
 	VBVec3DFlag positionFlag = {true, true, true};
 	CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
@@ -1414,7 +1414,7 @@ u8 Hero_getAxisAllowedForBouncing(Hero this __attribute__ ((unused)))
 {
 	ASSERT(this, "Hero::getAxisAllowedForBouncing: null this");
 
-	return __YAXIS;
+	return __Y_AXIS;
 }
 
 bool Hero_isAboveEntity(Hero this, Entity entity)
@@ -1447,7 +1447,7 @@ void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObject
 
 u32 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
 {
-	return __XAXIS;
+	return __X_AXIS;
 }
 
 void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer __attribute__ ((unused)))

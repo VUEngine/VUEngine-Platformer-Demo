@@ -198,7 +198,7 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	750,
 
 	// axis
-	__YAXIS,
+	__Y_AXIS,
 
 	// direction
 	__DOWN
@@ -257,7 +257,7 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	1000,
 
 	// axis
-	__XAXIS,
+	__X_AXIS,
 
 	// direction
 	__LEFT
@@ -316,7 +316,7 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	0,
 
 	// axis
-	__XAXIS,
+	__X_AXIS,
 
 	// direction
 	__LEFT

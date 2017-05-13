@@ -97,7 +97,7 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 void HeroMoving_execute(HeroMoving this __attribute__ ((unused)), void* owner)
 {
 	// check direction
-	Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS, false);
+	Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
 }
 
 // state's handle message
@@ -159,9 +159,9 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 			0,
 		};
 
-		if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+		if(__X_AXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 		{
-			Hero_addForce(__SAFE_CAST(Hero, owner), __XAXIS, true);
+			Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, true);
 		}
 
 		Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Walk");

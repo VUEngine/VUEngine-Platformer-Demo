@@ -166,11 +166,11 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 
 		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
 		{
-			if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+			if(__X_AXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
 			{
 				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
 
-				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
+				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
 			}
 		}
 
@@ -212,11 +212,11 @@ void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner, con
             0,
         };
 
-        if(__XAXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+        if(__X_AXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
         {
             Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->holdKey, "Idle");
 
-            Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __XAXIS);
+            Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
         }
     }
 }

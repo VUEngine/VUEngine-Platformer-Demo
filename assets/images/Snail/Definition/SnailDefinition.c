@@ -196,7 +196,7 @@ MovingEntityROMDef SNAIL_3_AC =
 	1000,
 
 	// axis
-	__XAXIS,
+	__X_AXIS,
 
 	// direction
 	__LEFT
@@ -256,7 +256,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	3000,
 
 	// axis
-	__XAXIS,
+	__X_AXIS,
 
 	// direction
 	__LEFT

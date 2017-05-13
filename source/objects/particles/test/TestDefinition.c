@@ -169,7 +169,7 @@ ParticleROMDef TEST_PARTICLE =
 	FTOFIX19_13(10.0f),
 
 	// axis subject to gravity (false to disable)
-	__YAXIS,
+	__Y_AXIS,
 
 	// function pointer to control particle's behavior
 	(void (*)(Particle))&testParticleBehavior,
