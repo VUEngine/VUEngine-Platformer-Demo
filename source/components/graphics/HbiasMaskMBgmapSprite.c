@@ -122,8 +122,18 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
 
 	// if render flag is set
-	if(!this->texture || !this->worldLayer || !this->owner)
+	if(!this->worldLayer)
 	{
+		return;
+	}
+
+	static WorldAttributes* worldPointer = NULL;
+	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
+
+	// if render flag is set
+	if(!this->texture || !this->owner)
+	{
+		worldPointer->head = __WORLD_OFF;
 		return;
 	}
 
@@ -136,9 +146,6 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(__SAFE_CAST(Entity, referenceSpriteOwner))));
 		}
 	}
-
-	static WorldAttributes* worldPointer = NULL;
-	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
 
 	if(!__IS_OBJECT_ALIVE(this->owner) || !__IS_OBJECT_ALIVE(this->referenceSprite))
 	{
