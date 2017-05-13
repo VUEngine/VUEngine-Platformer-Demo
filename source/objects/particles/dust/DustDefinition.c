@@ -58,27 +58,26 @@ ParticleROMDef DUST_PARTICLE =
 	// particle's minimum life span in milliseconds
 	100,
 
-	// particle's life span delta in milliseconds
+	// particle's life span delta in milliseconds (maximum = minimum + delta)
 	100,
 
 	// particle's minimum mass
 	FTOFIX19_13(0),
 
-	// particle's mass delta
+	// particle's mass delta (maximum = minimum + delta)
 	FTOFIX19_13(0),
 
-	// axis subject to gravity (false to disable)
+	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	false,
 
 	// function pointer to control particle's behavior
 	//(void (*)(Particle))&dustParticleBehavior,
 	NULL,
 
-	// animation description
-	// used only if sprite is animated
+	// animation description (used only if sprite is animated)
 	NULL,
 
-	// animation's name to play
+	// name of animation to play
 	NULL
 };
 
@@ -110,23 +109,20 @@ ParticleSystemROMDef DUST_PS =
 	// particle definition
 	(ParticleDefinition*)&DUST_PARTICLE,
 
-	// minimum random distance from the center of the system for spawn
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
-
-	// minimum relative spawn position
+	// minimum relative spawn position (x, y, z)
 	{ITOFIX19_13(-2), ITOFIX19_13(0), ITOFIX19_13(0)},
 
-	// maximum relative spawn position
+	// maximum relative spawn position (x, y, z)
 	{__1I_FIX19_13, ITOFIX19_13(0), ITOFIX19_13(0)},
 
-	// minimum force to apply
-	// use int values in the definition to avoid overflow
-	{(0), (0), (0)},
+	// minimum force to apply (x, y, z)
+	// (use int values in the definition to avoid overflow)
+	{0, 0, 0},
 
-	// maximum force to apply
-	// use int values in the definition to avoid overflow
-	{(0), (0), (0)},
+	// maximum force to apply (x, y, z)
+	// (use int values in the definition to avoid overflow)
+	{0, 0, 0},
 
-	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
+	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT
 };

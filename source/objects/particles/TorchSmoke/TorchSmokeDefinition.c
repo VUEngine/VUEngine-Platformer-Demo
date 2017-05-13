@@ -57,27 +57,25 @@ ParticleROMDef TORCH_SMOKE_PARTICLE =
 	// particle's minimum life span in milliseconds
 	3000,
 
-	// particle's life span delta in milliseconds
+	// particle's life span delta in milliseconds (maximum = minimum + delta)
 	3000,
 
 	// particle's minimum mass
 	FTOFIX19_13(0),
 
-	// particle's mass delta
+	// particle's mass delta (maximum = minimum + delta)
 	FTOFIX19_13(0),
 
-	// axis subject to gravity (false to disable)
+	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	false,
 
 	// function pointer to control particle's behavior
-	//(void (*)(Particle))&smokeParticleBehavior,
 	NULL,
 
-	// animation description
-	// used only if sprite is animated
+	// animation description (used only if sprite is animated)
 	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
 
-	// animation's name to play
+	// name of animation to play
 	"Float"
 };
 
@@ -109,23 +107,20 @@ ParticleSystemROMDef TORCH_SMOKE_PS =
 	// particle definition
 	(ParticleDefinition*)&TORCH_SMOKE_PARTICLE,
 
-	// minimum random distance from the center of the system for spawn
+	// minimum relative spawn position (x, y, z)
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
-	// minimum relative spawn position
+	// maximum relative spawn position (x, y, z)
 	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
-	// maximum relative spawn position
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	// minimum force to apply (x, y, z)
+	// (use int values in the definition to avoid overflow)
+	{-2, -5, 0},
 
-	// minimum force to apply
-	// use int values in the definition to avoid overflow
-	{(-2), (-5), (0)},
+	// maximum force to apply (x, y, z)
+	// (use int values in the definition to avoid overflow)
+	{2, -10, 0},
 
-	// maximum force to apply
-	// use int values in the definition to avoid overflow
-	{(2), (-10), (0)},
-
-	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
+	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT
 };

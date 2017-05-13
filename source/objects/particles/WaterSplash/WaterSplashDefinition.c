@@ -56,27 +56,25 @@ ParticleROMDef WATER_SPLASH_PARTICLE =
 	// particle's minimum life span in milliseconds
 	1000,
 
-	// particle's life span delta in milliseconds
+	// particle's life span delta in milliseconds (maximum = minimum + delta)
 	500,
 
 	// particle's minimum mass
 	FTOFIX19_13(8.0f),
 
-	// particle's mass delta
+	// particle's mass delta (maximum = minimum + delta)
 	FTOFIX19_13(8.0f),
 
-	// axis subject to gravity (false to disable)
+	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__Y_AXIS,
 
 	// function pointer to control particle's behavior
-	//(void (*)(Particle))&dustParticleBehavior,
 	NULL,
 
-	// animation description
-	// used only if sprite is animated
+	// animation description (used only if sprite is animated)
 	NULL,
 
-	// animation's name to play
+	// name of animation to play
 	NULL
 };
 
@@ -108,23 +106,20 @@ ParticleSystemROMDef WATER_SPLASH_PS =
 	// particle definition
 	(ParticleDefinition*)&WATER_SPLASH_PARTICLE,
 
-	// minimum random distance from the center of the system for spawn
-	{ITOFIX19_13(8), ITOFIX19_13(0), ITOFIX19_13(1)},
-
-	// minimum relative spawn position
+	// minimum relative spawn position (x, y, z)
 	{ITOFIX19_13(-16), ITOFIX19_13(0), ITOFIX19_13(-1)},
 
-	// maximum relative spawn position
+	// maximum relative spawn position (x, y, z)
 	{ITOFIX19_13(16), ITOFIX19_13(0), ITOFIX19_13(1)},
 
-	// minimum force to apply
-	// use int values in the definition to avoid overflow
+	// minimum force to apply (x, y, z)
+	// (use int values in the definition to avoid overflow)
 	{-1000, -15000, -200},
 
-	// maximum force to apply
-	// use int values in the definition to avoid overflow
+	// maximum force to apply (x, y, z)
+	// (use int values in the definition to avoid overflow)
 	{1000, -15500, 200},
 
-	// movement type: __UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT
+	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT
 };
