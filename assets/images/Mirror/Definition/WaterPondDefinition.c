@@ -48,10 +48,10 @@ BgmapSpriteROMDef* const WATER_POND_POND_EN_SPRITES[] =
 const u8 WATER_POND_WAVE_LUT[] =
 {
 	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
+	0, 0, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1,
 	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
 	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
-	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
-	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
+	0, 0, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1,
 };
 
 //#define WATER_POND_WIDTH 				175
@@ -146,14 +146,14 @@ WaterPondROMDef WATER_POND_EN =
 		false, true,
 
 		// border masks: top, bottom, left, right
-		0x00000000,
+		0x00000002,
 		0x00000000,
 		0xC0000000,
 		0x00000003,
 	},
 
 	// throttle increment
-	FTOFIX19_13(1.0f),
+	FTOFIX19_13(0.5f),
 
 	// throttle increment duration
 	2000,
@@ -162,8 +162,8 @@ WaterPondROMDef WATER_POND_EN =
 	10,
 
 	// surface height
-	5,
+	2,
 
 	// wave amplitude factor
-	FTOFIX19_13(2.0f),
+	FTOFIX19_13(1.5f),
 };
