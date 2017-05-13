@@ -131,7 +131,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
 
 	// if render flag is set
-	if(!this->texture || !this->owner)
+	if(!this->texture)
 	{
 		worldPointer->head = __WORLD_OFF;
 		return;
@@ -149,7 +149,6 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 
 	if(!__IS_OBJECT_ALIVE(this->owner) || !__IS_OBJECT_ALIVE(this->referenceSprite))
 	{
-		this->owner = NULL;
 		this->referenceSprite = NULL;
 
 		worldPointer->head = __WORLD_OFF;
