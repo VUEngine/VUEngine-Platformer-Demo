@@ -45,7 +45,6 @@
 		__VIRTUAL_SET(ClassName, WaterPond, handleMessage);												\
 		__VIRTUAL_SET(ClassName, WaterPond, ready);														\
 		__VIRTUAL_SET(ClassName, WaterPond, applyReflection);											\
-//		__VIRTUAL_SET(ClassName, WaterPond, transform);
 
 __CLASS(WaterPond);
 
@@ -88,7 +87,6 @@ __CLASS_NEW_DECLARE(WaterPond, WaterPondDefinition* mirrorDefinition, s16 id, s1
 
 void WaterPond_constructor(WaterPond this, WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
 void WaterPond_destructor(WaterPond this);
-void WaterPond_transform(WaterPond this, const Transformation* environmentTransform);
 bool WaterPond_handleMessage(WaterPond this, void* telegram);
 void WaterPond_ready(WaterPond this, bool recursive);
 void WaterPond_applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet);

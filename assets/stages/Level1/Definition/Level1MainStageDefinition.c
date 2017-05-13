@@ -425,7 +425,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COIN_AG,						{FTOFIX19_13(988),	FTOFIX19_13(260), 	FTOFIX19_13(LAYER_0_ITEMS)},			9, NULL, NULL, NULL, false},
 	{&COIN_AG,						{FTOFIX19_13(988),	FTOFIX19_13(308), 	FTOFIX19_13(LAYER_0_ITEMS)},			10, NULL, NULL, NULL, false},
 	{&COIN_AG,						{FTOFIX19_13(988),	FTOFIX19_13(356), 	FTOFIX19_13(LAYER_0_ITEMS)},			11, NULL, NULL, NULL, false},
-	{&GRASS_AG,						{FTOFIX19_13(1052), FTOFIX19_13(408), 	FTOFIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	//{&GRASS_AG,						{FTOFIX19_13(1052), FTOFIX19_13(408), 	FTOFIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 	{&DOOR_AG,						{FTOFIX19_13(1086), FTOFIX19_13(208), 	FTOFIX19_13(LAYER_0_DOORS)},			0, "IntEntrD", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_UPPER_EP, false},
 
 	{&WATERFALL_TOP_AG,				{FTOFIX19_13(1156),	FTOFIX19_13(346), 	FTOFIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
@@ -626,9 +626,9 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// minimum free ms in the current game frame to allow streaming to quick in
-		2,
+		7,
 		// load padding
-		64,
+		96,
 		// unload padding
 		24,
 		// streaming amplitude
