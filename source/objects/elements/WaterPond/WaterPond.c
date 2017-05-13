@@ -289,6 +289,11 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 {
 	ASSERT(this, "ReflectiveEntity::drawReflection: null this");
 
+	if(!waveLut)
+	{
+		return;
+	}
+
     s16 xSourceEnd = xSourceStart + width;
     s16 ySourceEnd = ySourceStart + height;
 	s16 xOutputEnd = xOutputStart + width;
@@ -372,19 +377,7 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 	u32 reflectionMaskSave = reflectionMask;
 
-	u8 dummyWaveLut[] =
-	{
-		0
-	};
-
 	fix19_13 waveLutIndexIncrement = this->waveLutIndexIncrement;
-
-	if(!waveLut)
-	{
-		waveLutIndexIncrement = 0;
-		this->waveLutIndex = 0;
-		waveLut = dummyWaveLut;
-	}
 
 	int ySourceIncrement = 1;
     int ySourceStartHelper = ySourceStart >> Y_STEP_SIZE_2_EXP;

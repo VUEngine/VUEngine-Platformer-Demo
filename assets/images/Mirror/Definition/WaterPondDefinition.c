@@ -56,7 +56,7 @@ const u8 WATER_POND_WAVE_LUT[] =
 
 //#define WATER_POND_WIDTH 				175
 //#define WATER_POND_WIDTH 				240
-#define WATER_POND_WIDTH 				94
+#define WATER_POND_WIDTH 				97
 //#define WATER_POND_WIDTH 				124
 #define WATER_POND_HEIGHT 				32
 #define WATER_POND_REFLECTION_WIDTH		WATER_POND_WIDTH
@@ -156,10 +156,10 @@ WaterPondROMDef WATER_POND_EN =
 	FTOFIX19_13(0.5f),
 
 	// throttle increment duration
-	2000,
+	1500,
 
 	// throttle increment duration step
-	10,
+	5,
 
 	// surface height
 	2,
