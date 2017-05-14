@@ -385,7 +385,7 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 	int xOutputDistance = abs(xOutput - xOutputLimit);
 	int xTotal = xOutputDistance > xSourceDistance ? xSourceDistance : xOutputDistance;
 
-	//u32 time = Game_getTime(Game_getInstance());
+	u32 time = Game_getTime(Game_getInstance());
 
 	this->waveLutIndex += waveLutIndexIncrement;
 
@@ -450,6 +450,8 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 		u32 surfaceMask = 0xFFFFFFFF << (random % surfaceHeight);
 		POINTER_TYPE sourceReflectionValueLeft = (~surfaceMask << surfaceDisplacement);
 */
+		POINTER_TYPE sourceReflectionValueLeft = (topBorderMask << effectiveContentMaskDisplacement) & xOutput & time;
+
 		waveLutPixelDisplacement =  flattenBottom ? 0 : waveLutPixelDisplacement;
 
 		int yOutputRemainder = MODULO((yOutputEnd + waveLutPixelDisplacement), Y_STEP_SIZE) << 1;
@@ -464,8 +466,8 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 			sourceCurrentValueLeft &= effectiveContentMask;
 			sourceCurrentValueLeft |= (outputValueLeft & effectiveBackgroundMask);
-//			sourceCurrentValueLeft |= sourceReflectionValueLeft;
-//			sourceReflectionValueLeft = 0;
+			sourceCurrentValueLeft |= sourceReflectionValueLeft;
+			sourceReflectionValueLeft = 0;
 
 			effectiveContentMask = 0xFFFFFFFF;
 			effectiveBackgroundMask = 0;

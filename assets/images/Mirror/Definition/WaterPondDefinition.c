@@ -146,7 +146,7 @@ WaterPondROMDef WATER_POND_EN =
 		false, true,
 
 		// border masks: top, bottom, left, right
-		0x00000002,
+		0x00000001,
 		0x00000000,
 		0xC0000000,
 		0x00000003,
