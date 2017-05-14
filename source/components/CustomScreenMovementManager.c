@@ -143,142 +143,144 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 	_screen->lastDisplacement.z = 0;
 
 	// if focusInGameEntity is defined
-	if(_screen->focusInGameEntity)
+	if(!_screen->focusInGameEntity)
 	{
-		Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
+		return false;
+	}
 
-		ASSERT(__SAFE_CAST(Actor, _screen->focusInGameEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
+	Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
 
-		VBVec3D screenPreviousPosition = _screen->position;
+	ASSERT(__SAFE_CAST(Actor, _screen->focusInGameEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
 
-		VBVec3DFlag reachedTargetFlag = {true, true, true};
+	VBVec3D screenPreviousPosition = _screen->position;
 
-		VBVec3D focusInGameEntityPosition = *_screen->focusInGameEntityPosition;
+	VBVec3DFlag reachedTargetFlag = {true, true, true};
 
-		VBVec3D position3D = focusInGameEntityPosition;
-		VBVec2D position2D;
+	VBVec3D focusInGameEntityPosition = *_screen->focusInGameEntityPosition;
 
-		// normalize the position to screen coordinates
-		__OPTICS_NORMALIZE(position3D);
+	VBVec3D position3D = focusInGameEntityPosition;
+	VBVec2D position2D;
 
-		// project position to 2D space
-		__OPTICS_PROJECT_TO_2D(position3D, position2D);
+	// normalize the position to screen coordinates
+	__OPTICS_NORMALIZE(position3D);
 
+	// project position to 2D space
+	__OPTICS_PROJECT_TO_2D(position3D, position2D);
+
+	{
+		bool focusEntityOutOfBounds = (unsigned)(FIX19_13TOI(position2D.x) - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
+
+		if(this->positionFlag.x | focusEntityOutOfBounds)
 		{
-			bool focusEntityOutOfBounds = (unsigned)(FIX19_13TOI(position2D.x) - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
+			// calculate the target position
+			fix19_13 horizontalPosition = _screen->position.x;
+			fix19_13 horizontalTarget = focusInGameEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
 
-			if(this->positionFlag.x || focusEntityOutOfBounds)
+			fix19_13 easingDisplacement = ITOFIX19_13(7);
+
+			if(introFocusing)
 			{
-				// calculate the target position
-				fix19_13 horizontalPosition = _screen->position.x;
-				fix19_13 horizontalTarget = focusInGameEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
-
-				fix19_13 easingDisplacement = ITOFIX19_13(7);
-
-				if(introFocusing)
-				{
-					easingDisplacement = __1I_FIX19_13;
-				}
-
-				reachedTargetFlag.x = false;
-
-				if(horizontalPosition + easingDisplacement < horizontalTarget)
-				{
-					_screen->position.x += easingDisplacement;
-				}
-				else if(horizontalPosition - easingDisplacement > horizontalTarget)
-				{
-					_screen->position.x -= easingDisplacement;
-				}
-				else
-				{
-					_screen->position.x = horizontalTarget;
-					reachedTargetFlag.x = true;
-				}
-
-				if(0 > _screen->position.x)
-				{
-					_screen->position.x = 0;
-					reachedTargetFlag.x = true;
-				}
-				else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
-				{
-					_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
-					reachedTargetFlag.x = true;
-				}
-
-				_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
+				easingDisplacement = __1I_FIX19_13;
 			}
-		}
 
-		{
-			bool focusEntityOutOfBounds = FIX19_13TOI(position2D.y) > _cameraFrustum->y1 - SCREEN_HEIGHT_REDUCTION || FIX19_13TOI(position2D.y) < _cameraFrustum->y0 + SCREEN_HEIGHT_REDUCTION / 4;
+			reachedTargetFlag.x = false;
 
-			if(this->positionFlag.y || focusEntityOutOfBounds)
+			if(horizontalPosition + easingDisplacement < horizontalTarget)
 			{
-				// calculate the target position
-				fix19_13 verticalPosition = _screen->position.y;
-				fix19_13 verticalTarget = focusInGameEntityPosition.y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
-
-				fix19_13 downEasingDisplacement = ITOFIX19_13(3);
-				fix19_13 upEasingDisplacement = ITOFIX19_13(3);
-
-				if(introFocusing)
-				{
-					downEasingDisplacement = __1I_FIX19_13;
-					upEasingDisplacement = __1I_FIX19_13;
-				}
-				else
-				{
-					Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusInGameEntity));
-
-					if(0 < velocity.y)
-					{
-						downEasingDisplacement = ITOFIX19_13(8);
-					}
-				}
-
-				reachedTargetFlag.y = false;
-
-				if(focusEntityOutOfBounds)
-				{
-					this->positionFlag.y = true;
-				}
-
-				if(verticalPosition + downEasingDisplacement < verticalTarget)
-				{
-					_screen->position.y += downEasingDisplacement;
-				}
-				else if(verticalPosition - upEasingDisplacement > verticalTarget)
-				{
-					_screen->position.y -= upEasingDisplacement;
-				}
-				else
-				{
-					_screen->position.y = verticalTarget;
-					this->positionFlag.y = false;
-					reachedTargetFlag.y = true;
-				}
-
-				if(0 > _screen->position.y)
-				{
-					_screen->position.y = 0;
-					reachedTargetFlag.y = true;
-				}
-				else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
-				{
-					_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
-					reachedTargetFlag.y = true;
-				}
-
-				_screen->lastDisplacement.y = _screen->position.y - screenPreviousPosition.y;
+				_screen->position.x += easingDisplacement;
 			}
-		}
+			else if(horizontalPosition - easingDisplacement > horizontalTarget)
+			{
+				_screen->position.x -= easingDisplacement;
+			}
+			else
+			{
+				_screen->position.x = horizontalTarget;
+				reachedTargetFlag.x = true;
+			}
 
-		if(reachedTargetFlag.x && reachedTargetFlag.y)
-		{
-			return true;
+			if(0 > _screen->position.x)
+			{
+				_screen->position.x = 0;
+				reachedTargetFlag.x = true;
+			}
+			else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+			{
+				_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
+				reachedTargetFlag.x = true;
+			}
+
+			_screen->lastDisplacement.x = (_screen->position.x - screenPreviousPosition.x);
 		}
+	}
+
+	{
+		bool focusEntityOutOfBounds = FIX19_13TOI(position2D.y) > _cameraFrustum->y1 - SCREEN_HEIGHT_REDUCTION || FIX19_13TOI(position2D.y) < _cameraFrustum->y0 + SCREEN_HEIGHT_REDUCTION / 4;
+
+		if(this->positionFlag.y | focusEntityOutOfBounds)
+		{
+			// calculate the target position
+			fix19_13 verticalPosition = _screen->position.y;
+			fix19_13 verticalTarget = focusInGameEntityPosition.y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
+
+			fix19_13 downEasingDisplacement = ITOFIX19_13(3);
+			fix19_13 upEasingDisplacement = ITOFIX19_13(3);
+
+			if(introFocusing)
+			{
+				downEasingDisplacement = __1I_FIX19_13;
+				upEasingDisplacement = __1I_FIX19_13;
+			}
+			else
+			{
+				Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusInGameEntity));
+
+				if(0 < velocity.y)
+				{
+					downEasingDisplacement = ITOFIX19_13(8);
+				}
+			}
+
+			reachedTargetFlag.y = false;
+
+			if(focusEntityOutOfBounds)
+			{
+				this->positionFlag.y = true;
+			}
+
+			if(verticalPosition + downEasingDisplacement < verticalTarget)
+			{
+				_screen->position.y += downEasingDisplacement;
+			}
+			else if(verticalPosition - upEasingDisplacement > verticalTarget)
+			{
+				_screen->position.y -= upEasingDisplacement;
+			}
+			else
+			{
+				_screen->position.y = verticalTarget;
+				this->positionFlag.y = false;
+				reachedTargetFlag.y = true;
+			}
+
+			if(0 > _screen->position.y)
+			{
+				_screen->position.y = 0;
+				reachedTargetFlag.y = true;
+			}
+			else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
+			{
+				_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
+				reachedTargetFlag.y = true;
+			}
+
+			_screen->lastDisplacement.y = _screen->position.y - screenPreviousPosition.y;
+		}
+	}
+
+	if(reachedTargetFlag.x && reachedTargetFlag.y)
+	{
+		return true;
 	}
 
 	return false;
