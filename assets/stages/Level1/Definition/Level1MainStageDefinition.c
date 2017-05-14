@@ -439,7 +439,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COIN_AG,						{FTOFIX19_13(1356), FTOFIX19_13(432), 	FTOFIX19_13(LAYER_0_ITEMS)},			13, NULL, NULL, NULL, false},
 	{&DOOR_AG,						{FTOFIX19_13(1373), FTOFIX19_13(272), 	FTOFIX19_13(LAYER_0_DOORS)},			0, "IntExitD", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_EXIT_EP, false},
 	{&KEY_AG,						{FTOFIX19_13(1348), FTOFIX19_13(276), 	FTOFIX19_13(LAYER_0_ITEMS)},			2, NULL, NULL, NULL, false},
-	{&BUSH_AG,						{FTOFIX19_13(1430), FTOFIX19_13(412), 	FTOFIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+//	{&BUSH_AG,						{FTOFIX19_13(1430), FTOFIX19_13(412), 	FTOFIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 	{&SNAIL_3_AC,					{FTOFIX19_13(1496), FTOFIX19_13(377), 	FTOFIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
 	{&SNAIL_3_AC,					{FTOFIX19_13(1576), FTOFIX19_13(345), 	FTOFIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
 	{&MOUND_1_IM,					{FTOFIX19_13(1668), FTOFIX19_13(300), 	FTOFIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
@@ -626,9 +626,9 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// minimum free ms in the current game frame to allow streaming to quick in
-		7,
+		4,
 		// load padding
-		96,
+		120,
 		// unload padding
 		24,
 		// streaming amplitude
