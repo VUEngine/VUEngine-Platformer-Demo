@@ -364,11 +364,11 @@ AnimatedInGameEntityROMDef COIN_AG =
 
 		// width
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// height
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// depth
 		4
@@ -397,11 +397,11 @@ AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG =
 
 		// width
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// height
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// depth
 		4
@@ -494,11 +494,11 @@ AnimatedInGameEntityROMDef COIN_BACK_AG =
 
 		// width
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// height
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// depth
 		4
@@ -527,11 +527,11 @@ AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG =
 
 		// width
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// height
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// depth
 		4
@@ -595,11 +595,11 @@ AnimatedInGameEntityROMDef AFFINE_COIN_AG =
 
 		// width
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// height
 		// if 0, width and height will be inferred from the texture's size
-		0,
+		2 * 8,
 
 		// depth
 		4
