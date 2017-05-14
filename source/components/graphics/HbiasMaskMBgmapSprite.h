@@ -35,15 +35,16 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define HbiasMaskMBgmapSprite_METHODS(ClassName)															\
+#define HbiasMaskMBgmapSprite_METHODS(ClassName)														\
 		MBgmapSprite_METHODS(ClassName)																	\
 
 // declare the virtual methods which are redefined
 #define HbiasMaskMBgmapSprite_SET_VTABLE(ClassName)														\
 		MBgmapSprite_SET_VTABLE(ClassName)																\
-		__VIRTUAL_SET(ClassName, HbiasMaskMBgmapSprite, render);											\
+		__VIRTUAL_SET(ClassName, HbiasMaskMBgmapSprite, render);										\
+		__VIRTUAL_SET(ClassName, HbiasMaskMBgmapSprite, position);										\
 
-#define HbiasMaskMBgmapSprite_ATTRIBUTES																	\
+#define HbiasMaskMBgmapSprite_ATTRIBUTES																\
 		MBgmapSprite_ATTRIBUTES																			\
 		/**
 		 * @var SpatialObject 	owner
@@ -62,7 +63,7 @@
 		 * @brief		reference Sprite
 		 * @memberof 	HbiasMaskMBgmapSprite
 		 */																								\
-		const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition;								\
+		const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition;								\
 		/**
 		 * @var u8		step
 		 * @brief		current lut index
@@ -95,10 +96,11 @@ typedef const HbiasMaskMBgmapSpriteDefinition HbiasMaskMBgmapSpriteROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object);
+__CLASS_NEW_DECLARE(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object);
 
-void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner);
+void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
 void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this);
+void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const VBVec3D* position);
 void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this);
 s16 HbiasMaskMBgmapSprite_wave(HbiasMaskMBgmapSprite this);
 

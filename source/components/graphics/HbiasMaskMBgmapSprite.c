@@ -65,8 +65,8 @@ __CLASS_FRIEND_DEFINITION(BgmapTexture);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner)
-__CLASS_NEW_END(HbiasMaskMBgmapSprite, hotAirMBgmapSpriteDefinition, owner);
+__CLASS_NEW_DEFINITION(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner)
+__CLASS_NEW_END(HbiasMaskMBgmapSprite, hbiasMaskMBgmapSpriteDefinition, owner);
 
 /**
  * Class constructor
@@ -78,11 +78,11 @@ __CLASS_NEW_END(HbiasMaskMBgmapSprite, hotAirMBgmapSpriteDefinition, owner);
  * @param mBgmapSpriteDefinition		Definition to use
  * @param owner							Sprite's owner
  */
-void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hotAirMBgmapSpriteDefinition, Object owner)
+void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner)
 {
-	__CONSTRUCT_BASE(MBgmapSprite, &hotAirMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
+	__CONSTRUCT_BASE(MBgmapSprite, &hbiasMaskMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
 
-	this->hotAirMBgmapSpriteDefinition = hotAirMBgmapSpriteDefinition;
+	this->hbiasMaskMBgmapSpriteDefinition = hbiasMaskMBgmapSpriteDefinition;
 	this->owner = NULL;
 	this->referenceSprite = NULL;
 	this->step = 0;
@@ -107,6 +107,23 @@ void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this)
 	// destroy the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
+}
+
+void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const VBVec3D* position)
+{
+	ASSERT(this, "HbiasMaskMBgmapSprite::position: null this");
+
+	__CALL_BASE_METHOD(MBgmapSprite, position, this, position);
+
+	if(!__IS_OBJECT_ALIVE(this->referenceSprite))
+	{
+		Container referenceSpriteOwner = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), this->hbiasMaskMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
+
+		if(__IS_OBJECT_ALIVE(referenceSpriteOwner))
+		{
+			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(__SAFE_CAST(Entity, referenceSpriteOwner))));
+		}
+	}
 }
 
 /**
@@ -135,16 +152,6 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	{
 		worldPointer->head = __WORLD_OFF;
 		return;
-	}
-
-	if(!__IS_OBJECT_ALIVE(this->referenceSprite))
-	{
-		Container referenceSpriteOwner = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), this->hotAirMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
-
-		if(__IS_OBJECT_ALIVE(referenceSpriteOwner))
-		{
-			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(__SAFE_CAST(Entity, referenceSpriteOwner))));
-		}
 	}
 
 	if(!__IS_OBJECT_ALIVE(this->owner) || !__IS_OBJECT_ALIVE(this->referenceSprite))
@@ -192,7 +199,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
-	worldPointer->gy = ownerSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
+	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp + FIX19_13TOI((this->displacement.p) & 0xFFFFE000);
 
 
@@ -202,7 +209,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
     	||
 		ownerSpriteGY < worldPointer->gy
 		||
-		_cameraFrustum->y1 <= ownerSpriteGY - this->hotAirMBgmapSpriteDefinition->effectHeight
+		_cameraFrustum->y1 <= ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight
 		||
 		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy
 		||
@@ -221,7 +228,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	worldPointer->mp = referenceSpriteWorldPointer->mp;
 
 	worldPointer->w = referenceSpriteWorldPointer->w;
-	worldPointer->h = ownerSpriteGY - worldPointer->gy + this->hotAirMBgmapSpriteDefinition->effectHeightExcess;
+	worldPointer->h = ownerSpriteGY - worldPointer->gy + this->hbiasMaskMBgmapSpriteDefinition->effectHeightExcess;
 
 	if(referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy + worldPointer->h)
 	{
