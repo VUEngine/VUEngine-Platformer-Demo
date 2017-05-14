@@ -107,7 +107,7 @@ static void __attribute__ ((noinline)) PlatformerLevelState_constructor(Platform
 	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
 	this->currentCheckPoint = this->currentLevel->entryPoint;
-	this->userInput = (UserInput){0, 0, 0, 0, 0};
+	this->userInput = (UserInput){0, 0, 0, 0, 0, 0};
 }
 
 // class's destructor
