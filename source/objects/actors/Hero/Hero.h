@@ -89,6 +89,7 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);										\
 		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
 		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
+		__VIRTUAL_SET(ClassName, Hero, processCollision);												\
 
 __CLASS(Hero);
 
@@ -163,7 +164,7 @@ u8 Hero_getPowerUp(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
-int Hero_processCollision(Hero this, Telegram telegram);
+bool Hero_processCollision(Hero this, VirtualList collidingSpatialObjects);
 bool Hero_handleMessage(Hero this, Telegram telegram);
 bool Hero_handlePropagatedMessage(Hero this, int message);
 void Hero_suspend(Hero this);

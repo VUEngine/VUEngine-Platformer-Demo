@@ -75,13 +75,13 @@ void CameraTriggerEntity_destructor(CameraTriggerEntity this)
 	__DESTROY_BASE;
 }
 
-void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform)
+void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag)
 {
 	ASSERT(this, "CameraTriggerEntity::transform: null this");
 
 	VBVec3D currentGlobalPosition = this->transform.globalPosition;
 
-	__CALL_BASE_METHOD(Container, transform, this, environmentTransform);
+	__CALL_BASE_METHOD(Container, transform, this, environmentTransform, invalidateTransformationFlag);
 
 	if(this->overridePositionFlag.x)
 	{
@@ -107,7 +107,7 @@ void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec
 
 	// don't lock yet, allow the global position to be calculated before locking
 	this->overridePositionFlag.y = false;
-	CameraTriggerEntity_transform(this, &environmentTransform);
+	CameraTriggerEntity_transform(this, &environmentTransform, __INVALIDATE_TRANSFORMATION);
 
 	this->overridePositionFlag = overridePositionFlag;
 }

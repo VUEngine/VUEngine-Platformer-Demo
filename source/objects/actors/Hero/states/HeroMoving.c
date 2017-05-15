@@ -127,11 +127,6 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 			Hero_capVelocity(__SAFE_CAST(Hero, owner), true);
 			return false;
 			break;
-
-		case kCollision:
-
-			return Hero_processCollision(__SAFE_CAST(Hero, owner), telegram);
-			break;
 	}
 
 	return false;

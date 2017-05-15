@@ -1032,22 +1032,21 @@ bool Hero_isInvincible(Hero this)
 }
 
 // process collisions
-int Hero_processCollision(Hero this, Telegram telegram)
+bool Hero_processCollision(Hero this, VirtualList collidingSpatialObjects)
 {
 	ASSERT(this, "Hero::processCollision: null this");
-	VirtualList collidingObjects = __SAFE_CAST(VirtualList, Telegram_getExtraInfo(telegram));
-	ASSERT(collidingObjects, "Hero::processCollision: null collidingObjects");
+	ASSERT(collidingSpatialObjects, "Hero::processCollision: null collidingObjects");
 
 	VirtualNode node = NULL;
 
-	static VirtualList collidingObjectsToRemove = NULL;
+	static VirtualList collidingSpatialObjectsToRemove = NULL;
 
-	if(!collidingObjectsToRemove)
+	if(!collidingSpatialObjectsToRemove)
 	{
-		collidingObjectsToRemove = __NEW(VirtualList);
+		collidingSpatialObjectsToRemove = __NEW(VirtualList);
 	}
 
-	for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
+	for(node = VirtualList_begin(collidingSpatialObjects); node; node = VirtualNode_getNext(node))
 	{
 		InGameEntity inGameEntity = __SAFE_CAST(InGameEntity, VirtualNode_getData(node));
 
@@ -1058,7 +1057,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 
 			case kCameraTarget:
 				{
-					VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+					VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 
 					// get the axis of collision
 					u8 axisOfCollision = __VIRTUAL_CALL(
@@ -1093,21 +1092,21 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kCoin:
 
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kKey:
 
 				this->hasKey = true;
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kBandana:
 
 				Hero_collectPowerUp(this, kPowerUpBandana);
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kHideLayer:
@@ -1118,13 +1117,13 @@ int Hero_processCollision(Hero this, Telegram telegram)
 					HideLayer_setOverlapping((HideLayer)inGameEntity);
 				}
 
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kDoor:
 
 				Door_onOverlapping((Door)inGameEntity);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kWaterPond:
@@ -1134,7 +1133,7 @@ int Hero_processCollision(Hero this, Telegram telegram)
 					MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kReactToCollision, NULL);
 				}
 
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kLava:
@@ -1146,25 +1145,25 @@ int Hero_processCollision(Hero this, Telegram telegram)
 			case kSnail:
 
 				Hero_takeHitFrom(this, inGameEntity, 1, true, true, false);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kCannonBall:
 
 				Hero_takeHitFrom(this, inGameEntity, 2, true, true, false);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kHit:
 
 				Hero_takeHitFrom(this, inGameEntity, 1, true, true, false);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				break;
 
 			case kLavaTrigger:
 
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kLavaTriggerStart, NULL);
-				VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 				Hero_stopAddingForce(this);
 				//Hero_stopMovingOnAxis(this, __X_AXIS);
 				break;
@@ -1178,25 +1177,24 @@ int Hero_processCollision(Hero this, Telegram telegram)
 					if((__X_AXIS & axisOfCollision) || ((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity))))
 					{
 						// don't further process collision
-						VirtualList_pushBack(collidingObjectsToRemove, inGameEntity);
+						VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
 					}
 				}
 				break;
 		}
 	}
 
-	for(node = VirtualList_begin(collidingObjectsToRemove); node; node = VirtualNode_getNext(node))
+	for(node = VirtualList_begin(collidingSpatialObjectsToRemove); node; node = VirtualNode_getNext(node))
 	{
 		// whenever you process some objects of a collisions list remove them and leave the Actor handle
 		// the ones you don't care about, i.e.: in most cases, the ones which are solid
-		VirtualList_removeElement(collidingObjects, VirtualNode_getData(node));
+		VirtualList_removeElement(collidingSpatialObjects, VirtualNode_getData(node));
 	}
 
-	VirtualList_clear(collidingObjectsToRemove);
+	VirtualList_clear(collidingSpatialObjectsToRemove);
 
-	return !VirtualList_getSize(collidingObjects);
+	return Actor_processCollision(__SAFE_CAST(Actor, this), collidingSpatialObjects);
 }
-
 
 void Hero_capVelocity(Hero this, bool discardPreviousMessages)
 {

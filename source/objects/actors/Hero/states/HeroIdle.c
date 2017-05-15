@@ -103,11 +103,6 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 {
 	switch(Telegram_getMessage(telegram))
 	{
-		case kCollision:
-
-			return Hero_processCollision(__SAFE_CAST(Hero, owner), telegram);
-			break;
-
 		case kBodyStartedMoving:
 
 			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
