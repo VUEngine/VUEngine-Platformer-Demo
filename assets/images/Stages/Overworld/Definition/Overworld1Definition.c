@@ -134,7 +134,7 @@ BgmapSpriteROMDef* const OVERWORLD_1_IM_SPRITES[] =
 	NULL
 };
 
-RecyclableImageROMDef OVERWORLD_1_IM =
+ManagedStaticImageROMDef OVERWORLD_1_IM =
 {
 	__TYPE(ManagedStaticImage),
 	(SpriteROMDef**)OVERWORLD_1_IM_SPRITES,

@@ -24,7 +24,6 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
 #include <ManagedStaticImage.h>
 #include <MBgmapSprite.h>
 
@@ -124,7 +123,7 @@ BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES[] =
 	NULL
 };
 
-RecyclableImageROMDef LEVEL_1_MAIN_1_MAIN_1_IM =
+ManagedStaticImageROMDef LEVEL_1_MAIN_1_MAIN_1_IM =
 {
 	__TYPE(ManagedStaticImage),
 	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_1_IM_SPRITES,

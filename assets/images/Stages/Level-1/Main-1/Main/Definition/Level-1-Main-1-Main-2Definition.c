@@ -114,7 +114,7 @@ BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_2_IM_SPRITES[] =
 	NULL
 };
 
-RecyclableImageROMDef LEVEL_1_MAIN_1_MAIN_2_IM =
+ManagedStaticImageROMDef LEVEL_1_MAIN_1_MAIN_2_IM =
 {
 	__TYPE(ManagedStaticImage),
 	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_2_IM_SPRITES,
