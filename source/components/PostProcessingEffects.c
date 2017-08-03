@@ -285,7 +285,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
  	#define RAIN_MINIMUM_DROPLET_LENGTH		3
  	#define RAIN_MINIMUM_Y_THROTTLE_1		ITOFIX19_13(-5)
  	#define RAIN_MAXIMUM_Y_THROTTLE_1		ITOFIX19_13(2)
- 	#define RAIN_MINIMUM_X_STEP_1			ITOFIX19_13(8)
+ 	#define RAIN_MINIMUM_X_STEP_1			ITOFIX19_13(15)
  	#define RAIN_MAXIMUM_X_STEP_1			ITOFIX19_13(90)
 	static u16 yStepIndex = 0;
 	static u16 dropletLengthIndex = 0;

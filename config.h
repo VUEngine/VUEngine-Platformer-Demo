@@ -131,7 +131,7 @@
 #undef __FORCE_VIP_SYNC
 
 // Timer resolution
-#define __TIMER_RESOLUTION						1
+#define __TIMER_RESOLUTION						4
 
 // Options are __TIMER_20US and __TIMER_100US
 #define __TIMER_FREQUENCY						__TIMER_20US

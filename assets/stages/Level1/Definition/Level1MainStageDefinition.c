@@ -77,7 +77,9 @@ extern EntityDefinition LEVEL_1_MAIN_1_BACK_1_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_BACK_5_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_1_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_2_IM;
-extern EntityDefinition LEVEL_1_MAIN_1_MAIN_3_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_3_A_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_3_B_IM;
+extern EntityDefinition LEVEL_1_MAIN_1_MAIN_3_C_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_4_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_5_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_6_IM;
@@ -237,7 +239,9 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_CHILDREN[] =
 {
-	{&LEVEL_1_MAIN_1_MAIN_3_IM, 	{FTOFIX19_13(0), 	FTOFIX19_13(0),		FTOFIX19_13(0)},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_3_A_IM, 	{FTOFIX19_13(0), 	FTOFIX19_13(0),		FTOFIX19_13(0)},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_3_B_IM, 	{FTOFIX19_13(0), 	FTOFIX19_13(0),		FTOFIX19_13(0)},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_3_C_IM, 	{FTOFIX19_13(0), 	FTOFIX19_13(0),		FTOFIX19_13(0)},		0, NULL, NULL, NULL, false},
 	{&HIDE_LAYER_10x7_AG,			{FTOFIX19_13(144), 	FTOFIX19_13(20),	FTOFIX19_13(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
 	{&HIDE_LAYER_10x7_AG,			{FTOFIX19_13(-160), FTOFIX19_13(-44),	FTOFIX19_13(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
 
