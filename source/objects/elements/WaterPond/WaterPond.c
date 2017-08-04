@@ -398,6 +398,10 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 	int xCounter = xOutputStart - xOutputStartSave;
 
+	CACHE_DISABLE;
+	CACHE_CLEAR;
+	CACHE_ENABLE;
+
 	for(; xTotal--; xOutput += xOutputIncrement, xSource +=xOutputIncrement, xCounter++)
 	{
 		int leftColumn = xOutput;
@@ -509,6 +513,8 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 			*columnOutputPointerRight = (outputValueLeft & ~effectiveContentMask) | (remainderLeftValue & effectiveContentMask);
 		}
 	}
+
+
 }
 
 

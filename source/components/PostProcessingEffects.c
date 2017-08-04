@@ -105,6 +105,10 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 	// write to framebuffers for both screens
 	int counter = 1;
 
+	CACHE_DISABLE;
+	CACHE_CLEAR;
+	CACHE_ENABLE;
+
 	for(; counter <= xEnd; counter += xStep)
 	{
 		if(++yIndex >= numberOfYs)
