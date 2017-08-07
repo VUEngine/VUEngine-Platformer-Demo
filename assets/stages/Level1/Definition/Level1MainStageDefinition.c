@@ -639,7 +639,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// minimum free ms in the current game frame to allow streaming to quick in
-		6,
+		4,
 		// load padding
 		96,
 		// unload padding
