@@ -53,7 +53,7 @@
 
 
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
-void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition);
+void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition, int parallax);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -660,19 +660,11 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	radius++;
 
 	// gradually decrease color with larger radius
-	if(radius < 46)
+	if(radius < 80)
 	{
-		color = __COLOR_BRIGHT_RED;
+		color = __COLOR_BLACK;
 	}
-	else if(radius < 90)
-	{
-		color = __COLOR_MEDIUM_RED;
-	}
-	else if(radius < 140)
-	{
-		color = __COLOR_DARK_RED;
-	}
-	else if(radius < 206)
+	else if(radius < 160)
 	{
 		// pause for a little bit before restarting
 		return;
@@ -685,7 +677,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	}
 
 	// draw a rhombus around object with given radius and color
-	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition);
+	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition, -radius / 25);
 //	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius >> 1), color, spatialObjectPosition);
 }
 
@@ -998,35 +990,35 @@ u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSource
  * @param color
  * @param spatialObjectPosition
  */
-void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition)
+void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition, int parallax)
 {
 	DirectDraw directDraw = DirectDraw_getInstance();
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, 0},
+		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, 0},
+		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, 0},
+		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, 0},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, 0},
+		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, parallax},
 		color
 	);
 }
