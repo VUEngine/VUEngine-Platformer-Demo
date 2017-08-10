@@ -39,16 +39,6 @@
 //											CLASS' MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define POINTER_TYPE		u32
-#define Y_SHIFT					4
-// sizeof(POINTER_TYPE) << 2
-#define Y_STEP_SIZE				16
-#define Y_STEP_SIZE_2_EXP		4
-// sizeof(POINTER_TYPE) << 3
-#define BITS_PER_STEP 			32
-
-#define MODULO(n, m)		(n & (m - 1))
-
 
 
 //---------------------------------------------------------------------------------------------------------
