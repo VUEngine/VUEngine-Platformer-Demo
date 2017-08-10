@@ -103,11 +103,11 @@ void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec
 
 	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this));
 
-	Transformation environmentTransform = Container_getEnvironmentTransform(this->parent);
+	Transformation* environmentTransform = Container_getTransform(this->parent);
 
 	// don't lock yet, allow the global position to be calculated before locking
 	this->overridePositionFlag.y = false;
-	CameraTriggerEntity_transform(this, &environmentTransform, __INVALIDATE_TRANSFORMATION);
+	CameraTriggerEntity_transform(this, environmentTransform, __INVALIDATE_TRANSFORMATION);
 
 	this->overridePositionFlag = overridePositionFlag;
 }
