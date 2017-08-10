@@ -163,8 +163,6 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 
 	// streaming
 	{
-		// minimum free ms in the current game frame to allow streaming to quick in
-		15,
 		// load padding
 		40,
 		// unload padding
