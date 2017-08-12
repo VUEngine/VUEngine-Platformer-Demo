@@ -82,8 +82,8 @@ PositionedEntityROMDef TEST_ROOM_STAGE_ST_ENTITIES[] =
 {
 	{&COLLISION_CL, {FTOFIX19_13(8), FTOFIX19_13(160), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Left
 	{&DOOR_AG, {FTOFIX19_13(36), FTOFIX19_13(160), FTOFIX19_13(LAYER_0)}, 0, "EntryDoor", NULL, NULL, false}, // Entry Door
+	{&TEST_ROOM_STAGE_TEST_1_IM, {FTOFIX19_13(40), FTOFIX19_13(56), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Test Composite
 	{&HERO_AC, {FTOFIX19_13(44), FTOFIX19_13(164), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
-	{&TEST_ROOM_STAGE_TEST_1_IM, {FTOFIX19_13(72), FTOFIX19_13(72), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Test Composite
 	{&COLLISION_CL, {FTOFIX19_13(80), FTOFIX19_13(104), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_160_48_8, false}, // Top Left
 	{&COLLISION_CL, {FTOFIX19_13(144), FTOFIX19_13(184), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_256_16_8, false}, // Bottom
 	{&TEST_ROOM_STAGE_MAIN_1_IM, {FTOFIX19_13(144), FTOFIX19_13(136), FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (1)
@@ -321,7 +321,7 @@ StageROMDef TEST_ROOM_STAGE_ST =
 	},
 
 	// post processing effects
-	NULL
+	(PostProcessingEffect*)NULL,
 };
 
 

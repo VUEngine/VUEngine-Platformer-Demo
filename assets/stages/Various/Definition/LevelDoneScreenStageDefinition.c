@@ -252,5 +252,5 @@ StageROMDef LEVEL_DONE_SCREEN_STAGE_ST =
 	},
 
 	// post processing effects
-	NULL
+	(PostProcessingEffect*)NULL,
 };

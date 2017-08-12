@@ -775,7 +775,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	},
 
 	// post processing effects
-	(PostProcessingEffect*)LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS
+	(PostProcessingEffect*)LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS,
 };
 
 

@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="148">
  <properties>
   <property name="declaration" value="StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP, StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
-  <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
+  <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h, PostProcessingEffects.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
   <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT"/>
@@ -25,9 +25,9 @@
   <property name="stage.rendering.colorConfig.brightnessRepeat" value="EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
   <property name="stage.rendering.cyclesToWaitForTextureWriting" value="__TARGET_FPS / 10"/>
   <property name="stage.rendering.maximumAffineRowsToComputePerCall" value="16"/>
-  <property name="stage.rendering.objectSpritesContainersSize.0" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
-  <property name="stage.rendering.objectSpritesContainersSize.1" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
-  <property name="stage.rendering.objectSpritesContainersSize.2" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersSize.0" value="0"/>
+  <property name="stage.rendering.objectSpritesContainersSize.1" value="0"/>
+  <property name="stage.rendering.objectSpritesContainersSize.2" value="0"/>
   <property name="stage.rendering.objectSpritesContainersSize.3" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
   <property name="stage.rendering.objectSpritesContainersZPosition.0" value="LAYER_0_PARTICLES"/>
   <property name="stage.rendering.objectSpritesContainersZPosition.1" value="LAYER_0_PARTICLES"/>
@@ -49,7 +49,6 @@
   <property name="stage.rendering.paramTableSegments" value="1"/>
   <property name="stage.rendering.texturesMaximumRowsToWrite" value="12"/>
   <property name="stage.streaming.loadPadding" value="40"/>
-  <property name="stage.streaming.minimumSpareMilliSecondsToAllowStreaming" value="5"/>
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
@@ -78,6 +77,7 @@
    <property name="name" value="Back"/>
    <property name="paletteId" type="int" value="0"/>
    <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -126,6 +126,7 @@
    <property name="name" value="MainBack"/>
    <property name="paletteId" type="int" value="1"/>
    <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -174,6 +175,7 @@
    <property name="name" value="Main"/>
    <property name="paletteId" type="int" value="0"/>
    <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

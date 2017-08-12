@@ -251,5 +251,5 @@ StageROMDef PAUSE_SCREEN_STAGE_ST =
 	},
 
 	// post processing effects
-	NULL
+	(PostProcessingEffect*)NULL,
 };

@@ -243,5 +243,5 @@ StageROMDef EMPTY_STAGE_ST =
 	},
 
 	// post processing effects
-	NULL
+	(PostProcessingEffect*)NULL,
 };

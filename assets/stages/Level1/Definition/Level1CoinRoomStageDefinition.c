@@ -311,7 +311,7 @@ StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 	},
 
 	// post processing effects
-	NULL
+	(PostProcessingEffect*)NULL,
 };
 
 
