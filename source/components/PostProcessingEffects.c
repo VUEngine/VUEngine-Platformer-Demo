@@ -794,9 +794,6 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, Spatial
 {
 	u16 x = 0, y = 0;
 
-	// runtime working variables
-	static int lutIndex = 0;
-
 	// look up table of bitshifts performed on rows
 	const u32 lut[96] =
 	{
@@ -817,53 +814,42 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, Spatial
 		30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
 	};
 
+	int lutEntries = sizeof(lut) / sizeof(u32);
+	// runtime working variables
+
+	int counter = lutEntries;
+
+
 	CACHE_DISABLE;
 	CACHE_CLEAR;
 	CACHE_ENABLE;
 
 	// loop columns of left fourth of screen
-	for(x = 0; x < 96; x++)
+	for(; --counter;)
 	{
+		int x1 = (lutEntries - counter);
+		int x2 = __SCREEN_WIDTH - counter;
+
 		// get pointer to currently manipulated 32 bits of framebuffer
-		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
-		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
+		u32* columnSourcePointerLeft1 = (u32*) (currentDrawingFrameBufferSet) + (x1 << 4);
+		u32* columnSourcePointerRight1 = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x1 << 4);
+		u32* columnSourcePointerLeft2 = (u32*) (currentDrawingFrameBufferSet) + (x2 << 4);
+		u32* columnSourcePointerRight2 = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x2 << 4);
 
 		// the shifted out pixels on top should be black
-		u32 previousSourcePointerValueLeft = 0;
-		u32 previousSourcePointerValueRight = 0;
+		u32 previousSourcePointerValueLeft1 = 0;
+		u32 previousSourcePointerValueRight1 = 0;
+		u32 previousSourcePointerValueLeft2 = 0;
+		u32 previousSourcePointerValueRight2 = 0;
 
 		// loop current column in steps of 16 pixels (32 bits)
 		// ignore the bottom 16 pixels of the screen (gui)
 		for(y = 0; y < 13; y++)
 		{
-			previousSourcePointerValueLeft = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointerLeft, previousSourcePointerValueLeft);
-			previousSourcePointerValueRight = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointerRight, previousSourcePointerValueRight);
-		}
-
-		// iterate lut from left to right
-		lutIndex++;
-	}
-
-	// loop columns of right fourth of screen
-	for(x = 288; x < 384; x++)
-	{
-		// get pointer to currently manipulated 32 bits of framebuffer
-		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
-		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
-
-		// the shifted out pixels on top should be black
-		u32 previousSourcePointerValueLeft = 0;
-		u32 previousSourcePointerValueRight = 0;
-
-		// iterate lut back from right to left
-		lutIndex--;
-
-		// loop current column in steps of 16 pixels (32 bits)
-		// ignore the bottom 16 pixels of the screen (gui)
-		for(y = 0; y < 13; y++)
-		{
-			previousSourcePointerValueLeft = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointerLeft, previousSourcePointerValueLeft);
-			previousSourcePointerValueRight = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointerRight, previousSourcePointerValueRight);
+			previousSourcePointerValueLeft1 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[x1], columnSourcePointerLeft1, previousSourcePointerValueLeft1);
+			previousSourcePointerValueRight1 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[x1], columnSourcePointerRight1, previousSourcePointerValueRight1);
+			previousSourcePointerValueLeft2 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[counter], columnSourcePointerLeft2, previousSourcePointerValueLeft2);
+			previousSourcePointerValueRight2 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[counter], columnSourcePointerRight2, previousSourcePointerValueRight2);
 		}
 	}
 }
