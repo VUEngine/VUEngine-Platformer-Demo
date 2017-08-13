@@ -125,7 +125,7 @@ FontROMDef* const LEVEL1_INTERSECTION_STAGE_ST_FONTS[] =
 	NULL
 };
 
-const PostProcessingEffect LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS[] =,
+const PostProcessingEffect LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 {
 	PostProcessingEffects_lantern,
 	NULL
