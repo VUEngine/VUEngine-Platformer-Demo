@@ -48,7 +48,6 @@
   <property name="stage.rendering.paramTableSegments" value="1"/>
   <property name="stage.rendering.texturesMaximumRowsToWrite" value="12"/>
   <property name="stage.streaming.loadPadding" value="40"/>
-  <property name="stage.streaming.minimumSpareMilliSecondsToAllowStreaming" value="10"/>
   <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
   <property name="stage.streaming.streamingAmplitude" value="24"/>
   <property name="stage.streaming.unloadPadding" value="16"/>
@@ -78,6 +77,7 @@
    <property name="name" value="Test"/>
    <property name="paletteId" type="int" value="0"/>
    <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
   </properties>
   <object id="40" gid="65" x="32" y="96" width="16" height="16"/>
   <object id="41" gid="65" x="16" y="96" width="16" height="16"/>
@@ -115,6 +115,7 @@
    <property name="name" value="Main"/>
    <property name="paletteId" type="int" value="0"/>
    <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -163,6 +164,7 @@
    <property name="name" value="Main"/>
    <property name="paletteId" type="int" value="0"/>
    <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

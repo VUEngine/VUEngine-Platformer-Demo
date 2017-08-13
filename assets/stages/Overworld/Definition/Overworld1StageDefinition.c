@@ -268,5 +268,5 @@ StageROMDef OVERWORLD1_STAGE_ST =
 	},
 
 	// post processing effects
-	NULL
+	(PostProcessingEffect*)NULL,
 };

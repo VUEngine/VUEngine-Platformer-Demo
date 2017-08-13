@@ -292,7 +292,7 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 	},
 
 	// post processing effects
-	NULL
+	(PostProcessingEffect*)NULL,
 };
 
 

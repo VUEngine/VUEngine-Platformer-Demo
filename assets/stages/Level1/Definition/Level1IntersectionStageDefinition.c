@@ -34,7 +34,6 @@
 #include <PostProcessingEffects.h>
 
 
-
 //---------------------------------------------------------------------------------------------------------
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
@@ -126,11 +125,12 @@ FontROMDef* const LEVEL1_INTERSECTION_STAGE_ST_FONTS[] =
 	NULL
 };
 
-const PostProcessingEffect LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS[] =
+const PostProcessingEffect LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS[] =,
 {
 	PostProcessingEffects_lantern,
 	NULL
 };
+
 
 //---------------------------------------------------------------------------------------------------------
 //											STAGE DEFINITION
@@ -315,7 +315,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 	},
 
 	// post processing effects
-	(PostProcessingEffect*)LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS
+	(PostProcessingEffect*)LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS,
 };
 
 

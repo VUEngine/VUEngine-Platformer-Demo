@@ -501,7 +501,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 	},
 
 	// post processing effects
-	NULL
+	(PostProcessingEffect*)NULL,
 };
 
 
