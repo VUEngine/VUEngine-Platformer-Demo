@@ -792,9 +792,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialO
  */
 void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
-	u8 buffer = 0;
 	u16 x = 0, y = 0;
-	u32 previousSourcePointerValue = 0;
 
 	// runtime working variables
 	static int lutIndex = 0;
@@ -819,50 +817,53 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, Spatial
 		30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
 	};
 
-	// write to framebuffers for both screens
-	for(; buffer < 2; buffer++)
+	CACHE_DISABLE;
+	CACHE_CLEAR;
+	CACHE_ENABLE;
+
+	// loop columns of left fourth of screen
+	for(x = 0; x < 96; x++)
 	{
 		// get pointer to currently manipulated 32 bits of framebuffer
-		u32* bufferSourcePointer = (u32*) (currentDrawingFrameBufferSet | (buffer ? 0x00010000 : 0));
+		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
+		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
 
-		// loop columns of left fourth of screen
-		for(x = 0; x < 96; x++)
+		// the shifted out pixels on top should be black
+		u32 previousSourcePointerValueLeft = 0;
+		u32 previousSourcePointerValueRight = 0;
+
+		// loop current column in steps of 16 pixels (32 bits)
+		// ignore the bottom 16 pixels of the screen (gui)
+		for(y = 0; y < 13; y++)
 		{
-			// get pointer to currently manipulated 32 bits of framebuffer
-			u32* columnSourcePointer = (u32*) (bufferSourcePointer) + (x << 4);
-
-			// the shifted out pixels on top should be black
-			previousSourcePointerValue = 0;
-
-			// loop current column in steps of 16 pixels (32 bits)
-			// ignore the bottom 16 pixels of the screen (gui)
-			for(y = 0; y < 13; y++)
-			{
-				previousSourcePointerValue = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointer, previousSourcePointerValue);
-			}
-
-			// iterate lut from left to right
-			lutIndex++;
+			previousSourcePointerValueLeft = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointerLeft, previousSourcePointerValueLeft);
+			previousSourcePointerValueRight = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointerRight, previousSourcePointerValueRight);
 		}
 
-		// loop columns of right fourth of screen
-		for(x = 288; x < 384; x++)
+		// iterate lut from left to right
+		lutIndex++;
+	}
+
+	// loop columns of right fourth of screen
+	for(x = 288; x < 384; x++)
+	{
+		// get pointer to currently manipulated 32 bits of framebuffer
+		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
+		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
+
+		// the shifted out pixels on top should be black
+		u32 previousSourcePointerValueLeft = 0;
+		u32 previousSourcePointerValueRight = 0;
+
+		// iterate lut back from right to left
+		lutIndex--;
+
+		// loop current column in steps of 16 pixels (32 bits)
+		// ignore the bottom 16 pixels of the screen (gui)
+		for(y = 0; y < 13; y++)
 		{
-			// get pointer to currently manipulated 32 bits of framebuffer
-			u32* columnSourcePointer = (u32*) (bufferSourcePointer) + (x << 4);
-
-			// the shifted out pixels on top should be black
-			previousSourcePointerValue = 0;
-
-			// iterate lut back from right to left
-			lutIndex--;
-
-			// loop current column in steps of 16 pixels (32 bits)
-			// ignore the bottom 16 pixels of the screen (gui)
-			for(y = 0; y < 13; y++)
-			{
-				previousSourcePointerValue = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointer, previousSourcePointerValue);
-			}
+			previousSourcePointerValueLeft = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointerLeft, previousSourcePointerValueLeft);
+			previousSourcePointerValueRight = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutIndex], columnSourcePointerRight, previousSourcePointerValueRight);
 		}
 	}
 }
@@ -958,7 +959,7 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, Spatia
  * @param columnSourcePointer			Framebuffer address of the current column (x value)
  * @param previousSourcePointerValue	Value from the loop's previous cycle (effectively where y - 1)
  */
-u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue)
+inline u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue)
 {
 	// pointer to currently manipulated 32 bits of framebuffer
 	u32* sourcePointer = columnSourcePointer + y;
