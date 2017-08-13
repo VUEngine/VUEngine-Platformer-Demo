@@ -792,8 +792,6 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialO
  */
 void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
-	u16 x = 0, y = 0;
-
 	// look up table of bitshifts performed on rows
 	const u32 lut[96] =
 	{
@@ -841,6 +839,8 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, Spatial
 		u32 previousSourcePointerValueRight1 = 0;
 		u32 previousSourcePointerValueLeft2 = 0;
 		u32 previousSourcePointerValueRight2 = 0;
+
+		u16 y = 0;
 
 		// loop current column in steps of 16 pixels (32 bits)
 		// ignore the bottom 16 pixels of the screen (gui)
