@@ -846,8 +846,8 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, Spatial
 		// ignore the bottom 16 pixels of the screen (gui)
 		for(y = 0; y < 13; y++)
 		{
-			previousSourcePointerValueLeft1 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[x1], columnSourcePointerLeft1, previousSourcePointerValueLeft1);
-			previousSourcePointerValueRight1 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[x1], columnSourcePointerRight1, previousSourcePointerValueRight1);
+			previousSourcePointerValueLeft1 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutEntries - counter], columnSourcePointerLeft1, previousSourcePointerValueLeft1);
+			previousSourcePointerValueRight1 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutEntries - counter], columnSourcePointerRight1, previousSourcePointerValueRight1);
 			previousSourcePointerValueLeft2 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[counter], columnSourcePointerLeft2, previousSourcePointerValueLeft2);
 			previousSourcePointerValueRight2 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[counter], columnSourcePointerRight2, previousSourcePointerValueRight2);
 		}
