@@ -64,6 +64,7 @@ s16 HbiasEffects_wave(BgmapSprite bgmapSprite)
 	static u8 step = 0;
 	step = (step < ((HBIAS_WAVE_LUT_LENGTH << HBIAS_WAVE_THROTTLE) - 1)) ? step + 1 : 0;
 
+	HbiasEntry* hbiasEntry = (HbiasEntry*)param;
 	// write param table rows
 	// if you want to defer the effect, compute up to counter rows
 	// for(; counter && i < spriteHeight; i++, counter--)
@@ -71,8 +72,9 @@ s16 HbiasEffects_wave(BgmapSprite bgmapSprite)
 	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
 	for(; i < spriteHeight; i++)
 	{
-		HbiasEntry* hbiasEntry = (HbiasEntry*)param;
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = waveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
+		register s16 waveLutValue = waveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
+		hbiasEntry[i].offsetLeft = waveLutValue;
+		hbiasEntry[i].offsetRight = waveLutValue;
 	}
 
 	// Possible return values and their effects:

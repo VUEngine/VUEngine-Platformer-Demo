@@ -268,10 +268,15 @@ s16 HbiasMaskMBgmapSprite_wave(HbiasMaskMBgmapSprite this)
 	// write param table rows
 	for(j = 0; i < spriteHeight; i++, j++)
 	{
-		hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
+		register s16 waveLutValue = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
+
+		hbiasEntry[i].offsetLeft = waveLutValue;
+		hbiasEntry[i].offsetRight = waveLutValue;
+
 		if((j < 16) && (hbiasEntry[i].offsetLeft < 0))
 		{
-			hbiasEntry[i].offsetLeft = hbiasEntry[i].offsetRight = hbiasEntry[i].offsetLeft + 1;
+			hbiasEntry[i].offsetLeft = waveLutValue  + 1;
+			hbiasEntry[i].offsetRight = waveLutValue + 1;
 		}
 	}
 
