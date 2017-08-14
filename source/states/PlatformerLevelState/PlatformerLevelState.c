@@ -239,7 +239,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 			// apply changes to the visuals
-			GameState_updateVisuals(__SAFE_CAST(GameState, this));
+			GameState_synchronizeGraphics(__SAFE_CAST(GameState, this));
 		}
 	}
 	else
