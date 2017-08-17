@@ -90,9 +90,9 @@
     <property name="position.z" value="LAYER_5"/>
    </properties>
   </object>
-  <object id="87" name="Clouds" type="Entity" gid="60" x="-62" y="152" width="512" height="32">
+  <object id="87" name="Clouds" type="Entity" gid="60" x="-62" y="146" width="512" height="32">
    <properties>
-    <property name="position.z" value="LAYER_4"/>
+    <property name="position.z" value="LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8"/>
    </properties>
   </object>
   <object id="88" name="Front" type="Entity" gid="59" x="-272" y="168" width="512" height="48">
@@ -107,22 +107,22 @@
   </object>
   <object id="91" name="Castle" type="Entity" gid="58" x="273" y="128" width="88" height="48">
    <properties>
-    <property name="position.z" value="LAYER_3 + SORT_INCREMENT"/>
+    <property name="position.z" value="LAYER_4 + SORT_INCREMENT"/>
    </properties>
   </object>
   <object id="92" name="Castle Flag" type="Entity" gid="62" x="283" y="88" width="8" height="8">
    <properties>
-    <property name="position.z" value="LAYER_3 + SORT_INCREMENT"/>
+    <property name="position.z" value="LAYER_4 + SORT_INCREMENT"/>
    </properties>
   </object>
   <object id="93" name="Castle Flag" type="Entity" gid="62" x="317" y="99" width="8" height="8">
    <properties>
-    <property name="position.z" value="LAYER_3 + SORT_INCREMENT"/>
+    <property name="position.z" value="LAYER_4 + SORT_INCREMENT"/>
    </properties>
   </object>
   <object id="94" name="Castle Flag" type="Entity" gid="62" x="352" y="88" width="8" height="8">
    <properties>
-    <property name="position.z" value="LAYER_3 + SORT_INCREMENT"/>
+    <property name="position.z" value="LAYER_4 + SORT_INCREMENT"/>
    </properties>
   </object>
  </objectgroup>
