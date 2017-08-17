@@ -643,10 +643,8 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  */
 void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
 {
-	u32 color;
-
 	// runtime working variable
-	static int radius = -62;
+	static int radius = 4;
 
 	if(!__IS_OBJECT_ALIVE(spatialObject))
 	{
@@ -659,26 +657,20 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	// increase radius by 1 in each cycle
 	radius++;
 
-	// gradually decrease color with larger radius
-	if(radius < 80)
+	if(radius > 224)
 	{
-		color = __COLOR_BLACK;
+		// reset radius when reaching a certain length
+		radius = 4;
 	}
-	else if(radius < 160)
+	else if(radius > 96)
 	{
 		// pause for a little bit before restarting
 		return;
 	}
-	else
-	{
-		// reset radius when reaching a certain length
-		radius = 24;
-		return;
-	}
 
 	// draw a rhombus around object with given radius and color
-	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius), color, spatialObjectPosition, -radius / 25);
-//	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius >> 1), color, spatialObjectPosition);
+	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius), __COLOR_BLACK, spatialObjectPosition, -radius / 25);
+//	PostProcessingEffects_drawRhombus(ITOFIX19_13(radius >> 1), __COLOR_BLACK, spatialObjectPosition);
 }
 
 /**
