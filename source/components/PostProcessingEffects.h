@@ -42,6 +42,6 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet, Spat
 void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-
+void PostProcessingEffects_dummy(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 
 #endif

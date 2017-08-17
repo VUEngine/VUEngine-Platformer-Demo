@@ -1009,3 +1009,32 @@ void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec
 		color
 	);
 }
+
+void PostProcessingEffects_dummy(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
+{
+	u16 x = 0, y = 0;
+	u32 previousSourcePointerValueLeft = 0;
+	u32 previousSourcePointerValueRight = 0;
+
+	// write to framebuffers for both screens
+	// loop columns
+	for(x = 0; x < 384; x++)
+	{
+		// get pointer to currently manipulated 32 bits of framebuffer
+		u32* columnSourcePointerLeft = (u32*) (currentDrawingFrameBufferSet) + (x << 4);
+		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
+
+		// the shifted out pixels on top should be black
+		previousSourcePointerValueLeft = 0;
+		previousSourcePointerValueRight = 0;
+
+		// loop current column in steps of 16 pixels (32 bits)
+		// ignore the bottom 16 pixels of the screen (gui)
+		for(y = 0; y < 13; y++)
+		{
+			previousSourcePointerValueLeft = PostProcessingEffects_writeToFrameBuffer(y, 1, columnSourcePointerLeft, previousSourcePointerValueLeft);
+			previousSourcePointerValueRight = PostProcessingEffects_writeToFrameBuffer(y, 1, columnSourcePointerRight, previousSourcePointerValueRight);
+		}
+	}
+}
+
