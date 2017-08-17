@@ -111,7 +111,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strPause),
-		(((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1),
+		(((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1),
 		14,
 		strPauseFont
 	);
@@ -146,7 +146,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 
 	OptionsSelector_printOptions(
 		this->optionsSelector,
-		(((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1) - 1,
+		(((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1) - 1,
 		17
 	);
 
@@ -216,7 +216,7 @@ void PauseScreenState_processUserInput(PauseScreenState this, UserInput userInpu
 					const char* strPauseFont = "LargeFont";
 					Size strPauseSize = Printing_getTextSize(Printing_getInstance(), strPause, strPauseFont);
 
-					u8 strXPos = ((__SCREEN_WIDTH >> 3) - strPauseSize.x) >> 1;
+					u8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;
 					u8 strNoXPos = strXPos + strYesSize.x + 2;
 
 					Printing_text(Printing_getInstance(), strAreYouSure, strXPos, 21, NULL);

@@ -136,7 +136,7 @@ static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ (
 		strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_CONQUERED);
 	}
 	Size strLevelDoneSize = Printing_getTextSize(Printing_getInstance(), strLevelDone, "GuiFont");
-	u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (strLevelDoneSize.x >> 1);
+	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strLevelDoneSize.x >> 1);
 	Printing_text(Printing_getInstance(), strLevelDone, strHeaderXPos, 9, "GuiFont");
 
 	// number of coins

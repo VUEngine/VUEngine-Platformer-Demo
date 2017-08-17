@@ -133,16 +133,16 @@ static void PrecautionScreenState_print(PrecautionScreenState this __attribute__
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strPrecautionTitle),
-		(__SCREEN_WIDTH >> 4) - (titleSize.x >> 1),
-		(__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) - 1,
+		(__HALF_SCREEN_WIDTH_IN_CHARS) - (titleSize.x >> 1),
+		(__HALF_SCREEN_HEIGHT_IN_CHARS) - (totalHeight >> 1) - 1,
 		strPrecautionTitleFont
 	);
 
 	Printing_text(
 		Printing_getInstance(),
 		strPrecautionText,
-		(__SCREEN_WIDTH >> 4) - (textSize.x >> 1),
-		(__SCREEN_HEIGHT >> 4) - (totalHeight >> 1) + titleSize.y,
+		(__HALF_SCREEN_WIDTH_IN_CHARS) - (textSize.x >> 1),
+		(__HALF_SCREEN_HEIGHT_IN_CHARS) - (totalHeight >> 1) + titleSize.y,
 		NULL
 	);
 }

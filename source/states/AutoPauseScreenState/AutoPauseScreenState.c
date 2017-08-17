@@ -94,7 +94,7 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __
 	Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
 	Size strAutomaticPauseTextSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseText, NULL);
 
-	u8 strHeaderXPos = ((__SCREEN_WIDTH >> 4) - (strAutomaticPauseSize.x >> 1));
+	u8 strHeaderXPos = ((__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseSize.x >> 1));
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strAutomaticPauseTitle),
@@ -103,7 +103,7 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __
 		strAutomaticPauseTitleFont
 	);
 
-	u8 strTextXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseTextSize.x >> 1);
+	u8 strTextXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseTextSize.x >> 1);
 	Printing_text(Printing_getInstance(), strAutomaticPauseText, strTextXPos, 15 + strAutomaticPauseSize.y, NULL);
 
 	// disable user input

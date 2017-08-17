@@ -183,8 +183,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			// focus screen on new position
 			VBVec3D screenPosition =
 			{
-				initialPosition->x - ITOFIX19_13(__SCREEN_WIDTH >> 1),
-				initialPosition->y - ITOFIX19_13(__SCREEN_HEIGHT >> 1),
+				initialPosition->x - ITOFIX19_13(__HALF_SCREEN_WIDTH),
+				initialPosition->y - ITOFIX19_13(__HALF_SCREEN_HEIGHT),
 				initialPosition->z
 			};
 
@@ -458,7 +458,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 					Printing_text(
 						Printing_getInstance(),
 						strLevelName,
-						((__SCREEN_WIDTH >> 3) - strlen(strLevelName)) >> 1,
+						((__SCREEN_WIDTH_IN_CHARS) - strlen(strLevelName)) >> 1,
 						6,
 						"GuiFont"
 					);
@@ -472,14 +472,14 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 						Printing_text(
 							Printing_getInstance(),
 							strLevel,
-							((__SCREEN_WIDTH >> 3) - strLevelLength - strLevelIdLength) >> 1,
+							((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1,
 							4,
 							NULL
 						);
 						Printing_text(
 							Printing_getInstance(),
 							strLevelId,
-							(((__SCREEN_WIDTH >> 3) - strLevelLength - strLevelIdLength) >> 1) + strLevelLength + 1,
+							(((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1) + strLevelLength + 1,
 							4,
 							NULL
 						);
@@ -492,7 +492,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 						Printing_text(
 							Printing_getInstance(),
 							strLevelSlogan,
-							((__SCREEN_WIDTH >> 3) - strLevelSloganSize.x) >> 1,
+							((__SCREEN_WIDTH_IN_CHARS) - strLevelSloganSize.x) >> 1,
 							9,
 							NULL
 						);
@@ -508,7 +508,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 					Printing_text(
 						Printing_getInstance(),
 						strCheckpoint,
-						((__SCREEN_WIDTH >> 3) - strlen(strCheckpoint)) >> 1,
+						((__SCREEN_WIDTH_IN_CHARS) - strlen(strCheckpoint)) >> 1,
 						6,
 						NULL
 					);

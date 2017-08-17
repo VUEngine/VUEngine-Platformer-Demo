@@ -98,7 +98,7 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 	const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTO_PAUSE_EXPLANATION);
 	Size strAutomaticPauseExplanationSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseExplanation, NULL);
 
-	u8 strHeaderXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseSize.x >> 1);
+	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseSize.x >> 1);
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strAutomaticPauseTitle),
@@ -107,7 +107,7 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 		strAutomaticPauseTitleFont
 	);
 
-	u8 strExplanationXPos = (__SCREEN_WIDTH >> 4) - (strAutomaticPauseExplanationSize.x >> 1);
+	u8 strExplanationXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseExplanationSize.x >> 1);
 	Printing_text(Printing_getInstance(), strAutomaticPauseExplanation, strExplanationXPos, 9 + strAutomaticPauseSize.y, NULL);
 
 	AutoPauseSelectScreenState_renderSelection(this);

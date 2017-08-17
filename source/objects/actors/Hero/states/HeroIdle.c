@@ -85,7 +85,7 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 	MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
 
 #ifdef __DEBUG
-	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT >> 3) - 2, NULL);
+	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT_IN_CHARS) - 2, NULL);
 #endif
 
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);

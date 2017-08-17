@@ -145,7 +145,7 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strOptionsTitle),
-		((__SCREEN_WIDTH >> 3) - strOptionsTextSize.x) >> 1,
+		((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1,
 		8,
 		strOptionsTitleFont
 	);
@@ -173,7 +173,7 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
 
 	OptionsSelector_printOptions(
 		this->optionsSelector,
-		((__SCREEN_WIDTH >> 3) - strOptionsTextSize.x) >> 1,
+		((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1,
 		11
 	);
 
@@ -182,7 +182,7 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
 	Size strSelectSize = Printing_getTextSize(Printing_getInstance(), strSelect, NULL);
 	const char* strBack = I18n_getText(I18n_getInstance(), STR_BACK);
 
-	u8 strSelectXPos = ((__SCREEN_WIDTH >> 3) - strOptionsTextSize.x) >> 1;
+	u8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
 	u8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
 
 	Printing_text(Printing_getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, NULL);

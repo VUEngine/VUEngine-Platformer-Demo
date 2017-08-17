@@ -272,7 +272,7 @@ static void TitleScreenState_showMessage(TitleScreenState this __attribute__ ((u
 
 	const char* strPressStartButton = I18n_getText(I18n_getInstance(), STR_PRESS_START_BUTTON);
 	Size strPressStartButtonSize = Printing_getTextSize(Printing_getInstance(), strPressStartButton, NULL);
-	u8 strXPos = (__SCREEN_WIDTH >> 4) - (strPressStartButtonSize.x >> 1);
+	u8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
 	Printing_text(Printing_getInstance(), strPressStartButton, strXPos, 26, NULL);
 }
 
@@ -300,7 +300,7 @@ void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInpu
 				// print options
 				OptionsSelector_printOptions(
 					this->optionsSelector,
-					1 + (((__SCREEN_WIDTH >> 3) - OptionsSelector_getWidth(this->optionsSelector)) >> 1),
+					1 + (((__SCREEN_WIDTH_IN_CHARS) - OptionsSelector_getWidth(this->optionsSelector)) >> 1),
 					26
 				);
 
@@ -345,10 +345,10 @@ void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInpu
 						// print warning
 						const char* strNewGameConfirm = I18n_getText(I18n_getInstance(), STR_PROGRESS_WILL_BE_ERASED);
 						Size strNewGameConfirmSize = Printing_getTextSize(Printing_getInstance(), strNewGameConfirm, NULL);
-						u8 strNewGameConfirmXPos = (((__SCREEN_WIDTH >> 3) - strNewGameConfirmSize.x) >> 1);
+						u8 strNewGameConfirmXPos = (((__SCREEN_WIDTH_IN_CHARS) - strNewGameConfirmSize.x) >> 1);
 						const char* strAreYouSure = I18n_getText(I18n_getInstance(), STR_ARE_YOU_SURE);
 						Size strAreYouSureSize = Printing_getTextSize(Printing_getInstance(), strAreYouSure, NULL);
-						u8 strAreYouSureXPos = (((__SCREEN_WIDTH >> 3) - strAreYouSureSize.x) >> 1);
+						u8 strAreYouSureXPos = (((__SCREEN_WIDTH_IN_CHARS) - strAreYouSureSize.x) >> 1);
 						Printing_text(
 							Printing_getInstance(),
 							strNewGameConfirm,
@@ -370,7 +370,7 @@ void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInpu
 						const char* strNo = I18n_getText(I18n_getInstance(), STR_NO);
 						Size strNoSize = Printing_getTextSize(Printing_getInstance(), strNo, NULL);
 
-						u8 strYesXPos = ((__SCREEN_WIDTH >> 3) - (strYesSize.x + strNoSize.x + 3)) >> 1;
+						u8 strYesXPos = ((__SCREEN_WIDTH_IN_CHARS) - (strYesSize.x + strNoSize.x + 3)) >> 1;
 						u8 strNoXPos = strYesXPos + strYesSize.x + 2;
 
 						Printing_text(Printing_getInstance(), __CHAR_A_BUTTON, strYesXPos - 1, 27, NULL);
@@ -423,7 +423,7 @@ void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInpu
 		OptionsSelector_setSelectedOption(this->optionsSelector, kTitleScreenOptionContinue);
 		OptionsSelector_printOptions(
 			this->optionsSelector,
-			1 + (((__SCREEN_WIDTH >> 3) - OptionsSelector_getWidth(this->optionsSelector)) >> 1),
+			1 + (((__SCREEN_WIDTH_IN_CHARS) - OptionsSelector_getWidth(this->optionsSelector)) >> 1),
 			26
 		);
 
