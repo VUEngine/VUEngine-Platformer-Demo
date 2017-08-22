@@ -113,6 +113,9 @@ TextureROMDef BANDANA_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef BANDANA_SPRITE =

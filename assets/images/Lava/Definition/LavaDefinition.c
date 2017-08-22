@@ -88,6 +88,9 @@ TextureROMDef LAVA_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef LAVA_BG_SPRITE =

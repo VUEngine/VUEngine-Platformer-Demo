@@ -113,6 +113,9 @@ TextureROMDef MOUND_BG_CASTLE_FLAG_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef MOUND_BG_CASTLE_FLAG_SPRITE =

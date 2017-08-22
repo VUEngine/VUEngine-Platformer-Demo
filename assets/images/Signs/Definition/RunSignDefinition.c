@@ -80,6 +80,9 @@ TextureROMDef RUN_SIGN_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef RUN_SIGN_IM_SPRITE =

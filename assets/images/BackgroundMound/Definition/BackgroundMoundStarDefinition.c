@@ -136,6 +136,9 @@ TextureROMDef STAR_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef STAR_SPRITE =

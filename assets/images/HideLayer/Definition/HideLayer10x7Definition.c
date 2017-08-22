@@ -186,6 +186,9 @@ TextureROMDef HIDE_LAYER_10x7_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =

@@ -80,6 +80,9 @@ TextureROMDef TEST_ROOM_STAGE_TEST_1_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef TEST_ROOM_STAGE_TEST_1_IM_SPRITE =

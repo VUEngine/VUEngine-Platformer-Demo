@@ -117,7 +117,10 @@ TextureROMDef WATER_A_TX =
 	1,
 
 	// palette number
-	0
+	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef WATER_A_SPRITE =

@@ -146,6 +146,9 @@ TextureROMDef GUI_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 TextureROMDef GUI_OVERWORLD_TX =
@@ -172,6 +175,9 @@ TextureROMDef GUI_OVERWORLD_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef GUI_SPRITE =

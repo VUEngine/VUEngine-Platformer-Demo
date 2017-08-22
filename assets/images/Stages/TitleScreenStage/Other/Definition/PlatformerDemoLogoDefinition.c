@@ -85,6 +85,9 @@ TextureROMDef LOGO_L_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 CharSetROMDef LOGO_R_CH =
@@ -126,6 +129,9 @@ TextureROMDef LOGO_R_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 CharSetROMDef LOGO_OUTLINE_L_CH =
@@ -167,6 +173,9 @@ TextureROMDef LOGO_OUTLINE_L_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 CharSetROMDef LOGO_OUTLINE_R_CH =
@@ -208,6 +217,9 @@ TextureROMDef LOGO_OUTLINE_R_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef LOGO_L_IM_SPRITE =

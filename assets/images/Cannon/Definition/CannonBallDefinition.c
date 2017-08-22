@@ -110,6 +110,9 @@ TextureROMDef CANNON_BALL_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef CANNON_BALL_SPRITE =

@@ -111,6 +111,9 @@ TextureROMDef SNAIL_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef SNAIL_SPRITE =

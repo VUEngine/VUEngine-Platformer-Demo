@@ -80,6 +80,9 @@ TextureROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM_SPRITE =

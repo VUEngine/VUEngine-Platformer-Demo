@@ -63,6 +63,9 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE =

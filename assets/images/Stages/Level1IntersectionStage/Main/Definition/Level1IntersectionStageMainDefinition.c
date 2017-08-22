@@ -80,6 +80,9 @@ TextureROMDef LEVEL1_INTERSECTION_STAGE_MAIN_1_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef LEVEL1_INTERSECTION_STAGE_MAIN_1_IM_SPRITE =

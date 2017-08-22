@@ -113,6 +113,9 @@ TextureROMDef CLOCK_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef CLOCK_SPRITE =

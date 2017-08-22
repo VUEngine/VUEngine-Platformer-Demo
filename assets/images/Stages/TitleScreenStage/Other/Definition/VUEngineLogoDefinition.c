@@ -79,6 +79,9 @@ TextureROMDef VUENGINE_LOGO_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef VUENGINE_LOGO_IM_SPRITE =

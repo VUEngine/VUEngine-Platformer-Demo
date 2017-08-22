@@ -79,6 +79,9 @@ TextureROMDef DARKNESS_OVERLAY_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef DARKNESS_OVERLAY_IM_SPRITE =

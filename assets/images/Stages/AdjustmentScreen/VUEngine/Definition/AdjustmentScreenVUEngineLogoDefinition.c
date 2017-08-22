@@ -78,6 +78,9 @@ TextureROMDef ADJUSTMENT_SCREEN_VUENGINE_LOGO_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM_SPRITE =

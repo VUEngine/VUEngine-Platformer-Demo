@@ -82,6 +82,9 @@ TextureROMDef TORCH_OFF_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef TORCH_OFF_SPRITE =

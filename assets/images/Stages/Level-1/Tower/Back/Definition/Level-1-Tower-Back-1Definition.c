@@ -80,6 +80,9 @@ TextureROMDef LEVEL_1_TOWER_BACK_1_TX =
 
 	// palette number (0-3)
 	2,
+
+	// recyclable
+	false,
 };
 
 

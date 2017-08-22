@@ -118,6 +118,9 @@ TextureROMDef COIN_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 CharSetROMDef COIN_SILHOUETTE_CH =
@@ -159,6 +162,9 @@ TextureROMDef COIN_SILHOUETTE_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 CharSetROMDef AFFINE_COIN_CH =
@@ -200,6 +206,9 @@ TextureROMDef AFFINE_COIN_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 CharSetROMDef COIN_BACK_CH =
@@ -241,6 +250,9 @@ TextureROMDef COIN_BACK_TX =
 
 	// palette number (0-3)
 	2,
+
+	// recyclable
+	false,
 };
 
 CharSetROMDef COIN_BACK_SILHOUETTE_CH =
@@ -282,6 +294,9 @@ TextureROMDef COIN_BACK_SILHOUETTE_TX =
 
 	// palette number (0-3)
 	2,
+
+	// recyclable
+	false,
 };
 
 //---------------------------------------------------------------------------------------------------------

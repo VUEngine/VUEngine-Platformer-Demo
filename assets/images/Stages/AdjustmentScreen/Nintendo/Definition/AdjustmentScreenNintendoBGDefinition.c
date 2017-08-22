@@ -78,6 +78,9 @@ TextureROMDef ADJUSTMENT_SCREEN_NINTENDO_BG_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef ADJUSTMENT_SCREEN_NINTENDO_BG_IM_SPRITE =

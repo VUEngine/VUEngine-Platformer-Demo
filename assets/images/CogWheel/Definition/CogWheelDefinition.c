@@ -82,6 +82,9 @@ TextureROMDef COG_WHEEL_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef COG_WHEEL_BG_SPRITE =

@@ -113,6 +113,9 @@ TextureROMDef WATERFALL_TOP_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef WATERFALL_TOP_SPRITE =

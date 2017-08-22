@@ -78,6 +78,9 @@ TextureROMDef LEVEL_1_HOUSE_PIPE_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef LEVEL_1_HOUSE_PIPE_IM_SPRITE =

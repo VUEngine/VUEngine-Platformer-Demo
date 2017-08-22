@@ -80,6 +80,9 @@ TextureROMDef WATER_DROP_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef WATER_DROP_SPRITE =

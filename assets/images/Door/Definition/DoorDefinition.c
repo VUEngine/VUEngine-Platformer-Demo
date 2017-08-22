@@ -232,6 +232,9 @@ TextureROMDef DOOR_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef DOOR_SPRITE =
@@ -504,6 +507,9 @@ TextureROMDef DOOR_BACK_TX =
 
 	// palette number (0-3)
 	2,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef DOOR_BACK_SPRITE =

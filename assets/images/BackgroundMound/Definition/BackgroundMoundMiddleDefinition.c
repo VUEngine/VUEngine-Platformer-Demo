@@ -81,6 +81,9 @@ TextureROMDef MOUND_BG_MIDDLE_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 TextureROMDef* const MOUND_BG_MIDDLE_SB_TEXTURES[] =

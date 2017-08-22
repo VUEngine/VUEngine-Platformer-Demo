@@ -134,6 +134,9 @@ TextureROMDef CANNON_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef CANNON_SPRITE =

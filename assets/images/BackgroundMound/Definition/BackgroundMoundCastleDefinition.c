@@ -78,6 +78,9 @@ TextureROMDef MOUND_BG_CASTLE_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef MOUND_BG_CASTLE_IM_SPRITE =

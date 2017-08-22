@@ -110,6 +110,9 @@ TextureROMDef MOVING_PLATFORM_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =

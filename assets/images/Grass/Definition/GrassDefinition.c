@@ -136,6 +136,9 @@ TextureROMDef GRASS_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef GRASS_SPRITE =

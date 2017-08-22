@@ -79,6 +79,9 @@ TextureROMDef ONE_WAY_PLATFORM_4_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef ONE_WAY_PLATFORM_4_SPRITE =

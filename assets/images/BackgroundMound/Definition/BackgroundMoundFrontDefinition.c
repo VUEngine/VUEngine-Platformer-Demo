@@ -80,6 +80,9 @@ TextureROMDef MOUND_BG_FRONT_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 TextureROMDef* const MOUND_BG_FRONT_SB_TEXTURES[] =

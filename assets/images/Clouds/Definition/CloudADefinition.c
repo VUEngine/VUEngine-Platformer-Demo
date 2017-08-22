@@ -80,6 +80,9 @@ TextureROMDef CLOUD_A_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef CLOUD_A_IM_SPRITE =

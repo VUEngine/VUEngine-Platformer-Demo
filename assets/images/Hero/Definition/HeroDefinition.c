@@ -406,6 +406,9 @@ TextureROMDef HERO_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 TextureROMDef HERO_BANDANA_TX =
@@ -431,6 +434,9 @@ TextureROMDef HERO_BANDANA_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef HERO_AFFINE_SPRITE =

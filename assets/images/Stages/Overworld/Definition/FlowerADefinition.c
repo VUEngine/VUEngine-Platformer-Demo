@@ -117,7 +117,10 @@ TextureROMDef FLOWER_A_TX =
 	1,
 
 	// palette number (0-3)
-	0
+	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef FLOWER_A_SPRITE =

@@ -80,6 +80,9 @@ TextureROMDef DUST_PARTICLE_SMALL_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef DUST_PARTICLE_SMALL_SPRITE =

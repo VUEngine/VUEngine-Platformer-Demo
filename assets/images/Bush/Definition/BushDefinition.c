@@ -136,6 +136,9 @@ TextureROMDef BUSH_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef BUSH_SPRITE =

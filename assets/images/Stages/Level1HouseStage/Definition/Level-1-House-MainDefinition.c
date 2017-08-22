@@ -82,6 +82,9 @@ TextureROMDef LEVEL_1_HOUSE_MAIN_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef LEVEL_1_HOUSE_MAIN_IM_SPRITE =

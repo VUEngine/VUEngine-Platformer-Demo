@@ -113,6 +113,9 @@ TextureROMDef WATERFALL_STREAM_2x28_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef WATERFALL_STREAM_2x28_SPRITE =

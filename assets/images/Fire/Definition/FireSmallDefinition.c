@@ -113,6 +113,9 @@ TextureROMDef FIRE_SMALL_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef FIRE_SMALL_SPRITE =

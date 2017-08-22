@@ -69,6 +69,9 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_2_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 TextureROMDef* const LEVEL_1_MAIN_1_MAIN_2_IM_TEXTURES[] =

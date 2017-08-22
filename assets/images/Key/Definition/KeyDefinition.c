@@ -112,6 +112,9 @@ TextureROMDef KEY_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef KEY_SPRITE =

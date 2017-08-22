@@ -77,6 +77,9 @@ TextureROMDef ADJUSTMENT_SCREEN_PVB_LOGO_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef ADJUSTMENT_SCREEN_PVB_LOGO_IM_SPRITE =

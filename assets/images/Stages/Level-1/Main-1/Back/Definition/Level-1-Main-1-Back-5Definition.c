@@ -81,6 +81,9 @@ TextureROMDef LEVEL_1_MAIN_1_BACK_5_TX =
 
 	// palette number (0-3)
 	2,
+
+	// recyclable
+	false,
 };
 
 TextureROMDef* const LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES[] =

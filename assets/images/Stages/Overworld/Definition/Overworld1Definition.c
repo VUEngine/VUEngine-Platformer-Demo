@@ -79,6 +79,9 @@ TextureROMDef OVERWORLD_1_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 TextureROMDef* const OVERWORLD_1_IM_TEXTURES[] =

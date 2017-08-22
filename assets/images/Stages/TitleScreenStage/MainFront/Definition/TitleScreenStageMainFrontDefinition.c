@@ -80,6 +80,9 @@ TextureROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_1_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITE =

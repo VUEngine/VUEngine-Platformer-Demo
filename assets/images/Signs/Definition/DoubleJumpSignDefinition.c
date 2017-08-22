@@ -80,6 +80,9 @@ TextureROMDef DOUBLE_JUMP_SIGN_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef DOUBLE_JUMP_SIGN_IM_SPRITE =

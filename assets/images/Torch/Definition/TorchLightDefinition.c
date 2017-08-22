@@ -113,6 +113,9 @@ TextureROMDef TORCH_LIGHT_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef TORCH_LIGHT_SPRITE =

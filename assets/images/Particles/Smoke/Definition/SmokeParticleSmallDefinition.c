@@ -113,6 +113,9 @@ TextureROMDef SMOKE_PARTICLE_SMALL_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	false,
 };
 
 ObjectSpriteROMDef SMOKE_PARTICLE_SMALL_SPRITE =

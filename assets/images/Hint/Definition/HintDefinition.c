@@ -367,6 +367,9 @@ TextureROMDef HINT_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	false,
 };
 
 BgmapSpriteROMDef HINT_SPRITE =
