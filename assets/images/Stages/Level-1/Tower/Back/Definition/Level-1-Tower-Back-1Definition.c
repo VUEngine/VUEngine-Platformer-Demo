@@ -25,7 +25,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <StaticImage.h>
-#include <RecyclableImage.h>
 #include <MBgmapSprite.h>
 #include <HbiasMaskMBgmapSprite.h>
 

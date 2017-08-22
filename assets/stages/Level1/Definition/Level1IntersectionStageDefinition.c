@@ -296,7 +296,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 		(CharSetDefinition**)NULL,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)NULL,
+		(TextureDefinition**)NULL,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,

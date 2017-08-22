@@ -273,7 +273,7 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		(CharSetDefinition**)LEVEL1_HOUSE_STAGE_ST_CHARSETS,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)NULL,
+		(TextureDefinition**)NULL,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,

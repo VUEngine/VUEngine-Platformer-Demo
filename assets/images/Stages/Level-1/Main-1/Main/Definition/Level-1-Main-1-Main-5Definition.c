@@ -24,7 +24,6 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
 #include <ManagedStaticImage.h>
 #include <MBgmapSprite.h>
 

@@ -292,7 +292,7 @@ StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 		(CharSetDefinition**)NULL,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)NULL,
+		(TextureDefinition**)NULL,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,

@@ -125,16 +125,15 @@ CharSetROMDef* const TEST_ROOM_STAGE_ST_CHARSETS[] =
 	NULL
 };
 
-StageTextureEntryROMDef TEST_ROOM_STAGE_ST_TEXTURES[] =
+TextureDefinition* const TEST_ROOM_STAGE_ST_TEXTURES[] =
 {
-	{&COG_WHEEL_TX, false},
-	{&GUI_TX, false},
-	{&DOOR_TX, false},
-	{&HERO_TX, false},
-	{&TEST_ROOM_STAGE_TEST_1_TX, true},
-	{&TEST_ROOM_STAGE_MAIN_1_TX, true},
-
-	{NULL, false}
+	&COG_WHEEL_TX,
+	&GUI_TX,
+	&DOOR_TX,
+	&HERO_TX,
+	&TEST_ROOM_STAGE_TEST_1_TX,
+	&TEST_ROOM_STAGE_MAIN_1_TX,
+	NULL
 };
 
 
@@ -302,7 +301,7 @@ StageROMDef TEST_ROOM_STAGE_ST =
 		(CharSetDefinition**)TEST_ROOM_STAGE_ST_CHARSETS,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)TEST_ROOM_STAGE_ST_TEXTURES,
+		(TextureDefinition**)TEST_ROOM_STAGE_ST_TEXTURES,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,

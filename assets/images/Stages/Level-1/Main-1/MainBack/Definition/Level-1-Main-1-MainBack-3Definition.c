@@ -66,6 +66,9 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	true,
 };
 
 TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
@@ -92,6 +95,9 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	true,
 };
 
 TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
@@ -118,6 +124,9 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	true,
 };
 
 BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =

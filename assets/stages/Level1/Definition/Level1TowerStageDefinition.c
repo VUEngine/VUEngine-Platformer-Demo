@@ -300,21 +300,20 @@ CharSetROMDef* const LEVEL_1_TOWER_STAGE_ST_CHARSETS[] =
 	NULL
 };
 
-StageTextureEntryROMDef LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
+TextureDefinition* const LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 {
-	{&COG_WHEEL_TX, false},
-	{&LEVEL_1_TOWER_BACK_1_TX, false},
-	{&LEVEL_1_TOWER_MAIN_BACK_1_TX, true},
-	{&LEVEL_1_TOWER_MAIN_BACK_1_TX, false},
-	{&LEVEL_1_TOWER_MAIN_1_TX, true},
-	{&LEVEL_1_TOWER_MAIN_1_TX, false},
-	{&DOOR_TX, false},
-	{&GUI_TX, false},
-	{&LAVA_TX, false},
-	{&LAVA_TOP_TX, false},
-	{&DARKNESS_OVERLAY_TX, false},
-
-	{NULL, false}
+	&COG_WHEEL_TX,
+	&LEVEL_1_TOWER_BACK_1_TX,
+	&LEVEL_1_TOWER_MAIN_BACK_1_TX,
+	&LEVEL_1_TOWER_MAIN_BACK_1_TX,
+	&LEVEL_1_TOWER_MAIN_1_TX,
+	&LEVEL_1_TOWER_MAIN_1_TX,
+	&DOOR_TX,
+	&GUI_TX,
+	&LAVA_TX,
+	&LAVA_TOP_TX,
+	&DARKNESS_OVERLAY_TX,
+	NULL
 };
 
 
@@ -482,7 +481,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 		(CharSetDefinition**)LEVEL_1_TOWER_STAGE_ST_CHARSETS,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)LEVEL_1_TOWER_STAGE_ST_TEXTURES,
+		(TextureDefinition**)LEVEL_1_TOWER_STAGE_ST_TEXTURES,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,

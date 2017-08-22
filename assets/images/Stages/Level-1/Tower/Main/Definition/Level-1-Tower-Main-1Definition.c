@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
+#include <StaticImage.h>
 #include <MBgmapSprite.h>
 #include <HbiasMaskMBgmapSprite.h>
 
@@ -83,6 +83,9 @@ TextureROMDef LEVEL_1_TOWER_MAIN_1_TX =
 
 	// palette number (0-3)
 	0,
+
+	// recyclable
+	true,
 };
 
 TextureROMDef* const LEVEL_1_TOWER_MAIN_1_IM_TEXTURES[] =
@@ -189,8 +192,8 @@ BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_1_IM_SPRITES[] =
 	NULL
 };
 
-RecyclableImageROMDef LEVEL_1_TOWER_MAIN_1_IM =
+StaticImageROMDef LEVEL_1_TOWER_MAIN_1_IM =
 {
-	__TYPE(RecyclableImage),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_1_IM_SPRITES,
 };

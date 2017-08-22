@@ -24,7 +24,6 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
 #include <MBgmapSprite.h>
 #include <macros.h>
 #include <HbiasMaskMBgmapSprite.h>
@@ -81,6 +80,9 @@ TextureROMDef LEVEL_1_TOWER_MAIN_BACK_1_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	true,
 };
 
 

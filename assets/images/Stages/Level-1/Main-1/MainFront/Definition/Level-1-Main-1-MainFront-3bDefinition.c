@@ -24,7 +24,6 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
 #include <MBgmapSprite.h>
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,6 +62,9 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	true,
 };
 
 TextureROMDef* const LEVEL_1_MAIN_1_MAIN_FRONT_3B_IM_TEXTURES[] =

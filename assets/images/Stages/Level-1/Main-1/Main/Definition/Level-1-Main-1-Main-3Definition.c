@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <RecyclableImage.h>
+#include <StaticImage.h>
 #include <ManagedStaticImage.h>
 #include <MBgmapSprite.h>
 
@@ -72,6 +72,9 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_3_TX =
 
 	// palette number (0-3)
 	1,
+
+	// recyclable
+	true,
 };
 
 TextureROMDef* const LEVEL_1_MAIN_1_MAIN_3_IM_TEXTURES[] =
@@ -123,14 +126,14 @@ BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_3_B_IM_SPRITES[] =
 	NULL
 };
 
-RecyclableImageROMDef LEVEL_1_MAIN_1_MAIN_3_A_IM =
+StaticImageROMDef LEVEL_1_MAIN_1_MAIN_3_A_IM =
 {
-	__TYPE(RecyclableImage),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_3_A_IM_SPRITES,
 };
 
-RecyclableImageROMDef LEVEL_1_MAIN_1_MAIN_3_B_IM =
+StaticImageROMDef LEVEL_1_MAIN_1_MAIN_3_B_IM =
 {
-	__TYPE(RecyclableImage),
+	__TYPE(StaticImage),
 	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_3_B_IM_SPRITES,
 };

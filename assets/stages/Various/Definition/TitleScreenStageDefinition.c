@@ -104,14 +104,13 @@ FontROMDef* const TITLE_SCREEN_STAGE_ST_FONTS[] =
 	NULL
 };
 
-StageTextureEntryROMDef TITLE_SCREEN_STAGE_ST_TEXTURES[] =
+TextureDefinition* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
 {
-	{&LOGO_L_TX, false},
-	{&LOGO_R_TX, false},
-	{&LOGO_OUTLINE_L_TX, false},
-	{&LOGO_OUTLINE_R_TX, false},
-
-	{NULL, false}
+	&LOGO_L_TX,
+	&LOGO_R_TX,
+	&LOGO_OUTLINE_L_TX,
+	&LOGO_OUTLINE_R_TX,
+	NULL
 };
 
 
@@ -279,7 +278,7 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		(CharSetDefinition**)NULL,
 
 		// textures to preload
-		(StageTextureEntryDefinition*)TITLE_SCREEN_STAGE_ST_TEXTURES,
+		(TextureDefinition**)TITLE_SCREEN_STAGE_ST_TEXTURES,
 
 		// background music
 		(const u16 (*)[])KRISSE_BGM,
