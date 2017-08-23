@@ -101,7 +101,7 @@ TextureROMDef CANNON_BALL_TX =
 	3,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
+	{1, 1},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
