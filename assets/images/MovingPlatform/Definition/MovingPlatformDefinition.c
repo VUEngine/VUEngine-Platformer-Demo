@@ -26,6 +26,7 @@
 
 #include <BgmapSprite.h>
 #include <MovingEntity.h>
+#include <Cuboid.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -148,30 +149,47 @@ BgmapSpriteROMDef* const MOVING_PLATFORM_SPRITES[] =
 	NULL
 };
 
+ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
+{
+	// type, size, displacement
+	{__TYPE(Cuboid), {30, 14, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+PhysicalSpecificationROMDef MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES =
+{
+	// mass
+	FTOFIX19_13(0),
+
+	// friction
+	FTOFIX19_13(FLOOR_FRICTION),
+
+	// elasticity
+	FTOFIX19_13(FLOOR_ELASTICITY),
+};
+
 MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 {
 	{
 		{
 			{
-				{
-					__TYPE(MovingEntity),
-					(SpriteROMDef**)MOVING_PLATFORM_SPRITES,
-				},
+				// the class allocator
+				__TYPE(MovingEntity),
 
-				// collision detection gap (up, down, left, right)
-				{1, 1, 1, 1},
+				// the sprites list
+				(SpriteROMDef**)MOVING_PLATFORM_SPRITES,
 
-				// in game type
+				// shapes to register
+				(ShapeDefinition*)MOVING_PLATFORM_V6_AC_SHAPES,
+
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{4 * 8, 2 * 8, 4},
+
+				// gameworld's character's type
 				kMovingPlatform,
 
-				// width
-				4 * 8,
-
-				// height
-				2 * 8,
-
-				// depth
-				4
+				// physical specification
+				(PhysicalSpecification*)&MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES,
 			},
 
 			// pointer to the animation definition for the character
@@ -180,15 +198,6 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 			// initial animation
 			"Move"
 		},
-
-		// friction for physics
-		FTOFIX19_13(FLOOR_FRICTION),
-
-		// elasticity for physics
-		FTOFIX19_13(FLOOR_ELASTICITY),
-
-		// mass
-		ITOFIX19_13(10)
 	},
 
 	// velocity

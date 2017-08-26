@@ -48,14 +48,16 @@ __CLASS(LayerSwitchDoor);
 		/* it is derived from */																		\
 		Door_ATTRIBUTES																					\
 
+typedef const DoorDefinition LayerSwitchDoorDefinition;
+typedef const LayerSwitchDoorDefinition LayerSwitchDoorROMDef;
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(LayerSwitchDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(LayerSwitchDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 void LayerSwitchDoor_destructor(LayerSwitchDoor this);
 bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram);
 

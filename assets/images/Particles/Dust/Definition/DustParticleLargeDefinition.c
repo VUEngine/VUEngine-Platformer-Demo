@@ -25,8 +25,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <StaticImage.h>
+#include <Entity.h>
 #include <ObjectSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -115,8 +116,23 @@ ObjectSpriteROMDef* const DUST_PARTICLE_LARGE_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef DUST_PARTICLE_LARGE_IM =
+EntityROMDef DUST_PARTICLE_LARGE_IM =
 {
-	__TYPE(StaticImage),
+	// the class allocator
+	__TYPE(Entity),
+
+	// the sprites list
 	(SpriteROMDef**)DUST_PARTICLE_LARGE_SPRITES,
+
+	// shapes to register
+	(ShapeDefinition*)NULL,
+
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

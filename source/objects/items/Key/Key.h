@@ -56,9 +56,9 @@ __CLASS(Key);
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Key, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Key, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Key_constructor(Key this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Key_constructor(Key this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Key_destructor(Key this);
 void Key_ready(Key this, bool recursive);
 void Key_collect(Key this);

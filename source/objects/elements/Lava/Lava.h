@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Entity.h>
 #include <macros.h>
 
 
@@ -43,10 +43,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Lava_METHODS(ClassName)																			\
-		InanimatedInGameEntity_METHODS(ClassName)														\
+		Entity_METHODS(ClassName)																		\
 
 #define Lava_SET_VTABLE(ClassName)																		\
-		InanimatedInGameEntity_SET_VTABLE(ClassName)													\
+		Entity_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, Lava, handleMessage);													\
 		__VIRTUAL_SET(ClassName, Lava, isVisible);														\
 		__VIRTUAL_SET(ClassName, Lava, moves);															\
@@ -55,16 +55,19 @@ __CLASS(Lava);
 
 #define Lava_ATTRIBUTES																					\
 		/* it is derived from */																		\
-		InanimatedInGameEntity_ATTRIBUTES																\
+		Entity_ATTRIBUTES																				\
+
+typedef const EntityDefinition LavaDefinition;
+typedef const LavaDefinition LavaROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Lava, InanimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Lava, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Lava_constructor(Lava this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Lava_destructor(Lava this);
 void Lava_startMoving(Lava this);
 bool Lava_handleMessage(Lava this, Telegram telegram);

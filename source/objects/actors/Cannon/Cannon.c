@@ -44,7 +44,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Cannon, AnimatedInGameEntity);
+__CLASS_DEFINITION(Cannon, AnimatedEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,16 +59,16 @@ static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Cannon, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Cannon, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Cannon, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Cannon, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Cannon_constructor(Cannon this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Cannon::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -92,7 +92,7 @@ void Cannon_ready(Cannon this, bool recursive)
 	ASSERT(this, "Cannon::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(AnimatedInGameEntity, ready, this, recursive);
+	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
 
 	// send delayed message to self to trigger first shot
 	MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
@@ -129,7 +129,7 @@ void Cannon_shoot(Cannon this)
 	}
 
 	// start shooting sequence
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
 
 	// send delayed message to self to trigger next shot
 	MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
@@ -140,7 +140,7 @@ static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer __attribut
 	ASSERT(this, "Cannon::onCannonBallSpawned: null this");
 
 	// start shooting sequence
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Shoot");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
 
 	// send delayed message to self to trigger next shot
 	MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);

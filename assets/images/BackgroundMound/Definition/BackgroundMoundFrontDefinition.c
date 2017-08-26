@@ -24,8 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
 #include <MBgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -137,8 +138,23 @@ BgmapSpriteROMDef* const MOUND_BG_FRONT_SB_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef MOUND_BG_FRONT_IM =
+EntityROMDef MOUND_BG_FRONT_IM =
 {
-	__TYPE(StaticImage),
+	// the class allocator
+	__TYPE(Entity),
+
+	// the sprites list
 	(SpriteROMDef**)MOUND_BG_FRONT_SB_SPRITES,
+
+	// shapes to register
+	NULL,
+
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	NULL,
 };

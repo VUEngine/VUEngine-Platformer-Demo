@@ -26,6 +26,7 @@
 
 #include <BgmapAnimatedSprite.h>
 #include <MovingEntity.h>
+#include <Cuboid.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -148,30 +149,35 @@ BgmapSpriteROMDef* const SAW_BLADE_SPRITES[] =
 	NULL
 };
 
+ShapeROMDef SAW_BLADE_AC_SHAPES[] =
+{
+	// type, size, displacement
+	{__TYPE(Cuboid), {20, 20, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
 MovingEntityROMDef SAW_BLADE_V3_AC =
 {
 	{
 		{
 			{
-				{
-					__TYPE(MovingEntity),
-					(SpriteROMDef**)SAW_BLADE_SPRITES,
-				},
+				// the class allocator
+				__TYPE(MovingEntity),
 
-				// collision detection gap (up, down, left, right)
-				{5, 5, 5, 5},
+				// the sprites list
+				(SpriteROMDef**)SAW_BLADE_SPRITES,
 
-				// in game type
+				// shapes to register
+				(ShapeDefinition*)SAW_BLADE_AC_SHAPES,
+
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
+
+				// gameworld's character's type
 				kSawBlade,
 
-				// width
-				0,
-
-				// height
-				0,
-
-				// depth
-				8,
+				// physical specification
+				(PhysicalSpecification*)NULL,
 			},
 
 			// pointer to the animation definition for the character
@@ -180,15 +186,6 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 			// initial animation
 			"Spin"
 		},
-
-		// friction for physics
-		ITOFIX19_13(0),
-
-		// elasticity for physics
-		ITOFIX19_13(0),
-
-		// mass
-		ITOFIX19_13(10)
 	},
 
 	// velocity
@@ -212,25 +209,23 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	{
 		{
 			{
-				{
-					__TYPE(MovingEntity),
-					(SpriteROMDef**)SAW_BLADE_SPRITES,
-				},
+				// the class allocator
+				__TYPE(MovingEntity),
 
-				// collision detection gap (up, down, left, right)
-				{5, 5, 5, 5},
+				// the sprites list
+				(SpriteROMDef**)SAW_BLADE_SPRITES,
 
-				// in game type
+				// shapes to register
+				(ShapeDefinition*)SAW_BLADE_AC_SHAPES,
+
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
+
+				// gameworld's character's type
 				kSawBlade,
 
-				// width
-				0,
-
-				// height
-				0,
-
-				// depth
-				8,
+				// physical specification
+				(PhysicalSpecification*)NULL,
 			},
 
 			// pointer to the animation definition for the character
@@ -239,15 +234,6 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 			// initial animation
 			"Spin"
 		},
-
-		// friction for physics
-		ITOFIX19_13(0),
-
-		// elasticity for physics
-		ITOFIX19_13(0),
-
-		// mass
-		ITOFIX19_13(10)
 	},
 
 	// velocity
@@ -257,7 +243,7 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	ITOFIX19_13(3 * 8),
 
 	// time to rest idle
-	1000,
+	0,
 
 	// axis
 	__X_AXIS,
@@ -266,30 +252,29 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	__LEFT
 };
 
+
 MovingEntityROMDef SAW_BLADE_H8_AC =
 {
 	{
 		{
 			{
-				{
-					__TYPE(MovingEntity),
-					(SpriteROMDef**)SAW_BLADE_SPRITES,
-				},
+				// the class allocator
+				__TYPE(MovingEntity),
 
-				// collision detection gap (up, down, left, right)
-				{5, 5, 5, 5},
+				// the sprites list
+				(SpriteROMDef**)SAW_BLADE_SPRITES,
 
-				// in game type
+				// shapes to register
+				(ShapeDefinition*)SAW_BLADE_AC_SHAPES,
+
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
+
+				// gameworld's character's type
 				kSawBlade,
 
-				// width
-				0,
-
-				// height
-				0,
-
-				// depth
-				8,
+				// physical specification
+				(PhysicalSpecification*)NULL,
 			},
 
 			// pointer to the animation definition for the character
@@ -298,15 +283,6 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 			// initial animation
 			"Spin"
 		},
-
-		// friction for physics
-		ITOFIX19_13(0),
-
-		// elasticity for physics
-		ITOFIX19_13(0),
-
-		// mass
-		ITOFIX19_13(10)
 	},
 
 	// velocity

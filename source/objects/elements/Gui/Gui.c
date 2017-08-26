@@ -41,7 +41,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Gui, AnimatedInGameEntity);
+__CLASS_DEFINITION(Gui, AnimatedEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -69,14 +69,14 @@ extern CharSetDefinition GUI_BANDANA_CH;
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Gui, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Gui, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Gui, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Gui, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Gui_constructor(Gui this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Gui_constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
 
 	// add event listeners
 	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
@@ -106,7 +106,7 @@ void Gui_ready(Gui this, bool recursive)
 	ASSERT(this, "Gui::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(AnimatedInGameEntity, ready, this, recursive);
+	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
 
 	// initially print gui
 	Gui_printAll(this);

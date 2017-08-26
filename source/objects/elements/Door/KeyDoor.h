@@ -53,14 +53,17 @@ __CLASS(KeyDoor);
 		/* it is derived from */																		\
 		Door_ATTRIBUTES																					\
 
+typedef const DoorDefinition KeyDoorDefinition;
+typedef const KeyDoorDefinition KeyDoorROMDef;
+
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(KeyDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(KeyDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void KeyDoor_constructor(KeyDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+void KeyDoor_constructor(KeyDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 void KeyDoor_destructor(KeyDoor this);
 void KeyDoor_ready(KeyDoor this, bool recursive);
 bool KeyDoor_hasDestination(KeyDoor this);

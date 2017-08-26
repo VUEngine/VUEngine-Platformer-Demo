@@ -79,7 +79,7 @@ void HeroIdle_destructor(HeroIdle this)
 void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 {
 	// show animation
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Idle");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Idle");
 
 	// start sleeping after 6 seconds of inactivity
 	MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
@@ -115,7 +115,7 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 
 		case kHeroSleep:
 
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, owner), "Sleep");
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Sleep");
 			return true;
 			break;
 	}
@@ -161,7 +161,7 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 
 		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
 		{
-			if(__X_AXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+			if(__X_AXIS & Actor_getAxisAllowedForMovement(__SAFE_CAST(Actor, owner), &acceleration))
 			{
 				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
 
@@ -207,7 +207,7 @@ void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner, con
             0,
         };
 
-        if(__X_AXIS & Actor_canMoveOverAxis(__SAFE_CAST(Actor, owner), &acceleration))
+        if(__X_AXIS & Actor_getAxisAllowedForMovement(__SAFE_CAST(Actor, owner), &acceleration))
         {
             Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->holdKey, "Idle");
 

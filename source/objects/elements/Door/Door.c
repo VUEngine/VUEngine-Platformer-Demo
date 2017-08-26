@@ -39,7 +39,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Door, AnimatedInGameEntity);
+__CLASS_DEFINITION(Door, AnimatedEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -54,17 +54,14 @@ bool Door_checkStillOverlapping(Door this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Door, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Door, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Door, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Door, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Door_constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
 
 	// init class variables
 	this->destinationDefinition = NULL;
@@ -101,21 +98,21 @@ void Door_ready(Door this, bool recursive __attribute__ ((unused)))
 	ASSERT(this, "Door::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(AnimatedInGameEntity, ready, this, recursive);
+	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
 
 	if(__VIRTUAL_CALL(Door, hasDestination, this))
 	{
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
 	}
 	else
 	{
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closed");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closed");
 	}
 }
 
 void Door_resume(Door this)
 {
-	__CALL_BASE_METHOD(AnimatedInGameEntity, resume, this);
+	__CALL_BASE_METHOD(AnimatedEntity, resume, this);
 
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckOverlapping);
 	MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
@@ -192,7 +189,7 @@ bool Door_checkStillOverlapping(Door this)
 	// check if hero has recently overlapped door and is still doing so
 	if(
 		this->currentlyOverlappingHero &&
-		!__VIRTUAL_CALL(Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, Hero_getInstance())), Entity_getShape(__SAFE_CAST(Entity, this)))
+		!__VIRTUAL_CALL(Shape, overlaps, VirtualList_front(Entity_getShapes(__SAFE_CAST(Entity, Hero_getInstance()))), VirtualList_front(this->shapes))
 	)
 	{
 		__VIRTUAL_CALL(Door, unsetOverlapping, this);

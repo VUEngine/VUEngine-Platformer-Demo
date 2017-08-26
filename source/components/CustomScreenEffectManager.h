@@ -29,7 +29,7 @@
 
 #include <ScreenEffectManager.h>
 #include <Telegram.h>
-#include <InGameEntity.h>
+#include <Entity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ enum CustomScreenFX
 		/* super's attributes */																		\
 		ScreenEffectManager_ATTRIBUTES																	\
 		/* temporary variable to hold the focus entity during shaking fx */								\
-		InGameEntity tempFocusInGameEntity;																\
+		Entity tempFocusEntity;																\
 		/* last offset set by shake function */															\
 		VBVec3D lastShakeOffset;																		\
 		/* time left in current shaking fx (in ms) */													\

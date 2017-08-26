@@ -121,7 +121,10 @@ __CLASS(Hero);
 		/* flag for invincible mode (after being hit) */												\
 		bool invincible;																				\
 		/* flag to keep applying force to the x axis */													\
-		bool keepAddingForce;																					\
+		bool keepAddingForce;																			\
+
+typedef const ActorDefinition HeroDefinition;
+typedef const HeroDefinition HeroROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -130,9 +133,9 @@ __CLASS(Hero);
 
 Hero Hero_getInstance();
 
-__CLASS_NEW_DECLARE(Hero, ActorDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Hero, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
 
-void Hero_constructor(Hero this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
 void Hero_destructor(Hero this);
 void Hero_ready(Hero this, bool recursive);
 void Hero_addForce(Hero this, int axis, bool enableAddingForce);
@@ -144,7 +147,7 @@ void Hero_jump(Hero this, bool checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u32 currentPressedKey, char * animation);
 void Hero_synchronizeDirectionWithVelocity(Hero this);
-void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy);
+void Hero_takeHitFrom(Hero this, Shape shape, Entity collidingEntity, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy);
 void Hero_flash(Hero this);
 void Hero_toggleFlashPalette(Hero this);
 void Hero_resetPalette(Hero this);
@@ -164,7 +167,7 @@ u8 Hero_getPowerUp(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
-bool Hero_processCollision(Hero this, VirtualList collidingSpatialObjects);
+bool Hero_processCollision(Hero this, Shape shape, VirtualList collidingShapes);
 bool Hero_handleMessage(Hero this, Telegram telegram);
 bool Hero_handlePropagatedMessage(Hero this, int message);
 void Hero_suspend(Hero this);
@@ -175,7 +178,7 @@ u8 Hero_getAxisAllowedForBouncing(Hero this);
 void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition);
 bool Hero_isAboveEntity(Hero this, Entity entity);
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
-u32 Hero_getAxisForFlipping(Hero this);
+u16 Hero_getAxisForFlipping(Hero this);
 void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
 void Hero_capVelocity(Hero this, bool discardPreviousMessages);
 bool Hero_isAffectedByRelativity(Hero this);

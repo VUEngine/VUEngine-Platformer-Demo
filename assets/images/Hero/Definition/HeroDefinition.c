@@ -27,6 +27,8 @@
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
 #include <CameraTriggerEntity.h>
+#include <Cuboid.h>
+#include <InverseCuboid.h>
 
 #include "Hero.h"
 
@@ -539,31 +541,46 @@ BgmapSpriteROMDef* const HERO_SPRITES[] =
 	NULL
 };
 
-ActorROMDef HERO_AC =
+ShapeROMDef HERO_AC_SHAPES[] =
+{
+	// type, size, displacement
+	{__TYPE(Cuboid), {24, 24, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
+{
+	// mass
+	FTOFIX19_13(HERO_MASS),
+
+	// friction
+	FTOFIX19_13(HERO_FRICTION),
+
+	// elasticity
+	FTOFIX19_13(HERO_ELASTICITY),
+};
+
+HeroROMDef HERO_AC =
 {
 	{
 		{
-			{
-				__TYPE(Hero),
-				(SpriteROMDef**)HERO_AFFINE_SPRITES,
-			},
+			// the class allocator
+			__TYPE(Hero),
 
-			// collision detection gap (up, down, left, right)
-			{3, 1, 6, 6},
+			// the sprites list
+			(SpriteROMDef**)HERO_AFFINE_SPRITES,
 
-			// in game type
+			// shapes to register
+			(ShapeDefinition*)HERO_AC_SHAPES,
+
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
+
+			// gameworld's character's type
 			kHero,
 
-			// width
-			// if 0, width and height will be inferred from the texture's size
-			0,
-
-			// height
-			// if 0, width and height will be inferred from the texture's size
-			0,
-
-			// depth
-			1 * 8
+			// physical specification
+			(PhysicalSpecification*)&HERO_PHYSICAL_PROPERTIES,
 		},
 
 		// pointer to the animation definition for the character
@@ -571,146 +588,122 @@ ActorROMDef HERO_AC =
 
 		// initial animation
 		"Idle",
-	},
-
-	// friction for physics
-	ITOFIX19_13(HERO_FRICTION),
-
-	// elasticity for physics
-	FTOFIX19_13(HERO_ELASTICITY),
-
-	// mass
-	ITOFIX19_13(HERO_MASS)
+	}
 };
 
-AnimatedInGameEntityROMDef HERO_IDLE_AG =
+AnimatedEntityROMDef HERO_IDLE_AG =
 {
 	{
-		{
-			__TYPE(AnimatedInGameEntity),
-			(SpriteROMDef**)HERO_SPRITES,
-		},
+		// the class allocator
+		__TYPE(AnimatedEntity),
 
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
+		// the sprites list
+		(SpriteROMDef**)HERO_SPRITES,
 
-		// in game type
+		// shapes to register
+		(ShapeDefinition*)NULL,
+
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kHero,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		1,
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
-	// pointer to the animation definition for the item
+	// pointer to the animation definition for the character
 	(AnimationDescription*)&HERO_ANIM,
 
 	// initial animation
 	"Idle",
 };
 
-AnimatedInGameEntityROMDef HERO_SLEEPING_AG =
+AnimatedEntityROMDef HERO_SLEEPING_AG =
 {
 	{
-		{
-			__TYPE(AnimatedInGameEntity),
-			(SpriteROMDef**)HERO_SPRITES,
-		},
+		// the class allocator
+		__TYPE(AnimatedEntity),
 
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
+		// the sprites list
+		(SpriteROMDef**)HERO_SPRITES,
 
-		// in game type
+		// shapes to register
+		(ShapeDefinition*)NULL,
+
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kHero,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		1,
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
-	// pointer to the animation definition for the item
+	// pointer to the animation definition for the character
 	(AnimationDescription*)&HERO_ANIM,
 
 	// initial animation
 	"Sleep",
 };
 
-AnimatedInGameEntityROMDef HERO_BANDANA_AG =
+
+AnimatedEntityROMDef HERO_BANDANA_AG =
 {
 	{
-		{
-			__TYPE(AnimatedInGameEntity),
-			(SpriteROMDef**)HERO_BANDANA_AFFINE_SPRITES,
-		},
+		// the class allocator
+		__TYPE(AnimatedEntity),
 
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
+		// the sprites list
+		(SpriteROMDef**)HERO_BANDANA_AFFINE_SPRITES,
 
-		// in game type
+		// shapes to register
+		(ShapeDefinition*)NULL,
+
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kHero,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		1,
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
-	// pointer to the animation definition for the item
+	// pointer to the animation definition for the character
 	(AnimationDescription*)&HERO_ANIM,
 
 	// initial animation
 	"Idle",
 };
 
+ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
+{
+	// type, size, displacement
+	{__TYPE(InverseCuboid), {12 * 8, 20 * 8, 4 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+
 CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 {
-	{
-		{
-			__TYPE(CameraTriggerEntity),
-			NULL,
-		},
+	// the class allocator
+	__TYPE(CameraTriggerEntity),
 
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
+	// the sprites list
+	(SpriteROMDef**)NULL,
 
-		// in game type
-		kCameraTarget,
+	// shapes to register
+	(ShapeDefinition*)CAMERA_BOUNDING_BOX_IG_SHAPES,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		12 * 8,
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
 
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		20 * 8,
+	// gameworld's character's type
+	kCameraTarget,
 
-		// depth
-		4 * 8
-	},
-
-	// shape type
-	kInverseCuboid,
-
-	// moves
-	true
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

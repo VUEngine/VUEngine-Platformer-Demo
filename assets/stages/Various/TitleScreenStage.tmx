@@ -129,7 +129,7 @@
  <layer name="(C1) Main Layer" width="48" height="28">
   <properties>
    <property name="bgmapMode" value="__WORLD_BGMAP"/>
-   <property name="class" value="StaticImage"/>
+   <property name="class" value="Entity"/>
    <property name="containerType" value="Composite"/>
    <property name="displacement.p" value="0"/>
    <property name="displacement.x" value="0"/>
@@ -178,7 +178,7 @@
  <layer name="(C2) Main Layer Front" width="48" height="28">
   <properties>
    <property name="bgmapMode" value="__WORLD_BGMAP"/>
-   <property name="class" value="StaticImage"/>
+   <property name="class" value="Entity"/>
    <property name="containerType" value="Composite"/>
    <property name="displacement.p" value="0"/>
    <property name="displacement.x" value="0"/>

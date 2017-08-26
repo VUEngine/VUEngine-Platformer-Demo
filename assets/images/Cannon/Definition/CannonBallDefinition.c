@@ -25,6 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
+#include <Cuboid.h>
 #include "CannonBall.h"
 
 
@@ -148,29 +149,34 @@ BgmapSpriteROMDef* const CANNON_BALL_SPRITES[] =
 	NULL
 };
 
-ActorROMDef CANNON_BALL_AC =
+ShapeROMDef CANNON_BALL_AC_SHAPES[] =
+{
+	// type, size, displacement
+	{__TYPE(Cuboid), {22, 22, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+CannonBallROMDef CANNON_BALL_AC =
 {
 	{
 		{
-			{
-				__TYPE(CannonBall),
-				(SpriteROMDef**)CANNON_BALL_SPRITES,
-			},
+			// the class allocator
+			__TYPE(CannonBall),
 
-			// collision detection gap (up, down, left, right)
-			{1, 1, 1, 1},
+			// the sprites list
+			(SpriteROMDef**)CANNON_BALL_SPRITES,
 
-			// in game type
+			// shapes to register
+			(ShapeDefinition*)CANNON_BALL_AC_SHAPES,
+
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
+
+			// gameworld's character's type
 			kCannonBall,
 
-			// width
-			0,
-
-			// height
-			0,
-
-			// depth
-			1
+			// physical specification
+			(PhysicalSpecification*)NULL,
 		},
 
 		// pointer to the animation definition for the character
@@ -179,15 +185,6 @@ ActorROMDef CANNON_BALL_AC =
 		// initial animation
 		NULL
 	},
-
-	// friction for physics
-	ITOFIX19_13(0),
-
-	// elasticity for physics
-	ITOFIX19_13(0),
-
-	// mass
-	ITOFIX19_13(10)
 };
 
 PositionedEntityROMDef CANNON_BALL =

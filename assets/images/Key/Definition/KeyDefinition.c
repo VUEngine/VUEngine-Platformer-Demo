@@ -26,6 +26,7 @@
 
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
+#include <Cuboid.h>
 #include "Key.h"
 
 
@@ -147,30 +148,33 @@ ObjectSpriteROMDef* const KEY_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef KEY_AG =
+ShapeROMDef KEY_AG_SHAPES[] =
+{
+	// type, size, displacement
+	{__TYPE(Cuboid), {2 * 8, 2 * 8, 2 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+AnimatedEntityROMDef KEY_AG =
 {
 	{
-		{
-			__TYPE(Key),
-			(SpriteROMDef**)KEY_SPRITES,
-		},
+		// the class allocator
+		__TYPE(Key),
 
-		// collision detection gap (up, down, left, right)
-		{1, 1, 1, 2},
+		// the sprites list
+		(SpriteROMDef**)KEY_SPRITES,
 
-		// in game type
+		// shapes to register
+		(ShapeDefinition*)KEY_AG_SHAPES,
+
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kKey,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item

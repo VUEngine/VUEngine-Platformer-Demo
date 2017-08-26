@@ -148,14 +148,14 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 
 			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
 			{
-				InGameEntity inGameEntity = __SAFE_CAST(InGameEntity, VirtualNode_getData(node));
+				Entity inGameEntity = __SAFE_CAST(Entity, VirtualNode_getData(node));
 
-				switch(InGameEntity_getInGameType(inGameEntity))
+				switch(Entity_getInGameType(inGameEntity))
 				{
 					case kHero:
 					case kSawBlade:
 
-						entityTypeChecked = __VIRTUAL_CALL(InGameEntity, isMoving, inGameEntity);
+						entityTypeChecked = __VIRTUAL_CALL(Entity, isMoving, inGameEntity);
 						break;
 				}
 

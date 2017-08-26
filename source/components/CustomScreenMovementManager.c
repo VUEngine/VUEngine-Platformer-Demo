@@ -114,10 +114,10 @@ static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovement
 {
 	ASSERT(this, "CustomScreenMovementManager::doFocusWithNoEasing: null this");
 
-	VBVec3D focusInGameEntityPosition = *_screen->focusInGameEntityPosition;
-	Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
-	_screen->position.x = focusInGameEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
-	_screen->position.y = focusInGameEntityPosition.y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
+	VBVec3D focusEntityPosition = *_screen->focusEntityPosition;
+	Direction direction = AnimatedEntity_getDirection(__SAFE_CAST(AnimatedEntity, _screen->focusEntity));
+	_screen->position.x = focusEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
+	_screen->position.y = focusEntityPosition.y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
 
 	Screen_capPosition(_screen);
 	Screen_forceDisplacement(_screen, true);
@@ -142,23 +142,23 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 	_screen->lastDisplacement.y = 0;
 	_screen->lastDisplacement.z = 0;
 
-	// if focusInGameEntity is defined
-	if(!_screen->focusInGameEntity)
+	// if focusEntity is defined
+	if(!_screen->focusEntity)
 	{
 		return false;
 	}
 
-	Direction direction = InGameEntity_getDirection(__SAFE_CAST(InGameEntity, _screen->focusInGameEntity));
+	Direction direction = AnimatedEntity_getDirection(__SAFE_CAST(AnimatedEntity, _screen->focusEntity));
 
-	ASSERT(__SAFE_CAST(Actor, _screen->focusInGameEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
+	ASSERT(__SAFE_CAST(Actor, _screen->focusEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
 
 	VBVec3D screenPreviousPosition = _screen->position;
 
 	VBVec3DFlag reachedTargetFlag = {true, true, true};
 
-	VBVec3D focusInGameEntityPosition = *_screen->focusInGameEntityPosition;
+	VBVec3D focusEntityPosition = *_screen->focusEntityPosition;
 
-	VBVec3D position3D = focusInGameEntityPosition;
+	VBVec3D position3D = focusEntityPosition;
 	VBVec2D position2D;
 
 	// normalize the position to screen coordinates
@@ -174,7 +174,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 		{
 			// calculate the target position
 			fix19_13 horizontalPosition = _screen->position.x;
-			fix19_13 horizontalTarget = focusInGameEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
+			fix19_13 horizontalTarget = focusEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
 
 			fix19_13 easingDisplacement = ITOFIX19_13(7);
 
@@ -221,7 +221,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 		{
 			// calculate the target position
 			fix19_13 verticalPosition = _screen->position.y;
-			fix19_13 verticalTarget = focusInGameEntityPosition.y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
+			fix19_13 verticalTarget = focusEntityPosition.y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
 
 			fix19_13 downEasingDisplacement = ITOFIX19_13(3);
 			fix19_13 upEasingDisplacement = ITOFIX19_13(3);
@@ -233,7 +233,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 			}
 			else
 			{
-				Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusInGameEntity));
+				Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _screen->focusEntity));
 
 				if(0 < velocity.y)
 				{

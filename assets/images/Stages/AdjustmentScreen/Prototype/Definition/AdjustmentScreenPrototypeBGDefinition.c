@@ -24,7 +24,8 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -116,8 +117,23 @@ BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_PROTOTYPE_BG_IM_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef ADJUSTMENT_SCREEN_PROTOTYPE_BG_IM =
+EntityROMDef ADJUSTMENT_SCREEN_PROTOTYPE_BG_IM =
 {
-	__TYPE(StaticImage),
-	(SpriteROMDef**) ADJUSTMENT_SCREEN_PROTOTYPE_BG_IM_SPRITES,
+	// the class allocator
+	__TYPE(Entity),
+
+	// the sprites list
+	(SpriteROMDef**)ADJUSTMENT_SCREEN_PROTOTYPE_BG_IM_SPRITES,
+
+	// shapes to register
+	(ShapeDefinition*)NULL,
+
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

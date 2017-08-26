@@ -80,21 +80,21 @@ extern TextureDefinition LEVEL_1_TOWER_MAIN_1_TX;
 extern TextureDefinition LEVEL_1_TOWER_MAIN_BACK_1_TX;
 extern TextureDefinition DARKNESS_OVERLAY_TX;
 
-extern VBVec3D collision_2_64_1;
-extern VBVec3D collision_4_2_1;
-extern VBVec3D collision_4_4_1;
-extern VBVec3D collision_4_8_1;
-extern VBVec3D collision_6_4_1;
-extern VBVec3D collision_7_2_1;
-extern VBVec3D collision_8_4_1;
-extern VBVec3D collision_8_20_1;
-extern VBVec3D collision_14_6_1;
-extern VBVec3D collision_16_2_1;
-extern VBVec3D collision_20_2_1;
-extern VBVec3D collision_32_4_1;
-extern VBVec3D collision_48_2_1;
-extern VBVec3D collision_48_4_1;
-extern VBVec3D collision_48_28_1;
+extern Size collision_2_64_1;
+extern Size collision_4_2_1;
+extern Size collision_4_4_1;
+extern Size collision_4_8_1;
+extern Size collision_6_4_1;
+extern Size collision_7_2_1;
+extern Size collision_8_4_1;
+extern Size collision_8_20_1;
+extern Size collision_14_6_1;
+extern Size collision_16_2_1;
+extern Size collision_20_2_1;
+extern Size collision_32_4_1;
+extern Size collision_48_2_1;
+extern Size collision_48_4_1;
+extern Size collision_48_28_1;
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -51,14 +51,17 @@ __CLASS(GoalDoor);
 		/* it is derived from */																		\
 		Door_ATTRIBUTES																					\
 
+typedef const DoorDefinition GoalDoorDefinition;
+typedef const GoalDoorDefinition GoalDoorROMDef;
+
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(GoalDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(GoalDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void GoalDoor_constructor(GoalDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+void GoalDoor_constructor(GoalDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 void GoalDoor_destructor(GoalDoor this);
 bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram);
 void GoalDoor_ready(Door this, bool recursive);

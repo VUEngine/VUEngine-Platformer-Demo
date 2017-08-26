@@ -234,7 +234,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			GameState_transform(__SAFE_CAST(GameState, this));
 
 			// set focus on the hero
-			Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, hero));
+			Screen_setFocusGameEntity(Screen_getInstance(), __SAFE_CAST(Entity, hero));
 			VBVec3D screenDisplacement = {ITOFIX19_13(50), ITOFIX19_13(-30), 0};
 			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
@@ -579,7 +579,7 @@ void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object even
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	// unset the hero as focus entity from the custom screen movement manager
-	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
+	Screen_setFocusGameEntity(Screen_getInstance(), NULL);
 
 	// start a fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};

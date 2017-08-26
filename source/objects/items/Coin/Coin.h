@@ -48,14 +48,17 @@ __CLASS(Coin);
 		/* it is derived from */																		\
 		Collectable_ATTRIBUTES																			\
 
+typedef const CollectableDefinition CoinDefinition;
+typedef const CoinDefinition CoinROMDef;
+
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Coin, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Coin, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Coin_constructor(Coin this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Coin_destructor(Coin this);
 void Coin_collect(Coin this);
 

@@ -65,7 +65,6 @@ extern EntityDefinition DOUBLE_JUMP_SIGN_IM;
 extern EntityDefinition GRASS_AG;
 extern EntityDefinition GUI_AG;
 extern EntityDefinition HERO_AC;
-extern EntityDefinition HERO_AC;
 extern EntityDefinition HIDE_LAYER_10x7_AG;
 extern EntityDefinition JUMP_SIGN_IM;
 extern EntityDefinition KEY_AG;
@@ -162,27 +161,27 @@ extern TextureDefinition MOUND_BG_FRONT_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
 extern TextureDefinition SAW_BLADE_TX;
 
-extern VBVec3D collision_2_28_1;
-extern VBVec3D collision_3_2_1;
-extern VBVec3D collision_7_2_1;
-extern VBVec3D collision_8_3_1;
-extern VBVec3D collision_12_4_1;
-extern VBVec3D collision_14_6_1;
-extern VBVec3D collision_14_18_1;
-extern VBVec3D collision_18_6_1;
-extern VBVec3D collision_20_2_1;
-extern VBVec3D collision_20_6_1;
-extern VBVec3D collision_20_32_1;
-extern VBVec3D collision_28_16_1;
-extern VBVec3D collision_32_14_1;
-extern VBVec3D collision_34_30_1;
-extern VBVec3D collision_38_10_1;
-extern VBVec3D collision_47_3_1;
-extern VBVec3D collision_48_10_1;
-extern VBVec3D collision_48_18_1;
-extern VBVec3D collision_48_28_1;
-extern VBVec3D collision_49_5_1;
-extern VBVec3D collision_67_25_1;
+extern Size collision_2_28_1;
+extern Size collision_3_2_1;
+extern Size collision_7_2_1;
+extern Size collision_8_3_1;
+extern Size collision_12_4_1;
+extern Size collision_14_6_1;
+extern Size collision_14_18_1;
+extern Size collision_18_6_1;
+extern Size collision_20_2_1;
+extern Size collision_20_6_1;
+extern Size collision_20_32_1;
+extern Size collision_28_16_1;
+extern Size collision_32_14_1;
+extern Size collision_34_30_1;
+extern Size collision_38_10_1;
+extern Size collision_47_3_1;
+extern Size collision_48_10_1;
+extern Size collision_48_18_1;
+extern Size collision_48_28_1;
+extern Size collision_49_5_1;
+extern Size collision_67_25_1;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -364,6 +363,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
+	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 
 	// left border
 	{&COLLISION_CL,					{FTOFIX19_13(-8),	FTOFIX19_13(128), 	FTOFIX19_13(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_1, false},
@@ -738,7 +738,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// gravity
 		{
 			ITOFIX19_13(0),
-			ITOFIX19_13(__GRAVITY),
+			ITOFIX19_13(__GRAVITY*0),
 			ITOFIX19_13(0)
 		},
 

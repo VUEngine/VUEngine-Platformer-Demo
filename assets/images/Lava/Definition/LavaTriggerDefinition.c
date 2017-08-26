@@ -24,8 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Entity.h>
 #include <LavaTrigger.h>
+#include <Cuboid.h>
 #include <macros.h>
 
 
@@ -33,38 +34,30 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef LAVA_TRIGGER_IG =
+ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 {
-	{
-		{
-			__TYPE(LavaTrigger),
-			NULL,
-		},
+	// type, size, displacement
+	{__TYPE(Cuboid), {2 * 8, 12 * 8, 1 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
 
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
+LavaTriggerROMDef LAVA_TRIGGER_IG =
+{
+	// the class allocator
+	__TYPE(LavaTrigger),
 
-		// in game type
-		kLavaTrigger,
+	// the sprites list
+	(SpriteROMDef**)NULL,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
+	// shapes to register
+	(ShapeDefinition*)LAVA_TRIGGER_IG_SHAPES,
 
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		12 * 8,
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{4 * 8, 2 * 8, 4},
 
-		// depth
-		1 * 8
-	},
+	// gameworld's character's type
+	kMovingPlatform,
 
-	// friction
-	FTOFIX19_13(NO_FRICTION),
-
-	// elasticity
-	FTOFIX19_13(FLOOR_ELASTICITY),
-
-	// register shape
-	true,
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

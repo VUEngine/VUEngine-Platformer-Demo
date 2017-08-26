@@ -24,9 +24,10 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
 #include <MBgmapSprite.h>
 #include <HbiasMaskMBgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -190,8 +191,23 @@ BgmapSpriteROMDef* const LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES[] =
 };
 
 
-StaticImageROMDef LEVEL_1_TOWER_MAIN_BACK_IM =
+EntityROMDef LEVEL_1_TOWER_MAIN_BACK_IM =
 {
-	__TYPE(StaticImage),
+	// the class allocator
+	__TYPE(Entity),
+
+	// the sprites list
 	(SpriteROMDef**)LEVEL_1_TOWER_MAIN_BACK_IM_SPRITES,
+
+	// shapes to register
+	(ShapeDefinition*)NULL,
+
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

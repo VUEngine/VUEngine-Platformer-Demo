@@ -176,25 +176,23 @@ ActorROMDef CANNON_AC =
 {
 	{
 		{
-			{
-				__TYPE(Cannon),
-				(SpriteROMDef**)CANNON_SPRITES,
-			},
+			// the class allocator
+			__TYPE(Cannon),
 
-			// collision detection gap (up, down, left, right)
-			{2, 2, 2, 2},
+			// the sprites list
+			(SpriteROMDef**)CANNON_SPRITES,
 
-			// in game type
-			kSolid,
+			// shapes to register
+			(ShapeDefinition*)NULL,
 
-			// width
-			0,
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
 
-			// height
-			0,
+			// gameworld's character's type
+			kNotSolid,
 
-			// depth
-			10
+			// physical specification
+			(PhysicalSpecification*)NULL,
 		},
 
 		// pointer to the animation definition for the character
@@ -203,14 +201,5 @@ ActorROMDef CANNON_AC =
 		// initial animation
 		"Idle"
 	},
-
-	// friction for physics
-	ITOFIX19_13(0),
-
-	// elasticity for physics
-	ITOFIX19_13(0),
-
-	// mass
-	ITOFIX19_13(10)
 };
 

@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <macros.h>
 
 
@@ -36,10 +36,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Gui_METHODS(ClassName)																			\
-		AnimatedInGameEntity_METHODS(ClassName)															\
+		AnimatedEntity_METHODS(ClassName)															\
 
 #define Gui_SET_VTABLE(ClassName)																		\
-		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		AnimatedEntity_SET_VTABLE(ClassName)														\
 		__VIRTUAL_SET(ClassName, Gui, ready);															\
 		__VIRTUAL_SET(ClassName, Gui, handlePropagatedMessage);											\
 
@@ -47,7 +47,7 @@ __CLASS(Gui);
 
 #define Gui_ATTRIBUTES																					\
 		/* it is derived from */																		\
-		AnimatedInGameEntity_ATTRIBUTES																	\
+		AnimatedEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,9 +63,9 @@ __CLASS(Gui);
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Gui, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Gui, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Gui_constructor(Gui this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+void Gui_constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 void Gui_destructor(Gui this);
 void Gui_ready(Gui this, bool recursive);
 void Gui_printClock(Gui this);

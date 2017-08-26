@@ -26,6 +26,7 @@
 
 #include <ObjectAnimatedSprite.h>
 #include <BgmapAnimatedSprite.h>
+#include <Cuboid.h>
 #include "MovingEntity.h"
 
 
@@ -146,30 +147,35 @@ ObjectSpriteROMDef* const SNAIL_SPRITES[] =
 	NULL
 };
 
+ShapeROMDef SNAIL_AC_SHAPES[] =
+{
+	// type, size, displacement
+	{__TYPE(Cuboid), {24, 16, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
 MovingEntityROMDef SNAIL_3_AC =
 {
 	{
 		{
 			{
-				{
-					__TYPE(MovingEntity),
-					(SpriteROMDef**)SNAIL_SPRITES,
-				},
+				// the class allocator
+				__TYPE(MovingEntity),
 
-				// collision detection gap (up, down, left, right)
-				{6, 0, 5, 3},
+				// the sprites list
+				(SpriteROMDef**)SNAIL_SPRITES,
 
-				// in game type
+				// shapes to register
+				(ShapeDefinition*)SNAIL_AC_SHAPES,
+
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
+
+				// gameworld's character's type
 				kSnail,
 
-				// width
-				0,
-
-				// height
-				0,
-
-				// depth
-				8,
+				// physical specification
+				(PhysicalSpecification*)NULL,
 			},
 
 			// pointer to the animation definition for the character
@@ -178,15 +184,6 @@ MovingEntityROMDef SNAIL_3_AC =
 			// initial animation
 			"Move"
 		},
-
-		// friction for physics
-		ITOFIX19_13(0),
-
-		// elasticity for physics
-		ITOFIX19_13(0),
-
-		// mass
-		ITOFIX19_13(10)
 	},
 
 	// velocity
@@ -196,14 +193,13 @@ MovingEntityROMDef SNAIL_3_AC =
 	ITOFIX19_13(3 * 8),
 
 	// time to rest idle
-	1000,
+	3000,
 
 	// axis
 	__X_AXIS,
 
 	// direction
 	__LEFT
-
 };
 
 MovingEntityROMDef SNAIL_8_AC =
@@ -211,25 +207,23 @@ MovingEntityROMDef SNAIL_8_AC =
 	{
 		{
 			{
-				{
-					__TYPE(MovingEntity),
-					(SpriteROMDef**)SNAIL_SPRITES,
-				},
+				// the class allocator
+				__TYPE(MovingEntity),
 
-				// collision detection gap (up, down, left, right)
-				{6, 0, 5, 3},
+				// the sprites list
+				(SpriteROMDef**)SNAIL_SPRITES,
 
-				// in game type
+				// shapes to register
+				(ShapeDefinition*)SNAIL_AC_SHAPES,
+
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
+
+				// gameworld's character's type
 				kSnail,
 
-				// width
-				0,
-
-				// height
-				0,
-
-				// depth
-				8,
+				// physical specification
+				(PhysicalSpecification*)NULL,
 			},
 
 			// pointer to the animation definition for the character
@@ -238,15 +232,6 @@ MovingEntityROMDef SNAIL_8_AC =
 			// initial animation
 			"Move"
 		},
-
-		// friction for physics
-		ITOFIX19_13(0),
-
-		// elasticity for physics
-		ITOFIX19_13(0),
-
-		// mass
-		ITOFIX19_13(10)
 	},
 
 	// velocity

@@ -84,8 +84,23 @@ ParticleROMDef DUST_PARTICLE =
 ParticleSystemROMDef DUST_PS =
 {
 	{
+		// the class allocator
 		__TYPE(ParticleSystem),
-		NULL,
+
+		// the sprites list
+		(SpriteROMDef**)NULL,
+
+		// shapes to register
+		(ShapeDefinition*)NULL,
+
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
+		kNoType,
+
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// reuse expired particles?

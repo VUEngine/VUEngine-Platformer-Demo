@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <BgmapAnimatedSprite.h>
 #include <macros.h>
 
@@ -156,30 +156,26 @@ BgmapSpriteROMDef* const WATERFALL_STREAM_2x28_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef WATERFALL_STREAM_2x28_AG =
+AnimatedEntityROMDef WATERFALL_STREAM_2x28_AG =
 {
 	{
-		{
-			__TYPE(AnimatedInGameEntity),
-			(SpriteROMDef**)WATERFALL_STREAM_2x28_SPRITES,
-		},
+		// the class allocator
+		__TYPE(AnimatedEntity),
 
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
+		// the sprites list
+		(SpriteROMDef**)WATERFALL_STREAM_2x28_SPRITES,
 
-		// in game type
+		// shapes to register
+		(ShapeDefinition*)NULL,
+
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kNotSolid,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		1,
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item

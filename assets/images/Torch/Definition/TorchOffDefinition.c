@@ -25,9 +25,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <ObjectAnimatedSprite.h>
-#include <StaticImage.h>
+#include <Entity.h>
 #include <macros.h>
 
 
@@ -117,9 +117,24 @@ ObjectSpriteROMDef* const TORCH_OFF_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef TORCH_OFF_IM =
+EntityROMDef TORCH_OFF_IM =
 {
-	__TYPE(StaticImage),
+	// the class allocator
+	__TYPE(Entity),
+
+	// the sprites list
 	(SpriteROMDef**)TORCH_OFF_SPRITES,
+
+	// shapes to register
+	(ShapeDefinition*)NULL,
+
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };
 

@@ -56,14 +56,14 @@ static void GoalDoor_onFadeOutComplete(GoalDoor this, Object eventFirer);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(GoalDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(GoalDoor, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(GoalDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(GoalDoor, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void GoalDoor_constructor(GoalDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void GoalDoor_constructor(GoalDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Door, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -82,7 +82,7 @@ void GoalDoor_ready(Door this, bool recursive __attribute__ ((unused)))
 	// call base
 	__CALL_BASE_METHOD(Door, ready, this, recursive);
 
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Goal");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Goal");
 }
 
 bool GoalDoor_hasDestination(Door this __attribute__ ((unused)))

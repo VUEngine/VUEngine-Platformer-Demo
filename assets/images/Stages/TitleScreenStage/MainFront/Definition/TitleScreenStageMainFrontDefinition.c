@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
 #include <BgmapSprite.h>
 #include <macros.h>
 
@@ -122,9 +122,24 @@ BgmapSpriteROMDef* const TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM =
+EntityROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM =
 {
-	__TYPE(StaticImage),
+	// the class allocator
+	__TYPE(Entity),
+
+	// the sprites list
 	(SpriteROMDef**)TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITES,
+
+	// shapes to register
+	(ShapeDefinition*)NULL,
+
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };
 
