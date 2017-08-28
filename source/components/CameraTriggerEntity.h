@@ -40,6 +40,7 @@
 #define CameraTriggerEntity_SET_VTABLE(ClassName)														\
 		Entity_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);										\
+		__VIRTUAL_SET(ClassName, CameraTriggerEntity, moves);											\
 
 #define CameraTriggerEntity_ATTRIBUTES																	\
 		/* super's attributes */																		\
@@ -69,6 +70,7 @@ void CameraTriggerEntity_destructor(CameraTriggerEntity this);
 void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag);
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag);
 VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this);
+bool CameraTriggerEntity_moves(CameraTriggerEntity this);
 
 
 #endif

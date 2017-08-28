@@ -94,6 +94,8 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 	}
 
 	Entity_setShapesPosition(__SAFE_CAST(Entity, this));
+
+	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)
@@ -116,4 +118,11 @@ VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this
 	ASSERT(this, "CameraTriggerEntity::getOverridePositionFlag: null this");
 
 	return this->overridePositionFlag;
+}
+
+bool CameraTriggerEntity_moves(CameraTriggerEntity this)
+{
+	ASSERT(this, "CameraTriggerEntity::moves: null this");
+
+	return true;
 }
