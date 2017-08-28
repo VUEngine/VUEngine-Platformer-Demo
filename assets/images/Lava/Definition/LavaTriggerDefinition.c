@@ -56,7 +56,7 @@ LavaTriggerROMDef LAVA_TRIGGER_IG =
 	{4 * 8, 2 * 8, 4},
 
 	// gameworld's character's type
-	kMovingPlatform,
+	kLavaTrigger,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,
