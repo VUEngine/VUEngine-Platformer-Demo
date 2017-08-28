@@ -36,7 +36,7 @@
  <tile id="5" type="Entity">
   <properties>
    <property name="charsetName" value=""/>
-   <property name="entityName" value="COLLISIONS_CONTAINER_ENTITY"/>
+   <property name="entityName" value="MANAGED_ENTITY"/>
    <property name="textureName" value=""/>
   </properties>
   <image width="56" height="56" source="../../../images/Other/Preview/collisionContainer.png"/>

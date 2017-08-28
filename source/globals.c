@@ -29,7 +29,6 @@
 #include <StageEditor.h>
 #include <AnimationInspector.h>
 #include <ManagedEntity.h>
-#include <CollisionsContainerEntity.h>
 #include <Bandana.h>
 #include <Cannon.h>
 #include <CannonBall.h>
@@ -106,28 +105,6 @@ ManagedEntityROMDef MANAGED_ENTITY =
 
 	// physical specification
 	NULL,
-};
-
-// only need to define one for all entities
-CollisionsContainerEntityROMDef COLLISIONS_CONTAINER_ENTITY =
-{
-	// the class allocator
-	__TYPE(CollisionsContainerEntity),
-
-	// the sprites list
-	NULL,
-
-	// shapes to register
-	NULL,
-
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	NULL
 };
 
 #ifdef __DEBUG_TOOLS
