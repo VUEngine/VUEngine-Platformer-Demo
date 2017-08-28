@@ -29,6 +29,7 @@
 #include <MessageDispatcher.h>
 #include <Cuboid.h>
 #include <PhysicalWorld.h>
+#include <debugConfig.h>
 #include "Collision.h"
 
 
@@ -105,33 +106,58 @@ void Collision_destructor(Collision this)
 	__DESTROY_BASE;
 }
 
-// set size
+// set extra info
 void Collision_setExtraInfo(Collision this, void* extraInfo)
 {
 	ASSERT(this, "Collision::setExtraInfo: null this");
 
 	this->size = *((Size*)extraInfo);
-/*
-	ShapeDefinition shapeDefinition =
-	{
-		// the class allocator
-		__TYPE(Cuboid),
+}
 
-		// size
-		this->size,
+void Collision_initialTransform(Collision this, Transformation* environmentTransform, u32 recursive)
+{
+	ASSERT(this, "Collision::setExtraInfo: null this");
 
-		/// displacement modifier
-		{0, 0, 0},
+	__CALL_BASE_METHOD(Entity, initialTransform, this, environmentTransform, recursive);
 
-		// if true this shape checks for collisions against other shapes
-		false
-	};
-*/
-/*
-	// register a shape for collision detection
 	if(!this->shapes)
 	{
-		this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), &shapeDefinition);
+		this->shapes = __NEW(VirtualList);
+
+		ShapeDefinition shapeDefinition =
+		{
+			// the class allocator
+			__TYPE(Cuboid),
+
+			// size
+			this->size,
+
+			/// displacement modifier
+			{0, 0, 0},
+
+			// if true this shape checks for collisions against other shapes
+			false
+		};
+
+		Shape shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), &shapeDefinition);
+		Shape_setActive(shape, true);
+		Shape_setCheckForCollisions(shape, false);
+
+		const VBVec3D* myPosition = Entity_getPosition(__SAFE_CAST(Entity, this));
+		VBVec3D displacement = {0, 0, 0};
+		bool moves = __VIRTUAL_CALL(SpatialObject, moves, this);
+
+		__VIRTUAL_CALL(Shape, setup, shape, myPosition, &this->size, &displacement, moves);
+
+		if(moves)
+		{
+			__VIRTUAL_CALL(Shape, position, shape, myPosition, false);
+		}
+
+		VirtualList_pushBack(this->shapes, shape);
+
+#ifdef __DRAW_SHAPES
+		__VIRTUAL_CALL(Shape, show, shape);
+#endif
 	}
-	*/
 }

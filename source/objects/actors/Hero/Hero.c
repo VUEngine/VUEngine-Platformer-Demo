@@ -640,7 +640,7 @@ void Hero_takeHitFrom(Hero this, Shape shape, Entity collidingEntity, Shape coll
 	{
 		if(alignToEnemy && collidingEntity && Body_getMovementOverAllAxis(this->body))
 		{
-			Actor_alignTo(__SAFE_CAST(Actor, this), shape, collidingShape, false);
+			Actor_alignTo(__SAFE_CAST(Actor, this), shape, collidingShape, false, Body_getLastDisplacement(this->body));
 		}
 
 		if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
@@ -1189,7 +1189,7 @@ bool Hero_processCollision(Hero this, Shape shape, VirtualList collidingShapes)
 	{
 		// whenever you process some objects of a collisions list remove them and leave the Actor handle
 		// the ones you don't care about, i.e.: in most cases, the ones which are solid
-		VirtualList_removeElement(collidingShapesToRemove, VirtualNode_getData(node));
+		VirtualList_removeElement(collidingShapes, VirtualNode_getData(node));
 	}
 
 	VirtualList_clear(collidingShapesToRemove);

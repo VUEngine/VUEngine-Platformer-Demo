@@ -169,6 +169,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 		VBVec3D environmentPosition = {0, 0, 0};
 		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
 
+//		ASSERT(initialPosition, "PlatormerLevelState::enter: no initial position");
+
 		// if global position of destination entity could be found, move the hero and the screen there
 		if(initialPosition)
 		{
@@ -241,11 +243,16 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			// apply changes to the visuals
 			GameState_synchronizeGraphics(__SAFE_CAST(GameState, this));
 		}
+		else
+		{
+			// load stage
+			GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
+		}
 	}
 	else
 	{
 		// load stage
-		GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->currentStageEntryPoint->stageDefinition), positionedEntitiesToIgnore, true);
+		GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
 	}
 
 	CustomScreenMovementManager_disable(CustomScreenMovementManager_getInstance());
