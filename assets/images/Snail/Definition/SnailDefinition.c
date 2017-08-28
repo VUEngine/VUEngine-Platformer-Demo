@@ -150,7 +150,7 @@ ObjectSpriteROMDef* const SNAIL_SPRITES[] =
 ShapeROMDef SNAIL_AC_SHAPES[] =
 {
 	// type, size, displacement
-	{__TYPE(Cuboid), {24, 16, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{__TYPE(Cuboid), {20, 12, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 

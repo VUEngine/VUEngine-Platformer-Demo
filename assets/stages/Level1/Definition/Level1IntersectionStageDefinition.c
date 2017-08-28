@@ -38,14 +38,14 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-const VBVec3D level1_intersection_stage_collision_112_128_8 = {112, 128, 8};
-const VBVec3D level1_intersection_stage_collision_16_48_8 = {16, 48, 8};
-const VBVec3D level1_intersection_stage_collision_224_16_8 = {224, 16, 8};
-const VBVec3D level1_intersection_stage_collision_224_64_8 = {224, 64, 8};
-const VBVec3D level1_intersection_stage_collision_272_16_8 = {272, 16, 8};
-const VBVec3D level1_intersection_stage_collision_32_64_8 = {32, 64, 8};
-const VBVec3D level1_intersection_stage_collision_48_32_8 = {48, 32, 8};
-const VBVec3D level1_intersection_stage_collision_48_34_8 = {48, 34, 8};
+const Size level1_intersection_stage_collision_112_128_8 = {112, 128, 8};
+const Size level1_intersection_stage_collision_16_48_8 = {16, 48, 8};
+const Size level1_intersection_stage_collision_224_16_8 = {224, 16, 8};
+const Size level1_intersection_stage_collision_224_64_8 = {224, 64, 8};
+const Size level1_intersection_stage_collision_272_16_8 = {272, 16, 8};
+const Size level1_intersection_stage_collision_32_64_8 = {32, 64, 8};
+const Size level1_intersection_stage_collision_48_32_8 = {48, 32, 8};
+const Size level1_intersection_stage_collision_48_34_8 = {48, 34, 8};
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;

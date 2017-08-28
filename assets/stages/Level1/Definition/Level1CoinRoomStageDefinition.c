@@ -37,11 +37,11 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-const VBVec3D level1_coin_room_stage_collision_16_96_8 = {16, 96, 8};
-const VBVec3D level1_coin_room_stage_collision_224_16_8 = {224, 16, 8};
-const VBVec3D level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
-const VBVec3D level1_coin_room_stage_collision_32_48_8 = {32, 48, 8};
-const VBVec3D level1_coin_room_stage_collision_80_48_8 = {80, 48, 8};
+const Size level1_coin_room_stage_collision_16_96_8 = {16, 96, 8};
+const Size level1_coin_room_stage_collision_224_16_8 = {224, 16, 8};
+const Size level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
+const Size level1_coin_room_stage_collision_32_48_8 = {32, 48, 8};
+const Size level1_coin_room_stage_collision_80_48_8 = {80, 48, 8};
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
