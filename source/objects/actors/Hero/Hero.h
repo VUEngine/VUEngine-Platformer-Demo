@@ -176,7 +176,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
 void Hero_updateSurroundingFriction(Hero this);
 u8 Hero_getAxisAllowedForBouncing(Hero this);
 void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition);
-bool Hero_isAboveEntity(Hero this, Entity entity);
+bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape);
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects);
 u16 Hero_getAxisForFlipping(Hero this);
 void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);

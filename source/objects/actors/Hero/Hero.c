@@ -1175,7 +1175,7 @@ bool Hero_processCollision(Hero this, Shape shape, VirtualList collidingShapes)
 					int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, shape, collidingShape, Body_getLastDisplacement(this->body));
 
 					// if hero's moving over the y axis or is above colliding entity
-					if((__X_AXIS & axisOfCollision) || ((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, collidingEntity))))
+					if((__X_AXIS & axisOfCollision) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, shape, collidingShape))
 					{
 						// don't further process collision
 						VirtualList_pushBack(collidingShapesToRemove, collidingShape);
@@ -1416,14 +1416,18 @@ u8 Hero_getAxisAllowedForBouncing(Hero this __attribute__ ((unused)))
 	return __Y_AXIS;
 }
 
-bool Hero_isAboveEntity(Hero this, Entity entity)
+bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
-	int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y * 4;
-	int entityTopPosition = Entity_getPosition(entity)->y - ITOFIX19_13(Entity_getHeight(entity) >> 1);
+	RightCuboid shapeRightCuboid = __VIRTUAL_CALL(Shape, getSurroundingRightCuboid, shape);
+	RightCuboid collidingShapeRightCuboid = __VIRTUAL_CALL(Shape, getPositionedSurroundingRightCuboid, collidingShape);
 
-	return (heroBottomPosition >= entityTopPosition);
+	VBVec3D shapePosition = __VIRTUAL_CALL(Shape, getPosition, shape);
+
+	fix19_13 heroBottomPosition = shapePosition.y + ((shapeRightCuboid.x1 - shapeRightCuboid.x0) >> 1) - Body_getLastDisplacement(this->body).y;
+
+	return heroBottomPosition > collidingShapeRightCuboid.y0;
 }
 
 void Hero_collisionsProcessingDone(Hero this, VirtualList collidingShapes)
