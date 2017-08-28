@@ -184,18 +184,19 @@
 	__BLOCK_DEFINITION(144, 10)																			\
 	__BLOCK_DEFINITION(136, 30)																			\
 	__BLOCK_DEFINITION(124, 40)																			\
-	__BLOCK_DEFINITION(108, 40)																			\
-	__BLOCK_DEFINITION(100, 20)																			\
+	__BLOCK_DEFINITION(108, 45)																			\
+	__BLOCK_DEFINITION(100, 15)																			\
 	__BLOCK_DEFINITION(92, 20)																			\
 	__BLOCK_DEFINITION(88, 25)																			\
-	__BLOCK_DEFINITION(80, 40)																			\
-	__BLOCK_DEFINITION(76, 20)																			\
-	__BLOCK_DEFINITION(68, 70)																			\
+	__BLOCK_DEFINITION(80, 60)																			\
+	__BLOCK_DEFINITION(76, 15)																			\
+	__BLOCK_DEFINITION(68, 50)																			\
 	__BLOCK_DEFINITION(32, 14)																			\
 	__BLOCK_DEFINITION(28, 210)																			\
 	__BLOCK_DEFINITION(24, 80)																			\
 	__BLOCK_DEFINITION(20, 700)																			\
 	__BLOCK_DEFINITION(16, 480)																			\
+
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS																		\
