@@ -140,7 +140,7 @@ const UserObject _userObjects[] =
 	{NULL, ""},
 };
 
-const UserAnimatedEntity _userAnimatedInGameEntities[] =
+const UserAnimatedEntity _userAnimatedEntities[] =
 {
 	{(AnimatedEntityDefinition*)&COIN_AG,						"Coin"},
 	{(AnimatedEntityDefinition*)&DOOR_AG,						"Door"},
