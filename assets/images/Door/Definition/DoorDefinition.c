@@ -274,7 +274,7 @@ BgmapSpriteROMDef* const DOOR_SPRITES[] =
 ShapeROMDef DOOR_AG_SHAPES[] =
 {
 	// type, size, displacement
-	{__TYPE(Cuboid), {24, 32, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{__TYPE(Cuboid), {19, 28, 16}, {ITOFIX19_13(0), ITOFIX19_13(2), ITOFIX19_13(0)}, false},
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 

@@ -26,6 +26,7 @@
 
 #include <libgccvb.h>
 #include <WaterPond.h>
+#include <Cuboid.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,7 +40,7 @@ extern BgmapSpriteDefinition LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM;
 //---------------------------------------------------------------------------------------------------------
 
 
-BgmapSpriteROMDef* const WATER_POND_POND_EN_SPRITES[] =
+BgmapSpriteROMDef* const WATER_POND_EN_SPRITES[] =
 {
 //	(BgmapSpriteROMDef*)&LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM,
 	NULL
@@ -63,43 +64,46 @@ const u8 WATER_POND_WAVE_LUT[] =
 #define WATER_POND_REFLECTION_HEIGHT	12
 #define WAVING_THROTTLE					FTOFIX19_13(0.8f)
 
+ShapeROMDef WATER_POND_EN_SHAPES[] =
+{
+	// type, size, displacement
+	{__TYPE(Cuboid), {WATER_POND_WIDTH, WATER_POND_HEIGHT, 10}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+PhysicalSpecificationROMDef WATER_POND_EN_PHYSICAL_PROPERTIES =
+{
+	// mass
+	FTOFIX19_13(0),
+
+	// friction
+	FTOFIX19_13(FLOOR_FRICTION * 2),
+
+	// elasticity
+	FTOFIX19_13(FLOOR_ELASTICITY),
+};
 
 WaterPondROMDef WATER_POND_EN =
 {
 	{
 		{
-			{
-				{
-					__TYPE(WaterPond),
-					(SpriteROMDef**)WATER_POND_POND_EN_SPRITES,
-				},
+			// the class allocator
+			__TYPE(WaterPond),
 
-				// collision detection gap (up, down, left, right)
-				{12, 10, 4, 4},
+			// the sprites list
+			(SpriteROMDef**)WATER_POND_EN_SPRITES,
 
-				// in game type
-				kWaterPond,
+			// shapes to register
+			(ShapeDefinition*)WATER_POND_EN_SHAPES,
 
-				// width
-				// if 0, width and height will be inferred from the texture's size
-				WATER_POND_WIDTH,
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
 
-				// height
-				// if 0, width and height will be inferred from the texture's size
-				WATER_POND_HEIGHT,
+			// gameworld's character's type
+			kWaterPond,
 
-				// depth
-				10
-			},
-
-			// friction for physics
-			FTOFIX19_13(FLOOR_FRICTION * 2),
-
-			// elasticity for physics
-			FTOFIX19_13(FLOOR_ELASTICITY),
-
-			// whether it must be registered with the collision detection system
-			true,
+			// physical specification
+			(PhysicalSpecification*)&WATER_POND_EN_PHYSICAL_PROPERTIES,
 		},
 
 		// the starting point from where start to reflect data

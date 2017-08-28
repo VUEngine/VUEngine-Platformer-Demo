@@ -430,8 +430,8 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 			80,
 		},
 
-		// obj segments z coordinates
-		// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+		// OBJECT segments z coordinates
+		// Note that each SPT's z coordinate must be larger than or equal to the previous one's,
 		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
 			// __spt0

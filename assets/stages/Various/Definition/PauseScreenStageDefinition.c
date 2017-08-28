@@ -181,7 +181,7 @@ StageROMDef PAUSE_SCREEN_STAGE_ST =
 			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 		},
 
-		// obj segments z coordinates
+		// OBJECT segments z coordinates
 		// note that each spt's z coordinate much be larger than or equal to the previous one's,
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{

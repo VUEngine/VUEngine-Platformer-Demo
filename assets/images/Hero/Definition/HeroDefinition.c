@@ -544,7 +544,7 @@ BgmapSpriteROMDef* const HERO_SPRITES[] =
 ShapeROMDef HERO_AC_SHAPES[] =
 {
 	// type, size, displacement
-	{__TYPE(Cuboid), {24, 24, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{__TYPE(Cuboid), {14, 20, 16}, {ITOFIX19_13(-1), ITOFIX19_13(0), ITOFIX19_13(0)}, true},
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 

@@ -58,7 +58,7 @@ CollisionROMDef COLLISION_CL =
 	(ShapeDefinition*)NULL,
 
 	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+	{1, 1, 1},
 
 	// gameworld's character's type
 	kSolid,
