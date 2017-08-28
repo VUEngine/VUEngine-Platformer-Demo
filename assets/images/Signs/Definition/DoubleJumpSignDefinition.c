@@ -117,15 +117,16 @@ ObjectSpriteROMDef* const DOUBLE_JUMP_SIGN_IM_SPRITES[] =
 
 EntityROMDef DOUBLE_JUMP_SIGN_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)DOUBLE_JUMP_SIGN_IM_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

@@ -151,15 +151,16 @@ ObjectSpriteROMDef* const MOUND_BG_CASTLE_FLAG_SPRITES[] =
 AnimatedEntityROMDef MOUND_BG_CASTLE_FLAG_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)MOUND_BG_CASTLE_FLAG_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

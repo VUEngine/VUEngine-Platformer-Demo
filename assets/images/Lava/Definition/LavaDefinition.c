@@ -134,22 +134,35 @@ BgmapSpriteROMDef* const LAVA_BG_SPRITES[] =
 
 ShapeROMDef LAVA_IG_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {48 * 8, 24 * 8, 2 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{48 * 8, 24 * 8, 2 * 8},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 LavaROMDef LAVA_IG =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Lava),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)LAVA_BG_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)LAVA_IG_SHAPES,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

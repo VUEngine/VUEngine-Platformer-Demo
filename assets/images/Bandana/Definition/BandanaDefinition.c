@@ -151,23 +151,36 @@ ObjectSpriteROMDef* const BANDANA_SPRITES[] =
 
 ShapeROMDef BANDANA_AG_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {2 * 8, 2 * 8, 2 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{2 * 8, 2 * 8, 2 * 8},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 AnimatedEntityROMDef BANDANA_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Bandana),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)BANDANA_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)BANDANA_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

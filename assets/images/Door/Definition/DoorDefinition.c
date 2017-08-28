@@ -273,23 +273,36 @@ BgmapSpriteROMDef* const DOOR_SPRITES[] =
 
 ShapeROMDef DOOR_AG_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {19, 28, 16}, {ITOFIX19_13(0), ITOFIX19_13(2), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{19, 28, 16},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 DoorROMDef DOOR_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Door),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)DOOR_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)DOOR_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -310,15 +323,16 @@ DoorROMDef DOOR_AG =
 LayerSwitchDoorROMDef LAYER_SWITCH_DOOR_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(LayerSwitchDoor),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)DOOR_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)DOOR_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -340,15 +354,16 @@ LayerSwitchDoorROMDef LAYER_SWITCH_DOOR_AG =
 GoalDoorROMDef GOAL_DOOR_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(GoalDoor),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)DOOR_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)DOOR_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -369,15 +384,16 @@ GoalDoorROMDef GOAL_DOOR_AG =
 KeyDoorROMDef KEY_DOOR_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(KeyDoor),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)DOOR_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)DOOR_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -431,15 +447,16 @@ BgmapSpriteROMDef* const AFFINE_DOOR_SPRITES[] =
 DoorROMDef AFFINE_DOOR_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Door),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)AFFINE_DOOR_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)DOOR_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -537,15 +554,16 @@ BgmapSpriteROMDef* const DOOR_BACK_SPRITES[] =
 DoorROMDef DOOR_BACK_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Door),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)DOOR_BACK_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)DOOR_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -566,15 +584,16 @@ DoorROMDef DOOR_BACK_AG =
 LayerSwitchDoorROMDef LAYER_SWITCH_DOOR_BACK_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(LayerSwitchDoor),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)DOOR_BACK_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)DOOR_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

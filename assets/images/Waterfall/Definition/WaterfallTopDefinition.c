@@ -159,15 +159,16 @@ BgmapSpriteROMDef* const WATERFALL_TOP_SPRITES[] =
 AnimatedEntityROMDef WATERFALL_TOP_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)WATERFALL_TOP_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

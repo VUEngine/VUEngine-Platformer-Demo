@@ -366,23 +366,36 @@ ObjectSpriteROMDef* const COIN_SILHOUETTE_SPRITES[] =
 
 ShapeROMDef COIN_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {2 * 8 - 4, 2 * 8 - 4, 1 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 CoinROMDef COIN_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Coin),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)COIN_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)COIN_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -403,15 +416,16 @@ CoinROMDef COIN_AG =
 CoinROMDef COIN_SILHOUETTE_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Coin),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)COIN_SILHOUETTE_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)COIN_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -497,23 +511,36 @@ ObjectSpriteROMDef* const COIN_BACK_SILHOUETTE_SPRITES[] =
 
 ShapeROMDef COIN_BACK_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {2 * 8 - 4, 2 * 8 - 4, 1 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 CoinROMDef COIN_BACK_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Coin),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)COIN_BACK_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)COIN_BACK_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -534,15 +561,16 @@ CoinROMDef COIN_BACK_AG =
 CoinROMDef COIN_BACK_SILHOUETTE_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Coin),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)COIN_BACK_SILHOUETTE_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)COIN_BACK_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

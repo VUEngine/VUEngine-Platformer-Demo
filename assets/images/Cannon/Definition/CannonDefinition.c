@@ -176,15 +176,16 @@ ActorROMDef CANNON_AC =
 {
 	{
 		{
-			// the class allocator
+			// class allocator
 			__TYPE(Cannon),
 
-			// the sprites list
+			// sprites
 			(SpriteROMDef**)CANNON_SPRITES,
 
-			// shapes to register
+			// collision shapes
 			(ShapeDefinition*)NULL,
 
+			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
 			{0, 0, 0},
 

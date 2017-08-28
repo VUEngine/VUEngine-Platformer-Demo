@@ -151,15 +151,16 @@ ObjectSpriteROMDef* const SMOKE_PARTICLE_SMALL_SPRITES[] =
 AnimatedEntityROMDef SMOKE_PARTICLE_SMALL_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)SMOKE_PARTICLE_SMALL_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

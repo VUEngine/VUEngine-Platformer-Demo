@@ -119,15 +119,16 @@ BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_2_IM_SPRITES[] =
 
 ManagedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(ManagedEntity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_2_IM_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

@@ -164,15 +164,16 @@ BgmapSpriteROMDef* const FLOWER_A_SPRITES[] =
 AnimatedEntityROMDef FLOWER_A_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)FLOWER_A_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

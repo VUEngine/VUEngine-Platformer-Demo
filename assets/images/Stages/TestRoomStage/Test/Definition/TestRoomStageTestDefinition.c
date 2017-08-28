@@ -124,15 +124,16 @@ BgmapSpriteROMDef* const TEST_ROOM_STAGE_TEST_1_IM_SPRITES[] =
 
 EntityROMDef TEST_ROOM_STAGE_TEST_1_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)TEST_ROOM_STAGE_TEST_1_IM_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

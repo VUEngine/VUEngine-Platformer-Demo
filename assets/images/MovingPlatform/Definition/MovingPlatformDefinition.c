@@ -151,8 +151,20 @@ BgmapSpriteROMDef* const MOVING_PLATFORM_SPRITES[] =
 
 ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {30, 16, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{30, 16, 16},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
@@ -173,15 +185,16 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 	{
 		{
 			{
-				// the class allocator
+				// class allocator
 				__TYPE(MovingEntity),
 
-				// the sprites list
+				// sprites
 				(SpriteROMDef**)MOVING_PLATFORM_SPRITES,
 
-				// shapes to register
+				// collision shapes
 				(ShapeDefinition*)MOVING_PLATFORM_V6_AC_SHAPES,
 
+				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
 				{4 * 8, 2 * 8, 4},
 

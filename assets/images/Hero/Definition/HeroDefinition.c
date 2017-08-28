@@ -543,8 +543,20 @@ BgmapSpriteROMDef* const HERO_SPRITES[] =
 
 ShapeROMDef HERO_AC_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {14, 20, 16}, {ITOFIX19_13(-1), ITOFIX19_13(0), ITOFIX19_13(0)}, true},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{14, 20, 16},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(-1), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		true,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
@@ -564,15 +576,16 @@ HeroROMDef HERO_AC =
 {
 	{
 		{
-			// the class allocator
+			// class allocator
 			__TYPE(Hero),
 
-			// the sprites list
+			// sprites
 			(SpriteROMDef**)HERO_AFFINE_SPRITES,
 
-			// shapes to register
+			// collision shapes
 			(ShapeDefinition*)HERO_AC_SHAPES,
 
+			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
 			{0, 0, 0},
 
@@ -594,15 +607,16 @@ HeroROMDef HERO_AC =
 AnimatedEntityROMDef HERO_IDLE_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)HERO_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -623,15 +637,16 @@ AnimatedEntityROMDef HERO_IDLE_AG =
 AnimatedEntityROMDef HERO_SLEEPING_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)HERO_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -653,15 +668,16 @@ AnimatedEntityROMDef HERO_SLEEPING_AG =
 AnimatedEntityROMDef HERO_BANDANA_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)HERO_BANDANA_AFFINE_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -681,23 +697,36 @@ AnimatedEntityROMDef HERO_BANDANA_AG =
 
 ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(InverseCuboid), {12 * 8, 20 * 8, 4 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{12 * 8, 20 * 8, 4 * 8},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 
 CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(CameraTriggerEntity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)NULL,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)CAMERA_BOUNDING_BOX_IG_SHAPES,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

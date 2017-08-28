@@ -150,23 +150,36 @@ ObjectSpriteROMDef* const KEY_SPRITES[] =
 
 ShapeROMDef KEY_AG_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {2 * 8, 2 * 8, 2 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{2 * 8, 2 * 8, 2 * 8},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 AnimatedEntityROMDef KEY_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Key),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)KEY_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)KEY_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

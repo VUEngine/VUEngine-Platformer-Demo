@@ -227,23 +227,36 @@ BgmapSpriteROMDef* const HIDE_LAYER_10x7_SPRITES[] =
 
 ShapeROMDef HIDE_LAYER_10x7_AG_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {80, 56, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{80, 56, 16},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 HideLayerROMDef HIDE_LAYER_10x7_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(HideLayer),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)HIDE_LAYER_10x7_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)HIDE_LAYER_10x7_AG_SHAPES,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

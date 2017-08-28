@@ -249,15 +249,16 @@ BgmapSpriteROMDef* const GUI_OVERWORLD_SPRITES[] =
 AnimatedEntityROMDef GUI_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Gui),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)GUI_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 
@@ -278,15 +279,16 @@ AnimatedEntityROMDef GUI_AG =
 AnimatedEntityROMDef GUI_OVERWORLD_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)GUI_OVERWORLD_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

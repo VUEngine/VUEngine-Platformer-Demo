@@ -153,15 +153,16 @@ BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R_SPRITES[] =
 
 EntityROMDef ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 
@@ -174,15 +175,16 @@ EntityROMDef ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_L =
 
 EntityROMDef ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)ADJUSTMENT_SCREEN_NINTENDO_ICON_IM_R_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

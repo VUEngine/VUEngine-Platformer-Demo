@@ -120,15 +120,16 @@ BgmapSpriteROMDef* const MOUND_1_IM_SPRITES[] =
 
 EntityROMDef MOUND_1_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)MOUND_1_IM_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

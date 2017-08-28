@@ -118,15 +118,16 @@ ObjectSpriteROMDef* const WATER_DROP_SPRITES[] =
 
 EntityROMDef WATER_DROP_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)WATER_DROP_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

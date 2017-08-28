@@ -151,8 +151,20 @@ BgmapSpriteROMDef* const CANNON_BALL_SPRITES[] =
 
 ShapeROMDef CANNON_BALL_AC_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {22, 22, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{22, 22, 16},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
@@ -160,15 +172,16 @@ CannonBallROMDef CANNON_BALL_AC =
 {
 	{
 		{
-			// the class allocator
+			// class allocator
 			__TYPE(CannonBall),
 
-			// the sprites list
+			// sprites
 			(SpriteROMDef**)CANNON_BALL_SPRITES,
 
-			// shapes to register
+			// collision shapes
 			(ShapeDefinition*)CANNON_BALL_AC_SHAPES,
 
+			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
 			{0, 0, 0},
 

@@ -121,15 +121,16 @@ BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =
 
 CogWheelROMDef COG_WHEEL_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(CogWheel),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)COG_WHEEL_BG_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

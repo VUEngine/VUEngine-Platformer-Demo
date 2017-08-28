@@ -120,15 +120,16 @@ BgmapSpriteROMDef* const DARKNESS_OVERLAY_IM_SPRITES[] =
 
 EntityROMDef DARKNESS_OVERLAY_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)DARKNESS_OVERLAY_IM_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

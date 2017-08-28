@@ -119,15 +119,16 @@ ObjectSpriteROMDef* const TORCH_OFF_SPRITES[] =
 
 EntityROMDef TORCH_OFF_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)TORCH_OFF_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

@@ -126,7 +126,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 
 		ShapeDefinition shapeDefinition =
 		{
-			// the class allocator
+			// class allocator
 			__TYPE(Cuboid),
 
 			// size

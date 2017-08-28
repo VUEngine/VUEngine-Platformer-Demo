@@ -119,15 +119,16 @@ BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_PVB_BG_IM_SPRITES[] =
 
 EntityROMDef ADJUSTMENT_SCREEN_PVB_BG_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)ADJUSTMENT_SCREEN_PVB_BG_IM_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

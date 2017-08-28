@@ -154,15 +154,16 @@ BgmapSpriteROMDef* const TORCH_LIGHT_SPRITES[] =
 AnimatedEntityROMDef TORCH_LIGHT_AG =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)TORCH_LIGHT_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		(ShapeDefinition*)NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

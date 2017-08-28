@@ -36,22 +36,35 @@
 
 ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {2 * 8, 12 * 8, 1 * 8}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{2 * 8, 12 * 8, 1 * 8},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 LavaTriggerROMDef LAVA_TRIGGER_IG =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(LavaTrigger),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)NULL,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)LAVA_TRIGGER_IG_SHAPES,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{4 * 8, 2 * 8, 4},
 

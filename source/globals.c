@@ -65,15 +65,16 @@ extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 // only need to define one for all containers
 EntityROMDef SIMPLE_CONTAINER =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	NULL,
 
-	// shapes to register
+	// collision shapes
 	NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 
@@ -88,15 +89,16 @@ EntityROMDef SIMPLE_CONTAINER =
 // only need to define one for all managed entities
 ManagedEntityROMDef MANAGED_ENTITY =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(ManagedEntity),
 
-	// the sprites list
+	// sprites
 	NULL,
 
-	// shapes to register
+	// collision shapes
 	NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

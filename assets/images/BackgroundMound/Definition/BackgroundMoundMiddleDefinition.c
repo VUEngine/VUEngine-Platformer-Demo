@@ -140,15 +140,16 @@ BgmapSpriteROMDef* const MOUND_BG_MIDDLE_SB_SPRITES[] =
 
 EntityROMDef MOUND_BG_MIDDLE_IM =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Entity),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
 
-	// shapes to register
+	// collision shapes
 	NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 
@@ -162,15 +163,16 @@ EntityROMDef MOUND_BG_MIDDLE_IM =
 CloudsROMDef CLOUDS_IM =
 {
 	{
-		// the class allocator
+		// class allocator
 		__TYPE(Clouds),
 
-		// the sprites list
+		// sprites
 		(SpriteROMDef**)MOUND_BG_MIDDLE_SB_SPRITES,
 
-		// shapes to register
+		// collision shapes
 		NULL,
 
+		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
 		{0, 0, 0},
 

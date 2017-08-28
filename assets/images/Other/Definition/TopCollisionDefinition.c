@@ -48,15 +48,16 @@ PhysicalSpecificationROMDef COLLISION_TOP_CL_PHYSICAL_PROPERTIES =
 
 CollisionROMDef COLLISION_TOP_CL =
 {
-	// the class allocator
+	// class allocator
 	__TYPE(Collision),
 
-	// the sprites list
+	// sprites
 	(SpriteROMDef**)NULL,
 
-	// shapes to register
+	// collision shapes
 	(ShapeDefinition*)NULL,
 
+	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 

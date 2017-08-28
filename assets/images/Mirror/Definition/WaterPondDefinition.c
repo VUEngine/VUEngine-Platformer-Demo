@@ -66,8 +66,20 @@ const u8 WATER_POND_WAVE_LUT[] =
 
 ShapeROMDef WATER_POND_EN_SHAPES[] =
 {
-	// type, size, displacement
-	{__TYPE(Cuboid), {WATER_POND_WIDTH, WATER_POND_HEIGHT, 10}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
@@ -87,15 +99,16 @@ WaterPondROMDef WATER_POND_EN =
 {
 	{
 		{
-			// the class allocator
+			// class allocator
 			__TYPE(WaterPond),
 
-			// the sprites list
+			// sprites
 			(SpriteROMDef**)WATER_POND_EN_SPRITES,
 
-			// shapes to register
+			// collision shapes
 			(ShapeDefinition*)WATER_POND_EN_SHAPES,
 
+			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
 			{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
 
