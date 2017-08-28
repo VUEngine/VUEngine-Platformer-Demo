@@ -699,7 +699,7 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(InverseCuboid),
 
 		// size (x, y, z)
 		{12 * 8, 20 * 8, 4 * 8},
