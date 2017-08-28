@@ -352,7 +352,7 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_LOWER_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
@@ -371,7 +371,7 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},

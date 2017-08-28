@@ -310,7 +310,7 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(14),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},

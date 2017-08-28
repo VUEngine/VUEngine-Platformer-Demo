@@ -329,7 +329,7 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(-16),
+		FTOFIX19_13(-19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
@@ -348,7 +348,7 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},

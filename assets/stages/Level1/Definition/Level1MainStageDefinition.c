@@ -792,7 +792,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(22),
+		FTOFIX19_13(19),
 		FTOFIX19_13(-20),
 		FTOFIX19_13(SORT_INCREMENT * 0),
 	},
@@ -811,7 +811,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
@@ -830,7 +830,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(-16),
+		FTOFIX19_13(-19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
@@ -849,7 +849,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(-16),
+		FTOFIX19_13(-19),
 		FTOFIX19_13(-5),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
@@ -868,7 +868,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},
@@ -925,7 +925,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(-16),
+		FTOFIX19_13(-19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(SORT_INCREMENT * 3),
 	},

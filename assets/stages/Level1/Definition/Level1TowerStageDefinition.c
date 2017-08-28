@@ -514,7 +514,7 @@ StageEntryPointROMDef LEVEL1_TOWER_STAGE_MAIN_EP =
 	"EntryDoor",
 
 	// offset from entry point (x, y, z)
-	{FTOFIX19_13(16), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
+	{FTOFIX19_13(19), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
 
 	// whether this entry point acts as a checkpoint
 	true,
