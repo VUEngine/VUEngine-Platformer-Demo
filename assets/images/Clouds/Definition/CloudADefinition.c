@@ -25,8 +25,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Entity.h>
-#include <Clouds.h>
 #include <BgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -121,7 +121,7 @@ BgmapSpriteROMDef* const CLOUD_A_IM_SPRITES[] =
 EntityROMDef CLOUD_A_IM =
 {
 	// the class allocator
-	__TYPE(Clouds),
+	__TYPE(Entity),
 
 	// the sprites list
 	(SpriteROMDef**)CLOUD_A_IM_SPRITES,
