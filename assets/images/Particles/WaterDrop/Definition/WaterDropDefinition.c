@@ -25,8 +25,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <StaticImage.h>
+#include <Entity.h>
 #include <ObjectSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -115,8 +116,24 @@ ObjectSpriteROMDef* const WATER_DROP_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef WATER_DROP_IM =
+EntityROMDef WATER_DROP_IM =
 {
-	__TYPE(StaticImage),
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
 	(SpriteROMDef**)WATER_DROP_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

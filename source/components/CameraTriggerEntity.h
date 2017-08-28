@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <TriggerEntity.h>
+#include <Entity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,15 +35,16 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CameraTriggerEntity_METHODS(ClassName)															\
-		TriggerEntity_METHODS(ClassName)																\
+		Entity_METHODS(ClassName)																		\
 
 #define CameraTriggerEntity_SET_VTABLE(ClassName)														\
-		TriggerEntity_SET_VTABLE(ClassName)																\
+		Entity_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);										\
+		__VIRTUAL_SET(ClassName, CameraTriggerEntity, moves);											\
 
 #define CameraTriggerEntity_ATTRIBUTES																	\
 		/* super's attributes */																		\
-		TriggerEntity_ATTRIBUTES																		\
+		Entity_ATTRIBUTES																				\
 		/* update axis flag */																			\
 		VBVec3DFlag overridePositionFlag;																\
 
@@ -54,7 +55,7 @@ __CLASS(CameraTriggerEntity);
 //											CLASS'S ROM DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef TriggerEntityDefinition CameraTriggerEntityDefinition;
+typedef EntityDefinition CameraTriggerEntityDefinition;
 typedef const CameraTriggerEntityDefinition CameraTriggerEntityROMDef;
 
 
@@ -62,13 +63,14 @@ typedef const CameraTriggerEntityDefinition CameraTriggerEntityROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, s16 internalId, const char* const name);
+void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name);
 void CameraTriggerEntity_destructor(CameraTriggerEntity this);
 void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag);
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag);
 VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this);
+bool CameraTriggerEntity_moves(CameraTriggerEntity this);
 
 
 #endif

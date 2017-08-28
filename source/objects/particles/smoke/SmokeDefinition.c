@@ -83,8 +83,24 @@ ParticleROMDef SMOKE_PARTICLE =
 ParticleSystemROMDef SMOKE_PS =
 {
 	{
+		// class allocator
 		__TYPE(ParticleSystem),
-		NULL,
+
+		// sprites
+		(SpriteROMDef**)NULL,
+
+		// collision shapes
+		(ShapeDefinition*)NULL,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
+		kNoType,
+
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// reuse expired particles?

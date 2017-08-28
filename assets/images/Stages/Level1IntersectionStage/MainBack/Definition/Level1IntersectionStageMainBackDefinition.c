@@ -24,7 +24,7 @@
 // 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
 #include <BgmapSprite.h>
 #include <macros.h>
 
@@ -122,9 +122,25 @@ BgmapSpriteROMDef* const LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM =
+EntityROMDef LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM =
 {
-	__TYPE(StaticImage),
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
 	(SpriteROMDef**)LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };
 

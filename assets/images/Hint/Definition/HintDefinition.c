@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <BgmapAnimatedSprite.h>
 #include <libgccvb.h>
 #include <Hint.h>
@@ -405,30 +405,27 @@ BgmapSpriteROMDef* const HINT_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef HINT_MC =
+AnimatedEntityROMDef HINT_MC =
 {
 	{
-		{
-			__TYPE(Hint),
-			(SpriteROMDef**)HINT_SPRITES,
-		},
+		// class allocator
+		__TYPE(Hint),
 
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
+		// sprites
+		(SpriteROMDef**)HINT_SPRITES,
 
-		// in game type
-		kSolid,
+		// collision shapes
+		(ShapeDefinition*)NULL,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
+		// gameworld's character's type
+		kNotSolid,
 
-		// depth
-		0,
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item

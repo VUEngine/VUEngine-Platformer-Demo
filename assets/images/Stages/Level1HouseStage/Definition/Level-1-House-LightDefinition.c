@@ -24,9 +24,10 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
-#include <StaticImage.h>
+#include <Entity.h>
+#include <Entity.h>
 #include <BgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -118,8 +119,24 @@ BgmapSpriteROMDef* const LEVEL_1_HOUSE_LIGHT_IM_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef LEVEL_1_HOUSE_LIGHT_IM =
+EntityROMDef LEVEL_1_HOUSE_LIGHT_IM =
 {
-	__TYPE(StaticImage),
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
 	(SpriteROMDef**)LEVEL_1_HOUSE_LIGHT_IM_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

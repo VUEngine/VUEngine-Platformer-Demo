@@ -27,7 +27,8 @@
 #include <libgccvb.h>
 #include <macros.h>
 #include <BgmapAnimatedSprite.h>
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
+#include <Cuboid.h>
 #include "HideLayer.h"
 
 
@@ -224,30 +225,46 @@ BgmapSpriteROMDef* const HIDE_LAYER_10x7_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef HIDE_LAYER_10x7_AG =
+ShapeROMDef HIDE_LAYER_10x7_AG_SHAPES[] =
 {
 	{
-		{
-			__TYPE(HideLayer),
-			(SpriteROMDef**)HIDE_LAYER_10x7_SPRITES,
-		},
+		// shape
+		__TYPE(Cuboid),
 
-		// collision detection gap (up, down, left, right)
-		{8, 8, 8, 8},
+		// size (x, y, z)
+		{80, 56, 16},
 
-		// in game type
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+HideLayerROMDef HIDE_LAYER_10x7_AG =
+{
+	{
+		// class allocator
+		__TYPE(HideLayer),
+
+		// sprites
+		(SpriteROMDef**)HIDE_LAYER_10x7_SPRITES,
+
+		// collision shapes
+		(ShapeDefinition*)HIDE_LAYER_10x7_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kHideLayer,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		8
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -256,4 +273,3 @@ AnimatedInGameEntityROMDef HIDE_LAYER_10x7_AG =
 	// initial animation
 	"Solid",
 };
-

@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <BgmapAnimatedSprite.h>
 #include <macros.h>
 
@@ -152,30 +152,27 @@ BgmapSpriteROMDef* const LAVA_TOP_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef LAVA_TOP_AG =
+AnimatedEntityROMDef LAVA_TOP_AG =
 {
 	{
-		{
-			__TYPE(AnimatedInGameEntity),
-			(SpriteROMDef**)LAVA_TOP_SPRITES,
-		},
+		// class allocator
+		__TYPE(AnimatedEntity),
 
-		// collision detection gap (up, down, left, right)
-		{6, 0, 0, 0},
+		// sprites
+		(SpriteROMDef**)LAVA_TOP_SPRITES,
 
-		// in game type
-		kSolid,
+		// collision shapes
+		(ShapeDefinition*)NULL,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
+		// gameworld's character's type
+		kNotSolid,
 
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item

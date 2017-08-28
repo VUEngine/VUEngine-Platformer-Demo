@@ -29,7 +29,7 @@
 
 #include <ScreenMovementManager.h>
 #include <Telegram.h>
-#include <InGameEntity.h>
+#include <Entity.h>
 
 
 //---------------------------------------------------------------------------------------------------------

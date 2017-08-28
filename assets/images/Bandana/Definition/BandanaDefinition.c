@@ -26,6 +26,7 @@
 
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
+#include <Cuboid.h>
 #include "Bandana.h"
 #include <macros.h>
 
@@ -148,30 +149,46 @@ ObjectSpriteROMDef* const BANDANA_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef BANDANA_AG =
+ShapeROMDef BANDANA_AG_SHAPES[] =
 {
 	{
-		{
-			__TYPE(Bandana),
-			(SpriteROMDef**)BANDANA_SPRITES,
-		},
+		// shape
+		__TYPE(Cuboid),
 
-		// collision detection gap (up, down, left, right)
-		{4, 4, 2, 2},
+		// size (x, y, z)
+		{2 * 8, 2 * 8, 2 * 8},
 
-		// in game type
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+AnimatedEntityROMDef BANDANA_AG =
+{
+	{
+		// class allocator
+		__TYPE(Bandana),
+
+		// sprites
+		(SpriteROMDef**)BANDANA_SPRITES,
+
+		// collision shapes
+		(ShapeDefinition*)BANDANA_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kBandana,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item

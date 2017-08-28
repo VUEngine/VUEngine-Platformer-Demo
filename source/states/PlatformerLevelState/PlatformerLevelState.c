@@ -169,6 +169,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 		VBVec3D environmentPosition = {0, 0, 0};
 		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
 
+//		ASSERT(initialPosition, "PlatormerLevelState::enter: no initial position");
+
 		// if global position of destination entity could be found, move the hero and the screen there
 		if(initialPosition)
 		{
@@ -234,18 +236,23 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			GameState_transform(__SAFE_CAST(GameState, this));
 
 			// set focus on the hero
-			Screen_setFocusInGameEntity(Screen_getInstance(), __SAFE_CAST(InGameEntity, hero));
+			Screen_setFocusGameEntity(Screen_getInstance(), __SAFE_CAST(Entity, hero));
 			VBVec3D screenDisplacement = {ITOFIX19_13(50), ITOFIX19_13(-30), 0};
 			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 			// apply changes to the visuals
 			GameState_synchronizeGraphics(__SAFE_CAST(GameState, this));
 		}
+		else
+		{
+			// load stage
+			GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
+		}
 	}
 	else
 	{
 		// load stage
-		GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&(this->currentStageEntryPoint->stageDefinition), positionedEntitiesToIgnore, true);
+		GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
 	}
 
 	CustomScreenMovementManager_disable(CustomScreenMovementManager_getInstance());
@@ -579,7 +586,7 @@ void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object even
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	// unset the hero as focus entity from the custom screen movement manager
-	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
+	Screen_setFocusGameEntity(Screen_getInstance(), NULL);
 
 	// start a fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};

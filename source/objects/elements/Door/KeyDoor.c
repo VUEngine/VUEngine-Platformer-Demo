@@ -48,14 +48,14 @@ __CLASS_DEFINITION(KeyDoor, Door);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(KeyDoor, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(KeyDoor, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(KeyDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(KeyDoor, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void KeyDoor_constructor(KeyDoor this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void KeyDoor_constructor(KeyDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Door, animatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Door, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -74,7 +74,7 @@ void KeyDoor_ready(KeyDoor this, bool recursive __attribute__ ((unused)))
 	// call base
 	__CALL_BASE_METHOD(Door, ready, this, recursive);
 
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Key");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Key");
 }
 
 bool KeyDoor_hasDestination(KeyDoor this __attribute__ ((unused)))
@@ -85,7 +85,7 @@ bool KeyDoor_hasDestination(KeyDoor this __attribute__ ((unused)))
 void KeyDoor_setOverlapping(KeyDoor this)
 {
 	if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Opening");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Opening");
 	}
 
 	__CALL_BASE_METHOD(Door, setOverlapping, this);
@@ -95,7 +95,7 @@ void KeyDoor_unsetOverlapping(KeyDoor this)
 {
 
 	if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Closing");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closing");
 	}
 
 	__CALL_BASE_METHOD(Door, unsetOverlapping, this);

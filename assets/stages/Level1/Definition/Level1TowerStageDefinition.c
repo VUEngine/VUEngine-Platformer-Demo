@@ -47,7 +47,7 @@ extern EntityDefinition COG_WHEEL_IM;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition COLLISION_HIT_CL;
 extern EntityDefinition COLLISION_TOP_CL;
-extern EntityDefinition COLLISIONS_CONTAINER_ENTITY;
+extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition KEY_DOOR_AG;
 extern EntityDefinition GOAL_DOOR_AG;
 extern EntityDefinition GRASS_AG;
@@ -80,21 +80,21 @@ extern TextureDefinition LEVEL_1_TOWER_MAIN_1_TX;
 extern TextureDefinition LEVEL_1_TOWER_MAIN_BACK_1_TX;
 extern TextureDefinition DARKNESS_OVERLAY_TX;
 
-extern VBVec3D collision_2_64_1;
-extern VBVec3D collision_4_2_1;
-extern VBVec3D collision_4_4_1;
-extern VBVec3D collision_4_8_1;
-extern VBVec3D collision_6_4_1;
-extern VBVec3D collision_7_2_1;
-extern VBVec3D collision_8_4_1;
-extern VBVec3D collision_8_20_1;
-extern VBVec3D collision_14_6_1;
-extern VBVec3D collision_16_2_1;
-extern VBVec3D collision_20_2_1;
-extern VBVec3D collision_32_4_1;
-extern VBVec3D collision_48_2_1;
-extern VBVec3D collision_48_4_1;
-extern VBVec3D collision_48_28_1;
+extern Size collision_2_64_1;
+extern Size collision_4_2_1;
+extern Size collision_4_4_1;
+extern Size collision_4_8_1;
+extern Size collision_6_4_1;
+extern Size collision_7_2_1;
+extern Size collision_8_4_1;
+extern Size collision_8_20_1;
+extern Size collision_14_6_1;
+extern Size collision_16_2_1;
+extern Size collision_20_2_1;
+extern Size collision_32_4_1;
+extern Size collision_48_2_1;
+extern Size collision_48_4_1;
+extern Size collision_48_28_1;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -209,8 +209,8 @@ PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 
 	// part 1
 	{&MANAGED_ENTITY,				{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 256),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_ENTITIES, NULL, false},
-	{&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 257),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_1, NULL, false},
-	{&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 257),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_2, NULL, false},
+	{&MANAGED_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 257),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 257),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_2, NULL, false},
 	{&TORCH_SMOKE_PS,				{FTOFIX19_13(204),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 126), 	FTOFIX19_13(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
 
 	{&LAVA_TRIGGER_IG,				{FTOFIX19_13(174),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 130), 	FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false},
@@ -244,8 +244,8 @@ PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 
 	// part 2
 	{&LEVEL_1_TOWER_MAIN_2_IM,		{FTOFIX19_13(192), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 768), 	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, "Main_2", NULL, NULL, false},
-	{&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_1, NULL, false},
-	{&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_2, NULL, false},
+	{&MANAGED_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_2, NULL, false},
 
 	{&COIN_AG, 						{FTOFIX19_13(88),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 623), 	FTOFIX19_13(LAYER_0_ITEMS)}, 58, NULL, NULL, NULL, false},
 	{&COIN_AG, 						{FTOFIX19_13(104), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 623), 	FTOFIX19_13(LAYER_0_ITEMS)}, 59, NULL, NULL, NULL, false},
@@ -263,14 +263,11 @@ PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 	{&MOVING_PLATFORM_V6_AC,		{FTOFIX19_13(112),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 852),	FTOFIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
 	{&COIN_AG, 						{FTOFIX19_13(40), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 942), 	FTOFIX19_13(LAYER_0_ITEMS)}, 64, NULL, NULL, NULL, false},
 	{&GOAL_DOOR_AG, 				{FTOFIX19_13(208), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 944), 	FTOFIX19_13(LAYER_0_DOORS)}, 0, "GoalDoor", NULL, NULL, false},
-//	{&TORCH_LIGHT_AG,				{FTOFIX19_13(176), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 952), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, false},
 	{&TORCH_OFF_IM,					{FTOFIX19_13(176), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 948), 	FTOFIX19_13(LAYER_0)}, 			0, NULL, NULL, NULL, false},
 	{&TORCH_SMOKE_PS,				{FTOFIX19_13(176), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 958), 	FTOFIX19_13(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
-//	{&TORCH_LIGHT_AG,				{FTOFIX19_13(240), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 952), 	FTOFIX19_13(LAYER_0)}, 				0, NULL, NULL, NULL, false},
 	{&TORCH_OFF_IM,					{FTOFIX19_13(240), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 948), 	FTOFIX19_13(LAYER_0)}, 			0, NULL, NULL, NULL, false},
-//	{&TORCH_SMOKE_PS,				{FTOFIX19_13(240), 	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 952), 	FTOFIX19_13(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
 
-	{&COLLISIONS_CONTAINER_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
+	{&MANAGED_ENTITY,	{FTOFIX19_13(192),	FTOFIX19_13(LEVEL_1_TOWER_HEIGHT - 769),	FTOFIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -430,8 +427,8 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 			80,
 		},
 
-		// obj segments z coordinates
-		// Note that each SPT's z coordinate much be larger than or equal to the previous one's,
+		// OBJECT segments z coordinates
+		// Note that each SPT's z coordinate must be larger than or equal to the previous one's,
 		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
 			// __spt0
@@ -517,7 +514,7 @@ StageEntryPointROMDef LEVEL1_TOWER_STAGE_MAIN_EP =
 	"EntryDoor",
 
 	// offset from entry point (x, y, z)
-	{FTOFIX19_13(16), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
+	{FTOFIX19_13(19), FTOFIX19_13(-10), FTOFIX19_13(-SORT_INCREMENT)},
 
 	// whether this entry point acts as a checkpoint
 	true,

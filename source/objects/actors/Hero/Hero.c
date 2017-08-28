@@ -107,16 +107,16 @@ void Hero_setInstance(Hero instance)
 }
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hero, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Hero, actorDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Hero, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Hero, heroDefinition, id, internalId, name);
 
 // class's constructor
-void Hero_constructor(Hero this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
+void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Hero::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, actorDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Actor, (ActorDefinition*)heroDefinition, id, internalId, name);
 
 	// construct the game state machine
 	this->stateMachine = __NEW(StateMachine, this);
@@ -135,15 +135,12 @@ void Hero_constructor(Hero this, ActorDefinition* actorDefinition, s16 id, s16 i
 	this->jumps = 0;
 	this->keepAddingForce = false;
 
-	// register a shape for collision detection
-	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
-	ASSERT(this->shape, "Hero::constructor: null shape");
-	Shape_setCheckForCollisions(this->shape, true);
-
 	// register a body for physics
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), actorDefinition->mass);
+	PhysicalSpecification* physicalSpecification = heroDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification;
+
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), physicalSpecification ? physicalSpecification->mass : 0);
 	Body_setAxisSubjectToGravity(this->body, __Y_AXIS);
-	Body_setElasticity(this->body, actorDefinition->elasticity);
+	Body_setElasticity(this->body, physicalSpecification ? physicalSpecification->elasticity : 0);
 	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.globalPosition);
 
@@ -214,17 +211,17 @@ void Hero_ready(Hero this, bool recursive)
 
 SpatialObject CollisionManager_searchNextObjectOfCollision(CollisionManager this, const Shape shape, VBVec3D direction);
 
-void Hero_locateOverNextFloor(Hero this)
+void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 {
-	VBVec3D direction = {0, 1, 0};
+/*	VBVec3D direction = {0, 1, 0};
 
 	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(Game_getCollisionManager(Game_getInstance()), this->shape, direction);
 	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
 
 	if(collidingSpatialObject && this->collisionSolver)
 	{
-		VirtualList collidingSpatialObjects = __NEW(VirtualList);
-		VirtualList_pushBack(collidingSpatialObjects, collidingSpatialObject);
+		VirtualList collidingShapesToRemove = __NEW(VirtualList);
+		VirtualList_pushBack(collidingShapesToRemove, collidingSpatialObject);
 
 		VBVec3D displacement =
 		{
@@ -233,11 +230,12 @@ void Hero_locateOverNextFloor(Hero this)
 			ITOFIX19_13(0),
 		};
 
-		CollisionSolver_resolveCollision(this->collisionSolver, collidingSpatialObjects, displacement, true);
+		CollisionSolver_resolveCollision(this->collisionSolver, VirtualList_front(this->shapes), collidingShapesToRemove, displacement, true);
 
-		__DELETE(collidingSpatialObjects);
+		__DELETE(collidingShapesToRemove);
 //		Actor_updateSurroundingFriction(this);
 	}
+	*/
 }
 
 // make him jump
@@ -290,7 +288,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				this->jumps = -1;
 
 				// stop movement to gain full momentum of the jump force that will be added
-				Actor_stopMovement(__SAFE_CAST(Actor, this), __Y_AXIS, false);
+				Actor_stopMovement(__SAFE_CAST(Actor, this), __Y_AXIS);
 
 				// set second jump performed
 				this->jumps = 2;
@@ -306,7 +304,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 			}
 
 			// play jump animation
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Jump");
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Jump");
 
 			// play jump sound
 			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transform.globalPosition);
@@ -341,7 +339,7 @@ void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 		Actor_changedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
 		Actor_changedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
 	{
-		fix19_13 inputForce = __Y_AXIS & Body_isMoving(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
+		fix19_13 inputForce = __Y_AXIS & Body_getMovementOverAllAxis(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix19_13 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
 		fix19_13 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
@@ -356,7 +354,7 @@ void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_isMoving(this->body))))
+		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOverAllAxis(this->body))))
 		{
 			Velocity newVelocity =
 			{
@@ -372,7 +370,7 @@ void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 
 static void Hero_slide(Hero this)
 {
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Slide");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Slide");
 
 	Hero_showDust(this, false);
 }
@@ -407,13 +405,13 @@ void Hero_stopAddingForce(Hero this)
 //	this->inputDirection.y = 0;
 //	this->inputDirection.z = 0;
 
-	if(!(__Y_AXIS & Body_isMoving(this->body)))
+	if(!(__Y_AXIS & Body_getMovementOverAllAxis(this->body)))
 	{
 		Hero_slide(this);
 	}
-	else if(!AnimatedInGameEntity_isAnimationLoaded(__SAFE_CAST(AnimatedInGameEntity, this), "Fall"))
+	else if(!AnimatedEntity_isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Fall"))
 	{
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Fall");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 	}
 
 	// begin to decelerate
@@ -447,11 +445,11 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 		if(__X_AXIS & axis)
 		{
 			this->keepAddingForce = true;
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 		}
 		else if(__Y_AXIS & axis)
 		{
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Fall");
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
 		}
 
@@ -459,7 +457,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	}
 	else
 	{
-		bool movementState = Body_isMoving(this->body);
+		bool movementState = Body_getMovementOverAllAxis(this->body);
 
 		if(__X_AXIS & axis)
 		{
@@ -469,19 +467,19 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 			{
 				this->keepAddingForce = true;
 
-				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 			}
 		}
 
 		if(__Y_AXIS & axis)
 		{
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Fall");
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
 		}
 
 		if(__Z_AXIS & axis)
 		{
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 		}
 	}
 }
@@ -497,11 +495,11 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		return false;
 	}
 
-	bool movementState = Body_isMoving(this->body);
+	bool movementState = Body_getMovementOverAllAxis(this->body);
 
 	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
 
 		Hero_hideDust(this);
 	}
@@ -514,11 +512,11 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 		this->jumps = 0;
 
-		if(__X_AXIS & Body_isMoving(this->body))
+		if(__X_AXIS & Body_getMovementOverAllAxis(this->body))
 		{
 			if(this->inputDirection.x)
 			{
-				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 
 				Hero_showDust(this, true);
 			}
@@ -537,7 +535,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		return true;
 	}
 
-	if(!Body_isMoving(this->body) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+	if(!Body_getMovementOverAllAxis(this->body) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
 	{
 		this->keepAddingForce = false;
 		this->jumps = 0;
@@ -553,7 +551,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 {
 	ASSERT(this, "Hero::checkDirection: null this");
 
-	bool movementState = Body_isMoving(this->body);
+	bool movementState = Body_getMovementOverAllAxis(this->body);
 
 	Hero_hideDust(this);
 
@@ -589,7 +587,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 
 	if(animation && !(__Y_AXIS & movementState))
 	{
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), animation);
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), animation);
 	}
 }
 
@@ -619,7 +617,9 @@ void Hero_updateSurroundingFriction(Hero this)
 	ASSERT(this, "Hero::updateSurroundingFriction: null this");
 	ASSERT(this->body, "Hero::updateSurroundingFriction: null body");
 
-	Force totalFriction = {this->actorDefinition->friction, this->actorDefinition->friction, this->actorDefinition->friction};
+	PhysicalSpecification* physicalSpecification = this->actorDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification;
+
+	Force totalFriction = physicalSpecification ? (Force){physicalSpecification->friction, physicalSpecification->friction, physicalSpecification->friction} : (Force){0, 0, 0};
 
 	if(this->collisionSolver)
 	{
@@ -630,7 +630,7 @@ void Hero_updateSurroundingFriction(Hero this)
 	Body_setFriction(this->body, totalFriction);
 }
 
-void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
+void Hero_takeHitFrom(Hero this, Shape shape, Entity collidingEntity, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
 #ifdef GOD_MODE
 	return;
@@ -638,9 +638,9 @@ void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, 
 
 	if(!Hero_isInvincible(this) || !invincibleWins)
 	{
-		if(alignToEnemy && inGameEntity && Body_isMoving(this->body))
+		if(alignToEnemy && collidingEntity && Body_getMovementOverAllAxis(this->body))
 		{
-			Actor_alignTo(__SAFE_CAST(Actor, this), __SAFE_CAST(SpatialObject, inGameEntity), false);
+			Actor_alignTo(__SAFE_CAST(Actor, this), shape, collidingShape, false, Body_getLastDisplacement(this->body));
 		}
 
 		if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
@@ -666,12 +666,12 @@ void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, 
 
 			if(pause)
 			{
-				Actor_stopAllMovement(__SAFE_CAST(Actor, this), false);
+				Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 				Game_disableKeypad(Game_getInstance());
 				GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
 				Body_setActive(this->body, false);
 				GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, inGameEntity);
+				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, collidingEntity);
 			}
 		}
 		else
@@ -682,7 +682,7 @@ void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, 
 			GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
 			GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
 			Body_setActive(this->body, false);
-			Shape_setActive(this->shape, false);
+			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
 			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
 		}
 
@@ -692,7 +692,7 @@ void Hero_takeHitFrom(Hero this, InGameEntity inGameEntity, int energyToReduce, 
 		// play hit sound
 		SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
 
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Hit");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Hit");
 
 		// inform others to update ui etc
 		Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHitTaken);
@@ -819,13 +819,13 @@ void Hero_enterDoor(Hero this)
 {
 	ASSERT(this, "Hero::enterDoor: null this");
 
-	if((__Y_AXIS | __Z_AXIS) & Body_isMoving(this->body))
+	if((__Y_AXIS | __Z_AXIS) & Body_getMovementOverAllAxis(this->body))
 	{
 		return;
 	}
 
 	// play animation
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "WalkingBack");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "WalkingBack");
 
 	// move towards door
 	/*
@@ -896,10 +896,10 @@ void Hero_hideHint(Hero this)
 void Hero_lookFront(Hero this)
 {
 	// if not already playing
-	if(!AnimatedInGameEntity_isAnimationLoaded(__SAFE_CAST(AnimatedInGameEntity, this), "Front"))
+	if(!AnimatedEntity_isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Front"))
 	{
 		// play animation
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Front");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Front");
 	}
 }
 
@@ -907,10 +907,10 @@ void Hero_lookFront(Hero this)
 void Hero_lookBack(Hero this)
 {
 	// if not already playing
-	if(!AnimatedInGameEntity_isAnimationLoaded(__SAFE_CAST(AnimatedInGameEntity, this), "Back"))
+	if(!AnimatedEntity_isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Back"))
 	{
 		// play animation
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Back");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Back");
 	}
 }
 
@@ -926,7 +926,7 @@ void Hero_die(Hero this)
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroDead_getInstance()));
 
 	// must unregister the shape for collision detections
-	Shape_setActive(this->shape, false);
+	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
 
 	// change in game state
 	this->inGameState = kDead;
@@ -966,12 +966,12 @@ void Hero_collectPowerUp(Hero this, u8 powerUp)
 	this->powerUp = powerUp;
 	Hero_updateSprite(this);
 
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this), false);
+	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 	Game_disableKeypad(Game_getInstance());
 	GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
 	Body_setActive(this->body, false);
 
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Transition");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Transition");
 }
 
 // lose a power-up
@@ -1032,38 +1032,39 @@ bool Hero_isInvincible(Hero this)
 }
 
 // process collisions
-bool Hero_processCollision(Hero this, VirtualList collidingSpatialObjects)
+bool Hero_processCollision(Hero this, Shape shape, VirtualList collidingShapes)
 {
 	ASSERT(this, "Hero::processCollision: null this");
-	ASSERT(collidingSpatialObjects, "Hero::processCollision: null collidingObjects");
+	ASSERT(collidingShapes, "Hero::processCollision: null collidingObjects");
 
 	VirtualNode node = NULL;
 
-	static VirtualList collidingSpatialObjectsToRemove = NULL;
+	static VirtualList collidingShapesToRemove = NULL;
 
-	if(!collidingSpatialObjectsToRemove)
+	if(!collidingShapesToRemove)
 	{
-		collidingSpatialObjectsToRemove = __NEW(VirtualList);
+		collidingShapesToRemove = __NEW(VirtualList);
 	}
 
-	for(node = VirtualList_begin(collidingSpatialObjects); node; node = VirtualNode_getNext(node))
+	for(node = VirtualList_begin(collidingShapes); node; node = VirtualNode_getNext(node))
 	{
-		InGameEntity inGameEntity = __SAFE_CAST(InGameEntity, VirtualNode_getData(node));
+		Shape collidingShape = __SAFE_CAST(Shape, VirtualNode_getData(node));
+		Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
 
-		switch(InGameEntity_getInGameType(inGameEntity))
+		switch(Entity_getInGameType(collidingEntity))
 		{
 			case kSolid:
 				break;
 
 			case kCameraTarget:
 				{
-					VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+					VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 
 					// get the axis of collision
 					u8 axisOfCollision = __VIRTUAL_CALL(
 						Shape,
 						getAxisOfCollision,
-						this->shape,
+						shape,
 						VirtualNode_getData(node),
 						Body_getLastDisplacement(this->body),
 						*CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
@@ -1091,79 +1092,79 @@ bool Hero_processCollision(Hero this, VirtualList collidingSpatialObjects)
 
 			case kCoin:
 
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kKey:
 
 				this->hasKey = true;
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kBandana:
 
 				Hero_collectPowerUp(this, kPowerUpBandana);
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kHideLayer:
 
 				// first contact with hide layer?
-				if(!HideLayer_isOverlapping((HideLayer)inGameEntity))
+				if(!HideLayer_isOverlapping((HideLayer)collidingEntity))
 				{
-					HideLayer_setOverlapping((HideLayer)inGameEntity);
+					HideLayer_setOverlapping((HideLayer)collidingEntity);
 				}
 
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kDoor:
 
-				Door_onOverlapping((Door)inGameEntity);
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				Door_onOverlapping((Door)collidingEntity);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kWaterPond:
 
-				if(Body_isMoving(this->body))
+				if(Body_getMovementOverAllAxis(this->body))
 				{
-					MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kReactToCollision, NULL);
+					MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kReactToCollision, NULL);
 				}
 
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kLava:
 
-				Hero_takeHitFrom(this, NULL, this->energy, true, false, true);
+				Hero_takeHitFrom(this, shape, NULL, NULL, this->energy, true, false, true);
 				break;
 
 			case kSawBlade:
 			case kSnail:
 
-				Hero_takeHitFrom(this, inGameEntity, 1, true, true, false);
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				Hero_takeHitFrom(this, shape, collidingEntity, collidingShape, 1, true, true, false);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kCannonBall:
 
-				Hero_takeHitFrom(this, inGameEntity, 2, true, true, false);
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				Hero_takeHitFrom(this, shape, collidingEntity, collidingShape, 2, true, true, false);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kHit:
 
-				Hero_takeHitFrom(this, inGameEntity, 1, true, true, false);
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				Hero_takeHitFrom(this, shape, collidingEntity, collidingShape, 1, true, true, false);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				break;
 
 			case kLavaTrigger:
 
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, inGameEntity), kLavaTriggerStart, NULL);
-				VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kLavaTriggerStart, NULL);
+				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 				Hero_stopAddingForce(this);
 				//Hero_stopMovingOnAxis(this, __X_AXIS);
 				break;
@@ -1171,29 +1172,29 @@ bool Hero_processCollision(Hero this, VirtualList collidingSpatialObjects)
 			case kMovingPlatform:
 			case kTopSolid:
 				{
-					int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, __SAFE_CAST(SpatialObject, inGameEntity), Body_getLastDisplacement(this->body));
+					int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, shape, collidingShape, Body_getLastDisplacement(this->body));
 
 					// if hero's moving over the y axis or is above colliding entity
-					if((__X_AXIS & axisOfCollision) || ((0 >= Body_getVelocity(this->body).y) || Hero_isAboveEntity(this, __SAFE_CAST(Entity, inGameEntity))))
+					if((__X_AXIS & axisOfCollision) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, shape, collidingShape))
 					{
 						// don't further process collision
-						VirtualList_pushBack(collidingSpatialObjectsToRemove, inGameEntity);
+						VirtualList_pushBack(collidingShapesToRemove, collidingShape);
 					}
 				}
 				break;
 		}
 	}
 
-	for(node = VirtualList_begin(collidingSpatialObjectsToRemove); node; node = VirtualNode_getNext(node))
+	for(node = VirtualList_begin(collidingShapesToRemove); node; node = VirtualNode_getNext(node))
 	{
 		// whenever you process some objects of a collisions list remove them and leave the Actor handle
 		// the ones you don't care about, i.e.: in most cases, the ones which are solid
-		VirtualList_removeElement(collidingSpatialObjects, VirtualNode_getData(node));
+		VirtualList_removeElement(collidingShapes, VirtualNode_getData(node));
 	}
 
-	VirtualList_clear(collidingSpatialObjectsToRemove);
+	VirtualList_clear(collidingShapesToRemove);
 
-	return Actor_processCollision(__SAFE_CAST(Actor, this), collidingSpatialObjects);
+	return Actor_processCollision(__SAFE_CAST(Actor, this), shape, collidingShapes);
 }
 
 void Hero_capVelocity(Hero this, bool discardPreviousMessages)
@@ -1291,20 +1292,20 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 			{
 				if(velocity.x)
 				{
-					AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 				}
 				else
 				{
-					AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
+					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
 				}
 			}
 			else if(velocity.x)
 			{
-				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Walk");
+				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 			}
 			else
 			{
-				AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Idle");
+				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
 			}
 
 			break;
@@ -1364,7 +1365,7 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 	ASSERT(this, "Hero::setPosition: null this");
 
 	// stop all movement
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this), false);
+	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 
 	// set new position
 	Actor_setPosition(__SAFE_CAST(Actor, this), outOfDoorPosition);
@@ -1375,7 +1376,7 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 	// make the camera active for collision detection
 	Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, false);
 
-	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
+	Entity_informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
 
 	Container_invalidateGlobalTransformation(__SAFE_CAST(Container, this));
 
@@ -1415,35 +1416,40 @@ u8 Hero_getAxisAllowedForBouncing(Hero this __attribute__ ((unused)))
 	return __Y_AXIS;
 }
 
-bool Hero_isAboveEntity(Hero this, Entity entity)
+bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
-	int heroBottomPosition = this->transform.globalPosition.y + ITOFIX19_13(Entity_getHeight(__SAFE_CAST(Entity, this)) >> 1) - Body_getLastDisplacement(this->body).y * 4;
-	int entityTopPosition = Entity_getPosition(entity)->y - ITOFIX19_13(Entity_getHeight(entity) >> 1);
+	RightCuboid shapeRightCuboid = __VIRTUAL_CALL(Shape, getSurroundingRightCuboid, shape);
+	RightCuboid collidingShapeRightCuboid = __VIRTUAL_CALL(Shape, getPositionedSurroundingRightCuboid, collidingShape);
 
-	return (heroBottomPosition >= entityTopPosition);
+	VBVec3D shapePosition = __VIRTUAL_CALL(Shape, getPosition, shape);
+
+	fix19_13 heroBottomPosition = shapePosition.y + ((shapeRightCuboid.x1 - shapeRightCuboid.x0) >> 1) - Body_getLastDisplacement(this->body).y;
+
+	return heroBottomPosition > collidingShapeRightCuboid.y0;
 }
 
-void Hero_collisionsProcessingDone(Hero this, VirtualList collidingSpatialObjects)
+void Hero_collisionsProcessingDone(Hero this, VirtualList collidingShapes)
 {
 	ASSERT(this, "Hero::collisionsProcessingDone: null this");
 
-	if(collidingSpatialObjects && 1 == VirtualList_getSize(collidingSpatialObjects))
+	if(collidingShapes && 1 == VirtualList_getSize(collidingShapes))
 	{
-		InGameEntity inGameEntity = __SAFE_CAST(InGameEntity, VirtualList_front(collidingSpatialObjects));
+		Shape collidingShape = __SAFE_CAST(Shape, VirtualList_front(collidingShapes));
+		Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
 
-		switch(InGameEntity_getInGameType(inGameEntity))
+		switch(Entity_getInGameType(collidingEntity))
 		{
 			case kMovingPlatform:
 
-				Container_addChild(__SAFE_CAST(Container, inGameEntity), __SAFE_CAST(Container, this));
+				Container_addChild(__SAFE_CAST(Container, collidingEntity), __SAFE_CAST(Container, this));
 				break;
 		}
 	}
 }
 
-u32 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
+u16 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
 {
 	return __X_AXIS;
 }

@@ -38,7 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // define the CameraTriggerEntity
-__CLASS_DEFINITION(CameraTriggerEntity, TriggerEntity);
+__CLASS_DEFINITION(CameraTriggerEntity, Entity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,17 +46,17 @@ __CLASS_DEFINITION(CameraTriggerEntity, TriggerEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(CameraTriggerEntity, cameraTriggerEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(CameraTriggerEntity, cameraEntityDefinition, id, internalId, name);
 
 // class's constructor
-void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraTriggerEntityDefinition, s16 id, s16 internalId, const char* const name)
+void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "CameraTriggerEntity::constructor: null this");
-	ASSERT(cameraTriggerEntityDefinition, "CameraTriggerEntity::constructor: null definition");
+	ASSERT(cameraEntityDefinition, "CameraTriggerEntity::constructor: null definition");
 
 	// construct base object
-	__CONSTRUCT_BASE(TriggerEntity, (TriggerEntityDefinition*)cameraTriggerEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Entity, (EntityDefinition*)cameraEntityDefinition, id, internalId, name);
 
 	this->overridePositionFlag.x = false;
 	this->overridePositionFlag.y = false;
@@ -68,7 +68,7 @@ void CameraTriggerEntity_destructor(CameraTriggerEntity this)
 {
 	ASSERT(this, "CameraTriggerEntity::destructor: null this");
 
-	Screen_setFocusInGameEntity(Screen_getInstance(), NULL);
+	Screen_setFocusGameEntity(Screen_getInstance(), NULL);
 
 	// destroy the super object
 	// must always be called at the end of the destructor
@@ -93,8 +93,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 		this->transform.globalPosition.y = currentGlobalPosition.y;
 	}
 
-	Gap gap = {0, 0, 0, 0};
-	__VIRTUAL_CALL(Shape, position, this->shape, &this->transform.globalPosition, false, gap);
+	Entity_setShapesPosition(__SAFE_CAST(Entity, this), true);
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)
@@ -117,4 +116,11 @@ VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this
 	ASSERT(this, "CameraTriggerEntity::getOverridePositionFlag: null this");
 
 	return this->overridePositionFlag;
+}
+
+bool CameraTriggerEntity_moves(CameraTriggerEntity this __attribute__ ((unused)))
+{
+	ASSERT(this, "CameraTriggerEntity::moves: null this");
+
+	return true;
 }

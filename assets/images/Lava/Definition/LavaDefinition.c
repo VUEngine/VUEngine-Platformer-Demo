@@ -24,11 +24,12 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
-#include <InAnimatedInGameEntity.h>
+#include <Entity.h>
 #include <macros.h>
 #include <Lava.h>
 #include <HbiasEffects.h>
+#include <Cuboid.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -131,38 +132,43 @@ BgmapSpriteROMDef* const LAVA_BG_SPRITES[] =
 	NULL
 };
 
-InanimatedInGameEntityROMDef LAVA_IG =
+ShapeROMDef LAVA_IG_SHAPES[] =
 {
 	{
-		{
-			__TYPE(Lava),
-			(SpriteROMDef**)LAVA_BG_SPRITES,
-		},
+		// shape
+		__TYPE(Cuboid),
 
-		// collision detection gap (up, down, left, right)
-		{2, 0, 0, 0},
+		// size (x, y, z)
+		{48 * 8, 24 * 8, 2 * 8},
 
-		// in game type
-		kLava,
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		48 * 8,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		24 * 8 + 4,
-
-		// depth
-		4
+		// check for collisions against other shapes
+		false,
 	},
 
-	// friction
-	FTOFIX19_13(FLOOR_FRICTION),
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
 
-	// elasticity
-	FTOFIX19_13(FLOOR_ELASTICITY),
+LavaROMDef LAVA_IG =
+{
+	// class allocator
+	__TYPE(Lava),
 
-	// register shape
-	true,
+	// sprites
+	(SpriteROMDef**)LAVA_BG_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)LAVA_IG_SHAPES,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kLava,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

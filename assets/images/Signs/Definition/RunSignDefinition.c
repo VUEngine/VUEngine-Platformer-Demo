@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
 #include <ObjectSprite.h>
 #include <macros.h>
 
@@ -115,8 +115,24 @@ ObjectSpriteROMDef* const RUN_SIGN_IM_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef RUN_SIGN_IM =
+EntityROMDef RUN_SIGN_IM =
 {
-	__TYPE(StaticImage),
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
 	(SpriteROMDef**)RUN_SIGN_IM_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

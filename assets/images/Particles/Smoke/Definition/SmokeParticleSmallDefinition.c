@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <ObjectAnimatedSprite.h>
 #include <macros.h>
 
@@ -148,30 +148,27 @@ ObjectSpriteROMDef* const SMOKE_PARTICLE_SMALL_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef SMOKE_PARTICLE_SMALL_AG =
+AnimatedEntityROMDef SMOKE_PARTICLE_SMALL_AG =
 {
 	{
-		{
-			__TYPE(AnimatedInGameEntity),
-			(SpriteROMDef**)SMOKE_PARTICLE_SMALL_SPRITES,
-		},
+		// class allocator
+		__TYPE(AnimatedEntity),
 
-		// collision detection gap (up, down, left, right)
-		{6, 0, 0, 0},
+		// sprites
+		(SpriteROMDef**)SMOKE_PARTICLE_SMALL_SPRITES,
 
-		// in game type
-		kSolid,
+		// collision shapes
+		(ShapeDefinition*)NULL,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
+		// gameworld's character's type
+		kNotSolid,
 
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item

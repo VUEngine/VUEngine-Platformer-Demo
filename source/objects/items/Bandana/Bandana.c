@@ -48,16 +48,16 @@ __CLASS_DEFINITION(Bandana, Item);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Bandana, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Bandana, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Bandana, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Bandana, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Bandana_constructor(Bandana this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Bandana_constructor(Bandana this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Bandana::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Item, animatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Item, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor

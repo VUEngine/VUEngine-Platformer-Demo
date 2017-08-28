@@ -37,9 +37,9 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-const VBVec3D level1_house_stage_collision_128_16_8 = {128, 16, 8};
-const VBVec3D level1_house_stage_collision_16_96_8 = {16, 96, 8};
-const VBVec3D level1_house_stage_collision_24_24_8 = {24, 24, 8};
+const Size level1_house_stage_collision_128_16_8 = {128, 16, 8};
+const Size level1_house_stage_collision_16_96_8 = {16, 96, 8};
+const Size level1_house_stage_collision_24_24_8 = {24, 24, 8};
 extern CharSetDefinition LEVEL_1_HOUSE_MAIN_CH;
 extern EntityDefinition CLOCK_AG;
 extern EntityDefinition CLOUDS_IM;
@@ -222,7 +222,7 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 		},
 
-		// obj segments z coordinates
+		// OBJECT segments z coordinates
 		// note that each spt's z coordinate much be larger than or equal to the previous one's,
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
@@ -310,7 +310,7 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(14),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},

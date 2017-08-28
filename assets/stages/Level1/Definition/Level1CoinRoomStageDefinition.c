@@ -37,11 +37,11 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-const VBVec3D level1_coin_room_stage_collision_16_96_8 = {16, 96, 8};
-const VBVec3D level1_coin_room_stage_collision_224_16_8 = {224, 16, 8};
-const VBVec3D level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
-const VBVec3D level1_coin_room_stage_collision_32_48_8 = {32, 48, 8};
-const VBVec3D level1_coin_room_stage_collision_80_48_8 = {80, 48, 8};
+const Size level1_coin_room_stage_collision_16_96_8 = {16, 96, 8};
+const Size level1_coin_room_stage_collision_224_16_8 = {224, 16, 8};
+const Size level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
+const Size level1_coin_room_stage_collision_32_48_8 = {32, 48, 8};
+const Size level1_coin_room_stage_collision_80_48_8 = {80, 48, 8};
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
@@ -241,7 +241,7 @@ StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 		},
 
-		// obj segments z coordinates
+		// OBJECT segments z coordinates
 		// note that each spt's z coordinate much be larger than or equal to the previous one's,
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
@@ -329,7 +329,7 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(-16),
+		FTOFIX19_13(-19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
@@ -348,7 +348,7 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},

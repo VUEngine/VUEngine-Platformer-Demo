@@ -24,8 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
 #include <HbiasEffects.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -339,8 +340,24 @@ BgmapSpriteROMDef* const LOGO_IM_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef LOGO_IM =
+EntityROMDef LOGO_IM =
 {
-	__TYPE(StaticImage),
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
 	(SpriteROMDef**)LOGO_IM_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

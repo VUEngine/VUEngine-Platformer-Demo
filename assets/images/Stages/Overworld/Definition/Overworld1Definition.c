@@ -24,8 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ManagedStaticImage.h>
+#include <ManagedEntity.h>
 #include <MBgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -136,8 +137,24 @@ BgmapSpriteROMDef* const OVERWORLD_1_IM_SPRITES[] =
 	NULL
 };
 
-ManagedStaticImageROMDef OVERWORLD_1_IM =
+ManagedEntityROMDef OVERWORLD_1_IM =
 {
-	__TYPE(ManagedStaticImage),
+	// class allocator
+	__TYPE(ManagedEntity),
+
+	// sprites
 	(SpriteROMDef**)OVERWORLD_1_IM_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNotSolid,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

@@ -24,7 +24,8 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -150,14 +151,46 @@ BgmapSpriteROMDef* const ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_R_SPRITES[] =
 
 };
 
-StaticImageROMDef ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_L =
+EntityROMDef ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_L =
 {
-	__TYPE(StaticImage),
-	(SpriteROMDef**) ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_L_SPRITES,
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
+	(SpriteROMDef**)ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_L_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };
 
-StaticImageROMDef ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_R =
+EntityROMDef ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_R =
 {
-	__TYPE(StaticImage),
-	(SpriteROMDef**) ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_R_SPRITES,
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
+	(SpriteROMDef**)ADJUSTMENT_SCREEN_PROTOTYPE_ICON_IM_R_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

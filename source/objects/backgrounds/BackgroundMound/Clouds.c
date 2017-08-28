@@ -33,7 +33,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Clouds, StaticImage);
+__CLASS_DEFINITION(Clouds, Entity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ __CLASS_NEW_END(Clouds, cloudsDefinition, id, internalId, name);
 void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(StaticImage, &cloudsDefinition->StaticImageDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Entity, &cloudsDefinition->EntityDefinition, id, internalId, name);
 
 	this->displacement = cloudsDefinition->displacement;
 }

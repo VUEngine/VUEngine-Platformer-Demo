@@ -43,9 +43,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntityDefinition LEVEL_1_HOUSE_IM;
-extern AnimatedInGameEntityROMDef COIN_BACK_AG;
-extern AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG;
-extern AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG;
+extern AnimatedEntityROMDef COIN_BACK_AG;
+extern AnimatedEntityROMDef COIN_SILHOUETTE_AG;
+extern AnimatedEntityROMDef COIN_BACK_SILHOUETTE_AG;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,30 +60,30 @@ __CLASS_DEFINITION(Coin, Collectable);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Coin, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Coin, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Coin, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Coin, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Coin_constructor(Coin this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Coin_constructor(Coin this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Collectable, animatedEntityDefinition, id, internalId, name);
 
 	// if coin has already been collected, show silhouette representation
 	if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
 	{
-		AnimatedInGameEntityDefinition* animatedInGameEntityDefinition = this->animatedInGameEntityDefinition;
+		AnimatedEntityDefinition* animatedEntityDefinition = this->animatedEntityDefinition;
 
-		if((AnimatedInGameEntityDefinition*)&COIN_BACK_AG == animatedInGameEntityDefinition)
+		if((AnimatedEntityDefinition*)&COIN_BACK_AG == animatedEntityDefinition)
 		{
-			animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_BACK_SILHOUETTE_AG;
+			animatedEntityDefinition = (AnimatedEntityDefinition*)&COIN_BACK_SILHOUETTE_AG;
 		}
 		else
 		{
-			animatedInGameEntityDefinition = (AnimatedInGameEntityDefinition*)&COIN_SILHOUETTE_AG;
+			animatedEntityDefinition = (AnimatedEntityDefinition*)&COIN_SILHOUETTE_AG;
 		}
 
-		AnimatedInGameEntity_setDefinition(__SAFE_CAST(AnimatedInGameEntity, this), animatedInGameEntityDefinition);
+		AnimatedEntity_setDefinition(__SAFE_CAST(AnimatedEntity, this), animatedEntityDefinition);
 	}
 }
 

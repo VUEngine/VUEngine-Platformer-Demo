@@ -26,6 +26,7 @@
 
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
+#include <Cuboid.h>
 #include "Door.h"
 #include "LayerSwitchDoor.h"
 #include "GoalDoor.h"
@@ -270,30 +271,46 @@ BgmapSpriteROMDef* const DOOR_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef DOOR_AG =
+ShapeROMDef DOOR_AG_SHAPES[] =
 {
 	{
-		{
-			__TYPE(Door),
-			(SpriteROMDef**)DOOR_SPRITES,
-		},
+		// shape
+		__TYPE(Cuboid),
 
-		// collision detection gap (up, down, left, right)
-		{6, 0, 6, 6},
+		// size (x, y, z)
+		{19, 28, 16},
 
-		// in game type
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+DoorROMDef DOOR_AG =
+{
+	{
+		// class allocator
+		__TYPE(Door),
+
+		// sprites
+		(SpriteROMDef**)DOOR_SPRITES,
+
+		// collision shapes
+		(ShapeDefinition*)DOOR_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kDoor,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -303,30 +320,27 @@ AnimatedInGameEntityROMDef DOOR_AG =
 	"Closed",
 };
 
-AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_AG =
+LayerSwitchDoorROMDef LAYER_SWITCH_DOOR_AG =
 {
 	{
-		{
-			__TYPE(LayerSwitchDoor),
-			(SpriteROMDef**)DOOR_SPRITES,
-		},
+		// class allocator
+		__TYPE(LayerSwitchDoor),
 
-		// collision detection gap (up, down, left, right)
-		{6, 0, 6, 6},
+		// sprites
+		(SpriteROMDef**)DOOR_SPRITES,
 
-		// in game type
+		// collision shapes
+		(ShapeDefinition*)DOOR_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kDoor,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -336,30 +350,28 @@ AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_AG =
 	"Closed",
 };
 
-AnimatedInGameEntityROMDef GOAL_DOOR_AG =
+
+GoalDoorROMDef GOAL_DOOR_AG =
 {
 	{
-		{
-			__TYPE(GoalDoor),
-			(SpriteROMDef**)DOOR_SPRITES,
-		},
+		// class allocator
+		__TYPE(GoalDoor),
 
-		// collision detection gap (up, down, left, right)
-		{1, 0, 1, 1},
+		// sprites
+		(SpriteROMDef**)DOOR_SPRITES,
 
-		// in game type
+		// collision shapes
+		(ShapeDefinition*)DOOR_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kDoor,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -369,30 +381,27 @@ AnimatedInGameEntityROMDef GOAL_DOOR_AG =
 	"Open",
 };
 
-AnimatedInGameEntityROMDef KEY_DOOR_AG =
+KeyDoorROMDef KEY_DOOR_AG =
 {
 	{
-		{
-			__TYPE(KeyDoor),
-			(SpriteROMDef**)DOOR_SPRITES,
-		},
+		// class allocator
+		__TYPE(KeyDoor),
 
-		// collision detection gap (up, down, left, right)
-		{6, 0, 6, 6},
+		// sprites
+		(SpriteROMDef**)DOOR_SPRITES,
 
-		// in game type
+		// collision shapes
+		(ShapeDefinition*)DOOR_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kDoor,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -435,30 +444,27 @@ BgmapSpriteROMDef* const AFFINE_DOOR_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef AFFINE_DOOR_AG =
+DoorROMDef AFFINE_DOOR_AG =
 {
 	{
-		{
-			__TYPE(Door),
-			(SpriteROMDef**)AFFINE_DOOR_SPRITES,
-		},
+		// class allocator
+		__TYPE(Door),
 
-		// collision detection gap (up, down, left, right)
-		{6, 0, 6, 6},
+		// sprites
+		(SpriteROMDef**)AFFINE_DOOR_SPRITES,
 
-		// in game type
+		// collision shapes
+		(ShapeDefinition*)DOOR_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kDoor,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		4,
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -545,30 +551,27 @@ BgmapSpriteROMDef* const DOOR_BACK_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef DOOR_BACK_AG =
+DoorROMDef DOOR_BACK_AG =
 {
 	{
-		{
-			__TYPE(Door),
-			(SpriteROMDef**)DOOR_BACK_SPRITES,
-		},
+		// class allocator
+		__TYPE(Door),
 
-		// collision detection gap (up, down, left, right)
-		{5, 0, 2, 3},
+		// sprites
+		(SpriteROMDef**)DOOR_BACK_SPRITES,
 
-		// in game type
+		// collision shapes
+		(ShapeDefinition*)DOOR_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kDoor,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		1,
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -578,30 +581,27 @@ AnimatedInGameEntityROMDef DOOR_BACK_AG =
 	"Closed",
 };
 
-AnimatedInGameEntityROMDef LAYER_SWITCH_DOOR_BACK_AG =
+LayerSwitchDoorROMDef LAYER_SWITCH_DOOR_BACK_AG =
 {
 	{
-		{
-			__TYPE(LayerSwitchDoor),
-			(SpriteROMDef**)DOOR_BACK_SPRITES,
-		},
+		// class allocator
+		__TYPE(LayerSwitchDoor),
 
-		// collision detection gap (up, down, left, right)
-		{5, 0, 2, 3},
+		// sprites
+		(SpriteROMDef**)DOOR_BACK_SPRITES,
 
-		// in game type
+		// collision shapes
+		(ShapeDefinition*)DOOR_AG_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kDoor,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		1,
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item

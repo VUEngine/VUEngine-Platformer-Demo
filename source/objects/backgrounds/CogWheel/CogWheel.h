@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
+#include <Entity.h>
 #include <macros.h>
 
 
@@ -43,10 +43,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CogWheel_METHODS(ClassName)																		\
-		StaticImage_METHODS(ClassName)																	\
+		Entity_METHODS(ClassName)																	\
 
 #define CogWheel_SET_VTABLE(ClassName)																	\
-		StaticImage_SET_VTABLE(ClassName)																\
+		Entity_SET_VTABLE(ClassName)																\
 		__VIRTUAL_SET(ClassName, CogWheel, ready);														\
 		__VIRTUAL_SET(ClassName, CogWheel, handleMessage);												\
 
@@ -54,16 +54,19 @@ __CLASS(CogWheel);
 
 #define CogWheel_ATTRIBUTES																				\
 		/* it is derived from */																		\
-		StaticImage_ATTRIBUTES																			\
+		Entity_ATTRIBUTES																				\
+
+typedef const EntityDefinition CogWheelDefinition;
+typedef const CogWheelDefinition CogWheelROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(CogWheel, StaticImageDefinition* StaticImageDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(CogWheel, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void CogWheel_constructor(CogWheel this, StaticImageDefinition* definition, s16 id, s16 internalId, const char* const name);
+void CogWheel_constructor(CogWheel this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void CogWheel_destructor(CogWheel this);
 void CogWheel_ready(CogWheel this, bool recursive);
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram);

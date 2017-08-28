@@ -37,7 +37,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Lava, InanimatedInGameEntity);
+__CLASS_DEFINITION(Lava, Entity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,14 +52,14 @@ void Lava_moveUpwards(Lava this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Lava, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Lava, inanimatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Lava, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Lava, inanimatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Lava_constructor(Lava this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Lava_constructor(Lava this, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(InanimatedInGameEntity, inanimatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Entity, inanimatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -82,10 +82,7 @@ void Lava_startMoving(Lava this)
 	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
 
 	// must make sure that the shape is updated
-	if(this->shape)
-	{
-		CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
-	}
+	Entity_informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
 }
 
 // whether it is visible

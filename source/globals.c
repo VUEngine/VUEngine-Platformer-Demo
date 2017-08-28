@@ -29,7 +29,6 @@
 #include <StageEditor.h>
 #include <AnimationInspector.h>
 #include <ManagedEntity.h>
-#include <CollisionsContainerEntity.h>
 #include <Bandana.h>
 #include <Cannon.h>
 #include <CannonBall.h>
@@ -66,23 +65,48 @@ extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 // only need to define one for all containers
 EntityROMDef SIMPLE_CONTAINER =
 {
+	// class allocator
 	__TYPE(Entity),
-	NULL
+
+	// sprites
+	NULL,
+
+	// collision shapes
+	NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	NULL,
 };
 
 
 // only need to define one for all managed entities
 ManagedEntityROMDef MANAGED_ENTITY =
 {
+	// class allocator
 	__TYPE(ManagedEntity),
-	NULL
-};
 
-// only need to define one for all entities
-CollisionsContainerEntityROMDef COLLISIONS_CONTAINER_ENTITY =
-{
-	__TYPE(CollisionsContainerEntity),
-	NULL
+	// sprites
+	NULL,
+
+	// collision shapes
+	NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	NULL,
 };
 
 #ifdef __DEBUG_TOOLS
@@ -116,14 +140,14 @@ const UserObject _userObjects[] =
 	{NULL, ""},
 };
 
-const UserAnimatedInGameEntity _userAnimatedInGameEntities[] =
+const UserAnimatedEntity _userAnimatedEntities[] =
 {
-	{(AnimatedInGameEntityDefinition*)&COIN_AG,						"Coin"},
-	{(AnimatedInGameEntityDefinition*)&DOOR_AG,						"Door"},
-	{(AnimatedInGameEntityDefinition*)&LAYER_SWITCH_DOOR_BACK_AG,	"Back Door"},
-	{(AnimatedInGameEntityDefinition*)&HERO_AC,						"Hero"},
-	{(AnimatedInGameEntityDefinition*)&KEY_AG,						"Key"},
-	{(AnimatedInGameEntityDefinition*)&SAW_BLADE_V3_AC,				"SawBlade"},
-	{(AnimatedInGameEntityDefinition*)&LAVA_TOP_AG,					"Lava top"},
+	{(AnimatedEntityDefinition*)&COIN_AG,						"Coin"},
+	{(AnimatedEntityDefinition*)&DOOR_AG,						"Door"},
+	{(AnimatedEntityDefinition*)&LAYER_SWITCH_DOOR_BACK_AG,	"Back Door"},
+	{(AnimatedEntityDefinition*)&HERO_AC,						"Hero"},
+	{(AnimatedEntityDefinition*)&KEY_AG,						"Key"},
+	{(AnimatedEntityDefinition*)&SAW_BLADE_V3_AC,				"SawBlade"},
+	{(AnimatedEntityDefinition*)&LAVA_TOP_AG,					"Lava top"},
 	{NULL, ""},
 };

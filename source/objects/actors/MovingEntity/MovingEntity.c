@@ -69,9 +69,6 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 
 	this->initialPosition = 0;
 
-	// register a shape for collision detection
-	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
-
 	switch(this->movingEntityDefinition->axis)
 	{
 		case __X_AXIS:
@@ -117,8 +114,10 @@ void MovingEntity_ready(MovingEntity this, bool recursive)
 	ASSERT(this, "MovingEntity::ready: null this");
 
 	// register a body for physics
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), this->movingEntityDefinition->actorDefinition.mass);
-	Body_setElasticity(this->body, this->movingEntityDefinition->actorDefinition.elasticity);
+	PhysicalSpecification* physicalSpecification = this->actorDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification;
+
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), physicalSpecification ? physicalSpecification->mass : 0);
+	Body_setElasticity(this->body, physicalSpecification ? physicalSpecification->elasticity : 0);
 	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
 	// call base
@@ -194,7 +193,7 @@ void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
 }
 
 // retrieve axis free for movement
-int MovingEntity_getAxisFreeForMovement(MovingEntity this __attribute__ ((unused)))
+u16 MovingEntity_getAxisFreeForMovement(MovingEntity this __attribute__ ((unused)))
 {
 	return 0;
 }

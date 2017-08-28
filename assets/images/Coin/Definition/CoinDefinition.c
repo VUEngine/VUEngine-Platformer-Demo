@@ -26,6 +26,7 @@
 
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
+#include <Cuboid.h>
 #include "Coin.h"
 
 
@@ -363,30 +364,46 @@ ObjectSpriteROMDef* const COIN_SILHOUETTE_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef COIN_AG =
+ShapeROMDef COIN_SHAPES[] =
 {
 	{
-		{
-			__TYPE(Coin),
-			(SpriteROMDef**)COIN_SPRITES,
-		},
+		// shape
+		__TYPE(Cuboid),
 
-		// collision detection gap (up, down, left, right)
-		{3, 3, 3, 3},
+		// size (x, y, z)
+		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
 
-		// in game type
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+CoinROMDef COIN_AG =
+{
+	{
+		// class allocator
+		__TYPE(Coin),
+
+		// sprites
+		(SpriteROMDef**)COIN_SPRITES,
+
+		// collision shapes
+		(ShapeDefinition*)COIN_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kCoin,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -396,30 +413,27 @@ AnimatedInGameEntityROMDef COIN_AG =
 	"Spin",
 };
 
-AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG =
+CoinROMDef COIN_SILHOUETTE_AG =
 {
 	{
-		{
-			__TYPE(Coin),
-			(SpriteROMDef**)COIN_SILHOUETTE_SPRITES,
-		},
+		// class allocator
+		__TYPE(Coin),
 
-		// collision detection gap (up, down, left, right)
-		{3, 3, 3, 3},
+		// sprites
+		(SpriteROMDef**)COIN_SILHOUETTE_SPRITES,
 
-		// in game type
+		// collision shapes
+		(ShapeDefinition*)COIN_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kCoin,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -428,6 +442,7 @@ AnimatedInGameEntityROMDef COIN_SILHOUETTE_AG =
 	// initial animation
 	"Spin",
 };
+
 
 //---------------------------------------------------------------------------------------------------------
 //											OBJECT COIN BACKGROUND
@@ -493,131 +508,47 @@ ObjectSpriteROMDef* const COIN_BACK_SILHOUETTE_SPRITES[] =
 	NULL
 };
 
-AnimatedInGameEntityROMDef COIN_BACK_AG =
+
+ShapeROMDef COIN_BACK_SHAPES[] =
 {
 	{
-		{
-			__TYPE(Coin),
-			(SpriteROMDef**)COIN_BACK_SPRITES,
-		},
+		// shape
+		__TYPE(Cuboid),
 
-		// collision detection gap (up, down, left, right)
-		{3, 4, 3, 4},
+		// size (x, y, z)
+		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
 
-		// in game type
-		kCoin,
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// depth
-		4
-	},
-
-	// pointer to the animation definition for the item
-	(AnimationDescription*)&COIN_ANIM,
-
-	// initial animation
-	"Spin",
-};
-
-AnimatedInGameEntityROMDef COIN_BACK_SILHOUETTE_AG =
-{
-	{
-		{
-			__TYPE(Coin),
-			(SpriteROMDef**)COIN_BACK_SILHOUETTE_SPRITES,
-		},
-
-		// collision detection gap (up, down, left, right)
-		{3, 4, 3, 4},
-
-		// in game type
-		kCoin,
-
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// depth
-		4
-	},
-
-	// pointer to the animation definition for the item
-	(AnimationDescription*)&COIN_ANIM,
-
-	// initial animation
-	"Spin",
-};
-
-
-//---------------------------------------------------------------------------------------------------------
-//											AFFINE COIN
-//---------------------------------------------------------------------------------------------------------
-
-ObjectSpriteROMDef AFFINE_COIN_SPRITE =
-{
-	{
-		// sprite's type
-		__TYPE(ObjectAnimatedSprite),
-
-		// texture definition
-		(TextureDefinition*)&AFFINE_COIN_TX,
-
-		// transparent
+		// check for collisions against other shapes
 		false,
-
-		// displacement
-		{0, 0, 0, 0},
 	},
 
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
-ObjectSpriteROMDef* const AFFINE_COIN_SPRITES[] =
-{
-	&AFFINE_COIN_SPRITE,
-	NULL
-};
-
-AnimatedInGameEntityROMDef AFFINE_COIN_AG =
+CoinROMDef COIN_BACK_AG =
 {
 	{
-		{
-			__TYPE(Coin),
-			(SpriteROMDef**)AFFINE_COIN_SPRITES,
-		},
+		// class allocator
+		__TYPE(Coin),
 
-		// collision detection gap (up, down, left, right)
-		{3, 3, 3, 3},
+		// sprites
+		(SpriteROMDef**)COIN_BACK_SPRITES,
 
-		// in game type
+		// collision shapes
+		(ShapeDefinition*)COIN_BACK_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
 		kCoin,
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// depth
-		4
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
@@ -626,3 +557,35 @@ AnimatedInGameEntityROMDef AFFINE_COIN_AG =
 	// initial animation
 	"Spin",
 };
+
+CoinROMDef COIN_BACK_SILHOUETTE_AG =
+{
+	{
+		// class allocator
+		__TYPE(Coin),
+
+		// sprites
+		(SpriteROMDef**)COIN_BACK_SILHOUETTE_SPRITES,
+
+		// collision shapes
+		(ShapeDefinition*)COIN_BACK_SHAPES,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
+		kCoin,
+
+		// physical specification
+		(PhysicalSpecification*)NULL,
+	},
+
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&COIN_ANIM,
+
+	// initial animation
+	"Spin",
+};
+
+

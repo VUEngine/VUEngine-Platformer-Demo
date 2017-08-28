@@ -24,7 +24,8 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Entity.h>
+#include <Cuboid.h>
 #include <macros.h>
 
 
@@ -117,38 +118,55 @@ BgmapSpriteROMDef* const ONE_WAY_PLATFORM_4_SPRITES[] =
 	NULL
 };
 
-InanimatedInGameEntityROMDef ONE_WAY_PLATFORM_4_IG =
+ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 {
 	{
-		{
-			__TYPE(InanimatedInGameEntity),
-			(SpriteROMDef**)ONE_WAY_PLATFORM_4_SPRITES,
-		},
+		// shape
+		__TYPE(Cuboid),
 
-		// collision detection gap (up, down, left, right)
-		{4, 4, 2, 2},
+		// size (x, y, z)
+		{32, 16, 16},
 
-		// in game type
-		kTopSolid,
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		0,
-
-		// depth
-		16
+		// check for collisions against other shapes
+		false,
 	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+PhysicalSpecificationROMDef ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =
+{
+	// mass
+	FTOFIX19_13(0),
 
 	// friction
 	FTOFIX19_13(FLOOR_FRICTION),
 
 	// elasticity
 	FTOFIX19_13(FLOOR_ELASTICITY),
+};
 
-	// register shape
-	true,
+EntityROMDef ONE_WAY_PLATFORM_4_IG =
+{
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
+	(SpriteROMDef**)ONE_WAY_PLATFORM_4_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)&ONE_WAY_PLATFORM_4_IG_SHAPES,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kTopSolid,
+
+	// physical specification
+	(PhysicalSpecification*)&ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES,
 };

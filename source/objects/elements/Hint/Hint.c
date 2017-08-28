@@ -38,7 +38,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Hint, AnimatedInGameEntity);
+__CLASS_DEFINITION(Hint, AnimatedEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,16 +46,16 @@ __CLASS_DEFINITION(Hint, AnimatedInGameEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hint, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Hint, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Hint, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Hint, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Hint_constructor(Hint this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Hint::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
 
 	this->type = kEnterHint;
 	this->languageAnimName = NULL;
@@ -80,7 +80,7 @@ bool Hint_handleMessage(Hint this, void* telegram)
 	{
 		case kHintPlayAnimation:
 
-			AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), this->languageAnimName);
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), this->languageAnimName);
 			return true;
 			break;
 	}
@@ -92,7 +92,7 @@ void Hint_resume(Hint this)
 {
 	ASSERT(this, "Hint::resume: null this");
 
-	__CALL_BASE_METHOD(AnimatedInGameEntity, resume, this);
+	__CALL_BASE_METHOD(AnimatedEntity, resume, this);
 
 	Hint_onHintOpened(this, NULL);
 }
@@ -105,7 +105,7 @@ void Hint_open(Hint this, u8 hintType)
 
 	Entity_show(__SAFE_CAST(Entity, this));
 
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Open");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
 }
 
 void Hint_close(Hint this)
@@ -114,7 +114,7 @@ void Hint_close(Hint this)
 
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHintPlayAnimation);
 
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "Close");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Close");
 }
 
 void Hint_onCloseDone(Hint this, Object eventFirer __attribute__ ((unused)))

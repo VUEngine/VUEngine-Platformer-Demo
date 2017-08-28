@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <Collectable.h>
 #include <macros.h>
 
@@ -54,9 +54,9 @@ __CLASS(Item);
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Item, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Item, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Item_constructor(Item this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Item_constructor(Item this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Item_destructor(Item this);
 void Item_collect(Item this);
 

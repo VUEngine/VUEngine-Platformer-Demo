@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <macros.h>
 
 
@@ -48,10 +48,10 @@ enum HintTypes
 //---------------------------------------------------------------------------------------------------------
 
 #define Hint_METHODS(ClassName)																			\
-		AnimatedInGameEntity_METHODS(ClassName)															\
+		AnimatedEntity_METHODS(ClassName)															\
 
 #define Hint_SET_VTABLE(ClassName)																		\
-		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		AnimatedEntity_SET_VTABLE(ClassName)														\
 		__VIRTUAL_SET(ClassName, Hint, resume);															\
 		__VIRTUAL_SET(ClassName, Hint, handleMessage);													\
 
@@ -59,7 +59,7 @@ __CLASS(Hint);
 
 #define Hint_ATTRIBUTES																					\
 		/* it is derived from */																		\
-		AnimatedInGameEntity_ATTRIBUTES																	\
+		AnimatedEntity_ATTRIBUTES																	\
 		/* the current hint type to show */																\
 		u8 type;																						\
 		/* name of the animation to play */																\
@@ -69,9 +69,9 @@ __CLASS(Hint);
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Hint, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Hint, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Hint_constructor(Hint this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Hint_constructor(Hint this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Hint_destructor(Hint this);
 bool Hint_handleMessage(Hint this, void* telegram);
 void Hint_resume(Hint this);

@@ -57,16 +57,16 @@ void Item_removeFromStage(Item this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Item, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Item, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Item, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Item, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Item_constructor(Item this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Item_constructor(Item this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Item::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Collectable, animatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Collectable, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor

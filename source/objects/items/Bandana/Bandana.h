@@ -53,9 +53,9 @@ __CLASS(Bandana);
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Bandana, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Bandana, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Bandana_constructor(Bandana this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Bandana_constructor(Bandana this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Bandana_destructor(Bandana this);
 void Bandana_collect(Bandana this);
 

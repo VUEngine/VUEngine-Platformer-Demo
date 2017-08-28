@@ -98,7 +98,7 @@
  <layer name="(C3) Background" width="48" height="128">
   <properties>
    <property name="bgmapMode" value="__WORLD_BGMAP"/>
-   <property name="class" value="StaticImage"/>
+   <property name="class" value="Entity"/>
    <property name="containerType" value="Composite"/>
    <property name="displacement.p" value="0"/>
    <property name="displacement.x" value="0"/>
@@ -247,7 +247,7 @@
  <layer name="(C2) Main Back" width="48" height="128">
   <properties>
    <property name="bgmapMode" value="__WORLD_BGMAP"/>
-   <property name="class" value="StaticImage"/>
+   <property name="class" value="Entity"/>
    <property name="containerType" value="Composite"/>
    <property name="displacement.p" value="0"/>
    <property name="displacement.x" value="0"/>
@@ -396,7 +396,7 @@
  <layer name="(C1) Main Walls" width="48" height="128">
   <properties>
    <property name="bgmapMode" value="__WORLD_BGMAP"/>
-   <property name="class" value="StaticImage"/>
+   <property name="class" value="Entity"/>
    <property name="containerType" value="Composite"/>
    <property name="displacement.p" value="0"/>
    <property name="displacement.x" value="0"/>

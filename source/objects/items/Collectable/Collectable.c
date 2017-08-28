@@ -41,7 +41,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Collectable, AnimatedInGameEntity);
+__CLASS_DEFINITION(Collectable, AnimatedEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -57,19 +57,16 @@ void Collectable_removeFromStage(Collectable this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Collectable, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Collectable, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Collectable, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Collectable, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void Collectable_constructor(Collectable this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Collectable_constructor(Collectable this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Collectable::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -97,7 +94,7 @@ bool Collectable_handleMessage(Collectable this, Telegram telegram)
 			SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
 
 			// set shape to inactive so no other hits with this item can occur
-			Shape_setActive(this->shape, false);
+			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
 
 			// additional action
 			__VIRTUAL_CALL(Collectable, collect, this);

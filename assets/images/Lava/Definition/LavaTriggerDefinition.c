@@ -24,8 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Entity.h>
 #include <LavaTrigger.h>
+#include <Cuboid.h>
 #include <macros.h>
 
 
@@ -33,38 +34,43 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef LAVA_TRIGGER_IG =
+ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 {
 	{
-		{
-			__TYPE(LavaTrigger),
-			NULL,
-		},
+		// shape
+		__TYPE(Cuboid),
 
-		// collision detection gap (up, down, left, right)
-		{0, 0, 0, 0},
+		// size (x, y, z)
+		{2 * 8, 12 * 8, 1 * 8},
 
-		// in game type
-		kLavaTrigger,
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		2 * 8,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		12 * 8,
-
-		// depth
-		1 * 8
+		// check for collisions against other shapes
+		false,
 	},
 
-	// friction
-	FTOFIX19_13(NO_FRICTION),
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
 
-	// elasticity
-	FTOFIX19_13(FLOOR_ELASTICITY),
+LavaTriggerROMDef LAVA_TRIGGER_IG =
+{
+	// class allocator
+	__TYPE(LavaTrigger),
 
-	// register shape
-	true,
+	// sprites
+	(SpriteROMDef**)NULL,
+
+	// collision shapes
+	(ShapeDefinition*)LAVA_TRIGGER_IG_SHAPES,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{4 * 8, 2 * 8, 4},
+
+	// gameworld's character's type
+	kLavaTrigger,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

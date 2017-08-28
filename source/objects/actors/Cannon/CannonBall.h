@@ -61,17 +61,20 @@ __CLASS(CannonBall);
 	Actor_ATTRIBUTES																					\
 
 
+typedef const ActorDefinition CannonBallDefinition;
+typedef const CannonBallDefinition CannonBallROMDef;
+
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(CannonBall, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(CannonBall, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name);
 
-void CannonBall_constructor(CannonBall this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name);
+void CannonBall_constructor(CannonBall this, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name);
 void CannonBall_destructor(CannonBall this);
 void CannonBall_ready(CannonBall this, bool recursive);
-int CannonBall_getAxisFreeForMovement(CannonBall this);
+u16 CannonBall_getAxisFreeForMovement(CannonBall this);
 void CannonBall_startMovement(CannonBall this);
 void CannonBall_stopMovement(CannonBall this);
 void CannonBall_checkPosition(CannonBall this);

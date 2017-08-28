@@ -25,6 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
+#include <Cuboid.h>
 #include "CannonBall.h"
 
 
@@ -101,7 +102,7 @@ TextureROMDef CANNON_BALL_TX =
 	3,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
+	{1, 1},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
@@ -148,29 +149,47 @@ BgmapSpriteROMDef* const CANNON_BALL_SPRITES[] =
 	NULL
 };
 
-ActorROMDef CANNON_BALL_AC =
+ShapeROMDef CANNON_BALL_AC_SHAPES[] =
+{
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{22, 22, 16},
+
+		// displacement (x, y, z)
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+
+		// check for collisions against other shapes
+		false,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+CannonBallROMDef CANNON_BALL_AC =
 {
 	{
 		{
-			{
-				__TYPE(CannonBall),
-				(SpriteROMDef**)CANNON_BALL_SPRITES,
-			},
+			// class allocator
+			__TYPE(CannonBall),
 
-			// collision detection gap (up, down, left, right)
-			{1, 1, 1, 1},
+			// sprites
+			(SpriteROMDef**)CANNON_BALL_SPRITES,
 
-			// in game type
+			// collision shapes
+			(ShapeDefinition*)CANNON_BALL_AC_SHAPES,
+
+			// size
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
+
+			// gameworld's character's type
 			kCannonBall,
 
-			// width
-			0,
-
-			// height
-			0,
-
-			// depth
-			1
+			// physical specification
+			(PhysicalSpecification*)NULL,
 		},
 
 		// pointer to the animation definition for the character
@@ -179,15 +198,6 @@ ActorROMDef CANNON_BALL_AC =
 		// initial animation
 		NULL
 	},
-
-	// friction for physics
-	ITOFIX19_13(0),
-
-	// elasticity for physics
-	ITOFIX19_13(0),
-
-	// mass
-	ITOFIX19_13(10)
 };
 
 PositionedEntityROMDef CANNON_BALL =

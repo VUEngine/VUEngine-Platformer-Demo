@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <PlatformerLevelState.h>
 #include <macros.h>
 
@@ -44,7 +44,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Door_METHODS(ClassName)																			\
-		AnimatedInGameEntity_METHODS(ClassName)															\
+		AnimatedEntity_METHODS(ClassName)															\
 		__VIRTUAL_DEC(ClassName, bool, hasDestination);													\
 		__VIRTUAL_DEC(ClassName, void, setOverlapping);													\
 		__VIRTUAL_DEC(ClassName, void, unsetOverlapping);												\
@@ -52,7 +52,7 @@
 		__VIRTUAL_DEC(ClassName, u32, getHintType);														\
 
 #define Door_SET_VTABLE(ClassName)																		\
-		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		AnimatedEntity_SET_VTABLE(ClassName)															\
 		__VIRTUAL_SET(ClassName, Door, setExtraInfo);													\
 		__VIRTUAL_SET(ClassName, Door, resume);															\
 		__VIRTUAL_SET(ClassName, Door, ready);															\
@@ -67,20 +67,24 @@ __CLASS(Door);
 
 #define Door_ATTRIBUTES																					\
 		/* it is derived from */																		\
-		AnimatedInGameEntity_ATTRIBUTES																	\
+		AnimatedEntity_ATTRIBUTES																		\
 		/* destination of door */																		\
 		StageEntryPointDefinition* destinationDefinition;												\
 		/* is door currently being overlapped by hero? */												\
 		bool currentlyOverlappingHero;																	\
 
 
+typedef const AnimatedEntityDefinition DoorDefinition;
+typedef const DoorDefinition DoorROMDef;
+
+
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Door, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Door, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Door_constructor(Door this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+void Door_constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 void Door_destructor(Door this);
 StageEntryPointDefinition* Door_getExtraInfo(Door this);
 void Door_setExtraInfo(Door this, void* extraInfo);

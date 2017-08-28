@@ -24,8 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <StaticImage.h>
-#include <InAnimatedInGameEntity.h>
+#include <Entity.h>
 #include <CogWheel.h>
 #include <macros.h>
 
@@ -120,8 +119,25 @@ BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =
 	NULL
 };
 
-StaticImageROMDef COG_WHEEL_IM =
+CogWheelROMDef COG_WHEEL_IM =
 {
+	// class allocator
 	__TYPE(CogWheel),
+
+	// sprites
 	(SpriteROMDef**)COG_WHEEL_BG_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kCannonBall,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
+
 };

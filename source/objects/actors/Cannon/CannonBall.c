@@ -48,22 +48,21 @@ __CLASS_DEFINITION(CannonBall, Actor);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CannonBall, ActorDefinition* definition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(CannonBall, definition, id, internalId, name);
+__CLASS_NEW_DEFINITION(CannonBall, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(CannonBall, cannonBallDefinition, id, internalId, name);
 
 // class's constructor
-void CannonBall_constructor(CannonBall this, ActorDefinition* definition, s16 id, s16 internalId, const char* const name)
+void CannonBall_constructor(CannonBall this, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "CannonBall::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, definition, id, internalId, name);
+	__CONSTRUCT_BASE(Actor, (ActorDefinition*)cannonBallDefinition, id, internalId, name);
 
-	// register a shape for collision detection
-	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	PhysicalSpecification* physicalSpecification = cannonBallDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification;
 
 	// register a body for physics
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), definition->mass);
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), physicalSpecification ? physicalSpecification->mass : 0);
 
 	// I start my life hidden
 	this->hidden = true;
@@ -87,13 +86,13 @@ void CannonBall_ready(CannonBall this, bool recursive)
 	ASSERT(this, "CannonBall::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(AnimatedInGameEntity, ready, this, recursive);
+	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
 
 	CannonBall_startMovement(this);
 }
 
 // retrieve axis free for movement
-int CannonBall_getAxisFreeForMovement(CannonBall this __attribute__ ((unused)))
+u16 CannonBall_getAxisFreeForMovement(CannonBall this __attribute__ ((unused)))
 {
 	return __Z_AXIS;
 }
@@ -115,7 +114,7 @@ void CannonBall_startMovement(CannonBall this)
 void CannonBall_stopMovement(CannonBall this)
 {
 	// stop movement
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this), false);
+	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 
 	// set back local position
 	VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};

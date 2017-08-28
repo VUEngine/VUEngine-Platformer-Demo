@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedInGameEntity.h>
+#include <AnimatedEntity.h>
 #include <macros.h>
 
 
@@ -44,10 +44,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Cannon_METHODS(ClassName)																		\
-		AnimatedInGameEntity_METHODS(ClassName)															\
+		AnimatedEntity_METHODS(ClassName)															\
 
 #define Cannon_SET_VTABLE(ClassName)																	\
-		AnimatedInGameEntity_SET_VTABLE(ClassName)														\
+		AnimatedEntity_SET_VTABLE(ClassName)														\
 		__VIRTUAL_SET(ClassName, Cannon, handleMessage);												\
 		__VIRTUAL_SET(ClassName, Cannon, ready);														\
 
@@ -55,16 +55,19 @@ __CLASS(Cannon);
 
 #define Cannon_ATTRIBUTES																				\
 		/* it is derived from */																		\
-		AnimatedInGameEntity_ATTRIBUTES																	\
+		AnimatedEntity_ATTRIBUTES																		\
+
+typedef const AnimatedEntityDefinition CannonDefinition;
+typedef const CannonDefinition CannonROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Cannon, AnimatedInGameEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Cannon, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Cannon_constructor(Cannon this, AnimatedInGameEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+void Cannon_constructor(Cannon this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 void Cannon_destructor(Cannon this);
 bool Cannon_handleMessage(Cannon this, Telegram telegram);
 void Cannon_ready(Cannon this, bool recursive);

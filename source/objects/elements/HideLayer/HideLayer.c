@@ -38,7 +38,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(HideLayer, AnimatedInGameEntity);
+__CLASS_DEFINITION(HideLayer, AnimatedEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,17 +53,14 @@ bool HideLayer_checkStillOverlapping(HideLayer this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(HideLayer, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(HideLayer, animatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(HideLayer, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(HideLayer, animatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void HideLayer_constructor(HideLayer this, AnimatedInGameEntityDefinition* animatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void HideLayer_constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedInGameEntity, animatedInGameEntityDefinition, id, internalId, name);
-
-	// register a shape for collision detection
-	this->shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), kCuboid);
+	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
 
 	// init class variables
 	this->currentlyOverlappingHero = false;
@@ -101,7 +98,7 @@ void HideLayer_setOverlapping(HideLayer this)
 {
 	this->currentlyOverlappingHero = true;
 
-	AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "ToTransparent");
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToTransparent");
 }
 
 void HideLayer_onToTransparentAnimationComplete(HideLayer this)
@@ -120,12 +117,12 @@ bool HideLayer_checkStillOverlapping(HideLayer this)
 	// check if hero has recently overlapped door and is still doing so
 	if(
 		this->currentlyOverlappingHero &&
-		!__VIRTUAL_CALL(Shape, overlaps, Entity_getShape(__SAFE_CAST(Entity, Hero_getInstance())), Entity_getShape(__SAFE_CAST(Entity, this)))
+		!__VIRTUAL_CALL(Shape, overlaps, VirtualList_front(Entity_getShapes(__SAFE_CAST(Entity, Hero_getInstance()))), VirtualList_front(this->shapes))
 	)
 	{
 		this->currentlyOverlappingHero = false;
 
-		AnimatedInGameEntity_playAnimation(__SAFE_CAST(AnimatedInGameEntity, this), "ToSolid");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToSolid");
 	}
 
 	return this->currentlyOverlappingHero;

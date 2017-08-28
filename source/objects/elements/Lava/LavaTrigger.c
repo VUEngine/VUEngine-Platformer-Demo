@@ -44,7 +44,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(LavaTrigger, InanimatedInGameEntity);
+__CLASS_DEFINITION(LavaTrigger, Entity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,14 +60,14 @@ void LavaTrigger_triggerEventEnd(LavaTrigger this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(LavaTrigger, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(LavaTrigger, inanimatedInGameEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(LavaTrigger, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(LavaTrigger, inanimatedEntityDefinition, id, internalId, name);
 
 // class's constructor
-void LavaTrigger_constructor(LavaTrigger this, InanimatedInGameEntityDefinition* inanimatedInGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void LavaTrigger_constructor(LavaTrigger this, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(InanimatedInGameEntity, inanimatedInGameEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Entity, inanimatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -115,7 +115,7 @@ void LavaTrigger_triggerEventStart(LavaTrigger this)
 	MessageDispatcher_dispatchMessage(3000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaTriggerEnd, NULL);
 
 	// deactivate shape so I won't get triggered again
-	Shape_setActive(this->shape, false);
+	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
 }
 
 void LavaTrigger_triggerEventEnd(LavaTrigger this)

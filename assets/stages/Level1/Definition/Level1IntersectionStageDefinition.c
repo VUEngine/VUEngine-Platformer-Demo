@@ -38,14 +38,14 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-const VBVec3D level1_intersection_stage_collision_112_128_8 = {112, 128, 8};
-const VBVec3D level1_intersection_stage_collision_16_48_8 = {16, 48, 8};
-const VBVec3D level1_intersection_stage_collision_224_16_8 = {224, 16, 8};
-const VBVec3D level1_intersection_stage_collision_224_64_8 = {224, 64, 8};
-const VBVec3D level1_intersection_stage_collision_272_16_8 = {272, 16, 8};
-const VBVec3D level1_intersection_stage_collision_32_64_8 = {32, 64, 8};
-const VBVec3D level1_intersection_stage_collision_48_32_8 = {48, 32, 8};
-const VBVec3D level1_intersection_stage_collision_48_34_8 = {48, 34, 8};
+const Size level1_intersection_stage_collision_112_128_8 = {112, 128, 8};
+const Size level1_intersection_stage_collision_16_48_8 = {16, 48, 8};
+const Size level1_intersection_stage_collision_224_16_8 = {224, 16, 8};
+const Size level1_intersection_stage_collision_224_64_8 = {224, 64, 8};
+const Size level1_intersection_stage_collision_272_16_8 = {272, 16, 8};
+const Size level1_intersection_stage_collision_32_64_8 = {32, 64, 8};
+const Size level1_intersection_stage_collision_48_32_8 = {48, 32, 8};
+const Size level1_intersection_stage_collision_48_34_8 = {48, 34, 8};
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
@@ -245,7 +245,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 		},
 
-		// obj segments z coordinates
+		// OBJECT segments z coordinates
 		// note that each spt's z coordinate much be larger than or equal to the previous one's,
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
@@ -352,7 +352,7 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_LOWER_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},
@@ -371,7 +371,7 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(16),
+		FTOFIX19_13(19),
 		FTOFIX19_13(0),
 		FTOFIX19_13(-SORT_INCREMENT),
 	},

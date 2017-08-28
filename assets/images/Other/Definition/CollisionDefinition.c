@@ -24,8 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <InanimatedInGameEntity.h>
+#include <Entity.h>
 #include <Collision.h>
+#include <Body.h>
 #include <macros.h>
 
 
@@ -33,38 +34,36 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-InanimatedInGameEntityROMDef COLLISION_CL =
+PhysicalSpecificationROMDef COLLISION_CL_PHYSICAL_PROPERTIES =
 {
-	{
-		{
-			__TYPE(Collision),
-			NULL,
-		},
-
-		// collision detection gap (up, down, left, right)
-		{1, 1, 1, 1},
-
-		// in game type
-		kSolid,
-
-		// width
-		// if 0, width and height will be inferred from the texture's size
-		64,
-
-		// height
-		// if 0, width and height will be inferred from the texture's size
-		64,
-
-		// depth
-		64
-	},
+	// mass
+	FTOFIX19_13(0),
 
 	// friction
 	FTOFIX19_13(FLOOR_FRICTION),
 
 	// elasticity
 	FTOFIX19_13(FLOOR_ELASTICITY),
+};
 
-	// register shape
-	false,
+CollisionROMDef COLLISION_CL =
+{
+	// class allocator
+	__TYPE(Collision),
+
+	// sprites
+	(SpriteROMDef**)NULL,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{1, 1, 1},
+
+	// gameworld's character's type
+	kSolid,
+
+	// physical specification
+	(PhysicalSpecification*)&COLLISION_CL_PHYSICAL_PROPERTIES,
 };

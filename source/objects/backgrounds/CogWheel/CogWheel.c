@@ -39,7 +39,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(CogWheel, StaticImage);
+__CLASS_DEFINITION(CogWheel, Entity);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,14 +56,14 @@ static void CogWheel_stop(CogWheel this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CogWheel, StaticImageDefinition* StaticImageDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(CogWheel, StaticImageDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(CogWheel, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(CogWheel, EntityDefinition, id, internalId, name);
 
 // class's constructor
-void CogWheel_constructor(CogWheel this, StaticImageDefinition* StaticImageDefinition, s16 id, s16 internalId, const char* const name)
+void CogWheel_constructor(CogWheel this, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(StaticImage, StaticImageDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Entity, EntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -83,7 +83,7 @@ void CogWheel_ready(CogWheel this, bool recursive)
 	ASSERT(this, "CogWheel::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(StaticImage, ready, this, recursive);
+	__CALL_BASE_METHOD(Entity, ready, this, recursive);
 
 	// start moving
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
