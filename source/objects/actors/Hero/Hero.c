@@ -211,7 +211,7 @@ void Hero_ready(Hero this, bool recursive)
 
 SpatialObject CollisionManager_searchNextObjectOfCollision(CollisionManager this, const Shape shape, VBVec3D direction);
 
-void Hero_locateOverNextFloor(Hero this)
+void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 {
 /*	VBVec3D direction = {0, 1, 0};
 
