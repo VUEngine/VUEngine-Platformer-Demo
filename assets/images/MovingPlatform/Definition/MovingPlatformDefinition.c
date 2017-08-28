@@ -152,7 +152,7 @@ BgmapSpriteROMDef* const MOVING_PLATFORM_SPRITES[] =
 ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 {
 	// type, size, displacement
-	{__TYPE(Cuboid), {30, 14, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
+	{__TYPE(Cuboid), {30, 16, 16}, {ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)}, false},
 	{NULL, {0, 0, 0}, {0, 0, 0}, false}
 };
 
