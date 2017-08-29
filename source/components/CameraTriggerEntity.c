@@ -94,6 +94,8 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 	}
 
 	Entity_setShapesPosition(__SAFE_CAST(Entity, this), true);
+
+//	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)

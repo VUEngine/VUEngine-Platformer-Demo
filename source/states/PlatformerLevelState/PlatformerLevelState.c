@@ -221,10 +221,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 				// make sure that the streaming doesn't load the hero again
 				Stage_registerEntityId(this->stage, Entity_getInternalId(__SAFE_CAST(Entity, hero)), &HERO_AC);
 			}
-			else
-			{
-				Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
-			}
+
+			// set hero's position
+			Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
 
 			Object_addEventListener(__SAFE_CAST(Object, hero), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroStreamedOut, kStageChildStreamedOut);
 

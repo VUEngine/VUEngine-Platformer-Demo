@@ -358,7 +358,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CLOUDS_IM,					{FTOFIX19_13(0),	FTOFIX19_13(198), 	FTOFIX19_13(LAYER_4)},					0, NULL, NULL, NULL, true},
 	{&MOUND_BG_FRONT_IM,			{FTOFIX19_13(0),	FTOFIX19_13(212), 	FTOFIX19_13(LAYER_3)},					0, NULL, NULL, NULL, true},
 
-	{&HERO_AC,						{FTOFIX19_13(56),	FTOFIX19_13(288), 	FTOFIX19_13(LAYER_0_FOREGROUND)},		0, HERO_NAME, NULL, NULL, true},
+	{&HERO_AC,						{FTOFIX19_13(56),	FTOFIX19_13(288), 	FTOFIX19_13(LAYER_0_FOREGROUND)},		0, HERO_NAME, NULL, NULL, false},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
