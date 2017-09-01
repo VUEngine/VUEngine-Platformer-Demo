@@ -67,7 +67,7 @@ void Key_destructor(Key this)
 	ASSERT(this, "Key::destructor: null this");
 
 	// remove post processing effect
-	Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	//Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -82,7 +82,7 @@ void Key_ready(Key this, bool recursive)
 	__CALL_BASE_METHOD(Item, ready, this, recursive);
 
 	// add post processing effect to make key emit rhombuses
-	Game_pushBackProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	//Game_pushBackProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
 void Key_collect(Key this)
@@ -103,7 +103,7 @@ void Key_suspend(Key this)
 	__CALL_BASE_METHOD(Item, suspend, this);
 
 	// remove post processing effect
-	Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	//Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
 void Key_resume(Key this)
@@ -113,5 +113,5 @@ void Key_resume(Key this)
 	__CALL_BASE_METHOD(Item, resume, this);
 
 	// add post processing effect to make key emit rhombuses
-	Game_pushBackProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	//Game_pushBackProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
