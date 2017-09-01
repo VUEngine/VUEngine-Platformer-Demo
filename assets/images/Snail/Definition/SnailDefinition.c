@@ -154,10 +154,10 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 		__TYPE(Cuboid),
 
 		// size (x, y, z)
-		{20, 12, 16},
+		{14, 8, 16},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{ITOFIX19_13(0), ITOFIX19_13(2), ITOFIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,
