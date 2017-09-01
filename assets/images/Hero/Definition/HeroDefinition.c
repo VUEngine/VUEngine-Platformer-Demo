@@ -551,7 +551,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		{14, 20, 16},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(-1), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
 
 		// check for collisions against other shapes
 		true,
