@@ -194,7 +194,7 @@ static void CustomScreenEffectManager_FXShakeStart(CustomScreenEffectManager thi
 	// set desired fx duration
 	this->shakeTimeLeft = duration;
 
-	this->lastShakeOffset.x = ITOFIX19_13(4);
+	this->lastShakeOffset.x = __I_TO_FIX19_13(4);
 
 	// discard pending messages from previously started fx
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kShake);

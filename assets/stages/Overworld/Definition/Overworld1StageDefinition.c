@@ -48,25 +48,25 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef OVERWORLD1_STAGE_ST_ENTITIES[] =
 {
-	{&WATER_A_AG, {FTOFIX19_13(26), FTOFIX19_13(86), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_AG, {FTOFIX19_13(70), FTOFIX19_13(18), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_AG, {FTOFIX19_13(74), FTOFIX19_13(176), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&FLOWER_A_AG, {FTOFIX19_13(124), FTOFIX19_13(118), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {FTOFIX19_13(130), FTOFIX19_13(82), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {FTOFIX19_13(156), FTOFIX19_13(200), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&HERO_IDLE_AG, {FTOFIX19_13(160), FTOFIX19_13(92), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
-	{&OVERWORLD_1_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
-	{&FLOWER_A_AG, {FTOFIX19_13(218), FTOFIX19_13(168), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&SMOKE_PS, {FTOFIX19_13(222.5), FTOFIX19_13(48), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Smoke
-	{&FLOWER_A_AG, {FTOFIX19_13(226), FTOFIX19_13(132), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {FTOFIX19_13(290), FTOFIX19_13(136), FTOFIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&WATER_A_AG, {__F_TO_FIX19_13(26), __F_TO_FIX19_13(86), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
+	{&WATER_A_AG, {__F_TO_FIX19_13(70), __F_TO_FIX19_13(18), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
+	{&WATER_A_AG, {__F_TO_FIX19_13(74), __F_TO_FIX19_13(176), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
+	{&FLOWER_A_AG, {__F_TO_FIX19_13(124), __F_TO_FIX19_13(118), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {__F_TO_FIX19_13(130), __F_TO_FIX19_13(82), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {__F_TO_FIX19_13(156), __F_TO_FIX19_13(200), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&HERO_IDLE_AG, {__F_TO_FIX19_13(160), __F_TO_FIX19_13(92), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
+	{&OVERWORLD_1_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(112), __F_TO_FIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
+	{&FLOWER_A_AG, {__F_TO_FIX19_13(218), __F_TO_FIX19_13(168), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&SMOKE_PS, {__F_TO_FIX19_13(222.5), __F_TO_FIX19_13(48), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Smoke
+	{&FLOWER_A_AG, {__F_TO_FIX19_13(226), __F_TO_FIX19_13(132), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {__F_TO_FIX19_13(290), __F_TO_FIX19_13(136), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_OVERWORLD_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_OVERWORLD_AG, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(216), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -106,11 +106,11 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		// screen's initial position inside the game world
 		{
 			// x
-			ITOFIX19_13(0),
+			__I_TO_FIX19_13(0),
 			// y
-			ITOFIX19_13(0),
+			__I_TO_FIX19_13(0),
 			// z
-			ITOFIX19_13(0),
+			__I_TO_FIX19_13(0),
 		},
 	},
 
@@ -203,13 +203,13 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			FTOFIX19_13(LAYER_0 - 1),
+			__F_TO_FIX19_13(LAYER_0 - 1),
 			// __spt1
-			FTOFIX19_13(LAYER_0 - 1),
+			__F_TO_FIX19_13(LAYER_0 - 1),
 			// __spt2
-			FTOFIX19_13(LAYER_0 - 1),
+			__F_TO_FIX19_13(LAYER_0 - 1),
 			// __spt3
-			FTOFIX19_13(LAYER_0 - 1),
+			__F_TO_FIX19_13(LAYER_0 - 1),
 		},
 
 		// optical configuration values
@@ -217,13 +217,13 @@ StageROMDef OVERWORLD1_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			ITOFIX19_13(__DISTANCE_EYE_SCREEN),
+			__I_TO_FIX19_13(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			ITOFIX19_13(__BASE_FACTOR),
+			__I_TO_FIX19_13(__BASE_FACTOR),
 			// horizontal view point center
-			ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+			__I_TO_FIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
-			ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+			__I_TO_FIX19_13(__VERTICAL_VIEW_POINT_CENTER),
 		},
 	},
 
@@ -231,13 +231,13 @@ StageROMDef OVERWORLD1_STAGE_ST =
 	{
 		// gravity
 		{
-			ITOFIX19_13(0),
-			ITOFIX19_13(__GRAVITY),
-			ITOFIX19_13(0)
+			__I_TO_FIX19_13(0),
+			__I_TO_FIX19_13(__GRAVITY),
+			__I_TO_FIX19_13(0)
 		},
 
 		// friction
-		FTOFIX19_13(0.1f),
+		__F_TO_FIX19_13(0.1f),
 	},
 
 	// assets

@@ -185,8 +185,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			// focus screen on new position
 			VBVec3D screenPosition =
 			{
-				initialPosition->x - ITOFIX19_13(__HALF_SCREEN_WIDTH),
-				initialPosition->y - ITOFIX19_13(__HALF_SCREEN_HEIGHT),
+				initialPosition->x - __I_TO_FIX19_13(__HALF_SCREEN_WIDTH),
+				initialPosition->y - __I_TO_FIX19_13(__HALF_SCREEN_HEIGHT),
 				initialPosition->z
 			};
 
@@ -236,7 +236,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 			// set focus on the hero
 			Screen_setFocusGameEntity(Screen_getInstance(), __SAFE_CAST(Entity, hero));
-			VBVec3D screenDisplacement = {ITOFIX19_13(50), ITOFIX19_13(-30), 0};
+			VBVec3D screenDisplacement = {__I_TO_FIX19_13(50), __I_TO_FIX19_13(-30), 0};
 			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 			// apply changes to the visuals

@@ -148,7 +148,7 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 
 	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onUserInput, kEventUserInput);
 
-	this->inputDirection = this->direction;
+	this->inputDirection = Entity_getDirection(__SAFE_CAST(Entity, this));
 }
 
 // class's destructor
@@ -225,9 +225,9 @@ void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 
 		VBVec3D displacement =
 		{
-			ITOFIX19_13(0),
+			__I_TO_FIX19_13(0),
 			__1I_FIX19_13,
-			ITOFIX19_13(0),
+			__I_TO_FIX19_13(0),
 		};
 
 		CollisionSolver_resolveCollision(this->collisionSolver, VirtualList_front(this->shapes), collidingShapesToRemove, displacement, true);
@@ -333,7 +333,9 @@ void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 
 	Velocity velocity = Body_getVelocity(this->body);
 
-	if(this->direction.x != this->inputDirection.x ||
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
+
+	if(direction.x != this->inputDirection.x ||
 		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
 		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
 		Actor_changedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
@@ -552,6 +554,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 	ASSERT(this, "Hero::checkDirection: null this");
 
 	bool movementState = Body_getMovementOverAllAxis(this->body);
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
 
 	Hero_hideDust(this);
 
@@ -580,7 +583,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 		this->inputDirection.z = __NEAR;
 	}
 
-	if(this->direction.x != this->inputDirection.x)
+	if(direction.x != this->inputDirection.x)
 	{
 		Hero_lockCameraTriggerMovement(this, __X_AXIS, true);
 	}
@@ -830,7 +833,7 @@ void Hero_enterDoor(Hero this)
 	// move towards door
 	/*
 	Body_setAxisSubjectToGravity(this->body, 0);
-	Velocity velocity = {0, 0, ITOFIX19_13(8)};
+	Velocity velocity = {0, 0, __I_TO_FIX19_13(8)};
 	Body_moveUniformly(this->body, velocity);
 	*/
 
@@ -854,7 +857,7 @@ static void Hero_addHint(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
-	VBVec3D position = {0, 0, FTOFIX19_13(-1)};
+	VBVec3D position = {0, 0, __F_TO_FIX19_13(-1)};
 
 	// save the hint entity, so we can remove it later
 	this->hint = Entity_addChildEntity(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
@@ -866,7 +869,7 @@ static void Hero_addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
 
-	VBVec3D position = {FTOFIX19_13(-6), FTOFIX19_13(10), FTOFIX19_13(-2)};
+	VBVec3D position = {__F_TO_FIX19_13(-6), __F_TO_FIX19_13(10), __F_TO_FIX19_13(-2)};
 
 	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
@@ -1466,4 +1469,26 @@ bool Hero_isAffectedByRelativity(Hero this __attribute__ ((unused)))
 	ASSERT(this, "Hero::isAffectedByRelativity: null this");
 
 	return true;
+}
+
+void Hero_syncRotationWithBody(Hero this)
+{
+	ASSERT(this, "Hero::syncRotationWithBody: null this");
+
+	if(__X_AXIS & Body_getMovementOverAllAxis(this->body))
+	{
+		Velocity velocity = Body_getVelocity(this->body);
+
+		Direction direction =
+		{
+			__RIGHT, __DOWN, __FAR
+		};
+
+		if(0 > velocity.x)
+		{
+			direction.x = __LEFT;
+		}
+
+		Entity_setDirection(__SAFE_CAST(Entity, this), direction);
+	}
 }

@@ -97,7 +97,7 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_IM_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, FTOFIX19_13(2), 0},
+		{0, 0, __F_TO_FIX19_13(2), 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

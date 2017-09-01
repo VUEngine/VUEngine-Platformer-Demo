@@ -55,17 +55,17 @@ enum HeroPowerUps
 #define HERO_FLASH_DURATION					2000
 #define HERO_FLASH_INTERVAL					100
 
-#define HERO_INPUT_FORCE 					ITOFIX19_13(5050)
-#define HERO_X_INPUT_FORCE_WHILE_JUMPING	ITOFIX19_13(3050)
+#define HERO_INPUT_FORCE 					__I_TO_FIX19_13(5050)
+#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX19_13(3050)
 
-#define HERO_MAX_VELOCITY_X					ITOFIX19_13(75)
-#define HERO_MAX_VELOCITY_Y					ITOFIX19_13(305)
-#define HERO_MAX_VELOCITY_Z					ITOFIX19_13(40)
-#define HERO_BOOST_VELOCITY_X				FTOFIX19_13(100)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		ITOFIX19_13(-25000)
-#define HERO_BOOST_JUMP_INPUT_FORCE			ITOFIX19_13(-30000)
+#define HERO_MAX_VELOCITY_X					__I_TO_FIX19_13(75)
+#define HERO_MAX_VELOCITY_Y					__I_TO_FIX19_13(305)
+#define HERO_MAX_VELOCITY_Z					__I_TO_FIX19_13(40)
+#define HERO_BOOST_VELOCITY_X				__F_TO_FIX19_13(100)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-25000)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-30000)
 
-#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{ITOFIX19_13(0), ITOFIX19_13(-24), 0}
+#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-24), 0}
 
 #define HERO_CHECK_Y_VELOCITY				20
 
@@ -90,6 +90,7 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
 		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
 		__VIRTUAL_SET(ClassName, Hero, processCollision);												\
+		__VIRTUAL_SET(ClassName, Hero, syncRotationWithBody);											\
 
 __CLASS(Hero);
 
@@ -182,6 +183,7 @@ u16 Hero_getAxisForFlipping(Hero this);
 void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
 void Hero_capVelocity(Hero this, bool discardPreviousMessages);
 bool Hero_isAffectedByRelativity(Hero this);
+void Hero_syncRotationWithBody(Hero this);
 
 
 #endif

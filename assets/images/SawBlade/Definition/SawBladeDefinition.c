@@ -159,7 +159,7 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 		{16, 16, 16},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,
@@ -202,10 +202,10 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(50),
+	__I_TO_FIX19_13(50),
 
 	// maximum deviation from initial position
-	ITOFIX19_13(3 * 8),
+	__I_TO_FIX19_13(3 * 8),
 
 	// time to rest idle
 	750,
@@ -251,10 +251,10 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(50),
+	__I_TO_FIX19_13(50),
 
 	// maximum deviation from initial position
-	ITOFIX19_13(3 * 8),
+	__I_TO_FIX19_13(3 * 8),
 
 	// time to rest idle
 	0,
@@ -300,10 +300,10 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(50),
+	__I_TO_FIX19_13(50),
 
 	// maximum deviation from initial position
-	ITOFIX19_13(8 * 8),
+	__I_TO_FIX19_13(8 * 8),
 
 	// time to rest idle
 	0,

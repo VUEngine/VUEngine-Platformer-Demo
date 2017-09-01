@@ -63,27 +63,27 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {FTOFIX19_13(120), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
-	{&KEY_DOOR_AG, {FTOFIX19_13(148), FTOFIX19_13(144), FTOFIX19_13(LAYER_0_DOORS)}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
-	{&HERO_AC, {FTOFIX19_13(163), FTOFIX19_13(148), FTOFIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
-	{&CLOCK_AG, {FTOFIX19_13(180), FTOFIX19_13(128), FTOFIX19_13(LAYER_0 + 24)}, 0, NULL, NULL, NULL, false}, // Clock
-	{&LEVEL_1_HOUSE_MAIN_IM, {FTOFIX19_13(192), FTOFIX19_13(112), FTOFIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // House Background
-	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(168), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
-	{&COLLISION_CL, {FTOFIX19_13(192), FTOFIX19_13(88), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
-	{&CLOUDS_IM, {FTOFIX19_13(194), FTOFIX19_13(149), FTOFIX19_13(LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&LEVEL_1_HOUSE_LIGHT_IM, {FTOFIX19_13(196), FTOFIX19_13(140), FTOFIX19_13(LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
-	{&COIN_AG, {FTOFIX19_13(204), FTOFIX19_13(146), FTOFIX19_13(LAYER_0_ITEMS)}, 26, NULL, NULL, NULL, false}, // Coin
-	{&FIRE_SMALL_AG, {FTOFIX19_13(240), FTOFIX19_13(155), FTOFIX19_13(12)}, 0, NULL, NULL, NULL, false}, // Fire
-	{&COLLISION_TOP_CL, {FTOFIX19_13(240), FTOFIX19_13(152), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
-	{&MOUND_BG_BACK_IM, {FTOFIX19_13(255), FTOFIX19_13(80), FTOFIX19_13(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&COLLISION_CL, {FTOFIX19_13(264), FTOFIX19_13(128), FTOFIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
+	{&COLLISION_CL, {__F_TO_FIX19_13(120), __F_TO_FIX19_13(128), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
+	{&KEY_DOOR_AG, {__F_TO_FIX19_13(148), __F_TO_FIX19_13(144), __F_TO_FIX19_13(LAYER_0_DOORS)}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
+	{&HERO_AC, {__F_TO_FIX19_13(163), __F_TO_FIX19_13(148), __F_TO_FIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
+	{&CLOCK_AG, {__F_TO_FIX19_13(180), __F_TO_FIX19_13(128), __F_TO_FIX19_13(LAYER_0 + 24)}, 0, NULL, NULL, NULL, false}, // Clock
+	{&LEVEL_1_HOUSE_MAIN_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(112), __F_TO_FIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // House Background
+	{&COLLISION_CL, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(168), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
+	{&COLLISION_CL, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(88), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
+	{&CLOUDS_IM, {__F_TO_FIX19_13(194), __F_TO_FIX19_13(149), __F_TO_FIX19_13(LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
+	{&LEVEL_1_HOUSE_LIGHT_IM, {__F_TO_FIX19_13(196), __F_TO_FIX19_13(140), __F_TO_FIX19_13(LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
+	{&COIN_AG, {__F_TO_FIX19_13(204), __F_TO_FIX19_13(146), __F_TO_FIX19_13(LAYER_0_ITEMS)}, 26, NULL, NULL, NULL, false}, // Coin
+	{&FIRE_SMALL_AG, {__F_TO_FIX19_13(240), __F_TO_FIX19_13(155), __F_TO_FIX19_13(12)}, 0, NULL, NULL, NULL, false}, // Fire
+	{&COLLISION_TOP_CL, {__F_TO_FIX19_13(240), __F_TO_FIX19_13(152), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
+	{&MOUND_BG_BACK_IM, {__F_TO_FIX19_13(255), __F_TO_FIX19_13(80), __F_TO_FIX19_13(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
+	{&COLLISION_CL, {__F_TO_FIX19_13(264), __F_TO_FIX19_13(128), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {FTOFIX19_13(192), FTOFIX19_13(216), FTOFIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_AG, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(216), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -130,11 +130,11 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		// screen's initial position inside the game world
 		{
 			// x
-			ITOFIX19_13(0),
+			__I_TO_FIX19_13(0),
 			// y
-			ITOFIX19_13(0),
+			__I_TO_FIX19_13(0),
 			// z
-			ITOFIX19_13(0),
+			__I_TO_FIX19_13(0),
 		},
 	},
 
@@ -227,13 +227,13 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			FTOFIX19_13(0),
+			__F_TO_FIX19_13(0),
 			// __spt1
-			FTOFIX19_13(0),
+			__F_TO_FIX19_13(0),
 			// __spt2
-			FTOFIX19_13(0),
+			__F_TO_FIX19_13(0),
 			// __spt3
-			FTOFIX19_13(0),
+			__F_TO_FIX19_13(0),
 		},
 
 		// optical configuration values
@@ -241,13 +241,13 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			ITOFIX19_13(__DISTANCE_EYE_SCREEN),
+			__I_TO_FIX19_13(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			ITOFIX19_13(__BASE_FACTOR),
+			__I_TO_FIX19_13(__BASE_FACTOR),
 			// horizontal view point center
-			ITOFIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+			__I_TO_FIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
-			ITOFIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+			__I_TO_FIX19_13(__VERTICAL_VIEW_POINT_CENTER),
 		},
 	},
 
@@ -255,13 +255,13 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 	{
 		// gravity
 		{
-			ITOFIX19_13(0),
-			ITOFIX19_13(__GRAVITY),
-			ITOFIX19_13(0)
+			__I_TO_FIX19_13(0),
+			__I_TO_FIX19_13(__GRAVITY),
+			__I_TO_FIX19_13(0)
 		},
 
 		// friction
-		FTOFIX19_13(0.1f),
+		__F_TO_FIX19_13(0.1f),
 	},
 
 	// assets
@@ -310,9 +310,9 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		FTOFIX19_13(19),
-		FTOFIX19_13(0),
-		FTOFIX19_13(-SORT_INCREMENT),
+		__F_TO_FIX19_13(19),
+		__F_TO_FIX19_13(0),
+		__F_TO_FIX19_13(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint

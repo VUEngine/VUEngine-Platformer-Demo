@@ -374,7 +374,7 @@ ShapeROMDef COIN_SHAPES[] =
 		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,
@@ -519,7 +519,7 @@ ShapeROMDef COIN_BACK_SHAPES[] =
 		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,

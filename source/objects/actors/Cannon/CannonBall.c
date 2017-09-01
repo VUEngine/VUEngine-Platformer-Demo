@@ -100,7 +100,7 @@ u16 CannonBall_getAxisFreeForMovement(CannonBall this __attribute__ ((unused)))
 // start moving
 void CannonBall_startMovement(CannonBall this)
 {
-	Velocity velocity = {0, 0, ITOFIX19_13(-128)};
+	Velocity velocity = {0, 0, __I_TO_FIX19_13(-128)};
 
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
@@ -117,7 +117,7 @@ void CannonBall_stopMovement(CannonBall this)
 	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 
 	// set back local position
-	VBVec3D position = {0, 0, FTOFIX19_13(-SORT_INCREMENT)};
+	VBVec3D position = {0, 0, __F_TO_FIX19_13(-SORT_INCREMENT)};
 	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
 
 	// hide me
@@ -126,7 +126,7 @@ void CannonBall_stopMovement(CannonBall this)
 
 static void CannonBall_checkIfDistanceTraveled(CannonBall this)
 {
-	if(this->transform.globalPosition.z <= ITOFIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
+	if(this->transform.globalPosition.z <= __I_TO_FIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
 	{
 		// set state to idle
 		CannonBall_stopMovement(this);

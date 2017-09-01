@@ -166,10 +166,10 @@ ParticleROMDef TEST_PARTICLE =
 	1500,
 
 	// particle's minimum mass
-	FTOFIX19_13(5.0f),
+	__F_TO_FIX19_13(5.0f),
 
 	// particle's maximum mass
-	FTOFIX19_13(10.0f),
+	__F_TO_FIX19_13(10.0f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__Y_AXIS,
@@ -229,10 +229,10 @@ ParticleSystemROMDef TEST_PS =
 	(ParticleDefinition*)&TEST_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)

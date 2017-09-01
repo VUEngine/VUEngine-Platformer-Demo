@@ -91,7 +91,7 @@ void CogWheel_ready(CogWheel this, bool recursive)
 	// listen for the shake end event
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
 
-	this->transform.localScale = (Scale){FTOFIX7_9(0.35f), FTOFIX7_9(0.35f)};
+	this->transform.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
 }
 
 // state's handle message

@@ -235,7 +235,7 @@ ShapeROMDef HIDE_LAYER_10x7_AG_SHAPES[] =
 		{80, 56, 16},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,

@@ -134,7 +134,7 @@ BgmapSpriteROMDef WATERFALL_STREAM_2x28_SPRITE =
 		{
 			0,
 			0,
-			FTOFIX19_13(-1),
+			__F_TO_FIX19_13(-1),
 			0
 		},
 	},

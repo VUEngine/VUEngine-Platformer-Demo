@@ -129,7 +129,7 @@ BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
 		false,
 
 		// displacement
-		{0, ITOFIX19_13(-4), 0, 0},
+		{0, __I_TO_FIX19_13(-4), 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -159,7 +159,7 @@ ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 		{30, 16, 16},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,
@@ -171,13 +171,13 @@ ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 PhysicalSpecificationROMDef MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES =
 {
 	// mass
-	FTOFIX19_13(0),
+	__F_TO_FIX19_13(0),
 
 	// friction
-	FTOFIX19_13(FLOOR_FRICTION),
+	__F_TO_FIX19_13(FLOOR_FRICTION),
 
 	// elasticity
-	FTOFIX19_13(FLOOR_ELASTICITY),
+	__F_TO_FIX19_13(FLOOR_ELASTICITY),
 };
 
 MovingEntityROMDef MOVING_PLATFORM_V6_AC =
@@ -214,10 +214,10 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(48),
+	__I_TO_FIX19_13(48),
 
 	// maximum deviation from initial position
-	ITOFIX19_13(48),
+	__I_TO_FIX19_13(48),
 
 	// time to rest idle
 	1000,

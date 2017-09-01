@@ -62,7 +62,7 @@ const u8 WATER_POND_WAVE_LUT[] =
 #define WATER_POND_HEIGHT 				32
 #define WATER_POND_REFLECTION_WIDTH		WATER_POND_WIDTH
 #define WATER_POND_REFLECTION_HEIGHT	12
-#define WAVING_THROTTLE					FTOFIX19_13(0.8f)
+#define WAVING_THROTTLE					__F_TO_FIX19_13(0.8f)
 
 ShapeROMDef WATER_POND_EN_SHAPES[] =
 {
@@ -74,7 +74,7 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 		{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,
@@ -86,13 +86,13 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 PhysicalSpecificationROMDef WATER_POND_EN_PHYSICAL_PROPERTIES =
 {
 	// mass
-	FTOFIX19_13(0),
+	__F_TO_FIX19_13(0),
 
 	// friction
-	FTOFIX19_13(FLOOR_FRICTION * 2),
+	__F_TO_FIX19_13(FLOOR_FRICTION * 2),
 
 	// elasticity
-	FTOFIX19_13(FLOOR_ELASTICITY),
+	__F_TO_FIX19_13(FLOOR_ELASTICITY),
 };
 
 WaterPondROMDef WATER_POND_EN =
@@ -173,7 +173,7 @@ WaterPondROMDef WATER_POND_EN =
 	},
 
 	// throttle increment
-	FTOFIX19_13(0.5f),
+	__F_TO_FIX19_13(0.5f),
 
 	// throttle increment duration
 	1500,
@@ -185,5 +185,5 @@ WaterPondROMDef WATER_POND_EN =
 	2,
 
 	// wave amplitude factor
-	FTOFIX19_13(1.5f),
+	__F_TO_FIX19_13(1.5f),
 };

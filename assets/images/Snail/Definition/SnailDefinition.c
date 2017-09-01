@@ -157,7 +157,7 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 		{14, 8, 16},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(2), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(2), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,
@@ -200,10 +200,10 @@ MovingEntityROMDef SNAIL_3_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(20),
+	__I_TO_FIX19_13(20),
 
 	// maximum deviation from initial position
-	ITOFIX19_13(3 * 8),
+	__I_TO_FIX19_13(3 * 8),
 
 	// time to rest idle
 	3000,
@@ -249,10 +249,10 @@ MovingEntityROMDef SNAIL_8_AC =
 	},
 
 	// velocity
-	ITOFIX19_13(20),
+	__I_TO_FIX19_13(20),
 
 	// maximum deviation from initial position
-	ITOFIX19_13(8 * 8),
+	__I_TO_FIX19_13(8 * 8),
 
 	// time to rest idle
 	3000,

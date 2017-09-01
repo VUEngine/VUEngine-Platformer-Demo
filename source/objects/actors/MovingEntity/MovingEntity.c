@@ -69,18 +69,25 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 
 	this->initialPosition = 0;
 
+	Direction direction =
+	{
+		__RIGHT, __DOWN, __FAR
+	};
+
 	switch(this->movingEntityDefinition->axis)
 	{
 		case __X_AXIS:
 
-			this->direction.x = this->movingEntityDefinition->direction;
+			direction.x = this->movingEntityDefinition->direction;
 			break;
 
 		case __Y_AXIS:
 
-			this->direction.y = this->movingEntityDefinition->direction;
+			direction.y = this->movingEntityDefinition->direction;
 			break;
 	}
+
+	Entity_setDirection(__SAFE_CAST(Entity, this), direction);
 }
 
 // class's constructor
@@ -130,6 +137,8 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 {
 	ASSERT(this, "MovingEntity::handleMessage: null this");
 
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
+
 	switch(Telegram_getMessage(telegram))
 	{
 		case kMovingEntityCheckDirection:
@@ -147,11 +156,11 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 				switch(this->movingEntityDefinition->axis)
 				{
 					case __X_AXIS:
-						position.x = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * this->direction.x;
+						position.x = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * direction.x;
 						break;
 
 					case __Y_AXIS:
-						position.y = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * this->direction.y;
+						position.y = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * direction.y;
 						break;
 				}
 
@@ -244,27 +253,29 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 // start moving
 void MovingEntity_startMovement(MovingEntity this)
 {
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
+
 	switch(this->movingEntityDefinition->axis)
 	{
 		case __X_AXIS:
 
-			switch(this->direction.x)
+			switch(direction.x)
 			{
 				case __LEFT:
 
-					this->direction.x = __RIGHT;
+					direction.x = __RIGHT;
 					break;
 
 				case __RIGHT:
 
-					this->direction.x = __LEFT;
+					direction.x = __LEFT;
 					break;
 			}
 
 			{
 				Velocity velocity =
 				{
-					((int)this->movingEntityDefinition->velocity * this->direction.x),
+					((int)this->movingEntityDefinition->velocity * direction.x),
 					0,
 					0,
 				};
@@ -275,16 +286,16 @@ void MovingEntity_startMovement(MovingEntity this)
 
 		case __Y_AXIS:
 
-			switch(this->direction.y)
+			switch(direction.y)
 			{
 				case __UP:
 
-					this->direction.y = __DOWN;
+					direction.y = __DOWN;
 					break;
 
 				case __DOWN:
 
-					this->direction.y = __UP;
+					direction.y = __UP;
 					break;
 			}
 
@@ -292,7 +303,7 @@ void MovingEntity_startMovement(MovingEntity this)
 				Velocity velocity =
 				{
 					0,
-					((int)this->movingEntityDefinition->velocity * this->direction.y),
+					((int)this->movingEntityDefinition->velocity * direction.y),
 					0,
 				};
 

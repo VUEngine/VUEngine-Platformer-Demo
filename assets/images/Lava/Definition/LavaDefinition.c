@@ -107,7 +107,7 @@ BgmapSpriteROMDef LAVA_BG_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, FTOFIX19_13(-2), 0},
+		{0, 0, __F_TO_FIX19_13(-2), 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -142,7 +142,7 @@ ShapeROMDef LAVA_IG_SHAPES[] =
 		{48 * 8, 24 * 8, 2 * 8},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,

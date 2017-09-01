@@ -551,7 +551,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		{14, 20, 16},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		true,
@@ -563,13 +563,13 @@ ShapeROMDef HERO_AC_SHAPES[] =
 PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 {
 	// mass
-	FTOFIX19_13(HERO_MASS),
+	__F_TO_FIX19_13(HERO_MASS),
 
 	// friction
-	FTOFIX19_13(HERO_FRICTION),
+	__F_TO_FIX19_13(HERO_FRICTION),
 
 	// elasticity
-	FTOFIX19_13(HERO_ELASTICITY),
+	__F_TO_FIX19_13(HERO_ELASTICITY),
 };
 
 HeroROMDef HERO_AC =
@@ -705,7 +705,7 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 		{12 * 8, 20 * 8, 4 * 8},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,

@@ -190,7 +190,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 		VBVec3D ownerPosition2D;
 		__OPTICS_PROJECT_TO_2D(ownerPosition3D, ownerPosition2D);
 
-		ownerSpriteGY = FIX19_13TOI(ownerPosition2D.y);
+		ownerSpriteGY = __FIX19_13_TO_I(ownerPosition2D.y);
 	}
 
 	u8 referenceSpriteWorldLayer = Sprite_getWorldLayer(this->referenceSprite);
@@ -200,7 +200,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
-	worldPointer->gp = referenceSpriteWorldPointer->gp + FIX19_13TOI((this->displacement.p) & 0xFFFFE000);
+	worldPointer->gp = referenceSpriteWorldPointer->gp + __FIX19_13_TO_I((this->displacement.p) & 0xFFFFE000);
 
 
 	if(!referenceSpriteWorldLayer

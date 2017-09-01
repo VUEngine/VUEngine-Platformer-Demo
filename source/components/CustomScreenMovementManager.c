@@ -115,9 +115,9 @@ static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovement
 	ASSERT(this, "CustomScreenMovementManager::doFocusWithNoEasing: null this");
 
 	VBVec3D focusEntityPosition = *_screen->focusEntityPosition;
-	Direction direction = AnimatedEntity_getDirection(__SAFE_CAST(AnimatedEntity, _screen->focusEntity));
-	_screen->position.x = focusEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
-	_screen->position.y = focusEntityPosition.y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, _screen->focusEntity));
+	_screen->position.x = focusEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - __I_TO_FIX19_13(__SCREEN_WIDTH / 2);
+	_screen->position.y = focusEntityPosition.y + _screen->focusEntityPositionDisplacement.y - __I_TO_FIX19_13(__SCREEN_HEIGHT / 2);
 
 	Screen_capPosition(_screen);
 	Screen_forceDisplacement(_screen, true);
@@ -148,7 +148,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 		return false;
 	}
 
-	Direction direction = AnimatedEntity_getDirection(__SAFE_CAST(AnimatedEntity, _screen->focusEntity));
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, _screen->focusEntity));
 
 	ASSERT(__SAFE_CAST(Actor, _screen->focusEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
 
@@ -168,15 +168,15 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 	__OPTICS_PROJECT_TO_2D(position3D, position2D);
 
 	{
-		bool focusEntityOutOfBounds = (unsigned)(FIX19_13TOI(position2D.x) - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
+		bool focusEntityOutOfBounds = (unsigned)(__FIX19_13_TO_I(position2D.x) - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
 
 		if(this->positionFlag.x | focusEntityOutOfBounds)
 		{
 			// calculate the target position
 			fix19_13 horizontalPosition = _screen->position.x;
-			fix19_13 horizontalTarget = focusEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - ITOFIX19_13(__SCREEN_WIDTH / 2);
+			fix19_13 horizontalTarget = focusEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - __I_TO_FIX19_13(__SCREEN_WIDTH / 2);
 
-			fix19_13 easingDisplacement = ITOFIX19_13(7);
+			fix19_13 easingDisplacement = __I_TO_FIX19_13(7);
 
 			if(introFocusing)
 			{
@@ -204,9 +204,9 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 				_screen->position.x = 0;
 				reachedTargetFlag.x = true;
 			}
-			else if(ITOFIX19_13(_screen->stageSize.x) < _screen->position.x + ITOFIX19_13(__SCREEN_WIDTH))
+			else if(__I_TO_FIX19_13(_screen->stageSize.x) < _screen->position.x + __I_TO_FIX19_13(__SCREEN_WIDTH))
 			{
-				_screen->position.x = ITOFIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
+				_screen->position.x = __I_TO_FIX19_13(_screen->stageSize.x - __SCREEN_WIDTH);
 				reachedTargetFlag.x = true;
 			}
 
@@ -215,16 +215,16 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 	}
 
 	{
-		bool focusEntityOutOfBounds = FIX19_13TOI(position2D.y) > _cameraFrustum->y1 - SCREEN_HEIGHT_REDUCTION || FIX19_13TOI(position2D.y) < _cameraFrustum->y0 + SCREEN_HEIGHT_REDUCTION / 4;
+		bool focusEntityOutOfBounds = __FIX19_13_TO_I(position2D.y) > _cameraFrustum->y1 - SCREEN_HEIGHT_REDUCTION || __FIX19_13_TO_I(position2D.y) < _cameraFrustum->y0 + SCREEN_HEIGHT_REDUCTION / 4;
 
 		if(this->positionFlag.y | focusEntityOutOfBounds)
 		{
 			// calculate the target position
 			fix19_13 verticalPosition = _screen->position.y;
-			fix19_13 verticalTarget = focusEntityPosition.y + _screen->focusEntityPositionDisplacement.y - ITOFIX19_13(__SCREEN_HEIGHT / 2);
+			fix19_13 verticalTarget = focusEntityPosition.y + _screen->focusEntityPositionDisplacement.y - __I_TO_FIX19_13(__SCREEN_HEIGHT / 2);
 
-			fix19_13 downEasingDisplacement = ITOFIX19_13(3);
-			fix19_13 upEasingDisplacement = ITOFIX19_13(3);
+			fix19_13 downEasingDisplacement = __I_TO_FIX19_13(3);
+			fix19_13 upEasingDisplacement = __I_TO_FIX19_13(3);
 
 			if(introFocusing)
 			{
@@ -237,7 +237,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 
 				if(0 < velocity.y)
 				{
-					downEasingDisplacement = ITOFIX19_13(8);
+					downEasingDisplacement = __I_TO_FIX19_13(8);
 				}
 			}
 
@@ -268,9 +268,9 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 				_screen->position.y = 0;
 				reachedTargetFlag.y = true;
 			}
-			else if(ITOFIX19_13(_screen->stageSize.y) < _screen->position.y + ITOFIX19_13(__SCREEN_HEIGHT))
+			else if(__I_TO_FIX19_13(_screen->stageSize.y) < _screen->position.y + __I_TO_FIX19_13(__SCREEN_HEIGHT))
 			{
-				_screen->position.y = ITOFIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
+				_screen->position.y = __I_TO_FIX19_13(_screen->stageSize.y - __SCREEN_HEIGHT);
 				reachedTargetFlag.y = true;
 			}
 

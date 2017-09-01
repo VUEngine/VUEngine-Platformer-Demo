@@ -129,29 +129,29 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {ITOFIX19_13(192 - radius),	ITOFIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {__I_TO_FIX19_13(192 - radius),	__I_TO_FIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {__I_TO_FIX19_13(192),			__I_TO_FIX19_13(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {ITOFIX19_13(192 + radius),	ITOFIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {__I_TO_FIX19_13(192 + radius),	__I_TO_FIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {__I_TO_FIX19_13(192),			__I_TO_FIX19_13(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {ITOFIX19_13(192 + radius),	ITOFIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {__I_TO_FIX19_13(192 + radius),	__I_TO_FIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {__I_TO_FIX19_13(192),			__I_TO_FIX19_13(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {ITOFIX19_13(192 - radius),	ITOFIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(VBVec2D) {ITOFIX19_13(192),			ITOFIX19_13(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {__I_TO_FIX19_13(192 - radius),	__I_TO_FIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(VBVec2D) {__I_TO_FIX19_13(192),			__I_TO_FIX19_13(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 }

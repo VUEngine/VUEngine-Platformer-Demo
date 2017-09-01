@@ -100,10 +100,10 @@ BgmapSpriteROMDef TEST_ROOM_STAGE_MAIN_1_IM_SPRITE =
 
 		// displacement
 		{
-			FTOFIX19_13(0), // x
-			FTOFIX19_13(0), // y
-			FTOFIX19_13(0), // z
-			FTOFIX19_13(0), // parallax
+			__F_TO_FIX19_13(0), // x
+			__F_TO_FIX19_13(0), // y
+			__F_TO_FIX19_13(0), // z
+			__F_TO_FIX19_13(0), // parallax
 		},
 	},
 
@@ -188,10 +188,10 @@ BgmapSpriteROMDef TEST_ROOM_STAGE_MAIN_2_IM_SPRITE =
 
 		// displacement
 		{
-			FTOFIX19_13(0), // x
-			FTOFIX19_13(0), // y
-			FTOFIX19_13(0), // z
-			FTOFIX19_13(0), // parallax
+			__F_TO_FIX19_13(0), // x
+			__F_TO_FIX19_13(0), // y
+			__F_TO_FIX19_13(0), // z
+			__F_TO_FIX19_13(0), // parallax
 		},
 	},
 

@@ -61,10 +61,10 @@ ParticleROMDef TORCH_SMOKE_PARTICLE =
 	3000,
 
 	// particle's minimum mass
-	FTOFIX19_13(0),
+	__F_TO_FIX19_13(0),
 
 	// particle's mass delta (maximum = minimum + delta)
-	FTOFIX19_13(0),
+	__F_TO_FIX19_13(0),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	false,
@@ -124,10 +124,10 @@ ParticleSystemROMDef TORCH_SMOKE_PS =
 	(ParticleDefinition*)&TORCH_SMOKE_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)

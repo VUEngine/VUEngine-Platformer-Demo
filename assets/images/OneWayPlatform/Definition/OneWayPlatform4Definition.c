@@ -128,7 +128,7 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 		{32, 16, 16},
 
 		// displacement (x, y, z)
-		{ITOFIX19_13(0), ITOFIX19_13(0), ITOFIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// check for collisions against other shapes
 		false,
@@ -140,13 +140,13 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 PhysicalSpecificationROMDef ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =
 {
 	// mass
-	FTOFIX19_13(0),
+	__F_TO_FIX19_13(0),
 
 	// friction
-	FTOFIX19_13(FLOOR_FRICTION),
+	__F_TO_FIX19_13(FLOOR_FRICTION),
 
 	// elasticity
-	FTOFIX19_13(FLOOR_ELASTICITY),
+	__F_TO_FIX19_13(FLOOR_ELASTICITY),
 };
 
 EntityROMDef ONE_WAY_PLATFORM_4_IG =
