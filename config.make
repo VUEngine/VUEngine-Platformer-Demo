@@ -6,7 +6,8 @@ COMPILER_OUTPUT         = c
 #                       It is recommended to use the sram sections for the memory pools
 #                       when debugging in order to avoid stack overflows
 #                       (SRAM as WRAM only works on emulators).
-# release:              Removes most asserts. For shipping only!
+# release:              Removes most asserts. For testing the performance on hardware.
+# publish:              Removes all asserts. For shipping only!
 # tools:                Adds debugging tools without all the debug checking.
 # preprocessor:         The .o files are preprocessor's output instead of compiler's.
 TYPE                    = release
