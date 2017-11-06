@@ -26,7 +26,7 @@
 
 #include <Entity.h>
 #include <LavaTrigger.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <macros.h>
 
 
@@ -38,7 +38,7 @@ ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{2 * 8, 12 * 8, 1 * 8},
@@ -56,7 +56,7 @@ ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 LavaTriggerROMDef LAVA_TRIGGER_IG =

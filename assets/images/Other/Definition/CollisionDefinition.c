@@ -62,7 +62,7 @@ CollisionROMDef COLLISION_CL =
 	{1, 1, 1},
 
 	// gameworld's character's type
-	kSolid,
+	kShape,
 
 	// physical specification
 	(PhysicalSpecification*)&COLLISION_CL_PHYSICAL_PROPERTIES,

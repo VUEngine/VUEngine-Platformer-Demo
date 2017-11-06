@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include "CannonBall.h"
 
 
@@ -153,7 +153,7 @@ ShapeROMDef CANNON_BALL_AC_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{22, 22, 16},
@@ -171,7 +171,7 @@ ShapeROMDef CANNON_BALL_AC_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 CannonBallROMDef CANNON_BALL_AC =

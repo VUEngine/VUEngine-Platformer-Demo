@@ -26,7 +26,7 @@
 
 #include <Game.h>
 #include <CollisionManager.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <PhysicalWorld.h>
 #include <MessageDispatcher.h>
 #include "HideLayer.h"
@@ -122,7 +122,7 @@ bool HideLayer_checkStillOverlapping(HideLayer this)
 	{
 		this->currentlyOverlappingHero = false;
 
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToSolid");
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToShape");
 	}
 
 	return this->currentlyOverlappingHero;

@@ -130,7 +130,7 @@ ManagedEntityROMDef LEVEL_1_MAIN_1_MAIN_5_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNotSolid,
+	kNotShape,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

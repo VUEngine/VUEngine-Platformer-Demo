@@ -26,7 +26,7 @@
 
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include "Door.h"
 #include "LayerSwitchDoor.h"
 #include "GoalDoor.h"
@@ -275,7 +275,7 @@ ShapeROMDef DOOR_AG_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{19, 28, 16},
@@ -293,7 +293,7 @@ ShapeROMDef DOOR_AG_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 DoorROMDef DOOR_AG =

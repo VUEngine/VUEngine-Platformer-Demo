@@ -190,7 +190,7 @@ ActorROMDef CANNON_AC =
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kNotSolid,
+			kNotShape,
 
 			// physical specification
 			(PhysicalSpecification*)NULL,

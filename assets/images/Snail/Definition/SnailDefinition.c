@@ -26,7 +26,7 @@
 
 #include <ObjectAnimatedSprite.h>
 #include <BgmapAnimatedSprite.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include "MovingEntity.h"
 
 
@@ -151,7 +151,7 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{14, 8, 16},
@@ -169,7 +169,7 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 MovingEntityROMDef SNAIL_3_AC =

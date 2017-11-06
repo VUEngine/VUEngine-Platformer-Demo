@@ -26,7 +26,7 @@
 
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include "Key.h"
 
 
@@ -152,7 +152,7 @@ ShapeROMDef KEY_AG_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{2 * 8, 2 * 8, 2 * 8},
@@ -170,7 +170,7 @@ ShapeROMDef KEY_AG_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 AnimatedEntityROMDef KEY_AG =

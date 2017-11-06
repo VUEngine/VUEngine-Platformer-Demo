@@ -26,7 +26,7 @@
 
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include "Coin.h"
 
 
@@ -368,7 +368,7 @@ ShapeROMDef COIN_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
@@ -386,7 +386,7 @@ ShapeROMDef COIN_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 CoinROMDef COIN_AG =
@@ -519,7 +519,7 @@ ShapeROMDef COIN_BACK_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
@@ -537,7 +537,7 @@ ShapeROMDef COIN_BACK_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 CoinROMDef COIN_BACK_AG =

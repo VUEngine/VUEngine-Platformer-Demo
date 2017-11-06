@@ -26,7 +26,7 @@
 
 #include <libgccvb.h>
 #include <WaterPond.h>
-#include <Cuboid.h>
+#include <Box.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
@@ -86,7 +86,7 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 PhysicalSpecificationROMDef WATER_POND_EN_PHYSICAL_PROPERTIES =

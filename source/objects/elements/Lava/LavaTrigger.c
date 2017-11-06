@@ -29,7 +29,7 @@
 #include <Stage.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <Screen.h>
 #include <PhysicalWorld.h>
 #include <Lava.h>

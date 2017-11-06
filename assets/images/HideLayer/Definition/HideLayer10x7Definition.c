@@ -28,7 +28,7 @@
 #include <macros.h>
 #include <BgmapAnimatedSprite.h>
 #include <AnimatedEntity.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include "HideLayer.h"
 
 
@@ -69,7 +69,7 @@ AnimationFunctionROMDef HIDE_LAYER_10x7_SOLID_ANIM =
 	NULL,
 
 	// function's name
-	"Solid",
+	"Shape",
 };
 
 AnimationFunctionROMDef HIDE_LAYER_10x7_TRANSPARENT_ANIM =
@@ -111,7 +111,7 @@ AnimationFunctionROMDef HIDE_LAYER_10x7_TO_SOLID_ANIM =
 	NULL,
 
 	// function's name
-	"ToSolid",
+	"ToShape",
 };
 
 AnimationFunctionROMDef HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
@@ -229,7 +229,7 @@ ShapeROMDef HIDE_LAYER_10x7_AG_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{80, 56, 16},
@@ -247,7 +247,7 @@ ShapeROMDef HIDE_LAYER_10x7_AG_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 HideLayerROMDef HIDE_LAYER_10x7_AG =
@@ -277,5 +277,5 @@ HideLayerROMDef HIDE_LAYER_10x7_AG =
 	(AnimationDescription*)&HIDE_LAYER_10x7_ANIM,
 
 	// initial animation
-	"Solid",
+	"Shape",
 };

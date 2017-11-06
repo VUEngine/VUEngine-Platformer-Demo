@@ -26,7 +26,7 @@
 
 #include <BgmapAnimatedSprite.h>
 #include <MovingEntity.h>
-#include <Cuboid.h>
+#include <Box.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{16, 16, 16},
@@ -171,7 +171,7 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 MovingEntityROMDef SAW_BLADE_V3_AC =

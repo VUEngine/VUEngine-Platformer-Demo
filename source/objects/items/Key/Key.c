@@ -29,7 +29,7 @@
 #include <CollisionManager.h>
 #include <SoundManager.h>
 #include <MessageDispatcher.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <PhysicalWorld.h>
 #include <EventManager.h>
 #include "Key.h"

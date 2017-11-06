@@ -119,13 +119,13 @@ BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =
 	NULL
 };
 
-#include <Cuboid.h>
+#include <Box.h>
 
 ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{6 * 8, 9 * 8, 6 * 8},
@@ -143,7 +143,7 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 		true,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 CogWheelROMDef COG_WHEEL_IM =
@@ -162,7 +162,7 @@ CogWheelROMDef COG_WHEEL_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kSolid,
+	kShape,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

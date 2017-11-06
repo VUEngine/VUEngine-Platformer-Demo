@@ -27,7 +27,7 @@
 #include <Game.h>
 #include <Entity.h>
 #include <MessageDispatcher.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <PhysicalWorld.h>
 #include <ProgressManager.h>
 #include <Container.h>

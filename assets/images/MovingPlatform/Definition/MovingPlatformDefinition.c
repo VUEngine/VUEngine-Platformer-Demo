@@ -26,7 +26,7 @@
 
 #include <BgmapSprite.h>
 #include <MovingEntity.h>
-#include <Cuboid.h>
+#include <Box.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{30, 16, 16},
@@ -171,7 +171,7 @@ ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 PhysicalSpecificationROMDef MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES =

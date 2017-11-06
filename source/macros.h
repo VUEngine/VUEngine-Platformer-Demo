@@ -65,9 +65,9 @@ enum PlatformerTypes
 {
 	kNoType = 1,
 	kHero,
-	kSolid,
-	kTopSolid,
-	kNotSolid,
+	kShape,
+	kTopShape,
+	kNotShape,
 	kCameraTarget,
 	kHit,
 	kHideLayer,

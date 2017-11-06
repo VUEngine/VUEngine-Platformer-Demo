@@ -29,7 +29,7 @@
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Screen.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <PhysicalWorld.h>
 #include <KeypadManager.h>
 #include "Hero.h"
@@ -1038,7 +1038,7 @@ bool Hero_processCollision(Hero this, const CollisionInformation* collisionInfor
 
 	switch(Entity_getInGameType(collidingEntity))
 	{
-		case kSolid:
+		case kShape:
 			break;
 
 		case kCameraTarget:
@@ -1131,7 +1131,7 @@ bool Hero_processCollision(Hero this, const CollisionInformation* collisionInfor
 			break;
 
 		case kMovingPlatform:
-		case kTopSolid:
+		case kTopShape:
 			{
 				// if hero's moving over the y axis or is above colliding entity
 				if((collisionInformation->minimumTranslationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
@@ -1369,14 +1369,14 @@ bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
-	RightCuboid shapeRightCuboid = __VIRTUAL_CALL(Shape, getSurroundingRightCuboid, shape);
-	RightCuboid collidingShapeRightCuboid = __VIRTUAL_CALL(Shape, getPositionedSurroundingRightCuboid, collidingShape);
+	RightBox shapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, shape);
+	RightBox collidingShapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, collidingShape);
 
 	VBVec3D shapePosition = __VIRTUAL_CALL(Shape, getPosition, shape);
 
-	fix19_13 heroBottomPosition = shapePosition.y + ((shapeRightCuboid.x1 - shapeRightCuboid.x0) >> 1) - Body_getLastDisplacement(this->body).y;
+	fix19_13 heroBottomPosition = shapePosition.y + ((shapeRightBox.x1 - shapeRightBox.x0) >> 1) - Body_getLastDisplacement(this->body).y;
 
-	return heroBottomPosition > collidingShapeRightCuboid.y0;
+	return heroBottomPosition > collidingShapeRightBox.y0;
 }
 
 void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collisionInformation)

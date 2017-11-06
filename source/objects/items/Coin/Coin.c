@@ -29,7 +29,7 @@
 #include <EventManager.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <PhysicalWorld.h>
 #include <ProgressManager.h>
 #include <Container.h>

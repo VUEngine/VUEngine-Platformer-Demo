@@ -263,7 +263,7 @@ AnimatedEntityROMDef GUI_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kNotSolid,
+		kNotShape,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -293,7 +293,7 @@ AnimatedEntityROMDef GUI_OVERWORLD_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kNotSolid,
+		kNotShape,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

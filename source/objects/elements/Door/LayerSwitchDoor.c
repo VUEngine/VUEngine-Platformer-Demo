@@ -27,7 +27,7 @@
 #include <Game.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <PhysicalWorld.h>
 #include "LayerSwitchDoor.h"
 #include <PlatformerLevelState.h>

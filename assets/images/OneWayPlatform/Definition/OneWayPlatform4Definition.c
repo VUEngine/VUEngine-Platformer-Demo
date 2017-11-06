@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Entity.h>
-#include <Cuboid.h>
+#include <Box.h>
 #include <macros.h>
 
 
@@ -122,7 +122,7 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Cuboid),
+		__TYPE(Box),
 
 		// size (x, y, z)
 		{32, 16, 16},
@@ -140,7 +140,7 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 PhysicalSpecificationROMDef ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =
@@ -171,7 +171,7 @@ EntityROMDef ONE_WAY_PLATFORM_4_IG =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kTopSolid,
+	kTopShape,
 
 	// physical specification
 	(PhysicalSpecification*)&ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES,

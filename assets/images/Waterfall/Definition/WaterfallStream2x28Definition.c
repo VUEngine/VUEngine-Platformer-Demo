@@ -173,7 +173,7 @@ AnimatedEntityROMDef WATERFALL_STREAM_2x28_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kNotSolid,
+		kNotShape,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
