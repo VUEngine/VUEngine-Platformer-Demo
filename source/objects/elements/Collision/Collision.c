@@ -132,7 +132,13 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 			// size
 			this->size,
 
-			/// displacement modifier
+			// displacement modifier
+			{0, 0, 0},
+
+			// rotation modifier
+			{0, 0, 0},
+
+			// scale modifier
 			{0, 0, 0},
 
 			// if true this shape checks for collisions against other shapes
@@ -144,15 +150,10 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		Shape_setCheckForCollisions(shape, false);
 
 		const VBVec3D* myPosition = Entity_getPosition(__SAFE_CAST(Entity, this));
-		VBVec3D displacement = {0, 0, 0};
-		bool moves = __VIRTUAL_CALL(SpatialObject, moves, this);
+		const Rotation* myRotation = Entity_getRotation(__SAFE_CAST(Entity, this));
+		const Scale* myScale = Entity_getScale(__SAFE_CAST(Entity, this));
 
-		__VIRTUAL_CALL(Shape, setup, shape, myPosition, &this->size, &displacement, moves);
-
-		if(moves)
-		{
-			__VIRTUAL_CALL(Shape, position, shape, myPosition, false);
-		}
+		__VIRTUAL_CALL(Shape, setup, shape, myPosition, myRotation, myScale, &this->size);
 
 		VirtualList_pushBack(this->shapes, shape);
 

@@ -144,11 +144,17 @@ ShapeROMDef LAVA_IG_SHAPES[] =
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
 		// check for collisions against other shapes
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 LavaROMDef LAVA_IG =

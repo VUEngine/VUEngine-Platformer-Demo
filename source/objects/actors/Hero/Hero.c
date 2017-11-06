@@ -142,7 +142,7 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	Body_setAxisSubjectToGravity(this->body, __Y_AXIS);
 	Body_setElasticity(this->body, physicalSpecification ? physicalSpecification->elasticity : 0);
 	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
-	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this), &this->transform.globalPosition, &this->transform.globalPosition);
+	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this));
 
 	Hero_setInstance(this);
 
@@ -183,6 +183,8 @@ void Hero_ready(Hero this, bool recursive)
 {
 	ASSERT(this, "Hero::ready: null this");
 
+	Entity_informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
+
 	// call base
 	__CALL_BASE_METHOD(Actor, ready, this, recursive);
 
@@ -209,8 +211,6 @@ void Hero_ready(Hero this, bool recursive)
 	Hero_addFeetDust(this);
 }
 
-SpatialObject CollisionManager_searchNextObjectOfCollision(CollisionManager this, const Shape shape, VBVec3D direction);
-
 void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 {
 /*	VBVec3D direction = {0, 1, 0};
@@ -220,9 +220,6 @@ void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 
 	if(collidingSpatialObject && this->collisionSolver)
 	{
-		VirtualList collidingShapesToRemove = __NEW(VirtualList);
-		VirtualList_pushBack(collidingShapesToRemove, collidingSpatialObject);
-
 		VBVec3D displacement =
 		{
 			__I_TO_FIX19_13(0),
@@ -232,7 +229,6 @@ void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 
 		CollisionSolver_resolveCollision(this->collisionSolver, VirtualList_front(this->shapes), collidingShapesToRemove, displacement, true);
 
-		__DELETE(collidingShapesToRemove);
 //		Actor_updateSurroundingFriction(this);
 	}
 	*/
@@ -633,7 +629,7 @@ void Hero_updateSurroundingFriction(Hero this)
 	Body_setFriction(this->body, totalFriction);
 }
 
-void Hero_takeHitFrom(Hero this, Shape shape, Entity collidingEntity, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
+void Hero_takeHitFrom(Hero this, Entity collidingEntity, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
 #ifdef GOD_MODE
 	return;
@@ -641,11 +637,6 @@ void Hero_takeHitFrom(Hero this, Shape shape, Entity collidingEntity, Shape coll
 
 	if(!Hero_isInvincible(this) || !invincibleWins)
 	{
-		if(alignToEnemy && collidingEntity && Body_getMovementOverAllAxis(this->body))
-		{
-			Actor_alignTo(__SAFE_CAST(Actor, this), shape, collidingShape, false, Body_getLastDisplacement(this->body));
-		}
-
 		if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
 		{
 			Hero_setInvincible(this, true);
@@ -1035,169 +1026,124 @@ bool Hero_isInvincible(Hero this)
 }
 
 // process collisions
-bool Hero_processCollision(Hero this, Shape shape, VirtualList collidingShapes)
+bool Hero_processCollision(Hero this, const CollisionInformation* collisionInformation)
 {
 	ASSERT(this, "Hero::processCollision: null this");
-	ASSERT(collidingShapes, "Hero::processCollision: null collidingObjects");
+	ASSERT(collisionInformation->collidingShape, "Hero::processCollision: null collidingObjects");
 
-	VirtualNode node = NULL;
+	return Actor_processCollision(__SAFE_CAST(Actor, this), collisionInformation);
 
-	static VirtualList collidingShapesToRemove = NULL;
+	Shape collidingShape = collisionInformation->collidingShape;
+	Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
 
-	if(!collidingShapesToRemove)
+	switch(Entity_getInGameType(collidingEntity))
 	{
-		collidingShapesToRemove = __NEW(VirtualList);
+		case kSolid:
+			break;
+
+		case kCameraTarget:
+			{
+				if(collisionInformation->minimumTranslationVector.y)
+				{
+					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
+				}
+
+				if(collisionInformation->minimumTranslationVector.x)
+				{
+					Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
+				}
+				else
+				{
+					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
+				}
+
+				VBVec3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
+
+				__VIRTUAL_CALL(Container, setLocalPosition, this->cameraBoundingBox, &position);
+			}
+			break;
+
+		case kCoin:
+
+			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+			break;
+
+		case kKey:
+
+			this->hasKey = true;
+			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+			break;
+
+		case kBandana:
+
+			Hero_collectPowerUp(this, kPowerUpBandana);
+			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+			break;
+
+		case kHideLayer:
+
+			// first contact with hide layer?
+			if(!HideLayer_isOverlapping((HideLayer)collidingEntity))
+			{
+				HideLayer_setOverlapping((HideLayer)collidingEntity);
+			}
+			break;
+
+		case kDoor:
+
+			Door_onOverlapping((Door)collidingEntity);
+			break;
+
+		case kWaterPond:
+
+			if(Body_getMovementOverAllAxis(this->body))
+			{
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kReactToCollision, NULL);
+			}
+			break;
+
+		case kLava:
+
+			Hero_takeHitFrom(this, NULL, NULL, this->energy, true, false, true);
+			break;
+
+		case kSawBlade:
+		case kSnail:
+
+			Hero_takeHitFrom(this, collidingEntity, collidingShape, 1, true, true, false);
+			break;
+
+		case kCannonBall:
+
+			Hero_takeHitFrom(this, collidingEntity, collidingShape, 2, true, true, false);
+			break;
+
+		case kHit:
+
+			Hero_takeHitFrom(this, collidingEntity, collidingShape, 1, true, true, false);
+			break;
+
+		case kLavaTrigger:
+
+			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kLavaTriggerStart, NULL);
+			Hero_stopAddingForce(this);
+			//Hero_stopMovingOnAxis(this, __X_AXIS);
+			break;
+
+		case kMovingPlatform:
+		case kTopSolid:
+			{
+				// if hero's moving over the y axis or is above colliding entity
+				if((collisionInformation->minimumTranslationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
+				{
+					// don't further process collision
+					return true;
+				}
+			}
+			break;
 	}
 
-	for(node = VirtualList_begin(collidingShapes); node; node = VirtualNode_getNext(node))
-	{
-		Shape collidingShape = __SAFE_CAST(Shape, VirtualNode_getData(node));
-		Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
-
-		switch(Entity_getInGameType(collidingEntity))
-		{
-			case kSolid:
-				break;
-
-			case kCameraTarget:
-				{
-					VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-
-					// get the axis of collision
-					u8 axisOfCollision = __VIRTUAL_CALL(
-						Shape,
-						getAxisOfCollision,
-						shape,
-						VirtualNode_getData(node),
-						Body_getLastDisplacement(this->body),
-						*CollisionSolver_getOwnerPreviousPosition(this->collisionSolver)
-					);
-
-					if(axisOfCollision & __Y_AXIS)
-					{
-						Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
-					}
-
-					if(axisOfCollision & __X_AXIS)
-					{
-						Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
-					}
-					else
-					{
-						Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
-					}
-
-					VBVec3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-
-					__VIRTUAL_CALL(Container, setLocalPosition, this->cameraBoundingBox, &position);
-				}
-				break;
-
-			case kCoin:
-
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kKey:
-
-				this->hasKey = true;
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kBandana:
-
-				Hero_collectPowerUp(this, kPowerUpBandana);
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kHideLayer:
-
-				// first contact with hide layer?
-				if(!HideLayer_isOverlapping((HideLayer)collidingEntity))
-				{
-					HideLayer_setOverlapping((HideLayer)collidingEntity);
-				}
-
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kDoor:
-
-				Door_onOverlapping((Door)collidingEntity);
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kWaterPond:
-
-				if(Body_getMovementOverAllAxis(this->body))
-				{
-					MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kReactToCollision, NULL);
-				}
-
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kLava:
-
-				Hero_takeHitFrom(this, shape, NULL, NULL, this->energy, true, false, true);
-				break;
-
-			case kSawBlade:
-			case kSnail:
-
-				Hero_takeHitFrom(this, shape, collidingEntity, collidingShape, 1, true, true, false);
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kCannonBall:
-
-				Hero_takeHitFrom(this, shape, collidingEntity, collidingShape, 2, true, true, false);
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kHit:
-
-				Hero_takeHitFrom(this, shape, collidingEntity, collidingShape, 1, true, true, false);
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				break;
-
-			case kLavaTrigger:
-
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kLavaTriggerStart, NULL);
-				VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-				Hero_stopAddingForce(this);
-				//Hero_stopMovingOnAxis(this, __X_AXIS);
-				break;
-
-			case kMovingPlatform:
-			case kTopSolid:
-				{
-					int axisOfCollision = CollisionSolver_getAxisOfCollision(this->collisionSolver, shape, collidingShape, Body_getLastDisplacement(this->body));
-
-					// if hero's moving over the y axis or is above colliding entity
-					if((__X_AXIS & axisOfCollision) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, shape, collidingShape))
-					{
-						// don't further process collision
-						VirtualList_pushBack(collidingShapesToRemove, collidingShape);
-					}
-				}
-				break;
-		}
-	}
-
-	for(node = VirtualList_begin(collidingShapesToRemove); node; node = VirtualNode_getNext(node))
-	{
-		// whenever you process some objects of a collisions list remove them and leave the Actor handle
-		// the ones you don't care about, i.e.: in most cases, the ones which are solid
-		VirtualList_removeElement(collidingShapes, VirtualNode_getData(node));
-	}
-
-	VirtualList_clear(collidingShapesToRemove);
-
-	return Actor_processCollision(__SAFE_CAST(Actor, this), shape, collidingShapes);
+	return Actor_processCollision(__SAFE_CAST(Actor, this), collisionInformation);
 }
 
 void Hero_capVelocity(Hero this, bool discardPreviousMessages)
@@ -1433,13 +1379,13 @@ bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
 	return heroBottomPosition > collidingShapeRightCuboid.y0;
 }
 
-void Hero_collisionsProcessingDone(Hero this, VirtualList collidingShapes)
+void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collisionInformation)
 {
 	ASSERT(this, "Hero::collisionsProcessingDone: null this");
 
-	if(collidingShapes && 1 == VirtualList_getSize(collidingShapes))
+	if(collisionInformation->collidingShape)
 	{
-		Shape collidingShape = __SAFE_CAST(Shape, VirtualList_front(collidingShapes));
+		Shape collidingShape = collisionInformation->collidingShape;
 		Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
 
 		switch(Entity_getInGameType(collidingEntity))

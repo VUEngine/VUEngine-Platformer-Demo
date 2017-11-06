@@ -44,7 +44,7 @@
 #define SIZE_OF_S16_POWER		1
 #define Y_STEP_SIZE				16
 #define Y_STEP_SIZE_2_EXP		4
-#define MODULO(n, m)		(n & (m - 1))
+#define __MODULO(n, m)		(n & (m - 1))
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 		// loop current column in steps of 16 pixels (32 bits)
 		// ignore the bottom 16 pixels of the screen (gui)
 		u32 yStep = (y[yIndex] + yStart) >> Y_STEP_SIZE_2_EXP;
-		u32 subY = MODULO((y[yIndex] + yStart), Y_STEP_SIZE);
+		u32 subY = __MODULO((y[yIndex] + yStart), Y_STEP_SIZE);
 		u32 dropletMask = 0xFFFFFFFF << (subY << 1);
 
 		if(++*dropletLengthIndex >= numberOfDropletSize)
@@ -186,7 +186,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 
 		if(!sourceValue)
 		{
-			if(MODULO((int)dropletLengthDifference, Y_STEP_SIZE_2_EXP))
+			if(__MODULO((int)dropletLengthDifference, Y_STEP_SIZE_2_EXP))
 			{
 				continue;
 			}
@@ -470,7 +470,7 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
  	int yPosition = __FIX19_13_TO_I(position.y);
 	// move y position to the closest 16 multiple
 	int tempYPosition = yPosition + (Y_STEP_SIZE >> 1);
-	yPosition = tempYPosition - MODULO(tempYPosition, Y_STEP_SIZE);
+	yPosition = tempYPosition - __MODULO(tempYPosition, Y_STEP_SIZE);
 
 	int ellipsisArcIndex = 0 > xPosition - ellipsisHorizontalAxisSize ? (ellipsisHorizontalAxisSize - xPosition) : 0;
 	int ellipsisArcIndexDelta = 1;
@@ -487,7 +487,7 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VB
 		int y = yStart;
 
 		int ellipsisY = ellipsisArc[ellipsisArcIndex];
-		int maskDisplacement = MODULO(ellipsisY, Y_STEP_SIZE) << 1;
+		int maskDisplacement = __MODULO(ellipsisY, Y_STEP_SIZE) << 1;
 		u32 upperMask = roundBorder ? ~(0xFFFFFFFF >> maskDisplacement) : 0xFFFFFFFF;
 		u32 lowerMask = roundBorder ? ~(0xFFFFFFFF << maskDisplacement) : 0xFFFFFFFF;
 

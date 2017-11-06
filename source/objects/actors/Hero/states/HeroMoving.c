@@ -87,7 +87,7 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 		Hero_enableBoost(__SAFE_CAST(Hero, owner));
 	}
 
-#ifdef __DEBUG
+#ifndef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroMoving::enter   ", 0, (__SCREEN_HEIGHT_IN_CHARS) - 2, NULL);
 #endif
 

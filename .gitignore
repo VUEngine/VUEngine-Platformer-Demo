@@ -6,6 +6,7 @@ build/
 .cproject
 .project
 cproject
+*.o
 *.a
 *.vb
 *.elf

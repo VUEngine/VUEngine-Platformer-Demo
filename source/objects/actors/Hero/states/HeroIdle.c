@@ -84,7 +84,7 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 	// start sleeping after 6 seconds of inactivity
 	MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
 
-#ifdef __DEBUG
+#ifndef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroIdle::enter   ", 0, (__SCREEN_HEIGHT_IN_CHARS) - 2, NULL);
 #endif
 

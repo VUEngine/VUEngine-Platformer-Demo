@@ -33,6 +33,7 @@
 #include <PlatformerLevelState.h>
 #include <EventManager.h>
 #include <GameEvents.h>
+#include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -91,12 +92,14 @@ void CogWheel_ready(CogWheel this, bool recursive)
 	// listen for the shake end event
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
 
-	this->transform.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
+	this->transform.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
 }
 
 // state's handle message
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 {
+	CollisionManager_print(GameState_getCollisionManager(__SAFE_CAST(GameState, StateMachine_getCurrentState(Game_getStateMachine(Game_getInstance())))), 1, 1);
+
 	switch(Telegram_getMessage(telegram))
 	{
 		case kCogWheelMove:
@@ -116,7 +119,22 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 // rotate cogwheel
 static void CogWheel_rotate(CogWheel this)
 {
-	this->transform.localRotation.z += 1;
+/*	static int counter = 1;
+
+	if(1 == counter)
+//	this->transform.localRotation.x = 512;
+	this->transform.localRotation.x += 8;
+	else if(2 == counter)
+	this->transform.localRotation.y += 8;
+	else if(3 == counter)
+	this->transform.localRotation.z += 8;
+
+	if(3 < ++counter) counter = 1;
+	 */
+
+//	this->transform.localRotation.z += 8;
+	this->transform.localRotation.y = 64-16;
+
 	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 
 	// send delayed message to self to trigger next movement

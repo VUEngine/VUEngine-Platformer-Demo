@@ -119,6 +119,33 @@ BgmapSpriteROMDef* const COG_WHEEL_BG_SPRITES[] =
 	NULL
 };
 
+#include <Cuboid.h>
+
+ShapeROMDef COG_WHEEL_IM_SHAPES[] =
+{
+	{
+		// shape
+		__TYPE(Cuboid),
+
+		// size (x, y, z)
+		{6 * 8, 9 * 8, 6 * 8},
+
+		// displacement (x, y, z)
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
+		// check for collisions against other shapes
+		true,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+};
+
 CogWheelROMDef COG_WHEEL_IM =
 {
 	// class allocator
@@ -128,14 +155,14 @@ CogWheelROMDef COG_WHEEL_IM =
 	(SpriteROMDef**)COG_WHEEL_BG_SPRITES,
 
 	// collision shapes
-	(ShapeDefinition*)NULL,
+	(ShapeDefinition*)COG_WHEEL_IM_SHAPES,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kCannonBall,
+	kSolid,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

@@ -93,7 +93,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 		this->transform.globalPosition.y = currentGlobalPosition.y;
 	}
 
-	Entity_setShapesPosition(__SAFE_CAST(Entity, this), true);
+	Entity_transformShapes(__SAFE_CAST(Entity, this));
 
 //	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
 }

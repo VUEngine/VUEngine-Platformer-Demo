@@ -553,11 +553,17 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
 		// check for collisions against other shapes
 		true,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
@@ -697,6 +703,7 @@ AnimatedEntityROMDef HERO_BANDANA_AG =
 
 ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 {
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false},
 	{
 		// shape
 		__TYPE(InverseCuboid),
@@ -707,11 +714,17 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
 		// check for collisions against other shapes
 		false,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
 };
 
 

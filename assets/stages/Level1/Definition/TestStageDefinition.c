@@ -25,52 +25,132 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Stage.h>
-#include <Fonts.h>
 #include <macros.h>
+#include <PlatformerLevelState.h>
+#include <Languages.h>
+#include <VIPManager.h>
+#include <Fonts.h>
+#include <Hero.h>
+#include <PostProcessingEffects.h>
 
-
-//---------------------------------------------------------------------------------------------------------
-//											DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_BG_IM;
-extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L;
-extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R;
-extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM;
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											ENTITY LISTS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_ENTITIES[] =
+extern StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP;
+extern StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP;
+extern StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP;
+extern StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_EXIT_EP;
+extern StageEntryPointROMDef LEVEL1_TOWER_STAGE_MAIN_EP;
+extern u16 WORLD_0_0_0_BGM[][2];
+
+StageEntryPointROMDef TEST_LEVEL_LS_BACK_EP;
+StageEntryPointROMDef TEST_LEVEL_LS_FRONT_EP;
+
+extern EntityDefinition BANDANA_AG;
+extern EntityDefinition BUSH_AG;
+extern EntityDefinition CANNON_AC;
+extern EntityDefinition CLOUD_A_IM;
+extern EntityDefinition CLOUDS_IM;
+extern EntityDefinition COIN_AG;
+extern EntityDefinition COIN_BACK_AG;
+extern EntityDefinition COLLISION_CL;
+extern EntityDefinition COLLISION_HIT_CL;
+extern EntityDefinition COLLISION_TOP_CL;
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition DOOR_AG;
+extern EntityDefinition DOUBLE_JUMP_SIGN_IM;
+extern EntityDefinition GRASS_AG;
+extern EntityDefinition GUI_AG;
+extern EntityDefinition HERO_AC;
+extern EntityDefinition COG_WHEEL_IM;
+
+extern EntityDefinition HIDE_LAYER_10x7_AG;
+extern EntityDefinition JUMP_SIGN_IM;
+extern EntityDefinition KEY_AG;
+extern EntityDefinition KEY_DOOR_AG;
+extern EntityDefinition LAYER_SWITCH_DOOR_AG;
+extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
+extern EntityDefinition LEVEL_1_HOUSE_IM;
+extern EntityDefinition TEST_LEVEL_1_BACK_1_IM;
+extern EntityDefinition TEST_LEVEL_1_BACK_5_IM;
+extern EntityDefinition TEST_LEVEL_1_MAIN_1_IM;
+extern EntityDefinition TEST_LEVEL_1_MAIN_2_IM;
+extern EntityDefinition TEST_LEVEL_1_MAIN_3_A_IM;
+extern EntityDefinition TEST_LEVEL_1_MAIN_3_B_IM;
+extern EntityDefinition TEST_LEVEL_1_MAIN_4_IM;
+extern EntityDefinition TEST_LEVEL_1_MAIN_5_IM;
+extern EntityDefinition TEST_LEVEL_1_MAIN_6_IM;
+extern EntityDefinition LEVEL_1_TOWER_IM;
+extern EntityDefinition MANAGED_ENTITY;
+extern EntityDefinition MOUND_1_IM;
+extern EntityDefinition MOUND_2_IM;
+extern EntityDefinition MOUND_BG_BACK_IM;
+extern EntityDefinition MOUND_BG_FRONT_IM;
+extern EntityDefinition RUN_SIGN_IM;
+extern EntityDefinition SAW_BLADE_H3_AC;
+extern EntityDefinition SAW_BLADE_H8_AC;
+extern EntityDefinition SAW_BLADE_V3_AC;
+extern EntityDefinition SMOKE_PS;
+extern EntityDefinition SNAIL_3_AC;
+extern EntityDefinition STAR_AG;
+extern EntityDefinition WATER_SPLASH_PS;
+extern EntityDefinition WATERFALL_STREAM_2x16_AG;
+extern EntityDefinition WATERFALL_STREAM_2x28_AG;
+extern EntityDefinition WATERFALL_TOP_AG;
+extern EntityDefinition WATER_POND_EN;
+
+
+//---------------------------------------------------------------------------------------------------------
+//												ASSETS
+//---------------------------------------------------------------------------------------------------------
+
+// Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
+// know that it must stop reading the stage's/ui's textures and entities.
+
+
+//---------------------------------------------------------------------------------------------------------
+//											ENTITY LISTS
+//---------------------------------------------------------------------------------------------------------
+
+PositionedEntityROMDef TEST_LEVEL_STAGE_ST_CHILDREN[] =
 {
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {__F_TO_FIX19_13(12), __F_TO_FIX19_13(12), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Left (Left Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {__F_TO_FIX19_13(12), __F_TO_FIX19_13(212), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Left (Right Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_BG_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(112), __F_TO_FIX19_13(16)}, 0, NULL, NULL, NULL, false}, // Background
-	{&ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(112), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Logo
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {__F_TO_FIX19_13(372), __F_TO_FIX19_13(212), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Right (Left Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {__F_TO_FIX19_13(372), __F_TO_FIX19_13(12), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Right (Right Eye)
-
+	{&COG_WHEEL_IM,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), 	__F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMDef TEST_LEVEL_STAGE_ST_UI_CHILDREN[] =
 {
-
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 
 //---------------------------------------------------------------------------------------------------------
-// 											PRELOAD LISTS
+//											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const ADJUSTMENT_SCREEN_STAGE_ST_FONTS[] =
+FontROMDef* const TEST_LEVEL_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
 
+	NULL
+};
+
+CharSetROMDef* const TEST_LEVEL_STAGE_ST_CHARSETS[] =
+{
+	NULL
+};
+
+TextureDefinition* const TEST_LEVEL_STAGE_ST_TEXTURES[] =
+{
+	NULL
+};
+
+const PostProcessingEffect TEST_LEVEL_STAGE_ST_POST_PROCESSING_EFFECTS[] =
+{
 	NULL
 };
 
@@ -79,18 +159,18 @@ FontROMDef* const ADJUSTMENT_SCREEN_STAGE_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
+StageROMDef TEST_LEVEL_STAGE_ST =
 {
 	// level
 	{
 		// size
 		{
 			// x
-			__SCREEN_WIDTH,
+			384,
 			// y
-			__SCREEN_HEIGHT,
+			224,
 			// z
-			__SCREEN_DEPTH,
+			384,
 		},
 
 		// screen's initial position inside the game world
@@ -100,32 +180,32 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 			// y
 			__I_TO_FIX19_13(0),
 			// z
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX19_13(0)
 		},
 	},
 
 	// streaming
 	{
 		// load padding
-		40,
+		96,
 		// unload padding
-		16,
-		// streaming amplitude
 		24,
+		// streaming amplitude
+		14,
 		// particle removal delay cycles
-		0,
+		4,
 	},
 
 	// rendering
 	{
 		// number of cycles the texture writing is idle
-		__TARGET_FPS / 10,
+		0,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		12,
+		5,
 
 		// maximum number of rows to compute on each call to the affine functions
-		16,
+		24,
 
 		// colors config
 		{
@@ -137,7 +217,7 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 			// brightness values on the respective regions of the screen. maximum brightness is 128.
 			{
 				// dark red
-				8,
+				__BRIGHTNESS_DARK_RED,
 				// medium red
 				__BRIGHTNESS_MEDIUM_RED,
 				// bright red
@@ -179,18 +259,18 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 		// obj segments sizes (must total 1024)
 		{
 			// __spt0
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			0,
 			// __spt1
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			0,
 			// __spt2
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			64,
 			// __spt3
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			64,
 		},
 
 		// OBJECT segments z coordinates
-		// note that each spt's z coordinate much be larger than or equal to the previous one's,
-		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
+		// Note that each SPT's z coordinate must be larger than or equal to the previous one's,
+		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
 			// __spt0
 			__F_TO_FIX19_13(LAYER_0_PARTICLES),
@@ -199,7 +279,7 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 			// __spt2
 			__F_TO_FIX19_13(LAYER_0_PARTICLES),
 			// __spt3
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX19_13(24),
 		},
 
 		// optical configuration values
@@ -222,7 +302,8 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX19_13(0),
-			__I_TO_FIX19_13(__GRAVITY),
+			__I_TO_FIX19_13(0),
+ //			__I_TO_FIX19_13(__GRAVITY),
 			__I_TO_FIX19_13(0)
 		},
 
@@ -233,30 +314,54 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)ADJUSTMENT_SCREEN_STAGE_ST_FONTS,
+		(FontDefinition**)TEST_LEVEL_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)NULL,
+		(CharSetDefinition**)TEST_LEVEL_STAGE_ST_CHARSETS,
 
 		// textures to preload
-		(TextureDefinition**)NULL,
+		(TextureDefinition**)TEST_LEVEL_STAGE_ST_TEXTURES,
 
 		// background music
-		(const u16 (*)[])NULL,
+		(const u16 (*)[])WORLD_0_0_0_BGM,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			ADJUSTMENT_SCREEN_STAGE_ST_UI_ENTITIES,
+			TEST_LEVEL_STAGE_ST_UI_CHILDREN,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		ADJUSTMENT_SCREEN_STAGE_ST_ENTITIES,
+		TEST_LEVEL_STAGE_ST_CHILDREN,
 	},
 
 	// post processing effects
-	(PostProcessingEffect*)NULL,
+	(PostProcessingEffect*)TEST_LEVEL_STAGE_ST_POST_PROCESSING_EFFECTS,
+};
+
+
+//---------------------------------------------------------------------------------------------------------
+//												ENTRY POINTS
+//---------------------------------------------------------------------------------------------------------
+
+StageEntryPointROMDef TEST_LEVEL_EP =
+{
+	// the stage to load
+	(StageDefinition*)&TEST_LEVEL_STAGE_ST,
+
+	// name of the entity to start at
+	"EntryPoint",
+
+	// offset from entry point (x, y, z)
+	{
+		__F_TO_FIX19_13(-60),
+		__F_TO_FIX19_13(0),
+		__F_TO_FIX19_13(0),
+	},
+
+	// whether this entry point acts as a checkpoint
+	false,
 };

@@ -43,10 +43,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CogWheel_METHODS(ClassName)																		\
-		Entity_METHODS(ClassName)																	\
+		Entity_METHODS(ClassName)																		\
 
 #define CogWheel_SET_VTABLE(ClassName)																	\
-		Entity_SET_VTABLE(ClassName)																\
+		Entity_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, CogWheel, ready);														\
 		__VIRTUAL_SET(ClassName, CogWheel, handleMessage);												\
 

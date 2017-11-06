@@ -32,6 +32,7 @@
 #include <Bandana.h>
 #include <Cannon.h>
 #include <CannonBall.h>
+#include <CogWheel.h>
 #include <Coin.h>
 #include <Door.h>
 #include <Gui.h>
@@ -115,6 +116,7 @@ const ClassSizeData _userClassesSizeData[] =
 	{&Bandana_getObjectSize,		"Bandana"},
 	{&Cannon_getObjectSize,			"Cannon"},
 	{&CannonBall_getObjectSize,		"CannonBall"},
+	{&CogWheel_getObjectSize,		"CogWheel"},
 	{&Coin_getObjectSize,			"Coin"},
 	{&Door_getObjectSize,			"Door"},
 	{&Gui_getObjectSize,			"GUI"},

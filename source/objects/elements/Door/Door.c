@@ -186,11 +186,10 @@ bool Door_isOverlapping(Door this)
 
 bool Door_checkStillOverlapping(Door this)
 {
+	CollisionInformation collisionInformation = __VIRTUAL_CALL(Shape, overlaps, VirtualList_front(Entity_getShapes(__SAFE_CAST(Entity, Hero_getInstance()))), VirtualList_front(this->shapes));
+
 	// check if hero has recently overlapped door and is still doing so
-	if(
-		this->currentlyOverlappingHero &&
-		!__VIRTUAL_CALL(Shape, overlaps, VirtualList_front(Entity_getShapes(__SAFE_CAST(Entity, Hero_getInstance()))), VirtualList_front(this->shapes))
-	)
+	if(this->currentlyOverlappingHero && !collisionInformation.shape)
 	{
 		__VIRTUAL_CALL(Door, unsetOverlapping, this);
 	}
