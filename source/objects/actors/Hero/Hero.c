@@ -309,7 +309,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 }
 
 // keep movement
-void Hero_addForce(Hero this, int axis, bool enableAddingForce)
+void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 {
 	ASSERT(this, "Hero::addForce: null this");
 
@@ -337,7 +337,7 @@ void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 		Actor_changedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
 		Actor_changedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
 	{
-		fix19_13 inputForce = __Y_AXIS & Body_getMovementOverAllAxis(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
+		fix19_13 inputForce = __Y_AXIS & Body_getMovementOnAllAxes(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix19_13 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
 		fix19_13 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
@@ -352,7 +352,7 @@ void Hero_addForce(Hero this, int axis, bool enableAddingForce)
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOverAllAxis(this->body))))
+		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOnAllAxes(this->body))))
 		{
 			Velocity newVelocity =
 			{
@@ -403,7 +403,7 @@ void Hero_stopAddingForce(Hero this)
 //	this->inputDirection.y = 0;
 //	this->inputDirection.z = 0;
 
-	if(!(__Y_AXIS & Body_getMovementOverAllAxis(this->body)))
+	if(!(__Y_AXIS & Body_getMovementOnAllAxes(this->body)))
 	{
 		Hero_slide(this);
 	}
@@ -413,7 +413,7 @@ void Hero_stopAddingForce(Hero this)
 	}
 
 	// begin to decelerate
-	int axisOfDeacceleration = 0;
+	u16 axisOfDeacceleration = 0;
 	axisOfDeacceleration |= velocity.x? __X_AXIS: 0;
 	axisOfDeacceleration |= velocity.z? __Z_AXIS: 0;
 
@@ -429,7 +429,7 @@ void Hero_stopAddingForce(Hero this)
 }
 
 // started moving over axis
-void Hero_startedMovingOnAxis(Hero this, int axis)
+void Hero_startedMovingOnAxis(Hero this, u16 axis)
 {
 	if(__Y_AXIS & axis)
 	{
@@ -455,7 +455,7 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 	}
 	else
 	{
-		bool movementState = Body_getMovementOverAllAxis(this->body);
+		bool movementState = Body_getMovementOnAllAxes(this->body);
 
 		if(__X_AXIS & axis)
 		{
@@ -483,9 +483,10 @@ void Hero_startedMovingOnAxis(Hero this, int axis)
 }
 
 // stop moving over axis
-bool Hero_stopMovingOnAxis(Hero this, int axis)
+bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 {
 	ASSERT(this, "Hero::stopMovingOnAxis: null this");
+
 
 	// if being hit do nothing
 	if(!Body_isActive(this->body))
@@ -493,7 +494,9 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		return false;
 	}
 
-	bool movementState = Body_getMovementOverAllAxis(this->body);
+	bool movementState = Body_getMovementOnAllAxes(this->body);
+	Printing_hex(Printing_getInstance(), axis, 1, 13, 8, NULL);
+	Printing_hex(Printing_getInstance(), movementState, 1, 14, 8, NULL);
 
 	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
@@ -510,7 +513,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 
 		this->jumps = 0;
 
-		if(__X_AXIS & Body_getMovementOverAllAxis(this->body))
+		if(__X_AXIS & Body_getMovementOnAllAxes(this->body))
 		{
 			if(this->inputDirection.x)
 			{
@@ -533,7 +536,7 @@ bool Hero_stopMovingOnAxis(Hero this, int axis)
 		return true;
 	}
 
-	if(!Body_getMovementOverAllAxis(this->body) && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+	if(!movementState && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
 	{
 		this->keepAddingForce = false;
 		this->jumps = 0;
@@ -549,7 +552,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 {
 	ASSERT(this, "Hero::checkDirection: null this");
 
-	bool movementState = Body_getMovementOverAllAxis(this->body);
+	bool movementState = Body_getMovementOnAllAxes(this->body);
 	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
 
 	Hero_hideDust(this);
@@ -813,7 +816,7 @@ void Hero_enterDoor(Hero this)
 {
 	ASSERT(this, "Hero::enterDoor: null this");
 
-	if((__Y_AXIS | __Z_AXIS) & Body_getMovementOverAllAxis(this->body))
+	if((__Y_AXIS | __Z_AXIS) & Body_getMovementOnAllAxes(this->body))
 	{
 		return;
 	}
@@ -1096,7 +1099,7 @@ bool Hero_processCollision(Hero this, const CollisionInformation* collisionInfor
 
 		case kWaterPond:
 
-			if(Body_getMovementOverAllAxis(this->body))
+			if(Body_getMovementOnAllAxes(this->body))
 			{
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kReactToCollision, NULL);
 			}
@@ -1421,7 +1424,7 @@ void Hero_syncRotationWithBody(Hero this)
 {
 	ASSERT(this, "Hero::syncRotationWithBody: null this");
 
-	if(__X_AXIS & Body_getMovementOverAllAxis(this->body))
+	if(__X_AXIS & Body_getMovementOnAllAxes(this->body))
 	{
 		Velocity velocity = Body_getVelocity(this->body);
 

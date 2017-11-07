@@ -139,10 +139,10 @@ __CLASS_NEW_DECLARE(Hero, HeroDefinition* heroDefinition, s16 id, s16 internalId
 void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
 void Hero_destructor(Hero this);
 void Hero_ready(Hero this, bool recursive);
-void Hero_addForce(Hero this, int axis, bool enableAddingForce);
+void Hero_addForce(Hero this, u16 axis, bool enableAddingForce);
 void Hero_stopAddingForce(Hero this);
-void Hero_startedMovingOnAxis(Hero this, int axis);
-bool Hero_stopMovingOnAxis(Hero this, int axis);
+void Hero_startedMovingOnAxis(Hero this, u16 axis);
+bool Hero_stopMovingOnAxis(Hero this, u16 axis);
 void Hero_move(Hero this);
 void Hero_jump(Hero this, bool checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);

@@ -176,7 +176,7 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 }
 
 // tell me I've been hit
-void MovingEntity_takeHit(MovingEntity this __attribute__ ((unused)), int axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
+void MovingEntity_takeHit(MovingEntity this __attribute__ ((unused)), u16 axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
 {
 }
 

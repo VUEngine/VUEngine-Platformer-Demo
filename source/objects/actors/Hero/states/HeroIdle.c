@@ -105,7 +105,7 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 	{
 		case kBodyStartedMoving:
 
-			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
+			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(u16*)Telegram_getExtraInfo(telegram));
 			break;
 
 		case kBodyStopped:
@@ -161,7 +161,7 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 
 		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
 		{
-			if(__X_AXIS & Actor_getAxisAllowedForMovement(__SAFE_CAST(Actor, owner), &acceleration))
+//			if(__X_AXIS & Actor_getAxisAllowedForMovement(__SAFE_CAST(Actor, owner), &acceleration))
 			{
 				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
 

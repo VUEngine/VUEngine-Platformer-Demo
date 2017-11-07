@@ -119,7 +119,7 @@ const Size collision_48_5_2 = 	{48 * 8, 5 * 8, 2 * 8};
 
 PositionedEntityROMDef TEST_LEVEL_STAGE_ST_CHILDREN[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2+60), 	__F_TO_FIX19_13(0)},					0, NULL, NULL, (void*)&collision_48_5_2, false},
+	{&COLLISION_CL,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2+30), 	__F_TO_FIX19_13(0)},					0, NULL, NULL, (void*)&collision_48_5_2, false},
 	{&COG_WHEEL_IM,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
