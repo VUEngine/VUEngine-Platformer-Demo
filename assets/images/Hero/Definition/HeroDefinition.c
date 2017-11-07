@@ -549,7 +549,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 
 		// size (x, y, z)
 //		{14, 20, 16},
-		{10, 10, 10},
+		{9, 9, 10},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(2), __I_TO_FIX19_13(0)},

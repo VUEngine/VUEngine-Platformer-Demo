@@ -128,7 +128,47 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{6 * 8, 9 * 8, 6 * 8},
+		{6 * 8, 9 * 8, 2 * 8},
+
+		// displacement (x, y, z)
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
+		// check for collisions against other shapes
+		true,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false},
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{9 * 8, 1 * 8, 2 * 8},
+
+		// displacement (x, y, z)
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
+		// check for collisions against other shapes
+		true,
+	},
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{1 * 8, 9 * 8, 2 * 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -144,6 +184,18 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+};
+
+PhysicalSpecificationROMDef COG_WHEEL_IM_PHYSICAL_PROPERTIES =
+{
+	// mass
+	__F_TO_FIX19_13(0),
+
+	// friction
+	__F_TO_FIX19_13(FLOOR_FRICTION),
+
+	// elasticity
+	__F_TO_FIX19_13(FLOOR_ELASTICITY),
 };
 
 CogWheelROMDef COG_WHEEL_IM =
@@ -165,6 +217,6 @@ CogWheelROMDef COG_WHEEL_IM =
 	kShape,
 
 	// physical specification
-	(PhysicalSpecification*)NULL,
+	(PhysicalSpecification*)&COG_WHEEL_IM_PHYSICAL_PROPERTIES,
 
 };

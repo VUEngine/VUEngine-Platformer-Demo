@@ -98,8 +98,6 @@ void CogWheel_ready(CogWheel this, bool recursive)
 // state's handle message
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 {
-	CollisionManager_print(GameState_getCollisionManager(__SAFE_CAST(GameState, StateMachine_getCurrentState(Game_getStateMachine(Game_getInstance())))), 1, 1);
-
 	switch(Telegram_getMessage(telegram))
 	{
 		case kCogWheelMove:
@@ -132,8 +130,8 @@ static void CogWheel_rotate(CogWheel this)
 	if(3 < ++counter) counter = 1;
 	 */
 
-//	this->transform.localRotation.z += 8;
-	this->transform.localRotation.y = 64-16;
+	this->transform.localRotation.z += 8;
+	this->transform.localRotation.z = 64-16;
 
 	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 
