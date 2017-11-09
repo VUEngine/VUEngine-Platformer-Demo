@@ -128,7 +128,7 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{6 * 8, 9 * 8, 2 * 8},
+		{6 * 8, 24 * 8, 1 * 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},

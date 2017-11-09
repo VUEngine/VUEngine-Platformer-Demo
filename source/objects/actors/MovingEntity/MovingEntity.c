@@ -121,10 +121,7 @@ void MovingEntity_ready(MovingEntity this, bool recursive)
 	ASSERT(this, "MovingEntity::ready: null this");
 
 	// register a body for physics
-	PhysicalSpecification* physicalSpecification = this->actorDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification;
-
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), physicalSpecification ? physicalSpecification->mass : 0);
-	Body_setElasticity(this->body, physicalSpecification ? physicalSpecification->elasticity : 0);
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), this->actorDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification);
 	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
 	// call base

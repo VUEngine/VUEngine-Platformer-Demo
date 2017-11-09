@@ -136,11 +136,8 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	this->keepAddingForce = false;
 
 	// register a body for physics
-	PhysicalSpecification* physicalSpecification = heroDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification;
-
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), physicalSpecification ? physicalSpecification->mass : 0);
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), heroDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification);
 	Body_setAxisSubjectToGravity(this->body, __Y_AXIS);
-	Body_setElasticity(this->body, physicalSpecification ? physicalSpecification->elasticity : 0);
 	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this));
 
@@ -247,6 +244,8 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 		// determine the maximum number of possible jumps before reaching ground again
 		s8 allowedNumberOfJumps = (this->powerUp == kPowerUpBandana) ? 2 : 1;
 
+		this->jumps = 0;
+
 #ifdef GOD_MODE
 	allowedNumberOfJumps = 127;
 #endif
@@ -263,7 +262,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				// don't allow a first jump from mid-air without bandana
 				if(checkIfYMovement && velocity.y && (allowedNumberOfJumps == 1))
 				{
-					return;
+					//return;
 				}
 
 				// set first jump performed
@@ -495,8 +494,6 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 	}
 
 	bool movementState = Body_getMovementOnAllAxes(this->body);
-	Printing_hex(Printing_getInstance(), axis, 1, 13, 8, NULL);
-	Printing_hex(Printing_getInstance(), movementState, 1, 14, 8, NULL);
 
 	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
@@ -611,25 +608,6 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 		CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
 		CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 	}
-}
-
-// retrieve friction of colliding objects
-void Hero_updateSurroundingFriction(Hero this)
-{
-	ASSERT(this, "Hero::updateSurroundingFriction: null this");
-	ASSERT(this->body, "Hero::updateSurroundingFriction: null body");
-
-	PhysicalSpecification* physicalSpecification = this->actorDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification;
-
-	Force totalFriction = physicalSpecification ? (Force){physicalSpecification->friction, physicalSpecification->friction, physicalSpecification->friction} : (Force){0, 0, 0};
-
-	if(this->collisionSolver)
-	{
-		Force surroundingFriction = CollisionSolver_getSurroundingFriction(this->collisionSolver);
-		totalFriction.x += surroundingFriction.x;
-	}
-
-	Body_setFriction(this->body, totalFriction);
 }
 
 void Hero_takeHitFrom(Hero this, Entity collidingEntity, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
@@ -1029,14 +1007,14 @@ bool Hero_isInvincible(Hero this)
 }
 
 // process collisions
-bool Hero_processCollision(Hero this, const CollisionInformation* collisionInformation)
+bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 {
 	ASSERT(this, "Hero::processCollision: null this");
 	ASSERT(collisionInformation->collidingShape, "Hero::processCollision: null collidingObjects");
 
 	return Actor_processCollision(__SAFE_CAST(Actor, this), collisionInformation);
 
-	Shape collidingShape = collisionInformation->collidingShape;
+	Shape collidingShape = collisionInformation.collidingShape;
 	Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
 
 	switch(Entity_getInGameType(collidingEntity))
@@ -1046,12 +1024,12 @@ bool Hero_processCollision(Hero this, const CollisionInformation* collisionInfor
 
 		case kCameraTarget:
 			{
-				if(collisionInformation->minimumTranslationVector.y)
+/*				if(collisionInformation.translationVector.y)
 				{
 					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
 
-				if(collisionInformation->minimumTranslationVector.x)
+				if(collisionInformation.translationVector.x)
 				{
 					Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
 				}
@@ -1059,7 +1037,7 @@ bool Hero_processCollision(Hero this, const CollisionInformation* collisionInfor
 				{
 					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
-
+*/
 				VBVec3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 
 				__VIRTUAL_CALL(Container, setLocalPosition, this->cameraBoundingBox, &position);
@@ -1137,7 +1115,7 @@ bool Hero_processCollision(Hero this, const CollisionInformation* collisionInfor
 		case kTopShape:
 			{
 				// if hero's moving over the y axis or is above colliding entity
-				if((collisionInformation->minimumTranslationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
+//				if((collisionInformation.translationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation.shape, collisionInformation.collidingShape))
 				{
 					// don't further process collision
 					return true;
@@ -1323,7 +1301,7 @@ void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
 	Actor_setPosition(__SAFE_CAST(Actor, this), outOfDoorPosition);
 
 	// must make sure that collision detection is reset
-	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this), __X_AXIS | __Y_AXIS | __Z_AXIS);
+//	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this));
 
 	// make the camera active for collision detection
 	Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, false);
@@ -1361,9 +1339,9 @@ void Hero_resume(Hero this)
 	Hero_updateSprite(this);
 }
 
-u8 Hero_getAxisAllowedForBouncing(Hero this __attribute__ ((unused)))
+u16 Hero_getAxesForBouncing(Hero this __attribute__ ((unused)))
 {
-	ASSERT(this, "Hero::getAxisAllowedForBouncing: null this");
+	ASSERT(this, "Hero::getAxesForBouncing: null this");
 
 	return __Y_AXIS;
 }

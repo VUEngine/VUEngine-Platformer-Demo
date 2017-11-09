@@ -84,8 +84,7 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, handleMessage);													\
 		__VIRTUAL_SET(ClassName, Hero, suspend);														\
 		__VIRTUAL_SET(ClassName, Hero, resume);															\
-		__VIRTUAL_SET(ClassName, Hero, updateSurroundingFriction);										\
-		__VIRTUAL_SET(ClassName, Hero, getAxisAllowedForBouncing);										\
+		__VIRTUAL_SET(ClassName, Hero, getAxesForBouncing);										\
 		__VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);										\
 		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
 		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
@@ -168,14 +167,13 @@ u8 Hero_getPowerUp(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
-bool Hero_processCollision(Hero this, const CollisionInformation* collisionInformation);
+bool Hero_processCollision(Hero this, CollisionInformation collisionInformation);
 bool Hero_handleMessage(Hero this, Telegram telegram);
 bool Hero_handlePropagatedMessage(Hero this, int message);
 void Hero_suspend(Hero this);
 void Hero_resume(Hero this);
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
-void Hero_updateSurroundingFriction(Hero this);
-u8 Hero_getAxisAllowedForBouncing(Hero this);
+u16 Hero_getAxesForBouncing(Hero this);
 void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition);
 bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape);
 void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collisionInformation);

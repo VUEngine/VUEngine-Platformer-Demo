@@ -130,8 +130,13 @@ static void CogWheel_rotate(CogWheel this)
 	if(3 < ++counter) counter = 1;
 	 */
 
-	this->transform.localRotation.z += 8;
-	this->transform.localRotation.z = 64-16;
+	static int increment = 2;
+
+	this->transform.localRotation.z += increment;
+
+	if(this->transform.localRotation.z > 64) increment *= -1;
+	if(this->transform.localRotation.z <- 64) increment *= -1;
+	this->transform.localRotation.z = 64+32;
 
 	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
 

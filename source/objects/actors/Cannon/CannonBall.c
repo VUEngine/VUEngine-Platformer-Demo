@@ -59,10 +59,8 @@ void CannonBall_constructor(CannonBall this, CannonBallDefinition* cannonBallDef
 	// construct base
 	__CONSTRUCT_BASE(Actor, (ActorDefinition*)cannonBallDefinition, id, internalId, name);
 
-	PhysicalSpecification* physicalSpecification = cannonBallDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification;
-
 	// register a body for physics
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), physicalSpecification ? physicalSpecification->mass : 0);
+	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), cannonBallDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification);
 
 	// I start my life hidden
 	this->hidden = true;

@@ -154,7 +154,7 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 			0,
 		};
 
-		if(__X_AXIS & Actor_getAxisAllowedForMovement(__SAFE_CAST(Actor, owner), &acceleration))
+//		if(__X_AXIS & Actor_canMoveTowards(__SAFE_CAST(Actor, owner), &acceleration))
 		{
 			Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, true);
 		}
