@@ -305,7 +305,7 @@ StageROMDef TEST_LEVEL_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX19_13(0),
-			__I_TO_FIX19_13(__GRAVITY),
+			__F_TO_FIX19_13(980),
 			__I_TO_FIX19_13(0)
 		},
 
@@ -359,8 +359,8 @@ StageEntryPointROMDef TEST_LEVEL_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(-120),
-		__F_TO_FIX19_13(0),
+		__F_TO_FIX19_13(-90),
+		__F_TO_FIX19_13(-30),
 		__F_TO_FIX19_13(0),
 	},
 

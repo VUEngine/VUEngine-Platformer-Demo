@@ -549,10 +549,10 @@ ShapeROMDef HERO_AC_SHAPES[] =
 
 		// size (x, y, z)
 //		{14, 20, 16},
-		{9, 9, 10},
+		{8, 8, 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(2), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(4), __I_TO_FIX19_13(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -570,7 +570,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 {
 	// mass
-	__F_TO_FIX19_13(HERO_MASS),
+	__F_TO_FIX19_13(2),
 
 	// friction
 	__F_TO_FIX19_13(HERO_FRICTION),

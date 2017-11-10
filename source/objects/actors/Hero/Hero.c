@@ -225,8 +225,6 @@ void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 		};
 
 		CollisionSolver_resolveCollision(this->collisionSolver, VirtualList_front(this->shapes), collidingShapesToRemove, displacement, true);
-
-//		Actor_updateSurroundingFriction(this);
 	}
 	*/
 }
@@ -275,7 +273,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				force.y = this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE;
 
 				// add the force to actually make the hero jump
-				Actor_addForce(__SAFE_CAST(Actor, this), &force, false);
+				Actor_addForce(__SAFE_CAST(Actor, this), &force);
 			}
 			else
 			{
@@ -292,7 +290,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
 
 				// add the force to actually make the hero jump
-				Actor_addForce(__SAFE_CAST(Actor, this), &force, false);
+				Actor_addForce(__SAFE_CAST(Actor, this), &force);
 
 				// show dust
 				Hero_showDust(this, true);
@@ -331,8 +329,8 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
 
 	if(direction.x != this->inputDirection.x ||
-		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
-		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
+		((__X_AXIS & axis) && maxVelocity > abs(velocity.x)) ||
+		((__Z_AXIS & axis) && maxVelocity > abs(velocity.z)) ||
 		Actor_changedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
 		Actor_changedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
 	{
@@ -346,12 +344,12 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 			zForce
 		};
 
-		Actor_addForce(__SAFE_CAST(Actor, this), &force, false);
+		Actor_addForce(__SAFE_CAST(Actor, this), &force);
 		movementType = __ACCELERATED_MOVEMENT;
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOnAllAxes(this->body))))
+		if(__UNIFORM_MOVEMENT != movementType || (abs(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOnAllAxes(this->body))))
 		{
 			Velocity newVelocity =
 			{
@@ -359,6 +357,7 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 				0,
 				(__Z_AXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
 			};
+
 			movementType = __UNIFORM_MOVEMENT;
 			Body_moveUniformly(this->body, newVelocity);
 		}
@@ -418,7 +417,7 @@ void Hero_stopAddingForce(Hero this)
 
 	if(axisOfDeacceleration)
 	{
-		Body_clearAcceleration(this->body, __X_AXIS);
+		//Body_clearAcceleration(this->body, __X_AXIS);
 		Body_moveAccelerated(this->body, axisOfDeacceleration);
 	}
 	else
@@ -559,7 +558,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 		this->inputDirection.x = __RIGHT;
 
 		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
-		position.x = __ABS(position.x) * -1;
+		position.x = abs(position.x) * -1;
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 	}
 	else if(K_LL & pressedKey)
@@ -567,7 +566,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 		this->inputDirection.x = __LEFT;
 
 		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
-		position.x = __ABS(position.x);
+		position.x = abs(position.x);
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 	}
 	else if(K_LU & pressedKey)
@@ -1148,7 +1147,7 @@ void Hero_capVelocity(Hero this, bool discardPreviousMessages)
 				velocity.y = HERO_MAX_VELOCITY_Y;
 				velocity.z = 0;
 
-				Body_moveUniformly(this->body, velocity);
+				//Body_moveUniformly(this->body, velocity);
 			}
 			else if(0 < velocity.y)
 			{

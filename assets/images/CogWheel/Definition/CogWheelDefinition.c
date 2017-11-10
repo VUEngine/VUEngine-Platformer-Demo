@@ -192,10 +192,10 @@ PhysicalSpecificationROMDef COG_WHEEL_IM_PHYSICAL_PROPERTIES =
 	__F_TO_FIX19_13(0),
 
 	// friction
-	__F_TO_FIX19_13(FLOOR_FRICTION),
+	__F_TO_FIX19_13(0.2f),
 
 	// elasticity
-	__F_TO_FIX19_13(FLOOR_ELASTICITY),
+	__F_TO_FIX19_13(0.0f),
 };
 
 CogWheelROMDef COG_WHEEL_IM =
