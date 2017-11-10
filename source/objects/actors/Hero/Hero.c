@@ -46,6 +46,29 @@
 #include <HideLayer.h>
 
 
+#define HERO_MASS							2
+#define HERO_ELASTICITY						0.0f
+#define HERO_FRICTION						0
+
+#define HERO_FLASH_PALETTE					3
+#define HERO_FLASH_DURATION					2000
+#define HERO_FLASH_INTERVAL					100
+
+#define HERO_INPUT_FORCE 					__I_TO_FIX19_13(5050)
+#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX19_13(3050)
+
+#define HERO_MAX_VELOCITY_X					__I_TO_FIX19_13(75)
+#define HERO_MAX_VELOCITY_Y					__I_TO_FIX19_13(305)
+#define HERO_MAX_VELOCITY_Z					__I_TO_FIX19_13(40)
+#define HERO_BOOST_VELOCITY_X				__F_TO_FIX19_13(100)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-21000)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-28000)
+
+#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-24), 0}
+
+#define HERO_CHECK_Y_VELOCITY				20
+
+
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
@@ -258,9 +281,9 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 			if(this->jumps == 0)
 			{
 				// don't allow a first jump from mid-air without bandana
-				if(checkIfYMovement && velocity.y && (allowedNumberOfJumps == 1))
+				if(checkIfYMovement && 0 <= Body_getNormal(this->body).y && (allowedNumberOfJumps == 1))
 				{
-					//return;
+					return;
 				}
 
 				// set first jump performed
@@ -417,8 +440,18 @@ void Hero_stopAddingForce(Hero this)
 
 	if(axisOfDeacceleration)
 	{
-		//Body_clearAcceleration(this->body, __X_AXIS);
-		Body_moveAccelerated(this->body, axisOfDeacceleration);
+		fix19_13 inputForce = HERO_INPUT_FORCE;
+		fix19_13 xForce = __RIGHT == this->inputDirection.x ? inputForce : -inputForce;
+		fix19_13 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
+		Force force =
+		{
+			xForce,
+			0,
+			zForce
+		};
+
+		//Body_moveAccelerated(this->body, axisOfDeacceleration);
+		Actor_addForce(__SAFE_CAST(Actor, this), &force);
 	}
 	else
 	{
@@ -1009,9 +1042,7 @@ bool Hero_isInvincible(Hero this)
 bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 {
 	ASSERT(this, "Hero::processCollision: null this");
-	ASSERT(collisionInformation->collidingShape, "Hero::processCollision: null collidingObjects");
-
-	return Actor_processCollision(__SAFE_CAST(Actor, this), collisionInformation);
+	ASSERT(collisionInformation.collidingShape, "Hero::processCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation.collidingShape;
 	Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
