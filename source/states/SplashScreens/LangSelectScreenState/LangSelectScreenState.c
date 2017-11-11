@@ -26,7 +26,6 @@
 
 #include <Game.h>
 #include <Screen.h>
-#include <Printing.h>
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <LangSelectScreenState.h>

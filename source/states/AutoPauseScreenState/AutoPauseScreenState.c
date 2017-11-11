@@ -27,7 +27,6 @@
 #include <string.h>
 #include <Game.h>
 #include <Screen.h>
-#include <Printing.h>
 #include <MessageDispatcher.h>
 #include <PhysicalWorld.h>
 #include <I18n.h>

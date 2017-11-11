@@ -28,7 +28,6 @@
 
 #include <Game.h>
 #include <Screen.h>
-#include <Printing.h>
 #include <I18n.h>
 #include <Languages.h>
 #include <PlatformerLevelState.h>
