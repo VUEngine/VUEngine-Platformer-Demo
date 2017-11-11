@@ -137,10 +137,11 @@ static void CogWheel_rotate(CogWheel this)
 //	if(this->transform.localRotation.z > 64) increment *= -1;
 //	if(this->transform.localRotation.z <- 64) increment *= -1;
 
-	this->transform.localRotation.z = 64+32;
-	//this->transform.localRotation.z = 64-16;
+//	this->transform.localRotation.z = 64+32;
+//	this->transform.localRotation.z = 366;
+//	this->transform.localRotation.z = 184;
 
-	Container_setLocalRotation(__SAFE_CAST(Container, this), &this->transform.localRotation);
+	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transform.localRotation);
 
 	// send delayed message to self to trigger next movement
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);

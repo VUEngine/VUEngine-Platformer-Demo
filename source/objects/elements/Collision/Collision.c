@@ -156,9 +156,5 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		__VIRTUAL_CALL(Shape, setup, shape, myPosition, myRotation, myScale, &this->size);
 
 		VirtualList_pushBack(this->shapes, shape);
-
-#ifdef __DRAW_SHAPES
-		__VIRTUAL_CALL(Shape, show, shape);
-#endif
 	}
 }
