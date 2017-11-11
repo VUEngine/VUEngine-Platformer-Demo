@@ -29,6 +29,7 @@
 
 #include <Game.h>
 #include <I18n.h>
+#include <Error.h>
 #include <GameEvents.h>
 #include <ProgressManager.h>
 #include <SRAMManager.h>

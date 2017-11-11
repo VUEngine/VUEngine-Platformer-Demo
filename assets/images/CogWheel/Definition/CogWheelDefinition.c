@@ -128,7 +128,7 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{6 * 8, 24 * 8, 1 * 8},
+		{6 * 8, 24 * 8, 4 * 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -169,7 +169,7 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{5 * 8, 8, 2 * 8},
+		{7 * 8, 8, 2 * 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -209,7 +209,7 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{5 * 8, 8, 2 * 8},
+		{7 * 8, 8, 2 * 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -233,10 +233,10 @@ PhysicalSpecificationROMDef COG_WHEEL_IM_PHYSICAL_PROPERTIES =
 	__F_TO_FIX19_13(0),
 
 	// friction
-	__F_TO_FIX19_13(0.2f),
+	__F_TO_FIX19_13(0.25f),
 
 	// elasticity
-	__F_TO_FIX19_13(0.0f),
+	__F_TO_FIX19_13(0.3f),
 };
 
 CogWheelROMDef COG_WHEEL_IM =

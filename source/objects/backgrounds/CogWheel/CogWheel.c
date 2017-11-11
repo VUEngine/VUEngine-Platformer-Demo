@@ -137,8 +137,9 @@ static void CogWheel_rotate(CogWheel this)
 //	if(this->transform.localRotation.z > 64) increment *= -1;
 //	if(this->transform.localRotation.z <- 64) increment *= -1;
 
-//	this->transform.localRotation.z = 64+32;
-//	this->transform.localRotation.z = 366;
+	this->transform.localRotation.z = 64+32;
+//	this->transform.localRotation.z = 128-12;
+//	this->transform.localRotation.z = 128;
 //	this->transform.localRotation.z = 184;
 
 	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transform.localRotation);
