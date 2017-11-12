@@ -147,7 +147,7 @@ void Hero_jump(Hero this, bool checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u32 currentPressedKey, char * animation);
 void Hero_synchronizeDirectionWithVelocity(Hero this);
-void Hero_takeHitFrom(Hero this, Entity collidingEntity, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy);
+void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy);
 void Hero_flash(Hero this);
 void Hero_toggleFlashPalette(Hero this);
 void Hero_resetPalette(Hero this);

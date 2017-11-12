@@ -621,7 +621,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 	}
 }
 
-void Hero_takeHitFrom(Hero this, Entity collidingEntity, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
+void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
 {
 #ifdef GOD_MODE
 	return;
@@ -657,7 +657,7 @@ void Hero_takeHitFrom(Hero this, Entity collidingEntity, Shape collidingShape, i
 				GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
 				Body_setActive(this->body, false);
 				GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, collidingEntity);
+				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, collidingObject);
 			}
 		}
 		else
@@ -1024,11 +1024,24 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 	ASSERT(collisionInformation.collidingShape, "Hero::processCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation.collidingShape;
-	Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
+	SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
-	switch(Entity_getInGameType(collidingEntity))
+	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
 	{
 		case kShape:
+			break;
+
+		case kUncollectableCoin:
+			{
+				Shape auxShape = collisionInformation.shape;
+				collisionInformation.shape = collisionInformation.collidingShape;
+				collisionInformation.collidingShape = auxShape;
+//				collisionInformation.collisionSolution.translationVector = Vector3D_scalarProduct(collisionInformation.collisionSolution.translationVector, __I_TO_FIX19_13(-1));
+//				collisionInformation.collisionSolution.collisionPlaneNormal = Vector3D_scalarProduct(collisionInformation.collisionSolution.collisionPlaneNormal, __I_TO_FIX19_13(-1));
+			}
+
+			__VIRTUAL_CALL(SpatialObject, processCollision, Shape_getOwner(collisionInformation.shape), collisionInformation);
+			return true;
 			break;
 
 		case kCameraTarget:
@@ -1055,40 +1068,40 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 
 		case kCoin:
 
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
 			break;
 
 		case kKey:
 
 			this->hasKey = true;
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
 			break;
 
 		case kBandana:
 
 			Hero_collectPowerUp(this, kPowerUpBandana);
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kItemTaken, NULL);
+			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
 			break;
 
 		case kHideLayer:
 
 			// first contact with hide layer?
-			if(!HideLayer_isOverlapping((HideLayer)collidingEntity))
+			if(!HideLayer_isOverlapping((HideLayer)collidingObject))
 			{
-				HideLayer_setOverlapping((HideLayer)collidingEntity);
+				HideLayer_setOverlapping((HideLayer)collidingObject);
 			}
 			break;
 
 		case kDoor:
 
-			Door_onOverlapping((Door)collidingEntity);
+			Door_onOverlapping((Door)collidingObject);
 			break;
 
 		case kWaterPond:
 
 			if(Body_getMovementOnAllAxes(this->body))
 			{
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kReactToCollision, NULL);
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
 			}
 			break;
 
@@ -1100,22 +1113,22 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 		case kSawBlade:
 		case kSnail:
 
-			Hero_takeHitFrom(this, collidingEntity, collidingShape, 1, true, true, false);
+			Hero_takeHitFrom(this, collidingObject, collidingShape, 1, true, true, false);
 			break;
 
 		case kCannonBall:
 
-			Hero_takeHitFrom(this, collidingEntity, collidingShape, 2, true, true, false);
+			Hero_takeHitFrom(this, collidingObject, collidingShape, 2, true, true, false);
 			break;
 
 		case kHit:
 
-			Hero_takeHitFrom(this, collidingEntity, collidingShape, 1, true, true, false);
+			Hero_takeHitFrom(this, collidingObject, collidingShape, 1, true, true, false);
 			break;
 
 		case kLavaTrigger:
 
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingEntity), kLavaTriggerStart, NULL);
+			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kLavaTriggerStart, NULL);
 			Hero_stopAddingForce(this);
 			//Hero_stopMovingOnAxis(this, __X_AXIS);
 			break;
@@ -1369,13 +1382,13 @@ void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collis
 	if(collisionInformation->collidingShape)
 	{
 		Shape collidingShape = collisionInformation->collidingShape;
-		Entity collidingEntity = __SAFE_CAST(Entity, Shape_getOwner(collidingShape));
+		SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
-		switch(Entity_getInGameType(collidingEntity))
+		switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
 		{
 			case kMovingPlatform:
 
-				Container_addChild(__SAFE_CAST(Container, collidingEntity), __SAFE_CAST(Container, this));
+				Container_addChild(__SAFE_CAST(Container, collidingObject), __SAFE_CAST(Container, this));
 				break;
 		}
 	}

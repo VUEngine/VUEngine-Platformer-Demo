@@ -100,6 +100,8 @@ SolidParticleROMDef TEST_PARTICLE =
 	/// flag to ignore collisions against other particles
 	true,
 
+	/// object's in-game type
+	kUncollectableCoin
 };
 
 ParticleSystemROMDef TEST_PS =

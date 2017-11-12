@@ -63,8 +63,7 @@
 // entity collision types
 enum PlatformerTypes
 {
-	kNoType = 1,
-	kHero,
+	kHero = kNoType + 1,
 	kShape,
 	kTopShape,
 	kNotShape,
@@ -74,6 +73,7 @@ enum PlatformerTypes
 	kFloor,
 	kDoor,
 	kCoin,
+	kUncollectableCoin,
 	kBandana,
 	kKey,
 	kLava,
