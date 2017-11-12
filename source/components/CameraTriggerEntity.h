@@ -46,7 +46,7 @@
 		/* super's attributes */																		\
 		Entity_ATTRIBUTES																				\
 		/* update axis flag */																			\
-		VBVec3DFlag overridePositionFlag;																\
+		Vector3DFlag overridePositionFlag;																\
 
 __CLASS(CameraTriggerEntity);
 
@@ -68,8 +68,8 @@ __CLASS_NEW_DECLARE(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraEn
 void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name);
 void CameraTriggerEntity_destructor(CameraTriggerEntity this);
 void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag);
-void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag);
-VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this);
+void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag);
+Vector3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this);
 bool CameraTriggerEntity_moves(CameraTriggerEntity this);
 
 

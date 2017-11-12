@@ -109,7 +109,7 @@ void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this)
 	__DESTROY_BASE;
 }
 
-void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const VBVec3D* position)
+void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position)
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::position: null this");
 
@@ -184,10 +184,10 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 
 	if(!ownerSpriteGYSet)
 	{
-		VBVec3D ownerPosition3D = *__VIRTUAL_CALL(SpatialObject, getPosition, this->owner);
+		Vector3D ownerPosition3D = *__VIRTUAL_CALL(SpatialObject, getPosition, this->owner);
 		__OPTICS_NORMALIZE(ownerPosition3D);
 
-		VBVec3D ownerPosition2D;
+		Vector3D ownerPosition2D;
 		__OPTICS_PROJECT_TO_2D(ownerPosition3D, ownerPosition2D);
 
 		ownerSpriteGY = __FIX19_13_TO_I(ownerPosition2D.y);

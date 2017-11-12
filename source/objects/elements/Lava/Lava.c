@@ -112,7 +112,7 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
 void Lava_moveUpwards(Lava this)
 {
 	// get local position of lava and subtract 1 from y value
-	VBVec3D offset = *Container_getLocalPosition(__SAFE_CAST(Container, this));
+	Vector3D offset = *Container_getLocalPosition(__SAFE_CAST(Container, this));
 	offset.y -= __1I_FIX19_13;
 
 	// update lava's position

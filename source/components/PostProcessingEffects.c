@@ -53,7 +53,7 @@
 
 
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
-void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition, int parallax);
+void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, Vector3D spatialObjectPosition, int parallax);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -295,7 +295,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	static u16 dropletLengthIndex = 0;
 	static fix19_13 yStepThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
 	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_1;
- 	static VBVec3D screenPreviousPosition = {0, 0, 0};
+ 	static Vector3D screenPreviousPosition = {0, 0, 0};
  	static fix19_13 cumulativeX = 0;
  	fix19_13 yScreenDisplacement = (_screenPosition->y - screenPreviousPosition.y);
 
@@ -357,7 +357,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	yStepThrottle += yScreenDisplacement;
 }
 
-void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, VBVec3D position, int width, int height, int yStepThrottle)
+void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, Vector3D position, int width, int height, int yStepThrottle)
 {
 	static u16 yStepIndex = 0;
 	static u16 dropletLengthIndex = 0;
@@ -413,7 +413,7 @@ void PostProcessingEffects_waterFall20x100(u32 currentDrawingFrameBufferSet __at
 		return;
 	}
 
-	VBVec3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
+	Vector3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
 		__OPTICS_NORMALIZE(spatialObjectPosition);
 
 	PostProcessingEffects_waterFall(currentDrawingFrameBufferSet, spatialObjectPosition, 20, 100, 0);
@@ -464,7 +464,7 @@ void PostProcessingEffects_applyMask(u32 currentDrawingFrameBufferSet, int xStar
 	}
 }
 
-void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, VBVec3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask, bool roundBorder)
+void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, Vector3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask, bool roundBorder)
 {
  	int xPosition = __FIX19_13_TO_I(position.x);
  	int yPosition = __FIX19_13_TO_I(position.y);
@@ -607,7 +607,7 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  		return;
  	}
 
- 	VBVec3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
+ 	Vector3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
  	heroPosition.y -= __I_TO_FIX19_13(10);
 
  	 	__OPTICS_NORMALIZE(heroPosition);
@@ -651,7 +651,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 		return;
 	}
 
-	VBVec3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
+	Vector3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
 	__OPTICS_NORMALIZE(spatialObjectPosition);
 
 	// increase radius by 1 in each cycle
@@ -866,7 +866,7 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, Spatia
 		return;
 	}
 
-	VBVec3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
+	Vector3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
 		__OPTICS_NORMALIZE(heroPosition);
 	heroPosition.x = __FIX19_13_TO_I(heroPosition.x);
 	heroPosition.y = __FIX19_13_TO_I(heroPosition.y);
@@ -969,35 +969,35 @@ inline u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* colum
  * @param color
  * @param spatialObjectPosition
  */
-void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, VBVec3D spatialObjectPosition, int parallax)
+void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, Vector3D spatialObjectPosition, int parallax)
 {
 	DirectDraw directDraw = DirectDraw_getInstance();
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(VBVec2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(VBVec2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, parallax},
 		color
 	);
 }

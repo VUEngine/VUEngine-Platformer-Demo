@@ -63,7 +63,7 @@
 		/* super's attributes */																		\
 		ScreenMovementManager_ATTRIBUTES																\
 		/* update axis flag */																			\
-		VBVec3DFlag positionFlag;																		\
+		Vector3DFlag positionFlag;																		\
 		/* pointer to function that implements the required focusing */									\
 		bool (*focusFunction)(CustomScreenMovementManager, u32, u32);									\
 		bool (*previousFocusFunction)(CustomScreenMovementManager, u32, u32);							\
@@ -80,8 +80,8 @@ CustomScreenMovementManager CustomScreenMovementManager_getInstance();
 
 void CustomScreenMovementManager_destructor(CustomScreenMovementManager this);
 void CustomScreenMovementManager_focus(CustomScreenMovementManager this, u32 checkIfFocusEntityIsMoving);
-void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag);
-VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this);
+void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, Vector3DFlag positionFlag);
+Vector3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this);
 void CustomScreenMovementManager_enable(CustomScreenMovementManager this);
 void CustomScreenMovementManager_disable(CustomScreenMovementManager this);
 void CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager this);

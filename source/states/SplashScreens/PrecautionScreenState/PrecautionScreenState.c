@@ -91,7 +91,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 		case kScreenStarted:
 			{
 				// play start-up sound
-				VBVec3D position = {0, 0, 0};
+				Vector3D position = {0, 0, 0};
 				SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, position);
 
 				// wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual

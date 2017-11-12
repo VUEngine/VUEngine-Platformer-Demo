@@ -79,18 +79,18 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 {
 	ASSERT(this, "CameraTriggerEntity::transform: null this");
 
-	VBVec3D currentGlobalPosition = this->transform.globalPosition;
+	Vector3D currentGlobalPosition = this->transformation.globalPosition;
 
 	__CALL_BASE_METHOD(Container, transform, this, environmentTransform, invalidateTransformationFlag);
 
 	if(this->overridePositionFlag.x)
 	{
-		this->transform.globalPosition.x = currentGlobalPosition.x;
+		this->transformation.globalPosition.x = currentGlobalPosition.x;
 	}
 
 	if(this->overridePositionFlag.y)
 	{
-		this->transform.globalPosition.y = currentGlobalPosition.y;
+		this->transformation.globalPosition.y = currentGlobalPosition.y;
 	}
 
 	Entity_transformShapes(__SAFE_CAST(Entity, this));
@@ -98,7 +98,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 //	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
 }
 
-void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec3DFlag overridePositionFlag)
+void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag)
 {
 	ASSERT(this, "CameraTriggerEntity::setOverridePositionFlag: null this");
 
@@ -113,7 +113,7 @@ void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, VBVec
 	this->overridePositionFlag = overridePositionFlag;
 }
 
-VBVec3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this)
+Vector3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this)
 {
 	ASSERT(this, "CameraTriggerEntity::getOverridePositionFlag: null this");
 

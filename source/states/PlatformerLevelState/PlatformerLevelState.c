@@ -165,8 +165,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	if(this->currentStageEntryPoint->destinationName)
 	{
 		// iterate stage definition to find global position of destination entity
-		VBVec3D environmentPosition = {0, 0, 0};
-		VBVec3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
+		Vector3D environmentPosition = {0, 0, 0};
+		Vector3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
 
 //		ASSERT(initialPosition, "PlatormerLevelState::enter: no initial position");
 
@@ -182,7 +182,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			Screen_setStageSize(Screen_getInstance(), this->currentStageEntryPoint->stageDefinition->level.size);
 
 			// focus screen on new position
-			VBVec3D screenPosition =
+			Vector3D screenPosition =
 			{
 				initialPosition->x - __I_TO_FIX19_13(__HALF_SCREEN_WIDTH),
 				initialPosition->y - __I_TO_FIX19_13(__HALF_SCREEN_HEIGHT),
@@ -235,7 +235,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 			// set focus on the hero
 			Screen_setFocusGameEntity(Screen_getInstance(), __SAFE_CAST(Entity, hero));
-			VBVec3D screenDisplacement = {__I_TO_FIX19_13(50), __I_TO_FIX19_13(-30), 0};
+			Vector3D screenDisplacement = {__I_TO_FIX19_13(50), __I_TO_FIX19_13(-30), 0};
 			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
 
 			// apply changes to the visuals

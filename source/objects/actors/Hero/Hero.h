@@ -47,7 +47,7 @@ enum HeroPowerUps
 #define HERO_NAME							"John Hero"
 #define HERO_INITIAL_ENERGY					3
 
-#define HERO_MASS							10
+#define HERO_MASS							2
 #define HERO_ELASTICITY						0.0f
 #define HERO_FRICTION						0
 
@@ -62,12 +62,13 @@ enum HeroPowerUps
 #define HERO_MAX_VELOCITY_Y					__I_TO_FIX19_13(305)
 #define HERO_MAX_VELOCITY_Z					__I_TO_FIX19_13(40)
 #define HERO_BOOST_VELOCITY_X				__F_TO_FIX19_13(100)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-25000)
-#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-30000)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-21000)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-28000)
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-24), 0}
 
 #define HERO_CHECK_Y_VELOCITY				20
+
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
@@ -84,7 +85,6 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, handleMessage);													\
 		__VIRTUAL_SET(ClassName, Hero, suspend);														\
 		__VIRTUAL_SET(ClassName, Hero, resume);															\
-		__VIRTUAL_SET(ClassName, Hero, getAxesForBouncing);										\
 		__VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);										\
 		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
 		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
@@ -173,8 +173,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message);
 void Hero_suspend(Hero this);
 void Hero_resume(Hero this);
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
-u16 Hero_getAxesForBouncing(Hero this);
-void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition);
+void Hero_getOutOfDoor(Hero this, Vector3D* outOfDoorPosition);
 bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape);
 void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collisionInformation);
 u16 Hero_getAxisForFlipping(Hero this);

@@ -199,7 +199,7 @@ void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner, con
 {
     if((K_LL | K_LR) & userInput->holdKey)
     {
-        VBVec3D direction =
+        Vector3D direction =
         {
             K_LL & userInput->holdKey ? __I_TO_FIX19_13(-1) : K_LR & userInput->holdKey ? __1I_FIX19_13 : 0,
             K_A & userInput->holdKey ? __I_TO_FIX19_13(-1) : 0,

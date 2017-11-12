@@ -115,7 +115,7 @@ __attribute__ ((unused)) static void WaterPond_addSplashParticles(WaterPond this
 {
 	ASSERT(this, "WaterPond::addSplashParticles: null this");
 
-	VBVec3D position = {__F_TO_FIX19_13(-2), __F_TO_FIX19_13(-1), __F_TO_FIX19_13(-1)};
+	Vector3D position = {__F_TO_FIX19_13(-2), __F_TO_FIX19_13(-1), __F_TO_FIX19_13(-1)};
 
 	extern EntityDefinition WATER_SPLASH_PS;
 

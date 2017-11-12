@@ -149,7 +149,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		Shape_setActive(shape, true);
 		Shape_setCheckForCollisions(shape, false);
 
-		const VBVec3D* myPosition = Entity_getPosition(__SAFE_CAST(Entity, this));
+		const Vector3D* myPosition = Entity_getPosition(__SAFE_CAST(Entity, this));
 		const Rotation* myRotation = Entity_getRotation(__SAFE_CAST(Entity, this));
 		const Scale* myScale = Entity_getScale(__SAFE_CAST(Entity, this));
 

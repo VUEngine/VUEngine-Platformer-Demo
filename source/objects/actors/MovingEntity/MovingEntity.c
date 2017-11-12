@@ -148,7 +148,7 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 
 		case kMovingEntityStartMoving:
 			{
-				VBVec3D position = this->transform.globalPosition;
+				Vector3D position = this->transformation.globalPosition;
 
 				switch(this->movingEntityDefinition->axis)
 				{
@@ -178,7 +178,7 @@ void MovingEntity_takeHit(MovingEntity this __attribute__ ((unused)), u16 axis _
 }
 
 // set position
-void MovingEntity_setLocalPosition(MovingEntity this, const VBVec3D* position)
+void MovingEntity_setLocalPosition(MovingEntity this, const Vector3D* position)
 {
 	// set my position
 	__CALL_BASE_METHOD(Actor, setLocalPosition, this, position);
@@ -211,7 +211,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 	{
 		case __X_AXIS:
 			{
-				fix19_13 distance = abs((this->transform.globalPosition.x - this->initialPosition));
+				fix19_13 distance = abs((this->transformation.globalPosition.x - this->initialPosition));
 
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
@@ -229,7 +229,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 
 		case __Y_AXIS:
 			{
-				fix19_13 distance = abs((this->transform.globalPosition.y - this->initialPosition));
+				fix19_13 distance = abs((this->transformation.globalPosition.y - this->initialPosition));
 
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{

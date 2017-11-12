@@ -91,7 +91,7 @@ bool Collectable_handleMessage(Collectable this, Telegram telegram)
 		case kItemTaken:
 
 			// play collect sound
-			SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+			SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
 			// set shape to inactive so no other hits with this item can occur
 			Entity_activateShapes(__SAFE_CAST(Entity, this), false);

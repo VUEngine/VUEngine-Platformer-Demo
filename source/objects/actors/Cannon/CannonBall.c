@@ -115,7 +115,7 @@ void CannonBall_stopMovement(CannonBall this)
 	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 
 	// set back local position
-	VBVec3D position = {0, 0, __F_TO_FIX19_13(-SORT_INCREMENT)};
+	Vector3D position = {0, 0, __F_TO_FIX19_13(-SORT_INCREMENT)};
 	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
 
 	// hide me
@@ -124,7 +124,7 @@ void CannonBall_stopMovement(CannonBall this)
 
 static void CannonBall_checkIfDistanceTraveled(CannonBall this)
 {
-	if(this->transform.globalPosition.z <= __I_TO_FIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
+	if(this->transformation.globalPosition.z <= __I_TO_FIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
 	{
 		// set state to idle
 		CannonBall_stopMovement(this);

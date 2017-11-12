@@ -114,7 +114,7 @@ static bool CustomScreenMovementManager_doFocusWithNoEasing(CustomScreenMovement
 {
 	ASSERT(this, "CustomScreenMovementManager::doFocusWithNoEasing: null this");
 
-	VBVec3D focusEntityPosition = *_screen->focusEntityPosition;
+	Vector3D focusEntityPosition = *_screen->focusEntityPosition;
 	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, _screen->focusEntity));
 	_screen->position.x = focusEntityPosition.x + direction.x * _screen->focusEntityPositionDisplacement.x - __I_TO_FIX19_13(__SCREEN_WIDTH / 2);
 	_screen->position.y = focusEntityPosition.y + _screen->focusEntityPositionDisplacement.y - __I_TO_FIX19_13(__SCREEN_HEIGHT / 2);
@@ -152,14 +152,14 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 
 	ASSERT(__SAFE_CAST(Actor, _screen->focusEntity), "CustomScreenMovementManager::update: focus entity is not an actor");
 
-	VBVec3D screenPreviousPosition = _screen->position;
+	Vector3D screenPreviousPosition = _screen->position;
 
-	VBVec3DFlag reachedTargetFlag = {true, true, true};
+	Vector3DFlag reachedTargetFlag = {true, true, true};
 
-	VBVec3D focusEntityPosition = *_screen->focusEntityPosition;
+	Vector3D focusEntityPosition = *_screen->focusEntityPosition;
 
-	VBVec3D position3D = focusEntityPosition;
-	VBVec2D position2D;
+	Vector3D position3D = focusEntityPosition;
+	Vector2D position2D;
 
 	// normalize the position to screen coordinates
 	__OPTICS_NORMALIZE(position3D);
@@ -299,14 +299,14 @@ static bool CustomScreenMovementManager_doFocusAndAlertWhenTargetReached(CustomS
 	return false;
 }
 
-void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, VBVec3DFlag positionFlag)
+void CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager this, Vector3DFlag positionFlag)
 {
 	ASSERT(this, "CustomScreenMovementManager::setPositionFlag: null this");
 
 	this->positionFlag = positionFlag;
 }
 
-VBVec3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this)
+Vector3DFlag CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager this)
 {
 	ASSERT(this, "CustomScreenMovementManager::getPositionFlag: null this");
 

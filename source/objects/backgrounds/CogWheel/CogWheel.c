@@ -87,13 +87,15 @@ void CogWheel_ready(CogWheel this, bool recursive)
 	__CALL_BASE_METHOD(Entity, ready, this, recursive);
 
 	// start moving
-	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
+	MessageDispatcher_dispatchMessage(5000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 
 	// listen for the shake end event
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
 
-	this->transform.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
-}
+	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
+
+	this->transformation.localRotation.z = 128;
+	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);}
 
 // state's handle message
 bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
@@ -120,29 +122,29 @@ static void CogWheel_rotate(CogWheel this)
 /*	static int counter = 1;
 
 	if(1 == counter)
-//	this->transform.localRotation.x = 512;
-	this->transform.localRotation.x += 8;
+//	this->transformation.localRotation.x = 512;
+	this->transformation.localRotation.x += 8;
 	else if(2 == counter)
-	this->transform.localRotation.y += 8;
+	this->transformation.localRotation.y += 8;
 	else if(3 == counter)
-	this->transform.localRotation.z += 8;
+	this->transformation.localRotation.z += 8;
 
 	if(3 < ++counter) counter = 1;
 	 */
 
-	static int increment = 2;
+	static int increment = -2;
 
-	this->transform.localRotation.z += increment;
+	this->transformation.localRotation.z += increment;
 
-//	if(this->transform.localRotation.z > 64) increment *= -1;
-//	if(this->transform.localRotation.z <- 64) increment *= -1;
+//	if(this->transformation.localRotation.z > 64) increment *= -1;
+//	if(this->transformation.localRotation.z <- 64) increment *= -1;
 
-	this->transform.localRotation.z = 64+32;
-//	this->transform.localRotation.z = 128-12;
-//	this->transform.localRotation.z = 128;
-//	this->transform.localRotation.z = 184;
+//	this->transformation.localRotation.z = 64+32;
+//	this->transformation.localRotation.z = 128-12;
+//	this->transformation.localRotation.z = 128;
+//	this->transformation.localRotation.z = 184;
 
-	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transform.localRotation);
+	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
 
 	// send delayed message to self to trigger next movement
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);

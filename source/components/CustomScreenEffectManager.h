@@ -69,7 +69,7 @@ enum CustomScreenFX
 		/* temporary variable to hold the focus entity during shaking fx */								\
 		Entity tempFocusEntity;																\
 		/* last offset set by shake function */															\
-		VBVec3D lastShakeOffset;																		\
+		Vector3D lastShakeOffset;																		\
 		/* time left in current shaking fx (in ms) */													\
 		int shakeTimeLeft;																				\
 		/* values to load on next pulsate fx step */													\

@@ -76,7 +76,7 @@ void Clouds_update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
 	ASSERT(this, "Clouds::update: null this");
 
 	// get local position of clouds and subtract defined displacement from x value
-	VBVec3D offset = this->transform.localPosition;
+	Vector3D offset = this->transformation.localPosition;
 	offset.x -= __FIX19_13_MULT(this->displacement, elapsedTime);
 
 	// update clouds' position

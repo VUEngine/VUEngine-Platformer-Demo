@@ -46,29 +46,6 @@
 #include <HideLayer.h>
 
 
-#define HERO_MASS							2
-#define HERO_ELASTICITY						0.0f
-#define HERO_FRICTION						0
-
-#define HERO_FLASH_PALETTE					3
-#define HERO_FLASH_DURATION					2000
-#define HERO_FLASH_INTERVAL					100
-
-#define HERO_INPUT_FORCE 					__I_TO_FIX19_13(5050)
-#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX19_13(3050)
-
-#define HERO_MAX_VELOCITY_X					__I_TO_FIX19_13(75)
-#define HERO_MAX_VELOCITY_Y					__I_TO_FIX19_13(305)
-#define HERO_MAX_VELOCITY_Z					__I_TO_FIX19_13(40)
-#define HERO_BOOST_VELOCITY_X				__F_TO_FIX19_13(100)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-21000)
-#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-28000)
-
-#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-24), 0}
-
-#define HERO_CHECK_Y_VELOCITY				20
-
-
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
@@ -233,14 +210,14 @@ void Hero_ready(Hero this, bool recursive)
 
 void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 {
-/*	VBVec3D direction = {0, 1, 0};
+/*	Vector3D direction = {0, 1, 0};
 
 	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(Game_getCollisionManager(Game_getInstance()), this->shape, direction);
 	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
 
 	if(collidingSpatialObject && this->collisionSolver)
 	{
-		VBVec3D displacement =
+		Vector3D displacement =
 		{
 			__I_TO_FIX19_13(0),
 			__1I_FIX19_13,
@@ -323,7 +300,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Jump");
 
 			// play jump sound
-			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transform.globalPosition);
+			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transformation.globalPosition);
 		}
 	}
 }
@@ -354,8 +331,8 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 	if(direction.x != this->inputDirection.x ||
 		((__X_AXIS & axis) && maxVelocity > abs(velocity.x)) ||
 		((__Z_AXIS & axis) && maxVelocity > abs(velocity.z)) ||
-		Actor_changedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
-		Actor_changedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
+		Actor_hasChangedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
+		Actor_hasChangedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
 	{
 		fix19_13 inputForce = __Y_AXIS & Body_getMovementOnAllAxes(this->body) ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix19_13 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
@@ -428,7 +405,7 @@ void Hero_stopAddingForce(Hero this)
 	{
 		Hero_slide(this);
 	}
-	else if(!AnimatedEntity_isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Fall"))
+	else if(!AnimatedEntity_isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Fall") && !Body_getNormal(this->body).y)
 	{
 		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 	}
@@ -476,7 +453,7 @@ void Hero_startedMovingOnAxis(Hero this, u16 axis)
 			this->keepAddingForce = true;
 			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 		}
-		else if(__Y_AXIS & axis)
+		else if(__Y_AXIS & axis & !Body_getNormal(this->body).y)
 		{
 			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
@@ -500,7 +477,7 @@ void Hero_startedMovingOnAxis(Hero this, u16 axis)
 			}
 		}
 
-		if(__Y_AXIS & axis)
+		if(__Y_AXIS & axis & !Body_getNormal(this->body).y)
 		{
 			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
@@ -590,7 +567,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 	{
 		this->inputDirection.x = __RIGHT;
 
-		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
+		Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 		position.x = abs(position.x) * -1;
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 	}
@@ -598,7 +575,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 	{
 		this->inputDirection.x = __LEFT;
 
-		VBVec3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
+		Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 		position.x = abs(position.x);
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 	}
@@ -626,9 +603,9 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 {
 	if(this->cameraBoundingBox)
 	{
-		VBVec3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
+		Vector3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
 
-		VBVec3DFlag positionFlag = CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager_getInstance());
+		Vector3DFlag positionFlag = CustomScreenMovementManager_getPositionFlag(CustomScreenMovementManager_getInstance());
 
 		if(__X_AXIS & axisToLockUp)
 		{
@@ -697,7 +674,7 @@ void Hero_takeHitFrom(Hero this, Entity collidingEntity, Shape collidingShape, i
 		Screen_startEffect(Screen_getInstance(), kShake, 200);
 
 		// play hit sound
-		SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transform.globalPosition);
+		SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transformation.globalPosition);
 
 		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Hit");
 
@@ -854,14 +831,14 @@ void Hero_enterDoor(Hero this)
 	}
 
 	// play door sound
-	SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transform.globalPosition);
+	SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transformation.globalPosition);
 }
 
 static void Hero_addHint(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
-	VBVec3D position = {0, 0, __F_TO_FIX19_13(-1)};
+	Vector3D position = {0, 0, __F_TO_FIX19_13(-1)};
 
 	// save the hint entity, so we can remove it later
 	this->hint = Entity_addChildEntity(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
@@ -873,7 +850,7 @@ static void Hero_addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
 
-	VBVec3D position = {__F_TO_FIX19_13(-6), __F_TO_FIX19_13(10), __F_TO_FIX19_13(-2)};
+	Vector3D position = {__F_TO_FIX19_13(-6), __F_TO_FIX19_13(10), __F_TO_FIX19_13(-2)};
 
 	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
@@ -1068,7 +1045,7 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
 */
-				VBVec3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
+				Vector3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 
 				__VIRTUAL_CALL(Container, setLocalPosition, this->cameraBoundingBox, &position);
 			}
@@ -1297,7 +1274,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 		case kLevelSetUp:
 			{
 				// set camera
-				VBVec3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
+				Vector3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 				this->cameraBoundingBox = Entity_addChildEntity(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
 				//CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
 
@@ -1310,7 +1287,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 
 		case kLevelStarted:
 			{
-				VBVec3DFlag positionFlag = {true, true, true};
+				Vector3DFlag positionFlag = {true, true, true};
 				CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 			}
 			break;
@@ -1320,7 +1297,7 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 	return false;
 }
 
-void Hero_getOutOfDoor(Hero this, VBVec3D* outOfDoorPosition)
+void Hero_getOutOfDoor(Hero this, Vector3D* outOfDoorPosition)
 {
 	ASSERT(this, "Hero::setPosition: null this");
 
@@ -1363,17 +1340,10 @@ void Hero_resume(Hero this)
 
 	Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
 
-	VBVec3DFlag positionFlag = {true, true, true};
+	Vector3DFlag positionFlag = {true, true, true};
 	CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 
 	Hero_updateSprite(this);
-}
-
-u16 Hero_getAxesForBouncing(Hero this __attribute__ ((unused)))
-{
-	ASSERT(this, "Hero::getAxesForBouncing: null this");
-
-	return __Y_AXIS;
 }
 
 bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
@@ -1383,7 +1353,7 @@ bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
 	RightBox shapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, shape);
 	RightBox collidingShapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, collidingShape);
 
-	VBVec3D shapePosition = __VIRTUAL_CALL(Shape, getPosition, shape);
+	Vector3D shapePosition = __VIRTUAL_CALL(Shape, getPosition, shape);
 
 	fix19_13 heroBottomPosition = shapePosition.y + ((shapeRightBox.x1 - shapeRightBox.x0) >> 1) - Body_getLastDisplacement(this->body).y;
 
@@ -1432,20 +1402,18 @@ void Hero_syncRotationWithBody(Hero this)
 {
 	ASSERT(this, "Hero::syncRotationWithBody: null this");
 
-	if(__X_AXIS & Body_getMovementOnAllAxes(this->body))
+	fix19_13 xLastDisplacement = Body_getLastDisplacement(this->body).x;
+
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
+
+	if(__1I_FIX19_13 < xLastDisplacement)
 	{
-		Velocity velocity = Body_getVelocity(this->body);
-
-		Direction direction =
-		{
-			__RIGHT, __DOWN, __FAR
-		};
-
-		if(0 > velocity.x)
-		{
-			direction.x = __LEFT;
-		}
-
+		direction.x = __RIGHT;
+		Entity_setDirection(__SAFE_CAST(Entity, this), direction);
+	}
+	else if(-__1I_FIX19_13 > xLastDisplacement)
+	{
+		direction.x = __LEFT;
 		Entity_setDirection(__SAFE_CAST(Entity, this), direction);
 	}
 }

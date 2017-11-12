@@ -116,14 +116,9 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
 			break;
 
-		case kBodyChangedDirection:
-
-			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
-			break;
-
 		case kBodyBounced:
 
-			Hero_capVelocity(__SAFE_CAST(Hero, owner), true);
+			//Hero_bounce(__SAFE_CAST(Hero, owner), true);
 			return false;
 			break;
 	}

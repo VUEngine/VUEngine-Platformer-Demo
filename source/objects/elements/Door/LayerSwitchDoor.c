@@ -75,7 +75,7 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 			{
 				// get global position of destination door
 				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), (char *)this->destinationDefinition->destinationName, true);
-				VBVec3D destinationDoorPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
+				Vector3D destinationDoorPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
 
 				// apply offset
 				destinationDoorPosition.x += this->destinationDefinition->offset.x;

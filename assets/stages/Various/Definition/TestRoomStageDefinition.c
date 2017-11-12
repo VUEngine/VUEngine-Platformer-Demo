@@ -37,11 +37,11 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-const VBVec3D test_room_stage_collision_160_48_8 = {160, 48, 8};
-const VBVec3D test_room_stage_collision_16_64_8 = {16, 64, 8};
-const VBVec3D test_room_stage_collision_176_16_8 = {176, 16, 8};
-const VBVec3D test_room_stage_collision_256_16_8 = {256, 16, 8};
-const VBVec3D test_room_stage_collision_80_48_8 = {80, 48, 8};
+const Vector3D test_room_stage_collision_160_48_8 = {160, 48, 8};
+const Vector3D test_room_stage_collision_16_64_8 = {16, 64, 8};
+const Vector3D test_room_stage_collision_176_16_8 = {176, 16, 8};
+const Vector3D test_room_stage_collision_256_16_8 = {256, 16, 8};
+const Vector3D test_room_stage_collision_80_48_8 = {80, 48, 8};
 extern CharSetDefinition COG_WHEEL_CH;
 extern CharSetDefinition DOOR_CH;
 extern CharSetDefinition GUI_CH;
