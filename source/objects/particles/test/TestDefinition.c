@@ -25,6 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
+#include <SolidParticle.h>
 #include <ParticleSystem.h>
 #include <ObjectAnimatedSprite.h>
 #include <macros.h>
@@ -166,10 +167,10 @@ ParticleROMDef TEST_PARTICLE =
 	1500,
 
 	// particle's minimum mass
-	__F_TO_FIX19_13(5.0f),
+	__F_TO_FIX19_13(0.1f),
 
 	// particle's maximum mass
-	__F_TO_FIX19_13(10.0f),
+	__F_TO_FIX19_13(1.0f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__Y_AXIS,
@@ -217,7 +218,7 @@ ParticleSystemROMDef TEST_PS =
 	100,
 
 	// maximum total particles
-	30,
+	1,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)OBJECT_TEST_PARTICLE_SPRITES,
@@ -236,11 +237,11 @@ ParticleSystemROMDef TEST_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{-5000, -20000, 0},
+	{-500, -100, 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{5000, -16000, 0},
+	{500, -600, 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT

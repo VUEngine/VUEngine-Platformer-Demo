@@ -254,11 +254,13 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 			// init a force to add to the hero's momentum
 			Force force = {0, 0, 0};
 
+			fix19_13 yBouncingPlaneNormal = Body_getBouncingPlaneNormal(this->body).y;
+
 			// is this the first jump from ground or a double jump from mid-air?
 			if(this->jumps == 0)
 			{
 				// don't allow a first jump from mid-air without bandana
-				if(checkIfYMovement && 0 <= Body_getNormal(this->body).y && (allowedNumberOfJumps == 1))
+				if(checkIfYMovement && 0 <= yBouncingPlaneNormal && (allowedNumberOfJumps == 1))
 				{
 					return;
 				}
@@ -270,7 +272,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				Hero_startedMovingOnAxis(this, __Y_AXIS);
 
 				// add more force when running, normal force otherwise
-				force.y = this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE;
+				force.y = __FIX19_13_MULT(abs(yBouncingPlaneNormal), this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the hero jump
 				Actor_addForce(__SAFE_CAST(Actor, this), &force);
@@ -287,7 +289,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				this->jumps = 2;
 
 				// double jumps can never have boost
-				force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
+				force.y = __FIX19_13_MULT(abs(yBouncingPlaneNormal), HERO_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the hero jump
 				Actor_addForce(__SAFE_CAST(Actor, this), &force);
