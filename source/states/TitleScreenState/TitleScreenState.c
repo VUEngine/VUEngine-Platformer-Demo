@@ -49,7 +49,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef TITLE_SCREEN_STAGE_ST;
+extern StageROMDef TEST_LEVEL_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -120,7 +120,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	Game_disableKeypad(Game_getInstance());
 
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
+	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TEST_LEVEL_STAGE_ST, NULL, true);
 
 	if(this->optionsSelector)
 	{
