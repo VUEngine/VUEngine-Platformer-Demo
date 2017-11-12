@@ -37,8 +37,8 @@
 
 extern void testParticleBehavior(Particle particle);
 
-extern ObjectSpriteDefinition STAR_SPRITE;
-extern AnimationDescription STAR_ANIM;
+extern ObjectSpriteDefinition COIN_BACK_SPRITE;
+extern AnimationDescription COIN_ANIM;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ extern AnimationDescription STAR_ANIM;
 
 ObjectSpriteROMDef* const TEST_PARTICLE_SPRITES[] =
 {
-	&STAR_SPRITE,
+	&COIN_BACK_SPRITE,
 	NULL
 };
 
@@ -64,10 +64,10 @@ SolidParticleROMDef TEST_PARTICLE =
 		__TYPE(SolidParticle),
 
 		// particle's minimum life span in milliseconds
-		2800,
+		800,
 
 		// particle's maximum life span in milliseconds
-		21000,
+		1000,
 
 		// particle's minimum mass
 		__F_TO_FIX19_13(0.1f),
@@ -82,10 +82,10 @@ SolidParticleROMDef TEST_PARTICLE =
 		(void (*)(Particle))&testParticleBehavior,
 
 		// animation description (used only if sprite is animated)
-		(AnimationDescription*)&STAR_ANIM,
+		(AnimationDescription*)&COIN_ANIM,
 
 		// name of animation to play
-		"Flash"
+		"Spin"
 	},
 
 	/// ball's radius
@@ -95,7 +95,7 @@ SolidParticleROMDef TEST_PARTICLE =
 	__F_TO_FIX19_13(0.0f),
 
 	/// elasticity for physics
-	__F_TO_FIX19_13(0.0f),
+	__F_TO_FIX19_13(0.5f),
 
 	/// flag to ignore collisions against other particles
 	true,
@@ -135,7 +135,7 @@ ParticleSystemROMDef TEST_PS =
 	300,
 
 	// maximum total particles
-	1,
+	10,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -147,18 +147,18 @@ ParticleSystemROMDef TEST_PS =
 	(ParticleDefinition*)&TEST_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(-70), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__I_TO_FIX19_13(-30), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(70), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__I_TO_FIX19_13(30), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{-500, -350, 0},
+	{-500, -350, -100},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{500, -450, 0},
+	{500, -450, 100},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT
