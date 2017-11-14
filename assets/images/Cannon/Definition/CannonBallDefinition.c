@@ -169,9 +169,15 @@ ShapeROMDef CANNON_BALL_AC_SHAPES[] =
 
 		// check for collisions against other shapes
 		false,
+
+		/// layers to ignore when checking for collisions
+		kEnemiesLayer,
+
+		/// if true this shape checks for collisions against other shapes
+		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 CannonBallROMDef CANNON_BALL_AC =

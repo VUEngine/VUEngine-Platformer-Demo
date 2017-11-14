@@ -29,6 +29,7 @@
 #include <MessageDispatcher.h>
 #include <Box.h>
 #include <PhysicalWorld.h>
+#include <macros.h>
 #include <debugConfig.h>
 #include "Collision.h"
 
@@ -142,7 +143,13 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 			{0, 0, 0},
 
 			// if true this shape checks for collisions against other shapes
-			false
+			false,
+
+			/// layers to ignore when checking for collisions
+			kSolidLayer,
+
+			/// if true this shape checks for collisions against other shapes
+			kNoLayer,
 		};
 
 		Shape shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), &shapeDefinition);
@@ -153,7 +160,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		const Rotation* myRotation = Entity_getRotation(__SAFE_CAST(Entity, this));
 		const Scale* myScale = Entity_getScale(__SAFE_CAST(Entity, this));
 
-		__VIRTUAL_CALL(Shape, setup, shape, myPosition, myRotation, myScale, &this->size);
+		__VIRTUAL_CALL(Shape, setup, shape, myPosition, myRotation, myScale, &this->size, kSolidLayer, kNoLayer);
 
 		VirtualList_pushBack(this->shapes, shape);
 	}

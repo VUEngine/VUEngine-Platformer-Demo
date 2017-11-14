@@ -564,9 +564,15 @@ ShapeROMDef HERO_AC_SHAPES[] =
 
 		// check for collisions against other shapes
 		true,
+
+		/// layers to ignore when checking for collisions
+		kPlayerLayer,
+
+		/// if true this shape checks for collisions against other shapes
+		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
@@ -706,7 +712,7 @@ AnimatedEntityROMDef HERO_BANDANA_AG =
 
 ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 {
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false},
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 	{
 		// shape
 		__TYPE(InverseBox),
@@ -725,9 +731,15 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 
 		// check for collisions against other shapes
 		false,
+
+		/// layers to ignore when checking for collisions
+		kTriggersLayer,
+
+		/// if true this shape checks for collisions against other shapes
+		kAllLayers,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 

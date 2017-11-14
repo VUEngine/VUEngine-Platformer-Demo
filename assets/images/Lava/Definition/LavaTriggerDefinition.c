@@ -54,9 +54,15 @@ ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 
 		// check for collisions against other shapes
 		false,
+
+		/// layers to ignore when checking for collisions
+		kTriggersLayer,
+
+		/// if true this shape checks for collisions against other shapes
+		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 LavaTriggerROMDef LAVA_TRIGGER_IG =

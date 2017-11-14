@@ -67,7 +67,7 @@ SolidParticleROMDef TEST_PARTICLE =
 		800,
 
 		// particle's maximum life span in milliseconds
-		1000,
+		5000,
 
 		// particle's minimum mass
 		__F_TO_FIX19_13(0.1f),
@@ -97,11 +97,14 @@ SolidParticleROMDef TEST_PARTICLE =
 	/// elasticity for physics
 	__F_TO_FIX19_13(0.5f),
 
-	/// flag to ignore collisions against other particles
-	true,
-
 	/// object's in-game type
-	kUncollectableCoin
+	kUncollectableCoin,
+
+	/// layers to ignore when checking for collisions
+	kParticlesLayer,
+
+	/// if true this shape checks for collisions against other shapes
+	kParticlesLayer,
 };
 
 ParticleSystemROMDef TEST_PS =

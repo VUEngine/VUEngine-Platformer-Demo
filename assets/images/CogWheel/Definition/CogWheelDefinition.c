@@ -141,90 +141,15 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 
 		// check for collisions against other shapes
 		true,
+
+		/// layers to ignore when checking for collisions
+		kNoLayer,
+
+		/// if true this shape checks for collisions against other shapes
+		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false},
-
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{7 * 8, 8, 2 * 8},
-
-		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
-
-		// rotation (x, y, z)
-		{0, 0, 0},
-
-		// scale (x, y, z)
-		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
-
-		// check for collisions against other shapes
-		true,
-	},
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{7 * 8, 8, 2 * 8},
-
-		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
-
-		// rotation (x, y, z)
-		{0, 0, 64},
-
-		// scale (x, y, z)
-		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
-
-		// check for collisions against other shapes
-		true,
-	},
-
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{7 * 8, 8, 2 * 8},
-
-		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
-
-		// rotation (x, y, z)
-		{0, 0, 128},
-
-		// scale (x, y, z)
-		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
-
-		// check for collisions against other shapes
-		true,
-	},
-
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{7 * 8, 8, 2 * 8},
-
-		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
-
-		// rotation (x, y, z)
-		{0, 0, 192},
-
-		// scale (x, y, z)
-		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
-
-		// check for collisions against other shapes
-		true,
-	},
-
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false}
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 };
 
 PhysicalSpecificationROMDef COG_WHEEL_IM_PHYSICAL_PROPERTIES =

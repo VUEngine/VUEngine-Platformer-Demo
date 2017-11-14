@@ -86,5 +86,17 @@ enum PlatformerTypes
 	kMovingPlatform,
 };
 
+enum CollisionLayers
+{
+    kSolidLayer		 	= 1 << (kNoLayer + 0), // binary 0001
+    kEnemiesLayer		= 1 << (kNoLayer + 1), // binary 0010
+    kPlayerLayer		= 1 << (kNoLayer + 2), // binary 0100
+    kParticlesLayer		= 1 << (kNoLayer + 3), // binary 1000
+    kItemsLayer			= 1 << (kNoLayer + 3), // binary 1000
+    kCollectablesLayer	= 1 << (kNoLayer + 3), // binary 1000
+    kTriggersLayer		= 1 << (kNoLayer + 3), // binary 1000
+    kAllLayers			= 1 << (kNoLayer + 31), // binary 1000
+};
+
 
 #endif
