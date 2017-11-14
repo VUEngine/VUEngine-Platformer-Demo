@@ -1036,8 +1036,8 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 				Shape auxShape = collisionInformation.shape;
 				collisionInformation.shape = collisionInformation.collidingShape;
 				collisionInformation.collidingShape = auxShape;
-//				collisionInformation.collisionSolution.translationVector = Vector3D_scalarProduct(collisionInformation.collisionSolution.translationVector, __I_TO_FIX19_13(-1));
-//				collisionInformation.collisionSolution.collisionPlaneNormal = Vector3D_scalarProduct(collisionInformation.collisionSolution.collisionPlaneNormal, __I_TO_FIX19_13(-1));
+				collisionInformation.collisionSolution.translationVector = Vector3D_scalarProduct(collisionInformation.collisionSolution.translationVector, __I_TO_FIX19_13(-1));
+				collisionInformation.collisionSolution.collisionPlaneNormal = Vector3D_scalarProduct(collisionInformation.collisionSolution.collisionPlaneNormal, __I_TO_FIX19_13(-1));
 			}
 
 			__VIRTUAL_CALL(SpatialObject, processCollision, Shape_getOwner(collisionInformation.shape), collisionInformation);
