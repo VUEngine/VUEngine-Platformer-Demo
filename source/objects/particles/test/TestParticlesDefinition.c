@@ -100,11 +100,11 @@ SolidParticleROMDef TEST_PARTICLE =
 	/// object's in-game type
 	kUncollectableCoin,
 
-	/// layers to ignore when checking for collisions
+	/// layers in which I live
 	kParticlesLayer,
 
-	/// if true this shape checks for collisions against other shapes
-	kParticlesLayer,
+	/// layers to ignore when checking for collisions
+	kParticlesLayer | kPlayerLayer,
 };
 
 ParticleSystemROMDef TEST_PS =
