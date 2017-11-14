@@ -131,7 +131,7 @@ ParticleSystemROMDef TEST_PS =
 	},
 
 	// reuse expired particles?
-	false,
+	true,
 
 	// minimum generation delay in milliseconds
 	50,
