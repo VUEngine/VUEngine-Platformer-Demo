@@ -87,7 +87,7 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 	}
 
 #ifdef __DEBUG
-	Printing_text(Printing_getInstance(), "HeroMoving::enter   ", 0, (__SCREEN_HEIGHT_IN_CHARS) - 2, NULL);
+	Printing_text(Printing_getInstance(), "HeroMoving", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, NULL);
 #endif
 
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED);
@@ -182,10 +182,10 @@ void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* ow
 		Hero_stopAddingForce(__SAFE_CAST(Hero, owner));
 /*		Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, owner));
 
-		if(abs(velocity.x))
+		if(__ABS(velocity.x))
 		{
 		}
-		else if(!abs(velocity.y))
+		else if(!__ABS(velocity.y))
 		{
 			StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, HeroIdle_getInstance()));
 		}

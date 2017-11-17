@@ -211,7 +211,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 	{
 		case __X_AXIS:
 			{
-				fix19_13 distance = abs((this->transformation.globalPosition.x - this->initialPosition));
+				fix19_13 distance = __ABS((this->transformation.globalPosition.x - this->initialPosition));
 
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{
@@ -229,7 +229,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 
 		case __Y_AXIS:
 			{
-				fix19_13 distance = abs((this->transformation.globalPosition.y - this->initialPosition));
+				fix19_13 distance = __ABS((this->transformation.globalPosition.y - this->initialPosition));
 
 				if(distance > this->movingEntityDefinition->maximumDisplacement)
 				{

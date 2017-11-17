@@ -272,7 +272,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				Hero_startedMovingOnAxis(this, __Y_AXIS);
 
 				// add more force when running, normal force otherwise
-				force.y = __FIX19_13_MULT(abs(yBouncingPlaneNormal), this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE);
+				force.y = __FIX19_13_MULT(__ABS(yBouncingPlaneNormal), this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the hero jump
 				Actor_addForce(__SAFE_CAST(Actor, this), &force);
@@ -289,7 +289,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				this->jumps = 2;
 
 				// double jumps can never have boost
-				force.y = __FIX19_13_MULT(abs(yBouncingPlaneNormal), HERO_NORMAL_JUMP_INPUT_FORCE);
+				force.y = __FIX19_13_MULT(__ABS(yBouncingPlaneNormal), HERO_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the hero jump
 				Actor_addForce(__SAFE_CAST(Actor, this), &force);
@@ -331,8 +331,8 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
 
 	if(direction.x != this->inputDirection.x ||
-		((__X_AXIS & axis) && maxVelocity > abs(velocity.x)) ||
-		((__Z_AXIS & axis) && maxVelocity > abs(velocity.z)) ||
+		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
+		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
 		Actor_hasChangedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
 		Actor_hasChangedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
 	{
@@ -351,7 +351,7 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != movementType || (abs(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOnAllAxes(this->body))))
+		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOnAllAxes(this->body))))
 		{
 			Velocity newVelocity =
 			{
@@ -570,7 +570,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 		this->inputDirection.x = __RIGHT;
 
 		Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
-		position.x = abs(position.x) * -1;
+		position.x = __ABS(position.x) * -1;
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 	}
 	else if(K_LL & pressedKey)
@@ -578,7 +578,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 		this->inputDirection.x = __LEFT;
 
 		Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
-		position.x = abs(position.x);
+		position.x = __ABS(position.x);
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 	}
 	else if(K_LU & pressedKey)
