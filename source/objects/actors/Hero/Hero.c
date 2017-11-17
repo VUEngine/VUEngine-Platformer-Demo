@@ -616,6 +616,11 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 			positionFlag.x = !locked;
 		}
 
+		if(__Y_AXIS & axisToLockUp)
+		{
+			overridePositionFlag.y = locked;
+		}
+
 		CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
 		CustomScreenMovementManager_setPositionFlag(CustomScreenMovementManager_getInstance(), positionFlag);
 	}
@@ -1026,6 +1031,8 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 	Shape collidingShape = collisionInformation.collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
+	Printing_int(Printing_getInstance(), __VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject), 1,2,NULL);
+
 	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
 	{
 		case kShape:
@@ -1046,12 +1053,12 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 
 		case kCameraTarget:
 			{
-/*				if(collisionInformation.translationVector.y)
+				if(collisionInformation.collisionSolution.translationVector.y)
 				{
 					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
 
-				if(collisionInformation.translationVector.x)
+				if(collisionInformation.collisionSolution.translationVector.x)
 				{
 					Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
 				}
@@ -1059,16 +1066,18 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 				{
 					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
-*/
+
 				Vector3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 
 				__VIRTUAL_CALL(Container, setLocalPosition, this->cameraBoundingBox, &position);
 			}
+			return true;
 			break;
 
 		case kCoin:
 
 			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
+			return true;
 			break;
 
 		case kKey:
@@ -1076,11 +1085,13 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 			this->hasKey = true;
 			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
 			break;
+			return true;
 
 		case kBandana:
 
 			Hero_collectPowerUp(this, kPowerUpBandana);
 			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
+			return true;
 			break;
 
 		case kHideLayer:
@@ -1090,11 +1101,13 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 			{
 				HideLayer_setOverlapping((HideLayer)collidingObject);
 			}
+			return true;
 			break;
 
 		case kDoor:
 
 			Door_onOverlapping((Door)collidingObject);
+			return true;
 			break;
 
 		case kWaterPond:
@@ -1103,33 +1116,39 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 			{
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
 			}
+			return true;
 			break;
 
 		case kLava:
 
 			Hero_takeHitFrom(this, NULL, NULL, this->energy, true, false, true);
+			return true;
 			break;
 
 		case kSawBlade:
 		case kSnail:
 
 			Hero_takeHitFrom(this, collidingObject, collidingShape, 1, true, true, false);
+			return true;
 			break;
 
 		case kCannonBall:
 
 			Hero_takeHitFrom(this, collidingObject, collidingShape, 2, true, true, false);
+			return true;
 			break;
 
 		case kHit:
 
 			Hero_takeHitFrom(this, collidingObject, collidingShape, 1, true, true, false);
+			return true;
 			break;
 
 		case kLavaTrigger:
 
 			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kLavaTriggerStart, NULL);
 			Hero_stopAddingForce(this);
+			return true;
 			//Hero_stopMovingOnAxis(this, __X_AXIS);
 			break;
 
@@ -1138,6 +1157,7 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 			{
 				// if hero's moving over the y axis or is above colliding entity
 //				if((collisionInformation.translationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation.shape, collisionInformation.collidingShape))
+				if( (0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation.shape, collisionInformation.collidingShape))
 				{
 					// don't further process collision
 					return true;
@@ -1291,8 +1311,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 				// set camera
 				Vector3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 				this->cameraBoundingBox = Entity_addChildEntity(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
-				//CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), Entity_getShape(__SAFE_CAST(Entity, this->cameraBoundingBox)));
-
 				Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
 			}
 
