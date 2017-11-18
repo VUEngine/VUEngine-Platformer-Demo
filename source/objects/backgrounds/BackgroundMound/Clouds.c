@@ -83,11 +83,3 @@ void Clouds_update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
 	Container_setLocalPosition(__SAFE_CAST(Container, this), &offset);
 }
 
-// does it move?
-bool Clouds_moves(Clouds this __attribute__ ((unused)))
-{
-	ASSERT(this, "Clouds::moves: null this");
-
-	return true;
-}
-

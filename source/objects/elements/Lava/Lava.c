@@ -121,11 +121,3 @@ void Lava_moveUpwards(Lava this)
 	// send delayed message to self to trigger next movement
 	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
 }
-
-// does it move?
-bool Lava_moves(Lava this __attribute__ ((unused)))
-{
-	ASSERT(this, "Lava::moves: null this");
-
-	return true;
-}

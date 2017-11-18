@@ -49,7 +49,6 @@
 		Entity_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, Lava, handleMessage);													\
 		__VIRTUAL_SET(ClassName, Lava, isVisible);														\
-		__VIRTUAL_SET(ClassName, Lava, moves);															\
 
 __CLASS(Lava);
 
@@ -72,7 +71,6 @@ void Lava_destructor(Lava this);
 void Lava_startMoving(Lava this);
 bool Lava_handleMessage(Lava this, Telegram telegram);
 bool Lava_isVisible(Lava this, int pad, bool recursive);
-bool Lava_moves(Lava this);
 
 
 #endif

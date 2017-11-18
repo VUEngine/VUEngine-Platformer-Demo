@@ -119,10 +119,3 @@ Vector3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity thi
 
 	return this->overridePositionFlag;
 }
-
-bool CameraTriggerEntity_moves(CameraTriggerEntity this __attribute__ ((unused)))
-{
-	ASSERT(this, "CameraTriggerEntity::moves: null this");
-
-	return true;
-}
