@@ -26,7 +26,7 @@
 
 #include <BgmapAnimatedSprite.h>
 #include <MovingEntity.h>
-#include <Box.h>
+#include <Ball.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -153,10 +153,10 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Box),
+		__TYPE(Ball),
 
 		// size (x, y, z)
-		{16, 16, 16},
+		{9, 9, 9},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -167,13 +167,13 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 		// scale (x, y, z)
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
-		// check for collisions against other shapes
+		/// if true this shape checks for collisions against other shapes
 		false,
 
-		/// layers to ignore when checking for collisions
+		/// layers in which I live
 		kEnemiesLayer,
 
-		/// if true this shape checks for collisions against other shapes
+		/// layers to ignore when checking for collisions
 		kNoLayer,
 	},
 

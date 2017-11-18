@@ -26,7 +26,7 @@
 
 #include <ObjectAnimatedSprite.h>
 #include <BgmapAnimatedSprite.h>
-#include <Box.h>
+#include <Ball.h>
 #include "MovingEntity.h"
 
 
@@ -151,10 +151,10 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Box),
+		__TYPE(Ball),
 
 		// size (x, y, z)
-		{14, 8, 16},
+		{7, 7, 7},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(2), __I_TO_FIX19_13(0)},
@@ -165,13 +165,13 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 		// scale (x, y, z)
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
-		// check for collisions against other shapes
+		/// if true this shape checks for collisions against other shapes
 		false,
 
-		/// layers to ignore when checking for collisions
+		/// layers in which I live
 		kEnemiesLayer,
 
-		/// if true this shape checks for collisions against other shapes
+		/// layers to ignore when checking for collisions
 		kNoLayer,
 	},
 
