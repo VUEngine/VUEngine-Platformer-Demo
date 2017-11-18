@@ -122,6 +122,7 @@ void MovingEntity_ready(MovingEntity this, bool recursive)
 
 	// register a body for physics
 	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), this->actorDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification);
+	Body_setAxisSubjectToGravity(this->body, __NO_AXIS);
 	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
 	// call base
