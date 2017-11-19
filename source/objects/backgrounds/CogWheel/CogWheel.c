@@ -43,6 +43,10 @@
 __CLASS_DEFINITION(CogWheel, Entity);
 
 
+#undef COG_WHEEL_ROTATION_DELAY
+#define COG_WHEEL_ROTATION_DELAY 50
+
+
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
@@ -87,14 +91,13 @@ void CogWheel_ready(CogWheel this, bool recursive)
 	__CALL_BASE_METHOD(Entity, ready, this, recursive);
 
 	// start moving
-	MessageDispatcher_dispatchMessage(5000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
+	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 
 	// listen for the shake end event
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
 
 	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
 
-	this->transformation.localRotation.z = 128;
 	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);}
 
 // state's handle message
@@ -119,30 +122,7 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 // rotate cogwheel
 static void CogWheel_rotate(CogWheel this)
 {
-/*	static int counter = 1;
-
-	if(1 == counter)
-//	this->transformation.localRotation.x = 512;
-	this->transformation.localRotation.x += 8;
-	else if(2 == counter)
-	this->transformation.localRotation.y += 8;
-	else if(3 == counter)
-	this->transformation.localRotation.z += 8;
-
-	if(3 < ++counter) counter = 1;
-	 */
-
-	static int increment = -2;
-
-	this->transformation.localRotation.z += increment;
-
-//	if(this->transformation.localRotation.z > 64) increment *= -1;
-//	if(this->transformation.localRotation.z <- 64) increment *= -1;
-
-//	this->transformation.localRotation.z = 64+32;
-//	this->transformation.localRotation.z = 128-12;
-//	this->transformation.localRotation.z = 128;
-//	this->transformation.localRotation.z = 184;
+	this->transformation.localRotation.z += 1;
 
 	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
 
