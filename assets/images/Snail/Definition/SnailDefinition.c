@@ -209,6 +209,15 @@ MovingEntityROMDef SNAIL_3_AC =
 			// initial animation
 			"Move"
 		},
+
+		/// create collision solver
+		false,
+
+		/// true to create a body
+		true,
+
+		/// axes subject to gravity
+		__NO_AXIS
 	},
 
 	// velocity
@@ -258,6 +267,15 @@ MovingEntityROMDef SNAIL_8_AC =
 			// initial animation
 			"Move"
 		},
+
+		/// create collision solver
+		false,
+
+		/// true to create a body
+		true,
+
+		/// axes subject to gravity
+		__NO_AXIS
 	},
 
 	// velocity

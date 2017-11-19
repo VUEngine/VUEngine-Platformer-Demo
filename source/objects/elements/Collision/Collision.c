@@ -145,10 +145,10 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 			// if true this shape checks for collisions against other shapes
 			false,
 
-			/// layers to ignore when checking for collisions
+			/// layers in which I live
 			kSolidLayer,
 
-			/// if true this shape checks for collisions against other shapes
+			/// layers to ignore when checking for collisions
 			kNoLayer,
 		};
 

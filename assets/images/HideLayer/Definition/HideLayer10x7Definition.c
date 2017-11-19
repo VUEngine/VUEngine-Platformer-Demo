@@ -243,13 +243,13 @@ ShapeROMDef HIDE_LAYER_10x7_AG_SHAPES[] =
 		// scale (x, y, z)
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
-		// check for collisions against other shapes
+		/// if true this shape checks for collisions against other shapes
 		false,
 
-		/// layers to ignore when checking for collisions
+		/// layers in which I live
 		kTriggersLayer,
 
-		/// if true this shape checks for collisions against other shapes
+		/// layers to ignore when checking for collisions
 		kNoLayer,
 	},
 

@@ -59,9 +59,6 @@ void CannonBall_constructor(CannonBall this, CannonBallDefinition* cannonBallDef
 	// construct base
 	__CONSTRUCT_BASE(Actor, (ActorDefinition*)cannonBallDefinition, id, internalId, name);
 
-	// register a body for physics
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), cannonBallDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification);
-
 	// I start my life hidden
 	this->hidden = true;
 }
@@ -78,27 +75,10 @@ void CannonBall_destructor(CannonBall this)
 	__DESTROY_BASE;
 }
 
-// ready method
-void CannonBall_ready(CannonBall this, bool recursive)
-{
-	ASSERT(this, "CannonBall::ready: null this");
-
-	// call base
-	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
-
-	CannonBall_startMovement(this);
-}
-
-// retrieve axis free for movement
-u16 CannonBall_getAxisFreeForMovement(CannonBall this __attribute__ ((unused)))
-{
-	return __Z_AXIS;
-}
-
 // start moving
 void CannonBall_startMovement(CannonBall this)
 {
-	Velocity velocity = {0, 0, __I_TO_FIX19_13(-128)};
+	Velocity velocity = {0, 0, __I_TO_FIX19_13(-64)};
 
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
@@ -126,7 +106,6 @@ static void CannonBall_checkIfDistanceTraveled(CannonBall this)
 {
 	if(this->transformation.globalPosition.z <= __I_TO_FIX19_13(CANNON_BALL_MINIMUM_Z_VALUE))
 	{
-		// set state to idle
 		CannonBall_stopMovement(this);
 	}
 	else

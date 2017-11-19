@@ -135,12 +135,6 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	this->jumps = 0;
 	this->keepAddingForce = false;
 
-	// register a body for physics
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), heroDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification);
-	Body_setAxisSubjectToGravity(this->body, __Y_AXIS);
-	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
-	this->collisionSolver = __NEW(CollisionSolver, __SAFE_CAST(SpatialObject, this));
-
 	Hero_setInstance(this);
 
 	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onUserInput, kEventUserInput);
@@ -206,6 +200,13 @@ void Hero_ready(Hero this, bool recursive)
 
 	Hero_addHint(this);
 	Hero_addFeetDust(this);
+}
+
+void Hero_update(Hero this, u32 elapsedTime)
+{
+	Actor_update(this, elapsedTime);
+
+//	Body_printPhysics(this->body, 1,1);
 }
 
 void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
@@ -820,7 +821,7 @@ void Hero_enterDoor(Hero this)
 
 	// move towards door
 	/*
-	Body_setAxisSubjectToGravity(this->body, 0);
+	Body_setAxesSubjectToGravity(this->body, 0);
 	Velocity velocity = {0, 0, __I_TO_FIX19_13(8)};
 	Body_moveUniformly(this->body, velocity);
 	*/
@@ -1030,8 +1031,6 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 
 	Shape collidingShape = collisionInformation.collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);
-
-	Printing_int(Printing_getInstance(), __VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject), 1,2,NULL);
 
 	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
 	{
@@ -1350,8 +1349,7 @@ void Hero_getOutOfDoor(Hero this, Vector3D* outOfDoorPosition)
 
 	Container_invalidateGlobalTransformation(__SAFE_CAST(Container, this));
 
-	Body_setAxisSubjectToGravity(this->body, __Y_AXIS);
-
+	Body_setAxesSubjectToGravity(this->body, __Y_AXIS);
 }
 
 void Hero_suspend(Hero this)
@@ -1388,7 +1386,7 @@ bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
 
 	Vector3D shapePosition = __VIRTUAL_CALL(Shape, getPosition, shape);
 
-	fix19_13 heroBottomPosition = shapePosition.y + ((shapeRightBox.x1 - shapeRightBox.x0) >> 1) - Body_getLastDisplacement(this->body).y;
+	fix19_13 heroBottomPosition = shapePosition.y + ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1);
 
 	return heroBottomPosition > collidingShapeRightBox.y0;
 }

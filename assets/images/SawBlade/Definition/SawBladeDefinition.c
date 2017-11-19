@@ -211,6 +211,15 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 			// initial animation
 			"Spin"
 		},
+
+		/// create collision solver
+		false,
+
+		/// true to create a body
+		true,
+
+		/// axes subject to gravity
+		__NO_AXIS
 	},
 
 	// velocity
@@ -260,6 +269,15 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 			// initial animation
 			"Spin"
 		},
+
+		/// create collision solver
+		false,
+
+		/// true to create a body
+		true,
+
+		/// axes subject to gravity
+		__NO_AXIS
 	},
 
 	// velocity
@@ -309,6 +327,15 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 			// initial animation
 			"Spin"
 		},
+
+		/// create collision solver
+		false,
+
+		/// true to create a body
+		true,
+
+		/// axes subject to gravity
+		__NO_AXIS
 	},
 
 	// velocity

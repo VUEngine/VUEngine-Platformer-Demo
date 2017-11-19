@@ -48,8 +48,6 @@
 
 #define MovingEntity_SET_VTABLE(ClassName)																\
 		Actor_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, MovingEntity, setLocalPosition);										\
-		__VIRTUAL_SET(ClassName, MovingEntity, getAxisFreeForMovement);									\
 		__VIRTUAL_SET(ClassName, MovingEntity, ready);													\
 		__VIRTUAL_SET(ClassName, MovingEntity, handleMessage);											\
 		__VIRTUAL_SET(ClassName, MovingEntity, setDefinition);											\
@@ -102,8 +100,6 @@ void MovingEntity_destructor(MovingEntity this);
 void MovingEntity_setDefinition(MovingEntity this, void* movingEntityDefinition);
 void MovingEntity_ready(MovingEntity this, bool recursive);
 bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram);
-void MovingEntity_setLocalPosition(MovingEntity this, const Vector3D* position);
-u16 MovingEntity_getAxisFreeForMovement(MovingEntity this);
 void MovingEntity_startMovement(MovingEntity this);
 void MovingEntity_checkDisplacement(MovingEntity this);
 

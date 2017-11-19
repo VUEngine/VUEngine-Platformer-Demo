@@ -162,5 +162,8 @@ void Cannon_spawnCannonBall(Cannon this)
 	ASSERT(1 == VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
 	CannonBall cannonBall = __SAFE_CAST(CannonBall, VirtualList_front(this->children));
 
+	Vector3D position = *Container_getGlobalPosition(cannonBall);
+	Vector3D localPosition = *Container_getLocalPosition(cannonBall);
+
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, cannonBall), kCannonShoot, NULL);
 }

@@ -562,14 +562,14 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		// scale (x, y, z)
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
-		// check for collisions against other shapes
+		/// if true this shape checks for collisions against other shapes
 		true,
 
-		/// layers to ignore when checking for collisions
+		/// layers in which I live
 		kPlayerLayer,
 
-		/// if true this shape checks for collisions against other shapes
-		kNoLayer,
+		/// layers to ignore when checking for collisions
+		kParticlesLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
@@ -616,7 +616,16 @@ HeroROMDef HERO_AC =
 
 		// initial animation
 		"Idle",
-	}
+	},
+
+	/// create collision solver
+	true,
+
+	/// true to create a body
+	true,
+
+	/// axes subject to gravity
+	__Y_AXIS
 };
 
 AnimatedEntityROMDef HERO_IDLE_AG =
@@ -712,13 +721,13 @@ AnimatedEntityROMDef HERO_BANDANA_AG =
 
 ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 {
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 	{
 		// shape
 		__TYPE(InverseBox),
 
 		// size (x, y, z)
-		{12 * 8, 20 * 8, 4 * 8},
+//		{12 * 8, 20 * 8, 4 * 8},
+		{12 * 8, 12 * 8, 4 * 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -729,13 +738,13 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 		// scale (x, y, z)
 		{0, 0, 0},
 
-		// check for collisions against other shapes
+		/// if true this shape checks for collisions against other shapes
 		false,
 
-		/// layers to ignore when checking for collisions
+		/// layers in which I live
 		kTriggersLayer,
 
-		/// if true this shape checks for collisions against other shapes
+		/// layers to ignore when checking for collisions
 		kAllLayers,
 	},
 

@@ -120,13 +120,22 @@ void MovingEntity_ready(MovingEntity this, bool recursive)
 {
 	ASSERT(this, "MovingEntity::ready: null this");
 
-	// register a body for physics
-	this->body = PhysicalWorld_createBody(Game_getPhysicalWorld(Game_getInstance()), (BodyAllocator)__TYPE(Body), __SAFE_CAST(SpatialObject, this), this->actorDefinition->animatedEntityDefinition.entityDefinition.physicalSpecification);
-	Body_setAxisSubjectToGravity(this->body, __NO_AXIS);
-	Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
-
 	// call base
 	__CALL_BASE_METHOD(Actor, ready, this, recursive);
+
+	// save initial position
+	switch(this->movingEntityDefinition->axis)
+	{
+		case __X_AXIS:
+
+			this->initialPosition = this->transformation.globalPosition.x;
+			break;
+
+		case __Y_AXIS:
+
+			this->initialPosition = this->transformation.globalPosition.y;
+			break;
+	}
 
 	MovingEntity_startMovement(this);
 }
@@ -176,33 +185,6 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 // tell me I've been hit
 void MovingEntity_takeHit(MovingEntity this __attribute__ ((unused)), u16 axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
 {
-}
-
-// set position
-void MovingEntity_setLocalPosition(MovingEntity this, const Vector3D* position)
-{
-	// set my position
-	__CALL_BASE_METHOD(Actor, setLocalPosition, this, position);
-
-	// save initial position
-	switch(this->movingEntityDefinition->axis)
-	{
-		case __X_AXIS:
-
-			this->initialPosition = position->x;
-			break;
-
-		case __Y_AXIS:
-
-			this->initialPosition = position->y;
-			break;
-	}
-}
-
-// retrieve axis free for movement
-u16 MovingEntity_getAxisFreeForMovement(MovingEntity this __attribute__ ((unused)))
-{
-	return 0;
 }
 
 void MovingEntity_checkDisplacement(MovingEntity this)

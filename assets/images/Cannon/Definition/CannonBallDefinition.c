@@ -167,13 +167,13 @@ ShapeROMDef CANNON_BALL_AC_SHAPES[] =
 		// scale (x, y, z)
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
-		// check for collisions against other shapes
+		/// if true this shape checks for collisions against other shapes
 		false,
 
-		/// layers to ignore when checking for collisions
+		/// layers in which I live
 		kEnemiesLayer,
 
-		/// if true this shape checks for collisions against other shapes
+		/// layers to ignore when checking for collisions
 		kNoLayer,
 	},
 
@@ -210,6 +210,15 @@ CannonBallROMDef CANNON_BALL_AC =
 		// initial animation
 		NULL
 	},
+
+	/// create collision solver
+	false,
+
+	/// true to create a body
+	true,
+
+	/// axes subject to gravity
+	__NO_AXIS
 };
 
 PositionedEntityROMDef CANNON_BALL =

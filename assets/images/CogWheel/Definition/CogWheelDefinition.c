@@ -26,6 +26,7 @@
 
 #include <Entity.h>
 #include <CogWheel.h>
+#include <Ball.h>
 #include <macros.h>
 
 
@@ -128,7 +129,35 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{4 * 8, 20 * 8, 4 * 8},
+		{20 * 8, 3 * 8, 4 * 8},
+
+		// displacement (x, y, z)
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+
+		// rotation (x, y, z)
+		{0, 0, 128},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
+		/// if true this shape checks for collisions against other shapes
+		false,
+
+		/// layers in which I live
+		kNoLayer,
+
+		/// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
+
+	{
+		// shape
+		__TYPE(Ball),
+
+		// size (x, y, z)
+		{26, 26, 26},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -139,13 +168,66 @@ ShapeROMDef COG_WHEEL_IM_SHAPES[] =
 		// scale (x, y, z)
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
-		// check for collisions against other shapes
-		true,
+		/// if true this shape checks for collisions against other shapes
+		false,
+
+		/// layers in which I live
+		kNoLayer,
 
 		/// layers to ignore when checking for collisions
 		kNoLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{12, 10 * 8, 4 * 8},
+
+		// displacement (x, y, z)
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
 		/// if true this shape checks for collisions against other shapes
+		false,
+
+		/// layers in which I live
+		kNoLayer,
+
+		/// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{12, 10 * 8, 4 * 8},
+
+		// displacement (x, y, z)
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+
+		// rotation (x, y, z)
+		{0, 0, 128},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
+		/// if true this shape checks for collisions against other shapes
+		true,
+
+		/// layers in which I live
+		kNoLayer,
+
+		/// layers to ignore when checking for collisions
 		kNoLayer,
 	},
 
@@ -170,7 +252,7 @@ CogWheelROMDef COG_WHEEL_IM =
 	__TYPE(CogWheel),
 
 	// sprites
-	(SpriteROMDef**)NULL,
+	(SpriteROMDef**)COG_WHEEL_BG_SPRITES,
 
 	// collision shapes
 	(ShapeDefinition*)COG_WHEEL_IM_SHAPES,

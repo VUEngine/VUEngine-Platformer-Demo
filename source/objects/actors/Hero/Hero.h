@@ -62,8 +62,8 @@ enum HeroPowerUps
 #define HERO_MAX_VELOCITY_Y					__I_TO_FIX19_13(305)
 #define HERO_MAX_VELOCITY_Z					__I_TO_FIX19_13(40)
 #define HERO_BOOST_VELOCITY_X				__F_TO_FIX19_13(100)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-21000)
-#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-28000)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-28000)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-34000)
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-24), 0}
 
@@ -90,6 +90,7 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
 		__VIRTUAL_SET(ClassName, Hero, processCollision);												\
 		__VIRTUAL_SET(ClassName, Hero, syncRotationWithBody);											\
+		__VIRTUAL_SET(ClassName, Hero, update);												\
 
 __CLASS(Hero);
 
@@ -181,6 +182,7 @@ void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
 void Hero_capVelocity(Hero this, bool discardPreviousMessages);
 bool Hero_isAffectedByRelativity(Hero this);
 void Hero_syncRotationWithBody(Hero this);
+void Hero_update(Hero this, u32 elapsedTime);
 
 
 #endif

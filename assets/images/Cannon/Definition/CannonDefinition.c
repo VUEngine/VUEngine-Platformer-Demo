@@ -202,5 +202,14 @@ ActorROMDef CANNON_AC =
 		// initial animation
 		"Idle"
 	},
+
+	/// create collision solver
+	false,
+
+	/// true to create a body
+	false,
+
+	/// axes subject to gravity
+	__NO_AXIS
 };
 
