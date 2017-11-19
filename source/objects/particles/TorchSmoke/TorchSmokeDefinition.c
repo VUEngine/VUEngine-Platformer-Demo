@@ -61,13 +61,13 @@ ParticleROMDef TORCH_SMOKE_PARTICLE =
 	3000,
 
 	// particle's minimum mass
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX19_13(0.05f),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX19_13(0.1f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
-	false,
+	__NO_AXIS,
 
 	// function pointer to control particle's behavior
 	NULL,
@@ -76,7 +76,7 @@ ParticleROMDef TORCH_SMOKE_PARTICLE =
 	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
 
 	// name of animation to play
-	"Float"
+	"Default"
 };
 
 ParticleSystemROMDef TORCH_SMOKE_PS =
@@ -131,11 +131,11 @@ ParticleSystemROMDef TORCH_SMOKE_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{-2, -5, 0},
+	{-5, -18, 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{2, -10, 0},
+	{5, -10, 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT
