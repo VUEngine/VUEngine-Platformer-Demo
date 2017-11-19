@@ -67,7 +67,7 @@ SolidParticleROMDef TEST_PARTICLE =
 		800,
 
 		// particle's maximum life span in milliseconds
-		5000,
+		2000,
 
 		// particle's minimum mass
 		__F_TO_FIX19_13(0.1f),
@@ -103,8 +103,8 @@ SolidParticleROMDef TEST_PARTICLE =
 	/// layers in which I live
 	kParticlesLayer,
 
-	/// layers to ignore when checking for collisions
-	kParticlesLayer | kPlayerLayer,
+	/// layers in which I live
+	kParticlesLayer,
 };
 
 ParticleSystemROMDef TEST_PS =
