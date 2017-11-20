@@ -66,7 +66,7 @@ extern EntityDefinition GRASS_AG;
 extern EntityDefinition GUI_AG;
 extern EntityDefinition HERO_AC;
 extern EntityDefinition COG_WHEEL_IM;
-
+extern EntityDefinition TEST_COG_WHEEL_IM;
 extern EntityDefinition HIDE_LAYER_10x7_AG;
 extern EntityDefinition JUMP_SIGN_IM;
 extern EntityDefinition KEY_AG;
@@ -94,6 +94,7 @@ extern EntityDefinition SAW_BLADE_H3_AC;
 extern EntityDefinition SAW_BLADE_H8_AC;
 extern EntityDefinition SAW_BLADE_V3_AC;
 extern EntityDefinition SMOKE_PS;
+extern EntityDefinition TORCH_SMOKE_PS;
 extern EntityDefinition SNAIL_3_AC;
 extern EntityDefinition STAR_AG;
 extern EntityDefinition WATER_SPLASH_PS;
@@ -116,13 +117,19 @@ extern EntityDefinition TEST_PS;
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-const Size collision_48_5_2 = 	{48 * 8, 5 * 8, 2 * 8};
+const Size collision_48_5_2 = 	{48 * 8, 5 * 8, 5 * 8};
 
 PositionedEntityROMDef TEST_LEVEL_STAGE_ST_CHILDREN[] =
 {
-	{&TEST_PS,						{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2-90), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
-	{&COLLISION_CL,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2+30), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_5_2, false},
-	{&COG_WHEEL_IM,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
+//	{&TORCH_SMOKE_PS,				{__F_TO_FIX19_13(192-64),	__F_TO_FIX19_13(224/2), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
+//	{&SMOKE_PS,						{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
+//	{&SAW_BLADE_H8_AC,				{__F_TO_FIX19_13(192+64),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(0)},			0, NULL, NULL, NULL, false},
+//	{&SAW_BLADE_V3_AC,				{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(0)},			0, NULL, NULL, NULL, false},
+//	{&SNAIL_3_AC,					{__F_TO_FIX19_13(192-64), __F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+	{&TEST_PS,						{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(105), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
+	{&COLLISION_CL,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2+30), 	__F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
+//	{&COG_WHEEL_IM,					{__F_TO_FIX19_13(192-64),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
+	{&TEST_COG_WHEEL_IM,			{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
@@ -210,7 +217,7 @@ StageROMDef TEST_LEVEL_STAGE_ST =
 		5,
 
 		// maximum number of rows to compute on each call to the affine functions
-		24,
+		56,
 
 		// colors config
 		{
@@ -284,7 +291,7 @@ StageROMDef TEST_LEVEL_STAGE_ST =
 			// __spt2
 			__F_TO_FIX19_13(LAYER_0_PARTICLES),
 			// __spt3
-			__F_TO_FIX19_13(24),
+			__F_TO_FIX19_13(LAYER_0_PARTICLES),
 		},
 
 		// optical configuration values
@@ -362,8 +369,8 @@ StageEntryPointROMDef TEST_LEVEL_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(50),
-		__F_TO_FIX19_13(-30),
+		__F_TO_FIX19_13(0),
+		__F_TO_FIX19_13(-50),
 		__F_TO_FIX19_13(0),
 	},
 

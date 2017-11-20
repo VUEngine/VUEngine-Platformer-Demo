@@ -64,16 +64,16 @@ SolidParticleROMDef TEST_PARTICLE =
 		__TYPE(SolidParticle),
 
 		// particle's minimum life span in milliseconds
-		800,
+		500,
 
 		// particle's maximum life span in milliseconds
-		2000,
+		1000,
 
 		// particle's minimum mass
-		__F_TO_FIX19_13(0.1f),
+		__F_TO_FIX19_13(0.5f),
 
 		// particle's maximum mass
-		__F_TO_FIX19_13(1.0f),
+		__F_TO_FIX19_13(0.05),
 
 		// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 		__Y_AXIS,
@@ -105,6 +105,9 @@ SolidParticleROMDef TEST_PARTICLE =
 
 	/// layers in which I live
 	kParticlesLayer,
+
+	/// disable collision detection when the particle stops
+	true,
 };
 
 ParticleSystemROMDef TEST_PS =
@@ -152,18 +155,18 @@ ParticleSystemROMDef TEST_PS =
 	(ParticleDefinition*)&TEST_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(-30), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(30), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__I_TO_FIX19_13(18), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{-500, -350, -100},
+	{7500, -8000, 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{500, -450, 100},
+	{10000, -10000, 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT

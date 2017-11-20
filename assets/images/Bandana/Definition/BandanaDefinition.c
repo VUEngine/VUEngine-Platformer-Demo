@@ -26,7 +26,7 @@
 
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
-#include <Box.h>
+#include <Ball.h>
 #include "Bandana.h"
 #include <macros.h>
 
@@ -153,10 +153,10 @@ ShapeROMDef BANDANA_AG_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Box),
+		__TYPE(Ball),
 
 		// size (x, y, z)
-		{2 * 8, 2 * 8, 2 * 8},
+		{8, 8, 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},

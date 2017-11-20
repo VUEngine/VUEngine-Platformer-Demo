@@ -62,10 +62,10 @@ ParticleROMDef DUST_PARTICLE =
 	100,
 
 	// particle's minimum mass
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX19_13(0.1f),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX19_13(0.1f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	false,
@@ -133,11 +133,11 @@ ParticleSystemROMDef DUST_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{0, 0, 0},
+	{0, -75, 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{0, 0, 0},
+	{0, -45, 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT
