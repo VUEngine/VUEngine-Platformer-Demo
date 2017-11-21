@@ -371,7 +371,7 @@ ShapeROMDef COIN_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
+		{4, 4, 4},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -528,7 +528,7 @@ ShapeROMDef COIN_BACK_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{2 * 8 - 4, 2 * 8 - 4, 1 * 8},
+		{4, 4, 4},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
