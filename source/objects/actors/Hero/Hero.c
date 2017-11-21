@@ -202,13 +202,6 @@ void Hero_ready(Hero this, bool recursive)
 	Hero_addFeetDust(this);
 }
 
-void Hero_update(Hero this, u32 elapsedTime)
-{
-	Actor_update(this, elapsedTime);
-
-//	Body_printPhysics(this->body, 1,1);
-}
-
 void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 {
 /*	Vector3D direction = {0, 1, 0};
@@ -237,13 +230,8 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 
 	if(this->body)
 	{
-		// get the hero's body velocity
-		Velocity velocity = Body_getVelocity(this->body);
-
 		// determine the maximum number of possible jumps before reaching ground again
 		s8 allowedNumberOfJumps = (this->powerUp == kPowerUpBandana) ? 2 : 1;
-
-		this->jumps = 0;
 
 #ifdef GOD_MODE
 	allowedNumberOfJumps = 127;
@@ -290,7 +278,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				this->jumps = 2;
 
 				// double jumps can never have boost
-				force.y = __FIX19_13_MULT(__ABS(yBouncingPlaneNormal), HERO_NORMAL_JUMP_INPUT_FORCE);
+				force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
 
 				// add the force to actually make the hero jump
 				Actor_addForce(__SAFE_CAST(Actor, this), &force);
@@ -404,13 +392,10 @@ void Hero_stopAddingForce(Hero this)
 //	this->inputDirection.y = 0;
 //	this->inputDirection.z = 0;
 
-	if(!(__Y_AXIS & Body_getMovementOnAllAxes(this->body)))
+	// if walking over someting
+	if(Body_getBouncingPlaneNormal(this->body).y)
 	{
 		Hero_slide(this);
-	}
-	else if(!AnimatedEntity_isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Fall") && !Body_getNormal(this->body).y)
-	{
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 	}
 
 	// begin to decelerate
@@ -498,7 +483,6 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 {
 	ASSERT(this, "Hero::stopMovingOnAxis: null this");
 
-
 	// if being hit do nothing
 	if(!Body_isActive(this->body))
 	{
@@ -514,43 +498,55 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 		Hero_hideDust(this);
 	}
 
-	if(__Y_AXIS & axis)
+	// if there is something below
+	if(Body_getBouncingPlaneNormal(this->body).y)
 	{
-		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
-
-		Hero_lockCameraTriggerMovement(this, __Y_AXIS, true);
-
-		this->jumps = 0;
-
-		if(__X_AXIS & Body_getMovementOnAllAxes(this->body))
+		if(__Y_AXIS & axis)
 		{
-			if(this->inputDirection.x)
-			{
-				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
+			MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
 
-				Hero_showDust(this, true);
-			}
-			else
+			Hero_lockCameraTriggerMovement(this, __Y_AXIS, true);
+
+			this->jumps = 0;
+
+			if(Body_getVelocity(this->body).x)
 			{
-				Hero_slide(this);
+				if(this->inputDirection.x)
+				{
+					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
+
+					Hero_showDust(this, true);
+				}
+				else
+				{
+					Hero_slide(this);
+				}
 			}
 		}
-	}
 
-	if(__Z_AXIS & axis)
-	{
-		this->keepAddingForce = false;
-		this->jumps = 0;
-		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
-		return true;
-	}
+		if(__Z_AXIS & axis)
+		{
+			this->keepAddingForce = false;
+			this->jumps = 0;
+			StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+			return true;
+		}
 
-	if(!movementState && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+		if(!movementState && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+		{
+			this->keepAddingForce = false;
+			this->jumps = 0;
+			StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+			return true;
+		}
+		else
+		{
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
+		}
+	}
+	else
 	{
-		this->keepAddingForce = false;
-		this->jumps = 0;
-		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
-		return true;
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 	}
 
 	return false;
@@ -627,7 +623,7 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 	}
 }
 
-void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy)
+void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
 {
 #ifdef GOD_MODE
 	return;
@@ -1023,13 +1019,24 @@ bool Hero_isInvincible(Hero this)
 	return this->invincible;
 }
 
+fix19_13 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal)
+{
+	// ignore friction on y axis
+	if(collidingObjectNormal->x && !collidingObjectNormal->y)
+	{
+		return 0;
+	}
+
+	return Actor_getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
+}
+
 // process collisions
-bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
+bool Hero_processCollision(Hero this, const CollisionInformation* collisionInformation)
 {
 	ASSERT(this, "Hero::processCollision: null this");
-	ASSERT(collisionInformation.collidingShape, "Hero::processCollision: null collidingObjects");
+	ASSERT(collisionInformation->collidingShape, "Hero::processCollision: null collidingObjects");
 
-	Shape collidingShape = collisionInformation.collidingShape;
+	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
 	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
@@ -1039,25 +1046,26 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 
 		case kUncollectableCoin:
 			{
-				Shape auxShape = collisionInformation.shape;
-				collisionInformation.shape = collisionInformation.collidingShape;
-				collisionInformation.collidingShape = auxShape;
-				collisionInformation.collisionSolution.translationVector = Vector3D_scalarProduct(collisionInformation.collisionSolution.translationVector, __I_TO_FIX19_13(-1));
-				collisionInformation.collisionSolution.collisionPlaneNormal = Vector3D_scalarProduct(collisionInformation.collisionSolution.collisionPlaneNormal, __I_TO_FIX19_13(-1));
-			}
+				CollisionInformation modifiedCollisionInformation = *collisionInformation;
+				Shape auxShape = modifiedCollisionInformation.shape;
+				modifiedCollisionInformation.shape = modifiedCollisionInformation.collidingShape;
+				modifiedCollisionInformation.collidingShape = auxShape;
+				modifiedCollisionInformation.collisionSolution.translationVector = Vector3D_scalarProduct(modifiedCollisionInformation.collisionSolution.translationVector, __I_TO_FIX19_13(-1));
+				modifiedCollisionInformation.collisionSolution.collisionPlaneNormal = Vector3D_scalarProduct(modifiedCollisionInformation.collisionSolution.collisionPlaneNormal, __I_TO_FIX19_13(-1));
 
-			__VIRTUAL_CALL(SpatialObject, processCollision, Shape_getOwner(collisionInformation.shape), collisionInformation);
+				__VIRTUAL_CALL(SpatialObject, processCollision, Shape_getOwner(modifiedCollisionInformation.shape), &modifiedCollisionInformation);
+			}
 			return true;
 			break;
 
 		case kCameraTarget:
 			{
-				if(collisionInformation.collisionSolution.translationVector.y)
+				if(collisionInformation->collisionSolution.translationVector.y)
 				{
 					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
 
-				if(collisionInformation.collisionSolution.translationVector.x)
+				if(collisionInformation->collisionSolution.translationVector.x)
 				{
 					Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
 				}
@@ -1114,32 +1122,35 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 			if(Body_getMovementOnAllAxes(this->body))
 			{
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
+
+				fix19_13 frictionCoefficient = __VIRTUAL_CALL(SpatialObject, getFrictionCoefficient, collidingObject);
+				Body_setFrictionCoefficient(this->body, frictionCoefficient);
 			}
 			return true;
 			break;
 
 		case kLava:
 
-			Hero_takeHitFrom(this, NULL, NULL, this->energy, true, false, true);
+			Hero_takeHitFrom(this, NULL, this->energy, true, false);
 			return true;
 			break;
 
 		case kSawBlade:
 		case kSnail:
 
-			Hero_takeHitFrom(this, collidingObject, collidingShape, 1, true, true, false);
+			Hero_takeHitFrom(this, collidingObject, 1, true, true);
 			return true;
 			break;
 
 		case kCannonBall:
 
-			Hero_takeHitFrom(this, collidingObject, collidingShape, 2, true, true, false);
+			Hero_takeHitFrom(this, collidingObject, 2, true, true);
 			return true;
 			break;
 
 		case kHit:
 
-			Hero_takeHitFrom(this, collidingObject, collidingShape, 1, true, true, false);
+			Hero_takeHitFrom(this, collidingObject, 1, true, true);
 			return true;
 			break;
 
@@ -1155,8 +1166,8 @@ bool Hero_processCollision(Hero this, CollisionInformation collisionInformation)
 		case kTopShape:
 			{
 				// if hero's moving over the y axis or is above colliding entity
-//				if((collisionInformation.translationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation.shape, collisionInformation.collidingShape))
-				if( (0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation.shape, collisionInformation.collidingShape))
+//				if((collisionInformation->translationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
+				if( (0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
 				{
 					// don't further process collision
 					return true;
@@ -1437,12 +1448,12 @@ void Hero_syncRotationWithBody(Hero this)
 
 	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
 
-	if(__1I_FIX19_13 < xLastDisplacement)
+	if(0 < xLastDisplacement)
 	{
 		direction.x = __RIGHT;
 		Entity_setDirection(__SAFE_CAST(Entity, this), direction);
 	}
-	else if(-__1I_FIX19_13 > xLastDisplacement)
+	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
 		Entity_setDirection(__SAFE_CAST(Entity, this), direction);

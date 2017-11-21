@@ -62,8 +62,8 @@ enum HeroPowerUps
 #define HERO_MAX_VELOCITY_Y					__I_TO_FIX19_13(305)
 #define HERO_MAX_VELOCITY_Z					__I_TO_FIX19_13(40)
 #define HERO_BOOST_VELOCITY_X				__F_TO_FIX19_13(100)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-28000)
-#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-34000)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-32000)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-37000)
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-24), 0}
 
@@ -88,9 +88,9 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, collisionsProcessingDone);										\
 		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
 		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
+		__VIRTUAL_SET(ClassName, Hero, getFrictionOnCollision);											\
 		__VIRTUAL_SET(ClassName, Hero, processCollision);												\
 		__VIRTUAL_SET(ClassName, Hero, syncRotationWithBody);											\
-		__VIRTUAL_SET(ClassName, Hero, update);												\
 
 __CLASS(Hero);
 
@@ -148,7 +148,7 @@ void Hero_jump(Hero this, bool checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u32 currentPressedKey, char * animation);
 void Hero_synchronizeDirectionWithVelocity(Hero this);
-void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, Shape collidingShape, int energyToReduce, bool pause, bool invincibleWins, bool alignToEnemy);
+void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
 void Hero_flash(Hero this);
 void Hero_toggleFlashPalette(Hero this);
 void Hero_resetPalette(Hero this);
@@ -168,7 +168,8 @@ u8 Hero_getPowerUp(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
-bool Hero_processCollision(Hero this, CollisionInformation collisionInformation);
+fix19_13 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
+bool Hero_processCollision(Hero this, const CollisionInformation* collisionInformation);
 bool Hero_handleMessage(Hero this, Telegram telegram);
 bool Hero_handlePropagatedMessage(Hero this, int message);
 void Hero_suspend(Hero this);
@@ -182,7 +183,6 @@ void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
 void Hero_capVelocity(Hero this, bool discardPreviousMessages);
 bool Hero_isAffectedByRelativity(Hero this);
 void Hero_syncRotationWithBody(Hero this);
-void Hero_update(Hero this, u32 elapsedTime);
 
 
 #endif
