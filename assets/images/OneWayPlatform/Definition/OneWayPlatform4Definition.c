@@ -128,7 +128,7 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 		{32, 16, 16},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-8), __I_TO_FIX19_13(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -161,24 +161,4 @@ PhysicalSpecificationROMDef ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =
 	__F_TO_FIX19_13(FLOOR_ELASTICITY),
 };
 
-EntityROMDef ONE_WAY_PLATFORM_4_IG =
-{
-	// class allocator
-	__TYPE(Entity),
 
-	// sprites
-	(SpriteROMDef**)ONE_WAY_PLATFORM_4_SPRITES,
-
-	// collision shapes
-	(ShapeDefinition*)&ONE_WAY_PLATFORM_4_IG_SHAPES,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kTopShape,
-
-	// physical specification
-	(PhysicalSpecification*)&ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES,
-};

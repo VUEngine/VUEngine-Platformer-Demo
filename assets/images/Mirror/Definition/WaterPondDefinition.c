@@ -74,7 +74,7 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 		{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(WATER_POND_HEIGHT / 2), __I_TO_FIX19_13(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -101,10 +101,10 @@ PhysicalSpecificationROMDef WATER_POND_EN_PHYSICAL_PROPERTIES =
 	__F_TO_FIX19_13(0),
 
 	// friction
-	__F_TO_FIX19_13(FLOOR_FRICTION * 2),
+	__F_TO_FIX19_13(1.0f),
 
 	// elasticity
-	__F_TO_FIX19_13(FLOOR_ELASTICITY),
+	__F_TO_FIX19_13(0),
 };
 
 WaterPondROMDef WATER_POND_EN =

@@ -210,9 +210,6 @@ MovingEntityROMDef SNAIL_3_AC =
 			"Move"
 		},
 
-		/// create collision solver
-		false,
-
 		/// true to create a body
 		true,
 
@@ -267,9 +264,6 @@ MovingEntityROMDef SNAIL_8_AC =
 			// initial animation
 			"Move"
 		},
-
-		/// create collision solver
-		false,
 
 		/// true to create a body
 		true,

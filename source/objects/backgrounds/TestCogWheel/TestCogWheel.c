@@ -123,6 +123,8 @@ bool TestCogWheel_handleMessage(TestCogWheel this, Telegram telegram)
 // rotate cogwheel
 static void TestCogWheel_rotate(TestCogWheel this)
 {
+	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
+
 /*	static int counter = 1;
 
 	if(1 == counter)

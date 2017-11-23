@@ -210,7 +210,7 @@ void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(Game_getCollisionManager(Game_getInstance()), this->shape, direction);
 	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
 
-	if(collidingSpatialObject && this->collisionSolver)
+	if(collidingSpatialObject)
 	{
 		Vector3D displacement =
 		{
@@ -219,7 +219,7 @@ void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 			__I_TO_FIX19_13(0),
 		};
 
-		CollisionSolver_resolveCollision(this->collisionSolver, VirtualList_front(this->shapes), collidingShapesToRemove, displacement, true);
+		Shape_resolveCollision(this->shape, VirtualList_front(this->shapes), collidingShapesToRemove, displacement, true);
 	}
 	*/
 }
@@ -244,13 +244,15 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 			// init a force to add to the hero's momentum
 			Force force = {0, 0, 0};
 
-			fix19_13 yBouncingPlaneNormal = Body_getBouncingPlaneNormal(this->body).y;
+			fix19_13 yBouncingPlaneNormal = Body_getLastNormalDirection(this->body).y;
+
+			yBouncingPlaneNormal = yBouncingPlaneNormal ? yBouncingPlaneNormal : -__1I_FIX19_13;
 
 			// is this the first jump from ground or a double jump from mid-air?
 			if(this->jumps == 0)
 			{
 				// don't allow a first jump from mid-air without bandana
-				if(checkIfYMovement && 0 <= yBouncingPlaneNormal && (allowedNumberOfJumps == 1))
+				if(checkIfYMovement && 0 < yBouncingPlaneNormal && (allowedNumberOfJumps == 1))
 				{
 					return;
 				}
@@ -266,6 +268,8 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 
 				// add the force to actually make the hero jump
 				Actor_addForce(__SAFE_CAST(Actor, this), &force);
+
+				static int counter = 0;
 			}
 			else
 			{
@@ -328,7 +332,7 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 		Actor_hasChangedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
 		Actor_hasChangedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
 	{
-		fix19_13 inputForce = !Body_getBouncingPlaneNormal(this->body).y ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
+		fix19_13 inputForce = !Body_getNormal(this->body).y ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix19_13 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
 		fix19_13 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
@@ -395,8 +399,8 @@ void Hero_stopAddingForce(Hero this)
 //	this->inputDirection.y = 0;
 //	this->inputDirection.z = 0;
 
-	// if walking over someting
-	if(Body_getBouncingPlaneNormal(this->body).y)
+	// if walking over something
+	if(0 > Body_getNormal(this->body).y)
 	{
 		Hero_slide(this);
 	}
@@ -502,7 +506,7 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 	}
 
 	// if there is something below
-	if(Body_getBouncingPlaneNormal(this->body).y)
+	if(0 > Body_getNormal(this->body).y)
 	{
 		if(__Y_AXIS & axis)
 		{
@@ -1172,10 +1176,11 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 			{
 				// if hero's moving over the y axis or is above colliding entity
 //				if((collisionInformation->translationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
-				if( (0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
+				if( Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
+//				if( (0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
 				{
 					// don't further process collision
-					//return false;
+					return false;
 				}
 			}
 			break;
@@ -1464,7 +1469,7 @@ void Hero_syncRotationWithBody(Hero this)
 	}
 }
 
-void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool isNonPenetrableShape)
+void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool isShapeImpenetrable)
 {
 	ASSERT(this, "Hero::exitCollision: null this");
 
@@ -1478,6 +1483,6 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool is
 			break;
 	}
 
-	__CALL_BASE_METHOD(Actor, exitCollision, this, shape, shapeNotColliding, isNonPenetrableShape);
+	__CALL_BASE_METHOD(Actor, exitCollision, this, shape, shapeNotColliding, isShapeImpenetrable);
 }
 

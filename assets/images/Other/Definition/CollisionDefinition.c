@@ -40,7 +40,7 @@ PhysicalSpecificationROMDef COLLISION_CL_PHYSICAL_PROPERTIES =
 	__F_TO_FIX19_13(0),
 
 	// friction
-	__F_TO_FIX19_13(0.5f),
+	__F_TO_FIX19_13(0.75f),
 
 	// elasticity
 	__F_TO_FIX19_13(0.0f),

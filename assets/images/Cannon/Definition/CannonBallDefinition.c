@@ -211,9 +211,6 @@ CannonBallROMDef CANNON_BALL_AC =
 		NULL
 	},
 
-	/// create collision solver
-	false,
-
 	/// true to create a body
 	true,
 

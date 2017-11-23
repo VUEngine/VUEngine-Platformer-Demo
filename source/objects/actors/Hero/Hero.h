@@ -185,7 +185,7 @@ void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
 void Hero_capVelocity(Hero this, bool discardPreviousMessages);
 bool Hero_isAffectedByRelativity(Hero this);
 void Hero_syncRotationWithBody(Hero this);
-void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool isNonPenetrableShape);
+void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool isShapeImpenetrable);
 
 
 #endif

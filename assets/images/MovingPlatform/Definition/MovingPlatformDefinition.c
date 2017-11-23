@@ -224,9 +224,6 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 			"Move"
 		},
 
-		/// create collision solver
-		false,
-
 		/// true to create a body
 		true,
 

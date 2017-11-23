@@ -203,9 +203,6 @@ ActorROMDef CANNON_AC =
 		"Idle"
 	},
 
-	/// create collision solver
-	false,
-
 	/// true to create a body
 	false,
 

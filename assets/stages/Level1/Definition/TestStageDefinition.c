@@ -369,7 +369,7 @@ StageEntryPointROMDef TEST_LEVEL_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(0),
+		__F_TO_FIX19_13(-40),
 		__F_TO_FIX19_13(-50),
 		__F_TO_FIX19_13(0),
 	},

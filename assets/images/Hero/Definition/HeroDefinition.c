@@ -618,9 +618,6 @@ HeroROMDef HERO_AC =
 		"Idle",
 	},
 
-	/// create collision solver
-	true,
-
 	/// true to create a body
 	true,
 
