@@ -640,7 +640,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		5,
 
 		// maximum number of rows to compute on each call to the affine functions
-		24,
+		48,
 
 		// colors config
 		{
