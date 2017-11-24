@@ -43,11 +43,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define HideLayer_METHODS(ClassName)																	\
-		AnimatedEntity_METHODS(ClassName)															\
+		AnimatedEntity_METHODS(ClassName)																\
 
 #define HideLayer_SET_VTABLE(ClassName)																	\
-		AnimatedEntity_SET_VTABLE(ClassName)														\
-		__VIRTUAL_SET(ClassName, HideLayer, handleMessage);												\
+		AnimatedEntity_SET_VTABLE(ClassName)															\
 
 __CLASS(HideLayer);
 
@@ -69,9 +68,8 @@ __CLASS_NEW_DECLARE(HideLayer, AnimatedEntityDefinition* animatedEntityDefinitio
 
 void HideLayer_constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 void HideLayer_destructor(HideLayer this);
-bool HideLayer_handleMessage(HideLayer this, Telegram telegram);
 void HideLayer_setOverlapping(HideLayer this);
-bool HideLayer_isOverlapping(HideLayer this);
+void HideLayer_unsetOverlapping(HideLayer this);
 
 
 #endif

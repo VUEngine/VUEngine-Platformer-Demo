@@ -46,7 +46,6 @@ __CLASS_DEFINITION(Door, AnimatedEntity);
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-bool Door_checkStillOverlapping(Door this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -65,7 +64,6 @@ void Door_constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinit
 
 	// init class variables
 	this->destinationDefinition = NULL;
-	this->currentlyOverlappingHero = false;
 }
 
 // class's destructor
@@ -110,30 +108,11 @@ void Door_ready(Door this, bool recursive __attribute__ ((unused)))
 	}
 }
 
-void Door_resume(Door this)
-{
-	__CALL_BASE_METHOD(AnimatedEntity, resume, this);
-
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckOverlapping);
-	MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
-}
-
 // class's handle message
 bool Door_handleMessage(Door this, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
 	{
-		case kHeroCheckOverlapping:
-
-			if(Door_checkStillOverlapping(this))
-			{
-				// delayed check if still overlapped by hero
-				MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
-			}
-
-			return true;
-			break;
-
 		case kHeroEnterDoor:
 
 			if(__VIRTUAL_CALL(Door, hasDestination, this))
@@ -155,46 +134,18 @@ bool Door_hasDestination(Door this)
 void Door_onOverlapping(Door this)
 {
 	// first contact with hero?
-	if(!Door_isOverlapping(this) && __VIRTUAL_CALL(Door, hasDestination, this))
+	if(__VIRTUAL_CALL(Door, hasDestination, this))
 	{
-		MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kHeroStartOverlapping, NULL);
-
 		__VIRTUAL_CALL(Door, setOverlapping, this);
 	}
 }
 
-void Door_setOverlapping(Door this)
+void Door_setOverlapping(Door this __attribute__ ((unused)))
 {
-	this->currentlyOverlappingHero = true;
-
-	// delayed check if still overlapped by hero
-	MessageDispatcher_dispatchMessage(DOOR_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
 }
 
-void Door_unsetOverlapping(Door this)
+void Door_unsetOverlapping(Door this __attribute__ ((unused)))
 {
-	this->currentlyOverlappingHero = false;
-
-	// inform the hero
-	MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Hero_getInstance()), kHeroEndOverlapping, NULL);
-}
-
-bool Door_isOverlapping(Door this)
-{
-	return this->currentlyOverlappingHero;
-}
-
-bool Door_checkStillOverlapping(Door this)
-{
-	CollisionInformation collisionInformation = __VIRTUAL_CALL(Shape, collides, VirtualList_front(Entity_getShapes(__SAFE_CAST(Entity, Hero_getInstance()))), VirtualList_front(this->shapes));
-
-	// check if hero has recently overlapped door and is still doing so
-	if(this->currentlyOverlappingHero && !collisionInformation.shape)
-	{
-		__VIRTUAL_CALL(Door, unsetOverlapping, this);
-	}
-
-	return this->currentlyOverlappingHero;
 }
 
 bool Door_canEnter(Door this)

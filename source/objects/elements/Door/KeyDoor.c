@@ -84,7 +84,8 @@ bool KeyDoor_hasDestination(KeyDoor this __attribute__ ((unused)))
 
 void KeyDoor_setOverlapping(KeyDoor this)
 {
-	if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
+	if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
+	{
 		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Opening");
 	}
 
@@ -93,8 +94,8 @@ void KeyDoor_setOverlapping(KeyDoor this)
 
 void KeyDoor_unsetOverlapping(KeyDoor this)
 {
-
-	if(ProgressManager_heroHasKey(ProgressManager_getInstance())) {
+	if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
+	{
 		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closing");
 	}
 

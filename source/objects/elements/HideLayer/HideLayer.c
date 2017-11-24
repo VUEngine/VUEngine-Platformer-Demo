@@ -45,7 +45,6 @@ __CLASS_DEFINITION(HideLayer, AnimatedEntity);
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-bool HideLayer_checkStillOverlapping(HideLayer this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -61,9 +60,6 @@ void HideLayer_constructor(HideLayer this, AnimatedEntityDefinition* animatedEnt
 {
 	// construct base
 	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
-
-	// init class variables
-	this->currentlyOverlappingHero = false;
 }
 
 // class's destructor
@@ -74,56 +70,17 @@ void HideLayer_destructor(HideLayer this)
 	__DESTROY_BASE;
 }
 
-// class's handle message
-bool HideLayer_handleMessage(HideLayer this, Telegram telegram)
-{
-	switch(Telegram_getMessage(telegram))
-	{
-		case kHeroCheckOverlapping:
-
-			if(HideLayer_checkStillOverlapping(this))
-			{
-				// delayed check if still overlapping hero
-				MessageDispatcher_dispatchMessage(HIDE_LAYER_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
-			}
-
-			return true;
-			break;
-	}
-
-	return false;
-}
-
 void HideLayer_setOverlapping(HideLayer this)
 {
-	this->currentlyOverlappingHero = true;
-
 	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToTransparent");
 }
 
+void HideLayer_unsetOverlapping(HideLayer this)
+{
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToShape");
+}
+
+
 void HideLayer_onToTransparentAnimationComplete(HideLayer this)
 {
-	// delayed check if still overlapping hero
-	MessageDispatcher_dispatchMessage(HIDE_LAYER_OVERLAPPING_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckOverlapping, NULL);
-}
-
-bool HideLayer_isOverlapping(HideLayer this)
-{
-	return this->currentlyOverlappingHero;
-}
-
-bool HideLayer_checkStillOverlapping(HideLayer this)
-{
-	// check if hero has recently overlapped door and is still doing so
-	CollisionInformation collisionInformation = __VIRTUAL_CALL(Shape, collides, VirtualList_front(Entity_getShapes(__SAFE_CAST(Entity, Hero_getInstance()))), VirtualList_front(this->shapes));
-
-	// check if hero has recently overlapped door and is still doing so
-	if(this->currentlyOverlappingHero && !collisionInformation.shape)
-	{
-		this->currentlyOverlappingHero = false;
-
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToShape");
-	}
-
-	return this->currentlyOverlappingHero;
 }
