@@ -156,10 +156,10 @@ ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{30, 16, 16},
+		{30, 32, 16},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(8), __I_TO_FIX19_13(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -171,7 +171,7 @@ ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kSolidLayer,
+		kMovingPlatformsLayer,
 
 		/// layers to ignore when checking for collisions
 		kNoLayer,

@@ -268,8 +268,6 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 
 				// add the force to actually make the hero jump
 				Actor_addForce(__SAFE_CAST(Actor, this), &force);
-
-				static int counter = 0;
 			}
 			else
 			{
@@ -448,11 +446,6 @@ void Hero_startedMovingOnAxis(Hero this, u16 axis)
 			this->keepAddingForce = true;
 			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 		}
-		else if(__Y_AXIS & axis & !Body_getNormal(this->body).y)
-		{
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
-			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
-		}
 
 		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State,  HeroMoving_getInstance()));
 	}
@@ -463,24 +456,6 @@ void Hero_startedMovingOnAxis(Hero this, u16 axis)
 		if(__X_AXIS & axis)
 		{
 			this->keepAddingForce = true;
-
-			if(!(__Y_AXIS & movementState))
-			{
-				this->keepAddingForce = true;
-
-				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
-			}
-		}
-
-		if(__Y_AXIS & axis & !Body_getNormal(this->body).y)
-		{
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
-			Container_addChild(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), __SAFE_CAST(Container, this));
-		}
-
-		if(__Z_AXIS & axis)
-		{
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 		}
 	}
 }
@@ -664,8 +639,7 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 				Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 				Game_disableKeypad(Game_getInstance());
 				GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
-				Body_setActive(this->body, false);
-				GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
+				//GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
 				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, collidingObject);
 			}
 		}
@@ -676,7 +650,6 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 			Hero_flash(this);
 			GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
 			GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-			Body_setActive(this->body, false);
 			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
 			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
 		}
@@ -1058,8 +1031,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 				Shape auxShape = modifiedCollisionInformation.shape;
 				modifiedCollisionInformation.shape = modifiedCollisionInformation.collidingShape;
 				modifiedCollisionInformation.collidingShape = auxShape;
-				modifiedCollisionInformation.collisionSolution.translationVector = Vector3D_scalarProduct(modifiedCollisionInformation.collisionSolution.translationVector, __I_TO_FIX19_13(-1));
-				modifiedCollisionInformation.collisionSolution.collisionPlaneNormal = Vector3D_scalarProduct(modifiedCollisionInformation.collisionSolution.collisionPlaneNormal, __I_TO_FIX19_13(-1));
+				modifiedCollisionInformation.solutionVector.direction = Vector3D_scalarProduct(modifiedCollisionInformation.solutionVector.direction, __I_TO_FIX19_13(-1));
 
 				__VIRTUAL_CALL(SpatialObject, enterCollision, Shape_getOwner(modifiedCollisionInformation.shape), &modifiedCollisionInformation);
 			}
@@ -1068,12 +1040,12 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 
 		case kCameraTarget:
 			{
-				if(collisionInformation->collisionSolution.translationVector.y)
+				if(collisionInformation->solutionVector.direction.y)
 				{
 					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
 
-				if(collisionInformation->collisionSolution.translationVector.x)
+				if(collisionInformation->solutionVector.direction.x)
 				{
 					Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
 				}
@@ -1112,17 +1084,18 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 		case kHideLayer:
 
 			// first contact with hide layer?
-			if(!HideLayer_isOverlapping((HideLayer)collidingObject))
-			{
-				HideLayer_setOverlapping((HideLayer)collidingObject);
-			}
+			HideLayer_setOverlapping((HideLayer)collidingObject);
 			return false;
 			break;
 
 		case kDoor:
-
-			Door_onOverlapping((Door)collidingObject);
-			return false;
+			{
+				Door door = __SAFE_CAST(Door, collidingObject);
+				Hero_showHint(this, __VIRTUAL_CALL(Door, getHintType, door));
+				__VIRTUAL_CALL(Door, setOverlapping, door);
+				this->currentlyOverlappedDoor = door;
+			}
+			return true;
 			break;
 
 		case kWaterPond:
@@ -1174,10 +1147,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 		case kMovingPlatform:
 		case kTopShape:
 			{
-				// if hero's moving over the y axis or is above colliding entity
-//				if((collisionInformation->translationVector.x) || (0 >= Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
-				if( Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
-//				if( (0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
+				if( (0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
 				{
 					// don't further process collision
 					return false;
@@ -1237,22 +1207,6 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 			return true;
 			break;
 
-		case kHeroStartOverlapping:
-		{
-			Door door = __SAFE_CAST(Door, Telegram_getSender(telegram));
-
-			this->currentlyOverlappedDoor = door;
-			Hero_showHint(this, __VIRTUAL_CALL(Door, getHintType, door));
-			return true;
-			break;
-		}
-		case kHeroEndOverlapping:
-
-			this->currentlyOverlappedDoor = NULL;
-			Hero_hideHint(this);
-			return true;
-			break;
-
 		case kHeroStopFeetDust:
 
 			Hero_hideDust(this);
@@ -1275,6 +1229,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 
 			Game_enableKeypad(Game_getInstance());
 			GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), false);
+			GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), false);
 
 			Velocity velocity = Body_getVelocity(this->body);
 
@@ -1403,31 +1358,17 @@ bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
 	RightBox shapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, shape);
 	RightBox collidingShapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, collidingShape);
 
-	Vector3D shapePosition = __VIRTUAL_CALL(Shape, getPosition, shape);
+//	fix19_13 heroBottomPosition = ((shapeRightBox.y1 - shapeRightBox.y0) >> 1);// - (Body_getLastDisplacement(this->body).y << 1);
+	fix19_13 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1);
 
-	fix19_13 heroBottomPosition = shapePosition.y + ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1);
-
+	Printing_int(Printing_getInstance(), __FIX19_13_TO_I(heroBottomPosition), 31, 1, NULL);
+	Printing_int(Printing_getInstance(), __FIX19_13_TO_I(collidingShapeRightBox.y0), 31, 2, NULL);
 	return heroBottomPosition > collidingShapeRightBox.y0;
 }
 
 void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collisionInformation __attribute__ ((unused)))
 {
 	ASSERT(this, "Hero::collisionsProcessingDone: null this");
-/*
-	if(collisionInformation->collidingShape)
-	{
-		Shape collidingShape = collisionInformation->collidingShape;
-		SpatialObject collidingObject = Shape_getOwner(collidingShape);
-
-		switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
-		{
-			case kMovingPlatform:
-
-				Container_addChild(__SAFE_CAST(Container, collidingObject), __SAFE_CAST(Container, this));
-				break;
-		}
-	}
-	*/
 }
 
 u16 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
@@ -1477,6 +1418,18 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool is
 
 	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, nonCollidingSpatialObject))
 	{
+		case kHideLayer:
+
+			HideLayer_unsetOverlapping(__SAFE_CAST(HideLayer, nonCollidingSpatialObject));
+			break;
+
+		case kDoor:
+
+			Hero_hideHint(this);
+			__VIRTUAL_CALL(Door, unsetOverlapping, this->currentlyOverlappedDoor);
+			this->currentlyOverlappedDoor = NULL;
+			break;
+
 		case kWaterPond:
 
 			this->underWater = false;
