@@ -78,7 +78,7 @@ void CannonBall_destructor(CannonBall this)
 // start moving
 void CannonBall_startMovement(CannonBall this)
 {
-	Velocity velocity = {0, 0, __I_TO_FIX19_13(-64)};
+	Velocity velocity = {0, 0, __I_TO_FIX19_13(-128)};
 
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
