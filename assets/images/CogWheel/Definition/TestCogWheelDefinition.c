@@ -222,7 +222,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
 		/// if true this shape checks for collisions against other shapes
-		true,
+		false,
 
 		/// layers in which I live
 		kNoLayer,
