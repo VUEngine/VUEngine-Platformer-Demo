@@ -1358,11 +1358,8 @@ bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
 	RightBox shapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, shape);
 	RightBox collidingShapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, collidingShape);
 
-//	fix19_13 heroBottomPosition = ((shapeRightBox.y1 - shapeRightBox.y0) >> 1);// - (Body_getLastDisplacement(this->body).y << 1);
 	fix19_13 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1);
 
-	Printing_int(Printing_getInstance(), __FIX19_13_TO_I(heroBottomPosition), 31, 1, NULL);
-	Printing_int(Printing_getInstance(), __FIX19_13_TO_I(collidingShapeRightBox.y0), 31, 2, NULL);
 	return heroBottomPosition > collidingShapeRightBox.y0;
 }
 

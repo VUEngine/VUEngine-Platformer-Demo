@@ -31,6 +31,7 @@
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
+#include <debugUtilities.h>
 
 #ifdef __DEBUG
 //#include "../../levels/game/GameLevel.h"

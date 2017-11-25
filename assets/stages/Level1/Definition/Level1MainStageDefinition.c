@@ -246,7 +246,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_2[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-48),	__F_TO_FIX19_13(25),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_1, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-48),	__F_TO_FIX19_13(24),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_1, false},
 	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-13),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_1, false},
 	{&COLLISION_CL, 				{__F_TO_FIX19_13(32),	__F_TO_FIX19_13(-41),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_1, false},
 
@@ -585,7 +585,7 @@ TextureDefinition* const LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 
 const PostProcessingEffect LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 {
-	PostProcessingEffects_rain,
+//	PostProcessingEffects_rain,
 	NULL
 };
 
