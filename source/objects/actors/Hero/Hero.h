@@ -89,7 +89,8 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
 		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
 		__VIRTUAL_SET(ClassName, Hero, getFrictionOnCollision);											\
-		__VIRTUAL_SET(ClassName, Hero, enterCollision);												\
+		__VIRTUAL_SET(ClassName, Hero, enterCollision);													\
+		__VIRTUAL_SET(ClassName, Hero, updateCollision);												\
 		__VIRTUAL_SET(ClassName, Hero, syncRotationWithBody);											\
 		__VIRTUAL_SET(ClassName, Hero, exitCollision);													\
 
@@ -172,6 +173,7 @@ void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
 fix19_13 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
 bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInformation);
+bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInformation);
 bool Hero_handleMessage(Hero this, Telegram telegram);
 bool Hero_handlePropagatedMessage(Hero this, int message);
 void Hero_suspend(Hero this);

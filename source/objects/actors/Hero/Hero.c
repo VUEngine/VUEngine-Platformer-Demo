@@ -1008,7 +1008,6 @@ fix19_13 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, c
 	if(collidingObjectNormal->x && !collidingObjectNormal->y)
 	{
 		return 0;
-		return surroundingFriction - __VIRTUAL_CALL(SpatialObject, getFrictionCoefficient, collidingObject);
 	}
 
 	return surroundingFriction;
@@ -1095,7 +1094,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 				__VIRTUAL_CALL(Door, setOverlapping, door);
 				this->currentlyOverlappedDoor = door;
 			}
-			return true;
+			return false;
 			break;
 
 		case kWaterPond:
@@ -1141,13 +1140,12 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kLavaTriggerStart, NULL);
 			Hero_stopAddingForce(this);
 			return false;
-			//Hero_stopMovingOnAxis(this, __X_AXIS);
 			break;
 
 		case kMovingPlatform:
 		case kTopShape:
 			{
-				if( (0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
+				if((0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
 				{
 					// don't further process collision
 					return false;
@@ -1156,7 +1154,30 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 			break;
 	}
 
-	return Actor_enterCollision(__SAFE_CAST(Actor, this), collisionInformation);
+	return Actor_enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
+}
+
+// process collisions
+bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInformation)
+{
+	ASSERT(this, "Hero::enterCollision: null this");
+	ASSERT(collisionInformation->collidingShape, "Hero::enterCollision: null collidingObjects");
+
+	Shape collidingShape = collisionInformation->collidingShape;
+	SpatialObject collidingObject = Shape_getOwner(collidingShape);
+
+	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
+	{
+		case kWaterPond:
+
+			if(Body_getMovementOnAllAxes(this->body))
+			{
+				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
+			}
+			return false;
+	}
+
+	return false;
 }
 
 void Hero_capVelocity(Hero this, bool discardPreviousMessages)
