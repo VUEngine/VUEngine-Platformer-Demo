@@ -127,11 +127,11 @@ PositionedEntityROMDef TEST_LEVEL_STAGE_ST_CHILDREN[] =
 //	{&SAW_BLADE_H8_AC,				{__F_TO_FIX19_13(192+64),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(0)},			0, NULL, NULL, NULL, false},
 //	{&SAW_BLADE_V3_AC,				{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(0)},			0, NULL, NULL, NULL, false},
 //	{&SNAIL_3_AC,					{__F_TO_FIX19_13(192-64), __F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-//	{&TEST_PS,						{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(90), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
+	{&TEST_PS,						{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(90), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
 	{&COLLISION_CL,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2+30), 	__F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
 //	{&COG_WHEEL_IM,					{__F_TO_FIX19_13(192-64),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
-	{&MOVING_PLATFORM_V6_AC,		{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
-//	{&TEST_COG_WHEEL_IM,			{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
+//	{&MOVING_PLATFORM_V6_AC,		{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
+	{&TEST_COG_WHEEL_IM,			{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
 //	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX19_13(192+100), __F_TO_FIX19_13(100),	__F_TO_FIX19_13(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
 //	{&KEY_DOOR_AG,					{__F_TO_FIX19_13(44), 	__F_TO_FIX19_13(112-12), 	__F_TO_FIX19_13(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
