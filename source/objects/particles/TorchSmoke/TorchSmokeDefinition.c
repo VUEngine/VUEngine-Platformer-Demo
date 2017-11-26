@@ -61,10 +61,10 @@ ParticleROMDef TORCH_SMOKE_PARTICLE =
 	3000,
 
 	// particle's minimum mass
-	__F_TO_FIX19_13(0.05f),
+	__F_TO_FIX19_13(0.9f),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX19_13(0.1f),
+	__F_TO_FIX19_13(1.1f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__NO_AXIS,
