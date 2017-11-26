@@ -162,11 +162,11 @@ ParticleSystemROMDef TEST_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{7500, -8000, 0},
+	{__I_TO_FIX19_13(7500), __I_TO_FIX19_13(-8000), 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{10000, -10000, 0},
+	{__I_TO_FIX19_13(10000), __I_TO_FIX19_13(-10000), 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT

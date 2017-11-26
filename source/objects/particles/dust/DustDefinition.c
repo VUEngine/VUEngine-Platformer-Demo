@@ -133,11 +133,11 @@ ParticleSystemROMDef DUST_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{0, -3, 0},
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-3), __I_TO_FIX19_13(0)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{0, -1, 0},
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-1), __I_TO_FIX19_13(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT

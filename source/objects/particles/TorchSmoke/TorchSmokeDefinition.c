@@ -131,11 +131,11 @@ ParticleSystemROMDef TORCH_SMOKE_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{-5, -18, 0},
+	{__I_TO_FIX19_13(-5), __I_TO_FIX19_13(-18), __I_TO_FIX19_13(0)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{5, -10, 0},
+	{__I_TO_FIX19_13(5), __I_TO_FIX19_13(-10), __I_TO_FIX19_13(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT

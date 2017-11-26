@@ -130,11 +130,11 @@ ParticleSystemROMDef WATER_SPLASH_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{-1000, -15000, -200},
+	{__I_TO_FIX19_13(-1000), __I_TO_FIX19_13(-15000), __I_TO_FIX19_13(-200)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{1000, -15500, 200},
+	{__I_TO_FIX19_13(1000), __I_TO_FIX19_13(-15500), __I_TO_FIX19_13(200)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT
