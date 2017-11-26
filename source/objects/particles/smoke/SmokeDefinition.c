@@ -61,10 +61,10 @@ ParticleROMDef SMOKE_PARTICLE =
 	3000,
 
 	// particle's minimum mass
-	__F_TO_FIX19_13(0.05f),
+	__F_TO_FIX19_13(0.5f),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX19_13(0.1f),
+	__F_TO_FIX19_13(0.9f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__NO_AXIS,
@@ -132,11 +132,11 @@ ParticleSystemROMDef SMOKE_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{-15, -25, 0},
+	{-3, -3, 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{-5, -18, 0},
+	{-1, -1, 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT
