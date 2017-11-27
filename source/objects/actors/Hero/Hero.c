@@ -1070,8 +1070,8 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 
 			this->hasKey = true;
 			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
-			break;
 			return false;
+			break;
 
 		case kBandana:
 
