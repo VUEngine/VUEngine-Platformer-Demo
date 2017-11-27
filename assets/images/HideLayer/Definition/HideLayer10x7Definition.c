@@ -36,8 +36,6 @@
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void HideLayer_onToTransparentAnimationComplete(HideLayer this);
-
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
@@ -129,7 +127,7 @@ AnimationFunctionROMDef HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
 	false,
 
 	// method to call on function completion
-	(EventListener)&HideLayer_onToTransparentAnimationComplete,
+	(EventListener)NULL,
 
 	// function's name
 	"ToTransparent",

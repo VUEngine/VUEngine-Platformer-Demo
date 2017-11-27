@@ -180,7 +180,7 @@ void Hero_suspend(Hero this);
 void Hero_resume(Hero this);
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
 void Hero_getOutOfDoor(Hero this, Vector3D* outOfDoorPosition);
-bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape);
+bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation);
 void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collisionInformation);
 u16 Hero_getAxisForFlipping(Hero this);
 void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);

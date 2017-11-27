@@ -451,8 +451,6 @@ void Hero_startedMovingOnAxis(Hero this, u16 axis)
 	}
 	else
 	{
-		bool movementState = Body_getMovementOnAllAxes(this->body);
-
 		if(__X_AXIS & axis)
 		{
 			this->keepAddingForce = true;

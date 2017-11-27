@@ -80,7 +80,3 @@ void HideLayer_unsetOverlapping(HideLayer this)
 	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToShape");
 }
 
-
-void HideLayer_onToTransparentAnimationComplete(HideLayer this)
-{
-}

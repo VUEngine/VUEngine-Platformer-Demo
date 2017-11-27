@@ -140,13 +140,6 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 	// check direction
 	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
-		Acceleration acceleration =
-		{
-			K_LL & userInput->pressedKey? __I_TO_FIX19_13(-1) : K_LR & userInput->pressedKey? __1I_FIX19_13: 0,
-			0,
-			0,
-		};
-
 		Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, true);
 
 		Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Walk");
