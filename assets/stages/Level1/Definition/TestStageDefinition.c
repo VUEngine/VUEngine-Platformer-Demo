@@ -102,7 +102,8 @@ extern EntityDefinition WATERFALL_STREAM_2x16_AG;
 extern EntityDefinition WATERFALL_STREAM_2x28_AG;
 extern EntityDefinition WATERFALL_TOP_AG;
 extern EntityDefinition WATER_POND_EN;
-extern EntityDefinition TEST_PS;
+extern EntityDefinition TEST_1_PS;
+extern EntityDefinition TEST_2_PS;
 extern EntityDefinition MOVING_PLATFORM_V6_AC;
 
 
@@ -127,7 +128,8 @@ PositionedEntityROMDef TEST_LEVEL_STAGE_ST_CHILDREN[] =
 //	{&SAW_BLADE_H8_AC,				{__F_TO_FIX19_13(192+64),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(0)},			0, NULL, NULL, NULL, false},
 //	{&SAW_BLADE_V3_AC,				{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(0)},			0, NULL, NULL, NULL, false},
 //	{&SNAIL_3_AC,					{__F_TO_FIX19_13(192-64), __F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-	{&TEST_PS,						{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(90), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
+	{&TEST_1_PS,					{__F_TO_FIX19_13(192 + 20),	__F_TO_FIX19_13(10), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
+	{&TEST_2_PS,					{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(90), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
 	{&COLLISION_CL,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2+30), 	__F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
 //	{&COG_WHEEL_IM,					{__F_TO_FIX19_13(192-64),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
 //	{&MOVING_PLATFORM_V6_AC,		{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
@@ -373,7 +375,7 @@ StageEntryPointROMDef TEST_LEVEL_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(-40),
+		__F_TO_FIX19_13(40),
 		__F_TO_FIX19_13(-50),
 		__F_TO_FIX19_13(0),
 	},

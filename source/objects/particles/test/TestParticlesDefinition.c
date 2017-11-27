@@ -64,10 +64,10 @@ SolidParticleROMDef TEST_PARTICLE =
 		__TYPE(SolidParticle),
 
 		// particle's minimum life span in milliseconds
-		500,
+		1000,
 
 		// particle's maximum life span in milliseconds
-		1000,
+		2000,
 
 		// particle's minimum mass
 		__F_TO_FIX19_13(0.5f),
@@ -110,7 +110,70 @@ SolidParticleROMDef TEST_PARTICLE =
 	true,
 };
 
-ParticleSystemROMDef TEST_PS =
+ParticleSystemROMDef TEST_1_PS =
+{
+	{
+		// class allocator
+		__TYPE(ParticleSystem),
+
+		// sprites
+		(SpriteROMDef**)NULL,
+
+		// collision shapes
+		(ShapeDefinition*)NULL,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
+		kNoType,
+
+		// physical specification
+		(PhysicalSpecification*)NULL,
+	},
+
+	// reuse expired particles?
+	true,
+
+	// minimum generation delay in milliseconds
+	50,
+
+	// maximum generation delay in milliseconds
+	150,
+
+	// maximum total particles
+	5,
+
+	// array of textures
+	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
+
+	// auto start
+	true,
+
+	// particle definition
+	(ParticleDefinition*)&TEST_PARTICLE,
+
+	// minimum relative spawn position (x, y, z)
+	{__I_TO_FIX19_13(-30), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+
+	// maximum relative spawn position (x, y, z)
+	{__I_TO_FIX19_13(30), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+
+	// minimum force to apply (x, y, z)
+	// (use int values in the definition to avoid overflow)
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), 0},
+
+	// maximum force to apply (x, y, z)
+	// (use int values in the definition to avoid overflow)
+	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), 0},
+
+	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
+	__ACCELERATED_MOVEMENT
+};
+
+
+ParticleSystemROMDef TEST_2_PS =
 {
 	{
 		// class allocator
@@ -143,7 +206,7 @@ ParticleSystemROMDef TEST_PS =
 	300,
 
 	// maximum total particles
-	10,
+	5,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,

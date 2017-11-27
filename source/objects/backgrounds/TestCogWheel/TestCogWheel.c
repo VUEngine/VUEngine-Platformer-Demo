@@ -123,32 +123,9 @@ bool TestCogWheel_handleMessage(TestCogWheel this, Telegram telegram)
 // rotate cogwheel
 static void TestCogWheel_rotate(TestCogWheel this)
 {
-	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
-
-/*	static int counter = 1;
-
-	if(1 == counter)
-//	this->transformation.localRotation.x = 512;
-	this->transformation.localRotation.x += 8;
-	else if(2 == counter)
-	this->transformation.localRotation.y += 8;
-	else if(3 == counter)
-	this->transformation.localRotation.z += 8;
-
-	if(3 < ++counter) counter = 1;
-	 */
-
 	static int increment = -2;
 
 	this->transformation.localRotation.z += increment;
-
-//	if(this->transformation.localRotation.z > 64) increment *= -1;
-//	if(this->transformation.localRotation.z <- 64) increment *= -1;
-
-//	this->transformation.localRotation.z = 64+32;
-//	this->transformation.localRotation.z = 128-12;
-//	this->transformation.localRotation.z = 128;
-//	this->transformation.localRotation.z = 184;
 
 	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
 
