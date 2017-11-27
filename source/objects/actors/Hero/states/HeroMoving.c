@@ -118,7 +118,6 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 
 		case kBodyBounced:
 
-			//Hero_bounce(__SAFE_CAST(Hero, owner), true);
 			return false;
 			break;
 	}
@@ -177,16 +176,6 @@ void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* ow
 	if((K_LL | K_LR) & userInput->releasedKey)
 	{
 		Hero_stopAddingForce(__SAFE_CAST(Hero, owner));
-/*		Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, owner));
-
-		if(__ABS(velocity.x))
-		{
-		}
-		else if(!__ABS(velocity.y))
-		{
-			StateMachine_swapState(Actor_getStateMachine(__SAFE_CAST(Actor, owner)), __SAFE_CAST(State, HeroIdle_getInstance()));
-		}
-		*/
 	}
 }
 
