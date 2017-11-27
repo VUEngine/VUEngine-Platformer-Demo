@@ -801,7 +801,7 @@ void Hero_enterDoor(Hero this)
 	*/
 
 	// inform the door entity
-	if(this->currentlyOverlappedDoor != NULL)
+	if(this->currentlyOverlappedDoor)
 	{
 		MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappedDoor), kHeroEnterDoor, NULL);
 	}
@@ -1343,6 +1343,8 @@ void Hero_getOutOfDoor(Hero this, Vector3D* outOfDoorPosition)
 	Container_invalidateGlobalTransformation(__SAFE_CAST(Container, this));
 
 	Body_setAxesSubjectToGravity(this->body, __Y_AXIS);
+
+	this->currentlyOverlappedDoor = NULL;
 }
 
 void Hero_suspend(Hero this)
@@ -1442,7 +1444,7 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool is
 		case kDoor:
 
 			Hero_hideHint(this);
-			__VIRTUAL_CALL(Door, unsetOverlapping, this->currentlyOverlappedDoor);
+			__VIRTUAL_CALL(Door, unsetOverlapping, __SAFE_CAST(Door, nonCollidingSpatialObject));
 			this->currentlyOverlappedDoor = NULL;
 			break;
 
