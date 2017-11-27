@@ -161,27 +161,27 @@ extern TextureDefinition MOUND_BG_FRONT_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
 extern TextureDefinition SAW_BLADE_TX;
 
-extern Size collision_2_28_1;
-extern Size collision_3_2_1;
-extern Size collision_7_2_1;
-extern Size collision_8_3_1;
-extern Size collision_12_4_1;
-extern Size collision_14_6_1;
-extern Size collision_14_18_1;
-extern Size collision_18_6_1;
-extern Size collision_20_2_1;
-extern Size collision_20_6_1;
-extern Size collision_20_32_1;
-extern Size collision_28_16_1;
-extern Size collision_32_14_1;
-extern Size collision_34_30_1;
-extern Size collision_38_10_1;
-extern Size collision_47_3_1;
-extern Size collision_48_10_1;
-extern Size collision_48_18_1;
-extern Size collision_48_28_1;
-extern Size collision_49_5_1;
-extern Size collision_67_25_1;
+extern Size collision_2_28_4;
+extern Size collision_3_2_4;
+extern Size collision_7_2_4;
+extern Size collision_8_3_4;
+extern Size collision_12_4_4;
+extern Size collision_14_6_4;
+extern Size collision_14_18_4;
+extern Size collision_18_6_4;
+extern Size collision_20_2_4;
+extern Size collision_20_6_4;
+extern Size collision_20_32_4;
+extern Size collision_28_16_4;
+extern Size collision_32_14_4;
+extern Size collision_34_30_4;
+extern Size collision_38_10_4;
+extern Size collision_47_3_4;
+extern Size collision_48_10_4;
+extern Size collision_48_18_4;
+extern Size collision_48_28_4;
+extern Size collision_49_5_4;
+extern Size collision_67_25_4;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -193,129 +193,129 @@ extern Size collision_67_25_1;
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-136), __F_TO_FIX19_13(-12), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_34_30_1, false}, // left floor
-	{&COLLISION_CL,					{__F_TO_FIX19_13(112),	__F_TO_FIX19_13(13), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_34_30_1, false}, // right floor
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-136), __F_TO_FIX19_13(-12), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_34_30_4, false}, // left floor
+	{&COLLISION_CL,					{__F_TO_FIX19_13(112),	__F_TO_FIX19_13(13), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_34_30_4, false}, // right floor
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(-104),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // left top one-way
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-145), __F_TO_FIX19_13(-56),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_18_1, false}, // floor left to spikes
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(127),	__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_18_1, false}, // floor right to spikes
+	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(-104),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left top one-way
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-145), __F_TO_FIX19_13(-56),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor left to spikes
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(127),	__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor right to spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-132),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // floating block over spikes
-	{&COLLISION_HIT_CL,				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-94),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_2_1, false}, // spikes hit collision
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-40),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_32_14_1, false}, // floor below spikes
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-132),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
+	{&COLLISION_HIT_CL,				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-94),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-40),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_32_14_4, false}, // floor below spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // left bottom one-way
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-6),	__F_TO_FIX19_13(136),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_1, false}, // secret bottom floor
-	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(210),	__F_TO_FIX19_13(-72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // right top one-way
+	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left bottom one-way
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-6),	__F_TO_FIX19_13(136),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // secret bottom floor
+	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(210),	__F_TO_FIX19_13(-72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right top one-way
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 {
-	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(210),	__F_TO_FIX19_13(24),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // right bottom one-way
-	{&COLLISION_CL,					{__F_TO_FIX19_13(127),	__F_TO_FIX19_13(38),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // wall right to the secret door
-	{&COLLISION_CL,					{__F_TO_FIX19_13(239),	__F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_18_6_1, false}, // floor under the one-way passage
+	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(210),	__F_TO_FIX19_13(24),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right bottom one-way
+	{&COLLISION_CL,					{__F_TO_FIX19_13(127),	__F_TO_FIX19_13(38),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // wall right to the secret door
+	{&COLLISION_CL,					{__F_TO_FIX19_13(239),	__F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_18_6_4, false}, // floor under the one-way passage
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1[] =
 {
-	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(-8),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // top one-way
-	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // bottom one-way
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-138),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_1, false}, // above hidden area
+	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(-8),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // top one-way
+	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // bottom one-way
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-138),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // above hidden area
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_2[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-48),	__F_TO_FIX19_13(24),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_1, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-4),	__F_TO_FIX19_13(-13),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_1, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(32),	__F_TO_FIX19_13(-41),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_1, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-48),	__F_TO_FIX19_13(24),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-13),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(32),	__F_TO_FIX19_13(-41),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_3[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_10_1, false}, // ceiling above steps area
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-161), __F_TO_FIX19_13(232),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // 2nd lowest left step
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-112), __F_TO_FIX19_13(256),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // lowest left step
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_10_4, false}, // ceiling above steps area
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-161), __F_TO_FIX19_13(232),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // 2nd lowest left step
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-112), __F_TO_FIX19_13(256),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest left step
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_4[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(104),	__F_TO_FIX19_13(272),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_1, false}, // lowest right step
+	{&COLLISION_CL,					{__F_TO_FIX19_13(104),	__F_TO_FIX19_13(272),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_4, false}, // lowest right step
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_1[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-296), __F_TO_FIX19_13(40), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // lowest step after ceiling
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-216), __F_TO_FIX19_13(8), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // middle step after ceiling
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-136), __F_TO_FIX19_13(-24), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_1, false}, // highest step after ceiling
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-296), __F_TO_FIX19_13(40), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest step after ceiling
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-216), __F_TO_FIX19_13(8), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // middle step after ceiling
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-136), __F_TO_FIX19_13(-24), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // highest step after ceiling
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-32),	__F_TO_FIX19_13(-56), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_6_1, false}, // floor left to spikes
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(128),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // floating block over spikes
-	{&COLLISION_CL,					{__F_TO_FIX19_13(124),	__F_TO_FIX19_13(-24), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_6_1, false}, // floor right to spikes
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-32),	__F_TO_FIX19_13(-56), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor left to spikes
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(128),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
+	{&COLLISION_CL,					{__F_TO_FIX19_13(124),	__F_TO_FIX19_13(-24), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor right to spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3[] =
 {
-	{&COLLISION_HIT_CL, 			{__F_TO_FIX19_13(128),	__F_TO_FIX19_13(-46), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_2_1, false}, // spikes hit collision
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(288),	__F_TO_FIX19_13(49), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_32_1, false}, // floor below spikes
+	{&COLLISION_HIT_CL, 			{__F_TO_FIX19_13(128),	__F_TO_FIX19_13(-46), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(288),	__F_TO_FIX19_13(49), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_32_4, false}, // floor below spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-5),	__F_TO_FIX19_13(-120), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_47_3_1, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-76),	__F_TO_FIX19_13(-90), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_49_5_1, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-5),	__F_TO_FIX19_13(-120), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_47_3_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-76),	__F_TO_FIX19_13(-90), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_49_5_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(32), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_67_25_1, false},
-	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(190), 	__F_TO_FIX19_13(-112), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(32), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_67_25_4, false},
+	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(190), 	__F_TO_FIX19_13(-112), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_5_COLLISIONS[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-28),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // left floating block
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(82),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // middle floating block
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(196),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_1, false}, // right floating block
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-28),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(82),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(196),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -330,10 +330,10 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(65), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_28_1, false},
-	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-130), __F_TO_FIX19_13(-104), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false},
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(-112), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_12_4_1, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(168),	__F_TO_FIX19_13(-16), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_28_1, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(65), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_28_4, false},
+	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-130), __F_TO_FIX19_13(-104), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false},
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(-112), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_12_4_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(168),	__F_TO_FIX19_13(-16), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_28_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -364,7 +364,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	// for the streaming to work properly. beware of edge case scenarios!
 
 	// left border
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(128), 	__F_TO_FIX19_13(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_1, false},
+	{&COLLISION_CL,					{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(128), 	__F_TO_FIX19_13(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_4, false},
 
 	// part 1
 	{&SMOKE_PS,						{__F_TO_FIX19_13(88),	__F_TO_FIX19_13(150), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
@@ -490,7 +490,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&GRASS_AG,						{__F_TO_FIX19_13(2960), __F_TO_FIX19_13(237), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 
 	// right border
-	{&COLLISION_CL,					{__F_TO_FIX19_13(2996), __F_TO_FIX19_13(116), 	__F_TO_FIX19_13(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_1, false},
+	{&COLLISION_CL,					{__F_TO_FIX19_13(2996), __F_TO_FIX19_13(116), 	__F_TO_FIX19_13(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
