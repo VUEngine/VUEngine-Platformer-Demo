@@ -1145,7 +1145,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 		case kMovingPlatform:
 		case kTopShape:
 			{
-				if((0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation->collidingShape))
+				if((0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation))
 				{
 					// don't further process collision
 					return false;
@@ -1372,16 +1372,16 @@ void Hero_resume(Hero this)
 	Hero_updateSprite(this);
 }
 
-bool Hero_isBelow(Hero this, Shape shape, Shape collidingShape)
+bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation)
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
 	RightBox shapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, shape);
-	RightBox collidingShapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, collidingShape);
+	RightBox collidingShapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, collisionInformation->collidingShape);
 
-	fix19_13 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1);
+	fix19_13 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1) / 2;
 
-	return heroBottomPosition > collidingShapeRightBox.y0;
+	return heroBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
 }
 
 void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collisionInformation __attribute__ ((unused)))
