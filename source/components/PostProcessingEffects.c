@@ -413,8 +413,7 @@ void PostProcessingEffects_waterFall20x100(u32 currentDrawingFrameBufferSet __at
 		return;
 	}
 
-	Vector3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
-		__OPTICS_NORMALIZE(spatialObjectPosition);
+	Vector3D spatialObjectPosition = Vector3D_toScreen(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject));
 
 	PostProcessingEffects_waterFall(currentDrawingFrameBufferSet, spatialObjectPosition, 20, 100, 0);
 }
@@ -610,7 +609,7 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  	Vector3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
  	heroPosition.y -= __I_TO_FIX19_13(10);
 
- 	 	__OPTICS_NORMALIZE(heroPosition);
+	heroPosition = Vector3D_toScreen(heroPosition);
 
  	#define ELLIPSIS_X_AXIS_LENGTH		55
  	#define ELLIPSIS_Y_AXIS_LENGTH		60
@@ -651,8 +650,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 		return;
 	}
 
-	Vector3D spatialObjectPosition = *__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject);
-	__OPTICS_NORMALIZE(spatialObjectPosition);
+	Vector3D spatialObjectPosition = Vector3D_toScreen(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject));
 
 	// increase radius by 1 in each cycle
 	radius++;
@@ -866,8 +864,7 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, Spatia
 		return;
 	}
 
-	Vector3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
-		__OPTICS_NORMALIZE(heroPosition);
+	Vector3D heroPosition = Vector3D_toScreen(*Container_getGlobalPosition(__SAFE_CAST(Container, hero)));
 	heroPosition.x = __FIX19_13_TO_I(heroPosition.x);
 	heroPosition.y = __FIX19_13_TO_I(heroPosition.y);
 
