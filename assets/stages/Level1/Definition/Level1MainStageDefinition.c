@@ -220,7 +220,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3[] =
 {
 	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // left bottom one-way
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-10),	__F_TO_FIX19_13(136),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_1, false}, // secret bottom floor
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-6),	__F_TO_FIX19_13(136),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_1, false}, // secret bottom floor
 	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(210),	__F_TO_FIX19_13(-72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_1, false}, // right top one-way
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
@@ -247,7 +247,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_2[] =
 {
 	{&COLLISION_CL, 				{__F_TO_FIX19_13(-48),	__F_TO_FIX19_13(24),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_1, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-13),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_1, false},
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-4),	__F_TO_FIX19_13(-13),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_1, false},
 	{&COLLISION_CL, 				{__F_TO_FIX19_13(32),	__F_TO_FIX19_13(-41),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_1, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
@@ -634,7 +634,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// rendering
 	{
 		// number of cycles the texture writing is idle
-		0,
+		1,
 
 		// maximum number of texture's rows to write each time the texture writing is active
 		5,
