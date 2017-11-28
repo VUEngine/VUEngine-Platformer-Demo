@@ -159,7 +159,7 @@ static bool CustomScreenMovementManager_doFocus(CustomScreenMovementManager this
 	Vector3D focusEntityPosition = *_screen->focusEntityPosition;
 
 	Vector3D position3D = Vector3D_toScreen(focusEntityPosition);
-	Vector2D position2D = Vector3D_projectToVector2D(position3D);
+	Vector2D position2D = Vector3D_projectToVector2D(position3D, 0);
 
 	{
 		bool focusEntityOutOfBounds = (unsigned)(__FIX19_13_TO_I(position2D.x) - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
