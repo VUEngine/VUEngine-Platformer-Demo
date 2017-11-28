@@ -220,7 +220,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3[] =
 {
 	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left bottom one-way
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-6),	__F_TO_FIX19_13(136),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // secret bottom floor
+	{&COLLISION_CL, 				{__F_TO_FIX19_13(-10),	__F_TO_FIX19_13(136),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // secret bottom floor
 	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(210),	__F_TO_FIX19_13(-72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right top one-way
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
@@ -367,11 +367,11 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COLLISION_CL,					{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(128), 	__F_TO_FIX19_13(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_4, false},
 
 	// part 1
-	{&SMOKE_PS,						{__F_TO_FIX19_13(88),	__F_TO_FIX19_13(150), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
+	{&SMOKE_PS,						{__F_TO_FIX19_13(84),	__F_TO_FIX19_13(150), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,		{__F_TO_FIX19_13(256), 	__F_TO_FIX19_13(368), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_HOUSE_IM,				{__F_TO_FIX19_13(88),	__F_TO_FIX19_13(192), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, "House", NULL, NULL, false},
 	{&KEY_DOOR_AG,					{__F_TO_FIX19_13(44), 	__F_TO_FIX19_13(220), 	__F_TO_FIX19_13(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(256),	__F_TO_FIX19_13(368),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
+	{&MANAGED_ENTITY,				{__F_TO_FIX19_13(256),	__F_TO_FIX19_13(368),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
 	{&RUN_SIGN_IM,					{__F_TO_FIX19_13(232),	__F_TO_FIX19_13(220), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 	{&COIN_AG,						{__F_TO_FIX19_13(184),	__F_TO_FIX19_13(225), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			1, NULL, NULL, NULL, false},
