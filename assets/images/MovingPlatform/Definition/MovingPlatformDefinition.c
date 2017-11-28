@@ -244,5 +244,8 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 	__Y_AXIS,
 
 	// direction
-	__DOWN
+	__DOWN,
+
+	// axes on which synchronize shape with direction
+	__NO_AXIS,
 };

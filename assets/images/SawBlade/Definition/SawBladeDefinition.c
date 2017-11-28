@@ -232,7 +232,10 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	__Y_AXIS,
 
 	// direction
-	__DOWN
+	__DOWN,
+
+	// axes on which synchronize shape with direction
+	__ALL_AXES,
 };
 
 MovingEntityROMDef SAW_BLADE_H3_AC =
@@ -287,7 +290,10 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	__X_AXIS,
 
 	// direction
-	__LEFT
+	__LEFT,
+
+	// axes on which synchronize shape with direction
+	__ALL_AXES,
 };
 
 MovingEntityROMDef SAW_BLADE_H8_AC =
@@ -342,5 +348,8 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	__X_AXIS,
 
 	// direction
-	__LEFT
+	__LEFT,
+
+	// axes on which synchronize shape with direction
+	__ALL_AXES,
 };

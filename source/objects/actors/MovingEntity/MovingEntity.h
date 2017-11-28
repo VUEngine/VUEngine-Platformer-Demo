@@ -51,6 +51,7 @@
 		__VIRTUAL_SET(ClassName, MovingEntity, ready);													\
 		__VIRTUAL_SET(ClassName, MovingEntity, handleMessage);											\
 		__VIRTUAL_SET(ClassName, MovingEntity, setDefinition);											\
+		__VIRTUAL_SET(ClassName, MovingEntity, getAxesForShapeSyncWithDirection);						\
 
 __CLASS(MovingEntity);
 
@@ -83,6 +84,9 @@ typedef struct MovingEntityDefinition
 	// movement direction
 	s8 direction;
 
+	// axes on which synchronize shape with direction
+	u16 axesForShapeSyncWithDirection;
+
 } MovingEntityDefinition;
 
 typedef const MovingEntityDefinition MovingEntityROMDef;
@@ -102,6 +106,7 @@ void MovingEntity_ready(MovingEntity this, bool recursive);
 bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram);
 void MovingEntity_startMovement(MovingEntity this);
 void MovingEntity_checkDisplacement(MovingEntity this);
+u16 MovingEntity_getAxesForShapeSyncWithDirection(MovingEntity this);
 
 
 #endif

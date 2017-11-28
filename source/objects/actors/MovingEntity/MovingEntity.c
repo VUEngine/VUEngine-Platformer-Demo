@@ -294,3 +294,8 @@ void MovingEntity_startMovement(MovingEntity this)
 
 	MessageDispatcher_dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityCheckDirection, NULL);
 }
+
+u16 MovingEntity_getAxesForShapeSyncWithDirection(MovingEntity this)
+{
+	return this->movingEntityDefinition->axesForShapeSyncWithDirection;
+}

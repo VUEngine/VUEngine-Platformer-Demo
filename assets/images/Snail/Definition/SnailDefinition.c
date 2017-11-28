@@ -230,7 +230,10 @@ MovingEntityROMDef SNAIL_3_AC =
 	__X_AXIS,
 
 	// direction
-	__LEFT
+	__LEFT,
+
+	// axes on which synchronize shape with direction
+	__ALL_AXES,
 };
 
 MovingEntityROMDef SNAIL_8_AC =
@@ -285,5 +288,8 @@ MovingEntityROMDef SNAIL_8_AC =
 	__X_AXIS,
 
 	// direction
-	__LEFT
+	__LEFT,
+
+	// axes on which synchronize shape with direction
+	__ALL_AXES,
 };
