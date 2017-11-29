@@ -468,6 +468,10 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 	{
 		return false;
 	}
+			this->jumps = 0;
+
+//				StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+//return;
 
 	bool movementState = Body_getMovementOnAllAxes(this->body);
 
@@ -1022,6 +1026,10 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 
 	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
 	{
+		// speed things up by breaking early
+		case kShape:
+			break;
+
 		case kUncollectableCoin:
 			{
 				CollisionInformation modifiedCollisionInformation = *collisionInformation;
@@ -1382,11 +1390,6 @@ bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionI
 	fix19_13 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1) / 2;
 
 	return heroBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
-}
-
-void Hero_collisionsProcessingDone(Hero this, const CollisionInformation* collisionInformation __attribute__ ((unused)))
-{
-	ASSERT(this, "Hero::collisionsProcessingDone: null this");
 }
 
 u16 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
