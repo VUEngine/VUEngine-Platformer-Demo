@@ -468,10 +468,6 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 	{
 		return false;
 	}
-			this->jumps = 0;
-
-//				StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
-//return;
 
 	bool movementState = Body_getMovementOnAllAxes(this->body);
 
