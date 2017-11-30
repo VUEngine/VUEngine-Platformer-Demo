@@ -723,8 +723,7 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 		__TYPE(InverseBox),
 
 		// size (x, y, z)
-//		{12 * 8, 20 * 8, 4 * 8},
-		{12 * 8, 12 * 8, 4 * 8},
+		{12 * 8, 20 * 8, 4 * 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
