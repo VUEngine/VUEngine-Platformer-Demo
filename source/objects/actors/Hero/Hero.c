@@ -41,7 +41,7 @@
 #include <EventManager.h>
 #include <Hint.h>
 #include <SoundManager.h>
-#include <debugUtilities.h>
+#include <debugConfig.h>
 #include <gameDebugConfig.h>
 #include <HideLayer.h>
 
@@ -904,19 +904,21 @@ static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused
 {
 	UserInput userInput = PlatformerLevelState_getUserInput(PlatformerLevelState_getInstance());
 
+	HeroState currentState = __SAFE_CAST(HeroState, StateMachine_getCurrentState(this->stateMachine));
+
 	if(userInput.pressedKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyPressed, StateMachine_getCurrentState(this->stateMachine), this, &userInput);
+		__VIRTUAL_CALL(HeroState, onKeyPressed, currentState, this, &userInput);
 	}
 
 	if(userInput.releasedKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyReleased, StateMachine_getCurrentState(this->stateMachine), this, &userInput);
+		__VIRTUAL_CALL(HeroState, onKeyReleased, currentState, this, &userInput);
 	}
 
 	if(userInput.holdKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyHold, StateMachine_getCurrentState(this->stateMachine), this, &userInput);
+		__VIRTUAL_CALL(HeroState, onKeyHold, currentState, this, &userInput);
 	}
 }
 
