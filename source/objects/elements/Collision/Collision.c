@@ -153,9 +153,6 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		};
 
 		Shape shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), &shapeDefinition);
-		Shape setup(shape, kSolidLayer, kNoLayer);
-		Shape_setActive(shape, true);
-		Shape_setCheckForCollisions(shape, false);
 
 		const Vector3D* myPosition = Entity_getPosition(__SAFE_CAST(Entity, this));
 		const Rotation* myRotation = Entity_getRotation(__SAFE_CAST(Entity, this));

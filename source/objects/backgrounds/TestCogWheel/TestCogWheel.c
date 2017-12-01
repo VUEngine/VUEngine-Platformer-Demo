@@ -99,7 +99,8 @@ void TestCogWheel_ready(TestCogWheel this, bool recursive)
 	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
 
 	this->transformation.localRotation.z = 128;
-	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);}
+	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
+}
 
 // state's handle message
 bool TestCogWheel_handleMessage(TestCogWheel this, Telegram telegram)

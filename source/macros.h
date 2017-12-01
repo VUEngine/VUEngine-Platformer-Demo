@@ -88,15 +88,15 @@ enum PlatformerTypes
 
 enum CollisionLayers
 {
-    kSolidLayer		 					= 1 << (kNoLayer + 0), // hex 00000001
-    kEnemiesLayer						= 1 << (kNoLayer + 1), // hex 00000002
-    kPlayerLayer						= 1 << (kNoLayer + 2), // hex 00000004
-    kParticlesLayer						= 1 << (kNoLayer + 3), // hex 00000008
-    kItemsLayer							= 1 << (kNoLayer + 4), // hex 00000010
-    kCollectablesLayer					= 1 << (kNoLayer + 5), // hex 00000020
-    kTriggersLayer						= 1 << (kNoLayer + 6), // hex 00000040
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7), // hex 00000040
-    kAllLayers							= 1 << (kNoLayer + 31), // hex 80000000
+    kSolidLayer		 					= 1 << (kNoLayer + 0), 	// hex 00000001
+    kEnemiesLayer						= 1 << (kNoLayer + 1), 	// hex 00000002
+    kPlayerLayer						= 1 << (kNoLayer + 2), 	// hex 00000004
+    kParticlesLayer						= 1 << (kNoLayer + 3), 	// hex 00000008
+    kItemsLayer							= 1 << (kNoLayer + 4), 	// hex 00000010
+    kCollectablesLayer					= 1 << (kNoLayer + 5), 	// hex 00000020
+    kTriggersLayer						= 1 << (kNoLayer + 6), 	// hex 00000040
+    kMovingPlatformsLayer				= 1 << (kNoLayer + 7), 	// hex 00000040
+    kAllLayers							= 0xFFFFFFFF,
 };
 
 

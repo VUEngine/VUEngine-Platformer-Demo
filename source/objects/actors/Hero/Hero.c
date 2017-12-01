@@ -1028,19 +1028,6 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 		case kShape:
 			break;
 
-		case kUncollectableCoin:
-			{
-				CollisionInformation modifiedCollisionInformation = *collisionInformation;
-				Shape auxShape = modifiedCollisionInformation.shape;
-				modifiedCollisionInformation.shape = modifiedCollisionInformation.collidingShape;
-				modifiedCollisionInformation.collidingShape = auxShape;
-				modifiedCollisionInformation.solutionVector.direction = Vector3D_scalarProduct(modifiedCollisionInformation.solutionVector.direction, __I_TO_FIX19_13(-1));
-
-				__VIRTUAL_CALL(SpatialObject, enterCollision, Shape_getOwner(modifiedCollisionInformation.shape), &modifiedCollisionInformation);
-			}
-			return false;
-			break;
-
 		case kCameraTarget:
 			{
 				if(collisionInformation->solutionVector.direction.y)
