@@ -153,6 +153,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		};
 
 		Shape shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), &shapeDefinition);
+		Shape setup(shape, kSolidLayer, kNoLayer);
 		Shape_setActive(shape, true);
 		Shape_setCheckForCollisions(shape, false);
 
@@ -160,7 +161,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		const Rotation* myRotation = Entity_getRotation(__SAFE_CAST(Entity, this));
 		const Scale* myScale = Entity_getScale(__SAFE_CAST(Entity, this));
 
-		__VIRTUAL_CALL(Shape, setup, shape, myPosition, myRotation, myScale, &this->size, kSolidLayer, kNoLayer);
+		__VIRTUAL_CALL(Shape, position, shape, myPosition, myRotation, myScale, &this->size);
 
 		VirtualList_pushBack(this->shapes, shape);
 	}
