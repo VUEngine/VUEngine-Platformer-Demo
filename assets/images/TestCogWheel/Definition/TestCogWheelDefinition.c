@@ -34,8 +34,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CogWheelTiles[];
-extern BYTE CogWheelMap[];
+extern BYTE TestCogWheelTiles[];
+extern BYTE TestCogWheelMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,14 +48,14 @@ CharSetROMDef TEST_COG_WHEEL_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	132,
+	81,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	CogWheelTiles,
+	TestCogWheelTiles,
 };
 
 TextureROMDef TEST_COG_WHEEL_TX =
@@ -64,13 +64,13 @@ TextureROMDef TEST_COG_WHEEL_TX =
 	(CharSetDefinition*)&TEST_COG_WHEEL_CH,
 
 	// bgmap definition
-	CogWheelMap,
+	TestCogWheelMap,
 
 	// cols (max 64)
 	20,
 
 	// rows (max 64)
-	20,
+	22,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{10, 10},
@@ -81,7 +81,7 @@ TextureROMDef TEST_COG_WHEEL_TX =
 	1,
 
 	// palette number (0-3)
-	1,
+	0,
 
 	// recyclable
 	false,
@@ -100,7 +100,7 @@ BgmapSpriteROMDef TEST_COG_WHEEL_BG_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, __F_TO_FIX19_13(1)},
+		{0, 0, 0, __F_TO_FIX19_13(-1)},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -129,13 +129,13 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{20 * 8, 3 * 8, 4 * 8},
+		{20 * 8, 2 * 8, 4 * 8},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
 
 		// rotation (x, y, z)
-		{0, 0, 128},
+		{0, 0, 0},
 
 		// scale (x, y, z)
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
@@ -157,7 +157,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{26, 26, 26},
+		{40, 32, 32},
 
 		// displacement (x, y, z)
 		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
@@ -172,7 +172,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kNoLayer,
+		kSolidLayer,
 
 		/// layers to ignore when checking for collisions
 		kNoLayer,
