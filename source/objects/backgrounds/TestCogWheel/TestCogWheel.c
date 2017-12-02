@@ -96,10 +96,8 @@ void TestCogWheel_ready(TestCogWheel this, bool recursive)
 	// listen for the shake end event
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)TestCogWheel_onShakeCompleted, kEventShakeCompleted);
 
-	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
-
-	this->transformation.localRotation.z = 128;
-	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
+//	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
+//	__VIRTUAL_CALL(Shape, show, VirtualList_back(this->shapes));
 }
 
 // state's handle message
@@ -124,10 +122,22 @@ bool TestCogWheel_handleMessage(TestCogWheel this, Telegram telegram)
 // rotate cogwheel
 static void TestCogWheel_rotate(TestCogWheel this)
 {
+//	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
+//	__VIRTUAL_CALL(Shape, show, VirtualList_back(this->shapes));
+
 	static int increment = -2;
 
 	this->transformation.localRotation.z += increment;
-
+/*
+	if(32 < this->transformation.localRotation.z)
+	{
+		increment *= -1;
+	}
+	if(-32 > this->transformation.localRotation.z)
+	{
+		increment *= -1;
+	}
+*/
 	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
 
 	// send delayed message to self to trigger next movement

@@ -64,10 +64,10 @@ SolidParticleROMDef TEST_PARTICLE =
 		__TYPE(SolidParticle),
 
 		// particle's minimum life span in milliseconds
-		1000,
+		500,
 
 		// particle's maximum life span in milliseconds
-		2000,
+		1000,
 
 		// particle's minimum mass
 		__F_TO_FIX19_13(0.5f),
@@ -103,8 +103,8 @@ SolidParticleROMDef TEST_PARTICLE =
 	/// layers in which I live
 	kParticlesLayer,
 
-	/// layers in which I live
-	kParticlesLayer,
+	/// layers to ignore when checking for collisions
+	kParticlesLayer | kTriggersLayer,
 
 	/// disable collision detection when the particle stops
 	true,
@@ -140,10 +140,10 @@ ParticleSystemROMDef TEST_1_PS =
 	50,
 
 	// maximum generation delay in milliseconds
-	150,
+	300,
 
 	// maximum total particles
-	5,
+	3,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -206,7 +206,7 @@ ParticleSystemROMDef TEST_2_PS =
 	300,
 
 	// maximum total particles
-	5,
+	3,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
