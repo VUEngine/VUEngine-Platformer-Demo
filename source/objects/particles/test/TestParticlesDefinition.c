@@ -67,7 +67,7 @@ SolidParticleROMDef TEST_PARTICLE =
 		500,
 
 		// particle's maximum life span in milliseconds
-		1000,
+		750,
 
 		// particle's minimum mass
 		__F_TO_FIX19_13(0.5f),

@@ -280,7 +280,7 @@ StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 		},
 
 		// friction
-		__F_TO_FIX19_13(0.1f),
+		__F_TO_FIX19_13(0),
 	},
 
 	// assets

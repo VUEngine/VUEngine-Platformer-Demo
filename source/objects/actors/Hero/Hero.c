@@ -1002,15 +1002,13 @@ bool Hero_isInvincible(Hero this)
 
 fix19_13 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal)
 {
-	fix19_13 surroundingFriction = Actor_getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
-
 	// ignore friction on y axis
 	if(collidingObjectNormal->x && !collidingObjectNormal->y)
 	{
 		return 0;
 	}
 
-	return surroundingFriction;
+	return Actor_getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
 }
 
 // process collisions
@@ -1096,9 +1094,9 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
 
-				Body_setFrictionCoefficient(this->body, Actor_getSurroundingFrictionCoefficient(__SAFE_CAST(Actor, this)));
+				Body_setSurroundingFrictionCoefficient(this->body, Actor_getSurroundingFrictionCoefficient(__SAFE_CAST(Actor, this)) + __VIRTUAL_CALL(SpatialObject, getFrictionCoefficient, collidingObject));
 			}
-			return false;
+			return true;
 			break;
 
 		case kLava:
