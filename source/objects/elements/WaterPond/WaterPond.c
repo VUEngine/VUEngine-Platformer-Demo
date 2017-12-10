@@ -105,10 +105,6 @@ void WaterPond_ready(WaterPond this, bool recursive)
 	__CALL_BASE_METHOD(ReflectiveEntity, ready, this, recursive);
 
 //	WaterPond_addSplashParticles(this);
-/*	Shape_setCheckForCollisions(this->shape, true);
-	Shape_setMovesFlag(this->shape, true);
-	CollisionManager_shapeStartedMoving(Game_getCollisionManager(Game_getInstance()), this->shape);
-	*/
 }
 
 __attribute__ ((unused)) static void WaterPond_addSplashParticles(WaterPond this)
