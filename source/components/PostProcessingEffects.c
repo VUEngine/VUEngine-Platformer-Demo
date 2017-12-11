@@ -105,10 +105,6 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 	// write to framebuffers for both screens
 	int counter = 1;
 
-	CACHE_DISABLE;
-	CACHE_CLEAR;
-	CACHE_ENABLE;
-
 	for(; counter <= xEnd; counter += xStep)
 	{
 		if(++yIndex >= numberOfYs)
@@ -806,11 +802,6 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, Spatial
 	// runtime working variables
 
 	int counter = lutEntries;
-
-
-	CACHE_DISABLE;
-	CACHE_CLEAR;
-	CACHE_ENABLE;
 
 	// loop columns of left fourth of screen
 	for(; --counter;)
