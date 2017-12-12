@@ -113,7 +113,7 @@ void Lava_moveUpwards(Lava this)
 {
 	// get local position of lava and subtract 1 from y value
 	Vector3D offset = *Container_getLocalPosition(__SAFE_CAST(Container, this));
-	offset.y -= __1I_FIX19_13;
+	offset.y -= __1I_FIX10_6;
 
 	// update lava's position
 	__VIRTUAL_CALL(Container, setLocalPosition, __SAFE_CAST(Container, this), &offset);

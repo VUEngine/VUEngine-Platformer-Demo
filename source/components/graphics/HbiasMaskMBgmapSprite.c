@@ -26,7 +26,7 @@
 
 #include <HbiasMaskMBgmapSprite.h>
 #include <Optics.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <BgmapTexture.h>
 #include <Game.h>
 #include <Entity.h>
@@ -184,10 +184,10 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 
 	if(!ownerSpriteGYSet)
 	{
-		Vector3D ownerPosition3D = Vector3D_toScreen(*__VIRTUAL_CALL(SpatialObject, getPosition, this->owner));
+		Vector3D ownerPosition3D = Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, this->owner));
 		Vector2D ownerPosition2D = Vector3D_projectToVector2D(ownerPosition3D, 0);
 
-		ownerSpriteGY = __FIX19_13_TO_I(ownerPosition2D.y);
+		ownerSpriteGY = __FIX10_6_TO_I(ownerPosition2D.y);
 	}
 
 	u8 referenceSpriteWorldLayer = Sprite_getWorldLayer(this->referenceSprite);
@@ -197,7 +197,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
-	worldPointer->gp = referenceSpriteWorldPointer->gp + __FIX19_13_TO_I((this->displacement.p) & 0xFFFFE000);
+	worldPointer->gp = referenceSpriteWorldPointer->gp + __FIX10_6_TO_I(__FIX10_6_INT_PART(this->displacement.parallax));
 
 
 	if(!referenceSpriteWorldLayer

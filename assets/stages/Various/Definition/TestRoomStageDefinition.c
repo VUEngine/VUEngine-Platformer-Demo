@@ -70,35 +70,35 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef TEST_ROOM_STAGE_ST_CHILD_ENTITIES_TEST[] =
 {
-	{&COIN_AG, {__F_TO_FIX19_13(-100), __F_TO_FIX19_13(32), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX19_13(-84), __F_TO_FIX19_13(32), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&SAW_BLADE_H8_AC, {__F_TO_FIX19_13(16), __F_TO_FIX19_13(44), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // SawBlade
-	{&DOOR_AG, {__F_TO_FIX19_13(136), __F_TO_FIX19_13(-4), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Exit Door
+	{&COIN_AG, {__F_TO_FIX10_6(-100), __F_TO_FIX10_6(32), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {__F_TO_FIX10_6(-84), __F_TO_FIX10_6(32), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&SAW_BLADE_H8_AC, {__F_TO_FIX10_6(16), __F_TO_FIX10_6(44), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // SawBlade
+	{&DOOR_AG, {__F_TO_FIX10_6(136), __F_TO_FIX10_6(-4), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Exit Door
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef TEST_ROOM_STAGE_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {__F_TO_FIX19_13(8), __F_TO_FIX19_13(160), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Left
-	{&DOOR_AG, {__F_TO_FIX19_13(36), __F_TO_FIX19_13(160), __F_TO_FIX19_13(LAYER_0)}, 0, "EntryDoor", NULL, NULL, false}, // Entry Door
-	{&TEST_ROOM_STAGE_TEST_1_IM, {__F_TO_FIX19_13(40), __F_TO_FIX19_13(56), __F_TO_FIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Test Composite
-	{&HERO_AC, {__F_TO_FIX19_13(44), __F_TO_FIX19_13(164), __F_TO_FIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
-	{&COLLISION_CL, {__F_TO_FIX19_13(80), __F_TO_FIX19_13(104), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_160_48_8, false}, // Top Left
-	{&COLLISION_CL, {__F_TO_FIX19_13(144), __F_TO_FIX19_13(184), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_256_16_8, false}, // Bottom
-	{&TEST_ROOM_STAGE_MAIN_1_IM, {__F_TO_FIX19_13(144), __F_TO_FIX19_13(136), __F_TO_FIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (1)
-	{&MANAGED_ENTITY, {__F_TO_FIX19_13(180), __F_TO_FIX19_13(132), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, (struct PositionedEntity*)TEST_ROOM_STAGE_ST_CHILD_ENTITIES_TEST, NULL, false}, // Child: Test
-	{&COLLISION_CL, {__F_TO_FIX19_13(248), __F_TO_FIX19_13(88), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_176_16_8, false}, // Top
-	{&COLLISION_CL, {__F_TO_FIX19_13(312), __F_TO_FIX19_13(168), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_80_48_8, false}, // Bottom Right
-	{&TEST_ROOM_STAGE_MAIN_2_IM, {__F_TO_FIX19_13(320), __F_TO_FIX19_13(120), __F_TO_FIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (2)
-	{&COLLISION_CL, {__F_TO_FIX19_13(344), __F_TO_FIX19_13(112), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Right
+	{&COLLISION_CL, {__F_TO_FIX10_6(8), __F_TO_FIX10_6(160), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Left
+	{&DOOR_AG, {__F_TO_FIX10_6(36), __F_TO_FIX10_6(160), __F_TO_FIX10_6(LAYER_0)}, 0, "EntryDoor", NULL, NULL, false}, // Entry Door
+	{&TEST_ROOM_STAGE_TEST_1_IM, {__F_TO_FIX10_6(40), __F_TO_FIX10_6(56), __F_TO_FIX10_6(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Test Composite
+	{&HERO_AC, {__F_TO_FIX10_6(44), __F_TO_FIX10_6(164), __F_TO_FIX10_6(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
+	{&COLLISION_CL, {__F_TO_FIX10_6(80), __F_TO_FIX10_6(104), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_160_48_8, false}, // Top Left
+	{&COLLISION_CL, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(184), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_256_16_8, false}, // Bottom
+	{&TEST_ROOM_STAGE_MAIN_1_IM, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(136), __F_TO_FIX10_6(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (1)
+	{&MANAGED_ENTITY, {__F_TO_FIX10_6(180), __F_TO_FIX10_6(132), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, (struct PositionedEntity*)TEST_ROOM_STAGE_ST_CHILD_ENTITIES_TEST, NULL, false}, // Child: Test
+	{&COLLISION_CL, {__F_TO_FIX10_6(248), __F_TO_FIX10_6(88), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_176_16_8, false}, // Top
+	{&COLLISION_CL, {__F_TO_FIX10_6(312), __F_TO_FIX10_6(168), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_80_48_8, false}, // Bottom Right
+	{&TEST_ROOM_STAGE_MAIN_2_IM, {__F_TO_FIX10_6(320), __F_TO_FIX10_6(120), __F_TO_FIX10_6(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer (2)
+	{&COLLISION_CL, {__F_TO_FIX10_6(344), __F_TO_FIX10_6(112), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Right
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef TEST_ROOM_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(216), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_AG, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(216), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -155,14 +155,14 @@ StageROMDef TEST_ROOM_STAGE_ST =
 			__SCREEN_DEPTH,
 		},
 
-		// screen's initial position inside the game world
+		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// y
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// z
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 		},
 	},
 
@@ -255,13 +255,13 @@ StageROMDef TEST_ROOM_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt1
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt2
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt3
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 		},
 
 		// optical configuration values
@@ -269,13 +269,13 @@ StageROMDef TEST_ROOM_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX19_13(__DISTANCE_EYE_SCREEN),
+			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX19_13(__BASE_FACTOR),
+			__I_TO_FIX10_6(__BASE_FACTOR),
 			// horizontal view point center
-			__I_TO_FIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
-			__I_TO_FIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
 		},
 	},
 
@@ -283,13 +283,13 @@ StageROMDef TEST_ROOM_STAGE_ST =
 	{
 		// gravity
 		{
-			__I_TO_FIX19_13(0),
-			__I_TO_FIX19_13(__GRAVITY),
-			__I_TO_FIX19_13(0)
+			__I_TO_FIX10_6(0),
+			__I_TO_FIX10_6(__GRAVITY),
+			__I_TO_FIX10_6(0)
 		},
 
 		// friction
-		__F_TO_FIX19_13(0.1f),
+		__F_TO_FIX10_6(0.1f),
 	},
 
 	// assets
@@ -338,9 +338,9 @@ StageEntryPointROMDef TEST_ROOM_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(-SORT_INCREMENT),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint

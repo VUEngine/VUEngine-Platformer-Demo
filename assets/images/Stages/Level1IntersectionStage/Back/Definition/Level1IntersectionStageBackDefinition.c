@@ -99,10 +99,10 @@ BgmapSpriteROMDef LEVEL1_INTERSECTION_STAGE_BACK_1_IM_SPRITE =
 
 		// displacement
 		{
-			__F_TO_FIX19_13(0), // x
-			__F_TO_FIX19_13(0), // y
-			__F_TO_FIX19_13(2), // z
-			__F_TO_FIX19_13(0), // parallax
+			__F_TO_FIX10_6(0), // x
+			__F_TO_FIX10_6(0), // y
+			__F_TO_FIX10_6(2), // z
+			__F_TO_FIX10_6(0), // parallax
 		},
 	},
 

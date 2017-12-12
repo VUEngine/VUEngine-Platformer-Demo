@@ -374,7 +374,7 @@ ShapeROMDef COIN_SHAPES[] =
 		{4, 4, 4},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -531,7 +531,7 @@ ShapeROMDef COIN_BACK_SHAPES[] =
 		{4, 4, 4},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

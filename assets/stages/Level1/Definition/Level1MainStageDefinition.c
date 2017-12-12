@@ -193,156 +193,156 @@ extern Size collision_67_25_4;
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-136), __F_TO_FIX19_13(-12), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_34_30_4, false}, // left floor
-	{&COLLISION_CL,					{__F_TO_FIX19_13(112),	__F_TO_FIX19_13(13), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_34_30_4, false}, // right floor
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-136), __F_TO_FIX10_6(-12), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_34_30_4, false}, // left floor
+	{&COLLISION_CL,					{__F_TO_FIX10_6(112),	__F_TO_FIX10_6(13), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_34_30_4, false}, // right floor
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(-104),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left top one-way
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-145), __F_TO_FIX19_13(-56),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor left to spikes
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(127),	__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor right to spikes
+	{&COLLISION_TOP_CL,				{__F_TO_FIX10_6(-226), __F_TO_FIX10_6(-104),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left top one-way
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-145), __F_TO_FIX10_6(-56),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor left to spikes
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(127),	__F_TO_FIX10_6(-56),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor right to spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-132),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
-	{&COLLISION_HIT_CL,				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-94),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-40),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_32_14_4, false}, // floor below spikes
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-8),	__F_TO_FIX10_6(-132),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
+	{&COLLISION_HIT_CL,				{__F_TO_FIX10_6(-8),	__F_TO_FIX10_6(-94),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-8),	__F_TO_FIX10_6(-40),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_32_14_4, false}, // floor below spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left bottom one-way
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-10),	__F_TO_FIX19_13(136),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // secret bottom floor
-	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(210),	__F_TO_FIX19_13(-72),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right top one-way
+	{&COLLISION_TOP_CL,				{__F_TO_FIX10_6(-226), __F_TO_FIX10_6(72),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left bottom one-way
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-10),	__F_TO_FIX10_6(136),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // secret bottom floor
+	{&COLLISION_TOP_CL,				{__F_TO_FIX10_6(210),	__F_TO_FIX10_6(-72),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right top one-way
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 {
-	{&COLLISION_TOP_CL,				{__F_TO_FIX19_13(210),	__F_TO_FIX19_13(24),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right bottom one-way
-	{&COLLISION_CL,					{__F_TO_FIX19_13(127),	__F_TO_FIX19_13(38),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // wall right to the secret door
-	{&COLLISION_CL,					{__F_TO_FIX19_13(239),	__F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_18_6_4, false}, // floor under the one-way passage
+	{&COLLISION_TOP_CL,				{__F_TO_FIX10_6(210),	__F_TO_FIX10_6(24),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right bottom one-way
+	{&COLLISION_CL,					{__F_TO_FIX10_6(127),	__F_TO_FIX10_6(38),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // wall right to the secret door
+	{&COLLISION_CL,					{__F_TO_FIX10_6(239),	__F_TO_FIX10_6(88),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_18_6_4, false}, // floor under the one-way passage
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1[] =
 {
-	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(-8),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // top one-way
-	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-226), __F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // bottom one-way
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-138),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // above hidden area
+	{&COLLISION_TOP_CL, 			{__F_TO_FIX10_6(-226), __F_TO_FIX10_6(-8),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // top one-way
+	{&COLLISION_TOP_CL, 			{__F_TO_FIX10_6(-226), __F_TO_FIX10_6(88),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // bottom one-way
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-8),	__F_TO_FIX10_6(-138),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // above hidden area
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_2[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-48),	__F_TO_FIX19_13(24),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_4, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(-13),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_4, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(32),	__F_TO_FIX19_13(-41),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_38_10_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-48),	__F_TO_FIX10_6(24),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_38_10_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-8),	__F_TO_FIX10_6(-13),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_28_16_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(32),	__F_TO_FIX10_6(-41),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_38_10_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_3[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(88),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_10_4, false}, // ceiling above steps area
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-161), __F_TO_FIX19_13(232),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // 2nd lowest left step
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-112), __F_TO_FIX19_13(256),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest left step
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-8),	__F_TO_FIX10_6(88),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_48_10_4, false}, // ceiling above steps area
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-161), __F_TO_FIX10_6(232),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // 2nd lowest left step
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-112), __F_TO_FIX10_6(256),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest left step
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_4[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(104),	__F_TO_FIX19_13(272),	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_28_16_4, false}, // lowest right step
+	{&COLLISION_CL,					{__F_TO_FIX10_6(104),	__F_TO_FIX10_6(272),	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_28_16_4, false}, // lowest right step
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_1[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-296), __F_TO_FIX19_13(40), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest step after ceiling
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-216), __F_TO_FIX19_13(8), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // middle step after ceiling
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-136), __F_TO_FIX19_13(-24), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // highest step after ceiling
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-296), __F_TO_FIX10_6(40), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest step after ceiling
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-216), __F_TO_FIX10_6(8), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // middle step after ceiling
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-136), __F_TO_FIX10_6(-24), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // highest step after ceiling
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2[] =
 {
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-32),	__F_TO_FIX19_13(-56), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor left to spikes
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(128),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
-	{&COLLISION_CL,					{__F_TO_FIX19_13(124),	__F_TO_FIX19_13(-24), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor right to spikes
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-32),	__F_TO_FIX10_6(-56), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor left to spikes
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(128),	__F_TO_FIX10_6(-84), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
+	{&COLLISION_CL,					{__F_TO_FIX10_6(124),	__F_TO_FIX10_6(-24), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor right to spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3[] =
 {
-	{&COLLISION_HIT_CL, 			{__F_TO_FIX19_13(128),	__F_TO_FIX19_13(-46), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(288),	__F_TO_FIX19_13(49), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_20_32_4, false}, // floor below spikes
+	{&COLLISION_HIT_CL, 			{__F_TO_FIX10_6(128),	__F_TO_FIX10_6(-46), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(288),	__F_TO_FIX10_6(49), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_20_32_4, false}, // floor below spikes
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-5),	__F_TO_FIX19_13(-120), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_47_3_4, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-76),	__F_TO_FIX19_13(-90), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_49_5_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-5),	__F_TO_FIX10_6(-120), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_47_3_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-76),	__F_TO_FIX10_6(-90), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_49_5_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(32), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_67_25_4, false},
-	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(190), 	__F_TO_FIX19_13(-112), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(32), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_67_25_4, false},
+	{&COLLISION_TOP_CL, 			{__F_TO_FIX10_6(190), 	__F_TO_FIX10_6(-112), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_5_COLLISIONS[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-28),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(82),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(196),	__F_TO_FIX19_13(-84), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-28),	__F_TO_FIX10_6(-84), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(82),	__F_TO_FIX10_6(-84), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(196),	__F_TO_FIX10_6(-84), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_CHILDREN[] =
 {
-	{&LEVEL_1_MAIN_1_MAIN_6_IM, 	{__F_TO_FIX19_13(0), 	__F_TO_FIX19_13(0), 	__F_TO_FIX19_13(0)},		0, NULL, NULL, NULL, false},
-	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX19_13(-64), 	__F_TO_FIX19_13(-76), 	__F_TO_FIX19_13(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_6_IM, 	{__F_TO_FIX10_6(0), 	__F_TO_FIX10_6(0), 	__F_TO_FIX10_6(0)},		0, NULL, NULL, NULL, false},
+	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX10_6(-64), 	__F_TO_FIX10_6(-76), 	__F_TO_FIX10_6(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 {
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(65), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_28_4, false},
-	{&COLLISION_TOP_CL, 			{__F_TO_FIX19_13(-130), __F_TO_FIX19_13(-104), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false},
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-56),	__F_TO_FIX19_13(-112), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_12_4_4, false},
-	{&COLLISION_CL, 				{__F_TO_FIX19_13(168),	__F_TO_FIX19_13(-16), 	__F_TO_FIX19_13(0)},	0, NULL, NULL, (void*)&collision_48_28_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(-56),	__F_TO_FIX10_6(65), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_48_28_4, false},
+	{&COLLISION_TOP_CL, 			{__F_TO_FIX10_6(-130), __F_TO_FIX10_6(-104), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_7_2_4, false},
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-56),	__F_TO_FIX10_6(-112), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_12_4_4, false},
+	{&COLLISION_CL, 				{__F_TO_FIX10_6(168),	__F_TO_FIX10_6(-16), 	__F_TO_FIX10_6(0)},	0, NULL, NULL, (void*)&collision_48_28_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_IM_CHILDREN[] =
 {
-	{&RUN_SIGN_IM,					{__F_TO_FIX19_13(232 - 256),	__F_TO_FIX19_13(220 - 368), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND - LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(225 - 368 - 20), 	__F_TO_FIX19_13(LAYER_0_ITEMS - LAYER_0_FOREGROUND)},			1, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(200 - 256 - 60),	__F_TO_FIX19_13(225 - 368 - 20), 	__F_TO_FIX19_13(LAYER_0_ITEMS - LAYER_0_FOREGROUND)},			2, NULL, NULL, NULL, false},
+	{&RUN_SIGN_IM,					{__F_TO_FIX10_6(232 - 256),	__F_TO_FIX10_6(220 - 368), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND - LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(225 - 368 - 20), 	__F_TO_FIX10_6(LAYER_0_ITEMS - LAYER_0_FOREGROUND)},			1, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(200 - 256 - 60),	__F_TO_FIX10_6(225 - 368 - 20), 	__F_TO_FIX10_6(LAYER_0_ITEMS - LAYER_0_FOREGROUND)},			2, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -354,150 +354,150 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_IM_CHILDREN[] =
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&MOUND_BG_BACK_IM,				{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_5)},					0, NULL, NULL, NULL, true},
-	{&CLOUDS_IM,					{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(198), 	__F_TO_FIX19_13(LAYER_4)},					0, NULL, NULL, NULL, true},
-	{&MOUND_BG_FRONT_IM,			{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(212), 	__F_TO_FIX19_13(LAYER_3)},					0, NULL, NULL, NULL, true},
+	{&MOUND_BG_BACK_IM,				{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(LAYER_5)},					0, NULL, NULL, NULL, true},
+	{&CLOUDS_IM,					{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(198), 	__F_TO_FIX10_6(LAYER_4)},					0, NULL, NULL, NULL, true},
+	{&MOUND_BG_FRONT_IM,			{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(212), 	__F_TO_FIX10_6(LAYER_3)},					0, NULL, NULL, NULL, true},
 
-	{&HERO_AC,						{__F_TO_FIX19_13(56),	__F_TO_FIX19_13(288), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, HERO_NAME, NULL, NULL, false},
+	{&HERO_AC,						{__F_TO_FIX10_6(56),	__F_TO_FIX10_6(288), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, HERO_NAME, NULL, NULL, false},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
 
 	// left border
-	{&COLLISION_CL,					{__F_TO_FIX19_13(-8),	__F_TO_FIX19_13(128), 	__F_TO_FIX19_13(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_4, false},
+	{&COLLISION_CL,					{__F_TO_FIX10_6(-8),	__F_TO_FIX10_6(128), 	__F_TO_FIX10_6(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_4, false},
 
 	// part 1
-	{&SMOKE_PS,						{__F_TO_FIX19_13(84),	__F_TO_FIX19_13(150), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
-	{&LEVEL_1_MAIN_1_MAIN_1_IM,		{__F_TO_FIX19_13(256), 	__F_TO_FIX19_13(368), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_HOUSE_IM,				{__F_TO_FIX19_13(88),	__F_TO_FIX19_13(192), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, "House", NULL, NULL, false},
-	{&KEY_DOOR_AG,					{__F_TO_FIX19_13(44), 	__F_TO_FIX19_13(220), 	__F_TO_FIX19_13(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
-	{&MANAGED_ENTITY,				{__F_TO_FIX19_13(256),	__F_TO_FIX19_13(368),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
+	{&SMOKE_PS,						{__F_TO_FIX10_6(84),	__F_TO_FIX10_6(150), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_1_IM,		{__F_TO_FIX10_6(256), 	__F_TO_FIX10_6(368), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_HOUSE_IM,				{__F_TO_FIX10_6(88),	__F_TO_FIX10_6(192), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, "House", NULL, NULL, false},
+	{&KEY_DOOR_AG,					{__F_TO_FIX10_6(44), 	__F_TO_FIX10_6(220), 	__F_TO_FIX10_6(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
+	{&MANAGED_ENTITY,				{__F_TO_FIX10_6(256),	__F_TO_FIX10_6(368),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
-	{&RUN_SIGN_IM,					{__F_TO_FIX19_13(232),	__F_TO_FIX19_13(220), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(184),	__F_TO_FIX19_13(225), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			1, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(200),	__F_TO_FIX19_13(225), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			2, NULL, NULL, NULL, false},
+	{&RUN_SIGN_IM,					{__F_TO_FIX10_6(232),	__F_TO_FIX10_6(220), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(184),	__F_TO_FIX10_6(225), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			1, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(200),	__F_TO_FIX10_6(225), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			2, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_MAIN_1_BACK_1_IM,		{__F_TO_FIX19_13(360),	__F_TO_FIX19_13(256), 	__F_TO_FIX19_13(LAYER_2)},					0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_BACK_1_IM,		{__F_TO_FIX10_6(360),	__F_TO_FIX10_6(256), 	__F_TO_FIX10_6(LAYER_2)},					0, NULL, NULL, NULL, false},
 
-	{&STAR_AG,						{__F_TO_FIX19_13(240),	__F_TO_FIX19_13(96), 	__F_TO_FIX19_13(LAYER_5)},					0, NULL, NULL, NULL, false},
+	{&STAR_AG,						{__F_TO_FIX10_6(240),	__F_TO_FIX10_6(96), 	__F_TO_FIX10_6(LAYER_5)},					0, NULL, NULL, NULL, false},
 
-	{&COIN_AG,						{__F_TO_FIX19_13(320),	__F_TO_FIX19_13(248), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			3, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(336),	__F_TO_FIX19_13(248), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			4, NULL, NULL, NULL, false},
-	{&SAW_BLADE_H8_AC,				{__F_TO_FIX19_13(352),	__F_TO_FIX19_13(259), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-	{&JUMP_SIGN_IM,					{__F_TO_FIX19_13(472),	__F_TO_FIX19_13(244), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(320),	__F_TO_FIX10_6(248), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			3, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(336),	__F_TO_FIX10_6(248), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			4, NULL, NULL, NULL, false},
+	{&SAW_BLADE_H8_AC,				{__F_TO_FIX10_6(352),	__F_TO_FIX10_6(259), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+	{&JUMP_SIGN_IM,					{__F_TO_FIX10_6(472),	__F_TO_FIX10_6(244), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 
 	// part 2
-	{&LEVEL_1_MAIN_1_MAIN_2_IM,		{__F_TO_FIX19_13(764), 	__F_TO_FIX19_13(352), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(764),	__F_TO_FIX19_13(352),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(764),	__F_TO_FIX19_13(352),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(764),	__F_TO_FIX19_13(352),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(764),	__F_TO_FIX19_13(352),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_2_IM,		{__F_TO_FIX10_6(764), 	__F_TO_FIX10_6(352), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(764),	__F_TO_FIX10_6(352),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(764),	__F_TO_FIX10_6(352),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(764),	__F_TO_FIX10_6(352),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(764),	__F_TO_FIX10_6(352),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4, NULL, false},
 
-	{&WATERFALL_TOP_AG,				{__F_TO_FIX19_13(596),	__F_TO_FIX19_13(266), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&WATERFALL_STREAM_2x28_AG,		{__F_TO_FIX19_13(596),	__F_TO_FIX19_13(378), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false},
+	{&WATERFALL_TOP_AG,				{__F_TO_FIX10_6(596),	__F_TO_FIX10_6(266), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&WATERFALL_STREAM_2x28_AG,		{__F_TO_FIX10_6(596),	__F_TO_FIX10_6(378), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false},
 
-	{&COIN_AG,						{__F_TO_FIX19_13(528),	__F_TO_FIX19_13(228), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			5, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(544),	__F_TO_FIX19_13(228), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			6, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(732),	__F_TO_FIX19_13(196), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			7, NULL, NULL, NULL, false},
-	{&BANDANA_AG,					{__F_TO_FIX19_13(756),	__F_TO_FIX19_13(196), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			1, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(780),	__F_TO_FIX19_13(196), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			8, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(528),	__F_TO_FIX10_6(228), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			5, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(544),	__F_TO_FIX10_6(228), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			6, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(732),	__F_TO_FIX10_6(196), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			7, NULL, NULL, NULL, false},
+	{&BANDANA_AG,					{__F_TO_FIX10_6(756),	__F_TO_FIX10_6(196), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			1, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(780),	__F_TO_FIX10_6(196), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			8, NULL, NULL, NULL, false},
 
-	{&BUSH_AG,						{__F_TO_FIX19_13(600),	__F_TO_FIX19_13(412), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&BUSH_AG,						{__F_TO_FIX10_6(600),	__F_TO_FIX10_6(412), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 
 	// part 3
-	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX19_13(1228 - 160), __F_TO_FIX19_13(240 - 44),	__F_TO_FIX19_13(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
-	{&LEVEL_1_MAIN_1_MAIN_3_A_IM, 	{__F_TO_FIX19_13(1228), __F_TO_FIX19_13(240),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_MAIN_1_MAIN_3_B_IM, 	{__F_TO_FIX19_13(1228), __F_TO_FIX19_13(240),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&DOOR_AG,						{__F_TO_FIX19_13(798),	__F_TO_FIX19_13(401), 	__F_TO_FIX19_13(LAYER_0_DOORS)},			0, "CoinEntr", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_MAIN_EP, false},
-	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX19_13(1228 + 144), 	__F_TO_FIX19_13(240 + 20),	__F_TO_FIX19_13(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
+	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX10_6(1228 - 160), __F_TO_FIX10_6(240 - 44),	__F_TO_FIX10_6(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_3_A_IM, 	{__F_TO_FIX10_6(1228), __F_TO_FIX10_6(240),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_3_B_IM, 	{__F_TO_FIX10_6(1228), __F_TO_FIX10_6(240),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&DOOR_AG,						{__F_TO_FIX10_6(798),	__F_TO_FIX10_6(401), 	__F_TO_FIX10_6(LAYER_0_DOORS)},			0, "CoinEntr", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_MAIN_EP, false},
+	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX10_6(1228 + 144), 	__F_TO_FIX10_6(240 + 20),	__F_TO_FIX10_6(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
 
-	{&MANAGED_ENTITY,				{__F_TO_FIX19_13(1228), __F_TO_FIX19_13(240),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,				{__F_TO_FIX19_13(1228), __F_TO_FIX19_13(240),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_2, NULL, false},
-	{&MANAGED_ENTITY,				{__F_TO_FIX19_13(1228), __F_TO_FIX19_13(240),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_3, NULL, false},
-	{&MANAGED_ENTITY,				{__F_TO_FIX19_13(1228), __F_TO_FIX19_13(240),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_4, NULL, false},
+	{&MANAGED_ENTITY,				{__F_TO_FIX10_6(1228), __F_TO_FIX10_6(240),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,				{__F_TO_FIX10_6(1228), __F_TO_FIX10_6(240),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_2, NULL, false},
+	{&MANAGED_ENTITY,				{__F_TO_FIX10_6(1228), __F_TO_FIX10_6(240),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_3, NULL, false},
+	{&MANAGED_ENTITY,				{__F_TO_FIX10_6(1228), __F_TO_FIX10_6(240),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_4, NULL, false},
 
-	{&COIN_AG,						{__F_TO_FIX19_13(988),	__F_TO_FIX19_13(260), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			9, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(988),	__F_TO_FIX19_13(308), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			10, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(988),	__F_TO_FIX19_13(356), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			11, NULL, NULL, NULL, false},
-	{&GRASS_AG,						{__F_TO_FIX19_13(1052), __F_TO_FIX19_13(408), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
-	{&DOOR_AG,						{__F_TO_FIX19_13(1086), __F_TO_FIX19_13(208), 	__F_TO_FIX19_13(LAYER_0_DOORS)},			0, "IntEntrD", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_UPPER_EP, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(988),	__F_TO_FIX10_6(260), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			9, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(988),	__F_TO_FIX10_6(308), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			10, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(988),	__F_TO_FIX10_6(356), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			11, NULL, NULL, NULL, false},
+	{&GRASS_AG,						{__F_TO_FIX10_6(1052), __F_TO_FIX10_6(408), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&DOOR_AG,						{__F_TO_FIX10_6(1086), __F_TO_FIX10_6(208), 	__F_TO_FIX10_6(LAYER_0_DOORS)},			0, "IntEntrD", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_UPPER_EP, false},
 
-	{&WATERFALL_TOP_AG,				{__F_TO_FIX19_13(1156),	__F_TO_FIX19_13(346), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&WATERFALL_STREAM_2x16_AG,		{__F_TO_FIX19_13(1156),	__F_TO_FIX19_13(408), 	__F_TO_FIX19_13(0)}, 						0, NULL, NULL, NULL, false},
-	{&WATER_POND_EN,				{__F_TO_FIX19_13(1173),	__F_TO_FIX19_13(465), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 1)},	0, NULL, NULL, NULL, false},
+	{&WATERFALL_TOP_AG,				{__F_TO_FIX10_6(1156),	__F_TO_FIX10_6(346), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&WATERFALL_STREAM_2x16_AG,		{__F_TO_FIX10_6(1156),	__F_TO_FIX10_6(408), 	__F_TO_FIX10_6(0)}, 						0, NULL, NULL, NULL, false},
+	{&WATER_POND_EN,				{__F_TO_FIX10_6(1173),	__F_TO_FIX10_6(465), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND + 1)},	0, NULL, NULL, NULL, false},
 
-	{&SAW_BLADE_V3_AC,				{__F_TO_FIX19_13(1197), __F_TO_FIX19_13(472), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-	{&DOUBLE_JUMP_SIGN_IM,			{__F_TO_FIX19_13(1244), __F_TO_FIX19_13(432), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
-	{&GRASS_AG,						{__F_TO_FIX19_13(1280), __F_TO_FIX19_13(440), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(1340), __F_TO_FIX19_13(432), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			12, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(1356), __F_TO_FIX19_13(432), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			13, NULL, NULL, NULL, false},
-	{&DOOR_AG,						{__F_TO_FIX19_13(1373), __F_TO_FIX19_13(272), 	__F_TO_FIX19_13(LAYER_0_DOORS)},			0, "IntExitD", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_EXIT_EP, false},
-	{&KEY_AG,						{__F_TO_FIX19_13(1348), __F_TO_FIX19_13(276), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			2, NULL, NULL, NULL, false},
-	{&BUSH_AG,						{__F_TO_FIX19_13(1430), __F_TO_FIX19_13(412), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
-	{&SNAIL_3_AC,					{__F_TO_FIX19_13(1496), __F_TO_FIX19_13(377), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-	{&SNAIL_3_AC,					{__F_TO_FIX19_13(1576), __F_TO_FIX19_13(345), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-	{&MOUND_1_IM,					{__F_TO_FIX19_13(1668), __F_TO_FIX19_13(300), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(1724), __F_TO_FIX19_13(304), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			14, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(1740), __F_TO_FIX19_13(304), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			15, NULL, NULL, NULL, false},
+	{&SAW_BLADE_V3_AC,				{__F_TO_FIX10_6(1197), __F_TO_FIX10_6(472), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+	{&DOUBLE_JUMP_SIGN_IM,			{__F_TO_FIX10_6(1244), __F_TO_FIX10_6(432), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&GRASS_AG,						{__F_TO_FIX10_6(1280), __F_TO_FIX10_6(440), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(1340), __F_TO_FIX10_6(432), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			12, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(1356), __F_TO_FIX10_6(432), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			13, NULL, NULL, NULL, false},
+	{&DOOR_AG,						{__F_TO_FIX10_6(1373), __F_TO_FIX10_6(272), 	__F_TO_FIX10_6(LAYER_0_DOORS)},			0, "IntExitD", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_EXIT_EP, false},
+	{&KEY_AG,						{__F_TO_FIX10_6(1348), __F_TO_FIX10_6(276), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			2, NULL, NULL, NULL, false},
+	{&BUSH_AG,						{__F_TO_FIX10_6(1430), __F_TO_FIX10_6(412), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&SNAIL_3_AC,					{__F_TO_FIX10_6(1496), __F_TO_FIX10_6(377), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+	{&SNAIL_3_AC,					{__F_TO_FIX10_6(1576), __F_TO_FIX10_6(345), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+	{&MOUND_1_IM,					{__F_TO_FIX10_6(1668), __F_TO_FIX10_6(300), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(1724), __F_TO_FIX10_6(304), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			14, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(1740), __F_TO_FIX10_6(304), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			15, NULL, NULL, NULL, false},
 
 	// part 4
-	{&LEVEL_1_MAIN_1_MAIN_4_IM, 	{__F_TO_FIX19_13(1732), __F_TO_FIX19_13(400), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(1732), __F_TO_FIX19_13(400),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(1732), __F_TO_FIX19_13(400),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(1732), __F_TO_FIX19_13(400),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_4_IM, 	{__F_TO_FIX10_6(1732), __F_TO_FIX10_6(400), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(1732), __F_TO_FIX10_6(400),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(1732), __F_TO_FIX10_6(400),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(1732), __F_TO_FIX10_6(400),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3, NULL, false},
 
-	{&SAW_BLADE_H3_AC,				{__F_TO_FIX19_13(1861), __F_TO_FIX19_13(303), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-	{&MOUND_2_IM,					{__F_TO_FIX19_13(2024), __F_TO_FIX19_13(300), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&SAW_BLADE_H3_AC,				{__F_TO_FIX10_6(1861), __F_TO_FIX10_6(303), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+	{&MOUND_2_IM,					{__F_TO_FIX10_6(2024), __F_TO_FIX10_6(300), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 
 	// part 5 (back)
-	{&LEVEL_1_MAIN_1_BACK_5_IM,		{__F_TO_FIX19_13(2336), 	__F_TO_FIX19_13(381 + -50), 	__F_TO_FIX19_13(LAYER_2)}, 0, NULL, NULL, NULL, false},
-	{&LAYER_SWITCH_DOOR_BACK_AG, 	{__F_TO_FIX19_13(2336 + 145), 	__F_TO_FIX19_13(381 + -82), 	__F_TO_FIX19_13(LAYER_2 + -SORT_INCREMENT)}, 0, "DoorBk1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(2336), __F_TO_FIX19_13(381),	__F_TO_FIX19_13(LAYER_2)},					0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(2336), __F_TO_FIX19_13(381),	__F_TO_FIX19_13(LAYER_2)},					0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2, NULL, false},
-	{&CANNON_AC,					{__F_TO_FIX19_13(2180), __F_TO_FIX19_13(282), 	__F_TO_FIX19_13(LAYER_2_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&CANNON_AC,					{__F_TO_FIX19_13(2404), __F_TO_FIX19_13(282), 	__F_TO_FIX19_13(LAYER_2_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&COIN_BACK_AG,					{__F_TO_FIX19_13(2093), __F_TO_FIX19_13(259), 	__F_TO_FIX19_13(LAYER_2_ITEMS)},			16, NULL, NULL, NULL, false},
-	{&COIN_BACK_AG,					{__F_TO_FIX19_13(2105), __F_TO_FIX19_13(259), 	__F_TO_FIX19_13(LAYER_2_ITEMS)},			17, NULL, NULL, NULL, false},
-	{&COIN_BACK_AG,					{__F_TO_FIX19_13(2263), __F_TO_FIX19_13(236), 	__F_TO_FIX19_13(LAYER_2_ITEMS)},			18, NULL, NULL, NULL, false},
-	{&COIN_BACK_AG,					{__F_TO_FIX19_13(2275), __F_TO_FIX19_13(236), 	__F_TO_FIX19_13(LAYER_2_ITEMS)},			19, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_BACK_5_IM,		{__F_TO_FIX10_6(2336), 	__F_TO_FIX10_6(381 + -50), 	__F_TO_FIX10_6(LAYER_2)}, 0, NULL, NULL, NULL, false},
+	{&LAYER_SWITCH_DOOR_BACK_AG, 	{__F_TO_FIX10_6(2336 + 145), 	__F_TO_FIX10_6(381 + -82), 	__F_TO_FIX10_6(LAYER_2 + -SORT_INCREMENT)}, 0, "DoorBk1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(2336), __F_TO_FIX10_6(381),	__F_TO_FIX10_6(LAYER_2)},					0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(2336), __F_TO_FIX10_6(381),	__F_TO_FIX10_6(LAYER_2)},					0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2, NULL, false},
+	{&CANNON_AC,					{__F_TO_FIX10_6(2180), __F_TO_FIX10_6(282), 	__F_TO_FIX10_6(LAYER_2_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&CANNON_AC,					{__F_TO_FIX10_6(2404), __F_TO_FIX10_6(282), 	__F_TO_FIX10_6(LAYER_2_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&COIN_BACK_AG,					{__F_TO_FIX10_6(2093), __F_TO_FIX10_6(259), 	__F_TO_FIX10_6(LAYER_2_ITEMS)},			16, NULL, NULL, NULL, false},
+	{&COIN_BACK_AG,					{__F_TO_FIX10_6(2105), __F_TO_FIX10_6(259), 	__F_TO_FIX10_6(LAYER_2_ITEMS)},			17, NULL, NULL, NULL, false},
+	{&COIN_BACK_AG,					{__F_TO_FIX10_6(2263), __F_TO_FIX10_6(236), 	__F_TO_FIX10_6(LAYER_2_ITEMS)},			18, NULL, NULL, NULL, false},
+	{&COIN_BACK_AG,					{__F_TO_FIX10_6(2275), __F_TO_FIX10_6(236), 	__F_TO_FIX10_6(LAYER_2_ITEMS)},			19, NULL, NULL, NULL, false},
 
 	// part 5
-	{&LEVEL_1_MAIN_1_MAIN_5_IM, 	{__F_TO_FIX19_13(2208), __F_TO_FIX19_13(400), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(2208), __F_TO_FIX19_13(400),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_5_COLLISIONS, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_5_IM, 	{__F_TO_FIX10_6(2208), __F_TO_FIX10_6(400), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(2208), __F_TO_FIX10_6(400),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_5_COLLISIONS, NULL, false},
 
-	{&COIN_AG,						{__F_TO_FIX19_13(2172), __F_TO_FIX19_13(292), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			20, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(2188), __F_TO_FIX19_13(292), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			21, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(2396), __F_TO_FIX19_13(292), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			22, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(2412), __F_TO_FIX19_13(292), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			23, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(2172), __F_TO_FIX10_6(292), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			20, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(2188), __F_TO_FIX10_6(292), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			21, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(2396), __F_TO_FIX10_6(292), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			22, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(2412), __F_TO_FIX10_6(292), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			23, NULL, NULL, NULL, false},
 
 	// part 6
-//	{&MANAGED_ENTITY,				{__F_TO_FIX19_13(2732), __F_TO_FIX19_13(372),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_6_CHILDREN, NULL, false},
-	{&LEVEL_1_MAIN_1_MAIN_6_IM, 	{__F_TO_FIX19_13(2732), 	__F_TO_FIX19_13(372), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX19_13(2732-64), 	__F_TO_FIX19_13(372-76), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND - SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
-	{&MANAGED_ENTITY,	{__F_TO_FIX19_13(2732), __F_TO_FIX19_13(372),	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_6_COLLISIONS, NULL, false},
+//	{&MANAGED_ENTITY,				{__F_TO_FIX10_6(2732), __F_TO_FIX10_6(372),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_6_CHILDREN, NULL, false},
+	{&LEVEL_1_MAIN_1_MAIN_6_IM, 	{__F_TO_FIX10_6(2732), 	__F_TO_FIX10_6(372), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX10_6(2732-64), 	__F_TO_FIX10_6(372-76), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND - SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
+	{&MANAGED_ENTITY,	{__F_TO_FIX10_6(2732), __F_TO_FIX10_6(372),	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_6_COLLISIONS, NULL, false},
 
-	{&STAR_AG,						{__F_TO_FIX19_13(2556), __F_TO_FIX19_13(80), 	__F_TO_FIX19_13(LAYER_5)},					0, NULL, NULL, NULL, false},
+	{&STAR_AG,						{__F_TO_FIX10_6(2556), __F_TO_FIX10_6(80), 	__F_TO_FIX10_6(LAYER_5)},					0, NULL, NULL, NULL, false},
 
-	{&LAYER_SWITCH_DOOR_AG,			{__F_TO_FIX19_13(2669), __F_TO_FIX19_13(308), 	__F_TO_FIX19_13(LAYER_0_DOORS)}, 			0, "DoorFt1", NULL, (void*)&LEVEL_1_MAIN_LS_BACK_EP, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(2732), __F_TO_FIX19_13(232), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			24, NULL, NULL, NULL, false},
-	{&COIN_AG,						{__F_TO_FIX19_13(2748), __F_TO_FIX19_13(232), 	__F_TO_FIX19_13(LAYER_0_ITEMS)},			25, NULL, NULL, NULL, false},
+	{&LAYER_SWITCH_DOOR_AG,			{__F_TO_FIX10_6(2669), __F_TO_FIX10_6(308), 	__F_TO_FIX10_6(LAYER_0_DOORS)}, 			0, "DoorFt1", NULL, (void*)&LEVEL_1_MAIN_LS_BACK_EP, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(2732), __F_TO_FIX10_6(232), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			24, NULL, NULL, NULL, false},
+	{&COIN_AG,						{__F_TO_FIX10_6(2748), __F_TO_FIX10_6(232), 	__F_TO_FIX10_6(LAYER_0_ITEMS)},			25, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_TOWER_IM,				{__F_TO_FIX19_13(2893), __F_TO_FIX19_13(144), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
-	{&CLOUD_A_IM,					{__F_TO_FIX19_13(2796), __F_TO_FIX19_13(104), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&CLOUD_A_IM,					{__F_TO_FIX19_13(2868), __F_TO_FIX19_13(120), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&CLOUD_A_IM,					{__F_TO_FIX19_13(2972), __F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
-	{&KEY_DOOR_AG,					{__F_TO_FIX19_13(2893), __F_TO_FIX19_13(228), 	__F_TO_FIX19_13(LAYER_0_DOORS)}, 			0, "TowrEnt", NULL, (void*)&LEVEL1_TOWER_STAGE_MAIN_EP, false},
-	{&GRASS_AG,						{__F_TO_FIX19_13(2960), __F_TO_FIX19_13(237), 	__F_TO_FIX19_13(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_TOWER_IM,				{__F_TO_FIX10_6(2893), __F_TO_FIX10_6(144), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
+	{&CLOUD_A_IM,					{__F_TO_FIX10_6(2796), __F_TO_FIX10_6(104), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&CLOUD_A_IM,					{__F_TO_FIX10_6(2868), __F_TO_FIX10_6(120), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&CLOUD_A_IM,					{__F_TO_FIX10_6(2972), __F_TO_FIX10_6(112), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
+	{&KEY_DOOR_AG,					{__F_TO_FIX10_6(2893), __F_TO_FIX10_6(228), 	__F_TO_FIX10_6(LAYER_0_DOORS)}, 			0, "TowrEnt", NULL, (void*)&LEVEL1_TOWER_STAGE_MAIN_EP, false},
+	{&GRASS_AG,						{__F_TO_FIX10_6(2960), __F_TO_FIX10_6(237), 	__F_TO_FIX10_6(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 
 	// right border
-	{&COLLISION_CL,					{__F_TO_FIX19_13(2996), __F_TO_FIX19_13(116), 	__F_TO_FIX19_13(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_4, false},
+	{&COLLISION_CL,					{__F_TO_FIX10_6(2996), __F_TO_FIX10_6(116), 	__F_TO_FIX10_6(LAYER_0)},					0, NULL, NULL, (void*)&collision_2_28_4, false},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 {
-	{&GUI_AG, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(215), __F_TO_FIX19_13(-4)}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(215), __F_TO_FIX10_6(-4)}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -608,14 +608,14 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 			__SCREEN_DEPTH,
 		},
 
-		// screen's initial position inside the game world
+		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// y
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// z
-			__I_TO_FIX19_13(0)
+			__I_TO_FIX10_6(0)
 		},
 	},
 
@@ -708,13 +708,13 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
 			// __spt0
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt1
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt2
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt3
-			__F_TO_FIX19_13(24),
+			__F_TO_FIX10_6(24),
 		},
 
 		// optical configuration values
@@ -722,13 +722,13 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX19_13(__DISTANCE_EYE_SCREEN),
+			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX19_13(__BASE_FACTOR),
+			__I_TO_FIX10_6(__BASE_FACTOR),
 			// horizontal view point center
-			__I_TO_FIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
-			__I_TO_FIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
 		},
 	},
 
@@ -736,13 +736,13 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	{
 		// gravity
 		{
-			__I_TO_FIX19_13(0),
-			__I_TO_FIX19_13(__GRAVITY),
-			__I_TO_FIX19_13(0)
+			__I_TO_FIX10_6(0),
+			__I_TO_FIX10_6(__GRAVITY),
+			__I_TO_FIX10_6(0)
 		},
 
 		// friction
-		__F_TO_FIX19_13(0),
+		__F_TO_FIX10_6(0),
 	},
 
 	// assets
@@ -791,9 +791,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(19),
-		__F_TO_FIX19_13(-20),
-		__F_TO_FIX19_13(SORT_INCREMENT * 0),
+		__F_TO_FIX10_6(19),
+		__F_TO_FIX10_6(-20),
+		__F_TO_FIX10_6(SORT_INCREMENT * 0),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -810,9 +810,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(19),
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(SORT_INCREMENT * 3),
+		__F_TO_FIX10_6(19),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(SORT_INCREMENT * 3),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -829,9 +829,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(-19),
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(SORT_INCREMENT * 3),
+		__F_TO_FIX10_6(-19),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(SORT_INCREMENT * 3),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -848,9 +848,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(-19),
-		__F_TO_FIX19_13(-5),
-		__F_TO_FIX19_13(SORT_INCREMENT * 3),
+		__F_TO_FIX10_6(-19),
+		__F_TO_FIX10_6(-5),
+		__F_TO_FIX10_6(SORT_INCREMENT * 3),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -867,9 +867,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(19),
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(SORT_INCREMENT * 3),
+		__F_TO_FIX10_6(19),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(SORT_INCREMENT * 3),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -886,9 +886,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(0),
-		__I_TO_FIX19_13(-1),
-		__F_TO_FIX19_13(SORT_INCREMENT * 3),
+		__F_TO_FIX10_6(0),
+		__I_TO_FIX10_6(-1),
+		__F_TO_FIX10_6(SORT_INCREMENT * 3),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -905,9 +905,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(-0.5f),
-		__F_TO_FIX19_13(-SORT_INCREMENT),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(-0.5f),
+		__F_TO_FIX10_6(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -924,9 +924,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(-19),
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(SORT_INCREMENT * 3),
+		__F_TO_FIX10_6(-19),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(SORT_INCREMENT * 3),
 	},
 
 	// whether this entry point acts as a checkpoint

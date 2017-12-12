@@ -550,11 +550,11 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		// size (x, y, z)
 //		{14, 20, 16},
 //		{8, 8, 8},
-		{9, 9, 9},
+		{1, 1, 1},
 
 		// displacement (x, y, z)
-//		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(6), __I_TO_FIX19_13(0)},
-		{__I_TO_FIX19_13(-1), __I_TO_FIX19_13(2), __I_TO_FIX19_13(0)},
+//		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(6), __I_TO_FIX10_6(0)},
+		{__I_TO_FIX10_6(-1), __I_TO_FIX10_6(2), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -578,13 +578,13 @@ ShapeROMDef HERO_AC_SHAPES[] =
 PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 {
 	// mass
-	__F_TO_FIX19_13(2),
+	__F_TO_FIX10_6(2),
 
 	// friction
-	__F_TO_FIX19_13(HERO_FRICTION),
+	__F_TO_FIX10_6(HERO_FRICTION),
 
 	// elasticity
-	__F_TO_FIX19_13(HERO_ELASTICITY),
+	__F_TO_FIX10_6(HERO_ELASTICITY),
 };
 
 HeroROMDef HERO_AC =
@@ -726,7 +726,7 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 		{12 * 8, 20 * 8, 4 * 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

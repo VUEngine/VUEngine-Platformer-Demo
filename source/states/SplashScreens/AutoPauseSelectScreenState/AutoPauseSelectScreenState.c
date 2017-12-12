@@ -27,7 +27,7 @@
 #include <string.h>
 
 #include <Game.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <MessageDispatcher.h>
 #include <Utilities.h>
 #include <I18n.h>

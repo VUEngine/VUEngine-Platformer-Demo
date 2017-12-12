@@ -136,7 +136,7 @@ BgmapSpriteROMDef FLOWER_A_SPRITE =
 		false,
 
 		// displacement
-		{__F_TO_FIX19_13(0), __F_TO_FIX19_13(0), __F_TO_FIX19_13(0), 0},
+		{__F_TO_FIX10_6(0), __F_TO_FIX10_6(0), __F_TO_FIX10_6(0), 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

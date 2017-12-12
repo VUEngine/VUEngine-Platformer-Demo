@@ -87,7 +87,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_5_IM_SPRITE =
 		false,
 
 		// displacement
-		{__I_TO_FIX19_13(-20), __I_TO_FIX19_13(-88), __F_TO_FIX19_13(-1), 0},
+		{__I_TO_FIX10_6(-20), __I_TO_FIX10_6(-88), __F_TO_FIX10_6(-1), 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

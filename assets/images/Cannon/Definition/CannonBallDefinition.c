@@ -159,7 +159,7 @@ ShapeROMDef CANNON_BALL_AC_SHAPES[] =
 		{22, 22, 16},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -221,7 +221,7 @@ CannonBallROMDef CANNON_BALL_AC =
 PositionedEntityROMDef CANNON_BALL =
 {
 	(EntityDefinition*)&CANNON_BALL_AC,
-	{__F_TO_FIX19_13(0), __F_TO_FIX19_13(0), __F_TO_FIX19_13(-SORT_INCREMENT)},
+	{__F_TO_FIX10_6(0), __F_TO_FIX10_6(0), __F_TO_FIX10_6(-SORT_INCREMENT)},
 	0,
 	NULL,
 	NULL,

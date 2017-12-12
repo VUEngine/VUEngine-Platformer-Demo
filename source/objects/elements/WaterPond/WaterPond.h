@@ -51,8 +51,8 @@ __CLASS(WaterPond);
 #define WaterPond_ATTRIBUTES																			\
 		/* it is derived from */																		\
 		ReflectiveEntity_ATTRIBUTES																		\
-		fix19_13 waveLutThrottleFactorIncrement;														\
-		fix19_13 amplitudeFactor;																		\
+		fix10_6 waveLutThrottleFactorIncrement;														\
+		fix10_6 amplitudeFactor;																		\
 		ParticleSystem waterSplash;
 
 typedef struct WaterPondDefinition
@@ -60,7 +60,7 @@ typedef struct WaterPondDefinition
 	ReflectiveEntityDefinition reflectiveEntityDefinition;
 
 	// throttle increment
-	fix19_13 waveLutThrottleFactorIncrement;
+	fix10_6 waveLutThrottleFactorIncrement;
 
 	// throttle increment duration
 	u32 waveLutThrottleFactorIncrementDuration;
@@ -72,7 +72,7 @@ typedef struct WaterPondDefinition
 	u16 surfaceHeight;
 
 	// wave amplitude factor
-	fix19_13 amplitudeFactor;
+	fix10_6 amplitudeFactor;
 
 } WaterPondDefinition;
 

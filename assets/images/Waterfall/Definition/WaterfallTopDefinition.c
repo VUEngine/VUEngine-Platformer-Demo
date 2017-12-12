@@ -134,7 +134,7 @@ BgmapSpriteROMDef WATERFALL_TOP_SPRITE =
 		{
 			0,
 			0,
-			__F_TO_FIX19_13(-1),
+			__F_TO_FIX10_6(-1),
 			0
 		},
 	},

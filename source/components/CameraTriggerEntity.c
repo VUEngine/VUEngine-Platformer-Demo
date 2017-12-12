@@ -28,9 +28,9 @@
 #include <CollisionManager.h>
 #include <Optics.h>
 #include <Shape.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <PlatformerLevelState.h>
-#include <CustomScreenMovementManager.h>
+#include <CustomCameraMovementManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ void CameraTriggerEntity_destructor(CameraTriggerEntity this)
 {
 	ASSERT(this, "CameraTriggerEntity::destructor: null this");
 
-	Screen_setFocusGameEntity(Screen_getInstance(), NULL);
+	Camera_setFocusGameEntity(Camera_getInstance(), NULL);
 
 	// destroy the super object
 	// must always be called at the end of the destructor

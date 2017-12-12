@@ -55,17 +55,17 @@ enum HeroPowerUps
 #define HERO_FLASH_DURATION					2000
 #define HERO_FLASH_INTERVAL					100
 
-#define HERO_INPUT_FORCE 					__I_TO_FIX19_13(3050)
-#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX19_13(1100)
+#define HERO_INPUT_FORCE 					__I_TO_FIX10_6(3050)
+#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(1100)
 
-#define HERO_MAX_VELOCITY_X					__I_TO_FIX19_13(75)
-#define HERO_MAX_VELOCITY_Y					__I_TO_FIX19_13(305)
-#define HERO_MAX_VELOCITY_Z					__I_TO_FIX19_13(40)
-#define HERO_BOOST_VELOCITY_X				__F_TO_FIX19_13(100)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX19_13(-32000)
-#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX19_13(-37000)
+#define HERO_MAX_VELOCITY_X					__I_TO_FIX10_6(75)
+#define HERO_MAX_VELOCITY_Y					__I_TO_FIX10_6(305)
+#define HERO_MAX_VELOCITY_Z					__I_TO_FIX10_6(40)
+#define HERO_BOOST_VELOCITY_X				__F_TO_FIX10_6(100)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-32000)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX10_6(-37000)
 
-#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-24), 0}
+#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-24), 0}
 
 #define HERO_CHECK_Y_VELOCITY				20
 
@@ -170,7 +170,7 @@ u8 Hero_getPowerUp(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
-fix19_13 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
+fix10_6 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
 bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInformation);
 bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInformation);
 bool Hero_handleMessage(Hero this, Telegram telegram);

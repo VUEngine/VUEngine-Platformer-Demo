@@ -64,23 +64,23 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&MOUND_BG_FRONT_IM, {__F_TO_FIX19_13(-16), __F_TO_FIX19_13(144), __F_TO_FIX19_13(LAYER_3)}, 0, NULL, NULL, NULL, false}, // Front
-	{&GRASS_AG, {__F_TO_FIX19_13(32), __F_TO_FIX19_13(152), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Grass
-	{&COIN_AG, {__F_TO_FIX19_13(56), __F_TO_FIX19_13(134), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX19_13(72), __F_TO_FIX19_13(134), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(168), __F_TO_FIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer
-	{&LOGO_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(53), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Logo
-	{&VUENGINE_LOGO_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(18), __F_TO_FIX19_13(LAYER_1)}, 0, NULL, NULL, NULL, false}, // VUEngine
-	{&HERO_BANDANA_AG, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(158), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero
-	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(168), __F_TO_FIX19_13(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
-	{&CLOUDS_IM, {__F_TO_FIX19_13(194), __F_TO_FIX19_13(130), __F_TO_FIX19_13(LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8)}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&MOUND_BG_BACK_IM, {__F_TO_FIX19_13(255), __F_TO_FIX19_13(67), __F_TO_FIX19_13(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX19_13(287), __F_TO_FIX19_13(84), __F_TO_FIX19_13(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_IM, {__F_TO_FIX19_13(317), __F_TO_FIX19_13(104), __F_TO_FIX19_13(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX19_13(321), __F_TO_FIX19_13(95), __F_TO_FIX19_13(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX19_13(356), __F_TO_FIX19_13(84), __F_TO_FIX19_13(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&STAR_AG, {__F_TO_FIX19_13(362), __F_TO_FIX19_13(-18), __F_TO_FIX19_13(LAYER_5 - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Star
-	{&BUSH_AG, {__F_TO_FIX19_13(368), __F_TO_FIX19_13(148), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Bush
+	{&MOUND_BG_FRONT_IM, {__F_TO_FIX10_6(-16), __F_TO_FIX10_6(144), __F_TO_FIX10_6(LAYER_3)}, 0, NULL, NULL, NULL, false}, // Front
+	{&GRASS_AG, {__F_TO_FIX10_6(32), __F_TO_FIX10_6(152), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Grass
+	{&COIN_AG, {__F_TO_FIX10_6(56), __F_TO_FIX10_6(134), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {__F_TO_FIX10_6(72), __F_TO_FIX10_6(134), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(168), __F_TO_FIX10_6(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer
+	{&LOGO_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(53), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Logo
+	{&VUENGINE_LOGO_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(18), __F_TO_FIX10_6(LAYER_1)}, 0, NULL, NULL, NULL, false}, // VUEngine
+	{&HERO_BANDANA_AG, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(158), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero
+	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(168), __F_TO_FIX10_6(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
+	{&CLOUDS_IM, {__F_TO_FIX10_6(194), __F_TO_FIX10_6(130), __F_TO_FIX10_6(LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8)}, 0, NULL, NULL, NULL, false}, // Clouds
+	{&MOUND_BG_BACK_IM, {__F_TO_FIX10_6(255), __F_TO_FIX10_6(67), __F_TO_FIX10_6(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
+	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX10_6(287), __F_TO_FIX10_6(84), __F_TO_FIX10_6(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_IM, {__F_TO_FIX10_6(317), __F_TO_FIX10_6(104), __F_TO_FIX10_6(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
+	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX10_6(321), __F_TO_FIX10_6(95), __F_TO_FIX10_6(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX10_6(356), __F_TO_FIX10_6(84), __F_TO_FIX10_6(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&STAR_AG, {__F_TO_FIX10_6(362), __F_TO_FIX10_6(-18), __F_TO_FIX10_6(LAYER_5 - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Star
+	{&BUSH_AG, {__F_TO_FIX10_6(368), __F_TO_FIX10_6(148), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Bush
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -132,14 +132,14 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 			__SCREEN_DEPTH,
 		},
 
-		// screen's initial position inside the game world
+		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// y
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// z
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 		},
 	},
 
@@ -232,13 +232,13 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt1
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt2
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt3
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 		},
 
 		// optical configuration values
@@ -246,13 +246,13 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX19_13(__DISTANCE_EYE_SCREEN),
+			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX19_13(__BASE_FACTOR),
+			__I_TO_FIX10_6(__BASE_FACTOR),
 			// horizontal view point center
-			__I_TO_FIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
-			__I_TO_FIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
 		},
 	},
 
@@ -260,13 +260,13 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 	{
 		// gravity
 		{
-			__I_TO_FIX19_13(0),
-			__I_TO_FIX19_13(__GRAVITY),
-			__I_TO_FIX19_13(0)
+			__I_TO_FIX10_6(0),
+			__I_TO_FIX10_6(__GRAVITY),
+			__I_TO_FIX10_6(0)
 		},
 
 		// friction
-		__F_TO_FIX19_13(0.1f),
+		__F_TO_FIX10_6(0.1f),
 	},
 
 	// assets

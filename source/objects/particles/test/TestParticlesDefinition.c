@@ -64,16 +64,16 @@ SolidParticleROMDef TEST_PARTICLE =
 		__TYPE(SolidParticle),
 
 		// particle's minimum life span in milliseconds
-		500,
+		13500,
 
 		// particle's maximum life span in milliseconds
-		750,
+		13750,
 
 		// particle's minimum mass
-		__F_TO_FIX19_13(0.5f),
+		__F_TO_FIX10_6(0.5f),
 
 		// particle's maximum mass
-		__F_TO_FIX19_13(0.05),
+		__F_TO_FIX10_6(0.05),
 
 		// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 		__Y_AXIS,
@@ -89,13 +89,13 @@ SolidParticleROMDef TEST_PARTICLE =
 	},
 
 	/// ball's radius
-	__I_TO_FIX19_13(4),
+	__F_TO_FIX10_6(0.25f),
 
 	/// friction for physics
-	__F_TO_FIX19_13(0.0f),
+	__F_TO_FIX10_6(0.0f),
 
 	/// elasticity for physics
-	__F_TO_FIX19_13(0.5f),
+	__F_TO_FIX10_6(0.5f),
 
 	/// object's in-game type
 	kUncollectableCoin,
@@ -143,7 +143,7 @@ ParticleSystemROMDef TEST_1_PS =
 	300,
 
 	// maximum total particles
-	3,
+	1,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -155,18 +155,18 @@ ParticleSystemROMDef TEST_1_PS =
 	(ParticleDefinition*)&TEST_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(-30), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__F_TO_FIX10_6(-30 / 16.0f), __F_TO_FIX10_6(0), __F_TO_FIX10_6(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(30), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__F_TO_FIX10_6(30 / 16.0f), __F_TO_FIX10_6(0), __F_TO_FIX10_6(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), 0},
+	{__F_TO_FIX10_6(0), __F_TO_FIX10_6(1), 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), 0},
+	{__F_TO_FIX10_6(0), __F_TO_FIX10_6(0), 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT
@@ -206,7 +206,7 @@ ParticleSystemROMDef TEST_2_PS =
 	300,
 
 	// maximum total particles
-	3,
+	1,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -218,18 +218,18 @@ ParticleSystemROMDef TEST_2_PS =
 	(ParticleDefinition*)&TEST_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__F_TO_FIX10_6(0), __F_TO_FIX10_6(0), __F_TO_FIX10_6(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(18), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__F_TO_FIX10_6(18 / 16.0f), __F_TO_FIX10_6(0), __F_TO_FIX10_6(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX19_13(7500), __I_TO_FIX19_13(-8000), 0},
+	{__F_TO_FIX10_6(7500 / 16.0f), __F_TO_FIX10_6(-8000 / 16.0f), 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX19_13(10000), __I_TO_FIX19_13(-10000), 0},
+	{__F_TO_FIX10_6(10000 / 16.0f), __F_TO_FIX10_6(-10000 / 16.0f), 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT

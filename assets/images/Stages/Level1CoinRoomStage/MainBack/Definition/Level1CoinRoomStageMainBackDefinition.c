@@ -99,10 +99,10 @@ BgmapSpriteROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM_SPRITE =
 
 		// displacement
 		{
-			__F_TO_FIX19_13(0), // x
-			__F_TO_FIX19_13(0), // y
-			__F_TO_FIX19_13(0), // z
-			__F_TO_FIX19_13(0), // parallax
+			__F_TO_FIX10_6(0), // x
+			__F_TO_FIX10_6(0), // y
+			__F_TO_FIX10_6(0), // z
+			__F_TO_FIX10_6(0), // parallax
 		},
 	},
 

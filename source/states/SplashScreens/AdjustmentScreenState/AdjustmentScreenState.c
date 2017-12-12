@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <MessageDispatcher.h>
 #include <AdjustmentScreenState.h>
 #include <AutoPauseSelectScreenState.h>
@@ -95,7 +95,7 @@ static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 p
 	// TODO: replace this ugly hack with a proper Game_isPaused check or something similar
 	if(this->nextState == NULL)
 	{
-		Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
+		Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
 		Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
 	}
 	else
@@ -129,29 +129,29 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {__I_TO_FIX19_13(192 - radius),	__I_TO_FIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(Vector2D) {__I_TO_FIX19_13(192),			__I_TO_FIX19_13(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(Vector2D) {__I_TO_FIX10_6(192 - radius),	__I_TO_FIX10_6(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(Vector2D) {__I_TO_FIX10_6(192),			__I_TO_FIX10_6(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {__I_TO_FIX19_13(192 + radius),	__I_TO_FIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(Vector2D) {__I_TO_FIX19_13(192),			__I_TO_FIX19_13(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(Vector2D) {__I_TO_FIX10_6(192 + radius),	__I_TO_FIX10_6(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(Vector2D) {__I_TO_FIX10_6(192),			__I_TO_FIX10_6(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {__I_TO_FIX19_13(192 + radius),	__I_TO_FIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(Vector2D) {__I_TO_FIX19_13(192),			__I_TO_FIX19_13(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(Vector2D) {__I_TO_FIX10_6(192 + radius),	__I_TO_FIX10_6(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(Vector2D) {__I_TO_FIX10_6(192),			__I_TO_FIX10_6(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {__I_TO_FIX19_13(192 - radius),	__I_TO_FIX19_13(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(Vector2D) {__I_TO_FIX19_13(192),			__I_TO_FIX19_13(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(Vector2D) {__I_TO_FIX10_6(192 - radius),	__I_TO_FIX10_6(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(Vector2D) {__I_TO_FIX10_6(192),			__I_TO_FIX10_6(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 }

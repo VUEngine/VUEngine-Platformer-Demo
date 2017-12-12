@@ -60,10 +60,10 @@ ParticleROMDef WATER_SPLASH_PARTICLE =
 	500,
 
 	// particle's minimum mass
-	__F_TO_FIX19_13(8.0f),
+	__F_TO_FIX10_6(8.0f),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX19_13(8.0f),
+	__F_TO_FIX10_6(8.0f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__Y_AXIS,
@@ -123,18 +123,18 @@ ParticleSystemROMDef WATER_SPLASH_PS =
 	(ParticleDefinition*)&WATER_SPLASH_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(-16), __I_TO_FIX19_13(0), __I_TO_FIX19_13(-1)},
+	{__I_TO_FIX10_6(-16), __I_TO_FIX10_6(0), __I_TO_FIX10_6(-1)},
 
 	// maximum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(16), __I_TO_FIX19_13(0), __I_TO_FIX19_13(1)},
+	{__I_TO_FIX10_6(16), __I_TO_FIX10_6(0), __I_TO_FIX10_6(1)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX19_13(-1000), __I_TO_FIX19_13(-15000), __I_TO_FIX19_13(-200)},
+	{__I_TO_FIX10_6(-1000), __I_TO_FIX10_6(-15000), __I_TO_FIX10_6(-200)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX19_13(1000), __I_TO_FIX19_13(-15500), __I_TO_FIX19_13(200)},
+	{__I_TO_FIX10_6(1000), __I_TO_FIX10_6(-15500), __I_TO_FIX10_6(200)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT

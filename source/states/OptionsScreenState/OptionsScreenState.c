@@ -27,7 +27,7 @@
 #include <string.h>
 
 #include <Game.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <I18n.h>
 #include <Utilities.h>
 #include <Languages.h>
@@ -109,7 +109,7 @@ static void OptionsScreenState_enter(OptionsScreenState this, void* owner __attr
 	Game_disableKeypad(Game_getInstance());
 
 	// fade in screen
-	Screen_startEffect(Screen_getInstance(),
+	Camera_startEffect(Camera_getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
@@ -199,7 +199,7 @@ void OptionsScreenState_processUserInput(OptionsScreenState this, UserInput user
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
-		Screen_startEffect(Screen_getInstance(),
+		Camera_startEffect(Camera_getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
@@ -215,7 +215,7 @@ void OptionsScreenState_processUserInput(OptionsScreenState this, UserInput user
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
-		Screen_startEffect(Screen_getInstance(),
+		Camera_startEffect(Camera_getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness

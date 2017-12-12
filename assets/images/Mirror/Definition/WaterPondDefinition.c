@@ -62,7 +62,7 @@ const u8 WATER_POND_WAVE_LUT[] =
 #define WATER_POND_HEIGHT 				32
 #define WATER_POND_REFLECTION_WIDTH		WATER_POND_WIDTH
 #define WATER_POND_REFLECTION_HEIGHT	12
-#define WAVING_THROTTLE					__F_TO_FIX19_13(0.8f)
+#define WAVING_THROTTLE					__F_TO_FIX10_6(0.8f)
 
 ShapeROMDef WATER_POND_EN_SHAPES[] =
 {
@@ -74,7 +74,7 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 		{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(WATER_POND_HEIGHT / 2), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(WATER_POND_HEIGHT / 2), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -98,13 +98,13 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 PhysicalSpecificationROMDef WATER_POND_EN_PHYSICAL_PROPERTIES =
 {
 	// mass
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX10_6(0),
 
 	// friction
-	__F_TO_FIX19_13(1.0f),
+	__F_TO_FIX10_6(1.0f),
 
 	// elasticity
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX10_6(0),
 };
 
 WaterPondROMDef WATER_POND_EN =
@@ -168,7 +168,7 @@ WaterPondROMDef WATER_POND_EN =
 		// number of wave lut entries
 		12 * 5,
 
-		// fix19_13 throttle for the waving
+		// fix10_6 throttle for the waving
 		WAVING_THROTTLE,
 
 		// parallax displacement applied to the reflection
@@ -185,7 +185,7 @@ WaterPondROMDef WATER_POND_EN =
 	},
 
 	// throttle increment
-	__F_TO_FIX19_13(0.5f),
+	__F_TO_FIX10_6(0.5f),
 
 	// throttle increment duration
 	1500,
@@ -197,5 +197,5 @@ WaterPondROMDef WATER_POND_EN =
 	2,
 
 	// wave amplitude factor
-	__F_TO_FIX19_13(1.5f),
+	__F_TO_FIX10_6(1.5f),
 };

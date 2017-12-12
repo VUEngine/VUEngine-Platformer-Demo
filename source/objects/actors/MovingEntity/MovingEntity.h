@@ -70,10 +70,10 @@ typedef struct MovingEntityDefinition
 	ActorDefinition actorDefinition;
 
 	// velocity
-	fix19_13 velocity;
+	fix10_6 velocity;
 
 	// maximum deviation from initial position
-	fix19_13 maximumDisplacement;
+	fix10_6 maximumDisplacement;
 
 	// time to rest idle
 	u16 idleDuration;

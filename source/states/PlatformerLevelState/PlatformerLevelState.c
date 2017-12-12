@@ -28,7 +28,7 @@
 #include <GameEvents.h>
 #include <Game.h>
 #include <Optics.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <MessageDispatcher.h>
 #include <PhysicalWorld.h>
 #include <I18n.h>
@@ -38,8 +38,8 @@
 #include <Hero.h>
 #include <Languages.h>
 #include <ProgressManager.h>
-#include <CustomScreenMovementManager.h>
-#include <CustomScreenEffectManager.h>
+#include <CustomCameraMovementManager.h>
+#include <CustomCameraEffectManager.h>
 #include <EventManager.h>
 #include <KeyPadManager.h>
 #include <Utilities.h>
@@ -151,8 +151,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	__CALL_BASE_METHOD(GameState, enter, this, owner);
 
 	// set the custom screen managers
-	Screen_setScreenMovementManager(Screen_getInstance(), __SAFE_CAST(ScreenMovementManager, CustomScreenMovementManager_getInstance()));
-	Screen_setScreenEffectManager(Screen_getInstance(), __SAFE_CAST(ScreenEffectManager, CustomScreenEffectManager_getInstance()));
+	Camera_setCameraMovementManager(Camera_getInstance(), __SAFE_CAST(CameraMovementManager, CustomCameraMovementManager_getInstance()));
+	Camera_setCameraEffectManager(Camera_getInstance(), __SAFE_CAST(CameraEffectManager, CustomCameraEffectManager_getInstance()));
 
 	// disable user input
 	Game_disableKeypad(Game_getInstance());
@@ -179,17 +179,17 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			initialPosition->z += this->currentStageEntryPoint->offset.z;
 
 			// set world's limits
-			Screen_setStageSize(Screen_getInstance(), this->currentStageEntryPoint->stageDefinition->level.size);
+			Camera_setStageSize(Camera_getInstance(), this->currentStageEntryPoint->stageDefinition->level.size);
 
 			// focus screen on new position
 			Vector3D screenPosition =
 			{
-				initialPosition->x - __I_TO_FIX19_13(__HALF_SCREEN_WIDTH),
-				initialPosition->y - __I_TO_FIX19_13(__HALF_SCREEN_HEIGHT),
+				initialPosition->x - __I_TO_FIX10_6(__HALF_SCREEN_WIDTH),
+				initialPosition->y - __I_TO_FIX10_6(__HALF_SCREEN_HEIGHT),
 				initialPosition->z
 			};
 
-			Screen_setPosition(Screen_getInstance(), screenPosition);
+			Camera_setPosition(Camera_getInstance(), screenPosition);
 
 			// load stage
 			GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
@@ -227,16 +227,16 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			Object_addEventListener(__SAFE_CAST(Object, hero), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroStreamedOut, kStageChildStreamedOut);
 
 			// make sure that focusing gets completed immediately
-			CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
-			CustomScreenMovementManager_disableFocusEasing(CustomScreenMovementManager_getInstance());
+			CustomCameraMovementManager_enable(CustomCameraMovementManager_getInstance());
+			CustomCameraMovementManager_disableFocusEasing(CustomCameraMovementManager_getInstance());
 
 			// update actor's global transformations
 			GameState_transform(__SAFE_CAST(GameState, this));
 
 			// set focus on the hero
-			Screen_setFocusGameEntity(Screen_getInstance(), __SAFE_CAST(Entity, hero));
-			Vector3D screenDisplacement = {__I_TO_FIX19_13(50), __I_TO_FIX19_13(-30), 0};
-			Screen_setFocusEntityPositionDisplacement(Screen_getInstance(), screenDisplacement);
+			Camera_setFocusGameEntity(Camera_getInstance(), __SAFE_CAST(Entity, hero));
+			Vector3D screenDisplacement = {__I_TO_FIX10_6(50), __I_TO_FIX10_6(-30), 0};
+			Camera_setFocusEntityPositionDisplacement(Camera_getInstance(), screenDisplacement);
 
 			// apply changes to the visuals
 			GameState_synchronizeGraphics(__SAFE_CAST(GameState, this));
@@ -253,7 +253,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 		GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
 	}
 
-	CustomScreenMovementManager_disable(CustomScreenMovementManager_getInstance());
+	CustomCameraMovementManager_disable(CustomCameraMovementManager_getInstance());
 
 	// free some memory
 	__DELETE(positionedEntitiesToIgnore);
@@ -275,7 +275,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	// activate pulsating effect in indoor stages
 	if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightnessRepeat != NULL)
 	{
-		Screen_startEffect(Screen_getInstance(), kScreenPulsate);
+		Camera_startEffect(Camera_getInstance(), kScreenPulsate);
 	}
 
 	PlatformerLevelState_setCameraFrustum(this);
@@ -285,7 +285,7 @@ void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this __attribute
 {
 	extern TextureROMDef GUI_TX;
 	CameraFrustum cameraFrustum = {0, 0, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8};
-	Screen_setCameraFrustum(Screen_getInstance(), cameraFrustum);
+	Camera_setCameraFrustum(Camera_getInstance(), cameraFrustum);
 }
 
 // state's exit
@@ -323,7 +323,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 #endif
 
 	// do a fade out effect
-	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
+	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -365,7 +365,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// start a fade in effect
-	Screen_startEffect(Screen_getInstance(),
+	Camera_startEffect(Camera_getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
@@ -535,7 +535,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 		case kLevelStarted:
 
 			// fade in screen
-			Screen_startEffect(Screen_getInstance(),
+			Camera_startEffect(Camera_getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				NULL, // target brightness
@@ -576,7 +576,7 @@ void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object even
 {
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenFocused, NULL);
 
-	CustomScreenMovementManager_dontAlertWhenTargetFocused(CustomScreenMovementManager_getInstance());
+	CustomCameraMovementManager_dontAlertWhenTargetFocused(CustomCameraMovementManager_getInstance());
 
 	Game_enableKeypad(Game_getInstance());
 }
@@ -584,11 +584,11 @@ void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object even
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	// unset the hero as focus entity from the custom screen movement manager
-	Screen_setFocusGameEntity(Screen_getInstance(), NULL);
+	Camera_setFocusGameEntity(Camera_getInstance(), NULL);
 
 	// start a fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};
-	Screen_startEffect(Screen_getInstance(),
+	Camera_startEffect(Camera_getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		&brightness, // target brightness
@@ -657,7 +657,7 @@ void PlatformerLevelState_startStage(PlatformerLevelState this, StageEntryPointD
 
 	// start a fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};
-	Screen_startEffect(Screen_getInstance(),
+	Camera_startEffect(Camera_getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		&brightness, // target brightness
@@ -697,9 +697,9 @@ static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelSta
 
 	// enable focus easing
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
-	CustomScreenMovementManager_enableFocusEasing(CustomScreenMovementManager_getInstance());
-	CustomScreenMovementManager_enable(CustomScreenMovementManager_getInstance());
-	CustomScreenMovementManager_alertWhenTargetFocused(CustomScreenMovementManager_getInstance());
+	CustomCameraMovementManager_enableFocusEasing(CustomCameraMovementManager_getInstance());
+	CustomCameraMovementManager_enable(CustomCameraMovementManager_getInstance());
+	CustomCameraMovementManager_alertWhenTargetFocused(CustomCameraMovementManager_getInstance());
 }
 
 // handle event

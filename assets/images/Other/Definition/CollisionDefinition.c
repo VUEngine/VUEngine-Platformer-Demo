@@ -37,13 +37,13 @@
 PhysicalSpecificationROMDef COLLISION_CL_PHYSICAL_PROPERTIES =
 {
 	// mass
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX10_6(0),
 
 	// friction
-	__F_TO_FIX19_13(FLOOR_FRICTION),
+	__F_TO_FIX10_6(FLOOR_FRICTION),
 
 	// elasticity
-	__F_TO_FIX19_13(FLOOR_ELASTICITY),
+	__F_TO_FIX10_6(FLOOR_ELASTICITY),
 };
 
 CollisionROMDef COLLISION_CL =

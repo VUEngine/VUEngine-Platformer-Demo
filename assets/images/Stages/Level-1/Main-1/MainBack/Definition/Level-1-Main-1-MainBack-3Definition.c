@@ -142,7 +142,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =
 		false,
 
 		// displacement
-		{__I_TO_FIX19_13(-156), __I_TO_FIX19_13(-40), __F_TO_FIX19_13(2), 0},
+		{__I_TO_FIX10_6(-156), __I_TO_FIX10_6(-40), __F_TO_FIX10_6(2), 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -169,7 +169,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_IM_SPRITE =
 		false,
 
 		// displacement
-		{__I_TO_FIX19_13(140), __I_TO_FIX19_13(24), __F_TO_FIX19_13(2), 0},
+		{__I_TO_FIX10_6(140), __I_TO_FIX10_6(24), __F_TO_FIX10_6(2), 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -196,7 +196,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_IM_SPRITE =
 		false,
 
 		// displacement
-		{__I_TO_FIX19_13(-8), __I_TO_FIX19_13(192), __F_TO_FIX19_13(2), 0},
+		{__I_TO_FIX10_6(-8), __I_TO_FIX10_6(192), __F_TO_FIX10_6(2), 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

@@ -26,7 +26,7 @@
 
 #include <string.h>
 #include <Game.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <MessageDispatcher.h>
 #include <PhysicalWorld.h>
 #include <I18n.h>
@@ -112,7 +112,7 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __
 	GameState_startClocks(__SAFE_CAST(GameState, this));
 
 	// fade in screen
-	Screen_startEffect(Screen_getInstance(),
+	Camera_startEffect(Camera_getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
@@ -141,7 +141,7 @@ void AutoPauseScreenState_processUserInput(AutoPauseScreenState this, UserInput 
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
-		Screen_startEffect(Screen_getInstance(),
+		Camera_startEffect(Camera_getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness

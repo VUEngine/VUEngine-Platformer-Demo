@@ -30,7 +30,7 @@
 #include <MessageDispatcher.h>
 #include <Box.h>
 #include <PhysicalWorld.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <EventManager.h>
 #include <GoalDoor.h>
 #include <PlatformerLevelState.h>
@@ -102,7 +102,7 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 
 			// fade out screen
 			Brightness brightness = (Brightness){0, 0, 0};
-			Screen_startEffect(Screen_getInstance(),
+			Camera_startEffect(Camera_getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				&brightness, // target brightness

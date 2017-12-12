@@ -159,7 +159,7 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 		{9, 9, 9},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -220,10 +220,10 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	},
 
 	// velocity
-	__I_TO_FIX19_13(50),
+	__I_TO_FIX10_6(50),
 
 	// maximum deviation from initial position
-	__I_TO_FIX19_13(3 * 8),
+	__I_TO_FIX10_6(3 * 8),
 
 	// time to rest idle
 	750,
@@ -278,10 +278,10 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	},
 
 	// velocity
-	__I_TO_FIX19_13(50),
+	__I_TO_FIX10_6(50),
 
 	// maximum deviation from initial position
-	__I_TO_FIX19_13(3 * 8),
+	__I_TO_FIX10_6(3 * 8),
 
 	// time to rest idle
 	0,
@@ -336,10 +336,10 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	},
 
 	// velocity
-	__I_TO_FIX19_13(50),
+	__I_TO_FIX10_6(50),
 
 	// maximum deviation from initial position
-	__I_TO_FIX19_13(8 * 8),
+	__I_TO_FIX10_6(8 * 8),
 
 	// time to rest idle
 	0,

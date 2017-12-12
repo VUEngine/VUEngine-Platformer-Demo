@@ -100,7 +100,7 @@ BgmapSpriteROMDef TEST_COG_WHEEL_BG_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, __F_TO_FIX19_13(-1)},
+		{0, 0, 0, __I_TO_FIX10_6(-1)},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -129,10 +129,10 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{20 * 8, 2 * 8, 4 * 8},
+		{__I_TO_FIX10_6(10), __I_TO_FIX10_6(1), __I_TO_FIX10_6(8)},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -150,17 +150,17 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		kNoLayer,
 	},
 
-//	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 
 	{
 		// shape
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{40, 32, 32},
+		{__F_TO_FIX10_6(2.5f), __F_TO_FIX10_6(2.5f), __F_TO_FIX10_6(2.5f)},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -187,7 +187,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		{12, 10 * 8, 4 * 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -213,7 +213,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		{12, 10 * 8, 4 * 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 128},
@@ -237,13 +237,13 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 PhysicalSpecificationROMDef TEST_COG_WHEEL_IM_PHYSICAL_PROPERTIES =
 {
 	// mass
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX10_6(0),
 
 	// friction
-	__F_TO_FIX19_13(0.15f),
+	__F_TO_FIX10_6(0.15f),
 
 	// elasticity
-	__F_TO_FIX19_13(0.0f),
+	__F_TO_FIX10_6(0.0f),
 };
 
 TestCogWheelROMDef TEST_COG_WHEEL_IM =

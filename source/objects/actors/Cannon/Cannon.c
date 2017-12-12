@@ -31,10 +31,10 @@
 #include <PhysicalWorld.h>
 #include <ProgressManager.h>
 #include <Container.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <ParticleSystem.h>
 #include <SoundManager.h>
-#include <CustomScreenEffectManager.h>
+#include <CustomCameraEffectManager.h>
 #include <CannonBall.h>
 #include "Cannon.h"
 #include <PlatformerLevelState.h>
@@ -152,7 +152,7 @@ void Cannon_spawnCannonBall(Cannon this)
 	ASSERT(this, "Cannon::spawnCannonBall: null this");
 
 	// start short screen shake
-	Screen_startEffect(Screen_getInstance(), kShake, 250);
+	Camera_startEffect(Camera_getInstance(), kShake, 250);
 
 	// play boom sound
 	extern const u16 FIRE_SND[];

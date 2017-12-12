@@ -45,12 +45,12 @@ extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM;
 
 PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {__F_TO_FIX19_13(12), __F_TO_FIX19_13(12), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Left (Left Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {__F_TO_FIX19_13(12), __F_TO_FIX19_13(212), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Left (Right Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_BG_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(112), __F_TO_FIX19_13(16)}, 0, NULL, NULL, NULL, false}, // Background
-	{&ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(112), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Logo
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {__F_TO_FIX19_13(372), __F_TO_FIX19_13(212), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Right (Left Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {__F_TO_FIX19_13(372), __F_TO_FIX19_13(12), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Right (Right Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {__F_TO_FIX10_6(12), __F_TO_FIX10_6(12), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Left (Left Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {__F_TO_FIX10_6(12), __F_TO_FIX10_6(212), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Left (Right Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_BG_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(112), __F_TO_FIX10_6(16)}, 0, NULL, NULL, NULL, false}, // Background
+	{&ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(112), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Logo
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {__F_TO_FIX10_6(372), __F_TO_FIX10_6(212), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Icon Bottom Right (Left Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {__F_TO_FIX10_6(372), __F_TO_FIX10_6(12), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Icon Top Right (Right Eye)
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -93,14 +93,14 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 			__SCREEN_DEPTH,
 		},
 
-		// screen's initial position inside the game world
+		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// y
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// z
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 		},
 	},
 
@@ -193,13 +193,13 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt1
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt2
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt3
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 		},
 
 		// optical configuration values
@@ -207,13 +207,13 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX19_13(__DISTANCE_EYE_SCREEN),
+			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX19_13(__BASE_FACTOR),
+			__I_TO_FIX10_6(__BASE_FACTOR),
 			// horizontal view point center
-			__I_TO_FIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
-			__I_TO_FIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
 		},
 	},
 
@@ -221,13 +221,13 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 	{
 		// gravity
 		{
-			__I_TO_FIX19_13(0),
-			__I_TO_FIX19_13(__GRAVITY),
-			__I_TO_FIX19_13(0)
+			__I_TO_FIX10_6(0),
+			__I_TO_FIX10_6(__GRAVITY),
+			__I_TO_FIX10_6(0)
 		},
 
 		// friction
-		__F_TO_FIX19_13(0.1f),
+		__F_TO_FIX10_6(0.1f),
 	},
 
 	// assets

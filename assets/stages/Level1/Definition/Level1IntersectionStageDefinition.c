@@ -72,42 +72,42 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {__F_TO_FIX19_13(8), __F_TO_FIX19_13(152), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Left Collision
-	{&DOOR_AG, {__F_TO_FIX19_13(36), __F_TO_FIX19_13(160), __F_TO_FIX19_13(LAYER_0_DOORS)}, 0, "IntEntr2", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_EXIT_EP, false}, // Door (Lower Entrance)
-	//{&TORCH_LIGHT_AG, {__F_TO_FIX19_13(56), __F_TO_FIX19_13(148), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Lower Left Torch Light
-	{&HERO_AC, {__F_TO_FIX19_13(56), __F_TO_FIX19_13(164), __F_TO_FIX19_13(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
-	{&TORCH_OFF_IM, {__F_TO_FIX19_13(56), __F_TO_FIX19_13(146), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Lower Left Torch
-	{&TORCH_SMOKE_PS, {__F_TO_FIX19_13(56), __F_TO_FIX19_13(136), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
-	{&COLLISION_CL, {__F_TO_FIX19_13(112), __F_TO_FIX19_13(96), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_64_8, false}, // Center Collision
-	{&COLLISION_CL, {__F_TO_FIX19_13(136), __F_TO_FIX19_13(184), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_272_16_8, false}, // Bottom Collision
-	{&COLLISION_CL, {__F_TO_FIX19_13(144), __F_TO_FIX19_13(32), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_32_64_8, false}, // Top Left Collision
-	//{&SAW_BLADE_H8_AC, {__F_TO_FIX19_13(172), __F_TO_FIX19_13(176), __F_TO_FIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Saw Blade
-	{&DOOR_AG, {__F_TO_FIX19_13(178), __F_TO_FIX19_13(48), __F_TO_FIX19_13(LAYER_0_DOORS)}, 0, "IntEntr1", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, false}, // Door (Upper Entrance)
-	{&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(96), __F_TO_FIX19_13(-SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // MainBack
-	{&LEVEL1_INTERSECTION_STAGE_BACK_1_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(96), __F_TO_FIX19_13(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Back
-	{&LEVEL1_INTERSECTION_STAGE_MAIN_1_IM, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(96), __F_TO_FIX19_13(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false}, // Main
-	{&TORCH_OFF_IM, {__F_TO_FIX19_13(206), __F_TO_FIX19_13(34), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Upper Left Torch
-	//{&TORCH_LIGHT_AG, {__F_TO_FIX19_13(206), __F_TO_FIX19_13(148), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Lower Right Torch Light
-	{&TORCH_OFF_IM, {__F_TO_FIX19_13(206), __F_TO_FIX19_13(146), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Lower Right Torch
-	//{&TORCH_LIGHT_AG, {__F_TO_FIX19_13(206), __F_TO_FIX19_13(36), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Upper Left Torch Light
-	{&COIN_AG, {__F_TO_FIX19_13(236), __F_TO_FIX19_13(108), __F_TO_FIX19_13(LAYER_0_ITEMS)}, 47, NULL, NULL, NULL, false}, // Coin
-	{&COLLISION_TOP_CL, {__F_TO_FIX19_13(248), __F_TO_FIX19_13(80), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_32_8, false}, // Upper One-Way
-	{&COLLISION_TOP_CL, {__F_TO_FIX19_13(248), __F_TO_FIX19_13(135), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_34_8, false}, // Lower One-Way
-	{&COIN_AG, {__F_TO_FIX19_13(260), __F_TO_FIX19_13(108), __F_TO_FIX19_13(LAYER_0_ITEMS)}, 46, NULL, NULL, NULL, false}, // Coin
-	{&COLLISION_CL, {__F_TO_FIX19_13(272), __F_TO_FIX19_13(8), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_16_8, false}, // Top Collision
-	//{&TORCH_LIGHT_AG, {__F_TO_FIX19_13(320), __F_TO_FIX19_13(36), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // Upper Right Torch Light
-	{&TORCH_OFF_IM, {__F_TO_FIX19_13(320), __F_TO_FIX19_13(34), __F_TO_FIX19_13(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Upper Right Torch
-	{&TORCH_SMOKE_PS, {__F_TO_FIX19_13(320), __F_TO_FIX19_13(24), __F_TO_FIX19_13(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
-	{&COLLISION_CL, {__F_TO_FIX19_13(328), __F_TO_FIX19_13(128), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_112_128_8, false}, // Bottom Right Collision
-	{&DOOR_AG, {__F_TO_FIX19_13(350), __F_TO_FIX19_13(48), __F_TO_FIX19_13(LAYER_0_DOORS)}, 0, "IntExit", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false}, // Door (Exit)
-	{&COLLISION_CL, {__F_TO_FIX19_13(376), __F_TO_FIX19_13(40), __F_TO_FIX19_13(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Top Right Collision
+	{&COLLISION_CL, {__F_TO_FIX10_6(8), __F_TO_FIX10_6(152), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Left Collision
+	{&DOOR_AG, {__F_TO_FIX10_6(36), __F_TO_FIX10_6(160), __F_TO_FIX10_6(LAYER_0_DOORS)}, 0, "IntEntr2", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_EXIT_EP, false}, // Door (Lower Entrance)
+	//{&TORCH_LIGHT_AG, {__F_TO_FIX10_6(56), __F_TO_FIX10_6(148), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Lower Left Torch Light
+	{&HERO_AC, {__F_TO_FIX10_6(56), __F_TO_FIX10_6(164), __F_TO_FIX10_6(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
+	{&TORCH_OFF_IM, {__F_TO_FIX10_6(56), __F_TO_FIX10_6(146), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Lower Left Torch
+	{&TORCH_SMOKE_PS, {__F_TO_FIX10_6(56), __F_TO_FIX10_6(136), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
+	{&COLLISION_CL, {__F_TO_FIX10_6(112), __F_TO_FIX10_6(96), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_64_8, false}, // Center Collision
+	{&COLLISION_CL, {__F_TO_FIX10_6(136), __F_TO_FIX10_6(184), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_272_16_8, false}, // Bottom Collision
+	{&COLLISION_CL, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(32), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_32_64_8, false}, // Top Left Collision
+	//{&SAW_BLADE_H8_AC, {__F_TO_FIX10_6(172), __F_TO_FIX10_6(176), __F_TO_FIX10_6(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Saw Blade
+	{&DOOR_AG, {__F_TO_FIX10_6(178), __F_TO_FIX10_6(48), __F_TO_FIX10_6(LAYER_0_DOORS)}, 0, "IntEntr1", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, false}, // Door (Upper Entrance)
+	{&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(96), __F_TO_FIX10_6(-SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // MainBack
+	{&LEVEL1_INTERSECTION_STAGE_BACK_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(96), __F_TO_FIX10_6(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Back
+	{&LEVEL1_INTERSECTION_STAGE_MAIN_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(96), __F_TO_FIX10_6(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false}, // Main
+	{&TORCH_OFF_IM, {__F_TO_FIX10_6(206), __F_TO_FIX10_6(34), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Upper Left Torch
+	//{&TORCH_LIGHT_AG, {__F_TO_FIX10_6(206), __F_TO_FIX10_6(148), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Lower Right Torch Light
+	{&TORCH_OFF_IM, {__F_TO_FIX10_6(206), __F_TO_FIX10_6(146), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Lower Right Torch
+	//{&TORCH_LIGHT_AG, {__F_TO_FIX10_6(206), __F_TO_FIX10_6(36), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Upper Left Torch Light
+	{&COIN_AG, {__F_TO_FIX10_6(236), __F_TO_FIX10_6(108), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 47, NULL, NULL, NULL, false}, // Coin
+	{&COLLISION_TOP_CL, {__F_TO_FIX10_6(248), __F_TO_FIX10_6(80), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_32_8, false}, // Upper One-Way
+	{&COLLISION_TOP_CL, {__F_TO_FIX10_6(248), __F_TO_FIX10_6(135), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_34_8, false}, // Lower One-Way
+	{&COIN_AG, {__F_TO_FIX10_6(260), __F_TO_FIX10_6(108), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 46, NULL, NULL, NULL, false}, // Coin
+	{&COLLISION_CL, {__F_TO_FIX10_6(272), __F_TO_FIX10_6(8), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_16_8, false}, // Top Collision
+	//{&TORCH_LIGHT_AG, {__F_TO_FIX10_6(320), __F_TO_FIX10_6(36), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Upper Right Torch Light
+	{&TORCH_OFF_IM, {__F_TO_FIX10_6(320), __F_TO_FIX10_6(34), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Upper Right Torch
+	{&TORCH_SMOKE_PS, {__F_TO_FIX10_6(320), __F_TO_FIX10_6(24), __F_TO_FIX10_6(LAYER_0_FOREGROUND + 8)},	0, NULL, NULL, NULL, false},
+	{&COLLISION_CL, {__F_TO_FIX10_6(328), __F_TO_FIX10_6(128), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_112_128_8, false}, // Bottom Right Collision
+	{&DOOR_AG, {__F_TO_FIX10_6(350), __F_TO_FIX10_6(48), __F_TO_FIX10_6(LAYER_0_DOORS)}, 0, "IntExit", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false}, // Door (Exit)
+	{&COLLISION_CL, {__F_TO_FIX10_6(376), __F_TO_FIX10_6(40), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Top Right Collision
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {__F_TO_FIX19_13(192), __F_TO_FIX19_13(216), __F_TO_FIX19_13(0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_AG, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(216), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -150,14 +150,14 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			__SCREEN_DEPTH,
 		},
 
-		// screen's initial position inside the game world
+		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// y
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// z
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 		},
 	},
 
@@ -250,13 +250,13 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt1
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt2
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt3
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 		},
 
 		// optical configuration values
@@ -264,13 +264,13 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX19_13(__DISTANCE_EYE_SCREEN),
+			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX19_13(__BASE_FACTOR),
+			__I_TO_FIX10_6(__BASE_FACTOR),
 			// horizontal view point center
-			__I_TO_FIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
-			__I_TO_FIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
 		},
 	},
 
@@ -278,13 +278,13 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 	{
 		// gravity
 		{
-			__I_TO_FIX19_13(0),
-			__I_TO_FIX19_13(__GRAVITY),
-			__I_TO_FIX19_13(0)
+			__I_TO_FIX10_6(0),
+			__I_TO_FIX10_6(__GRAVITY),
+			__I_TO_FIX10_6(0)
 		},
 
 		// friction
-		__F_TO_FIX19_13(0),
+		__F_TO_FIX10_6(0),
 	},
 
 	// assets
@@ -333,9 +333,9 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_EXIT_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(-16),
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(-SORT_INCREMENT),
+		__F_TO_FIX10_6(-16),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -352,9 +352,9 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_LOWER_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(19),
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(-SORT_INCREMENT),
+		__F_TO_FIX10_6(19),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -371,9 +371,9 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(19),
-		__F_TO_FIX19_13(0),
-		__F_TO_FIX19_13(-SORT_INCREMENT),
+		__F_TO_FIX10_6(19),
+		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint

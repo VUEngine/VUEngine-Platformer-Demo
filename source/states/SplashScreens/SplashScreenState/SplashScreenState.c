@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <MessageDispatcher.h>
 #include <SplashScreenState.h>
 #include <KeypadManager.h>
@@ -117,7 +117,7 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 
 	// start a fade in effect
-	Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DELAY);
+	Camera_startEffect(Camera_getInstance(), kFadeIn, __FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -146,7 +146,7 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 		case kScreenStarted:
 
 			// start fade in effect
-			Screen_startEffect(Screen_getInstance(),
+			Camera_startEffect(Camera_getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				NULL, // target brightness
@@ -182,7 +182,7 @@ void SplashScreenState_loadNextState(SplashScreenState this)
 
 	// start fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};
-	Screen_startEffect(Screen_getInstance(),
+	Camera_startEffect(Camera_getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		&brightness, // target brightness

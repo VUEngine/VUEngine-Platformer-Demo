@@ -56,7 +56,7 @@ __CLASS(Clouds);
 		/* it is derived from */																		\
 		Entity_ATTRIBUTES																			\
 		/* displacement per cycle */																	\
-		fix19_13 displacement;																			\
+		fix10_6 displacement;																			\
 
 
 typedef struct CloudsDefinition
@@ -65,7 +65,7 @@ typedef struct CloudsDefinition
 	EntityDefinition EntityDefinition;
 
 	// displacement per cycle
-	fix19_13 displacement;
+	fix10_6 displacement;
 
 } CloudsDefinition;
 

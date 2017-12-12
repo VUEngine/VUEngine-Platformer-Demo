@@ -99,10 +99,10 @@ BgmapSpriteROMDef TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITE =
 
 		// displacement
 		{
-			__F_TO_FIX19_13(0), // x
-			__F_TO_FIX19_13(0), // y
-			__F_TO_FIX19_13(-1), // z
-			__F_TO_FIX19_13(0), // parallax
+			__F_TO_FIX10_6(0), // x
+			__F_TO_FIX10_6(0), // y
+			__F_TO_FIX10_6(-1), // z
+			__F_TO_FIX10_6(0), // parallax
 		},
 	},
 

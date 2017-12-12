@@ -30,10 +30,10 @@
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <PhysicalWorld.h>
 #include <Lava.h>
-#include <CustomScreenEffectManager.h>
+#include <CustomCameraEffectManager.h>
 #include "LavaTrigger.h"
 #include <PlatformerLevelState.h>
 #include <EventManager.h>
@@ -107,7 +107,7 @@ void LavaTrigger_triggerEventStart(LavaTrigger this)
 	PlatformerLevelState_setModeToPaused(platformerState);
 
 	// initialize a dramatic screen shake effect
-	Screen_startEffect(Screen_getInstance(), kShake, 3000);
+	Camera_startEffect(Camera_getInstance(), kShake, 3000);
 
 	// TODO: play rumble BGM
 

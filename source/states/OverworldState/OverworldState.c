@@ -27,7 +27,7 @@
 #include <string.h>
 
 #include <Game.h>
-#include <Screen.h>
+#include <Camera.h>
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <Languages.h>
@@ -38,7 +38,7 @@
 #include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
-#include <CustomScreenMovementManager.h>
+#include <CustomCameraMovementManager.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
 #include <KeyPadManager.h>
@@ -143,7 +143,7 @@ static void OverworldState_resume(OverworldState this, void* owner)
 	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// make a fade in
-	Screen_startEffect(Screen_getInstance(), kFadeIn, __FADE_DELAY);
+	Camera_startEffect(Camera_getInstance(), kFadeIn, __FADE_DELAY);
 
 	// pause physical simulations
 	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
@@ -176,7 +176,7 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 #endif
 
 	// make a fade out
-	Screen_startEffect(Screen_getInstance(), kFadeOut, __FADE_DELAY);
+	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
 
 	__CALL_BASE_METHOD(GameState, suspend, this, owner);
 }
@@ -204,7 +204,7 @@ void OverworldState_processUserInput(OverworldState this, UserInput userInput)
 
 		// start a fade out effect
 		Brightness brightness = (Brightness){0, 0, 0};
-		Screen_startEffect(Screen_getInstance(),
+		Camera_startEffect(Camera_getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
@@ -220,7 +220,7 @@ void OverworldState_processUserInput(OverworldState this, UserInput userInput)
 
 		// start a fade out effect
 		Brightness brightness = (Brightness){0, 0, 0};
-		Screen_startEffect(Screen_getInstance(),
+		Camera_startEffect(Camera_getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
@@ -251,7 +251,7 @@ static bool OverworldState_processMessage(OverworldState this, void* owner __att
 			OverworldState_print(this);
 
 			// fade in screen
-			Screen_startEffect(Screen_getInstance(),
+			Camera_startEffect(Camera_getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				NULL, // target brightness

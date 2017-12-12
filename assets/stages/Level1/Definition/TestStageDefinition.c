@@ -46,8 +46,8 @@ extern StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_EXIT_EP;
 extern StageEntryPointROMDef LEVEL1_TOWER_STAGE_MAIN_EP;
 extern u16 WORLD_0_0_0_BGM[][2];
 
-StageEntryPointROMDef TEST_LEVEL_LS_BACK_EP;
-StageEntryPointROMDef TEST_LEVEL_LS_FRONT_EP;
+StageEntryPointROMDef TEST_LS_BACK_EP;
+StageEntryPointROMDef TEST_LS_FRONT_EP;
 
 extern EntityDefinition BANDANA_AG;
 extern EntityDefinition BUSH_AG;
@@ -74,15 +74,15 @@ extern EntityDefinition KEY_DOOR_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
 extern EntityDefinition LEVEL_1_HOUSE_IM;
-extern EntityDefinition TEST_LEVEL_1_BACK_1_IM;
-extern EntityDefinition TEST_LEVEL_1_BACK_5_IM;
-extern EntityDefinition TEST_LEVEL_1_MAIN_1_IM;
-extern EntityDefinition TEST_LEVEL_1_MAIN_2_IM;
-extern EntityDefinition TEST_LEVEL_1_MAIN_3_A_IM;
-extern EntityDefinition TEST_LEVEL_1_MAIN_3_B_IM;
-extern EntityDefinition TEST_LEVEL_1_MAIN_4_IM;
-extern EntityDefinition TEST_LEVEL_1_MAIN_5_IM;
-extern EntityDefinition TEST_LEVEL_1_MAIN_6_IM;
+extern EntityDefinition TEST_1_BACK_1_IM;
+extern EntityDefinition TEST_1_BACK_5_IM;
+extern EntityDefinition TEST_1_MAIN_1_IM;
+extern EntityDefinition TEST_1_MAIN_2_IM;
+extern EntityDefinition TEST_1_MAIN_3_A_IM;
+extern EntityDefinition TEST_1_MAIN_3_B_IM;
+extern EntityDefinition TEST_1_MAIN_4_IM;
+extern EntityDefinition TEST_1_MAIN_5_IM;
+extern EntityDefinition TEST_1_MAIN_6_IM;
 extern EntityDefinition LEVEL_1_TOWER_IM;
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition MOUND_1_IM;
@@ -119,28 +119,28 @@ extern EntityDefinition MOVING_PLATFORM_V6_AC;
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-const Size collision_48_5_2 = 	{48 * 8, 5 * 8, 5 * 8};
+const Size collision_48_5_2 = 	{48 * 1, 5 * 1, 5 * 1};
 
-PositionedEntityROMDef TEST_LEVEL_STAGE_ST_CHILDREN[] =
+PositionedEntityROMDef TEST_STAGE_ST_CHILDREN[] =
 {
-//	{&TORCH_SMOKE_PS,				{__F_TO_FIX19_13(192-64),	__F_TO_FIX19_13(224/2), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
-//	{&SMOKE_PS,						{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), 	__F_TO_FIX19_13(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
-//	{&SAW_BLADE_H8_AC,				{__F_TO_FIX19_13(192+64),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(0)},			0, NULL, NULL, NULL, false},
-//	{&SAW_BLADE_V3_AC,				{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(0)},			0, NULL, NULL, NULL, false},
-//	{&SNAIL_3_AC,					{__F_TO_FIX19_13(192-64), __F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-	{&TEST_1_PS,					{__F_TO_FIX19_13(192 + 20),	__F_TO_FIX19_13(10), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
-	{&TEST_2_PS,					{__F_TO_FIX19_13(0),	__F_TO_FIX19_13(90), 	__F_TO_FIX19_13(0)},0, NULL, NULL, NULL, false},
-	{&COLLISION_CL,					{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2+30), 	__F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
-//	{&COG_WHEEL_IM,					{__F_TO_FIX19_13(192-64),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
-//	{&MOVING_PLATFORM_V6_AC,		{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(112), 	__F_TO_FIX19_13(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
-	{&TEST_COG_WHEEL_IM,			{__F_TO_FIX19_13(192),	__F_TO_FIX19_13(224/2), __F_TO_FIX19_13(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
-//	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX19_13(192+100), __F_TO_FIX19_13(100),	__F_TO_FIX19_13(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
-//	{&WATER_POND_EN,			{__F_TO_FIX19_13(192+100), __F_TO_FIX19_13(100),	__F_TO_FIX19_13(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
-//	{&KEY_DOOR_AG,					{__F_TO_FIX19_13(44), 	__F_TO_FIX19_13(112-12), 	__F_TO_FIX19_13(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
+//	{&TORCH_SMOKE_PS,				{__F_TO_FIX10_6(192-64),	__F_TO_FIX10_6(224/2), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
+//	{&SMOKE_PS,						{__F_TO_FIX10_6(192),	__F_TO_FIX10_6(224/2), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
+//	{&SAW_BLADE_H8_AC,				{__F_TO_FIX10_6(192+64),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(0)},			0, NULL, NULL, NULL, false},
+//	{&SAW_BLADE_V3_AC,				{__F_TO_FIX10_6(192),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(0)},			0, NULL, NULL, NULL, false},
+//	{&SNAIL_3_AC,					{__F_TO_FIX10_6(192-64), __F_TO_FIX10_6(112), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+	{&TEST_1_PS,					{__F_TO_FIX10_6((192 + 20)/ 16),	__F_TO_FIX10_6(8 / 16.0f), 	__F_TO_FIX10_6(0)},0, NULL, NULL, NULL, false},
+//	{&TEST_2_PS,					{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(90), 	__F_TO_FIX10_6(0)},0, NULL, NULL, NULL, false},
+//	{&COLLISION_CL,					{__F_TO_FIX10_6(192/16),	__F_TO_FIX10_6((224/2+30)/16), 	__F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
+//	{&COG_WHEEL_IM,					{__F_TO_FIX10_6(192-64),	__F_TO_FIX10_6(224/2), __F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
+//	{&MOVING_PLATFORM_V6_AC,		{__F_TO_FIX10_6(192),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
+	{&TEST_COG_WHEEL_IM,			{__F_TO_FIX10_6(192/16),	__F_TO_FIX10_6(224/2/16), __F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
+//	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX10_6(192+100), __F_TO_FIX10_6(100),	__F_TO_FIX10_6(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
+//	{&WATER_POND_EN,			{__F_TO_FIX10_6(192+100), __F_TO_FIX10_6(100),	__F_TO_FIX10_6(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
+//	{&KEY_DOOR_AG,					{__F_TO_FIX10_6(44), 	__F_TO_FIX10_6(112-12), 	__F_TO_FIX10_6(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef TEST_LEVEL_STAGE_ST_UI_CHILDREN[] =
+PositionedEntityROMDef TEST_STAGE_ST_UI_CHILDREN[] =
 {
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -150,7 +150,7 @@ PositionedEntityROMDef TEST_LEVEL_STAGE_ST_UI_CHILDREN[] =
 //											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const TEST_LEVEL_STAGE_ST_FONTS[] =
+FontROMDef* const TEST_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
@@ -158,17 +158,17 @@ FontROMDef* const TEST_LEVEL_STAGE_ST_FONTS[] =
 	NULL
 };
 
-CharSetROMDef* const TEST_LEVEL_STAGE_ST_CHARSETS[] =
+CharSetROMDef* const TEST_STAGE_ST_CHARSETS[] =
 {
 	NULL
 };
 
-TextureDefinition* const TEST_LEVEL_STAGE_ST_TEXTURES[] =
+TextureDefinition* const TEST_STAGE_ST_TEXTURES[] =
 {
 	NULL
 };
 
-const PostProcessingEffect TEST_LEVEL_STAGE_ST_POST_PROCESSING_EFFECTS[] =
+const PostProcessingEffect TEST_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 {
 	NULL
 };
@@ -178,28 +178,28 @@ const PostProcessingEffect TEST_LEVEL_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef TEST_LEVEL_STAGE_ST =
+StageROMDef TEST_STAGE_ST =
 {
 	// level
 	{
 		// size
 		{
 			// x
-			384,
+			__I_TO_FIX10_6(384 / 16),
 			// y
-			224,
+			__I_TO_FIX10_6(224 / 16),
 			// z
-			384,
+			__I_TO_FIX10_6(384 / 16),
 		},
 
-		// screen's initial position inside the game world
+		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// y
-			__I_TO_FIX19_13(0),
+			__I_TO_FIX10_6(0),
 			// z
-			__I_TO_FIX19_13(0)
+			__I_TO_FIX10_6(0)
 		},
 	},
 
@@ -292,13 +292,13 @@ StageROMDef TEST_LEVEL_STAGE_ST =
 		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
 			// __spt0
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt1
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt2
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 			// __spt3
-			__F_TO_FIX19_13(LAYER_0_PARTICLES),
+			__F_TO_FIX10_6(LAYER_0_PARTICLES),
 		},
 
 		// optical configuration values
@@ -306,13 +306,13 @@ StageROMDef TEST_LEVEL_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX19_13(__DISTANCE_EYE_SCREEN),
+			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX19_13(__BASE_FACTOR),
+			__I_TO_FIX10_6(128),
 			// horizontal view point center
-			__I_TO_FIX19_13(__HORIZONTAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
-			__I_TO_FIX19_13(__VERTICAL_VIEW_POINT_CENTER),
+			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
 		},
 	},
 
@@ -320,25 +320,25 @@ StageROMDef TEST_LEVEL_STAGE_ST =
 	{
 		// gravity
 		{
-			__I_TO_FIX19_13(0),
-			__F_TO_FIX19_13(980),
-			__I_TO_FIX19_13(0)
+			__I_TO_FIX10_6(0),
+			__F_TO_FIX10_6(9.8f),
+			__I_TO_FIX10_6(0)
 		},
 
 		// friction
-		__F_TO_FIX19_13(0),
+		__F_TO_FIX10_6(0),
 	},
 
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)TEST_LEVEL_STAGE_ST_FONTS,
+		(FontDefinition**)TEST_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)TEST_LEVEL_STAGE_ST_CHARSETS,
+		(CharSetDefinition**)TEST_STAGE_ST_CHARSETS,
 
 		// textures to preload
-		(TextureDefinition**)TEST_LEVEL_STAGE_ST_TEXTURES,
+		(TextureDefinition**)TEST_STAGE_ST_TEXTURES,
 
 		// background music
 		NULL,
@@ -349,16 +349,16 @@ StageROMDef TEST_LEVEL_STAGE_ST =
 	{
 		// ui
 		{
-			TEST_LEVEL_STAGE_ST_UI_CHILDREN,
+			TEST_STAGE_ST_UI_CHILDREN,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		TEST_LEVEL_STAGE_ST_CHILDREN,
+		TEST_STAGE_ST_CHILDREN,
 	},
 
 	// post processing effects
-	(PostProcessingEffect*)TEST_LEVEL_STAGE_ST_POST_PROCESSING_EFFECTS,
+	(PostProcessingEffect*)TEST_STAGE_ST_POST_PROCESSING_EFFECTS,
 };
 
 
@@ -366,19 +366,19 @@ StageROMDef TEST_LEVEL_STAGE_ST =
 //												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMDef TEST_LEVEL_EP =
+StageEntryPointROMDef TEST_STAGE_EP =
 {
 	// the stage to load
-	(StageDefinition*)&TEST_LEVEL_STAGE_ST,
+	(StageDefinition*)&TEST_STAGE_ST,
 
 	// name of the entity to start at
 	"EntryPoint",
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX19_13(40),
-		__F_TO_FIX19_13(-50),
-		__F_TO_FIX19_13(0),
+		__F_TO_FIX10_6(40/16),
+		__F_TO_FIX10_6(-50/16),
+		__F_TO_FIX10_6(0/16),
 	},
 
 	// whether this entry point acts as a checkpoint

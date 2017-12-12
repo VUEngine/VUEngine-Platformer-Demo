@@ -128,7 +128,7 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 		{32, 16, 16},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-8), __I_TO_FIX19_13(0)},
+		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-8), __I_TO_FIX10_6(0)},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -152,13 +152,13 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 PhysicalSpecificationROMDef ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =
 {
 	// mass
-	__F_TO_FIX19_13(0),
+	__F_TO_FIX10_6(0),
 
 	// friction
-	__F_TO_FIX19_13(FLOOR_FRICTION),
+	__F_TO_FIX10_6(FLOOR_FRICTION),
 
 	// elasticity
-	__F_TO_FIX19_13(FLOOR_ELASTICITY),
+	__F_TO_FIX10_6(FLOOR_ELASTICITY),
 };
 
 

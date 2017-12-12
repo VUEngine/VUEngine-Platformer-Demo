@@ -33,7 +33,7 @@
 #include <Container.h>
 #include <Entity.h>
 #include <VIPManager.h>
-#include <Screen.h>
+#include <Camera.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@
 
 
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
-void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, Vector3D spatialObjectPosition, int parallax);
+void PostProcessingEffects_drawRhombus(fix10_6 radiusFix10_6, u32 color, Vector3D spatialObjectPosition, int parallax);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 	}
 }
 
-void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, fix19_13* xStep, fix19_13 maximumYThrottle, fix19_13 minimumYThrottle, fix19_13 maximumXStep, fix19_13 minimumXStep)
+void PostProcessingEffects_calculateRainPrecipitation(fix10_6* yStepThrottle, fix10_6* xStep, fix10_6 maximumYThrottle, fix10_6 minimumYThrottle, fix10_6 maximumXStep, fix10_6 minimumXStep)
 {
 	static u32 previousTime = 0;
 	static u8 timePeriodIndex = 0;
@@ -263,10 +263,10 @@ void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, f
 	}
 
 	// multiply by the game cycle per second
-	int rainPeriod =  __I_TO_FIX19_13(((int)timePeriod[timePeriodIndex] + previousTime % timePeriod[timePeriodIndex]) * 50);
+	int rainPeriod =  __I_TO_FIX10_6(((int)timePeriod[timePeriodIndex] + previousTime % timePeriod[timePeriodIndex]) * 50);
 
-	*yStepThrottle += __FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle), rainPeriod);
-	*xStep -= __FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumXStep - minimumXStep), rainPeriod);
+	*yStepThrottle += __FIX10_6_DIV(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle), rainPeriod);
+	*xStep -= __FIX10_6_DIV(rainAcceleration[rainAccelerationIndex] * (maximumXStep - minimumXStep), rainPeriod);
 
 	if(*yStepThrottle < minimumYThrottle)
 	{
@@ -283,21 +283,21 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 {
  	#define RAIN_X_RANGE_1					383
  	#define RAIN_MINIMUM_DROPLET_LENGTH		3
- 	#define RAIN_MINIMUM_Y_THROTTLE_1		__I_TO_FIX19_13(-5)
- 	#define RAIN_MAXIMUM_Y_THROTTLE_1		__I_TO_FIX19_13(2)
- 	#define RAIN_MINIMUM_X_STEP_1			__I_TO_FIX19_13(25)
- 	#define RAIN_MAXIMUM_X_STEP_1			__I_TO_FIX19_13(90)
+ 	#define RAIN_MINIMUM_Y_THROTTLE_1		__I_TO_FIX10_6(-5)
+ 	#define RAIN_MAXIMUM_Y_THROTTLE_1		__I_TO_FIX10_6(2)
+ 	#define RAIN_MINIMUM_X_STEP_1			__I_TO_FIX10_6(25)
+ 	#define RAIN_MAXIMUM_X_STEP_1			__I_TO_FIX10_6(90)
 	static u16 yStepIndex = 0;
 	static u16 dropletLengthIndex = 0;
-	static fix19_13 yStepThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
-	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_1;
+	static fix10_6 yStepThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
+	static fix10_6 xStep = RAIN_MAXIMUM_X_STEP_1;
  	static Vector3D screenPreviousPosition = {0, 0, 0};
- 	static fix19_13 cumulativeX = 0;
- 	fix19_13 yScreenDisplacement = (_screenPosition->y - screenPreviousPosition.y);
+ 	static fix10_6 cumulativeX = 0;
+ 	fix10_6 yScreenDisplacement = (_cameraPosition->y - screenPreviousPosition.y);
 
- 	cumulativeX += _screenPosition->x - screenPreviousPosition.x;
+ 	cumulativeX += _cameraPosition->x - screenPreviousPosition.x;
 	PostProcessingEffects_calculateRainPrecipitation(&yStepThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
-	screenPreviousPosition = *_screenPosition;
+	screenPreviousPosition = *_cameraPosition;
 
  	const s16 dropletParallax[] =
  	{
@@ -344,9 +344,9 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	yStepThrottle -= yScreenDisplacement;
 
 	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet,
-										0, __SCREEN_WIDTH -1, __FIX19_13_TO_I(-cumulativeX), __FIX19_13_TO_I(xStep),
+										0, __SCREEN_WIDTH -1, __FIX10_6_TO_I(-cumulativeX), __FIX10_6_TO_I(xStep),
 										_cameraFrustum->y0, _cameraFrustum->y1, 0,
-										yStep, sizeof(yStep) >> SIZE_OF_U16_POWER, &yStepIndex, __FIX19_13_TO_I(yStepThrottle),
+										yStep, sizeof(yStep) >> SIZE_OF_U16_POWER, &yStepIndex, __FIX10_6_TO_I(yStepThrottle),
 										y, sizeof(y) >> SIZE_OF_S16_POWER,
 										dropletLength, sizeof(dropletLength) >> SIZE_OF_U16_POWER, &dropletLengthIndex, RAIN_MINIMUM_DROPLET_LENGTH,
 										dropletParallax, sizeof(dropletParallax) >> SIZE_OF_S16_POWER);
@@ -394,8 +394,8 @@ void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, Vector3D 
 	};
 
 	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet,
-										__FIX19_13_TO_I(position.x) - (width >> 1), __FIX19_13_TO_I(position.x) + (width >> 1), 0, 1,
-										__FIX19_13_TO_I(position.y) - (height >> 1), __FIX19_13_TO_I(position.y) + (height >> 1), 0,
+										__FIX10_6_TO_I(position.x) - (width >> 1), __FIX10_6_TO_I(position.x) + (width >> 1), 0, 1,
+										__FIX10_6_TO_I(position.y) - (height >> 1), __FIX10_6_TO_I(position.y) + (height >> 1), 0,
 										yStep, sizeof(yStep) >> SIZE_OF_U16_POWER, &yStepIndex, yStepThrottle,
 										y, sizeof(y) >> SIZE_OF_S16_POWER,
 										dropletLength, sizeof(dropletLength) >> SIZE_OF_U16_POWER, &dropletLengthIndex, 1,
@@ -409,7 +409,7 @@ void PostProcessingEffects_waterFall20x100(u32 currentDrawingFrameBufferSet __at
 		return;
 	}
 
-	Vector3D spatialObjectPosition = Vector3D_toScreen(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject));
+	Vector3D spatialObjectPosition = Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject));
 
 	PostProcessingEffects_waterFall(currentDrawingFrameBufferSet, spatialObjectPosition, 20, 100, 0);
 }
@@ -461,8 +461,8 @@ void PostProcessingEffects_applyMask(u32 currentDrawingFrameBufferSet, int xStar
 
 void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, Vector3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask, bool roundBorder)
 {
- 	int xPosition = __FIX19_13_TO_I(position.x);
- 	int yPosition = __FIX19_13_TO_I(position.y);
+ 	int xPosition = __FIX10_6_TO_I(position.x);
+ 	int yPosition = __FIX10_6_TO_I(position.y);
 	// move y position to the closest 16 multiple
 	int tempYPosition = yPosition + (Y_STEP_SIZE >> 1);
 	yPosition = tempYPosition - __MODULO(tempYPosition, Y_STEP_SIZE);
@@ -603,9 +603,9 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  	}
 
  	Vector3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
- 	heroPosition.y -= __I_TO_FIX19_13(10);
+ 	heroPosition.y -= __I_TO_FIX10_6(10);
 
-	heroPosition = Vector3D_toScreen(heroPosition);
+	heroPosition = Vector3D_getRelativeToCamera(heroPosition);
 
  	#define ELLIPSIS_X_AXIS_LENGTH		55
  	#define ELLIPSIS_Y_AXIS_LENGTH		60
@@ -646,7 +646,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 		return;
 	}
 
-	Vector3D spatialObjectPosition = Vector3D_toScreen(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject));
+	Vector3D spatialObjectPosition = Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject));
 
 	// increase radius by 1 in each cycle
 	radius++;
@@ -663,8 +663,8 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	}
 
 	// draw a rhombus around object with given radius and color
-	PostProcessingEffects_drawRhombus(__I_TO_FIX19_13(radius), __COLOR_BLACK, spatialObjectPosition, -radius / 25);
-//	PostProcessingEffects_drawRhombus(__I_TO_FIX19_13(radius >> 1), __COLOR_BLACK, spatialObjectPosition);
+	PostProcessingEffects_drawRhombus(__I_TO_FIX10_6(radius), __COLOR_BLACK, spatialObjectPosition, -radius / 25);
+//	PostProcessingEffects_drawRhombus(__I_TO_FIX10_6(radius >> 1), __COLOR_BLACK, spatialObjectPosition);
 }
 
 /**
@@ -855,9 +855,9 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, Spatia
 		return;
 	}
 
-	Vector3D heroPosition = Vector3D_toScreen(*Container_getGlobalPosition(__SAFE_CAST(Container, hero)));
-	heroPosition.x = __FIX19_13_TO_I(heroPosition.x);
-	heroPosition.y = __FIX19_13_TO_I(heroPosition.y);
+	Vector3D heroPosition = Vector3D_getRelativeToCamera(*Container_getGlobalPosition(__SAFE_CAST(Container, hero)));
+	heroPosition.x = __FIX10_6_TO_I(heroPosition.x);
+	heroPosition.y = __FIX10_6_TO_I(heroPosition.y);
 
 	// the pixel in screen coordinates (x: 0 - 383, y: 0 - 223)
 	int x = 0;
@@ -953,39 +953,39 @@ inline u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* colum
 /**
  * Helper function used by the rhombus emitter effect that prints a rhombus shape to the frame buffer
  *
- * @param radiusFix19_13
+ * @param radiusFix10_6
  * @param color
  * @param spatialObjectPosition
  */
-void PostProcessingEffects_drawRhombus(fix19_13 radiusFix19_13, u32 color, Vector3D spatialObjectPosition, int parallax)
+void PostProcessingEffects_drawRhombus(fix10_6 radiusFix10_6, u32 color, Vector3D spatialObjectPosition, int parallax)
 {
 	DirectDraw directDraw = DirectDraw_getInstance();
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x - radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix10_6,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix19_13,	spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x + radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix10_6,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {spatialObjectPosition.x + radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x + radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix10_6,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {spatialObjectPosition.x - radiusFix19_13,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix19_13,	spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x - radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix10_6,	spatialObjectPosition.z, parallax},
 		color
 	);
 }

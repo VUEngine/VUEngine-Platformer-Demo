@@ -77,7 +77,7 @@ void Clouds_update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
 
 	// get local position of clouds and subtract defined displacement from x value
 	Vector3D offset = this->transformation.localPosition;
-	offset.x -= __FIX19_13_MULT(this->displacement, elapsedTime);
+	offset.x -= __FIX10_6_MULT(this->displacement, elapsedTime);
 
 	// update clouds' position
 	Container_setLocalPosition(__SAFE_CAST(Container, this), &offset);

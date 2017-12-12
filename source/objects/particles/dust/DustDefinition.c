@@ -62,10 +62,10 @@ ParticleROMDef DUST_PARTICLE =
 	100,
 
 	// particle's minimum mass
-	__F_TO_FIX19_13(0.9f),
+	__F_TO_FIX10_6(0.9f),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX19_13(1.0f),
+	__F_TO_FIX10_6(1.0f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	false,
@@ -126,18 +126,18 @@ ParticleSystemROMDef DUST_PS =
 	(ParticleDefinition*)&DUST_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{__I_TO_FIX19_13(-2), __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__I_TO_FIX10_6(-2), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{__1I_FIX19_13, __I_TO_FIX19_13(0), __I_TO_FIX19_13(0)},
+	{__1I_FIX10_6, __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-3), __I_TO_FIX19_13(0)},
+	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-3), __I_TO_FIX10_6(0)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX19_13(0), __I_TO_FIX19_13(-1), __I_TO_FIX19_13(0)},
+	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-1), __I_TO_FIX10_6(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT
