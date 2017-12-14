@@ -134,13 +134,13 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 			this->size,
 
 			// displacement modifier
-			{0, 0, -__I_TO_FIX10_6(4 * 1)},
+			{0, 0, -__I_TO_FIX10_6(1)},
 
 			// rotation modifier
 			{0, 0, 0},
 
 			// scale modifier
-			{0, 0, 0},
+			{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
 			// if true this shape checks for collisions against other shapes
 			false,

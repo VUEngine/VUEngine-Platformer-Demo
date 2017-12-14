@@ -115,11 +115,6 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 			// start movement
 			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
 			break;
-
-		case kBodyBounced:
-
-			return false;
-			break;
 	}
 
 	return false;

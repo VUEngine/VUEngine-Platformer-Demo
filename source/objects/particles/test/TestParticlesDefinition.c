@@ -64,16 +64,16 @@ SolidParticleROMDef TEST_PARTICLE =
 		__TYPE(SolidParticle),
 
 		// particle's minimum life span in milliseconds
-		13500,
+		500,
 
 		// particle's maximum life span in milliseconds
-		13750,
+		950,
 
 		// particle's minimum mass
 		__F_TO_FIX10_6(0.5f),
 
 		// particle's maximum mass
-		__F_TO_FIX10_6(0.05),
+		__F_TO_FIX10_6(0.5),
 
 		// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 		__Y_AXIS,
@@ -143,7 +143,7 @@ ParticleSystemROMDef TEST_1_PS =
 	300,
 
 	// maximum total particles
-	1,
+	15,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -206,7 +206,7 @@ ParticleSystemROMDef TEST_2_PS =
 	300,
 
 	// maximum total particles
-	1,
+	10,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -225,11 +225,11 @@ ParticleSystemROMDef TEST_2_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__F_TO_FIX10_6(7500 / 16.0f), __F_TO_FIX10_6(-8000 / 16.0f), 0},
+	{__F_TO_FIX10_6(100), __F_TO_FIX10_6(-100), 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__F_TO_FIX10_6(10000 / 16.0f), __F_TO_FIX10_6(-10000 / 16.0f), 0},
+	{__F_TO_FIX10_6(150), __F_TO_FIX10_6(-50), 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT

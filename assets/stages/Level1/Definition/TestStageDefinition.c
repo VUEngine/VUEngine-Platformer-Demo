@@ -119,7 +119,7 @@ extern EntityDefinition MOVING_PLATFORM_V6_AC;
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-const Size collision_48_5_2 = 	{48 * 1, 5 * 1, 5 * 1};
+const Size collision_48_5_2 = 	{__F_TO_FIX10_6(24 * 1), __F_TO_FIX10_6(2 * 1), __F_TO_FIX10_6(5 * 1)};
 
 PositionedEntityROMDef TEST_STAGE_ST_CHILDREN[] =
 {
@@ -129,8 +129,8 @@ PositionedEntityROMDef TEST_STAGE_ST_CHILDREN[] =
 //	{&SAW_BLADE_V3_AC,				{__F_TO_FIX10_6(192),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(0)},			0, NULL, NULL, NULL, false},
 //	{&SNAIL_3_AC,					{__F_TO_FIX10_6(192-64), __F_TO_FIX10_6(112), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
 	{&TEST_1_PS,					{__F_TO_FIX10_6((192 + 20)/ 16),	__F_TO_FIX10_6(8 / 16.0f), 	__F_TO_FIX10_6(0)},0, NULL, NULL, NULL, false},
-//	{&TEST_2_PS,					{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(90), 	__F_TO_FIX10_6(0)},0, NULL, NULL, NULL, false},
-//	{&COLLISION_CL,					{__F_TO_FIX10_6(192/16),	__F_TO_FIX10_6((224/2+30)/16), 	__F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
+	{&TEST_2_PS,					{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(90/16), 	__F_TO_FIX10_6(0)},0, NULL, NULL, NULL, false},
+	{&COLLISION_CL,					{__F_TO_FIX10_6(192/16),	__F_TO_FIX10_6((224/2+30)/16), 	__F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
 //	{&COG_WHEEL_IM,					{__F_TO_FIX10_6(192-64),	__F_TO_FIX10_6(224/2), __F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
 //	{&MOVING_PLATFORM_V6_AC,		{__F_TO_FIX10_6(192),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
 	{&TEST_COG_WHEEL_IM,			{__F_TO_FIX10_6(192/16),	__F_TO_FIX10_6(224/2/16), __F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor

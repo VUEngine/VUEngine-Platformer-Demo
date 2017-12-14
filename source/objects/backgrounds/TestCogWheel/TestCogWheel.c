@@ -138,7 +138,7 @@ static void TestCogWheel_rotate(TestCogWheel this)
 		increment *= -1;
 	}
 */
-//	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
+	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
 
 	// send delayed message to self to trigger next movement
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);

@@ -150,7 +150,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
+	//{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 
 	{
 		// shape
@@ -240,7 +240,7 @@ PhysicalSpecificationROMDef TEST_COG_WHEEL_IM_PHYSICAL_PROPERTIES =
 	__F_TO_FIX10_6(0),
 
 	// friction
-	__F_TO_FIX10_6(0.15f),
+	__F_TO_FIX10_6(0.0f),
 
 	// elasticity
 	__F_TO_FIX10_6(0.0f),
