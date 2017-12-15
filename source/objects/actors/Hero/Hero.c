@@ -70,7 +70,7 @@ extern EntityDefinition HINT_MC;
 extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 
 
-#define HERO_MASS							2
+#define HERO_MASS							1
 #define HERO_ELASTICITY						0.0f
 #define HERO_FRICTION						0
 
@@ -78,15 +78,15 @@ extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 #define HERO_FLASH_DURATION					2000
 #define HERO_FLASH_INTERVAL					100
 
-#define HERO_INPUT_FORCE 					__I_TO_FIX10_6(3050)
-#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(1100)
+#define HERO_INPUT_FORCE 					__I_TO_FIX10_6(3050/16)
+#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(1100/16)
 
 #define HERO_MAX_VELOCITY_X					__I_TO_FIX10_6(75/16)
 #define HERO_MAX_VELOCITY_Y					__I_TO_FIX10_6(305/16)
 #define HERO_MAX_VELOCITY_Z					__I_TO_FIX10_6(40/16)
 #define HERO_BOOST_VELOCITY_X				__F_TO_FIX10_6(100/16)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-32000/16)
-#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX10_6(-37000/16)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-4000/16)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX10_6(-4300/16)
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-24/16), 0}
 
@@ -222,7 +222,7 @@ void Hero_ready(Hero this, bool recursive)
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 
 	Hero_addHint(this);
-	Hero_addFeetDust(this);
+//	Hero_addFeetDust(this);
 }
 
 void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
@@ -391,6 +391,7 @@ static void Hero_slide(Hero this)
 
 static void Hero_showDust(Hero this, bool autoHideDust)
 {
+return;
 	ParticleSystem_start(this->feetDust);
 
 	if(autoHideDust)
@@ -402,6 +403,7 @@ static void Hero_showDust(Hero this, bool autoHideDust)
 
 static void Hero_hideDust(Hero this)
 {
+return;
 	ParticleSystem_pause(this->feetDust);
 }
 
@@ -568,18 +570,18 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 	{
 		this->inputDirection.x = __RIGHT;
 
-		Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
+/*		Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 		position.x = __ABS(position.x) * -1;
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
-	}
+*/	}
 	else if(K_LL & pressedKey)
 	{
 		this->inputDirection.x = __LEFT;
 
-		Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
+/*		Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 		position.x = __ABS(position.x);
 		Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
-	}
+*/	}
 	else if(K_LU & pressedKey)
 	{
 		this->inputDirection.z = __FAR;
