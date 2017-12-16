@@ -1438,11 +1438,11 @@ void Hero_syncRotationWithBody(Hero this)
 	}
 }
 
-void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool isShapeImpenetrable)
+void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
 {
 	ASSERT(this, "Hero::exitCollision: null this");
 
-	SpatialObject nonCollidingSpatialObject = Shape_getOwner(shapeNotColliding);
+	SpatialObject nonCollidingSpatialObject = Shape_getOwner(shapeNotCollidingAnymore);
 
 	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, nonCollidingSpatialObject))
 	{
@@ -1464,6 +1464,6 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotColliding, bool is
 			break;
 	}
 
-	__CALL_BASE_METHOD(Actor, exitCollision, this, shape, shapeNotColliding, isShapeImpenetrable);
+	__CALL_BASE_METHOD(Actor, exitCollision, this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
