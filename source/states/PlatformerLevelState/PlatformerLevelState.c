@@ -174,12 +174,12 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 		if(initialPosition)
 		{
 			// apply entry point offset
-			initialPosition->x += this->currentStageEntryPoint->offset.x;
-			initialPosition->y += this->currentStageEntryPoint->offset.y;
-			initialPosition->z += this->currentStageEntryPoint->offset.z;
+			initialPosition->x += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.x);
+			initialPosition->y += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.y);
+			initialPosition->z += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.z);
 
 			// set world's limits
-			Camera_setStageSize(Camera_getInstance(), this->currentStageEntryPoint->stageDefinition->level.size);
+			Camera_setStageSize(Camera_getInstance(), Size_getFromPixelSize(this->currentStageEntryPoint->stageDefinition->level.pixelSize));
 
 			// focus screen on new position
 			Vector3D screenPosition =
@@ -204,9 +204,9 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 				{
 					&HERO_AC,
 					{
-						initialPosition->x,
-						initialPosition->y,
-						initialPosition->z
+						__METERS_TO_PIXELS(initialPosition->x),
+						__METERS_TO_PIXELS(initialPosition->y),
+						__METERS_TO_PIXELS(initialPosition->z)
 					},
 					0,
 					HERO_NAME,
@@ -493,7 +493,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 					if(this->currentLevel->slogan)
 					{
 						const char* strLevelSlogan = I18n_getText(I18n_getInstance(), (int)this->currentLevel->slogan);
-						Size strLevelSloganSize = Printing_getTextSize(Printing_getInstance(), strLevelSlogan, NULL);
+						FontSize strLevelSloganSize = Printing_getTextSize(Printing_getInstance(), strLevelSlogan, NULL);
 						Printing_text(
 							Printing_getInstance(),
 							strLevelSlogan,

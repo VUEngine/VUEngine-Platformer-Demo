@@ -106,7 +106,7 @@ static void PauseScreenState_enter(PauseScreenState this, void* owner __attribut
 	// print pause text
 	const char* strPause = I18n_getText(I18n_getInstance(), STR_PAUSE);
 	const char* strPauseFont = "LargeFont";
-	Size strPauseSize = Printing_getTextSize(Printing_getInstance(), strPause, strPauseFont);
+	FontSize strPauseSize = Printing_getTextSize(Printing_getInstance(), strPause, strPauseFont);
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strPause),
@@ -208,12 +208,12 @@ void PauseScreenState_processUserInput(PauseScreenState this, UserInput userInpu
 				{
 					// print confirmation message
 					const char* strYes = I18n_getText(I18n_getInstance(), STR_YES);
-					Size strYesSize = Printing_getTextSize(Printing_getInstance(), strYes, NULL);
+					FontSize strYesSize = Printing_getTextSize(Printing_getInstance(), strYes, NULL);
 					const char* strNo = I18n_getText(I18n_getInstance(), STR_NO);
 					const char* strAreYouSure = I18n_getText(I18n_getInstance(), STR_ARE_YOU_SURE);
 					const char* strPause = I18n_getText(I18n_getInstance(), STR_PAUSE);
 					const char* strPauseFont = "LargeFont";
-					Size strPauseSize = Printing_getTextSize(Printing_getInstance(), strPause, strPauseFont);
+					FontSize strPauseSize = Printing_getTextSize(Printing_getInstance(), strPause, strPauseFont);
 
 					u8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;
 					u8 strNoXPos = strXPos + strYesSize.x + 2;

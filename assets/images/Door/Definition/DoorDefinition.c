@@ -281,7 +281,7 @@ ShapeROMDef DOOR_AG_SHAPES[] =
 		{19, 28, 16},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+		{0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

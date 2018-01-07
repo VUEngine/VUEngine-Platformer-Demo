@@ -157,7 +157,7 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 		{7, 7, 7},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(2), __I_TO_FIX10_6(0)},
+		{0, 2, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

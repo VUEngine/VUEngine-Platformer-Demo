@@ -129,10 +129,10 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{__I_TO_FIX10_6(10), __I_TO_FIX10_6(1), __I_TO_FIX10_6(8)},
+		{10, 1, 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+		{0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -157,10 +157,10 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{__F_TO_FIX10_6(2.5f), __F_TO_FIX10_6(2.5f), __F_TO_FIX10_6(2.5f)},
+		{40, 40, 40},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+		{0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -187,7 +187,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		{12, 10 * 8, 4 * 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+		{0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -213,7 +213,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		{12, 10 * 8, 4 * 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+		{0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 128},

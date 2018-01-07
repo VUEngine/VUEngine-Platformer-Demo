@@ -48,25 +48,25 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef OVERWORLD1_STAGE_ST_ENTITIES[] =
 {
-	{&WATER_A_AG, {__F_TO_FIX10_6(26), __F_TO_FIX10_6(86), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_AG, {__F_TO_FIX10_6(70), __F_TO_FIX10_6(18), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_AG, {__F_TO_FIX10_6(74), __F_TO_FIX10_6(176), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&FLOWER_A_AG, {__F_TO_FIX10_6(124), __F_TO_FIX10_6(118), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {__F_TO_FIX10_6(130), __F_TO_FIX10_6(82), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {__F_TO_FIX10_6(156), __F_TO_FIX10_6(200), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&HERO_IDLE_AG, {__F_TO_FIX10_6(160), __F_TO_FIX10_6(92), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
-	{&OVERWORLD_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(112), __F_TO_FIX10_6(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
-	{&FLOWER_A_AG, {__F_TO_FIX10_6(218), __F_TO_FIX10_6(168), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&SMOKE_PS, {__F_TO_FIX10_6(222.5), __F_TO_FIX10_6(48), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Smoke
-	{&FLOWER_A_AG, {__F_TO_FIX10_6(226), __F_TO_FIX10_6(132), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {__F_TO_FIX10_6(290), __F_TO_FIX10_6(136), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&WATER_A_AG, {(26), (86), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
+	{&WATER_A_AG, {(70), (18), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
+	{&WATER_A_AG, {(74), (176), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
+	{&FLOWER_A_AG, {(124), (118), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(130), (82), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(156), (200), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&HERO_IDLE_AG, {(160), (92), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
+	{&OVERWORLD_1_IM, {(192), (112), (LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
+	{&FLOWER_A_AG, {(218), (168), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&SMOKE_PS, {(222.5), (48), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Smoke
+	{&FLOWER_A_AG, {(226), (132), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(290), (136), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_OVERWORLD_AG, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(216), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_OVERWORLD_AG, {(192), (216), (0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };

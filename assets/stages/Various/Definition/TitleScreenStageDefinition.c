@@ -64,23 +64,23 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&MOUND_BG_FRONT_IM, {__F_TO_FIX10_6(-16), __F_TO_FIX10_6(144), __F_TO_FIX10_6(LAYER_3)}, 0, NULL, NULL, NULL, false}, // Front
-	{&GRASS_AG, {__F_TO_FIX10_6(32), __F_TO_FIX10_6(152), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Grass
-	{&COIN_AG, {__F_TO_FIX10_6(56), __F_TO_FIX10_6(134), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(72), __F_TO_FIX10_6(134), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(168), __F_TO_FIX10_6(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer
-	{&LOGO_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(53), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Logo
-	{&VUENGINE_LOGO_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(18), __F_TO_FIX10_6(LAYER_1)}, 0, NULL, NULL, NULL, false}, // VUEngine
-	{&HERO_BANDANA_AG, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(158), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero
-	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(168), __F_TO_FIX10_6(LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
-	{&CLOUDS_IM, {__F_TO_FIX10_6(194), __F_TO_FIX10_6(130), __F_TO_FIX10_6(LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8)}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&MOUND_BG_BACK_IM, {__F_TO_FIX10_6(255), __F_TO_FIX10_6(67), __F_TO_FIX10_6(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX10_6(287), __F_TO_FIX10_6(84), __F_TO_FIX10_6(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_IM, {__F_TO_FIX10_6(317), __F_TO_FIX10_6(104), __F_TO_FIX10_6(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX10_6(321), __F_TO_FIX10_6(95), __F_TO_FIX10_6(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_FLAG_AG, {__F_TO_FIX10_6(356), __F_TO_FIX10_6(84), __F_TO_FIX10_6(LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&STAR_AG, {__F_TO_FIX10_6(362), __F_TO_FIX10_6(-18), __F_TO_FIX10_6(LAYER_5 - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Star
-	{&BUSH_AG, {__F_TO_FIX10_6(368), __F_TO_FIX10_6(148), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Bush
+	{&MOUND_BG_FRONT_IM, {(-16), (144), (LAYER_3)}, 0, NULL, NULL, NULL, false}, // Front
+	{&GRASS_AG, {(32), (152), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Grass
+	{&COIN_AG, {(56), (134), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(72), (134), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {(192), (168), (LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer
+	{&LOGO_IM, {(192), (53), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Logo
+	{&VUENGINE_LOGO_IM, {(192), (18), (LAYER_1)}, 0, NULL, NULL, NULL, false}, // VUEngine
+	{&HERO_BANDANA_AG, {(192), (158), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero
+	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), (LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
+	{&CLOUDS_IM, {(194), (130), (LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8)}, 0, NULL, NULL, NULL, false}, // Clouds
+	{&MOUND_BG_BACK_IM, {(255), (67), (LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
+	{&MOUND_BG_CASTLE_FLAG_AG, {(287), (84), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_IM, {(317), (104), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
+	{&MOUND_BG_CASTLE_FLAG_AG, {(321), (95), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(356), (84), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&STAR_AG, {(362), (-18), (LAYER_5 - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Star
+	{&BUSH_AG, {(368), (148), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Bush
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };

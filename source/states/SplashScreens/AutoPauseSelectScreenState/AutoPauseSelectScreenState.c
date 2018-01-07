@@ -92,10 +92,10 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 
 	const char* strAutomaticPauseTitle = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
 	const char* strAutomaticPauseTitleFont = "LargeFont";
-	Size strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
+	FontSize strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
 
 	const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTO_PAUSE_EXPLANATION);
-	Size strAutomaticPauseExplanationSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseExplanation, NULL);
+	FontSize strAutomaticPauseExplanationSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseExplanation, NULL);
 
 	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseSize.x >> 1);
 	Printing_text(
@@ -118,8 +118,8 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
 	const char* strOff = I18n_getText(I18n_getInstance(), STR_OFF);
 
 	// get strings and determine sizes
-	Size strOnSize = Printing_getTextSize(Printing_getInstance(), strOn, NULL);
-	Size strOffSize = Printing_getTextSize(Printing_getInstance(), strOff, NULL);
+	FontSize strOnSize = Printing_getTextSize(Printing_getInstance(), strOn, NULL);
+	FontSize strOffSize = Printing_getTextSize(Printing_getInstance(), strOff, NULL);
 	u8 selectionStart = (48 - (strOnSize.x + __OPTIONS_GAP + strOffSize.x)) >> 1;
 
 	// clear options area

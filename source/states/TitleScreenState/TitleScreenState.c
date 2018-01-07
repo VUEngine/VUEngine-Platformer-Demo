@@ -155,9 +155,9 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 		option->callbackScope = NULL;
 		VirtualList_pushBack(options, option);
 
-		Size strContinueSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_CONTINUE), NULL);
-		Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_OPTIONS), NULL);
-		Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_GAME), NULL);
+		FontSize strContinueSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_CONTINUE), NULL);
+		FontSize strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_OPTIONS), NULL);
+		FontSize strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_GAME), NULL);
 		u8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
 		width = (width > strNewGameSize.x) ? width : strNewGameSize.x;
 		OptionsSelector_setColumnWidth(this->optionsSelector, width + 1);
@@ -181,8 +181,8 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 		option->callbackScope = NULL;
 		VirtualList_pushBack(options, option);
 
-		Size strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_OPTIONS), NULL);
-		Size strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_GAME), NULL);
+		FontSize strOptionsSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_OPTIONS), NULL);
+		FontSize strNewGameSize = Printing_getTextSize(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_GAME), NULL);
 		u8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
 		OptionsSelector_setColumnWidth(this->optionsSelector, width + 1);
 	}
@@ -270,7 +270,7 @@ static void TitleScreenState_showMessage(TitleScreenState this __attribute__ ((u
 	ASSERT(this, "TitleScreenState::showMessage: null this");
 
 	const char* strPressStartButton = I18n_getText(I18n_getInstance(), STR_PRESS_START_BUTTON);
-	Size strPressStartButtonSize = Printing_getTextSize(Printing_getInstance(), strPressStartButton, NULL);
+	FontSize strPressStartButtonSize = Printing_getTextSize(Printing_getInstance(), strPressStartButton, NULL);
 	u8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
 	Printing_text(Printing_getInstance(), strPressStartButton, strXPos, 26, NULL);
 }
@@ -343,10 +343,10 @@ void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInpu
 
 						// print warning
 						const char* strNewGameConfirm = I18n_getText(I18n_getInstance(), STR_PROGRESS_WILL_BE_ERASED);
-						Size strNewGameConfirmSize = Printing_getTextSize(Printing_getInstance(), strNewGameConfirm, NULL);
+						FontSize strNewGameConfirmSize = Printing_getTextSize(Printing_getInstance(), strNewGameConfirm, NULL);
 						u8 strNewGameConfirmXPos = (((__SCREEN_WIDTH_IN_CHARS) - strNewGameConfirmSize.x) >> 1);
 						const char* strAreYouSure = I18n_getText(I18n_getInstance(), STR_ARE_YOU_SURE);
-						Size strAreYouSureSize = Printing_getTextSize(Printing_getInstance(), strAreYouSure, NULL);
+						FontSize strAreYouSureSize = Printing_getTextSize(Printing_getInstance(), strAreYouSure, NULL);
 						u8 strAreYouSureXPos = (((__SCREEN_WIDTH_IN_CHARS) - strAreYouSureSize.x) >> 1);
 						Printing_text(
 							Printing_getInstance(),
@@ -365,9 +365,9 @@ void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInpu
 
 						// print warning options
 						const char* strYes = I18n_getText(I18n_getInstance(), STR_YES);
-						Size strYesSize = Printing_getTextSize(Printing_getInstance(), strYes, NULL);
+						FontSize strYesSize = Printing_getTextSize(Printing_getInstance(), strYes, NULL);
 						const char* strNo = I18n_getText(I18n_getInstance(), STR_NO);
-						Size strNoSize = Printing_getTextSize(Printing_getInstance(), strNo, NULL);
+						FontSize strNoSize = Printing_getTextSize(Printing_getInstance(), strNo, NULL);
 
 						u8 strYesXPos = ((__SCREEN_WIDTH_IN_CHARS) - (strYesSize.x + strNoSize.x + 3)) >> 1;
 						u8 strNoXPos = strYesXPos + strYesSize.x + 2;

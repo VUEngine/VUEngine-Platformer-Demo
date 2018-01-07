@@ -65,51 +65,51 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {__F_TO_FIX10_6(8), __F_TO_FIX10_6(112), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Left Collision
-	{&COLLISION_CL, {__F_TO_FIX10_6(16), __F_TO_FIX10_6(40), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Left Collision
-	{&DOOR_AG, {__F_TO_FIX10_6(36), __F_TO_FIX10_6(144), __F_TO_FIX10_6(LAYER_0_DOORS)}, 0, "CoinEntr", NULL, (void*)&LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP, false}, // Door (Entrance)
-	{&COLLISION_CL, {__F_TO_FIX10_6(40), __F_TO_FIX10_6(184), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Left Collision
-	{&HERO_AC, {__F_TO_FIX10_6(62), __F_TO_FIX10_6(148), __F_TO_FIX10_6(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
-	{&TORCH_LIGHT_AG, {__F_TO_FIX10_6(64), __F_TO_FIX10_6(128), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Left Torch Light
-	{&TORCH_AG, {__F_TO_FIX10_6(64), __F_TO_FIX10_6(126), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Left Torch
-	{&COIN_AG, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(104), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 27, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(120), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 28, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(152), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 30, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(136), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 29, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(160), __F_TO_FIX10_6(168), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 31, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(176), __F_TO_FIX10_6(104), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 35, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(176), __F_TO_FIX10_6(120), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 34, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(176), __F_TO_FIX10_6(136), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 33, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(176), __F_TO_FIX10_6(152), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 32, NULL, NULL, NULL, false}, // Coin
-	{&LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(112), __F_TO_FIX10_6(-SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // MainBack
-	{&COLLISION_CL, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(24), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_320_16_8, false}, // Top Collision
-	{&COLLISION_CL, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(200), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_224_16_8, false}, // Bottom Collision
-	{&LEVEL1_COIN_ROOM_STAGE_BACK_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(112), __F_TO_FIX10_6(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Back
-	{&SAW_BLADE_H8_AC, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(192), __F_TO_FIX10_6(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Saw Blade
-	{&LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(112), __F_TO_FIX10_6(-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false}, // Main
-	{&COIN_AG, {__F_TO_FIX10_6(208), __F_TO_FIX10_6(152), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 39, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(208), __F_TO_FIX10_6(104), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 36, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(208), __F_TO_FIX10_6(120), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 37, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(208), __F_TO_FIX10_6(136), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 38, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(208), __F_TO_FIX10_6(168), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 40, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(224), __F_TO_FIX10_6(136), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 42, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(224), __F_TO_FIX10_6(104), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 41, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(224), __F_TO_FIX10_6(168), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 43, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(240), __F_TO_FIX10_6(120), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 44, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {__F_TO_FIX10_6(240), __F_TO_FIX10_6(152), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 45, NULL, NULL, NULL, false}, // Coin
-	{&TORCH_AG, {__F_TO_FIX10_6(320), __F_TO_FIX10_6(128), __F_TO_FIX10_6(LAYER_0)}, 0, NULL, NULL, NULL, false}, // Right Torch
-	{&TORCH_LIGHT_AG, {__F_TO_FIX10_6(320), __F_TO_FIX10_6(130), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // Right Torch Light
-	{&COLLISION_CL, {__F_TO_FIX10_6(344), __F_TO_FIX10_6(184), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Right Collision
-	{&DOOR_AG, {__F_TO_FIX10_6(348), __F_TO_FIX10_6(144), __F_TO_FIX10_6(LAYER_0_DOORS)}, 0, "CoinExit", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_LOWER_EP, false}, // Door (Exit)
-	{&COLLISION_CL, {__F_TO_FIX10_6(368), __F_TO_FIX10_6(40), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Right Collision
-	{&COLLISION_CL, {__F_TO_FIX10_6(376), __F_TO_FIX10_6(112), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Right Collision
+	{&COLLISION_CL, {(8), (112), (0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Left Collision
+	{&COLLISION_CL, {(16), (40), (0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Left Collision
+	{&DOOR_AG, {(36), (144), (LAYER_0_DOORS)}, 0, "CoinEntr", NULL, (void*)&LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP, false}, // Door (Entrance)
+	{&COLLISION_CL, {(40), (184), (0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Left Collision
+	{&HERO_AC, {(62), (148), (LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
+	{&TORCH_LIGHT_AG, {(64), (128), (0)}, 0, NULL, NULL, NULL, false}, // Left Torch Light
+	{&TORCH_AG, {(64), (126), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Left Torch
+	{&COIN_AG, {(144), (104), (LAYER_0_ITEMS)}, 27, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(144), (120), (LAYER_0_ITEMS)}, 28, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(144), (152), (LAYER_0_ITEMS)}, 30, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(144), (136), (LAYER_0_ITEMS)}, 29, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(160), (168), (LAYER_0_ITEMS)}, 31, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(176), (104), (LAYER_0_ITEMS)}, 35, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(176), (120), (LAYER_0_ITEMS)}, 34, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(176), (136), (LAYER_0_ITEMS)}, 33, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(176), (152), (LAYER_0_ITEMS)}, 32, NULL, NULL, NULL, false}, // Coin
+	{&LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM, {(192), (112), (-SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // MainBack
+	{&COLLISION_CL, {(192), (24), (0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_320_16_8, false}, // Top Collision
+	{&COLLISION_CL, {(192), (200), (0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_224_16_8, false}, // Bottom Collision
+	{&LEVEL1_COIN_ROOM_STAGE_BACK_1_IM, {(192), (112), (LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Back
+	{&SAW_BLADE_H8_AC, {(192), (192), (LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false}, // Saw Blade
+	{&LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM, {(192), (112), (-SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false}, // Main
+	{&COIN_AG, {(208), (152), (LAYER_0_ITEMS)}, 39, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(208), (104), (LAYER_0_ITEMS)}, 36, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(208), (120), (LAYER_0_ITEMS)}, 37, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(208), (136), (LAYER_0_ITEMS)}, 38, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(208), (168), (LAYER_0_ITEMS)}, 40, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(224), (136), (LAYER_0_ITEMS)}, 42, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(224), (104), (LAYER_0_ITEMS)}, 41, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(224), (168), (LAYER_0_ITEMS)}, 43, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(240), (120), (LAYER_0_ITEMS)}, 44, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(240), (152), (LAYER_0_ITEMS)}, 45, NULL, NULL, NULL, false}, // Coin
+	{&TORCH_AG, {(320), (128), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Right Torch
+	{&TORCH_LIGHT_AG, {(320), (130), (0)}, 0, NULL, NULL, NULL, false}, // Right Torch Light
+	{&COLLISION_CL, {(344), (184), (0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Right Collision
+	{&DOOR_AG, {(348), (144), (LAYER_0_DOORS)}, 0, "CoinExit", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_LOWER_EP, false}, // Door (Exit)
+	{&COLLISION_CL, {(368), (40), (0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Right Collision
+	{&COLLISION_CL, {(376), (112), (0)}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Right Collision
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(216), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_AG, {(192), (216), (0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -329,9 +329,9 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX10_6(-19),
-		__F_TO_FIX10_6(0),
-		__F_TO_FIX10_6(-SORT_INCREMENT),
+		(-19),
+		(0),
+		(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -348,9 +348,9 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX10_6(19),
-		__F_TO_FIX10_6(0),
-		__F_TO_FIX10_6(-SORT_INCREMENT),
+		(19),
+		(0),
+		(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint

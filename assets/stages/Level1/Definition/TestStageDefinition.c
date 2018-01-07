@@ -119,23 +119,26 @@ extern EntityDefinition MOVING_PLATFORM_V6_AC;
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-const Size collision_48_5_2 = 	{__F_TO_FIX10_6(24 * 1), __F_TO_FIX10_6(2 * 1), __F_TO_FIX10_6(5 * 1)};
+const Size collision_48_5_2 = 	{__PIXELS_TO_METERS(384), __PIXELS_TO_METERS(64), __PIXELS_TO_METERS(80)};
 
 PositionedEntityROMDef TEST_STAGE_ST_CHILDREN[] =
 {
-//	{&TORCH_SMOKE_PS,				{__F_TO_FIX10_6(192-64),	__F_TO_FIX10_6(224/2), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
-//	{&SMOKE_PS,						{__F_TO_FIX10_6(192),	__F_TO_FIX10_6(224/2), 	__F_TO_FIX10_6(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
-//	{&SAW_BLADE_H8_AC,				{__F_TO_FIX10_6(192+64),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(0)},			0, NULL, NULL, NULL, false},
-//	{&SAW_BLADE_V3_AC,				{__F_TO_FIX10_6(192),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(0)},			0, NULL, NULL, NULL, false},
-//	{&SNAIL_3_AC,					{__F_TO_FIX10_6(192-64), __F_TO_FIX10_6(112), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-//	{&TEST_1_PS,					{__F_TO_FIX10_6((192 + 20)/ 16),	__F_TO_FIX10_6(8 / 16.0f), 	__F_TO_FIX10_6(0)},0, NULL, NULL, NULL, false},
-	{&TEST_2_PS,					{__F_TO_FIX10_6(0),	__F_TO_FIX10_6(112/16), 	__F_TO_FIX10_6(0)},0, NULL, NULL, NULL, false},
-	{&COLLISION_CL,					{__F_TO_FIX10_6(192/16),	__F_TO_FIX10_6((224/2+60)/16), 	__F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
-//	{&MOVING_PLATFORM_V6_AC,		{__F_TO_FIX10_6(192),	__F_TO_FIX10_6(112), 	__F_TO_FIX10_6(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
-	{&TEST_COG_WHEEL_IM,			{__F_TO_FIX10_6(192/16),	__F_TO_FIX10_6(224/2/16), __F_TO_FIX10_6(0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
-//	{&HIDE_LAYER_10x7_AG,			{__F_TO_FIX10_6(192+100), __F_TO_FIX10_6(100),	__F_TO_FIX10_6(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
-//	{&WATER_POND_EN,			{__F_TO_FIX10_6(192+100), __F_TO_FIX10_6(100),	__F_TO_FIX10_6(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
-//	{&KEY_DOOR_AG,					{__F_TO_FIX10_6(44), 	__F_TO_FIX10_6(112-12), 	__F_TO_FIX10_6(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
+//	{&TORCH_SMOKE_PS,				{(192-64),	(224/2), 	(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
+//	{&SMOKE_PS,						{(192),	(224/2), 	(LAYER_0_FOREGROUND + 16)},	0, NULL, NULL, NULL, false},
+//	{&SAW_BLADE_H8_AC,				{(192+64),	(112), 	(0)},			0, NULL, NULL, NULL, false},
+//	{&SAW_BLADE_V3_AC,				{(192),	(112), 	(0)},			0, NULL, NULL, NULL, false},
+//	{&SNAIL_3_AC,					{(192-64), (112), 	(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+	{&TEST_1_PS,					{(192 + 20),	(8), 	(0)},0, NULL, NULL, NULL, false},
+	{&TEST_2_PS,					{(2),	(112), 	(0)},0, NULL, NULL, NULL, false},
+//	{&TEST_2_PS,					{(10),	(112/16), 	(0)},0, NULL, NULL, NULL, false},
+	{&HERO_AC,						{(192),	(224/2-60), 	(LAYER_0_FOREGROUND)},		0, HERO_NAME, NULL, NULL, false},
+
+	{&COLLISION_CL,					{(192),	(224/2+60), 	(0)},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
+//	{&MOVING_PLATFORM_V6_AC,		{(192),	(112), 	(LAYER_0_ENEMIES)}, 0, NULL, NULL, NULL, false},
+	{&TEST_COG_WHEEL_IM,			{(192),	(224/2), (0)},	0, "EntryPoint", NULL, NULL, false}, // right floor
+//	{&HIDE_LAYER_10x7_AG,			{(192+100), (100),	(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
+//	{&WATER_POND_EN,			{(192+100), (100),	(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2)}, 0, NULL, NULL, NULL, false},
+//	{&KEY_DOOR_AG,					{(44), 	(112-12), 	(LAYER_0_DOORS)}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
@@ -184,11 +187,11 @@ StageROMDef TEST_STAGE_ST =
 		// size
 		{
 			// x
-			__I_TO_FIX10_6(384 / 16),
+			384,
 			// y
-			__I_TO_FIX10_6(224 / 16),
+			224,
 			// z
-			__I_TO_FIX10_6(384 / 16),
+			384,
 		},
 
 		// camera's initial position inside the game world
@@ -307,7 +310,7 @@ StageROMDef TEST_STAGE_ST =
 			// distance of the eyes to the screen
 			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX10_6(128),
+			__I_TO_FIX10_6(__BASE_FACTOR),
 			// horizontal view point center
 			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
 			// vertical view point center
@@ -325,7 +328,7 @@ StageROMDef TEST_STAGE_ST =
 		},
 
 		// friction
-		__F_TO_FIX10_6(0),
+		__F_TO_FIX10_6(0.1f),
 	},
 
 	// assets
@@ -375,9 +378,9 @@ StageEntryPointROMDef TEST_STAGE_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX10_6(40/16),
-		__F_TO_FIX10_6(-50/16),
-		__F_TO_FIX10_6(0/16),
+		-100,
+		-60,
+		0,
 	},
 
 	// whether this entry point acts as a checkpoint

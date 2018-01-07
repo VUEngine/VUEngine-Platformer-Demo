@@ -142,7 +142,7 @@ ShapeROMDef LAVA_IG_SHAPES[] =
 		{48 * 8, 24 * 8, 2 * 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+		{0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

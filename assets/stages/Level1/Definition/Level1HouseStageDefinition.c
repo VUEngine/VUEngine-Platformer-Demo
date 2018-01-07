@@ -63,27 +63,27 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {__F_TO_FIX10_6(120), __F_TO_FIX10_6(128), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
-	{&KEY_DOOR_AG, {__F_TO_FIX10_6(148), __F_TO_FIX10_6(144), __F_TO_FIX10_6(LAYER_0_DOORS)}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
-	{&HERO_AC, {__F_TO_FIX10_6(163), __F_TO_FIX10_6(148), __F_TO_FIX10_6(LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
-	{&CLOCK_AG, {__F_TO_FIX10_6(180), __F_TO_FIX10_6(128), __F_TO_FIX10_6(LAYER_0 + 24)}, 0, NULL, NULL, NULL, false}, // Clock
-	{&LEVEL_1_HOUSE_MAIN_IM, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(112), __F_TO_FIX10_6(LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // House Background
-	{&COLLISION_CL, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(168), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
-	{&COLLISION_CL, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(88), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
-	{&CLOUDS_IM, {__F_TO_FIX10_6(194), __F_TO_FIX10_6(149), __F_TO_FIX10_6(LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&LEVEL_1_HOUSE_LIGHT_IM, {__F_TO_FIX10_6(196), __F_TO_FIX10_6(140), __F_TO_FIX10_6(LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
-	{&COIN_AG, {__F_TO_FIX10_6(204), __F_TO_FIX10_6(146), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 26, NULL, NULL, NULL, false}, // Coin
-	{&FIRE_SMALL_AG, {__F_TO_FIX10_6(240), __F_TO_FIX10_6(155), __F_TO_FIX10_6(12)}, 0, NULL, NULL, NULL, false}, // Fire
-	{&COLLISION_TOP_CL, {__F_TO_FIX10_6(240), __F_TO_FIX10_6(152), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
-	{&MOUND_BG_BACK_IM, {__F_TO_FIX10_6(255), __F_TO_FIX10_6(80), __F_TO_FIX10_6(LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&COLLISION_CL, {__F_TO_FIX10_6(264), __F_TO_FIX10_6(128), __F_TO_FIX10_6(0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
+	{&COLLISION_CL, {(120), (128), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
+	{&KEY_DOOR_AG, {(148), (144), (LAYER_0_DOORS)}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
+	{&HERO_AC, {(163), (148), (LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
+	{&CLOCK_AG, {(180), (128), (LAYER_0 + 24)}, 0, NULL, NULL, NULL, false}, // Clock
+	{&LEVEL_1_HOUSE_MAIN_IM, {(192), (112), (LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // House Background
+	{&COLLISION_CL, {(192), (168), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
+	{&COLLISION_CL, {(192), (88), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
+	{&CLOUDS_IM, {(194), (149), (LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
+	{&LEVEL_1_HOUSE_LIGHT_IM, {(196), (140), (LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
+	{&COIN_AG, {(204), (146), (LAYER_0_ITEMS)}, 26, NULL, NULL, NULL, false}, // Coin
+	{&FIRE_SMALL_AG, {(240), (155), (12)}, 0, NULL, NULL, NULL, false}, // Fire
+	{&COLLISION_TOP_CL, {(240), (152), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
+	{&MOUND_BG_BACK_IM, {(255), (80), (LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
+	{&COLLISION_CL, {(264), (128), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {__F_TO_FIX10_6(192), __F_TO_FIX10_6(216), __F_TO_FIX10_6(0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_AG, {(192), (216), (0)}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -310,9 +310,9 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		__F_TO_FIX10_6(19),
-		__F_TO_FIX10_6(0),
-		__F_TO_FIX10_6(-SORT_INCREMENT),
+		(19),
+		(0),
+		(-SORT_INCREMENT),
 	},
 
 	// whether this entry point acts as a checkpoint

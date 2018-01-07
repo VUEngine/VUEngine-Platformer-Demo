@@ -128,7 +128,7 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 		{32, 16, 16},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-8), __I_TO_FIX10_6(0)},
+		{0, -8, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

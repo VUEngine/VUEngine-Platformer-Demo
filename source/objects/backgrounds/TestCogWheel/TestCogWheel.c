@@ -91,10 +91,13 @@ void TestCogWheel_ready(TestCogWheel this, bool recursive)
 	__CALL_BASE_METHOD(Entity, ready, this, recursive);
 
 	// start moving
-	MessageDispatcher_dispatchMessage(5000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
+	MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 
 	// listen for the shake end event
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)TestCogWheel_onShakeCompleted, kEventShakeCompleted);
+
+	this->transformation.localRotation.z = 32;
+	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
 
 //	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
 //	__VIRTUAL_CALL(Shape, show, VirtualList_back(this->shapes));

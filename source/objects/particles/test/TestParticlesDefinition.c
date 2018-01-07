@@ -92,10 +92,10 @@ SolidParticleROMDef TEST_PARTICLE =
 	__F_TO_FIX10_6(0.25f),
 
 	/// friction for physics
-	__F_TO_FIX10_6(0.1f),
+	__F_TO_FIX10_6(0.0f),
 
 	/// elasticity for physics
-	__F_TO_FIX10_6(0.4f),
+	__F_TO_FIX10_6(0.6f),
 
 	/// object's in-game type
 	kUncollectableCoin,
@@ -105,9 +105,10 @@ SolidParticleROMDef TEST_PARTICLE =
 
 	/// layers to ignore when checking for collisions
 	kParticlesLayer | kTriggersLayer,
+//	kTriggersLayer,
 
 	/// disable collision detection when the particle stops
-	true,
+	false,
 };
 
 ParticleSystemROMDef TEST_1_PS =
@@ -143,7 +144,7 @@ ParticleSystemROMDef TEST_1_PS =
 	300,
 
 	// maximum total particles
-	10,
+	2,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -206,7 +207,7 @@ ParticleSystemROMDef TEST_2_PS =
 	300,
 
 	// maximum total particles
-	10,
+	5,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -225,11 +226,11 @@ ParticleSystemROMDef TEST_2_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__F_TO_FIX10_6(450/ 16.0f), __F_TO_FIX10_6(-350/ 16.0f), 0},
+	{__F_TO_FIX10_6(0), __F_TO_FIX10_6(-0), 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__F_TO_FIX10_6(580/ 16.0f), __F_TO_FIX10_6(-290/ 16.0f), 0},
+	{__F_TO_FIX10_6(4), __F_TO_FIX10_6(-4), 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT

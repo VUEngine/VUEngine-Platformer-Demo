@@ -38,43 +38,43 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const Size collision_2_28_4 = 	{2 * 1, 	28 * 1, 	8 * 1};
-const Size collision_2_64_4 = 	{2 * 1, 	64 * 1, 	8 * 1};
-const Size collision_3_2_4 = 	{3 * 1, 	2 * 1, 		8 * 1};
-const Size collision_4_2_4 = 	{4 * 1, 	2 * 1, 		8 * 1};
-const Size collision_4_4_4 = 	{4 * 1, 	4 * 1, 		8 * 1};
-const Size collision_4_8_4 = 	{4 * 1, 	8 * 1, 		8 * 1};
-const Size collision_6_4_4 = 	{6 * 1, 	4 * 1, 		8 * 1};
-const Size collision_7_2_4 = 	{7 * 1, 	2 * 1, 		8 * 1};
-const Size collision_8_3_4 = 	{8 * 1, 	3 * 1, 		8 * 1};
-const Size collision_8_4_4 = 	{8 * 1, 	4 * 1, 		8 * 1};
-const Size collision_8_20_4 = 	{8 * 1, 	20 * 1, 	8 * 1};
-const Size collision_12_4_4 = 	{12 * 1, 	4 * 1, 		8 * 1};
-const Size collision_12_12_4 = {12 * 1, 	12 * 1, 	8 * 1};
-const Size collision_14_6_4 = 	{14 * 1, 	6 * 1, 		8 * 1};
-const Size collision_14_18_4 = {14 * 1, 	18 * 1, 	8 * 1};
-const Size collision_16_2_4 = 	{16 * 1, 	2 * 1, 		8 * 1};
-const Size collision_18_6_4 = 	{18 * 1, 	6 * 1, 		8 * 1};
-const Size collision_20_2_4 = 	{20 * 1, 	2 * 1, 		8 * 1};
-const Size collision_20_6_4 = 	{20 * 1, 	6 * 1, 		8 * 1};
-const Size collision_20_32_4 = {20 * 1, 	32 * 1, 	8 * 1};
-const Size collision_28_8_4 = 	{28 * 1, 	8 * 1, 		8 * 1};
-const Size collision_28_16_4 = {28 * 1, 	16 * 1, 	8 * 1};
-const Size collision_32_14_4 = {32 * 1, 	14 * 1, 	8 * 1};
-const Size collision_32_4_4 = 	{32 * 1, 	4 * 1, 		8 * 1};
-const Size collision_30_33_4 = {30 * 1, 	33 * 1, 	8 * 1};
-const Size collision_34_30_4 = {34 * 1, 	30 * 1, 	8 * 1};
-const Size collision_38_10_4 = {38 * 1, 	10 * 1, 	8 * 1};
-const Size collision_42_18_4 = {42 * 1, 	18 * 1, 	8 * 1};
-const Size collision_47_3_4 = 	{47 * 1, 	3 * 1, 		8 * 1};
-const Size collision_48_2_4 = 	{48 * 1, 	2 * 1, 		8 * 1};
-const Size collision_48_3_4 = 	{48 * 1, 	3 * 1, 		8 * 1};
-const Size collision_48_4_4 = 	{48 * 1, 	4 * 1, 		8 * 1};
-const Size collision_48_10_4 = {48 * 1, 	10 * 1, 	8 * 1};
-const Size collision_48_18_4 = {48 * 1, 	18 * 1, 	8 * 1};
-const Size collision_48_28_4 = {48 * 1, 	28 * 1, 	8 * 1};
-const Size collision_49_5_4 = 	{49 * 1, 	5 * 1, 		8 * 1};
-const Size collision_67_25_4 = {67 * 1, 	25 * 1, 	8 * 1};
+const Size collision_2_28_4 = 	{2 * 8, 	28 * 8, 	8 * 8};
+const Size collision_2_64_4 = 	{2 * 8, 	64 * 8, 	8 * 8};
+const Size collision_3_2_4 = 	{3 * 8, 	2 * 8, 		8 * 8};
+const Size collision_4_2_4 = 	{4 * 8, 	2 * 8, 		8 * 8};
+const Size collision_4_4_4 = 	{4 * 8, 	4 * 8, 		8 * 8};
+const Size collision_4_8_4 = 	{4 * 8, 	8 * 8, 		8 * 8};
+const Size collision_6_4_4 = 	{6 * 8, 	4 * 8, 		8 * 8};
+const Size collision_7_2_4 = 	{7 * 8, 	2 * 8, 		8 * 8};
+const Size collision_8_3_4 = 	{8 * 8, 	3 * 8, 		8 * 8};
+const Size collision_8_4_4 = 	{8 * 8, 	4 * 8, 		8 * 8};
+const Size collision_8_20_4 = 	{8 * 8, 	20 * 8, 	8 * 8};
+const Size collision_12_4_4 = 	{12 * 8, 	4 * 8, 		8 * 8};
+const Size collision_12_12_4 = {12 * 8, 	12 * 8, 	8 * 8};
+const Size collision_14_6_4 = 	{14 * 8, 	6 * 8, 		8 * 8};
+const Size collision_14_18_4 = {14 * 8, 	18 * 8, 	8 * 8};
+const Size collision_16_2_4 = 	{16 * 8, 	2 * 8, 		8 * 8};
+const Size collision_18_6_4 = 	{18 * 8, 	6 * 8, 		8 * 8};
+const Size collision_20_2_4 = 	{20 * 8, 	2 * 8, 		8 * 8};
+const Size collision_20_6_4 = 	{20 * 8, 	6 * 8, 		8 * 8};
+const Size collision_20_32_4 = {20 * 8, 	32 * 8, 	8 * 8};
+const Size collision_28_8_4 = 	{28 * 8, 	8 * 8, 		8 * 8};
+const Size collision_28_16_4 = {28 * 8, 	16 * 8, 	8 * 8};
+const Size collision_32_14_4 = {32 * 8, 	14 * 8, 	8 * 8};
+const Size collision_32_4_4 = 	{32 * 8, 	4 * 8, 		8 * 8};
+const Size collision_30_33_4 = {30 * 8, 	33 * 8, 	8 * 8};
+const Size collision_34_30_4 = {34 * 8, 	30 * 8, 	8 * 8};
+const Size collision_38_10_4 = {38 * 8, 	10 * 8, 	8 * 8};
+const Size collision_42_18_4 = {42 * 8, 	18 * 8, 	8 * 8};
+const Size collision_47_3_4 = 	{47 * 8, 	3 * 8, 		8 * 8};
+const Size collision_48_2_4 = 	{48 * 8, 	2 * 8, 		8 * 8};
+const Size collision_48_3_4 = 	{48 * 8, 	3 * 8, 		8 * 8};
+const Size collision_48_4_4 = 	{48 * 8, 	4 * 8, 		8 * 8};
+const Size collision_48_10_4 = {48 * 8, 	10 * 8, 	8 * 8};
+const Size collision_48_18_4 = {48 * 8, 	18 * 8, 	8 * 8};
+const Size collision_48_28_4 = {48 * 8, 	28 * 8, 	8 * 8};
+const Size collision_49_5_4 = 	{49 * 8, 	5 * 8, 		8 * 8};
+const Size collision_67_25_4 = {67 * 8, 	25 * 8, 	8 * 8};
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -131,7 +131,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 			__TYPE(Box),
 
 			// size
-			this->size,
+			PixelSize_getFromSize(this->size),
 
 			// displacement modifier
 			{0, 0, -__I_TO_FIX10_6(1)},

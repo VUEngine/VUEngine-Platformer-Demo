@@ -548,13 +548,10 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-//		{14, 20, 16},
-//		{8, 8, 8},
-		{__PIXELS_TO_METERS(8), __PIXELS_TO_METERS(8), __PIXELS_TO_METERS(8)},
+		{8, 8, 8},
 
 		// displacement (x, y, z)
-//		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(6), __I_TO_FIX10_6(0)},
-		{__PIXELS_TO_METERS(-1), __PIXELS_TO_METERS(2), __PIXELS_TO_METERS(0)},
+		{-1, 2, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -578,10 +575,10 @@ ShapeROMDef HERO_AC_SHAPES[] =
 PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 {
 	// mass
-	__F_TO_FIX10_6(1),
+	__F_TO_FIX10_6(1.0f),
 
 	// friction
-	__F_TO_FIX10_6(HERO_FRICTION),
+	__F_TO_FIX10_6(0),
 
 	// elasticity
 	__F_TO_FIX10_6(HERO_ELASTICITY),
@@ -723,10 +720,10 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 		__TYPE(InverseBox),
 
 		// size (x, y, z)
-		{__PIXELS_TO_METERS(12 * 8), __PIXELS_TO_METERS(20 * 8), __PIXELS_TO_METERS(4 * 8)},
+		{12 * 8, 20 * 8, 4 * 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+		{0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

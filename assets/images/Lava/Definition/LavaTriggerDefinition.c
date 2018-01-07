@@ -44,7 +44,7 @@ ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 		{2 * 8, 12 * 8, 1 * 8},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+		{0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

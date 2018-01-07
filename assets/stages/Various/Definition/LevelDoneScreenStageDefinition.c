@@ -43,8 +43,8 @@ extern EntityDefinition COIN_AG;
 
 PositionedEntityROMDef LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&COIN_AG, {__F_TO_FIX10_6(164), __F_TO_FIX10_6(108), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&CLOCK_AG, {__F_TO_FIX10_6(164), __F_TO_FIX10_6(124), __F_TO_FIX10_6(LAYER_0_ITEMS)}, 0, NULL, NULL, NULL, false}, // Clock
+	{&COIN_AG, {(164), (108), (LAYER_0_ITEMS)}, 0, NULL, NULL, NULL, false}, // Coin
+	{&CLOCK_AG, {(164), (124), (LAYER_0_ITEMS)}, 0, NULL, NULL, NULL, false}, // Clock
 
 	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 };

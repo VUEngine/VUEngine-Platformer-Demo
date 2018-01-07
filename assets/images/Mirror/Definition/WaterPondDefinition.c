@@ -74,7 +74,7 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 		{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
 
 		// displacement (x, y, z)
-		{__I_TO_FIX10_6(0), __I_TO_FIX10_6(WATER_POND_HEIGHT / 2), __I_TO_FIX10_6(0)},
+		{0, WATER_POND_HEIGHT / 2, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
