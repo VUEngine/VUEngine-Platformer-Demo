@@ -48,7 +48,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef TEST_STAGE_ST;
+extern StageROMDef OVERWORLD1_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -102,7 +102,7 @@ static void OverworldState_enter(OverworldState this, void* owner)
 	Game_disableKeypad(Game_getInstance());
 
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TEST_STAGE_ST, NULL, true);
+	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&OVERWORLD1_STAGE_ST, NULL, true);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	GameState_startClocks(__SAFE_CAST(GameState, this));
