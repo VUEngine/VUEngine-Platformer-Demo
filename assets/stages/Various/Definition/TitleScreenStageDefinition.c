@@ -64,7 +64,7 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&MOUND_BG_FRONT_IM, {(-16), (144), (LAYER_3)}, 0, NULL, NULL, NULL, false}, // Front
+	{&MOUND_BG_FRONT_IM, {(192 + 48 + 8 ), (144), (LAYER_3)}, 0, NULL, NULL, NULL, false}, // Front
 	{&GRASS_AG, {(32), (152), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Grass
 	{&COIN_AG, {(56), (134), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {(72), (134), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
@@ -75,10 +75,10 @@ PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), (LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
 	{&CLOUDS_IM, {(194), (130), (LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8)}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&MOUND_BG_BACK_IM, {(255), (67), (LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&MOUND_BG_CASTLE_FLAG_AG, {(287), (84), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_IM, {(317), (104), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_AG, {(321), (95), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_FLAG_AG, {(356), (84), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(287 - 16), (84 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_IM, {(317 - 16), (104 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
+	{&MOUND_BG_CASTLE_FLAG_AG, {(321 - 16), (95 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(356 - 16), (84 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
 	{&STAR_AG, {(362), (-18), (LAYER_5 - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Star
 	{&BUSH_AG, {(368), (148), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Bush
 
