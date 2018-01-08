@@ -50,7 +50,7 @@ void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id,
 	// construct base
 	__CONSTRUCT_BASE(Entity, &cloudsDefinition->EntityDefinition, id, internalId, name);
 
-	this->displacement = cloudsDefinition->displacement;
+	this->displacement = __PIXELS_TO_METERS(cloudsDefinition->displacement);
 }
 
 // class's destructor

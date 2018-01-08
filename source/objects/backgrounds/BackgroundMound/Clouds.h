@@ -43,10 +43,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Clouds_METHODS(ClassName)																		\
-		Entity_METHODS(ClassName)																	\
+		Entity_METHODS(ClassName)																		\
 
 #define Clouds_SET_VTABLE(ClassName)																	\
-		Entity_SET_VTABLE(ClassName)																\
+		Entity_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, Clouds, update);														\
 		__VIRTUAL_SET(ClassName, Clouds, isVisible);													\
 
@@ -54,7 +54,7 @@ __CLASS(Clouds);
 
 #define Clouds_ATTRIBUTES																				\
 		/* it is derived from */																		\
-		Entity_ATTRIBUTES																			\
+			Entity_ATTRIBUTES																			\
 		/* displacement per cycle */																	\
 		fix10_6 displacement;																			\
 
@@ -64,8 +64,8 @@ typedef struct CloudsDefinition
 	// it has an Entity at the beginning
 	EntityDefinition EntityDefinition;
 
-	// displacement per cycle
-	fix10_6 displacement;
+	// displacement per cycle in pixels
+	s16 displacement;
 
 } CloudsDefinition;
 

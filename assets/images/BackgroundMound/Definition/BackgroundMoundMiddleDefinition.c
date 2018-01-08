@@ -183,6 +183,6 @@ CloudsROMDef CLOUDS_IM =
 		NULL,
 	},
 
-	// displacement per cycle
-	__I_TO_FIX10_6(150),
+	// displacement per cycle in pixels
+	1
 };
