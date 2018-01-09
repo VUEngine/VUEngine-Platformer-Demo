@@ -129,7 +129,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{10, 1, 8},
+		{20 * 8, 2 * 8, 2 * 8},
 
 		// displacement (x, y, z)
 		{0, 0, 0},
@@ -150,7 +150,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		kNoLayer,
 	},
 
-	//{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
+	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 
 	{
 		// shape
