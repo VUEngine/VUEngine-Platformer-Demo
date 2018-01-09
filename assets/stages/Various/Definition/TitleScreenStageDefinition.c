@@ -75,10 +75,10 @@ PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), (LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
 	{&CLOUDS_IM, {(194), (130), (LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8)}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&MOUND_BG_BACK_IM, {(255), (67), (LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&MOUND_BG_CASTLE_FLAG_AG, {(287 - 16), (84 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(287 - 5), (84 + 8), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
 	{&MOUND_BG_CASTLE_IM, {(317 - 16), (104 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_AG, {(321 - 16), (95 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_FLAG_AG, {(356 - 16), (84 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(321 - 18), (95 + 9), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(356 - 30), (84 + 8), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
 	{&STAR_AG, {(362), (-18), (LAYER_5 - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Star
 	{&BUSH_AG, {(368), (148), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Bush
 
@@ -232,13 +232,13 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt1
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt2
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt3
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 		},
 
 		// optical configuration values
