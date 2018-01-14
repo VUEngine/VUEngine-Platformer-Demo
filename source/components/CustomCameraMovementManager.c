@@ -116,8 +116,8 @@ static bool CustomCameraMovementManager_doFocusWithNoEasing(CustomCameraMovement
 
 	Vector3D focusEntityPosition = *_camera->focusEntityPosition;
 	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, _camera->focusEntity));
-	_camera->position.x = focusEntityPosition.x + direction.x * _camera->focusEntityPositionDisplacement.x - __I_TO_FIX10_6(__SCREEN_WIDTH / 2);
-	_camera->position.y = focusEntityPosition.y + _camera->focusEntityPositionDisplacement.y - __I_TO_FIX10_6(__SCREEN_HEIGHT / 2);
+	_camera->position.x = focusEntityPosition.x + direction.x * _camera->focusEntityPositionDisplacement.x - __PIXELS_TO_METERS(__SCREEN_WIDTH / 2);
+	_camera->position.y = focusEntityPosition.y + _camera->focusEntityPositionDisplacement.y - __PIXELS_TO_METERS(__SCREEN_HEIGHT / 2);
 
 	Camera_capPosition(_camera);
 	Camera_forceDisplacement(_camera, true);
@@ -168,13 +168,13 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 		{
 			// calculate the target position
 			fix10_6 horizontalPosition = _camera->position.x;
-			fix10_6 horizontalTarget = focusEntityPosition.x + direction.x * _camera->focusEntityPositionDisplacement.x - __I_TO_FIX10_6(__SCREEN_WIDTH / 2);
+			fix10_6 horizontalTarget = focusEntityPosition.x + direction.x * _camera->focusEntityPositionDisplacement.x - __PIXELS_TO_METERS(__SCREEN_WIDTH / 2);
 
-			fix10_6 easingDisplacement = __I_TO_FIX10_6(7);
+			fix10_6 easingDisplacement = __PIXELS_TO_METERS(7);
 
 			if(introFocusing)
 			{
-				easingDisplacement = __1I_FIX10_6;
+				easingDisplacement = __PIXELS_TO_METERS(1);
 			}
 
 			reachedTargetFlag.x = false;
@@ -198,9 +198,9 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 				_camera->position.x = 0;
 				reachedTargetFlag.x = true;
 			}
-			else if(__I_TO_FIX10_6(_camera->stageSize.x) < _camera->position.x + __I_TO_FIX10_6(__SCREEN_WIDTH))
+			else if(_camera->stageSize.x < _camera->position.x + __PIXELS_TO_METERS(__SCREEN_WIDTH))
 			{
-				_camera->position.x = __I_TO_FIX10_6(_camera->stageSize.x - __SCREEN_WIDTH);
+				_camera->position.x = _camera->stageSize.x - __PIXELS_TO_METERS(__SCREEN_WIDTH);
 				reachedTargetFlag.x = true;
 			}
 
@@ -215,15 +215,15 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 		{
 			// calculate the target position
 			fix10_6 verticalPosition = _camera->position.y;
-			fix10_6 verticalTarget = focusEntityPosition.y + _camera->focusEntityPositionDisplacement.y - __I_TO_FIX10_6(__SCREEN_HEIGHT / 2);
+			fix10_6 verticalTarget = focusEntityPosition.y + _camera->focusEntityPositionDisplacement.y - __PIXELS_TO_METERS(__SCREEN_HEIGHT / 2);
 
-			fix10_6 downEasingDisplacement = __I_TO_FIX10_6(3);
-			fix10_6 upEasingDisplacement = __I_TO_FIX10_6(3);
+			fix10_6 downEasingDisplacement = __PIXELS_TO_METERS(3);
+			fix10_6 upEasingDisplacement = __PIXELS_TO_METERS(3);
 
 			if(introFocusing)
 			{
-				downEasingDisplacement = __1I_FIX10_6;
-				upEasingDisplacement = __1I_FIX10_6;
+				downEasingDisplacement = __PIXELS_TO_METERS(1);
+				upEasingDisplacement = __PIXELS_TO_METERS(1);
 			}
 			else
 			{
@@ -231,7 +231,7 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 
 				if(0 < velocity.y)
 				{
-					downEasingDisplacement = __I_TO_FIX10_6(8);
+					downEasingDisplacement = __PIXELS_TO_METERS(8);
 				}
 			}
 
@@ -262,9 +262,9 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 				_camera->position.y = 0;
 				reachedTargetFlag.y = true;
 			}
-			else if(__I_TO_FIX10_6(_camera->stageSize.y) < _camera->position.y + __I_TO_FIX10_6(__SCREEN_HEIGHT))
+			else if(_camera->stageSize.y < _camera->position.y + __PIXELS_TO_METERS(__SCREEN_HEIGHT))
 			{
-				_camera->position.y = __I_TO_FIX10_6(_camera->stageSize.y - __SCREEN_HEIGHT);
+				_camera->position.y = _camera->stageSize.y - __PIXELS_TO_METERS(__SCREEN_HEIGHT);
 				reachedTargetFlag.y = true;
 			}
 

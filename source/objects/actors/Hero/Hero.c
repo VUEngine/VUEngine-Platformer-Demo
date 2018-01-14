@@ -87,7 +87,7 @@ extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 #define HERO_MAX_VELOCITY_Z					__I_TO_FIX10_6(4)
 #define HERO_BOOST_VELOCITY_X				__F_TO_FIX10_6(5)
 #define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-250)
-#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX10_6(-270)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX10_6(-280)
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-24/16), 0}
 
@@ -856,7 +856,7 @@ static void Hero_addHint(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
-	Vector3D position = {0, 0, __F_TO_FIX10_6(-1)};
+	Vector3D position = {0, 0, __PIXELS_TO_METERS(-1)};
 
 	// save the hint entity, so we can remove it later
 	this->hint = Entity_addChildEntity(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);

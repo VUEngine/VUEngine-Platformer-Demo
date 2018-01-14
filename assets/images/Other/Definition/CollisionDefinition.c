@@ -57,9 +57,9 @@ CollisionROMDef COLLISION_CL =
 	// collision shapes
 	(ShapeDefinition*)NULL,
 
-	// size
+	// pixelSize
 	// if 0, width and height will be inferred from the first sprite's texture's size
-	{1, 1, 1},
+	{100, 100, 16},
 
 	// gameworld's character's type
 	kShape,

@@ -119,7 +119,7 @@ extern EntityDefinition MOVING_PLATFORM_V6_AC;
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-const Size collision_48_5_2 = 	{__PIXELS_TO_METERS(384), __PIXELS_TO_METERS(64), __PIXELS_TO_METERS(80)};
+const Size collision_48_5_2 = 	{48 * 8, 8 * 8, 1 * 8};
 
 PositionedEntityROMDef TEST_STAGE_ST_CHILDREN[] =
 {
@@ -128,8 +128,8 @@ PositionedEntityROMDef TEST_STAGE_ST_CHILDREN[] =
 //	{&SAW_BLADE_H8_AC,				{(192+64),	(112), 	(0)},			0, NULL, NULL, NULL, false},
 //	{&SAW_BLADE_V3_AC,				{(192),	(112), 	(0)},			0, NULL, NULL, NULL, false},
 //	{&SNAIL_3_AC,					{(192-64), (112), 	(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
-	{&TEST_1_PS,					{(192 + 20),	(8), 	(0)},0, NULL, NULL, NULL, false},
-	{&TEST_2_PS,					{(2),	(112), 	(0)},0, NULL, NULL, NULL, false},
+//	{&TEST_1_PS,					{(192 + 20),	(8), 	(0)},0, NULL, NULL, NULL, false},
+//	{&TEST_2_PS,					{(2),	(112), 	(0)},0, NULL, NULL, NULL, false},
 //	{&TEST_2_PS,					{(10),	(112/16), 	(0)},0, NULL, NULL, NULL, false},
 	{&HERO_AC,						{(192),	(224/2-60), 	(LAYER_0_FOREGROUND)},		0, HERO_NAME, NULL, NULL, false},
 
@@ -323,7 +323,7 @@ StageROMDef TEST_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX10_6(0),
-			__F_TO_FIX10_6(9.8f),
+			__F_TO_FIX10_6(__GRAVITY),
 			__I_TO_FIX10_6(0)
 		},
 

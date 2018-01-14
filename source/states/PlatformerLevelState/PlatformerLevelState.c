@@ -184,12 +184,12 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			// focus screen on new position
 			Vector3D screenPosition =
 			{
-				initialPosition->x - __I_TO_FIX10_6(__HALF_SCREEN_WIDTH),
-				initialPosition->y - __I_TO_FIX10_6(__HALF_SCREEN_HEIGHT),
+				initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH),
+				initialPosition->y - __PIXELS_TO_METERS(__HALF_SCREEN_HEIGHT),
 				initialPosition->z
 			};
 
-			Camera_setPosition(Camera_getInstance(), screenPosition);
+			//Camera_setPosition(Camera_getInstance(), screenPosition);
 
 			// load stage
 			GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
@@ -235,7 +235,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 
 			// set focus on the hero
 			Camera_setFocusGameEntity(Camera_getInstance(), __SAFE_CAST(Entity, hero));
-			Vector3D screenDisplacement = {__I_TO_FIX10_6(50), __I_TO_FIX10_6(-30), 0};
+			Vector3D screenDisplacement = {__PIXELS_TO_METERS(50), __PIXELS_TO_METERS(-30), 0};
 			Camera_setFocusEntityPositionDisplacement(Camera_getInstance(), screenDisplacement);
 
 			// apply changes to the visuals

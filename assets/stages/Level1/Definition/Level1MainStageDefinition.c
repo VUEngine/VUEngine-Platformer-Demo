@@ -383,7 +383,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&COIN_AG,						{(320),	(248), 	(LAYER_0_ITEMS)},			3, NULL, NULL, NULL, false},
 	{&COIN_AG,						{(336),	(248), 	(LAYER_0_ITEMS)},			4, NULL, NULL, NULL, false},
-	{&SAW_BLADE_H8_AC,				{(352),	(259), 	(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
+//	{&SAW_BLADE_H8_AC,				{(352),	(259), 	(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
 	{&JUMP_SIGN_IM,					{(472),	(244), 	(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
 
 	// part 2
@@ -425,6 +425,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&WATERFALL_TOP_AG,				{(1156),	(346), 	(LAYER_0_FOREGROUND)},		0, NULL, NULL, NULL, false},
 	{&WATERFALL_STREAM_2x16_AG,		{(1156),	(408), 	(0)}, 						0, NULL, NULL, NULL, false},
 	{&WATER_POND_EN,				{(1173),	(465), 	(LAYER_0_FOREGROUND + 1)},	0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
 
 	{&SAW_BLADE_V3_AC,				{(1197), (472), 	(LAYER_0_ENEMIES)},			0, NULL, NULL, NULL, false},
 	{&DOUBLE_JUMP_SIGN_IM,			{(1244), (432), 	(LAYER_0_BACKGROUND)},		0, NULL, NULL, NULL, false},
@@ -585,7 +586,7 @@ TextureDefinition* const LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 
 const PostProcessingEffect LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 {
-	PostProcessingEffects_rain,
+//	PostProcessingEffects_rain,
 	NULL
 };
 
@@ -708,11 +709,11 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
 			// __spt0
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt1
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt2
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt3
 			__F_TO_FIX10_6(24),
 		},
@@ -737,7 +738,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX10_6(0),
-			__I_TO_FIX10_6(__GRAVITY),
+			__F_TO_FIX10_6(__GRAVITY),
 			__I_TO_FIX10_6(0)
 		},
 
@@ -791,9 +792,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		(19),
-		(-20),
-		(SORT_INCREMENT * 0),
+		(0),
+		(-0),
+		(-SORT_INCREMENT * 0),
 	},
 
 	// whether this entry point acts as a checkpoint
@@ -887,7 +888,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
 	// offset from entry point (x, y, z)
 	{
 		(0),
-		__I_TO_FIX10_6(-1),
+		(-1),
 		(SORT_INCREMENT * 3),
 	},
 

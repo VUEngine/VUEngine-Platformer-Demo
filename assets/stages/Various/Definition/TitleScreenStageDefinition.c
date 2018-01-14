@@ -77,8 +77,8 @@ PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 	{&MOUND_BG_BACK_IM, {(255), (67), (LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
 	{&MOUND_BG_CASTLE_FLAG_AG, {(287 - 5), (84 + 8), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
 	{&MOUND_BG_CASTLE_IM, {(317 - 16), (104 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_AG, {(321 - 18), (95 + 9), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_FLAG_AG, {(356 - 30), (84 + 8), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(321 - 17), (95 + 9), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(356 - 29), (84 + 8), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
 	{&STAR_AG, {(362), (-18), (LAYER_5 - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Star
 	{&BUSH_AG, {(368), (148), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Bush
 
@@ -261,7 +261,7 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX10_6(0),
-			__I_TO_FIX10_6(__GRAVITY),
+			__F_TO_FIX10_6(__GRAVITY),
 			__I_TO_FIX10_6(0)
 		},
 

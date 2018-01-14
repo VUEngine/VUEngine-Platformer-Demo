@@ -232,7 +232,7 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX10_6(0),
-			__I_TO_FIX10_6(__GRAVITY),
+			__F_TO_FIX10_6(__GRAVITY),
 			__I_TO_FIX10_6(0)
 		},
 
