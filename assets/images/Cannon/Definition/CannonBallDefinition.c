@@ -158,8 +158,8 @@ ShapeROMDef CANNON_BALL_AC_SHAPES[] =
 		// size (x, y, z)
 		{22, 22, 16},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -177,7 +177,7 @@ ShapeROMDef CANNON_BALL_AC_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 CannonBallROMDef CANNON_BALL_AC =
@@ -221,7 +221,7 @@ CannonBallROMDef CANNON_BALL_AC =
 PositionedEntityROMDef CANNON_BALL =
 {
 	(EntityDefinition*)&CANNON_BALL_AC,
-	{__F_TO_FIX10_6(0), __F_TO_FIX10_6(0), __F_TO_FIX10_6(-SORT_INCREMENT)},
+	{0, 0, -SORT_INCREMENT, 0},
 	0,
 	NULL,
 	NULL,

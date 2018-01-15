@@ -159,7 +159,7 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 	Vector3D focusEntityPosition = *_camera->focusEntityPosition;
 
 	Vector3D position3D = Vector3D_getRelativeToCamera(focusEntityPosition);
-	Vector2D position2D = Vector3D_projectToVector2D(position3D, 0);
+	PixelVector position2D = Vector3D_projectToPixelVector(position3D, 0);
 
 	{
 		bool focusEntityOutOfBounds = (unsigned)(__FIX10_6_TO_I(position2D.x) - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);

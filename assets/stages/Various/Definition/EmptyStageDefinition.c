@@ -36,13 +36,13 @@
 PositionedEntityROMDef EMPTY_STAGE_ST_ENTITIES[] =
 {
 
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef EMPTY_STAGE_ST_UI_ENTITIES[] =
 {
 
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 
@@ -81,11 +81,13 @@ StageROMDef EMPTY_STAGE_ST =
 		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX10_6(0),
+			0,
 			// y
-			__I_TO_FIX10_6(0),
+			0,
 			// z
-			__I_TO_FIX10_6(0),
+			0,
+			// p
+			0
 		},
 	},
 
@@ -192,13 +194,13 @@ StageROMDef EMPTY_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
+			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX10_6(__BASE_FACTOR),
+			__BASE_FACTOR,
 			// horizontal view point center
-			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
+			__HORIZONTAL_VIEW_POINT_CENTER,
 			// vertical view point center
-			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
+			__VERTICAL_VIEW_POINT_CENTER,
 		},
 	},
 

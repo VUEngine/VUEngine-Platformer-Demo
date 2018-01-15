@@ -373,8 +373,8 @@ ShapeROMDef COIN_SHAPES[] =
 		// size (x, y, z)
 		{4, 4, 4},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -392,7 +392,7 @@ ShapeROMDef COIN_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 CoinROMDef COIN_AG =
@@ -530,8 +530,8 @@ ShapeROMDef COIN_BACK_SHAPES[] =
 		// size (x, y, z)
 		{4, 4, 4},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -549,7 +549,7 @@ ShapeROMDef COIN_BACK_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 CoinROMDef COIN_BACK_AG =

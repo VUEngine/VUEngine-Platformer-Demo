@@ -232,8 +232,8 @@ ShapeROMDef HIDE_LAYER_10x7_AG_SHAPES[] =
 		// size (x, y, z)
 		{80, 56, 16},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -251,7 +251,7 @@ ShapeROMDef HIDE_LAYER_10x7_AG_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 HideLayerROMDef HIDE_LAYER_10x7_AG =

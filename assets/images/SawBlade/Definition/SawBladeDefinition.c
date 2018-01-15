@@ -158,8 +158,8 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 		// size (x, y, z)
 		{9, 9, 9},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -177,7 +177,7 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 MovingEntityROMDef SAW_BLADE_V3_AC =

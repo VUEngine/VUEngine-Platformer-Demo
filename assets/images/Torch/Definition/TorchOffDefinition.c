@@ -100,7 +100,7 @@ ObjectSpriteROMDef TORCH_OFF_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, __F_TO_FIX10_6(1), 0},
+		{0, 0, 1, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

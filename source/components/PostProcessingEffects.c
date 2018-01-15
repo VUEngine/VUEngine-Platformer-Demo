@@ -963,29 +963,29 @@ void PostProcessingEffects_drawRhombus(fix10_6 radiusFix10_6, u32 color, Vector3
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {spatialObjectPosition.x - radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix10_6,	spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x - radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix10_6,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {spatialObjectPosition.x + radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix10_6,	spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x + radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix10_6,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {spatialObjectPosition.x + radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix10_6,	spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x + radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix10_6,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(Vector2D) {spatialObjectPosition.x - radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(Vector2D) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix10_6,	spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x - radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix10_6,	spatialObjectPosition.z, parallax},
 		color
 	);
 }

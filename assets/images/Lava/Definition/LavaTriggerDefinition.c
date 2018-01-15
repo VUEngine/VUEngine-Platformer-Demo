@@ -43,8 +43,8 @@ ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 		// size (x, y, z)
 		{2 * 8, 12 * 8, 1 * 8},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -62,7 +62,7 @@ ShapeROMDef LAVA_TRIGGER_IG_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 LavaTriggerROMDef LAVA_TRIGGER_IG =

@@ -158,8 +158,8 @@ ShapeROMDef BANDANA_AG_SHAPES[] =
 		// size (x, y, z)
 		{8, 8, 8},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -177,7 +177,7 @@ ShapeROMDef BANDANA_AG_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 AnimatedEntityROMDef BANDANA_AG =

@@ -251,7 +251,7 @@ BgmapSpriteROMDef DOOR_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, __F_TO_FIX10_6(2), 0},
+		{0, 0, 2, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -280,8 +280,8 @@ ShapeROMDef DOOR_AG_SHAPES[] =
 		// size (x, y, z)
 		{19, 28, 16},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -299,7 +299,7 @@ ShapeROMDef DOOR_AG_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 DoorROMDef DOOR_AG =

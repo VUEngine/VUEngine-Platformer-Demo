@@ -127,8 +127,8 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 		// size (x, y, z)
 		{32, 16, 16},
 
-		// displacement (x, y, z)
-		{0, -8, 0},
+		// displacement (x, y, z, p)
+		{0, -8, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -146,7 +146,7 @@ ShapeROMDef ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 PhysicalSpecificationROMDef ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =

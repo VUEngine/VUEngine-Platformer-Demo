@@ -100,7 +100,7 @@ BgmapSpriteROMDef TEST_COG_WHEEL_BG_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, __I_TO_FIX10_6(-1)},
+		{0, 0, 0, -1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -131,8 +131,8 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		// size (x, y, z)
 		{20 * 8, 2 * 8, 2 * 8},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -150,7 +150,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		kNoLayer,
 	},
 
-	//{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
+	//{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 
 	{
 		// shape
@@ -159,8 +159,8 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		// size (x, y, z)
 		{40, 40, 40},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -178,7 +178,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 	{
 		// shape
 		__TYPE(Box),
@@ -186,8 +186,8 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		// size (x, y, z)
 		{12, 10 * 8, 4 * 8},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -212,8 +212,8 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		// size (x, y, z)
 		{12, 10 * 8, 4 * 8},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 128},
@@ -231,7 +231,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer},
 };
 
 PhysicalSpecificationROMDef TEST_COG_WHEEL_IM_PHYSICAL_PROPERTIES =

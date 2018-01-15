@@ -156,8 +156,8 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 		// size (x, y, z)
 		{7, 7, 7},
 
-		// displacement (x, y, z)
-		{0, 2, 0},
+		// displacement (x, y, z, p)
+		{0, 2, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -175,7 +175,7 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 MovingEntityROMDef SNAIL_3_AC =

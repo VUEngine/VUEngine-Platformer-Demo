@@ -158,8 +158,8 @@ ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 		// size (x, y, z)
 		{30, 32, 16},
 
-		// displacement (x, y, z)
-		{0, 8, 0},
+		// displacement (x, y, z, p)
+		{0, 8, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -177,7 +177,7 @@ ShapeROMDef MOVING_PLATFORM_V6_AC_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 PhysicalSpecificationROMDef MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES =

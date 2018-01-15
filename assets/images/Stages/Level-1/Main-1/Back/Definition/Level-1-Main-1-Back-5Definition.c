@@ -162,7 +162,7 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM =
 				false,
 
 				// displacement
-				{0, 0, 0, __I_TO_FIX10_6(-20)},
+				{0, 0, 0, -20},
 			},
 
 			// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

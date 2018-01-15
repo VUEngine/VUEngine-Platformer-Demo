@@ -157,8 +157,8 @@ ShapeROMDef KEY_AG_SHAPES[] =
 		// size (x, y, z)
 		{2 * 8, 2 * 8, 2 * 8},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -176,7 +176,7 @@ ShapeROMDef KEY_AG_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 AnimatedEntityROMDef KEY_AG =

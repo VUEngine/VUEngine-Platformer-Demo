@@ -135,7 +135,7 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE =
 				false,
 
 				// displacement
-				{0, 0, __F_TO_FIX10_6(-1.5f), 0},
+				{0, 0, -2, 0},
 			},
 
 			// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

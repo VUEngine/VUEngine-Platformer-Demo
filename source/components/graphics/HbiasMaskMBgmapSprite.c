@@ -185,7 +185,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	if(!ownerSpriteGYSet)
 	{
 		Vector3D ownerPosition3D = Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, this->owner));
-		Vector2D ownerPosition2D = Vector3D_projectToVector2D(ownerPosition3D, 0);
+		PixelVector ownerPosition2D = Vector3D_projectToPixelVector(ownerPosition3D, 0);
 
 		ownerSpriteGY = __FIX10_6_TO_I(ownerPosition2D.y);
 	}

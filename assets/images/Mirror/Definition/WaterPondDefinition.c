@@ -73,8 +73,8 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 		// size (x, y, z)
 		{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
 
-		// displacement (x, y, z)
-		{0, WATER_POND_HEIGHT / 2, 0},
+		// displacement (x, y, z, p)
+		{0, WATER_POND_HEIGHT / 2, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -92,7 +92,7 @@ ShapeROMDef WATER_POND_EN_SHAPES[] =
 		kNoLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 PhysicalSpecificationROMDef WATER_POND_EN_PHYSICAL_PROPERTIES =

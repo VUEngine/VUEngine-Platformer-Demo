@@ -189,7 +189,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 				initialPosition->z
 			};
 
-			//Camera_setPosition(Camera_getInstance(), screenPosition);
+			Camera_setPosition(Camera_getInstance(), screenPosition);
 
 			// load stage
 			GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
@@ -206,7 +206,8 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 					{
 						__METERS_TO_PIXELS(initialPosition->x),
 						__METERS_TO_PIXELS(initialPosition->y),
-						__METERS_TO_PIXELS(initialPosition->z)
+						__METERS_TO_PIXELS(initialPosition->z),
+						0
 					},
 					0,
 					HERO_NAME,
@@ -279,6 +280,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	}
 
 	PlatformerLevelState_setCameraFrustum(this);
+	Game_enableKeypad(Game_getInstance());
 }
 
 void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this __attribute__ ((unused)))

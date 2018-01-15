@@ -48,27 +48,27 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef OVERWORLD1_STAGE_ST_ENTITIES[] =
 {
-	{&WATER_A_AG, {(26), (86), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_AG, {(70), (18), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_AG, {(74), (176), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Water
-	{&FLOWER_A_AG, {(124), (118), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {(130), (82), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {(156), (200), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&HERO_IDLE_AG, {(160), (92), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
-	{&OVERWORLD_1_IM, {(192), (112), (LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
-	{&FLOWER_A_AG, {(218), (168), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&SMOKE_PS, {(222.5), (48), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Smoke
-	{&FLOWER_A_AG, {(226), (132), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {(290), (136), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Flower
+	{&WATER_A_AG, {(26), (86), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&WATER_A_AG, {(70), (18), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&WATER_A_AG, {(74), (176), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&FLOWER_A_AG, {(124), (118), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(130), (82), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(156), (200), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&HERO_IDLE_AG, {(160), (92), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
+	{&OVERWORLD_1_IM, {(192), (112), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
+	{&FLOWER_A_AG, {(218), (168), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&SMOKE_PS, {(222.5), (48), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Smoke
+	{&FLOWER_A_AG, {(226), (132), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(290), (136), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
 
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_OVERWORLD_AG, {(192), (216), (0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_OVERWORLD_AG, {(192), (216), (0), 0}, 0, NULL, NULL, NULL, false}, // GUI
 
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 
@@ -106,11 +106,13 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX10_6(0),
+			0,
 			// y
-			__I_TO_FIX10_6(0),
+			0,
 			// z
-			__I_TO_FIX10_6(0),
+			0,
+			// p
+			0
 		},
 	},
 
@@ -217,13 +219,13 @@ StageROMDef OVERWORLD1_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
+			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX10_6(__BASE_FACTOR),
+			__BASE_FACTOR,
 			// horizontal view point center
-			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
+			__HORIZONTAL_VIEW_POINT_CENTER,
 			// vertical view point center
-			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
+			__VERTICAL_VIEW_POINT_CENTER,
 		},
 	},
 

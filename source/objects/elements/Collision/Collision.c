@@ -134,7 +134,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 			PixelSize_getFromSize(this->size),
 
 			// displacement modifier
-			{0, 0, -__I_TO_FIX10_6(1)},
+			{0, 0, -1, 0},
 
 			// rotation modifier
 			{0, 0, 0},

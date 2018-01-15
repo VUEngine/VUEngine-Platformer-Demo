@@ -63,29 +63,29 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 {
-	{&COLLISION_CL, {(120), (128), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
-	{&KEY_DOOR_AG, {(148), (144), (LAYER_0_DOORS)}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
-	{&HERO_AC, {(163), (148), (LAYER_0)}, 0, HERO_NAME, NULL, NULL, false}, // Hero
-	{&CLOCK_AG, {(180), (128), (LAYER_0 + 24)}, 0, NULL, NULL, NULL, false}, // Clock
-	{&LEVEL_1_HOUSE_MAIN_IM, {(192), (112), (LAYER_0_BACKGROUND)}, 0, NULL, NULL, NULL, false}, // House Background
-	{&COLLISION_CL, {(192), (168), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
-	{&COLLISION_CL, {(192), (88), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
-	{&CLOUDS_IM, {(194), (149), (LAYER_4)}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&LEVEL_1_HOUSE_LIGHT_IM, {(196), (140), (LAYER_0_ITEMS - 1)}, 0, NULL, NULL, NULL, false}, // Light
-	{&COIN_AG, {(204), (146), (LAYER_0_ITEMS)}, 26, NULL, NULL, NULL, false}, // Coin
-	{&FIRE_SMALL_AG, {(240), (155), (12)}, 0, NULL, NULL, NULL, false}, // Fire
-	{&COLLISION_TOP_CL, {(240), (152), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
-	{&MOUND_BG_BACK_IM, {(255), (80), (LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&COLLISION_CL, {(264), (128), (0)}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
+	{&COLLISION_CL, {(120), (128), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
+	{&KEY_DOOR_AG, {(148), (144), (LAYER_0_DOORS), 0}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
+	{&HERO_AC, {(163), (148), (LAYER_0), 0}, 0, HERO_NAME, NULL, NULL, false}, // Hero
+	{&CLOCK_AG, {(180), (128), (LAYER_0 + 24), 0}, 0, NULL, NULL, NULL, false}, // Clock
+	{&LEVEL_1_HOUSE_MAIN_IM, {(192), (112), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // House Background
+	{&COLLISION_CL, {(192), (168), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
+	{&COLLISION_CL, {(192), (88), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
+	{&CLOUDS_IM, {(194), (149), (LAYER_4), 0}, 0, NULL, NULL, NULL, false}, // Clouds
+	{&LEVEL_1_HOUSE_LIGHT_IM, {(196), (140), (LAYER_0_ITEMS - 1), 0}, 0, NULL, NULL, NULL, false}, // Light
+	{&COIN_AG, {(204), (146), (LAYER_0_ITEMS), 0}, 26, NULL, NULL, NULL, false}, // Coin
+	{&FIRE_SMALL_AG, {(240), (155), (12), 0}, 0, NULL, NULL, NULL, false}, // Fire
+	{&COLLISION_TOP_CL, {(240), (152), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
+	{&MOUND_BG_BACK_IM, {(255), (80), (LAYER_5), 0}, 0, NULL, NULL, NULL, false}, // Mountains
+	{&COLLISION_CL, {(264), (128), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
 
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {(192), (216), (0)}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_AG, {(192), (216), (0), 0}, 0, NULL, NULL, NULL, false}, // GUI
 
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 
@@ -130,11 +130,13 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX10_6(0),
+			0,
 			// y
-			__I_TO_FIX10_6(0),
+			0,
 			// z
-			__I_TO_FIX10_6(0),
+			0,
+			// p
+			0
 		},
 	},
 
@@ -241,13 +243,13 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
+			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX10_6(__BASE_FACTOR),
+			__BASE_FACTOR,
 			// horizontal view point center
-			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
+			__HORIZONTAL_VIEW_POINT_CENTER,
 			// vertical view point center
-			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
+			__VERTICAL_VIEW_POINT_CENTER,
 		},
 	},
 
@@ -310,9 +312,10 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		(19),
-		(0),
-		(-SORT_INCREMENT),
+		19,
+		0,
+		-SORT_INCREMENT,
+		0
 	},
 
 	// whether this entry point acts as a checkpoint

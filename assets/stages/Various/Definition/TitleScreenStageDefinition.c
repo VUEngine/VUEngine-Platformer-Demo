@@ -64,31 +64,31 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&MOUND_BG_FRONT_IM, {(192 + 48 + 8 ), (144), (LAYER_3)}, 0, NULL, NULL, NULL, false}, // Front
-	{&GRASS_AG, {(32), (152), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Grass
-	{&COIN_AG, {(56), (134), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {(72), (134), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Coin
-	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {(192), (168), (LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer
-	{&LOGO_IM, {(192), (53), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Logo
-	{&VUENGINE_LOGO_IM, {(192), (18), (LAYER_1)}, 0, NULL, NULL, NULL, false}, // VUEngine
-	{&HERO_BANDANA_AG, {(192), (158), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Hero
-	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), (LAYER_0_FOREGROUND)}, 0, NULL, NULL, NULL, false}, // Main Layer Front
-	{&CLOUDS_IM, {(194), (130), (LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8)}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&MOUND_BG_BACK_IM, {(255), (67), (LAYER_5)}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&MOUND_BG_CASTLE_FLAG_AG, {(287 - 5), (84 + 8), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_IM, {(317 - 16), (104 + 12), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_AG, {(321 - 17), (95 + 9), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_FLAG_AG, {(356 - 29), (84 + 8), (LAYER_4 + SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&STAR_AG, {(362), (-18), (LAYER_5 - SORT_INCREMENT)}, 0, NULL, NULL, NULL, false}, // Star
-	{&BUSH_AG, {(368), (148), (LAYER_0)}, 0, NULL, NULL, NULL, false}, // Bush
+	{&MOUND_BG_FRONT_IM, {(192 + 48 + 8 ), (144), (LAYER_3), 0}, 0, NULL, NULL, NULL, false}, // Front
+	{&GRASS_AG, {(32), (152), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Grass
+	{&COIN_AG, {(56), (134), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(72), (134), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Coin
+	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {(192), (168), (LAYER_0_FOREGROUND), 0}, 0, NULL, NULL, NULL, false}, // Main Layer
+	{&LOGO_IM, {(192), (53), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Logo
+	{&VUENGINE_LOGO_IM, {(192), (18), (LAYER_1), 0}, 0, NULL, NULL, NULL, false}, // VUEngine
+	{&HERO_BANDANA_AG, {(192), (158), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Hero
+	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), (LAYER_0_FOREGROUND), 0}, 0, NULL, NULL, NULL, false}, // Main Layer Front
+	{&CLOUDS_IM, {(194), (130), (LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8), 0}, 0, NULL, NULL, NULL, false}, // Clouds
+	{&MOUND_BG_BACK_IM, {(255), (67), (LAYER_5), 0}, 0, NULL, NULL, NULL, false}, // Mountains
+	{&MOUND_BG_CASTLE_FLAG_AG, {(287 - 5), (84 + 8), (LAYER_4 + SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_IM, {(317 - 16), (104 + 12), (LAYER_4 + SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // Castle
+	{&MOUND_BG_CASTLE_FLAG_AG, {(321 - 17), (95 + 9), (LAYER_4 + SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&MOUND_BG_CASTLE_FLAG_AG, {(356 - 29), (84 + 8), (LAYER_4 + SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // Castle Flag
+	{&STAR_AG, {(362), (-18), (LAYER_5 - SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // Star
+	{&BUSH_AG, {(368), (148), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Bush
 
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 {
 
-	{NULL, {0,0,0}, 0, NULL, NULL, NULL, false},
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 
@@ -135,11 +135,13 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		// camera's initial position inside the game world
 		{
 			// x
-			__I_TO_FIX10_6(0),
+			0,
 			// y
-			__I_TO_FIX10_6(0),
+			0,
 			// z
-			__I_TO_FIX10_6(0),
+			0,
+			// p
+			0
 		},
 	},
 
@@ -246,13 +248,13 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 			// maximum view distance's power into the horizon
 			__MAXIMUM_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
-			__I_TO_FIX10_6(__DISTANCE_EYE_SCREEN),
+			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
-			__I_TO_FIX10_6(__BASE_FACTOR),
+			__BASE_FACTOR,
 			// horizontal view point center
-			__I_TO_FIX10_6(__HORIZONTAL_VIEW_POINT_CENTER),
+			__HORIZONTAL_VIEW_POINT_CENTER,
 			// vertical view point center
-			__I_TO_FIX10_6(__VERTICAL_VIEW_POINT_CENTER),
+			__VERTICAL_VIEW_POINT_CENTER,
 		},
 	},
 

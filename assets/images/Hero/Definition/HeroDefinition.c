@@ -550,8 +550,8 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		// size (x, y, z)
 		{8, 8, 8},
 
-		// displacement (x, y, z)
-		{-1, 2, 0},
+		// displacement (x, y, z, p)
+		{-1, 2, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -569,7 +569,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		kParticlesLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
@@ -722,8 +722,8 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 		// size (x, y, z)
 		{12 * 8, 20 * 8, 4 * 8},
 
-		// displacement (x, y, z)
-		{0, 0, 0},
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -741,7 +741,7 @@ ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
 		kAllLayers,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
 
