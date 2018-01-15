@@ -195,13 +195,13 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt1
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt2
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 			// __spt3
-			__F_TO_FIX10_6(LAYER_0_PARTICLES),
+			LAYER_0_PARTICLES,
 		},
 
 		// optical configuration values

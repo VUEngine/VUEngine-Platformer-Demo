@@ -162,7 +162,7 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 	PixelVector position2D = Vector3D_projectToPixelVector(position3D, 0);
 
 	{
-		bool focusEntityOutOfBounds = (unsigned)(__FIX10_6_TO_I(position2D.x) - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
+		bool focusEntityOutOfBounds = (unsigned)(position2D.x - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
 
 		if(this->positionFlag.x | focusEntityOutOfBounds)
 		{
@@ -209,7 +209,7 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 	}
 
 	{
-		bool focusEntityOutOfBounds = __FIX10_6_TO_I(position2D.y) > _cameraFrustum->y1 - SCREEN_HEIGHT_REDUCTION || __FIX10_6_TO_I(position2D.y) < _cameraFrustum->y0 + SCREEN_HEIGHT_REDUCTION / 4;
+		bool focusEntityOutOfBounds = position2D.y > _cameraFrustum->y1 - SCREEN_HEIGHT_REDUCTION || position2D.y < _cameraFrustum->y0 + SCREEN_HEIGHT_REDUCTION / 4;
 
 		if(this->positionFlag.y | focusEntityOutOfBounds)
 		{

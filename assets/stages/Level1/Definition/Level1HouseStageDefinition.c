@@ -229,13 +229,13 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			__F_TO_FIX10_6(0),
+			0,
 			// __spt1
-			__F_TO_FIX10_6(0),
+			0,
 			// __spt2
-			__F_TO_FIX10_6(0),
+			0,
 			// __spt3
-			__F_TO_FIX10_6(0),
+			0,
 		},
 
 		// optical configuration values

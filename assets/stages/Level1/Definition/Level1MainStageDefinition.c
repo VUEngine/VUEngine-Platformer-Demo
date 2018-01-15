@@ -353,8 +353,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_IM_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 {
-//	{&LEVEL_1_MAIN_1_BACK_1_IM,		{(360),	(112), 	(LAYER_2), 0},					0, NULL, NULL, NULL, false},
-//	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&MOUND_BG_BACK_IM,				{(0),	(112), 	(LAYER_5), 0},					0, NULL, NULL, NULL, true},
 	{&CLOUDS_IM,					{(0),	(198), 	(LAYER_4), 0},					0, NULL, NULL, NULL, true},
@@ -718,7 +716,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 			// __spt2
 			LAYER_0_PARTICLES,
 			// __spt3
-			__F_TO_FIX10_6(24),
+			24,
 		},
 
 		// optical configuration values
@@ -741,7 +739,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX10_6(0),
-			__F_TO_FIX10_6(__GRAVITY),
+			__F_TO_FIX10_6(__GRAVITY*2),
 			__I_TO_FIX10_6(0)
 		},
 
@@ -795,7 +793,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		0,
+		19,
 		-0,
 		-SORT_INCREMENT * 0,
 		0

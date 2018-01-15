@@ -575,7 +575,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 {
 	// mass
-	__F_TO_FIX10_6(1.0f),
+	__F_TO_FIX10_6(0.65f),
 
 	// friction
 	__F_TO_FIX10_6(0),
