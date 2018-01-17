@@ -172,7 +172,7 @@ WaterPondROMDef WATER_POND_EN =
 		WAVING_THROTTLE,
 
 		// parallax displacement applied to the reflection
-		-2,
+		WATERFALLS_PARALLAX_DISPLACEMENT * 2,
 
 		// flatten up/down
 		false, true,

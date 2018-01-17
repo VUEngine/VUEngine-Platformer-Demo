@@ -98,7 +98,7 @@ ObjectSpriteROMDef JUMP_SIGN_IM_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, SIGNS_PARALLAX_DISPLACEMENT},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

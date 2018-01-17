@@ -78,9 +78,9 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 				Vector3D destinationDoorPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
 
 				// apply offset
-				destinationDoorPosition.x += this->destinationDefinition->offset.x;
-				destinationDoorPosition.y += this->destinationDefinition->offset.y;
-				destinationDoorPosition.z += this->destinationDefinition->offset.z;
+				destinationDoorPosition.x += __PIXELS_TO_METERS(this->destinationDefinition->offset.x);
+				destinationDoorPosition.y += __PIXELS_TO_METERS(this->destinationDefinition->offset.y);
+				destinationDoorPosition.z += __PIXELS_TO_METERS(this->destinationDefinition->offset.z);
 
 				// set hero's position
 				Hero_getOutOfDoor(Hero_getInstance(), &destinationDoorPosition);

@@ -454,7 +454,7 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, HERO_PARALLAX_DISPLACEMENT},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -551,7 +551,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		{8, 8, 8},
 
 		// displacement (x, y, z, p)
-		{-1, 2, 0, 0},
+		{-1, 3, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

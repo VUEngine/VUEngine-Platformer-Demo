@@ -218,10 +218,10 @@ MovingEntityROMDef SNAIL_3_AC =
 	},
 
 	// velocity
-	__I_TO_FIX10_6(20),
+	__F_TO_FIX10_6(0.5f),
 
 	// maximum deviation from initial position
-	__I_TO_FIX10_6(3 * 8),
+	__F_TO_FIX10_6(1.5f),
 
 	// time to rest idle
 	3000,
@@ -276,10 +276,10 @@ MovingEntityROMDef SNAIL_8_AC =
 	},
 
 	// velocity
-	__I_TO_FIX10_6(20),
+	__F_TO_FIX10_6(0.5f),
 
 	// maximum deviation from initial position
-	__I_TO_FIX10_6(8 * 8),
+	__F_TO_FIX10_6(4),
 
 	// time to rest idle
 	3000,

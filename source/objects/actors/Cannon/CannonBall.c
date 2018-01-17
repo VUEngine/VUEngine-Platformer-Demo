@@ -78,7 +78,7 @@ void CannonBall_destructor(CannonBall this)
 // start moving
 void CannonBall_startMovement(CannonBall this)
 {
-	Velocity velocity = {0, 0, __I_TO_FIX10_6(-128)};
+	Velocity velocity = {0, 0, __I_TO_FIX10_6(-2)};
 
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
@@ -104,7 +104,7 @@ void CannonBall_stopMovement(CannonBall this)
 
 static void CannonBall_checkIfDistanceTraveled(CannonBall this)
 {
-	if(this->transformation.globalPosition.z <= __I_TO_FIX10_6(CANNON_BALL_MINIMUM_Z_VALUE))
+	if(this->transformation.globalPosition.z <= __PIXELS_TO_METERS(CANNON_BALL_MINIMUM_Z_VALUE))
 	{
 		CannonBall_stopMovement(this);
 	}

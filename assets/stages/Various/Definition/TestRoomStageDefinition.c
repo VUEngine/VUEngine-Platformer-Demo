@@ -82,15 +82,15 @@ PositionedEntityROMDef TEST_ROOM_STAGE_ST_ENTITIES[] =
 {
 	{&COLLISION_CL, {__F_TO_FIX10_6(8), __F_TO_FIX10_6(160), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Left
 	{&DOOR_AG, {__F_TO_FIX10_6(36), __F_TO_FIX10_6(160), __F_TO_FIX10_6(LAYER_0), 0}, 0, "EntryDoor", NULL, NULL, false}, // Entry Door
-	{&TEST_ROOM_STAGE_TEST_1_IM, {__F_TO_FIX10_6(40), __F_TO_FIX10_6(56), __F_TO_FIX10_6(LAYER_0_FOREGROUND), 0}, 0, NULL, NULL, NULL, false}, // Test Composite
+	{&TEST_ROOM_STAGE_TEST_1_IM, {__F_TO_FIX10_6(40), __F_TO_FIX10_6(56), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Test Composite
 	{&HERO_AC, {__F_TO_FIX10_6(44), __F_TO_FIX10_6(164), __F_TO_FIX10_6(LAYER_0), 0}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&COLLISION_CL, {__F_TO_FIX10_6(80), __F_TO_FIX10_6(104), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_160_48_8, false}, // Top Left
 	{&COLLISION_CL, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(184), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_256_16_8, false}, // Bottom
-	{&TEST_ROOM_STAGE_MAIN_1_IM, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(136), __F_TO_FIX10_6(LAYER_0_FOREGROUND), 0}, 0, NULL, NULL, NULL, false}, // Main Layer (1)
+	{&TEST_ROOM_STAGE_MAIN_1_IM, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(136), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Main Layer (1)
 	{&MANAGED_ENTITY, {__F_TO_FIX10_6(180), __F_TO_FIX10_6(132), __F_TO_FIX10_6(LAYER_0), 0}, 0, NULL, (struct PositionedEntity*)TEST_ROOM_STAGE_ST_CHILD_ENTITIES_TEST, NULL, false}, // Child: Test
 	{&COLLISION_CL, {__F_TO_FIX10_6(248), __F_TO_FIX10_6(88), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_176_16_8, false}, // Top
 	{&COLLISION_CL, {__F_TO_FIX10_6(312), __F_TO_FIX10_6(168), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_80_48_8, false}, // Bottom Right
-	{&TEST_ROOM_STAGE_MAIN_2_IM, {__F_TO_FIX10_6(320), __F_TO_FIX10_6(120), __F_TO_FIX10_6(LAYER_0_FOREGROUND), 0}, 0, NULL, NULL, NULL, false}, // Main Layer (2)
+	{&TEST_ROOM_STAGE_MAIN_2_IM, {__F_TO_FIX10_6(320), __F_TO_FIX10_6(120), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Main Layer (2)
 	{&COLLISION_CL, {__F_TO_FIX10_6(344), __F_TO_FIX10_6(112), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Right
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
@@ -269,7 +269,7 @@ StageROMDef TEST_ROOM_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum view distance's power into the horizon
-			__MAXIMUM_VIEW_DISTANCE_POWER,
+			__MAXIMUM_X_VIEW_DISTANCE_POWER, __MAXIMUM_Y_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)

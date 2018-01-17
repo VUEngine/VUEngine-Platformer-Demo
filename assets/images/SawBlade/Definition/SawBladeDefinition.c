@@ -129,7 +129,7 @@ BgmapSpriteROMDef SAW_BLADE_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, ENEMIES_PARALLAX_DISPLACEMENT},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -220,10 +220,10 @@ MovingEntityROMDef SAW_BLADE_V3_AC =
 	},
 
 	// velocity
-	__I_TO_FIX10_6(50),
+	__F_TO_FIX10_6(2),
 
 	// maximum deviation from initial position
-	__I_TO_FIX10_6(3 * 8),
+	__F_TO_FIX10_6(1.5f),
 
 	// time to rest idle
 	750,
@@ -278,10 +278,10 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	},
 
 	// velocity
-	__I_TO_FIX10_6(50),
+	__F_TO_FIX10_6(2),
 
 	// maximum deviation from initial position
-	__I_TO_FIX10_6(3 * 8),
+	__F_TO_FIX10_6(1.5f),
 
 	// time to rest idle
 	0,
@@ -336,10 +336,10 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	},
 
 	// velocity
-	__I_TO_FIX10_6(50),
+	__F_TO_FIX10_6(2),
 
 	// maximum deviation from initial position
-	__I_TO_FIX10_6(8 * 8),
+	__F_TO_FIX10_6(4),
 
 	// time to rest idle
 	0,

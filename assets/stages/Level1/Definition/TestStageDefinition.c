@@ -127,18 +127,18 @@ PositionedEntityROMDef TEST_STAGE_ST_CHILDREN[] =
 //	{&SMOKE_PS,						{(192),	(224/2), 	(LAYER_0_FOREGROUND + 16), 0},	0, NULL, NULL, NULL, false},
 //	{&SAW_BLADE_H8_AC,				{(192+64),	(112), 	(0), 0},			0, NULL, NULL, NULL, false},
 //	{&SAW_BLADE_V3_AC,				{(192),	(112), 	(0), 0},			0, NULL, NULL, NULL, false},
-//	{&SNAIL_3_AC,					{(192-64), (112), 	(LAYER_0_ENEMIES), 0},			0, NULL, NULL, NULL, false},
+//	{&SNAIL_3_AC,					{(192-64), (112), 	LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},			0, NULL, NULL, NULL, false},
 //	{&TEST_1_PS,					{(192 + 20),	(8), 	(0), 0},0, NULL, NULL, NULL, false},
 //	{&TEST_2_PS,					{(2),	(112), 	(0), 0},0, NULL, NULL, NULL, false},
 //	{&TEST_2_PS,					{(10),	(112/16), 	(0), 0},0, NULL, NULL, NULL, false},
-	{&HERO_AC,						{(192),	(224/2-60), 	(LAYER_0_FOREGROUND), 0},		0, HERO_NAME, NULL, NULL, false},
+	{&HERO_AC,						{(192),	(224/2-60), 	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},		0, HERO_NAME, NULL, NULL, false},
 
 	{&COLLISION_CL,					{(192),	(224/2+60), 	(0), 0},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
-//	{&MOVING_PLATFORM_V6_AC,		{(192),	(112), 	(LAYER_0_ENEMIES), 0}, 0, NULL, NULL, NULL, false},
+//	{&MOVING_PLATFORM_V6_AC,		{(192),	(112), 	LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 	{&TEST_COG_WHEEL_IM,			{(192),	(224/2), (0), 0},	0, "EntryPoint", NULL, NULL, false}, // right floor
 //	{&HIDE_LAYER_10x7_AG,			{(192+100), (100),	(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false},
 //	{&WATER_POND_EN,			{(192+100), (100),	(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false},
-//	{&KEY_DOOR_AG,					{(44), 	(112-12), 	(LAYER_0_DOORS), 0}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
+//	{&KEY_DOOR_AG,					{(44), 	(112-12), 	LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
@@ -308,7 +308,7 @@ StageROMDef TEST_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum view distance's power into the horizon
-			__MAXIMUM_VIEW_DISTANCE_POWER,
+			__MAXIMUM_X_VIEW_DISTANCE_POWER, __MAXIMUM_Y_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)

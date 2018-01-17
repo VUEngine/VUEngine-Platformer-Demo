@@ -24,6 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <macros.h>
 #include <Entity.h>
 #include <MBgmapSprite.h>
 
@@ -142,7 +143,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =
 		false,
 
 		// displacement
-		{-156, -40, 2, 0},
+		{-156, -40, LAYER_0_DOORS - LAYER_0_FOREGROUND + 1, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -169,7 +170,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_IM_SPRITE =
 		false,
 
 		// displacement
-		{140, 24, 2, 0},
+		{140, 24, LAYER_0_DOORS - LAYER_0_FOREGROUND + 1, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -196,7 +197,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_IM_SPRITE =
 		false,
 
 		// displacement
-		{-8, 192, 2, 0},
+		{-8, 192, LAYER_0_DOORS - LAYER_0_FOREGROUND + 1, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

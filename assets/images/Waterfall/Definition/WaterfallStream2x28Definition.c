@@ -134,8 +134,8 @@ BgmapSpriteROMDef WATERFALL_STREAM_2x28_SPRITE =
 		{
 			0,
 			0,
-			-1,
-			0
+			0,
+			WATERFALLS_PARALLAX_DISPLACEMENT
 		},
 	},
 

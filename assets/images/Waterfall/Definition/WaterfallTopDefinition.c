@@ -134,8 +134,8 @@ BgmapSpriteROMDef WATERFALL_TOP_SPRITE =
 		{
 			0,
 			0,
-			-1,
-			0
+			0,
+			WATERFALLS_PARALLAX_DISPLACEMENT
 		},
 	},
 

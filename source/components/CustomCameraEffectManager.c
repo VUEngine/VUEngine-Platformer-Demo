@@ -194,7 +194,7 @@ static void CustomCameraEffectManager_FXShakeStart(CustomCameraEffectManager thi
 	// set desired fx duration
 	this->shakeTimeLeft = duration;
 
-	this->lastShakeOffset.x = __I_TO_FIX10_6(4);
+	this->lastShakeOffset.x = __PIXELS_TO_METERS(4);
 
 	// discard pending messages from previously started fx
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kShake);

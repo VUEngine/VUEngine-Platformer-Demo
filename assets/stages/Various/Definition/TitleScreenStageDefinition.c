@@ -68,11 +68,11 @@ PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 	{&GRASS_AG, {(32), (152), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Grass
 	{&COIN_AG, {(56), (134), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {(72), (134), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Coin
-	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {(192), (168), (LAYER_0_FOREGROUND), 0}, 0, NULL, NULL, NULL, false}, // Main Layer
+	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {(192), (168), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Main Layer
 	{&LOGO_IM, {(192), (53), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Logo
 	{&VUENGINE_LOGO_IM, {(192), (18), (LAYER_1), 0}, 0, NULL, NULL, NULL, false}, // VUEngine
 	{&HERO_BANDANA_AG, {(192), (158), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Hero
-	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), (LAYER_0_FOREGROUND), 0}, 0, NULL, NULL, NULL, false}, // Main Layer Front
+	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Main Layer Front
 	{&CLOUDS_IM, {(194), (130), (LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8), 0}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&MOUND_BG_BACK_IM, {(255), (67), (LAYER_5), 0}, 0, NULL, NULL, NULL, false}, // Mountains
 	{&MOUND_BG_CASTLE_FLAG_AG, {(287 - 5), (84 + 8), (LAYER_4 + SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // Castle Flag
@@ -246,7 +246,7 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum view distance's power into the horizon
-			__MAXIMUM_VIEW_DISTANCE_POWER,
+			__MAXIMUM_X_VIEW_DISTANCE_POWER, __MAXIMUM_Y_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)

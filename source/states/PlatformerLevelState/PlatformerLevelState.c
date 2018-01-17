@@ -186,7 +186,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			{
 				initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH),
 				initialPosition->y - __PIXELS_TO_METERS(__HALF_SCREEN_HEIGHT),
-				initialPosition->z
+				__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z)
 			};
 
 			Camera_setPosition(Camera_getInstance(), screenPosition);

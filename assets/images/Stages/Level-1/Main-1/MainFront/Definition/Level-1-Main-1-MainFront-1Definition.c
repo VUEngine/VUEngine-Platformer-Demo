@@ -102,7 +102,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE =
 		false,
 
 		// displacement
-		{0, -120, -1, 0},
+		{0, -120, -1, -1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

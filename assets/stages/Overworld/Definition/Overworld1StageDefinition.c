@@ -55,7 +55,7 @@ PositionedEntityROMDef OVERWORLD1_STAGE_ST_ENTITIES[] =
 	{&FLOWER_A_AG, {(130), (82), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
 	{&FLOWER_A_AG, {(156), (200), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
 	{&HERO_IDLE_AG, {(160), (92), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
-	{&OVERWORLD_1_IM, {(192), (112), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
+	{&OVERWORLD_1_IM, {(192), (112), LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
 	{&FLOWER_A_AG, {(218), (168), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
 	{&SMOKE_PS, {(222.5), (48), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Smoke
 	{&FLOWER_A_AG, {(226), (132), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Flower
@@ -217,7 +217,7 @@ StageROMDef OVERWORLD1_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum view distance's power into the horizon
-			__MAXIMUM_VIEW_DISTANCE_POWER,
+			__MAXIMUM_X_VIEW_DISTANCE_POWER, __MAXIMUM_Y_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)

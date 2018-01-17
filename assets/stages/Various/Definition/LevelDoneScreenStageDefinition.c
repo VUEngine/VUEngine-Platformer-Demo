@@ -43,8 +43,8 @@ extern EntityDefinition COIN_AG;
 
 PositionedEntityROMDef LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&COIN_AG, {(164), (108), (LAYER_0_ITEMS), 0}, 0, NULL, NULL, NULL, false}, // Coin
-	{&CLOCK_AG, {(164), (124), (LAYER_0_ITEMS), 0}, 0, NULL, NULL, NULL, false}, // Clock
+	{&COIN_AG, {(164), (108), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Coin
+	{&CLOCK_AG, {(164), (124), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Clock
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -201,7 +201,7 @@ StageROMDef LEVEL_DONE_SCREEN_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum view distance's power into the horizon
-			__MAXIMUM_VIEW_DISTANCE_POWER,
+			__MAXIMUM_X_VIEW_DISTANCE_POWER, __MAXIMUM_Y_VIEW_DISTANCE_POWER,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
