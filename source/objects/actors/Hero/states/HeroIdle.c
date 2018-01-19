@@ -161,7 +161,7 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 
 		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
 		{
-			if(__X_AXIS & Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
+			if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
 			{
 				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
 
@@ -202,12 +202,12 @@ void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner, con
     {
         Vector3D direction =
         {
-            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __1I_FIX10_6 : 0,
+            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __I_TO_FIX10_6(1) : 0,
             K_A & userInput->holdKey ? __I_TO_FIX10_6(-1) : 0,
             0,
         };
 
-		if(__X_AXIS & Actor_canMoveTowards(__SAFE_CAST(Actor, owner), direction))
+		if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), direction))
         {
             Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->holdKey, "Idle");
 
