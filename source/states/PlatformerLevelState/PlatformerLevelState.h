@@ -94,7 +94,7 @@ typedef struct StageEntryPointDefinition
 	char* destinationName;
 
 	// offset from entry point (x, y, z)
-	PixelVector offset;
+	ScreenPixelVector offset;
 
 	// whether this entry point acts as a checkpoint
 	bool isCheckPoint;

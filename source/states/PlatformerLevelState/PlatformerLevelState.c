@@ -176,7 +176,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			// apply entry point offset
 			initialPosition->x += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.x);
 			initialPosition->y += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.y);
-			initialPosition->z += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.z);
+			initialPosition->z += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.z + this->currentStageEntryPoint->offset.zDisplacement);
 
 			// set world's limits
 			Camera_setStageSize(Camera_getInstance(), Size_getFromPixelSize(this->currentStageEntryPoint->stageDefinition->level.pixelSize));
