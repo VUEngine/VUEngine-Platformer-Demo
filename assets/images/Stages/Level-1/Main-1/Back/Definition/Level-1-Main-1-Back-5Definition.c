@@ -105,7 +105,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, LAYER_2_FOREGROUND_PARALLAX_DISPLACEMENT},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
