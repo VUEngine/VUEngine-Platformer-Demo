@@ -278,10 +278,10 @@ ShapeROMDef DOOR_AG_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{19, 28, 16},
+		{19, 28, 32},
 
 		// displacement (x, y, z, p)
-		{0, 0, 0, 0},
+		{0, 0, -16, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
