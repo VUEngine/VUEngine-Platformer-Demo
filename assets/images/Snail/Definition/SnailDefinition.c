@@ -130,7 +130,7 @@ ObjectSpriteROMDef SNAIL_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, ENEMIES_PARALLAX_DISPLACEMENT},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
