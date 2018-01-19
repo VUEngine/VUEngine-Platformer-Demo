@@ -80,7 +80,7 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 				// apply offset
 				destinationDoorPosition.x += __PIXELS_TO_METERS(this->destinationDefinition->offset.x);
 				destinationDoorPosition.y += __PIXELS_TO_METERS(this->destinationDefinition->offset.y);
-				destinationDoorPosition.z += __PIXELS_TO_METERS(this->destinationDefinition->offset.z);
+				destinationDoorPosition.z += __PIXELS_TO_METERS(this->destinationDefinition->offset.z + this->destinationDefinition->offset.zDisplacement);
 
 				// set hero's position
 				Hero_getOutOfDoor(Hero_getInstance(), &destinationDoorPosition);
