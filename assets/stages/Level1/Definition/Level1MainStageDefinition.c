@@ -290,7 +290,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_2[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3[] =
 {
 	{&COLLISION_HIT_CL, 			{(128),	(-46), 	(0), 0},	0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
-	{&COLLISION_CL, 				{(288),	(49), 	(0), 0},	0, NULL, NULL, (void*)&collision_20_32_4, false}, // floor below spikes
+	{&COLLISION_CL, 				{(288),	(48), 	(0), 0},	0, NULL, NULL, (void*)&collision_20_32_4, false}, // floor below spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
