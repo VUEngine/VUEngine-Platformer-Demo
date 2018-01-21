@@ -99,7 +99,7 @@
 #define __SCREEN_HEIGHT							224
 
 // Screen depth in pixels
-#define __SCREEN_DEPTH							384
+#define __SCREEN_DEPTH							2048
 
 // Distance from player's eyes to the virtual screen
 #define __DISTANCE_EYE_SCREEN					384
@@ -304,7 +304,7 @@
 //												PHYSICS
 //---------------------------------------------------------------------------------------------------------
 
-#define __GRAVITY								9.8f
+#define __GRAVITY								(2 * 9.8f)
 
 // Number of bodies to check for gravity on each cycle
 #define __BODIES_TO_CHECK_FOR_GRAVITY			10

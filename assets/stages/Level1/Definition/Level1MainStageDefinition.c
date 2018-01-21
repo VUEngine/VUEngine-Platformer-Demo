@@ -741,7 +741,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX10_6(0),
-			__F_TO_FIX10_6(__GRAVITY*2),
+			__F_TO_FIX10_6(__GRAVITY),
 			__I_TO_FIX10_6(0)
 		},
 
