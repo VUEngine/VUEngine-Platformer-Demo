@@ -868,7 +868,7 @@ static void Hero_addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
 
-	Vector3D position = {__F_TO_FIX10_6(-6), __F_TO_FIX10_6(10), __F_TO_FIX10_6(-2)};
+	Vector3D position = {__PIXELS_TO_METERS(-8), __PIXELS_TO_METERS(10), __PIXELS_TO_METERS(12)};
 
 	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");

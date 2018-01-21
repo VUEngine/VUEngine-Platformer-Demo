@@ -228,7 +228,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 	}
 }
 
-void PostProcessingEffects_calculateRainPrecipitation(fix10_6* yStepThrottle, fix10_6* xStep, fix10_6 maximumYThrottle, fix10_6 minimumYThrottle, fix10_6 maximumXStep, fix10_6 minimumXStep)
+void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, fix19_13* xStep, fix19_13 maximumYThrottle, fix19_13 minimumYThrottle, fix19_13 maximumXStep, fix19_13 minimumXStep)
 {
 	static u32 previousTime = 0;
 	static u8 timePeriodIndex = 0;
@@ -263,10 +263,10 @@ void PostProcessingEffects_calculateRainPrecipitation(fix10_6* yStepThrottle, fi
 	}
 
 	// multiply by the game cycle per second
-	int rainPeriod =  __I_TO_FIX10_6(((int)timePeriod[timePeriodIndex] + previousTime % timePeriod[timePeriodIndex]) * 50);
+	int rainPeriod =  __I_TO_FIX19_13(((int)timePeriod[timePeriodIndex] + previousTime % timePeriod[timePeriodIndex]) * 50);
 
-	*yStepThrottle += __FIX10_6_DIV(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle), rainPeriod);
-	*xStep -= __FIX10_6_DIV(rainAcceleration[rainAccelerationIndex] * (maximumXStep - minimumXStep), rainPeriod);
+	*yStepThrottle += __FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle), rainPeriod);
+	*xStep -= __FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumXStep - minimumXStep), rainPeriod);
 
 	if(*yStepThrottle < minimumYThrottle)
 	{
@@ -283,21 +283,21 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 {
  	#define RAIN_X_RANGE_1					383
  	#define RAIN_MINIMUM_DROPLET_LENGTH		3
- 	#define RAIN_MINIMUM_Y_THROTTLE_1		__I_TO_FIX10_6(-5)
- 	#define RAIN_MAXIMUM_Y_THROTTLE_1		__I_TO_FIX10_6(2)
- 	#define RAIN_MINIMUM_X_STEP_1			__I_TO_FIX10_6(25)
- 	#define RAIN_MAXIMUM_X_STEP_1			__I_TO_FIX10_6(90)
+ 	#define RAIN_MINIMUM_Y_THROTTLE_1		__I_TO_FIX19_13(-5)
+ 	#define RAIN_MAXIMUM_Y_THROTTLE_1		__I_TO_FIX19_13(2)
+ 	#define RAIN_MINIMUM_X_STEP_1			__I_TO_FIX19_13(25)
+ 	#define RAIN_MAXIMUM_X_STEP_1			__I_TO_FIX19_13(90)
 	static u16 yStepIndex = 0;
 	static u16 dropletLengthIndex = 0;
-	static fix10_6 yStepThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
-	static fix10_6 xStep = RAIN_MAXIMUM_X_STEP_1;
- 	static Vector3D screenPreviousPosition = {0, 0, 0};
- 	static fix10_6 cumulativeX = 0;
- 	fix10_6 yScreenDisplacement = (_cameraPosition->y - screenPreviousPosition.y);
+	static fix19_13 yStepThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
+	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_1;
+ 	static Vector3D cameraPreviousPosition = {0, 0, 0};
+ 	static fix19_13 cumulativeX = 0;
+ 	fix19_13 yScreenDisplacement = (_cameraPosition->y - cameraPreviousPosition.y);
 
- 	cumulativeX += _cameraPosition->x - screenPreviousPosition.x;
+ 	cumulativeX += _cameraPosition->x - cameraPreviousPosition.x;
 	PostProcessingEffects_calculateRainPrecipitation(&yStepThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
-	screenPreviousPosition = *_cameraPosition;
+	cameraPreviousPosition = *_cameraPosition;
 
  	const s16 dropletParallax[] =
  	{
@@ -340,13 +340,13 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 		*/
 	};
 
-	// must account for the screen displacement
+	// must account for the camera displacement
 	yStepThrottle -= yScreenDisplacement;
 
 	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet,
-										0, __SCREEN_WIDTH -1, __FIX10_6_TO_I(-cumulativeX), __FIX10_6_TO_I(xStep),
+										0, __SCREEN_WIDTH -1, __FIX19_13_TO_I(-cumulativeX), __FIX19_13_TO_I(xStep),
 										_cameraFrustum->y0, _cameraFrustum->y1, 0,
-										yStep, sizeof(yStep) >> SIZE_OF_U16_POWER, &yStepIndex, __FIX10_6_TO_I(yStepThrottle),
+										yStep, sizeof(yStep) >> SIZE_OF_U16_POWER, &yStepIndex, __FIX19_13_TO_I(yStepThrottle),
 										y, sizeof(y) >> SIZE_OF_S16_POWER,
 										dropletLength, sizeof(dropletLength) >> SIZE_OF_U16_POWER, &dropletLengthIndex, RAIN_MINIMUM_DROPLET_LENGTH,
 										dropletParallax, sizeof(dropletParallax) >> SIZE_OF_S16_POWER);
@@ -461,8 +461,8 @@ void PostProcessingEffects_applyMask(u32 currentDrawingFrameBufferSet, int xStar
 
 void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, Vector3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask, bool roundBorder)
 {
- 	int xPosition = __FIX10_6_TO_I(position.x);
- 	int yPosition = __FIX10_6_TO_I(position.y);
+ 	int xPosition = __METERS_TO_PIXELS(position.x);
+ 	int yPosition = __METERS_TO_PIXELS(position.y);
 	// move y position to the closest 16 multiple
 	int tempYPosition = yPosition + (Y_STEP_SIZE >> 1);
 	yPosition = tempYPosition - __MODULO(tempYPosition, Y_STEP_SIZE);
@@ -603,7 +603,7 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  	}
 
  	Vector3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
- 	heroPosition.y -= __I_TO_FIX10_6(10);
+ 	heroPosition.y -= __PIXELS_TO_METERS(10);
 
 	heroPosition = Vector3D_getRelativeToCamera(heroPosition);
 

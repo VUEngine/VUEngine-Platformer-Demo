@@ -61,10 +61,10 @@ ParticleROMDef TORCH_SMOKE_PARTICLE =
 	3000,
 
 	// particle's minimum mass
-	__F_TO_FIX10_6(0.9f),
+	__F_TO_FIX10_6(1),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX10_6(1.1f),
+	__F_TO_FIX10_6(0),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__NO_AXIS,
@@ -131,11 +131,11 @@ ParticleSystemROMDef TORCH_SMOKE_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX10_6(-5), __I_TO_FIX10_6(-18), __I_TO_FIX10_6(0)},
+	{__F_TO_FIX10_6(-0.2f), __F_TO_FIX10_6(-0.025f), __I_TO_FIX10_6(0)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX10_6(5), __I_TO_FIX10_6(-10), __I_TO_FIX10_6(0)},
+	{__F_TO_FIX10_6(0.4f), __F_TO_FIX10_6(-0.01f), __I_TO_FIX10_6(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT

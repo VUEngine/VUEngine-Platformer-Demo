@@ -126,18 +126,18 @@ ParticleSystemROMDef DUST_PS =
 	(ParticleDefinition*)&DUST_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{__I_TO_FIX10_6(-2), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+	{__PIXELS_TO_METERS(-4), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{__1I_FIX10_6, __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+	{__PIXELS_TO_METERS(4), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-3), __I_TO_FIX10_6(0)},
+	{__I_TO_FIX10_6(0), __F_TO_FIX10_6(-0.03f), __I_TO_FIX10_6(0)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-1), __I_TO_FIX10_6(0)},
+	{__I_TO_FIX10_6(0), __F_TO_FIX10_6(-0.01f), __I_TO_FIX10_6(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT

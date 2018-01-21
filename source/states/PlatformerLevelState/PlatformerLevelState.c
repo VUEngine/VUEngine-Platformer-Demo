@@ -286,7 +286,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this __attribute__ ((unused)))
 {
 	extern TextureROMDef GUI_TX;
-	CameraFrustum cameraFrustum = {0, 0, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8};
+	CameraFrustum cameraFrustum = {0, 0, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8, -10, __SCREEN_WIDTH * 5};
 	Camera_setCameraFrustum(Camera_getInstance(), cameraFrustum);
 }
 

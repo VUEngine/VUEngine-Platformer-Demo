@@ -70,7 +70,7 @@ PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 	{&LEVEL_1_HOUSE_MAIN_IM, {(192), (112), LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // House Background
 	{&COLLISION_CL, {(192), (168), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
 	{&COLLISION_CL, {(192), (88), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
-	{&CLOUDS_IM, {(194), (149), (LAYER_4), 0}, 0, NULL, NULL, NULL, false}, // Clouds
+	{&CLOUDS_IM, {(194), (138), (LAYER_4), 0}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&LEVEL_1_HOUSE_LIGHT_IM, {(196), (140), (LAYER_0_ITEMS - 1), 0}, 0, NULL, NULL, NULL, false}, // Light
 	{&COIN_AG, {(204), (146), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 26, NULL, NULL, NULL, false}, // Coin
 	{&FIRE_SMALL_AG, {(240), (155), (12), 0}, 0, NULL, NULL, NULL, false}, // Fire
@@ -124,7 +124,7 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 			// y
 			__SCREEN_HEIGHT,
 			// z
-			__SCREEN_DEPTH,
+			__SCREEN_WIDTH,
 		},
 
 		// camera's initial position inside the game world
@@ -143,7 +143,7 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		40,
+		140,
 		// unload padding
 		16,
 		// streaming amplitude
@@ -215,11 +215,11 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		// obj segments sizes (must total 1024)
 		{
 			// __spt0
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			0*__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 			// __spt1
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			0*__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 			// __spt2
-			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
+			0*__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 			// __spt3
 			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 		},
@@ -313,9 +313,9 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
 	// offset from entry point (x, y, z)
 	{
 		19,
-		0,
-		-SORT_INCREMENT,
-		0
+		-0,
+		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
+		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
