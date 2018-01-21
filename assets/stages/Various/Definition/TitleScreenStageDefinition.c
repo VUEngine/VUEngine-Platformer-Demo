@@ -71,7 +71,7 @@ PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {(192), (168), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Main Layer
 	{&LOGO_IM, {(192), (53), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Logo
 	{&VUENGINE_LOGO_IM, {(192), (18), (LAYER_1), 0}, 0, NULL, NULL, NULL, false}, // VUEngine
-	{&HERO_BANDANA_AG, {(192), (158), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Hero
+	{&HERO_BANDANA_AG, {(192), (157), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Hero
 	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Main Layer Front
 	{&CLOUDS_IM, {(194), (122), (LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8), 0}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&MOUND_BG_BACK_IM, {(280), (82), (LAYER_5), 0}, 0, NULL, NULL, NULL, false}, // Mountains
@@ -263,7 +263,7 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		// gravity
 		{
 			__I_TO_FIX10_6(0),
-			__F_TO_FIX10_6(__GRAVITY),
+			__F_TO_FIX10_6(0),
 			__I_TO_FIX10_6(0)
 		},
 

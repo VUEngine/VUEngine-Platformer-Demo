@@ -129,29 +129,29 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {__I_TO_FIX10_6(192 - radius),	__I_TO_FIX10_6(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(PixelVector) {__I_TO_FIX10_6(192),			__I_TO_FIX10_6(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(PixelVector) {(192 - radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(PixelVector) {(192),			(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {__I_TO_FIX10_6(192 + radius),	__I_TO_FIX10_6(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(PixelVector) {__I_TO_FIX10_6(192),			__I_TO_FIX10_6(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(PixelVector) {(192 + radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(PixelVector) {(192),			(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {__I_TO_FIX10_6(192 + radius),	__I_TO_FIX10_6(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(PixelVector) {__I_TO_FIX10_6(192),			__I_TO_FIX10_6(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(PixelVector) {(192 + radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(PixelVector) {(192),			(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {__I_TO_FIX10_6(192 - radius),	__I_TO_FIX10_6(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
-		(PixelVector) {__I_TO_FIX10_6(192),			__I_TO_FIX10_6(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(PixelVector) {(192 - radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
+		(PixelVector) {(192),			(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		__COLOR_BRIGHT_RED
 	);
 }

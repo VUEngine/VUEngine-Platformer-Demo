@@ -53,7 +53,7 @@
 
 
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
-void PostProcessingEffects_drawRhombus(fix10_6 radiusFix10_6, u32 color, Vector3D spatialObjectPosition, int parallax);
+void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector spatialObjectPosition, int parallax);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -646,7 +646,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 		return;
 	}
 
-	Vector3D spatialObjectPosition = Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject));
+	PixelVector spatialObjectPosition = Vector3D_projectToPixelVector(Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject)), 0);
 
 	// increase radius by 1 in each cycle
 	radius++;
@@ -663,8 +663,8 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	}
 
 	// draw a rhombus around object with given radius and color
-	PostProcessingEffects_drawRhombus(__I_TO_FIX10_6(radius), __COLOR_BLACK, spatialObjectPosition, -radius / 25);
-//	PostProcessingEffects_drawRhombus(__I_TO_FIX10_6(radius >> 1), __COLOR_BLACK, spatialObjectPosition);
+	PostProcessingEffects_drawRhombus((radius), __COLOR_BLACK, spatialObjectPosition, -radius / 25);
+//	PostProcessingEffects_drawRhombus((radius >> 1), __COLOR_BLACK, spatialObjectPosition);
 }
 
 /**
@@ -953,39 +953,39 @@ inline u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* colum
 /**
  * Helper function used by the rhombus emitter effect that prints a rhombus shape to the frame buffer
  *
- * @param radiusFix10_6
+ * @param radius
  * @param color
  * @param spatialObjectPosition
  */
-void PostProcessingEffects_drawRhombus(fix10_6 radiusFix10_6, u32 color, Vector3D spatialObjectPosition, int parallax)
+void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector spatialObjectPosition, int parallax)
 {
 	DirectDraw directDraw = DirectDraw_getInstance();
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {spatialObjectPosition.x - radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix10_6,	spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x - radius,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y - radius,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {spatialObjectPosition.x + radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y - radiusFix10_6,	spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x + radius,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y - radius,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {spatialObjectPosition.x + radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix10_6,	spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x + radius,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y + radius,	spatialObjectPosition.z, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {spatialObjectPosition.x - radiusFix10_6,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
-		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y + radiusFix10_6,	spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x - radius,	spatialObjectPosition.y,					spatialObjectPosition.z, parallax},
+		(PixelVector) {spatialObjectPosition.x,						spatialObjectPosition.y + radius,	spatialObjectPosition.z, parallax},
 		color
 	);
 }
