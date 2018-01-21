@@ -71,7 +71,7 @@ PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {(40), (184), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Left Collision
 	{&HERO_AC, {(62), (148), (LAYER_0), 0}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&TORCH_LIGHT_AG, {(64), (128), (0), 0}, 0, NULL, NULL, NULL, false}, // Left Torch Light
-	{&TORCH_AG, {(64), (126), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Left Torch
+	{&TORCH_AG, {(64), (126), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Left Torch
 	{&COIN_AG, {(144), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 27, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {(144), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 28, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {(144), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 30, NULL, NULL, NULL, false}, // Coin
@@ -97,7 +97,7 @@ PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 	{&COIN_AG, {(224), (168), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 43, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {(240), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 44, NULL, NULL, NULL, false}, // Coin
 	{&COIN_AG, {(240), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 45, NULL, NULL, NULL, false}, // Coin
-	{&TORCH_AG, {(320), (128), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Right Torch
+	{&TORCH_AG, {(320), (128), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Right Torch
 	{&TORCH_LIGHT_AG, {(320), (130), (0), 0}, 0, NULL, NULL, NULL, false}, // Right Torch Light
 	{&COLLISION_CL, {(344), (184), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Right Collision
 	{&DOOR_AG, {(348), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "CoinExit", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_LOWER_EP, false}, // Door (Exit)

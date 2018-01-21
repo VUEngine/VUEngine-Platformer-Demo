@@ -379,7 +379,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&LEVEL_1_MAIN_1_BACK_1_IM,		{(360),	(256), 	(LAYER_2), 0},					0, NULL, NULL, NULL, false},
 
-	{&STAR_AG,						{(240),	(96), 	(LAYER_5), 0},					0, NULL, NULL, NULL, false},
+	{&STAR_AG,						{(240),	(96), 	(LAYER_5 + LAYER_INCREMENT*3), 0},					0, NULL, NULL, NULL, false},
 
 	{&COIN_AG,						{(320),	(248), 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			3, NULL, NULL, NULL, false},
 	{&COIN_AG,						{(336),	(248), 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			4, NULL, NULL, NULL, false},

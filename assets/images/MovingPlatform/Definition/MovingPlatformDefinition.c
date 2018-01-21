@@ -129,7 +129,7 @@ BgmapSpriteROMDef MOVING_PLATFORM_SPRITE =
 		false,
 
 		// displacement
-		{0, __I_TO_FIX10_6(-4), 0, 0},
+		{0, -4, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -232,10 +232,10 @@ MovingEntityROMDef MOVING_PLATFORM_V6_AC =
 	},
 
 	// velocity
-	__I_TO_FIX10_6(48),
+	__I_TO_FIX10_6(2),
 
 	// maximum deviation from initial position
-	__I_TO_FIX10_6(48),
+	__I_TO_FIX10_6(3),
 
 	// time to rest idle
 	1000,
