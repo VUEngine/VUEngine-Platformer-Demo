@@ -277,8 +277,6 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				// don't allow a first jump from mid-air without bandana
 				if(checkIfYMovement && 0 < yBouncingPlaneNormal && (allowedNumberOfJumps == 1))
 				{
-
-
 					return;
 				}
 
@@ -339,8 +337,6 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 		return;
 	}
 
-	static int movementType = 0;
-
 	fix10_6 maxVelocity = this->boost ? HERO_BOOST_VELOCITY_X : HERO_MAX_VELOCITY_X;
 
 	maxVelocity = this->underWater ? maxVelocity >> 1: maxVelocity;
@@ -366,11 +362,10 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 		};
 
 		Actor_addForce(__SAFE_CAST(Actor, this), &force);
-		movementType = __ACCELERATED_MOVEMENT;
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != movementType || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOnAllAxes(this->body))))
+		if(__UNIFORM_MOVEMENT != Body_getMovementType(this->body).x || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOnAllAxes(this->body))))
 		{
 			Velocity newVelocity =
 			{
@@ -379,7 +374,6 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 				(__Z_AXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
 			};
 
-			movementType = __UNIFORM_MOVEMENT;
 			Body_moveUniformly(this->body, newVelocity);
 		}
 	}
@@ -551,6 +545,21 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 		}
 		else
 		{
+			// make sure that hitting the floor doesn't slow me down because of the friction
+			if(__UNIFORM_MOVEMENT == Body_getMovementType(this->body).x)
+			{
+				fix10_6 maxVelocity = HERO_BOOST_VELOCITY_X;
+
+				Velocity newVelocity =
+				{
+					(int)maxVelocity * this->inputDirection.x,
+					0,
+					0,
+				};
+
+				Body_moveUniformly(this->body, newVelocity);
+			}
+
 			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 		}
 	}
