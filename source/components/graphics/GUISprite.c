@@ -115,14 +115,14 @@ void GUISprite_render(GUISprite this)
 	worldPointer->head = this->head | BgmapTexture_getSegment(__SAFE_CAST(BgmapTexture, this->texture));
 
 	// get coordinates
-	worldPointer->gx = __FIX10_6_TO_I(this->drawSpec.position.x + this->displacement.x + __0_5F_FIX10_6);
-	worldPointer->gy = __FIX10_6_TO_I(this->drawSpec.position.y + this->displacement.y + __0_5F_FIX10_6);
-	worldPointer->gp = this->drawSpec.position.parallax + __FIX10_6_TO_I(__FIX10_6_INT_PART(this->displacement.z + this->displacement.parallax));
+	worldPointer->gx = this->drawSpec.position.x + this->displacement.x - this->halfWidth;
+	worldPointer->gy = this->drawSpec.position.y + this->displacement.y - this->halfHeight;
+	worldPointer->gp = this->drawSpec.position.parallax + this->displacement.parallax;
 
 	worldPointer->mx = this->drawSpec.textureSource.mx;
 	worldPointer->my = this->drawSpec.textureSource.my;
 	worldPointer->mp = this->drawSpec.textureSource.mp;
 
-	worldPointer->w = __FIX10_6_TO_I(this->halfWidth) << 1;
-	worldPointer->h = __FIX10_6_TO_I(this->halfHeight) << 1;
+	worldPointer->w = this->halfWidth << 1;
+	worldPointer->h = this->halfHeight << 1;
 }
