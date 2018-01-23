@@ -91,12 +91,19 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 #endif
 
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED);
+
+	// make sure that the hero's body is awaken right now so the check during
+	// the execute method doesn't fail
+	Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
 }
 
 void HeroMoving_execute(HeroMoving this __attribute__ ((unused)), void* owner)
 {
-	// check direction
-	Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
+	// keep adding force
+	if(Body_isAwake(Actor_getBody(__SAFE_CAST(Actor, owner))))
+	{
+		Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
+	}
 }
 
 // state's handle message

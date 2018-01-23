@@ -674,7 +674,7 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 			}
 			else
 			{
-				this->energy -= energyToReduce;
+				//this->energy -= energyToReduce;
 			}
 
 			if(pause)
