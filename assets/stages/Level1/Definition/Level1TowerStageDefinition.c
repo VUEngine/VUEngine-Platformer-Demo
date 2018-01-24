@@ -348,7 +348,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		80,
+		128,
 		// unload padding
 		32,
 		// streaming amplitude

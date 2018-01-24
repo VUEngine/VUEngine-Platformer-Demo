@@ -624,7 +624,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		96,
+		128,
 		// unload padding
 		24,
 		// streaming amplitude
