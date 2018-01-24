@@ -639,7 +639,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		1,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		5,
+		8,
 
 		// maximum number of rows to compute on each call to the affine functions
 		48,
@@ -918,7 +918,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
 		0,
 		0,
 		0,
-		0
+		-1
 	},
 
 	// whether this entry point acts as a checkpoint
