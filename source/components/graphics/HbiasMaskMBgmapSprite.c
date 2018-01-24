@@ -124,6 +124,11 @@ void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* 
 			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(__SAFE_CAST(Entity, referenceSpriteOwner))));
 		}
 	}
+
+	if(__IS_OBJECT_ALIVE(this->referenceSprite))
+	{
+		this->drawSpec.position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
+	}
 }
 
 /**
@@ -197,7 +202,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
-	worldPointer->gp = referenceSpriteWorldPointer->gp + __FIX10_6_TO_I(__FIX10_6_INT_PART(this->displacement.parallax));
+	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
 
 
 	if(!referenceSpriteWorldLayer
