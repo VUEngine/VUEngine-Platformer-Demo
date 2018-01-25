@@ -57,7 +57,7 @@ __CLASS_FRIEND_DEFINITION(BgmapTexture);
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-// globals
+static void HbiasMaskMBgmapSprite_getReferenceSprite(HbiasMaskMBgmapSprite this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -115,6 +115,11 @@ void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* 
 
 	__CALL_BASE_METHOD(MBgmapSprite, position, this, position);
 
+	HbiasMaskMBgmapSprite_getReferenceSprite(this);
+}
+
+static void HbiasMaskMBgmapSprite_getReferenceSprite(HbiasMaskMBgmapSprite this)
+{
 	if(!__IS_OBJECT_ALIVE(this->referenceSprite))
 	{
 		Container referenceSpriteOwner = Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), this->hbiasMaskMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
@@ -122,10 +127,10 @@ void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* 
 		if(__IS_OBJECT_ALIVE(referenceSpriteOwner))
 		{
 			this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(Entity_getSprites(__SAFE_CAST(Entity, referenceSpriteOwner))));
+			this->drawSpec.position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
 		}
 	}
-
-	if(__IS_OBJECT_ALIVE(this->referenceSprite))
+	else
 	{
 		this->drawSpec.position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
 	}
@@ -148,6 +153,8 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 	{
 		return;
 	}
+
+	HbiasMaskMBgmapSprite_getReferenceSprite(this);
 
 	static WorldAttributes* worldPointer = NULL;
 	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
