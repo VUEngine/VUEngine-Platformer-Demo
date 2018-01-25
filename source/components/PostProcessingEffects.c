@@ -656,7 +656,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 		// reset radius when reaching a certain length
 		radius = 4;
 	}
-	else if(radius > 126)
+	else if(radius > 108)
 	{
 		// pause for a little bit before restarting
 		return;
