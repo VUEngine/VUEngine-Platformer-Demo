@@ -598,6 +598,8 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 		(void (*)(Object, Object))PlatformerLevelState_onHeroDiedFadeOutComplete, // callback function
 		__SAFE_CAST(Object, this) // callback scope
 	);
+
+	Game_disableKeypad(Game_getInstance());
 }
 
 static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
