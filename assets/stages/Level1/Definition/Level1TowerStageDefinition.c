@@ -200,8 +200,6 @@ PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
 	{&LEVEL_1_TOWER_MAIN_BACK_IM,	{(192),	(LEVEL_1_TOWER_HEIGHT), LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT + 1}, 0, "BkgImg", NULL, NULL, true},
-
-	{&HERO_AC, 						{(72), 	(LEVEL_1_TOWER_HEIGHT - 128), 	(LAYER_0), 0}, 0, HERO_NAME, NULL, NULL, false},
 	{&LAVA_IG,						{(190), 	(LEVEL_1_TOWER_HEIGHT + 64), 	(LAYER_0), 0}, 0, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,

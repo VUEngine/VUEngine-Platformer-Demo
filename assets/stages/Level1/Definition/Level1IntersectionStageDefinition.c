@@ -75,7 +75,6 @@ PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {(8), (152), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Left Collision
 	{&DOOR_AG, {(36), (160), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntEntr2", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_EXIT_EP, false}, // Door (Lower Entrance)
 	//{&TORCH_LIGHT_AG, {(56), (148), (0), 0}, 0, NULL, NULL, NULL, false}, // Lower Left Torch Light
-	{&HERO_AC, {(56), (164), (LAYER_0), 0}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&TORCH_OFF_IM, {(56), (146), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Lower Left Torch
 	{&TORCH_SMOKE_PS, {(56), (136), LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&COLLISION_CL, {(112), (96), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_64_8, false}, // Center Collision

@@ -83,7 +83,6 @@ PositionedEntityROMDef TEST_ROOM_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {__F_TO_FIX10_6(8), __F_TO_FIX10_6(160), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_16_64_8, false}, // Left
 	{&DOOR_AG, {__F_TO_FIX10_6(36), __F_TO_FIX10_6(160), __F_TO_FIX10_6(LAYER_0), 0}, 0, "EntryDoor", NULL, NULL, false}, // Entry Door
 	{&TEST_ROOM_STAGE_TEST_1_IM, {__F_TO_FIX10_6(40), __F_TO_FIX10_6(56), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Test Composite
-	{&HERO_AC, {__F_TO_FIX10_6(44), __F_TO_FIX10_6(164), __F_TO_FIX10_6(LAYER_0), 0}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&COLLISION_CL, {__F_TO_FIX10_6(80), __F_TO_FIX10_6(104), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_160_48_8, false}, // Top Left
 	{&COLLISION_CL, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(184), __F_TO_FIX10_6(0), 0}, 0, NULL, NULL, (void*)&test_room_stage_collision_256_16_8, false}, // Bottom
 	{&TEST_ROOM_STAGE_MAIN_1_IM, {__F_TO_FIX10_6(144), __F_TO_FIX10_6(136), LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Main Layer (1)

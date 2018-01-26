@@ -69,7 +69,6 @@ PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {(16), (40), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Left Collision
 	{&DOOR_AG, {(36), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "CoinEntr", NULL, (void*)&LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP, false}, // Door (Entrance)
 	{&COLLISION_CL, {(40), (184), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Left Collision
-	{&HERO_AC, {(62), (148), (LAYER_0), 0}, 0, HERO_NAME, NULL, NULL, false}, // Hero
 	{&TORCH_LIGHT_AG, {(64), (128), (0), 0}, 0, NULL, NULL, NULL, false}, // Left Torch Light
 	{&TORCH_AG, {(64), (126), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Left Torch
 	{&COIN_AG, {(144), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 27, NULL, NULL, NULL, false}, // Coin

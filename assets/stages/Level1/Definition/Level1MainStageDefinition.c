@@ -358,8 +358,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CLOUDS_IM,					{(0),	(198), 	(LAYER_5 + LAYER_INCREMENT*2), 0},					0, NULL, NULL, NULL, true},
 	{&MOUND_BG_FRONT_IM,			{(0),	(212), 	(LAYER_5 + LAYER_INCREMENT*0), 0},					0, NULL, NULL, NULL, true},
 
-	{&HERO_AC,						{(56),	(288), 	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},		0, HERO_NAME, NULL, NULL, false},
-
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
 
@@ -476,7 +474,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&HIDE_LAYER_10x7_AG,			{(2732-64), 	(372-76), 	(LAYER_0_FOREGROUND), -SORT_INCREMENT}, 0, NULL, NULL, NULL, false},
 	{&MANAGED_ENTITY,	{(2732), (372),	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_6_COLLISIONS, NULL, false},
 
-	{&STAR_AG,						{(2556), (80), 	(LAYER_5), 0},					0, NULL, NULL, NULL, false},
+	{&STAR_AG,						{(2556), (80), 	(LAYER_5 + LAYER_INCREMENT*3), 0},					0, NULL, NULL, NULL, false},
 
 	{&LAYER_SWITCH_DOOR_AG,			{(2669), (308), 	LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "DoorFt1", NULL, (void*)&LEVEL_1_MAIN_LS_BACK_EP, false},
 	{&COIN_AG,						{(2732), (232), 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			24, NULL, NULL, NULL, false},
