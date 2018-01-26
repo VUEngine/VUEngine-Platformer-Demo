@@ -96,7 +96,7 @@ void CogWheel_ready(CogWheel this, bool recursive)
 	// listen for the shake end event
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
 
-	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
+	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.60f), __F_TO_FIX7_9(0.60f), __F_TO_FIX7_9(0.60f)};
 
 	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);}
 
