@@ -70,10 +70,10 @@ SolidParticleROMDef TEST_PARTICLE =
 		1550,
 
 		// particle's minimum mass
-		__F_TO_FIX10_6(0.1f),
+		__F_TO_FIX10_6(0.01f),
 
 		// particle's maximum mass
-		__F_TO_FIX10_6(0.1),
+		__F_TO_FIX10_6(0.01f),
 
 		// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 		__Y_AXIS,
@@ -104,7 +104,7 @@ SolidParticleROMDef TEST_PARTICLE =
 	kParticlesLayer,
 
 	/// layers to ignore when checking for collisions
-	kParticlesLayer | kTriggersLayer,
+	kParticlesLayer | kTriggersLayer | kPlayerLayer,
 //	kTriggersLayer,
 
 	/// disable collision detection when the particle stops
@@ -144,7 +144,7 @@ ParticleSystemROMDef TEST_1_PS =
 	300,
 
 	// maximum total particles
-	2,
+	5,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -207,7 +207,7 @@ ParticleSystemROMDef TEST_2_PS =
 	300,
 
 	// maximum total particles
-	5,
+	10,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
@@ -226,11 +226,11 @@ ParticleSystemROMDef TEST_2_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__F_TO_FIX10_6(0), __F_TO_FIX10_6(-0), 0},
+	{__F_TO_FIX10_6(32), __F_TO_FIX10_6(-40), 0},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the definition to avoid overflow)
-	{__F_TO_FIX10_6(4), __F_TO_FIX10_6(-4), 0},
+	{__F_TO_FIX10_6(54), __F_TO_FIX10_6(-68), 0},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__ACCELERATED_MOVEMENT
