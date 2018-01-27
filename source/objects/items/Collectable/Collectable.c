@@ -99,15 +99,18 @@ bool Collectable_handleMessage(Collectable this, Telegram telegram)
 			// additional action
 			__VIRTUAL_CALL(Collectable, collect, this);
 
-			// send message to remove item in next game frame
-			MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kRemoveFromStage, NULL);
-			break;
+			// delete myself now
+			Container_deleteMyself(__SAFE_CAST(Container, this));
 
+			// send message to remove item in next game frame
+			//MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kRemoveFromStage, NULL);
+			break;
+/*
 		case kRemoveFromStage:
 
 			Collectable_removeFromStage(this);
 			break;
-	}
+*/	}
 
 	return false;
 }
@@ -116,10 +119,11 @@ void Collectable_collect(Collectable this __attribute__ ((unused)))
 {
 	ASSERT(this, "Collectable::collect: null this");
 }
-
+/*
 void Collectable_removeFromStage(Collectable this)
 {
 	ASSERT(this, "Collectable::removeFromStage: null this");
 
 	Container_deleteMyself(__SAFE_CAST(Container, this));
 }
+*/
