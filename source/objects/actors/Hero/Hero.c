@@ -688,6 +688,7 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 		}
 		else
 		{
+			Game_disableKeypad(Game_getInstance());
 			Hero_setInvincible(this, true);
 			this->energy = 0;
 			Hero_flash(this);
