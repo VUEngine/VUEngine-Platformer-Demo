@@ -594,6 +594,9 @@ const PostProcessingEffect LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 
 StageROMDef LEVEL_1_MAIN_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

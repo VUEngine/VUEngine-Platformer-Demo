@@ -142,6 +142,9 @@ TextureDefinition* const TEST_ROOM_STAGE_ST_TEXTURES[] =
 
 StageROMDef TEST_ROOM_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

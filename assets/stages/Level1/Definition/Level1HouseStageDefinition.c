@@ -114,6 +114,9 @@ CharSetROMDef* const LEVEL1_HOUSE_STAGE_ST_CHARSETS[] =
 
 StageROMDef LEVEL1_HOUSE_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

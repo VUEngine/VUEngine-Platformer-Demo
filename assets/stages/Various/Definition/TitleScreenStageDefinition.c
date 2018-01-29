@@ -120,6 +120,9 @@ TextureDefinition* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
 
 StageROMDef TITLE_SCREEN_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

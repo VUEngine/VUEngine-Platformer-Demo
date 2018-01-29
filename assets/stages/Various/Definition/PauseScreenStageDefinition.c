@@ -74,6 +74,9 @@ FontROMDef* const PAUSE_SCREEN_STAGE_ST_FONTS[] =
 
 StageROMDef PAUSE_SCREEN_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

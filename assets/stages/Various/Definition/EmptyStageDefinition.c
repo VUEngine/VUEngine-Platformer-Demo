@@ -66,6 +66,9 @@ FontROMDef* const EMPTY_STAGE_ST_FONTS[] =
 
 StageROMDef EMPTY_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

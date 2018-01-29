@@ -180,6 +180,9 @@ const PostProcessingEffect TEST_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 
 StageROMDef TEST_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

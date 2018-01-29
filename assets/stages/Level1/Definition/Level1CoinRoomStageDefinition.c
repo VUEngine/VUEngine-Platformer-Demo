@@ -133,6 +133,9 @@ FontROMDef* const LEVEL1_COIN_ROOM_STAGE_ST_FONTS[] =
 
 StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

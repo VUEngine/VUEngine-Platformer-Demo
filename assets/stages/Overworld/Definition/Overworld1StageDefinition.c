@@ -91,6 +91,9 @@ FontROMDef* const OVERWORLD1_STAGE_ST_FONTS[] =
 
 StageROMDef OVERWORLD1_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

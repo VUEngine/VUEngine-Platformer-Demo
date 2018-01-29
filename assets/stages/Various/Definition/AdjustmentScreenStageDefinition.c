@@ -81,6 +81,9 @@ FontROMDef* const ADJUSTMENT_SCREEN_STAGE_ST_FONTS[] =
 
 StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

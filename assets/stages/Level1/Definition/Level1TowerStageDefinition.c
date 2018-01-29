@@ -318,6 +318,9 @@ TextureDefinition* const LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 
 StageROMDef LEVEL_1_TOWER_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size

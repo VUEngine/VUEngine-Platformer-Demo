@@ -75,6 +75,9 @@ FontROMDef* const LEVEL_DONE_SCREEN_STAGE_ST_FONTS[] =
 
 StageROMDef LEVEL_DONE_SCREEN_STAGE_ST =
 {
+	// allocator
+	__TYPE(Stage),
+
 	// level
 	{
 		// size
