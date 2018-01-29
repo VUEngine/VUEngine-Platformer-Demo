@@ -53,7 +53,7 @@
 
 
 u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
-void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector spatialObjectPosition, int parallax);
+void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector screenPixelPosition, int parallax);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -646,7 +646,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 		return;
 	}
 
-	PixelVector spatialObjectPosition = Vector3D_projectToPixelVector(Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject)), 0);
+	PixelVector screenPixelPosition = Vector3D_projectToPixelVector(Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject)), 0);
 
 	// increase radius by 1 in each cycle
 	radius++;
@@ -663,8 +663,8 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	}
 
 	// draw a rhombus around object with given radius and color
-	PostProcessingEffects_drawRhombus((radius), __COLOR_BLACK, spatialObjectPosition, -((radius + 4) >> 5));
-//	PostProcessingEffects_drawRhombus((radius >> 1), __COLOR_BLACK, spatialObjectPosition, -(((radius >> 1) + 4) >> 5));
+	PostProcessingEffects_drawRhombus((radius), __COLOR_BLACK, screenPixelPosition, -((radius + 4) >> 5));
+//	PostProcessingEffects_drawRhombus((radius >> 1), __COLOR_BLACK, screenPixelPosition, -(((radius >> 1) + 4) >> 5));
 }
 
 /**
@@ -955,37 +955,37 @@ inline u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* colum
  *
  * @param radius
  * @param color
- * @param spatialObjectPosition
+ * @param screenPixelPosition
  */
-void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector spatialObjectPosition, int parallax)
+void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector screenPixelPosition, int parallax)
 {
 	DirectDraw directDraw = DirectDraw_getInstance();
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {spatialObjectPosition.x - radius,	spatialObjectPosition.y,			0, parallax},
-		(PixelVector) {spatialObjectPosition.x,				spatialObjectPosition.y - radius,	0, parallax},
+		(PixelVector) {screenPixelPosition.x - radius,	screenPixelPosition.y,			0, parallax},
+		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y - radius,	0, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {spatialObjectPosition.x + radius,	spatialObjectPosition.y,			0, parallax},
-		(PixelVector) {spatialObjectPosition.x,				spatialObjectPosition.y - radius,	0, parallax},
+		(PixelVector) {screenPixelPosition.x + radius,	screenPixelPosition.y,			0, parallax},
+		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y - radius,	0, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {spatialObjectPosition.x + radius,	spatialObjectPosition.y,			0, parallax},
-		(PixelVector) {spatialObjectPosition.x,				spatialObjectPosition.y + radius,	0, parallax},
+		(PixelVector) {screenPixelPosition.x + radius,	screenPixelPosition.y,			0, parallax},
+		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y + radius,	0, parallax},
 		color
 	);
 
 	DirectDraw_drawLine(
 		directDraw,
-		(PixelVector) {spatialObjectPosition.x - radius,	spatialObjectPosition.y,			0, parallax},
-		(PixelVector) {spatialObjectPosition.x,				spatialObjectPosition.y + radius,	0, parallax},
+		(PixelVector) {screenPixelPosition.x - radius,	screenPixelPosition.y,			0, parallax},
+		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y + radius,	0, parallax},
 		color
 	);
 }
