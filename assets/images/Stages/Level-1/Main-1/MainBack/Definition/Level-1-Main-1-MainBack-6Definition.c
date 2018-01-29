@@ -90,7 +90,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
 		false,
 
 		// displacement
-		{-59, -72, LAYER_0_DOORS - LAYER_0_FOREGROUND + 1, 2},
+		{-59, -72, LAYER_0_DOORS - LAYER_0_FOREGROUND + 16, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
