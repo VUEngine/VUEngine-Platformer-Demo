@@ -1,7 +1,7 @@
 VUEngine Platformer Demo
 ========================
 
-A platform demo game created using the VUEngine to show off some of the engine's capabilities.
+A platform demo game created using the VUEngine 5.2 to show off some of the engine's capabilities.
 
 
 LICENSE
