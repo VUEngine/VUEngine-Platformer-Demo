@@ -13,7 +13,7 @@ SET LDT=%LDT:~0,4%-%LDT:~4,2%-%LDT:~6,2%
 ECHO STARTING RELEASE PROCESS...
 ECHO.
 
-FOR %%M IN (debug, release, tools) DO (
+FOR %%M IN (debug, beta, tools) DO (
 
 	::OUTPUT MODE
 	ECHO Mode: %%M
