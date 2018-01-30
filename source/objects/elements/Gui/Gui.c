@@ -106,9 +106,6 @@ void Gui_ready(Gui this, bool recursive)
 
 	// call base
 	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
-
-	// initially print gui
-	Gui_printAll(this);
 }
 
 // print elapsed time to gui
@@ -159,6 +156,8 @@ void Gui_printEnergy(Gui this __attribute__ ((unused)))
 {
 	Printing_text(Printing_getInstance(), "\x7B\x7B\x7B", GUI_X_POS + 4, GUI_Y_POS, GUI_FONT);
 	u8 i;
+	ASSERT(Hero_getInstance(), "Gui::printEnergy: null hero");
+
 	for(i=0; i < Hero_getEnergy(Hero_getInstance()); i++)
 	{
 		Printing_text(Printing_getInstance(), "\x60", GUI_X_POS + 4 + i, GUI_Y_POS, GUI_FONT);
