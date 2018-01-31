@@ -1463,8 +1463,6 @@ void Hero_syncRotationWithBody(Hero this)
 	}
 }
 
-#include <HardwareManager.h>
-
 void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
 {
 	ASSERT(this, "Hero::exitCollision: null this");
