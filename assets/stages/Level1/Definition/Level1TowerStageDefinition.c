@@ -146,7 +146,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_1[] =
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_2[] =
 {
 	{&COLLISION_CL,					{(-172), (32), 	(0), 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 2nd level floor left
-	{&COLLISION_CL,					{(32),	(-96),	(0), 0}, 0, NULL, NULL, (void*)&collision_32_4_4, false}, // 3rd level floor right
+	{&COLLISION_CL,					{(30),	(-96),	(0), 0}, 0, NULL, NULL, (void*)&collision_32_4_4, false}, // 3rd level floor right
 	{&COLLISION_CL,					{(160),	(-40), 	(0), 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // small stone right under 3rd
 	{&COLLISION_CL,					{(-80),	(-176),	(0), 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 4th level floor left
 	{&COLLISION_CL,					{(-82),	(-248),	(0), 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // floor below spikes
