@@ -203,7 +203,7 @@ BgmapSpriteROMDef HIDE_LAYER_10x7_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, -1, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
