@@ -47,7 +47,7 @@ enum HeroPowerUps
 #define HERO_NAME							"John Hero"
 #define HERO_INITIAL_ENERGY					3
 
-#define HERO_MASS							2
+#define HERO_MASS							1
 #define HERO_ELASTICITY						0.0f
 #define HERO_FRICTION						0
 
@@ -55,19 +55,20 @@ enum HeroPowerUps
 #define HERO_FLASH_DURATION					2000
 #define HERO_FLASH_INTERVAL					100
 
-#define HERO_INPUT_FORCE 					__I_TO_FIX10_6(3050)
-#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(1100)
+#define HERO_FORCE_FOR_STOPPING 			__F_TO_FIX10_6(-4.5f)
+#define HERO_INPUT_FORCE 					__I_TO_FIX10_6(60)
+#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(10)
 
-#define HERO_MAX_VELOCITY_X					__I_TO_FIX10_6(75)
-#define HERO_MAX_VELOCITY_Y					__I_TO_FIX10_6(305)
-#define HERO_MAX_VELOCITY_Z					__I_TO_FIX10_6(40)
-#define HERO_BOOST_VELOCITY_X				__F_TO_FIX10_6(100)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-32000)
-#define HERO_BOOST_JUMP_INPUT_FORCE			__I_TO_FIX10_6(-37000)
+#define HERO_MAX_VELOCITY_X					__F_TO_FIX10_6(3.5f)
+#define HERO_MAX_VELOCITY_Y					__F_TO_FIX10_6(15)
+#define HERO_MAX_VELOCITY_Z					__F_TO_FIX10_6(4)
+#define HERO_BOOST_VELOCITY_X				__F_TO_FIX10_6(4.0f)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__F_TO_FIX10_6(-240)
+#define HERO_BOOST_JUMP_INPUT_FORCE			__F_TO_FIX10_6(-270)
 
-#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(-24), 0}
+#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)}
 
-#define HERO_CHECK_Y_VELOCITY				20
+#define HERO_CHECK_Y_VELOCITY				(20/16)
 
 
 //---------------------------------------------------------------------------------------------------------
