@@ -272,10 +272,18 @@ void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, f
 	{
 		*yStepThrottle = minimumYThrottle;
 	}
+	else if(*yStepThrottle > maximumYThrottle)
+	{
+		*yStepThrottle = maximumYThrottle;
+	}
 
 	if(*xStep < minimumXStep)
 	{
 		*xStep = minimumXStep;
+	}
+	else if(*xStep > maximumXStep)
+	{
+		*xStep = maximumXStep;
 	}
 }
 
@@ -351,6 +359,11 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 										dropletLength, sizeof(dropletLength) >> SIZE_OF_U16_POWER, &dropletLengthIndex, RAIN_MINIMUM_DROPLET_LENGTH,
 										dropletParallax, sizeof(dropletParallax) >> SIZE_OF_S16_POWER);
 	yStepThrottle += yScreenDisplacement;
+
+	PRINT_FLOAT(__FIX19_13_TO_F(xStep), 1, 10);
+//	PRINT_FLOAT(__FIX10_6_TO_F(yStepThrottle), 10, 1);
+//	PRINT_FLOAT(__FIX10_6_TO_F(yStep), 1, 2);
+	PRINT_FLOAT(__FIX19_13_TO_F(yStepThrottle), 1, 11);
 }
 
 void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, Vector3D position, int width, int height, int yStepThrottle)
