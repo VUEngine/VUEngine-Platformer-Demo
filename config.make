@@ -2,14 +2,14 @@
 COMPILER_OUTPUT         = c
 
 # Compilation type
+# preprocessor:			The .o files are preprocessor's output instead of compiler's.
 # debug:				Adds lots of runtime assertions. Enables debugging tools too.
 # 						It is recommended to use the sram sections for the memory pools
 # 						when debugging in order to avoid stack overflows
 # 						(SRAM as WRAM only works on emulators).
-# release:				Removes all asserts. For shipping only!
-# beta:					Removes most asserts. For testing the performance on hardware.
 # tools:				Adds debugging tools without all the debug checking.
-# preprocessor:			The .o files are preprocessor's output instead of compiler's.
+# beta:					Removes most asserts. For testing the performance on hardware.
+# release:				Removes all asserts. For shipping only!
 TYPE                    = beta
 
 # Optimization level
