@@ -293,7 +293,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
  	#define RAIN_MINIMUM_DROPLET_LENGTH		3
  	#define RAIN_MINIMUM_Y_THROTTLE_1		__I_TO_FIX19_13(-5)
  	#define RAIN_MAXIMUM_Y_THROTTLE_1		__I_TO_FIX19_13(2)
- 	#define RAIN_MINIMUM_X_STEP_1			__I_TO_FIX19_13(10)
+ 	#define RAIN_MINIMUM_X_STEP_1			__I_TO_FIX19_13(15)
  	#define RAIN_MAXIMUM_X_STEP_1			__I_TO_FIX19_13(90)
 	static u16 yStepIndex = 0;
 	static u16 dropletLengthIndex = 0;
@@ -659,12 +659,12 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	// increase radius by 1 in each cycle
 	radius++;
 
-	if(radius > 224)
+	if(radius > 184)
 	{
 		// reset radius when reaching a certain length
 		radius = 4;
 	}
-	else if(radius > 108)
+	else if(radius > 64)
 	{
 		// pause for a little bit before restarting
 		return;
