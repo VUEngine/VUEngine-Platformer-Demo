@@ -280,7 +280,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	}
 
 	PlatformerLevelState_setCameraFrustum(this);
-	Game_enableKeypad(Game_getInstance());
 }
 
 void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this __attribute__ ((unused)))
