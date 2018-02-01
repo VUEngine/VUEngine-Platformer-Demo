@@ -300,10 +300,10 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	static fix19_13 yStepThrottle = RAIN_MINIMUM_Y_THROTTLE_1;
 	static fix19_13 xStep = RAIN_MAXIMUM_X_STEP_1;
  	static Vector3D cameraPreviousPosition = {0, 0, 0};
- 	static fix19_13 cumulativeX = 0;
- 	fix19_13 yScreenDisplacement = (_cameraPosition->y - cameraPreviousPosition.y);
+ 	static int cumulativeX = 0;
+ 	fix19_13 yScreenDisplacement = __I_TO_FIX19_13(__METERS_TO_PIXELS(_cameraPosition->y - cameraPreviousPosition.y));
 
- 	cumulativeX += _cameraPosition->x - cameraPreviousPosition.x;
+ 	cumulativeX += __METERS_TO_PIXELS(_cameraPosition->x - cameraPreviousPosition.x);
 	PostProcessingEffects_calculateRainPrecipitation(&yStepThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
 	cameraPreviousPosition = *_cameraPosition;
 
@@ -352,7 +352,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	yStepThrottle -= yScreenDisplacement;
 
 	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet,
-										0, __SCREEN_WIDTH -1, __FIX19_13_TO_I(-cumulativeX), __FIX19_13_TO_I(xStep),
+										0, __SCREEN_WIDTH -1, -cumulativeX, __FIX19_13_TO_I(xStep),
 										_cameraFrustum->y0, _cameraFrustum->y1, 0,
 										yStep, sizeof(yStep) >> SIZE_OF_U16_POWER, &yStepIndex, __FIX19_13_TO_I(yStepThrottle),
 										y, sizeof(y) >> SIZE_OF_S16_POWER,
