@@ -353,7 +353,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 		// unload padding
 		32,
 		// streaming amplitude
-		28,
+		32,
 		// particle removal delay cycles
 		0,
 	},
@@ -361,7 +361,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 	// rendering
 	{
 		// number of cycles the texture writing is idle
-		__TARGET_FPS / 10,
+		1,
 
 		// maximum number of texture's rows to write each time the texture writing is active
 		32,

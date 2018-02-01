@@ -365,10 +365,10 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COLLISION_CL,					{(-8),	(128), 	(LAYER_0), 0},					0, NULL, NULL, (void*)&collision_2_28_4, false},
 
 	// part 1
-	{&SMOKE_PS,						{(84),	(150), 	LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&SMOKE_PS,						{(86),	(150), 	LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&LEVEL_1_MAIN_1_MAIN_1_IM,		{(256), (368), 	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_HOUSE_IM,				{(88),	(192), 	LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT},		0, "House", NULL, NULL, false},
-	{&KEY_DOOR_AG,					{(46), 	(220), 	LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
+	{&KEY_DOOR_AG,					{(45), 	(220), 	LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
 	{&MANAGED_ENTITY,				{(256),	(368),	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},		0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_MAIN_1_COLLISIONS, NULL, false},
 
 	{&RUN_SIGN_IM,					{(232),	(220), 	LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},		0, NULL, NULL, NULL, false},
@@ -627,9 +627,9 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// load padding
 		128,
 		// unload padding
-		24,
+		32,
 		// streaming amplitude
-		14,
+		32,
 		// particle removal delay cycles
 		4,
 	},
