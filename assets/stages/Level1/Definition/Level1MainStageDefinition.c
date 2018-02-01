@@ -160,6 +160,7 @@ extern TextureDefinition MOUND_BG_BACK_TX;
 extern TextureDefinition MOUND_BG_FRONT_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
 extern TextureDefinition SAW_BLADE_TX;
+extern TextureROMDef GUI_TX;
 
 extern Size collision_2_28_4;
 extern Size collision_3_2_4;
@@ -620,6 +621,22 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 			// p
 			0
 		},
+
+		// camera's frustum
+        {
+        	// x0
+        	0,
+        	// y0
+			0,
+			// z0
+			-10,
+        	// x1
+        	__SCREEN_WIDTH,
+        	// y1
+        	__SCREEN_HEIGHT - 2 * 8,
+        	// z1
+        	__SCREEN_WIDTH * 5
+        }
 	},
 
 	// streaming

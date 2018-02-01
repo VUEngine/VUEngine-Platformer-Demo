@@ -68,7 +68,6 @@ static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelSta
 static void PlatformerLevelState_onStartStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
 static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)));
-void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this);
 void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this);
 void PlatformerLevelState_startStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
 
@@ -278,15 +277,6 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	{
 		Camera_startEffect(Camera_getInstance(), kScreenPulsate);
 	}
-
-	PlatformerLevelState_setCameraFrustum(this);
-}
-
-void PlatformerLevelState_setCameraFrustum(PlatformerLevelState this __attribute__ ((unused)))
-{
-	extern TextureROMDef GUI_TX;
-	CameraFrustum cameraFrustum = {0, 0, __SCREEN_WIDTH, __SCREEN_HEIGHT - GUI_TX.rows * 8, -10, __SCREEN_WIDTH * 5};
-	Camera_setCameraFrustum(Camera_getInstance(), cameraFrustum);
 }
 
 // state's exit
@@ -400,7 +390,6 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	Object_fireEvent(__SAFE_CAST(Object, this), kEventUserInput);
 
 	PlatformerLevelState_setPrintingLayerCoordinates(this);
-	PlatformerLevelState_setCameraFrustum(this);
 }
 
 void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this __attribute__ ((unused)))

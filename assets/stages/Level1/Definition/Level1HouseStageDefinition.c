@@ -140,6 +140,22 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 			// p
 			0
 		},
+
+		// camera's frustum
+        {
+        	// x0
+        	0,
+        	// y0
+			0,
+			// z0
+			-10,
+        	// x1
+        	__SCREEN_WIDTH,
+        	// y1
+        	__SCREEN_HEIGHT,
+        	// z1
+        	__SCREEN_WIDTH * 5
+        }
 	},
 
 	// streaming
