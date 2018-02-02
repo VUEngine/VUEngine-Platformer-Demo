@@ -496,7 +496,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 {
-	{&GUI_AG, {(192), (215), (-0), 0}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {(192), (215), (0), 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
