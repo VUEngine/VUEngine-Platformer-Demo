@@ -1180,6 +1180,12 @@ bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInform
 
 	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
 	{
+		case kHit:
+
+			Hero_takeHitFrom(this, collidingObject, 1, true, true);
+			return false;
+			break;
+
 		case kWaterPond:
 
 			if(Body_getMovementOnAllAxes(this->body))
