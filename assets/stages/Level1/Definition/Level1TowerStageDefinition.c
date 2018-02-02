@@ -377,10 +377,10 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 	// rendering
 	{
 		// number of cycles the texture writing is idle
-		1,
+		0,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		32,
+		64,
 
 		// maximum number of rows to compute on each call to the affine functions
 		24,

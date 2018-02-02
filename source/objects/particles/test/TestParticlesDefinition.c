@@ -104,7 +104,7 @@ SolidParticleROMDef TEST_PARTICLE =
 	kParticlesLayer,
 
 	/// layers to ignore when checking for collisions
-	kParticlesLayer | kTriggersLayer | kPlayerLayer,
+	kParticlesLayer | kTriggersLayer,
 //	kTriggersLayer,
 
 	/// disable collision detection when the particle stops
@@ -144,7 +144,7 @@ ParticleSystemROMDef TEST_1_PS =
 	300,
 
 	// maximum total particles
-	5,
+	10,
 
 	// array of textures
 	(const ObjectSpriteDefinition**)TEST_PARTICLE_SPRITES,
