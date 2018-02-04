@@ -245,6 +245,8 @@ StageROMDef OVERWORLD1_STAGE_ST =
 			__HORIZONTAL_VIEW_POINT_CENTER,
 			// vertical view point center
 			__VERTICAL_VIEW_POINT_CENTER,
+			// scaling factor
+			__SCALLING_MODIFIER_FACTOR,
 		},
 	},
 

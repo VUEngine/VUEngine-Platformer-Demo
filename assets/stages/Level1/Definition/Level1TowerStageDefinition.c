@@ -85,7 +85,7 @@ extern Size collision_4_2_4;
 extern Size collision_4_4_4;
 extern Size collision_4_8_4;
 extern Size collision_6_4_4;
-extern Size collision_7_2_4;
+extern Size collision_6_2_4;
 extern Size collision_8_4_4;
 extern Size collision_8_20_4;
 extern Size collision_14_6_4;
@@ -182,7 +182,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_2[] =
 
 PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_TOP_CL,				{(-80),	(-152),	(0), 0}, 0, NULL, NULL, (void*)&collision_7_2_4, false}, // top room one way
+	{&COLLISION_TOP_CL,				{(-80),	(-152),	(0), 0}, 0, NULL, NULL, (void*)&collision_6_2_4, false}, // top room one way
 	{&COLLISION_CL,					{(144),	(-144),	(0), 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // top room right floor
 	{&COLLISION_CL,					{(-144), (-80),	(0), 0}, 0, NULL, NULL, (void*)&collision_8_20_4, false}, // top room left floor
 	{&COLLISION_CL,					{(0),	(-232),	(0), 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // top room ceiling
@@ -472,6 +472,8 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 			__HORIZONTAL_VIEW_POINT_CENTER,
 			// vertical View point center
 			__VERTICAL_VIEW_POINT_CENTER,
+			// scaling factor
+			__SCALLING_MODIFIER_FACTOR,
 		},
 	},
 

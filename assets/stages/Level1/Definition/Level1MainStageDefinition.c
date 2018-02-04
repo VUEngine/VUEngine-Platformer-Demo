@@ -164,7 +164,7 @@ extern TextureROMDef GUI_TX;
 
 extern Size collision_2_28_4;
 extern Size collision_3_2_4;
-extern Size collision_7_2_4;
+extern Size collision_6_2_4;
 extern Size collision_8_3_4;
 extern Size collision_12_4_4;
 extern Size collision_14_6_4;
@@ -177,12 +177,12 @@ extern Size collision_28_16_4;
 extern Size collision_32_14_4;
 extern Size collision_34_30_4;
 extern Size collision_38_10_4;
-extern Size collision_47_3_4;
+extern Size collision_44_3_4;
 extern Size collision_48_10_4;
 extern Size collision_48_18_4;
 extern Size collision_48_28_4;
-extern Size collision_49_5_4;
-extern Size collision_67_25_4;
+extern Size collision_45_5_4;
+extern Size collision_62_25_4;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -202,7 +202,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_COLLISIONS[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_TOP_CL,				{(-226), (-104),	(0), 0},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left top one-way
+	{&COLLISION_TOP_CL,				{(-226), (-104),	(0), 0},	0, NULL, NULL, (void*)&collision_6_2_4, false}, // left top one-way
 	{&COLLISION_CL, 				{(-145), (-56),	(0), 0},	0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor left to spikes
 	{&COLLISION_CL, 				{(127),	(-56),	(0), 0},	0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor right to spikes
 
@@ -220,16 +220,16 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_2[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_TOP_CL,				{(-226), (72),	(0), 0},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // left bottom one-way
+	{&COLLISION_TOP_CL,				{(-226), (72),	(0), 0},	0, NULL, NULL, (void*)&collision_6_2_4, false}, // left bottom one-way
 	{&COLLISION_CL, 				{(-10),	(136),	(0), 0},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // secret bottom floor
-	{&COLLISION_TOP_CL,				{(210),	(-72),	(0), 0},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right top one-way
+	{&COLLISION_TOP_CL,				{(210),	(-72),	(0), 0},	0, NULL, NULL, (void*)&collision_6_2_4, false}, // right top one-way
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 {
-	{&COLLISION_TOP_CL,				{(210),	(24),	(0), 0},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // right bottom one-way
+	{&COLLISION_TOP_CL,				{(210),	(24),	(0), 0},	0, NULL, NULL, (void*)&collision_6_2_4, false}, // right bottom one-way
 	{&COLLISION_CL,					{(127),	(38),	(0), 0},	0, NULL, NULL, (void*)&collision_14_6_4, false}, // wall right to the secret door
 	{&COLLISION_CL,					{(239),	(88),	(0), 0},	0, NULL, NULL, (void*)&collision_18_6_4, false}, // floor under the one-way passage
 
@@ -238,8 +238,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_2_COLLISIONS_4[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_3_COLLISIONS_1[] =
 {
-	{&COLLISION_TOP_CL, 			{(-226), (-8),	(0), 0},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // top one-way
-	{&COLLISION_TOP_CL, 			{(-226), (88),	(0), 0},	0, NULL, NULL, (void*)&collision_7_2_4, false}, // bottom one-way
+	{&COLLISION_TOP_CL, 			{(-226), (-8),	(0), 0},	0, NULL, NULL, (void*)&collision_6_2_4, false}, // top one-way
+	{&COLLISION_TOP_CL, 			{(-226), (88),	(0), 0},	0, NULL, NULL, (void*)&collision_6_2_4, false}, // bottom one-way
 	{&COLLISION_CL, 				{(-8),	(-138),	(0), 0},	0, NULL, NULL, (void*)&collision_48_18_4, false}, // above hidden area
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
@@ -298,16 +298,16 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1[] =
 {
-	{&COLLISION_CL, 				{(-5),	(-119), (0), 0},	0, NULL, NULL, (void*)&collision_47_3_4, false},
-	{&COLLISION_CL, 				{(-76),	(-91), 	(0), 0},	0, NULL, NULL, (void*)&collision_49_5_4, false},
+	{&COLLISION_CL, 				{(-5),	(-119), (0), 0},	0, NULL, NULL, (void*)&collision_44_3_4, false},
+	{&COLLISION_CL, 				{(-68),	(-91), 	(0), 0},	0, NULL, NULL, (void*)&collision_45_5_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2[] =
 {
-	{&COLLISION_CL, 				{(0),	(32), 	(0), 0},	0, NULL, NULL, (void*)&collision_67_25_4, false},
-	{&COLLISION_TOP_CL, 			{(182), (-107), (0), 0},	0, NULL, NULL, (void*)&collision_7_2_4, false},
+	{&COLLISION_CL, 				{(0),	(32), 	(0), 0},	0, NULL, NULL, (void*)&collision_62_25_4, false},
+	{&COLLISION_TOP_CL, 			{(182), (-107), (0), 0},	0, NULL, NULL, (void*)&collision_6_2_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -332,7 +332,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_CHILDREN[] =
 PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_6_COLLISIONS[] =
 {
 	{&COLLISION_CL, 				{(-56),	(64), 	(0), 0},	0, NULL, NULL, (void*)&collision_48_28_4, false},
-	{&COLLISION_TOP_CL, 			{(-130), (-104), 	(0), 0},	0, NULL, NULL, (void*)&collision_7_2_4, false},
+	{&COLLISION_TOP_CL, 			{(-130), (-104), 	(0), 0},	0, NULL, NULL, (void*)&collision_6_2_4, false},
 	{&COLLISION_CL,					{(-56),	(-112), 	(0), 0},	0, NULL, NULL, (void*)&collision_12_4_4, false},
 	{&COLLISION_CL, 				{(168),	(-16), 	(0), 0},	0, NULL, NULL, (void*)&collision_48_28_4, false},
 
@@ -451,10 +451,10 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	// part 5 (back)
 	{&LEVEL_1_MAIN_1_BACK_5_IM,		{(2336), (381 + -58), 	(LAYER_2), LAYER_2_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 	{&LAYER_SWITCH_DOOR_BACK_AG, 	{(2336 + 145), 	(381 + -86), (LAYER_2), LAYER_2_DOORS_DISPLACEMENT}, 0, "DoorBk1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
-	{&MANAGED_ENTITY,				{(2336), (382),	(LAYER_2), LAYER_2_DOORS_DISPLACEMENT * 2}, 0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,				{(2336), (381 - 5),	(LAYER_2), LAYER_2_DOORS_DISPLACEMENT * 2}, 0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2, NULL, false},
-	{&CANNON_AC,					{(2180), (282), 	LAYER_2_FOREGROUND, LAYER_2_FOREGROUND_DISPLACEMENT},		0, NULL, NULL, NULL, false},
-	{&CANNON_AC,					{(2404), (282), 	LAYER_2_FOREGROUND, LAYER_2_FOREGROUND_DISPLACEMENT},		0, NULL, NULL, NULL, false},
+	{&MANAGED_ENTITY,				{(2336), (384),	(LAYER_2), LAYER_2_DOORS_DISPLACEMENT * 2}, 0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,				{(2328), (377),	(LAYER_2), LAYER_2_DOORS_DISPLACEMENT * 2}, 0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2, NULL, false},
+//	{&CANNON_AC,					{(2180), (282), 	LAYER_2_FOREGROUND, LAYER_2_FOREGROUND_DISPLACEMENT},		0, NULL, NULL, NULL, false},
+//	{&CANNON_AC,					{(2404), (282), 	LAYER_2_FOREGROUND, LAYER_2_FOREGROUND_DISPLACEMENT},		0, NULL, NULL, NULL, false},
 	{&COIN_BACK_AG,					{(2093), (259), 	LAYER_2_ITEMS, LAYER_2_ITEMS_DISPLACEMENT},			16, NULL, NULL, NULL, false},
 	{&COIN_BACK_AG,					{(2105), (259), 	LAYER_2_ITEMS, LAYER_2_ITEMS_DISPLACEMENT},			17, NULL, NULL, NULL, false},
 	{&COIN_BACK_AG,					{(2263), (236), 	LAYER_2_ITEMS, LAYER_2_ITEMS_DISPLACEMENT},			18, NULL, NULL, NULL, false},
@@ -751,6 +751,8 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 			__HORIZONTAL_VIEW_POINT_CENTER,
 			// vertical view point center
 			__VERTICAL_VIEW_POINT_CENTER,
+			// scaling factor
+			__SCALLING_MODIFIER_FACTOR,
 		},
 	},
 
