@@ -153,6 +153,11 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
 
+	if(!this->ready)
+	{
+		return;
+	}
+
 	// if render flag is set
 	if(!this->worldLayer)
 	{

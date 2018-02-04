@@ -103,6 +103,11 @@ void GUISprite_render(GUISprite this)
 {
 	ASSERT(this, "GUISprite::render: null this");
 
+	if(!this->ready)
+	{
+		return;
+	}
+
 	if(!this->worldLayer)
 	{
 		return;
