@@ -93,6 +93,7 @@ enum HeroPowerUps
 		__VIRTUAL_SET(ClassName, Hero, updateCollision);												\
 		__VIRTUAL_SET(ClassName, Hero, syncRotationWithBody);											\
 		__VIRTUAL_SET(ClassName, Hero, exitCollision);													\
+		__VIRTUAL_SET(ClassName, Hero, getAxesForShapeSyncWithDirection);								\
 
 __CLASS(Hero);
 
@@ -126,7 +127,7 @@ __CLASS(Hero);
 		/* flag to keep applying force to the x axis */													\
 		bool keepAddingForce;																			\
 		/* flag to keep applying force to the x axis */													\
-		bool underWater;																			\
+		bool underWater;																				\
 
 typedef const ActorDefinition HeroDefinition;
 typedef const HeroDefinition HeroROMDef;
@@ -187,6 +188,6 @@ void Hero_capVelocity(Hero this, bool discardPreviousMessages);
 bool Hero_isAffectedByRelativity(Hero this);
 void Hero_syncRotationWithBody(Hero this);
 void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
-
+u16 Hero_getAxesForShapeSyncWithDirection(Hero this);
 
 #endif

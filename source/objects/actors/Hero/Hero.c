@@ -1475,3 +1475,7 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, 
 	__CALL_BASE_METHOD(Actor, exitCollision, this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
+u16 Hero_getAxesForShapeSyncWithDirection(Hero this)
+{
+	return __NO_AXIS;
+}

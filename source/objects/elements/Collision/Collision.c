@@ -45,7 +45,7 @@ const PixelSize collision_4_2_4 = 	{4 * 8, 	2 * 8, 		8 * 8};
 const PixelSize collision_4_4_4 = 	{4 * 8, 	4 * 8, 		8 * 8};
 const PixelSize collision_4_8_4 = 	{4 * 8, 	8 * 8, 		8 * 8};
 const PixelSize collision_6_4_4 = 	{6 * 8, 	4 * 8, 		8 * 8};
-const PixelSize collision_7_2_4 = 	{7 * 8, 	2 * 8, 		8 * 8};
+const PixelSize collision_6_2_4 = 	{6 * 8, 	2 * 8, 		8 * 8};
 const PixelSize collision_8_3_4 = 	{8 * 8, 	3 * 8, 		8 * 8};
 const PixelSize collision_8_4_4 = 	{8 * 8, 	4 * 8, 		8 * 8};
 const PixelSize collision_8_20_4 = 	{8 * 8, 	20 * 8, 	8 * 8};
@@ -66,15 +66,15 @@ const PixelSize collision_30_33_4 = {30 * 8, 	33 * 8, 	8 * 8};
 const PixelSize collision_34_30_4 = {34 * 8, 	30 * 8, 	8 * 8};
 const PixelSize collision_38_10_4 = {38 * 8, 	10 * 8, 	8 * 8};
 const PixelSize collision_42_18_4 = {42 * 8, 	18 * 8, 	8 * 8};
-const PixelSize collision_47_3_4 = 	{47 * 8, 	3 * 8, 		8 * 8};
+const PixelSize collision_44_3_4 = 	{44 * 8, 	3 * 8, 		8 * 8};
 const PixelSize collision_48_2_4 = 	{48 * 8, 	2 * 8, 		8 * 8};
 const PixelSize collision_48_3_4 = 	{48 * 8, 	3 * 8, 		8 * 8};
 const PixelSize collision_48_4_4 = 	{48 * 8, 	4 * 8, 		8 * 8};
 const PixelSize collision_48_10_4 = {48 * 8, 	10 * 8, 	8 * 8};
 const PixelSize collision_48_18_4 = {48 * 8, 	18 * 8, 	8 * 8};
 const PixelSize collision_48_28_4 = {48 * 8, 	28 * 8, 	8 * 8};
-const PixelSize collision_49_5_4 = 	{49 * 8, 	5 * 8, 		8 * 8};
-const PixelSize collision_67_25_4 = {67 * 8, 	25 * 8, 	8 * 8};
+const PixelSize collision_45_5_4 = 	{45 * 8, 	5 * 8, 		8 * 8};
+const PixelSize collision_62_25_4 = {62 * 8, 	25 * 8, 	8 * 8};
 
 
 //---------------------------------------------------------------------------------------------------------
