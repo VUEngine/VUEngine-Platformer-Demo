@@ -7,7 +7,7 @@ A platform demo game created using the VUEngine 5.2 to show off some of the engi
 LICENSE
 -------
 
-Copyright (C) 2007, 2017 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
 
 This software is licensed under the MIT License, which means you can basically do with it whatever you 
 want as long as you include the original copyright and license notice in any copy of the software/source. 
