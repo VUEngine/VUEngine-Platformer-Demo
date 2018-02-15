@@ -44,7 +44,7 @@ CharSetROMDef LEVEL_1_MAIN_1_MAIN_FRONT_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	8,
+	4,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -66,7 +66,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_TX =
 	64,
 
 	// rows (max 64)
-	7,
+	5,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -102,7 +102,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_1_IM_SPRITE =
 		false,
 
 		// displacement
-		{0, -120, -1, -1},
+		{0, -104, -1, -1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

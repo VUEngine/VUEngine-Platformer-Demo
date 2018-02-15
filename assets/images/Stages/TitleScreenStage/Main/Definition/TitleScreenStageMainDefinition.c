@@ -102,7 +102,7 @@ BgmapSpriteROMDef TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITE =
 			0, // x
 			0, // y
 			0, // z
-			0, // parallax
+			1, // parallax
 		},
 	},
 

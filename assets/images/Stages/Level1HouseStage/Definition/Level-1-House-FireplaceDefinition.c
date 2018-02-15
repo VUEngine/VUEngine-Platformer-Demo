@@ -96,7 +96,7 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE =
 		false,
 
 		// displacement
-		{48, 36, 0, 0},
+		{48, 36, 24, 1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

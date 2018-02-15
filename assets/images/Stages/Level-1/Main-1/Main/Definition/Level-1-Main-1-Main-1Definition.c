@@ -48,7 +48,7 @@ CharSetROMDef LEVEL_1_MAIN_1_MAIN_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	56,
+	68,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -70,7 +70,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_1_TX =
 	64,
 
 	// rows (max 64)
-	33,
+	35,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},

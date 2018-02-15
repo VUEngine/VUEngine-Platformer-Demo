@@ -57,7 +57,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_5_TX =
 	59,
 
 	// rows (max 64)
-	24,
+	26,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},

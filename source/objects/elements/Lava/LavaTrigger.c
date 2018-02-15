@@ -107,7 +107,7 @@ void LavaTrigger_triggerEventStart(LavaTrigger this)
 	PlatformerLevelState_setModeToPaused(platformerState);
 
 	// initialize a dramatic screen shake effect
-	Camera_startEffect(Camera_getInstance(), kShake, 3000);
+	Camera_startEffect(Camera_getInstance(), kShake, 2000);
 
 	// TODO: play rumble BGM
 
@@ -121,7 +121,6 @@ void LavaTrigger_triggerEventStart(LavaTrigger this)
 void LavaTrigger_triggerEventEnd(LavaTrigger this)
 {
 	// TODO: stop rumble BGM
-	// TODO: start rotating cogwheel
 
 	// get lava entity from stage and start its movement
 	Lava lava = (Lava)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "Lava", true);

@@ -50,7 +50,7 @@ TextureROMDef LEVEL_1_MAIN_1_MAIN_FRONT_6_TX =
 	64,
 
 	// rows (max 64)
-	14,
+	12,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -86,7 +86,7 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_6_IM_SPRITE =
 		false,
 
 		// displacement
-		{0, -88, -1, -1},
+		{0, -72, -1, -1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

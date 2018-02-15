@@ -96,7 +96,7 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_PIPE_IM_SPRITE =
 		false,
 
 		// displacement
-		{48, 16, 1, 0},
+		{48, 16, 24, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

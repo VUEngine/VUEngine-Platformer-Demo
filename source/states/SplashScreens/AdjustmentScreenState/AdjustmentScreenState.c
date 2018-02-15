@@ -127,6 +127,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 	// draw rhombus around object with given radius
 	DirectDraw directDraw = DirectDraw_getInstance();
 
+	// top left line
 	DirectDraw_drawLine(
 		directDraw,
 		(PixelVector) {(192 - radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
@@ -134,6 +135,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 		__COLOR_BRIGHT_RED
 	);
 
+	// top right line
 	DirectDraw_drawLine(
 		directDraw,
 		(PixelVector) {(192 + radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
@@ -141,6 +143,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 		__COLOR_BRIGHT_RED
 	);
 
+	// bottom right line
 	DirectDraw_drawLine(
 		directDraw,
 		(PixelVector) {(192 + radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
@@ -148,6 +151,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 		__COLOR_BRIGHT_RED
 	);
 
+	// bottom left line
 	DirectDraw_drawLine(
 		directDraw,
 		(PixelVector) {(192 - radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},

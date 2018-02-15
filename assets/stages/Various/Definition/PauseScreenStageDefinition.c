@@ -42,7 +42,7 @@ extern EntityDefinition HERO_SLEEPING_AG;
 
 PositionedEntityROMDef PAUSE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&HERO_SLEEPING_AG, {(192), (92), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Hero Sleeping
+	{&HERO_SLEEPING_AG, {192, 92, LAYER_0, 0}, 0, NULL, NULL, NULL, false}, // Hero Sleeping
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

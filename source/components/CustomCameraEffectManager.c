@@ -280,5 +280,5 @@ static void CustomCameraEffectManager_onScreenPulsate(CustomCameraEffectManager 
 	this->pulsateNextStep = (SCREEN_PULSATE_STEPS[this->pulsateNextStep + 1] != NULL)
 		? this->pulsateNextStep + 1
 		: 0;
-	MessageDispatcher_dispatchMessage(SCREEN_PULSATE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
+	MessageDispatcher_dispatchMessage(CAMERA_PULSATE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
 }

@@ -36,12 +36,12 @@
 //												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-// delay between screen movements during shaking effect (in ms)
+// delay between camera movements during shaking effect (in ms)
 #define MINIMUM_SHAKE_DELAY				20
 #define SHAKE_DELAY_DELTA				60
-#define SCREEN_PULSATE_DELAY			270
+#define CAMERA_PULSATE_DELAY			270
 
-enum CustomScreenFX
+enum CustomCameraFX
 {
 	kShake = kCameraLastFX,
 	kScreenPulsate
@@ -67,7 +67,7 @@ enum CustomScreenFX
 		/* super's attributes */																		\
 		CameraEffectManager_ATTRIBUTES																	\
 		/* temporary variable to hold the focus entity during shaking fx */								\
-		Entity tempFocusEntity;																\
+		Entity tempFocusEntity;																			\
 		/* last offset set by shake function */															\
 		Vector3D lastShakeOffset;																		\
 		/* time left in current shaking fx (in ms) */													\

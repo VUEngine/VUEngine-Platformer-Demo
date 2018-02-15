@@ -45,12 +45,12 @@ extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM;
 
 PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {(12), (12), (0), 0}, 0, NULL, NULL, NULL, false}, // Icon Top Left (Left Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {(12), (212), (0), 0}, 0, NULL, NULL, NULL, false}, // Icon Bottom Left (Right Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_BG_IM, {(192), (112), (16), 0}, 0, NULL, NULL, NULL, false}, // Background
-	{&ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM, {(192), (112), (0), 0}, 0, NULL, NULL, NULL, false}, // Logo
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {(372), (212), (0), 0}, 0, NULL, NULL, NULL, false}, // Icon Bottom Right (Left Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {(372), (12), (0), 0}, 0, NULL, NULL, NULL, false}, // Icon Top Right (Right Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {12, 12, 0, 0}, 0, NULL, NULL, NULL, false}, // Icon Top Left (Left Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {12, 212, 0, 0}, 0, NULL, NULL, NULL, false}, // Icon Bottom Left (Right Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_BG_IM, {192, 112, 16, 0}, 0, NULL, NULL, NULL, false}, // Background
+	{&ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM, {192, 112, 0, 0}, 0, NULL, NULL, NULL, false}, // Logo
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {372, 212, 0, 0}, 0, NULL, NULL, NULL, false}, // Icon Bottom Right (Left Eye)
+	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {372, 12, 0, 0}, 0, NULL, NULL, NULL, false}, // Icon Top Right (Right Eye)
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
