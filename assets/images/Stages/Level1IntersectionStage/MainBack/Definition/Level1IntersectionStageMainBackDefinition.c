@@ -94,8 +94,8 @@ BgmapSpriteROMDef LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{

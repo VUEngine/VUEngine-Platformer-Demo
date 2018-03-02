@@ -94,8 +94,8 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_2_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{-50, 40, LAYER_0_DOORS - LAYER_0_FOREGROUND + 16, 2},

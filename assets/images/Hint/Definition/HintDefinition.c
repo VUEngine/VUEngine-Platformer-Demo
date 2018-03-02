@@ -381,8 +381,8 @@ BgmapSpriteROMDef HINT_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HINT_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{28, -21, 0, 0},

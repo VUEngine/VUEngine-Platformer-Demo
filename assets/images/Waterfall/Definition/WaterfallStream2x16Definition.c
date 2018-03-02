@@ -127,8 +127,8 @@ BgmapSpriteROMDef WATERFALL_STREAM_2x16_SPRITE =
 		// texture definition
 		(TextureDefinition*)&WATERFALL_STREAM_2x16_TX,
 
-		// transparent
-		true,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_EVEN,
 
 		// displacement
 		{

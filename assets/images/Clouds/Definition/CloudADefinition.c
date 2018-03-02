@@ -94,8 +94,8 @@ BgmapSpriteROMDef CLOUD_A_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&CLOUD_A_TX,
 
-		// transparent
-		true,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_EVEN,
 
 		// displacement
 		{0, 0, 0, 0},

@@ -95,8 +95,8 @@ BgmapSpriteROMDef TEST_ROOM_STAGE_MAIN_1_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&TEST_ROOM_STAGE_MAIN_1_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{
@@ -183,8 +183,8 @@ BgmapSpriteROMDef TEST_ROOM_STAGE_MAIN_2_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&TEST_ROOM_STAGE_MAIN_2_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{

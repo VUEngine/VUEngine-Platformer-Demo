@@ -132,8 +132,8 @@ BgmapSpriteROMDef FLOWER_A_SPRITE =
 		// texture definition
 		(TextureDefinition*)&FLOWER_A_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{__F_TO_FIX10_6(0), __F_TO_FIX10_6(0), __F_TO_FIX10_6(0), 0},

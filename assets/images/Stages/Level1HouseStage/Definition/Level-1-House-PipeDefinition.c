@@ -92,8 +92,8 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_PIPE_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&LEVEL_1_HOUSE_PIPE_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{48, 16, 24, 2},

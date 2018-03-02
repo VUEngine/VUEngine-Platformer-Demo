@@ -83,8 +83,8 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_FRONT_2B_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_FRONT_2B_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{-64, 72, -1, -1},

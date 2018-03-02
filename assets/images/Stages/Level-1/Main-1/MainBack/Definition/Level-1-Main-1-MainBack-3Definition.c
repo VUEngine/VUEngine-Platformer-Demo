@@ -139,8 +139,8 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_3A_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{-156, -40, LAYER_0_DOORS - LAYER_0_FOREGROUND + 16, 2},
@@ -166,8 +166,8 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3B_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_3A_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{140, 24, LAYER_0_DOORS - LAYER_0_FOREGROUND + 16, 2},
@@ -193,8 +193,8 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_MAIN_BACK_3C_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&LEVEL_1_MAIN_1_MAIN_BACK_3C_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{-8, 192, LAYER_0_DOORS - LAYER_0_FOREGROUND + 16, 2},
