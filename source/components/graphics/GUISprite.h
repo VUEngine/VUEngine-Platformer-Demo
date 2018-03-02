@@ -36,7 +36,7 @@
 
 // declare the virtual methods
 #define GUISprite_METHODS(ClassName)																	\
-	    BgmapAnimatedSprite_METHODS(ClassName)																	\
+	    BgmapAnimatedSprite_METHODS(ClassName)															\
 
 // declare the virtual methods which are redefined
 #define GUISprite_SET_VTABLE(ClassName)																	\
@@ -56,7 +56,7 @@ __CLASS(GUISprite);
 __CLASS_NEW_DECLARE(GUISprite, const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner);
 
 void GUISprite_destructor(GUISprite this);
-void GUISprite_render(GUISprite this, bool eventFrame);
+void GUISprite_render(GUISprite this, bool evenFrame);
 
 
 #endif

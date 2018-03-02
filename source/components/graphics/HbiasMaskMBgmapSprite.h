@@ -63,7 +63,7 @@
 		 * @brief		reference Sprite
 		 * @memberof 	HbiasMaskMBgmapSprite
 		 */																								\
-		const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition;								\
+		const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition;							\
 		/**
 		 * @var u8		step
 		 * @brief		current lut index
@@ -101,7 +101,7 @@ __CLASS_NEW_DECLARE(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition
 void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
 void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this);
 void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position);
-void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool eventFrame);
+void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool evenFrame);
 s16 HbiasMaskMBgmapSprite_wave(HbiasMaskMBgmapSprite this);
 
 
