@@ -103,8 +103,8 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 			// texture definition
 			NULL,
 
-			// transparent
-			false,
+			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+			__TRANSPARENCY_NONE,
 
 			// displacement
 			{0, 0, 0, 0},
@@ -144,7 +144,7 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
 				// texture definition
 				NULL,
 
-				// transparent
+				// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 				false,
 
 				// displacement

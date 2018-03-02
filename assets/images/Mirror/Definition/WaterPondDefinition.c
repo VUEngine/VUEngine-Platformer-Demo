@@ -151,8 +151,8 @@ WaterPondROMDef WATER_POND_EN =
 		// mask to apply to the image behind the reflection
 		0x55555555,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// reflect parallax info
 		false,

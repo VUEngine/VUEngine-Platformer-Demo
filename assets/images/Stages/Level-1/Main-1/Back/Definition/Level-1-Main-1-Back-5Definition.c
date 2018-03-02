@@ -101,8 +101,8 @@ BgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&LEVEL_1_MAIN_1_BACK_5_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, LAYER_2_FOREGROUND_PARALLAX_DISPLACEMENT},
@@ -158,7 +158,7 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM =
 				// texture definition
 				NULL,
 
-				// transparent
+				// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 				false,
 
 				// displacement

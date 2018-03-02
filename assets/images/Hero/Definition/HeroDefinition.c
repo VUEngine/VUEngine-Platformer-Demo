@@ -450,8 +450,8 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HERO_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, HERO_PARALLAX_DISPLACEMENT},
@@ -468,7 +468,6 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 	__WORLD_ON,
 };
 
-
 BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
 {
 	{
@@ -478,8 +477,8 @@ BgmapSpriteROMDef HERO_BANDANA_AFFINE_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HERO_BANDANA_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, HERO_PARALLAX_DISPLACEMENT},
@@ -505,8 +504,8 @@ BgmapSpriteROMDef HERO_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HERO_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

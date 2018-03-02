@@ -127,8 +127,8 @@ BgmapSpriteROMDef TORCH_LIGHT_SPRITE =
 		// texture definition
 		(TextureDefinition*)&TORCH_LIGHT_TX,
 
-		// transparent
-		true,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_EVEN,
 
 		// displacement
 		{0, 0, 0, 2},
