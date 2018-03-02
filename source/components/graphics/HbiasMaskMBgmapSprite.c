@@ -148,10 +148,13 @@ static void HbiasMaskMBgmapSprite_getReferenceSprite(HbiasMaskMBgmapSprite this)
  * @public
  *
  * @param this		Function scope
+ * @param eventFrame
  */
-void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
+void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool eventFrame)
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
+
+	__CALL_BASE_METHOD(Sprite, render, this, eventFrame);
 
 	if(!this->ready)
 	{

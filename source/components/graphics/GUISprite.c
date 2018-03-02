@@ -98,10 +98,13 @@ void GUISprite_destructor(GUISprite this)
  * @public
  *
  * @param this		Function scope
+ * @param eventFrame
  */
-void GUISprite_render(GUISprite this)
+void GUISprite_render(GUISprite this, bool eventFrame)
 {
 	ASSERT(this, "GUISprite::render: null this");
+
+	__CALL_BASE_METHOD(Sprite, render, this, eventFrame);
 
 	if(!this->ready)
 	{
