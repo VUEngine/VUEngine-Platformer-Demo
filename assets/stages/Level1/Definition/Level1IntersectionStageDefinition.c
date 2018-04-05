@@ -282,7 +282,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum view distance's power into the horizon
-			__MAXIMUM_X_VIEW_DISTANCE_POWER, __MAXIMUM_Y_VIEW_DISTANCE_POWER,
+			__MAXIMUM_X_VIEW_DISTANCE, __MAXIMUM_Y_VIEW_DISTANCE,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
@@ -292,7 +292,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			// vertical view point center
 			__VERTICAL_VIEW_POINT_CENTER,
 			// scaling factor
-			__SCALING_MODIFIER_FACTOR,
+			__SCALLING_MODIFIER_FACTOR,
 		},
 	},
 

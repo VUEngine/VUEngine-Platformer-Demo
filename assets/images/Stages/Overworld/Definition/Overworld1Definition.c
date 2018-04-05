@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ManagedEntity.h>
+#include <Entity.h>
 #include <MBgmapSprite.h>
 #include <macros.h>
 
@@ -137,10 +137,10 @@ BgmapSpriteROMDef* const OVERWORLD_1_IM_SPRITES[] =
 	NULL
 };
 
-ManagedEntityROMDef OVERWORLD_1_IM =
+EntityROMDef OVERWORLD_1_IM =
 {
 	// class allocator
-	__TYPE(ManagedEntity),
+	__TYPE(Entity),
 
 	// sprites
 	(SpriteROMDef**)OVERWORLD_1_IM_SPRITES,
