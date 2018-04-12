@@ -473,7 +473,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 			// vertical View point center
 			__VERTICAL_VIEW_POINT_CENTER,
 			// scaling factor
-			__SCALING_MODIFIER_FACTOR,
+			__SCALLING_MODIFIER_FACTOR,
 		},
 	},
 
