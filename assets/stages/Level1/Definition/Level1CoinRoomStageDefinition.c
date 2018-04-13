@@ -187,6 +187,8 @@ StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 		24,
 		// particle removal delay cycles
 		0,
+		// deferred
+		false
 	},
 
 	// rendering

@@ -234,6 +234,8 @@ StageROMDef TEST_STAGE_ST =
 		14,
 		// particle removal delay cycles
 		4,
+		// deferred
+		false
 	},
 
 	// rendering

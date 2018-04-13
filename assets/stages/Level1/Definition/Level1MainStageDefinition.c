@@ -644,6 +644,8 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		16,
 		// particle removal delay cycles
 		4,
+		// deferred
+		true
 	},
 
 	// rendering

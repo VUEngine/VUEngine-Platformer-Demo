@@ -168,6 +168,8 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		24,
 		// particle removal delay cycles
 		0,
+		// deferred
+		false
 	},
 
 	// rendering
