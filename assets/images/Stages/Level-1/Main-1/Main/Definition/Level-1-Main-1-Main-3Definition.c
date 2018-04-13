@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Entity.h>
-#include <ManagedEntity.h>
+#include <Entity.h>
 #include <MBgmapSprite.h>
 #include <macros.h>
 

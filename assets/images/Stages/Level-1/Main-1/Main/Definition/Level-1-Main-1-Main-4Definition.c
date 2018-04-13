@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ManagedEntity.h>
+#include <Entity.h>
 #include <MBgmapSprite.h>
 #include <macros.h>
 
@@ -112,10 +112,10 @@ BgmapSpriteROMDef* const LEVEL_1_MAIN_1_MAIN_4_IM_SPRITES[] =
 	NULL
 };
 
-ManagedEntityROMDef LEVEL_1_MAIN_1_MAIN_4_IM =
+EntityROMDef LEVEL_1_MAIN_1_MAIN_4_IM =
 {
 	// class allocator
-	__TYPE(ManagedEntity),
+	__TYPE(Entity),
 
 	// sprites
 	(SpriteROMDef**)LEVEL_1_MAIN_1_MAIN_4_IM_SPRITES,

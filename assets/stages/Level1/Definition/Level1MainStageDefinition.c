@@ -355,7 +355,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_1_MAIN_1_IM_CHILDREN[] =
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&MOUND_BG_BACK_IM,				{(0),	(140), 	(LAYER_5 + LAYER_INCREMENT*3), 0},					0, NULL, NULL, NULL, true},
+	{&MOUND_BG_BACK_IM,				{(0),	(132), 	(LAYER_5 + LAYER_INCREMENT*3), 0},					0, NULL, NULL, NULL, true},
 	{&CLOUDS_IM,					{(0),	(198), 	(LAYER_5 + LAYER_INCREMENT*2), 0},					0, NULL, NULL, NULL, true},
 	{&MOUND_BG_FRONT_IM,			{(0),	(212), 	(LAYER_5 + LAYER_INCREMENT*0), 0},					0, NULL, NULL, NULL, true},
 
@@ -376,7 +376,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COIN_AG,						{(184),	(225), 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				1, NULL, NULL, NULL, false},
 	{&COIN_AG,						{(200),	(225), 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				2, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_MAIN_1_BACK_1_IM,		{(360),	(256), 	(LAYER_2), 0},					0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_BACK_1_IM,		{(360),	(256), 	(LAYER_3), 0},					0, NULL, NULL, NULL, false},
 
 	{&STAR_AG,						{(240),	(96), 	(LAYER_5 + LAYER_INCREMENT*3), 0},						0, NULL, NULL, NULL, false},
 
@@ -735,9 +735,9 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum x view distance's power into the horizon
-			__MAXIMUM_X_VIEW_DISTANCE_POWER,
+			__MAXIMUM_X_VIEW_DISTANCE,
 			// maximum y view distance's power into the horizon
-			__MAXIMUM_Y_VIEW_DISTANCE_POWER,
+			__MAXIMUM_Y_VIEW_DISTANCE,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)

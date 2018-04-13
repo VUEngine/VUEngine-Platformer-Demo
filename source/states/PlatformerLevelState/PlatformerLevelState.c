@@ -184,7 +184,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			Vector3D screenPosition =
 			{
 				initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH),
-				initialPosition->y - __PIXELS_TO_METERS(__HALF_SCREEN_HEIGHT),
+				initialPosition->y - __PIXELS_TO_METERS(__SCREEN_HEIGHT),
 				__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z)
 			};
 
@@ -221,14 +221,13 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 				Stage_registerEntityId(this->stage, Entity_getInternalId(__SAFE_CAST(Entity, hero)), &HERO_AC);
 			}
 
+			Object_addEventListener(__SAFE_CAST(Object, hero), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroStreamedOut, kStageChildStreamedOut);
+
 			// set hero's position
 			Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
 
-			Object_addEventListener(__SAFE_CAST(Object, hero), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroStreamedOut, kStageChildStreamedOut);
-
 			// make sure that focusing gets completed immediately
 			CustomCameraMovementManager_enable(CustomCameraMovementManager_getInstance());
-			CustomCameraMovementManager_disableFocusEasing(CustomCameraMovementManager_getInstance());
 
 			// update actor's global transformations
 			GameState_transform(__SAFE_CAST(GameState, this));
@@ -237,6 +236,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			Camera_setFocusGameEntity(Camera_getInstance(), __SAFE_CAST(Entity, hero));
 			Vector3D screenDisplacement = {__PIXELS_TO_METERS(50), __PIXELS_TO_METERS(-30), 0};
 			Camera_setFocusEntityPositionDisplacement(Camera_getInstance(), screenDisplacement);
+
 
 			// apply changes to the visuals
 			GameState_synchronizeGraphics(__SAFE_CAST(GameState, this));

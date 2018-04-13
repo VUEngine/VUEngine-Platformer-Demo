@@ -241,18 +241,18 @@ $(TARGET).vb: $(TARGET).elf
 
 $(TARGET).elf: dirs $(VUENGINE) $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(SETUP_CLASSES).o
 	@echo Linking $(TARGET).elf
-	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(SETUP_CLASSES).o $(LD_PARAMS) \
+	@$(GCC) -pipe -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(SETUP_CLASSES).o $(LD_PARAMS) \
 		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(VUENGINE_LIBRARY_PATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
 
 $(SETUP_CLASSES).o: $(SETUP_CLASSES).c
-	@$(GCC) $(foreach INC,$(VUENGINE_INCLUDE_PATHS) $(GAME_INCLUDE_PATHS),-I$(INC))\
+	@$(GCC) -pipe $(foreach INC,$(VUENGINE_INCLUDE_PATHS) $(GAME_INCLUDE_PATHS),-I$(INC))\
         $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS) -$(COMPILER_OUTPUT) $(SETUP_CLASSES).c -o $@
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.
 $(STORE)/%.o: %.c
 	@echo Compiling $<
-	@$(GCC) -Wp,-MD,$(STORE)/$*.dd $(foreach INC,$(VUENGINE_INCLUDE_PATHS) $(GAME_INCLUDE_PATHS),-I$(INC))\
+	@$(GCC) -pipe -Wp,-MD,$(STORE)/$*.dd $(foreach INC,$(VUENGINE_INCLUDE_PATHS) $(GAME_INCLUDE_PATHS),-I$(INC))\
         $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS)  -$(COMPILER_OUTPUT) $< -o $@
 	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/$*.dd > $(STORE)/$*.d
 	@rm -f $(STORE)/$*.dd

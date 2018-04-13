@@ -28,7 +28,7 @@
 #include <Debug.h>
 #include <StageEditor.h>
 #include <AnimationInspector.h>
-#include <ManagedEntity.h>
+#include <Entity.h>
 #include <Bandana.h>
 #include <Cannon.h>
 #include <CannonBall.h>
@@ -88,10 +88,10 @@ EntityROMDef SIMPLE_CONTAINER =
 
 
 // only need to define one for all managed entities
-ManagedEntityROMDef MANAGED_ENTITY =
+EntityROMDef MANAGED_ENTITY =
 {
 	// class allocator
-	__TYPE(ManagedEntity),
+	__TYPE(Entity),
 
 	// sprites
 	NULL,
