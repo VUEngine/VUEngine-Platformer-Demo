@@ -486,7 +486,7 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, Ve
 		u32* columnSourcePointerRight = (u32*) (currentDrawingFrameBufferSet | 0x00010000) + (x << 4);
 
 		int yStart = _cameraFrustum->y0 >> Y_STEP_SIZE_2_EXP;
-		int yEnd = _cameraFrustum->y1 >> Y_STEP_SIZE_2_EXP;
+		int yEnd = (_cameraFrustum->y1 - 16) >> Y_STEP_SIZE_2_EXP; // do not write over GUI
 		int y = yStart;
 
 		int ellipsisY = ellipsisArc[ellipsisArcIndex];

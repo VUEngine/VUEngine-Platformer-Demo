@@ -46,7 +46,6 @@ const Size level1_intersection_stage_collision_272_16_8 = {272, 16, 8};
 const Size level1_intersection_stage_collision_32_64_8 = {32, 64, 8};
 const Size level1_intersection_stage_collision_48_32_8 = {48, 32, 8};
 const Size level1_intersection_stage_collision_48_34_8 = {48, 34, 8};
-extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition COLLISION_TOP_CL;
@@ -216,15 +215,15 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			// brightness values on the respective regions of the screen. maximum brightness is 128.
 			{
 				// dark red
-				2,
+				__BRIGHTNESS_DARK_RED >> 1,
 				// medium red
-				4,
+				__BRIGHTNESS_MEDIUM_RED >> 1,
 				// bright red
-				8,
+				__BRIGHTNESS_BRIGHT_RED >> 1,
 			},
 
 			// brightness repeat
-			(BrightnessRepeatDefinition*)&EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
+			(BrightnessRepeatDefinition*)NULL,
 		},
 
 		// palettes' config
