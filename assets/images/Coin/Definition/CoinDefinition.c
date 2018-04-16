@@ -371,7 +371,7 @@ ShapeROMDef COIN_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{4, 4, 4},
+		{8, 8, 8},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},
@@ -528,7 +528,7 @@ ShapeROMDef COIN_BACK_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{4, 4, 4},
+		{8, 8, 8},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},

@@ -547,7 +547,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{7, 7, 7},
+		{14, 14, 14},
 
 		// displacement (x, y, z, p)
 		{-1, 4, 0, 0},

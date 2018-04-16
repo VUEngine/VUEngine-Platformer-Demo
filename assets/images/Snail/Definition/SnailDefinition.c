@@ -154,7 +154,7 @@ ShapeROMDef SNAIL_AC_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{7, 7, 7},
+		{14, 14, 14},
 
 		// displacement (x, y, z, p)
 		{0, 2, 0, 0},

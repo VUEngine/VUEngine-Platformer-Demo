@@ -156,7 +156,7 @@ ShapeROMDef BANDANA_AG_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{8, 8, 8},
+		{16, 16, 16},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},

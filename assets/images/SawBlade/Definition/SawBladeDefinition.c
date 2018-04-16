@@ -156,7 +156,7 @@ ShapeROMDef SAW_BLADE_AC_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{9, 9, 9},
+		{18, 18, 18},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},

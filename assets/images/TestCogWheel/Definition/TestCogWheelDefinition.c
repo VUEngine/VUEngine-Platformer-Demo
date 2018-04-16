@@ -157,7 +157,7 @@ ShapeROMDef TEST_COG_WHEEL_IM_SHAPES[] =
 		__TYPE(Ball),
 
 		// size (x, y, z)
-		{40, 40, 40},
+		{80, 80, 80},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},
