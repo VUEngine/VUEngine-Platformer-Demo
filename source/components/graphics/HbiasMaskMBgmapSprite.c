@@ -156,7 +156,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool evenFrame)
 
 	__CALL_BASE_METHOD(Sprite, render, this, evenFrame);
 
-	if(!this->ready)
+	if(!this->positioned)
 	{
 		return;
 	}
