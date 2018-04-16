@@ -35,8 +35,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define CANNON_INITIAL_SHOOT_DELAY 500
-#define CANNON_SHOOT_DELAY 5000
+#define CANNON_INITIAL_SHOOT_DELAY 	2000
+#define CANNON_SHOOT_DELAY 			5000
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,17 +44,16 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Cannon_METHODS(ClassName)																		\
-		AnimatedEntity_METHODS(ClassName)															\
+		AnimatedEntity_METHODS(ClassName)																\
 
 #define Cannon_SET_VTABLE(ClassName)																	\
-		AnimatedEntity_SET_VTABLE(ClassName)														\
+		AnimatedEntity_SET_VTABLE(ClassName)															\
 		__VIRTUAL_SET(ClassName, Cannon, handleMessage);												\
 		__VIRTUAL_SET(ClassName, Cannon, ready);														\
 
 __CLASS(Cannon);
 
 #define Cannon_ATTRIBUTES																				\
-		/* it is derived from */																		\
 		AnimatedEntity_ATTRIBUTES																		\
 
 typedef const AnimatedEntityDefinition CannonDefinition;
