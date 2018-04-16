@@ -109,11 +109,11 @@ void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this)
 	__DESTROY_BASE;
 }
 
-void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position, bool reproject)
+void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position)
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::position: null this");
 
-	__CALL_BASE_METHOD(MBgmapSprite, position, this, position, reproject);
+	__CALL_BASE_METHOD(MBgmapSprite, position, this, position);
 
 	HbiasMaskMBgmapSprite_getReferenceSprite(this);
 }
