@@ -131,13 +131,13 @@ static void HbiasMaskMBgmapSprite_getReferenceSprite(HbiasMaskMBgmapSprite this)
 			if(__IS_OBJECT_ALIVE(referenceSpriteOwnerSpritesList))
 			{
 				this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(referenceSpriteOwnerSpritesList));
-				this->position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
+				this->position.z = Sprite_getDisplacedPosition(this->referenceSprite).z;
 			}
 		}
 	}
 	else
 	{
-		this->position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
+		this->position.z = Sprite_getDisplacedPosition(this->referenceSprite).z;
 	}
 }
 
