@@ -94,7 +94,7 @@ SolidParticleROMDef TEST_PARTICLE =
 	/// friction for physics
 	__F_TO_FIX10_6(0.0f),
 
-	/// elasticity for physics
+	/// bounciness for physics
 	__F_TO_FIX10_6(0.6f),
 
 	/// object's in-game type

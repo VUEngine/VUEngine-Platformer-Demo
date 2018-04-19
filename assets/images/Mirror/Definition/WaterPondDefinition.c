@@ -103,7 +103,7 @@ PhysicalSpecificationROMDef WATER_POND_EN_PHYSICAL_PROPERTIES =
 	// friction
 	__F_TO_FIX10_6(1.0f),
 
-	// elasticity
+	// bounciness
 	__F_TO_FIX10_6(0),
 };
 

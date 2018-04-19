@@ -242,7 +242,7 @@ PhysicalSpecificationROMDef TEST_COG_WHEEL_IM_PHYSICAL_PROPERTIES =
 	// friction
 	__F_TO_FIX10_6(0.0f),
 
-	// elasticity
+	// bounciness
 	__F_TO_FIX10_6(0.0f),
 };
 

@@ -42,8 +42,8 @@ PhysicalSpecificationROMDef COLLISION_TOP_CL_PHYSICAL_PROPERTIES =
 	// friction
 	__F_TO_FIX10_6(FLOOR_FRICTION),
 
-	// elasticity
-	__F_TO_FIX10_6(FLOOR_ELASTICITY),
+	// bounciness
+	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
 };
 
 CollisionROMDef COLLISION_TOP_CL =

@@ -157,8 +157,8 @@ PhysicalSpecificationROMDef ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =
 	// friction
 	__F_TO_FIX10_6(FLOOR_FRICTION),
 
-	// elasticity
-	__F_TO_FIX10_6(FLOOR_ELASTICITY),
+	// bounciness
+	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
 };
 
 
