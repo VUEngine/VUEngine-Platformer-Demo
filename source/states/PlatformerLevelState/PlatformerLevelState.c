@@ -117,7 +117,7 @@ static void PlatformerLevelState_destructor(PlatformerLevelState this)
 	__SINGLETON_DESTROY;
 }
 
-static void PlatformerLevelState_getPositionedEntitiesToIgnore(PlatformerLevelState this __attribute__ ((unused)), VirtualList positionedEntitiesToIgnore __attribute__ ((unused)))
+static void PlatformerLevelState_getPositionedEntitiesToIgnore(PlatformerLevelState this, VirtualList positionedEntitiesToIgnore)
 {
 	ASSERT(this, "PlatformerLevelState::getPositionedEntitiesToIgnore: null this");
 	ASSERT(positionedEntitiesToIgnore, "PlatformerLevelState::getPositionedEntitiesToIgnore: null positionedEntitiesToIgnore");

@@ -29,7 +29,6 @@
 #include <MessageDispatcher.h>
 #include <Box.h>
 #include <PhysicalWorld.h>
-#include <ProgressManager.h>
 #include <Container.h>
 #include <Camera.h>
 #include <ParticleSystem.h>
@@ -53,6 +52,7 @@ __CLASS_DEFINITION(Cannon, AnimatedEntity);
 
 void Cannon_shoot(Cannon this);
 static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer);
+
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -95,7 +95,7 @@ void Cannon_ready(Cannon this, bool recursive)
 	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
 
 	// send delayed message to self to trigger first shot
-	MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // state's handle message

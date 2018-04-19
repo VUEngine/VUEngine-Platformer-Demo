@@ -31,8 +31,6 @@
 #include <PlatformerLevelState.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
-
-
 #include "CannonBall.h"
 
 
