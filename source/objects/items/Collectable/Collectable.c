@@ -97,7 +97,7 @@ bool Collectable_handleMessage(Collectable this, Telegram telegram)
 			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
 
 			// additional action
-			__VIRTUAL_CALL(Collectable, collect, this);
+			Collectable_collect(this);
 
 			// delete myself now
 			Container_deleteMyself(__SAFE_CAST(Container, this));

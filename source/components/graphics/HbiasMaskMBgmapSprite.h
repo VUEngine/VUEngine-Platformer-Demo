@@ -106,3 +106,4 @@ s16 HbiasMaskMBgmapSprite_wave(HbiasMaskMBgmapSprite this);
 
 
 #endif
+

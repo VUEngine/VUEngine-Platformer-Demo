@@ -102,7 +102,7 @@ void WaterPond_ready(WaterPond this, bool recursive)
 	ASSERT(this, "WaterPond::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(ReflectiveEntity, ready, this, recursive);
+	Base_ready(this, recursive);
 
 //	WaterPond_addSplashParticles(this);
 }
@@ -151,7 +151,7 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 					case kHero:
 					case kSawBlade:
 
-						entityTypeChecked = __VIRTUAL_CALL(Entity, isMoving, inGameEntity);
+						entityTypeChecked = Entity_isMoving(inGameEntity);
 						break;
 				}
 

@@ -91,5 +91,5 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 			break;
 	}
 
-	return __CALL_BASE_METHOD(Door, handleMessage, this, telegram);
+	return Base_handleMessage(this, telegram);
 }

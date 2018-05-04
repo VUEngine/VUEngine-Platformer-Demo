@@ -152,7 +152,7 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 
 		if(NULL != Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner)))
 		{
-			if(__VIRTUAL_CALL(Door, canEnter, Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
+			if(Door_canEnter(Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
 			{
 				Hero_enterDoor(__SAFE_CAST(Hero, owner));
 				return;

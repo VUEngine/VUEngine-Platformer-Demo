@@ -18,5 +18,8 @@ cproject
 sections*.txt
 setupClasses.c
 headerFiles.txt
+processedMethods.txt
+virtualMethodCalls.txt
+virtualMethods.txt
 release.bat
 v810_err.txt

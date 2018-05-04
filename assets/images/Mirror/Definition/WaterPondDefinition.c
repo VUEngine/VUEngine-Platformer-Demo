@@ -105,6 +105,9 @@ PhysicalSpecificationROMDef WATER_POND_EN_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(0),
+
+	// maximum velocity
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
 };
 
 WaterPondROMDef WATER_POND_EN =

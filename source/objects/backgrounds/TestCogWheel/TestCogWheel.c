@@ -88,7 +88,7 @@ void TestCogWheel_ready(TestCogWheel this, bool recursive)
 	ASSERT(this, "TestCogWheel::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(Entity, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// start moving
 	MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
@@ -99,8 +99,8 @@ void TestCogWheel_ready(TestCogWheel this, bool recursive)
 	this->transformation.localRotation.z = 32;
 	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
 
-//	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
-//	__VIRTUAL_CALL(Shape, show, VirtualList_back(this->shapes));
+//	Shape_show(VirtualList_front(this->shapes));
+//	Shape_show(VirtualList_back(this->shapes));
 }
 
 // state's handle message
@@ -125,8 +125,8 @@ bool TestCogWheel_handleMessage(TestCogWheel this, Telegram telegram)
 // rotate cogwheel
 static void TestCogWheel_rotate(TestCogWheel this)
 {
-//	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
-//	__VIRTUAL_CALL(Shape, show, VirtualList_back(this->shapes));
+//	Shape_show(VirtualList_front(this->shapes));
+//	Shape_show(VirtualList_back(this->shapes));
 
 	static int increment = -2;
 
@@ -157,7 +157,7 @@ static void TestCogWheel_stop(TestCogWheel this)
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
 
 	// change sprite's mode
-//	__VIRTUAL_CALL(Sprite, setMode, __SAFE_CAST(Sprite, VirtualList_front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
+//	Sprite_setMode(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
 }
 
 static void TestCogWheel_onShakeCompleted(TestCogWheel this, Object eventFirer __attribute__ ((unused)))

@@ -96,9 +96,9 @@ void Door_ready(Door this, bool recursive __attribute__ ((unused)))
 	ASSERT(this, "Door::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
+	Base_ready(this, recursive);
 
-	if(__VIRTUAL_CALL(Door, hasDestination, this))
+	if(Door_hasDestination(this))
 	{
 		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
 	}
@@ -115,7 +115,7 @@ bool Door_handleMessage(Door this, Telegram telegram)
 	{
 		case kHeroEnterDoor:
 
-			if(__VIRTUAL_CALL(Door, hasDestination, this))
+			if(Door_hasDestination(this))
 			{
 				PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), this->destinationDefinition);
 				return true;
@@ -134,9 +134,9 @@ bool Door_hasDestination(Door this)
 void Door_onOverlapping(Door this)
 {
 	// first contact with hero?
-	if(__VIRTUAL_CALL(Door, hasDestination, this))
+	if(Door_hasDestination(this))
 	{
-		__VIRTUAL_CALL(Door, setOverlapping, this);
+		Door_setOverlapping(this);
 	}
 }
 
@@ -150,7 +150,7 @@ void Door_unsetOverlapping(Door this __attribute__ ((unused)))
 
 bool Door_canEnter(Door this)
 {
-	return __VIRTUAL_CALL(Door, hasDestination, this);
+	return Door_hasDestination(this);
 }
 
 u32 Door_getHintType(Door this __attribute__ ((unused)))

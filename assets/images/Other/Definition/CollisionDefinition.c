@@ -44,6 +44,9 @@ PhysicalSpecificationROMDef COLLISION_CL_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
+
+	// maximum velocity
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
 };
 
 CollisionROMDef COLLISION_CL =

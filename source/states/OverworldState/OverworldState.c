@@ -96,7 +96,7 @@ static void OverworldState_destructor(OverworldState this)
 static void OverworldState_enter(OverworldState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, enter, this, owner);
+	Base_enter(this, owner);
 
 	// disable user input
 	Game_disableKeypad(Game_getInstance());
@@ -115,7 +115,7 @@ static void OverworldState_enter(OverworldState this, void* owner)
 static void OverworldState_exit(OverworldState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, exit, this, owner);
+	Base_exit(this, owner);
 
 	// destroy the state
 	__DELETE(this);
@@ -124,7 +124,7 @@ static void OverworldState_exit(OverworldState this, void* owner)
 // state's resume
 static void OverworldState_resume(OverworldState this, void* owner)
 {
-	__CALL_BASE_METHOD(GameState, resume, this, owner);
+	Base_resume(this, owner);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
@@ -178,7 +178,7 @@ static void OverworldState_suspend(OverworldState this, void* owner)
 	// make a fade out
 	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
 
-	__CALL_BASE_METHOD(GameState, suspend, this, owner);
+	Base_suspend(this, owner);
 }
 
 // print gui

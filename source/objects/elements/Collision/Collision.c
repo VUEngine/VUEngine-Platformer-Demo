@@ -119,7 +119,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 {
 	ASSERT(this, "Collision::setExtraInfo: null this");
 
-	__CALL_BASE_METHOD(Entity, initialTransform, this, environmentTransform, recursive);
+	Base_initialTransform(this, environmentTransform, recursive);
 
 	if(!this->shapes)
 	{
@@ -158,7 +158,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		const Rotation* myRotation = Entity_getRotation(__SAFE_CAST(Entity, this));
 		const Scale* myScale = Entity_getScale(__SAFE_CAST(Entity, this));
 
-		__VIRTUAL_CALL(Shape, position, shape, myPosition, myRotation, myScale, &this->size);
+		Shape_position(shape, myPosition, myRotation, myScale, &this->size);
 
 		VirtualList_pushBack(this->shapes, shape);
 	}

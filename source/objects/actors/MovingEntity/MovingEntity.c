@@ -112,7 +112,7 @@ void MovingEntity_setDefinition(MovingEntity this, void* movingEntityDefinition)
 	// save definition
 	this->movingEntityDefinition = movingEntityDefinition;
 
-	__CALL_BASE_METHOD(Actor, setDefinition, this, &((MovingEntityDefinition*)movingEntityDefinition)->actorDefinition);
+	Base_setDefinition(this, &((MovingEntityDefinition*)movingEntityDefinition)->actorDefinition);
 }
 
 // ready method
@@ -121,7 +121,7 @@ void MovingEntity_ready(MovingEntity this, bool recursive)
 	ASSERT(this, "MovingEntity::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(Actor, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// save initial position
 	switch(this->movingEntityDefinition->axis)

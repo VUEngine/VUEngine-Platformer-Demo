@@ -244,6 +244,9 @@ PhysicalSpecificationROMDef TEST_COG_WHEEL_IM_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(0.0f),
+
+	// maximum velocity
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
 };
 
 TestCogWheelROMDef TEST_COG_WHEEL_IM =

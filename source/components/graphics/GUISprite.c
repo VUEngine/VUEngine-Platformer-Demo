@@ -74,6 +74,7 @@ static void GUISprite_constructor(GUISprite this, const BgmapSpriteDefinition* b
 	__CONSTRUCT_BASE(BgmapAnimatedSprite, bgmapSpriteDefinition, owner);
 }
 
+
 /**
  * Class destructor
  *
@@ -104,7 +105,7 @@ void GUISprite_render(GUISprite this, bool evenFrame)
 {
 	ASSERT(this, "GUISprite::render: null this");
 
-	__CALL_BASE_METHOD(Sprite, render, this, evenFrame);
+	Base_render(this, evenFrame);
 
 	if(!this->positioned)
 	{

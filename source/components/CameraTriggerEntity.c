@@ -81,7 +81,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 
 	Vector3D currentGlobalPosition = this->transformation.globalPosition;
 
-	__CALL_BASE_METHOD(Container, transform, this, environmentTransform, invalidateTransformationFlag);
+	Base_transform(this, environmentTransform, invalidateTransformationFlag);
 
 	if(this->overridePositionFlag.x)
 	{
@@ -95,7 +95,7 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 
 	Entity_transformShapes(__SAFE_CAST(Entity, this));
 
-//	__VIRTUAL_CALL(Shape, show, VirtualList_front(this->shapes));
+//	Shape_show(VirtualList_front(this->shapes));
 }
 
 void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag)

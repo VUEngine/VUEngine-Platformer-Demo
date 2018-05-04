@@ -113,7 +113,7 @@ void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* 
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::position: null this");
 
-	__CALL_BASE_METHOD(MBgmapSprite, position, this, position);
+	Base_position(this, position);
 
 	HbiasMaskMBgmapSprite_getReferenceSprite(this);
 }
@@ -154,7 +154,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool evenFrame)
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
 
-	__CALL_BASE_METHOD(Sprite, render, this, evenFrame);
+	Base_render(this, evenFrame);
 
 	if(!this->positioned)
 	{
@@ -209,7 +209,7 @@ void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool evenFrame)
 
 	if(!ownerSpriteGYSet)
 	{
-		Vector3D ownerPosition3D = Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, this->owner));
+		Vector3D ownerPosition3D = Vector3D_getRelativeToCamera(*SpatialObject_getPosition(this->owner));
 		PixelVector ownerPosition2D = Vector3D_projectToPixelVector(ownerPosition3D, 0);
 
 		ownerSpriteGY = __FIX10_6_TO_I(ownerPosition2D.y);

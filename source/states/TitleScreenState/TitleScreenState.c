@@ -114,7 +114,7 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 	Object_addEventListener(__SAFE_CAST(Object, Game_getUpdateClock(Game_getInstance())), __SAFE_CAST(Object, this), (EventListener)TitleScreenState_onSecondChange, kEventSecondChanged);
 
 	// call base
-	__CALL_BASE_METHOD(GameState, enter, this, owner);
+	Base_enter(this, owner);
 
 	// disable user input
 	Game_disableKeypad(Game_getInstance());
@@ -201,13 +201,13 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, exit, this, owner);
+	Base_exit(this, owner);
 }
 
 // state's resume
 static void TitleScreenState_resume(TitleScreenState this, void* owner)
 {
-	__CALL_BASE_METHOD(GameState, resume, this, owner);
+	Base_resume(this, owner);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game_isExitingSpecialMode(Game_getInstance()))
@@ -262,7 +262,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 	// make a fade out
 	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
 
-	__CALL_BASE_METHOD(GameState, suspend, this, owner);
+	Base_suspend(this, owner);
 }
 
 static void TitleScreenState_showMessage(TitleScreenState this __attribute__ ((unused)))

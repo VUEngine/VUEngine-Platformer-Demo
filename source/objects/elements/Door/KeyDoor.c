@@ -72,7 +72,7 @@ void KeyDoor_ready(KeyDoor this, bool recursive __attribute__ ((unused)))
 	ASSERT(this, "KeyDoor::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(Door, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Key");
 }

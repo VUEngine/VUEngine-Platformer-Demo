@@ -105,7 +105,7 @@ void Gui_ready(Gui this, bool recursive)
 	ASSERT(this, "Gui::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
+	Base_ready(this, recursive);
 }
 
 // print elapsed time to gui

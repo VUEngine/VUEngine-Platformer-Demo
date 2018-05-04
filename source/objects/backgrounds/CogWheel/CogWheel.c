@@ -88,7 +88,7 @@ void CogWheel_ready(CogWheel this, bool recursive)
 	ASSERT(this, "CogWheel::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(Entity, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// start moving
 	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
@@ -140,7 +140,7 @@ static void CogWheel_stop(CogWheel this)
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
 
 	// change sprite's mode
-//	__VIRTUAL_CALL(Sprite, setMode, __SAFE_CAST(Sprite, VirtualList_front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
+//	Sprite_setMode(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
 }
 
 static void CogWheel_onShakeCompleted(CogWheel this, Object eventFirer __attribute__ ((unused)))

@@ -92,7 +92,7 @@ void Cannon_ready(Cannon this, bool recursive)
 	ASSERT(this, "Cannon::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// send delayed message to self to trigger first shot
 	MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);

@@ -79,7 +79,7 @@ void Key_ready(Key this, bool recursive)
 	ASSERT(this, "Key::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(Item, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// add post processing effect to make key emit rhombuses
 	Game_pushBackProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));

@@ -178,7 +178,7 @@ void Hero_ready(Hero this, bool recursive)
 	Entity_informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
 
 	// call base
-	__CALL_BASE_METHOD(Actor, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// override with progress from progress manager
 	ProgressManager progressManager = ProgressManager_getInstance();
@@ -931,17 +931,17 @@ static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused
 
 	if(userInput.pressedKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyPressed, currentState, this, &userInput);
+		HeroState_onKeyPressed(currentState, this, &userInput);
 	}
 
 	if(userInput.releasedKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyReleased, currentState, this, &userInput);
+		HeroState_onKeyReleased(currentState, this, &userInput);
 	}
 
 	if(userInput.holdKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyHold, currentState, this, &userInput);
+		HeroState_onKeyHold(currentState, this, &userInput);
 	}
 }
 
@@ -1031,7 +1031,7 @@ fix10_6 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, co
 		return 0;
 	}
 
-	return Actor_getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
+	return Base_getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
 }
 
 // process collisions
@@ -1043,7 +1043,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
-	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
+	switch(SpatialObject_getInGameType(collidingObject))
 	{
 		// speed things up by breaking early
 		case kShape:
@@ -1067,7 +1067,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 
 				Vector3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 
-				__VIRTUAL_CALL(Container, setLocalPosition, this->cameraBoundingBox, &position);
+				Container_setLocalPosition(this->cameraBoundingBox, &position);
 			}
 			return false;
 			break;
@@ -1102,8 +1102,8 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 		case kDoor:
 			{
 				Door door = __SAFE_CAST(Door, collidingObject);
-				Hero_showHint(this, __VIRTUAL_CALL(Door, getHintType, door));
-				__VIRTUAL_CALL(Door, setOverlapping, door);
+				Hero_showHint(this, Door_getHintType(door));
+				Door_setOverlapping(door);
 				this->currentlyOverlappedDoor = door;
 			}
 			return false;
@@ -1117,7 +1117,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 
 				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
 
-				Body_setSurroundingFrictionCoefficient(this->body, Actor_getSurroundingFrictionCoefficient(__SAFE_CAST(Actor, this)) + __VIRTUAL_CALL(SpatialObject, getFrictionCoefficient, collidingObject));
+				Body_setSurroundingFrictionCoefficient(this->body, Actor_getSurroundingFrictionCoefficient(__SAFE_CAST(Actor, this)) + SpatialObject_getFrictionCoefficient(collidingObject));
 			}
 			return true;
 			break;
@@ -1166,7 +1166,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 			break;
 	}
 
-	return Actor_enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
+	return Base_enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
 }
 
 // process collisions
@@ -1178,7 +1178,7 @@ bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInform
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
-	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
+	switch(SpatialObject_getInGameType(collidingObject))
 	{
 		case kHit:
 
@@ -1308,7 +1308,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 			break;
 	}
 
-	return Actor_handleMessage(__SAFE_CAST(Actor, this), telegram);
+	return Base_handleMessage(__SAFE_CAST(Actor, this), telegram);
 }
 
 // process message
@@ -1399,8 +1399,8 @@ bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionI
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
-	RightBox shapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, shape);
-	RightBox collidingShapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, collisionInformation->collidingShape);
+	RightBox shapeRightBox = Shape_getSurroundingRightBox(shape);
+	RightBox collidingShapeRightBox = Shape_getSurroundingRightBox(collisionInformation->collidingShape);
 
 	fix10_6 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1) / 2;
 
@@ -1452,7 +1452,7 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, 
 
 	SpatialObject nonCollidingSpatialObject = Shape_getOwner(shapeNotCollidingAnymore);
 
-	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, nonCollidingSpatialObject))
+	switch(SpatialObject_getInGameType(nonCollidingSpatialObject))
 	{
 		case kHideLayer:
 
@@ -1462,7 +1462,7 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, 
 		case kDoor:
 
 			Hero_hideHint(this);
-			__VIRTUAL_CALL(Door, unsetOverlapping, __SAFE_CAST(Door, nonCollidingSpatialObject));
+			Door_unsetOverlapping(__SAFE_CAST(Door, nonCollidingSpatialObject));
 			this->currentlyOverlappedDoor = NULL;
 			break;
 
@@ -1472,10 +1472,11 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, 
 			break;
 	}
 
-	__CALL_BASE_METHOD(Actor, exitCollision, this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
+	Base_exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
 u16 Hero_getAxesForShapeSyncWithDirection(Hero this __attribute__ ((unused)))
 {
 	return __NO_AXIS;
 }
+

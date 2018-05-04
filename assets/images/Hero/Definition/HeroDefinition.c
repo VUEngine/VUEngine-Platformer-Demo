@@ -581,6 +581,9 @@ PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(HERO_BOUNCINESS),
+
+	// maximum velocity
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
 };
 
 HeroROMDef HERO_AC =
@@ -765,3 +768,4 @@ CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
 	// physical specification
 	(PhysicalSpecification*)NULL,
 };
+

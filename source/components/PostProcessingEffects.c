@@ -417,7 +417,7 @@ void PostProcessingEffects_waterFall20x100(u32 currentDrawingFrameBufferSet __at
 		return;
 	}
 
-	Vector3D spatialObjectPosition = Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject));
+	Vector3D spatialObjectPosition = Vector3D_getRelativeToCamera(*SpatialObject_getPosition(spatialObject));
 
 	PostProcessingEffects_waterFall(currentDrawingFrameBufferSet, spatialObjectPosition, 20, 100, 0);
 }
@@ -654,7 +654,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 		return;
 	}
 
-	PixelVector screenPixelPosition = Vector3D_projectToPixelVector(Vector3D_getRelativeToCamera(*__VIRTUAL_CALL(SpatialObject, getPosition, spatialObject)), 0);
+	PixelVector screenPixelPosition = Vector3D_projectToPixelVector(Vector3D_getRelativeToCamera(*SpatialObject_getPosition(spatialObject)), 0);
 
 	// increase radius by 1 in each cycle
 	radius++;
