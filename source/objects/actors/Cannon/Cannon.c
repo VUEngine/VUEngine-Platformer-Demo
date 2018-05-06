@@ -68,7 +68,7 @@ void Cannon_constructor(Cannon this, AnimatedEntityDefinition* animatedEntityDef
 	ASSERT(this, "Cannon::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -84,7 +84,7 @@ void Cannon_destructor(Cannon this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Cannon_ready(Cannon this, bool recursive)

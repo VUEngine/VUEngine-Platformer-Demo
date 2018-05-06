@@ -233,6 +233,7 @@ printBuildingInfo:
 	@echo Build type: $(TYPE)
 	@echo Compiler: $(COMPILER_NAME) $(COMPILER_VERSION)
 	@echo Compiler\'s output: $(COMPILER_OUTPUT)
+#	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/cleanSyntax.sh $(GAME_HOME)/source
 
 printPostPreprocessorInfo:
 	@echo Done compiling in $(TYPE) mode with GCC $(COMPILER_VERSION)

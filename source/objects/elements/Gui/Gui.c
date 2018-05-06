@@ -75,7 +75,7 @@ __CLASS_NEW_END(Gui, animatedEntityDefinition, id, internalId, name);
 void Gui_constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 
 	// add event listeners
 	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
@@ -97,7 +97,7 @@ void Gui_destructor(Gui this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Gui_ready(Gui this, bool recursive)

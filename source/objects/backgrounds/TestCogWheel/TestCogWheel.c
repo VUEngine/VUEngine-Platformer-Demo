@@ -68,7 +68,7 @@ __CLASS_NEW_END(TestCogWheel, EntityDefinition, id, internalId, name);
 void TestCogWheel_constructor(TestCogWheel this, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Entity, EntityDefinition, id, internalId, name);
+	Base_constructor(this, EntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -79,7 +79,7 @@ void TestCogWheel_destructor(TestCogWheel this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // ready method

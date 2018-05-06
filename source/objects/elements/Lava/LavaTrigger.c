@@ -67,7 +67,7 @@ __CLASS_NEW_END(LavaTrigger, inanimatedEntityDefinition, id, internalId, name);
 void LavaTrigger_constructor(LavaTrigger this, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Entity, inanimatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, inanimatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -78,7 +78,7 @@ void LavaTrigger_destructor(LavaTrigger this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // state's handle message

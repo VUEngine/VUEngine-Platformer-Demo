@@ -55,7 +55,7 @@ void CannonBall_constructor(CannonBall this, CannonBallDefinition* cannonBallDef
 	ASSERT(this, "CannonBall::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, (ActorDefinition*)cannonBallDefinition, id, internalId, name);
+	Base_constructor(this, (ActorDefinition*)cannonBallDefinition, id, internalId, name);
 
 	// I start my life hidden
 	this->hidden = true;
@@ -70,7 +70,7 @@ void CannonBall_destructor(CannonBall this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // start moving

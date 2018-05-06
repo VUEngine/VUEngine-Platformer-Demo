@@ -116,7 +116,7 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	ASSERT(this, "Hero::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, (ActorDefinition*)heroDefinition, id, internalId, name);
+	Base_constructor(this, (ActorDefinition*)heroDefinition, id, internalId, name);
 
 	// construct the game state machine
 	this->stateMachine = __NEW(StateMachine, this);
@@ -168,7 +168,7 @@ void Hero_destructor(Hero this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Hero_ready(Hero this, bool recursive)

@@ -48,7 +48,7 @@ __CLASS_NEW_END(Clouds, cloudsDefinition, id, internalId, name);
 void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Entity, &cloudsDefinition->EntityDefinition, id, internalId, name);
+	Base_constructor(this, &cloudsDefinition->EntityDefinition, id, internalId, name);
 
 	this->displacement = __PIXELS_TO_METERS(cloudsDefinition->displacement);
 }
@@ -58,7 +58,7 @@ void Clouds_destructor(Clouds this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // whether it is visible

@@ -58,7 +58,7 @@ void Key_constructor(Key this, AnimatedEntityDefinition* animatedEntityDefinitio
 	ASSERT(this, "Key::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Item, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -71,7 +71,7 @@ void Key_destructor(Key this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Key_ready(Key this, bool recursive)

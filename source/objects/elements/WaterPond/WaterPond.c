@@ -80,7 +80,7 @@ void WaterPond_constructor(WaterPond this, WaterPondDefinition* reflectiveEntity
 	ASSERT(this, "WaterPond::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(ReflectiveEntity, &reflectiveEntityDefinition->reflectiveEntityDefinition, id, internalId, name);
+	Base_constructor(this, &reflectiveEntityDefinition->reflectiveEntityDefinition, id, internalId, name);
 
 	this->waveLutThrottleFactorIncrement = 0;
 	this->amplitudeFactor = __I_TO_FIX10_6(1);
@@ -94,7 +94,7 @@ void WaterPond_destructor(WaterPond this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void WaterPond_ready(WaterPond this, bool recursive)

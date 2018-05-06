@@ -56,7 +56,7 @@ void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEnti
 	ASSERT(cameraEntityDefinition, "CameraTriggerEntity::constructor: null definition");
 
 	// construct base object
-	__CONSTRUCT_BASE(Entity, (EntityDefinition*)cameraEntityDefinition, id, internalId, name);
+	Base_constructor(this, (EntityDefinition*)cameraEntityDefinition, id, internalId, name);
 
 	this->overridePositionFlag.x = false;
 	this->overridePositionFlag.y = false;
@@ -72,7 +72,7 @@ void CameraTriggerEntity_destructor(CameraTriggerEntity this)
 
 	// destroy the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag)

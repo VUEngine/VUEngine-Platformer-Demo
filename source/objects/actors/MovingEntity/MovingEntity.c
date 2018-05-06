@@ -63,7 +63,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	ASSERT(this, "MovingEntity::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, (ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
+	Base_constructor(this, (ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
 
 	this->movingEntityDefinition = movingEntityDefinition;
 
@@ -100,7 +100,7 @@ void MovingEntity_destructor(MovingEntity this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // set definition

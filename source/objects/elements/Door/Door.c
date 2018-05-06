@@ -60,7 +60,7 @@ __CLASS_NEW_END(Door, animatedEntityDefinition, id, internalId, name);
 void Door_constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 
 	// init class variables
 	this->destinationDefinition = NULL;
@@ -71,7 +71,7 @@ void Door_destructor(Door this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // get destination

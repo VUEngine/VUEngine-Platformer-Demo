@@ -67,7 +67,7 @@ __CLASS_NEW_END(Coin, animatedEntityDefinition, id, internalId, name);
 void Coin_constructor(Coin this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Collectable, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 
 	// if coin has already been collected, show silhouette representation
 	if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
@@ -92,7 +92,7 @@ void Coin_destructor(Coin this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Coin_collect(Coin this)

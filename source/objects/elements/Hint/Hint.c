@@ -55,7 +55,7 @@ void Hint_constructor(Hint this, AnimatedEntityDefinition* animatedEntityDefinit
 	ASSERT(this, "Hint::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 
 	this->type = kEnterHint;
 	this->languageAnimName = NULL;
@@ -68,7 +68,7 @@ void Hint_destructor(Hint this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 bool Hint_handleMessage(Hint this, void* telegram)

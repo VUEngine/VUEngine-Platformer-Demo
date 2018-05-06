@@ -71,7 +71,7 @@ static void GUISprite_constructor(GUISprite this, const BgmapSpriteDefinition* b
 	ASSERT(this, "GUISprite::constructor: null this");
 
 	// construct base object
-	__CONSTRUCT_BASE(BgmapAnimatedSprite, bgmapSpriteDefinition, owner);
+	Base_constructor(this, bgmapSpriteDefinition, owner);
 }
 
 
@@ -89,7 +89,7 @@ void GUISprite_destructor(GUISprite this)
 
 	// destroy the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 /**

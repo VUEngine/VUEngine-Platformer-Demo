@@ -57,7 +57,7 @@ void Bandana_constructor(Bandana this, AnimatedEntityDefinition* animatedEntityD
 	ASSERT(this, "Bandana::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Item, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -67,7 +67,7 @@ void Bandana_destructor(Bandana this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Bandana_collect(Bandana this)

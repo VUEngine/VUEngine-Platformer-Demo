@@ -80,7 +80,7 @@ __CLASS_NEW_END(HbiasMaskMBgmapSprite, hbiasMaskMBgmapSpriteDefinition, owner);
  */
 void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner)
 {
-	__CONSTRUCT_BASE(MBgmapSprite, &hbiasMaskMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
+	Base_constructor(this, &hbiasMaskMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
 
 	this->hbiasMaskMBgmapSpriteDefinition = hbiasMaskMBgmapSpriteDefinition;
 	this->owner = NULL;
@@ -106,7 +106,7 @@ void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this)
 
 	// destroy the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position)

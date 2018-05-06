@@ -59,7 +59,7 @@ __CLASS_NEW_END(Lava, inanimatedEntityDefinition, id, internalId, name);
 void Lava_constructor(Lava this, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Entity, inanimatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, inanimatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -70,7 +70,7 @@ void Lava_destructor(Lava this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // start moving

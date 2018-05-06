@@ -53,7 +53,7 @@ __CLASS_NEW_END(LayerSwitchDoor, animatedEntityDefinition, id, internalId, name)
 void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Door, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -61,7 +61,7 @@ void LayerSwitchDoor_destructor(LayerSwitchDoor this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // state's handle message

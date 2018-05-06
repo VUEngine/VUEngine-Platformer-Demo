@@ -96,7 +96,7 @@ __CLASS_NEW_END(Collision, inGameEntityDefinition, id, internalId, name);
 void Collision_constructor(Collision this, EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Entity, inGameEntityDefinition, id, internalId, name);
+	Base_constructor(this, inGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -104,7 +104,7 @@ void Collision_destructor(Collision this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // set extra info

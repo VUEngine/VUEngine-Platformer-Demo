@@ -55,7 +55,7 @@ __CLASS_NEW_END(KeyDoor, animatedEntityDefinition, id, internalId, name);
 void KeyDoor_constructor(KeyDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Door, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -63,7 +63,7 @@ void KeyDoor_destructor(KeyDoor this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // ready

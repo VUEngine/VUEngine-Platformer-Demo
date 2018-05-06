@@ -59,7 +59,7 @@ __CLASS_NEW_END(HideLayer, animatedEntityDefinition, id, internalId, name);
 void HideLayer_constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -67,7 +67,7 @@ void HideLayer_destructor(HideLayer this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void HideLayer_setOverlapping(HideLayer this)
