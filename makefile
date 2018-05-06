@@ -266,7 +266,7 @@ $(TARGET).elf: $(VUENGINE) $(VIRTUAL_METHODS_HELPER) $(C_OBJECTS) $(C_INTERMEDIA
 
 $(VIRTUAL_METHODS_HELPER): $(H_FILES)
 	@echo "Preparing virtual methods in game"
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/prepareVirtualMethods.sh -w $(WORKING_FOLDER)/preprocessor -h $(GAME_HOME)/source -p $(HELPERS_PREFIX)
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/prepareVirtualMethods.sh -w $(WORKING_FOLDER)/preprocessor -h $(GAME_HOME)/source -p $(HELPERS_PREFIX) -d
 
 $(SETUP_CLASSES_OBJECT).o: $(WORKING_FOLDER)/preprocessor/$(SETUP_CLASSES).c
 	@echo Compiling $<
@@ -294,7 +294,7 @@ $(STORE)/%.o: $(WORKING_FOLDER)/sources/%.c
 	@rm -f $(STORE)/$*.dd
 
 $(WORKING_FOLDER)/sources/%.c: %.c
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processVirtualCalls.sh -i $< -o $@ -w $(WORKING_FOLDER)/preprocessor -p engine -p $(HELPERS_PREFIX)
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processVirtualCalls.sh -i $< -o $@ -d -w $(WORKING_FOLDER)/preprocessor -p engine -p $(HELPERS_PREFIX)
 
 $(STORE)/%.o: %.s
 	@echo Creating object file for $*
