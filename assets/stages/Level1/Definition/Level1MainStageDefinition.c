@@ -731,7 +731,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 			// __spt2
 			LAYER_0_PARTICLES,
 			// __spt3
-			20,
+			15,
 		},
 
 		// optical configuration values
