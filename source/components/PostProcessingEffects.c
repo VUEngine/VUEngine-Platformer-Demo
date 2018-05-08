@@ -265,8 +265,8 @@ void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, f
 	// multiply by the game cycle per second
 	int rainPeriod =  __I_TO_FIX19_13(((int)timePeriod[timePeriodIndex] + previousTime % timePeriod[timePeriodIndex]) * 50);
 
-	*yStepThrottle += __FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle), rainPeriod);
-	*xStep -= __FIX19_13_DIV(rainAcceleration[rainAccelerationIndex] * (maximumXStep - minimumXStep), rainPeriod);
+	*yStepThrottle += __FIX10_6_TO_FIX19_13(__FIX10_6_DIV(__FIX19_13_TO_FIX10_6(rainAcceleration[rainAccelerationIndex] * (maximumYThrottle - minimumYThrottle)), __FIX19_13_TO_FIX10_6(rainPeriod)));
+	*xStep -= __FIX10_6_TO_FIX19_13(__FIX10_6_DIV(__FIX19_13_TO_FIX10_6(rainAcceleration[rainAccelerationIndex] * (maximumXStep - minimumXStep)), __FIX19_13_TO_FIX10_6(rainPeriod)));
 
 	if(*yStepThrottle < minimumYThrottle)
 	{
