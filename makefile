@@ -305,7 +305,6 @@ $(WORKING_FOLDER)/sources/%.h: %.h
 
 $(VUENGINE): deleteEngine
 	@echo Building VUEngine...
-#	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/cleanSyntax.sh $(GAME_HOME)/source
 	@$(MAKE) all -f $(VUENGINE_HOME)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) -e GAME_HOME=$(GAME_HOME)
 	@echo VUEngine built into libvuengine.a
 
