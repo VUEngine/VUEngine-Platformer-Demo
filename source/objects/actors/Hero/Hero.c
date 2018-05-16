@@ -47,13 +47,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
@@ -1367,7 +1360,7 @@ void Hero::suspend(Hero this)
 {
 	ASSERT(this, "Hero::suspend: null this");
 
-	__CALL_BASE_METHOD(Actor, suspend, this);
+	Base::suspend(this);
 
 	if(this->feetDust)
 	{
@@ -1379,7 +1372,7 @@ void Hero::resume(Hero this)
 {
 	ASSERT(this, "Hero::resume: null this");
 
-	__CALL_BASE_METHOD(Actor, resume, this);
+	Base::resume(this);
 
 	Camera::focus(Camera::getInstance(), false);
 

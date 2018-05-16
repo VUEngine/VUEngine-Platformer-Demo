@@ -36,19 +36,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS' MACROS
-//---------------------------------------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS' DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
@@ -62,17 +49,13 @@ void WaterPond::drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 								s16 parallaxDisplacement,
 								const u8 waveLut[], int numberOfWaveLutEntries, fix10_6 waveLutThrottleFactor,
 								fix10_6 amplitudeFactor,
-								bool flattenTop __attribute__ ((unused)), bool flattenBottom,
-								u32 topBorderMask __attribute__ ((unused)), u32 bottomBorderMask __attribute__ ((unused)),
+								bool flattenTop, bool flattenBottom,
+								u32 topBorderMask, u32 bottomBorderMask,
 								u16 surfaceHeight);
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// always call these two macros next to each other
-
-
 
 // class's constructor
 void WaterPond::constructor(WaterPond this, WaterPondDefinition* reflectiveEntityDefinition, s16 id, s16 internalId, const char* const name)

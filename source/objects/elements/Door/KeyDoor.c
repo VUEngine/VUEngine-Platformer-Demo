@@ -37,19 +37,8 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// always call these two macros next to each other
-
-
 
 // class's constructor
 void KeyDoor::constructor(KeyDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
@@ -89,7 +78,7 @@ void KeyDoor::setOverlapping(KeyDoor this)
 		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Opening");
 	}
 
-	__CALL_BASE_METHOD(Door, setOverlapping, this);
+	Base::setOverlapping(this);
 }
 
 void KeyDoor::unsetOverlapping(KeyDoor this)
@@ -99,7 +88,7 @@ void KeyDoor::unsetOverlapping(KeyDoor this)
 		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closing");
 	}
 
-	__CALL_BASE_METHOD(Door, unsetOverlapping, this);
+	Base::unsetOverlapping(this);
 }
 
 bool KeyDoor::canEnter(KeyDoor this __attribute__ ((unused)))

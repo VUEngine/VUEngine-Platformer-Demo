@@ -38,27 +38,16 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 void Collectable::collect(Collectable this);
-void Collectable::removeFromStage(Collectable this);
+extern const u16 COLLECT_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// always call these two macros next to each other
-
-
 
 // class's constructor
 void Collectable::constructor(Collectable this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
@@ -84,12 +73,10 @@ bool Collectable::handleMessage(Collectable this, Telegram telegram)
 {
 	ASSERT(this, "Collectable::handleMessage: null this");
 
-	extern const u16 COLLECT_SND[];
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kItemTaken:
-
+		{
 			// play collect sound
 			SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
@@ -102,15 +89,9 @@ bool Collectable::handleMessage(Collectable this, Telegram telegram)
 			// delete myself now
 			Container::deleteMyself(__SAFE_CAST(Container, this));
 
-			// send message to remove item in next game frame
-			//MessageDispatcher::dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kRemoveFromStage, NULL);
 			break;
-/*
-		case kRemoveFromStage:
-
-			Collectable::removeFromStage(this);
-			break;
-*/	}
+		}
+	}
 
 	return false;
 }
@@ -119,11 +100,3 @@ void Collectable::collect(Collectable this __attribute__ ((unused)))
 {
 	ASSERT(this, "Collectable::collect: null this");
 }
-/*
-void Collectable::removeFromStage(Collectable this)
-{
-	ASSERT(this, "Collectable::removeFromStage: null this");
-
-	Container::deleteMyself(__SAFE_CAST(Container, this));
-}
-*/

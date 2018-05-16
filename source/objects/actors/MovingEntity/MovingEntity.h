@@ -43,7 +43,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 // definition in ROM memory
 typedef struct MovingEntityDefinition
 {

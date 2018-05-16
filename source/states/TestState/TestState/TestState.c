@@ -61,13 +61,6 @@ static void TestState::onStartLevelFadeOutComplete(TestState this, Object eventF
 static void TestState::onReturnToTitleFadeOutComplete(TestState this, Object eventFirer);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

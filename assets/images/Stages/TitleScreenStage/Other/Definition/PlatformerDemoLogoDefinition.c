@@ -77,7 +77,7 @@ TextureROMDef LOGO_L_TX =
 	7,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
+	{4, 0},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
@@ -121,7 +121,7 @@ TextureROMDef LOGO_R_TX =
 	7,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
+	{4, 0},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1

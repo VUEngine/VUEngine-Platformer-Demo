@@ -54,13 +54,6 @@ static void LevelDoneScreenState::onFadeInComplete(LevelDoneScreenState this, Ob
 static void LevelDoneScreenState::onFadeOutComplete(LevelDoneScreenState this, Object eventFirer);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

@@ -35,19 +35,8 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// always call these two macros next to each other
-
-
 
 // class's constructor
 void Hint::constructor(Hint this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
@@ -92,7 +81,7 @@ void Hint::resume(Hint this)
 {
 	ASSERT(this, "Hint::resume: null this");
 
-	__CALL_BASE_METHOD(AnimatedEntity, resume, this);
+	Base::resume(this);
 
 	Hint::onHintOpened(this, NULL);
 }

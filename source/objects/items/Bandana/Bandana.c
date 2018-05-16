@@ -37,19 +37,8 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// always call these two macros next to each other
-
-
 
 // class's constructor
 void Bandana::constructor(Bandana this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
@@ -78,5 +67,5 @@ void Bandana::collect(Bandana this)
 	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventPowerUp);
 
 	// call base
-	__CALL_BASE_METHOD(Item, collect, this);
+	Base::collect(this);
 }

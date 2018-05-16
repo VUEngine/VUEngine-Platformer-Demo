@@ -53,13 +53,6 @@ static void AutoPauseScreenState::onFadeOutComplete(AutoPauseScreenState this, O
 static void AutoPauseScreenState::onFadeInComplete(AutoPauseScreenState this, Object eventFirer);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

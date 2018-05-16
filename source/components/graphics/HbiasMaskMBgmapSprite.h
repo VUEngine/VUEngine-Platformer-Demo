@@ -34,8 +34,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-
 typedef struct HbiasMaskMBgmapSpriteDefinition
 {
 	// super class definition
@@ -69,27 +67,27 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 	* @var SpatialObject 	owner
 	* @brief				owner
 	* @memberof 			HbiasMaskMBgmapSprite
-	*/																								
-	Entity owner;																					
+	*/
+	Entity owner;
 	/**
 	* @var Sprite 	sprite
 	* @brief		reference Sprite
 	* @memberof 	HbiasMaskMBgmapSprite
-	*/																								
-	Sprite referenceSprite;																			
+	*/
+	Sprite referenceSprite;
 	/**
 	* @var Sprite 	sprite
 	* @brief		reference Sprite
 	* @memberof 	HbiasMaskMBgmapSprite
-	*/																								
-	const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition;							
+	*/
+	const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition;
 	/**
 	* @var u8		step
 	* @brief		current lut index
 	* @memberof 	HbiasMaskMBgmapSprite
-	*/																								
-	u8 step;																						
-	
+	*/
+	u8 step;
+
 	void constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
 	s16 wave(HbiasMaskMBgmapSprite this);
 	override void render(HbiasMaskMBgmapSprite this, bool evenFrame);

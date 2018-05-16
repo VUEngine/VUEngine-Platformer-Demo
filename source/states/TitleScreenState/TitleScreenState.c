@@ -64,13 +64,6 @@ static void TitleScreenState::onFadeInComplete(TitleScreenState this, Object eve
 static void TitleScreenState::onFadeOutComplete(TitleScreenState this, Object eventFirer);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

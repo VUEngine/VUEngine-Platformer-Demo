@@ -38,19 +38,8 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// always call these two macros next to each other
-
-
 
 // class's constructor
 void Key::constructor(Key this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
@@ -93,14 +82,14 @@ void Key::collect(Key this)
 	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventKeyTaken);
 
 	// call base
-	__CALL_BASE_METHOD(Item, collect, this);
+	Base::collect(this);
 }
 
 void Key::suspend(Key this)
 {
 	ASSERT(this, "Key::suspend: null this");
 
-	__CALL_BASE_METHOD(Item, suspend, this);
+	Base::suspend(this);
 
 	// remove post processing effect
 	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));
@@ -110,7 +99,7 @@ void Key::resume(Key this)
 {
 	ASSERT(this, "Key::resume: null this");
 
-	__CALL_BASE_METHOD(Item, resume, this);
+	Base::resume(this);
 
 	// add post processing effect to make key emit rhombuses
 	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));

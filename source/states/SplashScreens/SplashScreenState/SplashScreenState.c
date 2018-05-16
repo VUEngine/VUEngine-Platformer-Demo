@@ -39,13 +39,6 @@ static void SplashScreenState::onFadeInComplete(SplashScreenState this, Object e
 static void SplashScreenState::onFadeOutComplete(SplashScreenState this, Object eventFirer);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

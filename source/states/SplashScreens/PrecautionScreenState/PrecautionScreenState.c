@@ -52,13 +52,6 @@ extern const u16 COLLECT_SND[];
 void PrecautionScreenState::constructor(PrecautionScreenState this);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -88,7 +81,7 @@ bool PrecautionScreenState::processMessage(PrecautionScreenState this, void* own
 		case kScreenStarted:
 			{
 				// play start-up sound
-				Vector3D position = {0, 0, 0};
+				Vector3D position = {192, 112, 0};
 				SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, position);
 
 				// wait some seconds for the screen to stabilize, as defined by Nintendo in the official development manual

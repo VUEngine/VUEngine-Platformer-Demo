@@ -61,13 +61,6 @@ static void OverworldState::onStartLevelFadeOutComplete(OverworldState this, Obj
 static void OverworldState::onReturnToTitleFadeOutComplete(OverworldState this, Object eventFirer);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

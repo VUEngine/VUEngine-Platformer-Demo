@@ -48,6 +48,7 @@ void HeroIdle::enter(HeroIdle this, void* owner);
 void HeroIdle::exit(HeroIdle this, void* owner);
 bool HeroIdle::processMessage(HeroIdle this, void* owner, Telegram telegram);
 
+
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------

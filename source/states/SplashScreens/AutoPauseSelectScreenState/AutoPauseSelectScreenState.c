@@ -54,13 +54,6 @@ void AutoPauseSelectScreenState::constructor(AutoPauseSelectScreenState this);
 static void AutoPauseSelectScreenState::renderSelection(AutoPauseSelectScreenState this);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

@@ -36,13 +36,6 @@
 #include <debugUtilities.h>
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 #undef COG_WHEEL_ROTATION_DELAY
 #define COG_WHEEL_ROTATION_DELAY 50
 
@@ -59,10 +52,6 @@ static void TestCogWheel::stop(TestCogWheel this);
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// always call these two macros next to each other
-
-
 
 // class's constructor
 void TestCogWheel::constructor(TestCogWheel this, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)

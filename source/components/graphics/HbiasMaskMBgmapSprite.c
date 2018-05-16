@@ -49,8 +49,8 @@
  * @brief	Sprite which holds a texture and a drawing specification.
  */
 
-__CLASS_FRIEND_DEFINITION(Texture);
-__CLASS_FRIEND_DEFINITION(BgmapTexture);
+friend class Texture;
+friend class BgmapTexture;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,10 +63,6 @@ static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// always call these two macros next to each other
-
-
 
 /**
  * Class constructor

@@ -49,10 +49,6 @@ extern int strcmp(const char *, const char *);
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-
-
-
 /**
  * Class constructor
  *
@@ -70,7 +66,6 @@ void GUISprite::constructor(GUISprite this, const BgmapSpriteDefinition* bgmapSp
 	// construct base object
 	Base::constructor(bgmapSpriteDefinition, owner);
 }
-
 
 /**
  * Class destructor

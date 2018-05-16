@@ -29,14 +29,12 @@
 
 #include <ReflectiveEntity.h>
 #include <ParticleSystem.h>
-
 #include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
-
 
 typedef struct WaterPondDefinition
 {

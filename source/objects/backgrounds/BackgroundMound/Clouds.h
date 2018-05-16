@@ -42,7 +42,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 typedef struct CloudsDefinition
 {
 	// it has an Entity at the beginning

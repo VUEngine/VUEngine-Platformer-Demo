@@ -73,11 +73,11 @@ ifeq ($(PAD_ROM), 1)
 PAD = pad
 endif
 
-STORE_SUFIX =
+STORE_SUFFIX =
 PROLOG_FUNCTIONS_FLAG =
 ifeq ($(USE_PROLOG_FUNCTIONS), 1)
 PROLOG_FUNCTIONS_FLAG = -mprolog-function
-STORE_SUFIX = -pf
+STORE_SUFFIX = -pf
 endif
 
 FRAME_POINTER_USAGE_FLAG = -fomit-frame-pointer
@@ -181,7 +181,7 @@ GAME_INCLUDE_PATHS =$(foreach DIR,$(INCLUDE_DIRS),./$(BUILD_DIR)/compiler/source
 VUENGINE_LIBRARY_PATH = $(BUILD_DIR)
 
 # Where to store object and dependency files.
-STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFIX)
+STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFFIX)
 
 # Makefs a list of the source (.cpp) files.
 C_SOURCE = $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))

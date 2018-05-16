@@ -59,13 +59,6 @@ static void OptionsScreenState::onOptionAutoPauseSelect(OptionsScreenState this)
 static void OptionsScreenState::onOptionLanguageSelect(OptionsScreenState this);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

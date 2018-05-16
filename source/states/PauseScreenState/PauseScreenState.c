@@ -57,13 +57,6 @@ static void PauseScreenState::onFadeInComplete(PauseScreenState this, Object eve
 static void PauseScreenState::onFadeOutComplete(PauseScreenState this, Object eventFirer);
 
 
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

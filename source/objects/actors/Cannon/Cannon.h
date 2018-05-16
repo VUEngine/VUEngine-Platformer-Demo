@@ -43,7 +43,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 typedef const AnimatedEntityDefinition CannonDefinition;
 typedef const CannonDefinition CannonROMDef;
 

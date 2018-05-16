@@ -41,7 +41,6 @@ typedef const CollectableDefinition CollectableROMDef;
 class Collectable : AnimatedEntity
 {
 	void constructor(Collectable this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	void removeFromStage(Collectable this);
 	virtual void collect(Collectable this);
 	override bool handleMessage(Collectable this, Telegram telegram);
 }

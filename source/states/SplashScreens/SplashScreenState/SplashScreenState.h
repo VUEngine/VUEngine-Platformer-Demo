@@ -45,7 +45,6 @@ enum SplashScreensMessageTypes
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 class SplashScreenState : GameState
 {
 	/* state to enter after this one */

@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
-#include <PrecautionScreenState.h>
+#include <PlatformerLevelState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@
 int main(void)
 {
 	// start the game
-	Game::start(Game::getInstance(), __SAFE_CAST(GameState, PrecautionScreenState::getInstance()));
+	Game::start(Game::getInstance(), __SAFE_CAST(GameState, PlatformerLevelState::getInstance()));
 
 	// end program
 	return true;

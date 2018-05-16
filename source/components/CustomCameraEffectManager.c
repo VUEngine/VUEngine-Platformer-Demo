@@ -34,7 +34,6 @@
 #include <EventManager.h>
 #include <Utilities.h>
 #include <VIPManager.h>
-
 #include <debugConfig.h>
 
 
@@ -42,8 +41,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-
-__CLASS_FRIEND_DEFINITION(Camera);
+friend class Camera;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -51,12 +49,12 @@ __CLASS_FRIEND_DEFINITION(Camera);
 //---------------------------------------------------------------------------------------------------------
 
 void CustomCameraEffectManager::constructor(CustomCameraEffectManager this);
-static void CustomCameraEffectManager_FXShakeStart(CustomCameraEffectManager this, u16 duration);
-static void CustomCameraEffectManager_FXScreenPulsateStart(CustomCameraEffectManager this);
-void CustomCameraEffectManager_FXShakeStop(CustomCameraEffectManager this);
-void CustomCameraEffectManager_FXScreenPulsateStop(CustomCameraEffectManager this);
-static void CustomCameraEffectManager::onScreenShake(CustomCameraEffectManager this);
-static void CustomCameraEffectManager::onScreenPulsate(CustomCameraEffectManager this);
+void CustomCameraEffectManager::fxShakeStart(CustomCameraEffectManager this, u16 duration);
+void CustomCameraEffectManager::fxScreenPulsateStart(CustomCameraEffectManager this);
+void CustomCameraEffectManager::fxShakeStop(CustomCameraEffectManager this);
+void CustomCameraEffectManager::fxScreenPulsateStop(CustomCameraEffectManager this);
+void CustomCameraEffectManager::onScreenShake(CustomCameraEffectManager this);
+void CustomCameraEffectManager::onScreenPulsate(CustomCameraEffectManager this);
 
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT;
@@ -82,9 +80,6 @@ BrightnessRepeatROMDef* SCREEN_PULSATE_STEPS[] =
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
-
-// it's a singleton
-
 
 // class's constructor
 void __attribute__ ((noinline)) CustomCameraEffectManager::constructor(CustomCameraEffectManager this)
@@ -124,12 +119,12 @@ void CustomCameraEffectManager::startEffect(CustomCameraEffectManager this, int 
 	{
 		case kShake:
 
-			CustomCameraEffectManager_FXShakeStart(this, va_arg(args, int));
+			CustomCameraEffectManager::fxShakeStart(this, va_arg(args, int));
 			break;
 
 		case kScreenPulsate:
 
-			CustomCameraEffectManager_FXScreenPulsateStart(this);
+			CustomCameraEffectManager::fxScreenPulsateStart(this);
 			break;
 
 		default:
@@ -147,12 +142,12 @@ void CustomCameraEffectManager::stopEffect(CustomCameraEffectManager this, int e
 	{
 		case kShake:
 
-			CustomCameraEffectManager_FXShakeStop(this);
+			CustomCameraEffectManager::fxShakeStop(this);
 			break;
 
 		case kScreenPulsate:
 
-			CustomCameraEffectManager_FXScreenPulsateStop(this);
+			CustomCameraEffectManager::fxScreenPulsateStop(this);
 			break;
 
 		default:
@@ -183,9 +178,9 @@ bool CustomCameraEffectManager::handleMessage(CustomCameraEffectManager this, Te
 }
 
 // start shaking the screen
-static void CustomCameraEffectManager_FXShakeStart(CustomCameraEffectManager this, u16 duration)
+void CustomCameraEffectManager::fxShakeStart(CustomCameraEffectManager this, u16 duration)
 {
-	ASSERT(this, "CustomCameraEffectManager::FXShakeStart: null this");
+	ASSERT(this, "CustomCameraEffectManager::fxShakeStart: null this");
 
 	// don't follow the focus entity while shaking
 	//Camera _camera = Camera::getInstance();
@@ -204,9 +199,9 @@ static void CustomCameraEffectManager_FXShakeStart(CustomCameraEffectManager thi
 }
 
 // start screen pulsating effect
-static void CustomCameraEffectManager_FXScreenPulsateStart(CustomCameraEffectManager this)
+void CustomCameraEffectManager::fxScreenPulsateStart(CustomCameraEffectManager this)
 {
-	ASSERT(this, "CustomCameraEffectManager::FXScreenPulsateStart: null this");
+	ASSERT(this, "CustomCameraEffectManager::fxScreenPulsateStart: null this");
 
 	// discard pending messages from previously started fx
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
@@ -218,24 +213,24 @@ static void CustomCameraEffectManager_FXScreenPulsateStart(CustomCameraEffectMan
 }
 
 // stop shaking the _camera
-void CustomCameraEffectManager_FXShakeStop(CustomCameraEffectManager this)
+void CustomCameraEffectManager::fxShakeStop(CustomCameraEffectManager this)
 {
-	ASSERT(this, "CustomCameraEffectManager::FXShakeStop: null this");
+	ASSERT(this, "CustomCameraEffectManager::fxShakeStop: null this");
 
 	this->shakeTimeLeft = 0;
 }
 
 // stop shaking the _camera
-void CustomCameraEffectManager_FXScreenPulsateStop(CustomCameraEffectManager this)
+void CustomCameraEffectManager::fxScreenPulsateStop(CustomCameraEffectManager this)
 {
-	ASSERT(this, "CustomCameraEffectManager::FXScreenPulsateStop: null this");
+	ASSERT(this, "CustomCameraEffectManager::fxScreenPulsateStop: null this");
 
 	this->pulsateNextStep = 0;
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
 }
 
 // shake the _camera
-static void CustomCameraEffectManager::onScreenShake(CustomCameraEffectManager this)
+void CustomCameraEffectManager::onScreenShake(CustomCameraEffectManager this)
 {
 	ASSERT(this, "CustomCameraEffectManager::onScreenShake: null this");
 
@@ -270,7 +265,7 @@ static void CustomCameraEffectManager::onScreenShake(CustomCameraEffectManager t
 }
 
 // write new brightness repeat values
-static void CustomCameraEffectManager::onScreenPulsate(CustomCameraEffectManager this)
+void CustomCameraEffectManager::onScreenPulsate(CustomCameraEffectManager this)
 {
 	ASSERT(this, "CustomCameraEffectManager::onScreenPulsate: null this");
 
