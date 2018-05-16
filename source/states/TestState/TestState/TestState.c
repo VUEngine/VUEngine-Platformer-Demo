@@ -55,24 +55,18 @@ extern StageROMDef TEST_STAGE_ST;
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void TestState_destructor(TestState this);
-static void TestState_constructor(TestState this);
-static void TestState_enter(TestState this, void* owner);
-static void TestState_exit(TestState this, void* owner);
-static void TestState_resume(TestState this, void* owner);
-static void TestState_suspend(TestState this, void* owner);
-static bool TestState_processMessage(TestState this, void* owner, Telegram telegram);
-static void TestState_onFadeInComplete(TestState this, Object eventFirer);
-static void TestState_onStartLevelFadeOutComplete(TestState this, Object eventFirer);
-static void TestState_onReturnToTitleFadeOutComplete(TestState this, Object eventFirer);
+void TestState::constructor(TestState this);
+static void TestState::onFadeInComplete(TestState this, Object eventFirer);
+static void TestState::onStartLevelFadeOutComplete(TestState this, Object eventFirer);
+static void TestState::onReturnToTitleFadeOutComplete(TestState this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(TestState, GameState);
-__SINGLETON_DYNAMIC(TestState);
+
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -80,73 +74,73 @@ __SINGLETON_DYNAMIC(TestState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) TestState_constructor(TestState this)
+void __attribute__ ((noinline)) TestState::constructor(TestState this)
 {
-	__CONSTRUCT_BASE(GameState);
+	Base::constructor();
 }
 
 // class's destructor
-static void TestState_destructor(TestState this)
+void TestState::destructor(TestState this)
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-static void TestState_enter(TestState this, void* owner)
+void TestState::enter(TestState this, void* owner)
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TEST_STAGE_ST, NULL, true);
+	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TEST_STAGE_ST, NULL, true);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
-	GameState_startClocks(__SAFE_CAST(GameState, this));
+	GameState::startClocks(__SAFE_CAST(GameState, this));
 
 	// show up level after a little delay
-	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
+	MessageDispatcher::dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game::getInstance()), kLevelSetUp, NULL);
 }
 
 // state's exit
-static void TestState_exit(TestState this, void* owner)
+void TestState::exit(TestState this, void* owner)
 {
 	// call base
-	Base_exit(this, owner);
+	Base::exit(this, owner);
 
 	// destroy the state
 	__DELETE(this);
 }
 
 // state's resume
-static void TestState_resume(TestState this, void* owner)
+void TestState::resume(TestState this, void* owner)
 {
-	Base_resume(this, owner);
+	Base::resume(this, owner);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 
 	// tell any interested entity
-	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
+	GameState::propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
 
 	// make a fade in
-	Camera_startEffect(Camera_getInstance(), kFadeIn, __FADE_DELAY);
+	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
 
 	// pause physical simulations
-	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
+	GameState::pausePhysics(__SAFE_CAST(GameState, this), false);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -160,103 +154,103 @@ static void TestState_resume(TestState this, void* owner)
 }
 
 // state's suspend
-static void TestState_suspend(TestState this, void* owner)
+void TestState::suspend(TestState this, void* owner)
 {
 	// pause physical simulations
-	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
+	GameState::pausePhysics(__SAFE_CAST(GameState, this), true);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game_isEnteringSpecialMode(Game_getInstance()))
+	if(!Game::isEnteringSpecialMode(Game::getInstance()))
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game_isEnteringSpecialMode(Game_getInstance()))
+	if(!Game::isEnteringSpecialMode(Game::getInstance()))
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game_isEnteringSpecialMode(Game_getInstance()))
+	if(!Game::isEnteringSpecialMode(Game::getInstance()))
 #endif
 
 	// make a fade out
-	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
+	Camera::startEffect(Camera::getInstance(), kFadeOut, __FADE_DELAY);
 
-	Base_suspend(this, owner);
+	Base::suspend(this, owner);
 }
 
 // print gui
-static void TestState_print(TestState this __attribute__ ((unused)))
+void TestState::print(TestState this __attribute__ ((unused)))
 {
 	ASSERT(this, "TestState::print: null this");
 
 	// coins
-	u8 coins = ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager_getInstance());
-	Printing_int(Printing_getInstance(), coins, 4, 26, "GuiFont");
+	u8 coins = ProgressManager::getTotalNumberOfCollectedCoins(ProgressManager::getInstance());
+	Printing::int(Printing::getInstance(), coins, 4, 26, "GuiFont");
 
 	// level name
-	Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_LEVEL_1_NAME), 16, 26, "GuiFont");
-	Printing_text(Printing_getInstance(), "1-1", 12, 26, "GuiFont");
+	Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_LEVEL_1_NAME), 16, 26, "GuiFont");
+	Printing::text(Printing::getInstance(), "1-1", 12, 26, "GuiFont");
 }
 
-void TestState_processUserInput(TestState this, UserInput userInput)
+void TestState::processUserInput(TestState this, UserInput userInput)
 {
 	if((K_STA & userInput.pressedKey) || (K_A & userInput.pressedKey))
 	{
 		// disable user input
-		Game_disableKeypad(Game_getInstance());
+		Game::disableKeypad(Game::getInstance());
 
 		// start a fade out effect
 		Brightness brightness = (Brightness){0, 0, 0};
-		Camera_startEffect(Camera_getInstance(),
+		Camera::startEffect(Camera::getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))TestState_onStartLevelFadeOutComplete, // callback function
+			(void (*)(Object, Object))TestState::onStartLevelFadeOutComplete, // callback function
 			__SAFE_CAST(Object, this) // callback scope
 		);
 
 	} else if(K_B & userInput.pressedKey) {
 
 		// disable user input
-		Game_disableKeypad(Game_getInstance());
+		Game::disableKeypad(Game::getInstance());
 
 		// start a fade out effect
 		Brightness brightness = (Brightness){0, 0, 0};
-		Camera_startEffect(Camera_getInstance(),
+		Camera::startEffect(Camera::getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))TestState_onReturnToTitleFadeOutComplete, // callback function
+			(void (*)(Object, Object))TestState::onReturnToTitleFadeOutComplete, // callback function
 			__SAFE_CAST(Object, this) // callback scope
 		);
 	}
 }
 
 // state's handle message
-static bool TestState_processMessage(TestState this, void* owner __attribute__ ((unused)), Telegram telegram)
+bool TestState::processMessage(TestState this, void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kLevelSetUp:
 
 			// tell any interested entity
-			GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
+			GameState::propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 
 			// show level after a little delay
-			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
+			MessageDispatcher::dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game::getInstance()), kLevelStarted, NULL);
 			break;
 
 		case kLevelStarted:
 
-			TestState_print(this);
+			TestState::print(this);
 
 			// fade in screen
-			Camera_startEffect(Camera_getInstance(),
+			Camera::startEffect(Camera::getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				NULL, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))TestState_onFadeInComplete, // callback function
+				(void (*)(Object, Object))TestState::onFadeInComplete, // callback function
 				__SAFE_CAST(Object, this) // callback scope
 			);
 
@@ -267,32 +261,32 @@ static bool TestState_processMessage(TestState this, void* owner __attribute__ (
 }
 
 // handle event
-static void TestState_onFadeInComplete(TestState this, Object eventFirer __attribute__ ((unused)))
+static void TestState::onFadeInComplete(TestState this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "TestState::onFadeInComplete: null this");
 
 	// tell any interested entity
-	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
+	GameState::propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
 	// enable user input
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void TestState_onStartLevelFadeOutComplete(TestState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void TestState::onStartLevelFadeOutComplete(TestState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "TestState::onFadeOutComplete: null this");
 
 	// load platformer level
 	extern PlatformerLevelDefinition LEVEL_1_LV;
-	PlatformerLevelState_startLevel(PlatformerLevelState_getInstance(), &LEVEL_1_LV);
+	PlatformerLevelState::startLevel(PlatformerLevelState::getInstance(), &LEVEL_1_LV);
 }
 
 // handle event
-static void TestState_onReturnToTitleFadeOutComplete(TestState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void TestState::onReturnToTitleFadeOutComplete(TestState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "TestState::onFadeOutComplete: null this");
 
 	// load title screen state
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
+	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, TitleScreenState::getInstance()));
 }

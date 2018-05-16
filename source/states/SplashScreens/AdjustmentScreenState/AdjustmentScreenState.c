@@ -43,18 +43,16 @@ extern StageROMDef ADJUSTMENT_SCREEN_STAGE_ST;
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void AdjustmentScreenState_destructor(AdjustmentScreenState this);
-static void AdjustmentScreenState_constructor(AdjustmentScreenState this);
-static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey);
-void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+void AdjustmentScreenState::constructor(AdjustmentScreenState this);
+void AdjustmentScreenState::rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(AdjustmentScreenState, SplashScreenState);
-__SINGLETON_DYNAMIC(AdjustmentScreenState);
+
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -62,49 +60,49 @@ __SINGLETON_DYNAMIC(AdjustmentScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) AdjustmentScreenState_constructor(AdjustmentScreenState this)
+void __attribute__ ((noinline)) AdjustmentScreenState::constructor(AdjustmentScreenState this)
 {
-	__CONSTRUCT_BASE(SplashScreenState);
+	Base::constructor();
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
+	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&ADJUSTMENT_SCREEN_STAGE_ST;
 }
 
 // class's destructor
-static void AdjustmentScreenState_destructor(AdjustmentScreenState this)
+void AdjustmentScreenState::destructor(AdjustmentScreenState this)
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner)
+void AdjustmentScreenState::enter(AdjustmentScreenState this, void* owner)
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	// move the printing area out of the visible screen to save CPU resources
-	Printing_setWorldCoordinates(Printing_getInstance(), __SCREEN_WIDTH, __SCREEN_HEIGHT);
+	Printing::setWorldCoordinates(Printing::getInstance(), __SCREEN_WIDTH, __SCREEN_HEIGHT);
 
 	// add rhombus effect
-	VIPManager_pushBackPostProcessingEffect(VIPManager_getInstance(), AdjustmentScreenState_rhombusEmitterPostProcessingEffect, NULL);
+	VIPManager::pushBackPostProcessingEffect(VIPManager::getInstance(), AdjustmentScreenState::rhombusEmitterPostProcessingEffect, NULL);
 }
 
-static void AdjustmentScreenState_processInput(AdjustmentScreenState this, u32 pressedKey __attribute__ ((unused)))
+void AdjustmentScreenState::processInput(AdjustmentScreenState this, u32 pressedKey __attribute__ ((unused)))
 {
-	// TODO: replace this ugly hack with a proper Game_isPaused check or something similar
+	// TODO: replace this ugly hack with a proper Game::isPaused check or something similar
 	if(this->nextState == NULL)
 	{
-		Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
-		Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
+		Camera::startEffect(Camera::getInstance(), kFadeOut, __FADE_DELAY);
+		Game::unpause(Game::getInstance(), __SAFE_CAST(GameState, this));
 	}
 	else
 	{
-		SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
+		SplashScreenState::loadNextState(__SAFE_CAST(SplashScreenState, this));
 	}
 }
 
-void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+void AdjustmentScreenState::rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
 	// runtime working variables
 	// negative value to achieve an initial delay
@@ -125,10 +123,10 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 	}
 
 	// draw rhombus around object with given radius
-	DirectDraw directDraw = DirectDraw_getInstance();
+	DirectDraw directDraw = DirectDraw::getInstance();
 
 	// top left line
-	DirectDraw_drawLine(
+	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {(192 - radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		(PixelVector) {(192),			(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
@@ -136,7 +134,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 	);
 
 	// top right line
-	DirectDraw_drawLine(
+	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {(192 + radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		(PixelVector) {(192),			(112 - radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
@@ -144,7 +142,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 	);
 
 	// bottom right line
-	DirectDraw_drawLine(
+	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {(192 + radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		(PixelVector) {(192),			(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
@@ -152,7 +150,7 @@ void AdjustmentScreenState_rhombusEmitterPostProcessingEffect(u32 currentDrawing
 	);
 
 	// bottom left line
-	DirectDraw_drawLine(
+	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {(192 - radius),	(112),			0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},
 		(PixelVector) {(192),			(112 + radius),	0, -((radius + ADJUSTMENT_SCREEN_RHOMBUS_INITIAL_VALUE)>>5)},

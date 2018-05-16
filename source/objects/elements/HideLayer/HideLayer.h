@@ -42,34 +42,18 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define HideLayer_METHODS(ClassName)																	\
-		AnimatedEntity_METHODS(ClassName)																\
-
-#define HideLayer_SET_VTABLE(ClassName)																	\
-		AnimatedEntity_SET_VTABLE(ClassName)															\
-
-__CLASS(HideLayer);
-
-#define HideLayer_ATTRIBUTES																			\
-		/* it is derived from */																		\
-		AnimatedEntity_ATTRIBUTES																		\
-		/* is hide layer currently being overlapped by hero? */											\
-		bool currentlyOverlappingHero;																	\
-
 typedef const AnimatedEntityDefinition HideLayerDefinition;
 typedef const HideLayerDefinition HideLayerROMDef;
 
+class HideLayer : AnimatedEntity
+{
+	/* is hide layer currently being overlapped by hero? */
+	bool currentlyOverlappingHero;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(HideLayer, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void HideLayer_constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void HideLayer_destructor(HideLayer this);
-void HideLayer_setOverlapping(HideLayer this);
-void HideLayer_unsetOverlapping(HideLayer this);
+	void constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void setOverlapping(HideLayer this);
+	void unsetOverlapping(HideLayer this);
+}
 
 
 #endif

@@ -42,34 +42,15 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CogWheel_METHODS(ClassName)																		\
-		Entity_METHODS(ClassName)																		\
-
-#define CogWheel_SET_VTABLE(ClassName)																	\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, CogWheel, ready);														\
-		__VIRTUAL_SET(ClassName, CogWheel, handleMessage);												\
-
-__CLASS(CogWheel);
-
-#define CogWheel_ATTRIBUTES																				\
-		/* it is derived from */																		\
-		Entity_ATTRIBUTES																				\
-
 typedef const EntityDefinition CogWheelDefinition;
 typedef const CogWheelDefinition CogWheelROMDef;
 
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(CogWheel, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void CogWheel_constructor(CogWheel this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void CogWheel_destructor(CogWheel this);
-void CogWheel_ready(CogWheel this, bool recursive);
-bool CogWheel_handleMessage(CogWheel this, Telegram telegram);
+class CogWheel : Entity
+{
+	void constructor(CogWheel this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void ready(CogWheel this, bool recursive);
+	override bool handleMessage(CogWheel this, Telegram telegram);
+}
 
 
 #endif

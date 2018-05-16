@@ -40,19 +40,19 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Gui, AnimatedEntity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Gui_printAll(Gui this);
-static void Gui_onSecondChange(Gui this, Object eventFirer);
-static void Gui_onHitTaken(Gui this, Object eventFirer);
-static void Gui_onCoinTaken(Gui this, Object eventFirer);
-static void Gui_onKeyTaken(Gui this, Object eventFirer);
-static void Gui_onPowerUp(Gui this, Object eventFirer);
+void Gui::printAll(Gui this);
+static void Gui::onSecondChange(Gui this, Object eventFirer);
+static void Gui::onHitTaken(Gui this, Object eventFirer);
+static void Gui::onCoinTaken(Gui this, Object eventFirer);
+static void Gui::onKeyTaken(Gui this, Object eventFirer);
+static void Gui::onPowerUp(Gui this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,74 +68,74 @@ extern CharSetDefinition GUI_BANDANA_CH;
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Gui, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Gui, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Gui_constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Gui::constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 
 	// add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onCoinTaken, kEventCoinTaken);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onKeyTaken, kEventKeyTaken);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onPowerUp, kEventPowerUp);
+	Object::addEventListener(__SAFE_CAST(Object, PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
+	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
+	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onPowerUp, kEventPowerUp);
 }
 
 // class's destructor
-void Gui_destructor(Gui this)
+void Gui::destructor(Gui this)
 {
 	// remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onCoinTaken, kEventCoinTaken);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onKeyTaken, kEventKeyTaken);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onPowerUp, kEventPowerUp);
+	Object::removeEventListener(__SAFE_CAST(Object, PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
+	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
+	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onPowerUp, kEventPowerUp);
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Gui_ready(Gui this, bool recursive)
+void Gui::ready(Gui this, bool recursive)
 {
 	ASSERT(this, "Gui::ready: null this");
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 }
 
 // print elapsed time to gui
-void Gui_printClock(Gui this __attribute__ ((unused)))
+void Gui::printClock(Gui this __attribute__ ((unused)))
 {
-	Clock_print(PlatformerLevelState_getClock(PlatformerLevelState_getInstance()), GUI_X_POS + 36, GUI_Y_POS, GUI_FONT);
+	Clock::print(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), GUI_X_POS + 36, GUI_Y_POS, GUI_FONT);
 }
 
 // print best time to gui
-void Gui_printBestTime(Gui this __attribute__ ((unused)))
+void Gui::printBestTime(Gui this __attribute__ ((unused)))
 {
-	u32 bestTime = ProgressManager_getCurrentLevelBestTime(ProgressManager_getInstance());
+	u32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
 
 	if(bestTime)
 	{
 		Clock clock = __NEW(Clock);
-		Clock_setTimeInMilliSeconds(clock, bestTime);
-		Clock_print(clock, GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
+		Clock::setTimeInMilliSeconds(clock, bestTime);
+		Clock::print(clock, GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
 		__DELETE(clock);
 	}
 	else
 	{
-		Printing_text(Printing_getInstance(), "--:--", GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
+		Printing::text(Printing::getInstance(), "--:--", GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
 	}
 }
 
 // print number of coins to gui
-void Gui_printCoins(Gui this __attribute__ ((unused)))
+void Gui::printCoins(Gui this __attribute__ ((unused)))
 {
-	u8 coins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
+	u8 coins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
 
 	// bound to 64
 	if(coins > 64)
@@ -147,51 +147,51 @@ void Gui_printCoins(Gui this __attribute__ ((unused)))
 	u8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
 
 	// print
-	Printing_text(Printing_getInstance(), "00/64", GUI_X_POS + 11, GUI_Y_POS, GUI_FONT);
-	Printing_int(Printing_getInstance(), coins, printPos, GUI_Y_POS, GUI_FONT);
+	Printing::text(Printing::getInstance(), "00/64", GUI_X_POS + 11, GUI_Y_POS, GUI_FONT);
+	Printing::int(Printing::getInstance(), coins, printPos, GUI_Y_POS, GUI_FONT);
 }
 
 // print hero's energy to gui
-void Gui_printEnergy(Gui this __attribute__ ((unused)))
+void Gui::printEnergy(Gui this __attribute__ ((unused)))
 {
-	Printing_text(Printing_getInstance(), "\x7B\x7B\x7B", GUI_X_POS + 4, GUI_Y_POS, GUI_FONT);
+	Printing::text(Printing::getInstance(), "\x7B\x7B\x7B", GUI_X_POS + 4, GUI_Y_POS, GUI_FONT);
 	u8 i;
-	ASSERT(Hero_getInstance(), "Gui::printEnergy: null hero");
+	ASSERT(Hero::getInstance(), "Gui::printEnergy: null hero");
 
-	for(i=0; i < Hero_getEnergy(Hero_getInstance()); i++)
+	for(i=0; i < Hero::getEnergy(Hero::getInstance()); i++)
 	{
-		Printing_text(Printing_getInstance(), "\x60", GUI_X_POS + 4 + i, GUI_Y_POS, GUI_FONT);
+		Printing::text(Printing::getInstance(), "\x60", GUI_X_POS + 4 + i, GUI_Y_POS, GUI_FONT);
 	}
 }
 
 // print keys icon to gui
-void Gui_printKey(Gui this __attribute__ ((unused)))
+void Gui::printKey(Gui this __attribute__ ((unused)))
 {
-	if(Hero_hasKey(Hero_getInstance()))
+	if(Hero::hasKey(Hero::getInstance()))
 	{
-		Printing_text(Printing_getInstance(), "\x7E\x7F", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
+		Printing::text(Printing::getInstance(), "\x7E\x7F", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
 	}
 	else
 	{
-		Printing_text(Printing_getInstance(), "  ", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
+		Printing::text(Printing::getInstance(), "  ", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
 	}
 }
 
 // print current level to gui
-void Gui_printLevel(Gui this __attribute__ ((unused)))
+void Gui::printLevel(Gui this __attribute__ ((unused)))
 {
-	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
-	Printing_text(Printing_getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 29, GUI_Y_POS, GUI_FONT);
+	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());
+	Printing::text(Printing::getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 29, GUI_Y_POS, GUI_FONT);
 }
 
 // update sprite, e.g. after collecting a power-up
-void Gui_updateSprite(Gui this)
+void Gui::updateSprite(Gui this)
 {
-	CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
+	CharSet charSet = Texture::getCharSet(Sprite::getTexture(__SAFE_CAST(Sprite, VirtualList::front(this->sprites))), true);
 
 	CharSetDefinition* charSetDefinition = NULL;
 
-	switch(Hero_getPowerUp(Hero_getInstance()))
+	switch(Hero::getPowerUp(Hero::getInstance()))
 	{
 		case kPowerUpBandana:
 
@@ -205,66 +205,66 @@ void Gui_updateSprite(Gui this)
 			break;
 	}
 
-	CharSet_setCharSetDefinition(charSet, charSetDefinition);
-	CharSet_rewrite(charSet);
+	CharSet::setCharSetDefinition(charSet, charSetDefinition);
+	CharSet::rewrite(charSet);
 }
 
 // print current level to gui
-void Gui_printAll(Gui this)
+void Gui::printAll(Gui this)
 {
-	// calls Gui_updateSprite, which modifies Sprites. These are not yet available in the entity's
+	// calls Gui::updateSprite, which modifies Sprites. These are not yet available in the entity's
 	// construction phase, so we need to utilize the ready method.
-	Gui_updateSprite(this);
+	Gui::updateSprite(this);
 
-	Gui_printClock(this);
-	Gui_printBestTime(this);
-	Gui_printCoins(this);
-	Gui_printEnergy(this);
-	Gui_printKey(this);
-	Gui_printLevel(this);
+	Gui::printClock(this);
+	Gui::printBestTime(this);
+	Gui::printCoins(this);
+	Gui::printEnergy(this);
+	Gui::printKey(this);
+	Gui::printLevel(this);
 }
 
 // handle event
-static void Gui_onSecondChange(Gui this, Object eventFirer __attribute__ ((unused)))
+static void Gui::onSecondChange(Gui this, Object eventFirer __attribute__ ((unused)))
 {
 #ifdef __DEBUG_TOOLS
-	if(!Game_isInSpecialMode(Game_getInstance()))
+	if(!Game::isInSpecialMode(Game::getInstance()))
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game_isInSpecialMode(Game_getInstance()))
+	if(!Game::isInSpecialMode(Game::getInstance()))
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game_isInSpecialMode(Game_getInstance()))
+	if(!Game::isInSpecialMode(Game::getInstance()))
 #endif
 
-	Gui_printClock(this);
+	Gui::printClock(this);
 }
 
 // handle event
-static void Gui_onHitTaken(Gui this, Object eventFirer __attribute__ ((unused)))
+static void Gui::onHitTaken(Gui this, Object eventFirer __attribute__ ((unused)))
 {
-	Gui_printEnergy(this);
+	Gui::printEnergy(this);
 }
 
 // handle event
-static void Gui_onCoinTaken(Gui this, Object eventFirer __attribute__ ((unused)))
+static void Gui::onCoinTaken(Gui this, Object eventFirer __attribute__ ((unused)))
 {
-	Gui_printCoins(this);
+	Gui::printCoins(this);
 }
 
 // handle event
-static void Gui_onKeyTaken(Gui this, Object eventFirer __attribute__ ((unused)))
+static void Gui::onKeyTaken(Gui this, Object eventFirer __attribute__ ((unused)))
 {
-	Gui_printKey(this);
+	Gui::printKey(this);
 }
 
 // handle event
-static void Gui_onPowerUp(Gui this, Object eventFirer __attribute__ ((unused)))
+static void Gui::onPowerUp(Gui this, Object eventFirer __attribute__ ((unused)))
 {
-	Gui_updateSprite(this);
+	Gui::updateSprite(this);
 }
 
-bool Gui_handlePropagatedMessage(Gui this, int message)
+bool Gui::handlePropagatedMessage(Gui this, int message)
 {
 	ASSERT(this, "Gui::handlePropagatedMessage: null this");
 
@@ -273,7 +273,7 @@ bool Gui_handlePropagatedMessage(Gui this, int message)
 		case kLevelSetUp:
 		case kLevelResumed:
 
-			Gui_printAll(this);
+			Gui::printAll(this);
 			break;
 	}
 

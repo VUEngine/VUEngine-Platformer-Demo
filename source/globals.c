@@ -113,18 +113,18 @@ EntityROMDef MANAGED_ENTITY =
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] =
 {
-	{&Bandana_getObjectSize,		"Bandana"},
-	{&Cannon_getObjectSize,			"Cannon"},
-	{&CannonBall_getObjectSize,		"CannonBall"},
-	{&CogWheel_getObjectSize,		"CogWheel"},
-	{&Coin_getObjectSize,			"Coin"},
-	{&Door_getObjectSize,			"Door"},
-	{&Gui_getObjectSize,			"GUI"},
-	{&Hero_getObjectSize,			"Hero"},
-	{&HideLayer_getObjectSize,		"HideLayer"},
-	{&HideLayer_getObjectSize,		"Hint"},
-	{&Key_getObjectSize,			"Key"},
-	{&MovingEntity_getObjectSize,	"MovingEntity"},
+	{&Bandana::getObjectSize,		"Bandana"},
+	{&Cannon::getObjectSize,			"Cannon"},
+	{&CannonBall::getObjectSize,		"CannonBall"},
+	{&CogWheel::getObjectSize,		"CogWheel"},
+	{&Coin::getObjectSize,			"Coin"},
+	{&Door::getObjectSize,			"Door"},
+	{&Gui::getObjectSize,			"GUI"},
+	{&Hero::getObjectSize,			"Hero"},
+	{&HideLayer::getObjectSize,		"HideLayer"},
+	{&HideLayer::getObjectSize,		"Hint"},
+	{&Key::getObjectSize,			"Key"},
+	{&MovingEntity::getObjectSize,	"MovingEntity"},
 	{NULL, ""},
 };
 #endif

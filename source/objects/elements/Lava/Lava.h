@@ -42,35 +42,16 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Lava_METHODS(ClassName)																			\
-		Entity_METHODS(ClassName)																		\
-
-#define Lava_SET_VTABLE(ClassName)																		\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, Lava, handleMessage);													\
-		__VIRTUAL_SET(ClassName, Lava, isVisible);														\
-
-__CLASS(Lava);
-
-#define Lava_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		Entity_ATTRIBUTES																				\
-
 typedef const EntityDefinition LavaDefinition;
 typedef const LavaDefinition LavaROMDef;
 
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Lava, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void Lava_constructor(Lava this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void Lava_destructor(Lava this);
-void Lava_startMoving(Lava this);
-bool Lava_handleMessage(Lava this, Telegram telegram);
-bool Lava_isVisible(Lava this, int pad, bool recursive);
+class Lava : Entity
+{
+	void constructor(Lava this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void startMoving(Lava this);
+	override bool handleMessage(Lava this, Telegram telegram);
+	override bool isVisible(Lava this, int pad, bool recursive);
+}
 
 
 #endif

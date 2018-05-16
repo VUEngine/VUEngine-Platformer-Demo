@@ -38,7 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // define the CameraTriggerEntity
-__CLASS_DEFINITION(CameraTriggerEntity, Entity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,17 +46,17 @@ __CLASS_DEFINITION(CameraTriggerEntity, Entity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(CameraTriggerEntity, cameraEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name)
+void CameraTriggerEntity::constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "CameraTriggerEntity::constructor: null this");
 	ASSERT(cameraEntityDefinition, "CameraTriggerEntity::constructor: null definition");
 
 	// construct base object
-	Base_constructor(this, (EntityDefinition*)cameraEntityDefinition, id, internalId, name);
+	Base::constructor((EntityDefinition*)cameraEntityDefinition, id, internalId, name);
 
 	this->overridePositionFlag.x = false;
 	this->overridePositionFlag.y = false;
@@ -64,24 +64,24 @@ void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEnti
 }
 
 // class's destructor
-void CameraTriggerEntity_destructor(CameraTriggerEntity this)
+void CameraTriggerEntity::destructor(CameraTriggerEntity this)
 {
 	ASSERT(this, "CameraTriggerEntity::destructor: null this");
 
-	Camera_setFocusGameEntity(Camera_getInstance(), NULL);
+	Camera::setFocusGameEntity(Camera::getInstance(), NULL);
 
 	// destroy the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag)
+void CameraTriggerEntity::transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag)
 {
 	ASSERT(this, "CameraTriggerEntity::transform: null this");
 
 	Vector3D currentGlobalPosition = this->transformation.globalPosition;
 
-	Base_transform(this, environmentTransform, invalidateTransformationFlag);
+	Base::transform(this, environmentTransform, invalidateTransformationFlag);
 
 	if(this->overridePositionFlag.x)
 	{
@@ -93,27 +93,27 @@ void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformatio
 		this->transformation.globalPosition.y = currentGlobalPosition.y;
 	}
 
-	Entity_transformShapes(__SAFE_CAST(Entity, this));
+	Entity::transformShapes(__SAFE_CAST(Entity, this));
 
-//	Shape_show(VirtualList_front(this->shapes));
+//	Shape::show(VirtualList::front(this->shapes));
 }
 
-void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag)
+void CameraTriggerEntity::setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag)
 {
 	ASSERT(this, "CameraTriggerEntity::setOverridePositionFlag: null this");
 
-	Container_invalidateGlobalPosition(__SAFE_CAST(Container, this));
+	Container::invalidateGlobalPosition(__SAFE_CAST(Container, this));
 
-	Transformation* environmentTransform = Container_getTransform(this->parent);
+	Transformation* environmentTransform = Container::getTransform(this->parent);
 
 	// don't lock yet, allow the global position to be calculated before locking
 	this->overridePositionFlag.y = false;
-	CameraTriggerEntity_transform(this, environmentTransform, __INVALIDATE_TRANSFORMATION);
+	CameraTriggerEntity::transform(this, environmentTransform, __INVALIDATE_TRANSFORMATION);
 
 	this->overridePositionFlag = overridePositionFlag;
 }
 
-Vector3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this)
+Vector3DFlag CameraTriggerEntity::getOverridePositionFlag(CameraTriggerEntity this)
 {
 	ASSERT(this, "CameraTriggerEntity::getOverridePositionFlag: null this");
 

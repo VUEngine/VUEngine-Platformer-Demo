@@ -35,43 +35,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define HbiasMaskMBgmapSprite_METHODS(ClassName)														\
-		MBgmapSprite_METHODS(ClassName)																	\
-
-// declare the virtual methods which are redefined
-#define HbiasMaskMBgmapSprite_SET_VTABLE(ClassName)														\
-		MBgmapSprite_SET_VTABLE(ClassName)																\
-		__VIRTUAL_SET(ClassName, HbiasMaskMBgmapSprite, render);										\
-		__VIRTUAL_SET(ClassName, HbiasMaskMBgmapSprite, position);										\
-
-#define HbiasMaskMBgmapSprite_ATTRIBUTES																\
-		MBgmapSprite_ATTRIBUTES																			\
-		/**
-		 * @var SpatialObject 	owner
-		 * @brief				owner
-		 * @memberof 			HbiasMaskMBgmapSprite
-		 */																								\
-		Entity owner;																					\
-		/**
-		 * @var Sprite 	sprite
-		 * @brief		reference Sprite
-		 * @memberof 	HbiasMaskMBgmapSprite
-		 */																								\
-		Sprite referenceSprite;																			\
-		/**
-		 * @var Sprite 	sprite
-		 * @brief		reference Sprite
-		 * @memberof 	HbiasMaskMBgmapSprite
-		 */																								\
-		const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition;							\
-		/**
-		 * @var u8		step
-		 * @brief		current lut index
-		 * @memberof 	HbiasMaskMBgmapSprite
-		 */																								\
-		u8 step;																						\
-
-__CLASS(HbiasMaskMBgmapSprite);
 
 typedef struct HbiasMaskMBgmapSpriteDefinition
 {
@@ -96,14 +59,42 @@ typedef const HbiasMaskMBgmapSpriteDefinition HbiasMaskMBgmapSpriteROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
 
-void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
-void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this);
-void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position);
-void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool evenFrame);
-s16 HbiasMaskMBgmapSprite_wave(HbiasMaskMBgmapSprite this);
+
+
+
+class HbiasMaskMBgmapSprite : MBgmapSprite
+{
+	/**
+	* @var SpatialObject 	owner
+	* @brief				owner
+	* @memberof 			HbiasMaskMBgmapSprite
+	*/																								
+	Entity owner;																					
+	/**
+	* @var Sprite 	sprite
+	* @brief		reference Sprite
+	* @memberof 	HbiasMaskMBgmapSprite
+	*/																								
+	Sprite referenceSprite;																			
+	/**
+	* @var Sprite 	sprite
+	* @brief		reference Sprite
+	* @memberof 	HbiasMaskMBgmapSprite
+	*/																								
+	const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition;							
+	/**
+	* @var u8		step
+	* @brief		current lut index
+	* @memberof 	HbiasMaskMBgmapSprite
+	*/																								
+	u8 step;																						
+	
+	void constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
+	s16 wave(HbiasMaskMBgmapSprite this);
+	override void render(HbiasMaskMBgmapSprite this, bool evenFrame);
+	override void position(HbiasMaskMBgmapSprite this, const Vector3D* position);
+}
 
 
 #endif
-

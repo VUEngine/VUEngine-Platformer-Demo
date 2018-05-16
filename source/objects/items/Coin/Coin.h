@@ -35,32 +35,14 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Coin_METHODS(ClassName)																			\
-		Collectable_METHODS(ClassName)																	\
-
-#define Coin_SET_VTABLE(ClassName)																		\
-		Collectable_SET_VTABLE(ClassName)																\
-		__VIRTUAL_SET(ClassName, Coin, collect);														\
-
-__CLASS(Coin);
-
-#define Coin_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		Collectable_ATTRIBUTES																			\
-
 typedef const CollectableDefinition CoinDefinition;
 typedef const CoinDefinition CoinROMDef;
 
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Coin, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void Coin_constructor(Coin this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void Coin_destructor(Coin this);
-void Coin_collect(Coin this);
+class Coin : Collectable
+{
+	void constructor(Coin this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void collect(Coin this);
+}
 
 
 #endif

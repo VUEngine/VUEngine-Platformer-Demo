@@ -41,7 +41,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Key, Item);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -49,69 +49,69 @@ __CLASS_DEFINITION(Key, Item);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Key, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Key, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Key_constructor(Key this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Key::constructor(Key this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Key::constructor: null this");
 
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Key_destructor(Key this)
+void Key::destructor(Key this)
 {
 	ASSERT(this, "Key::destructor: null this");
 
 	// remove post processing effect
-	Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Key_ready(Key this, bool recursive)
+void Key::ready(Key this, bool recursive)
 {
 	ASSERT(this, "Key::ready: null this");
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
 	// add post processing effect to make key emit rhombuses
-	Game_pushBackProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
-void Key_collect(Key this)
+void Key::collect(Key this)
 {
 	ASSERT(this, "Key::collect: null this");
 
 	// fire item taken event
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventKeyTaken);
+	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventKeyTaken);
 
 	// call base
 	__CALL_BASE_METHOD(Item, collect, this);
 }
 
-void Key_suspend(Key this)
+void Key::suspend(Key this)
 {
 	ASSERT(this, "Key::suspend: null this");
 
 	__CALL_BASE_METHOD(Item, suspend, this);
 
 	// remove post processing effect
-	Game_removePostProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
-void Key_resume(Key this)
+void Key::resume(Key this)
 {
 	ASSERT(this, "Key::resume: null this");
 
 	__CALL_BASE_METHOD(Item, resume, this);
 
 	// add post processing effect to make key emit rhombuses
-	Game_pushBackProcessingEffect(Game_getInstance(), PostProcessingEffects_rhombusEmitter, __SAFE_CAST(SpatialObject, this));
+	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }

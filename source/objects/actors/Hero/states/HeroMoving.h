@@ -36,25 +36,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define HeroMoving_METHODS(ClassName)																	\
-		HeroState_METHODS(ClassName)																	\
-
-// declare the virtual methods which are redefined
-#define HeroMoving_SET_VTABLE(ClassName)																\
-		HeroState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, HeroMoving, enter);													\
-		__VIRTUAL_SET(ClassName, HeroMoving, execute);													\
-		__VIRTUAL_SET(ClassName, HeroMoving, processMessage);											\
-		__VIRTUAL_SET(ClassName, HeroMoving, onKeyPressed);												\
-		__VIRTUAL_SET(ClassName, HeroMoving, onKeyReleased);											\
-
-#define HeroMoving_ATTRIBUTES																			\
-		/* inherits */																					\
-		HeroState_ATTRIBUTES																			\
-		/* flag to allow jump on bouncing */															\
-		bool bouncing;																					\
-
- __CLASS(HeroMoving);
 
 
 enum HeroMovingMessages
@@ -67,10 +48,23 @@ enum HeroMovingMessages
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-HeroMoving HeroMoving_getInstance();
 
-void HeroMoving_onKeyPressed(HeroMoving this, void* owner, const UserInput* userInput);
-void HeroMoving_onKeyReleased(HeroMoving this, void* owner, const UserInput* userInput);
+
+
+
+singleton class HeroMoving : HeroState
+{
+	/* flag to allow jump on bouncing */
+	bool bouncing;
+
+	static HeroMoving getInstance();
+
+	override void enter(HeroMoving this, void* owner);
+	override void execute(HeroMoving this, void* owner);
+	override bool processMessage(HeroMoving this, void* owner, Telegram telegram);
+	override void onKeyPressed(HeroMoving this, void* owner, const UserInput* userInput);
+	override void onKeyReleased(HeroMoving this, void* owner, const UserInput* userInput);
+}
 
 
 #endif

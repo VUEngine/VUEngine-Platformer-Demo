@@ -41,14 +41,14 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(GoalDoor, Door);
+
 
 
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void GoalDoor_onFadeOutComplete(GoalDoor this, Object eventFirer);
+static void GoalDoor::onFadeOutComplete(GoalDoor this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,58 +56,58 @@ static void GoalDoor_onFadeOutComplete(GoalDoor this, Object eventFirer);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(GoalDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(GoalDoor, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void GoalDoor_constructor(GoalDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void GoalDoor::constructor(GoalDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void GoalDoor_destructor(GoalDoor this)
+void GoalDoor::destructor(GoalDoor this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // ready
-void GoalDoor_ready(Door this, bool recursive __attribute__ ((unused)))
+void GoalDoor::ready(GoalDoor this, bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "GoalDoor::ready: null this");
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Goal");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Goal");
 }
 
-bool GoalDoor_hasDestination(Door this __attribute__ ((unused)))
+bool GoalDoor::hasDestination(GoalDoor this __attribute__ ((unused)))
 {
 	return true;
 }
 
 // state's handle message
-bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
+bool GoalDoor::handleMessage(GoalDoor this, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kHeroEnterDoor:
 		{
 			// disable user input
-			Game_disableKeypad(Game_getInstance());
+			Game::disableKeypad(Game::getInstance());
 
 			// fade out screen
 			Brightness brightness = (Brightness){0, 0, 0};
-			Camera_startEffect(Camera_getInstance(),
+			Camera::startEffect(Camera::getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				&brightness, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))GoalDoor_onFadeOutComplete, // callback function
+				(void (*)(Object, Object))GoalDoor::onFadeOutComplete, // callback function
 				__SAFE_CAST(Object, this) // callback scope
 			);
 
@@ -116,22 +116,22 @@ bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram)
 		}
 	}
 
-	return Base_handleMessage(this, telegram);
+	return Base::handleMessage(this, telegram);
 }
 
-bool GoalDoor_canEnter(GoalDoor this __attribute__ ((unused)))
+bool GoalDoor::canEnter(GoalDoor this __attribute__ ((unused)))
 {
 	return true;
 }
 
 // handle event
-static void GoalDoor_onFadeOutComplete(GoalDoor this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void GoalDoor::onFadeOutComplete(GoalDoor this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "GoalDoor::onFadeOutComplete: null this");
 
 	// announce level completion
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventLevelCompleted);
+	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventLevelCompleted);
 
 	// switch to next screen
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState_getInstance()));
+	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState::getInstance()));
 }

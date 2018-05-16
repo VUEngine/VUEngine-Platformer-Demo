@@ -42,22 +42,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Clouds_METHODS(ClassName)																		\
-		Entity_METHODS(ClassName)																		\
-
-#define Clouds_SET_VTABLE(ClassName)																	\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, Clouds, update);														\
-		__VIRTUAL_SET(ClassName, Clouds, isVisible);													\
-
-__CLASS(Clouds);
-
-#define Clouds_ATTRIBUTES																				\
-		/* it is derived from */																		\
-			Entity_ATTRIBUTES																			\
-		/* displacement per cycle */																	\
-		fix10_6 displacement;																			\
-
 
 typedef struct CloudsDefinition
 {
@@ -71,17 +55,15 @@ typedef struct CloudsDefinition
 
 typedef const CloudsDefinition CloudsROMDef;
 
+class Clouds : Entity
+{
+	/* displacement per cycle */
+	fix10_6 displacement;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Clouds, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name);
-
-void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name);
-void Clouds_destructor(Clouds this);
-void Clouds_update(Clouds this, u32 elapsedTime);
-bool Clouds_isVisible(Clouds this, int pad, bool recursive);
+	void constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name);
+	override void update(Clouds this, u32 elapsedTime);
+	override bool isVisible(Clouds this, int pad, bool recursive);
+}
 
 
 #endif

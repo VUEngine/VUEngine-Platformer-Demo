@@ -45,16 +45,16 @@
 //											CLASS' DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(WaterPond, ReflectiveEntity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void WaterPond_addSplashParticles(WaterPond this);
+static void WaterPond::addSplashParticles(WaterPond this);
 
-void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
+void WaterPond::drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 								s16 xSourceStart, s16 ySourceStart,
 								s16 xOutputStart, s16 yOutputStart,
 								s16 width, s16 height,
@@ -71,16 +71,16 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(WaterPond, WaterPondDefinition* reflectiveEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(WaterPond, reflectiveEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void WaterPond_constructor(WaterPond this, WaterPondDefinition* reflectiveEntityDefinition, s16 id, s16 internalId, const char* const name)
+void WaterPond::constructor(WaterPond this, WaterPondDefinition* reflectiveEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "WaterPond::constructor: null this");
 
 	// construct base
-	Base_constructor(this, &reflectiveEntityDefinition->reflectiveEntityDefinition, id, internalId, name);
+	Base::constructor(&reflectiveEntityDefinition->reflectiveEntityDefinition, id, internalId, name);
 
 	this->waveLutThrottleFactorIncrement = 0;
 	this->amplitudeFactor = __I_TO_FIX10_6(1);
@@ -88,26 +88,26 @@ void WaterPond_constructor(WaterPond this, WaterPondDefinition* reflectiveEntity
 }
 
 // class's destructor
-void WaterPond_destructor(WaterPond this)
+void WaterPond::destructor(WaterPond this)
 {
 	ASSERT(this, "WaterPond::destructor: null this");
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void WaterPond_ready(WaterPond this, bool recursive)
+void WaterPond::ready(WaterPond this, bool recursive)
 {
 	ASSERT(this, "WaterPond::ready: null this");
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
-//	WaterPond_addSplashParticles(this);
+//	WaterPond::addSplashParticles(this);
 }
 
-__attribute__ ((unused)) static void WaterPond_addSplashParticles(WaterPond this)
+__attribute__ ((unused)) static void WaterPond::addSplashParticles(WaterPond this)
 {
 	ASSERT(this, "WaterPond::addSplashParticles: null this");
 
@@ -115,13 +115,13 @@ __attribute__ ((unused)) static void WaterPond_addSplashParticles(WaterPond this
 
 	extern EntityDefinition WATER_SPLASH_PS;
 
-	this->waterSplash = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &WATER_SPLASH_PS, -1, NULL, &position, NULL));
+	this->waterSplash = __SAFE_CAST(ParticleSystem, Entity::addChildEntity(__SAFE_CAST(Entity, this), &WATER_SPLASH_PS, -1, NULL, &position, NULL));
 
-	ParticleSystem_spawnAllParticles(this->waterSplash);
-	ParticleSystem_start(this->waterSplash);
+	ParticleSystem::spawnAllParticles(this->waterSplash);
+	ParticleSystem::start(this->waterSplash);
 }
 
-bool WaterPond_handleMessage(WaterPond this, void* telegram)
+bool WaterPond::handleMessage(WaterPond this, void* telegram)
 {
 	ASSERT(this, "WaterPond::handleMessage: null this");
 
@@ -131,27 +131,27 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 //	bool entityTypeChecked = true;
 
 	// handle messages that any state would handle here
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 	/*
 		case kCollision:
 		{
 			entityTypeChecked = false;
 
-			VirtualList collidingObjects = __SAFE_CAST(VirtualList, Telegram_getExtraInfo(telegram));
+			VirtualList collidingObjects = __SAFE_CAST(VirtualList, Telegram::getExtraInfo(telegram));
 
 			VirtualNode node = NULL;
 
-			for(node = VirtualList_begin(collidingObjects); node; node = VirtualNode_getNext(node))
+			for(node = VirtualList::begin(collidingObjects); node; node = VirtualNode::getNext(node))
 			{
-				Entity inGameEntity = __SAFE_CAST(Entity, VirtualNode_getData(node));
+				Entity inGameEntity = __SAFE_CAST(Entity, VirtualNode::getData(node));
 
-				switch(Entity_getInGameType(inGameEntity))
+				switch(Entity::getInGameType(inGameEntity))
 				{
 					case kHero:
 					case kSawBlade:
 
-						entityTypeChecked = Entity_isMoving(inGameEntity);
+						entityTypeChecked = Entity::isMoving(inGameEntity);
 						break;
 				}
 
@@ -183,10 +183,10 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 				}
 
 				this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntityDefinition->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntityDefinition->width)));
-				MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kStopReactToCollision);
-				MessageDispatcher_dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
+				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kStopReactToCollision);
+				MessageDispatcher::dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
 
-//				ParticleSystem_start(this->waterSplash);
+//				ParticleSystem::start(this->waterSplash);
 			}
 
 			break;
@@ -198,13 +198,13 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 
 			if(0 < this->waveLutThrottleFactorIncrement)
 			{
-				MessageDispatcher_dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
 			}
 			else
 			{
 				this->amplitudeFactor = __I_TO_FIX10_6(1);
 				this->waveLutThrottleFactorIncrement = 0;
-//				ParticleSystem_pause(this->waterSplash);
+//				ParticleSystem::pause(this->waterSplash);
 			}
 
 			this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntityDefinition->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntityDefinition->width)));
@@ -216,14 +216,14 @@ bool WaterPond_handleMessage(WaterPond this, void* telegram)
 	return false;
 }
 
-void WaterPond_applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet)
+void WaterPond::applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet)
 {
 	ASSERT(this, "WaterPond::applyReflection: null this");
 
 	ReflectiveEntityDefinition* reflectiveEntityDefinition = (ReflectiveEntityDefinition*)this->entityDefinition;
 	WaterPondDefinition* waterPondDefinition = (WaterPondDefinition*)this->entityDefinition;
 
-	WaterPond_drawReflection(this, currentDrawingFrameBufferSet,
+	WaterPond::drawReflection(this, currentDrawingFrameBufferSet,
 								this->position2D.x + reflectiveEntityDefinition->sourceDisplacement.x,
 								this->position2D.y + reflectiveEntityDefinition->sourceDisplacement.y,
 								this->position2D.x + reflectiveEntityDefinition->outputDisplacement.x,
@@ -241,7 +241,7 @@ void WaterPond_applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet)
 								waterPondDefinition->surfaceHeight);
 }
 
-inline void WaterPond_shiftPixels(int pixelShift, POINTER_TYPE* sourceValue, u32 nextSourceValue, POINTER_TYPE* remainderValue, u32 reflectionMask)
+inline void WaterPond::shiftPixels(int pixelShift, POINTER_TYPE* sourceValue, u32 nextSourceValue, POINTER_TYPE* remainderValue, u32 reflectionMask)
 {
 	*sourceValue &= reflectionMask;
 	*remainderValue &= reflectionMask;
@@ -261,7 +261,7 @@ inline void WaterPond_shiftPixels(int pixelShift, POINTER_TYPE* sourceValue, u32
 	}
 }
 
-void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
+void WaterPond::drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 								s16 xSourceStart, s16 ySourceStart,
 								s16 xOutputStart, s16 yOutputStart,
 								s16 width, s16 height,
@@ -371,7 +371,7 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 	int xOutputDistance = __ABS(xOutput - xOutputLimit);
 	int xTotal = xOutputDistance > xSourceDistance ? xSourceDistance : xOutputDistance;
 
-	u32 time = Game_getTime(Game_getInstance());
+	u32 time = Game::getTime(Game::getInstance());
 
 	this->waveLutIndex += waveLutIndexIncrement;
 
@@ -448,7 +448,7 @@ void WaterPond_drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 
 		for(; yOutput < yOutputLimit; ySource += ySourceIncrement)
 		{
-			WaterPond_shiftPixels(pixelShift, &sourceCurrentValueLeft, sourceNextValueLeft, &remainderLeftValue, reflectionMask);
+			WaterPond::shiftPixels(pixelShift, &sourceCurrentValueLeft, sourceNextValueLeft, &remainderLeftValue, reflectionMask);
 
 			sourceCurrentValueLeft &= effectiveContentMask;
 			sourceCurrentValueLeft |= (outputValueLeft & effectiveBackgroundMask);

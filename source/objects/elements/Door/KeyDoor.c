@@ -40,7 +40,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(KeyDoor, Door);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,68 +48,68 @@ __CLASS_DEFINITION(KeyDoor, Door);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(KeyDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(KeyDoor, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void KeyDoor_constructor(KeyDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void KeyDoor::constructor(KeyDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void KeyDoor_destructor(KeyDoor this)
+void KeyDoor::destructor(KeyDoor this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // ready
-void KeyDoor_ready(KeyDoor this, bool recursive __attribute__ ((unused)))
+void KeyDoor::ready(KeyDoor this, bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "KeyDoor::ready: null this");
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Key");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Key");
 }
 
-bool KeyDoor_hasDestination(KeyDoor this __attribute__ ((unused)))
+bool KeyDoor::hasDestination(KeyDoor this __attribute__ ((unused)))
 {
 	return true;
 }
 
-void KeyDoor_setOverlapping(KeyDoor this)
+void KeyDoor::setOverlapping(KeyDoor this)
 {
-	if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
+	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Opening");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Opening");
 	}
 
 	__CALL_BASE_METHOD(Door, setOverlapping, this);
 }
 
-void KeyDoor_unsetOverlapping(KeyDoor this)
+void KeyDoor::unsetOverlapping(KeyDoor this)
 {
-	if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
+	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closing");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closing");
 	}
 
 	__CALL_BASE_METHOD(Door, unsetOverlapping, this);
 }
 
-bool KeyDoor_canEnter(KeyDoor this __attribute__ ((unused)))
+bool KeyDoor::canEnter(KeyDoor this __attribute__ ((unused)))
 {
-	return ProgressManager_heroHasKey(ProgressManager_getInstance());
+	return ProgressManager::heroHasKey(ProgressManager::getInstance());
 }
 
-u32 KeyDoor_getHintType(KeyDoor this __attribute__ ((unused)))
+u32 KeyDoor::getHintType(KeyDoor this __attribute__ ((unused)))
 {
-	if(ProgressManager_heroHasKey(ProgressManager_getInstance()))
+	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{
 		return kEnterHint;
 	}

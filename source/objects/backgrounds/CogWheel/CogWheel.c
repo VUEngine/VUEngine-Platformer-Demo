@@ -40,7 +40,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(CogWheel, Entity);
+
 
 
 #undef COG_WHEEL_ROTATION_DELAY
@@ -51,9 +51,9 @@ __CLASS_DEFINITION(CogWheel, Entity);
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void CogWheel_onShakeCompleted(CogWheel this, Object eventFirer);
-static void CogWheel_rotate(CogWheel this);
-static void CogWheel_stop(CogWheel this);
+static void CogWheel::onShakeCompleted(CogWheel this, Object eventFirer);
+static void CogWheel::rotate(CogWheel this);
+static void CogWheel::stop(CogWheel this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -61,58 +61,58 @@ static void CogWheel_stop(CogWheel this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CogWheel, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(CogWheel, EntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void CogWheel_constructor(CogWheel this, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
+void CogWheel::constructor(CogWheel this, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, EntityDefinition, id, internalId, name);
+	Base::constructor(EntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void CogWheel_destructor(CogWheel this)
+void CogWheel::destructor(CogWheel this)
 {
 	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // ready method
-void CogWheel_ready(CogWheel this, bool recursive)
+void CogWheel::ready(CogWheel this, bool recursive)
 {
 	ASSERT(this, "CogWheel::ready: null this");
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
 	// start moving
-	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
+	MessageDispatcher::dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 
 	// listen for the shake end event
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
+	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel::onShakeCompleted, kEventShakeCompleted);
 
 	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.60f), __F_TO_FIX7_9(0.60f), __F_TO_FIX7_9(0.60f)};
 
-	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);}
+	Entity::setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);}
 
 // state's handle message
-bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
+bool CogWheel::handleMessage(CogWheel this, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kCogWheelMove:
 
-			CogWheel_rotate(this);
+			CogWheel::rotate(this);
 			break;
 
 		case kCogWheelStop:
 
-			CogWheel_stop(this);
+			CogWheel::stop(this);
 			break;
 	}
 
@@ -120,33 +120,33 @@ bool CogWheel_handleMessage(CogWheel this, Telegram telegram)
 }
 
 // rotate cogwheel
-static void CogWheel_rotate(CogWheel this)
+static void CogWheel::rotate(CogWheel this)
 {
 	this->transformation.localRotation.z += 1;
 
-	Entity_setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
+	Entity::setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);
 
 	// send delayed message to self to trigger next movement
-	MessageDispatcher_dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
+	MessageDispatcher::dispatchMessage(COG_WHEEL_ROTATION_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelMove, NULL);
 }
 
 // stop cogwheel
-static void CogWheel_stop(CogWheel this)
+static void CogWheel::stop(CogWheel this)
 {
 	// stop listening for the shake end event
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel_onShakeCompleted, kEventShakeCompleted);
+	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel::onShakeCompleted, kEventShakeCompleted);
 
 	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
 
 	// change sprite's mode
-//	Sprite_setMode(__SAFE_CAST(Sprite, VirtualList_front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
+//	Sprite::setMode(__SAFE_CAST(Sprite, VirtualList::front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
 }
 
-static void CogWheel_onShakeCompleted(CogWheel this, Object eventFirer __attribute__ ((unused)))
+static void CogWheel::onShakeCompleted(CogWheel this, Object eventFirer __attribute__ ((unused)))
 {
 	// stop moving
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelStop, NULL);
+	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelStop, NULL);
 }
 
 

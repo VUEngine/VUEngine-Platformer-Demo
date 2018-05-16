@@ -38,7 +38,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(LayerSwitchDoor, Door);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,36 +46,36 @@ __CLASS_DEFINITION(LayerSwitchDoor, Door);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(LayerSwitchDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(LayerSwitchDoor, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void LayerSwitchDoor::constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void LayerSwitchDoor_destructor(LayerSwitchDoor this)
+void LayerSwitchDoor::destructor(LayerSwitchDoor this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // state's handle message
-bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
+bool LayerSwitchDoor::handleMessage(LayerSwitchDoor this, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kHeroEnterDoor:
 
 			if(this->destinationDefinition)
 			{
 				// get global position of destination door
-				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), (char *)this->destinationDefinition->destinationName, true);
-				Vector3D destinationDoorPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
+				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container::getChildByName(__SAFE_CAST(Container, Game::getStage(Game::getInstance())), (char *)this->destinationDefinition->destinationName, true);
+				Vector3D destinationDoorPosition = *Container::getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
 
 				// apply offset
 				destinationDoorPosition.x += __PIXELS_TO_METERS(this->destinationDefinition->offset.x);
@@ -83,7 +83,7 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 				destinationDoorPosition.z += __PIXELS_TO_METERS(this->destinationDefinition->offset.z + this->destinationDefinition->offset.zDisplacement);
 
 				// set hero's position
-				Hero_getOutOfDoor(Hero_getInstance(), &destinationDoorPosition);
+				Hero::getOutOfDoor(Hero::getInstance(), &destinationDoorPosition);
 				// TODO: switch hero's palette according to new layer
 
 				return true;
@@ -91,5 +91,5 @@ bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram)
 			break;
 	}
 
-	return Base_handleMessage(this, telegram);
+	return Base::handleMessage(this, telegram);
 }

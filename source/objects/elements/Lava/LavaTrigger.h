@@ -35,32 +35,14 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define LavaTrigger_METHODS(ClassName)																	\
-		Entity_METHODS(ClassName)																		\
-
-#define LavaTrigger_SET_VTABLE(ClassName)																\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, LavaTrigger, handleMessage);											\
-
-__CLASS(LavaTrigger);
-
-#define LavaTrigger_ATTRIBUTES																			\
-		/* it is derived from */																		\
-		Entity_ATTRIBUTES																				\
-
 typedef EntityDefinition LavaTriggerDefinition;
 typedef const LavaTriggerDefinition LavaTriggerROMDef;
 
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(LavaTrigger, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void LavaTrigger_constructor(LavaTrigger this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void LavaTrigger_destructor(LavaTrigger this);
-bool LavaTrigger_handleMessage(LavaTrigger this, Telegram telegram);
+class LavaTrigger : Entity
+{
+	void constructor(LavaTrigger this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(LavaTrigger this, Telegram telegram);
+}
 
 
 #endif

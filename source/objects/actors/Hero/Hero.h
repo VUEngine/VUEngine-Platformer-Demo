@@ -75,118 +75,90 @@ enum HeroPowerUps
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Hero_METHODS(ClassName)																			\
-		Actor_METHODS(ClassName)																		\
-
-#define Hero_SET_VTABLE(ClassName)																		\
-		Actor_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, Hero, ready);															\
-		__VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);										\
-		__VIRTUAL_SET(ClassName, Hero, handleMessage);													\
-		__VIRTUAL_SET(ClassName, Hero, suspend);														\
-		__VIRTUAL_SET(ClassName, Hero, resume);															\
-		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
-		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
-		__VIRTUAL_SET(ClassName, Hero, getFrictionOnCollision);											\
-		__VIRTUAL_SET(ClassName, Hero, enterCollision);													\
-		__VIRTUAL_SET(ClassName, Hero, updateCollision);												\
-		__VIRTUAL_SET(ClassName, Hero, syncRotationWithBody);											\
-		__VIRTUAL_SET(ClassName, Hero, exitCollision);													\
-		__VIRTUAL_SET(ClassName, Hero, getAxesForShapeSyncWithDirection);								\
-
-__CLASS(Hero);
-
-#define Hero_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		Actor_ATTRIBUTES																				\
-		/* a reference to the last door the hero passed */												\
-		Door currentlyOverlappedDoor;																	\
-		/* hint entity */																				\
-		Entity hint;																					\
-		/* feet dust */																					\
-		ParticleSystem feetDust;																		\
-		/* bounding box to control camera's movement */													\
-		Entity cameraBoundingBox;																		\
-		/* used to know if gap must be changed */														\
-		Direction inputDirection;																		\
-		/* hero has energy	*/																			\
-		u8 energy;																						\
-		/* boost flag */																				\
-		bool boost;																						\
-		/* number of collected coins */																	\
-		u8 coins;																						\
-		/* flag for collected key */																	\
-		bool hasKey;																					\
-		/* currently active power-up */																	\
-		u8 powerUp;																						\
-		/* number of jumps performed (for double jump) */												\
-		s8 jumps;																						\
-		/* flag for invincible mode (after being hit) */												\
-		bool invincible;																				\
-		/* flag to keep applying force to the x axis */													\
-		bool keepAddingForce;																			\
-		/* flag to keep applying force to the x axis */													\
-		bool underWater;																				\
-
 typedef const ActorDefinition HeroDefinition;
 typedef const HeroDefinition HeroROMDef;
 
+class Hero : Actor
+{
+	/* a reference to the last door the hero passed */
+	Door currentlyOverlappedDoor;
+	/* hint entity */
+	Entity hint;
+	/* feet dust */
+	ParticleSystem feetDust;
+	/* bounding box to control camera's movement */
+	Entity cameraBoundingBox;
+	/* used to know if gap must be changed */
+	Direction inputDirection;
+	/* hero has energy	*/
+	u8 energy;
+	/* boost flag */
+	bool boost;
+	/* number of collected coins */
+	u8 coins;
+	/* flag for collected key */
+	bool hasKey;
+	/* currently active power-up */
+	u8 powerUp;
+	/* number of jumps performed (for double jump) */
+	s8 jumps;
+	/* flag for invincible mode (after being hit) */
+	bool invincible;
+	/* flag to keep applying force to the x axis */
+	bool keepAddingForce;
+	/* flag to keep applying force to the x axis */
+	bool underWater;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
+	static Hero getInstance();
+	void constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
+	void addForce(Hero this, u16 axis, bool enableAddingForce);
+	void stopAddingForce(Hero this);
+	void startedMovingOnAxis(Hero this, u16 axis);
+	bool stopMovingOnAxis(Hero this, u16 axis);
+	void move(Hero this);
+	void jump(Hero this, bool checkIfYMovement);
+	void addMomentumToJump(Hero this);
+	void checkDirection(Hero this, u32 currentPressedKey, char * animation);
+	void takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
+	void flash(Hero this);
+	void toggleFlashPalette(Hero this);
+	void resetPalette(Hero this);
+	void disableBoost(Hero this);
+	void enableBoost(Hero this);
+	Door getOverlappedDoor(Hero this);
+	void enterDoor(Hero this);
+	void showHint(Hero this, u32 hintType);
+	void hideHint(Hero this);
+	void lookFront(Hero this);
+	void lookBack(Hero this);
+	void die(Hero this);
+	void collectKey(Hero this);
+	bool hasKey(Hero this);
+	void collectPowerUp(Hero this, u8 powerUp);
+	u8 getPowerUp(Hero this);
+	u8 getEnergy(Hero this);
+	void setInvincible(Hero this, bool invincible);
+	bool isInvincible(Hero this);
+	void lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
+	void getOutOfDoor(Hero this, Vector3D* outOfDoorPosition);
+	bool isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation);
+	void onPowerUpTransitionComplete(Hero this, Object eventFirer);
+	void capVelocity(Hero this, bool discardPreviousMessages);
+	override void ready(Hero this, bool recursive);
+	override bool handlePropagatedMessage(Hero this, int message);
+	override bool handleMessage(Hero this, Telegram telegram);
+	override void suspend(Hero this);
+	override void resume(Hero this);
+	override u16 getAxisForFlipping(Hero this);
+	override bool isAffectedByRelativity(Hero this);
+	override fix10_6 getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
+	override bool enterCollision(Hero this, const CollisionInformation* collisionInformation);
+	override bool updateCollision(Hero this, const CollisionInformation* collisionInformation);
+	override void syncRotationWithBody(Hero this);
+	override void exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
+	override u16 getAxesForShapeSyncWithDirection(Hero this);
+}
 
-Hero Hero_getInstance();
-
-__CLASS_NEW_DECLARE(Hero, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
-
-void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
-void Hero_destructor(Hero this);
-void Hero_ready(Hero this, bool recursive);
-void Hero_addForce(Hero this, u16 axis, bool enableAddingForce);
-void Hero_stopAddingForce(Hero this);
-void Hero_startedMovingOnAxis(Hero this, u16 axis);
-bool Hero_stopMovingOnAxis(Hero this, u16 axis);
-void Hero_move(Hero this);
-void Hero_jump(Hero this, bool checkIfYMovement);
-void Hero_addMomentumToJump(Hero this);
-void Hero_checkDirection(Hero this, u32 currentPressedKey, char * animation);
-void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
-void Hero_flash(Hero this);
-void Hero_toggleFlashPalette(Hero this);
-void Hero_resetPalette(Hero this);
-void Hero_disableBoost(Hero this);
-void Hero_enableBoost(Hero this);
-Door Hero_getOverlappedDoor(Hero this);
-void Hero_enterDoor(Hero this);
-void Hero_showHint(Hero this, u32 hintType);
-void Hero_hideHint(Hero this);
-void Hero_lookFront(Hero this);
-void Hero_lookBack(Hero this);
-void Hero_die(Hero this);
-void Hero_collectKey(Hero this);
-bool Hero_hasKey(Hero this);
-void Hero_collectPowerUp(Hero this, u8 powerUp);
-u8 Hero_getPowerUp(Hero this);
-u8 Hero_getEnergy(Hero this);
-void Hero_setInvincible(Hero this, bool invincible);
-bool Hero_isInvincible(Hero this);
-fix10_6 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
-bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInformation);
-bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInformation);
-bool Hero_handleMessage(Hero this, Telegram telegram);
-bool Hero_handlePropagatedMessage(Hero this, int message);
-void Hero_suspend(Hero this);
-void Hero_resume(Hero this);
-void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
-void Hero_getOutOfDoor(Hero this, Vector3D* outOfDoorPosition);
-bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation);
-u16 Hero_getAxisForFlipping(Hero this);
-void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
-void Hero_capVelocity(Hero this, bool discardPreviousMessages);
-bool Hero_isAffectedByRelativity(Hero this);
-void Hero_syncRotationWithBody(Hero this);
-void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
-u16 Hero_getAxesForShapeSyncWithDirection(Hero this);
 
 #endif
+

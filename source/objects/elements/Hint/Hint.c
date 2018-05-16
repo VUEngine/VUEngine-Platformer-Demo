@@ -38,7 +38,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Hint, AnimatedEntity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,41 +46,41 @@ __CLASS_DEFINITION(Hint, AnimatedEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hint, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Hint, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Hint_constructor(Hint this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Hint::constructor(Hint this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Hint::constructor: null this");
 
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 
 	this->type = kEnterHint;
 	this->languageAnimName = NULL;
 }
 
 // class's destructor
-void Hint_destructor(Hint this)
+void Hint::destructor(Hint this)
 {
 	ASSERT(this, "Hint::destructor: null this");
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-bool Hint_handleMessage(Hint this, void* telegram)
+bool Hint::handleMessage(Hint this, void* telegram)
 {
 	ASSERT(this, "Hint::handleMessage: null this");
 
 	// handle messages that any state would handle here
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kHintPlayAnimation:
 
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), this->languageAnimName);
+			AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), this->languageAnimName);
 			return true;
 			break;
 	}
@@ -88,43 +88,43 @@ bool Hint_handleMessage(Hint this, void* telegram)
 	return false;
 }
 
-void Hint_resume(Hint this)
+void Hint::resume(Hint this)
 {
 	ASSERT(this, "Hint::resume: null this");
 
 	__CALL_BASE_METHOD(AnimatedEntity, resume, this);
 
-	Hint_onHintOpened(this, NULL);
+	Hint::onHintOpened(this, NULL);
 }
 
-void Hint_open(Hint this, u8 hintType)
+void Hint::open(Hint this, u8 hintType)
 {
 	ASSERT(this, "Hint::open: null this");
 
 	this->type = hintType;
 
-	Entity_show(__SAFE_CAST(Entity, this));
+	Entity::show(__SAFE_CAST(Entity, this));
 
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
 }
 
-void Hint_close(Hint this)
+void Hint::close(Hint this)
 {
 	ASSERT(this, "Hint::close: null this");
 
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHintPlayAnimation);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHintPlayAnimation);
 
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Close");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Close");
 }
 
-void Hint_onCloseDone(Hint this, Object eventFirer __attribute__ ((unused)))
+void Hint::onCloseDone(Hint this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Hint::onCloseDone: null this");
 
-	Entity_hide(__SAFE_CAST(Entity, this));
+	Entity::hide(__SAFE_CAST(Entity, this));
 }
 
-void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
+void Hint::onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Hint::onHintOpened: null this");
 
@@ -134,7 +134,7 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 	{
 		default:
 		case kEnterHint:
-			switch(I18n_getActiveLanguage(I18n_getInstance()))
+			switch(I18n::getActiveLanguage(I18n::getInstance()))
 			{
 				default:
 				case 0:
@@ -156,7 +156,7 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 			break;
 
 		case kPickUpHint:
-			switch(I18n_getActiveLanguage(I18n_getInstance()))
+			switch(I18n::getActiveLanguage(I18n::getInstance()))
 			{
 				default:
 				case 0:
@@ -182,5 +182,5 @@ void Hint_onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 			break;
 	}
 
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, NULL);
+	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, NULL);
 }

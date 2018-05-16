@@ -34,14 +34,17 @@
 //										FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_waterFall20x100(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-void PostProcessingEffects_dummy(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+static class PostProcessingEffects : Object
+{
+	static void waterFall20x100(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+	static void rain(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+	static void lantern(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+	static void wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+	static void rhombusEmitter(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+	static void tiltScreen(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+	static void dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+	static void lightingTest(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+	static void dummy(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
+}
 
 #endif

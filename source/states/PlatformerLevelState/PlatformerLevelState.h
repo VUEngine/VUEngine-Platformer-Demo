@@ -48,43 +48,6 @@ enum PlatformerLevelModes
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define PlatformerLevelState_METHODS(ClassName)															\
-		GameState_METHODS(ClassName)																	\
-
-// declare the virtual methods which are redefined
-#define PlatformerLevelState_SET_VTABLE(ClassName)														\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);											\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);											\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);										\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);											\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, processMessage);									\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, processUserInput);								\
-
-__CLASS(PlatformerLevelState);
-
-#define PlatformerLevelState_ATTRIBUTES																	\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-		/* the currently loaded level */																\
-		PlatformerLevelDefinition* currentLevel;														\
-		/* the currently loaded entry point */															\
-		StageEntryPointDefinition* currentStageEntryPoint;												\
-		/* the last reached checkpoint */																\
-		StageEntryPointDefinition* currentCheckPoint;													\
-		/* to allow moving the screen */																\
-		u8 mode;																						\
-		/* in-game clock */																				\
-		Clock clock;																					\
-		/* previous user input */																		\
-		UserInput userInput;																			\
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S ROM DECLARATION
-//---------------------------------------------------------------------------------------------------------
-
 typedef struct StageEntryPointDefinition
 {
 	// the stage to load
@@ -166,20 +129,36 @@ enum PlatformerLevelStateMessageTypes
 };
 
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
+singleton class PlatformerLevelState : GameState
+{
+	/* the currently loaded level */
+	PlatformerLevelDefinition* currentLevel;
+	/* the currently loaded entry point */
+	StageEntryPointDefinition* currentStageEntryPoint;
+	/* the last reached checkpoint */
+	StageEntryPointDefinition* currentCheckPoint;
+	/* to allow moving the screen */
+	u8 mode;
+	/* in-game clock */
+	Clock clock;
+	/* previous user input */
+	UserInput userInput;
 
-PlatformerLevelState PlatformerLevelState_getInstance(void);
-
-Clock PlatformerLevelState_getClock(PlatformerLevelState this);
-PlatformerLevelDefinition* PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState this);
-void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition);
-void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
-void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
-void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
-UserInput PlatformerLevelState_getUserInput(PlatformerLevelState this);
-void PlatformerLevelState_processUserInput(PlatformerLevelState this, UserInput userInput);
+	static PlatformerLevelState getInstance(void);
+	Clock getClock(PlatformerLevelState this);
+	PlatformerLevelDefinition* getCurrentLevelDefinition(PlatformerLevelState this);
+	void startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition);
+	void enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
+	void setModeToPaused(PlatformerLevelState this);
+	void setModeToPlaying(PlatformerLevelState this);
+	UserInput getUserInput(PlatformerLevelState this);
+	override void enter(PlatformerLevelState this, void* owner);
+	override void exit(PlatformerLevelState this, void* owner);
+	override void suspend(PlatformerLevelState this, void* owner);
+	override void resume(PlatformerLevelState this, void* owner);
+	override bool processMessage(PlatformerLevelState this, void* owner, Telegram telegram);
+	override void processUserInput(PlatformerLevelState this, UserInput userInput);
+}
 
 
 #endif

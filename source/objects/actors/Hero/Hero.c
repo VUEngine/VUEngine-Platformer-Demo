@@ -50,7 +50,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Hero, Actor);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -74,16 +74,16 @@ extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void Hero_onUserInput(Hero this, Object eventFirer);
-void Hero_enterDoor(Hero this);
-void Hero_hideHint(Hero this);
-void Hero_updateSprite(Hero this);
-static void Hero_addHint(Hero this);
-static void Hero_addFeetDust(Hero this);
-static void Hero_slide(Hero this);
-static void Hero_showDust(Hero this, bool autoHideDust);
-static void Hero_hideDust(Hero this);
-void Hero_losePowerUp(Hero this);
+static void Hero::onUserInput(Hero this, Object eventFirer);
+void Hero::enterDoor(Hero this);
+void Hero::hideHint(Hero this);
+void Hero::updateSprite(Hero this);
+static void Hero::addHint(Hero this);
+static void Hero::addFeetDust(Hero this);
+static void Hero::slide(Hero this);
+static void Hero::showDust(Hero this, bool autoHideDust);
+static void Hero::hideDust(Hero this);
+void Hero::losePowerUp(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -94,29 +94,25 @@ void Hero_losePowerUp(Hero this);
 Hero hero = NULL;
 
 // there can only be one hero instantiated
-Hero Hero_getInstance()
+Hero Hero::getInstance()
 {
 	return hero;
 }
 
-void Hero_setInstance(Hero instance)
+void Hero::setInstance(Hero instance)
 {
 	ASSERT(!hero, "Hero::setInstance: already instantiated");
 
 	hero = instance;
 }
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Hero, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Hero, heroDefinition, id, internalId, name);
-
 // class's constructor
-void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
+void Hero::constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Hero::constructor: null this");
 
 	// construct base
-	Base_constructor(this, (ActorDefinition*)heroDefinition, id, internalId, name);
+	Base::constructor((ActorDefinition*)heroDefinition, id, internalId, name);
 
 	// construct the game state machine
 	this->stateMachine = __NEW(StateMachine, this);
@@ -136,29 +132,29 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	this->keepAddingForce = false;
 	this->underWater = false;
 
-	Hero_setInstance(this);
+	Hero::setInstance(this);
 
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onUserInput, kEventUserInput);
+	Object::addEventListener(__SAFE_CAST(Object, PlatformerLevelState::getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero::onUserInput, kEventUserInput);
 
-	this->inputDirection = Entity_getDirection(__SAFE_CAST(Entity, this));
+	this->inputDirection = Entity::getDirection(__SAFE_CAST(Entity, this));
 }
 
 // class's destructor
-void Hero_destructor(Hero this)
+void Hero::destructor(Hero this)
 {
 	ASSERT(this, "Hero::destructor: null this");
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
 	// remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onUserInput, kEventUserInput);
+	Object::removeEventListener(__SAFE_CAST(Object, PlatformerLevelState::getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero::onUserInput, kEventUserInput);
 
 	// announce my dead
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHeroDied);
+	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventHeroDied);
 
 	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
 	// free the instance pointers
 	this->feetDust = NULL;
@@ -168,46 +164,46 @@ void Hero_destructor(Hero this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Hero_ready(Hero this, bool recursive)
+void Hero::ready(Hero this, bool recursive)
 {
 	ASSERT(this, "Hero::ready: null this");
 
-	Entity_informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
+	Entity::informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
 	// override with progress from progress manager
-	ProgressManager progressManager = ProgressManager_getInstance();
+	ProgressManager progressManager = ProgressManager::getInstance();
 	if(progressManager)
 	{
-		this->energy = ProgressManager_getHeroCurrentEnergy(progressManager);
+		this->energy = ProgressManager::getHeroCurrentEnergy(progressManager);
 
-		u8 currentPowerUp = ProgressManager_getHeroCurrentPowerUp(progressManager);
+		u8 currentPowerUp = ProgressManager::getHeroCurrentPowerUp(progressManager);
 		if(currentPowerUp != this->powerUp)
 		{
 			this->powerUp = currentPowerUp;
-			Hero_updateSprite(this);
+			Hero::updateSprite(this);
 		}
 
-		this->hasKey = ProgressManager_heroHasKey(ProgressManager_getInstance());
+		this->hasKey = ProgressManager::heroHasKey(ProgressManager::getInstance());
 	}
 
 	// initialize me as idle
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+	StateMachine::swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle::getInstance()));
 
-	Hero_addHint(this);
-	Hero_addFeetDust(this);
+	Hero::addHint(this);
+	Hero::addFeetDust(this);
 }
 
-void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
+void Hero::locateOverNextFloor(Hero this __attribute__ ((unused)))
 {
 /*	Vector3D direction = {0, 1, 0};
 
-	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(Game_getCollisionManager(Game_getInstance()), this->shape, direction);
+	SpatialObject collidingSpatialObject = CollisionManager::searchNextObjectOfCollision(Game::getCollisionManager(Game::getInstance()), this->shape, direction);
 	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
 
 	if(collidingSpatialObject)
@@ -219,13 +215,13 @@ void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 			__I_TO_FIX10_6(0),
 		};
 
-		Shape_resolveCollision(this->shape, VirtualList_front(this->shapes), collidingShapesToRemove, displacement, true);
+		Shape::resolveCollision(this->shape, VirtualList::front(this->shapes), collidingShapesToRemove, displacement, true);
 	}
 	*/
 }
 
 // make him jump
-void Hero_jump(Hero this, bool checkIfYMovement)
+void Hero::jump(Hero this, bool checkIfYMovement)
 {
 	ASSERT(this, "Hero::jump: null this");
 
@@ -244,7 +240,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 			// init a force to add to the hero's momentum
 			Force force = {0, 0, 0};
 
-			fix10_6 yBouncingPlaneNormal = Body_getLastNormalDirection(this->body).y;
+			fix10_6 yBouncingPlaneNormal = Body::getLastNormalDirection(this->body).y;
 
 			yBouncingPlaneNormal = yBouncingPlaneNormal ? yBouncingPlaneNormal : -__1I_FIX10_6;
 
@@ -261,21 +257,21 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				this->jumps = 1;
 
 				// we're leaving ground with this jump
-				//Hero_startedMovingOnAxis(this, __Y_AXIS);
+				//Hero::startedMovingOnAxis(this, __Y_AXIS);
 
 				// add more force when running, normal force otherwise
 				force.y = __FIX10_6_MULT(__ABS(yBouncingPlaneNormal), this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the hero jump
-				Actor_addForce(__SAFE_CAST(Actor, this), &force);
+				Actor::addForce(__SAFE_CAST(Actor, this), &force);
 			}
 			else
 			{
-				// hack to avoid the processing of kBodyStopped message triggered by the call to Actor_stopMovement
+				// hack to avoid the processing of kBodyStopped message triggered by the call to Actor::stopMovement
 				this->jumps = -1;
 
 				// stop movement to gain full momentum of the jump force that will be added
-				Actor_stopMovement(__SAFE_CAST(Actor, this), __Y_AXIS);
+				Actor::stopMovement(__SAFE_CAST(Actor, this), __Y_AXIS);
 
 				// set second jump performed
 				this->jumps = 2;
@@ -284,23 +280,23 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 				force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
 
 				// add the force to actually make the hero jump
-				Actor_addForce(__SAFE_CAST(Actor, this), &force);
+				Actor::addForce(__SAFE_CAST(Actor, this), &force);
 
 				// show dust
-				Hero_showDust(this, true);
+				Hero::showDust(this, true);
 			}
 
 			// play jump animation
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Jump");
+			AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Jump");
 
 			// play jump sound
-			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transformation.globalPosition);
+			SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
 		}
 	}
 }
 
 // keep movement
-void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
+void Hero::addForce(Hero this, u16 axis, bool enableAddingForce)
 {
 	ASSERT(this, "Hero::addForce: null this");
 
@@ -318,17 +314,17 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 
 	maxVelocity = this->underWater ? maxVelocity >> 1: maxVelocity;
 
-	Velocity velocity = Body_getVelocity(this->body);
+	Velocity velocity = Body::getVelocity(this->body);
 
-	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
+	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
 
 	if(direction.x != this->inputDirection.x ||
 		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
 		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
-		Actor_hasChangedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
-		Actor_hasChangedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
+		Actor::hasChangedDirection(__SAFE_CAST(Actor, this), __X_AXIS) ||
+		Actor::hasChangedDirection(__SAFE_CAST(Actor, this), __Z_AXIS))
 	{
-		fix10_6 inputForce = !Body_getNormal(this->body).y ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
+		fix10_6 inputForce = !Body::getNormal(this->body).y ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix10_6 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
 		fix10_6 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
@@ -338,11 +334,11 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 			zForce
 		};
 
-		Actor_addForce(__SAFE_CAST(Actor, this), &force);
+		Actor::addForce(__SAFE_CAST(Actor, this), &force);
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != Body_getMovementType(this->body).x || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body_getMovementOnAllAxes(this->body))))
+		if(__UNIFORM_MOVEMENT != Body::getMovementType(this->body).x || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body::getMovementOnAllAxes(this->body))))
 		{
 			Velocity newVelocity =
 			{
@@ -351,46 +347,46 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 				(__Z_AXIS & axis) ? ((int)maxVelocity * this->inputDirection.z) : 0,
 			};
 
-			Body_moveUniformly(this->body, newVelocity);
+			Body::moveUniformly(this->body, newVelocity);
 		}
 	}
 }
 
-static void Hero_slide(Hero this)
+static void Hero::slide(Hero this)
 {
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Slide");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Slide");
 
-	Hero_showDust(this, false);
+	Hero::showDust(this, false);
 }
 
-static void Hero_showDust(Hero this, bool autoHideDust)
+static void Hero::showDust(Hero this, bool autoHideDust)
 {
 	if(this->feetDust)
 	{
-		ParticleSystem_start(this->feetDust);
+		ParticleSystem::start(this->feetDust);
 	}
 
 	if(autoHideDust)
 	{
 		// stop the dust after some time
-		MessageDispatcher_dispatchMessage(200, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroStopFeetDust, NULL);
+		MessageDispatcher::dispatchMessage(200, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroStopFeetDust, NULL);
 	}
 }
 
-static void Hero_hideDust(Hero this)
+static void Hero::hideDust(Hero this)
 {
 	if(this->feetDust)
 	{
-		ParticleSystem_pause(this->feetDust);
+		ParticleSystem::pause(this->feetDust);
 	}
 }
 
 // start movement
-void Hero_stopAddingForce(Hero this)
+void Hero::stopAddingForce(Hero this)
 {
 	ASSERT(this, "Hero::stopMovement: null this");
 
-	Velocity velocity = Body_getVelocity(this->body);
+	Velocity velocity = Body::getVelocity(this->body);
 
 	this->keepAddingForce = false;
 
@@ -400,9 +396,9 @@ void Hero_stopAddingForce(Hero this)
 //	this->inputDirection.z = 0;
 
 	// if walking over something
-	if(0 > Body_getNormal(this->body).y)
+	if(0 > Body::getNormal(this->body).y)
 	{
-		Hero_slide(this);
+		Hero::slide(this);
 	}
 
 	// begin to decelerate
@@ -422,33 +418,33 @@ void Hero_stopAddingForce(Hero this)
 			zForce
 		};
 
-		Actor_addForce(__SAFE_CAST(Actor, this), &force);
+		Actor::addForce(__SAFE_CAST(Actor, this), &force);
 	}
 	else
 	{
-		Hero_stopMovingOnAxis(this, __X_AXIS | __Z_AXIS);
+		Hero::stopMovingOnAxis(this, __X_AXIS | __Z_AXIS);
 	}
 }
 
 // started moving over axis
-void Hero_startedMovingOnAxis(Hero this, u16 axis)
+void Hero::startedMovingOnAxis(Hero this, u16 axis)
 {
 	if(__Y_AXIS & axis)
 	{
-		Hero_hideDust(this);
-		Hero_capVelocity(this, true);
+		Hero::hideDust(this);
+		Hero::capVelocity(this, true);
 	}
 
 	// start movement
-	if(__SAFE_CAST(State, HeroMoving_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+	if(__SAFE_CAST(State, HeroMoving::getInstance()) != StateMachine::getCurrentState(this->stateMachine))
 	{
 		if(__X_AXIS & axis)
 		{
 			this->keepAddingForce = true;
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
+			AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 		}
 
-		StateMachine_swapState(this->stateMachine, __SAFE_CAST(State,  HeroMoving_getInstance()));
+		StateMachine::swapState(this->stateMachine, __SAFE_CAST(State,  HeroMoving::getInstance()));
 	}
 	else
 	{
@@ -460,47 +456,47 @@ void Hero_startedMovingOnAxis(Hero this, u16 axis)
 }
 
 // stop moving over axis
-bool Hero_stopMovingOnAxis(Hero this, u16 axis)
+bool Hero::stopMovingOnAxis(Hero this, u16 axis)
 {
 	ASSERT(this, "Hero::stopMovingOnAxis: null this");
 
 	// if being hit do nothing
-	if(!Body_isActive(this->body))
+	if(!Body::isActive(this->body))
 	{
 		return false;
 	}
 
-	bool movementState = Body_getMovementOnAllAxes(this->body);
+	bool movementState = Body::getMovementOnAllAxes(this->body);
 
 	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
 
-		Hero_hideDust(this);
+		Hero::hideDust(this);
 	}
 
 	// if there is something below
-	if(0 > Body_getNormal(this->body).y)
+	if(0 > Body::getNormal(this->body).y)
 	{
 		if(__Y_AXIS & axis)
 		{
-			MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
 
-			Hero_lockCameraTriggerMovement(this, __Y_AXIS, true);
+			Hero::lockCameraTriggerMovement(this, __Y_AXIS, true);
 
 			this->jumps = 0;
 
-			if(Body_getVelocity(this->body).x)
+			if(Body::getVelocity(this->body).x)
 			{
 				if(this->inputDirection.x)
 				{
-					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
+					AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 
-					Hero_showDust(this, true);
+					Hero::showDust(this, true);
 				}
 				else
 				{
-					Hero_slide(this);
+					Hero::slide(this);
 				}
 			}
 		}
@@ -509,21 +505,21 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 		{
 			this->keepAddingForce = false;
 			this->jumps = 0;
-			StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+			StateMachine::swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle::getInstance()));
 			return true;
 		}
 
-		if(!movementState && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+		if(!movementState && __SAFE_CAST(State, HeroIdle::getInstance()) != StateMachine::getCurrentState(this->stateMachine))
 		{
 			this->keepAddingForce = false;
 			this->jumps = 0;
-			StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+			StateMachine::swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle::getInstance()));
 			return true;
 		}
 		else
 		{
 			// make sure that hitting the floor doesn't slow me down because of the friction
-			if(__UNIFORM_MOVEMENT == Body_getMovementType(this->body).x)
+			if(__UNIFORM_MOVEMENT == Body::getMovementType(this->body).x)
 			{
 				fix10_6 maxVelocity = HERO_BOOST_VELOCITY_X;
 
@@ -534,29 +530,29 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 					0,
 				};
 
-				Body_moveUniformly(this->body, newVelocity);
+				Body::moveUniformly(this->body, newVelocity);
 			}
 
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
+			AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 		}
 	}
 	else
 	{
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Fall");
 	}
 
 	return false;
 }
 
 // check direction
-void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
+void Hero::checkDirection(Hero this, u32 pressedKey, char* animation)
 {
 	ASSERT(this, "Hero::checkDirection: null this");
 
-	bool movementState = Body_getMovementOnAllAxes(this->body);
-	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
+	bool movementState = Body::getMovementOnAllAxes(this->body);
+	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
 
-	Hero_hideDust(this);
+	Hero::hideDust(this);
 
 	if(K_LR & pressedKey)
 	{
@@ -564,9 +560,9 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 
 		if(this->feetDust)
 		{
-			Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
+			Vector3D position = *Container::getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 			position.x = __ABS(position.x) * -1;
-			Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
+			Container::setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 		}
 	}
 	else if(K_LL & pressedKey)
@@ -575,9 +571,9 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 
 		if(this->feetDust)
 		{
-			Vector3D position = *Container_getLocalPosition(__SAFE_CAST(Container, this->feetDust));
+			Vector3D position = *Container::getLocalPosition(__SAFE_CAST(Container, this->feetDust));
 			position.x = __ABS(position.x);
-			Container_setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
+			Container::setLocalPosition(__SAFE_CAST(Container, this->feetDust), &position);
 		}
 	}
 	else if(K_LU & pressedKey)
@@ -591,22 +587,22 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 
 	if(direction.x != this->inputDirection.x)
 	{
-		Hero_lockCameraTriggerMovement(this, __X_AXIS, true);
+		Hero::lockCameraTriggerMovement(this, __X_AXIS, true);
 	}
 
 	if(animation && !(__Y_AXIS & movementState))
 	{
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), animation);
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), animation);
 	}
 }
 
-void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
+void Hero::lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 {
 	if(this->cameraBoundingBox)
 	{
-		Vector3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
+		Vector3DFlag overridePositionFlag = CameraTriggerEntity::getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
 
-		Vector3DFlag positionFlag = CustomCameraMovementManager_getPositionFlag(CustomCameraMovementManager_getInstance());
+		Vector3DFlag positionFlag = CustomCameraMovementManager::getPositionFlag(CustomCameraMovementManager::getInstance());
 
 		if(__X_AXIS & axisToLockUp)
 		{
@@ -620,34 +616,34 @@ void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 			overridePositionFlag.y = locked;
 		}
 
-		CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
-		CustomCameraMovementManager_setPositionFlag(CustomCameraMovementManager_getInstance(), positionFlag);
+		CameraTriggerEntity::setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
+		CustomCameraMovementManager::setPositionFlag(CustomCameraMovementManager::getInstance(), positionFlag);
 	}
 }
 
-void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
+void Hero::takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
 {
 #ifdef GOD_MODE
 	return;
 #endif
 
-	if(!Hero_isInvincible(this) || !invincibleWins)
+	if(!Hero::isInvincible(this) || !invincibleWins)
 	{
 		if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
 		{
-			Hero_setInvincible(this, true);
+			Hero::setInvincible(this, true);
 
 			// reset invincible a bit later
-			MessageDispatcher_dispatchMessage(HERO_FLASH_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroStopInvincibility, NULL);
+			MessageDispatcher::dispatchMessage(HERO_FLASH_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroStopInvincibility, NULL);
 
 			// start flashing of hero
-			MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
+			MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
 
 			// lose power-up or reduce energy
 			if(this->powerUp != kPowerUpNone)
 			{
-				Hero_losePowerUp(this);
+				Hero::losePowerUp(this);
 			}
 			else
 			{
@@ -656,266 +652,266 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 
 			if(pause)
 			{
-				Actor_stopAllMovement(__SAFE_CAST(Actor, this));
-				Game_disableKeypad(Game_getInstance());
-				GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
-				//GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, collidingObject);
+				Actor::stopAllMovement(__SAFE_CAST(Actor, this));
+				Game::disableKeypad(Game::getInstance());
+				GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
+				//GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
+				MessageDispatcher::dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, collidingObject);
 			}
 		}
 		else
 		{
-			Game_disableKeypad(Game_getInstance());
-			Hero_setInvincible(this, true);
+			Game::disableKeypad(Game::getInstance());
+			Hero::setInvincible(this, true);
 			this->energy = 0;
-			Hero_flash(this);
-			GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
-			GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
-			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
+			Hero::flash(this);
+			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
+			GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
+			Entity::activateShapes(__SAFE_CAST(Entity, this), false);
+			MessageDispatcher::dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
 		}
 
 		// start short screen shake
-		Camera_startEffect(Camera_getInstance(), kShake, 200);
+		Camera::startEffect(Camera::getInstance(), kShake, 200);
 
 		// play hit sound
-		SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transformation.globalPosition);
+		SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
 
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Hit");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Hit");
 
 		// inform others to update ui etc
-		Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHitTaken);
+		Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventHitTaken);
 	}
 }
 
 // flash after being hit
-void Hero_flash(Hero this)
+void Hero::flash(Hero this)
 {
 	ASSERT(this, "Hero::flash: null this");
 
 	// only flash as long as hero is invincible
-	if(Hero_isInvincible(this))
+	if(Hero::isInvincible(this))
 	{
 		// toggle between original and flash palette
-		Hero_toggleFlashPalette(this);
+		Hero::toggleFlashPalette(this);
 
 		// next flash state change after HERO_FLASH_INTERVAL milliseconds
-		MessageDispatcher_dispatchMessage(HERO_FLASH_INTERVAL, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
+		MessageDispatcher::dispatchMessage(HERO_FLASH_INTERVAL, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
 	}
 	else
 	{
 		// set palette back to original
-		Hero_resetPalette(this);
+		Hero::resetPalette(this);
 	}
 }
 
-void Hero_toggleFlashPalette(Hero this)
+void Hero::toggleFlashPalette(Hero this)
 {
 	// get all of the hero's sprites and loop through them
-	VirtualList sprites = Entity_getSprites(__SAFE_CAST(Entity, this));
-	VirtualNode node = VirtualList_begin(sprites);
-	for(; node; node = VirtualNode_getNext(node))
+	VirtualList sprites = Entity::getSprites(__SAFE_CAST(Entity, this));
+	VirtualNode node = VirtualList::begin(sprites);
+	for(; node; node = VirtualNode::getNext(node))
 	{
 		// get sprite's texture
-		Sprite sprite = __SAFE_CAST(Sprite, VirtualNode_getData(node));
-		Texture texture = Sprite_getTexture(sprite);
+		Sprite sprite = __SAFE_CAST(Sprite, VirtualNode::getData(node));
+		Texture texture = Sprite::getTexture(sprite);
 
 		// get original palette
-		TextureDefinition* textureDefinition = Texture_getDefinition(texture);
+		TextureDefinition* textureDefinition = Texture::getDefinition(texture);
 
 		// set new palette
-		if(Texture_getPalette(texture) == textureDefinition->palette)
+		if(Texture::getPalette(texture) == textureDefinition->palette)
 		{
-			Texture_setPalette(texture, HERO_FLASH_PALETTE);
+			Texture::setPalette(texture, HERO_FLASH_PALETTE);
 		}
 		else
 		{
-			Texture_setPalette(texture, textureDefinition->palette);
+			Texture::setPalette(texture, textureDefinition->palette);
 		}
 
 		// rewrite sprite to bgmap to apply changed palette
-		Sprite_rewrite(sprite);
+		Sprite::rewrite(sprite);
 	}
 }
 
-void Hero_resetPalette(Hero this)
+void Hero::resetPalette(Hero this)
 {
 	// get all of hero's sprites and loop through them
-	VirtualList sprites = Entity_getSprites(__SAFE_CAST(Entity, this));
-	VirtualNode node = VirtualList_begin(sprites);
-	for(; node; node = VirtualNode_getNext(node))
+	VirtualList sprites = Entity::getSprites(__SAFE_CAST(Entity, this));
+	VirtualNode node = VirtualList::begin(sprites);
+	for(; node; node = VirtualNode::getNext(node))
 	{
 		// get sprite's texture
-		Sprite sprite = __SAFE_CAST(Sprite, VirtualNode_getData(node));
-		Texture texture = Sprite_getTexture(sprite);
+		Sprite sprite = __SAFE_CAST(Sprite, VirtualNode::getData(node));
+		Texture texture = Sprite::getTexture(sprite);
 
 		// get original palette and set it
-		TextureDefinition* textureDefinition = Texture_getDefinition(texture);
-		Texture_setPalette(texture, textureDefinition->palette);
+		TextureDefinition* textureDefinition = Texture::getDefinition(texture);
+		Texture::setPalette(texture, textureDefinition->palette);
 
 		// rewrite sprite to bgmap to apply changed palette
-		Sprite_rewrite(sprite);
+		Sprite::rewrite(sprite);
 	}
 }
 
 // set animation delta
-void Hero_setAnimationDelta(Hero this, int delta __attribute__ ((unused)))
+void Hero::setAnimationDelta(Hero this, int delta __attribute__ ((unused)))
 {
 	ASSERT(this, "Hero::setAnimationDelta: null this");
 
 	ASSERT(this->sprites, "Hero::setAnimationDelta: null sprites");
 
-	VirtualNode node = VirtualList_begin(this->sprites);
+	VirtualNode node = VirtualList::begin(this->sprites);
 
-	for(; node; node = VirtualNode_getNext(node))
+	for(; node; node = VirtualNode::getNext(node))
 	{
-		Sprite_setFrameCycleDecrement(__SAFE_CAST(Sprite, VirtualNode_getData(node)), this->boost ? 2 : 1);
+		Sprite::setFrameCycleDecrement(__SAFE_CAST(Sprite, VirtualNode::getData(node)), this->boost ? 2 : 1);
 	}
 }
 
 // disable boost
-void Hero_disableBoost(Hero this)
+void Hero::disableBoost(Hero this)
 {
 	ASSERT(this, "Hero::disableBoost: null this");
 
 	if(this->boost)
 	{
 		this->boost = false;
-		Hero_setAnimationDelta(this, -1);
+		Hero::setAnimationDelta(this, -1);
 	}
 }
 
 // enable boost
-void Hero_enableBoost(Hero this)
+void Hero::enableBoost(Hero this)
 {
 	if(!this->boost)
 	{
 		this->boost = true;
 
-		Hero_setAnimationDelta(this, -2);
+		Hero::setAnimationDelta(this, -2);
 	}
 }
 
 // get the door overlapped by the hero
-Door Hero_getOverlappedDoor(Hero this)
+Door Hero::getOverlappedDoor(Hero this)
 {
 	ASSERT(this, "Hero::getOverlappedDoor: null this");
 
 	return this->currentlyOverlappedDoor;
 }
 
-void Hero_enterDoor(Hero this)
+void Hero::enterDoor(Hero this)
 {
 	ASSERT(this, "Hero::enterDoor: null this");
 
-	if((__Y_AXIS | __Z_AXIS) & Body_getMovementOnAllAxes(this->body))
+	if((__Y_AXIS | __Z_AXIS) & Body::getMovementOnAllAxes(this->body))
 	{
 		return;
 	}
 
 	// play animation
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "WalkingBack");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "WalkingBack");
 
 	// move towards door
 	/*
-	Body_setAxesSubjectToGravity(this->body, 0);
+	Body::setAxesSubjectToGravity(this->body, 0);
 	Velocity velocity = {0, 0, __I_TO_FIX10_6(8)};
-	Body_moveUniformly(this->body, velocity);
+	Body::moveUniformly(this->body, velocity);
 	*/
 
 	// inform the door entity
 	if(this->currentlyOverlappedDoor)
 	{
-		MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappedDoor), kHeroEnterDoor, NULL);
+		MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this->currentlyOverlappedDoor), kHeroEnterDoor, NULL);
 	}
 
 	// hide hint immediately
 	if(this->hint != NULL)
 	{
-		Entity_hide(__SAFE_CAST(Entity, this->hint));
+		Entity::hide(__SAFE_CAST(Entity, this->hint));
 	}
 
 	// play door sound
-	SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transformation.globalPosition);
+	SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 }
 
-static void Hero_addHint(Hero this)
+static void Hero::addHint(Hero this)
 {
 	ASSERT(this, "Hero::addHints: null this");
 
 	Vector3D position = {0, 0, __PIXELS_TO_METERS(-1)};
 
 	// save the hint entity, so we can remove it later
-	this->hint = Entity_addChildEntity(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
+	this->hint = Entity::addChildEntity(__SAFE_CAST(Entity, this), &HINT_MC, -1, "hint", &position, NULL);
 
-	Hero_hideHint(this);
+	Hero::hideHint(this);
 }
 
-static void Hero_addFeetDust(Hero this)
+static void Hero::addFeetDust(Hero this)
 {
 	ASSERT(this, "Hero::addFeetDust: null this");
 
 	Vector3D position = {__PIXELS_TO_METERS(-8), __PIXELS_TO_METERS(10), __PIXELS_TO_METERS(12)};
 
-	this->feetDust = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
+	this->feetDust = __SAFE_CAST(ParticleSystem, Entity::addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 
-	ParticleSystem_spawnAllParticles(this->feetDust);
+	ParticleSystem::spawnAllParticles(this->feetDust);
 }
 
-void Hero_showHint(Hero this, u32 hintType)
+void Hero::showHint(Hero this, u32 hintType)
 {
 	ASSERT(this, "Hero::showHint: null this");
 	ASSERT(this->hint, "Hero::showHint: null hint");
 
-	Hint_open((Hint)this->hint, hintType);
+	Hint::open((Hint)this->hint, hintType);
 }
 
-void Hero_hideHint(Hero this)
+void Hero::hideHint(Hero this)
 {
 	// check if a hint is being shown at the moment
 	if(this->hint)
 	{
 		// play the closing animation
-		Hint_close(__SAFE_CAST(Hint, this->hint));
+		Hint::close(__SAFE_CAST(Hint, this->hint));
 	}
 }
 
 // make hero to look to the player
-void Hero_lookFront(Hero this)
+void Hero::lookFront(Hero this)
 {
 	// if not already playing
-	if(!AnimatedEntity_isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Front"))
+	if(!AnimatedEntity::isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Front"))
 	{
 		// play animation
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Front");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Front");
 	}
 }
 
 // make hero to look away from the player
-void Hero_lookBack(Hero this)
+void Hero::lookBack(Hero this)
 {
 	// if not already playing
-	if(!AnimatedEntity_isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Back"))
+	if(!AnimatedEntity::isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Back"))
 	{
 		// play animation
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Back");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Back");
 	}
 }
 
 // die hero
-void Hero_die(Hero this)
+void Hero::die(Hero this)
 {
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
-	Container_deleteMyself(__SAFE_CAST(Container, this));
+	Container::deleteMyself(__SAFE_CAST(Container, this));
 
 	/*
 	// go to dead state
-	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroDead_getInstance()));
+	StateMachine::swapState(this->stateMachine, __SAFE_CAST(State, HeroDead::getInstance()));
 
 	// must unregister the shape for collision detections
-	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+	Entity::activateShapes(__SAFE_CAST(Entity, this), false);
 
 	// change in game state
 	this->inGameState = kDead;
@@ -923,61 +919,61 @@ void Hero_die(Hero this)
 }
 
 // process user input
-static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused)))
+static void Hero::onUserInput(Hero this, Object eventFirer __attribute__ ((unused)))
 {
-	UserInput userInput = PlatformerLevelState_getUserInput(PlatformerLevelState_getInstance());
+	UserInput userInput = PlatformerLevelState::getUserInput(PlatformerLevelState::getInstance());
 
-	HeroState currentState = __SAFE_CAST(HeroState, StateMachine_getCurrentState(this->stateMachine));
+	HeroState currentState = __SAFE_CAST(HeroState, StateMachine::getCurrentState(this->stateMachine));
 
 	if(userInput.pressedKey)
 	{
-		HeroState_onKeyPressed(currentState, this, &userInput);
+		HeroState::onKeyPressed(currentState, this, &userInput);
 	}
 
 	if(userInput.releasedKey)
 	{
-		HeroState_onKeyReleased(currentState, this, &userInput);
+		HeroState::onKeyReleased(currentState, this, &userInput);
 	}
 
 	if(userInput.holdKey)
 	{
-		HeroState_onKeyHold(currentState, this, &userInput);
+		HeroState::onKeyHold(currentState, this, &userInput);
 	}
 }
 
 // does the hero have a key?
-bool Hero_hasKey(Hero this)
+bool Hero::hasKey(Hero this)
 {
 	return this->hasKey;
 }
 
 // collect a power-up
-void Hero_collectPowerUp(Hero this, u8 powerUp)
+void Hero::collectPowerUp(Hero this, u8 powerUp)
 {
 	this->powerUp = powerUp;
 	this->keepAddingForce = false;
 
-	Hero_updateSprite(this);
+	Hero::updateSprite(this);
 
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
-	Game_disableKeypad(Game_getInstance());
-	GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
+	Actor::stopAllMovement(__SAFE_CAST(Actor, this));
+	Game::disableKeypad(Game::getInstance());
+	GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Transition");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Transition");
 }
 
 // lose a power-up
-void Hero_losePowerUp(Hero this)
+void Hero::losePowerUp(Hero this)
 {
 	this->powerUp = kPowerUpNone;
-	Hero_updateSprite(this);
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
+	Hero::updateSprite(this);
+	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventPowerUp);
 }
 
 // update sprite, e.g. after collecting a power-up
-void Hero_updateSprite(Hero this)
+void Hero::updateSprite(Hero this)
 {
-	CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
+	CharSet charSet = Texture::getCharSet(Sprite::getTexture(__SAFE_CAST(Sprite, VirtualList::front(this->sprites))), true);
 
 	CharSetDefinition* charSetDefinition = NULL;
 
@@ -995,35 +991,35 @@ void Hero_updateSprite(Hero this)
 			break;
 	}
 
-	CharSet_setCharSetDefinition(charSet, charSetDefinition);
-	CharSet_rewrite(charSet);
+	CharSet::setCharSetDefinition(charSet, charSetDefinition);
+	CharSet::rewrite(charSet);
 }
 
 // get current power-up
-u8 Hero_getPowerUp(Hero this)
+u8 Hero::getPowerUp(Hero this)
 {
 	return this->powerUp;
 }
 
 // get energy
-u8 Hero_getEnergy(Hero this)
+u8 Hero::getEnergy(Hero this)
 {
 	return this->energy;
 }
 
 // set invincibility
-void Hero_setInvincible(Hero this, bool invincible)
+void Hero::setInvincible(Hero this, bool invincible)
 {
 	this->invincible = invincible;
 }
 
 // get invincibility
-bool Hero_isInvincible(Hero this)
+bool Hero::isInvincible(Hero this)
 {
 	return this->invincible;
 }
 
-fix10_6 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal)
+fix10_6 Hero::getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal)
 {
 	// ignore friction on y axis
 	if(collidingObjectNormal->x && !collidingObjectNormal->y)
@@ -1031,19 +1027,19 @@ fix10_6 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, co
 		return 0;
 	}
 
-	return Base_getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
+	return Base::getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
 }
 
 // process collisions
-bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInformation)
+bool Hero::enterCollision(Hero this, const CollisionInformation* collisionInformation)
 {
 	ASSERT(this, "Hero::enterCollision: null this");
 	ASSERT(collisionInformation->collidingShape, "Hero::enterCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation->collidingShape;
-	SpatialObject collidingObject = Shape_getOwner(collidingShape);
+	SpatialObject collidingObject = Shape::getOwner(collidingShape);
 
-	switch(SpatialObject_getInGameType(collidingObject))
+	switch(SpatialObject::getInGameType(collidingObject))
 	{
 		// speed things up by breaking early
 		case kShape:
@@ -1053,57 +1049,57 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 			{
 				if(collisionInformation->solutionVector.direction.y)
 				{
-					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
+					Hero::lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
 
 				if(collisionInformation->solutionVector.direction.x)
 				{
-					Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
+					Hero::lockCameraTriggerMovement(this, __X_AXIS, false);
 				}
 				else
 				{
-					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
+					Hero::lockCameraTriggerMovement(this, __Y_AXIS, false);
 				}
 
 				Vector3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
 
-				Container_setLocalPosition(this->cameraBoundingBox, &position);
+				Container::setLocalPosition(this->cameraBoundingBox, &position);
 			}
 			return false;
 			break;
 
 		case kCoin:
 
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
+			MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
 			return false;
 			break;
 
 		case kKey:
 
 			this->hasKey = true;
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
+			MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
 			return false;
 			break;
 
 		case kBandana:
 
-			Hero_collectPowerUp(this, kPowerUpBandana);
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
+			Hero::collectPowerUp(this, kPowerUpBandana);
+			MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kItemTaken, NULL);
 			return false;
 			break;
 
 		case kHideLayer:
 
 			// first contact with hide layer?
-			HideLayer_setOverlapping((HideLayer)collidingObject);
+			HideLayer::setOverlapping((HideLayer)collidingObject);
 			return false;
 			break;
 
 		case kDoor:
 			{
 				Door door = __SAFE_CAST(Door, collidingObject);
-				Hero_showHint(this, Door_getHintType(door));
-				Door_setOverlapping(door);
+				Hero::showHint(this, Door::getHintType(door));
+				Door::setOverlapping(door);
 				this->currentlyOverlappedDoor = door;
 			}
 			return false;
@@ -1111,53 +1107,53 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 
 		case kWaterPond:
 
-			if(Body_getMovementOnAllAxes(this->body))
+			if(Body::getMovementOnAllAxes(this->body))
 			{
 				this->underWater = true;
 
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
 
-				Body_setSurroundingFrictionCoefficient(this->body, Actor_getSurroundingFrictionCoefficient(__SAFE_CAST(Actor, this)) + SpatialObject_getFrictionCoefficient(collidingObject));
+				Body::setSurroundingFrictionCoefficient(this->body, Actor::getSurroundingFrictionCoefficient(__SAFE_CAST(Actor, this)) + SpatialObject::getFrictionCoefficient(collidingObject));
 			}
 			return true;
 			break;
 
 		case kLava:
 
-			Hero_takeHitFrom(this, NULL, this->energy, true, false);
+			Hero::takeHitFrom(this, NULL, this->energy, true, false);
 			return false;
 			break;
 
 		case kSawBlade:
 		case kSnail:
 
-			Hero_takeHitFrom(this, collidingObject, 1, true, true);
+			Hero::takeHitFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 
 		case kCannonBall:
 
-			Hero_takeHitFrom(this, collidingObject, 2, true, true);
+			Hero::takeHitFrom(this, collidingObject, 2, true, true);
 			return false;
 			break;
 
 		case kHit:
 
-			Hero_takeHitFrom(this, collidingObject, 1, true, true);
+			Hero::takeHitFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 
 		case kLavaTrigger:
 
-			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kLavaTriggerStart, NULL);
-			Hero_stopAddingForce(this);
+			MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kLavaTriggerStart, NULL);
+			Hero::stopAddingForce(this);
 			return false;
 			break;
 
 		case kMovingPlatform:
 		case kTopShape:
 			{
-				if((0 > Body_getVelocity(this->body).y) || Hero_isBelow(this, collisionInformation->shape, collisionInformation))
+				if((0 > Body::getVelocity(this->body).y) || Hero::isBelow(this, collisionInformation->shape, collisionInformation))
 				{
 					// don't further process collision
 					return false;
@@ -1166,31 +1162,31 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 			break;
 	}
 
-	return Base_enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
+	return Base::enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
 }
 
 // process collisions
-bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInformation)
+bool Hero::updateCollision(Hero this, const CollisionInformation* collisionInformation)
 {
 	ASSERT(this, "Hero::enterCollision: null this");
 	ASSERT(collisionInformation->collidingShape, "Hero::enterCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation->collidingShape;
-	SpatialObject collidingObject = Shape_getOwner(collidingShape);
+	SpatialObject collidingObject = Shape::getOwner(collidingShape);
 
-	switch(SpatialObject_getInGameType(collidingObject))
+	switch(SpatialObject::getInGameType(collidingObject))
 	{
 		case kHit:
 
-			Hero_takeHitFrom(this, collidingObject, 1, true, true);
+			Hero::takeHitFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 
 		case kWaterPond:
 
-			if(Body_getMovementOnAllAxes(this->body))
+			if(Body::getMovementOnAllAxes(this->body))
 			{
-				MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, collidingObject), kReactToCollision, NULL);
 			}
 			return false;
 	}
@@ -1198,105 +1194,105 @@ bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInform
 	return false;
 }
 
-void Hero_capVelocity(Hero this, bool discardPreviousMessages)
+void Hero::capVelocity(Hero this, bool discardPreviousMessages)
 {
 	ASSERT(this, "Hero::checkCapVelocity: null this");
 
 	if(discardPreviousMessages)
 	{
-		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
+		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
 	}
 
-	if(Body_isActive(this->body))
+	if(Body::isActive(this->body))
 	{
-		Velocity velocity = Body_getVelocity(this->body);
+		Velocity velocity = Body::getVelocity(this->body);
 
 		if(velocity.y)
 		{
-			if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body_getMovementType(this->body).y)
+			if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body::getMovementType(this->body).y)
 			{
 				velocity.x = 0;
 				velocity.y = HERO_MAX_VELOCITY_Y;
 				velocity.z = 0;
 
-				//Body_moveUniformly(this->body, velocity);
+				//Body::moveUniformly(this->body, velocity);
 			}
 			else if(0 < velocity.y)
 			{
-				MessageDispatcher_dispatchMessage(HERO_CHECK_Y_VELOCITY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
+				MessageDispatcher::dispatchMessage(HERO_CHECK_Y_VELOCITY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
 			}
 		}
 		else
 		{
-			MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
+			MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroCheckVelocity, NULL);
 		}
 	}
 }
 
-bool Hero_handleMessage(Hero this, Telegram telegram)
+bool Hero::handleMessage(Hero this, Telegram telegram)
 {
 	ASSERT(this, "Hero::handleMessage: null this");
 
 	// handle messages that any state would handle here
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kHeroCheckVelocity:
 
-			Hero_capVelocity(this, false);
+			Hero::capVelocity(this, false);
 			return true;
 			break;
 
 		case kHeroStopFeetDust:
 
-			Hero_hideDust(this);
+			Hero::hideDust(this);
 			return true;
 			break;
 
 		case kHeroStopInvincibility:
 
-			Hero_setInvincible(this, false);
+			Hero::setInvincible(this, false);
 			return true;
 			break;
 
 		case kHeroFlash:
 
-			Hero_flash(this);
+			Hero::flash(this);
 			return true;
 			break;
 
 		case kHeroResumePhysics:
 
-			Game_enableKeypad(Game_getInstance());
-			GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), false);
-			GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), false);
+			Game::enableKeypad(Game::getInstance());
+			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), false);
+			GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), false);
 
-			Velocity velocity = Body_getVelocity(this->body);
+			Velocity velocity = Body::getVelocity(this->body);
 
 			if(!velocity.y)
 			{
 				if(velocity.x)
 				{
-					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
+					AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 				}
 				else
 				{
-					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
+					AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
 				}
 			}
 			else if(velocity.x)
 			{
-				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
+				AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 			}
 			else
 			{
-				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
+				AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
 			}
 
 			break;
 
 		case kHeroDied:
 
-			Hero_die(this);
+			Hero::die(this);
 			break;
 
 		case kBodyStopped:
@@ -1308,11 +1304,11 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 			break;
 	}
 
-	return Base_handleMessage(__SAFE_CAST(Actor, this), telegram);
+	return Base::handleMessage(__SAFE_CAST(Actor, this), telegram);
 }
 
 // process message
-bool Hero_handlePropagatedMessage(Hero this, int message)
+bool Hero::handlePropagatedMessage(Hero this, int message)
 {
 	ASSERT(this, "Hero::handlePropagatedMessage: null this");
 
@@ -1322,18 +1318,18 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 			{
 				// set camera
 				Vector3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-				this->cameraBoundingBox = Entity_addChildEntity(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
-				Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
+				this->cameraBoundingBox = Entity::addChildEntity(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
+				Hero::lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
 			}
 
-			//Hero_locateOverNextFloor(this);
+			//Hero::locateOverNextFloor(this);
 
 			break;
 
 		case kLevelStarted:
 			{
 				Vector3DFlag positionFlag = {true, true, true};
-				CustomCameraMovementManager_setPositionFlag(CustomCameraMovementManager_getInstance(), positionFlag);
+				CustomCameraMovementManager::setPositionFlag(CustomCameraMovementManager::getInstance(), positionFlag);
 			}
 			break;
 
@@ -1342,32 +1338,32 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 	return false;
 }
 
-void Hero_getOutOfDoor(Hero this, Vector3D* outOfDoorPosition)
+void Hero::getOutOfDoor(Hero this, Vector3D* outOfDoorPosition)
 {
 	ASSERT(this, "Hero::setPosition: null this");
 
 	// stop all movement
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
+	Actor::stopAllMovement(__SAFE_CAST(Actor, this));
 
 	// set new position
-	Actor_setPosition(__SAFE_CAST(Actor, this), outOfDoorPosition);
+	Actor::setPosition(__SAFE_CAST(Actor, this), outOfDoorPosition);
 
 	// must make sure that collision detection is reset
-//	Actor_resetCollisionStatus(__SAFE_CAST(Actor, this));
+//	Actor::resetCollisionStatus(__SAFE_CAST(Actor, this));
 
 	// make the camera active for collision detection
-	Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, false);
+	Hero::lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, false);
 
-	Entity_informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
+	Entity::informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
 
-	Container_invalidateGlobalTransformation(__SAFE_CAST(Container, this));
+	Container::invalidateGlobalTransformation(__SAFE_CAST(Container, this));
 
-	Body_setAxesSubjectToGravity(this->body, __Y_AXIS);
+	Body::setAxesSubjectToGravity(this->body, __Y_AXIS);
 
 	this->currentlyOverlappedDoor = NULL;
 }
 
-void Hero_suspend(Hero this)
+void Hero::suspend(Hero this)
 {
 	ASSERT(this, "Hero::suspend: null this");
 
@@ -1375,94 +1371,94 @@ void Hero_suspend(Hero this)
 
 	if(this->feetDust)
 	{
-		ParticleSystem_pause(this->feetDust);
+		ParticleSystem::pause(this->feetDust);
 	}
 }
 
-void Hero_resume(Hero this)
+void Hero::resume(Hero this)
 {
 	ASSERT(this, "Hero::resume: null this");
 
 	__CALL_BASE_METHOD(Actor, resume, this);
 
-	Camera_focus(Camera_getInstance(), false);
+	Camera::focus(Camera::getInstance(), false);
 
-	Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
+	Hero::lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
 
 	Vector3DFlag positionFlag = {true, true, true};
-	CustomCameraMovementManager_setPositionFlag(CustomCameraMovementManager_getInstance(), positionFlag);
+	CustomCameraMovementManager::setPositionFlag(CustomCameraMovementManager::getInstance(), positionFlag);
 
-	Hero_updateSprite(this);
+	Hero::updateSprite(this);
 }
 
-bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation)
+bool Hero::isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation)
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
-	RightBox shapeRightBox = Shape_getSurroundingRightBox(shape);
-	RightBox collidingShapeRightBox = Shape_getSurroundingRightBox(collisionInformation->collidingShape);
+	RightBox shapeRightBox = Shape::getSurroundingRightBox(shape);
+	RightBox collidingShapeRightBox = Shape::getSurroundingRightBox(collisionInformation->collidingShape);
 
-	fix10_6 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1) / 2;
+	fix10_6 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body::getLastDisplacement(this->body).y << 1) / 2;
 
 	return heroBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
 }
 
-u16 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
+u16 Hero::getAxisForFlipping(Hero this __attribute__ ((unused)))
 {
 	return __X_AXIS;
 }
 
-void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer __attribute__ ((unused)))
+void Hero::onPowerUpTransitionComplete(Hero this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Hero::onPowerUpTransitionComplete: null this");
 
-	MessageDispatcher_dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
+	MessageDispatcher::dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 }
 
-bool Hero_isAffectedByRelativity(Hero this __attribute__ ((unused)))
+bool Hero::isAffectedByRelativity(Hero this __attribute__ ((unused)))
 {
 	ASSERT(this, "Hero::isAffectedByRelativity: null this");
 
 	return true;
 }
 
-void Hero_syncRotationWithBody(Hero this)
+void Hero::syncRotationWithBody(Hero this)
 {
 	ASSERT(this, "Hero::syncRotationWithBody: null this");
 
-	fix10_6 xLastDisplacement = Body_getLastDisplacement(this->body).x;
+	fix10_6 xLastDisplacement = Body::getLastDisplacement(this->body).x;
 
-	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
+	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
 
 	if(0 < xLastDisplacement)
 	{
 		direction.x = __RIGHT;
-		Entity_setDirection(__SAFE_CAST(Entity, this), direction);
+		Entity::setDirection(__SAFE_CAST(Entity, this), direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
-		Entity_setDirection(__SAFE_CAST(Entity, this), direction);
+		Entity::setDirection(__SAFE_CAST(Entity, this), direction);
 	}
 }
 
-void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
+void Hero::exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
 {
 	ASSERT(this, "Hero::exitCollision: null this");
 
-	SpatialObject nonCollidingSpatialObject = Shape_getOwner(shapeNotCollidingAnymore);
+	SpatialObject nonCollidingSpatialObject = Shape::getOwner(shapeNotCollidingAnymore);
 
-	switch(SpatialObject_getInGameType(nonCollidingSpatialObject))
+	switch(SpatialObject::getInGameType(nonCollidingSpatialObject))
 	{
 		case kHideLayer:
 
-			HideLayer_unsetOverlapping(__SAFE_CAST(HideLayer, nonCollidingSpatialObject));
+			HideLayer::unsetOverlapping(__SAFE_CAST(HideLayer, nonCollidingSpatialObject));
 			break;
 
 		case kDoor:
 
-			Hero_hideHint(this);
-			Door_unsetOverlapping(__SAFE_CAST(Door, nonCollidingSpatialObject));
+			Hero::hideHint(this);
+			Door::unsetOverlapping(__SAFE_CAST(Door, nonCollidingSpatialObject));
 			this->currentlyOverlappedDoor = NULL;
 			break;
 
@@ -1472,11 +1468,10 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, 
 			break;
 	}
 
-	Base_exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
+	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
-u16 Hero_getAxesForShapeSyncWithDirection(Hero this __attribute__ ((unused)))
+u16 Hero::getAxesForShapeSyncWithDirection(Hero this __attribute__ ((unused)))
 {
 	return __NO_AXIS;
 }
-

@@ -43,56 +43,26 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Door_METHODS(ClassName)																			\
-		AnimatedEntity_METHODS(ClassName)															\
-		__VIRTUAL_DEC(ClassName, bool, hasDestination);													\
-		__VIRTUAL_DEC(ClassName, void, setOverlapping);													\
-		__VIRTUAL_DEC(ClassName, void, unsetOverlapping);												\
-		__VIRTUAL_DEC(ClassName, bool, canEnter);														\
-		__VIRTUAL_DEC(ClassName, u32, getHintType);														\
-
-#define Door_SET_VTABLE(ClassName)																		\
-		AnimatedEntity_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, Door, setExtraInfo);													\
-		__VIRTUAL_SET(ClassName, Door, ready);															\
-		__VIRTUAL_SET(ClassName, Door, handleMessage);													\
-		__VIRTUAL_SET(ClassName, Door, hasDestination);													\
-		__VIRTUAL_SET(ClassName, Door, setOverlapping);													\
-		__VIRTUAL_SET(ClassName, Door, unsetOverlapping);												\
-		__VIRTUAL_SET(ClassName, Door, canEnter);														\
-		__VIRTUAL_SET(ClassName, Door, getHintType);													\
-
-__CLASS(Door);
-
-#define Door_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		AnimatedEntity_ATTRIBUTES																		\
-		/* destination of door */																		\
-		StageEntryPointDefinition* destinationDefinition;												\
-
-
 typedef const AnimatedEntityDefinition DoorDefinition;
 typedef const DoorDefinition DoorROMDef;
 
+class Door : AnimatedEntity
+{
+	/* destination of door */
+	StageEntryPointDefinition* destinationDefinition;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Door, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void Door_constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void Door_destructor(Door this);
-StageEntryPointDefinition* Door_getExtraInfo(Door this);
-void Door_setExtraInfo(Door this, void* extraInfo);
-void Door_ready(Door this, bool recursive);
-bool Door_handleMessage(Door this, Telegram telegram);
-bool Door_hasDestination(Door this);
-void Door_onOverlapping(Door this);
-void Door_setOverlapping(Door this);
-void Door_unsetOverlapping(Door this);
-bool Door_canEnter(Door this);
-u32 Door_getHintType(Door this);
+	void constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	StageEntryPointDefinition* getExtraInfo(Door this);
+	void onOverlapping(Door this);
+	virtual bool hasDestination(Door this);
+	virtual void setOverlapping(Door this);
+	virtual void unsetOverlapping(Door this);
+	virtual bool canEnter(Door this);
+	virtual u32 getHintType(Door this);
+	override void setExtraInfo(Door this, void* extraInfo);
+	override void ready(Door this, bool recursive);
+	override bool handleMessage(Door this, Telegram telegram);
+}
 
 
 #endif

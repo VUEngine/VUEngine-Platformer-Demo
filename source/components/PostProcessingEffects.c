@@ -52,15 +52,15 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
-void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector screenPixelPosition, int parallax);
+u32 PostProcessingEffects::writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue);
+void PostProcessingEffects::drawRhombus(int radius, u32 color, PixelVector screenPixelPosition, int parallax);
 
 
 //---------------------------------------------------------------------------------------------------------
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
+void PostProcessingEffects::waterStream(u32 currentDrawingFrameBufferSet,
 								s16 xStart, s16 xEnd, s16 xDisplacement, u16 xStep,
 								s16 yStart, s16 yEnd, s16 yDisplacement,
 								const u16 yStep[], u16 numberOfYSpeeds, u16* yStepIndex, s16 yStepThrottle,
@@ -228,7 +228,7 @@ void PostProcessingEffects_waterStream(u32 currentDrawingFrameBufferSet,
 	}
 }
 
-void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, fix19_13* xStep, fix19_13 maximumYThrottle, fix19_13 minimumYThrottle, fix19_13 maximumXStep, fix19_13 minimumXStep)
+void PostProcessingEffects::calculateRainPrecipitation(fix19_13* yStepThrottle, fix19_13* xStep, fix19_13 maximumYThrottle, fix19_13 minimumYThrottle, fix19_13 maximumXStep, fix19_13 minimumXStep)
 {
 	static u32 previousTime = 0;
 	static u8 timePeriodIndex = 0;
@@ -245,7 +245,7 @@ void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, f
 		1, 0, -1, 0,
 	};
 
-	u32 currentTime = Clock_getTime(PlatformerLevelState_getClock(PlatformerLevelState_getInstance()));
+	u32 currentTime = Clock::getTime(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()));
 
 	if((currentTime - previousTime) / 1000 > timePeriod[timePeriodIndex])
 	{
@@ -287,7 +287,7 @@ void PostProcessingEffects_calculateRainPrecipitation(fix19_13* yStepThrottle, f
 	}
 }
 
-void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects::rain(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
  	#define RAIN_X_RANGE_1					383
  	#define RAIN_MINIMUM_DROPLET_LENGTH		3
@@ -304,7 +304,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
  	fix19_13 yScreenDisplacement = __I_TO_FIX19_13(__METERS_TO_PIXELS(_cameraPosition->y - cameraPreviousPosition.y));
 
  	cumulativeX += __METERS_TO_PIXELS(_cameraPosition->x - cameraPreviousPosition.x);
-	PostProcessingEffects_calculateRainPrecipitation(&yStepThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
+	PostProcessingEffects::calculateRainPrecipitation(&yStepThrottle, &xStep, RAIN_MAXIMUM_Y_THROTTLE_1, RAIN_MINIMUM_Y_THROTTLE_1, RAIN_MAXIMUM_X_STEP_1, RAIN_MINIMUM_X_STEP_1);
 	cameraPreviousPosition = *_cameraPosition;
 
  	const s16 dropletParallax[] =
@@ -351,7 +351,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	// must account for the camera displacement
 	yStepThrottle -= yScreenDisplacement;
 
-	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet,
+	PostProcessingEffects::waterStream(currentDrawingFrameBufferSet,
 										0, __SCREEN_WIDTH -1, -cumulativeX, __FIX19_13_TO_I(xStep),
 										_cameraFrustum->y0, _cameraFrustum->y1, 0,
 										yStep, sizeof(yStep) >> SIZE_OF_U16_POWER, &yStepIndex, __FIX19_13_TO_I(yStepThrottle),
@@ -361,7 +361,7 @@ void PostProcessingEffects_rain(u32 currentDrawingFrameBufferSet __attribute__ (
 	yStepThrottle += yScreenDisplacement;
 }
 
-void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, Vector3D position, int width, int height, int yStepThrottle)
+void PostProcessingEffects::waterFall(u32 currentDrawingFrameBufferSet, Vector3D position, int width, int height, int yStepThrottle)
 {
 	static u16 yStepIndex = 0;
 	static u16 dropletLengthIndex = 0;
@@ -401,7 +401,7 @@ void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, Vector3D 
 		8, 5, 7, 3, 4, 4, 7, 8, 4, 7, 5, 3,
 	};
 
-	PostProcessingEffects_waterStream(currentDrawingFrameBufferSet,
+	PostProcessingEffects::waterStream(currentDrawingFrameBufferSet,
 										__FIX10_6_TO_I(position.x) - (width >> 1), __FIX10_6_TO_I(position.x) + (width >> 1), 0, 1,
 										__FIX10_6_TO_I(position.y) - (height >> 1), __FIX10_6_TO_I(position.y) + (height >> 1), 0,
 										yStep, sizeof(yStep) >> SIZE_OF_U16_POWER, &yStepIndex, yStepThrottle,
@@ -410,19 +410,19 @@ void PostProcessingEffects_waterFall(u32 currentDrawingFrameBufferSet, Vector3D 
 										dropletParallax, sizeof(dropletParallax) >> SIZE_OF_S16_POWER);
 }
 
-void PostProcessingEffects_waterFall20x100(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects::waterFall20x100(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
 	if(!__IS_OBJECT_ALIVE(spatialObject))
 	{
 		return;
 	}
 
-	Vector3D spatialObjectPosition = Vector3D_getRelativeToCamera(*SpatialObject_getPosition(spatialObject));
+	Vector3D spatialObjectPosition = Vector3D::getRelativeToCamera(*SpatialObject::getPosition(spatialObject));
 
-	PostProcessingEffects_waterFall(currentDrawingFrameBufferSet, spatialObjectPosition, 20, 100, 0);
+	PostProcessingEffects::waterFall(currentDrawingFrameBufferSet, spatialObjectPosition, 20, 100, 0);
 }
 
-void PostProcessingEffects_applyMask(u32 currentDrawingFrameBufferSet, int xStart, int xEnd, int yStart, int yEnd, u32 mask)
+void PostProcessingEffects::applyMask(u32 currentDrawingFrameBufferSet, int xStart, int xEnd, int yStart, int yEnd, u32 mask)
 {
 	if(xEnd < xStart || yEnd < yStart)
 	{
@@ -467,7 +467,7 @@ void PostProcessingEffects_applyMask(u32 currentDrawingFrameBufferSet, int xStar
 	}
 }
 
-void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, Vector3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask, bool roundBorder)
+void PostProcessingEffects::ellipticalWindow(u32 currentDrawingFrameBufferSet, Vector3D position, s16 ellipsisArc[], u16 ellipsisHorizontalAxisSize, u32 penumbraMask, bool roundBorder)
 {
  	int xPosition = __METERS_TO_PIXELS(position.x);
  	int yPosition = __METERS_TO_PIXELS(position.y);
@@ -595,25 +595,25 @@ void PostProcessingEffects_ellipticalWindow(u32 currentDrawingFrameBufferSet, Ve
 	}
 }
 
-void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects::lantern(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
  	static bool ellipsisArcCalculated = false;
 
-	Hero hero = Hero_getInstance();
+	Hero hero = Hero::getInstance();
 
  	if(!hero)
  	{
  		if(ellipsisArcCalculated)
  		{
- 			PostProcessingEffects_applyMask(currentDrawingFrameBufferSet, _cameraFrustum->x0, _cameraFrustum->x1, _cameraFrustum->y0, _cameraFrustum->y1, 0);
+ 			PostProcessingEffects::applyMask(currentDrawingFrameBufferSet, _cameraFrustum->x0, _cameraFrustum->x1, _cameraFrustum->y0, _cameraFrustum->y1, 0);
  		}
  		return;
  	}
 
- 	Vector3D heroPosition = *Container_getGlobalPosition(__SAFE_CAST(Container, hero));
+ 	Vector3D heroPosition = *Container::getGlobalPosition(__SAFE_CAST(Container, hero));
  	heroPosition.y -= __PIXELS_TO_METERS(10);
 
-	heroPosition = Vector3D_getRelativeToCamera(heroPosition);
+	heroPosition = Vector3D::getRelativeToCamera(heroPosition);
 
  	#define ELLIPSIS_X_AXIS_LENGTH		55
  	#define ELLIPSIS_Y_AXIS_LENGTH		60
@@ -630,11 +630,11 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
 
 		for(i = sizeof(ellipsisArc) >> SIZE_OF_S16_POWER; --i; x++)
 		{
-			ellipsisArc[i] = ELLIPSIS_Y_AXIS_LENGTH * Math_squareRoot(((ELLIPSIS_X_AXIS_LENGTH * ELLIPSIS_X_AXIS_LENGTH) - (x * x)) / (ELLIPSIS_X_AXIS_LENGTH * ELLIPSIS_X_AXIS_LENGTH));
+			ellipsisArc[i] = ELLIPSIS_Y_AXIS_LENGTH * Math::squareRoot(((ELLIPSIS_X_AXIS_LENGTH * ELLIPSIS_X_AXIS_LENGTH) - (x * x)) / (ELLIPSIS_X_AXIS_LENGTH * ELLIPSIS_X_AXIS_LENGTH));
 		}
 	}
 
-	PostProcessingEffects_ellipticalWindow(currentDrawingFrameBufferSet, heroPosition, ellipsisArc, ELLIPSIS_X_AXIS_LENGTH, PENUMBRA_MASK, true);
+	PostProcessingEffects::ellipticalWindow(currentDrawingFrameBufferSet, heroPosition, ellipsisArc, ELLIPSIS_X_AXIS_LENGTH, PENUMBRA_MASK, true);
 }
 
 /**
@@ -644,7 +644,7 @@ void PostProcessingEffects_lantern(u32 currentDrawingFrameBufferSet __attribute_
  *
  * @param currentDrawingFrameBufferSet	The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
+void PostProcessingEffects::rhombusEmitter(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject)
 {
 	// runtime working variable
 	static int radius = 4;
@@ -654,7 +654,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 		return;
 	}
 
-	PixelVector screenPixelPosition = Vector3D_projectToPixelVector(Vector3D_getRelativeToCamera(*SpatialObject_getPosition(spatialObject)), 0);
+	PixelVector screenPixelPosition = Vector3D::projectToPixelVector(Vector3D::getRelativeToCamera(*SpatialObject::getPosition(spatialObject)), 0);
 
 	// increase radius by 1 in each cycle
 	radius++;
@@ -671,8 +671,8 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
 	}
 
 	// draw a rhombus around object with given radius and color
-	PostProcessingEffects_drawRhombus((radius), __COLOR_BLACK, screenPixelPosition, -((radius + 4) >> 5));
-//	PostProcessingEffects_drawRhombus((radius >> 1), __COLOR_BLACK, screenPixelPosition, -(((radius >> 1) + 4) >> 5));
+	PostProcessingEffects::drawRhombus((radius), __COLOR_BLACK, screenPixelPosition, -((radius + 4) >> 5));
+//	PostProcessingEffects::drawRhombus((radius >> 1), __COLOR_BLACK, screenPixelPosition, -(((radius >> 1) + 4) >> 5));
 }
 
 /**
@@ -681,7 +681,7 @@ void PostProcessingEffects_rhombusEmitter(u32 currentDrawingFrameBufferSet __att
  *
  * @param currentDrawingFrameBufferSet	The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects::wobble(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
 	u16 x = 0, y = 0;
 	u32 previousSourcePointerValueLeft = 0;
@@ -731,8 +731,8 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObjec
 		// ignore the bottom 16 pixels of the screen (gui)
 		for(y = 0; y < 13; y++)
 		{
-			previousSourcePointerValueLeft = PostProcessingEffects_writeToFrameBuffer(y, waveLut[waveLutIndex], columnSourcePointerLeft, previousSourcePointerValueLeft);
-			previousSourcePointerValueRight = PostProcessingEffects_writeToFrameBuffer(y, waveLut[waveLutIndex], columnSourcePointerRight, previousSourcePointerValueRight);
+			previousSourcePointerValueLeft = PostProcessingEffects::writeToFrameBuffer(y, waveLut[waveLutIndex], columnSourcePointerLeft, previousSourcePointerValueLeft);
+			previousSourcePointerValueRight = PostProcessingEffects::writeToFrameBuffer(y, waveLut[waveLutIndex], columnSourcePointerRight, previousSourcePointerValueRight);
 		}
 	}
 
@@ -746,7 +746,7 @@ void PostProcessingEffects_wobble(u32 currentDrawingFrameBufferSet, SpatialObjec
  *
  * @param currentDrawingFrameBufferSet	The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects::tiltScreen(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
 	u8 buffer = 0, currentShift = 0;
 	u16 x = 0, y = 0;
@@ -771,7 +771,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialO
 			// ignore the bottom 16 pixels of the screen (gui)
 			for(y = 0; y < 13; y++)
 			{
-				previousSourcePointerValue = PostProcessingEffects_writeToFrameBuffer(y, currentShift, columnSourcePointer, previousSourcePointerValue);
+				previousSourcePointerValue = PostProcessingEffects::writeToFrameBuffer(y, currentShift, columnSourcePointer, previousSourcePointerValue);
 			}
 		}
 	}
@@ -784,7 +784,7 @@ void PostProcessingEffects_tiltScreen(u32 currentDrawingFrameBufferSet, SpatialO
  *
  * @param currentDrawingFrameBufferSet	The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects::dwarfPlanet(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
 	// look up table of bitshifts performed on rows
 	const u32 lut[96] =
@@ -835,10 +835,10 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, Spatial
 		// ignore the bottom 16 pixels of the screen (gui)
 		for(y = 0; y < 13; y++)
 		{
-			previousSourcePointerValueLeft1 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutEntries - counter], columnSourcePointerLeft1, previousSourcePointerValueLeft1);
-			previousSourcePointerValueRight1 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[lutEntries - counter], columnSourcePointerRight1, previousSourcePointerValueRight1);
-			previousSourcePointerValueLeft2 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[counter], columnSourcePointerLeft2, previousSourcePointerValueLeft2);
-			previousSourcePointerValueRight2 = PostProcessingEffects_writeToFrameBuffer(y, 32 - lut[counter], columnSourcePointerRight2, previousSourcePointerValueRight2);
+			previousSourcePointerValueLeft1 = PostProcessingEffects::writeToFrameBuffer(y, 32 - lut[lutEntries - counter], columnSourcePointerLeft1, previousSourcePointerValueLeft1);
+			previousSourcePointerValueRight1 = PostProcessingEffects::writeToFrameBuffer(y, 32 - lut[lutEntries - counter], columnSourcePointerRight1, previousSourcePointerValueRight1);
+			previousSourcePointerValueLeft2 = PostProcessingEffects::writeToFrameBuffer(y, 32 - lut[counter], columnSourcePointerLeft2, previousSourcePointerValueLeft2);
+			previousSourcePointerValueRight2 = PostProcessingEffects::writeToFrameBuffer(y, 32 - lut[counter], columnSourcePointerRight2, previousSourcePointerValueRight2);
 		}
 	}
 }
@@ -850,20 +850,20 @@ void PostProcessingEffects_dwarfPlanet(u32 currentDrawingFrameBufferSet, Spatial
  *
  * @param currentDrawingFrameBufferSet	The framebuffer set that's currently being accessed
  */
-void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects::lightingTest(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
 	// the frameBufferSetToModify dictates which frame buffer set (remember that there are 4 frame buffers,
 	// 2 per eye) has been written by the VPU and you can work on
 
 	// will add a post processing effect around the hero
-	Hero hero = Hero_getInstance();
+	Hero hero = Hero::getInstance();
 
 	if(!hero)
 	{
 		return;
 	}
 
-	Vector3D heroPosition = Vector3D_getRelativeToCamera(*Container_getGlobalPosition(__SAFE_CAST(Container, hero)));
+	Vector3D heroPosition = Vector3D::getRelativeToCamera(*Container::getGlobalPosition(__SAFE_CAST(Container, hero)));
 	heroPosition.x = __FIX10_6_TO_I(heroPosition.x);
 	heroPosition.y = __FIX10_6_TO_I(heroPosition.y);
 
@@ -933,7 +933,7 @@ void PostProcessingEffects_lightingTest(u32 currentDrawingFrameBufferSet, Spatia
  * @param columnSourcePointer			Framebuffer address of the current column (x value)
  * @param previousSourcePointerValue	Value from the loop's previous cycle (effectively where y - 1)
  */
-inline u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue)
+inline u32 PostProcessingEffects::writeToFrameBuffer(u16 y, u16 shift, u32* columnSourcePointer, u32 previousSourcePointerValue)
 {
 	// pointer to currently manipulated 32 bits of framebuffer
 	u32* sourcePointer = columnSourcePointer + y;
@@ -965,32 +965,32 @@ inline u32 PostProcessingEffects_writeToFrameBuffer(u16 y, u16 shift, u32* colum
  * @param color
  * @param screenPixelPosition
  */
-void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector screenPixelPosition, int parallax)
+void PostProcessingEffects::drawRhombus(int radius, u32 color, PixelVector screenPixelPosition, int parallax)
 {
-	DirectDraw directDraw = DirectDraw_getInstance();
+	DirectDraw directDraw = DirectDraw::getInstance();
 
-	DirectDraw_drawLine(
+	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {screenPixelPosition.x - radius,	screenPixelPosition.y,			0, parallax},
 		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y - radius,	0, parallax},
 		color
 	);
 
-	DirectDraw_drawLine(
+	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {screenPixelPosition.x + radius,	screenPixelPosition.y,			0, parallax},
 		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y - radius,	0, parallax},
 		color
 	);
 
-	DirectDraw_drawLine(
+	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {screenPixelPosition.x + radius,	screenPixelPosition.y,			0, parallax},
 		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y + radius,	0, parallax},
 		color
 	);
 
-	DirectDraw_drawLine(
+	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {screenPixelPosition.x - radius,	screenPixelPosition.y,			0, parallax},
 		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y + radius,	0, parallax},
@@ -998,7 +998,7 @@ void PostProcessingEffects_drawRhombus(int radius, u32 color, PixelVector screen
 	);
 }
 
-void PostProcessingEffects_dummy(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
+void PostProcessingEffects::dummy(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject __attribute__ ((unused)))
 {
 	u16 x = 0, y = 0;
 	u32 previousSourcePointerValueLeft = 0;
@@ -1020,8 +1020,8 @@ void PostProcessingEffects_dummy(u32 currentDrawingFrameBufferSet, SpatialObject
 		// ignore the bottom 16 pixels of the screen (gui)
 		for(y = 0; y < 13; y++)
 		{
-			previousSourcePointerValueLeft = PostProcessingEffects_writeToFrameBuffer(y, 1, columnSourcePointerLeft, previousSourcePointerValueLeft);
-			previousSourcePointerValueRight = PostProcessingEffects_writeToFrameBuffer(y, 1, columnSourcePointerRight, previousSourcePointerValueRight);
+			previousSourcePointerValueLeft = PostProcessingEffects::writeToFrameBuffer(y, 1, columnSourcePointerLeft, previousSourcePointerValueLeft);
+			previousSourcePointerValueRight = PostProcessingEffects::writeToFrameBuffer(y, 1, columnSourcePointerRight, previousSourcePointerValueRight);
 		}
 	}
 }

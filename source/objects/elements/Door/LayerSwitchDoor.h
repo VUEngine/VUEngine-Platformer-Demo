@@ -35,31 +35,14 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define LayerSwitchDoor_METHODS(ClassName)																\
-		Door_METHODS(ClassName)																		\
-
-#define LayerSwitchDoor_SET_VTABLE(ClassName)															\
-		Door_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, LayerSwitchDoor, handleMessage);										\
-
-__CLASS(LayerSwitchDoor);
-
-#define LayerSwitchDoor_ATTRIBUTES																		\
-		/* it is derived from */																		\
-		Door_ATTRIBUTES																					\
-
 typedef const DoorDefinition LayerSwitchDoorDefinition;
 typedef const LayerSwitchDoorDefinition LayerSwitchDoorROMDef;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(LayerSwitchDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void LayerSwitchDoor_constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void LayerSwitchDoor_destructor(LayerSwitchDoor this);
-bool LayerSwitchDoor_handleMessage(LayerSwitchDoor this, Telegram telegram);
+class LayerSwitchDoor : Door
+{
+	void constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(LayerSwitchDoor this, Telegram telegram);
+}
 
 
 #endif

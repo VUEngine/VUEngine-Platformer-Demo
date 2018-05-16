@@ -47,38 +47,21 @@ enum HintTypes
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Hint_METHODS(ClassName)																			\
-		AnimatedEntity_METHODS(ClassName)															\
+class Hint : AnimatedEntity
+{
+	/* the current hint type to show */
+	u8 type;
+	/* name of the animation to play */
+	char* languageAnimName;
 
-#define Hint_SET_VTABLE(ClassName)																		\
-		AnimatedEntity_SET_VTABLE(ClassName)														\
-		__VIRTUAL_SET(ClassName, Hint, resume);															\
-		__VIRTUAL_SET(ClassName, Hint, handleMessage);													\
-
-__CLASS(Hint);
-
-#define Hint_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		AnimatedEntity_ATTRIBUTES																	\
-		/* the current hint type to show */																\
-		u8 type;																						\
-		/* name of the animation to play */																\
-		char* languageAnimName;
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Hint, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void Hint_constructor(Hint this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void Hint_destructor(Hint this);
-bool Hint_handleMessage(Hint this, void* telegram);
-void Hint_resume(Hint this);
-void Hint_open(Hint this, u8 hintType);
-void Hint_close(Hint this);
-void Hint_onCloseDone(Hint this, Object eventFirer);
-void Hint_onHintOpened(Hint this, Object eventFirer);
+	void constructor(Hint this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void open(Hint this, u8 hintType);
+	void close(Hint this);
+	void onCloseDone(Hint this, Object eventFirer);
+	void onHintOpened(Hint this, Object eventFirer);
+	override void resume(Hint this);
+	override bool handleMessage(Hint this, void* telegram);
+}
 
 
 #endif

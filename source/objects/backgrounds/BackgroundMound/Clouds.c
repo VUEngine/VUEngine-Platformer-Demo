@@ -33,7 +33,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Clouds, Entity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -41,28 +41,28 @@ __CLASS_DEFINITION(Clouds, Entity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Clouds, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Clouds, cloudsDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Clouds_constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
+void Clouds::constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, &cloudsDefinition->EntityDefinition, id, internalId, name);
+	Base::constructor(&cloudsDefinition->EntityDefinition, id, internalId, name);
 
 	this->displacement = __PIXELS_TO_METERS(cloudsDefinition->displacement);
 }
 
 // class's destructor
-void Clouds_destructor(Clouds this)
+void Clouds::destructor(Clouds this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // whether it is visible
-bool Clouds_isVisible(Clouds this __attribute__ ((unused)), int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
+bool Clouds::isVisible(Clouds this __attribute__ ((unused)), int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "Clouds::isVisible: null this");
 
@@ -71,7 +71,7 @@ bool Clouds_isVisible(Clouds this __attribute__ ((unused)), int pad __attribute_
 }
 
 // state's handle message
-void Clouds_update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
+void Clouds::update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
 {
 	ASSERT(this, "Clouds::update: null this");
 
@@ -80,6 +80,6 @@ void Clouds_update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
 	offset.x -= __FIX10_6_MULT(this->displacement, elapsedTime);
 
 	// update clouds' position
-	Container_setLocalPosition(__SAFE_CAST(Container, this), &offset);
+	Container::setLocalPosition(__SAFE_CAST(Container, this), &offset);
 }
 

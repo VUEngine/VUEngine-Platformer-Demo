@@ -44,26 +44,26 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(ProgressManager, Object);
+
 
 
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void ProgressManager_constructor(ProgressManager this);
-bool ProgressManager_verifySaveStamp(ProgressManager this);
-u32 ProgressManager_computeChecksum(ProgressManager this);
-void ProgressManager_writeChecksum(ProgressManager this);
-bool ProgressManager_verifyChecksum(ProgressManager this);
-static void ProgressManager_initialize(ProgressManager this);
-static void ProgressManager_onSecondChange(ProgressManager this, Object eventFirer);
-static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
-static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer);
-static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
-static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFirer);
-static void ProgressManager_onLevelCompleted(ProgressManager this, Object eventFirer);
-static void ProgressManager_onCheckpointLoaded(ProgressManager this, Object eventFirer);
+void ProgressManager::constructor(ProgressManager this);
+bool ProgressManager::verifySaveStamp(ProgressManager this);
+u32 ProgressManager::computeChecksum(ProgressManager this);
+void ProgressManager::writeChecksum(ProgressManager this);
+bool ProgressManager::verifyChecksum(ProgressManager this);
+static void ProgressManager::initialize(ProgressManager this);
+static void ProgressManager::onSecondChange(ProgressManager this, Object eventFirer);
+static void ProgressManager::onHitTaken(ProgressManager this, Object eventFirer);
+static void ProgressManager::onKeyTaken(ProgressManager this, Object eventFirer);
+static void ProgressManager::onPowerUp(ProgressManager this, Object eventFirer);
+static void ProgressManager::onLevelStarted(ProgressManager this, Object eventFirer);
+static void ProgressManager::onLevelCompleted(ProgressManager this, Object eventFirer);
+static void ProgressManager::onCheckpointLoaded(ProgressManager this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -71,63 +71,63 @@ static void ProgressManager_onCheckpointLoaded(ProgressManager this, Object even
 //---------------------------------------------------------------------------------------------------------
 
 // it's a singleton
-__SINGLETON(ProgressManager);
+
 
 // class's constructor
-static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManager this)
+void __attribute__ ((noinline)) ProgressManager::constructor(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::constructor: null this");
 
 	// construct base object
-	__CONSTRUCT_BASE(Object);
+	Base::constructor();
 
 	// init class variables
 	this->sramAvailable = false;
-	ProgressManager_resetCurrentLevelProgress(this);
+	ProgressManager::resetCurrentLevelProgress(this);
 
 	// init progress
-	ProgressManager_initialize(this);
+	ProgressManager::initialize(this);
 
 	// add event listeners
-	Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelStarted, kEventLevelStarted);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onCheckpointLoaded, kEventCheckpointLoaded);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelCompleted, kEventLevelCompleted);
+	Object eventManager = __SAFE_CAST(Object, EventManager::getInstance());
+	Object::addEventListener(__SAFE_CAST(Object, PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
+	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
+	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
+	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
+	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
+	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
+	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
 }
 
 // class's destructor
-void ProgressManager_destructor(ProgressManager this)
+void ProgressManager::destructor(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::destructor: null this");
-	ASSERT(EventManager_getInstance(), "ProgressManager::destructor: null eventManager");
+	ASSERT(EventManager::getInstance(), "ProgressManager::destructor: null eventManager");
 
 	// remove event listeners
-	Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelStarted, kEventLevelStarted);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onCheckpointLoaded, kEventCheckpointLoaded);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelCompleted, kEventLevelCompleted);
+	Object eventManager = __SAFE_CAST(Object, EventManager::getInstance());
+	Object::removeEventListener(__SAFE_CAST(Object, PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
+	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
+	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
+	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
+	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
+	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
+	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
 
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
-void ProgressManager_resetHeroState(ProgressManager this)
+void ProgressManager::resetHeroState(ProgressManager this)
 {
 	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
 	this->heroCurrentPowerUp = kPowerUpNone;
 }
 
-void ProgressManager_resetCurrentLevelProgress(ProgressManager this)
+void ProgressManager::resetCurrentLevelProgress(ProgressManager this)
 {
-	ProgressManager_resetHeroState(this);
+	ProgressManager::resetHeroState(this);
 
 	this->heroHasKey = false;
 	this->currentLevelTime = 0;
@@ -147,20 +147,20 @@ void ProgressManager_resetCurrentLevelProgress(ProgressManager this)
 }
 
 // write then immediately read save stamp to validate sram
-bool ProgressManager_verifySaveStamp(ProgressManager this __attribute__ ((unused)))
+bool ProgressManager::verifySaveStamp(ProgressManager this __attribute__ ((unused)))
 {
 	char saveStamp[SAVE_STAMP_LENGTH];
 
 	// write save stamp
-	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)SAVE_STAMP, offsetof(struct SaveData, saveStamp), sizeof(saveStamp));
+	SRAMManager::save(SRAMManager::getInstance(), (BYTE*)SAVE_STAMP, offsetof(struct SaveData, saveStamp), sizeof(saveStamp));
 
 	// read save stamp
-	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&saveStamp, offsetof(struct SaveData, saveStamp), sizeof(saveStamp));
+	SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&saveStamp, offsetof(struct SaveData, saveStamp), sizeof(saveStamp));
 
 	return !strncmp(saveStamp, SAVE_STAMP, SAVE_STAMP_LENGTH);
 }
 
-u32 ProgressManager_computeChecksum(ProgressManager this __attribute__ ((unused)))
+u32 ProgressManager::computeChecksum(ProgressManager this __attribute__ ((unused)))
 {
 	u32 crc32 = ~0;
 
@@ -170,7 +170,7 @@ u32 ProgressManager_computeChecksum(ProgressManager this __attribute__ ((unused)
 	{
 		// get the current byte
 		u8 currentByte;
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&currentByte, i, sizeof(currentByte));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&currentByte, i, sizeof(currentByte));
 
 		// loop over all bits of the current byte and add to checksum
 		u8 bit = 0;
@@ -190,73 +190,73 @@ u32 ProgressManager_computeChecksum(ProgressManager this __attribute__ ((unused)
 	return ~crc32;
 }
 
-void ProgressManager_writeChecksum(ProgressManager this)
+void ProgressManager::writeChecksum(ProgressManager this)
 {
-	u32 checksum = ProgressManager_computeChecksum(this);
-	SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&checksum, offsetof(struct SaveData, checksum), sizeof(checksum));
+	u32 checksum = ProgressManager::computeChecksum(this);
+	SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&checksum, offsetof(struct SaveData, checksum), sizeof(checksum));
 }
 
-bool ProgressManager_verifyChecksum(ProgressManager this)
+bool ProgressManager::verifyChecksum(ProgressManager this)
 {
-	u32 computedChecksum = ProgressManager_computeChecksum(this);
+	u32 computedChecksum = ProgressManager::computeChecksum(this);
 	u32 savedChecksum = 0;
-	SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&savedChecksum, offsetof(struct SaveData, checksum), sizeof(savedChecksum));
+	SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&savedChecksum, offsetof(struct SaveData, checksum), sizeof(savedChecksum));
 
 	return (computedChecksum == savedChecksum);
 }
 
-void ProgressManager_clearProgress(ProgressManager this)
+void ProgressManager::clearProgress(ProgressManager this)
 {
 	if(this->sramAvailable)
 	{
-		SRAMManager_clear(SRAMManager_getInstance(), offsetof(struct SaveData, numberOfCompletedLevels), (int)sizeof(SaveData));
+		SRAMManager::clear(SRAMManager::getInstance(), offsetof(struct SaveData, numberOfCompletedLevels), (int)sizeof(SaveData));
 	}
 }
 
-bool ProgressManager_hasProgress(ProgressManager this)
+bool ProgressManager::hasProgress(ProgressManager this)
 {
 	u8 numberOfCompletedLevels = 0;
 
 	if(this->sramAvailable)
 	{
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(numberOfCompletedLevels));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(numberOfCompletedLevels));
 	}
 
 	return (numberOfCompletedLevels > 0);
 }
 
-static void ProgressManager_initialize(ProgressManager this)
+static void ProgressManager::initialize(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::initialize: null this");
 
 	// verify sram validity
-	if(ProgressManager_verifySaveStamp(this))
+	if(ProgressManager::verifySaveStamp(this))
 	{
 		// set sram available flag
 		this->sramAvailable = true;
 
 		// verify saved progress presence and integrity
-		if(!ProgressManager_verifyChecksum(this))
+		if(!ProgressManager::verifyChecksum(this))
 		{
 			// if no previous save could be verified, completely erase sram to start clean
-			SRAMManager_clear(SRAMManager_getInstance(), 0, (int)sizeof(SaveData));
+			SRAMManager::clear(SRAMManager::getInstance(), 0, (int)sizeof(SaveData));
 
 			// write checksum
-			ProgressManager_writeChecksum(this);
+			ProgressManager::writeChecksum(this);
 		}
 
 		// load and set active language
-		I18n_setActiveLanguage(I18n_getInstance(), ProgressManager_getLanguage(this));
+		I18n::setActiveLanguage(I18n::getInstance(), ProgressManager::getLanguage(this));
 
 		// load and set auto pause state
-		Game_setAutomaticPauseState(Game_getInstance(), ProgressManager_getAutomaticPauseStatus(this)
-			? __SAFE_CAST(GameState, AutoPauseScreenState_getInstance())
+		Game::setAutomaticPauseState(Game::getInstance(), ProgressManager::getAutomaticPauseStatus(this)
+			? __SAFE_CAST(GameState, AutoPauseScreenState::getInstance())
 			: NULL
 		);
 	}
 }
 
-void ProgressManager_setCheckPointData(ProgressManager this)
+void ProgressManager::setCheckPointData(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::setCheckPoint: null this");
 
@@ -267,7 +267,7 @@ void ProgressManager_setCheckPointData(ProgressManager this)
 	this->checkpointCollectedCoins[1] = this->collectedCoins[1];
 }
 
-void ProgressManager_loadCheckPointData(ProgressManager this)
+void ProgressManager::loadCheckPointData(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::setCheckPoint: null this");
 
@@ -278,7 +278,7 @@ void ProgressManager_loadCheckPointData(ProgressManager this)
 	this->collectedCoins[1] = this->checkpointCollectedCoins[1];
 }
 
-u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
+u8 ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getCurrentLevelNumberOfCollectedCoins: null this");
 
@@ -291,67 +291,67 @@ u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
 	return numberOfCollectedCoins;
 }
 
-u32 ProgressManager_getCurrentLevelBestTime(ProgressManager this)
+u32 ProgressManager::getCurrentLevelBestTime(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getCurrentLevelBestTime: null this");
 
 	return this->currentLevelBestTime;
 }
 
-u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this)
+u16 ProgressManager::getTotalNumberOfCollectedCoins(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getTotalNumberOfCollectedCoins: null this");
 
 	u16 numberOfCollectedCoins = 0;
 	if(this->sramAvailable)
 	{
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 	}
 
 	return numberOfCollectedCoins;
 }
 
-u8 ProgressManager_getLanguage(ProgressManager this)
+u8 ProgressManager::getLanguage(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getLanguage: null this");
 
 	u8 languageId = 0;
 	if(this->sramAvailable)
 	{
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&languageId, offsetof(struct SaveData, languageId), sizeof(languageId));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&languageId, offsetof(struct SaveData, languageId), sizeof(languageId));
 	}
 
 	return languageId;
 }
 
-void ProgressManager_setLanguage(ProgressManager this, u8 languageId)
+void ProgressManager::setLanguage(ProgressManager this, u8 languageId)
 {
 	ASSERT(this, "ProgressManager::setLanguage: null this");
 
 	if(this->sramAvailable)
 	{
 		// write language
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&languageId, offsetof(struct SaveData, languageId), sizeof(languageId));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&languageId, offsetof(struct SaveData, languageId), sizeof(languageId));
 
 		// write checksum
-		ProgressManager_writeChecksum(this);
+		ProgressManager::writeChecksum(this);
 	}
 }
 
-bool ProgressManager_getAutomaticPauseStatus(ProgressManager this)
+bool ProgressManager::getAutomaticPauseStatus(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getAutomaticPause: null this");
 
 	u8 autoPauseStatus = 0;
 	if(this->sramAvailable)
 	{
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&autoPauseStatus, offsetof(struct SaveData, autoPauseStatus), sizeof(autoPauseStatus));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&autoPauseStatus, offsetof(struct SaveData, autoPauseStatus), sizeof(autoPauseStatus));
 	}
 
 	return !autoPauseStatus;
 }
 
-void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 autoPauseStatus)
+void ProgressManager::setAutomaticPauseStatus(ProgressManager this, u8 autoPauseStatus)
 {
 	ASSERT(this, "ProgressManager::setAutomaticPause: null this");
 
@@ -362,14 +362,14 @@ void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 autoPauseS
 		autoPauseStatus = !autoPauseStatus;
 
 		// write auto pause status
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&autoPauseStatus, offsetof(struct SaveData, autoPauseStatus), sizeof(autoPauseStatus));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&autoPauseStatus, offsetof(struct SaveData, autoPauseStatus), sizeof(autoPauseStatus));
 
 		// write checksum
-		ProgressManager_writeChecksum(this);
+		ProgressManager::writeChecksum(this);
 	}
 }
 
-bool ProgressManager_getCoinStatus(ProgressManager this, u16 id)
+bool ProgressManager::getCoinStatus(ProgressManager this, u16 id)
 {
 	ASSERT(this, "ProgressManager::getCoinStatus: null this");
 
@@ -381,7 +381,7 @@ bool ProgressManager_getCoinStatus(ProgressManager this, u16 id)
 	return false;
 }
 
-bool ProgressManager_setCoinStatus(ProgressManager this, u16 id, bool taken)
+bool ProgressManager::setCoinStatus(ProgressManager this, u16 id, bool taken)
 {
 	ASSERT(this, "ProgressManager::setCoinStatus: null this");
 
@@ -402,7 +402,7 @@ bool ProgressManager_setCoinStatus(ProgressManager this, u16 id, bool taken)
 	return false;
 }
 
-bool ProgressManager_getItemStatus(ProgressManager this, u16 id)
+bool ProgressManager::getItemStatus(ProgressManager this, u16 id)
 {
 	ASSERT(this, "ProgressManager::getItemStatus: null this");
 
@@ -414,7 +414,7 @@ bool ProgressManager_getItemStatus(ProgressManager this, u16 id)
 	return false;
 }
 
-bool ProgressManager_setItemStatus(ProgressManager this, u16 id, bool taken)
+bool ProgressManager::setItemStatus(ProgressManager this, u16 id, bool taken)
 {
 	ASSERT(this, "ProgressManager::setItemStatus: null this");
 
@@ -435,14 +435,14 @@ bool ProgressManager_setItemStatus(ProgressManager this, u16 id, bool taken)
 	return false;
 }
 
-void ProgressManager_loadLevelStatus(ProgressManager this, u8 levelId)
+void ProgressManager::loadLevelStatus(ProgressManager this, u8 levelId)
 {
 	ASSERT(this, "ProgressManager::loadLevelStatus: null this");
 
 	u16 currentLevelOffset = 0;
 
 	// reset all unsaved progress for current level
-	ProgressManager_resetCurrentLevelProgress(this);
+	ProgressManager::resetCurrentLevelProgress(this);
 
 	if(this->sramAvailable)
 	{
@@ -450,15 +450,15 @@ void ProgressManager_loadLevelStatus(ProgressManager this, u8 levelId)
 		currentLevelOffset = offsetof(struct SaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
 
 		// load collected coin flags
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[1], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[1]), sizeof(this->collectedCoins[1]));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&this->collectedCoins[1], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[1]), sizeof(this->collectedCoins[1]));
 
 		// load best time
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->currentLevelBestTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelBestTime));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&this->currentLevelBestTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelBestTime));
 	}
 }
 
-void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
+void ProgressManager::persistLevelStatus(ProgressManager this, u8 levelId)
 {
 	ASSERT(this, "ProgressManager::persistLevelStatus: null this");
 
@@ -471,21 +471,21 @@ void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
 		currentLevelOffset = offsetof(struct SaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
 
 		// save collected coin flags
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[1], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[1]), sizeof(this->collectedCoins[1]));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&this->collectedCoins[1], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[1]), sizeof(this->collectedCoins[1]));
 
 		// save number of collected coins
-		numberOfCollectedCoins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(this);
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
+		numberOfCollectedCoins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(this);
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 
 		// save level completed flag
 		levelCompleted = 1;
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
 
 		// save new best time, if it's the first time beating this level or if time beats the previous time
 		if(!this->currentLevelBestTime || (this->currentLevelBestTime > this->currentLevelTime))
 		{
-			SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->currentLevelTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelTime));
+			SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&this->currentLevelTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelTime));
 		}
 
 		// determine and save total number of collected coins and completed levels
@@ -498,90 +498,90 @@ void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
 			currentLevelOffset = offsetof(struct SaveData, levelStatuses) + (i * sizeof(struct LevelStatus));
 
 			// collected coins
-			SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
+			SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 			totalNumberOfCollectedCoins += numberOfCollectedCoins;
 
 			// level completed
-			SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
+			SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
 			if(levelCompleted > 0)
 			{
 				totalNumberOfCompletedLevels++;
 			}
 		}
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&totalNumberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(totalNumberOfCompletedLevels));
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&totalNumberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(totalNumberOfCollectedCoins));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&totalNumberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(totalNumberOfCompletedLevels));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&totalNumberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(totalNumberOfCollectedCoins));
 
 		// write checksum
-		ProgressManager_writeChecksum(this);
+		ProgressManager::writeChecksum(this);
 	}
 }
 
 // get hero's current energy
-u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this)
+u8 ProgressManager::getHeroCurrentEnergy(ProgressManager this)
 {
 	return this->heroCurrentEnergy;
 }
 
 // get hero's current power-up
-u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this)
+u8 ProgressManager::getHeroCurrentPowerUp(ProgressManager this)
 {
 	return this->heroCurrentPowerUp;
 }
 
-bool ProgressManager_heroHasKey(ProgressManager this)
+bool ProgressManager::heroHasKey(ProgressManager this)
 {
 	return this->heroHasKey;
 }
 
 // get current level time
-u32 ProgressManager_getCurrentLevelTime(ProgressManager this)
+u32 ProgressManager::getCurrentLevelTime(ProgressManager this)
 {
 	return this->currentLevelTime;
 }
 
 // handle event
-static void ProgressManager_onSecondChange(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+static void ProgressManager::onSecondChange(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-	this->currentLevelTime = Clock_getTime(PlatformerLevelState_getClock(PlatformerLevelState_getInstance()));
+	this->currentLevelTime = Clock::getTime(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()));
 }
 
 // handle event
-static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+static void ProgressManager::onHitTaken(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-	this->heroCurrentEnergy = Hero_getEnergy(Hero_getInstance());
+	this->heroCurrentEnergy = Hero::getEnergy(Hero::getInstance());
 }
 
 // handle event
-static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+static void ProgressManager::onKeyTaken(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
 	this->heroHasKey = true;
 }
 
 // handle event
-static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+static void ProgressManager::onPowerUp(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-	this->heroCurrentPowerUp = Hero_getPowerUp(Hero_getInstance());
+	this->heroCurrentPowerUp = Hero::getPowerUp(Hero::getInstance());
 }
 
 // handle event
-static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+static void ProgressManager::onLevelStarted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());
 
-	ProgressManager_loadLevelStatus(this, platformerLevelDefinition->id);
+	ProgressManager::loadLevelStatus(this, platformerLevelDefinition->id);
 }
 
 // handle event
-static void ProgressManager_onCheckpointLoaded(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+static void ProgressManager::onCheckpointLoaded(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-	ProgressManager_resetHeroState(this);
-	ProgressManager_loadCheckPointData(this);
+	ProgressManager::resetHeroState(this);
+	ProgressManager::loadCheckPointData(this);
 }
 
 // handle event
-static void ProgressManager_onLevelCompleted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
+static void ProgressManager::onLevelCompleted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());
 
-	ProgressManager_persistLevelStatus(this, platformerLevelDefinition->id);
+	ProgressManager::persistLevelStatus(this, platformerLevelDefinition->id);
 }

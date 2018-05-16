@@ -32,25 +32,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
-//---------------------------------------------------------------------------------------------------------
-
-#define Gui_METHODS(ClassName)																			\
-		AnimatedEntity_METHODS(ClassName)															\
-
-#define Gui_SET_VTABLE(ClassName)																		\
-		AnimatedEntity_SET_VTABLE(ClassName)														\
-		__VIRTUAL_SET(ClassName, Gui, ready);															\
-		__VIRTUAL_SET(ClassName, Gui, handlePropagatedMessage);											\
-
-__CLASS(Gui);
-
-#define Gui_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		AnimatedEntity_ATTRIBUTES																	\
-
-
-//---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
@@ -58,24 +39,23 @@ __CLASS(Gui);
 #define GUI_X_POS	0
 #define GUI_Y_POS	26
 
-
 //---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Gui, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void Gui_constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void Gui_destructor(Gui this);
-void Gui_ready(Gui this, bool recursive);
-void Gui_printClock(Gui this);
-void Gui_printBestTime(Gui this);
-void Gui_printCoins(Gui this);
-void Gui_printEnergy(Gui this);
-void Gui_printKey(Gui this);
-void Gui_printLevel(Gui this);
-void Gui_printAll(Gui this);
-bool Gui_handlePropagatedMessage(Gui this, int message);
+class Gui : AnimatedEntity
+{
+	void constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void printClock(Gui this);
+	void printBestTime(Gui this);
+	void printCoins(Gui this);
+	void printEnergy(Gui this);
+	void printKey(Gui this);
+	void printLevel(Gui this);
+	void printAll(Gui this);
+	override void ready(Gui this, bool recursive);
+	override bool handlePropagatedMessage(Gui this, int message);
+}
 
 
 #endif

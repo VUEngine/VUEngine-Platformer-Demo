@@ -35,35 +35,14 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Key_METHODS(ClassName)																			\
-	Item_METHODS(ClassName)																				\
-
-#define Key_SET_VTABLE(ClassName)																		\
-	Item_SET_VTABLE(ClassName)																			\
-	__VIRTUAL_SET(ClassName, Key, ready);																\
-	__VIRTUAL_SET(ClassName, Key, collect);																\
-	__VIRTUAL_SET(ClassName, Key, suspend);																\
-	__VIRTUAL_SET(ClassName, Key, resume);																\
-
-__CLASS(Key);
-
-#define Key_ATTRIBUTES																					\
-	/* it is derived from */																			\
-	Item_ATTRIBUTES																						\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Key, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void Key_constructor(Key this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void Key_destructor(Key this);
-void Key_ready(Key this, bool recursive);
-void Key_collect(Key this);
-void Key_suspend(Key this);
-void Key_resume(Key this);
+class Key : Item
+{
+	void constructor(Key this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void ready(Key this, bool recursive);
+	override void collect(Key this);
+	override void suspend(Key this);
+	override void resume(Key this);
+}
 
 
 #endif

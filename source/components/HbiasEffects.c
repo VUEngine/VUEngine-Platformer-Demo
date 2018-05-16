@@ -35,13 +35,13 @@
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-s16 HbiasEffects_wave(BgmapSprite bgmapSprite)
+s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 {
-	u32 param = BgmapSprite_getParam(bgmapSprite);
-	s32 spriteHeight = Texture_getRows(Sprite_getTexture(__SAFE_CAST(Sprite, bgmapSprite))) << 3;
-	s16 i = BgmapSprite_getParamTableRow(bgmapSprite);
+	u32 param = BgmapSprite::getParam(bgmapSprite);
+	s32 spriteHeight = Texture::getRows(Sprite::getTexture(__SAFE_CAST(Sprite, bgmapSprite))) << 3;
+	s16 i = BgmapSprite::getParamTableRow(bgmapSprite);
 	// if you want to defer the effect, compute up to counter rows
-	// int counter = SpriteManager_getMaximumParamTableRowsToComputePerCall(SpriteManager_getInstance());
+	// int counter = SpriteManager::getMaximumParamTableRowsToComputePerCall(SpriteManager::getInstance());
 
 	// look up table of wave shifts
 	#define HBIAS_WAVE_LUT_LENGTH 	32
@@ -69,7 +69,7 @@ s16 HbiasEffects_wave(BgmapSprite bgmapSprite)
 	// if you want to defer the effect, compute up to counter rows
 	// for(; counter && i < spriteHeight; i++, counter--)
 	// if you want to bypass the deferring, just write the whole table without paying attention to the
-	// value returned by SpriteManager_getMaximumParamTableRowsToComputePerCall and return -1
+	// value returned by SpriteManager::getMaximumParamTableRowsToComputePerCall and return -1
 	for(; i < spriteHeight; i++)
 	{
 		register s16 waveLutValue = waveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
@@ -80,14 +80,14 @@ s16 HbiasEffects_wave(BgmapSprite bgmapSprite)
 	// Possible return values and their effects:
 	//
 	// 0:  forces the effect to be triggered on the next rendering cycle without having to call
-	//     Sprite_applyHbiasEffects.
+	//     Sprite::applyHbiasEffects.
 	//
 	// >0: forces the effect to be triggered on the next rendering cycle without having to call
-	//     Sprite_applyHbiasEffects. The returned value means the next param table row to compute.
+	//     Sprite::applyHbiasEffects. The returned value means the next param table row to compute.
 	//     Only used when deferring the effect across multiple rendering cycles.
 	//
 	// -1: means that the param table writing has been completed. To trigger the effect again,
-	//     Sprite_applyHbiasEffects must be called.
+	//     Sprite::applyHbiasEffects must be called.
 
 	return 0;
 

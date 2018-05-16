@@ -52,7 +52,7 @@ extern AnimatedEntityROMDef COIN_BACK_SILHOUETTE_AG;
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Coin, Collectable);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,17 +60,17 @@ __CLASS_DEFINITION(Coin, Collectable);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Coin, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Coin, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Coin_constructor(Coin this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Coin::constructor(Coin this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 
 	// if coin has already been collected, show silhouette representation
-	if(ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
+	if(ProgressManager::getCoinStatus(ProgressManager::getInstance(), this->id))
 	{
 		AnimatedEntityDefinition* animatedEntityDefinition = this->animatedEntityDefinition;
 
@@ -83,29 +83,29 @@ void Coin_constructor(Coin this, AnimatedEntityDefinition* animatedEntityDefinit
 			animatedEntityDefinition = (AnimatedEntityDefinition*)&COIN_SILHOUETTE_AG;
 		}
 
-		AnimatedEntity_setDefinition(__SAFE_CAST(AnimatedEntity, this), animatedEntityDefinition);
+		AnimatedEntity::setDefinition(__SAFE_CAST(AnimatedEntity, this), animatedEntityDefinition);
 	}
 }
 
 // class's destructor
-void Coin_destructor(Coin this)
+void Coin::destructor(Coin this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Coin_collect(Coin this)
+void Coin::collect(Coin this)
 {
 	ASSERT(this, "Collectable::collect: null this");
 
 	// "collect" coin if it wasn't already
-	if(!ProgressManager_getCoinStatus(ProgressManager_getInstance(), this->id))
+	if(!ProgressManager::getCoinStatus(ProgressManager::getInstance(), this->id))
 	{
 		// set coin status to taken
-		ProgressManager_setCoinStatus(ProgressManager_getInstance(), this->id, true);
+		ProgressManager::setCoinStatus(ProgressManager::getInstance(), this->id, true);
 
 		// fire "taken" event
-		Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCoinTaken);
+		Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventCoinTaken);
 	}
 }

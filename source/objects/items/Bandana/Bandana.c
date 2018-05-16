@@ -40,7 +40,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Bandana, Item);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,34 +48,34 @@ __CLASS_DEFINITION(Bandana, Item);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Bandana, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Bandana, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Bandana_constructor(Bandana this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Bandana::constructor(Bandana this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Bandana::constructor: null this");
 
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Bandana_destructor(Bandana this)
+void Bandana::destructor(Bandana this)
 {
 	ASSERT(this, "Bandana::destructor: null this");
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Bandana_collect(Bandana this)
+void Bandana::collect(Bandana this)
 {
 	ASSERT(this, "Bandana::collect: null this");
 
 	// fire item taken event
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
+	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventPowerUp);
 
 	// call base
 	__CALL_BASE_METHOD(Item, collect, this);

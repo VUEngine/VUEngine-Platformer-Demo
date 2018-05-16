@@ -43,35 +43,18 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Cannon_METHODS(ClassName)																		\
-		AnimatedEntity_METHODS(ClassName)																\
-
-#define Cannon_SET_VTABLE(ClassName)																	\
-		AnimatedEntity_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, Cannon, handleMessage);												\
-		__VIRTUAL_SET(ClassName, Cannon, ready);														\
-
-__CLASS(Cannon);
-
-#define Cannon_ATTRIBUTES																				\
-		AnimatedEntity_ATTRIBUTES																		\
 
 typedef const AnimatedEntityDefinition CannonDefinition;
 typedef const CannonDefinition CannonROMDef;
 
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Cannon, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void Cannon_constructor(Cannon this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void Cannon_destructor(Cannon this);
-bool Cannon_handleMessage(Cannon this, Telegram telegram);
-void Cannon_ready(Cannon this, bool recursive);
-void Cannon_shoot(Cannon this);
-void Cannon_spawnCannonBall(Cannon this);
+class Cannon : AnimatedEntity
+{
+	void constructor(Cannon this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void shoot(Cannon this);
+	void spawnCannonBall(Cannon this);
+	override bool handleMessage(Cannon this, Telegram telegram);
+	override void ready(Cannon this, bool recursive);
+}
 
 
 #endif

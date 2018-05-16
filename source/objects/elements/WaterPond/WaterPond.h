@@ -37,23 +37,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define WaterPond_METHODS(ClassName)																	\
-		ReflectiveEntity_METHODS(ClassName)																\
-
-#define WaterPond_SET_VTABLE(ClassName)																	\
-		ReflectiveEntity_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, WaterPond, handleMessage);												\
-		__VIRTUAL_SET(ClassName, WaterPond, ready);														\
-		__VIRTUAL_SET(ClassName, WaterPond, applyReflection);											\
-
-__CLASS(WaterPond);
-
-#define WaterPond_ATTRIBUTES																			\
-		/* it is derived from */																		\
-		ReflectiveEntity_ATTRIBUTES																		\
-		fix10_6 waveLutThrottleFactorIncrement;														\
-		fix10_6 amplitudeFactor;																		\
-		ParticleSystem waterSplash;
 
 typedef struct WaterPondDefinition
 {
@@ -78,18 +61,17 @@ typedef struct WaterPondDefinition
 
 typedef const WaterPondDefinition WaterPondROMDef;
 
+class WaterPond : ReflectiveEntity
+{
+	fix10_6 waveLutThrottleFactorIncrement;
+	fix10_6 amplitudeFactor;
+	ParticleSystem waterSplash;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(WaterPond, WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
-
-void WaterPond_constructor(WaterPond this, WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
-void WaterPond_destructor(WaterPond this);
-bool WaterPond_handleMessage(WaterPond this, void* telegram);
-void WaterPond_ready(WaterPond this, bool recursive);
-void WaterPond_applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet);
+	void constructor(WaterPond this, WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(WaterPond this, void* telegram);
+	override void ready(WaterPond this, bool recursive);
+	override void applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet);
+}
 
 
 #endif

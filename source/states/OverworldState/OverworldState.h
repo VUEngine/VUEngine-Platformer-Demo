@@ -41,32 +41,16 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define OverworldState_METHODS(ClassName)																\
-		GameState_METHODS(ClassName)																	\
+dynamic_singleton class OverworldState : GameState
+{
+	static OverworldState getInstance(void);
+	override void enter(OverworldState this, void* owner);
+	override void exit(OverworldState this, void* owner);
+	override void resume(OverworldState this, void* owner);
+	override void suspend(OverworldState this, void* owner);
+	override bool processMessage(OverworldState this, void* owner, Telegram telegram);
+	override void processUserInput(OverworldState this, UserInput userInput);
+}
 
-// declare the virtual methods which are redefined
-#define OverworldState_SET_VTABLE(ClassName)															\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, OverworldState, enter);												\
-		__VIRTUAL_SET(ClassName, OverworldState, exit);													\
-		__VIRTUAL_SET(ClassName, OverworldState, resume);												\
-		__VIRTUAL_SET(ClassName, OverworldState, suspend);												\
-		__VIRTUAL_SET(ClassName, OverworldState, processMessage);										\
-		__VIRTUAL_SET(ClassName, OverworldState, processUserInput);										\
-
-__CLASS(OverworldState);
-
-#define OverworldState_ATTRIBUTES																		\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-OverworldState OverworldState_getInstance(void);
-void OverworldState_processUserInput(OverworldState this, UserInput userInput);
 
 #endif

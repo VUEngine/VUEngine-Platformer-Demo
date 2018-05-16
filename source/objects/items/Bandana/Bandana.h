@@ -35,29 +35,11 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Bandana_METHODS(ClassName)																		\
-		Item_METHODS(ClassName)																			\
-
-#define Bandana_SET_VTABLE(ClassName)																	\
-		Item_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, Bandana, collect);														\
-
-__CLASS(Bandana);
-
-#define Bandana_ATTRIBUTES																				\
-		/* it is derived from */																		\
-		Item_ATTRIBUTES																					\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(Bandana, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void Bandana_constructor(Bandana this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void Bandana_destructor(Bandana this);
-void Bandana_collect(Bandana this);
+class Bandana : Item
+{
+	void constructor(Bandana this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void collect(Bandana this);
+}
 
 
 #endif

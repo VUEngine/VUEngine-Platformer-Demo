@@ -35,38 +35,17 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define GoalDoor_METHODS(ClassName)																		\
-		Door_METHODS(ClassName)																			\
-
-#define GoalDoor_SET_VTABLE(ClassName)																	\
-		Door_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, GoalDoor, handleMessage);												\
-		__VIRTUAL_SET(ClassName, GoalDoor, ready);														\
-		__VIRTUAL_SET(ClassName, GoalDoor, hasDestination);												\
-		__VIRTUAL_SET(ClassName, GoalDoor, canEnter);													\
-
-__CLASS(GoalDoor);
-
-#define GoalDoor_ATTRIBUTES																				\
-		/* it is derived from */																		\
-		Door_ATTRIBUTES																					\
-
 typedef const DoorDefinition GoalDoorDefinition;
 typedef const GoalDoorDefinition GoalDoorROMDef;
 
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(GoalDoor, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void GoalDoor_constructor(GoalDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void GoalDoor_destructor(GoalDoor this);
-bool GoalDoor_handleMessage(GoalDoor this, Telegram telegram);
-void GoalDoor_ready(Door this, bool recursive);
-bool GoalDoor_hasDestination(Door this);
-bool GoalDoor_canEnter(GoalDoor this);
+class GoalDoor : Door
+{
+	void constructor(GoalDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(GoalDoor this, Telegram telegram);
+	override void ready(Door this, bool recursive);
+	override bool hasDestination(Door this);
+	override bool canEnter(GoalDoor this);
+}
 
 
 #endif

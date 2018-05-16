@@ -32,7 +32,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(HeroState, State);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,20 +40,20 @@ __CLASS_DEFINITION(HeroState, State);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroState_constructor(HeroState this)
+void __attribute__ ((noinline)) HeroState::constructor(HeroState this)
 {
 	// construct base
-	__CONSTRUCT_BASE(State);
+	Base::constructor();
 }
 
 // class's destructor
-void HeroState_destructor(HeroState this)
+void HeroState::destructor(HeroState this)
 {
 	// destroy base
-	Base_destructor();
+	Base::destructor();
 }
 
-void HeroState_onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+void HeroState::onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
 {
 
 }

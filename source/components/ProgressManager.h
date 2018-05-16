@@ -36,44 +36,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define ProgressManager_METHODS(ClassName)																\
-		Object_METHODS(ClassName)																		\
-
-// declare the virtual methods which are redefined
-#define ProgressManager_SET_VTABLE(ClassName)															\
-		Object_SET_VTABLE(ClassName)																	\
-
-// declare class
-__CLASS(ProgressManager);
-
-// declare class attributes
-#define ProgressManager_ATTRIBUTES																		\
-		Object_ATTRIBUTES																				\
-		/* time in current level */																		\
-		u32 currentLevelTime;																			\
-		/* time in current level at last checkpoint */													\
-		u32 checkpointCurrentLevelTime;																	\
-		/* best time in current level */																\
-		u32 currentLevelBestTime;																		\
-		/* bitstrings that hold collected coin flags */													\
-		u32 collectedCoins[2];																			\
-		/* bitstrings that hold collected coin flags at last checkpoint */								\
-		u32 checkpointCollectedCoins[2];																\
-		/* bitstring that holds collected item flags */													\
-		u16 collectedItems;																				\
-		/* bitstring that holds collected item flags at last checkpoint */								\
-		u16 checkpointCollectedItems;																	\
-		/* flag that tells if the hero has collected the current level's key */							\
-		bool heroHasKey;																				\
-		/* flag that tells if the hero has collected the current level's key at last checkpoint */		\
-		bool checkpointHeroHasKey;																		\
-		/* flag that tells if sram is available on the current cartridge */								\
-		bool sramAvailable;																				\
-		/* hero's current energy */																		\
-		u8 heroCurrentEnergy;																			\
-		/* hero's currently active power-up */															\
-		u8 heroCurrentPowerUp;																			\
-
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
@@ -126,34 +88,55 @@ typedef struct SaveData
 
 } SaveData;
 
+singleton class ProgressManager : Object
+{
+	/* time in current level */
+	u32 currentLevelTime;
+	/* time in current level at last checkpoint */
+	u32 checkpointCurrentLevelTime;
+	/* best time in current level */
+	u32 currentLevelBestTime;
+	/* bitstrings that hold collected coin flags */
+	u32 collectedCoins[2];
+	/* bitstrings that hold collected coin flags at last checkpoint */
+	u32 checkpointCollectedCoins[2];
+	/* bitstring that holds collected item flags */
+	u16 collectedItems;
+	/* bitstring that holds collected item flags at last checkpoint */
+	u16 checkpointCollectedItems;
+	/* flag that tells if the hero has collected the current level's key */
+	bool heroHasKey;
+	/* flag that tells if the hero has collected the current level's key at last checkpoint */
+	bool checkpointHeroHasKey;
+	/* flag that tells if sram is available on the current cartridge */
+	bool sramAvailable;
+	/* hero's current energy */
+	u8 heroCurrentEnergy;
+	/* hero's currently active power-up */
+	u8 heroCurrentPowerUp;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-ProgressManager ProgressManager_getInstance();
-
-void ProgressManager_clearProgress(ProgressManager this);
-void ProgressManager_destructor(ProgressManager this);
-bool ProgressManager_getAutomaticPauseStatus(ProgressManager this);
-bool ProgressManager_getCoinStatus(ProgressManager this, u16 itemNumber);
-u32  ProgressManager_getCurrentLevelBestTime(ProgressManager this);
-u8   ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this);
-u32  ProgressManager_getCurrentLevelTime(ProgressManager this);
-u8   ProgressManager_getHeroCurrentEnergy(ProgressManager this);
-u8   ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
-bool ProgressManager_getItemStatus(ProgressManager this, u16 itemNumber);
-u8   ProgressManager_getLanguage(ProgressManager this);
-u16  ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this);
-bool ProgressManager_hasProgress(ProgressManager this);
-bool ProgressManager_heroHasKey(ProgressManager this);
-void ProgressManager_loadCheckPointData(ProgressManager this);
-void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
-void ProgressManager_setCheckPointData(ProgressManager this);
-bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool taken);
-bool ProgressManager_setItemStatus(ProgressManager this, u16 itemNumber, bool taken);
-void ProgressManager_setLanguage(ProgressManager this, u8 languageId);
-void ProgressManager_resetCurrentLevelProgress(ProgressManager this);
+	static ProgressManager getInstance();
+	void clearProgress(ProgressManager this);
+	bool getAutomaticPauseStatus(ProgressManager this);
+	bool getCoinStatus(ProgressManager this, u16 itemNumber);
+	u32  getCurrentLevelBestTime(ProgressManager this);
+	u8   getCurrentLevelNumberOfCollectedCoins(ProgressManager this);
+	u32  getCurrentLevelTime(ProgressManager this);
+	u8   getHeroCurrentEnergy(ProgressManager this);
+	u8   getHeroCurrentPowerUp(ProgressManager this);
+	bool getItemStatus(ProgressManager this, u16 itemNumber);
+	u8   getLanguage(ProgressManager this);
+	u16  getTotalNumberOfCollectedCoins(ProgressManager this);
+	bool hasProgress(ProgressManager this);
+	bool heroHasKey(ProgressManager this);
+	void loadCheckPointData(ProgressManager this);
+	void setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
+	void setCheckPointData(ProgressManager this);
+	bool setCoinStatus(ProgressManager this, u16 itemNumber, bool taken);
+	bool setItemStatus(ProgressManager this, u16 itemNumber, bool taken);
+	void setLanguage(ProgressManager this, u8 languageId);
+	void resetCurrentLevelProgress(ProgressManager this);
+}
 
 
 #endif

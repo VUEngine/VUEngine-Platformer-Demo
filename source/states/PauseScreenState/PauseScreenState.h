@@ -54,30 +54,23 @@ enum PauseScreenOptions
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define PauseScreenState_METHODS(ClassName)																\
-		GameState_METHODS(ClassName)																	\
-
-// declare the virtual methods which are redefined
-#define PauseScreenState_SET_VTABLE(ClassName)															\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, PauseScreenState, enter);												\
-		__VIRTUAL_SET(ClassName, PauseScreenState, exit);												\
-		__VIRTUAL_SET(ClassName, PauseScreenState, processUserInput);									\
-
-__CLASS(PauseScreenState);
-
-#define PauseScreenState_ATTRIBUTES																		\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-		u8 mode;																						\
-		OptionsSelector optionsSelector;																\
-
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-PauseScreenState PauseScreenState_getInstance(void);
-void PauseScreenState_processUserInput(PauseScreenState this, UserInput userInput);
+
+
+singleton class PauseScreenState : GameState
+{
+	u8 mode;
+	OptionsSelector optionsSelector;
+
+	static PauseScreenState getInstance(void);
+	override void enter(PauseScreenState this, void* owner);
+	override void exit(PauseScreenState this, void* owner);
+	override void processUserInput(PauseScreenState this, UserInput userInput);
+}
+
 
 #endif

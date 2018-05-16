@@ -34,29 +34,13 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define LevelDoneScreenState_METHODS(ClassName)															\
-		GameState_METHODS(ClassName)																	\
+dynamic_singleton class LevelDoneScreenState : GameState
+{
+	static LevelDoneScreenState getInstance(void);
+	override void enter(LevelDoneScreenState this, void* owner);
+	override void exit(LevelDoneScreenState this, void* owner);
+	override void processUserInput(LevelDoneScreenState this, UserInput userInput);
+}
 
-// declare the virtual methods which are redefined
-#define LevelDoneScreenState_SET_VTABLE(ClassName)														\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, LevelDoneScreenState, enter);											\
-		__VIRTUAL_SET(ClassName, LevelDoneScreenState, exit);											\
-		__VIRTUAL_SET(ClassName, LevelDoneScreenState, processUserInput);								\
-
-__CLASS(LevelDoneScreenState);
-
-#define LevelDoneScreenState_ATTRIBUTES																	\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-LevelDoneScreenState LevelDoneScreenState_getInstance(void);
-void LevelDoneScreenState_processUserInput(LevelDoneScreenState this, UserInput userInput);
 
 #endif

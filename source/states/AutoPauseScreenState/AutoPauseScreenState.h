@@ -34,28 +34,14 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define AutoPauseScreenState_METHODS(ClassName)															\
-		GameState_METHODS(ClassName)																	\
+dynamic_singleton class AutoPauseScreenState : GameState
+{
+	static AutoPauseScreenState getInstance(void);
 
-// declare the virtual methods which are redefined
-#define AutoPauseScreenState_SET_VTABLE(ClassName)														\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, AutoPauseScreenState, enter);											\
-		__VIRTUAL_SET(ClassName, AutoPauseScreenState, exit);											\
-		__VIRTUAL_SET(ClassName, AutoPauseScreenState, processUserInput);								\
+	override void enter(AutoPauseScreenState this, void* owner);
+	override void exit(AutoPauseScreenState this, void* owner);
+	override void processUserInput(AutoPauseScreenState this, UserInput userInput);
+}
 
-__CLASS(AutoPauseScreenState);
-
-#define AutoPauseScreenState_ATTRIBUTES																	\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-AutoPauseScreenState AutoPauseScreenState_getInstance(void);
-void AutoPauseScreenState_processUserInput(AutoPauseScreenState this, UserInput userInput);
 
 #endif

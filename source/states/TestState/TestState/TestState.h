@@ -41,32 +41,16 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define TestState_METHODS(ClassName)																\
-		GameState_METHODS(ClassName)																	\
+dynamic_singleton class TestState : GameState
+{
+	static TestState getInstance(void);
+	override void enter(TestState this, void* owner);
+	override void exit(TestState this, void* owner);
+	override void resume(TestState this, void* owner);
+	override void suspend(TestState this, void* owner);
+	override bool processMessage(TestState this, void* owner, Telegram telegram);
+	override void processUserInput(TestState this, UserInput userInput);
+}
 
-// declare the virtual methods which are redefined
-#define TestState_SET_VTABLE(ClassName)															\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, TestState, enter);												\
-		__VIRTUAL_SET(ClassName, TestState, exit);													\
-		__VIRTUAL_SET(ClassName, TestState, resume);												\
-		__VIRTUAL_SET(ClassName, TestState, suspend);												\
-		__VIRTUAL_SET(ClassName, TestState, processMessage);										\
-		__VIRTUAL_SET(ClassName, TestState, processUserInput);										\
-
-__CLASS(TestState);
-
-#define TestState_ATTRIBUTES																		\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-TestState TestState_getInstance(void);
-void TestState_processUserInput(TestState this, UserInput userInput);
 
 #endif

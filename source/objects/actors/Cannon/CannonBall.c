@@ -38,7 +38,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(CannonBall, Actor);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,87 +46,87 @@ __CLASS_DEFINITION(CannonBall, Actor);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(CannonBall, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(CannonBall, cannonBallDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void CannonBall_constructor(CannonBall this, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
+void CannonBall::constructor(CannonBall this, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "CannonBall::constructor: null this");
 
 	// construct base
-	Base_constructor(this, (ActorDefinition*)cannonBallDefinition, id, internalId, name);
+	Base::constructor((ActorDefinition*)cannonBallDefinition, id, internalId, name);
 
 	// I start my life hidden
 	this->hidden = true;
 }
 
 // class's constructor
-void CannonBall_destructor(CannonBall this)
+void CannonBall::destructor(CannonBall this)
 {
 	ASSERT(this, "CannonBall::destructor: null this");
 
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement);
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // start moving
-void CannonBall_startMovement(CannonBall this)
+void CannonBall::startMovement(CannonBall this)
 {
 	Velocity velocity = {0, 0, __I_TO_FIX10_6(-8)};
 
-	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
+	Actor::moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
 	// show me
-	Entity_show(__SAFE_CAST(Entity, this));
+	Entity::show(__SAFE_CAST(Entity, this));
 
-	MessageDispatcher_dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
 }
 
 // move back to cannon
-void CannonBall_stopMovement(CannonBall this)
+void CannonBall::stopMovement(CannonBall this)
 {
 	// stop movement
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
+	Actor::stopAllMovement(__SAFE_CAST(Actor, this));
 
 	// set back local position
 	Vector3D position = {0, 0, __F_TO_FIX10_6(-SORT_INCREMENT)};
-	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
+	Actor::setLocalPosition(__SAFE_CAST(Actor, this), &position);
 
 	// hide me
-	Entity_hide(__SAFE_CAST(Entity, this));
+	Entity::hide(__SAFE_CAST(Entity, this));
 }
 
-static void CannonBall_checkIfDistanceTraveled(CannonBall this)
+static void CannonBall::checkIfDistanceTraveled(CannonBall this)
 {
 	if(this->transformation.globalPosition.z <= __PIXELS_TO_METERS(CANNON_BALL_MINIMUM_Z_VALUE))
 	{
-		CannonBall_stopMovement(this);
+		CannonBall::stopMovement(this);
 	}
 	else
 	{
-		MessageDispatcher_dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
+		MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
 	}
 }
 
 // state's handle message
-bool CannonBall_handleMessage(CannonBall this, Telegram telegram)
+bool CannonBall::handleMessage(CannonBall this, Telegram telegram)
 {
 	ASSERT(this, "CannonBall::handleMessage: null this");
 
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kCannonShoot:
 
-			CannonBall_startMovement(this);
+			CannonBall::startMovement(this);
 			break;
 
 		case kCannonBallCheckDisplacement:
 
-			CannonBall_checkIfDistanceTraveled(this);
+			CannonBall::checkIfDistanceTraveled(this);
 			break;
 	}
 

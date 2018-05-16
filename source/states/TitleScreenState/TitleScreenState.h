@@ -56,35 +56,19 @@ enum TitleScreenOptions
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define TitleScreenState_METHODS(ClassName)																\
- 		GameState_METHODS(ClassName)											 						\
+singleton class TitleScreenState : GameState
+{
+	u8 mode;
+	OptionsSelector optionsSelector;
 
-// declare the virtual methods which are redefined
-#define TitleScreenState_SET_VTABLE(ClassName)															\
-		GameState_SET_VTABLE(ClassName)								 									\
-		__VIRTUAL_SET(ClassName, TitleScreenState, enter);												\
-		__VIRTUAL_SET(ClassName, TitleScreenState, exit);												\
-		__VIRTUAL_SET(ClassName, TitleScreenState, resume);												\
-		__VIRTUAL_SET(ClassName, TitleScreenState, suspend);											\
-		__VIRTUAL_SET(ClassName, TitleScreenState, processMessage);									 	\
-		__VIRTUAL_SET(ClassName, TitleScreenState, processUserInput);									 \
-
-__CLASS(TitleScreenState);
-
-#define TitleScreenState_ATTRIBUTES								 										\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-		u8 mode;																						\
-		OptionsSelector optionsSelector;																\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-TitleScreenState TitleScreenState_getInstance(void);
-void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInput);
+	static TitleScreenState getInstance(void);
+	override void enter(TitleScreenState this, void* owner);
+	override void exit(TitleScreenState this, void* owner);
+	override void resume(TitleScreenState this, void* owner);
+	override void suspend(TitleScreenState this, void* owner);
+	override bool processMessage(TitleScreenState this, void* owner, Telegram telegram);
+	override void processUserInput(TitleScreenState this, UserInput userInput);
+}
 
 
 #endif

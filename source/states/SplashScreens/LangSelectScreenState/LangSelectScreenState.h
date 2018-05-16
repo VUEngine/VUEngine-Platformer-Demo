@@ -35,29 +35,14 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define LangSelectScreenState_METHODS(ClassName)														\
-		SplashScreenState_METHODS(ClassName)															\
+dynamic_singleton class LangSelectScreenState : SplashScreenState
+{
+	OptionsSelector languageSelector;
 
-// declare the virtual methods which are redefined
-#define LangSelectScreenState_SET_VTABLE(ClassName)														\
-		SplashScreenState_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, LangSelectScreenState, print);											\
-		__VIRTUAL_SET(ClassName, LangSelectScreenState, processInput);									\
-
-__CLASS(LangSelectScreenState);
-
-#define LangSelectScreenState_ATTRIBUTES																\
-		/* inherits */																					\
-		SplashScreenState_ATTRIBUTES																	\
-		OptionsSelector languageSelector;																\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-LangSelectScreenState LangSelectScreenState_getInstance(void);
+	static LangSelectScreenState getInstance(void);
+	override void processInput(LangSelectScreenState this, u32 pressedKey);
+	override void print(LangSelectScreenState this);
+}
 
 
 #endif

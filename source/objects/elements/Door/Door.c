@@ -39,7 +39,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Door, AnimatedEntity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,29 +53,29 @@ __CLASS_DEFINITION(Door, AnimatedEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Door, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Door, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Door_constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Door::constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 
 	// init class variables
 	this->destinationDefinition = NULL;
 }
 
 // class's destructor
-void Door_destructor(Door this)
+void Door::destructor(Door this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // get destination
-StageEntryPointDefinition* Door_getExtraInfo(Door this)
+StageEntryPointDefinition* Door::getExtraInfo(Door this)
 {
 	ASSERT(this, "Door::setExtraInfo: null this");
 
@@ -83,7 +83,7 @@ StageEntryPointDefinition* Door_getExtraInfo(Door this)
 }
 
 // set destination
-void Door_setExtraInfo(Door this, void* extraInfo)
+void Door::setExtraInfo(Door this, void* extraInfo)
 {
 	ASSERT(this, "Door::setExtraInfo: null this");
 
@@ -91,33 +91,33 @@ void Door_setExtraInfo(Door this, void* extraInfo)
 }
 
 // ready
-void Door_ready(Door this, bool recursive __attribute__ ((unused)))
+void Door::ready(Door this, bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "Door::ready: null this");
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
-	if(Door_hasDestination(this))
+	if(Door::hasDestination(this))
 	{
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
 	}
 	else
 	{
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closed");
+		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closed");
 	}
 }
 
 // class's handle message
-bool Door_handleMessage(Door this, Telegram telegram)
+bool Door::handleMessage(Door this, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kHeroEnterDoor:
 
-			if(Door_hasDestination(this))
+			if(Door::hasDestination(this))
 			{
-				PlatformerLevelState_enterStage(PlatformerLevelState_getInstance(), this->destinationDefinition);
+				PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->destinationDefinition);
 				return true;
 			}
 			break;
@@ -126,34 +126,34 @@ bool Door_handleMessage(Door this, Telegram telegram)
 	return false;
 }
 
-bool Door_hasDestination(Door this)
+bool Door::hasDestination(Door this)
 {
 	return NULL != this->destinationDefinition;
 }
 
-void Door_onOverlapping(Door this)
+void Door::onOverlapping(Door this)
 {
 	// first contact with hero?
-	if(Door_hasDestination(this))
+	if(Door::hasDestination(this))
 	{
-		Door_setOverlapping(this);
+		Door::setOverlapping(this);
 	}
 }
 
-void Door_setOverlapping(Door this __attribute__ ((unused)))
+void Door::setOverlapping(Door this __attribute__ ((unused)))
 {
 }
 
-void Door_unsetOverlapping(Door this __attribute__ ((unused)))
+void Door::unsetOverlapping(Door this __attribute__ ((unused)))
 {
 }
 
-bool Door_canEnter(Door this)
+bool Door::canEnter(Door this)
 {
-	return Door_hasDestination(this);
+	return Door::hasDestination(this);
 }
 
-u32 Door_getHintType(Door this __attribute__ ((unused)))
+u32 Door::getHintType(Door this __attribute__ ((unused)))
 {
 	return kEnterHint;
 }

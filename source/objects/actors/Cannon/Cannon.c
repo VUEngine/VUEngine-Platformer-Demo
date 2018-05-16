@@ -43,15 +43,15 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Cannon, AnimatedEntity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Cannon_shoot(Cannon this);
-static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer);
+void Cannon::shoot(Cannon this);
+static void Cannon::onCannonBallSpawned(Cannon this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,55 +59,55 @@ static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Cannon, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Cannon, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Cannon_constructor(Cannon this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Cannon::constructor(Cannon this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Cannon::constructor: null this");
 
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Cannon_destructor(Cannon this)
+void Cannon::destructor(Cannon this)
 {
 	ASSERT(this, "Cannon::destructor: null this");
 
 	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kCannonShoot);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCannonShoot);
 
 	// not necessary to manually destroy the CannonBall here as all children are automatically
 	// destroyed as well when an entity is unloaded
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Cannon_ready(Cannon this, bool recursive)
+void Cannon::ready(Cannon this, bool recursive)
 {
 	ASSERT(this, "Cannon::ready: null this");
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
 	// send delayed message to self to trigger first shot
-	MessageDispatcher_dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // state's handle message
-bool Cannon_handleMessage(Cannon this, Telegram telegram)
+bool Cannon::handleMessage(Cannon this, Telegram telegram)
 {
 	ASSERT(this, "Cannon::handleMessage: null this");
 
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kCannonShoot:
 
-			Cannon_shoot(this);
+			Cannon::shoot(this);
 			break;
 	}
 
@@ -115,7 +115,7 @@ bool Cannon_handleMessage(Cannon this, Telegram telegram)
 }
 
 // start shooting a cannon ball
-void Cannon_shoot(Cannon this)
+void Cannon::shoot(Cannon this)
 {
 	ASSERT(this, "Cannon::shoot: null this");
 
@@ -124,43 +124,43 @@ void Cannon_shoot(Cannon this)
 		// add cannon ball as child
 		extern PositionedEntityROMDef CANNON_BALL;
 
-		Stage_spawnEntity(Game_getStage(Game_getInstance()), &CANNON_BALL, __SAFE_CAST(Container, this), (EventListener)Cannon_onCannonBallSpawned);
+		Stage::spawnEntity(Game::getStage(Game::getInstance()), &CANNON_BALL, __SAFE_CAST(Container, this), (EventListener)Cannon::onCannonBallSpawned);
 		return;
 	}
 
 	// start shooting sequence
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
-static void Cannon_onCannonBallSpawned(Cannon this, Object eventFirer __attribute__ ((unused)))
+static void Cannon::onCannonBallSpawned(Cannon this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "Cannon::onCannonBallSpawned: null this");
 
 	// start shooting sequence
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher_dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
 }
 
 // spawn a cannon ball, this is the callback of the "Shoot" animation
-void Cannon_spawnCannonBall(Cannon this)
+void Cannon::spawnCannonBall(Cannon this)
 {
 	ASSERT(this, "Cannon::spawnCannonBall: null this");
 
 	// start short screen shake
-	Camera_startEffect(Camera_getInstance(), kShake, 250);
+	Camera::startEffect(Camera::getInstance(), kShake, 250);
 
 	// play boom sound
 	extern const u16 FIRE_SND[];
-	SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transformation.globalPosition);
+	SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
 
 	// set cannon ball to moving state
-	ASSERT(1 == VirtualList_getSize(this->children), "Cannon::spawnCannonBall: no children");
-	CannonBall cannonBall = __SAFE_CAST(CannonBall, VirtualList_front(this->children));
+	ASSERT(1 == VirtualList::getSize(this->children), "Cannon::spawnCannonBall: no children");
+	CannonBall cannonBall = __SAFE_CAST(CannonBall, VirtualList::front(this->children));
 
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, cannonBall), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, cannonBall), kCannonShoot, NULL);
 }

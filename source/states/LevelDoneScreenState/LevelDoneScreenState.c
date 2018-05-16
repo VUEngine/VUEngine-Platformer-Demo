@@ -48,21 +48,18 @@ extern StageROMDef LEVEL_DONE_SCREEN_STAGE_ST;
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void LevelDoneScreenState_destructor(LevelDoneScreenState this);
-static void LevelDoneScreenState_constructor(LevelDoneScreenState this);
-static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner);
-static void LevelDoneScreenState_print(LevelDoneScreenState this);
-static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner);
-static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this, Object eventFirer);
-static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this, Object eventFirer);
+void LevelDoneScreenState::constructor(LevelDoneScreenState this);
+void LevelDoneScreenState::print(LevelDoneScreenState this);
+static void LevelDoneScreenState::onFadeInComplete(LevelDoneScreenState this, Object eventFirer);
+static void LevelDoneScreenState::onFadeOutComplete(LevelDoneScreenState this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(LevelDoneScreenState, GameState);
-__SINGLETON_DYNAMIC(LevelDoneScreenState);
+
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -70,124 +67,124 @@ __SINGLETON_DYNAMIC(LevelDoneScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) LevelDoneScreenState_constructor(LevelDoneScreenState this)
+void __attribute__ ((noinline)) LevelDoneScreenState::constructor(LevelDoneScreenState this)
 {
-	__CONSTRUCT_BASE(GameState);
+	Base::constructor();
 }
 
 // class's destructor
-static void LevelDoneScreenState_destructor(LevelDoneScreenState this)
+void LevelDoneScreenState::destructor(LevelDoneScreenState this)
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-static void LevelDoneScreenState_enter(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
+void LevelDoneScreenState::enter(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_DONE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_DONE_SCREEN_STAGE_ST, NULL, true);
 
 	// print stats
-	LevelDoneScreenState_print(this);
+	LevelDoneScreenState::print(this);
 
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// start clocks to start animations
-	GameState_startClocks(__SAFE_CAST(GameState, this));
+	GameState::startClocks(__SAFE_CAST(GameState, this));
 
 	// fade in screen
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))LevelDoneScreenState_onFadeInComplete, // callback function
+		(void (*)(Object, Object))LevelDoneScreenState::onFadeInComplete, // callback function
 		__SAFE_CAST(Object, this) // callback scope
 	);
 }
 
 // state's exit
-static void LevelDoneScreenState_exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
+void LevelDoneScreenState::exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
 {
 	// call base
-	Base_exit(this, owner);
+	Base::exit(this, owner);
 
 	// destroy the state
 	__DELETE(this);
 }
 
 // print level stats
-static void LevelDoneScreenState_print(LevelDoneScreenState this __attribute__ ((unused)))
+void LevelDoneScreenState::print(LevelDoneScreenState this __attribute__ ((unused)))
 {
 	ASSERT(this, "LevelDoneScreenState::print: null this");
 
-	u8 numberOfCollectedCoins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager_getInstance());
+	u8 numberOfCollectedCoins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
 
 	// "level completed/conquered"
-	const char* strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_DONE);
+	const char* strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_DONE);
 	if(numberOfCollectedCoins == 64)
 	{
-		strLevelDone = I18n_getText(I18n_getInstance(), STR_LEVEL_CONQUERED);
+		strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_CONQUERED);
 	}
-	FontSize strLevelDoneSize = Printing_getTextSize(Printing_getInstance(), strLevelDone, "GuiFont");
+	FontSize strLevelDoneSize = Printing::getTextSize(Printing::getInstance(), strLevelDone, "GuiFont");
 	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strLevelDoneSize.x >> 1);
-	Printing_text(Printing_getInstance(), strLevelDone, strHeaderXPos, 9, "GuiFont");
+	Printing::text(Printing::getInstance(), strLevelDone, strHeaderXPos, 9, "GuiFont");
 
 	// number of coins
-	Printing_text(Printing_getInstance(), "00/64", 22, 13, NULL);
+	Printing::text(Printing::getInstance(), "00/64", 22, 13, NULL);
 	u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
-	Printing_int(Printing_getInstance(), numberOfCollectedCoins, numberPrintPos, 13, NULL);
+	Printing::int(Printing::getInstance(), numberOfCollectedCoins, numberPrintPos, 13, NULL);
 
 	// print time
-	Clock inGameClock = PlatformerLevelState_getClock(PlatformerLevelState_getInstance());
-	Clock_print(inGameClock, 22, 15, NULL);
+	Clock inGameClock = PlatformerLevelState::getClock(PlatformerLevelState::getInstance());
+	Clock::print(inGameClock, 22, 15, NULL);
 
 	// if new best time, print label (do not if first time beating level)
-	u32 bestTime = ProgressManager_getCurrentLevelBestTime(ProgressManager_getInstance());
-	if(Clock_getTime(inGameClock) < bestTime)
+	u32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
+	if(Clock::getTime(inGameClock) < bestTime)
 	{
-		Printing_text(Printing_getInstance(), I18n_getText(I18n_getInstance(), STR_NEW_BEST), 22, 16, NULL);
+		Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_BEST), 22, 16, NULL);
 	}
 }
 
-void LevelDoneScreenState_processUserInput(LevelDoneScreenState this, UserInput userInput)
+void LevelDoneScreenState::processUserInput(LevelDoneScreenState this, UserInput userInput)
 {
 	if(userInput.pressedKey)
 	{
 		// disable user input
-		Game_disableKeypad(Game_getInstance());
+		Game::disableKeypad(Game::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
-		Camera_startEffect(Camera_getInstance(),
+		Camera::startEffect(Camera::getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))LevelDoneScreenState_onFadeOutComplete, // callback function
+			(void (*)(Object, Object))LevelDoneScreenState::onFadeOutComplete, // callback function
 			__SAFE_CAST(Object, this) // callback scope
 		);
 	}
 }
 
 // handle event
-static void LevelDoneScreenState_onFadeInComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void LevelDoneScreenState::onFadeInComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
 
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void LevelDoneScreenState_onFadeOutComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void LevelDoneScreenState::onFadeOutComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
 
 	// switch to next screen
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, OverworldState_getInstance()));
+	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, OverworldState::getInstance()));
 }

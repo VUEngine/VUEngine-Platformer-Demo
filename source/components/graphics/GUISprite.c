@@ -36,7 +36,6 @@
  * @extends BgmapAnimatedSprite
  * @ingroup graphics-2d-sprites-bgmap
  */
-__CLASS_DEFINITION(GUISprite, BgmapAnimatedSprite);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,16 +44,14 @@ __CLASS_DEFINITION(GUISprite, BgmapAnimatedSprite);
 
 extern int strcmp(const char *, const char *);
 
-static void GUISprite_constructor(GUISprite this, const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner);
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(GUISprite, const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner)
-__CLASS_NEW_END(GUISprite, bgmapSpriteDefinition, owner);
+
+
 
 /**
  * Class constructor
@@ -66,12 +63,12 @@ __CLASS_NEW_END(GUISprite, bgmapSpriteDefinition, owner);
  * @param bgmapSpriteDefinition		Sprite definition
  * @param owner						Owner
  */
-static void GUISprite_constructor(GUISprite this, const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner)
+void GUISprite::constructor(GUISprite this, const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner)
 {
 	ASSERT(this, "GUISprite::constructor: null this");
 
 	// construct base object
-	Base_constructor(this, bgmapSpriteDefinition, owner);
+	Base::constructor(bgmapSpriteDefinition, owner);
 }
 
 
@@ -83,13 +80,13 @@ static void GUISprite_constructor(GUISprite this, const BgmapSpriteDefinition* b
  *
  * @param this						Function scope
  */
-void GUISprite_destructor(GUISprite this)
+void GUISprite::destructor(GUISprite this)
 {
 	ASSERT(this, "GUISprite::destructor: null this");
 
 	// destroy the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 /**
@@ -101,11 +98,11 @@ void GUISprite_destructor(GUISprite this)
  * @param this		Function scope
  * @param evenFrame
  */
-void GUISprite_render(GUISprite this, bool evenFrame)
+void GUISprite::render(GUISprite this, bool evenFrame)
 {
 	ASSERT(this, "GUISprite::render: null this");
 
-	Base_render(this, evenFrame);
+	Base::render(this, evenFrame);
 
 	if(!this->positioned)
 	{
@@ -121,7 +118,7 @@ void GUISprite_render(GUISprite this, bool evenFrame)
 	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
 
 	// set the head
-	worldPointer->head = this->head | BgmapTexture_getSegment(__SAFE_CAST(BgmapTexture, this->texture));
+	worldPointer->head = this->head | BgmapTexture::getSegment(__SAFE_CAST(BgmapTexture, this->texture));
 
 	// get coordinates
 	worldPointer->gx = this->position.x + this->displacement.x - this->halfWidth;

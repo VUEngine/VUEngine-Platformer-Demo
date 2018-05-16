@@ -42,34 +42,15 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define TestCogWheel_METHODS(ClassName)																	\
-		Entity_METHODS(ClassName)																		\
-
-#define TestCogWheel_SET_VTABLE(ClassName)																\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, TestCogWheel, ready);													\
-		__VIRTUAL_SET(ClassName, TestCogWheel, handleMessage);											\
-
-__CLASS(TestCogWheel);
-
-#define TestCogWheel_ATTRIBUTES																			\
-		/* it is derived from */																		\
-		Entity_ATTRIBUTES																				\
-
 typedef const EntityDefinition TestCogWheelDefinition;
 typedef const TestCogWheelDefinition TestCogWheelROMDef;
 
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(TestCogWheel, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void TestCogWheel_constructor(TestCogWheel this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void TestCogWheel_destructor(TestCogWheel this);
-void TestCogWheel_ready(TestCogWheel this, bool recursive);
-bool TestCogWheel_handleMessage(TestCogWheel this, Telegram telegram);
+class TestCogWheel : Entity
+{
+	void constructor(TestCogWheel this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void ready(TestCogWheel this, bool recursive);
+	override bool handleMessage(TestCogWheel this, Telegram telegram);
+}
 
 
 #endif

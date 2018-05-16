@@ -50,24 +50,21 @@ extern StageROMDef EMPTY_STAGE_ST;
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void OptionsScreenState_destructor(OptionsScreenState this);
-static void OptionsScreenState_constructor(OptionsScreenState this);
-static void OptionsScreenState_enter(OptionsScreenState this, void* owner);
-static void OptionsScreenState_print(OptionsScreenState this);
-static void OptionsScreenState_exit(OptionsScreenState this, void* owner);
-static void OptionsScreenState_onFadeInComplete(OptionsScreenState this, Object eventFirer);
-static void OptionsScreenState_onExitFadeOutComplete(OptionsScreenState this, Object eventFirer);
-static void OptionsScreenState_onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer);
-static void OptionsScreenState_onOptionAutoPauseSelect(OptionsScreenState this);
-static void OptionsScreenState_onOptionLanguageSelect(OptionsScreenState this);
+void OptionsScreenState::constructor(OptionsScreenState this);
+static void OptionsScreenState::print(OptionsScreenState this);
+static void OptionsScreenState::onFadeInComplete(OptionsScreenState this, Object eventFirer);
+static void OptionsScreenState::onExitFadeOutComplete(OptionsScreenState this, Object eventFirer);
+static void OptionsScreenState::onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer);
+static void OptionsScreenState::onOptionAutoPauseSelect(OptionsScreenState this);
+static void OptionsScreenState::onOptionLanguageSelect(OptionsScreenState this);
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(OptionsScreenState, GameState);
-__SINGLETON(OptionsScreenState);
+
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,17 +72,17 @@ __SINGLETON(OptionsScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) OptionsScreenState_constructor(OptionsScreenState this)
+void __attribute__ ((noinline)) OptionsScreenState::constructor(OptionsScreenState this)
 {
-	__CONSTRUCT_BASE(GameState);
+	Base::constructor();
 
 	// init members
 	this->optionsSelector = __NEW(OptionsSelector, 1, 2, NULL);
-	OptionsScreenState_setNextState(this, __SAFE_CAST(GameState, TitleScreenState_getInstance()));
+	OptionsScreenState::setNextState(this, __SAFE_CAST(GameState, TitleScreenState::getInstance()));
 }
 
 // class's destructor
-static void OptionsScreenState_destructor(OptionsScreenState this)
+void OptionsScreenState::destructor(OptionsScreenState this)
 {
 	__DELETE(this->optionsSelector);
 
@@ -94,56 +91,56 @@ static void OptionsScreenState_destructor(OptionsScreenState this)
 }
 
 // state's enter
-static void OptionsScreenState_enter(OptionsScreenState this, void* owner __attribute__ ((unused)))
+void OptionsScreenState::enter(OptionsScreenState this, void* owner __attribute__ ((unused)))
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
+	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
 
 	// print options
-	OptionsScreenState_print(this);
+	OptionsScreenState::print(this);
 
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// fade in screen
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))OptionsScreenState_onFadeInComplete, // callback function
+		(void (*)(Object, Object))OptionsScreenState::onFadeInComplete, // callback function
 		__SAFE_CAST(Object, this) // callback scope
 	);
 }
 
 // state's exit
-static void OptionsScreenState_exit(OptionsScreenState this, void* owner __attribute__ ((unused)))
+void OptionsScreenState::exit(OptionsScreenState this, void* owner __attribute__ ((unused)))
 {
 	// call base
-	Base_exit(this, owner);
+	Base::exit(this, owner);
 }
 
 // set next state
-void OptionsScreenState_setNextState(OptionsScreenState this, GameState nextState)
+void OptionsScreenState::setNextState(OptionsScreenState this, GameState nextState)
 {
 	this->nextState = nextState;
 }
 
 // print level stats
-static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unused)))
+static void OptionsScreenState::print(OptionsScreenState this __attribute__ ((unused)))
 {
 	ASSERT(this, "OptionsScreenState::print: null this");
 
 	// title
-	const char* strOptionsTitle = I18n_getText(I18n_getInstance(), STR_OPTIONS);
+	const char* strOptionsTitle = I18n::getText(I18n::getInstance(), STR_OPTIONS);
 	const char* strOptionsTitleFont = "LargeFont";
-	FontSize strOptionsTextSize = Printing_getTextSize(Printing_getInstance(), strOptionsTitle, strOptionsTitleFont);
-	Printing_text(
-		Printing_getInstance(),
-		Utilities_toUppercase(strOptionsTitle),
+	FontSize strOptionsTextSize = Printing::getTextSize(Printing::getInstance(), strOptionsTitle, strOptionsTitleFont);
+	Printing::text(
+		Printing::getInstance(),
+		Utilities::toUppercase(strOptionsTitle),
 		((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1,
 		8,
 		strOptionsTitleFont
@@ -154,121 +151,121 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
 	Option* option = NULL;
 
 	option = __NEW_BASIC(Option);
-	option->value = (char*)I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
+	option->value = (char*)I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
 	option->type = kString;
-	option->callback = (void (*)(Object))OptionsScreenState_onOptionAutoPauseSelect;
+	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutoPauseSelect;
 	option->callbackScope = __SAFE_CAST(Object, this);
-	VirtualList_pushBack(options, option);
+	VirtualList::pushBack(options, option);
 
 	option = __NEW_BASIC(Option);
-	option->value = (char*)I18n_getText(I18n_getInstance(), STR_LANGUAGE);
+	option->value = (char*)I18n::getText(I18n::getInstance(), STR_LANGUAGE);
 	option->type = kString;
-	option->callback = (void (*)(Object))OptionsScreenState_onOptionLanguageSelect;
+	option->callback = (void (*)(Object))OptionsScreenState::onOptionLanguageSelect;
 	option->callbackScope = __SAFE_CAST(Object, this);
-	VirtualList_pushBack(options, option);
+	VirtualList::pushBack(options, option);
 
-	OptionsSelector_setOptions(this->optionsSelector, options);
+	OptionsSelector::setOptions(this->optionsSelector, options);
 	__DELETE(options);
 
-	OptionsSelector_printOptions(
+	OptionsSelector::printOptions(
 		this->optionsSelector,
 		((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1,
 		11
 	);
 
 	// buttons
-	const char* strSelect = I18n_getText(I18n_getInstance(), STR_SELECT);
-	FontSize strSelectSize = Printing_getTextSize(Printing_getInstance(), strSelect, NULL);
-	const char* strBack = I18n_getText(I18n_getInstance(), STR_BACK);
+	const char* strSelect = I18n::getText(I18n::getInstance(), STR_SELECT);
+	FontSize strSelectSize = Printing::getTextSize(Printing::getInstance(), strSelect, NULL);
+	const char* strBack = I18n::getText(I18n::getInstance(), STR_BACK);
 
 	u8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
 	u8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
 
-	Printing_text(Printing_getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, NULL);
-	Printing_text(Printing_getInstance(), strSelect, strSelectXPos + 1, 15, NULL);
-	Printing_text(Printing_getInstance(), __CHAR_B_BUTTON, strBackXPos, 15, NULL);
-	Printing_text(Printing_getInstance(), strBack, strBackXPos + 1, 15, NULL);
+	Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, NULL);
+	Printing::text(Printing::getInstance(), strSelect, strSelectXPos + 1, 15, NULL);
+	Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strBackXPos, 15, NULL);
+	Printing::text(Printing::getInstance(), strBack, strBackXPos + 1, 15, NULL);
 }
 
-void OptionsScreenState_processUserInput(OptionsScreenState this, UserInput userInput)
+void OptionsScreenState::processUserInput(OptionsScreenState this, UserInput userInput)
 {
 	if((userInput.pressedKey & K_A) || (userInput.pressedKey & K_STA))
 	{
 		// disable user input
-		Game_disableKeypad(Game_getInstance());
+		Game::disableKeypad(Game::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
-		Camera_startEffect(Camera_getInstance(),
+		Camera::startEffect(Camera::getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))OptionsScreenState_onOptionSelectedFadeOutComplete, // callback function
+			(void (*)(Object, Object))OptionsScreenState::onOptionSelectedFadeOutComplete, // callback function
 			__SAFE_CAST(Object, this) // callback scope
 		);
 	}
 	else if((userInput.pressedKey & K_B) || (userInput.pressedKey & K_SEL))
 	{
 		// disable user input
-		Game_disableKeypad(Game_getInstance());
+		Game::disableKeypad(Game::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
-		Camera_startEffect(Camera_getInstance(),
+		Camera::startEffect(Camera::getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))OptionsScreenState_onExitFadeOutComplete, // callback function
+			(void (*)(Object, Object))OptionsScreenState::onExitFadeOutComplete, // callback function
 			__SAFE_CAST(Object, this) // callback scope
 		);
 	}
 	else if((userInput.pressedKey & K_LU) || (userInput.pressedKey & K_RU))
 	{
-		OptionsSelector_selectPrevious(this->optionsSelector);
+		OptionsSelector::selectPrevious(this->optionsSelector);
 	}
 	else if((userInput.pressedKey & K_LD) || (userInput.pressedKey & K_RD))
 	{
-		OptionsSelector_selectNext(this->optionsSelector);
+		OptionsSelector::selectNext(this->optionsSelector);
 	}
 }
 
 // handle event
-static void OptionsScreenState_onFadeInComplete(OptionsScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+static void OptionsScreenState::onFadeInComplete(OptionsScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "OptionsScreenState::onOptionSelectedFadeOutComplete: null this");
 
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 }
 
-static void OptionsScreenState_onExitFadeOutComplete(OptionsScreenState this, Object eventFirer __attribute__ ((unused)))
+static void OptionsScreenState::onExitFadeOutComplete(OptionsScreenState this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "OptionsScreenState::onExitFadeOutComplete: null this");
 
 	// switch to next screen
-	Game_changeState(Game_getInstance(), this->nextState);
+	Game::changeState(Game::getInstance(), this->nextState);
 }
 
-static void OptionsScreenState_onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer __attribute__ ((unused)))
+static void OptionsScreenState::onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "OptionsScreenState::onOptionSelectedFadeOutComplete: null this");
 
-	OptionsSelector_doCurrentSelectionCallback(this->optionsSelector);
+	OptionsSelector::doCurrentSelectionCallback(this->optionsSelector);
 }
 
-static void OptionsScreenState_onOptionAutoPauseSelect(OptionsScreenState this)
+static void OptionsScreenState::onOptionAutoPauseSelect(OptionsScreenState this)
 {
 	ASSERT(this, "OptionsScreenState::onOptionAutoPauseSelect: null this");
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AutoPauseSelectScreenState_getInstance()), __SAFE_CAST(GameState, this));
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
+	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, AutoPauseSelectScreenState::getInstance()), __SAFE_CAST(GameState, this));
+	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, AutoPauseSelectScreenState::getInstance()));
 }
 
-static void OptionsScreenState_onOptionLanguageSelect(OptionsScreenState this)
+static void OptionsScreenState::onOptionLanguageSelect(OptionsScreenState this)
 {
 	ASSERT(this, "OptionsScreenState::onOptionLanguageSelect: null this");
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, LangSelectScreenState_getInstance()), __SAFE_CAST(GameState, this));
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, LangSelectScreenState_getInstance()));
+	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, LangSelectScreenState::getInstance()), __SAFE_CAST(GameState, this));
+	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, LangSelectScreenState::getInstance()));
 }

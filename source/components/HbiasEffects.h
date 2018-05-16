@@ -34,7 +34,10 @@
 //										FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-s16 HbiasEffects_wave(BgmapSprite bgmapSprite);
+static class HbiasEffects : Object
+{
+	static s16 wave(BgmapSprite bgmapSprite);
+}
 
 
 #endif

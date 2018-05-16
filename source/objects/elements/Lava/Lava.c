@@ -37,14 +37,14 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Lava, Entity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void Lava_moveUpwards(Lava this);
+void Lava::moveUpwards(Lava this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,41 +52,41 @@ void Lava_moveUpwards(Lava this);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Lava, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Lava, inanimatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Lava_constructor(Lava this, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Lava::constructor(Lava this, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, inanimatedEntityDefinition, id, internalId, name);
+	Base::constructor(inanimatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Lava_destructor(Lava this)
+void Lava::destructor(Lava this)
 {
 	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kLavaMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kLavaMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // start moving
-void Lava_startMoving(Lava this)
+void Lava::startMoving(Lava this)
 {
 	ASSERT(this, "Lava::startMoving: null this");
 
 	// start moving
-	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
+	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
 
 	// must make sure that the shape is updated
-	Entity_informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
+	Entity::informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
 }
 
 // whether it is visible
-bool Lava_isVisible(Lava this __attribute__ ((unused)), int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
+bool Lava::isVisible(Lava this __attribute__ ((unused)), int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
 {
 	ASSERT(this, "Lava::isVisible: null this");
 
@@ -95,13 +95,13 @@ bool Lava_isVisible(Lava this __attribute__ ((unused)), int pad __attribute__ ((
 }
 
 // state's handle message
-bool Lava_handleMessage(Lava this, Telegram telegram)
+bool Lava::handleMessage(Lava this, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kLavaMove:
 
-			Lava_moveUpwards(this);
+			Lava::moveUpwards(this);
 			break;
 	}
 
@@ -109,15 +109,15 @@ bool Lava_handleMessage(Lava this, Telegram telegram)
 }
 
 // move lava up
-void Lava_moveUpwards(Lava this)
+void Lava::moveUpwards(Lava this)
 {
 	// get local position of lava and subtract 1 from y value
-	Vector3D offset = *Container_getLocalPosition(__SAFE_CAST(Container, this));
+	Vector3D offset = *Container::getLocalPosition(__SAFE_CAST(Container, this));
 	offset.y -= __PIXELS_TO_METERS(1);
 
 	// update lava's position
-	Container_setLocalPosition(__SAFE_CAST(Container, this), &offset);
+	Container::setLocalPosition(__SAFE_CAST(Container, this), &offset);
 
 	// send delayed message to self to trigger next movement
-	MessageDispatcher_dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
+	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
 }

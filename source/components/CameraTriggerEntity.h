@@ -34,41 +34,19 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CameraTriggerEntity_METHODS(ClassName)															\
-		Entity_METHODS(ClassName)																		\
-
-#define CameraTriggerEntity_SET_VTABLE(ClassName)														\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, CameraTriggerEntity, transform);										\
-
-#define CameraTriggerEntity_ATTRIBUTES																	\
-		/* super's attributes */																		\
-		Entity_ATTRIBUTES																				\
-		/* update axis flag */																			\
-		Vector3DFlag overridePositionFlag;																\
-
-__CLASS(CameraTriggerEntity);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S ROM DECLARATION
-//---------------------------------------------------------------------------------------------------------
-
 typedef EntityDefinition CameraTriggerEntityDefinition;
 typedef const CameraTriggerEntityDefinition CameraTriggerEntityROMDef;
 
+class CameraTriggerEntity : Entity
+{
+	/* update axis flag */
+	Vector3DFlag overridePositionFlag;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_NEW_DECLARE(CameraTriggerEntity, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name);
-
-void CameraTriggerEntity_constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name);
-void CameraTriggerEntity_destructor(CameraTriggerEntity this);
-void CameraTriggerEntity_transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag);
-void CameraTriggerEntity_setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag);
-Vector3DFlag CameraTriggerEntity_getOverridePositionFlag(CameraTriggerEntity this);
+	void constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag);
+	Vector3DFlag getOverridePositionFlag(CameraTriggerEntity this);
+	override void transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag);
+}
 
 
 #endif

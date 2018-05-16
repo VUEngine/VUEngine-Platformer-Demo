@@ -44,37 +44,17 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define CannonBall_METHODS(ClassName)																	\
-		Actor_METHODS(ClassName)																		\
-
-#define CannonBall_SET_VTABLE(ClassName)																\
-		Actor_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, CannonBall, handleMessage);											\
-
-__CLASS(CannonBall);
-
-#define CannonBall_ATTRIBUTES																			\
-																										\
-	/* it is derived from */																			\
-	Actor_ATTRIBUTES																					\
-
-
 typedef const ActorDefinition CannonBallDefinition;
 typedef const CannonBallDefinition CannonBallROMDef;
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-// allocator
-__CLASS_NEW_DECLARE(CannonBall, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name);
-
-void CannonBall_constructor(CannonBall this, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name);
-void CannonBall_destructor(CannonBall this);
-void CannonBall_startMovement(CannonBall this);
-void CannonBall_stopMovement(CannonBall this);
-void CannonBall_checkPosition(CannonBall this);
-bool CannonBall_handleMessage(CannonBall this, Telegram telegram);
+class CannonBall : Actor
+{
+	void constructor(CannonBall this, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name);
+	void startMovement(CannonBall this);
+	void stopMovement(CannonBall this);
+	void checkPosition(CannonBall this);
+	override bool handleMessage(CannonBall this, Telegram telegram);
+}
 
 
 #endif

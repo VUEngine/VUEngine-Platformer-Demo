@@ -38,7 +38,7 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(HideLayer, AnimatedEntity);
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,31 +52,31 @@ __CLASS_DEFINITION(HideLayer, AnimatedEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(HideLayer, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(HideLayer, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void HideLayer_constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void HideLayer::constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void HideLayer_destructor(HideLayer this)
+void HideLayer::destructor(HideLayer this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void HideLayer_setOverlapping(HideLayer this)
+void HideLayer::setOverlapping(HideLayer this)
 {
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToTransparent");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToTransparent");
 }
 
-void HideLayer_unsetOverlapping(HideLayer this)
+void HideLayer::unsetOverlapping(HideLayer this)
 {
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToShape");
+	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToShape");
 }
 
