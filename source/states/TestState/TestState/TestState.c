@@ -94,7 +94,7 @@ void TestState::exit(void* owner)
 	Base::exit(this, owner);
 
 	// destroy the state
-	__DELETE(this);
+	delete this;
 }
 
 // state's resume

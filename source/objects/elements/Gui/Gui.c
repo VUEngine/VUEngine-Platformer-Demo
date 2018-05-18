@@ -96,10 +96,10 @@ void Gui::printBestTime()
 
 	if(bestTime)
 	{
-		Clock clock = __NEW(Clock);
+		Clock clock = new Clock();
 		Clock::setTimeInMilliSeconds(clock, bestTime);
 		Clock::print(clock, GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
-		__DELETE(clock);
+		delete clock;
 	}
 	else
 	{

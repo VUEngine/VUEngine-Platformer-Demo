@@ -56,8 +56,8 @@ void LangSelectScreenState::constructor()
 	this->stageDefinition = (StageDefinition*)&EMPTY_STAGE_ST;
 
 	// create options selector and populate with language names
-	this->languageSelector = __NEW(OptionsSelector, 1, 8, NULL);
-	VirtualList languageNames = __NEW(VirtualList);
+	this->languageSelector = new OptionsSelector(1, 8, NULL);
+	VirtualList languageNames = new VirtualList();
 
 	u8 activeLanguage = ProgressManager::getLanguage(ProgressManager::getInstance());
 
@@ -73,7 +73,7 @@ void LangSelectScreenState::constructor()
 	}
 
 	OptionsSelector::setOptions(this->languageSelector, languageNames);
-	__DELETE(languageNames);
+	delete languageNames;
 
 	I18n::setActiveLanguage(I18n::getInstance(), activeLanguage);
 	OptionsSelector::setSelectedOption(this->languageSelector, activeLanguage);
@@ -81,7 +81,7 @@ void LangSelectScreenState::constructor()
 
 void LangSelectScreenState::destructor()
 {
-	__DELETE(this->languageSelector);
+	delete this->languageSelector;
 
 	// destroy base
 	Base::destructor();

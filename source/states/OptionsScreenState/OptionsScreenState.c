@@ -56,14 +56,14 @@ void OptionsScreenState::constructor()
 	Base::constructor();
 
 	// init members
-	this->optionsSelector = __NEW(OptionsSelector, 1, 2, NULL);
+	this->optionsSelector = new OptionsSelector(1, 2, NULL);
 	OptionsScreenState::setNextState(this, __SAFE_CAST(GameState, TitleScreenState::getInstance()));
 }
 
 // class's destructor
 void OptionsScreenState::destructor()
 {
-	__DELETE(this->optionsSelector);
+	delete this->optionsSelector;
 
 	// destroy base
 	Base::destructor();
@@ -124,7 +124,7 @@ void OptionsScreenState::print()
 	);
 
 	// menu
-	VirtualList options = __NEW(VirtualList);
+	VirtualList options = new VirtualList();
 	Option* option = NULL;
 
 	option = __NEW_BASIC(Option);
@@ -142,7 +142,7 @@ void OptionsScreenState::print()
 	VirtualList::pushBack(options, option);
 
 	OptionsSelector::setOptions(this->optionsSelector, options);
-	__DELETE(options);
+	delete options;
 
 	OptionsSelector::printOptions(
 		this->optionsSelector,

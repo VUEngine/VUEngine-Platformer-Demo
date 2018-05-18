@@ -110,7 +110,7 @@ void AutoPauseScreenState::exit(void* owner __attribute__ ((unused)))
 	Base::exit(this, owner);
 
 	// destroy the state
-	__DELETE(this);
+	delete this;
 }
 
 void AutoPauseScreenState::processUserInput(UserInput userInput)

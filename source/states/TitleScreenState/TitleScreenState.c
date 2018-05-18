@@ -71,7 +71,7 @@ void TitleScreenState::destructor()
 {
 	if(this->optionsSelector)
 	{
-		__DELETE(this->optionsSelector);
+		delete this->optionsSelector;
 	}
 
 	// destroy base
@@ -98,14 +98,14 @@ void TitleScreenState::enter(void* owner)
 
 	if(this->optionsSelector)
 	{
-		__DELETE(this->optionsSelector);
+		delete this->optionsSelector;
 	}
 
 	// create and populate main menu
-	VirtualList options = __NEW(VirtualList);
+	VirtualList options = new VirtualList();
 	if(ProgressManager::hasProgress(ProgressManager::getInstance()))
 	{
-		this->optionsSelector = __NEW(OptionsSelector, 3, 1, NULL);
+		this->optionsSelector = new OptionsSelector(3, 1, NULL);
 		Option* option = NULL;
 
 		option = __NEW_BASIC(Option);
@@ -138,7 +138,7 @@ void TitleScreenState::enter(void* owner)
 	}
 	else
 	{
-		this->optionsSelector = __NEW(OptionsSelector, 2, 1, NULL);
+		this->optionsSelector = new OptionsSelector(2, 1, NULL);
 		Option* option = NULL;
 
 		option = __NEW_BASIC(Option);
@@ -162,7 +162,7 @@ void TitleScreenState::enter(void* owner)
 	}
 
 	OptionsSelector::setOptions(this->optionsSelector, options);
-	__DELETE(options);
+	delete options;
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	GameState::startClocks(__SAFE_CAST(GameState, this));

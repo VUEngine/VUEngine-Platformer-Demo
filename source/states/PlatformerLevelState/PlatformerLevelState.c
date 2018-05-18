@@ -68,7 +68,7 @@ void PlatformerLevelState::constructor()
 	Base::constructor();
 
 	// clock
-	this->clock = __NEW(Clock);
+	this->clock = new Clock();
 
 	// set default entry point
 	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
@@ -80,7 +80,7 @@ void PlatformerLevelState::constructor()
 // class's destructor
 void PlatformerLevelState::destructor()
 {
-	__DELETE(this->clock);
+	delete this->clock;
 
 	// destroy base
 	Base::destructor();
@@ -125,7 +125,7 @@ void PlatformerLevelState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// get list of entities that should not be loaded
-	VirtualList positionedEntitiesToIgnore = __NEW(VirtualList);
+	VirtualList positionedEntitiesToIgnore = new VirtualList();
 	PlatformerLevelState::getPositionedEntitiesToIgnore(this, positionedEntitiesToIgnore);
 
 	// check if destination entity name is given
@@ -224,7 +224,7 @@ void PlatformerLevelState::enter(void* owner)
 	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());
 
 	// free some memory
-	__DELETE(positionedEntitiesToIgnore);
+	delete positionedEntitiesToIgnore;
 
 	// level is paused
 	PlatformerLevelState::setModeToPaused(this);

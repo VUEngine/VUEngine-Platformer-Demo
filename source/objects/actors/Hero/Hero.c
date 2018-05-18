@@ -90,7 +90,7 @@ void Hero::constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, c
 	Base::constructor((ActorDefinition*)heroDefinition, id, internalId, name);
 
 	// construct the game state machine
-	this->stateMachine = __NEW(StateMachine, this);
+	this->stateMachine = new StateMachine(this);
 
 	// init class variables
 	this->coins = 0;

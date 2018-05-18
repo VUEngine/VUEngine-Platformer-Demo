@@ -307,7 +307,7 @@ $(STORE)/%.o: %.s
 	@$(AS) -o $@ $<
 
 $(WORKING_FOLDER)/source/%.h: %.h
-	@echo Analysing $<
+#	@echo Analysing $<
 #	@echo into $@
 	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processHeaderFile.sh -i $< -o $@ -w $(WORKING_FOLDER)/preprocessor -c $(CLASSES_HIERARCHY_FILE)
 
