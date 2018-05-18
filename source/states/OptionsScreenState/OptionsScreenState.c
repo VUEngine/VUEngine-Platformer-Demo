@@ -127,14 +127,14 @@ void OptionsScreenState::print()
 	VirtualList options = new VirtualList();
 	Option* option = NULL;
 
-	option = __NEW_BASIC(Option);
+	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
 	option->type = kString;
 	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutoPauseSelect;
 	option->callbackScope = __SAFE_CAST(Object, this);
 	VirtualList::pushBack(options, option);
 
-	option = __NEW_BASIC(Option);
+	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_LANGUAGE);
 	option->type = kString;
 	option->callback = (void (*)(Object))OptionsScreenState::onOptionLanguageSelect;

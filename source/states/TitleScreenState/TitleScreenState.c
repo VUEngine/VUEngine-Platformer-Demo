@@ -108,21 +108,21 @@ void TitleScreenState::enter(void* owner)
 		this->optionsSelector = new OptionsSelector(3, 1, NULL);
 		Option* option = NULL;
 
-		option = __NEW_BASIC(Option);
+		option = new Option;
 		option->value = (char*)I18n::getText(I18n::getInstance(), STR_CONTINUE);
 		option->type = kString;
 		option->callback = NULL;
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
-		option = __NEW_BASIC(Option);
+		option = new Option;
 		option->value = (char*)I18n::getText(I18n::getInstance(), STR_OPTIONS);
 		option->type = kString;
 		option->callback = NULL;
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
-		option = __NEW_BASIC(Option);
+		option = new Option;
 		option->value = (char*)I18n::getText(I18n::getInstance(), STR_NEW_GAME);
 		option->type = kString;
 		option->callback = NULL;
@@ -141,14 +141,14 @@ void TitleScreenState::enter(void* owner)
 		this->optionsSelector = new OptionsSelector(2, 1, NULL);
 		Option* option = NULL;
 
-		option = __NEW_BASIC(Option);
+		option = new Option;
 		option->value = (char*)I18n::getText(I18n::getInstance(), STR_NEW_GAME);
 		option->type = kString;
 		option->callback = NULL;
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
-		option = __NEW_BASIC(Option);
+		option = new Option;
 		option->value = (char*)I18n::getText(I18n::getInstance(), STR_OPTIONS);
 		option->type = kString;
 		option->callback = NULL;

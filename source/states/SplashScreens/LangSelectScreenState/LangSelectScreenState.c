@@ -66,7 +66,7 @@ void LangSelectScreenState::constructor()
 	{
 		I18n::setActiveLanguage(I18n::getInstance(), i);
 
-		Option* option = __NEW_BASIC(Option);
+		Option* option = new Option;
 		option->value = (char*)I18n::getActiveLanguageName(I18n::getInstance());
 		option->type = kString;
 		VirtualList::pushBack(languageNames, option);

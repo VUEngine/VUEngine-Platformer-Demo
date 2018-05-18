@@ -99,21 +99,21 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	VirtualList options = new VirtualList();
 	Option* option = NULL;
 
-	option = __NEW_BASIC(Option);
+	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_CONTINUE);
 	option->type = kString;
 	option->callback = NULL;
 	option->callbackScope = NULL;
 	VirtualList::pushBack(options, option);
 
-	option = __NEW_BASIC(Option);
+	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_OPTIONS);
 	option->type = kString;
 	option->callback = NULL;
 	option->callbackScope = NULL;
 	VirtualList::pushBack(options, option);
 
-	option = __NEW_BASIC(Option);
+	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_QUIT_LEVEL);
 	option->type = kString;
 	option->callback = NULL;
