@@ -44,8 +44,8 @@
 dynamic_singleton class AdjustmentScreenState : SplashScreenState
 {
 	static AdjustmentScreenState getInstance(void);
-	override void enter(AdjustmentScreenState this, void* owner);
-	override void processInput(AdjustmentScreenState this, u32 pressedKey);
+	override void enter(void* owner);
+	override void processInput(u32 pressedKey);
 }
 
 

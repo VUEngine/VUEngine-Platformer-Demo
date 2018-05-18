@@ -42,19 +42,15 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Key::constructor(Key this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Key::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Key::constructor: null this");
-
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Key::destructor(Key this)
+void Key::destructor()
 {
-	ASSERT(this, "Key::destructor: null this");
-
 	// remove post processing effect
 	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 
@@ -63,10 +59,8 @@ void Key::destructor(Key this)
 	Base::destructor();
 }
 
-void Key::ready(Key this, bool recursive)
+void Key::ready(bool recursive)
 {
-	ASSERT(this, "Key::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -74,10 +68,8 @@ void Key::ready(Key this, bool recursive)
 	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
-void Key::collect(Key this)
+void Key::collect()
 {
-	ASSERT(this, "Key::collect: null this");
-
 	// fire item taken event
 	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventKeyTaken);
 
@@ -85,20 +77,16 @@ void Key::collect(Key this)
 	Base::collect(this);
 }
 
-void Key::suspend(Key this)
+void Key::suspend()
 {
-	ASSERT(this, "Key::suspend: null this");
-
 	Base::suspend(this);
 
 	// remove post processing effect
 	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingEffects::rhombusEmitter, __SAFE_CAST(SpatialObject, this));
 }
 
-void Key::resume(Key this)
+void Key::resume()
 {
-	ASSERT(this, "Key::resume: null this");
-
 	Base::resume(this);
 
 	// add post processing effect to make key emit rhombuses

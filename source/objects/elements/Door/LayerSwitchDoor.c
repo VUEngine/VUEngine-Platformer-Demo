@@ -39,14 +39,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void LayerSwitchDoor::constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void LayerSwitchDoor::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void LayerSwitchDoor::destructor(LayerSwitchDoor this)
+void LayerSwitchDoor::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -54,7 +54,7 @@ void LayerSwitchDoor::destructor(LayerSwitchDoor this)
 }
 
 // state's handle message
-bool LayerSwitchDoor::handleMessage(LayerSwitchDoor this, Telegram telegram)
+bool LayerSwitchDoor::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{

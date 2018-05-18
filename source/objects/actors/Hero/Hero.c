@@ -64,22 +64,6 @@ extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void Hero::onUserInput(Hero this, Object eventFirer);
-void Hero::enterDoor(Hero this);
-void Hero::hideHint(Hero this);
-void Hero::updateSprite(Hero this);
-static void Hero::addHint(Hero this);
-static void Hero::addFeetDust(Hero this);
-static void Hero::slide(Hero this);
-static void Hero::showDust(Hero this, bool autoHideDust);
-static void Hero::hideDust(Hero this);
-void Hero::losePowerUp(Hero this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -87,12 +71,12 @@ void Hero::losePowerUp(Hero this);
 Hero hero = NULL;
 
 // there can only be one hero instantiated
-Hero Hero::getInstance()
+static Hero Hero::getInstance()
 {
 	return hero;
 }
 
-void Hero::setInstance(Hero instance)
+static void Hero::setInstance(Hero instance)
 {
 	ASSERT(!hero, "Hero::setInstance: already instantiated");
 
@@ -100,10 +84,8 @@ void Hero::setInstance(Hero instance)
 }
 
 // class's constructor
-void Hero::constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
+void Hero::constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Hero::constructor: null this");
-
 	// construct base
 	Base::constructor((ActorDefinition*)heroDefinition, id, internalId, name);
 
@@ -133,9 +115,8 @@ void Hero::constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 in
 }
 
 // class's destructor
-void Hero::destructor(Hero this)
+void Hero::destructor()
 {
-	ASSERT(this, "Hero::destructor: null this");
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
@@ -160,10 +141,8 @@ void Hero::destructor(Hero this)
 	Base::destructor();
 }
 
-void Hero::ready(Hero this, bool recursive)
+void Hero::ready(bool recursive)
 {
-	ASSERT(this, "Hero::ready: null this");
-
 	Entity::informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
 
 	// call base
@@ -192,7 +171,7 @@ void Hero::ready(Hero this, bool recursive)
 	Hero::addFeetDust(this);
 }
 
-void Hero::locateOverNextFloor(Hero this __attribute__ ((unused)))
+void Hero::locateOverNextFloor()
 {
 /*	Vector3D direction = {0, 1, 0};
 
@@ -214,10 +193,8 @@ void Hero::locateOverNextFloor(Hero this __attribute__ ((unused)))
 }
 
 // make him jump
-void Hero::jump(Hero this, bool checkIfYMovement)
+void Hero::jump(bool checkIfYMovement)
 {
-	ASSERT(this, "Hero::jump: null this");
-
 	if(this->body)
 	{
 		// determine the maximum number of possible jumps before reaching ground again
@@ -289,10 +266,8 @@ void Hero::jump(Hero this, bool checkIfYMovement)
 }
 
 // keep movement
-void Hero::addForce(Hero this, u16 axis, bool enableAddingForce)
+void Hero::addForce(u16 axis, bool enableAddingForce)
 {
-	ASSERT(this, "Hero::addForce: null this");
-
 	if(enableAddingForce)
 	{
 		this->keepAddingForce = true;
@@ -345,14 +320,14 @@ void Hero::addForce(Hero this, u16 axis, bool enableAddingForce)
 	}
 }
 
-static void Hero::slide(Hero this)
+void Hero::slide()
 {
 	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Slide");
 
 	Hero::showDust(this, false);
 }
 
-static void Hero::showDust(Hero this, bool autoHideDust)
+void Hero::showDust(bool autoHideDust)
 {
 	if(this->feetDust)
 	{
@@ -366,7 +341,7 @@ static void Hero::showDust(Hero this, bool autoHideDust)
 	}
 }
 
-static void Hero::hideDust(Hero this)
+void Hero::hideDust()
 {
 	if(this->feetDust)
 	{
@@ -375,10 +350,8 @@ static void Hero::hideDust(Hero this)
 }
 
 // start movement
-void Hero::stopAddingForce(Hero this)
+void Hero::stopAddingForce()
 {
-	ASSERT(this, "Hero::stopMovement: null this");
-
 	Velocity velocity = Body::getVelocity(this->body);
 
 	this->keepAddingForce = false;
@@ -420,7 +393,7 @@ void Hero::stopAddingForce(Hero this)
 }
 
 // started moving over axis
-void Hero::startedMovingOnAxis(Hero this, u16 axis)
+void Hero::startedMovingOnAxis(u16 axis)
 {
 	if(__Y_AXIS & axis)
 	{
@@ -449,10 +422,8 @@ void Hero::startedMovingOnAxis(Hero this, u16 axis)
 }
 
 // stop moving over axis
-bool Hero::stopMovingOnAxis(Hero this, u16 axis)
+bool Hero::stopMovingOnAxis(u16 axis)
 {
-	ASSERT(this, "Hero::stopMovingOnAxis: null this");
-
 	// if being hit do nothing
 	if(!Body::isActive(this->body))
 	{
@@ -538,10 +509,8 @@ bool Hero::stopMovingOnAxis(Hero this, u16 axis)
 }
 
 // check direction
-void Hero::checkDirection(Hero this, u32 pressedKey, char* animation)
+void Hero::checkDirection(u32 pressedKey, char* animation)
 {
-	ASSERT(this, "Hero::checkDirection: null this");
-
 	bool movementState = Body::getMovementOnAllAxes(this->body);
 	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
 
@@ -589,7 +558,7 @@ void Hero::checkDirection(Hero this, u32 pressedKey, char* animation)
 	}
 }
 
-void Hero::lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
+void Hero::lockCameraTriggerMovement(u8 axisToLockUp, bool locked)
 {
 	if(this->cameraBoundingBox)
 	{
@@ -614,7 +583,7 @@ void Hero::lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
 	}
 }
 
-void Hero::takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
+void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
 {
 #ifdef GOD_MODE
 	return;
@@ -678,10 +647,8 @@ void Hero::takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRed
 }
 
 // flash after being hit
-void Hero::flash(Hero this)
+void Hero::flash()
 {
-	ASSERT(this, "Hero::flash: null this");
-
 	// only flash as long as hero is invincible
 	if(Hero::isInvincible(this))
 	{
@@ -698,7 +665,7 @@ void Hero::flash(Hero this)
 	}
 }
 
-void Hero::toggleFlashPalette(Hero this)
+void Hero::toggleFlashPalette()
 {
 	// get all of the hero's sprites and loop through them
 	VirtualList sprites = Entity::getSprites(__SAFE_CAST(Entity, this));
@@ -727,7 +694,7 @@ void Hero::toggleFlashPalette(Hero this)
 	}
 }
 
-void Hero::resetPalette(Hero this)
+void Hero::resetPalette()
 {
 	// get all of hero's sprites and loop through them
 	VirtualList sprites = Entity::getSprites(__SAFE_CAST(Entity, this));
@@ -748,10 +715,8 @@ void Hero::resetPalette(Hero this)
 }
 
 // set animation delta
-void Hero::setAnimationDelta(Hero this, int delta __attribute__ ((unused)))
+void Hero::setAnimationDelta(int delta __attribute__ ((unused)))
 {
-	ASSERT(this, "Hero::setAnimationDelta: null this");
-
 	ASSERT(this->sprites, "Hero::setAnimationDelta: null sprites");
 
 	VirtualNode node = VirtualList::begin(this->sprites);
@@ -763,10 +728,8 @@ void Hero::setAnimationDelta(Hero this, int delta __attribute__ ((unused)))
 }
 
 // disable boost
-void Hero::disableBoost(Hero this)
+void Hero::disableBoost()
 {
-	ASSERT(this, "Hero::disableBoost: null this");
-
 	if(this->boost)
 	{
 		this->boost = false;
@@ -775,7 +738,7 @@ void Hero::disableBoost(Hero this)
 }
 
 // enable boost
-void Hero::enableBoost(Hero this)
+void Hero::enableBoost()
 {
 	if(!this->boost)
 	{
@@ -786,17 +749,13 @@ void Hero::enableBoost(Hero this)
 }
 
 // get the door overlapped by the hero
-Door Hero::getOverlappedDoor(Hero this)
+Door Hero::getOverlappedDoor()
 {
-	ASSERT(this, "Hero::getOverlappedDoor: null this");
-
 	return this->currentlyOverlappedDoor;
 }
 
-void Hero::enterDoor(Hero this)
+void Hero::enterDoor()
 {
-	ASSERT(this, "Hero::enterDoor: null this");
-
 	if((__Y_AXIS | __Z_AXIS) & Body::getMovementOnAllAxes(this->body))
 	{
 		return;
@@ -828,10 +787,8 @@ void Hero::enterDoor(Hero this)
 	SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 }
 
-static void Hero::addHint(Hero this)
+void Hero::addHint()
 {
-	ASSERT(this, "Hero::addHints: null this");
-
 	Vector3D position = {0, 0, __PIXELS_TO_METERS(-1)};
 
 	// save the hint entity, so we can remove it later
@@ -840,10 +797,8 @@ static void Hero::addHint(Hero this)
 	Hero::hideHint(this);
 }
 
-static void Hero::addFeetDust(Hero this)
+void Hero::addFeetDust()
 {
-	ASSERT(this, "Hero::addFeetDust: null this");
-
 	Vector3D position = {__PIXELS_TO_METERS(-8), __PIXELS_TO_METERS(10), __PIXELS_TO_METERS(12)};
 
 	this->feetDust = __SAFE_CAST(ParticleSystem, Entity::addChildEntity(__SAFE_CAST(Entity, this), &DUST_PS, -1, "feetDust", &position, NULL));
@@ -852,15 +807,14 @@ static void Hero::addFeetDust(Hero this)
 	ParticleSystem::spawnAllParticles(this->feetDust);
 }
 
-void Hero::showHint(Hero this, u32 hintType)
+void Hero::showHint(u32 hintType)
 {
-	ASSERT(this, "Hero::showHint: null this");
 	ASSERT(this->hint, "Hero::showHint: null hint");
 
 	Hint::open((Hint)this->hint, hintType);
 }
 
-void Hero::hideHint(Hero this)
+void Hero::hideHint()
 {
 	// check if a hint is being shown at the moment
 	if(this->hint)
@@ -871,7 +825,7 @@ void Hero::hideHint(Hero this)
 }
 
 // make hero to look to the player
-void Hero::lookFront(Hero this)
+void Hero::lookFront()
 {
 	// if not already playing
 	if(!AnimatedEntity::isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Front"))
@@ -882,7 +836,7 @@ void Hero::lookFront(Hero this)
 }
 
 // make hero to look away from the player
-void Hero::lookBack(Hero this)
+void Hero::lookBack()
 {
 	// if not already playing
 	if(!AnimatedEntity::isAnimationLoaded(__SAFE_CAST(AnimatedEntity, this), "Back"))
@@ -893,7 +847,7 @@ void Hero::lookBack(Hero this)
 }
 
 // die hero
-void Hero::die(Hero this)
+void Hero::die()
 {
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
@@ -912,7 +866,7 @@ void Hero::die(Hero this)
 }
 
 // process user input
-static void Hero::onUserInput(Hero this, Object eventFirer __attribute__ ((unused)))
+void Hero::onUserInput(Object eventFirer __attribute__ ((unused)))
 {
 	UserInput userInput = PlatformerLevelState::getUserInput(PlatformerLevelState::getInstance());
 
@@ -935,13 +889,13 @@ static void Hero::onUserInput(Hero this, Object eventFirer __attribute__ ((unuse
 }
 
 // does the hero have a key?
-bool Hero::hasKey(Hero this)
+bool Hero::hasKey()
 {
 	return this->hasKey;
 }
 
 // collect a power-up
-void Hero::collectPowerUp(Hero this, u8 powerUp)
+void Hero::collectPowerUp(u8 powerUp)
 {
 	this->powerUp = powerUp;
 	this->keepAddingForce = false;
@@ -956,7 +910,7 @@ void Hero::collectPowerUp(Hero this, u8 powerUp)
 }
 
 // lose a power-up
-void Hero::losePowerUp(Hero this)
+void Hero::losePowerUp()
 {
 	this->powerUp = kPowerUpNone;
 	Hero::updateSprite(this);
@@ -964,7 +918,7 @@ void Hero::losePowerUp(Hero this)
 }
 
 // update sprite, e.g. after collecting a power-up
-void Hero::updateSprite(Hero this)
+void Hero::updateSprite()
 {
 	CharSet charSet = Texture::getCharSet(Sprite::getTexture(__SAFE_CAST(Sprite, VirtualList::front(this->sprites))), true);
 
@@ -989,30 +943,30 @@ void Hero::updateSprite(Hero this)
 }
 
 // get current power-up
-u8 Hero::getPowerUp(Hero this)
+u8 Hero::getPowerUp()
 {
 	return this->powerUp;
 }
 
 // get energy
-u8 Hero::getEnergy(Hero this)
+u8 Hero::getEnergy()
 {
 	return this->energy;
 }
 
 // set invincibility
-void Hero::setInvincible(Hero this, bool invincible)
+void Hero::setInvincible(bool invincible)
 {
 	this->invincible = invincible;
 }
 
 // get invincibility
-bool Hero::isInvincible(Hero this)
+bool Hero::isInvincible()
 {
 	return this->invincible;
 }
 
-fix10_6 Hero::getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal)
+fix10_6 Hero::getFrictionOnCollision(SpatialObject collidingObject, const Vector3D* collidingObjectNormal)
 {
 	// ignore friction on y axis
 	if(collidingObjectNormal->x && !collidingObjectNormal->y)
@@ -1024,9 +978,8 @@ fix10_6 Hero::getFrictionOnCollision(Hero this, SpatialObject collidingObject, c
 }
 
 // process collisions
-bool Hero::enterCollision(Hero this, const CollisionInformation* collisionInformation)
+bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 {
-	ASSERT(this, "Hero::enterCollision: null this");
 	ASSERT(collisionInformation->collidingShape, "Hero::enterCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation->collidingShape;
@@ -1159,9 +1112,8 @@ bool Hero::enterCollision(Hero this, const CollisionInformation* collisionInform
 }
 
 // process collisions
-bool Hero::updateCollision(Hero this, const CollisionInformation* collisionInformation)
+bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 {
-	ASSERT(this, "Hero::enterCollision: null this");
 	ASSERT(collisionInformation->collidingShape, "Hero::enterCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation->collidingShape;
@@ -1187,10 +1139,8 @@ bool Hero::updateCollision(Hero this, const CollisionInformation* collisionInfor
 	return false;
 }
 
-void Hero::capVelocity(Hero this, bool discardPreviousMessages)
+void Hero::capVelocity(bool discardPreviousMessages)
 {
-	ASSERT(this, "Hero::checkCapVelocity: null this");
-
 	if(discardPreviousMessages)
 	{
 		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
@@ -1222,10 +1172,8 @@ void Hero::capVelocity(Hero this, bool discardPreviousMessages)
 	}
 }
 
-bool Hero::handleMessage(Hero this, Telegram telegram)
+bool Hero::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "Hero::handleMessage: null this");
-
 	// handle messages that any state would handle here
 	switch(Telegram::getMessage(telegram))
 	{
@@ -1301,10 +1249,8 @@ bool Hero::handleMessage(Hero this, Telegram telegram)
 }
 
 // process message
-bool Hero::handlePropagatedMessage(Hero this, int message)
+bool Hero::handlePropagatedMessage(int message)
 {
-	ASSERT(this, "Hero::handlePropagatedMessage: null this");
-
 	switch(message)
 	{
 		case kLevelSetUp:
@@ -1331,10 +1277,8 @@ bool Hero::handlePropagatedMessage(Hero this, int message)
 	return false;
 }
 
-void Hero::getOutOfDoor(Hero this, Vector3D* outOfDoorPosition)
+void Hero::getOutOfDoor(Vector3D* outOfDoorPosition)
 {
-	ASSERT(this, "Hero::setPosition: null this");
-
 	// stop all movement
 	Actor::stopAllMovement(__SAFE_CAST(Actor, this));
 
@@ -1356,10 +1300,8 @@ void Hero::getOutOfDoor(Hero this, Vector3D* outOfDoorPosition)
 	this->currentlyOverlappedDoor = NULL;
 }
 
-void Hero::suspend(Hero this)
+void Hero::suspend()
 {
-	ASSERT(this, "Hero::suspend: null this");
-
 	Base::suspend(this);
 
 	if(this->feetDust)
@@ -1368,10 +1310,8 @@ void Hero::suspend(Hero this)
 	}
 }
 
-void Hero::resume(Hero this)
+void Hero::resume()
 {
-	ASSERT(this, "Hero::resume: null this");
-
 	Base::resume(this);
 
 	Camera::focus(Camera::getInstance(), false);
@@ -1384,10 +1324,8 @@ void Hero::resume(Hero this)
 	Hero::updateSprite(this);
 }
 
-bool Hero::isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation)
+bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation)
 {
-	ASSERT(this, "Hero::isAboveEntity: null this");
-
 	RightBox shapeRightBox = Shape::getSurroundingRightBox(shape);
 	RightBox collidingShapeRightBox = Shape::getSurroundingRightBox(collisionInformation->collidingShape);
 
@@ -1396,29 +1334,23 @@ bool Hero::isBelow(Hero this, Shape shape, const CollisionInformation* collision
 	return heroBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
 }
 
-u16 Hero::getAxisForFlipping(Hero this __attribute__ ((unused)))
+u16 Hero::getAxisForFlipping()
 {
 	return __X_AXIS;
 }
 
-void Hero::onPowerUpTransitionComplete(Hero this, Object eventFirer __attribute__ ((unused)))
+void Hero::onPowerUpTransitionComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "Hero::onPowerUpTransitionComplete: null this");
-
 	MessageDispatcher::dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 }
 
-bool Hero::isAffectedByRelativity(Hero this __attribute__ ((unused)))
+bool Hero::isAffectedByRelativity()
 {
-	ASSERT(this, "Hero::isAffectedByRelativity: null this");
-
 	return true;
 }
 
-void Hero::syncRotationWithBody(Hero this)
+void Hero::syncRotationWithBody()
 {
-	ASSERT(this, "Hero::syncRotationWithBody: null this");
-
 	fix10_6 xLastDisplacement = Body::getLastDisplacement(this->body).x;
 
 	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
@@ -1435,10 +1367,8 @@ void Hero::syncRotationWithBody(Hero this)
 	}
 }
 
-void Hero::exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
+void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
 {
-	ASSERT(this, "Hero::exitCollision: null this");
-
 	SpatialObject nonCollidingSpatialObject = Shape::getOwner(shapeNotCollidingAnymore);
 
 	switch(SpatialObject::getInGameType(nonCollidingSpatialObject))
@@ -1464,7 +1394,7 @@ void Hero::exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore,
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
-u16 Hero::getAxesForShapeSyncWithDirection(Hero this __attribute__ ((unused)))
+u16 Hero::getAxesForShapeSyncWithDirection()
 {
 	return __NO_AXIS;
 }

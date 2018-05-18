@@ -47,25 +47,11 @@ extern StageROMDef EMPTY_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void OptionsScreenState::constructor(OptionsScreenState this);
-static void OptionsScreenState::print(OptionsScreenState this);
-static void OptionsScreenState::onFadeInComplete(OptionsScreenState this, Object eventFirer);
-static void OptionsScreenState::onExitFadeOutComplete(OptionsScreenState this, Object eventFirer);
-static void OptionsScreenState::onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer);
-static void OptionsScreenState::onOptionAutoPauseSelect(OptionsScreenState this);
-static void OptionsScreenState::onOptionLanguageSelect(OptionsScreenState this);
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) OptionsScreenState::constructor(OptionsScreenState this)
+void OptionsScreenState::constructor()
 {
 	Base::constructor();
 
@@ -75,16 +61,16 @@ void __attribute__ ((noinline)) OptionsScreenState::constructor(OptionsScreenSta
 }
 
 // class's destructor
-void OptionsScreenState::destructor(OptionsScreenState this)
+void OptionsScreenState::destructor()
 {
 	__DELETE(this->optionsSelector);
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void OptionsScreenState::enter(OptionsScreenState this, void* owner __attribute__ ((unused)))
+void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// call base
 	Base::enter(this, owner);
@@ -110,23 +96,21 @@ void OptionsScreenState::enter(OptionsScreenState this, void* owner __attribute_
 }
 
 // state's exit
-void OptionsScreenState::exit(OptionsScreenState this, void* owner __attribute__ ((unused)))
+void OptionsScreenState::exit(void* owner __attribute__ ((unused)))
 {
 	// call base
 	Base::exit(this, owner);
 }
 
 // set next state
-void OptionsScreenState::setNextState(OptionsScreenState this, GameState nextState)
+void OptionsScreenState::setNextState(GameState nextState)
 {
 	this->nextState = nextState;
 }
 
 // print level stats
-static void OptionsScreenState::print(OptionsScreenState this __attribute__ ((unused)))
+void OptionsScreenState::print()
 {
-	ASSERT(this, "OptionsScreenState::print: null this");
-
 	// title
 	const char* strOptionsTitle = I18n::getText(I18n::getInstance(), STR_OPTIONS);
 	const char* strOptionsTitleFont = "LargeFont";
@@ -180,7 +164,7 @@ static void OptionsScreenState::print(OptionsScreenState this __attribute__ ((un
 	Printing::text(Printing::getInstance(), strBack, strBackXPos + 1, 15, NULL);
 }
 
-void OptionsScreenState::processUserInput(OptionsScreenState this, UserInput userInput)
+void OptionsScreenState::processUserInput(UserInput userInput)
 {
 	if((userInput.pressedKey & K_A) || (userInput.pressedKey & K_STA))
 	{
@@ -225,40 +209,30 @@ void OptionsScreenState::processUserInput(OptionsScreenState this, UserInput use
 }
 
 // handle event
-static void OptionsScreenState::onFadeInComplete(OptionsScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void OptionsScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "OptionsScreenState::onOptionSelectedFadeOutComplete: null this");
-
 	Game::enableKeypad(Game::getInstance());
 }
 
-static void OptionsScreenState::onExitFadeOutComplete(OptionsScreenState this, Object eventFirer __attribute__ ((unused)))
+void OptionsScreenState::onExitFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "OptionsScreenState::onExitFadeOutComplete: null this");
-
 	// switch to next screen
 	Game::changeState(Game::getInstance(), this->nextState);
 }
 
-static void OptionsScreenState::onOptionSelectedFadeOutComplete(OptionsScreenState this, Object eventFirer __attribute__ ((unused)))
+void OptionsScreenState::onOptionSelectedFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "OptionsScreenState::onOptionSelectedFadeOutComplete: null this");
-
 	OptionsSelector::doCurrentSelectionCallback(this->optionsSelector);
 }
 
-static void OptionsScreenState::onOptionAutoPauseSelect(OptionsScreenState this)
+void OptionsScreenState::onOptionAutoPauseSelect()
 {
-	ASSERT(this, "OptionsScreenState::onOptionAutoPauseSelect: null this");
-
 	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, AutoPauseSelectScreenState::getInstance()), __SAFE_CAST(GameState, this));
 	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, AutoPauseSelectScreenState::getInstance()));
 }
 
-static void OptionsScreenState::onOptionLanguageSelect(OptionsScreenState this)
+void OptionsScreenState::onOptionLanguageSelect()
 {
-	ASSERT(this, "OptionsScreenState::onOptionLanguageSelect: null this");
-
 	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, LangSelectScreenState::getInstance()), __SAFE_CAST(GameState, this));
 	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, LangSelectScreenState::getInstance()));
 }

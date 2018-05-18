@@ -40,28 +40,20 @@
 #define COG_WHEEL_ROTATION_DELAY 50
 
 
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void TestCogWheel::onShakeCompleted(TestCogWheel this, Object eventFirer);
-static void TestCogWheel::rotate(TestCogWheel this);
-static void TestCogWheel::stop(TestCogWheel this);
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void TestCogWheel::constructor(TestCogWheel this, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
+void TestCogWheel::constructor(EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(EntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void TestCogWheel::destructor(TestCogWheel this)
+void TestCogWheel::destructor()
 {
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
@@ -72,10 +64,8 @@ void TestCogWheel::destructor(TestCogWheel this)
 }
 
 // ready method
-void TestCogWheel::ready(TestCogWheel this, bool recursive)
+void TestCogWheel::ready(bool recursive)
 {
-	ASSERT(this, "TestCogWheel::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -93,7 +83,7 @@ void TestCogWheel::ready(TestCogWheel this, bool recursive)
 }
 
 // state's handle message
-bool TestCogWheel::handleMessage(TestCogWheel this, Telegram telegram)
+bool TestCogWheel::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -112,7 +102,7 @@ bool TestCogWheel::handleMessage(TestCogWheel this, Telegram telegram)
 }
 
 // rotate cogwheel
-static void TestCogWheel::rotate(TestCogWheel this)
+void TestCogWheel::rotate()
 {
 //	Shape::show(VirtualList::front(this->shapes));
 //	Shape::show(VirtualList::back(this->shapes));
@@ -137,7 +127,7 @@ static void TestCogWheel::rotate(TestCogWheel this)
 }
 
 // stop cogwheel
-static void TestCogWheel::stop(TestCogWheel this)
+void TestCogWheel::stop()
 {
 	// stop listening for the shake end event
 	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)TestCogWheel::onShakeCompleted, kEventShakeCompleted);
@@ -149,7 +139,7 @@ static void TestCogWheel::stop(TestCogWheel this)
 //	Sprite::setMode(__SAFE_CAST(Sprite, VirtualList::front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
 }
 
-static void TestCogWheel::onShakeCompleted(TestCogWheel this, Object eventFirer __attribute__ ((unused)))
+void TestCogWheel::onShakeCompleted(Object eventFirer __attribute__ ((unused)))
 {
 	// stop moving
 	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelStop, NULL);

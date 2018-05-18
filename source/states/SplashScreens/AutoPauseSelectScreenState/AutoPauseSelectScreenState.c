@@ -46,21 +46,13 @@
 extern StageROMDef EMPTY_STAGE_ST;
 
 
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void AutoPauseSelectScreenState::constructor(AutoPauseSelectScreenState this);
-static void AutoPauseSelectScreenState::renderSelection(AutoPauseSelectScreenState this);
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) AutoPauseSelectScreenState::constructor(AutoPauseSelectScreenState this)
+void AutoPauseSelectScreenState::constructor()
 {
 	Base::constructor();
 
@@ -70,13 +62,13 @@ void __attribute__ ((noinline)) AutoPauseSelectScreenState::constructor(AutoPaus
 }
 
 // class's destructor
-void AutoPauseSelectScreenState::destructor(AutoPauseSelectScreenState this)
+void AutoPauseSelectScreenState::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
-void AutoPauseSelectScreenState::print(AutoPauseSelectScreenState this)
+void AutoPauseSelectScreenState::print()
 {
 	this->selection = ProgressManager::getAutomaticPauseStatus(ProgressManager::getInstance());
 
@@ -102,7 +94,7 @@ void AutoPauseSelectScreenState::print(AutoPauseSelectScreenState this)
 	AutoPauseSelectScreenState::renderSelection(this);
 }
 
-static void AutoPauseSelectScreenState::renderSelection(AutoPauseSelectScreenState this)
+void AutoPauseSelectScreenState::renderSelection()
 {
 	const char* strOn = I18n::getText(I18n::getInstance(), STR_ON);
 	const char* strOff = I18n::getText(I18n::getInstance(), STR_OFF);
@@ -154,7 +146,7 @@ static void AutoPauseSelectScreenState::renderSelection(AutoPauseSelectScreenSta
 	Printing::text(Printing::getInstance(), "\x06               ", optionEnd, __OPTIONS_Y_POS + 1 + strOnSize.y, NULL);
 }
 
-void AutoPauseSelectScreenState::processInput(AutoPauseSelectScreenState this, u32 pressedKey)
+void AutoPauseSelectScreenState::processInput(u32 pressedKey)
 {
 	if((pressedKey & K_LL) || (pressedKey & K_LR))
 	{

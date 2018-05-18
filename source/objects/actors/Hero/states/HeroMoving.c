@@ -38,7 +38,7 @@
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void HeroMoving::constructor(HeroMoving this);
+void HeroMoving::constructor();
 
 
 
@@ -47,7 +47,7 @@ void HeroMoving::constructor(HeroMoving this);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroMoving::constructor(HeroMoving this)
+void HeroMoving::constructor()
 {
 	// construct base
 	Base::constructor();
@@ -56,17 +56,17 @@ void __attribute__ ((noinline)) HeroMoving::constructor(HeroMoving this)
 }
 
 // class's destructor
-void HeroMoving::destructor(HeroMoving this)
+void HeroMoving::destructor()
 {
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kDisallowJumpOnBouncing);
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void HeroMoving::enter(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroMoving::enter(void* owner)
 {
 	u32 holdKey = KeypadManager::getHoldKey(KeypadManager::getInstance());
 
@@ -86,7 +86,7 @@ void HeroMoving::enter(HeroMoving this __attribute__ ((unused)), void* owner)
 	Hero::addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
 }
 
-void HeroMoving::execute(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroMoving::execute(void* owner)
 {
 	// keep adding force
 	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(__SAFE_CAST(Actor, owner))))
@@ -96,7 +96,7 @@ void HeroMoving::execute(HeroMoving this __attribute__ ((unused)), void* owner)
 }
 
 // state's handle message
-bool HeroMoving::processMessage(HeroMoving this __attribute__ ((unused)), void* owner, Telegram telegram)
+bool HeroMoving::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -116,7 +116,7 @@ bool HeroMoving::processMessage(HeroMoving this __attribute__ ((unused)), void* 
 	return false;
 }
 
-void HeroMoving::onKeyPressed(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroMoving::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->pressedKey)
 	{
@@ -150,7 +150,7 @@ void HeroMoving::onKeyPressed(HeroMoving this __attribute__ ((unused)), void* ow
 	}
 }
 
-void HeroMoving::onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroMoving::onKeyReleased(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->releasedKey)
 	{

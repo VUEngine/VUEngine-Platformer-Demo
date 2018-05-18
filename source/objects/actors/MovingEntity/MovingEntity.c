@@ -38,19 +38,12 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void MovingEntity::constructor(MovingEntity this, MovingEntityDefinition* movingEntityDefinition, s16 id, s16 internalId, const char* const name)
+void MovingEntity::constructor(MovingEntityDefinition* movingEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "MovingEntity::constructor: null this");
-
 	// construct base
 	Base::constructor((ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
 
@@ -80,10 +73,8 @@ void MovingEntity::constructor(MovingEntity this, MovingEntityDefinition* moving
 }
 
 // class's constructor
-void MovingEntity::destructor(MovingEntity this)
+void MovingEntity::destructor()
 {
-	ASSERT(this, "MovingEntity::destructor: null this");
-
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kMovingEntityStartMoving);
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kMovingEntityCheckDirection);
 
@@ -93,9 +84,8 @@ void MovingEntity::destructor(MovingEntity this)
 }
 
 // set definition
-void MovingEntity::setDefinition(MovingEntity this, void* movingEntityDefinition)
+void MovingEntity::setDefinition(void* movingEntityDefinition)
 {
-	ASSERT(this, "MovingEntity::setDefinition: null this");
 	ASSERT(movingEntityDefinition, "MovingEntity::setDefinition: null definition");
 
 	// save definition
@@ -105,10 +95,8 @@ void MovingEntity::setDefinition(MovingEntity this, void* movingEntityDefinition
 }
 
 // ready method
-void MovingEntity::ready(MovingEntity this, bool recursive)
+void MovingEntity::ready(bool recursive)
 {
-	ASSERT(this, "MovingEntity::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -129,10 +117,8 @@ void MovingEntity::ready(MovingEntity this, bool recursive)
 	MovingEntity::startMovement(this);
 }
 
-bool MovingEntity::handleMessage(MovingEntity this, Telegram telegram)
+bool MovingEntity::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "MovingEntity::handleMessage: null this");
-
 	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
 
 	switch(Telegram::getMessage(telegram))
@@ -172,11 +158,11 @@ bool MovingEntity::handleMessage(MovingEntity this, Telegram telegram)
 }
 
 // tell me I've been hit
-void MovingEntity::takeHit(MovingEntity this __attribute__ ((unused)), u16 axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
+void MovingEntity::takeHit(u16 axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
 {
 }
 
-void MovingEntity::checkDisplacement(MovingEntity this)
+void MovingEntity::checkDisplacement()
 {
 	// update position
 	switch(this->movingEntityDefinition->axis)
@@ -220,7 +206,7 @@ void MovingEntity::checkDisplacement(MovingEntity this)
 }
 
 // start moving
-void MovingEntity::startMovement(MovingEntity this)
+void MovingEntity::startMovement()
 {
 	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
 
@@ -284,7 +270,7 @@ void MovingEntity::startMovement(MovingEntity this)
 	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityCheckDirection, NULL);
 }
 
-u16 MovingEntity::getAxesForShapeSyncWithDirection(MovingEntity this)
+u16 MovingEntity::getAxesForShapeSyncWithDirection()
 {
 	return this->movingEntityDefinition->axesForShapeSyncWithDirection;
 }

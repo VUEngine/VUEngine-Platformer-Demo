@@ -62,12 +62,12 @@ singleton class TitleScreenState : GameState
 	OptionsSelector optionsSelector;
 
 	static TitleScreenState getInstance(void);
-	override void enter(TitleScreenState this, void* owner);
-	override void exit(TitleScreenState this, void* owner);
-	override void resume(TitleScreenState this, void* owner);
-	override void suspend(TitleScreenState this, void* owner);
-	override bool processMessage(TitleScreenState this, void* owner, Telegram telegram);
-	override void processUserInput(TitleScreenState this, UserInput userInput);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void resume(void* owner);
+	override void suspend(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
+	override void processUserInput(UserInput userInput);
 }
 
 

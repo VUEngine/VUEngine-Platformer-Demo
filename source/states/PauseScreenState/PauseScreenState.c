@@ -49,21 +49,11 @@ extern StageROMDef PAUSE_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void PauseScreenState::constructor(PauseScreenState this);
-static void PauseScreenState::onFadeInComplete(PauseScreenState this, Object eventFirer);
-static void PauseScreenState::onFadeOutComplete(PauseScreenState this, Object eventFirer);
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) PauseScreenState::constructor(PauseScreenState this)
+void PauseScreenState::constructor()
 {
 	Base::constructor();
 
@@ -73,16 +63,16 @@ void __attribute__ ((noinline)) PauseScreenState::constructor(PauseScreenState t
 }
 
 // class's destructor
-void PauseScreenState::destructor(PauseScreenState this)
+void PauseScreenState::destructor()
 {
 	__DELETE(this->optionsSelector);
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void PauseScreenState::enter(PauseScreenState this, void* owner __attribute__ ((unused)))
+void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// call base
 	Base::enter(this, owner);
@@ -159,13 +149,13 @@ void PauseScreenState::enter(PauseScreenState this, void* owner __attribute__ ((
 }
 
 // state's exit
-void PauseScreenState::exit(PauseScreenState this, void* owner __attribute__ ((unused)))
+void PauseScreenState::exit(void* owner __attribute__ ((unused)))
 {
 	// call base
 	Base::exit(this, owner);
 }
 
-void PauseScreenState::processUserInput(PauseScreenState this, UserInput userInput)
+void PauseScreenState::processUserInput(UserInput userInput)
 {
 	if((K_STA & userInput.pressedKey) || (K_A & userInput.pressedKey))
 	{
@@ -257,18 +247,14 @@ void PauseScreenState::processUserInput(PauseScreenState this, UserInput userInp
 }
 
 // handle event
-static void PauseScreenState::onFadeInComplete(PauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void PauseScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PauseScreenState::onFadeInComplete: null this");
-
 	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void PauseScreenState::onFadeOutComplete(PauseScreenState this, Object eventFirer __attribute__ ((unused)))
+void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PauseScreenState::onFadeOutComplete: null this");
-
 	// re-enable user input
 	Game::enableKeypad(Game::getInstance());
 

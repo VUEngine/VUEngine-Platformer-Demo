@@ -44,21 +44,12 @@
 extern StageROMDef EMPTY_STAGE_ST;
 extern const u16 COLLECT_SND[];
 
-
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void PrecautionScreenState::constructor(PrecautionScreenState this);
-
-
-
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) PrecautionScreenState::constructor(PrecautionScreenState this)
+void PrecautionScreenState::constructor()
 {
 	Base::constructor();
 
@@ -67,14 +58,14 @@ void __attribute__ ((noinline)) PrecautionScreenState::constructor(PrecautionScr
 }
 
 // class's destructor
-void PrecautionScreenState::destructor(PrecautionScreenState this)
+void PrecautionScreenState::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's handle message
-bool PrecautionScreenState::processMessage(PrecautionScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
+bool PrecautionScreenState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -108,7 +99,7 @@ bool PrecautionScreenState::processMessage(PrecautionScreenState this, void* own
 	return false;
 }
 
-void PrecautionScreenState::print(PrecautionScreenState this __attribute__ ((unused)))
+void PrecautionScreenState::print()
 {
 	const char* strPrecautionTitle = I18n::getText(I18n::getInstance(), STR_IMPORTANT);
 	const char* strPrecautionTitleFont = "LargeFont";

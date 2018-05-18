@@ -45,35 +45,24 @@ extern StageROMDef LEVEL_DONE_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void LevelDoneScreenState::constructor(LevelDoneScreenState this);
-void LevelDoneScreenState::print(LevelDoneScreenState this);
-static void LevelDoneScreenState::onFadeInComplete(LevelDoneScreenState this, Object eventFirer);
-static void LevelDoneScreenState::onFadeOutComplete(LevelDoneScreenState this, Object eventFirer);
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) LevelDoneScreenState::constructor(LevelDoneScreenState this)
+void LevelDoneScreenState::constructor()
 {
 	Base::constructor();
 }
 
 // class's destructor
-void LevelDoneScreenState::destructor(LevelDoneScreenState this)
+void LevelDoneScreenState::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void LevelDoneScreenState::enter(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
+void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// call base
 	Base::enter(this, owner);
@@ -102,7 +91,7 @@ void LevelDoneScreenState::enter(LevelDoneScreenState this, void* owner __attrib
 }
 
 // state's exit
-void LevelDoneScreenState::exit(LevelDoneScreenState this, void* owner __attribute__ ((unused)))
+void LevelDoneScreenState::exit(void* owner __attribute__ ((unused)))
 {
 	// call base
 	Base::exit(this, owner);
@@ -112,10 +101,8 @@ void LevelDoneScreenState::exit(LevelDoneScreenState this, void* owner __attribu
 }
 
 // print level stats
-void LevelDoneScreenState::print(LevelDoneScreenState this __attribute__ ((unused)))
+void LevelDoneScreenState::print()
 {
-	ASSERT(this, "LevelDoneScreenState::print: null this");
-
 	u8 numberOfCollectedCoins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
 
 	// "level completed/conquered"
@@ -145,7 +132,7 @@ void LevelDoneScreenState::print(LevelDoneScreenState this __attribute__ ((unuse
 	}
 }
 
-void LevelDoneScreenState::processUserInput(LevelDoneScreenState this, UserInput userInput)
+void LevelDoneScreenState::processUserInput(UserInput userInput)
 {
 	if(userInput.pressedKey)
 	{
@@ -166,18 +153,14 @@ void LevelDoneScreenState::processUserInput(LevelDoneScreenState this, UserInput
 }
 
 // handle event
-static void LevelDoneScreenState::onFadeInComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void LevelDoneScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
-
 	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void LevelDoneScreenState::onFadeOutComplete(LevelDoneScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void LevelDoneScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "LevelDoneScreenState::onFadeOutComplete: null this");
-
 	// switch to next screen
 	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, OverworldState::getInstance()));
 }

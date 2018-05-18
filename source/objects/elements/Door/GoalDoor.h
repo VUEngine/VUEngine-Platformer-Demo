@@ -40,11 +40,11 @@ typedef const GoalDoorDefinition GoalDoorROMDef;
 
 class GoalDoor : Door
 {
-	void constructor(GoalDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-	override bool handleMessage(GoalDoor this, Telegram telegram);
-	override void ready(Door this, bool recursive);
-	override bool hasDestination(Door this);
-	override bool canEnter(GoalDoor this);
+	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(Telegram telegram);
+	override void ready(bool recursive);
+	override bool hasDestination();
+	override bool canEnter();
 }
 
 

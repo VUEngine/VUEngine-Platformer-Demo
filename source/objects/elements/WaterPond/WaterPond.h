@@ -65,10 +65,10 @@ class WaterPond : ReflectiveEntity
 	fix10_6 amplitudeFactor;
 	ParticleSystem waterSplash;
 
-	void constructor(WaterPond this, WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
-	override bool handleMessage(WaterPond this, void* telegram);
-	override void ready(WaterPond this, bool recursive);
-	override void applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet);
+	void constructor(WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(void* telegram);
+	override void ready(bool recursive);
+	override void applyReflection(u32 currentDrawingFrameBufferSet);
 }
 
 

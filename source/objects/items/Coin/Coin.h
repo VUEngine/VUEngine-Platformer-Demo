@@ -40,8 +40,8 @@ typedef const CoinDefinition CoinROMDef;
 
 class Coin : Collectable
 {
-	void constructor(Coin this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	override void collect(Coin this);
+	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void collect();
 }
 
 

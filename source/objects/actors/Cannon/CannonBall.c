@@ -39,10 +39,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CannonBall::constructor(CannonBall this, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
+void CannonBall::constructor(CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "CannonBall::constructor: null this");
-
 	// construct base
 	Base::constructor((ActorDefinition*)cannonBallDefinition, id, internalId, name);
 
@@ -51,10 +49,8 @@ void CannonBall::constructor(CannonBall this, CannonBallDefinition* cannonBallDe
 }
 
 // class's constructor
-void CannonBall::destructor(CannonBall this)
+void CannonBall::destructor()
 {
-	ASSERT(this, "CannonBall::destructor: null this");
-
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement);
 
 	// delete the super object
@@ -63,7 +59,7 @@ void CannonBall::destructor(CannonBall this)
 }
 
 // start moving
-void CannonBall::startMovement(CannonBall this)
+void CannonBall::startMovement()
 {
 	Velocity velocity = {0, 0, __I_TO_FIX10_6(-8)};
 
@@ -76,7 +72,7 @@ void CannonBall::startMovement(CannonBall this)
 }
 
 // move back to cannon
-void CannonBall::stopMovement(CannonBall this)
+void CannonBall::stopMovement()
 {
 	// stop movement
 	Actor::stopAllMovement(__SAFE_CAST(Actor, this));
@@ -89,7 +85,7 @@ void CannonBall::stopMovement(CannonBall this)
 	Entity::hide(__SAFE_CAST(Entity, this));
 }
 
-static void CannonBall::checkIfDistanceTraveled(CannonBall this)
+void CannonBall::checkIfDistanceTraveled()
 {
 	if(this->transformation.globalPosition.z <= __PIXELS_TO_METERS(CANNON_BALL_MINIMUM_Z_VALUE))
 	{
@@ -102,10 +98,8 @@ static void CannonBall::checkIfDistanceTraveled(CannonBall this)
 }
 
 // state's handle message
-bool CannonBall::handleMessage(CannonBall this, Telegram telegram)
+bool CannonBall::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "CannonBall::handleMessage: null this");
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kCannonShoot:

@@ -41,27 +41,18 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void CogWheel::onShakeCompleted(CogWheel this, Object eventFirer);
-static void CogWheel::rotate(CogWheel this);
-static void CogWheel::stop(CogWheel this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CogWheel::constructor(CogWheel this, EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
+void CogWheel::constructor(EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(EntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void CogWheel::destructor(CogWheel this)
+void CogWheel::destructor()
 {
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCogWheelMove);
@@ -72,10 +63,8 @@ void CogWheel::destructor(CogWheel this)
 }
 
 // ready method
-void CogWheel::ready(CogWheel this, bool recursive)
+void CogWheel::ready(bool recursive)
 {
-	ASSERT(this, "CogWheel::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -90,7 +79,7 @@ void CogWheel::ready(CogWheel this, bool recursive)
 	Entity::setLocalRotation(__SAFE_CAST(Entity, this), &this->transformation.localRotation);}
 
 // state's handle message
-bool CogWheel::handleMessage(CogWheel this, Telegram telegram)
+bool CogWheel::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -109,7 +98,7 @@ bool CogWheel::handleMessage(CogWheel this, Telegram telegram)
 }
 
 // rotate cogwheel
-static void CogWheel::rotate(CogWheel this)
+void CogWheel::rotate()
 {
 	this->transformation.localRotation.z += 1;
 
@@ -120,7 +109,7 @@ static void CogWheel::rotate(CogWheel this)
 }
 
 // stop cogwheel
-static void CogWheel::stop(CogWheel this)
+void CogWheel::stop()
 {
 	// stop listening for the shake end event
 	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)CogWheel::onShakeCompleted, kEventShakeCompleted);
@@ -132,7 +121,7 @@ static void CogWheel::stop(CogWheel this)
 //	Sprite::setMode(__SAFE_CAST(Sprite, VirtualList::front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
 }
 
-static void CogWheel::onShakeCompleted(CogWheel this, Object eventFirer __attribute__ ((unused)))
+void CogWheel::onShakeCompleted(Object eventFirer __attribute__ ((unused)))
 {
 	// stop moving
 	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCogWheelStop, NULL);

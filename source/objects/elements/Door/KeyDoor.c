@@ -41,14 +41,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void KeyDoor::constructor(KeyDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void KeyDoor::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void KeyDoor::destructor(KeyDoor this)
+void KeyDoor::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -56,22 +56,20 @@ void KeyDoor::destructor(KeyDoor this)
 }
 
 // ready
-void KeyDoor::ready(KeyDoor this, bool recursive __attribute__ ((unused)))
+void KeyDoor::ready(bool recursive __attribute__ ((unused)))
 {
-	ASSERT(this, "KeyDoor::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
 	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Key");
 }
 
-bool KeyDoor::hasDestination(KeyDoor this __attribute__ ((unused)))
+bool KeyDoor::hasDestination()
 {
 	return true;
 }
 
-void KeyDoor::setOverlapping(KeyDoor this)
+void KeyDoor::setOverlapping()
 {
 	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{
@@ -81,7 +79,7 @@ void KeyDoor::setOverlapping(KeyDoor this)
 	Base::setOverlapping(this);
 }
 
-void KeyDoor::unsetOverlapping(KeyDoor this)
+void KeyDoor::unsetOverlapping()
 {
 	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{
@@ -91,12 +89,12 @@ void KeyDoor::unsetOverlapping(KeyDoor this)
 	Base::unsetOverlapping(this);
 }
 
-bool KeyDoor::canEnter(KeyDoor this __attribute__ ((unused)))
+bool KeyDoor::canEnter()
 {
 	return ProgressManager::heroHasKey(ProgressManager::getInstance());
 }
 
-u32 KeyDoor::getHintType(KeyDoor this __attribute__ ((unused)))
+u32 KeyDoor::getHintType()
 {
 	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{

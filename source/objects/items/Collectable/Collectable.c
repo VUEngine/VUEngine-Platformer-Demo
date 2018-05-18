@@ -37,11 +37,6 @@
 #include <PlatformerLevelState.h>
 
 
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Collectable::collect(Collectable this);
 extern const u16 COLLECT_SND[];
 
 
@@ -50,29 +45,23 @@ extern const u16 COLLECT_SND[];
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Collectable::constructor(Collectable this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Collectable::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Collectable::constructor: null this");
-
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Collectable::destructor(Collectable this)
+void Collectable::destructor()
 {
-	ASSERT(this, "Collectable::destructor: null this");
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
 // state's handle message
-bool Collectable::handleMessage(Collectable this, Telegram telegram)
+bool Collectable::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "Collectable::handleMessage: null this");
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kItemTaken:
@@ -96,7 +85,5 @@ bool Collectable::handleMessage(Collectable this, Telegram telegram)
 	return false;
 }
 
-void Collectable::collect(Collectable this __attribute__ ((unused)))
-{
-	ASSERT(this, "Collectable::collect: null this");
-}
+void Collectable::collect()
+{}

@@ -35,7 +35,7 @@
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
+static s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 {
 	u32 param = BgmapSprite::getParam(bgmapSprite);
 	s32 spriteHeight = Texture::getRows(Sprite::getTexture(__SAFE_CAST(Sprite, bgmapSprite))) << 3;

@@ -40,13 +40,13 @@ typedef const KeyDoorDefinition KeyDoorROMDef;
 
 class KeyDoor : Door
 {
-	void constructor(KeyDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-	override void ready(KeyDoor this, bool recursive);
-	override bool hasDestination(KeyDoor this);
-	override void setOverlapping(KeyDoor this);
-	override void unsetOverlapping(KeyDoor this);
-	override bool canEnter(KeyDoor this);
-	override u32 getHintType(KeyDoor this);
+	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	override void ready(bool recursive);
+	override bool hasDestination();
+	override void setOverlapping();
+	override void unsetOverlapping();
+	override bool canEnter();
+	override u32 getHintType();
 }
 
 

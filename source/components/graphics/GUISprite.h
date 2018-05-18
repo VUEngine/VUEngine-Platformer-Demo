@@ -36,8 +36,8 @@
 
 class GUISprite : BgmapAnimatedSprite
 {
-	void constructor(GUISprite this, const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner);
-	override void render(GUISprite this, bool evenFrame);
+	void constructor(const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner);
+	override void render(bool evenFrame);
 }
 
 

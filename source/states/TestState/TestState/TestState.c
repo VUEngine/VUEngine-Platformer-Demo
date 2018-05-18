@@ -52,35 +52,24 @@ extern StageROMDef TEST_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void TestState::constructor(TestState this);
-static void TestState::onFadeInComplete(TestState this, Object eventFirer);
-static void TestState::onStartLevelFadeOutComplete(TestState this, Object eventFirer);
-static void TestState::onReturnToTitleFadeOutComplete(TestState this, Object eventFirer);
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) TestState::constructor(TestState this)
+void TestState::constructor()
 {
 	Base::constructor();
 }
 
 // class's destructor
-void TestState::destructor(TestState this)
+void TestState::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void TestState::enter(TestState this, void* owner)
+void TestState::enter(void* owner)
 {
 	// call base
 	Base::enter(this, owner);
@@ -99,7 +88,7 @@ void TestState::enter(TestState this, void* owner)
 }
 
 // state's exit
-void TestState::exit(TestState this, void* owner)
+void TestState::exit(void* owner)
 {
 	// call base
 	Base::exit(this, owner);
@@ -109,7 +98,7 @@ void TestState::exit(TestState this, void* owner)
 }
 
 // state's resume
-void TestState::resume(TestState this, void* owner)
+void TestState::resume(void* owner)
 {
 	Base::resume(this, owner);
 
@@ -147,7 +136,7 @@ void TestState::resume(TestState this, void* owner)
 }
 
 // state's suspend
-void TestState::suspend(TestState this, void* owner)
+void TestState::suspend(void* owner)
 {
 	// pause physical simulations
 	GameState::pausePhysics(__SAFE_CAST(GameState, this), true);
@@ -169,10 +158,8 @@ void TestState::suspend(TestState this, void* owner)
 }
 
 // print gui
-void TestState::print(TestState this __attribute__ ((unused)))
+void TestState::print()
 {
-	ASSERT(this, "TestState::print: null this");
-
 	// coins
 	u8 coins = ProgressManager::getTotalNumberOfCollectedCoins(ProgressManager::getInstance());
 	Printing::int(Printing::getInstance(), coins, 4, 26, "GuiFont");
@@ -182,7 +169,7 @@ void TestState::print(TestState this __attribute__ ((unused)))
 	Printing::text(Printing::getInstance(), "1-1", 12, 26, "GuiFont");
 }
 
-void TestState::processUserInput(TestState this, UserInput userInput)
+void TestState::processUserInput(UserInput userInput)
 {
 	if((K_STA & userInput.pressedKey) || (K_A & userInput.pressedKey))
 	{
@@ -200,9 +187,7 @@ void TestState::processUserInput(TestState this, UserInput userInput)
 			__SAFE_CAST(Object, this) // callback scope
 		);
 
-	} else if(K_B & userInput.pressedKey) {
-
-		// disable user input
+	} else if(K_B & userInput.pressedKey) {		// disable user input
 		Game::disableKeypad(Game::getInstance());
 
 		// start a fade out effect
@@ -219,7 +204,7 @@ void TestState::processUserInput(TestState this, UserInput userInput)
 }
 
 // state's handle message
-bool TestState::processMessage(TestState this, void* owner __attribute__ ((unused)), Telegram telegram)
+bool TestState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
 	switch(Telegram::getMessage(telegram))
@@ -254,10 +239,8 @@ bool TestState::processMessage(TestState this, void* owner __attribute__ ((unuse
 }
 
 // handle event
-static void TestState::onFadeInComplete(TestState this, Object eventFirer __attribute__ ((unused)))
+void TestState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "TestState::onFadeInComplete: null this");
-
 	// tell any interested entity
 	GameState::propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
@@ -266,20 +249,16 @@ static void TestState::onFadeInComplete(TestState this, Object eventFirer __attr
 }
 
 // handle event
-static void TestState::onStartLevelFadeOutComplete(TestState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void TestState::onStartLevelFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "TestState::onFadeOutComplete: null this");
-
 	// load platformer level
 	extern PlatformerLevelDefinition LEVEL_1_LV;
 	PlatformerLevelState::startLevel(PlatformerLevelState::getInstance(), &LEVEL_1_LV);
 }
 
 // handle event
-static void TestState::onReturnToTitleFadeOutComplete(TestState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void TestState::onReturnToTitleFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "TestState::onFadeOutComplete: null this");
-
 	// load title screen state
 	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, TitleScreenState::getInstance()));
 }

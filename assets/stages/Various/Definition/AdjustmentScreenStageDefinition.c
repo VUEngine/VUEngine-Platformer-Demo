@@ -56,9 +56,7 @@ PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_ENTITIES[] =
 };
 
 PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_UI_ENTITIES[] =
-{
-
-	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
+{	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 

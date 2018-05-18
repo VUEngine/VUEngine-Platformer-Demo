@@ -37,9 +37,9 @@
 dynamic_singleton class LevelDoneScreenState : GameState
 {
 	static LevelDoneScreenState getInstance(void);
-	override void enter(LevelDoneScreenState this, void* owner);
-	override void exit(LevelDoneScreenState this, void* owner);
-	override void processUserInput(LevelDoneScreenState this, UserInput userInput);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void processUserInput(UserInput userInput);
 }
 
 

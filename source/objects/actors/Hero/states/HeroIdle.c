@@ -42,33 +42,26 @@
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void HeroIdle::constructor(HeroIdle this);
-void HeroIdle::destructor(HeroIdle this);
-void HeroIdle::enter(HeroIdle this, void* owner);
-void HeroIdle::exit(HeroIdle this, void* owner);
-bool HeroIdle::processMessage(HeroIdle this, void* owner, Telegram telegram);
-
-
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroIdle::constructor(HeroIdle this)
+void HeroIdle::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
 // class's destructor
-void HeroIdle::destructor(HeroIdle this)
+void HeroIdle::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void HeroIdle::enter(HeroIdle this __attribute__ ((unused)), void* owner)
+void HeroIdle::enter(void* owner)
 {
 	// show animation
 	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Idle");
@@ -84,14 +77,14 @@ void HeroIdle::enter(HeroIdle this __attribute__ ((unused)), void* owner)
 }
 
 // state's exit
-void HeroIdle::exit(HeroIdle this, void* owner __attribute__ ((unused)))
+void HeroIdle::exit(void* owner __attribute__ ((unused)))
 {
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroSleep);
 }
 
 // state's handle message
-bool HeroIdle::processMessage(HeroIdle this __attribute__ ((unused)), void* owner, Telegram telegram)
+bool HeroIdle::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -115,7 +108,7 @@ bool HeroIdle::processMessage(HeroIdle this __attribute__ ((unused)), void* owne
 	return false;
 }
 
-void HeroIdle::onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroIdle::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->pressedKey)
 	{
@@ -180,7 +173,7 @@ void HeroIdle::onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner,
 	}
 }
 
-void HeroIdle::onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroIdle::onKeyReleased(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->releasedKey)
 	{
@@ -188,7 +181,7 @@ void HeroIdle::onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner
 	}
 }
 
-void HeroIdle::onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroIdle::onKeyHold(void* owner, const UserInput* userInput)
 {
     if((K_LL | K_LR) & userInput->holdKey)
     {

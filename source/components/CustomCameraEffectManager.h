@@ -65,9 +65,9 @@ singleton class CustomCameraEffectManager : CameraEffectManager
 
 	// declare a CustomCameraEffectManager
 	static CustomCameraEffectManager getInstance();
-	override void startEffect(CustomCameraEffectManager this, int effect, va_list args);
-	override void stopEffect(CustomCameraEffectManager this, int effect);
-	override bool handleMessage(CustomCameraEffectManager this, Telegram telegram);
+	override void startEffect(int effect, va_list args);
+	override void stopEffect(int effect);
+	override bool handleMessage(Telegram telegram);
 }
 
 

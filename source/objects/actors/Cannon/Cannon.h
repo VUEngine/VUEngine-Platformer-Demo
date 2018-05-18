@@ -48,11 +48,11 @@ typedef const CannonDefinition CannonROMDef;
 
 class Cannon : AnimatedEntity
 {
-	void constructor(Cannon this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	void shoot(Cannon this);
-	void spawnCannonBall(Cannon this);
-	override bool handleMessage(Cannon this, Telegram telegram);
-	override void ready(Cannon this, bool recursive);
+	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void shoot();
+	void spawnCannonBall();
+	override bool handleMessage(Telegram telegram);
+	override void ready(bool recursive);
 }
 
 

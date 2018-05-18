@@ -34,7 +34,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Clouds::constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
+void Clouds::constructor(CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(&cloudsDefinition->EntityDefinition, id, internalId, name);
@@ -43,7 +43,7 @@ void Clouds::constructor(Clouds this, CloudsDefinition* cloudsDefinition, s16 id
 }
 
 // class's destructor
-void Clouds::destructor(Clouds this)
+void Clouds::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -51,19 +51,15 @@ void Clouds::destructor(Clouds this)
 }
 
 // whether it is visible
-bool Clouds::isVisible(Clouds this __attribute__ ((unused)), int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
+bool Clouds::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
 {
-	ASSERT(this, "Clouds::isVisible: null this");
-
 	// always return true so the Clouds is never unloaded from the stage when it is not visible on screen
 	return true;
 }
 
 // state's handle message
-void Clouds::update(Clouds this, u32 elapsedTime __attribute__ ((unused)))
+void Clouds::update(u32 elapsedTime __attribute__ ((unused)))
 {
-	ASSERT(this, "Clouds::update: null this");
-
 	// get local position of clouds and subtract defined displacement from x value
 	Vector3D offset = this->transformation.localPosition;
 	offset.x -= __FIX10_6_MULT(this->displacement, elapsedTime);

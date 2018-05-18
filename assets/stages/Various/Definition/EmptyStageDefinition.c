@@ -34,15 +34,11 @@
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef EMPTY_STAGE_ST_ENTITIES[] =
-{
-
-	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
+{	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef EMPTY_STAGE_ST_UI_ENTITIES[] =
-{
-
-	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
+{	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 

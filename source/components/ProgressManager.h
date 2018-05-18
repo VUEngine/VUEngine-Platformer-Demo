@@ -114,26 +114,26 @@ singleton class ProgressManager : Object
 	u8 heroCurrentPowerUp;
 
 	static ProgressManager getInstance();
-	void clearProgress(ProgressManager this);
-	bool getAutomaticPauseStatus(ProgressManager this);
-	bool getCoinStatus(ProgressManager this, u16 itemNumber);
-	u32  getCurrentLevelBestTime(ProgressManager this);
-	u8   getCurrentLevelNumberOfCollectedCoins(ProgressManager this);
-	u32  getCurrentLevelTime(ProgressManager this);
-	u8   getHeroCurrentEnergy(ProgressManager this);
-	u8   getHeroCurrentPowerUp(ProgressManager this);
-	bool getItemStatus(ProgressManager this, u16 itemNumber);
-	u8   getLanguage(ProgressManager this);
-	u16  getTotalNumberOfCollectedCoins(ProgressManager this);
-	bool hasProgress(ProgressManager this);
-	bool heroHasKey(ProgressManager this);
-	void loadCheckPointData(ProgressManager this);
-	void setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
-	void setCheckPointData(ProgressManager this);
-	bool setCoinStatus(ProgressManager this, u16 itemNumber, bool taken);
-	bool setItemStatus(ProgressManager this, u16 itemNumber, bool taken);
-	void setLanguage(ProgressManager this, u8 languageId);
-	void resetCurrentLevelProgress(ProgressManager this);
+	void clearProgress();
+	bool getAutomaticPauseStatus();
+	bool getCoinStatus(u16 itemNumber);
+	u32  getCurrentLevelBestTime();
+	u8   getCurrentLevelNumberOfCollectedCoins();
+	u32  getCurrentLevelTime();
+	u8   getHeroCurrentEnergy();
+	u8   getHeroCurrentPowerUp();
+	bool getItemStatus(u16 itemNumber);
+	u8   getLanguage();
+	u16  getTotalNumberOfCollectedCoins();
+	bool hasProgress();
+	bool heroHasKey();
+	void loadCheckPointData();
+	void setAutomaticPauseStatus(u8 automaticPause);
+	void setCheckPointData();
+	bool setCoinStatus(u16 itemNumber, bool taken);
+	bool setItemStatus(u16 itemNumber, bool taken);
+	void setLanguage(u8 languageId);
+	void resetCurrentLevelProgress();
 }
 
 

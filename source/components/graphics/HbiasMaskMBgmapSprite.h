@@ -88,10 +88,10 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 	*/
 	u8 step;
 
-	void constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
-	s16 wave(HbiasMaskMBgmapSprite this);
-	override void render(HbiasMaskMBgmapSprite this, bool evenFrame);
-	override void position(HbiasMaskMBgmapSprite this, const Vector3D* position);
+	void constructor(const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
+	s16 wave();
+	override void render(bool evenFrame);
+	override void position(const Vector3D* position);
 }
 
 

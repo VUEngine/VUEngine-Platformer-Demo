@@ -78,13 +78,13 @@ class MovingEntity : Actor
 	/* definition pointer */
 	MovingEntityDefinition* movingEntityDefinition;
 
-	void constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
-	void startMovement(MovingEntity this);
-	void checkDisplacement(MovingEntity this);
-	override void ready(MovingEntity this, bool recursive);
-	override bool handleMessage(MovingEntity this, Telegram telegram);
-	override void setDefinition(MovingEntity this, void* movingEntityDefinition);
-	override u16 getAxesForShapeSyncWithDirection(MovingEntity this);
+	void constructor(MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void startMovement();
+	void checkDisplacement();
+	override void ready(bool recursive);
+	override bool handleMessage(Telegram telegram);
+	override void setDefinition(void* movingEntityDefinition);
+	override u16 getAxesForShapeSyncWithDirection();
 }
 
 

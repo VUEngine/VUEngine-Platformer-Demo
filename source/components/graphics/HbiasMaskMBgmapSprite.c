@@ -54,13 +54,6 @@ friend class BgmapTexture;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -74,7 +67,7 @@ static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this
  * @param mBgmapSpriteDefinition		Definition to use
  * @param owner							Sprite's owner
  */
-void HbiasMaskMBgmapSprite::constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner)
+void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner)
 {
 	Base::constructor(&hbiasMaskMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
 
@@ -93,10 +86,8 @@ void HbiasMaskMBgmapSprite::constructor(HbiasMaskMBgmapSprite this, const HbiasM
  *
  * @param this		Function scope
  */
-void HbiasMaskMBgmapSprite::destructor(HbiasMaskMBgmapSprite this)
+void HbiasMaskMBgmapSprite::destructor()
 {
-	ASSERT(this, "HbiasMaskMBgmapSprite::destructor: null this");
-
 	this->owner = NULL;
 	this->referenceSprite = NULL;
 
@@ -105,16 +96,14 @@ void HbiasMaskMBgmapSprite::destructor(HbiasMaskMBgmapSprite this)
 	Base::destructor();
 }
 
-void HbiasMaskMBgmapSprite::position(HbiasMaskMBgmapSprite this, const Vector3D* position)
+void HbiasMaskMBgmapSprite::position(const Vector3D* position)
 {
-	ASSERT(this, "HbiasMaskMBgmapSprite::position: null this");
-
 	Base::position(this, position);
 
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 }
 
-static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this)
+void HbiasMaskMBgmapSprite::getReferenceSprite()
 {
 	if(!__IS_OBJECT_ALIVE(this->referenceSprite))
 	{
@@ -146,10 +135,8 @@ static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this
  * @param this		Function scope
  * @param evenFrame
  */
-void HbiasMaskMBgmapSprite::render(HbiasMaskMBgmapSprite this, bool evenFrame)
+void HbiasMaskMBgmapSprite::render(bool evenFrame)
 {
-	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
-
 	Base::render(this, evenFrame);
 
 	if(!this->positioned)
@@ -259,7 +246,7 @@ void HbiasMaskMBgmapSprite::render(HbiasMaskMBgmapSprite this, bool evenFrame)
 	BgmapSprite::processHbiasEffects(__SAFE_CAST(BgmapSprite, this));
 }
 
-s16 HbiasMaskMBgmapSprite::wave(HbiasMaskMBgmapSprite this)
+s16 HbiasMaskMBgmapSprite::wave()
 {
 	s32 spriteHeight = Sprite::getWorldHeight(__SAFE_CAST(Sprite, this));
 	s16 i = this->paramTableRow;

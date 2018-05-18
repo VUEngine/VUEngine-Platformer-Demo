@@ -57,20 +57,20 @@ singleton class CustomCameraMovementManager : CameraMovementManager
 	/* update axis flag */
 	Vector3DFlag positionFlag;
 	/* pointer to function that implements the required focusing */
-	bool (*focusFunction)(CustomCameraMovementManager, u32, u32);
-	bool (*previousFocusFunction)(CustomCameraMovementManager, u32, u32);
+	bool (*focusFunction)(void*, u32, u32);
+	bool (*previousFocusFunction)(void*, u32, u32);
 
 	// declare a CustomCameraMovementManager
 	static CustomCameraMovementManager getInstance();
-	void setPositionFlag(CustomCameraMovementManager this, Vector3DFlag positionFlag);
-	Vector3DFlag getPositionFlag(CustomCameraMovementManager this);
-	void enable(CustomCameraMovementManager this);
-	void disable(CustomCameraMovementManager this);
-	void enableFocusEasing(CustomCameraMovementManager this);
-	void disableFocusEasing(CustomCameraMovementManager this);
-	void alertWhenTargetFocused(CustomCameraMovementManager this);
-	void dontAlertWhenTargetFocused(CustomCameraMovementManager this);
-	override void focus(CustomCameraMovementManager this, u32 checkIfFocusEntityIsMoving);
+	void setPositionFlag(Vector3DFlag positionFlag);
+	Vector3DFlag getPositionFlag();
+	void enable();
+	void disable();
+	void enableFocusEasing();
+	void disableFocusEasing();
+	void alertWhenTargetFocused();
+	void dontAlertWhenTargetFocused();
+	override void focus(u32 checkIfFocusEntityIsMoving);
 }
 
 

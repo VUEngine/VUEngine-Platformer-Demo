@@ -39,29 +39,14 @@
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-static void WaterPond::addSplashParticles(WaterPond this);
-
-void WaterPond::drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
-								s16 xSourceStart, s16 ySourceStart,
-								s16 xOutputStart, s16 yOutputStart,
-								s16 width, s16 height,
-								u32 reflectionMask,
-								s16 parallaxDisplacement,
-								const u8 waveLut[], int numberOfWaveLutEntries, fix10_6 waveLutThrottleFactor,
-								fix10_6 amplitudeFactor,
-								bool flattenTop, bool flattenBottom,
-								u32 topBorderMask, u32 bottomBorderMask,
-								u16 surfaceHeight);
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void WaterPond::constructor(WaterPond this, WaterPondDefinition* reflectiveEntityDefinition, s16 id, s16 internalId, const char* const name)
+void WaterPond::constructor(WaterPondDefinition* reflectiveEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "WaterPond::constructor: null this");
-
 	// construct base
 	Base::constructor(&reflectiveEntityDefinition->reflectiveEntityDefinition, id, internalId, name);
 
@@ -71,29 +56,23 @@ void WaterPond::constructor(WaterPond this, WaterPondDefinition* reflectiveEntit
 }
 
 // class's destructor
-void WaterPond::destructor(WaterPond this)
+void WaterPond::destructor()
 {
-	ASSERT(this, "WaterPond::destructor: null this");
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-void WaterPond::ready(WaterPond this, bool recursive)
+void WaterPond::ready(bool recursive)
 {
-	ASSERT(this, "WaterPond::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
 //	WaterPond::addSplashParticles(this);
 }
 
-__attribute__ ((unused)) static void WaterPond::addSplashParticles(WaterPond this)
+void WaterPond::addSplashParticles()
 {
-	ASSERT(this, "WaterPond::addSplashParticles: null this");
-
 	Vector3D position = {__F_TO_FIX10_6(-2), __F_TO_FIX10_6(-1), __F_TO_FIX10_6(-1)};
 
 	extern EntityDefinition WATER_SPLASH_PS;
@@ -104,10 +83,8 @@ __attribute__ ((unused)) static void WaterPond::addSplashParticles(WaterPond thi
 	ParticleSystem::start(this->waterSplash);
 }
 
-bool WaterPond::handleMessage(WaterPond this, void* telegram)
+bool WaterPond::handleMessage(void* telegram)
 {
-	ASSERT(this, "WaterPond::handleMessage: null this");
-
 	ReflectiveEntityDefinition* reflectiveEntityDefinition = (ReflectiveEntityDefinition*)this->entityDefinition;
 	WaterPondDefinition* waterPondDefinition = (WaterPondDefinition*)this->entityDefinition;
 
@@ -199,10 +176,8 @@ bool WaterPond::handleMessage(WaterPond this, void* telegram)
 	return false;
 }
 
-void WaterPond::applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet)
+void WaterPond::applyReflection(u32 currentDrawingFrameBufferSet)
 {
-	ASSERT(this, "WaterPond::applyReflection: null this");
-
 	ReflectiveEntityDefinition* reflectiveEntityDefinition = (ReflectiveEntityDefinition*)this->entityDefinition;
 	WaterPondDefinition* waterPondDefinition = (WaterPondDefinition*)this->entityDefinition;
 
@@ -224,7 +199,7 @@ void WaterPond::applyReflection(WaterPond this, u32 currentDrawingFrameBufferSet
 								waterPondDefinition->surfaceHeight);
 }
 
-inline void WaterPond::shiftPixels(int pixelShift, POINTER_TYPE* sourceValue, u32 nextSourceValue, POINTER_TYPE* remainderValue, u32 reflectionMask)
+static inline void WaterPond::shiftPixels(int pixelShift, POINTER_TYPE* sourceValue, u32 nextSourceValue, POINTER_TYPE* remainderValue, u32 reflectionMask)
 {
 	*sourceValue &= reflectionMask;
 	*remainderValue &= reflectionMask;
@@ -244,7 +219,7 @@ inline void WaterPond::shiftPixels(int pixelShift, POINTER_TYPE* sourceValue, u3
 	}
 }
 
-void WaterPond::drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
+void WaterPond::drawReflection(u32 currentDrawingFrameBufferSet,
 								s16 xSourceStart, s16 ySourceStart,
 								s16 xOutputStart, s16 yOutputStart,
 								s16 width, s16 height,
@@ -256,8 +231,6 @@ void WaterPond::drawReflection(WaterPond this, u32 currentDrawingFrameBufferSet,
 								u32 topBorderMask __attribute__ ((unused)), u32 bottomBorderMask __attribute__ ((unused)),
 								u16 surfaceHeight __attribute__ ((unused)))
 {
-	ASSERT(this, "ReflectiveEntity::drawReflection: null this");
-
 	if(!waveLut)
 	{
 		return;

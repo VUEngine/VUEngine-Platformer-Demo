@@ -53,24 +53,11 @@ extern StageROMDef TITLE_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void TitleScreenState::constructor(TitleScreenState this);
-static void TitleScreenState::showMessage(TitleScreenState this);
-static void TitleScreenState::hideMessage(TitleScreenState this);
-static void TitleScreenState::onSecondChange(TitleScreenState this, Object eventFirer);
-static void TitleScreenState::onFadeInComplete(TitleScreenState this, Object eventFirer);
-static void TitleScreenState::onFadeOutComplete(TitleScreenState this, Object eventFirer);
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) TitleScreenState::constructor(TitleScreenState this)
+void TitleScreenState::constructor()
 {
 	Base::constructor();
 
@@ -80,7 +67,7 @@ void __attribute__ ((noinline)) TitleScreenState::constructor(TitleScreenState t
 }
 
 // class's destructor
-void TitleScreenState::destructor(TitleScreenState this)
+void TitleScreenState::destructor()
 {
 	if(this->optionsSelector)
 	{
@@ -88,11 +75,11 @@ void TitleScreenState::destructor(TitleScreenState this)
 	}
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void TitleScreenState::enter(TitleScreenState this, void* owner)
+void TitleScreenState::enter(void* owner)
 {
 	// reset mode
 	this->mode = kTitleScreenModeShowPressStart;
@@ -185,14 +172,14 @@ void TitleScreenState::enter(TitleScreenState this, void* owner)
 }
 
 // state's exit
-void TitleScreenState::exit(TitleScreenState this, void* owner)
+void TitleScreenState::exit(void* owner)
 {
 	// call base
 	Base::exit(this, owner);
 }
 
 // state's resume
-void TitleScreenState::resume(TitleScreenState this, void* owner)
+void TitleScreenState::resume(void* owner)
 {
 	Base::resume(this, owner);
 
@@ -230,10 +217,8 @@ void TitleScreenState::resume(TitleScreenState this, void* owner)
 }
 
 // state's suspend
-void TitleScreenState::suspend(TitleScreenState this, void* owner)
-{
-
-	// pause physical simulations
+void TitleScreenState::suspend(void* owner)
+{	// pause physical simulations
 	GameState::pausePhysics(__SAFE_CAST(GameState, this), true);
 
 #ifdef __DEBUG_TOOLS
@@ -252,26 +237,22 @@ void TitleScreenState::suspend(TitleScreenState this, void* owner)
 	Base::suspend(this, owner);
 }
 
-static void TitleScreenState::showMessage(TitleScreenState this __attribute__ ((unused)))
+void TitleScreenState::showMessage()
 {
-	ASSERT(this, "TitleScreenState::showMessage: null this");
-
 	const char* strPressStartButton = I18n::getText(I18n::getInstance(), STR_PRESS_START_BUTTON);
 	FontSize strPressStartButtonSize = Printing::getTextSize(Printing::getInstance(), strPressStartButton, NULL);
 	u8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
 	Printing::text(Printing::getInstance(), strPressStartButton, strXPos, 26, NULL);
 }
 
-static void TitleScreenState::hideMessage(TitleScreenState this __attribute__ ((unused)))
+void TitleScreenState::hideMessage()
 {
-	ASSERT(this, "TitleScreenState::hideMessage: null this");
-
 	Printing::text(Printing::getInstance(), "                                                ", 0, 25, NULL);
 	Printing::text(Printing::getInstance(), "                                                ", 0, 26, NULL);
 	Printing::text(Printing::getInstance(), "                                                ", 0, 27, NULL);
 }
 
-void TitleScreenState::processUserInput(TitleScreenState this, UserInput userInput)
+void TitleScreenState::processUserInput(UserInput userInput)
 {
 	if((K_STA & userInput.pressedKey) || (K_A & userInput.pressedKey))
 	{
@@ -418,7 +399,7 @@ void TitleScreenState::processUserInput(TitleScreenState this, UserInput userInp
 	}
 }
 // state's handle message
-bool TitleScreenState::processMessage(TitleScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
+bool TitleScreenState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
 	switch(Telegram::getMessage(telegram))
@@ -451,7 +432,7 @@ bool TitleScreenState::processMessage(TitleScreenState this, void* owner __attri
 }
 
 // handle event
-static void TitleScreenState::onSecondChange(TitleScreenState this, Object eventFirer __attribute__ ((unused)))
+void TitleScreenState::onSecondChange(Object eventFirer __attribute__ ((unused)))
 {
 	if((Clock::getSeconds(Game::getUpdateClock(Game::getInstance())) % 2) == 0)
 	{
@@ -464,10 +445,8 @@ static void TitleScreenState::onSecondChange(TitleScreenState this, Object event
 }
 
 // handle event
-static void TitleScreenState::onFadeInComplete(TitleScreenState this, Object eventFirer __attribute__ ((unused)))
+void TitleScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "TitleScreenState::onFadeInComplete: null this");
-
 	// tell any interested entity
 	GameState::propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
@@ -476,10 +455,8 @@ static void TitleScreenState::onFadeInComplete(TitleScreenState this, Object eve
 }
 
 // handle event
-static void TitleScreenState::onFadeOutComplete(TitleScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void TitleScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
-
 	int selectedOption = OptionsSelector::getSelectedOption(this->optionsSelector);
 
 	switch(selectedOption)

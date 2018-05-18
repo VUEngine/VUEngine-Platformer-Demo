@@ -145,19 +145,19 @@ singleton class PlatformerLevelState : GameState
 	UserInput userInput;
 
 	static PlatformerLevelState getInstance(void);
-	Clock getClock(PlatformerLevelState this);
-	PlatformerLevelDefinition* getCurrentLevelDefinition(PlatformerLevelState this);
-	void startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition);
-	void enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
-	void setModeToPaused(PlatformerLevelState this);
-	void setModeToPlaying(PlatformerLevelState this);
-	UserInput getUserInput(PlatformerLevelState this);
-	override void enter(PlatformerLevelState this, void* owner);
-	override void exit(PlatformerLevelState this, void* owner);
-	override void suspend(PlatformerLevelState this, void* owner);
-	override void resume(PlatformerLevelState this, void* owner);
-	override bool processMessage(PlatformerLevelState this, void* owner, Telegram telegram);
-	override void processUserInput(PlatformerLevelState this, UserInput userInput);
+	Clock getClock();
+	PlatformerLevelDefinition* getCurrentLevelDefinition();
+	void startLevel(PlatformerLevelDefinition* platformerLevelDefinition);
+	void enterStage(StageEntryPointDefinition* entryPointDefinition);
+	void setModeToPaused();
+	void setModeToPlaying();
+	UserInput getUserInput();
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void suspend(void* owner);
+	override void resume(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
+	override void processUserInput(UserInput userInput);
 }
 
 

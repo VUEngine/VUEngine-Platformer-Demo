@@ -40,20 +40,11 @@ extern StageROMDef ADJUSTMENT_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void AdjustmentScreenState::constructor(AdjustmentScreenState this);
-void AdjustmentScreenState::rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) AdjustmentScreenState::constructor(AdjustmentScreenState this)
+void AdjustmentScreenState::constructor()
 {
 	Base::constructor();
 
@@ -62,14 +53,14 @@ void __attribute__ ((noinline)) AdjustmentScreenState::constructor(AdjustmentScr
 }
 
 // class's destructor
-void AdjustmentScreenState::destructor(AdjustmentScreenState this)
+void AdjustmentScreenState::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void AdjustmentScreenState::enter(AdjustmentScreenState this, void* owner)
+void AdjustmentScreenState::enter(void* owner)
 {
 	// call base
 	Base::enter(this, owner);
@@ -81,7 +72,7 @@ void AdjustmentScreenState::enter(AdjustmentScreenState this, void* owner)
 	VIPManager::pushBackPostProcessingEffect(VIPManager::getInstance(), AdjustmentScreenState::rhombusEmitterPostProcessingEffect, NULL);
 }
 
-void AdjustmentScreenState::processInput(AdjustmentScreenState this, u32 pressedKey __attribute__ ((unused)))
+void AdjustmentScreenState::processInput(u32 pressedKey __attribute__ ((unused)))
 {
 	// TODO: replace this ugly hack with a proper Game::isPaused check or something similar
 	if(this->nextState == NULL)
@@ -95,7 +86,7 @@ void AdjustmentScreenState::processInput(AdjustmentScreenState this, u32 pressed
 	}
 }
 
-void AdjustmentScreenState::rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
+static void AdjustmentScreenState::rhombusEmitterPostProcessingEffect(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
 	// runtime working variables
 	// negative value to achieve an initial delay

@@ -36,42 +36,27 @@
 #include "Item.h"
 #include <PlatformerLevelState.h>
 
-
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Item::collect(Item this);
-void Item::removeFromStage(Item this);
-
-
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Item::constructor(Item this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Item::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Item::constructor: null this");
-
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Item::destructor(Item this)
+void Item::destructor()
 {
-	ASSERT(this, "Item::destructor: null this");
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-void Item::collect(Item this)
+void Item::collect()
 {
-	ASSERT(this, "Item::collect: null this");
-
 	// set item status to taken
 	ProgressManager::setItemStatus(ProgressManager::getInstance(), this->id, true);
 }

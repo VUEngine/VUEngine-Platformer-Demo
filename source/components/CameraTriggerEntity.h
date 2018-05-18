@@ -42,10 +42,10 @@ class CameraTriggerEntity : Entity
 	/* update axis flag */
 	Vector3DFlag overridePositionFlag;
 
-	void constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name);
-	void setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag);
-	Vector3DFlag getOverridePositionFlag(CameraTriggerEntity this);
-	override void transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag);
+	void constructor(CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void setOverridePositionFlag(Vector3DFlag overridePositionFlag);
+	Vector3DFlag getOverridePositionFlag();
+	override void transform(const Transformation* environmentTransform, u8 invalidateTransformationFlag);
 }
 
 

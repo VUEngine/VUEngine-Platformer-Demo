@@ -37,11 +37,11 @@
 
 class Key : Item
 {
-	void constructor(Key this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	override void ready(Key this, bool recursive);
-	override void collect(Key this);
-	override void suspend(Key this);
-	override void resume(Key this);
+	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void ready(bool recursive);
+	override void collect();
+	override void suspend();
+	override void resume();
 }
 
 

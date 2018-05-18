@@ -38,9 +38,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CameraTriggerEntity::constructor(CameraTriggerEntity this, CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name)
+void CameraTriggerEntity::constructor(CameraTriggerEntityDefinition* cameraEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "CameraTriggerEntity::constructor: null this");
 	ASSERT(cameraEntityDefinition, "CameraTriggerEntity::constructor: null definition");
 
 	// construct base object
@@ -52,10 +51,8 @@ void CameraTriggerEntity::constructor(CameraTriggerEntity this, CameraTriggerEnt
 }
 
 // class's destructor
-void CameraTriggerEntity::destructor(CameraTriggerEntity this)
+void CameraTriggerEntity::destructor()
 {
-	ASSERT(this, "CameraTriggerEntity::destructor: null this");
-
 	Camera::setFocusGameEntity(Camera::getInstance(), NULL);
 
 	// destroy the super object
@@ -63,10 +60,8 @@ void CameraTriggerEntity::destructor(CameraTriggerEntity this)
 	Base::destructor();
 }
 
-void CameraTriggerEntity::transform(CameraTriggerEntity this, const Transformation* environmentTransform, u8 invalidateTransformationFlag)
+void CameraTriggerEntity::transform(const Transformation* environmentTransform, u8 invalidateTransformationFlag)
 {
-	ASSERT(this, "CameraTriggerEntity::transform: null this");
-
 	Vector3D currentGlobalPosition = this->transformation.globalPosition;
 
 	Base::transform(this, environmentTransform, invalidateTransformationFlag);
@@ -86,10 +81,8 @@ void CameraTriggerEntity::transform(CameraTriggerEntity this, const Transformati
 //	Shape::show(VirtualList::front(this->shapes));
 }
 
-void CameraTriggerEntity::setOverridePositionFlag(CameraTriggerEntity this, Vector3DFlag overridePositionFlag)
+void CameraTriggerEntity::setOverridePositionFlag(Vector3DFlag overridePositionFlag)
 {
-	ASSERT(this, "CameraTriggerEntity::setOverridePositionFlag: null this");
-
 	Container::invalidateGlobalPosition(__SAFE_CAST(Container, this));
 
 	Transformation* environmentTransform = Container::getTransform(this->parent);
@@ -101,9 +94,7 @@ void CameraTriggerEntity::setOverridePositionFlag(CameraTriggerEntity this, Vect
 	this->overridePositionFlag = overridePositionFlag;
 }
 
-Vector3DFlag CameraTriggerEntity::getOverridePositionFlag(CameraTriggerEntity this)
+Vector3DFlag CameraTriggerEntity::getOverridePositionFlag()
 {
-	ASSERT(this, "CameraTriggerEntity::getOverridePositionFlag: null this");
-
 	return this->overridePositionFlag;
 }

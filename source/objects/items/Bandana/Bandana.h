@@ -37,8 +37,8 @@
 
 class Bandana : Item
 {
-	void constructor(Bandana this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	override void collect(Bandana this);
+	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void collect();
 }
 
 
