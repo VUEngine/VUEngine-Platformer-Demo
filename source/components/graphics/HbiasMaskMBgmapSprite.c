@@ -105,15 +105,15 @@ void HbiasMaskMBgmapSprite::position(const Vector3D* position)
 
 void HbiasMaskMBgmapSprite::getReferenceSprite()
 {
-	if(!__IS_OBJECT_ALIVE(this->referenceSprite))
+	if(isDeleted(this->referenceSprite))
 	{
 		Container referenceSpriteOwner = Container::getChildByName(__SAFE_CAST(Container, Game::getStage(Game::getInstance())), this->hbiasMaskMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
 
-		if(__IS_OBJECT_ALIVE(referenceSpriteOwner))
+		if(!isDeleted(referenceSpriteOwner))
 		{
 			VirtualList referenceSpriteOwnerSpritesList = Entity::getSprites(__SAFE_CAST(Entity, referenceSpriteOwner));
 
-			if(__IS_OBJECT_ALIVE(referenceSpriteOwnerSpritesList))
+			if(!isDeleted(referenceSpriteOwnerSpritesList))
 			{
 				this->referenceSprite = __SAFE_CAST(Sprite, VirtualList::front(referenceSpriteOwnerSpritesList));
 				this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z;
@@ -162,7 +162,7 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame)
 		return;
 	}
 
-	if(!__IS_OBJECT_ALIVE(this->owner) || !__IS_OBJECT_ALIVE(this->referenceSprite))
+	if(isDeleted(this->owner) || isDeleted(this->referenceSprite))
 	{
 		this->referenceSprite = NULL;
 

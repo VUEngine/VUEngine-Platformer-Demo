@@ -188,31 +188,31 @@
 
 #undef __MEMORY_POOL_ARRAYS
 #define __MEMORY_POOL_ARRAYS																			\
-	__BLOCK_DEFINITION(164, 1)																			\
-	__BLOCK_DEFINITION(152, 10)																			\
-	__BLOCK_DEFINITION(140, 10)																			\
-	__BLOCK_DEFINITION(116, 40)																			\
-	__BLOCK_DEFINITION(108, 40)																			\
-	__BLOCK_DEFINITION(80, 50)																			\
-	__BLOCK_DEFINITION(68, 60)																			\
-	__BLOCK_DEFINITION(40, 30)																			\
-	__BLOCK_DEFINITION(28, 350)																			\
-	__BLOCK_DEFINITION(20, 700)																			\
-	__BLOCK_DEFINITION(16, 450)																			\
+	__BLOCK_DEFINITION(168, 1)																			\
+	__BLOCK_DEFINITION(156, 10)																			\
+	__BLOCK_DEFINITION(144, 10)																			\
+	__BLOCK_DEFINITION(120, 40)																			\
+	__BLOCK_DEFINITION(112, 40)																			\
+	__BLOCK_DEFINITION(84, 50)																			\
+	__BLOCK_DEFINITION(72, 60)																			\
+	__BLOCK_DEFINITION(44, 30)																			\
+	__BLOCK_DEFINITION(32, 350)																			\
+	__BLOCK_DEFINITION(24, 700)																			\
+	__BLOCK_DEFINITION(20, 450)																			\
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS																		\
-	__SET_MEMORY_POOL_ARRAY(164)																		\
-	__SET_MEMORY_POOL_ARRAY(152)																		\
-	__SET_MEMORY_POOL_ARRAY(140)																		\
-	__SET_MEMORY_POOL_ARRAY(116)																		\
-	__SET_MEMORY_POOL_ARRAY(108)																		\
-	__SET_MEMORY_POOL_ARRAY(80)																			\
-	__SET_MEMORY_POOL_ARRAY(68)																			\
-	__SET_MEMORY_POOL_ARRAY(40)																			\
-	__SET_MEMORY_POOL_ARRAY(28)																			\
-	__SET_MEMORY_POOL_ARRAY(20)																			\
-	__SET_MEMORY_POOL_ARRAY(16)
+	__SET_MEMORY_POOL_ARRAY(168)																		\
+	__SET_MEMORY_POOL_ARRAY(156)																		\
+	__SET_MEMORY_POOL_ARRAY(144)																		\
+	__SET_MEMORY_POOL_ARRAY(120)																		\
+	__SET_MEMORY_POOL_ARRAY(112)																		\
+	__SET_MEMORY_POOL_ARRAY(84)																			\
+	__SET_MEMORY_POOL_ARRAY(72)																			\
+	__SET_MEMORY_POOL_ARRAY(44)																			\
+	__SET_MEMORY_POOL_ARRAY(32)																			\
+	__SET_MEMORY_POOL_ARRAY(24)																			\
+	__SET_MEMORY_POOL_ARRAY(20)
 
 
 // Percentage (0-100) above which the memory pool's status shows the pool usage

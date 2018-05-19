@@ -401,7 +401,7 @@ static void PostProcessingEffects::waterFall(u32 currentDrawingFrameBufferSet, V
 
 static void PostProcessingEffects::waterFall20x100(u32 currentDrawingFrameBufferSet __attribute__ ((unused)), SpatialObject spatialObject __attribute__ ((unused)))
 {
-	if(!__IS_OBJECT_ALIVE(spatialObject))
+	if(isDeleted(spatialObject))
 	{
 		return;
 	}
@@ -638,7 +638,7 @@ static void PostProcessingEffects::rhombusEmitter(u32 currentDrawingFrameBufferS
 	// runtime working variable
 	static int radius = 4;
 
-	if(!__IS_OBJECT_ALIVE(spatialObject))
+	if(isDeleted(spatialObject))
 	{
 		return;
 	}
