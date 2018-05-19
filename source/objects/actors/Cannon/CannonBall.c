@@ -51,7 +51,7 @@ void CannonBall::constructor(CannonBallDefinition* cannonBallDefinition, s16 id,
 // class's constructor
 void CannonBall::destructor()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCannonBallCheckDisplacement);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -63,26 +63,26 @@ void CannonBall::startMovement()
 {
 	Velocity velocity = {0, 0, __I_TO_FIX10_6(-8)};
 
-	Actor::moveUniformly(__SAFE_CAST(Actor, this), &velocity);
+	Actor::moveUniformly(this, &velocity);
 
 	// show me
-	Entity::show(__SAFE_CAST(Entity, this));
+	Entity::show(this);
 
-	MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonBallCheckDisplacement, NULL);
 }
 
 // move back to cannon
 void CannonBall::stopMovement()
 {
 	// stop movement
-	Actor::stopAllMovement(__SAFE_CAST(Actor, this));
+	Actor::stopAllMovement(this);
 
 	// set back local position
 	Vector3D position = {0, 0, __F_TO_FIX10_6(-SORT_INCREMENT)};
-	Actor::setLocalPosition(__SAFE_CAST(Actor, this), &position);
+	Actor::setLocalPosition(this, &position);
 
 	// hide me
-	Entity::hide(__SAFE_CAST(Entity, this));
+	Entity::hide(this);
 }
 
 void CannonBall::checkIfDistanceTraveled()
@@ -93,7 +93,7 @@ void CannonBall::checkIfDistanceTraveled()
 	}
 	else
 	{
-		MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
+		MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonBallCheckDisplacement, NULL);
 	}
 }
 

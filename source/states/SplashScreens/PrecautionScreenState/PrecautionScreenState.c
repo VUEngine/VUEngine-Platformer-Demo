@@ -53,7 +53,7 @@ void PrecautionScreenState::constructor()
 {
 	Base::constructor();
 
-	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AdjustmentScreenState::getInstance()));
+	SplashScreenState::setNextState(this, GameState::safeCast(AdjustmentScreenState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_STAGE_ST;
 }
 
@@ -79,7 +79,7 @@ bool PrecautionScreenState::processMessage(void* owner __attribute__ ((unused)),
 				Game::wait(Game::getInstance(), 1500);
 
 				// show this screen for at least 2 seconds, as defined by Nintendo in the official development manual (Appendix 1)
-				MessageDispatcher::dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game::getInstance()), kScreenAllowUserInput, NULL);
+				MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kScreenAllowUserInput, NULL);
 
 				// call base class' method
 				Base::processMessage(this, owner, telegram);

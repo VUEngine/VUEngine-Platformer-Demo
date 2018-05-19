@@ -137,11 +137,11 @@ void Collision::initialTransform(Transformation* environmentTransform, u32 recur
 			kNoLayer,
 		};
 
-		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), __SAFE_CAST(SpatialObject, this), &shapeDefinition);
+		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), SpatialObject::safeCast(this), &shapeDefinition);
 
-		const Vector3D* myPosition = Entity::getPosition(__SAFE_CAST(Entity, this));
-		const Rotation* myRotation = Entity::getRotation(__SAFE_CAST(Entity, this));
-		const Scale* myScale = Entity::getScale(__SAFE_CAST(Entity, this));
+		const Vector3D* myPosition = Entity::getPosition(this);
+		const Rotation* myRotation = Entity::getRotation(this);
+		const Scale* myScale = Entity::getScale(this);
 
 		Shape::position(shape, myPosition, myRotation, myScale, &this->size);
 

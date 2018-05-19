@@ -58,7 +58,7 @@ void Bandana::destructor()
 void Bandana::collect()
 {
 	// fire item taken event
-	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventPowerUp);
+	Object::fireEvent(EventManager::getInstance(), kEventPowerUp);
 
 	// call base
 	Base::collect(this);

@@ -55,11 +55,11 @@ void HideLayer::destructor()
 
 void HideLayer::setOverlapping()
 {
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToTransparent");
+	AnimatedEntity::playAnimation(this, "ToTransparent");
 }
 
 void HideLayer::unsetOverlapping()
 {
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToShape");
+	AnimatedEntity::playAnimation(this, "ToShape");
 }
 

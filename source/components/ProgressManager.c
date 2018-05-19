@@ -63,14 +63,14 @@ void ProgressManager::constructor()
 	ProgressManager::initialize(this);
 
 	// add event listeners
-	Object eventManager = __SAFE_CAST(Object, EventManager::getInstance());
-	Object::addEventListener(__SAFE_CAST(Object, PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
-	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
-	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
-	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
-	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
-	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
-	Object::addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
+	Object eventManager = Object::safeCast(EventManager::getInstance());
+	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
 }
 
 // class's destructor
@@ -79,14 +79,14 @@ void ProgressManager::destructor()
 	ASSERT(EventManager::getInstance(), "ProgressManager::destructor: null eventManager");
 
 	// remove event listeners
-	Object eventManager = __SAFE_CAST(Object, EventManager::getInstance());
-	Object::removeEventListener(__SAFE_CAST(Object, PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
-	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
-	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
-	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
-	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
-	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
-	Object::removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
+	Object eventManager = Object::safeCast(EventManager::getInstance());
+	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
 
 	// destroy base
 	Base::destructor();
@@ -221,7 +221,7 @@ void ProgressManager::initialize()
 
 		// load and set auto pause state
 		Game::setAutomaticPauseState(Game::getInstance(), ProgressManager::getAutomaticPauseStatus(this)
-			? __SAFE_CAST(GameState, AutoPauseScreenState::getInstance())
+			? GameState::safeCast(AutoPauseScreenState::getInstance())
 			: NULL
 		);
 	}

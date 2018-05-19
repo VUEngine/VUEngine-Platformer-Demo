@@ -54,7 +54,7 @@ void Cannon::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16
 void Cannon::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCannonShoot);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCannonShoot);
 
 	// not necessary to manually destroy the CannonBall here as all children are automatically
 	// destroyed as well when an entity is unloaded
@@ -70,7 +70,7 @@ void Cannon::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// send delayed message to self to trigger first shot
-	MessageDispatcher::dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonShoot, NULL);
 }
 
 // state's handle message
@@ -95,24 +95,24 @@ void Cannon::shoot()
 		// add cannon ball as child
 		extern PositionedEntityROMDef CANNON_BALL;
 
-		Stage::spawnEntity(Game::getStage(Game::getInstance()), &CANNON_BALL, __SAFE_CAST(Container, this), (EventListener)Cannon::onCannonBallSpawned);
+		Stage::spawnEntity(Game::getStage(Game::getInstance()), &CANNON_BALL, Container::safeCast(this), (EventListener)Cannon::onCannonBallSpawned);
 		return;
 	}
 
 	// start shooting sequence
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
+	AnimatedEntity::playAnimation(this, "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonShoot, NULL);
 }
 
 void Cannon::onCannonBallSpawned(Object eventFirer __attribute__ ((unused)))
 {
 	// start shooting sequence
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
+	AnimatedEntity::playAnimation(this, "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonShoot, NULL);
 }
 
 // spawn a cannon ball, this is the callback of the "Shoot" animation
@@ -127,7 +127,7 @@ void Cannon::spawnCannonBall()
 
 	// set cannon ball to moving state
 	ASSERT(1 == VirtualList::getSize(this->children), "Cannon::spawnCannonBall: no children");
-	CannonBall cannonBall = __SAFE_CAST(CannonBall, VirtualList::front(this->children));
+	CannonBall cannonBall = CannonBall::safeCast(VirtualList::front(this->children));
 
-	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, cannonBall), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(cannonBall), kCannonShoot, NULL);
 }

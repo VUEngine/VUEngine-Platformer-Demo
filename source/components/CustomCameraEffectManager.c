@@ -166,22 +166,22 @@ void CustomCameraEffectManager::fxShakeStart(u16 duration)
 	this->lastShakeOffset.x = __PIXELS_TO_METERS(4);
 
 	// discard pending messages from previously started fx
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kShake);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kShake);
 
 	// instantly send message to self to start fx
-	MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
+	MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kShake, NULL);
 }
 
 // start screen pulsating effect
 void CustomCameraEffectManager::fxScreenPulsateStart()
 {
 	// discard pending messages from previously started fx
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kScreenPulsate);
 
 	this->pulsateNextStep = 0;
 
 	// instantly send message to self to start fx
-	MessageDispatcher::dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
+	MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kScreenPulsate, NULL);
 }
 
 // stop shaking the _camera
@@ -194,7 +194,7 @@ void CustomCameraEffectManager::fxShakeStop()
 void CustomCameraEffectManager::fxScreenPulsateStop()
 {
 	this->pulsateNextStep = 0;
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kScreenPulsate);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kScreenPulsate);
 }
 
 // shake the _camera
@@ -227,7 +227,7 @@ void CustomCameraEffectManager::onScreenShake()
 	Camera::move(_camera, this->lastShakeOffset, false);
 
 	// send message for next screen movement
-	MessageDispatcher::dispatchMessage(nextShakeDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kShake, NULL);
+	MessageDispatcher::dispatchMessage(nextShakeDelay, Object::safeCast(this), Object::safeCast(this), kShake, NULL);
 }
 
 // write new brightness repeat values
@@ -239,5 +239,5 @@ void CustomCameraEffectManager::onScreenPulsate()
 	this->pulsateNextStep = (SCREEN_PULSATE_STEPS[this->pulsateNextStep + 1] != NULL)
 		? this->pulsateNextStep + 1
 		: 0;
-	MessageDispatcher::dispatchMessage(CAMERA_PULSATE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kScreenPulsate, NULL);
+	MessageDispatcher::dispatchMessage(CAMERA_PULSATE_DELAY, Object::safeCast(this), Object::safeCast(this), kScreenPulsate, NULL);
 }

@@ -48,7 +48,7 @@ void AdjustmentScreenState::constructor()
 {
 	Base::constructor();
 
-	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(this, GameState::safeCast(AutoPauseSelectScreenState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&ADJUSTMENT_SCREEN_STAGE_ST;
 }
 
@@ -78,11 +78,11 @@ void AdjustmentScreenState::processInput(u32 pressedKey __attribute__ ((unused))
 	if(this->nextState == NULL)
 	{
 		Camera::startEffect(Camera::getInstance(), kFadeOut, __FADE_DELAY);
-		Game::unpause(Game::getInstance(), __SAFE_CAST(GameState, this));
+		Game::unpause(Game::getInstance(), GameState::safeCast(this));
 	}
 	else
 	{
-		SplashScreenState::loadNextState(__SAFE_CAST(SplashScreenState, this));
+		SplashScreenState::loadNextState(this);
 	}
 }
 

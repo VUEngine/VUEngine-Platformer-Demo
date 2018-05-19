@@ -65,7 +65,7 @@ void AutoPauseScreenState::destructor()
 void AutoPauseScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// load stage
-	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
 
 	// print text
 	const char* strAutomaticPauseTitle = I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
@@ -90,7 +90,7 @@ void AutoPauseScreenState::enter(void* owner __attribute__ ((unused)))
 	Game::disableKeypad(Game::getInstance());
 
 	// start clocks to start animations
-	GameState::startClocks(__SAFE_CAST(GameState, this));
+	GameState::startClocks(this);
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),
@@ -99,7 +99,7 @@ void AutoPauseScreenState::enter(void* owner __attribute__ ((unused)))
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))AutoPauseScreenState::onFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		Object::safeCast(this) // callback scope
 	);
 }
 
@@ -128,7 +128,7 @@ void AutoPauseScreenState::processUserInput(UserInput userInput)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
 			(void (*)(Object, Object))AutoPauseScreenState::onFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			Object::safeCast(this) // callback scope
 		);
 	}
 }
@@ -147,5 +147,5 @@ void AutoPauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((u
 	Game::enableKeypad(Game::getInstance());
 
 	// resume game
-	Game::unpause(Game::getInstance(), __SAFE_CAST(GameState, this));
+	Game::unpause(Game::getInstance(), GameState::safeCast(this));
 }

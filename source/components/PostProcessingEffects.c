@@ -599,7 +599,7 @@ static void PostProcessingEffects::lantern(u32 currentDrawingFrameBufferSet __at
  		return;
  	}
 
- 	Vector3D heroPosition = *Container::getGlobalPosition(__SAFE_CAST(Container, hero));
+ 	Vector3D heroPosition = *Container::getGlobalPosition(hero);
  	heroPosition.y -= __PIXELS_TO_METERS(10);
 
 	heroPosition = Vector3D::getRelativeToCamera(heroPosition);
@@ -852,7 +852,7 @@ static void PostProcessingEffects::lightingTest(u32 currentDrawingFrameBufferSet
 		return;
 	}
 
-	Vector3D heroPosition = Vector3D::getRelativeToCamera(*Container::getGlobalPosition(__SAFE_CAST(Container, hero)));
+	Vector3D heroPosition = Vector3D::getRelativeToCamera(*Container::getGlobalPosition(hero));
 	heroPosition.x = __FIX10_6_TO_I(heroPosition.x);
 	heroPosition.y = __FIX10_6_TO_I(heroPosition.y);
 

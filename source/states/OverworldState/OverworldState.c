@@ -79,13 +79,13 @@ void OverworldState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// load stage
-	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&OVERWORLD1_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&OVERWORLD1_STAGE_ST, NULL, true);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
-	GameState::startClocks(__SAFE_CAST(GameState, this));
+	GameState::startClocks(this);
 
 	// show up level after a little delay
-	MessageDispatcher::dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game::getInstance()), kLevelSetUp, NULL);
+	MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);
 }
 
 // state's exit
@@ -117,13 +117,13 @@ void OverworldState::resume(void* owner)
 #endif
 
 	// tell any interested entity
-	GameState::propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
+	GameState::propagateMessage(this, kLevelResumed);
 
 	// make a fade in
 	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
 
 	// pause physical simulations
-	GameState::pausePhysics(__SAFE_CAST(GameState, this), false);
+	GameState::pausePhysics(this, false);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -140,7 +140,7 @@ void OverworldState::resume(void* owner)
 void OverworldState::suspend(void* owner)
 {
 	// pause physical simulations
-	GameState::pausePhysics(__SAFE_CAST(GameState, this), true);
+	GameState::pausePhysics(this, true);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game::isEnteringSpecialMode(Game::getInstance()))
@@ -185,7 +185,7 @@ void OverworldState::processUserInput(UserInput userInput)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
 			(void (*)(Object, Object))OverworldState::onStartLevelFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			Object::safeCast(this) // callback scope
 		);
 
 	} else if(K_B & userInput.pressedKey) {		// disable user input
@@ -199,7 +199,7 @@ void OverworldState::processUserInput(UserInput userInput)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
 			(void (*)(Object, Object))OverworldState::onReturnToTitleFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			Object::safeCast(this) // callback scope
 		);
 	}
 }
@@ -213,10 +213,10 @@ bool OverworldState::processMessage(void* owner __attribute__ ((unused)), Telegr
 		case kLevelSetUp:
 
 			// tell any interested entity
-			GameState::propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
+			GameState::propagateMessage(this, kLevelSetUp);
 
 			// show level after a little delay
-			MessageDispatcher::dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game::getInstance()), kLevelStarted, NULL);
+			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelStarted, NULL);
 			break;
 
 		case kLevelStarted:
@@ -230,7 +230,7 @@ bool OverworldState::processMessage(void* owner __attribute__ ((unused)), Telegr
 				NULL, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
 				(void (*)(Object, Object))OverworldState::onFadeInComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				Object::safeCast(this) // callback scope
 			);
 
 			break;
@@ -243,7 +243,7 @@ bool OverworldState::processMessage(void* owner __attribute__ ((unused)), Telegr
 void OverworldState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// tell any interested entity
-	GameState::propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
+	GameState::propagateMessage(this, kLevelStarted);
 
 	// enable user input
 	Game::enableKeypad(Game::getInstance());
@@ -261,5 +261,5 @@ void OverworldState::onStartLevelFadeOutComplete(Object eventFirer __attribute__
 void OverworldState::onReturnToTitleFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// load title screen state
-	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, TitleScreenState::getInstance()));
+	Game::changeState(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
 }

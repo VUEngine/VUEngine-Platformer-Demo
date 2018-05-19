@@ -70,13 +70,13 @@ bool Collectable::handleMessage(Telegram telegram)
 			SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
 			// set shape to inactive so no other hits with this item can occur
-			Entity::activateShapes(__SAFE_CAST(Entity, this), false);
+			Entity::activateShapes(this, false);
 
 			// additional action
 			Collectable::collect(this);
 
 			// delete myself now
-			Container::deleteMyself(__SAFE_CAST(Container, this));
+			Container::deleteMyself(this);
 
 			break;
 		}

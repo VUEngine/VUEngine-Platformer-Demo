@@ -75,7 +75,7 @@ void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteDefinition* h
 	this->owner = NULL;
 	this->referenceSprite = NULL;
 	this->step = 0;
-	this->owner = __SAFE_CAST(Entity, owner);
+	this->owner = Entity::safeCast(owner);
 }
 
 /**
@@ -107,15 +107,15 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
 {
 	if(isDeleted(this->referenceSprite))
 	{
-		Container referenceSpriteOwner = Container::getChildByName(__SAFE_CAST(Container, Game::getStage(Game::getInstance())), this->hbiasMaskMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
+		Container referenceSpriteOwner = Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), this->hbiasMaskMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
 
 		if(!isDeleted(referenceSpriteOwner))
 		{
-			VirtualList referenceSpriteOwnerSpritesList = Entity::getSprites(__SAFE_CAST(Entity, referenceSpriteOwner));
+			VirtualList referenceSpriteOwnerSpritesList = Entity::getSprites(referenceSpriteOwner);
 
 			if(!isDeleted(referenceSpriteOwnerSpritesList))
 			{
-				this->referenceSprite = __SAFE_CAST(Sprite, VirtualList::front(referenceSpriteOwnerSpritesList));
+				this->referenceSprite = Sprite::safeCast(VirtualList::front(referenceSpriteOwnerSpritesList));
 				this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z;
 			}
 		}
@@ -183,7 +183,7 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame)
 	{
 		Sprite ownerFirstSprite = VirtualList::front(ownerSprites);
 
-		if(ownerFirstSprite && ownerFirstSprite != __SAFE_CAST(Sprite, this))
+		if(ownerFirstSprite && ownerFirstSprite != Sprite::safeCast(this))
 		{
 			ownerSpriteGY = Sprite::getWorldGY(ownerFirstSprite);
 			ownerSpriteGYSet = true;
@@ -241,14 +241,14 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame)
 	}
 
 	// set the head
-	worldPointer->head = this->head | (__SAFE_CAST(BgmapTexture, this->texture))->segment;
+	worldPointer->head = this->head | (BgmapTexture::safeCast(this->texture))->segment;
 
-	BgmapSprite::processHbiasEffects(__SAFE_CAST(BgmapSprite, this));
+	BgmapSprite::processHbiasEffects(this);
 }
 
 s16 HbiasMaskMBgmapSprite::wave()
 {
-	s32 spriteHeight = Sprite::getWorldHeight(__SAFE_CAST(Sprite, this));
+	s32 spriteHeight = Sprite::getWorldHeight(this);
 	s16 i = this->paramTableRow;
 	s16 j = 0;
 

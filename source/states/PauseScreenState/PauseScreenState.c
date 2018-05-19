@@ -78,10 +78,10 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
 
 	// show up level after a little delay
-	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game::getInstance()), kLevelSetUp, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);
 
 	// print pause text
 	const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
@@ -133,7 +133,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	Game::disableKeypad(Game::getInstance());
 
 	// start clocks to start animations
-	GameState::startClocks(__SAFE_CAST(GameState, this));
+	GameState::startClocks(this);
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),
@@ -142,7 +142,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))PauseScreenState::onFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		Object::safeCast(this) // callback scope
 	);
 
 	this->mode = kPauseScreenModeShowOptions;
@@ -179,7 +179,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 						&brightness, // target brightness
 						__FADE_DELAY, // delay between fading steps (in ms)
 						(void (*)(Object, Object))PauseScreenState::onFadeOutComplete, // callback function
-						__SAFE_CAST(Object, this) // callback scope
+						Object::safeCast(this) // callback scope
 					);
 
 					break;
@@ -223,7 +223,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 				&brightness, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
 				(void (*)(Object, Object))PauseScreenState::onFadeOutComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				Object::safeCast(this) // callback scope
 			);
 		}
 	}
@@ -265,20 +265,20 @@ void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unuse
 		case kPauseScreenOptionContinue:
 
 			// resume game
-			Game::unpause(Game::getInstance(), __SAFE_CAST(GameState, this));
+			Game::unpause(Game::getInstance(), GameState::safeCast(this));
 			break;
 
 		case kPauseScreenOptionOptions:
 
 			// switch to options state
-			OptionsScreenState::setNextState(OptionsScreenState::getInstance(), __SAFE_CAST(GameState, this));
-			Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, OptionsScreenState::getInstance()));
+			OptionsScreenState::setNextState(OptionsScreenState::getInstance(), GameState::safeCast(this));
+			Game::changeState(Game::getInstance(), GameState::safeCast(OptionsScreenState::getInstance()));
 			break;
 
 		case kPauseScreenOptionQuitLevel:
 
 			// switch to overworld after deleting paused game state
-			Game::cleanAndChangeState(Game::getInstance(), __SAFE_CAST(GameState, OverworldState::getInstance()));
+			Game::cleanAndChangeState(Game::getInstance(), GameState::safeCast(OverworldState::getInstance()));
 
 			break;
 	}

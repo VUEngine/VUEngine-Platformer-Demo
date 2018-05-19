@@ -60,13 +60,13 @@ void SplashScreenState::enter(void* owner)
 
 	if(this->stageDefinition)
 	{
-		GameState::loadStage(__SAFE_CAST(GameState, this), this->stageDefinition, NULL, true);
+		GameState::loadStage(this, this->stageDefinition, NULL, true);
 	}
 
 	SplashScreenState::print(this);
 
 	// start fade in effect in 1 ms, because a full render cycle is needed to put everything in place
-	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game::getInstance()), kScreenStarted, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kScreenStarted, NULL);
 
 	Game::disableKeypad(Game::getInstance());
 }
@@ -137,7 +137,7 @@ bool SplashScreenState::processMessage(void* owner __attribute__ ((unused)), Tel
 				NULL, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
 				(void (*)(Object, Object))SplashScreenState::onFadeInComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				Object::safeCast(this) // callback scope
 			);
 
 			break;
@@ -173,7 +173,7 @@ void SplashScreenState::loadNextState()
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))SplashScreenState::onFadeOutComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		Object::safeCast(this) // callback scope
 	);
 }
 

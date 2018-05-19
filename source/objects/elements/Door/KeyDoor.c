@@ -61,7 +61,7 @@ void KeyDoor::ready(bool recursive __attribute__ ((unused)))
 	// call base
 	Base::ready(this, recursive);
 
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Key");
+	AnimatedEntity::playAnimation(this, "Key");
 }
 
 bool KeyDoor::hasDestination()
@@ -73,7 +73,7 @@ void KeyDoor::setOverlapping()
 {
 	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{
-		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Opening");
+		AnimatedEntity::playAnimation(this, "Opening");
 	}
 
 	Base::setOverlapping(this);
@@ -83,7 +83,7 @@ void KeyDoor::unsetOverlapping()
 {
 	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{
-		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closing");
+		AnimatedEntity::playAnimation(this, "Closing");
 	}
 
 	Base::unsetOverlapping(this);

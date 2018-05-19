@@ -76,14 +76,14 @@ void CameraTriggerEntity::transform(const Transformation* environmentTransform, 
 		this->transformation.globalPosition.y = currentGlobalPosition.y;
 	}
 
-	Entity::transformShapes(__SAFE_CAST(Entity, this));
+	Entity::transformShapes(this);
 
 //	Shape::show(VirtualList::front(this->shapes));
 }
 
 void CameraTriggerEntity::setOverridePositionFlag(Vector3DFlag overridePositionFlag)
 {
-	Container::invalidateGlobalPosition(__SAFE_CAST(Container, this));
+	Container::invalidateGlobalPosition(this);
 
 	Transformation* environmentTransform = Container::getTransform(this->parent);
 

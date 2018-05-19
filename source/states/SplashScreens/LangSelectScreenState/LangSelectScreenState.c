@@ -52,7 +52,7 @@ void LangSelectScreenState::constructor()
 {
 	Base::constructor();
 
-	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, TitleScreenState::getInstance()));
+	SplashScreenState::setNextState(this, GameState::safeCast(TitleScreenState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_STAGE_ST;
 
 	// create options selector and populate with language names
@@ -102,7 +102,7 @@ void LangSelectScreenState::processInput(u32 pressedKey)
 		int selectedLanguage = OptionsSelector::getSelectedOption(this->languageSelector);
 		I18n::setActiveLanguage(I18n::getInstance(), selectedLanguage);
 		ProgressManager::setLanguage(ProgressManager::getInstance(), selectedLanguage);
-		SplashScreenState::loadNextState(__SAFE_CAST(SplashScreenState, this));
+		SplashScreenState::loadNextState(this);
 	}
 }
 

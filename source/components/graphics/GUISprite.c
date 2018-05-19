@@ -107,7 +107,7 @@ void GUISprite::render(bool evenFrame)
 	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
 
 	// set the head
-	worldPointer->head = this->head | BgmapTexture::getSegment(__SAFE_CAST(BgmapTexture, this->texture));
+	worldPointer->head = this->head | BgmapTexture::getSegment(this->texture);
 
 	// get coordinates
 	worldPointer->gx = this->position.x + this->displacement.x - this->halfWidth;

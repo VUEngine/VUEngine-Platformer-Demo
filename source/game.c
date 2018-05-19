@@ -35,8 +35,9 @@
 int main(void)
 {
 	// start the game
-	Game::start(Game::getInstance(), __SAFE_CAST(GameState, PrecautionScreenState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
 
 	// end program
 	return true;
 }
+

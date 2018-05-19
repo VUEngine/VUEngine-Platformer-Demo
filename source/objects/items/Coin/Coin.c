@@ -72,7 +72,7 @@ void Coin::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 i
 			animatedEntityDefinition = (AnimatedEntityDefinition*)&COIN_SILHOUETTE_AG;
 		}
 
-		AnimatedEntity::setDefinition(__SAFE_CAST(AnimatedEntity, this), animatedEntityDefinition);
+		AnimatedEntity::setDefinition(this, animatedEntityDefinition);
 	}
 }
 
@@ -93,6 +93,6 @@ void Coin::collect()
 		ProgressManager::setCoinStatus(ProgressManager::getInstance(), this->id, true);
 
 		// fire "taken" event
-		Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventCoinTaken);
+		Object::fireEvent(EventManager::getInstance(), kEventCoinTaken);
 	}
 }

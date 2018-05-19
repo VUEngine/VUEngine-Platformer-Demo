@@ -62,7 +62,7 @@ void GoalDoor::ready(bool recursive __attribute__ ((unused)))
 	// call base
 	Base::ready(this, recursive);
 
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Goal");
+	AnimatedEntity::playAnimation(this, "Goal");
 }
 
 bool GoalDoor::hasDestination()
@@ -88,7 +88,7 @@ bool GoalDoor::handleMessage(Telegram telegram)
 				&brightness, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
 				(void (*)(Object, Object))GoalDoor::onFadeOutComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				Object::safeCast(this) // callback scope
 			);
 
 			return true;
@@ -108,8 +108,8 @@ bool GoalDoor::canEnter()
 void GoalDoor::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// announce level completion
-	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventLevelCompleted);
+	Object::fireEvent(EventManager::getInstance(), kEventLevelCompleted);
 
 	// switch to next screen
-	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState::getInstance()));
+	Game::changeState(Game::getInstance(), GameState::safeCast(LevelDoneScreenState::getInstance()));
 }

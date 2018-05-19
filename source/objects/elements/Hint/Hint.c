@@ -63,7 +63,7 @@ bool Hint::handleMessage(void* telegram)
 	{
 		case kHintPlayAnimation:
 
-			AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), this->languageAnimName);
+			AnimatedEntity::playAnimation(this, this->languageAnimName);
 			return true;
 			break;
 	}
@@ -82,21 +82,21 @@ void Hint::open(u8 hintType)
 {
 	this->type = hintType;
 
-	Entity::show(__SAFE_CAST(Entity, this));
+	Entity::show(this);
 
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
+	AnimatedEntity::playAnimation(this, "Open");
 }
 
 void Hint::close()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHintPlayAnimation);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHintPlayAnimation);
 
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Close");
+	AnimatedEntity::playAnimation(this, "Close");
 }
 
 void Hint::onCloseDone(Object eventFirer __attribute__ ((unused)))
 {
-	Entity::hide(__SAFE_CAST(Entity, this));
+	Entity::hide(this);
 }
 
 void Hint::onHintOpened(Object eventFirer __attribute__ ((unused)))
@@ -155,5 +155,5 @@ void Hint::onHintOpened(Object eventFirer __attribute__ ((unused)))
 			break;
 	}
 
-	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kHintPlayAnimation, NULL);
 }

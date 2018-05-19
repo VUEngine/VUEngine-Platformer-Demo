@@ -55,22 +55,22 @@ void Gui::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 
 	// add event listeners
-	Object::addEventListener(__SAFE_CAST(Object, PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
-	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
-	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
-	Object::addEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onPowerUp, kEventPowerUp);
+	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
+	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
+	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onPowerUp, kEventPowerUp);
 }
 
 // class's destructor
 void Gui::destructor()
 {
 	// remove event listeners
-	Object::removeEventListener(__SAFE_CAST(Object, PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
-	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
-	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
-	Object::removeEventListener(__SAFE_CAST(Object, EventManager::getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui::onPowerUp, kEventPowerUp);
+	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
+	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
+	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)Gui::onPowerUp, kEventPowerUp);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -162,7 +162,7 @@ void Gui::printLevel()
 // update sprite, e.g. after collecting a power-up
 void Gui::updateSprite()
 {
-	CharSet charSet = Texture::getCharSet(Sprite::getTexture(__SAFE_CAST(Sprite, VirtualList::front(this->sprites))), true);
+	CharSet charSet = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::front(this->sprites))), true);
 
 	CharSetDefinition* charSetDefinition = NULL;
 

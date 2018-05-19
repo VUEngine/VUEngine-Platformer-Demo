@@ -77,11 +77,11 @@ void Door::ready(bool recursive __attribute__ ((unused)))
 
 	if(Door::hasDestination(this))
 	{
-		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
+		AnimatedEntity::playAnimation(this, "Open");
 	}
 	else
 	{
-		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closed");
+		AnimatedEntity::playAnimation(this, "Closed");
 	}
 }
 

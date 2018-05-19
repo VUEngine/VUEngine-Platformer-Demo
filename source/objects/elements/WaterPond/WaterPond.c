@@ -77,7 +77,7 @@ void WaterPond::addSplashParticles()
 
 	extern EntityDefinition WATER_SPLASH_PS;
 
-	this->waterSplash = __SAFE_CAST(ParticleSystem, Entity::addChildEntity(__SAFE_CAST(Entity, this), &WATER_SPLASH_PS, -1, NULL, &position, NULL));
+	this->waterSplash = ParticleSystem::safeCast(Entity::addChildEntity(this, &WATER_SPLASH_PS, -1, NULL, &position, NULL));
 
 	ParticleSystem::spawnAllParticles(this->waterSplash);
 	ParticleSystem::start(this->waterSplash);
@@ -98,13 +98,13 @@ bool WaterPond::handleMessage(void* telegram)
 		{
 			entityTypeChecked = false;
 
-			VirtualList collidingObjects = __SAFE_CAST(VirtualList, Telegram::getExtraInfo(telegram));
+			VirtualList collidingObjects = VirtualList::safeCast(Telegram::getExtraInfo(telegram));
 
 			VirtualNode node = NULL;
 
 			for(node = VirtualList::begin(collidingObjects); node; node = VirtualNode::getNext(node))
 			{
-				Entity inGameEntity = __SAFE_CAST(Entity, VirtualNode::getData(node));
+				Entity inGameEntity = Entity::safeCast(VirtualNode::getData(node));
 
 				switch(Entity::getInGameType(inGameEntity))
 				{
@@ -143,8 +143,8 @@ bool WaterPond::handleMessage(void* telegram)
 				}
 
 				this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntityDefinition->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntityDefinition->width)));
-				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kStopReactToCollision);
-				MessageDispatcher::dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
+				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kStopReactToCollision);
+				MessageDispatcher::dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kStopReactToCollision, NULL);
 
 //				ParticleSystem::start(this->waterSplash);
 			}
@@ -158,7 +158,7 @@ bool WaterPond::handleMessage(void* telegram)
 
 			if(0 < this->waveLutThrottleFactorIncrement)
 			{
-				MessageDispatcher::dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kStopReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kStopReactToCollision, NULL);
 			}
 			else
 			{

@@ -56,7 +56,7 @@ void AutoPauseSelectScreenState::constructor()
 {
 	Base::constructor();
 
-	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, LangSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(this, GameState::safeCast(LangSelectScreenState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_STAGE_ST;
 	this->selection = true;
 }
@@ -156,10 +156,10 @@ void AutoPauseSelectScreenState::processInput(u32 pressedKey)
 	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
 		Game::setAutomaticPauseState(Game::getInstance(), this->selection
-			? __SAFE_CAST(GameState, AutoPauseScreenState::getInstance())
+			? GameState::safeCast(AutoPauseScreenState::getInstance())
 			: NULL
 		);
 		ProgressManager::setAutomaticPauseStatus(ProgressManager::getInstance(), (bool)this->selection);
-		SplashScreenState::loadNextState(__SAFE_CAST(SplashScreenState, this));
+		SplashScreenState::loadNextState(this);
 	}
 }

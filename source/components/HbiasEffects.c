@@ -38,7 +38,7 @@
 static s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 {
 	u32 param = BgmapSprite::getParam(bgmapSprite);
-	s32 spriteHeight = Texture::getRows(Sprite::getTexture(__SAFE_CAST(Sprite, bgmapSprite))) << 3;
+	s32 spriteHeight = Texture::getRows(Sprite::getTexture(bgmapSprite)) << 3;
 	s16 i = BgmapSprite::getParamTableRow(bgmapSprite);
 	// if you want to defer the effect, compute up to counter rows
 	// int counter = SpriteManager::getMaximumParamTableRowsToComputePerCall(SpriteManager::getInstance());

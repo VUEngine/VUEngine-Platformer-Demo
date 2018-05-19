@@ -57,7 +57,7 @@ void OptionsScreenState::constructor()
 
 	// init members
 	this->optionsSelector = new OptionsSelector(1, 2, NULL);
-	OptionsScreenState::setNextState(this, __SAFE_CAST(GameState, TitleScreenState::getInstance()));
+	OptionsScreenState::setNextState(this, GameState::safeCast(TitleScreenState::getInstance()));
 }
 
 // class's destructor
@@ -76,7 +76,7 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
 
 	// print options
 	OptionsScreenState::print(this);
@@ -91,7 +91,7 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))OptionsScreenState::onFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		Object::safeCast(this) // callback scope
 	);
 }
 
@@ -131,14 +131,14 @@ void OptionsScreenState::print()
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
 	option->type = kString;
 	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutoPauseSelect;
-	option->callbackScope = __SAFE_CAST(Object, this);
+	option->callbackScope = Object::safeCast(this);
 	VirtualList::pushBack(options, option);
 
 	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_LANGUAGE);
 	option->type = kString;
 	option->callback = (void (*)(Object))OptionsScreenState::onOptionLanguageSelect;
-	option->callbackScope = __SAFE_CAST(Object, this);
+	option->callbackScope = Object::safeCast(this);
 	VirtualList::pushBack(options, option);
 
 	OptionsSelector::setOptions(this->optionsSelector, options);
@@ -179,7 +179,7 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
 			(void (*)(Object, Object))OptionsScreenState::onOptionSelectedFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			Object::safeCast(this) // callback scope
 		);
 	}
 	else if((userInput.pressedKey & K_B) || (userInput.pressedKey & K_SEL))
@@ -195,7 +195,7 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
 			(void (*)(Object, Object))OptionsScreenState::onExitFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			Object::safeCast(this) // callback scope
 		);
 	}
 	else if((userInput.pressedKey & K_LU) || (userInput.pressedKey & K_RU))
@@ -227,12 +227,12 @@ void OptionsScreenState::onOptionSelectedFadeOutComplete(Object eventFirer __att
 
 void OptionsScreenState::onOptionAutoPauseSelect()
 {
-	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, AutoPauseSelectScreenState::getInstance()), __SAFE_CAST(GameState, this));
-	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, AutoPauseSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(AutoPauseSelectScreenState::getInstance()), GameState::safeCast(this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(AutoPauseSelectScreenState::getInstance()));
 }
 
 void OptionsScreenState::onOptionLanguageSelect()
 {
-	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, LangSelectScreenState::getInstance()), __SAFE_CAST(GameState, this));
-	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, LangSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(LangSelectScreenState::getInstance()), GameState::safeCast(this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(LangSelectScreenState::getInstance()));
 }

@@ -65,6 +65,6 @@ void Clouds::update(u32 elapsedTime __attribute__ ((unused)))
 	offset.x -= __FIX10_6_MULT(this->displacement, elapsedTime);
 
 	// update clouds' position
-	Container::setLocalPosition(__SAFE_CAST(Container, this), &offset);
+	Container::setLocalPosition(this, &offset);
 }
 

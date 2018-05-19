@@ -74,7 +74,7 @@ void CustomCameraMovementManager::focus(u32 checkIfFocusEntityIsMoving __attribu
 bool CustomCameraMovementManager::doFocusWithNoEasing(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	Vector3D focusEntityPosition = Camera::getFocusEntityPosition(this->camera);
-	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, Camera::getFocusEntity(this->camera)));
+	Direction direction = Entity::getDirection(Entity::safeCast(Camera::getFocusEntity(this->camera)));
 
 	Vector3D cameraPosition =
 	{
@@ -103,9 +103,9 @@ bool CustomCameraMovementManager::doFocus(u32 checkIfFocusEntityIsMoving __attri
 		return false;
 	}
 
-	Actor focusActor = __SAFE_CAST(Actor, Camera::getFocusEntity(this->camera));
+	Actor focusActor = Actor::safeCast(Camera::getFocusEntity(this->camera));
 
-	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, focusActor));
+	Direction direction = Entity::getDirection(focusActor);
 
 	Vector3D cameraNewPosition = Camera::getPosition(this->camera);
 
@@ -237,7 +237,7 @@ bool CustomCameraMovementManager::doFocusAndAlertWhenTargetReached(u32 checkIfFo
 {
 	if(CustomCameraMovementManager::doFocus(this, checkIfFocusEntityIsMoving, true))
 	{
-		Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventScreenFocused);
+		Object::fireEvent(EventManager::getInstance(), kEventScreenFocused);
 
 		return true;
 	}

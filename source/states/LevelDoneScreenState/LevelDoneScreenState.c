@@ -68,7 +68,7 @@ void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&LEVEL_DONE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&LEVEL_DONE_SCREEN_STAGE_ST, NULL, true);
 
 	// print stats
 	LevelDoneScreenState::print(this);
@@ -77,7 +77,7 @@ void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 	Game::disableKeypad(Game::getInstance());
 
 	// start clocks to start animations
-	GameState::startClocks(__SAFE_CAST(GameState, this));
+	GameState::startClocks(this);
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),
@@ -86,7 +86,7 @@ void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))LevelDoneScreenState::onFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		Object::safeCast(this) // callback scope
 	);
 }
 
@@ -147,7 +147,7 @@ void LevelDoneScreenState::processUserInput(UserInput userInput)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
 			(void (*)(Object, Object))LevelDoneScreenState::onFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			Object::safeCast(this) // callback scope
 		);
 	}
 }
@@ -162,5 +162,5 @@ void LevelDoneScreenState::onFadeInComplete(Object eventFirer __attribute__ ((un
 void LevelDoneScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// switch to next screen
-	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, OverworldState::getInstance()));
+	Game::changeState(Game::getInstance(), GameState::safeCast(OverworldState::getInstance()));
 }
