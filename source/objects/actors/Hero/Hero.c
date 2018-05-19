@@ -68,7 +68,7 @@ extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 //---------------------------------------------------------------------------------------------------------
 
 // Only one instance
-Hero hero = NULL;
+static Hero hero = NULL;
 
 // there can only be one hero instantiated
 static Hero Hero::getInstance()
