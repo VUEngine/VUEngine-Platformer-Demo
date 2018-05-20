@@ -23,7 +23,7 @@ VUENGINE_LIBRARY_PATH = $(BUILD_DIR)/
 PREPROCESSOR_WORKING_FOLDER = $(BUILD_DIR)/working
 
 # Add directories to the include and library paths
-GAME_HEADERS_DIRS = $(shell find source assets -type d -print)
+GAME_HEADERS_DIRS = $(shell find source assets/fonts assets/languages -type d -print)
 VUENGINE_HEADERS_DIRS = $(shell find $(VUENGINE_HOME)/source $(VUENGINE_HOME)/assets -type d -print)
 
 GAME_INCLUDE_PATHS = $(foreach DIR,$(GAME_HEADERS_DIRS), $(PREPROCESSOR_WORKING_FOLDER)/headers/game/$(DIR))
@@ -141,7 +141,7 @@ STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFFIX)
 
 # Which directories contain source files
 SOURCES_DIRS = $(shell find source assets -type d -print)
-HEADERS_DIRS = $(shell find source assets -type d -print)
+HEADERS_DIRS = $(shell find source assets/fonts assets/languages -type d -print)
 
 # Which libraries are linked
 LIBS = vuengine
