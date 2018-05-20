@@ -44,12 +44,12 @@
 dynamic_singleton class TestState : GameState
 {
 	static TestState getInstance(void);
-	override void enter(TestState this, void* owner);
-	override void exit(TestState this, void* owner);
-	override void resume(TestState this, void* owner);
-	override void suspend(TestState this, void* owner);
-	override bool processMessage(TestState this, void* owner, Telegram telegram);
-	override void processUserInput(TestState this, UserInput userInput);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void resume(void* owner);
+	override void suspend(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
+	override void processUserInput(UserInput userInput);
 }
 
 

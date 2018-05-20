@@ -32,30 +32,22 @@
 #include "Lava.h"
 #include <PlatformerLevelState.h>
 
-
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Lava::moveUpwards(Lava this);
-
-
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Lava::constructor(Lava this, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Lava::constructor(EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(inanimatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Lava::destructor(Lava this)
+void Lava::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kLavaMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kLavaMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -63,28 +55,24 @@ void Lava::destructor(Lava this)
 }
 
 // start moving
-void Lava::startMoving(Lava this)
+void Lava::startMoving()
 {
-	ASSERT(this, "Lava::startMoving: null this");
-
 	// start moving
-	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
+	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kLavaMove, NULL);
 
 	// must make sure that the shape is updated
-	Entity::informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
+	Entity::informShapesThatStartedMoving(this);
 }
 
 // whether it is visible
-bool Lava::isVisible(Lava this __attribute__ ((unused)), int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
+bool Lava::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
 {
-	ASSERT(this, "Lava::isVisible: null this");
-
 	// always return true so the Lava is never unloaded from the stage when it is not visible on screen
 	return true;
 }
 
 // state's handle message
-bool Lava::handleMessage(Lava this, Telegram telegram)
+bool Lava::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -98,15 +86,15 @@ bool Lava::handleMessage(Lava this, Telegram telegram)
 }
 
 // move lava up
-void Lava::moveUpwards(Lava this)
+void Lava::moveUpwards()
 {
 	// get local position of lava and subtract 1 from y value
-	Vector3D offset = *Container::getLocalPosition(__SAFE_CAST(Container, this));
+	Vector3D offset = *Container::getLocalPosition(this);
 	offset.y -= __PIXELS_TO_METERS(1);
 
 	// update lava's position
-	Container::setLocalPosition(__SAFE_CAST(Container, this), &offset);
+	Container::setLocalPosition(this, &offset);
 
 	// send delayed message to self to trigger next movement
-	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaMove, NULL);
+	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kLavaMove, NULL);
 }

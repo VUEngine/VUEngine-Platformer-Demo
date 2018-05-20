@@ -41,30 +41,24 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Bandana::constructor(Bandana this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Bandana::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Bandana::constructor: null this");
-
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Bandana::destructor(Bandana this)
+void Bandana::destructor()
 {
-	ASSERT(this, "Bandana::destructor: null this");
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-void Bandana::collect(Bandana this)
+void Bandana::collect()
 {
-	ASSERT(this, "Bandana::collect: null this");
-
 	// fire item taken event
-	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventPowerUp);
+	Object::fireEvent(EventManager::getInstance(), kEventPowerUp);
 
 	// call base
 	Base::collect(this);

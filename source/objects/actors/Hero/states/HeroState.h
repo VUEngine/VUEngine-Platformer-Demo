@@ -37,11 +37,11 @@
 
 class HeroState : State
 {
-	void constructor(HeroState this);
+	void constructor();
 
-	virtual void onKeyPressed(HeroState this, void* owner, const UserInput* userInput) = 0;
-	virtual void onKeyReleased(HeroState this, void* owner, const UserInput* userInput) = 0;
-	virtual void onKeyHold(HeroState this, void* owner, const UserInput* userInput);
+	virtual void onKeyPressed(void* owner, const UserInput* userInput) = 0;
+	virtual void onKeyReleased(void* owner, const UserInput* userInput) = 0;
+	virtual void onKeyHold(void* owner, const UserInput* userInput);
 }
 
 

@@ -47,9 +47,9 @@ typedef const TestCogWheelDefinition TestCogWheelROMDef;
 
 class TestCogWheel : Entity
 {
-	void constructor(TestCogWheel this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	override void ready(TestCogWheel this, bool recursive);
-	override bool handleMessage(TestCogWheel this, Telegram telegram);
+	void constructor(EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void ready(bool recursive);
+	override bool handleMessage(Telegram telegram);
 }
 
 

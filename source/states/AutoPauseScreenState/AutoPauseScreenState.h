@@ -38,9 +38,9 @@ dynamic_singleton class AutoPauseScreenState : GameState
 {
 	static AutoPauseScreenState getInstance(void);
 
-	override void enter(AutoPauseScreenState this, void* owner);
-	override void exit(AutoPauseScreenState this, void* owner);
-	override void processUserInput(AutoPauseScreenState this, UserInput userInput);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void processUserInput(UserInput userInput);
 }
 
 

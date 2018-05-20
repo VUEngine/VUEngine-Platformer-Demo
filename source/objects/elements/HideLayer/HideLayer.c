@@ -39,27 +39,27 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void HideLayer::constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void HideLayer::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void HideLayer::destructor(HideLayer this)
+void HideLayer::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-void HideLayer::setOverlapping(HideLayer this)
+void HideLayer::setOverlapping()
 {
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToTransparent");
+	AnimatedEntity::playAnimation(this, "ToTransparent");
 }
 
-void HideLayer::unsetOverlapping(HideLayer this)
+void HideLayer::unsetOverlapping()
 {
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "ToShape");
+	AnimatedEntity::playAnimation(this, "ToShape");
 }
 

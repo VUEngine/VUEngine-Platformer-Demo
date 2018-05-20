@@ -47,10 +47,10 @@ singleton class OptionsScreenState : GameState
 	OptionsSelector optionsSelector;
 
 	static OptionsScreenState getInstance(void);
-	void setNextState(OptionsScreenState this, GameState nextState);
-	override void enter(OptionsScreenState this, void* owner);
-	override void exit(OptionsScreenState this, void* owner);
-	override void processUserInput(OptionsScreenState this, UserInput userInput);
+	void setNextState(GameState nextState);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void processUserInput(UserInput userInput);
 }
 
 

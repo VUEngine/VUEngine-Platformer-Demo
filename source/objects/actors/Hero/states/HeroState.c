@@ -33,20 +33,18 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroState::constructor(HeroState this)
+void HeroState::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
 // class's destructor
-void HeroState::destructor(HeroState this)
+void HeroState::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
-void HeroState::onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
-{
-
-}
+void HeroState::onKeyHold(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+{}

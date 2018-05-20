@@ -40,9 +40,9 @@ typedef const CollectableDefinition CollectableROMDef;
 
 class Collectable : AnimatedEntity
 {
-	void constructor(Collectable this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	virtual void collect(Collectable this);
-	override bool handleMessage(Collectable this, Telegram telegram);
+	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	virtual void collect();
+	override bool handleMessage(Telegram telegram);
 }
 
 

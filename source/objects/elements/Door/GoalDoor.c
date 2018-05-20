@@ -38,25 +38,18 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void GoalDoor::onFadeOutComplete(GoalDoor this, Object eventFirer);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void GoalDoor::constructor(GoalDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void GoalDoor::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void GoalDoor::destructor(GoalDoor this)
+void GoalDoor::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -64,23 +57,21 @@ void GoalDoor::destructor(GoalDoor this)
 }
 
 // ready
-void GoalDoor::ready(GoalDoor this, bool recursive __attribute__ ((unused)))
+void GoalDoor::ready(bool recursive __attribute__ ((unused)))
 {
-	ASSERT(this, "GoalDoor::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Goal");
+	AnimatedEntity::playAnimation(this, "Goal");
 }
 
-bool GoalDoor::hasDestination(GoalDoor this __attribute__ ((unused)))
+bool GoalDoor::hasDestination()
 {
 	return true;
 }
 
 // state's handle message
-bool GoalDoor::handleMessage(GoalDoor this, Telegram telegram)
+bool GoalDoor::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -97,7 +88,7 @@ bool GoalDoor::handleMessage(GoalDoor this, Telegram telegram)
 				&brightness, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
 				(void (*)(Object, Object))GoalDoor::onFadeOutComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				Object::safeCast(this) // callback scope
 			);
 
 			return true;
@@ -108,19 +99,17 @@ bool GoalDoor::handleMessage(GoalDoor this, Telegram telegram)
 	return Base::handleMessage(this, telegram);
 }
 
-bool GoalDoor::canEnter(GoalDoor this __attribute__ ((unused)))
+bool GoalDoor::canEnter()
 {
 	return true;
 }
 
 // handle event
-static void GoalDoor::onFadeOutComplete(GoalDoor this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void GoalDoor::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "GoalDoor::onFadeOutComplete: null this");
-
 	// announce level completion
-	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventLevelCompleted);
+	Object::fireEvent(EventManager::getInstance(), kEventLevelCompleted);
 
 	// switch to next screen
-	Game::changeState(Game::getInstance(), __SAFE_CAST(GameState, LevelDoneScreenState::getInstance()));
+	Game::changeState(Game::getInstance(), GameState::safeCast(LevelDoneScreenState::getInstance()));
 }

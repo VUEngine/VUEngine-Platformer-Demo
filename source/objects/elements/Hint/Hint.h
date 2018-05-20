@@ -54,13 +54,13 @@ class Hint : AnimatedEntity
 	/* name of the animation to play */
 	char* languageAnimName;
 
-	void constructor(Hint this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	void open(Hint this, u8 hintType);
-	void close(Hint this);
-	void onCloseDone(Hint this, Object eventFirer);
-	void onHintOpened(Hint this, Object eventFirer);
-	override void resume(Hint this);
-	override bool handleMessage(Hint this, void* telegram);
+	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void open(u8 hintType);
+	void close();
+	void onCloseDone(Object eventFirer);
+	void onHintOpened(Object eventFirer);
+	override void resume();
+	override bool handleMessage(void* telegram);
 }
 
 

@@ -82,14 +82,14 @@ const PixelSize collision_62_25_4 = {62 * 8, 	25 * 8, 	8 * 8};
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Collision::constructor(Collision this, EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Collision::constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(inGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Collision::destructor(Collision this)
+void Collision::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -97,22 +97,18 @@ void Collision::destructor(Collision this)
 }
 
 // set extra info
-void Collision::setExtraInfo(Collision this, void* extraInfo)
+void Collision::setExtraInfo(void* extraInfo)
 {
-	ASSERT(this, "Collision::setExtraInfo: null this");
-
 	this->size = Size::getFromPixelSize(*((PixelSize*)extraInfo));
 }
 
-void Collision::initialTransform(Collision this, Transformation* environmentTransform, u32 recursive)
+void Collision::initialTransform(Transformation* environmentTransform, u32 recursive)
 {
-	ASSERT(this, "Collision::setExtraInfo: null this");
-
 	Base::initialTransform(this, environmentTransform, recursive);
 
 	if(!this->shapes)
 	{
-		this->shapes = __NEW(VirtualList);
+		this->shapes = new VirtualList();
 
 		ShapeDefinition shapeDefinition =
 		{
@@ -141,11 +137,11 @@ void Collision::initialTransform(Collision this, Transformation* environmentTran
 			kNoLayer,
 		};
 
-		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), __SAFE_CAST(SpatialObject, this), &shapeDefinition);
+		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), SpatialObject::safeCast(this), &shapeDefinition);
 
-		const Vector3D* myPosition = Entity::getPosition(__SAFE_CAST(Entity, this));
-		const Rotation* myRotation = Entity::getRotation(__SAFE_CAST(Entity, this));
-		const Scale* myScale = Entity::getScale(__SAFE_CAST(Entity, this));
+		const Vector3D* myPosition = Entity::getPosition(this);
+		const Rotation* myRotation = Entity::getRotation(this);
+		const Scale* myScale = Entity::getScale(this);
 
 		Shape::position(shape, myPosition, myRotation, myScale, &this->size);
 

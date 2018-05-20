@@ -59,10 +59,8 @@ extern int strcmp(const char *, const char *);
  * @param bgmapSpriteDefinition		Sprite definition
  * @param owner						Owner
  */
-void GUISprite::constructor(GUISprite this, const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner)
+void GUISprite::constructor(const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner)
 {
-	ASSERT(this, "GUISprite::constructor: null this");
-
 	// construct base object
 	Base::constructor(bgmapSpriteDefinition, owner);
 }
@@ -75,10 +73,8 @@ void GUISprite::constructor(GUISprite this, const BgmapSpriteDefinition* bgmapSp
  *
  * @param this						Function scope
  */
-void GUISprite::destructor(GUISprite this)
+void GUISprite::destructor()
 {
-	ASSERT(this, "GUISprite::destructor: null this");
-
 	// destroy the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
@@ -93,10 +89,8 @@ void GUISprite::destructor(GUISprite this)
  * @param this		Function scope
  * @param evenFrame
  */
-void GUISprite::render(GUISprite this, bool evenFrame)
+void GUISprite::render(bool evenFrame)
 {
-	ASSERT(this, "GUISprite::render: null this");
-
 	Base::render(this, evenFrame);
 
 	if(!this->positioned)
@@ -113,7 +107,7 @@ void GUISprite::render(GUISprite this, bool evenFrame)
 	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
 
 	// set the head
-	worldPointer->head = this->head | BgmapTexture::getSegment(__SAFE_CAST(BgmapTexture, this->texture));
+	worldPointer->head = this->head | BgmapTexture::getSegment(this->texture);
 
 	// get coordinates
 	worldPointer->gx = this->position.x + this->displacement.x - this->halfWidth;

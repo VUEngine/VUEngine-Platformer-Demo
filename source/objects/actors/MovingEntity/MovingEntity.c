@@ -38,19 +38,12 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void MovingEntity::constructor(MovingEntity this, MovingEntityDefinition* movingEntityDefinition, s16 id, s16 internalId, const char* const name)
+void MovingEntity::constructor(MovingEntityDefinition* movingEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "MovingEntity::constructor: null this");
-
 	// construct base
 	Base::constructor((ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
 
@@ -76,16 +69,14 @@ void MovingEntity::constructor(MovingEntity this, MovingEntityDefinition* moving
 			break;
 	}
 
-	Entity::setDirection(__SAFE_CAST(Entity, this), direction);
+	Entity::setDirection(this, direction);
 }
 
 // class's constructor
-void MovingEntity::destructor(MovingEntity this)
+void MovingEntity::destructor()
 {
-	ASSERT(this, "MovingEntity::destructor: null this");
-
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kMovingEntityStartMoving);
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kMovingEntityCheckDirection);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntityStartMoving);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntityCheckDirection);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -93,9 +84,8 @@ void MovingEntity::destructor(MovingEntity this)
 }
 
 // set definition
-void MovingEntity::setDefinition(MovingEntity this, void* movingEntityDefinition)
+void MovingEntity::setDefinition(void* movingEntityDefinition)
 {
-	ASSERT(this, "MovingEntity::setDefinition: null this");
 	ASSERT(movingEntityDefinition, "MovingEntity::setDefinition: null definition");
 
 	// save definition
@@ -105,10 +95,8 @@ void MovingEntity::setDefinition(MovingEntity this, void* movingEntityDefinition
 }
 
 // ready method
-void MovingEntity::ready(MovingEntity this, bool recursive)
+void MovingEntity::ready(bool recursive)
 {
-	ASSERT(this, "MovingEntity::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -129,11 +117,9 @@ void MovingEntity::ready(MovingEntity this, bool recursive)
 	MovingEntity::startMovement(this);
 }
 
-bool MovingEntity::handleMessage(MovingEntity this, Telegram telegram)
+bool MovingEntity::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "MovingEntity::handleMessage: null this");
-
-	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
+	Direction direction = Entity::getDirection(this);
 
 	switch(Telegram::getMessage(telegram))
 	{
@@ -160,7 +146,7 @@ bool MovingEntity::handleMessage(MovingEntity this, Telegram telegram)
 						break;
 				}
 
-				Actor::setPosition(__SAFE_CAST(Actor, this), &position);
+				Actor::setPosition(this, &position);
 			}
 
 			MovingEntity::startMovement(this);
@@ -172,11 +158,11 @@ bool MovingEntity::handleMessage(MovingEntity this, Telegram telegram)
 }
 
 // tell me I've been hit
-void MovingEntity::takeHit(MovingEntity this __attribute__ ((unused)), u16 axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
+void MovingEntity::takeHit(u16 axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
 {
 }
 
-void MovingEntity::checkDisplacement(MovingEntity this)
+void MovingEntity::checkDisplacement()
 {
 	// update position
 	switch(this->movingEntityDefinition->axis)
@@ -190,11 +176,11 @@ void MovingEntity::checkDisplacement(MovingEntity this)
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMoving, NULL);
 				}
 				else
 				{
-					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityCheckDirection, NULL);
+					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMovingEntityCheckDirection, NULL);
 				}
 			}
 			break;
@@ -208,11 +194,11 @@ void MovingEntity::checkDisplacement(MovingEntity this)
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMoving, NULL);
 				}
 				else
 				{
-					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityCheckDirection, NULL);
+					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMovingEntityCheckDirection, NULL);
 				}
 			}
 			break;
@@ -220,9 +206,9 @@ void MovingEntity::checkDisplacement(MovingEntity this)
 }
 
 // start moving
-void MovingEntity::startMovement(MovingEntity this)
+void MovingEntity::startMovement()
 {
-	Direction direction = Entity::getDirection(__SAFE_CAST(Entity, this));
+	Direction direction = Entity::getDirection(this);
 
 	switch(this->movingEntityDefinition->axis)
 	{
@@ -281,10 +267,10 @@ void MovingEntity::startMovement(MovingEntity this)
 			break;
 	}
 
-	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityCheckDirection, NULL);
+	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMovingEntityCheckDirection, NULL);
 }
 
-u16 MovingEntity::getAxesForShapeSyncWithDirection(MovingEntity this)
+u16 MovingEntity::getAxesForShapeSyncWithDirection()
 {
 	return this->movingEntityDefinition->axesForShapeSyncWithDirection;
 }

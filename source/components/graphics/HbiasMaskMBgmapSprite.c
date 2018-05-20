@@ -54,13 +54,6 @@ friend class BgmapTexture;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -74,7 +67,7 @@ static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this
  * @param mBgmapSpriteDefinition		Definition to use
  * @param owner							Sprite's owner
  */
-void HbiasMaskMBgmapSprite::constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner)
+void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner)
 {
 	Base::constructor(&hbiasMaskMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
 
@@ -82,7 +75,7 @@ void HbiasMaskMBgmapSprite::constructor(HbiasMaskMBgmapSprite this, const HbiasM
 	this->owner = NULL;
 	this->referenceSprite = NULL;
 	this->step = 0;
-	this->owner = __SAFE_CAST(Entity, owner);
+	this->owner = Entity::safeCast(owner);
 }
 
 /**
@@ -93,10 +86,8 @@ void HbiasMaskMBgmapSprite::constructor(HbiasMaskMBgmapSprite this, const HbiasM
  *
  * @param this		Function scope
  */
-void HbiasMaskMBgmapSprite::destructor(HbiasMaskMBgmapSprite this)
+void HbiasMaskMBgmapSprite::destructor()
 {
-	ASSERT(this, "HbiasMaskMBgmapSprite::destructor: null this");
-
 	this->owner = NULL;
 	this->referenceSprite = NULL;
 
@@ -105,28 +96,26 @@ void HbiasMaskMBgmapSprite::destructor(HbiasMaskMBgmapSprite this)
 	Base::destructor();
 }
 
-void HbiasMaskMBgmapSprite::position(HbiasMaskMBgmapSprite this, const Vector3D* position)
+void HbiasMaskMBgmapSprite::position(const Vector3D* position)
 {
-	ASSERT(this, "HbiasMaskMBgmapSprite::position: null this");
-
 	Base::position(this, position);
 
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 }
 
-static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this)
+void HbiasMaskMBgmapSprite::getReferenceSprite()
 {
-	if(!__IS_OBJECT_ALIVE(this->referenceSprite))
+	if(isDeleted(this->referenceSprite))
 	{
-		Container referenceSpriteOwner = Container::getChildByName(__SAFE_CAST(Container, Game::getStage(Game::getInstance())), this->hbiasMaskMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
+		Container referenceSpriteOwner = Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), this->hbiasMaskMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
 
-		if(__IS_OBJECT_ALIVE(referenceSpriteOwner))
+		if(!isDeleted(referenceSpriteOwner))
 		{
-			VirtualList referenceSpriteOwnerSpritesList = Entity::getSprites(__SAFE_CAST(Entity, referenceSpriteOwner));
+			VirtualList referenceSpriteOwnerSpritesList = Entity::getSprites(referenceSpriteOwner);
 
-			if(__IS_OBJECT_ALIVE(referenceSpriteOwnerSpritesList))
+			if(!isDeleted(referenceSpriteOwnerSpritesList))
 			{
-				this->referenceSprite = __SAFE_CAST(Sprite, VirtualList::front(referenceSpriteOwnerSpritesList));
+				this->referenceSprite = Sprite::safeCast(VirtualList::front(referenceSpriteOwnerSpritesList));
 				this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z;
 			}
 		}
@@ -146,10 +135,8 @@ static void HbiasMaskMBgmapSprite::getReferenceSprite(HbiasMaskMBgmapSprite this
  * @param this		Function scope
  * @param evenFrame
  */
-void HbiasMaskMBgmapSprite::render(HbiasMaskMBgmapSprite this, bool evenFrame)
+void HbiasMaskMBgmapSprite::render(bool evenFrame)
 {
-	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
-
 	Base::render(this, evenFrame);
 
 	if(!this->positioned)
@@ -175,7 +162,7 @@ void HbiasMaskMBgmapSprite::render(HbiasMaskMBgmapSprite this, bool evenFrame)
 		return;
 	}
 
-	if(!__IS_OBJECT_ALIVE(this->owner) || !__IS_OBJECT_ALIVE(this->referenceSprite))
+	if(isDeleted(this->owner) || isDeleted(this->referenceSprite))
 	{
 		this->referenceSprite = NULL;
 
@@ -196,7 +183,7 @@ void HbiasMaskMBgmapSprite::render(HbiasMaskMBgmapSprite this, bool evenFrame)
 	{
 		Sprite ownerFirstSprite = VirtualList::front(ownerSprites);
 
-		if(ownerFirstSprite && ownerFirstSprite != __SAFE_CAST(Sprite, this))
+		if(ownerFirstSprite && ownerFirstSprite != Sprite::safeCast(this))
 		{
 			ownerSpriteGY = Sprite::getWorldGY(ownerFirstSprite);
 			ownerSpriteGYSet = true;
@@ -254,14 +241,14 @@ void HbiasMaskMBgmapSprite::render(HbiasMaskMBgmapSprite this, bool evenFrame)
 	}
 
 	// set the head
-	worldPointer->head = this->head | (__SAFE_CAST(BgmapTexture, this->texture))->segment;
+	worldPointer->head = this->head | (BgmapTexture::safeCast(this->texture))->segment;
 
-	BgmapSprite::processHbiasEffects(__SAFE_CAST(BgmapSprite, this));
+	BgmapSprite::processHbiasEffects(this);
 }
 
-s16 HbiasMaskMBgmapSprite::wave(HbiasMaskMBgmapSprite this)
+s16 HbiasMaskMBgmapSprite::wave()
 {
-	s32 spriteHeight = Sprite::getWorldHeight(__SAFE_CAST(Sprite, this));
+	s32 spriteHeight = Sprite::getWorldHeight(this);
 	s16 i = this->paramTableRow;
 	s16 j = 0;
 

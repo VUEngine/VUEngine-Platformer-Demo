@@ -45,27 +45,19 @@ extern LangROMDef* __LANGUAGES[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void LangSelectScreenState::constructor(LangSelectScreenState this);
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void __attribute__ ((noinline)) LangSelectScreenState::constructor(LangSelectScreenState this)
+void LangSelectScreenState::constructor()
 {
 	Base::constructor();
 
-	SplashScreenState::setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, TitleScreenState::getInstance()));
+	SplashScreenState::setNextState(this, GameState::safeCast(TitleScreenState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_STAGE_ST;
 
 	// create options selector and populate with language names
-	this->languageSelector = __NEW(OptionsSelector, 1, 8, NULL);
-	VirtualList languageNames = __NEW(VirtualList);
+	this->languageSelector = new OptionsSelector(1, 8, NULL);
+	VirtualList languageNames = new VirtualList();
 
 	u8 activeLanguage = ProgressManager::getLanguage(ProgressManager::getInstance());
 
@@ -74,28 +66,28 @@ void __attribute__ ((noinline)) LangSelectScreenState::constructor(LangSelectScr
 	{
 		I18n::setActiveLanguage(I18n::getInstance(), i);
 
-		Option* option = __NEW_BASIC(Option);
+		Option* option = new Option;
 		option->value = (char*)I18n::getActiveLanguageName(I18n::getInstance());
 		option->type = kString;
 		VirtualList::pushBack(languageNames, option);
 	}
 
 	OptionsSelector::setOptions(this->languageSelector, languageNames);
-	__DELETE(languageNames);
+	delete languageNames;
 
 	I18n::setActiveLanguage(I18n::getInstance(), activeLanguage);
 	OptionsSelector::setSelectedOption(this->languageSelector, activeLanguage);
 }
 
-void LangSelectScreenState::destructor(LangSelectScreenState this)
+void LangSelectScreenState::destructor()
 {
-	__DELETE(this->languageSelector);
+	delete this->languageSelector;
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
-void LangSelectScreenState::processInput(LangSelectScreenState this, u32 pressedKey)
+void LangSelectScreenState::processInput(u32 pressedKey)
 {
 	if((pressedKey & K_LU) || (pressedKey & K_RU))
 	{
@@ -110,11 +102,11 @@ void LangSelectScreenState::processInput(LangSelectScreenState this, u32 pressed
 		int selectedLanguage = OptionsSelector::getSelectedOption(this->languageSelector);
 		I18n::setActiveLanguage(I18n::getInstance(), selectedLanguage);
 		ProgressManager::setLanguage(ProgressManager::getInstance(), selectedLanguage);
-		SplashScreenState::loadNextState(__SAFE_CAST(SplashScreenState, this));
+		SplashScreenState::loadNextState(this);
 	}
 }
 
-void LangSelectScreenState::print(LangSelectScreenState this)
+void LangSelectScreenState::print()
 {
 	// print header
 	const char* strLanguageSelectTitle = I18n::getText(I18n::getInstance(), STR_LANGUAGE);

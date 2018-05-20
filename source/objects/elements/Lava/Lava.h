@@ -47,10 +47,10 @@ typedef const LavaDefinition LavaROMDef;
 
 class Lava : Entity
 {
-	void constructor(Lava this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	void startMoving(Lava this);
-	override bool handleMessage(Lava this, Telegram telegram);
-	override bool isVisible(Lava this, int pad, bool recursive);
+	void constructor(EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void startMoving();
+	override bool handleMessage(Telegram telegram);
+	override bool isVisible(int pad, bool recursive);
 }
 
 

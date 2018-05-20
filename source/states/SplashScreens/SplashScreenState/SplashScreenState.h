@@ -52,16 +52,16 @@ class SplashScreenState : GameState
 	/* definition of screen's stage */
 	StageDefinition* stageDefinition;
 
-	void constructor(SplashScreenState this);
-	void setNextState(SplashScreenState this, GameState nextState);
-	void loadNextState(SplashScreenState this);
-	virtual void print(SplashScreenState this);
-	virtual void processInput(SplashScreenState this, u32 releasedKey);
-	override void enter(SplashScreenState this, void* owner);
-	override void exit(SplashScreenState this, void* owner);
-	override void resume(SplashScreenState this, void* owner);
-	override bool processMessage(SplashScreenState this, void* owner, Telegram telegram);
-	override void processUserInput(SplashScreenState this, UserInput userInput);
+	void constructor();
+	void setNextState(GameState nextState);
+	void loadNextState();
+	virtual void print();
+	virtual void processInput(u32 releasedKey);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void resume(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
+	override void processUserInput(UserInput userInput);
 }
 
 

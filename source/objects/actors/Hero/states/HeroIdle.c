@@ -42,39 +42,32 @@
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void HeroIdle::constructor(HeroIdle this);
-void HeroIdle::destructor(HeroIdle this);
-void HeroIdle::enter(HeroIdle this, void* owner);
-void HeroIdle::exit(HeroIdle this, void* owner);
-bool HeroIdle::processMessage(HeroIdle this, void* owner, Telegram telegram);
-
-
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroIdle::constructor(HeroIdle this)
+void HeroIdle::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
 // class's destructor
-void HeroIdle::destructor(HeroIdle this)
+void HeroIdle::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void HeroIdle::enter(HeroIdle this __attribute__ ((unused)), void* owner)
+void HeroIdle::enter(void* owner)
 {
 	// show animation
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Idle");
+	AnimatedEntity::playAnimation(owner, "Idle");
 
 	// start sleeping after 6 seconds of inactivity
-	MessageDispatcher::dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
+	MessageDispatcher::dispatchMessage(6000, Object::safeCast(this), Object::safeCast(owner), kHeroSleep, NULL);
 
 #ifdef __DEBUG
 	Printing::text(Printing::getInstance(), "HeroIdle   ", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, NULL);
@@ -84,20 +77,20 @@ void HeroIdle::enter(HeroIdle this __attribute__ ((unused)), void* owner)
 }
 
 // state's exit
-void HeroIdle::exit(HeroIdle this, void* owner __attribute__ ((unused)))
+void HeroIdle::exit(void* owner __attribute__ ((unused)))
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHeroSleep);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroSleep);
 }
 
 // state's handle message
-bool HeroIdle::processMessage(HeroIdle this __attribute__ ((unused)), void* owner, Telegram telegram)
+bool HeroIdle::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
 		case kBodyStartedMoving:
 
-			Hero::startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(u16*)Telegram::getExtraInfo(telegram));
+			Hero::startedMovingOnAxis(owner, *(u16*)Telegram::getExtraInfo(telegram));
 			break;
 
 		case kBodyStopped:
@@ -107,7 +100,7 @@ bool HeroIdle::processMessage(HeroIdle this __attribute__ ((unused)), void* owne
 
 		case kHeroSleep:
 
-			AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Sleep");
+			AnimatedEntity::playAnimation(owner, "Sleep");
 			return true;
 			break;
 	}
@@ -115,23 +108,23 @@ bool HeroIdle::processMessage(HeroIdle this __attribute__ ((unused)), void* owne
 	return false;
 }
 
-void HeroIdle::onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroIdle::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->pressedKey)
 	{
-		Hero::enableBoost(__SAFE_CAST(Hero, owner));
+		Hero::enableBoost(owner);
 	}
 
 	// check if in front of door and possibly enter it
 	if(K_LU & userInput->pressedKey)
 	{
-		Hero::lookBack(__SAFE_CAST(Hero, owner));
+		Hero::lookBack(owner);
 
-		if(NULL != Hero::getOverlappedDoor(__SAFE_CAST(Hero, owner)))
+		if(NULL != Hero::getOverlappedDoor(owner))
 		{
-			if(Door::canEnter(Hero::getOverlappedDoor(__SAFE_CAST(Hero, owner))))
+			if(Door::canEnter(Hero::getOverlappedDoor(owner)))
 			{
-				Hero::enterDoor(__SAFE_CAST(Hero, owner));
+				Hero::enterDoor(owner);
 				return;
 			}
 		}
@@ -148,16 +141,16 @@ void HeroIdle::onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner,
 
 		if(K_A & userInput->pressedKey)
 		{
-			Hero::jump(__SAFE_CAST(Hero, owner), true);
+			Hero::jump(owner, true);
 		}
 
 		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
 		{
-			if(Actor::canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
+			if(Actor::canMoveTowards(owner, acceleration))
 			{
-				Hero::checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
+				Hero::checkDirection(owner, userInput->pressedKey, "Idle");
 
-				Hero::startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
+				Hero::startedMovingOnAxis(owner, __X_AXIS);
 			}
 		}
 
@@ -167,28 +160,28 @@ void HeroIdle::onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner,
 
 	if(K_LU & userInput->pressedKey)
 	{
-		Hero::checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Back");
+		Hero::checkDirection(owner, userInput->pressedKey, "Back");
 
 		return;
 	}
 
 	if(K_LD & userInput->pressedKey)
 	{
-		Hero::checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Front");
+		Hero::checkDirection(owner, userInput->pressedKey, "Front");
 
 		return;
 	}
 }
 
-void HeroIdle::onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroIdle::onKeyReleased(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->releasedKey)
 	{
-		Hero::disableBoost(__SAFE_CAST(Hero, owner));
+		Hero::disableBoost(owner);
 	}
 }
 
-void HeroIdle::onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroIdle::onKeyHold(void* owner, const UserInput* userInput)
 {
     if((K_LL | K_LR) & userInput->holdKey)
     {
@@ -199,11 +192,11 @@ void HeroIdle::onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner, co
             0,
         };
 
-		if(Actor::canMoveTowards(__SAFE_CAST(Actor, owner), direction))
+		if(Actor::canMoveTowards(owner, direction))
         {
-            Hero::checkDirection(__SAFE_CAST(Hero, owner), userInput->holdKey, "Idle");
+            Hero::checkDirection(owner, userInput->holdKey, "Idle");
 
-            Hero::startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
+            Hero::startedMovingOnAxis(owner, __X_AXIS);
         }
     }
 }

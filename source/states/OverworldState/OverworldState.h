@@ -44,12 +44,12 @@
 dynamic_singleton class OverworldState : GameState
 {
 	static OverworldState getInstance(void);
-	override void enter(OverworldState this, void* owner);
-	override void exit(OverworldState this, void* owner);
-	override void resume(OverworldState this, void* owner);
-	override void suspend(OverworldState this, void* owner);
-	override bool processMessage(OverworldState this, void* owner, Telegram telegram);
-	override void processUserInput(OverworldState this, UserInput userInput);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void resume(void* owner);
+	override void suspend(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
+	override void processUserInput(UserInput userInput);
 }
 
 

@@ -31,21 +31,13 @@
 #include <KeypadManager.h>
 
 
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void SplashScreenState::onFadeInComplete(SplashScreenState this, Object eventFirer);
-static void SplashScreenState::onFadeOutComplete(SplashScreenState this, Object eventFirer);
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void SplashScreenState::constructor(SplashScreenState this)
+void SplashScreenState::constructor()
 {
 	Base::constructor();
 
@@ -53,7 +45,7 @@ void SplashScreenState::constructor(SplashScreenState this)
 }
 
 // class's destructor
-void SplashScreenState::destructor(SplashScreenState this)
+void SplashScreenState::destructor()
 {
 	// destroy the super object
 	// must always be called at the end of the destructor
@@ -61,36 +53,36 @@ void SplashScreenState::destructor(SplashScreenState this)
 }
 
 // state's enter
-void SplashScreenState::enter(SplashScreenState this, void* owner)
+void SplashScreenState::enter(void* owner)
 {
 	// call base
 	Base::enter(this, owner);
 
 	if(this->stageDefinition)
 	{
-		GameState::loadStage(__SAFE_CAST(GameState, this), this->stageDefinition, NULL, true);
+		GameState::loadStage(this, this->stageDefinition, NULL, true);
 	}
 
 	SplashScreenState::print(this);
 
 	// start fade in effect in 1 ms, because a full render cycle is needed to put everything in place
-	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game::getInstance()), kScreenStarted, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kScreenStarted, NULL);
 
 	Game::disableKeypad(Game::getInstance());
 }
 
 // state's exit
-void SplashScreenState::exit(SplashScreenState this, void* owner)
+void SplashScreenState::exit(void* owner)
 {
 	// call base
 	Base::exit(this, owner);
 
 	// destroy the state
-	__DELETE(this);
+	delete this;
 }
 
 // state's resume
-void SplashScreenState::resume(SplashScreenState this, void* owner)
+void SplashScreenState::resume(void* owner)
 {
 	Base::resume(this, owner);
 
@@ -123,7 +115,7 @@ void SplashScreenState::resume(SplashScreenState this, void* owner)
 #endif
 }
 
-void SplashScreenState::processUserInput(SplashScreenState this, UserInput userInput)
+void SplashScreenState::processUserInput(UserInput userInput)
 {
 	if(userInput.pressedKey & ~K_PWR)
 	{
@@ -132,7 +124,7 @@ void SplashScreenState::processUserInput(SplashScreenState this, UserInput userI
 }
 
 // state's handle message
-bool SplashScreenState::processMessage(SplashScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
+bool SplashScreenState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -145,7 +137,7 @@ bool SplashScreenState::processMessage(SplashScreenState this, void* owner __att
 				NULL, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
 				(void (*)(Object, Object))SplashScreenState::onFadeInComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				Object::safeCast(this) // callback scope
 			);
 
 			break;
@@ -154,21 +146,21 @@ bool SplashScreenState::processMessage(SplashScreenState this, void* owner __att
 	return false;
 }
 
-void SplashScreenState::processInput(SplashScreenState this, u32 pressedKey __attribute__ ((unused)))
+void SplashScreenState::processInput(u32 pressedKey __attribute__ ((unused)))
 {
 	SplashScreenState::loadNextState(this);
 }
 
-void SplashScreenState::print(SplashScreenState this __attribute__ ((unused)))
+void SplashScreenState::print()
 {
 }
 
-void SplashScreenState::setNextState(SplashScreenState this, GameState nextState)
+void SplashScreenState::setNextState(GameState nextState)
 {
 	this->nextState = nextState;
 }
 
-void SplashScreenState::loadNextState(SplashScreenState this)
+void SplashScreenState::loadNextState()
 {
 	// disable user input
 	Game::disableKeypad(Game::getInstance());
@@ -181,24 +173,20 @@ void SplashScreenState::loadNextState(SplashScreenState this)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))SplashScreenState::onFadeOutComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		Object::safeCast(this) // callback scope
 	);
 }
 
 // handle event
-static void SplashScreenState::onFadeInComplete(SplashScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void SplashScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "SplashScreenState::onFadeInComplete: null this");
-
 	// enable user input
 	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void SplashScreenState::onFadeOutComplete(SplashScreenState this, Object eventFirer __attribute__ ((unused)))
+void SplashScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "SplashScreenState::onFadeOutComplete: null this");
-
 	// change to next stage
 	Game::changeState(Game::getInstance(), this->nextState);
 }

@@ -39,10 +39,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CannonBall::constructor(CannonBall this, CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
+void CannonBall::constructor(CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "CannonBall::constructor: null this");
-
 	// construct base
 	Base::constructor((ActorDefinition*)cannonBallDefinition, id, internalId, name);
 
@@ -51,11 +49,9 @@ void CannonBall::constructor(CannonBall this, CannonBallDefinition* cannonBallDe
 }
 
 // class's constructor
-void CannonBall::destructor(CannonBall this)
+void CannonBall::destructor()
 {
-	ASSERT(this, "CannonBall::destructor: null this");
-
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCannonBallCheckDisplacement);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -63,33 +59,33 @@ void CannonBall::destructor(CannonBall this)
 }
 
 // start moving
-void CannonBall::startMovement(CannonBall this)
+void CannonBall::startMovement()
 {
 	Velocity velocity = {0, 0, __I_TO_FIX10_6(-8)};
 
-	Actor::moveUniformly(__SAFE_CAST(Actor, this), &velocity);
+	Actor::moveUniformly(this, &velocity);
 
 	// show me
-	Entity::show(__SAFE_CAST(Entity, this));
+	Entity::show(this);
 
-	MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonBallCheckDisplacement, NULL);
 }
 
 // move back to cannon
-void CannonBall::stopMovement(CannonBall this)
+void CannonBall::stopMovement()
 {
 	// stop movement
-	Actor::stopAllMovement(__SAFE_CAST(Actor, this));
+	Actor::stopAllMovement(this);
 
 	// set back local position
 	Vector3D position = {0, 0, __F_TO_FIX10_6(-SORT_INCREMENT)};
-	Actor::setLocalPosition(__SAFE_CAST(Actor, this), &position);
+	Actor::setLocalPosition(this, &position);
 
 	// hide me
-	Entity::hide(__SAFE_CAST(Entity, this));
+	Entity::hide(this);
 }
 
-static void CannonBall::checkIfDistanceTraveled(CannonBall this)
+void CannonBall::checkIfDistanceTraveled()
 {
 	if(this->transformation.globalPosition.z <= __PIXELS_TO_METERS(CANNON_BALL_MINIMUM_Z_VALUE))
 	{
@@ -97,15 +93,13 @@ static void CannonBall::checkIfDistanceTraveled(CannonBall this)
 	}
 	else
 	{
-		MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kCannonBallCheckDisplacement, NULL);
+		MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonBallCheckDisplacement, NULL);
 	}
 }
 
 // state's handle message
-bool CannonBall::handleMessage(CannonBall this, Telegram telegram)
+bool CannonBall::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "CannonBall::handleMessage: null this");
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kCannonShoot:

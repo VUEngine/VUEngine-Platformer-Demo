@@ -45,16 +45,16 @@
 
 class Gui : AnimatedEntity
 {
-	void constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-	void printClock(Gui this);
-	void printBestTime(Gui this);
-	void printCoins(Gui this);
-	void printEnergy(Gui this);
-	void printKey(Gui this);
-	void printLevel(Gui this);
-	void printAll(Gui this);
-	override void ready(Gui this, bool recursive);
-	override bool handlePropagatedMessage(Gui this, int message);
+	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void printClock();
+	void printBestTime();
+	void printCoins();
+	void printEnergy();
+	void printKey();
+	void printLevel();
+	void printAll();
+	override void ready(bool recursive);
+	override bool handlePropagatedMessage(int message);
 }
 
 

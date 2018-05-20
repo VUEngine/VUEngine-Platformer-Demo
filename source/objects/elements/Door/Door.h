@@ -51,17 +51,17 @@ class Door : AnimatedEntity
 	/* destination of door */
 	StageEntryPointDefinition* destinationDefinition;
 
-	void constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-	StageEntryPointDefinition* getExtraInfo(Door this);
-	void onOverlapping(Door this);
-	virtual bool hasDestination(Door this);
-	virtual void setOverlapping(Door this);
-	virtual void unsetOverlapping(Door this);
-	virtual bool canEnter(Door this);
-	virtual u32 getHintType(Door this);
-	override void setExtraInfo(Door this, void* extraInfo);
-	override void ready(Door this, bool recursive);
-	override bool handleMessage(Door this, Telegram telegram);
+	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	StageEntryPointDefinition* getExtraInfo();
+	void onOverlapping();
+	virtual bool hasDestination();
+	virtual void setOverlapping();
+	virtual void unsetOverlapping();
+	virtual bool canEnter();
+	virtual u32 getHintType();
+	override void setExtraInfo(void* extraInfo);
+	override void ready(bool recursive);
+	override bool handleMessage(Telegram telegram);
 }
 
 

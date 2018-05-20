@@ -43,39 +43,29 @@
 extern StageROMDef PAUSE_SCREEN_STAGE_ST;
 
 
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void AutoPauseScreenState::destructor(AutoPauseScreenState this);
-void AutoPauseScreenState::constructor(AutoPauseScreenState this);
-static void AutoPauseScreenState::onFadeOutComplete(AutoPauseScreenState this, Object eventFirer);
-static void AutoPauseScreenState::onFadeInComplete(AutoPauseScreenState this, Object eventFirer);
-
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) AutoPauseScreenState::constructor(AutoPauseScreenState this)
+void AutoPauseScreenState::constructor()
 {
 	Base::constructor();
 }
 
 // class's destructor
-void AutoPauseScreenState::destructor(AutoPauseScreenState this)
+void AutoPauseScreenState::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void AutoPauseScreenState::enter(AutoPauseScreenState this, void* owner __attribute__ ((unused)))
+void AutoPauseScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// load stage
-	GameState::loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
 
 	// print text
 	const char* strAutomaticPauseTitle = I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
@@ -100,7 +90,7 @@ void AutoPauseScreenState::enter(AutoPauseScreenState this, void* owner __attrib
 	Game::disableKeypad(Game::getInstance());
 
 	// start clocks to start animations
-	GameState::startClocks(__SAFE_CAST(GameState, this));
+	GameState::startClocks(this);
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),
@@ -109,21 +99,21 @@ void AutoPauseScreenState::enter(AutoPauseScreenState this, void* owner __attrib
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))AutoPauseScreenState::onFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		Object::safeCast(this) // callback scope
 	);
 }
 
 // state's exit
-void AutoPauseScreenState::exit(AutoPauseScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
+void AutoPauseScreenState::exit(void* owner __attribute__ ((unused)))
 {
 	// call base
 	Base::exit(this, owner);
 
 	// destroy the state
-	__DELETE(this);
+	delete this;
 }
 
-void AutoPauseScreenState::processUserInput(AutoPauseScreenState this, UserInput userInput)
+void AutoPauseScreenState::processUserInput(UserInput userInput)
 {
 	if(K_STA & userInput.pressedKey)
 	{
@@ -138,28 +128,24 @@ void AutoPauseScreenState::processUserInput(AutoPauseScreenState this, UserInput
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
 			(void (*)(Object, Object))AutoPauseScreenState::onFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			Object::safeCast(this) // callback scope
 		);
 	}
 }
 
 // handle event
-static void AutoPauseScreenState::onFadeInComplete(AutoPauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void AutoPauseScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "AutoPauseScreenState::onFadeOutComplete: null this");
-
 	// re-enable user input
 	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void AutoPauseScreenState::onFadeOutComplete(AutoPauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void AutoPauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "AutoPauseScreenState::onFadeOutComplete: null this");
-
 	// re-enable user input
 	Game::enableKeypad(Game::getInstance());
 
 	// resume game
-	Game::unpause(Game::getInstance(), __SAFE_CAST(GameState, this));
+	Game::unpause(Game::getInstance(), GameState::safeCast(this));
 }

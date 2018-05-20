@@ -29,30 +29,19 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void EventManager::constructor(EventManager this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) EventManager::constructor(EventManager this)
+void EventManager::constructor()
 {
-	ASSERT(this, "EventManager::constructor: null this");
-
 	// construct base object
 	Base::constructor();
 }
 
 // class's destructor
-void EventManager::destructor(EventManager this)
+void EventManager::destructor()
 {
-	ASSERT(this, "EventManager::destructor: null this");
-
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }

@@ -40,8 +40,8 @@ typedef const LayerSwitchDoorDefinition LayerSwitchDoorROMDef;
 
 class LayerSwitchDoor : Door
 {
-	void constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-	override bool handleMessage(LayerSwitchDoor this, Telegram telegram);
+	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(Telegram telegram);
 }
 
 

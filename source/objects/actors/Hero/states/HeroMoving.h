@@ -56,11 +56,11 @@ singleton class HeroMoving : HeroState
 
 	static HeroMoving getInstance();
 
-	override void enter(HeroMoving this, void* owner);
-	override void execute(HeroMoving this, void* owner);
-	override bool processMessage(HeroMoving this, void* owner, Telegram telegram);
-	override void onKeyPressed(HeroMoving this, void* owner, const UserInput* userInput);
-	override void onKeyReleased(HeroMoving this, void* owner, const UserInput* userInput);
+	override void enter(void* owner);
+	override void execute(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
+	override void onKeyPressed(void* owner, const UserInput* userInput);
+	override void onKeyReleased(void* owner, const UserInput* userInput);
 }
 
 

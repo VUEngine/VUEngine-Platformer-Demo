@@ -50,9 +50,9 @@ class HideLayer : AnimatedEntity
 	/* is hide layer currently being overlapped by hero? */
 	bool currentlyOverlappingHero;
 
-	void constructor(HideLayer this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-	void setOverlapping(HideLayer this);
-	void unsetOverlapping(HideLayer this);
+	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void setOverlapping();
+	void unsetOverlapping();
 }
 
 

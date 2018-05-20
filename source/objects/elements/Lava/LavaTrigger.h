@@ -40,8 +40,8 @@ typedef const LavaTriggerDefinition LavaTriggerROMDef;
 
 class LavaTrigger : Entity
 {
-	void constructor(LavaTrigger this, EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-	override bool handleMessage(LavaTrigger this, Telegram telegram);
+	void constructor(EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(Telegram telegram);
 }
 
 

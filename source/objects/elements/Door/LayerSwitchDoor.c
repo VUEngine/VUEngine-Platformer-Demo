@@ -39,14 +39,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void LayerSwitchDoor::constructor(LayerSwitchDoor this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void LayerSwitchDoor::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void LayerSwitchDoor::destructor(LayerSwitchDoor this)
+void LayerSwitchDoor::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -54,7 +54,7 @@ void LayerSwitchDoor::destructor(LayerSwitchDoor this)
 }
 
 // state's handle message
-bool LayerSwitchDoor::handleMessage(LayerSwitchDoor this, Telegram telegram)
+bool LayerSwitchDoor::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -63,8 +63,8 @@ bool LayerSwitchDoor::handleMessage(LayerSwitchDoor this, Telegram telegram)
 			if(this->destinationDefinition)
 			{
 				// get global position of destination door
-				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container::getChildByName(__SAFE_CAST(Container, Game::getStage(Game::getInstance())), (char *)this->destinationDefinition->destinationName, true);
-				Vector3D destinationDoorPosition = *Container::getGlobalPosition(__SAFE_CAST(Container, destinationDoor));
+				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), (char *)this->destinationDefinition->destinationName, true);
+				Vector3D destinationDoorPosition = *Container::getGlobalPosition(destinationDoor);
 
 				// apply offset
 				destinationDoorPosition.x += __PIXELS_TO_METERS(this->destinationDefinition->offset.x);

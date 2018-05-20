@@ -47,8 +47,8 @@ dynamic_singleton class AutoPauseSelectScreenState : SplashScreenState
 	bool selection;
 
 	static AutoPauseSelectScreenState getInstance(void);
-	override void print(AutoPauseSelectScreenState this);
-	override void processInput(AutoPauseSelectScreenState this, u32 pressedKey);
+	override void print();
+	override void processInput(u32 pressedKey);
 }
 
 

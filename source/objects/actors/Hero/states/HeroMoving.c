@@ -38,7 +38,7 @@
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void HeroMoving::constructor(HeroMoving this);
+void HeroMoving::constructor();
 
 
 
@@ -47,7 +47,7 @@ void HeroMoving::constructor(HeroMoving this);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroMoving::constructor(HeroMoving this)
+void HeroMoving::constructor()
 {
 	// construct base
 	Base::constructor();
@@ -56,23 +56,23 @@ void __attribute__ ((noinline)) HeroMoving::constructor(HeroMoving this)
 }
 
 // class's destructor
-void HeroMoving::destructor(HeroMoving this)
+void HeroMoving::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kDisallowJumpOnBouncing);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kDisallowJumpOnBouncing);
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
-void HeroMoving::enter(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroMoving::enter(void* owner)
 {
 	u32 holdKey = KeypadManager::getHoldKey(KeypadManager::getInstance());
 
 	if(K_B & holdKey)
 	{
-		Hero::enableBoost(__SAFE_CAST(Hero, owner));
+		Hero::enableBoost(owner);
 	}
 
 #ifdef __DEBUG
@@ -83,83 +83,83 @@ void HeroMoving::enter(HeroMoving this __attribute__ ((unused)), void* owner)
 
 	// make sure that the hero's body is awaken right now so the check during
 	// the execute method doesn't fail
-	Hero::addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
+	Hero::addForce(owner, __X_AXIS, false);
 }
 
-void HeroMoving::execute(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroMoving::execute(void* owner)
 {
 	// keep adding force
-	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(__SAFE_CAST(Actor, owner))))
+	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(owner)))
 	{
-		Hero::addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
+		Hero::addForce(owner, __X_AXIS, false);
 	}
 }
 
 // state's handle message
-bool HeroMoving::processMessage(HeroMoving this __attribute__ ((unused)), void* owner, Telegram telegram)
+bool HeroMoving::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
 		case kBodyStopped:
 
-			Hero::stopMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram::getExtraInfo(telegram));
+			Hero::stopMovingOnAxis(owner, *(int*)Telegram::getExtraInfo(telegram));
 			return true;
 			break;
 
 		case kBodyStartedMoving:
 
 			// start movement
-			Hero::startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram::getExtraInfo(telegram));
+			Hero::startedMovingOnAxis(owner, *(int*)Telegram::getExtraInfo(telegram));
 			break;
 	}
 
 	return false;
 }
 
-void HeroMoving::onKeyPressed(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroMoving::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->pressedKey)
 	{
-		Hero::enableBoost(__SAFE_CAST(Hero, owner));
+		Hero::enableBoost(owner);
 	}
 
 	if(K_A & userInput->pressedKey)
 	{
-		Hero::jump(__SAFE_CAST(Hero, owner), !this->bouncing);
+		Hero::jump(owner, !this->bouncing);
 	}
 
 	// check direction
 	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
-		Hero::addForce(__SAFE_CAST(Hero, owner), __X_AXIS, true);
+		Hero::addForce(owner, __X_AXIS, true);
 
-		Hero::checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Walk");
+		Hero::checkDirection(owner, userInput->pressedKey, "Walk");
 	}
 	else if(K_LU & userInput->pressedKey)
 	{
-		Hero::lookBack(__SAFE_CAST(Hero, owner));
+		Hero::lookBack(owner);
 
-		if(NULL != Hero::getOverlappedDoor(__SAFE_CAST(Hero, owner)))
+		if(NULL != Hero::getOverlappedDoor(owner))
 		{
-			if(Door::canEnter(Hero::getOverlappedDoor(__SAFE_CAST(Hero, owner))))
+			if(Door::canEnter(Hero::getOverlappedDoor(owner)))
 			{
-				Hero::enterDoor(__SAFE_CAST(Hero, owner));
+				Hero::enterDoor(owner);
 				return;
 			}
 		}
 	}
 }
 
-void HeroMoving::onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroMoving::onKeyReleased(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->releasedKey)
 	{
-		Hero::disableBoost(__SAFE_CAST(Hero, owner));
+		Hero::disableBoost(owner);
 	}
 
 	if((K_LL | K_LR) & userInput->releasedKey)
 	{
-		Hero::stopAddingForce(__SAFE_CAST(Hero, owner));
+		Hero::stopAddingForce(owner);
 	}
 }
 

@@ -40,7 +40,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Door::constructor(Door this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Door::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
@@ -50,7 +50,7 @@ void Door::constructor(Door this, AnimatedEntityDefinition* animatedEntityDefini
 }
 
 // class's destructor
-void Door::destructor(Door this)
+void Door::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -58,41 +58,35 @@ void Door::destructor(Door this)
 }
 
 // get destination
-StageEntryPointDefinition* Door::getExtraInfo(Door this)
+StageEntryPointDefinition* Door::getExtraInfo()
 {
-	ASSERT(this, "Door::setExtraInfo: null this");
-
 	return this->destinationDefinition;
 }
 
 // set destination
-void Door::setExtraInfo(Door this, void* extraInfo)
+void Door::setExtraInfo(void* extraInfo)
 {
-	ASSERT(this, "Door::setExtraInfo: null this");
-
 	this->destinationDefinition = (StageEntryPointDefinition*)extraInfo;
 }
 
 // ready
-void Door::ready(Door this, bool recursive __attribute__ ((unused)))
+void Door::ready(bool recursive __attribute__ ((unused)))
 {
-	ASSERT(this, "Door::ready: null this");
-
 	// call base
 	Base::ready(this, recursive);
 
 	if(Door::hasDestination(this))
 	{
-		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
+		AnimatedEntity::playAnimation(this, "Open");
 	}
 	else
 	{
-		AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Closed");
+		AnimatedEntity::playAnimation(this, "Closed");
 	}
 }
 
 // class's handle message
-bool Door::handleMessage(Door this, Telegram telegram)
+bool Door::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -109,12 +103,12 @@ bool Door::handleMessage(Door this, Telegram telegram)
 	return false;
 }
 
-bool Door::hasDestination(Door this)
+bool Door::hasDestination()
 {
 	return NULL != this->destinationDefinition;
 }
 
-void Door::onOverlapping(Door this)
+void Door::onOverlapping()
 {
 	// first contact with hero?
 	if(Door::hasDestination(this))
@@ -123,20 +117,20 @@ void Door::onOverlapping(Door this)
 	}
 }
 
-void Door::setOverlapping(Door this __attribute__ ((unused)))
+void Door::setOverlapping()
 {
 }
 
-void Door::unsetOverlapping(Door this __attribute__ ((unused)))
+void Door::unsetOverlapping()
 {
 }
 
-bool Door::canEnter(Door this)
+bool Door::canEnter()
 {
 	return Door::hasDestination(this);
 }
 
-u32 Door::getHintType(Door this __attribute__ ((unused)))
+u32 Door::getHintType()
 {
 	return kEnterHint;
 }

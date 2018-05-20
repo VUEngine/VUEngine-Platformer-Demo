@@ -39,10 +39,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Hint::constructor(Hint this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Hint::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Hint::constructor: null this");
-
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 
@@ -51,25 +49,21 @@ void Hint::constructor(Hint this, AnimatedEntityDefinition* animatedEntityDefini
 }
 
 // class's destructor
-void Hint::destructor(Hint this)
+void Hint::destructor()
 {
-	ASSERT(this, "Hint::destructor: null this");
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-bool Hint::handleMessage(Hint this, void* telegram)
+bool Hint::handleMessage(void* telegram)
 {
-	ASSERT(this, "Hint::handleMessage: null this");
-
 	// handle messages that any state would handle here
 	switch(Telegram::getMessage(telegram))
 	{
 		case kHintPlayAnimation:
 
-			AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), this->languageAnimName);
+			AnimatedEntity::playAnimation(this, this->languageAnimName);
 			return true;
 			break;
 	}
@@ -77,46 +71,36 @@ bool Hint::handleMessage(Hint this, void* telegram)
 	return false;
 }
 
-void Hint::resume(Hint this)
+void Hint::resume()
 {
-	ASSERT(this, "Hint::resume: null this");
-
 	Base::resume(this);
 
 	Hint::onHintOpened(this, NULL);
 }
 
-void Hint::open(Hint this, u8 hintType)
+void Hint::open(u8 hintType)
 {
-	ASSERT(this, "Hint::open: null this");
-
 	this->type = hintType;
 
-	Entity::show(__SAFE_CAST(Entity, this));
+	Entity::show(this);
 
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Open");
+	AnimatedEntity::playAnimation(this, "Open");
 }
 
-void Hint::close(Hint this)
+void Hint::close()
 {
-	ASSERT(this, "Hint::close: null this");
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHintPlayAnimation);
 
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kHintPlayAnimation);
-
-	AnimatedEntity::playAnimation(__SAFE_CAST(AnimatedEntity, this), "Close");
+	AnimatedEntity::playAnimation(this, "Close");
 }
 
-void Hint::onCloseDone(Hint this, Object eventFirer __attribute__ ((unused)))
+void Hint::onCloseDone(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "Hint::onCloseDone: null this");
-
-	Entity::hide(__SAFE_CAST(Entity, this));
+	Entity::hide(this);
 }
 
-void Hint::onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
+void Hint::onHintOpened(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "Hint::onHintOpened: null this");
-
 	this->languageAnimName = "";
 
 	switch(this->type)
@@ -171,5 +155,5 @@ void Hint::onHintOpened(Hint this, Object eventFirer __attribute__ ((unused)))
 			break;
 	}
 
-	MessageDispatcher::dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHintPlayAnimation, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kHintPlayAnimation, NULL);
 }

@@ -41,29 +41,21 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void LavaTrigger::triggerEventStart(LavaTrigger this);
-void LavaTrigger::triggerEventEnd(LavaTrigger this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void LavaTrigger::constructor(LavaTrigger this, EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void LavaTrigger::constructor(EntityDefinition* inanimatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(inanimatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void LavaTrigger::destructor(LavaTrigger this)
+void LavaTrigger::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), __SAFE_CAST(Object, this), kLavaTriggerEnd);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kLavaTriggerEnd);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -71,7 +63,7 @@ void LavaTrigger::destructor(LavaTrigger this)
 }
 
 // state's handle message
-bool LavaTrigger::handleMessage(LavaTrigger this, Telegram telegram)
+bool LavaTrigger::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
@@ -89,7 +81,7 @@ bool LavaTrigger::handleMessage(LavaTrigger this, Telegram telegram)
 	return false;
 }
 
-void LavaTrigger::triggerEventStart(LavaTrigger this)
+void LavaTrigger::triggerEventStart()
 {
 	// set level mode to paused so that player can't move
 	PlatformerLevelState platformerState = (PlatformerLevelState)Game::getCurrentState(Game::getInstance());
@@ -101,18 +93,18 @@ void LavaTrigger::triggerEventStart(LavaTrigger this)
 	// TODO: play rumble BGM
 
 	// remind myself to stop the trigger event soon
-	MessageDispatcher::dispatchMessage(3000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kLavaTriggerEnd, NULL);
+	MessageDispatcher::dispatchMessage(3000, Object::safeCast(this), Object::safeCast(this), kLavaTriggerEnd, NULL);
 
 	// deactivate shape so I won't get triggered again
-	Entity::activateShapes(__SAFE_CAST(Entity, this), false);
+	Entity::activateShapes(this, false);
 }
 
-void LavaTrigger::triggerEventEnd(LavaTrigger this)
+void LavaTrigger::triggerEventEnd()
 {
 	// TODO: stop rumble BGM
 
 	// get lava entity from stage and start its movement
-	Lava lava = (Lava)Container::getChildByName(__SAFE_CAST(Container, Game::getStage(Game::getInstance())), "Lava", true);
+	Lava lava = (Lava)Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "Lava", true);
 	Lava::startMoving(lava);
 
 	// release player
@@ -120,8 +112,8 @@ void LavaTrigger::triggerEventEnd(LavaTrigger this)
 	PlatformerLevelState::setModeToPlaying(platformerState);
 
 	// tell anyone interested about
-	Object::fireEvent(__SAFE_CAST(Object, EventManager::getInstance()), kEventShakeCompleted);
+	Object::fireEvent(EventManager::getInstance(), kEventShakeCompleted);
 
 	// remove me from stage so I don't waste resources
-	Container::deleteMyself(__SAFE_CAST(Container, this));
+	Container::deleteMyself(this);
 }
