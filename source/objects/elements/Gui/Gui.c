@@ -33,6 +33,7 @@
 #include "Gui.h"
 #include <PlatformerLevelState.h>
 #include <ProgressManager.h>
+#include <Hero.h>
 #include <EventManager.h>
 
 

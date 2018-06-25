@@ -36,7 +36,6 @@
 #include <Hero.h>
 #include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
-#include <AdjustmentScreenState.h>
 #include <OptionsScreenState.h>
 #include <CustomCameraMovementManager.h>
 #include <ProgressManager.h>
@@ -103,7 +102,8 @@ void TitleScreenState::enter(void* owner)
 
 	// create and populate main menu
 	VirtualList options = new VirtualList();
-	if(ProgressManager::hasProgress(ProgressManager::getInstance()))
+	//if(ProgressManager::hasProgress(ProgressManager::getInstance()))
+	if(false)
 	{
 		this->optionsSelector = new OptionsSelector(3, 1, NULL);
 		Option* option = NULL;
@@ -167,8 +167,18 @@ void TitleScreenState::enter(void* owner)
 	// make a little bit of physical simulations so each entity is placed at the floor
 	GameState::startClocks(this);
 
-	// show up level after a little delay
-	MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);
+	// tell any interested entity
+	GameState::propagateMessage(this, kLevelSetUp);
+
+	// fade in screen after a little delay
+	Camera::startEffect(Camera::getInstance(),
+		kFadeTo, // effect type
+		250, // initial delay (in ms)
+		NULL, // target brightness
+		__FADE_DELAY, // delay between fading steps (in ms)
+		(void (*)(Object, Object))TitleScreenState::onFadeInComplete, // callback function
+		Object::safeCast(this) // callback scope
+	);
 }
 
 // state's exit
@@ -353,7 +363,7 @@ void TitleScreenState::processUserInput(UserInput userInput)
 			case kTitleScreenModeShowConfirmNewGame:
 			{
 				// clear progress
-				ProgressManager::clearProgress(ProgressManager::getInstance());
+				//ProgressManager::clearProgress(ProgressManager::getInstance());
 
 				// disable user input
 				Game::disableKeypad(Game::getInstance());
@@ -397,38 +407,6 @@ void TitleScreenState::processUserInput(UserInput userInput)
 		// set mode to showing options
 		this->mode = kTitleScreenModeShowOptions;
 	}
-}
-// state's handle message
-bool TitleScreenState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
-{
-	// process message
-	switch(Telegram::getMessage(telegram))
-	{
-		case kLevelSetUp:
-
-			// tell any interested entity
-			GameState::propagateMessage(this, kLevelSetUp);
-
-			// show level after a little delay
-			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelStarted, NULL);
-			break;
-
-		case kLevelStarted:
-
-			// fade in screen
-			Camera::startEffect(Camera::getInstance(),
-				kFadeTo, // effect type
-				0, // initial delay (in ms)
-				NULL, // target brightness
-				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))TitleScreenState::onFadeInComplete, // callback function
-				Object::safeCast(this) // callback scope
-			);
-
-			break;
-	}
-
-	return false;
 }
 
 // handle event

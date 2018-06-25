@@ -30,7 +30,9 @@
 #include <Optics.h>
 #include <Camera.h>
 #include <MessageDispatcher.h>
+#include <KeyPadManager.h>
 #include <PhysicalWorld.h>
+#include <Utilities.h>
 #include <I18n.h>
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
@@ -41,21 +43,16 @@
 #include <CustomCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
-#include <KeyPadManager.h>
-#include <Utilities.h>
 #include <PostProcessingEffects.h>
 #include <debugUtilities.h>
-
-
-extern PlatformerLevelDefinition LEVEL_1_LV;
 
 
 //---------------------------------------------------------------------------------------------------------
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern PlatformerLevelDefinition LEVEL_1_LV;
 extern EntityDefinition HERO_AC;
-
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -229,9 +226,6 @@ void PlatformerLevelState::enter(void* owner)
 	// level is paused
 	PlatformerLevelState::setModeToPaused(this);
 
-	// show up level after a little delay
-	MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);
-
 	// start clocks
 	Clock::start(this->clock);
 	Clock::setTimeInMilliSeconds(this->clock, ProgressManager::getCurrentLevelTime(ProgressManager::getInstance()));
@@ -245,6 +239,87 @@ void PlatformerLevelState::enter(void* owner)
 	{
 		Camera::startEffect(Camera::getInstance(), kScreenPulsate);
 	}
+
+	// print level name if at level start point
+	if(PlatformerLevelState::isStartingLevel(this) && this->currentLevel->name)
+	{
+		const char* strLevelName = I18n::getText(I18n::getInstance(), (int)this->currentLevel->name);
+		Printing::text(
+			Printing::getInstance(),
+			strLevelName,
+			((__SCREEN_WIDTH_IN_CHARS) - strlen(strLevelName)) >> 1,
+			6,
+			"GuiFont"
+		);
+
+		if(this->currentLevel->identifier)
+		{
+			const char* strLevel = I18n::getText(I18n::getInstance(), STR_LEVEL);
+			const char* strLevelId = this->currentLevel->identifier;
+			u8 strLevelLength = strlen(strLevel);
+			u8 strLevelIdLength = strlen(strLevelId);
+			Printing::text(
+				Printing::getInstance(),
+				strLevel,
+				((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1,
+				4,
+				NULL
+			);
+			Printing::text(
+				Printing::getInstance(),
+				strLevelId,
+				(((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1) + strLevelLength + 1,
+				4,
+				NULL
+			);
+		}
+
+		if(this->currentLevel->slogan)
+		{
+			const char* strLevelSlogan = I18n::getText(I18n::getInstance(), (int)this->currentLevel->slogan);
+			FontSize strLevelSloganSize = Printing::getTextSize(Printing::getInstance(), strLevelSlogan, NULL);
+			Printing::text(
+				Printing::getInstance(),
+				strLevelSlogan,
+				((__SCREEN_WIDTH_IN_CHARS) - strLevelSloganSize.x) >> 1,
+				9,
+				NULL
+			);
+		}
+
+		// erase level message in 2 seconds
+		MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
+	}
+	else if(this->currentStageEntryPoint->isCheckPoint)
+	{
+		// write checkpoint message to screen
+		const char* strCheckpoint = I18n::getText(I18n::getInstance(), STR_CHECKPOINT);
+		Printing::text(
+			Printing::getInstance(),
+			strCheckpoint,
+			((__SCREEN_WIDTH_IN_CHARS) - strlen(strCheckpoint)) >> 1,
+			6,
+			NULL
+		);
+
+		// erase checkpoint message in 2 second
+		MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
+	}
+
+	// tell any interested entity
+	GameState::propagateMessage(this, kLevelSetUp);
+
+	this->mode = kShowingUp;
+
+	// fade in screen after a little delay
+	Camera::startEffect(Camera::getInstance(),
+		kFadeTo, // effect type
+		250, // initial delay (in ms)
+		NULL, // target brightness
+		__FADE_DELAY, // delay between fading steps (in ms)
+		(void (*)(Object, Object))PlatformerLevelState::onLevelStartedFadeInComplete, // callback function
+		Object::safeCast(this) // callback scope
+	);
 }
 
 // state's exit
@@ -363,7 +438,7 @@ void PlatformerLevelState::resume(void* owner)
 void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 	extern TextureROMDef GUI_TX;
-	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
+	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GUI_TX.rows * 8));
 }
 
 UserInput PlatformerLevelState::getUserInput()
@@ -412,103 +487,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 	// process message
 	switch(Telegram::getMessage(telegram))
 	{
-		case kLevelSetUp:
-			{
-				// print level name if at level start point
-				if(PlatformerLevelState::isStartingLevel(this) && this->currentLevel->name)
-				{
-					const char* strLevelName = I18n::getText(I18n::getInstance(), (int)this->currentLevel->name);
-					Printing::text(
-						Printing::getInstance(),
-						strLevelName,
-						((__SCREEN_WIDTH_IN_CHARS) - strlen(strLevelName)) >> 1,
-						6,
-						"GuiFont"
-					);
-
-					if(this->currentLevel->identifier)
-					{
-						const char* strLevel = I18n::getText(I18n::getInstance(), STR_LEVEL);
-						const char* strLevelId = this->currentLevel->identifier;
-						u8 strLevelLength = strlen(strLevel);
-						u8 strLevelIdLength = strlen(strLevelId);
-						Printing::text(
-							Printing::getInstance(),
-							strLevel,
-							((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1,
-							4,
-							NULL
-						);
-						Printing::text(
-							Printing::getInstance(),
-							strLevelId,
-							(((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1) + strLevelLength + 1,
-							4,
-							NULL
-						);
-					}
-
-					if(this->currentLevel->slogan)
-					{
-						const char* strLevelSlogan = I18n::getText(I18n::getInstance(), (int)this->currentLevel->slogan);
-						FontSize strLevelSloganSize = Printing::getTextSize(Printing::getInstance(), strLevelSlogan, NULL);
-						Printing::text(
-							Printing::getInstance(),
-							strLevelSlogan,
-							((__SCREEN_WIDTH_IN_CHARS) - strLevelSloganSize.x) >> 1,
-							9,
-							NULL
-						);
-					}
-
-					// erase level message in 2 seconds
-					MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
-				}
-				else if(this->currentStageEntryPoint->isCheckPoint)
-				{
-					// write checkpoint message to screen
-					const char* strCheckpoint = I18n::getText(I18n::getInstance(), STR_CHECKPOINT);
-					Printing::text(
-						Printing::getInstance(),
-						strCheckpoint,
-						((__SCREEN_WIDTH_IN_CHARS) - strlen(strCheckpoint)) >> 1,
-						6,
-						NULL
-					);
-
-					// erase checkpoint message in 2 second
-					MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
-				}
-
-				// tell any interested entity
-				GameState::propagateMessage(this, kLevelSetUp);
-
-				// show level after a little delay
-				MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelStarted, NULL);
-
-				this->mode = kShowingUp;
-			}
-			break;
-
-		case kLevelStarted:
-
-			// fade in screen
-			Camera::startEffect(Camera::getInstance(),
-				kFadeTo, // effect type
-				0, // initial delay (in ms)
-				NULL, // target brightness
-				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))PlatformerLevelState::onLevelStartedFadeInComplete, // callback function
-				Object::safeCast(this) // callback scope
-			);
-
-			break;
-
 		case kHideLevelMessage:
-
-			Printing::text(Printing::getInstance(), "                                                ", 0, 5, NULL);
-			Printing::text(Printing::getInstance(), "                                                ", 0, 6, NULL);
-			Printing::text(Printing::getInstance(), "                                                ", 0, 7, NULL);
 
 			PlatformerLevelState::setPrintingLayerCoordinates(this);
 			break;

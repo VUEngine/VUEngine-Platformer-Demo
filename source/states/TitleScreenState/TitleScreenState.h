@@ -66,7 +66,6 @@ singleton class TitleScreenState : GameState
 	override void exit(void* owner);
 	override void resume(void* owner);
 	override void suspend(void* owner);
-	override bool processMessage(void* owner, Telegram telegram);
 	override void processUserInput(UserInput userInput);
 }
 

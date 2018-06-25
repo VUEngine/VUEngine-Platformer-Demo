@@ -27,20 +27,13 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Object.h>
-#include <Hero.h>
+#include <SaveDataManager.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+// 											TYPE DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
-
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-#define SAVE_STAMP			"VUEngine"
-#define SAVE_STAMP_LENGTH	8
 
 typedef struct LevelStatus
 {
@@ -61,19 +54,13 @@ typedef struct LevelStatus
 
 // this struct is never instantiated, its sole purpose is to determine offsets of its members.
 // therefore it acts as kind of like a map of sram content.
-typedef struct SaveData
+typedef struct GameSaveData
 {
-	// flag to know if there is data saved
-	u8 saveStamp[SAVE_STAMP_LENGTH];
+	// save data handled by base class
+	SaveData baseSaveData;
 
-	// checksum over sram content to prevent save data manipulation
-	u32 checksum;
-
-	// active language id
-	u8 languageId;
-
-	// auto pause status (0: on, 1: off)
-	u8 autoPauseStatus;
+	// some custom value
+	u8 someCustomValue;
 
 	// total number of completed levels
 	u8 numberOfCompletedLevels;
@@ -84,38 +71,40 @@ typedef struct SaveData
 	// completion statuses for every level in the game
 	LevelStatus levelStatuses[LEVELS_IN_GAME];
 
-} SaveData;
+} GameSaveData;
 
-singleton class ProgressManager : Object
+
+//---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+singleton class ProgressManager : SaveDataManager
 {
-	/* time in current level */
+	// time in current level
 	u32 currentLevelTime;
-	/* time in current level at last checkpoint */
+	// time in current level at last checkpoint
 	u32 checkpointCurrentLevelTime;
-	/* best time in current level */
+	// best time in current level
 	u32 currentLevelBestTime;
-	/* bitstrings that hold collected coin flags */
+	// bitstrings that hold collected coin flags
 	u32 collectedCoins[2];
-	/* bitstrings that hold collected coin flags at last checkpoint */
+	// bitstrings that hold collected coin flags at last checkpoint
 	u32 checkpointCollectedCoins[2];
-	/* bitstring that holds collected item flags */
+	// bitstring that holds collected item flags
 	u16 collectedItems;
-	/* bitstring that holds collected item flags at last checkpoint */
+	// bitstring that holds collected item flags at last checkpoint
 	u16 checkpointCollectedItems;
-	/* flag that tells if the hero has collected the current level's key */
+	// flag that tells if the hero has collected the current level's key
 	bool heroHasKey;
-	/* flag that tells if the hero has collected the current level's key at last checkpoint */
+	// flag that tells if the hero has collected the current level's key at last checkpoint
 	bool checkpointHeroHasKey;
-	/* flag that tells if sram is available on the current cartridge */
-	bool sramAvailable;
-	/* hero's current energy */
+	// hero's current energy
 	u8 heroCurrentEnergy;
-	/* hero's currently active power-up */
+	// hero's currently active power-up
 	u8 heroCurrentPowerUp;
 
 	static ProgressManager getInstance();
 	void clearProgress();
-	bool getAutomaticPauseStatus();
 	bool getCoinStatus(u16 itemNumber);
 	u32  getCurrentLevelBestTime();
 	u8   getCurrentLevelNumberOfCollectedCoins();
@@ -123,16 +112,14 @@ singleton class ProgressManager : Object
 	u8   getHeroCurrentEnergy();
 	u8   getHeroCurrentPowerUp();
 	bool getItemStatus(u16 itemNumber);
-	u8   getLanguage();
 	u16  getTotalNumberOfCollectedCoins();
 	bool hasProgress();
 	bool heroHasKey();
 	void loadCheckPointData();
-	void setAutomaticPauseStatus(u8 automaticPause);
+	override void restoreSettings();
 	void setCheckPointData();
 	bool setCoinStatus(u16 itemNumber, bool taken);
 	bool setItemStatus(u16 itemNumber, bool taken);
-	void setLanguage(u8 languageId);
 	void resetCurrentLevelProgress();
 }
 

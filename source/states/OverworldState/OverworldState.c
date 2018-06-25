@@ -51,7 +51,6 @@
 extern StageROMDef OVERWORLD1_STAGE_ST;
 
 
-
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
@@ -84,8 +83,20 @@ void OverworldState::enter(void* owner)
 	// make a little bit of physical simulations so each entity is placed at the floor
 	GameState::startClocks(this);
 
-	// show up level after a little delay
-	MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);
+	// tell any interested entity
+	GameState::propagateMessage(this, kLevelSetUp);
+
+	OverworldState::print(this);
+
+	// fade in screen after a little delay
+	Camera::startEffect(Camera::getInstance(),
+		kFadeTo, // effect type
+		250, // initial delay (in ms)
+		NULL, // target brightness
+		__FADE_DELAY, // delay between fading steps (in ms)
+		(void (*)(Object, Object))OverworldState::onFadeInComplete, // callback function
+		Object::safeCast(this) // callback scope
+	);
 }
 
 // state's exit
@@ -202,41 +213,6 @@ void OverworldState::processUserInput(UserInput userInput)
 			Object::safeCast(this) // callback scope
 		);
 	}
-}
-
-// state's handle message
-bool OverworldState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
-{
-	// process message
-	switch(Telegram::getMessage(telegram))
-	{
-		case kLevelSetUp:
-
-			// tell any interested entity
-			GameState::propagateMessage(this, kLevelSetUp);
-
-			// show level after a little delay
-			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelStarted, NULL);
-			break;
-
-		case kLevelStarted:
-
-			OverworldState::print(this);
-
-			// fade in screen
-			Camera::startEffect(Camera::getInstance(),
-				kFadeTo, // effect type
-				0, // initial delay (in ms)
-				NULL, // target brightness
-				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))OverworldState::onFadeInComplete, // callback function
-				Object::safeCast(this) // callback scope
-			);
-
-			break;
-	}
-
-	return false;
 }
 
 // handle event

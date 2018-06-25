@@ -80,9 +80,6 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	// load stage
 	GameState::loadStage(this, (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
 
-	// show up level after a little delay
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);
-
 	// print pause text
 	const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
 	const char* strPauseFont = "LargeFont";

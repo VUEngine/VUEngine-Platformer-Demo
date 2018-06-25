@@ -114,8 +114,8 @@ EntityROMDef MANAGED_ENTITY =
 const ClassSizeData _userClassesSizeData[] =
 {
 	{&Bandana::getObjectSize,		"Bandana"},
-	{&Cannon::getObjectSize,			"Cannon"},
-	{&CannonBall::getObjectSize,		"CannonBall"},
+	{&Cannon::getObjectSize,		"Cannon"},
+	{&CannonBall::getObjectSize,	"CannonBall"},
 	{&CogWheel::getObjectSize,		"CogWheel"},
 	{&Coin::getObjectSize,			"Coin"},
 	{&Door::getObjectSize,			"Door"},

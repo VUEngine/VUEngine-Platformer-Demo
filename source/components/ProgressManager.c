@@ -36,13 +36,8 @@
 #include <EventManager.h>
 #include <Utilities.h>
 #include <macros.h>
-#include <AutoPauseScreenState.h>
+#include <Hero.h>
 #include <gameDebugConfig.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,11 +51,7 @@ void ProgressManager::constructor()
 	Base::constructor();
 
 	// init class variables
-	this->sramAvailable = false;
 	ProgressManager::resetCurrentLevelProgress(this);
-
-	// init progress
-	ProgressManager::initialize(this);
 
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
@@ -92,6 +83,11 @@ void ProgressManager::destructor()
 	Base::destructor();
 }
 
+void ProgressManager::restoreSettings()
+{
+	Base::restoreSettings(this);
+}
+
 void ProgressManager::resetHeroState()
 {
 	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
@@ -119,70 +115,11 @@ void ProgressManager::resetCurrentLevelProgress()
 #endif
 }
 
-// write then immediately read save stamp to validate sram
-bool ProgressManager::verifySaveStamp()
-{
-	char saveStamp[SAVE_STAMP_LENGTH];
-
-	// write save stamp
-	SRAMManager::save(SRAMManager::getInstance(), (BYTE*)SAVE_STAMP, offsetof(struct SaveData, saveStamp), sizeof(saveStamp));
-
-	// read save stamp
-	SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&saveStamp, offsetof(struct SaveData, saveStamp), sizeof(saveStamp));
-
-	return !strncmp(saveStamp, SAVE_STAMP, SAVE_STAMP_LENGTH);
-}
-
-u32 ProgressManager::computeChecksum()
-{
-	u32 crc32 = ~0;
-
-	// iterate over whole save data, starting right after the previously saved checksum
-	int i = (offsetof(struct SaveData, checksum) + sizeof(crc32));
-	for(; i < (int)sizeof(SaveData); i++)
-	{
-		// get the current byte
-		u8 currentByte;
-		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&currentByte, i, sizeof(currentByte));
-
-		// loop over all bits of the current byte and add to checksum
-		u8 bit = 0;
-		for(; bit < sizeof(currentByte); bit++)
-		{
-			if((crc32 & 1) != GET_BIT(currentByte, bit))
-			{
-				crc32 = (crc32 >> 1) ^ 0xEDB88320;
-			}
-			else
-			{
-				crc32 = (crc32 >> 1);
-			}
-		}
-	}
-
-	return ~crc32;
-}
-
-void ProgressManager::writeChecksum()
-{
-	u32 checksum = ProgressManager::computeChecksum(this);
-	SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&checksum, offsetof(struct SaveData, checksum), sizeof(checksum));
-}
-
-bool ProgressManager::verifyChecksum()
-{
-	u32 computedChecksum = ProgressManager::computeChecksum(this);
-	u32 savedChecksum = 0;
-	SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&savedChecksum, offsetof(struct SaveData, checksum), sizeof(savedChecksum));
-
-	return (computedChecksum == savedChecksum);
-}
-
 void ProgressManager::clearProgress()
 {
 	if(this->sramAvailable)
 	{
-		SRAMManager::clear(SRAMManager::getInstance(), offsetof(struct SaveData, numberOfCompletedLevels), (int)sizeof(SaveData));
+		SRAMManager::clear(SRAMManager::getInstance(), offsetof(struct GameSaveData, numberOfCompletedLevels), (int)sizeof(GameSaveData));
 	}
 }
 
@@ -192,39 +129,10 @@ bool ProgressManager::hasProgress()
 
 	if(this->sramAvailable)
 	{
-		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(numberOfCompletedLevels));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCompletedLevels, offsetof(struct GameSaveData, numberOfCompletedLevels), sizeof(numberOfCompletedLevels));
 	}
 
 	return (numberOfCompletedLevels > 0);
-}
-
-void ProgressManager::initialize()
-{
-	// verify sram validity
-	if(ProgressManager::verifySaveStamp(this))
-	{
-		// set sram available flag
-		this->sramAvailable = true;
-
-		// verify saved progress presence and integrity
-		if(!ProgressManager::verifyChecksum(this))
-		{
-			// if no previous save could be verified, completely erase sram to start clean
-			SRAMManager::clear(SRAMManager::getInstance(), 0, (int)sizeof(SaveData));
-
-			// write checksum
-			ProgressManager::writeChecksum(this);
-		}
-
-		// load and set active language
-		I18n::setActiveLanguage(I18n::getInstance(), ProgressManager::getLanguage(this));
-
-		// load and set auto pause state
-		Game::setAutomaticPauseState(Game::getInstance(), ProgressManager::getAutomaticPauseStatus(this)
-			? GameState::safeCast(AutoPauseScreenState::getInstance())
-			: NULL
-		);
-	}
 }
 
 void ProgressManager::setCheckPointData()
@@ -266,60 +174,10 @@ u16 ProgressManager::getTotalNumberOfCollectedCoins()
 	u16 numberOfCollectedCoins = 0;
 	if(this->sramAvailable)
 	{
-		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
+		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct GameSaveData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
 	}
 
 	return numberOfCollectedCoins;
-}
-
-u8 ProgressManager::getLanguage()
-{
-	u8 languageId = 0;
-	if(this->sramAvailable)
-	{
-		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&languageId, offsetof(struct SaveData, languageId), sizeof(languageId));
-	}
-
-	return languageId;
-}
-
-void ProgressManager::setLanguage(u8 languageId)
-{
-	if(this->sramAvailable)
-	{
-		// write language
-		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&languageId, offsetof(struct SaveData, languageId), sizeof(languageId));
-
-		// write checksum
-		ProgressManager::writeChecksum(this);
-	}
-}
-
-bool ProgressManager::getAutomaticPauseStatus()
-{
-	u8 autoPauseStatus = 0;
-	if(this->sramAvailable)
-	{
-		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&autoPauseStatus, offsetof(struct SaveData, autoPauseStatus), sizeof(autoPauseStatus));
-	}
-
-	return !autoPauseStatus;
-}
-
-void ProgressManager::setAutomaticPauseStatus(u8 autoPauseStatus)
-{
-	if(this->sramAvailable)
-	{
-		// we save the inverted status, so that 0 = enabled, 1 = disabled.
-		// that way, a blank value means enabled, which is the standard setting.
-		autoPauseStatus = !autoPauseStatus;
-
-		// write auto pause status
-		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&autoPauseStatus, offsetof(struct SaveData, autoPauseStatus), sizeof(autoPauseStatus));
-
-		// write checksum
-		ProgressManager::writeChecksum(this);
-	}
 }
 
 bool ProgressManager::getCoinStatus(u16 id)
@@ -390,7 +248,7 @@ void ProgressManager::loadLevelStatus(u8 levelId)
 	if(this->sramAvailable)
 	{
 		// determine offset of current level in sram
-		currentLevelOffset = offsetof(struct SaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
+		currentLevelOffset = offsetof(struct GameSaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
 
 		// load collected coin flags
 		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
@@ -409,7 +267,7 @@ void ProgressManager::persistLevelStatus(u8 levelId)
 		u16 currentLevelOffset, totalNumberOfCollectedCoins;
 
 		// determine offset of current level in sram
-		currentLevelOffset = offsetof(struct SaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
+		currentLevelOffset = offsetof(struct GameSaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
 
 		// save collected coin flags
 		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
@@ -436,7 +294,7 @@ void ProgressManager::persistLevelStatus(u8 levelId)
 		totalNumberOfCompletedLevels = 0;
 		for(i = 0; i < LEVELS_IN_GAME; i++)
 		{
-			currentLevelOffset = offsetof(struct SaveData, levelStatuses) + (i * sizeof(struct LevelStatus));
+			currentLevelOffset = offsetof(struct GameSaveData, levelStatuses) + (i * sizeof(struct LevelStatus));
 
 			// collected coins
 			SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
@@ -449,11 +307,11 @@ void ProgressManager::persistLevelStatus(u8 levelId)
 				totalNumberOfCompletedLevels++;
 			}
 		}
-		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&totalNumberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(totalNumberOfCompletedLevels));
-		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&totalNumberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(totalNumberOfCollectedCoins));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&totalNumberOfCompletedLevels, offsetof(struct GameSaveData, numberOfCompletedLevels), sizeof(totalNumberOfCompletedLevels));
+		SRAMManager::save(SRAMManager::getInstance(), (BYTE*)&totalNumberOfCollectedCoins, offsetof(struct GameSaveData, numberOfCollectedCoins), sizeof(totalNumberOfCollectedCoins));
 
 		// write checksum
-		ProgressManager::writeChecksum(this);
+		SaveDataManager::writeChecksum(this);
 	}
 }
 

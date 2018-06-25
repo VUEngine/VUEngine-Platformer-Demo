@@ -41,38 +41,37 @@
 
 const char* const LANGUAGE_ES_STRINGS[] =
 {
+	/* Components */
+
+	/* STR_AUTOMATIC_PAUSE */			"Pausa Automatica", //"Pausa Automática",
+	/* STR_AUTO_PAUSE_EXPLANATION */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
+	/* STR_LANGUAGE_SELECT */			"Seleccionar Idioma",
+	/* STR_OFF */						"Apagado",
+	/* STR_ON */						"Encendido",
+	/* STR_PRECAUTION_SCREEN_TEXT: */	"         IMPORTANTE\n     LEE LOS LIBROS DE\nINSTRUCCIONES Y PRECAUCIONES\n       ANTES DE JUGAR",
+	/* STR_TAKE_A_REST */				"¡Por favor, tómate un descanso!",
+
 	/* General */
 
 	/* STR_ARE_YOU_SURE */				"¿Estás seguro?",
-	/* STR_AUTOMATIC_PAUSE */			"Pausa Automatica", //"Pausa Automática",
 	/* STR_BACK */						"Regresar",
 	/* STR_CHECKPOINT */				"Punto de control",
 	/* STR_CONTINUE */					"Continuar",
 	/* STR_CREDITS */					"Créditos",
-	/* STR_IMPORTANT */					"Importante",
 	/* STR_LANGUAGE */					"Idioma",
-	/* STR_LANGUAGE_SELECT */			"Seleccionar Idioma",
 	/* STR_LEVEL */						"Nivel",
 	/* STR_LEVEL_CONQUERED */			"¡Nivel conquistado!",
 	/* STR_LEVEL_DONE */				"¡Nivel completo!",
 	/* STR_NEW_BEST */					"¡Nuevo récord!",
 	/* STR_NEW_GAME */					"Nuevo Juego",
 	/* STR_NO */						"No",
-	/* STR_OFF */						"Apagado",
-	/* STR_ON */						"Encendido",
 	/* STR_OPTIONS */					"Opciones",
 	/* STR_PAUSE */						"Pausa",
 	/* STR_PRESS_START_BUTTON */		"Presionar Start",
 	/* STR_PROGRESS_WILL_BE_ERASED */	"Esto eliminará todo tu progreso.",
 	/* STR_QUIT_LEVEL */				"Salir del nivel",
 	/* STR_SELECT */					"Seleccionar",
-	/* STR_TAKE_A_REST */				"¡Por favor, tómate un descanso!",
 	/* STR_YES */						"Sí",
-
-	/* Splash Screens */
-
-	/* STR_PRECAUTION_SCREEN_TEXT */	"       Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar",
-	/* STR_AUTO_PAUSE_EXPLANATION */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
 
 	/* Levels */
 
