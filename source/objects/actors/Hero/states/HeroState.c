@@ -47,4 +47,5 @@ void HeroState::destructor()
 }
 
 void HeroState::onKeyHold(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
-{}
+{
+}

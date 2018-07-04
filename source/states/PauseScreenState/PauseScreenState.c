@@ -82,7 +82,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 
 	// print pause text
 	const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
-	const char* strPauseFont = "LargeFont";
+	const char* strPauseFont = "GuiFont";
 	FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, strPauseFont);
 	Printing::text(
 		Printing::getInstance(),
@@ -189,7 +189,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 					const char* strNo = I18n::getText(I18n::getInstance(), STR_NO);
 					const char* strAreYouSure = I18n::getText(I18n::getInstance(), STR_ARE_YOU_SURE);
 					const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
-					const char* strPauseFont = "LargeFont";
+					const char* strPauseFont = "GuiFont";
 					FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, strPauseFont);
 
 					u8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;

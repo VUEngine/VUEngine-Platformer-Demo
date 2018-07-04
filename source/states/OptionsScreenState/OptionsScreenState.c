@@ -113,7 +113,7 @@ void OptionsScreenState::print()
 {
 	// title
 	const char* strOptionsTitle = I18n::getText(I18n::getInstance(), STR_OPTIONS);
-	const char* strOptionsTitleFont = "LargeFont";
+	const char* strOptionsTitleFont = "GuiFont";
 	FontSize strOptionsTextSize = Printing::getTextSize(Printing::getInstance(), strOptionsTitle, strOptionsTitleFont);
 	Printing::text(
 		Printing::getInstance(),
