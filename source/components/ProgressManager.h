@@ -59,9 +59,6 @@ typedef struct GameSaveData
 	// save data handled by base class
 	SaveData baseSaveData;
 
-	// some custom value
-	u8 someCustomValue;
-
 	// total number of completed levels
 	u8 numberOfCompletedLevels;
 

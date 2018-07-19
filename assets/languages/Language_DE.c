@@ -28,6 +28,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern EntityDefinition FLAG_GERMANY_EN;
+
+
+//---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
@@ -48,7 +55,7 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_LANGUAGE_SELECT */			"Sprachauswahl",
 	/* STR_OFF */						"Aus",
 	/* STR_ON */						"An",
-	/* STR_PRECAUTION_SCREEN_TEXT */	"        WICHTIG\n   LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"        WICHTIG\nBITTE LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE",
 	/* STR_TAKE_A_REST */				"Bitte mache eine Pause!",
 
 	/* General */
@@ -83,6 +90,9 @@ const LangROMDef LANGUAGE_DE =
 {
 	// Language Name
 	"Deutsch",
+
+	// Flag Entity
+	&FLAG_GERMANY_EN,
 
 	// Strings
 	(const char**)LANGUAGE_DE_STRINGS
