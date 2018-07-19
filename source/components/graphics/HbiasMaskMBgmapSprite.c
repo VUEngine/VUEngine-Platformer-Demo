@@ -103,6 +103,11 @@ void HbiasMaskMBgmapSprite::position(const Vector3D* position)
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 }
 
+void HbiasMaskMBgmapSprite::setMode(u16 display, u16 mode __attribute__ ((unused)))
+{
+	this->head = display | __WORLD_HBIAS;
+}
+
 void HbiasMaskMBgmapSprite::getReferenceSprite()
 {
 	if(isDeleted(this->referenceSprite))

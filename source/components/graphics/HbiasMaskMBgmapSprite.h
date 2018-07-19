@@ -92,6 +92,7 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 	s16 wave();
 	override void render(bool evenFrame);
 	override void position(const Vector3D* position);
+	override void setMode(u16 display, u16 mode);
 }
 
 
