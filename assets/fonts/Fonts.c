@@ -35,6 +35,7 @@ FontDefinition* const __FONTS[] =
 {
 	(FontDefinition*)&PLATFORMER_DEFAULT_FONT,
 	(FontDefinition*)&PLATFORMER_GUI_FONT,
-	(FontDefinition*)&PLATFORMER_LARGE_FONT,
+	(FontDefinition*)&ASTONISH_FONT,
+	(FontDefinition*)&ASTONISH_EXTENDED_FONT,
 	NULL
 };

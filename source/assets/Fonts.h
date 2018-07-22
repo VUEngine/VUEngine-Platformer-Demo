@@ -35,9 +35,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern FontDefinition ASTONISH_FONT;
+extern FontDefinition ASTONISH_EXTENDED_FONT;
 extern FontDefinition PLATFORMER_DEFAULT_FONT;
 extern FontDefinition PLATFORMER_GUI_FONT;
-extern FontDefinition PLATFORMER_LARGE_FONT;
 
 
 #endif

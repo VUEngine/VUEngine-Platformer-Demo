@@ -21,12 +21,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
-//---------------------------------------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
@@ -40,7 +34,7 @@ extern BYTE FontGuiTiles[];
 CharSetROMDef PLATFORMER_GUI_FONT_CH =
 {
 	// number of chars
-	192,
+	10,
 
 	// allocation type
 	__NOT_ANIMATED,
@@ -56,6 +50,9 @@ FontROMDef PLATFORMER_GUI_FONT =
 
 	// character number at which the font starts, allows you to skip the control characters for example
 	32,
+
+	// number of characters in this font
+	5,
 
 	// size of a single character (in chars) ({width, height})
 	{1, 2},
