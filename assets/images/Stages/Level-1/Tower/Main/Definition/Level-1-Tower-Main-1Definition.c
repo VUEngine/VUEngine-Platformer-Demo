@@ -146,7 +146,7 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE =
 				NULL,
 
 				// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-				false,
+				__TRANSPARENCY_NONE,
 
 				// displacement
 				{0, 0, -2, 0},

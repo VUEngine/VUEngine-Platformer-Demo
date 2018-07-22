@@ -224,7 +224,7 @@ MovingEntityROMDef SNAIL_3_AC =
 	__F_TO_FIX10_6(1.5f),
 
 	// time to rest idle
-	3000,
+	1500,
 
 	// axis
 	__X_AXIS,
@@ -282,7 +282,7 @@ MovingEntityROMDef SNAIL_8_AC =
 	__F_TO_FIX10_6(4),
 
 	// time to rest idle
-	3000,
+	1500,
 
 	// axis
 	__X_AXIS,

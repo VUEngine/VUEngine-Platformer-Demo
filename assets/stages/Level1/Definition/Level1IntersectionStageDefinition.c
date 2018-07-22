@@ -118,6 +118,7 @@ PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES[] =
 FontROMDef* const LEVEL1_INTERSECTION_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
+	&ASTONISH_FONT,
 	&PLATFORMER_GUI_FONT,
 
 	NULL
@@ -160,7 +161,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			// z
 			0,
 			// p
-			0
+			0,
 		},
 
 		// camera's frustum
@@ -176,7 +177,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
         	// y1
         	__SCREEN_HEIGHT,
         	// z1
-        	__SCREEN_WIDTH * 5
+        	__SCREEN_WIDTH * 5,
         }
 	},
 
@@ -191,7 +192,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 		// particle removal delay cycles
 		0,
 		// deferred
-		false
+		false,
 	},
 
 	// rendering

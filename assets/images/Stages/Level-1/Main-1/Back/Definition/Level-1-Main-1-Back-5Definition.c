@@ -159,7 +159,7 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM =
 				NULL,
 
 				// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-				false,
+				__TRANSPARENCY_NONE,
 
 				// displacement
 				{0, 0, 0, -20},

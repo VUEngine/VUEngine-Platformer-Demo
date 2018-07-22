@@ -34,11 +34,13 @@
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef EMPTY_STAGE_ST_ENTITIES[] =
-{	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
+{
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef EMPTY_STAGE_ST_UI_ENTITIES[] =
-{	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
+{
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 
@@ -50,7 +52,7 @@ FontROMDef* const EMPTY_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
 	&PLATFORMER_GUI_FONT,
-	&PLATFORMER_LARGE_FONT,
+	&ASTONISH_EXTENDED_FONT,
 
 	NULL
 };

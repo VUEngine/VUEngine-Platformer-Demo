@@ -103,7 +103,7 @@ MBgmapSpriteROMDef MOUND_BG_MIDDLE_SB_SPRITE =
 			NULL,
 
 			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-			__TRANSPARENCY_EVEN,
+			__TRANSPARENCY_NONE,
 
 			// displacement
 			{0, 0, 0, 0},

@@ -44,6 +44,7 @@
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
 #include <PostProcessingEffects.h>
+#include <LowBatteryIndicatorManager.h>
 #include <debugUtilities.h>
 
 
@@ -125,6 +126,8 @@ void PlatformerLevelState::enter(void* owner)
 	VirtualList positionedEntitiesToIgnore = new VirtualList();
 	PlatformerLevelState::getPositionedEntitiesToIgnore(this, positionedEntitiesToIgnore);
 
+	PlatformerLevelState::setLowBatteryIndicatorPosition(this);
+
 	// check if destination entity name is given
 	if(this->currentStageEntryPoint->destinationName)
 	{
@@ -132,7 +135,7 @@ void PlatformerLevelState::enter(void* owner)
 		Vector3D environmentPosition = {0, 0, 0};
 		Vector3D* initialPosition = Entity::calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
 
-//		ASSERT(initialPosition, "PlatormerLevelState::enter: no initial position");
+//		ASSERT(initialPosition, "PlatformerLevelState::enter: no initial position");
 
 		// if global position of destination entity could be found, move the hero and the screen there
 		if(initialPosition)
@@ -149,7 +152,7 @@ void PlatformerLevelState::enter(void* owner)
 			Vector3D screenPosition =
 			{
 				initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH),
-				initialPosition->y - __PIXELS_TO_METERS(__SCREEN_HEIGHT),
+				initialPosition->y - __PIXELS_TO_METERS(__SCREEN_HEIGHT - 56),
 				__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z)
 			};
 
@@ -249,7 +252,7 @@ void PlatformerLevelState::enter(void* owner)
 			strLevelName,
 			((__SCREEN_WIDTH_IN_CHARS) - strlen(strLevelName)) >> 1,
 			6,
-			"GuiFont"
+			"Astonish"
 		);
 
 		if(this->currentLevel->identifier)
@@ -327,6 +330,8 @@ void PlatformerLevelState::exit(void* owner)
 {
 	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
+	PlatformerLevelState::resetLowBatteryIndicatorPosition(this);
+
 	// call base
 	Base::exit(this, owner);
 }
@@ -339,6 +344,9 @@ void PlatformerLevelState::suspend(void* owner)
 	// pause clocks
 	Clock::pause(this->messagingClock, true);
 	Clock::pause(this->clock, true);
+
+	// set low battery indicator position
+	PlatformerLevelState::resetLowBatteryIndicatorPosition(this);
 
 	// pause physical simulations
 	GameState::pausePhysics(this, true);
@@ -378,6 +386,9 @@ void PlatformerLevelState::resume(void* owner)
 	// resume in-game clock
 	Clock::pause(this->messagingClock, false);
 	Clock::pause(this->clock, false);
+
+	// set low battery indicator position
+	PlatformerLevelState::setLowBatteryIndicatorPosition(this);
 
 	// call base
 	Base::resume(this, owner);
@@ -458,10 +469,6 @@ void PlatformerLevelState::processUserInput(UserInput userInput)
 			{
 				// adjustment screen
 				PlatformerLevelState::setModeToPaused(this);
-
-				// set next state of adjustment screen state to null so it can differentiate between
-				// being called the splash screen sequence or from within the game (a bit hacky...)
-				SplashScreenState::setNextState(SplashScreenState::safeCast(AdjustmentScreenState::getInstance()), NULL);
 
 				// pause game and switch to adjustment screen state
 				Game::pause(Game::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
@@ -622,6 +629,16 @@ void PlatformerLevelState::setModeToPaused()
 void PlatformerLevelState::setModeToPlaying()
 {
 	this->mode = kPlaying;
+}
+
+void PlatformerLevelState::setLowBatteryIndicatorPosition()
+{
+	LowBatteryIndicatorManager::setPosition(LowBatteryIndicatorManager::getInstance(), 45, 26);
+}
+
+void PlatformerLevelState::resetLowBatteryIndicatorPosition()
+{
+	LowBatteryIndicatorManager::setPosition(LowBatteryIndicatorManager::getInstance(), __LOW_BATTERY_INDICATOR_X_POSITION, __LOW_BATTERY_INDICATOR_Y_POSITION);
 }
 
 // handle event

@@ -87,7 +87,7 @@ void Gui::ready(bool recursive)
 // print elapsed time to gui
 void Gui::printClock()
 {
-	Clock::print(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), GUI_X_POS + 36, GUI_Y_POS, GUI_FONT);
+	Clock::print(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), GUI_X_POS + 36, GUI_Y_POS, GUI_TEXT_FONT);
 }
 
 // print best time to gui
@@ -123,20 +123,20 @@ void Gui::printCoins()
 	u8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
 
 	// print
-	Printing::text(Printing::getInstance(), "00/64", GUI_X_POS + 11, GUI_Y_POS, GUI_FONT);
-	Printing::int(Printing::getInstance(), coins, printPos, GUI_Y_POS, GUI_FONT);
+	Printing::text(Printing::getInstance(), "00/64", GUI_X_POS + 11, GUI_Y_POS, GUI_TEXT_FONT);
+	Printing::int(Printing::getInstance(), coins, printPos, GUI_Y_POS, GUI_TEXT_FONT);
 }
 
 // print hero's energy to gui
 void Gui::printEnergy()
 {
-	Printing::text(Printing::getInstance(), "\x7B\x7B\x7B", GUI_X_POS + 4, GUI_Y_POS, GUI_FONT);
+	Printing::text(Printing::getInstance(), "\x21\x21\x21", GUI_X_POS + 4, GUI_Y_POS, GUI_ICON_FONT);
 	u8 i;
 	ASSERT(Hero::getInstance(), "Gui::printEnergy: null hero");
 
 	for(i=0; i < Hero::getEnergy(Hero::getInstance()); i++)
 	{
-		Printing::text(Printing::getInstance(), "\x60", GUI_X_POS + 4 + i, GUI_Y_POS, GUI_FONT);
+		Printing::text(Printing::getInstance(), "\x22", GUI_X_POS + 4 + i, GUI_Y_POS, GUI_ICON_FONT);
 	}
 }
 
@@ -145,11 +145,11 @@ void Gui::printKey()
 {
 	if(Hero::hasKey(Hero::getInstance()))
 	{
-		Printing::text(Printing::getInstance(), "\x7E\x7F", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
+		Printing::text(Printing::getInstance(), "\x23\x24", GUI_X_POS + 21, GUI_Y_POS, GUI_ICON_FONT);
 	}
 	else
 	{
-		Printing::text(Printing::getInstance(), "  ", GUI_X_POS + 21, GUI_Y_POS, GUI_FONT);
+		Printing::text(Printing::getInstance(), "  ", GUI_X_POS + 21, GUI_Y_POS, GUI_ICON_FONT);
 	}
 }
 
@@ -157,7 +157,7 @@ void Gui::printKey()
 void Gui::printLevel()
 {
 	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());
-	Printing::text(Printing::getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 29, GUI_Y_POS, GUI_FONT);
+	Printing::text(Printing::getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 29, GUI_Y_POS, GUI_TEXT_FONT);
 }
 
 // update sprite, e.g. after collecting a power-up

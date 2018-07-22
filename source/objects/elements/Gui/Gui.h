@@ -35,9 +35,11 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define GUI_FONT	"GuiFont"
-#define GUI_X_POS	0
-#define GUI_Y_POS	26
+#define GUI_ICON_FONT	"GuiFont"
+#define GUI_TEXT_FONT	"Astonish"
+#define GUI_X_POS		0
+#define GUI_Y_POS		26
+
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION

@@ -259,7 +259,7 @@ s16 HbiasMaskMBgmapSprite::wave()
 
 	// look up table of wave shifts
 	#define HBIAS_LAVA_HEAT_LUT_LENGTH 	32
-	#define HBIAS_LAVA_HEAT_THROTTLE 	1
+	#define HBIAS_LAVA_HEAT_THROTTLE 	2
 	const s16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
 	{
 		-1, -1, -1, -1, -1, -1,

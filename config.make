@@ -1,5 +1,6 @@
 # VUEngine based components that the project uses
-COMPONENTS = 	vuengine-components/entities/ReflectiveEntity											\
+COMPONENTS = 	vuengine-components/fonts/AstonishFont													\
+                vuengine-components/entities/ReflectiveEntity											\
 				vuengine-components/other/AutomaticPause												\
 				vuengine-components/other/LowBatteryIndicator											\
 				vuengine-components/other/SaveDataManager												\

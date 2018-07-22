@@ -284,7 +284,7 @@ MovingEntityROMDef SAW_BLADE_H3_AC =
 	__F_TO_FIX10_6(1.5f),
 
 	// time to rest idle
-	0,
+	750,
 
 	// axis
 	__X_AXIS,
@@ -342,7 +342,7 @@ MovingEntityROMDef SAW_BLADE_H8_AC =
 	__F_TO_FIX10_6(4),
 
 	// time to rest idle
-	0,
+	750,
 
 	// axis
 	__X_AXIS,

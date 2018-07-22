@@ -174,11 +174,11 @@ void OverworldState::print()
 {
 	// coins
 	u8 coins = ProgressManager::getTotalNumberOfCollectedCoins(ProgressManager::getInstance());
-	Printing::int(Printing::getInstance(), coins, 4, 26, "GuiFont");
+	Printing::int(Printing::getInstance(), coins, 4, 26, "AstonishExt");
 
 	// level name
-	Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_LEVEL_1_NAME), 16, 26, "GuiFont");
-	Printing::text(Printing::getInstance(), "1-1", 12, 26, "GuiFont");
+	Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_LEVEL_1_NAME), 16, 26, "AstonishExt");
+	Printing::text(Printing::getInstance(), "1-1", 12, 26, "AstonishExt");
 }
 
 void OverworldState::processUserInput(UserInput userInput)
