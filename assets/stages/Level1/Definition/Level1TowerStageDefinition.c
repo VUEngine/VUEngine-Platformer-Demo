@@ -540,7 +540,7 @@ StageEntryPointROMDef LEVEL1_TOWER_STAGE_MAIN_EP =
 	// offset from entry point (x, y, z)
 	{
 		19,
-		-0,
+		3,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},

@@ -336,12 +336,15 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
 	// offset from entry point (x, y, z)
 	{
 		19,
-		-0,
+		0,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__RIGHT,
 };
 

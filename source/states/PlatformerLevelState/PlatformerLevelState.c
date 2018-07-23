@@ -128,12 +128,16 @@ void PlatformerLevelState::enter(void* owner)
 
 	PlatformerLevelState::setLowBatteryIndicatorPosition(this);
 
-	// check if destination entity name is given
+	// focus camera on destination entity
 	if(this->currentStageEntryPoint->destinationName)
 	{
 		// iterate stage definition to find global position of destination entity
 		Vector3D environmentPosition = {0, 0, 0};
 		Vector3D* initialPosition = Entity::calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
+
+		Printing::int(Printing::getInstance(), initialPosition->x, 0, 0, NULL);
+		Printing::int(Printing::getInstance(), initialPosition->y, 0, 1, NULL);
+		Printing::int(Printing::getInstance(), initialPosition->z, 0, 2, NULL);
 
 //		ASSERT(initialPosition, "PlatformerLevelState::enter: no initial position");
 
@@ -151,9 +155,9 @@ void PlatformerLevelState::enter(void* owner)
 			// focus screen on new position
 			Vector3D screenPosition =
 			{
-				initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH),
-				initialPosition->y - __PIXELS_TO_METERS(__SCREEN_HEIGHT - 56),
-				__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z)
+				initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH) + (this->currentStageEntryPoint->direction * PLATFORMER_CAMERA_OFFSET_X),
+				initialPosition->y - __PIXELS_TO_METERS(__HALF_SCREEN_HEIGHT) + PLATFORMER_CAMERA_OFFSET_Y,
+				__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z),
 			};
 
 			Camera::setPosition(Camera::getInstance(), screenPosition);
@@ -202,9 +206,12 @@ void PlatformerLevelState::enter(void* owner)
 
 			// set focus on the hero
 			Camera::setFocusGameEntity(Camera::getInstance(), Entity::safeCast(hero));
-			Vector3D screenDisplacement = {__PIXELS_TO_METERS(50), __PIXELS_TO_METERS(-30), 0};
+			Vector3D screenDisplacement = {PLATFORMER_CAMERA_OFFSET_X, PLATFORMER_CAMERA_OFFSET_Y, 0};
 			Camera::setFocusEntityPositionDisplacement(Camera::getInstance(), screenDisplacement);
 
+			// set direction according to entry point
+			Direction direction = {this->currentStageEntryPoint->direction, __DOWN, __FAR};
+			Entity::setDirection(Entity::safeCast(hero), direction);
 
 			// apply changes to the visuals
 			GameState::synchronizeGraphics(this);
@@ -290,8 +297,8 @@ void PlatformerLevelState::enter(void* owner)
 			);
 		}
 
-		// erase level message in 2 seconds
-		MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
+		// erase level message in a moment
+		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
 	}
 	else if(this->currentStageEntryPoint->isCheckPoint)
 	{
@@ -305,8 +312,8 @@ void PlatformerLevelState::enter(void* owner)
 			NULL
 		);
 
-		// erase checkpoint message in 2 second
-		MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
+		// erase checkpoint message in a moment
+		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
 	}
 
 	// tell any interested entity
@@ -652,7 +659,6 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 	// enable focus easing
 	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
 	CustomCameraMovementManager::enableFocusEasing(CustomCameraMovementManager::getInstance());
-	CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
 	CustomCameraMovementManager::alertWhenTargetFocused(CustomCameraMovementManager::getInstance());
 }
 

@@ -51,6 +51,7 @@ friend class Camera;
 static Camera _camera = NULL;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 extern BrightnessRepeatROMDef EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMDef EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT;
 
 BrightnessRepeatROMDef* SCREEN_PULSATE_STEPS[] =
 {
@@ -60,7 +61,6 @@ BrightnessRepeatROMDef* SCREEN_PULSATE_STEPS[] =
 	//&EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
 	NULL
 };
-
 
 
 //---------------------------------------------------------------------------------------------------------

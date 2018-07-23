@@ -814,13 +814,16 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 	// offset from entry point (x, y, z)
 	{
 		19,
-		0,
+		-30,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__RIGHT,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
@@ -834,13 +837,16 @@ StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
 	// offset from entry point (x, y, z)
 	{
 		19,
-		0,
+		5,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__RIGHT,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP =
@@ -854,13 +860,16 @@ StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP =
 	// offset from entry point (x, y, z)
 	{
 		-19,
-		0,
+		4,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__LEFT,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP =
@@ -874,13 +883,16 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP =
 	// offset from entry point (x, y, z)
 	{
 		-19,
-		-5,
+		5,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__LEFT,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
@@ -894,13 +906,16 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
 	// offset from entry point (x, y, z)
 	{
 		19,
-		0,
+		5,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__RIGHT,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
@@ -921,6 +936,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__RIGHT,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
@@ -941,6 +959,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__RIGHT,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
@@ -954,11 +975,14 @@ StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
 	// offset from entry point (x, y, z)
 	{
 		-19,
-		0,
+		5,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__LEFT,
 };

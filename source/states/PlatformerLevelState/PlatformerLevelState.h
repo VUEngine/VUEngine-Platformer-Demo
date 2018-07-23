@@ -35,6 +35,10 @@
 //												DEFINES
 //---------------------------------------------------------------------------------------------------------
 
+#define PLATFORMER_MESSAGE_DURATION		3000
+#define PLATFORMER_CAMERA_OFFSET_X		__PIXELS_TO_METERS(50)
+#define PLATFORMER_CAMERA_OFFSET_Y		__PIXELS_TO_METERS(-30)
+
 enum PlatformerLevelModes
 {
 	kPlaying = 1,
@@ -60,6 +64,9 @@ typedef struct StageEntryPointDefinition
 
 	// whether this entry point acts as a checkpoint
 	bool isCheckPoint;
+
+	// facing direction of the hero
+	s8 direction;
 
 } StageEntryPointDefinition;
 

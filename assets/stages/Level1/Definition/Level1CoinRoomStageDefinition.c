@@ -354,14 +354,17 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP =
 
 	// offset from entry point (x, y, z)
 	{
-		-21,
-		-0,
+		-19,
+		0,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__LEFT,
 };
 
 StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
@@ -375,12 +378,15 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
 	// offset from entry point (x, y, z)
 	{
 		19,
-		-0,
+		0,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
 	// whether this entry point acts as a checkpoint
 	false,
+
+	// facing direction of the hero
+	__RIGHT,
 };
 
