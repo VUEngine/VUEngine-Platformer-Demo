@@ -64,23 +64,23 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&MOUND_BG_FRONT_IM, {(0), (136), (LAYER_2), 0}, 0, NULL, NULL, NULL, false}, // Front
-	{&GRASS_AG, {(32), (152), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Grass
-	{&COIN_AG, {(56), (134), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, {(72), (134), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Coin
-	{&TITLE_SCREEN_STAGE_MAIN_1_IM, {(192), (168), 0, 0}, 0, NULL, NULL, NULL, false}, // Main Layer
-	{&LOGO_IM, {(192), (53), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Logo
-	{&VUENGINE_LOGO_IM, {(192), (18), (LAYER_1), 0}, 0, NULL, NULL, NULL, false}, // VUEngine
-	{&HERO_BANDANA_AG, {(192), (157), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Hero
-	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, {(192), (168), 0, 0}, 0, NULL, NULL, NULL, false}, // Main Layer Front
-	{&CLOUDS_IM, {(194), (122), (LAYER_3 - (LAYER_3 - LAYER_2) / 2 + 8), 0}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&MOUND_BG_BACK_IM, {(280), (82), (LAYER_5), 0}, 0, NULL, NULL, NULL, false}, // Mountains
-	{&MOUND_BG_CASTLE_FLAG_AG, {(287), (86), (LAYER_3), + SORT_INCREMENT}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_IM, {(317), (104), (LAYER_3), + SORT_INCREMENT}, 0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_AG, {(322), (96), (LAYER_3), + SORT_INCREMENT}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&MOUND_BG_CASTLE_FLAG_AG, {(356), (86), (LAYER_3), + SORT_INCREMENT}, 0, NULL, NULL, NULL, false}, // Castle Flag
-	{&STAR_AG, {(362), (-18), (LAYER_5 - SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // Star
-	{&BUSH_AG, {(368), (148), (LAYER_0), 0}, 0, NULL, NULL, NULL, false}, // Bush
+	{&MOUND_BG_FRONT_IM, 					{  0, 136, LAYER_2, 0}, 		0, NULL, NULL, NULL, false}, // Front
+	{&GRASS_AG, 							{ 32, 152, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Grass
+	{&COIN_AG, 								{ 56, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, 								{ 72, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
+	{&TITLE_SCREEN_STAGE_MAIN_1_IM, 		{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer
+	{&LOGO_IM, 								{192,  53, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Logo
+	{&VUENGINE_LOGO_IM, 					{192,  18, LAYER_1, 0}, 		0, NULL, NULL, NULL, false}, // VUEngine
+	{&HERO_BANDANA_AG, 						{192, 157, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Hero
+	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, 	{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer Front
+	{&CLOUDS_IM, 							{194, 128, LAYER_4, 0}, 		0, NULL, NULL, NULL, false}, // Clouds
+	{&MOUND_BG_BACK_IM, 					{280,  82, LAYER_5, 0}, 		0, NULL, NULL, NULL, false}, // Mountains
+	{&MOUND_BG_CASTLE_IM, 					{300, 104, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle
+	{&MOUND_BG_CASTLE_FLAG_AG, 				{274,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag L
+	{&MOUND_BG_CASTLE_FLAG_AG, 				{304,  95, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag M
+	{&MOUND_BG_CASTLE_FLAG_AG, 				{334,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag R
+	{&STAR_AG, 								{392,  16, LAYER_5 - 1, 0},		0, NULL, NULL, NULL, false}, // Star
+	{&BUSH_AG, 								{368, 148, LAYER_0, 0},			0, NULL, NULL, NULL, false}, // Bush
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

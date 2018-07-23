@@ -102,8 +102,7 @@ void TitleScreenState::enter(void* owner)
 
 	// create and populate main menu
 	VirtualList options = new VirtualList();
-	//if(ProgressManager::hasProgress(ProgressManager::getInstance()))
-	if(false)
+	if(ProgressManager::hasProgress(ProgressManager::getInstance()))
 	{
 		this->optionsSelector = new OptionsSelector(3, 1, NULL);
 		Option* option = NULL;
@@ -363,7 +362,7 @@ void TitleScreenState::processUserInput(UserInput userInput)
 			case kTitleScreenModeShowConfirmNewGame:
 			{
 				// clear progress
-				//ProgressManager::clearProgress(ProgressManager::getInstance());
+				ProgressManager::clearProgress(ProgressManager::getInstance());
 
 				// disable user input
 				Game::disableKeypad(Game::getInstance());

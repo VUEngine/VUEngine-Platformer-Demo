@@ -69,7 +69,6 @@ extern EntityDefinition TORCH_LIGHT_AG;
 extern EntityDefinition DARKNESS_OVERLAY_IM;
 extern EntityDefinition TORCH_SMOKE_PS;
 
-
 extern TextureDefinition COG_WHEEL_TX;
 extern TextureDefinition DOOR_TX;
 extern TextureDefinition GUI_TX;
@@ -134,7 +133,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_1_COLLISIONS_1[] =
 {
 	{&COLLISION_CL,					{-184,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
 	{&COLLISION_CL,					{ 184,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
-	{&COLLISION_CL,					{-128,	287, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom left floor
+	{&COLLISION_CL,					{-128,	288, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom left floor
 	{&COLLISION_CL,					{ 302,	256, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom right floor
 	{&COLLISION_CL,					{ 160,	144, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // step stone bottom right
 	{&COLLISION_CL,					{  80,	 72, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone
@@ -207,8 +206,8 @@ PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 	// part 1
 	{&KEY_DOOR_AG,					{48, 	LEVEL_1_TOWER_HEIGHT - 96, 		LAYER_0_DOORS - LAYER_0_FOREGROUND, LAYER_0_DOORS_DISPLACEMENT - LAYER_0_FOREGROUND_DISPLACEMENT}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
 	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 256,		LAYER_0_FOREGROUND, 0}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_ENTITIES, NULL, false},
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 256,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 256,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_2, NULL, false},
+	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 257,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 257,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_2, NULL, false},
 	{&TORCH_SMOKE_PS,				{204,	LEVEL_1_TOWER_HEIGHT - 126, 	LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 
 	{&LAVA_TRIGGER_IG,				{174,	LEVEL_1_TOWER_HEIGHT - 130, 	LAYER_0, 0}, 0, NULL, NULL, NULL, false},
@@ -265,14 +264,14 @@ PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 	{&TORCH_SMOKE_PS,				{176,	LEVEL_1_TOWER_HEIGHT - 958, 	LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&TORCH_OFF_IM,					{240,	LEVEL_1_TOWER_HEIGHT - 948, 	LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 			0, NULL, NULL, NULL, false},
 
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 768,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
+	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 769,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN[] =
 {
-	{&GUI_AG, {192, 216, -4, 0}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {192, 216, -2, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -309,6 +308,7 @@ TextureDefinition* const LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 	&LAVA_TX,
 	&LAVA_TOP_TX,
 	&DARKNESS_OVERLAY_TX,
+
 	NULL
 };
 
