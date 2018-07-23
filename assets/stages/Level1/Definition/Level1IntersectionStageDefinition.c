@@ -82,7 +82,7 @@ PositionedEntityROMDef LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 	//{&SAW_BLADE_H8_AC, {(172), (176), LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Saw Blade
 	{&DOOR_AG, {(178), (48), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntEntr1", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, false}, // Door (Upper Entrance)
 	{&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM, {(192), (96), (-SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // MainBack
-	{&LEVEL1_INTERSECTION_STAGE_BACK_1_IM, {(192), (96), LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Back
+	{&LEVEL1_INTERSECTION_STAGE_BACK_1_IM, {(192), (96), 32, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Back
 	{&LEVEL1_INTERSECTION_STAGE_MAIN_1_IM, {(192), (96), (-SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false}, // Main
 	{&TORCH_OFF_IM, {(206), (34), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Upper Left Torch
 	//{&TORCH_LIGHT_AG, {(206), (148), (0), 0}, 0, NULL, NULL, NULL, false}, // Lower Right Torch Light
@@ -363,11 +363,11 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_EXIT_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__LEFT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_LOWER_EP =
@@ -386,11 +386,11 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_LOWER_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP =
@@ -409,10 +409,10 @@ StageEntryPointROMDef LEVEL1_INTERSECTION_STAGE_UPPER_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 

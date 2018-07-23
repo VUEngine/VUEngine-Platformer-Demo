@@ -376,7 +376,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COIN_AG,						{ 184,  225, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			1, NULL, NULL, NULL, false},
 	{&COIN_AG,						{ 200,  225, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			2, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_MAIN_1_BACK_1_IM,		{ 360,  256, LAYER_3, 0},											0, NULL, NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_BACK_1_IM,		{ 360,  248, LAYER_3, 0},											0, NULL, NULL, NULL, false},
 
 	{&STAR_AG,						{ 240,	 96, LAYER_5 + LAYER_INCREMENT*3, 0},						0, NULL, NULL, NULL, false},
 
@@ -476,11 +476,11 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&LAYER_SWITCH_DOOR_AG,			{2669, 308, LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "DoorFt1", NULL, (void*)&LEVEL_1_MAIN_LS_BACK_EP, false},
 	{&COIN_AG,						{2732, 232, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				24, NULL, NULL, NULL, false},
 	{&COIN_AG,						{2748, 232, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				25, NULL, NULL, NULL, false},
-	{&LEVEL_1_TOWER_IM,				{2894, 132, LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&LEVEL_1_TOWER_IM,				{2894, 132, 32, LAYER_0_BACKGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&CLOUD_A_IM,					{2796, 104, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&CLOUD_A_IM,					{2868, 120, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&CLOUD_A_IM,					{2972, 112, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&KEY_DOOR_AG,					{2893, 228, LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "TowrEnt", NULL, (void*)&LEVEL1_TOWER_STAGE_MAIN_EP, false},
+	{&KEY_DOOR_AG,					{2891, 228, LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "TowrEnt", NULL, (void*)&LEVEL1_TOWER_STAGE_MAIN_EP, false},
 	{&GRASS_AG,						{2960, 237, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 
 	// right border
@@ -819,11 +819,11 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
@@ -842,11 +842,11 @@ StageEntryPointROMDef LEVEL_1_MAIN_HOUSE_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP =
@@ -865,11 +865,11 @@ StageEntryPointROMDef LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__LEFT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP =
@@ -888,11 +888,11 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__LEFT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
@@ -911,11 +911,11 @@ StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
@@ -934,11 +934,11 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_FRONT_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
@@ -957,11 +957,11 @@ StageEntryPointROMDef LEVEL_1_MAIN_LS_BACK_EP =
 		-1
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
@@ -980,9 +980,9 @@ StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__LEFT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };

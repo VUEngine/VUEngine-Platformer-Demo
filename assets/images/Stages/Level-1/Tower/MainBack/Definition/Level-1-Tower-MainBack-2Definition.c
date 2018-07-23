@@ -94,7 +94,7 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_BACK_2_IM_SPRITE =
 			__TRANSPARENCY_NONE,
 
 			// displacement
-			{0, 0, SORT_INCREMENT, 0},
+			{0, 0, 32, 0},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

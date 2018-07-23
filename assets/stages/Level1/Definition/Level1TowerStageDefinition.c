@@ -197,7 +197,7 @@ PositionedEntityROMDef LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this definition
-	{&LEVEL_1_TOWER_MAIN_BACK_IM,	{192,	LEVEL_1_TOWER_HEIGHT, LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT + 1}, 0, "BkgImg", NULL, NULL, true},
+	{&LEVEL_1_TOWER_MAIN_BACK_IM,	{192,	LEVEL_1_TOWER_HEIGHT, 32, LAYER_0_BACKGROUND_DISPLACEMENT + 1}, 0, "BkgImg", NULL, NULL, true},
 	{&LAVA_IG,						{190,	LEVEL_1_TOWER_HEIGHT + 64, 	LAYER_0, 0}, 0, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
@@ -544,6 +544,9 @@ StageEntryPointROMDef LEVEL1_TOWER_STAGE_MAIN_EP =
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
+
+	// facing direction of the hero
+	__RIGHT,
 
 	// whether this entry point acts as a checkpoint
 	true,

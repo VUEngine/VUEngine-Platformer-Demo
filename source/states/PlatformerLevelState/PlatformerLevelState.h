@@ -62,11 +62,11 @@ typedef struct StageEntryPointDefinition
 	// offset from entry point (x, y, z)
 	ScreenPixelVector offset;
 
-	// whether this entry point acts as a checkpoint
-	bool isCheckPoint;
-
 	// facing direction of the hero
 	s8 direction;
+
+	// whether this entry point acts as a checkpoint
+	bool isCheckPoint;
 
 } StageEntryPointDefinition;
 

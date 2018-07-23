@@ -83,7 +83,7 @@ PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 	{&LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM, {(192), (112), (-SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // MainBack
 	{&COLLISION_CL, {(192), (24), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_320_16_8, false}, // Top Collision
 	{&COLLISION_CL, {(192), (200), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_224_16_8, false}, // Bottom Collision
-	{&LEVEL1_COIN_ROOM_STAGE_BACK_1_IM, {(192), (112), LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Back
+	{&LEVEL1_COIN_ROOM_STAGE_BACK_1_IM, {(192), (112), 32, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Back
 	{&SAW_BLADE_H8_AC, {(192), (192), LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Saw Blade
 	{&LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM, {(192), (112), (-SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false}, // Main
 	{&COIN_AG, {(208), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 39, NULL, NULL, NULL, false}, // Coin
@@ -360,11 +360,11 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__LEFT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
 StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
@@ -378,15 +378,15 @@ StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_MAIN_EP =
 	// offset from entry point (x, y, z)
 	{
 		19,
-		0,
+		5,
 		(LAYER_0_FOREGROUND - LAYER_0_DOORS),
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 

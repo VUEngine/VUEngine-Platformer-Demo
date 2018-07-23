@@ -408,9 +408,9 @@ StageEntryPointROMDef TEST_STAGE_EP =
 		0
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };

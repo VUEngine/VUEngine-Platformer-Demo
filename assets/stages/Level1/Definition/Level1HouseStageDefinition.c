@@ -341,10 +341,10 @@ StageEntryPointROMDef LEVEL1_HOUSE_STAGE_MAIN_EP =
 		LAYER_0_HERO_DISPLACEMENT
 	},
 
-	// whether this entry point acts as a checkpoint
-	false,
-
 	// facing direction of the hero
 	__RIGHT,
+
+	// whether this entry point acts as a checkpoint
+	false,
 };
 
