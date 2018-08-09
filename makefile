@@ -150,7 +150,7 @@ SOURCES_DIRS = $(shell find source assets -type d -print)
 HEADERS_DIRS = $(shell find source -type d -print)
 
 # Obligatory headers
-CONFIG_FILE =   		    $(shell pwd)/source/config.h
+CONFIG_FILE =   		$(shell pwd)/source/config.h
 ESSENTIAL_HEADERS = 	-include $(CONFIG_FILE) \
 						-include $(VUENGINE_HOME)/source/libvuengine.h \
 						$(foreach PLUGIN, $(PLUGINS), $(shell if [ -f $(VBDE)libs/$(PLUGIN)/source/config.h ]; then echo -include $(VBDE)libs/$(PLUGIN)/source/config.h; fi; )) \
