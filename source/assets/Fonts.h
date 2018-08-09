@@ -35,8 +35,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern FontDefinition ASTONISH_FONT;
-extern FontDefinition ASTONISH_EXTENDED_FONT;
+extern FontDefinition ASTONISH_FONT_SHADOW;
+extern FontDefinition ASTONISH_EXTENDED_FONT_SHADOW;
 extern FontDefinition PLATFORMER_DEFAULT_FONT;
 extern FontDefinition PLATFORMER_GUI_FONT;
 

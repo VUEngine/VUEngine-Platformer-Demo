@@ -69,7 +69,7 @@ void AutoPauseScreenState::enter(void* owner __attribute__ ((unused)))
 
 	// print text
 	const char* strAutomaticPauseTitle = I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
-	const char* strAutomaticPauseTitleFont = "AstonishExt";
+	const char* strAutomaticPauseTitleFont = "AstonishSExt";
 	const char* strAutomaticPauseText = I18n::getText(I18n::getInstance(), STR_TAKE_A_REST);
 	FontSize strAutomaticPauseSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
 	FontSize strAutomaticPauseTextSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseText, NULL);

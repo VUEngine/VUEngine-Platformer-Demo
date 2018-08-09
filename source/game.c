@@ -27,7 +27,6 @@
 #include <Game.h>
 #include <ProgressManager.h>
 #include <AutoPauseManager.h>
-#include <LowBatteryIndicatorManager.h>
 #include <PrecautionScreenState.h>
 #include <LangSelectScreenState.h>
 #include <TitleScreenState.h>
@@ -39,9 +38,8 @@
 
 int main(void)
 {
-	// initialize components
+	// initialize plugins
 	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	LowBatteryIndicatorManager::setActive(LowBatteryIndicatorManager::getInstance(), true);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),

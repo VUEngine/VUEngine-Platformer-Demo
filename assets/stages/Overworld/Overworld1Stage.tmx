@@ -5,7 +5,7 @@
   <property name="declaration" value="NULL"/>
   <property name="include" value="Fonts.h, macros.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
-  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, ASTONISH_EXTENDED_FONT"/>
+  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, ASTONISH_EXTENDED_FONT_SHADOW"/>
   <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.stageTextureEntryDefinitions" value="NULL"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>

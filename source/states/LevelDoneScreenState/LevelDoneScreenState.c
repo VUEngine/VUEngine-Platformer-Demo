@@ -111,9 +111,9 @@ void LevelDoneScreenState::print()
 	{
 		strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_CONQUERED);
 	}
-	FontSize strLevelDoneSize = Printing::getTextSize(Printing::getInstance(), strLevelDone, "AstonishExt");
+	FontSize strLevelDoneSize = Printing::getTextSize(Printing::getInstance(), strLevelDone, "AstonishSExt");
 	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strLevelDoneSize.x >> 1);
-	Printing::text(Printing::getInstance(), strLevelDone, strHeaderXPos, 9, "AstonishExt");
+	Printing::text(Printing::getInstance(), strLevelDone, strHeaderXPos, 9, "AstonishSExt");
 
 	// number of coins
 	Printing::text(Printing::getInstance(), "00/64", 22, 13, NULL);

@@ -44,7 +44,6 @@
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
 #include <PostProcessingEffects.h>
-#include <LowBatteryIndicatorManager.h>
 #include <debugUtilities.h>
 
 
@@ -125,8 +124,6 @@ void PlatformerLevelState::enter(void* owner)
 	// get list of entities that should not be loaded
 	VirtualList positionedEntitiesToIgnore = new VirtualList();
 	PlatformerLevelState::getPositionedEntitiesToIgnore(this, positionedEntitiesToIgnore);
-
-	PlatformerLevelState::setLowBatteryIndicatorPosition(this);
 
 	// focus camera on destination entity
 	if(this->currentStageEntryPoint->destinationName)
@@ -259,7 +256,7 @@ void PlatformerLevelState::enter(void* owner)
 			strLevelName,
 			((__SCREEN_WIDTH_IN_CHARS) - strlen(strLevelName)) >> 1,
 			6,
-			"Astonish"
+			"AstonishS"
 		);
 
 		if(this->currentLevel->identifier)
@@ -337,8 +334,6 @@ void PlatformerLevelState::exit(void* owner)
 {
 	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
-	PlatformerLevelState::resetLowBatteryIndicatorPosition(this);
-
 	// call base
 	Base::exit(this, owner);
 }
@@ -351,9 +346,6 @@ void PlatformerLevelState::suspend(void* owner)
 	// pause clocks
 	Clock::pause(this->messagingClock, true);
 	Clock::pause(this->clock, true);
-
-	// set low battery indicator position
-	PlatformerLevelState::resetLowBatteryIndicatorPosition(this);
 
 	// pause physical simulations
 	GameState::pausePhysics(this, true);
@@ -393,9 +385,6 @@ void PlatformerLevelState::resume(void* owner)
 	// resume in-game clock
 	Clock::pause(this->messagingClock, false);
 	Clock::pause(this->clock, false);
-
-	// set low battery indicator position
-	PlatformerLevelState::setLowBatteryIndicatorPosition(this);
 
 	// call base
 	Base::resume(this, owner);
@@ -636,16 +625,6 @@ void PlatformerLevelState::setModeToPaused()
 void PlatformerLevelState::setModeToPlaying()
 {
 	this->mode = kPlaying;
-}
-
-void PlatformerLevelState::setLowBatteryIndicatorPosition()
-{
-	LowBatteryIndicatorManager::setPosition(LowBatteryIndicatorManager::getInstance(), 45, 26);
-}
-
-void PlatformerLevelState::resetLowBatteryIndicatorPosition()
-{
-	LowBatteryIndicatorManager::setPosition(LowBatteryIndicatorManager::getInstance(), __LOW_BATTERY_INDICATOR_X_POSITION, __LOW_BATTERY_INDICATOR_Y_POSITION);
 }
 
 // handle event

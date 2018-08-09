@@ -1,9 +1,10 @@
-# VUEngine based components that the project uses
-PLUGINS =	vuengine/plugins/fonts/AstonishFont														\
+# VUEngine based plugins that the project uses
+PLUGINS =	vuengine/plugins/entities/LowBatteryIndicatorEntity										\
 			vuengine/plugins/entities/ReflectiveEntity												\
+			vuengine/plugins/fonts/AstonishFont														\
 			vuengine/plugins/other/AutomaticPause													\
-			vuengine/plugins/other/LowBatteryIndicator												\
-			vuengine/plugins/other/SaveDataManager													\vuengine/plugins/states/SplashScreens													\
+			vuengine/plugins/other/SaveDataManager													\
+			vuengine/plugins/states/SplashScreens													\
 
 # Compiler's output
 COMPILER_OUTPUT         = c
