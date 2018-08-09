@@ -9,11 +9,14 @@ TYPE = release
 #TYPE = debug
 #TYPE = preprocessor
 
+# engine name
+ENGINE_NAME = vuengine/core
+
 # Which libraries are linked
-LIBRARIES = vuengine $(COMPONENTS)
+LIBRARIES = $(ENGINE_NAME) $(PLUGINS)
 
 # engine's home
-VUENGINE_HOME = $(VBDE)libs/vuengine
+VUENGINE_HOME = $(VBDE)libs/$(ENGINE_NAME)
 
 # My home
 MY_HOME = $(shell pwd)
@@ -147,10 +150,10 @@ SOURCES_DIRS = $(shell find source assets -type d -print)
 HEADERS_DIRS = $(shell find source -type d -print)
 
 # Obligatory headers
-CONFIG_FILE =       $(shell pwd)/source/config.h
-ESSENTIAL_HEADERS = -include $(CONFIG_FILE) \
-                    -include $(VUENGINE_HOME)/source/libvuengine.h \
-                    $(foreach COMPONENT, $(COMPONENTS), $(shell if [ -f $(VBDE)libs/$(COMPONENT)/source/config.h ]; then echo -include $(VBDE)libs/$(COMPONENT)/source/config.h; fi; )) \
+CONFIG_FILE =   		    $(shell pwd)/source/config.h
+ESSENTIAL_HEADERS = 	-include $(CONFIG_FILE) \
+						-include $(VUENGINE_HOME)/source/libvuengine.h \
+						$(foreach PLUGIN, $(PLUGINS), $(shell if [ -f $(VBDE)libs/$(PLUGIN)/source/config.h ]; then echo -include $(VBDE)libs/$(PLUGIN)/source/config.h; fi; )) \
 
 # Common macros for all build types
 COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
@@ -315,7 +318,7 @@ libraries: deleteLibraries
 				-e TYPE=$(TYPE) 																						\
 				-e CONFIG_FILE=$(CONFIG_FILE) 																			\
 				-e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) 																\
-				-e COMPONENTS="$(COMPONENTS)"												 							\
+				-e PLUGINS="$(PLUGINS)"												 									\
 				-e GAME_HOME=$(MY_HOME);																				\
 	)
 
