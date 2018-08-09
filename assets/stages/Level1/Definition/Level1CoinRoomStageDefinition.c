@@ -51,6 +51,7 @@ extern EntityDefinition HERO_AC;
 extern EntityDefinition LEVEL1_COIN_ROOM_STAGE_BACK_1_IM;
 extern EntityDefinition LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM;
 extern EntityDefinition LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM;
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition SAW_BLADE_H8_AC;
 extern EntityDefinition TORCH_AG;
 extern EntityDefinition TORCH_LIGHT_AG;
@@ -108,7 +109,8 @@ PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL1_COIN_ROOM_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_AG, {(192), (216), (0), 0}, 0, NULL, NULL, NULL, false}, // GUI
+	{&LOW_POWER_INDICATOR_LB, 	{LOW_POWER_ENTITY_INGAME_X_POSITION, LOW_POWER_ENTITY_INGAME_Y_POSITION, LOW_POWER_ENTITY_INGAME_Z_POSITION, LOW_POWER_ENTITY_INGAME_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {192, 216, 0, -2}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

@@ -35,6 +35,7 @@
 
 extern EntityDefinition CLOCK_AG;
 extern EntityDefinition COIN_AG;
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +44,8 @@ extern EntityDefinition COIN_AG;
 
 PositionedEntityROMDef LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{__LOW_POWER_ENTITY_X_POSITION, __LOW_POWER_ENTITY_Y_POSITION, __LOW_POWER_ENTITY_Z_POSITION, __LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+
 	{&COIN_AG,  {164, 106, -8, 0}, 0, NULL, NULL, NULL, false}, // Coin
 	{&CLOCK_AG, {164, 123, LAYER_0_ITEMS, 0}, 0, NULL, NULL, NULL, false}, // Clock
 

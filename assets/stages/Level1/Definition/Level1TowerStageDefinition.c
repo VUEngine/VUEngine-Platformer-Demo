@@ -59,6 +59,7 @@ extern EntityDefinition LAVA_TRIGGER_IG;
 extern EntityDefinition LEVEL_1_TOWER_MAIN_1_IM;
 extern EntityDefinition LEVEL_1_TOWER_MAIN_2_IM;
 extern EntityDefinition LEVEL_1_TOWER_MAIN_BACK_IM;
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition MOVING_PLATFORM_V6_AC;
 extern EntityDefinition SAW_BLADE_H8_AC;
@@ -271,7 +272,8 @@ PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN[] =
 {
-	{&GUI_AG, {192, 216, -2, 0}, 0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 	{LOW_POWER_ENTITY_INGAME_X_POSITION, LOW_POWER_ENTITY_INGAME_Y_POSITION, LOW_POWER_ENTITY_INGAME_Z_POSITION, LOW_POWER_ENTITY_INGAME_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {192, 216, 0, -3}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

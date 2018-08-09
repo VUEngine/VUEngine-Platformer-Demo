@@ -43,6 +43,7 @@ extern EntityDefinition COIN_AG;
 extern EntityDefinition GRASS_AG;
 extern EntityDefinition HERO_BANDANA_AG;
 extern EntityDefinition LOGO_IM;
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition MOUND_BG_BACK_IM;
 extern EntityDefinition MOUND_BG_CASTLE_FLAG_AG;
 extern EntityDefinition MOUND_BG_CASTLE_IM;
@@ -64,6 +65,8 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{__LOW_POWER_ENTITY_X_POSITION, __LOW_POWER_ENTITY_Y_POSITION, __LOW_POWER_ENTITY_Z_POSITION, __LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+
 	{&MOUND_BG_FRONT_IM, 					{  0, 136, LAYER_2, 0}, 		0, NULL, NULL, NULL, false}, // Front
 	{&GRASS_AG, 							{ 32, 152, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Grass
 	{&COIN_AG, 								{ 56, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin

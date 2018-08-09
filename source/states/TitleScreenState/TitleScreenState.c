@@ -269,7 +269,7 @@ void TitleScreenState::processUserInput(UserInput userInput)
 		{
 			case kTitleScreenModeShowPressStart:
 			{
-				// disable blinking "press start button"
+				// disable flashing "press start button"
 				Object::removeEventListener(Object::safeCast(Game::getUpdateClock(Game::getInstance())), Object::safeCast(this), (void (*)(Object, Object))TitleScreenState::onSecondChange, kEventSecondChanged);
 				TitleScreenState::hideMessage(this);
 

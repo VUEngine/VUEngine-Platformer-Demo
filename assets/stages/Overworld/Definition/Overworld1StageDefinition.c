@@ -36,6 +36,7 @@
 extern EntityDefinition FLOWER_A_AG;
 extern EntityDefinition GUI_OVERWORLD_AG;
 extern EntityDefinition HERO_IDLE_AG;
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition OVERWORLD_1_IM;
 extern EntityDefinition SMOKE_PS;
 extern EntityDefinition WATER_A_AG;
@@ -48,6 +49,8 @@ extern u16 KRISSE_BGM[][2];
 
 PositionedEntityROMDef OVERWORLD1_STAGE_ST_ENTITIES[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{__LOW_POWER_ENTITY_X_POSITION, __LOW_POWER_ENTITY_Y_POSITION, __LOW_POWER_ENTITY_Z_POSITION, __LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+
 	{&WATER_A_AG, {(26), (86), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Water
 	{&WATER_A_AG, {(70), (18), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Water
 	{&WATER_A_AG, {(74), (176), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Water

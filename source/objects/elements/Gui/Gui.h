@@ -55,7 +55,6 @@ class Gui : AnimatedEntity
 	void printKey();
 	void printLevel();
 	void printAll();
-	override void ready(bool recursive);
 	override bool handlePropagatedMessage(int message);
 }
 

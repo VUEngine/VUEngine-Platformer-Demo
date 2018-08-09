@@ -81,6 +81,9 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 	// print options
 	OptionsScreenState::print(this);
 
+	// start clocks to start animations
+	GameState::startClocks(this);
+
 	// disable user input
 	Game::disableKeypad(Game::getInstance());
 

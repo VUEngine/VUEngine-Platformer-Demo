@@ -82,6 +82,7 @@ extern EntityDefinition LEVEL_1_MAIN_1_MAIN_4_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_5_IM;
 extern EntityDefinition LEVEL_1_MAIN_1_MAIN_6_IM;
 extern EntityDefinition LEVEL_1_TOWER_IM;
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition MANAGED_ENTITY;
 extern EntityDefinition MOUND_1_IM;
 extern EntityDefinition MOUND_2_IM;
@@ -123,6 +124,7 @@ extern CharSetDefinition LEVEL_1_HOUSE_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_BACK_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_CH;
 extern CharSetDefinition LEVEL_1_MAIN_1_MAIN_FRONT_CH;
+extern CharSetDefinition LOW_POWER_INDICATOR_CH;
 extern CharSetDefinition MOUND_BG_BACK_CH;
 extern CharSetDefinition MOUND_BG_FRONT_CH;
 extern CharSetDefinition MOUND_BG_MIDDLE_CH;
@@ -156,6 +158,7 @@ extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2A_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_2B_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX;
 extern TextureDefinition LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX;
+extern TextureDefinition LOW_POWER_INDICATOR_TX;
 extern TextureDefinition MOUND_BG_BACK_TX;
 extern TextureDefinition MOUND_BG_FRONT_TX;
 extern TextureDefinition MOUND_BG_MIDDLE_TX;
@@ -491,7 +494,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 {
-	{&GUI_AG, {192, 216, 0, 0}, 0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 	{LOW_POWER_ENTITY_INGAME_X_POSITION, LOW_POWER_ENTITY_INGAME_Y_POSITION, LOW_POWER_ENTITY_INGAME_Z_POSITION, LOW_POWER_ENTITY_INGAME_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {192, 216, 0, -2}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -521,6 +525,7 @@ CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 	&COIN_BACK_CH,
 	&COIN_SILHOUETTE_CH,
 	&COIN_BACK_SILHOUETTE_CH,
+	&LOW_POWER_INDICATOR_CH,
 	&MOUND_BG_BACK_CH,
 	&MOUND_BG_MIDDLE_CH,
 	&MOUND_BG_FRONT_CH,
@@ -557,6 +562,7 @@ TextureDefinition* const LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 	&LEVEL_1_MAIN_1_MAIN_FRONT_1_TX,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_2A_TX,
 	&LEVEL_1_MAIN_1_MAIN_FRONT_2B_TX,
+	&LOW_POWER_INDICATOR_TX,
 	&MOUND_BG_BACK_TX,
 	&MOUND_BG_MIDDLE_TX,
 	&MOUND_BG_FRONT_TX,
@@ -575,6 +581,7 @@ TextureDefinition* const LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 	&KEY_TX,
 	&WATERFALL_STREAM_2x28_TX,
 	&WATERFALL_TOP_TX,
+
 	NULL
 };
 
@@ -629,7 +636,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
         	// x1
         	__SCREEN_WIDTH,
         	// y1
-        	__SCREEN_HEIGHT - 2 * 8,
+        	__SCREEN_HEIGHT,
         	// z1
         	__SCREEN_WIDTH * 5,
         }

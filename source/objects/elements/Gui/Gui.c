@@ -78,12 +78,6 @@ void Gui::destructor()
 	Base::destructor();
 }
 
-void Gui::ready(bool recursive)
-{
-	// call base
-	Base::ready(this, recursive);
-}
-
 // print elapsed time to gui
 void Gui::printClock()
 {
