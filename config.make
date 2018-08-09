@@ -1,10 +1,10 @@
 # VUEngine based plugins that the project uses
-PLUGINS =	vuengine/plugins/entities/LowBatteryIndicatorEntity										\
-			vuengine/plugins/entities/ReflectiveEntity												\
-			vuengine/plugins/fonts/AstonishFont														\
-			vuengine/plugins/other/AutomaticPause													\
-			vuengine/plugins/other/SaveDataManager													\
-			vuengine/plugins/states/SplashScreens													\
+PLUGINS = 	vuengine/plugins/entities/LowPowerEntity														\
+			vuengine/plugins/entities/ReflectiveEntity														\
+			vuengine/plugins/fonts/Astonish																	\
+			vuengine/plugins/other/AutomaticPause															\
+			vuengine/plugins/other/SaveDataManager															\
+			vuengine/plugins/states/SplashScreens															\
 
 # Compiler's output
 COMPILER_OUTPUT         = c
@@ -18,7 +18,7 @@ COMPILER_OUTPUT         = c
 # tools:				Adds debugging tools without all the debug checking.
 # beta:					Removes most asserts. For testing the performance on hardware.
 # release:				Removes all asserts. For shipping only!
-TYPE                    = beta
+TYPE                    = tools
 
 # Optimization level
 OPTIMIZATION            = O2
