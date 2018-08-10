@@ -45,6 +45,7 @@
 #define __AUTOMATIC_PAUSE_SCREEN_TITLE_TEXT_FONT				"AstonishSExt"
 #define __AUTOMATIC_PAUSE_SCREEN_BODY_TEXT						__TRANSLATE(STR_TAKE_A_REST)
 
+#define __LOW_POWER_ENTITY_USE_GUI_BGMAP_ANIMATED_SPRITE		1
 
 
 //---------------------------------------------------------------------------------------------------------

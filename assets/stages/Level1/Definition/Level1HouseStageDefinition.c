@@ -83,7 +83,7 @@ PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 
 PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{LOW_POWER_ENTITY_INGAME_X_POSITION, LOW_POWER_ENTITY_INGAME_Y_POSITION, LOW_POWER_ENTITY_INGAME_Z_POSITION, LOW_POWER_ENTITY_INGAME_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
 	{&GUI_AG, {192, 216, 0, -2}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
@@ -141,23 +141,23 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 			// z
 			0,
 			// p
-			0
+			0,
 		},
 
 		// camera's frustum
         {
         	// x0
-        	0,
+        	INGAME_CAMERA_FRUSTUM_X0,
         	// y0
-			0,
+			INGAME_CAMERA_FRUSTUM_Y0,
 			// z0
-			-10,
+			INGAME_CAMERA_FRUSTUM_Z0,
         	// x1
-        	__SCREEN_WIDTH,
+        	INGAME_CAMERA_FRUSTUM_X1,
         	// y1
-        	__SCREEN_HEIGHT,
+        	INGAME_CAMERA_FRUSTUM_Y1,
         	// z1
-        	__SCREEN_WIDTH * 5
+        	INGAME_CAMERA_FRUSTUM_Z1,
         }
 	},
 
@@ -172,7 +172,7 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		// particle removal delay cycles
 		0,
 		// deferred
-		false
+		false,
 	},
 
 	// rendering
@@ -284,7 +284,7 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 		{
 			__I_TO_FIX10_6(0),
 			__F_TO_FIX10_6(__GRAVITY),
-			__I_TO_FIX10_6(0)
+			__I_TO_FIX10_6(0),
 		},
 
 		// friction

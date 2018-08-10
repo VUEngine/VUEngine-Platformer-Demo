@@ -28,7 +28,7 @@
 #include <AnimatedEntity.h>
 #include <BgmapAnimatedSprite.h>
 #include <Gui.h>
-#include <GUISprite.h>
+#include <GuiBgmapAnimatedSprite.h>
 #include <macros.h>
 
 
@@ -184,7 +184,7 @@ BgmapSpriteROMDef GUI_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(GUISprite),
+		__TYPE(GuiBgmapAnimatedSprite),
 
 		// texture definition
 		(TextureDefinition*)&GUI_TX,
@@ -211,7 +211,7 @@ BgmapSpriteROMDef GUI_OVERWORLD_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(GUISprite),
+		__TYPE(GuiBgmapAnimatedSprite),
 
 		// texture definition
 		(TextureDefinition*)&GUI_OVERWORLD_TX,
