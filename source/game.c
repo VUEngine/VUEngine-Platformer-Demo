@@ -30,6 +30,7 @@
 #include <PrecautionScreenState.h>
 #include <LangSelectScreenState.h>
 #include <TitleScreenState.h>
+#include <AutomaticPauseScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,6 +41,8 @@ int main(void)
 {
 	// initialize plugins
 	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
+	AutoPauseManager::setAutomaticPauseState(AutoPauseManager::getInstance(), GameState::safeCast(AutomaticPauseScreenState::getInstance()));
+	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 30);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),

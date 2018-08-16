@@ -34,9 +34,9 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-dynamic_singleton class AutoPauseScreenState : GameState
+dynamic_singleton class AutomaticPauseScreenState : GameState
 {
-	static AutoPauseScreenState getInstance(void);
+	static AutomaticPauseScreenState getInstance(void);
 
 	override void enter(void* owner);
 	override void exit(void* owner);
