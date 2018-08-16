@@ -39,15 +39,15 @@
 int main(void)
 {
 	// initialize plugins
-	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
+/*	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
 		GameState::safeCast(TitleScreenState::getInstance())
 	);
-
+*/
 	// start the game
-	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 
 	// end program
 	return true;

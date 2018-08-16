@@ -1,6 +1,5 @@
 # VUEngine based plugins that the project uses
-PLUGINS = 	vuengine/plugins/graphics/GuiBgmapAnimatedSprite											\
-			vuengine/plugins/entities/LowPowerEntity													\
+PLUGINS = 	vuengine/plugins/entities/LowPowerEntity													\
 			vuengine/plugins/entities/ReflectiveEntity													\
 			vuengine/plugins/fonts/Astonish																\
 			vuengine/plugins/other/AutomaticPause														\
@@ -47,7 +46,7 @@ PAD_ROM                 = 0
 # Dump elf
 # 0:                    No dumping.
 # 1:                    Dump the assembly code and the memory sections.
-DUMP_ELF                = 0
+DUMP_ELF                = 1
 
 # Sections' usage
 # SRAM's usage
