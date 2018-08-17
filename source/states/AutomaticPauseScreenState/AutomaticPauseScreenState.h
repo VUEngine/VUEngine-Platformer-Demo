@@ -19,39 +19,29 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef AUTOMATIC_PAUSE_SCREEN_STATE_H_
+#define AUTOMATIC_PAUSE_SCREEN_STATE_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
-#include <ProgressManager.h>
-#include <AutoPauseManager.h>
-#include <PrecautionScreenState.h>
-#include <LangSelectScreenState.h>
-#include <TitleScreenState.h>
-#include <AutomaticPauseScreenState.h>
+#include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											GAME'S MAIN LOOP
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-int main(void)
+dynamic_singleton class AutomaticPauseScreenState : GameState
 {
-	// initialize plugins
-	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	AutoPauseManager::setAutomaticPauseState(AutoPauseManager::getInstance(), GameState::safeCast(AutomaticPauseScreenState::getInstance()));
-	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 30);
-	ProgressManager::restoreSettings(ProgressManager::getInstance());
-	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
-		GameState::safeCast(TitleScreenState::getInstance())
-	);
+	static AutomaticPauseScreenState getInstance(void);
 
-	// start the game
-	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
-
-	// end program
-	return true;
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void processUserInput(UserInput userInput);
 }
+
+
+#endif
