@@ -43,6 +43,9 @@
 
 #define __LOW_POWER_ENTITY_USE_GUI_BGMAP_ANIMATED_SPRITE		1
 
+#define __SPLASH_SCREENS_USE_LOW_POWER_ENTITY					1
+#define __AUTOMATIC_PAUSE_SCREEN_USE_LOW_POWER_ENTITY			1
+
 
 //---------------------------------------------------------------------------------------------------------
 //											DEBUGGING/ PROFILING
