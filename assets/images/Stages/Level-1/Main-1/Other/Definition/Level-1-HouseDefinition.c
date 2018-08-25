@@ -97,7 +97,7 @@ BgmapSpriteROMDef LEVEL_1_HOUSE_IM_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, BACKGROUND_PARALLAX_DISPLACEMENT},
+		{0, 0, 0, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
