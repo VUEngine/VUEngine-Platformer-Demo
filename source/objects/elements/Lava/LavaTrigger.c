@@ -38,6 +38,14 @@
 #include <PlatformerLevelState.h>
 #include <EventManager.h>
 #include <GameEvents.h>
+#include <SoundManager.h>
+
+
+//---------------------------------------------------------------------------------------------------------
+// 												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern const u16 CRUMBLE_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -90,7 +98,9 @@ void LavaTrigger::triggerEventStart()
 	// initialize a dramatic screen shake effect
 	Camera::startEffect(Camera::getInstance(), kShake, 2000);
 
-	// TODO: play rumble BGM
+	// play sound
+	Vector3D position = {192, 112, 0};
+	SoundManager::playFxSound(SoundManager::getInstance(), CRUMBLE_SND, position);
 
 	// remind myself to stop the trigger event soon
 	MessageDispatcher::dispatchMessage(3000, Object::safeCast(this), Object::safeCast(this), kLavaTriggerEnd, NULL);
@@ -101,8 +111,6 @@ void LavaTrigger::triggerEventStart()
 
 void LavaTrigger::triggerEventEnd()
 {
-	// TODO: stop rumble BGM
-
 	// get lava entity from stage and start its movement
 	Lava lava = (Lava)Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "Lava", true);
 	Lava::startMoving(lava);
