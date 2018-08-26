@@ -109,6 +109,7 @@ singleton class ProgressManager : SaveDataManager
 	u8   getHeroCurrentEnergy();
 	u8   getHeroCurrentPowerUp();
 	bool getItemStatus(u16 itemNumber);
+	override int getSaveDataSize();
 	u16  getTotalNumberOfCollectedCoins();
 	bool hasProgress();
 	bool heroHasKey();

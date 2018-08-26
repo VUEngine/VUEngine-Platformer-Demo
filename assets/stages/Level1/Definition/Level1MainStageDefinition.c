@@ -645,11 +645,11 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		128,
+		152,
 		// unload padding
-		32,
-		// streaming amplitude
 		16,
+		// streaming amplitude
+		32,
 		// particle removal delay cycles
 		4,
 		// deferred
