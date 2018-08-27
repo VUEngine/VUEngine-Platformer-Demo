@@ -88,6 +88,11 @@ void ProgressManager::restoreSettings()
 	Base::restoreSettings(this);
 }
 
+int ProgressManager::getSaveDataSize()
+{
+	return (int)sizeof(GameSaveData);
+}
+
 void ProgressManager::resetHeroState()
 {
 	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
@@ -119,7 +124,7 @@ void ProgressManager::clearProgress()
 {
 	if(this->sramAvailable)
 	{
-		SRAMManager::clear(SRAMManager::getInstance(), offsetof(struct GameSaveData, numberOfCompletedLevels), (int)sizeof(GameSaveData));
+		SRAMManager::clear(SRAMManager::getInstance(), offsetof(struct GameSaveData, numberOfCompletedLevels), ProgressManager::getSaveDataSize(this));
 	}
 }
 

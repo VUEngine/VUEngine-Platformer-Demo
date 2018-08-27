@@ -17,32 +17,100 @@
  * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
  * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-
-#ifndef OVERWORLD_STATE_H_
-#define OVERWORLD_STATE_H_
+*/
 
 
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+// 												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameState.h>
+#include <SoundManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+// 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-dynamic_singleton class OverworldState : GameState
+const u16 CRUMBLE_SND[] =
 {
-	static OverworldState getInstance(void);
-	override void enter(void* owner);
-	override void exit(void* owner);
-	override void resume(void* owner);
-	override void suspend(void* owner);
-	override void processUserInput(UserInput userInput);
-}
-
-
-#endif
+	//songlength
+	64,
+	//stdwait
+	0x05,
+	//stdSxLRV
+	0x55,
+	//stdSxEV0
+	0xD1,
+	//stdSxEV1
+	0x01,
+	//stdSxRAM
+	0x03,
+	//stdS5SWP
+	//0x00,
+	//song's notes
+	D_2,
+	F_2,
+	E_1,
+	C_3,
+	D_3,
+	E_2,
+	A_3,
+	A_1,
+	D_2,
+	F_2,
+	E_1,
+	C_3,
+	D_3,
+	E_2,
+	A_3,
+	A_1,
+	D_2,
+	F_2,
+	E_1,
+	C_3,
+	D_3,
+	E_2,
+	A_3,
+	A_1,
+	D_2,
+	F_2,
+	E_1,
+	C_3,
+	D_3,
+	E_2,
+	A_3,
+	A_1,
+	D_2,
+	F_2,
+	E_1,
+	C_3,
+	D_3,
+	E_2,
+	A_3,
+	A_1,
+	D_2,
+	F_2,
+	E_1,
+	C_3,
+	D_3,
+	E_2,
+	A_3,
+	A_1,
+	D_2,
+	F_2,
+	E_1,
+	C_3,
+	D_3,
+	E_2,
+	A_3,
+	A_1,
+	D_2,
+	F_2,
+	E_1,
+	C_3,
+	D_3,
+	E_2,
+	A_3,
+	A_1,
+	NONE,
+};

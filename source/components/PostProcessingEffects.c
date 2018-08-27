@@ -961,28 +961,28 @@ static void PostProcessingEffects::drawRhombus(int radius, u32 color, PixelVecto
 	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {screenPixelPosition.x - radius,	screenPixelPosition.y,			0, parallax},
-		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y - radius,	0, parallax},
+		(PixelVector) {screenPixelPosition.x,			screenPixelPosition.y - radius,	0, parallax},
 		color
 	);
 
 	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {screenPixelPosition.x + radius,	screenPixelPosition.y,			0, parallax},
-		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y - radius,	0, parallax},
+		(PixelVector) {screenPixelPosition.x,			screenPixelPosition.y - radius,	0, parallax},
 		color
 	);
 
 	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {screenPixelPosition.x + radius,	screenPixelPosition.y,			0, parallax},
-		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y + radius,	0, parallax},
+		(PixelVector) {screenPixelPosition.x,			screenPixelPosition.y + radius,	0, parallax},
 		color
 	);
 
 	DirectDraw::drawLine(
 		directDraw,
 		(PixelVector) {screenPixelPosition.x - radius,	screenPixelPosition.y,			0, parallax},
-		(PixelVector) {screenPixelPosition.x,				screenPixelPosition.y + radius,	0, parallax},
+		(PixelVector) {screenPixelPosition.x,			screenPixelPosition.y + radius,	0, parallax},
 		color
 	);
 }

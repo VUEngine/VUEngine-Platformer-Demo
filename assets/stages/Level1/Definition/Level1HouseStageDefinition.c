@@ -66,7 +66,7 @@ PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 {
 	{&COLLISION_CL, {(120), (128), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
 	{&KEY_DOOR_AG, {(148), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
-	{&CLOCK_AG, {(180), (128), (LAYER_0 + 24), 0}, 0, NULL, NULL, NULL, false}, // Clock
+	{&CLOCK_AG, {(180), (128), (LAYER_0 + 32), 0}, 0, NULL, NULL, NULL, false}, // Clock
 	{&LEVEL_1_HOUSE_MAIN_IM, {(192), (112), 0, 0}, 0, NULL, NULL, NULL, false}, // House Background
 	{&COLLISION_CL, {(192), (168), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
 	{&COLLISION_CL, {(192), (88), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
