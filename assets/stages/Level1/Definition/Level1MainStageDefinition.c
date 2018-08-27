@@ -31,7 +31,7 @@
 #include <VIPManager.h>
 #include <Fonts.h>
 #include <Hero.h>
-#include <PostProcessingEffects.h>
+#include <PostProcessingRain.h>
 
 
 
@@ -587,7 +587,8 @@ TextureDefinition* const LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 
 const PostProcessingEffect LEVEL_1_MAIN_STAGE_ST_POST_PROCESSING_EFFECTS[] =
 {
-	PostProcessingEffects_rain,
+	PostProcessingRain_rain,
+
 	NULL
 };
 

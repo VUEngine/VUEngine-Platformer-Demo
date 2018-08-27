@@ -43,7 +43,7 @@
 #include <CustomCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
-#include <PostProcessingEffects.h>
+#include <PostProcessingLantern.h>
 #include <debugUtilities.h>
 
 
@@ -241,10 +241,20 @@ void PlatformerLevelState::enter(void* owner)
 	// register event listeners
 	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
+	// TODO: this is hacky
 	// activate pulsating effect in indoor stages
 	if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightnessRepeat != NULL)
 	{
 		Camera::startEffect(Camera::getInstance(), kScreenPulsate);
+	}
+	// activate lantern effect around hero
+	if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightness.brightRed == (__BRIGHTNESS_BRIGHT_RED >> 1))
+	{
+		Container hero = Container::getChildByName(this->stage, HERO_NAME, true);
+		if(hero)
+		{
+			Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingLantern::lantern, SpatialObject::safeCast(hero));
+		}
 	}
 
 	// print level name if at level start point
