@@ -35,8 +35,6 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define PRESS_START_BLINK_DELAY 500
-
 enum TitleScreenModes
 {
 	kTitleScreenModeShowPressStart,

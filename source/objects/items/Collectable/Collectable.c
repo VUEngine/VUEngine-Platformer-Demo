@@ -36,7 +36,6 @@
 #include "Collectable.h"
 #include <PlatformerLevelState.h>
 
-
 extern const u16 COLLECT_SND[];
 
 
