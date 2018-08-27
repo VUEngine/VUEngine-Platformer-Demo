@@ -142,8 +142,6 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
  */
 void HbiasMaskMBgmapSprite::render(bool evenFrame)
 {
-	Base::render(this, evenFrame);
-
 	if(!this->positioned)
 	{
 		return;
@@ -236,7 +234,6 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame)
 	worldPointer->mx = referenceSpriteWorldPointer->mx;
 	worldPointer->my = referenceSpriteWorldPointer->my - referenceSpriteWorldPointer->gy + worldPointer->gy;
 	worldPointer->mp = referenceSpriteWorldPointer->mp;
-
 	worldPointer->w = referenceSpriteWorldPointer->w;
 	worldPointer->h = ownerSpriteGY - worldPointer->gy + this->hbiasMaskMBgmapSpriteDefinition->effectHeightExcess;
 
