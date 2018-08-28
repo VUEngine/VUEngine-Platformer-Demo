@@ -19,76 +19,24 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef POST_PROCESSING_LANTERN_H_
+#define POST_PROCESSING_LANTERN_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameEvents.h>
-#include <Game.h>
-#include <CollisionManager.h>
-#include <SoundManager.h>
-#include <MessageDispatcher.h>
-#include <Box.h>
-#include <PhysicalWorld.h>
-#include <EventManager.h>
-#include "Key.h"
-#include <PlatformerLevelState.h>
-#include <PostProcessingRhombus.h>
+#include <SpatialObject.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
+//										FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
-void Key::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+static class PostProcessingLantern : Object
 {
-	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	static void lantern(u32 currentDrawingFrameBufferSet, SpatialObject spatialObject);
 }
 
-// class's destructor
-void Key::destructor()
-{
-	// remove post processing effect
-	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
-
-	// delete the super object
-	// must always be called at the end of the destructor
-	Base::destructor();
-}
-
-void Key::ready(bool recursive)
-{
-	// call base
-	Base::ready(this, recursive);
-
-	// add post processing effect to make key emit rhombuses
-	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
-}
-
-void Key::collect()
-{
-	// fire item taken event
-	Object::fireEvent(EventManager::getInstance(), kEventKeyTaken);
-
-	// call base
-	Base::collect(this);
-}
-
-void Key::suspend()
-{
-	Base::suspend(this);
-
-	// remove post processing effect
-	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
-}
-
-void Key::resume()
-{
-	Base::resume(this);
-
-	// add post processing effect to make key emit rhombuses
-	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
-}
+#endif
