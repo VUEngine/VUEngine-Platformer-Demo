@@ -21,7 +21,7 @@ COMPILER_OUTPUT         = c
 TYPE                    = beta
 
 # Optimization level
-OPTIMIZATION            = O2
+OPTIMIZATION            = O3
 
 # Enable pedantic warnings
 # 0:                    Omit.
