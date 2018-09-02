@@ -4,6 +4,9 @@ PLUGINS = 	vuengine/plugins/entities/LowPowerEntity													\
 			vuengine/plugins/fonts/Astonish																\
 			vuengine/plugins/other/AutomaticPause														\
 			vuengine/plugins/other/SaveDataManager														\
+			vuengine/plugins/postProcessing/Lantern														\
+			vuengine/plugins/postProcessing/Rain														\
+			vuengine/plugins/postProcessing/Rhombus														\
 			vuengine/plugins/states/SplashScreens														\
 
 # Compiler's output
