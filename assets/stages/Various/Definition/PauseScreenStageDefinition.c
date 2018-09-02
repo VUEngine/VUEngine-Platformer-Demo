@@ -194,7 +194,7 @@ StageROMDef PAUSE_SCREEN_STAGE_ST =
 		// number of segments reserved for the param table
 		1,
 
-		// obj segments sizes (must total 1024)
+		// obj segments sizes (must total 1024 or lower)
 		{
 			// __spt0
 			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,

@@ -717,7 +717,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// number of segments reserved for the param table
 		1,
 
-		// obj segments sizes (must total 1024)
+		// obj segments sizes (must total 1024 or lower)
 		{
 			// __spt0
 			0,
