@@ -191,7 +191,8 @@ StageROMDef EMPTY_STAGE_ST =
 		// number of segments reserved for the param table
 		1,
 
-		// obj segments sizes (must total 1024 or lower)
+		// object segments sizes (up to 1024 in total)
+		// can impact performance, make sure to configure only as large as maximally needed
 		{
 			// __spt0
 			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
@@ -203,7 +204,7 @@ StageROMDef EMPTY_STAGE_ST =
 			__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS,
 		},
 
-		// OBJECT segments z coordinates
+		// object segments z coordinates
 		// note that each spt's z coordinate much be larger than or equal to the previous one's,
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{

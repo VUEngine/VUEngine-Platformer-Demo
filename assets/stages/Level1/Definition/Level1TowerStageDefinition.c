@@ -439,7 +439,8 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 		// number of segments reserved for the param table
 		4,
 
-		// obj segments sizes (must total 1024 or lower)
+		// object segments sizes (up to 1024 in total)
+		// can impact performance, make sure to configure only as large as maximally needed
 		{
 			// __spt0
 			0,
@@ -451,7 +452,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 			80,
 		},
 
-		// OBJECT segments z coordinates
+		// object segments z coordinates
 		// Note that each SPT's z coordinate must be larger than or equal to the previous one's,
 		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
