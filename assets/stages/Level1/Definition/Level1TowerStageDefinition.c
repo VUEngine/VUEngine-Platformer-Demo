@@ -439,7 +439,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 		// number of segments reserved for the param table
 		4,
 
-		// obj segments sizes (must total 1024)
+		// obj segments sizes (must total 1024 or lower)
 		{
 			// __spt0
 			0,
@@ -448,7 +448,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 			// __spt2
 			0,
 			// __spt3
-			1024,
+			80,
 		},
 
 		// OBJECT segments z coordinates

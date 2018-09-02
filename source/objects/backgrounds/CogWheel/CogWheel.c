@@ -74,7 +74,7 @@ void CogWheel::ready(bool recursive)
 	// listen for the shake end event
 	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)CogWheel::onShakeCompleted, kEventShakeCompleted);
 
-	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f), __F_TO_FIX7_9(0.35f)};
+	this->transformation.localScale = (Scale){__F_TO_FIX7_9(0.60f), __F_TO_FIX7_9(0.60f), __F_TO_FIX7_9(0.60f)};
 
 	Entity::setLocalRotation(this, &this->transformation.localRotation);
 }

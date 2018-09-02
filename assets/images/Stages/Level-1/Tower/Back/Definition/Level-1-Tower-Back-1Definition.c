@@ -178,7 +178,7 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
 	"BkgImg",
 
 	// height of the effect
-	30,
+	50,
 
 	// height addition
 	0

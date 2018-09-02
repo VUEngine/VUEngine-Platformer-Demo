@@ -179,7 +179,7 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE =
 	"Main_1",
 
 	// height of the effect
-	30,
+	50,
 
 	// height addition
 	0
