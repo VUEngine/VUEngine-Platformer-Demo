@@ -217,11 +217,11 @@
 	__BLOCK_DEFINITION(144, 12)																			\
 	__BLOCK_DEFINITION(120, 48)																			\
 	__BLOCK_DEFINITION(112, 48)																			\
-	__BLOCK_DEFINITION(84, 50)																			\
+	__BLOCK_DEFINITION(84, 55)																			\
 	__BLOCK_DEFINITION(72, 60)																			\
 	__BLOCK_DEFINITION(44, 30)																			\
 	__BLOCK_DEFINITION(32, 350)																			\
-	__BLOCK_DEFINITION(24, 700)																			\
+	__BLOCK_DEFINITION(24, 690)																			\
 	__BLOCK_DEFINITION(20, 450)																			\
 
 #undef __SET_MEMORY_POOL_ARRAYS
