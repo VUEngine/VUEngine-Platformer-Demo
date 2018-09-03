@@ -41,7 +41,7 @@
 #include <ProgressManager.h>
 #include <EventManager.h>
 #include <OverworldState.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

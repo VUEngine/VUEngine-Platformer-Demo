@@ -30,7 +30,7 @@
 #include <Optics.h>
 #include <Camera.h>
 #include <MessageDispatcher.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include <PhysicalWorld.h>
 #include <Utilities.h>
 #include <I18n.h>

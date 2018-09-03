@@ -37,7 +37,7 @@
 #include <OptionsScreenState.h>
 #include <PlatformerLevelState.h>
 #include <Languages.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include <Utilities.h>
 
 
