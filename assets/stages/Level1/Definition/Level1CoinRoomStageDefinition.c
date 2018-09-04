@@ -262,9 +262,9 @@ StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 			// __spt1
 			0,
 			// __spt2
-			64,
+			0,
 			// __spt3
-			64,
+			128,
 		},
 
 		// object segments z coordinates
@@ -278,7 +278,7 @@ StageROMDef LEVEL1_COIN_ROOM_STAGE_ST =
 			// __spt2
 			LAYER_0_PARTICLES,
 			// __spt3
-			LAYER_0_PARTICLES,
+			15,
 		},
 
 		// optical configuration values

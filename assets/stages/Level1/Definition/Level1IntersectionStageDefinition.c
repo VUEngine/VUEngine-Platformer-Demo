@@ -263,7 +263,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			// __spt1
 			0,
 			// __spt2
-			64,
+			0,
 			// __spt3
 			64,
 		},
@@ -279,7 +279,7 @@ StageROMDef LEVEL1_INTERSECTION_STAGE_ST =
 			// __spt2
 			LAYER_0_PARTICLES,
 			// __spt3
-			LAYER_0_PARTICLES,
+			15,
 		},
 
 		// optical configuration values

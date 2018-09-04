@@ -213,16 +213,16 @@
 #undef __MEMORY_POOL_ARRAYS
 #define __MEMORY_POOL_ARRAYS																			\
 	__BLOCK_DEFINITION(168, 1)																			\
-	__BLOCK_DEFINITION(156, 14)																			\
+	__BLOCK_DEFINITION(156, 5)																			\
 	__BLOCK_DEFINITION(144, 12)																			\
-	__BLOCK_DEFINITION(120, 48)																			\
-	__BLOCK_DEFINITION(112, 48)																			\
-	__BLOCK_DEFINITION(84, 55)																			\
-	__BLOCK_DEFINITION(72, 60)																			\
-	__BLOCK_DEFINITION(44, 30)																			\
-	__BLOCK_DEFINITION(32, 350)																			\
-	__BLOCK_DEFINITION(24, 690)																			\
-	__BLOCK_DEFINITION(20, 450)																			\
+	__BLOCK_DEFINITION(120, 52)																			\
+	__BLOCK_DEFINITION(112, 40)																			\
+	__BLOCK_DEFINITION(84, 60)																			\
+	__BLOCK_DEFINITION(72, 40)																			\
+	__BLOCK_DEFINITION(44, 20)																			\
+	__BLOCK_DEFINITION(32, 340)																			\
+	__BLOCK_DEFINITION(24, 680)																			\
+	__BLOCK_DEFINITION(20, 440)																			\
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS																		\

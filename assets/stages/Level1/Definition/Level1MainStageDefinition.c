@@ -645,15 +645,15 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		196,
+		80,
 		// unload padding
-		32,
+		48,
 		// streaming amplitude
-		24,
+		48,
 		// particle removal delay cycles
 		4,
 		// deferred
-		true,
+		false,
 	},
 
 	// rendering
@@ -662,7 +662,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		1,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		8,
+		12,
 
 		// maximum number of rows to compute on each call to the affine functions
 		48,
