@@ -44,6 +44,7 @@
  * @brief	Sprite which holds a texture and a drawing specification.
  */
 
+friend class Sprite;
 friend class Texture;
 friend class BgmapTexture;
 
@@ -160,7 +161,7 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
 		return;
 	}
 
-	if(isDeleted(this->owner) || isDeleted(this->referenceSprite) || !Texture_isWritten(Sprite::getTexture(this->referenceSprite)))
+	if(isDeleted(this->owner) || isDeleted(this->referenceSprite))
 	{
 		this->referenceSprite = NULL;
 
@@ -169,6 +170,12 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
 		worldPointer->w = 0;
 		worldPointer->h = 0;
 #endif
+		return;
+	}
+
+	if(!this->referenceSprite->positioned || !this->referenceSprite->texture || !this->referenceSprite->texture->written)
+	{
+		worldPointer->head = __WORLD_OFF;
 		return;
 	}
 
@@ -204,7 +211,6 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
-
 
 	if(!referenceSpriteWorldLayer
     	||
