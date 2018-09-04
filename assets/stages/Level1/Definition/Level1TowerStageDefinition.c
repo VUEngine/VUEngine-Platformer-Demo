@@ -368,15 +368,15 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		80,
+		96,
 		// unload padding
-		48,
+		32,
 		// streaming amplitude
 		48,
 		// particle removal delay cycles
 		4,
 		// deferred
-		false,
+		true,
 	},
 
 	// rendering

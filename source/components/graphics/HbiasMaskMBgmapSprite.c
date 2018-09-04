@@ -160,7 +160,7 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
 		return;
 	}
 
-	if(isDeleted(this->owner) || isDeleted(this->referenceSprite))
+	if(isDeleted(this->owner) || isDeleted(this->referenceSprite) || !Texture_isWritten(Sprite::getTexture(this->referenceSprite)))
 	{
 		this->referenceSprite = NULL;
 
