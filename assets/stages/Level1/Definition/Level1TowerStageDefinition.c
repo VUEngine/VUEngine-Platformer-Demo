@@ -368,15 +368,15 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		160,
+		80,
 		// unload padding
-		32,
+		48,
 		// streaming amplitude
-		16,
+		48,
 		// particle removal delay cycles
-		0,
+		4,
 		// deferred
-		true,
+		false,
 	},
 
 	// rendering
@@ -463,7 +463,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 			// __spt2
 			LAYER_0_PARTICLES,
 			// __spt3
-			LAYER_0_PARTICLES,
+			15,
 		},
 
 		// optical configuration values
