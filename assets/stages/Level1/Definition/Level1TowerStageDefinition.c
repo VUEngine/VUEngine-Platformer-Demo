@@ -115,7 +115,7 @@ extern Size collision_48_28_4;
 PositionedEntityROMDef LAVA_CHILD_ENTITIES[] =
 {
 	{&LAVA_TOP_AG, 					{0, -102, -1, 0}, 0, NULL, NULL, NULL, false},
-	{&DARKNESS_OVERLAY_IM, 			{0, -460, -2, 0}, 0, NULL, NULL, NULL, false},
+	{&DARKNESS_OVERLAY_IM, 			{0, -460, -4, 0}, 0, NULL, NULL, NULL, false},
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
@@ -368,7 +368,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		96,
+		80,
 		// unload padding
 		32,
 		// streaming amplitude
@@ -376,7 +376,7 @@ StageROMDef LEVEL_1_TOWER_STAGE_ST =
 		// particle removal delay cycles
 		4,
 		// deferred
-		true,
+		false,
 	},
 
 	// rendering
