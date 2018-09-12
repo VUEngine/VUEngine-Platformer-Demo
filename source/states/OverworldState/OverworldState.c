@@ -42,6 +42,7 @@
 #include <ProgressManager.h>
 #include <EventManager.h>
 #include <KeypadManager.h>
+#include <SoundManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -49,6 +50,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef OVERWORLD1_STAGE_ST;
+extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -199,7 +201,14 @@ void OverworldState::processUserInput(UserInput userInput)
 			Object::safeCast(this) // callback scope
 		);
 
-	} else if(K_B & userInput.pressedKey) {		// disable user input
+		// play sound
+		Vector3D position = {192, 112, 0};
+		SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
+
+	}
+	else if(K_B & userInput.pressedKey)
+	{
+		// disable user input
 		Game::disableKeypad(Game::getInstance());
 
 		// start a fade out effect

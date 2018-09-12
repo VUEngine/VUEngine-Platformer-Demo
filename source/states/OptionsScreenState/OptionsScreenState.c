@@ -36,6 +36,7 @@
 #include <LangSelectScreenState.h>
 #include <TitleScreenState.h>
 #include <KeypadManager.h>
+#include <SoundManager.h>
 #include "OptionsScreenState.h"
 
 
@@ -44,6 +45,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef EMPTY_STAGE_ST;
+extern const u16 SPLASH_SCREENS_OPTION_SELECT_SND[];
+extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -184,6 +187,8 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 			(void (*)(Object, Object))OptionsScreenState::onOptionSelectedFadeOutComplete, // callback function
 			Object::safeCast(this) // callback scope
 		);
+
+		OptionsScreenState::playConfirmSound(this);
 	}
 	else if((userInput.pressedKey & K_B) || (userInput.pressedKey & K_SEL))
 	{
@@ -204,11 +209,25 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 	else if((userInput.pressedKey & K_LU) || (userInput.pressedKey & K_RU))
 	{
 		OptionsSelector::selectPrevious(this->optionsSelector);
+		OptionsScreenState::playMenuSound(this);
 	}
 	else if((userInput.pressedKey & K_LD) || (userInput.pressedKey & K_RD))
 	{
 		OptionsSelector::selectNext(this->optionsSelector);
+		OptionsScreenState::playMenuSound(this);
 	}
+}
+
+void OptionsScreenState::playMenuSound()
+{
+	Vector3D position = {192, 112, 0};
+	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
+}
+
+void OptionsScreenState::playConfirmSound()
+{
+	Vector3D position = {192, 112, 0};
+	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
 }
 
 // handle event

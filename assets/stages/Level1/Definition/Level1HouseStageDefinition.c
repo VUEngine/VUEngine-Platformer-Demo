@@ -73,7 +73,7 @@ PositionedEntityROMDef LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 	{&CLOUDS_IM, {(194), (138), (LAYER_4), 0}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&LEVEL_1_HOUSE_LIGHT_IM, {(196), (140), (LAYER_0_ITEMS - 1), 0}, 0, NULL, NULL, NULL, false}, // Light
 	{&COIN_AG, {(204), (146), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 26, NULL, NULL, NULL, false}, // Coin
-	{&FIRE_SMALL_AG, {(240), (155), (24), 0}, 0, NULL, NULL, NULL, false}, // Fire
+	{&FIRE_SMALL_AG, {(240), (155), (32), 0}, 0, NULL, NULL, NULL, false}, // Fire
 	{&COLLISION_TOP_CL, {(240), (152), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
 	{&MOUND_BG_BACK_IM, {(255), (104), (LAYER_5), 0}, 0, NULL, NULL, NULL, false}, // Mountains
 	{&COLLISION_CL, {(264), (128), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
@@ -257,9 +257,9 @@ StageROMDef LEVEL1_HOUSE_STAGE_ST =
 			// __spt1
 			0,
 			// __spt2
-			0,
+			16,
 			// __spt3
-			0,
+			1,
 		},
 
 		// optical configuration values

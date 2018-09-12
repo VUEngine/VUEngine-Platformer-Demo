@@ -42,6 +42,7 @@
 #include <EventManager.h>
 #include <OverworldState.h>
 #include <KeypadManager.h>
+#include <SoundManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -49,6 +50,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef TITLE_SCREEN_STAGE_ST;
+extern const u16 SPLASH_SCREENS_OPTION_SELECT_SND[];
+extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -308,6 +311,9 @@ void TitleScreenState::processUserInput(UserInput userInput)
 							Object::safeCast(this) // callback scope
 						);
 
+						// play sound
+						TitleScreenState::playConfirmSound(this);
+
 						break;
 
 					case kTitleScreenOptionNewGame:
@@ -385,10 +391,12 @@ void TitleScreenState::processUserInput(UserInput userInput)
 	else if((this->mode == kTitleScreenModeShowOptions) && ((userInput.pressedKey & K_LL) || (userInput.pressedKey & K_RL)))
 	{
 		OptionsSelector::selectPrevious(this->optionsSelector);
+		TitleScreenState::playMenuSound(this);
 	}
 	else if((this->mode == kTitleScreenModeShowOptions) && ((userInput.pressedKey & K_LR) || (userInput.pressedKey & K_RR)))
 	{
 		OptionsSelector::selectNext(this->optionsSelector);
+		TitleScreenState::playMenuSound(this);
 	}
 	else if((this->mode == kTitleScreenModeShowConfirmNewGame) && (userInput.pressedKey & K_B))
 	{
@@ -406,6 +414,18 @@ void TitleScreenState::processUserInput(UserInput userInput)
 		// set mode to showing options
 		this->mode = kTitleScreenModeShowOptions;
 	}
+}
+
+void TitleScreenState::playMenuSound()
+{
+	Vector3D position = {192, 112, 0};
+	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
+}
+
+void TitleScreenState::playConfirmSound()
+{
+	Vector3D position = {192, 112, 0};
+	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
 }
 
 // handle event

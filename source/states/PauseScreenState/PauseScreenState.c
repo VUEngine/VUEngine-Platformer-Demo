@@ -38,6 +38,7 @@
 #include <PlatformerLevelState.h>
 #include <Languages.h>
 #include <KeypadManager.h>
+#include <SoundManager.h>
 #include <Utilities.h>
 
 
@@ -46,6 +47,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMDef PAUSE_SCREEN_STAGE_ST;
+extern const u16 SPLASH_SCREENS_OPTION_SELECT_SND[];
+extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -179,6 +182,9 @@ void PauseScreenState::processUserInput(UserInput userInput)
 						Object::safeCast(this) // callback scope
 					);
 
+					// play sound
+					PauseScreenState::playConfirmSound(this);
+
 					break;
 
 				case kPauseScreenOptionQuitLevel:
@@ -203,6 +209,10 @@ void PauseScreenState::processUserInput(UserInput userInput)
 
 					// set mode accordingly
 					this->mode = kPauseScreenModeShowConfirmQuit;
+
+					// play sound
+					PauseScreenState::playConfirmSound(this);
+
 					break;
 				}
 			}
@@ -222,6 +232,9 @@ void PauseScreenState::processUserInput(UserInput userInput)
 				(void (*)(Object, Object))PauseScreenState::onFadeOutComplete, // callback function
 				Object::safeCast(this) // callback scope
 			);
+
+			// play sound
+			PauseScreenState::playConfirmSound(this);
 		}
 	}
 	else if((this->mode == kPauseScreenModeShowConfirmQuit) && (userInput.pressedKey & K_B))
@@ -236,11 +249,24 @@ void PauseScreenState::processUserInput(UserInput userInput)
 	else if((this->mode == kPauseScreenModeShowOptions) && ((userInput.pressedKey & K_LU) || (userInput.pressedKey & K_RU)))
 	{
 		OptionsSelector::selectPrevious(this->optionsSelector);
+		PauseScreenState::playMenuSound(this);
 	}
 	else if((this->mode == kPauseScreenModeShowOptions) && ((userInput.pressedKey & K_LD) || (userInput.pressedKey & K_RD)))
 	{
 		OptionsSelector::selectNext(this->optionsSelector);
+		PauseScreenState::playMenuSound(this);
 	}
+}
+
+void PauseScreenState::playMenuSound()
+{
+	Vector3D position = {192, 112, 0};
+	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
+}
+void PauseScreenState::playConfirmSound()
+{
+	Vector3D position = {192, 112, 0};
+	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
 }
 
 // handle event
