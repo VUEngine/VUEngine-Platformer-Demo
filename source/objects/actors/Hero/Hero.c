@@ -1334,11 +1334,6 @@ bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation
 	return heroBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
 }
 
-u16 Hero::getAxisForFlipping()
-{
-	return __X_AXIS;
-}
-
 void Hero::onPowerUpTransitionComplete(Object eventFirer __attribute__ ((unused)))
 {
 	MessageDispatcher::dispatchMessage(300, Object::safeCast(this), Object::safeCast(this), kHeroResumePhysics, NULL);
