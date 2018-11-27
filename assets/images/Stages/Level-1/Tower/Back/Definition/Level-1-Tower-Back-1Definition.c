@@ -123,7 +123,8 @@ MBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 
 	(TextureDefinition**)LEVEL_1_TOWER_BACK_1_IM_TEXTURES,
 
-	// SCX/SCY
+	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
+	// textures must be 64x64 for anything other than 1x1
 	__WORLD_1x1,
 
 	// x loop
@@ -164,7 +165,8 @@ HbiasMaskMBgmapSpriteROMDef LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
 
 		(TextureDefinition**)LEVEL_1_TOWER_BACK_1_IM_TEXTURES,
 
-		// SCX/SCY
+		// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
+		// textures must be 64x64 for anything other than 1x1
 		__WORLD_1x1,
 
 		// x loop

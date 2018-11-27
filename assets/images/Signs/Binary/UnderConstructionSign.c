@@ -4,7 +4,7 @@
 //======================================================================
 //
 //	UnderConstructionSign, 72x32@2, 
-//	+ 28 tiles (t reduced) not compressed
+//	+ 28 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 9x4 
 //	Total size: 448 + 72 = 520
 //

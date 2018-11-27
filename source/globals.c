@@ -46,17 +46,18 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition LEVEL_1_HOUSE_IM;
 extern EntityDefinition CANNON_BALL_AC;
 extern EntityDefinition COIN_AG;
 extern EntityDefinition DOOR_AG;
 extern EntityDefinition HERO_AC;
 extern EntityDefinition HERO_AG;
 extern EntityDefinition KEY_AG;
-extern EntityDefinition SAW_BLADE_V3_AC;
-extern EntityDefinition SAW_BLADE_H3_AC;
 extern EntityDefinition LAVA_TOP_AG;
 extern EntityDefinition LAYER_SWITCH_DOOR_BACK_AG;
+extern EntityDefinition LEVEL_1_HOUSE_IM;
+extern EntityDefinition SAW_BLADE_H3_AC;
+extern EntityDefinition SAW_BLADE_V3_AC;
+extern EntityDefinition SNAIL_3_AC;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -146,10 +147,11 @@ const UserAnimatedEntity _userAnimatedEntities[] =
 {
 	{(AnimatedEntityDefinition*)&COIN_AG,						"Coin"},
 	{(AnimatedEntityDefinition*)&DOOR_AG,						"Door"},
-	{(AnimatedEntityDefinition*)&LAYER_SWITCH_DOOR_BACK_AG,	"Back Door"},
+	{(AnimatedEntityDefinition*)&LAYER_SWITCH_DOOR_BACK_AG,		"Back Door"},
 	{(AnimatedEntityDefinition*)&HERO_AC,						"Hero"},
 	{(AnimatedEntityDefinition*)&KEY_AG,						"Key"},
 	{(AnimatedEntityDefinition*)&SAW_BLADE_V3_AC,				"SawBlade"},
+	{(AnimatedEntityDefinition*)&SNAIL_3_AC,					"Snail"},
 	{(AnimatedEntityDefinition*)&LAVA_TOP_AG,					"Lava top"},
 	{NULL, ""},
 };
