@@ -210,7 +210,7 @@ void PlatformerLevelState::enter(void* owner)
 
 			// set direction according to entry point
 			Direction direction = {this->currentStageEntryPoint->direction, __DOWN, __FAR};
-			Entity::setDirection(Entity::safeCast(hero), direction);
+			Entity::setDirection(hero, direction);
 
 			// apply changes to the visuals
 			GameState::synchronizeGraphics(this);

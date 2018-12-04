@@ -4,16 +4,16 @@
 //======================================================================
 //
 //	DoubleJumpSign, 32x32@2, 
-//	+ 17 tiles (t reduced) not compressed
+//	+ 16 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 4x4 
-//	Total size: 272 + 32 = 304
+//	Total size: 256 + 32 = 288
 //
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-const unsigned int DoubleJumpSignTiles[68] __attribute__((aligned(4)))=
+const unsigned int DoubleJumpSignTiles[64] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x55500000,0xAAA9FFF4,0x55A9AAA9,
 	0xD0004000,0x5555A400,0xAAAAFFFF,0xAAA9AAAA,0x00070001,0x5555001E,0xAAAEFFF7,0x5AAAAAAA,
@@ -23,14 +23,12 @@ const unsigned int DoubleJumpSignTiles[68] __attribute__((aligned(4)))=
 	0x95A5AAA9,0x95A595A5,0x99A5AAA5,0x99AA99A9,0xA966AAA6,0xAA6AAA5A,0xA69A5A9A,0xAAAAA96A,
 	0x696A69AA,0x6A6A6A6A,0x6A696A6A,0x6AAA6A96,0x5550AAA4,0x00000000,0x00000000,0x00000000,
 	0x5555AAA6,0xA4005400,0x75009400,0xBB407740,0x5555AAAA,0x001A0015,0x0076001A,0x01EF005D,
-
-	0x05551AAA,0x00000000,0x00000000,0x00000000,
 };
 
 const unsigned short DoubleJumpSignMap[16] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
-	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x0010,
+	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x200D,
 };
 
 //}}BLOCK(DoubleJumpSign)

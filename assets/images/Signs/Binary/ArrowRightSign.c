@@ -4,7 +4,7 @@
 //======================================================================
 //
 //	ArrowRightSign, 24x24@2, 
-//	+ 8 tiles (t reduced) not compressed
+//	+ 8 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 3x3 
 //	Total size: 128 + 20 = 148
 //
