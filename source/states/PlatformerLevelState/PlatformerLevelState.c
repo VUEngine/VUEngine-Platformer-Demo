@@ -450,6 +450,8 @@ void PlatformerLevelState::resume(void* owner)
 	Object::fireEvent(this, kEventUserInput);
 
 	PlatformerLevelState::setPrintingLayerCoordinates(this);
+
+	Game::enableKeypad(Game::getInstance());
 }
 
 void PlatformerLevelState::setPrintingLayerCoordinates()
