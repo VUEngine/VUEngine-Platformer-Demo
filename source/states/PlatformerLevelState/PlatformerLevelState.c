@@ -40,7 +40,7 @@
 #include <Hero.h>
 #include <Languages.h>
 #include <ProgressManager.h>
-#include <CustomCameraMovementManager.h>
+#include <PlatformerCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
 #include <PostProcessingLantern.h>
@@ -115,7 +115,7 @@ void PlatformerLevelState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// set the custom screen managers
-	Camera::setCameraMovementManager(Camera::getInstance(), CameraMovementManager::safeCast(CustomCameraMovementManager::getInstance()));
+	Camera::setCameraMovementManager(Camera::getInstance(), CameraMovementManager::safeCast(PlatformerCameraMovementManager::getInstance()));
 	Camera::setCameraEffectManager(Camera::getInstance(), CameraEffectManager::safeCast(CustomCameraEffectManager::getInstance()));
 
 	// disable user input
@@ -196,10 +196,12 @@ void PlatformerLevelState::enter(void* owner)
 			Actor::setPosition(hero, initialPosition);
 
 			// make sure that focusing gets completed immediately
-			CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
+			PlatformerCameraMovementManager::enable(PlatformerCameraMovementManager::getInstance());
 
 			// update actor's global transformations
 			GameState::transform(this);
+
+			PlatformerCameraMovementManager::configure(PlatformerCameraMovementManager::getInstance(), kHero, kPlayerLayer, kCameraLayer, (PixelSize){12 * 8, 20 * 8, 4 * 8}, (Vector3D){__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)});
 
 			// set focus on the hero
 			Camera::setFocusGameEntity(Camera::getInstance(), Entity::safeCast(hero));
@@ -225,7 +227,7 @@ void PlatformerLevelState::enter(void* owner)
 		GameState::loadStage(this, this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
 	}
 
-	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());
+	PlatformerCameraMovementManager::disable(PlatformerCameraMovementManager::getInstance());
 
 	// free some memory
 	delete positionedEntitiesToIgnore;
@@ -528,7 +530,7 @@ void PlatformerLevelState::onScreenFocused(Object eventFirer __attribute__ ((unu
 {
 	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kScreenFocused, NULL);
 
-	CustomCameraMovementManager::dontAlertWhenTargetFocused(CustomCameraMovementManager::getInstance());
+	PlatformerCameraMovementManager::dontAlertWhenTargetFocused(PlatformerCameraMovementManager::getInstance());
 
 	Game::enableKeypad(Game::getInstance());
 }
@@ -649,8 +651,8 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 
 	// enable focus easing
 	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
-	CustomCameraMovementManager::enableFocusEasing(CustomCameraMovementManager::getInstance());
-	CustomCameraMovementManager::alertWhenTargetFocused(CustomCameraMovementManager::getInstance());
+	PlatformerCameraMovementManager::enableFocusEasing(PlatformerCameraMovementManager::getInstance());
+	PlatformerCameraMovementManager::alertWhenTargetFocused(PlatformerCameraMovementManager::getInstance());
 }
 
 // handle event

@@ -1,5 +1,6 @@
 # VUEngine based plugins that the project uses
-PLUGINS = 	vuengine/plugins/entities/LowPowerEntity													\
+PLUGINS = 	vuengine/plugins/cameras/Platformer															\
+			vuengine/plugins/entities/LowPowerEntity													\
 			vuengine/plugins/entities/ReflectiveEntity													\
 			vuengine/plugins/fonts/Astonish																\
 			vuengine/plugins/other/AutomaticPause														\

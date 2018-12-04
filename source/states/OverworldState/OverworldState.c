@@ -38,7 +38,7 @@
 #include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
 #include <AdjustmentScreenState.h>
-#include <CustomCameraMovementManager.h>
+#include <PlatformerCameraMovementManager.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
 #include <KeypadManager.h>

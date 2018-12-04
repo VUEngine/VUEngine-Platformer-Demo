@@ -35,9 +35,9 @@
 #include "Hero.h"
 #include "states/HeroIdle.h"
 #include "states/HeroMoving.h"
-#include <CustomCameraMovementManager.h>
+#include <PlatformerCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
-#include <CameraTriggerEntity.h>
+#include <PlatformerCameraTriggerEntity.h>
 #include <EventManager.h>
 #include <Hint.h>
 #include <SoundManager.h>
@@ -60,7 +60,6 @@ extern CharSetDefinition HERO_BANDANA_CH;
 
 extern EntityDefinition DUST_PS;
 extern EntityDefinition HINT_MC;
-extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -97,7 +96,6 @@ void Hero::constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, c
 	this->hasKey = false;
 	this->hint = NULL;
 	this->feetDust = NULL;
-	this->cameraBoundingBox = NULL;
 	this->energy = HERO_INITIAL_ENERGY;
 	this->powerUp = kPowerUpNone;
 	this->invincible = false;
@@ -133,7 +131,6 @@ void Hero::destructor()
 	// free the instance pointers
 	this->feetDust = NULL;
 	this->hint = NULL;
-	this->cameraBoundingBox = NULL;
 	hero = NULL;
 
 	// delete the super object
@@ -143,7 +140,7 @@ void Hero::destructor()
 
 void Hero::ready(bool recursive)
 {
-	Entity::informShapesThatStartedMoving(this);
+	Entity::activateShapes(this, true);
 
 	// call base
 	Base::ready(this, recursive);
@@ -446,7 +443,7 @@ bool Hero::stopMovingOnAxis(u16 axis)
 		{
 			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
 
-			Hero::lockCameraTriggerMovement(this, __Y_AXIS, true);
+			PlatformerCameraMovementManager::lockMovement(PlatformerCameraMovementManager::getInstance(), __Y_AXIS, true);
 
 			this->jumps = 0;
 
@@ -512,7 +509,6 @@ bool Hero::stopMovingOnAxis(u16 axis)
 void Hero::checkDirection(u32 pressedKey, char* animation)
 {
 	bool movementState = Body::getMovementOnAllAxes(this->body);
-	Direction direction = Entity::getDirection(this);
 
 	Hero::hideDust(this);
 
@@ -547,39 +543,9 @@ void Hero::checkDirection(u32 pressedKey, char* animation)
 		this->inputDirection.z = __NEAR;
 	}
 
-	if(direction.x != this->inputDirection.x)
-	{
-		Hero::lockCameraTriggerMovement(this, __X_AXIS, true);
-	}
-
 	if(animation && !(__Y_AXIS & movementState))
 	{
 		AnimatedEntity::playAnimation(this, animation);
-	}
-}
-
-void Hero::lockCameraTriggerMovement(u8 axisToLockUp, bool locked)
-{
-	if(this->cameraBoundingBox)
-	{
-		Vector3DFlag overridePositionFlag = CameraTriggerEntity::getOverridePositionFlag(this->cameraBoundingBox);
-
-		Vector3DFlag positionFlag = CustomCameraMovementManager::getPositionFlag(CustomCameraMovementManager::getInstance());
-
-		if(__X_AXIS & axisToLockUp)
-		{
-			overridePositionFlag.x = locked;
-
-			positionFlag.x = !locked;
-		}
-
-		if(__Y_AXIS & axisToLockUp)
-		{
-			overridePositionFlag.y = locked;
-		}
-
-		CameraTriggerEntity::setOverridePositionFlag(this->cameraBoundingBox, overridePositionFlag);
-		CustomCameraMovementManager::setPositionFlag(CustomCameraMovementManager::getInstance(), positionFlag);
 	}
 }
 
@@ -629,7 +595,7 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 			Hero::flash(this);
 			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 			GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
-			Entity::activateShapes(this, false);
+			Entity::enableShapes(this, false);
 			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kHeroDied, NULL);
 		}
 
@@ -858,7 +824,7 @@ void Hero::die()
 	StateMachine::swapState(this->stateMachine, State::safeCast(HeroDead::getInstance()));
 
 	// must unregister the shape for collision detections
-	Entity::activateShapes(this, false);
+	Entity::enableShapes(this, false);
 
 	// change in game state
 	this->inGameState = kDead;
@@ -989,29 +955,6 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 	{
 		// speed things up by breaking early
 		case kShape:
-			break;
-
-		case kCameraTarget:
-			{
-				if(collisionInformation->solutionVector.direction.y)
-				{
-					Hero::lockCameraTriggerMovement(this, __Y_AXIS, false);
-				}
-
-				if(collisionInformation->solutionVector.direction.x)
-				{
-					Hero::lockCameraTriggerMovement(this, __X_AXIS, false);
-				}
-				else
-				{
-					Hero::lockCameraTriggerMovement(this, __Y_AXIS, false);
-				}
-
-				Vector3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-
-				Container::setLocalPosition(this->cameraBoundingBox, &position);
-			}
-			return false;
 			break;
 
 		case kCoin:
@@ -1253,22 +1196,10 @@ bool Hero::handlePropagatedMessage(int message)
 {
 	switch(message)
 	{
-		case kLevelSetUp:
-			{
-				// set camera
-				Vector3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-				this->cameraBoundingBox = Entity::addChildEntity(this, (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
-				Hero::lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
-			}
-
-			//Hero::locateOverNextFloor(this);
-
-			break;
-
 		case kLevelStarted:
 			{
 				Vector3DFlag positionFlag = {true, true, true};
-				CustomCameraMovementManager::setPositionFlag(CustomCameraMovementManager::getInstance(), positionFlag);
+				PlatformerCameraMovementManager::setPositionFlag(PlatformerCameraMovementManager::getInstance(), positionFlag);
 			}
 			break;
 
@@ -1289,9 +1220,9 @@ void Hero::getOutOfDoor(Vector3D* outOfDoorPosition)
 //	Actor::resetCollisionStatus(this);
 
 	// make the camera active for collision detection
-	Hero::lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, false);
+	PlatformerCameraMovementManager::lockMovement(PlatformerCameraMovementManager::getInstance(), __X_AXIS | __Y_AXIS, false);
 
-	Entity::informShapesThatStartedMoving(this);
+	Entity::activateShapes(this, true);
 
 	Container::invalidateGlobalTransformation(this);
 
@@ -1313,13 +1244,6 @@ void Hero::suspend()
 void Hero::resume()
 {
 	Base::resume(this);
-
-	Camera::focus(Camera::getInstance(), false);
-
-	Hero::lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
-
-	Vector3DFlag positionFlag = {true, true, true};
-	CustomCameraMovementManager::setPositionFlag(CustomCameraMovementManager::getInstance(), positionFlag);
 
 	Hero::updateSprite(this);
 }

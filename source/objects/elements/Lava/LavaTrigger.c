@@ -106,7 +106,7 @@ void LavaTrigger::triggerEventStart()
 	MessageDispatcher::dispatchMessage(3000, Object::safeCast(this), Object::safeCast(this), kLavaTriggerEnd, NULL);
 
 	// deactivate shape so I won't get triggered again
-	Entity::activateShapes(this, false);
+	Entity::enableShapes(this, false);
 }
 
 void LavaTrigger::triggerEventEnd()

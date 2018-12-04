@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <CustomCameraEffectManager.h>
-#include <CustomCameraMovementManager.h>
+#include <PlatformerCameraMovementManager.h>
 #include <Camera.h>
 #include <MessageDispatcher.h>
 #include <Actor.h>
@@ -158,7 +158,7 @@ void CustomCameraEffectManager::fxShakeStart(u16 duration)
 {
 	// don't follow the focus entity while shaking
 	//Camera _camera = Camera::getInstance();
-	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());
+	PlatformerCameraMovementManager::disable(PlatformerCameraMovementManager::getInstance());
 
 	// set desired fx duration
 	this->shakeTimeLeft = duration;
@@ -209,7 +209,7 @@ void CustomCameraEffectManager::onScreenShake()
 			this->lastShakeOffset.x = 0;
 		}
 
-		CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
+		PlatformerCameraMovementManager::enable(PlatformerCameraMovementManager::getInstance());
 		return;
 	}
 

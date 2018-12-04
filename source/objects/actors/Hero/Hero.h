@@ -88,8 +88,6 @@ class Hero : Actor
 	Entity hint;
 	/* feet dust */
 	ParticleSystem feetDust;
-	/* bounding box to control camera's movement */
-	Entity cameraBoundingBox;
 	/* used to know if gap must be changed */
 	Direction inputDirection;
 	/* hero has energy	*/
