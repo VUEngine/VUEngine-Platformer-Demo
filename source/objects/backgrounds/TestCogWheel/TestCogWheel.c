@@ -46,10 +46,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void TestCogWheel::constructor(EntityDefinition* EntityDefinition, s16 id, s16 internalId, const char* const name)
+void TestCogWheel::constructor(EntitySpec* EntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(EntityDefinition, id, internalId, name);
+	Base::constructor(EntitySpec, id, internalId, name);
 }
 
 // class's destructor

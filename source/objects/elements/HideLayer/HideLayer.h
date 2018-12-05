@@ -42,15 +42,15 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const AnimatedEntityDefinition HideLayerDefinition;
-typedef const HideLayerDefinition HideLayerROMDef;
+typedef const AnimatedEntitySpec HideLayerSpec;
+typedef const HideLayerSpec HideLayerROMSpec;
 
 class HideLayer : AnimatedEntity
 {
 	/* is hide layer currently being overlapped by hero? */
 	bool currentlyOverlappingHero;
 
-	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
 	void setOverlapping();
 	void unsetOverlapping();
 }

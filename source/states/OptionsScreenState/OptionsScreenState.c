@@ -44,7 +44,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef EMPTY_STAGE_ST;
+extern StageROMSpec EMPTY_STAGE_ST;
 extern const u16 SPLASH_SCREENS_OPTION_SELECT_SND[];
 extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
@@ -79,7 +79,7 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&EMPTY_STAGE_ST, NULL, true);
 
 	// print options
 	OptionsScreenState::print(this);

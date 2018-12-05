@@ -35,12 +35,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const AnimatedEntityDefinition CollectableDefinition;
-typedef const CollectableDefinition CollectableROMDef;
+typedef const AnimatedEntitySpec CollectableSpec;
+typedef const CollectableSpec CollectableROMSpec;
 
 class Collectable : AnimatedEntity
 {
-	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* spec, s16 id, s16 internalId, const char* const name);
 	virtual void collect();
 	override bool handleMessage(Telegram telegram);
 }

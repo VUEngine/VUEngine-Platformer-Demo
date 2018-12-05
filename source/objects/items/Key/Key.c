@@ -42,10 +42,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Key::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Key::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntitySpec, id, internalId, name);
 }
 
 // class's destructor

@@ -42,10 +42,10 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition LEVEL_1_HOUSE_IM;
-extern AnimatedEntityROMDef COIN_BACK_AG;
-extern AnimatedEntityROMDef COIN_SILHOUETTE_AG;
-extern AnimatedEntityROMDef COIN_BACK_SILHOUETTE_AG;
+extern EntitySpec LEVEL_1_HOUSE_IM;
+extern AnimatedEntityROMSpec COIN_BACK_AG;
+extern AnimatedEntityROMSpec COIN_SILHOUETTE_AG;
+extern AnimatedEntityROMSpec COIN_BACK_SILHOUETTE_AG;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,26 +53,26 @@ extern AnimatedEntityROMDef COIN_BACK_SILHOUETTE_AG;
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Coin::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Coin::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntitySpec, id, internalId, name);
 
 	// if coin has already been collected, show silhouette representation
 	if(ProgressManager::getCoinStatus(ProgressManager::getInstance(), this->id))
 	{
-		AnimatedEntityDefinition* animatedEntityDefinition = this->animatedEntityDefinition;
+		AnimatedEntitySpec* animatedEntitySpec = this->animatedEntitySpec;
 
-		if((AnimatedEntityDefinition*)&COIN_BACK_AG == animatedEntityDefinition)
+		if((AnimatedEntitySpec*)&COIN_BACK_AG == animatedEntitySpec)
 		{
-			animatedEntityDefinition = (AnimatedEntityDefinition*)&COIN_BACK_SILHOUETTE_AG;
+			animatedEntitySpec = (AnimatedEntitySpec*)&COIN_BACK_SILHOUETTE_AG;
 		}
 		else
 		{
-			animatedEntityDefinition = (AnimatedEntityDefinition*)&COIN_SILHOUETTE_AG;
+			animatedEntitySpec = (AnimatedEntitySpec*)&COIN_SILHOUETTE_AG;
 		}
 
-		AnimatedEntity::setDefinition(this, animatedEntityDefinition);
+		AnimatedEntity::setSpec(this, animatedEntitySpec);
 	}
 }
 

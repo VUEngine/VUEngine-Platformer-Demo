@@ -35,12 +35,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef EntityDefinition LavaTriggerDefinition;
-typedef const LavaTriggerDefinition LavaTriggerROMDef;
+typedef EntitySpec LavaTriggerSpec;
+typedef const LavaTriggerSpec LavaTriggerROMSpec;
 
 class LavaTrigger : Entity
 {
-	void constructor(EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* spec, s16 id, s16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 }
 

@@ -49,7 +49,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef TITLE_SCREEN_STAGE_ST;
+extern StageROMSpec TITLE_SCREEN_STAGE_ST;
 extern const u16 SPLASH_SCREENS_OPTION_SELECT_SND[];
 extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
@@ -96,7 +96,7 @@ void TitleScreenState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// load stage
-	GameState::loadStage(this, (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&TITLE_SCREEN_STAGE_ST, NULL, true);
 
 	if(this->optionsSelector)
 	{

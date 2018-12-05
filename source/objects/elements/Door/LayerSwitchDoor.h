@@ -35,12 +35,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const DoorDefinition LayerSwitchDoorDefinition;
-typedef const LayerSwitchDoorDefinition LayerSwitchDoorROMDef;
+typedef const DoorSpec LayerSwitchDoorSpec;
+typedef const LayerSwitchDoorSpec LayerSwitchDoorROMSpec;
 
 class LayerSwitchDoor : Door
 {
-	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 }
 

@@ -43,11 +43,11 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// definition in ROM memory
-typedef struct MovingEntityDefinition
+// spec in ROM memory
+typedef struct MovingEntitySpec
 {
 	// It has a Character in the beginning
-	ActorDefinition actorDefinition;
+	ActorSpec actorSpec;
 
 	// velocity
 	fix10_6 velocity;
@@ -67,23 +67,23 @@ typedef struct MovingEntityDefinition
 	// axes on which synchronize shape with direction
 	u16 axesForShapeSyncWithDirection;
 
-} MovingEntityDefinition;
+} MovingEntitySpec;
 
-typedef const MovingEntityDefinition MovingEntityROMDef;
+typedef const MovingEntitySpec MovingEntityROMSpec;
 
 class MovingEntity : Actor
 {
 	/* save my initial position */
 	int initialPosition;
-	/* definition pointer */
-	MovingEntityDefinition* movingEntityDefinition;
+	/* spec pointer */
+	MovingEntitySpec* movingEntitySpec;
 
-	void constructor(MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(MovingEntitySpec* MovingEntitySpec, s16 id, s16 internalId, const char* const name);
 	void startMovement();
 	void checkDisplacement();
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
-	override void setDefinition(void* movingEntityDefinition);
+	override void setSpec(void* movingEntitySpec);
 	override u16 getAxesForShapeSyncWithDirection();
 }
 

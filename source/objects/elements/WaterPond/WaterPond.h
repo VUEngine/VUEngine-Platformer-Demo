@@ -36,9 +36,9 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct WaterPondDefinition
+typedef struct WaterPondSpec
 {
-	ReflectiveEntityDefinition reflectiveEntityDefinition;
+	ReflectiveEntitySpec reflectiveEntitySpec;
 
 	// throttle increment
 	fix10_6 waveLutThrottleFactorIncrement;
@@ -55,9 +55,9 @@ typedef struct WaterPondDefinition
 	// wave amplitude factor
 	fix10_6 amplitudeFactor;
 
-} WaterPondDefinition;
+} WaterPondSpec;
 
-typedef const WaterPondDefinition WaterPondROMDef;
+typedef const WaterPondSpec WaterPondROMSpec;
 
 class WaterPond : ReflectiveEntity
 {
@@ -65,7 +65,7 @@ class WaterPond : ReflectiveEntity
 	fix10_6 amplitudeFactor;
 	ParticleSystem waterSplash;
 
-	void constructor(WaterPondDefinition* mirrorDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(WaterPondSpec* mirrorSpec, s16 id, s16 internalId, const char* const name);
 	override bool handleMessage(void* telegram);
 	override void ready(bool recursive);
 	override void applyReflection(u32 currentDrawingFrameBufferSet);

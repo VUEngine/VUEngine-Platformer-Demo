@@ -40,10 +40,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void WaterPond::constructor(WaterPondDefinition* reflectiveEntityDefinition, s16 id, s16 internalId, const char* const name)
+void WaterPond::constructor(WaterPondSpec* reflectiveEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(&reflectiveEntityDefinition->reflectiveEntityDefinition, id, internalId, name);
+	Base::constructor(&reflectiveEntitySpec->reflectiveEntitySpec, id, internalId, name);
 
 	this->waveLutThrottleFactorIncrement = 0;
 	this->amplitudeFactor = __I_TO_FIX10_6(1);
@@ -70,7 +70,7 @@ void WaterPond::addSplashParticles()
 {
 	Vector3D position = {__F_TO_FIX10_6(-2), __F_TO_FIX10_6(-1), __F_TO_FIX10_6(-1)};
 
-	extern EntityDefinition WATER_SPLASH_PS;
+	extern EntitySpec WATER_SPLASH_PS;
 
 	this->waterSplash = ParticleSystem::safeCast(Entity::addChildEntity(this, &WATER_SPLASH_PS, -1, NULL, &position, NULL));
 
@@ -80,8 +80,8 @@ void WaterPond::addSplashParticles()
 
 bool WaterPond::handleMessage(void* telegram)
 {
-	ReflectiveEntityDefinition* reflectiveEntityDefinition = (ReflectiveEntityDefinition*)this->entityDefinition;
-	WaterPondDefinition* waterPondDefinition = (WaterPondDefinition*)this->entityDefinition;
+	ReflectiveEntitySpec* reflectiveEntitySpec = (ReflectiveEntitySpec*)this->entitySpec;
+	WaterPondSpec* waterPondSpec = (WaterPondSpec*)this->entitySpec;
 
 //	bool entityTypeChecked = true;
 
@@ -121,25 +121,25 @@ bool WaterPond::handleMessage(void* telegram)
 
 //			if(entityTypeChecked &&
 			if(
-				(this->waveLutThrottleFactorIncrement < waterPondDefinition->waveLutThrottleFactorIncrement
+				(this->waveLutThrottleFactorIncrement < waterPondSpec->waveLutThrottleFactorIncrement
 				||
-				this->amplitudeFactor < waterPondDefinition->amplitudeFactor)
+				this->amplitudeFactor < waterPondSpec->amplitudeFactor)
 			)
 			{
 /*				if(this->waveLutThrottleFactorIncrement)
 				{
-					this->amplitudeFactor += __FIX10_6_DIV(waterPondDefinition->amplitudeFactor - __I_TO_FIX10_6(1), __I_TO_FIX10_6(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
-					this->waveLutThrottleFactorIncrement += __FIX10_6_DIV(waterPondDefinition->waveLutThrottleFactorIncrement, __I_TO_FIX10_6(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
+					this->amplitudeFactor += __FIX10_6_DIV(waterPondSpec->amplitudeFactor - __I_TO_FIX10_6(1), __I_TO_FIX10_6(waterPondSpec->waveLutThrottleFactorIncrementDurationStep));
+					this->waveLutThrottleFactorIncrement += __FIX10_6_DIV(waterPondSpec->waveLutThrottleFactorIncrement, __I_TO_FIX10_6(waterPondSpec->waveLutThrottleFactorIncrementDurationStep));
 				}
 				else
 */				{
-					this->amplitudeFactor = waterPondDefinition->amplitudeFactor;
-					this->waveLutThrottleFactorIncrement = waterPondDefinition->waveLutThrottleFactorIncrement;
+					this->amplitudeFactor = waterPondSpec->amplitudeFactor;
+					this->waveLutThrottleFactorIncrement = waterPondSpec->waveLutThrottleFactorIncrement;
 				}
 
-				this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntityDefinition->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntityDefinition->width)));
+				this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntitySpec->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntitySpec->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntitySpec->width)));
 				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kStopReactToCollision);
-				MessageDispatcher::dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kStopReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kStopReactToCollision, NULL);
 
 //				ParticleSystem::start(this->waterSplash);
 			}
@@ -148,12 +148,12 @@ bool WaterPond::handleMessage(void* telegram)
 
 		case kStopReactToCollision:
 
-			this->amplitudeFactor -= __FIX10_6_DIV(waterPondDefinition->amplitudeFactor - __I_TO_FIX10_6(1), __I_TO_FIX10_6(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
-			this->waveLutThrottleFactorIncrement -= __FIX10_6_DIV(waterPondDefinition->waveLutThrottleFactorIncrement, __I_TO_FIX10_6(waterPondDefinition->waveLutThrottleFactorIncrementDurationStep));
+			this->amplitudeFactor -= __FIX10_6_DIV(waterPondSpec->amplitudeFactor - __I_TO_FIX10_6(1), __I_TO_FIX10_6(waterPondSpec->waveLutThrottleFactorIncrementDurationStep));
+			this->waveLutThrottleFactorIncrement -= __FIX10_6_DIV(waterPondSpec->waveLutThrottleFactorIncrement, __I_TO_FIX10_6(waterPondSpec->waveLutThrottleFactorIncrementDurationStep));
 
 			if(0 < this->waveLutThrottleFactorIncrement)
 			{
-				MessageDispatcher::dispatchMessage(waterPondDefinition->waveLutThrottleFactorIncrementDuration / waterPondDefinition->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kStopReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kStopReactToCollision, NULL);
 			}
 			else
 			{
@@ -162,7 +162,7 @@ bool WaterPond::handleMessage(void* telegram)
 //				ParticleSystem::pause(this->waterSplash);
 			}
 
-			this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntityDefinition->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntityDefinition->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntityDefinition->width)));
+			this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntitySpec->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntitySpec->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntitySpec->width)));
 			return true;
 			break;
 
@@ -173,25 +173,25 @@ bool WaterPond::handleMessage(void* telegram)
 
 void WaterPond::applyReflection(u32 currentDrawingFrameBufferSet)
 {
-	ReflectiveEntityDefinition* reflectiveEntityDefinition = (ReflectiveEntityDefinition*)this->entityDefinition;
-	WaterPondDefinition* waterPondDefinition = (WaterPondDefinition*)this->entityDefinition;
+	ReflectiveEntitySpec* reflectiveEntitySpec = (ReflectiveEntitySpec*)this->entitySpec;
+	WaterPondSpec* waterPondSpec = (WaterPondSpec*)this->entitySpec;
 
 	WaterPond::drawReflection(this, currentDrawingFrameBufferSet,
-								this->position2D.x + reflectiveEntityDefinition->sourceDisplacement.x,
-								this->position2D.y + reflectiveEntityDefinition->sourceDisplacement.y,
-								this->position2D.x + reflectiveEntityDefinition->outputDisplacement.x,
-								this->position2D.y + reflectiveEntityDefinition->outputDisplacement.y,
-								reflectiveEntityDefinition->width,
-								reflectiveEntityDefinition->height,
-								reflectiveEntityDefinition->reflectionMask,
-								reflectiveEntityDefinition->parallaxDisplacement,
-								reflectiveEntityDefinition->waveLut,
-								reflectiveEntityDefinition->numberOfWaveLutEntries,
-								reflectiveEntityDefinition->waveLutThrottleFactor + this->waveLutThrottleFactorIncrement,
+								this->position2D.x + reflectiveEntitySpec->sourceDisplacement.x,
+								this->position2D.y + reflectiveEntitySpec->sourceDisplacement.y,
+								this->position2D.x + reflectiveEntitySpec->outputDisplacement.x,
+								this->position2D.y + reflectiveEntitySpec->outputDisplacement.y,
+								reflectiveEntitySpec->width,
+								reflectiveEntitySpec->height,
+								reflectiveEntitySpec->reflectionMask,
+								reflectiveEntitySpec->parallaxDisplacement,
+								reflectiveEntitySpec->waveLut,
+								reflectiveEntitySpec->numberOfWaveLutEntries,
+								reflectiveEntitySpec->waveLutThrottleFactor + this->waveLutThrottleFactorIncrement,
 								this->amplitudeFactor,
-								reflectiveEntityDefinition->flattenTop, reflectiveEntityDefinition->flattenBottom,
-								reflectiveEntityDefinition->topBorder, reflectiveEntityDefinition->bottomBorder,
-								waterPondDefinition->surfaceHeight);
+								reflectiveEntitySpec->flattenTop, reflectiveEntitySpec->flattenBottom,
+								reflectiveEntitySpec->topBorder, reflectiveEntitySpec->bottomBorder,
+								waterPondSpec->surfaceHeight);
 }
 
 static inline void WaterPond::shiftPixels(int pixelShift, POINTER_TYPE* sourceValue, u32 nextSourceValue, POINTER_TYPE* remainderValue, u32 reflectionMask)

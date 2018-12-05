@@ -31,11 +31,11 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-FontDefinition* const __FONTS[] =
+FontSpec* const __FONTS[] =
 {
-	(FontDefinition*)&PLATFORMER_DEFAULT_FONT,
-	(FontDefinition*)&PLATFORMER_GUI_FONT,
-	(FontDefinition*)&ASTONISH_FONT_SHADOW,
-	(FontDefinition*)&ASTONISH_EXTENDED_FONT_SHADOW,
+	(FontSpec*)&PLATFORMER_DEFAULT_FONT,
+	(FontSpec*)&PLATFORMER_GUI_FONT,
+	(FontSpec*)&ASTONISH_FONT_SHADOW,
+	(FontSpec*)&ASTONISH_EXTENDED_FONT_SHADOW,
 	NULL
 };

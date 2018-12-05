@@ -55,11 +55,11 @@ extern double fabs (double);
 extern const u16 COLLECT_SND[];
 extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
-extern CharSetDefinition HERO_CH;
-extern CharSetDefinition HERO_BANDANA_CH;
+extern CharSetSpec HERO_CH;
+extern CharSetSpec HERO_BANDANA_CH;
 
-extern EntityDefinition DUST_PS;
-extern EntityDefinition HINT_MC;
+extern EntitySpec DUST_PS;
+extern EntitySpec HINT_MC;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -83,10 +83,10 @@ static void Hero::setInstance(Hero instance)
 }
 
 // class's constructor
-void Hero::constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
+void Hero::constructor(HeroSpec* heroSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorDefinition*)heroDefinition, id, internalId, name);
+	Base::constructor((ActorSpec*)heroSpec, id, internalId, name);
 
 	// construct the game state machine
 	this->stateMachine = new StateMachine(this);
@@ -643,16 +643,16 @@ void Hero::toggleFlashPalette()
 		Texture texture = Sprite::getTexture(sprite);
 
 		// get original palette
-		TextureDefinition* textureDefinition = Texture::getDefinition(texture);
+		TextureSpec* textureSpec = Texture::getSpec(texture);
 
 		// set new palette
-		if(Texture::getPalette(texture) == textureDefinition->palette)
+		if(Texture::getPalette(texture) == textureSpec->palette)
 		{
 			Texture::setPalette(texture, HERO_FLASH_PALETTE);
 		}
 		else
 		{
-			Texture::setPalette(texture, textureDefinition->palette);
+			Texture::setPalette(texture, textureSpec->palette);
 		}
 
 		// rewrite sprite to bgmap to apply changed palette
@@ -672,8 +672,8 @@ void Hero::resetPalette()
 		Texture texture = Sprite::getTexture(sprite);
 
 		// get original palette and set it
-		TextureDefinition* textureDefinition = Texture::getDefinition(texture);
-		Texture::setPalette(texture, textureDefinition->palette);
+		TextureSpec* textureSpec = Texture::getSpec(texture);
+		Texture::setPalette(texture, textureSpec->palette);
 
 		// rewrite sprite to bgmap to apply changed palette
 		Sprite::rewrite(sprite);
@@ -888,23 +888,23 @@ void Hero::updateSprite()
 {
 	CharSet charSet = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::front(this->sprites))), true);
 
-	CharSetDefinition* charSetDefinition = NULL;
+	CharSetSpec* charSetSpec = NULL;
 
 	switch(this->powerUp)
 	{
 		case kPowerUpBandana:
 
-			charSetDefinition = &HERO_BANDANA_CH;
+			charSetSpec = &HERO_BANDANA_CH;
 			break;
 
 		default:
 		case kPowerUpNone:
 
-			charSetDefinition = &HERO_CH;
+			charSetSpec = &HERO_CH;
 			break;
 	}
 
-	CharSet::setCharSetDefinition(charSet, charSetDefinition);
+	CharSet::setCharSetSpec(charSet, charSetSpec);
 	CharSet::rewrite(charSet);
 }
 

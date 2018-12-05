@@ -42,12 +42,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void MovingEntity::constructor(MovingEntityDefinition* movingEntityDefinition, s16 id, s16 internalId, const char* const name)
+void MovingEntity::constructor(MovingEntitySpec* movingEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
+	Base::constructor((ActorSpec*)&movingEntitySpec->actorSpec, id, internalId, name);
 
-	this->movingEntityDefinition = movingEntityDefinition;
+	this->movingEntitySpec = movingEntitySpec;
 
 	this->initialPosition = 0;
 
@@ -56,16 +56,16 @@ void MovingEntity::constructor(MovingEntityDefinition* movingEntityDefinition, s
 		__RIGHT, __DOWN, __FAR
 	};
 
-	switch(this->movingEntityDefinition->axis)
+	switch(this->movingEntitySpec->axis)
 	{
 		case __X_AXIS:
 
-			direction.x = this->movingEntityDefinition->direction;
+			direction.x = this->movingEntitySpec->direction;
 			break;
 
 		case __Y_AXIS:
 
-			direction.y = this->movingEntityDefinition->direction;
+			direction.y = this->movingEntitySpec->direction;
 			break;
 	}
 
@@ -83,15 +83,15 @@ void MovingEntity::destructor()
 	Base::destructor();
 }
 
-// set definition
-void MovingEntity::setDefinition(void* movingEntityDefinition)
+// set spec
+void MovingEntity::setSpec(void* movingEntitySpec)
 {
-	ASSERT(movingEntityDefinition, "MovingEntity::setDefinition: null definition");
+	ASSERT(movingEntitySpec, "MovingEntity::setSpec: null spec");
 
-	// save definition
-	this->movingEntityDefinition = movingEntityDefinition;
+	// save spec
+	this->movingEntitySpec = movingEntitySpec;
 
-	Base::setDefinition(this, &((MovingEntityDefinition*)movingEntityDefinition)->actorDefinition);
+	Base::setSpec(this, &((MovingEntitySpec*)movingEntitySpec)->actorSpec);
 }
 
 // ready method
@@ -101,7 +101,7 @@ void MovingEntity::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// save initial position
-	switch(this->movingEntityDefinition->axis)
+	switch(this->movingEntitySpec->axis)
 	{
 		case __X_AXIS:
 
@@ -135,14 +135,14 @@ bool MovingEntity::handleMessage(Telegram telegram)
 			{
 				Vector3D position = this->transformation.globalPosition;
 
-				switch(this->movingEntityDefinition->axis)
+				switch(this->movingEntitySpec->axis)
 				{
 					case __X_AXIS:
-						position.x = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * direction.x;
+						position.x = this->initialPosition + this->movingEntitySpec->maximumDisplacement * direction.x;
 						break;
 
 					case __Y_AXIS:
-						position.y = this->initialPosition + this->movingEntityDefinition->maximumDisplacement * direction.y;
+						position.y = this->initialPosition + this->movingEntitySpec->maximumDisplacement * direction.y;
 						break;
 				}
 
@@ -165,18 +165,18 @@ void MovingEntity::takeHit(u16 axis __attribute__ ((unused)), s8 direction __att
 void MovingEntity::checkDisplacement()
 {
 	// update position
-	switch(this->movingEntityDefinition->axis)
+	switch(this->movingEntitySpec->axis)
 	{
 		case __X_AXIS:
 			{
 				fix10_6 distance = __ABS((this->transformation.globalPosition.x - this->initialPosition));
 
-				if(distance > this->movingEntityDefinition->maximumDisplacement)
+				if(distance > this->movingEntitySpec->maximumDisplacement)
 				{
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMoving, NULL);
 				}
 				else
 				{
@@ -189,12 +189,12 @@ void MovingEntity::checkDisplacement()
 			{
 				fix10_6 distance = __ABS((this->transformation.globalPosition.y - this->initialPosition));
 
-				if(distance > this->movingEntityDefinition->maximumDisplacement)
+				if(distance > this->movingEntitySpec->maximumDisplacement)
 				{
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMoving, NULL);
 				}
 				else
 				{
@@ -210,7 +210,7 @@ void MovingEntity::startMovement()
 {
 	Direction direction = Entity::getDirection(this);
 
-	switch(this->movingEntityDefinition->axis)
+	switch(this->movingEntitySpec->axis)
 	{
 		case __X_AXIS:
 
@@ -230,7 +230,7 @@ void MovingEntity::startMovement()
 			{
 				Velocity velocity =
 				{
-					((int)this->movingEntityDefinition->velocity * direction.x),
+					((int)this->movingEntitySpec->velocity * direction.x),
 					0,
 					0,
 				};
@@ -258,7 +258,7 @@ void MovingEntity::startMovement()
 				Velocity velocity =
 				{
 					0,
-					((int)this->movingEntityDefinition->velocity * direction.y),
+					((int)this->movingEntitySpec->velocity * direction.y),
 					0,
 				};
 
@@ -272,5 +272,5 @@ void MovingEntity::startMovement()
 
 u16 MovingEntity::getAxesForShapeSyncWithDirection()
 {
-	return this->movingEntityDefinition->axesForShapeSyncWithDirection;
+	return this->movingEntitySpec->axesForShapeSyncWithDirection;
 }

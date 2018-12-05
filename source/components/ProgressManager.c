@@ -370,9 +370,9 @@ void ProgressManager::onPowerUp(Object eventFirer __attribute__ ((unused)))
 // handle event
 void ProgressManager::onLevelStarted(Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());
+	PlatformerLevelSpec* platformerLevelSpec = PlatformerLevelState::getCurrentLevelSpec(PlatformerLevelState::getInstance());
 
-	ProgressManager::loadLevelStatus(this, platformerLevelDefinition->id);
+	ProgressManager::loadLevelStatus(this, platformerLevelSpec->id);
 }
 
 // handle event
@@ -385,7 +385,7 @@ void ProgressManager::onCheckpointLoaded(Object eventFirer __attribute__ ((unuse
 // handle event
 void ProgressManager::onLevelCompleted(Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());
+	PlatformerLevelSpec* platformerLevelSpec = PlatformerLevelState::getCurrentLevelSpec(PlatformerLevelState::getInstance());
 
-	ProgressManager::persistLevelStatus(this, platformerLevelDefinition->id);
+	ProgressManager::persistLevelStatus(this, platformerLevelSpec->id);
 }

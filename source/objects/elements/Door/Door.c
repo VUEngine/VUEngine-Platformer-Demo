@@ -40,13 +40,13 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Door::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Door::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntitySpec, id, internalId, name);
 
 	// init class variables
-	this->destinationDefinition = NULL;
+	this->destinationSpec = NULL;
 }
 
 // class's destructor
@@ -58,15 +58,15 @@ void Door::destructor()
 }
 
 // get destination
-StageEntryPointDefinition* Door::getExtraInfo()
+StageEntryPointSpec* Door::getExtraInfo()
 {
-	return this->destinationDefinition;
+	return this->destinationSpec;
 }
 
 // set destination
 void Door::setExtraInfo(void* extraInfo)
 {
-	this->destinationDefinition = (StageEntryPointDefinition*)extraInfo;
+	this->destinationSpec = (StageEntryPointSpec*)extraInfo;
 }
 
 // ready
@@ -94,7 +94,7 @@ bool Door::handleMessage(Telegram telegram)
 
 			if(Door::hasDestination(this))
 			{
-				PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->destinationDefinition);
+				PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->destinationSpec);
 				return true;
 			}
 			break;
@@ -105,7 +105,7 @@ bool Door::handleMessage(Telegram telegram)
 
 bool Door::hasDestination()
 {
-	return NULL != this->destinationDefinition;
+	return NULL != this->destinationSpec;
 }
 
 void Door::onOverlapping()

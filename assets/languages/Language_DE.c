@@ -31,7 +31,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition FLAG_GERMANY_EN;
+extern EntitySpec FLAG_GERMANY_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_LEVEL_1_SLOGAN */			"   \"Bewölkt mit\nAussicht auf Regen\"",
 };
 
-const LangROMDef LANGUAGE_DE =
+const LangROMSpec LANGUAGE_DE =
 {
 	// Language Name
 	"Deutsch",

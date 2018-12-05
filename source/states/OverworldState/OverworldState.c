@@ -49,7 +49,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef OVERWORLD1_STAGE_ST;
+extern StageROMSpec OVERWORLD1_STAGE_ST;
 extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
@@ -80,7 +80,7 @@ void OverworldState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// load stage
-	GameState::loadStage(this, (StageDefinition*)&OVERWORLD1_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&OVERWORLD1_STAGE_ST, NULL, true);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	GameState::startClocks(this);
@@ -238,7 +238,7 @@ void OverworldState::onFadeInComplete(Object eventFirer __attribute__ ((unused))
 void OverworldState::onStartLevelFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// load platformer level
-	extern PlatformerLevelDefinition LEVEL_1_LV;
+	extern PlatformerLevelSpec LEVEL_1_LV;
 	PlatformerLevelState::startLevel(PlatformerLevelState::getInstance(), &LEVEL_1_LV);
 }
 

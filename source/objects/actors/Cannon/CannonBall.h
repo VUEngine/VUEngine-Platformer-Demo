@@ -44,12 +44,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const ActorDefinition CannonBallDefinition;
-typedef const CannonBallDefinition CannonBallROMDef;
+typedef const ActorSpec CannonBallSpec;
+typedef const CannonBallSpec CannonBallROMSpec;
 
 class CannonBall : Actor
 {
-	void constructor(CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(CannonBallSpec* cannonBallSpec, s16 id, s16 internalId, const char* const name);
 	void startMovement();
 	void stopMovement();
 	void checkPosition();

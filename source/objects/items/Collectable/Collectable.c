@@ -44,10 +44,10 @@ extern const u16 COLLECT_SND[];
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Collectable::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Collectable::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntitySpec, id, internalId, name);
 }
 
 // class's destructor

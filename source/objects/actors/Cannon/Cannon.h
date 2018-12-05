@@ -43,12 +43,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const AnimatedEntityDefinition CannonDefinition;
-typedef const CannonDefinition CannonROMDef;
+typedef const AnimatedEntitySpec CannonSpec;
+typedef const CannonSpec CannonROMSpec;
 
 class Cannon : AnimatedEntity
 {
-	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* spec, s16 id, s16 internalId, const char* const name);
 	void shoot();
 	void spawnCannonBall();
 	override bool handleMessage(Telegram telegram);

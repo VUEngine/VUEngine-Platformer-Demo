@@ -31,7 +31,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition FLAG_SPAIN_EN;
+extern EntitySpec FLAG_SPAIN_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_LEVEL_1_SLOGAN */			"\"Nublado con pronóstico\n       de lluvia\"",
 };
 
-const LangROMDef LANGUAGE_ES =
+const LangROMSpec LANGUAGE_ES =
 {
 	// Language Name
 	"Español",

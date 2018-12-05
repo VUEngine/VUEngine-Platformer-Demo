@@ -42,12 +42,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const EntityDefinition LavaDefinition;
-typedef const LavaDefinition LavaROMDef;
+typedef const EntitySpec LavaSpec;
+typedef const LavaSpec LavaROMSpec;
 
 class Lava : Entity
 {
-	void constructor(EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* spec, s16 id, s16 internalId, const char* const name);
 	void startMoving();
 	override bool handleMessage(Telegram telegram);
 	override bool isVisible(int pad, bool recursive);

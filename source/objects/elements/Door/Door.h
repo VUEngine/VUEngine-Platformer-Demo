@@ -43,16 +43,16 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const AnimatedEntityDefinition DoorDefinition;
-typedef const DoorDefinition DoorROMDef;
+typedef const AnimatedEntitySpec DoorSpec;
+typedef const DoorSpec DoorROMSpec;
 
 class Door : AnimatedEntity
 {
 	/* destination of door */
-	StageEntryPointDefinition* destinationDefinition;
+	StageEntryPointSpec* destinationSpec;
 
-	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-	StageEntryPointDefinition* getExtraInfo();
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
+	StageEntryPointSpec* getExtraInfo();
 	void onOverlapping();
 	virtual bool hasDestination();
 	virtual void setOverlapping();

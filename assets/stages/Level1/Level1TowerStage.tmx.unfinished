@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="128" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="253">
  <properties>
-  <property name="declaration" value="StageEntryPointROMDef LEVEL_1_MAIN_TOWER_EP, BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
+  <property name="declaration" value="StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP, BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
   <property name="stage.assets.charSets" value="NULL"/>
-  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, ASTONISH_FONT_SHADOW"/>
-  <property name="stage.assets.stageTextureEntryDefinitions" value="NULL"/>
+  <property name="stage.assets.fontSpecs" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, ASTONISH_FONT_SHADOW"/>
+  <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>
   <property name="stage.level.screenInitialPosition.y" value="0"/>
   <property name="stage.level.screenInitialPosition.z" value="0"/>
@@ -756,7 +756,7 @@
   </properties>
   <object id="163" name="Lava Body" type="Entity" gid="65" x="0" y="1216" width="384" height="224">
    <properties>
-    <property name="childrenDefinitions" value="Lava"/>
+    <property name="childrenSpecs" value="Lava"/>
     <property name="name" value="&quot;Lava&quot;"/>
     <property name="position.z" value="LAYER_0_FOREGROUND"/>
     <property name="preloadTexture" type="bool" value="true"/>

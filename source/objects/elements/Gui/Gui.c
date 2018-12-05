@@ -41,8 +41,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern CharSetDefinition GUI_CH;
-extern CharSetDefinition GUI_BANDANA_CH;
+extern CharSetSpec GUI_CH;
+extern CharSetSpec GUI_BANDANA_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,10 +50,10 @@ extern CharSetDefinition GUI_BANDANA_CH;
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Gui::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Gui::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntitySpec, id, internalId, name);
 
 	// add event listeners
 	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
@@ -150,8 +150,8 @@ void Gui::printKey()
 // print current level to gui
 void Gui::printLevel()
 {
-	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());
-	Printing::text(Printing::getInstance(), platformerLevelDefinition->identifier, GUI_X_POS + 29, GUI_Y_POS, GUI_TEXT_FONT);
+	PlatformerLevelSpec* platformerLevelSpec = PlatformerLevelState::getCurrentLevelSpec(PlatformerLevelState::getInstance());
+	Printing::text(Printing::getInstance(), platformerLevelSpec->identifier, GUI_X_POS + 29, GUI_Y_POS, GUI_TEXT_FONT);
 }
 
 // update sprite, e.g. after collecting a power-up
@@ -159,23 +159,23 @@ void Gui::updateSprite()
 {
 	CharSet charSet = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::front(this->sprites))), true);
 
-	CharSetDefinition* charSetDefinition = NULL;
+	CharSetSpec* charSetSpec = NULL;
 
 	switch(Hero::getPowerUp(Hero::getInstance()))
 	{
 		case kPowerUpBandana:
 
-			charSetDefinition = &GUI_BANDANA_CH;
+			charSetSpec = &GUI_BANDANA_CH;
 			break;
 
 		default:
 		case kPowerUpNone:
 
-			charSetDefinition = &GUI_CH;
+			charSetSpec = &GUI_CH;
 			break;
 	}
 
-	CharSet::setCharSetDefinition(charSet, charSetDefinition);
+	CharSet::setCharSetSpec(charSet, charSetSpec);
 	CharSet::rewrite(charSet);
 }
 

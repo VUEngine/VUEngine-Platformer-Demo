@@ -39,10 +39,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void LayerSwitchDoor::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void LayerSwitchDoor::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntitySpec, id, internalId, name);
 }
 
 // class's destructor
@@ -60,16 +60,16 @@ bool LayerSwitchDoor::handleMessage(Telegram telegram)
 	{
 		case kHeroEnterDoor:
 
-			if(this->destinationDefinition)
+			if(this->destinationSpec)
 			{
 				// get global position of destination door
-				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), (char *)this->destinationDefinition->destinationName, true);
+				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), (char *)this->destinationSpec->destinationName, true);
 				Vector3D destinationDoorPosition = *Container::getGlobalPosition(destinationDoor);
 
 				// apply offset
-				destinationDoorPosition.x += __PIXELS_TO_METERS(this->destinationDefinition->offset.x);
-				destinationDoorPosition.y += __PIXELS_TO_METERS(this->destinationDefinition->offset.y);
-				destinationDoorPosition.z += __PIXELS_TO_METERS(this->destinationDefinition->offset.z + this->destinationDefinition->offset.zDisplacement);
+				destinationDoorPosition.x += __PIXELS_TO_METERS(this->destinationSpec->offset.x);
+				destinationDoorPosition.y += __PIXELS_TO_METERS(this->destinationSpec->offset.y);
+				destinationDoorPosition.z += __PIXELS_TO_METERS(this->destinationSpec->offset.z + this->destinationSpec->offset.zDisplacement);
 
 				// set hero's position
 				Hero::getOutOfDoor(Hero::getInstance(), &destinationDoorPosition);

@@ -42,24 +42,24 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct CloudsDefinition
+typedef struct CloudsSpec
 {
 	// it has an Entity at the beginning
-	EntityDefinition EntityDefinition;
+	EntitySpec EntitySpec;
 
 	// displacement per cycle in pixels
 	s16 displacement;
 
-} CloudsDefinition;
+} CloudsSpec;
 
-typedef const CloudsDefinition CloudsROMDef;
+typedef const CloudsSpec CloudsROMSpec;
 
 class Clouds : Entity
 {
 	/* displacement per cycle */
 	fix10_6 displacement;
 
-	void constructor(CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(CloudsSpec* cloudsSpec, s16 id, s16 internalId, const char* const name);
 	override void update(u32 elapsedTime);
 	override bool isVisible(int pad, bool recursive);
 }

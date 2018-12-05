@@ -31,7 +31,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition FLAG_FRANCE_EN;
+extern EntitySpec FLAG_FRANCE_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ const char* const LANGUAGE_FR_STRINGS[] =
 	/* STR_LEVEL_1_SLOGAN */			"\"Nuageux avec un\n risque de pluie\"",
 };
 
-const LangROMDef LANGUAGE_FR =
+const LangROMSpec LANGUAGE_FR =
 {
 	// Language Name
 	"Français",

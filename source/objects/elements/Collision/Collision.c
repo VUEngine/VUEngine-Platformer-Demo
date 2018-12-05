@@ -82,10 +82,10 @@ const PixelSize collision_62_25_4 = {62 * 8, 	25 * 8, 	8 * 8};
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Collision::constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Collision::constructor(EntitySpec* inGameEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(inGameEntityDefinition, id, internalId, name);
+	Base::constructor(inGameEntitySpec, id, internalId, name);
 }
 
 // class's destructor
@@ -110,7 +110,7 @@ void Collision::initialTransform(Transformation* environmentTransform, u32 recur
 	{
 		this->shapes = new VirtualList();
 
-		ShapeDefinition shapeDefinition =
+		ShapeSpec shapeSpec =
 		{
 			// class allocator
 			__TYPE(Box),
@@ -137,7 +137,7 @@ void Collision::initialTransform(Transformation* environmentTransform, u32 recur
 			kNoLayer,
 		};
 
-		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), SpatialObject::safeCast(this), &shapeDefinition);
+		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), SpatialObject::safeCast(this), &shapeSpec);
 
 		const Vector3D* myPosition = Entity::getPosition(this);
 		const Rotation* myRotation = Entity::getRotation(this);

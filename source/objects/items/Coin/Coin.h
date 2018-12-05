@@ -35,12 +35,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const CollectableDefinition CoinDefinition;
-typedef const CoinDefinition CoinROMDef;
+typedef const CollectableSpec CoinSpec;
+typedef const CoinSpec CoinROMSpec;
 
 class Coin : Collectable
 {
-	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* spec, s16 id, s16 internalId, const char* const name);
 	override void collect();
 }
 

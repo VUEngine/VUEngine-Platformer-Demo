@@ -35,10 +35,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern FontDefinition ASTONISH_FONT_SHADOW;
-extern FontDefinition ASTONISH_EXTENDED_FONT_SHADOW;
-extern FontDefinition PLATFORMER_DEFAULT_FONT;
-extern FontDefinition PLATFORMER_GUI_FONT;
+extern FontSpec ASTONISH_FONT_SHADOW;
+extern FontSpec ASTONISH_EXTENDED_FONT_SHADOW;
+extern FontSpec PLATFORMER_DEFAULT_FONT;
+extern FontSpec PLATFORMER_GUI_FONT;
 
 
 #endif

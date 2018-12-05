@@ -60,14 +60,14 @@ friend class BgmapTexture;
  * @public
  *
  * @param this							Function scope
- * @param mBgmapSpriteDefinition		Definition to use
+ * @param mBgmapSpriteSpec		Spec to use
  * @param owner							Sprite's owner
  */
-void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner)
+void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, Object owner)
 {
-	Base::constructor(&hbiasMaskMBgmapSpriteDefinition->mBgmapSpriteDefinition, owner);
+	Base::constructor(&hbiasMaskMBgmapSpriteSpec->mBgmapSpriteSpec, owner);
 
-	this->hbiasMaskMBgmapSpriteDefinition = hbiasMaskMBgmapSpriteDefinition;
+	this->hbiasMaskMBgmapSpriteSpec = hbiasMaskMBgmapSpriteSpec;
 	this->owner = NULL;
 	this->referenceSprite = NULL;
 	this->step = 0;
@@ -108,7 +108,7 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
 {
 	if(isDeleted(this->referenceSprite))
 	{
-		Container referenceSpriteOwner = Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), this->hbiasMaskMBgmapSpriteDefinition->referenceSpriteOwnerName, true);
+		Container referenceSpriteOwner = Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), this->hbiasMaskMBgmapSpriteSpec->referenceSpriteOwnerName, true);
 
 		if(!isDeleted(referenceSpriteOwner))
 		{
@@ -209,7 +209,7 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
 
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
-	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight : referenceSpriteWorldPointer->gy;
+	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
 
 	if(!referenceSpriteWorldLayer
@@ -218,7 +218,7 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
     	||
 		ownerSpriteGY < worldPointer->gy
 		||
-		_cameraFrustum->y1 <= ownerSpriteGY - this->hbiasMaskMBgmapSpriteDefinition->effectHeight
+		_cameraFrustum->y1 <= ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight
 		||
 		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy
 		||
@@ -236,7 +236,7 @@ void HbiasMaskMBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
 	worldPointer->my = referenceSpriteWorldPointer->my - referenceSpriteWorldPointer->gy + worldPointer->gy;
 	worldPointer->mp = referenceSpriteWorldPointer->mp;
 	worldPointer->w = referenceSpriteWorldPointer->w;
-	worldPointer->h = ownerSpriteGY - worldPointer->gy + this->hbiasMaskMBgmapSpriteDefinition->effectHeightExcess;
+	worldPointer->h = ownerSpriteGY - worldPointer->gy + this->hbiasMaskMBgmapSpriteSpec->effectHeightExcess;
 
 	if(referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy + worldPointer->h)
 	{

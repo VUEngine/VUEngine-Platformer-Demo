@@ -42,12 +42,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const EntityDefinition CogWheelDefinition;
-typedef const CogWheelDefinition CogWheelROMDef;
+typedef const EntitySpec CogWheelSpec;
+typedef const CogWheelSpec CogWheelROMSpec;
 
 class CogWheel : Entity
 {
-	void constructor(EntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* spec, s16 id, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 }

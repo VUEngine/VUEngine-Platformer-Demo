@@ -77,8 +77,8 @@ enum HeroPowerUps
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const ActorDefinition HeroDefinition;
-typedef const HeroDefinition HeroROMDef;
+typedef const ActorSpec HeroSpec;
+typedef const HeroSpec HeroROMSpec;
 
 class Hero : Actor
 {
@@ -110,7 +110,7 @@ class Hero : Actor
 	bool underWater;
 
 	static Hero getInstance();
-	void constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(HeroSpec* heroSpec, s16 id, s16 internalId, const char* const name);
 	void addForce(u16 axis, bool enableAddingForce);
 	void stopAddingForce();
 	void startedMovingOnAxis(u16 axis);

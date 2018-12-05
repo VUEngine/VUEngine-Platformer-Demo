@@ -35,12 +35,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const DoorDefinition KeyDoorDefinition;
-typedef const KeyDoorDefinition KeyDoorROMDef;
+typedef const DoorSpec KeyDoorSpec;
+typedef const KeyDoorSpec KeyDoorROMSpec;
 
 class KeyDoor : Door
 {
-	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 	override bool hasDestination();
 	override void setOverlapping();

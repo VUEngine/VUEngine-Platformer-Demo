@@ -39,10 +39,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CannonBall::constructor(CannonBallDefinition* cannonBallDefinition, s16 id, s16 internalId, const char* const name)
+void CannonBall::constructor(CannonBallSpec* cannonBallSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorDefinition*)cannonBallDefinition, id, internalId, name);
+	Base::constructor((ActorSpec*)cannonBallSpec, id, internalId, name);
 
 	// I start my life hidden
 	this->hidden = true;

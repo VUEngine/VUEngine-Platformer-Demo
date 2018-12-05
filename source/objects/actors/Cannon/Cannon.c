@@ -44,10 +44,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Cannon::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Cannon::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntitySpec, id, internalId, name);
 }
 
 // class's destructor
@@ -93,7 +93,7 @@ void Cannon::shoot()
 	if(!this->children)
 	{
 		// add cannon ball as child
-		extern PositionedEntityROMDef CANNON_BALL;
+		extern PositionedEntityROMSpec CANNON_BALL;
 
 		Stage::spawnEntity(Game::getStage(Game::getInstance()), &CANNON_BALL, Container::safeCast(this), (EventListener)Cannon::onCannonBallSpawned);
 		return;

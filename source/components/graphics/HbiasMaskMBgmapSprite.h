@@ -34,10 +34,10 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct HbiasMaskMBgmapSpriteDefinition
+typedef struct HbiasMaskMBgmapSpriteSpec
 {
-	// super class definition
-	MBgmapSpriteDefinition mBgmapSpriteDefinition;
+	// super class spec
+	MBgmapSpriteSpec mBgmapSpriteSpec;
 
 	// name of the owner of the reference sprite
 	char* referenceSpriteOwnerName;
@@ -48,9 +48,9 @@ typedef struct HbiasMaskMBgmapSpriteDefinition
 	// height addition
 	u16 effectHeightExcess;
 
-} HbiasMaskMBgmapSpriteDefinition;
+} HbiasMaskMBgmapSpriteSpec;
 
-typedef const HbiasMaskMBgmapSpriteDefinition HbiasMaskMBgmapSpriteROMDef;
+typedef const HbiasMaskMBgmapSpriteSpec HbiasMaskMBgmapSpriteROMSpec;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 	* @brief		reference Sprite
 	* @memberof 	HbiasMaskMBgmapSprite
 	*/
-	const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition;
+	const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec;
 	/**
 	* @var u8		step
 	* @brief		current lut index
@@ -88,7 +88,7 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 	*/
 	u8 step;
 
-	void constructor(const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
+	void constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, Object owner);
 	s16 wave();
 	override void render(bool evenFrame);
 	override void position(const Vector3D* position);

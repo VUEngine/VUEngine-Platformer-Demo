@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="148">
  <properties>
-  <property name="declaration" value="StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, StageEntryPointROMDef LEVEL1_COIN_ROOM_STAGE_EXIT_EP, StageEntryPointROMDef LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
+  <property name="declaration" value="StageEntryPointROMSpec LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, StageEntryPointROMSpec LEVEL1_COIN_ROOM_STAGE_EXIT_EP, StageEntryPointROMSpec LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
   <property name="stage.assets.charSets" value="NULL"/>
-  <property name="stage.assets.fontDefinitions" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, ASTONISH_FONT_SHADOW"/>
-  <property name="stage.assets.stageTextureEntryDefinitions" value="NULL"/>
+  <property name="stage.assets.fontSpecs" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, ASTONISH_FONT_SHADOW"/>
+  <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>
   <property name="stage.level.screenInitialPosition.y" value="0"/>
   <property name="stage.level.screenInitialPosition.z" value="0"/>

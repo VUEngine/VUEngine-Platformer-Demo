@@ -34,12 +34,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Clouds::constructor(CloudsDefinition* cloudsDefinition, s16 id, s16 internalId, const char* const name)
+void Clouds::constructor(CloudsSpec* cloudsSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(&cloudsDefinition->EntityDefinition, id, internalId, name);
+	Base::constructor(&cloudsSpec->EntitySpec, id, internalId, name);
 
-	this->displacement = __PIXELS_TO_METERS(cloudsDefinition->displacement);
+	this->displacement = __PIXELS_TO_METERS(cloudsSpec->displacement);
 }
 
 // class's destructor

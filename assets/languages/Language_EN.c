@@ -31,7 +31,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition FLAG_UNITED_KINGDOM_EN;
+extern EntitySpec FLAG_UNITED_KINGDOM_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ const char* const LANGUAGE_EN_STRINGS[] =
 	/* STR_LEVEL_1_SLOGAN */			"\"Cloudy with a \n chance of rain\"",
 };
 
-const LangROMDef LANGUAGE_EN =
+const LangROMSpec LANGUAGE_EN =
 {
 	// Language Name
 	"English",

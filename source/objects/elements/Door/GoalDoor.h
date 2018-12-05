@@ -35,12 +35,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const DoorDefinition GoalDoorDefinition;
-typedef const GoalDoorDefinition GoalDoorROMDef;
+typedef const DoorSpec GoalDoorSpec;
+typedef const GoalDoorSpec GoalDoorROMSpec;
 
 class GoalDoor : Door
 {
-	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 	override void ready(bool recursive);
 	override bool hasDestination();
