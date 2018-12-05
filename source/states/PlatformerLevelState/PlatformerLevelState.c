@@ -195,18 +195,11 @@ void PlatformerLevelState::enter(void* owner)
 			// set hero's position
 			Actor::setPosition(hero, initialPosition);
 
-			// make sure that focusing gets completed immediately
-			PlatformerCameraMovementManager::enable(PlatformerCameraMovementManager::getInstance());
-
 			// update actor's global transformations
 			GameState::transform(this);
 
-			PlatformerCameraMovementManager::configure(PlatformerCameraMovementManager::getInstance(), kHero, kPlayerLayer, kCameraLayer, (PixelSize){12 * 8, 20 * 8, 4 * 8}, (Vector3D){__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)});
-
-			// set focus on the hero
-			Camera::setFocusGameEntity(Camera::getInstance(), Entity::safeCast(hero));
-			Vector3D screenDisplacement = {PLATFORMER_CAMERA_OFFSET_X, PLATFORMER_CAMERA_OFFSET_Y, 0};
-			Camera::setFocusEntityPositionDisplacement(Camera::getInstance(), screenDisplacement);
+			// Configure camera
+			PlatformerCameraMovementManager::configure(PlatformerCameraMovementManager::getInstance(), Entity::safeCast(hero), kPlayerLayer, kCameraLayer, (PixelSize){12 * 8, 20 * 8, 4 * 8}, (Vector3D){__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)}, (Vector3D){PLATFORMER_CAMERA_OFFSET_X, PLATFORMER_CAMERA_OFFSET_Y, 0});
 
 			// set direction according to entry point
 			Direction direction = {this->currentStageEntryPoint->direction, __DOWN, __FAR};
