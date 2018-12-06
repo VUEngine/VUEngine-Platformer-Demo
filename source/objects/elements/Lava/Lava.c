@@ -61,7 +61,7 @@ void Lava::startMoving()
 	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kLavaMove, NULL);
 
 	// must make sure that the shape is updated
-	Entity::activateShapes(this, true);
+	Entity::activeCollisionChecks(this, true);
 }
 
 // whether it is visible

@@ -140,7 +140,7 @@ void Hero::destructor()
 
 void Hero::ready(bool recursive)
 {
-	Entity::activateShapes(this, true);
+	Entity::activeCollisionChecks(this, true);
 
 	// call base
 	Base::ready(this, recursive);
@@ -595,7 +595,7 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 			Hero::flash(this);
 			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 			GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
-			Entity::enableShapes(this, false);
+			Entity::allowCollisions(this, false);
 			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kHeroDied, NULL);
 		}
 
@@ -824,7 +824,7 @@ void Hero::die()
 	StateMachine::swapState(this->stateMachine, State::safeCast(HeroDead::getInstance()));
 
 	// must unregister the shape for collision detections
-	Entity::enableShapes(this, false);
+	Entity::allowCollisions(this, false);
 
 	// change in game state
 	this->inGameState = kDead;
@@ -1222,7 +1222,7 @@ void Hero::getOutOfDoor(Vector3D* outOfDoorPosition)
 	// make the camera active for collision detection
 	PlatformerCameraMovementManager::lockMovement(PlatformerCameraMovementManager::getInstance(), __X_AXIS | __Y_AXIS, false);
 
-	Entity::activateShapes(this, true);
+	Entity::activeCollisionChecks(this, true);
 
 	Container::invalidateGlobalTransformation(this);
 

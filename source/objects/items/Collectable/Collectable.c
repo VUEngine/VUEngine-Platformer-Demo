@@ -69,7 +69,7 @@ bool Collectable::handleMessage(Telegram telegram)
 			SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
 			// set shape to inactive so no other hits with this item can occur
-			Entity::enableShapes(this, false);
+			Entity::allowCollisions(this, false);
 
 			// additional action
 			Collectable::collect(this);
