@@ -131,7 +131,13 @@ MBgmapSpriteROMSpec LEVEL_1_TOWER_BACK_1_IM_SPRITE =
 	false,
 
 	// y loop
-	true
+	true,
+
+	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	0,
+
+	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	0,
 };
 
 HbiasMaskMBgmapSpriteROMSpec LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
@@ -173,7 +179,13 @@ HbiasMaskMBgmapSpriteROMSpec LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE =
 		false,
 
 		// y loop
-		true
+		true,
+
+		/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+		0,
+
+		/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+		0,
 	},
 
 	// name of the owner of the reference sprite
