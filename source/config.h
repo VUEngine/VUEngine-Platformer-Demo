@@ -343,6 +343,10 @@
 // bigger numbers equal faster computations
 #define __PHYSICS_TIME_ELAPSED_DIVISOR			2
 
+// Thresholds to stop bodies
+#define __STOP_VELOCITY_THRESHOLD				__PIXELS_TO_METERS(8)
+#define __STOP_BOUNCING_VELOCITY_THRESHOLD 		__PIXELS_TO_METERS(48)
+
 
 //---------------------------------------------------------------------------------------------------------
 //												SOUND
