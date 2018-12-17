@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\..\\..\\libs\\vuengine\\core"
+		},
+		{
+			"path": "..\\..\\..\\..\\libs\\vuengine\\plugins"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"progressmanager.h": "c",
+			"game.h": "c",
+			"optics.h": "c",
+			"i18n.h": "c",
+			"titlescreenstate.h": "c",
+			"heroidle.h": "c",
+			"keypadmanager.h": "c",
+			"automaticpausescreenstate.h": "c",
+			"autopausemanager.h": "c",
+			"gamestate.h": "c"
+		}
+	}
+}
