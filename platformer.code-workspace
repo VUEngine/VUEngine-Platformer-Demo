@@ -1,13 +1,13 @@
 {
 	"folders": [
 		{
-			"path": ".."
+			"path": "."
 		},
 		{
-			"path": "..\\..\\..\\..\\libs\\vuengine\\core"
+			"path": "..\\..\\..\\libs\\vuengine\\core"
 		},
 		{
-			"path": "..\\..\\..\\..\\libs\\vuengine\\plugins"
+			"path": "..\\..\\..\\libs\\vuengine\\plugins"
 		}
 	],
 	"settings": {
