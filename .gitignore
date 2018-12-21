@@ -2,3 +2,4 @@
 build/
 release.bat
 v810_err.txt
+.DS_Store

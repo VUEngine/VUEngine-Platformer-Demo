@@ -42,7 +42,7 @@ int main(void)
 	// initialize plugins
 	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
 	AutoPauseManager::setAutomaticPauseState(AutoPauseManager::getInstance(), GameState::safeCast(AutomaticPauseScreenState::getInstance()));
-	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 30);
+	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 1);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),

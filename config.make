@@ -3,12 +3,13 @@ PLUGINS = 	vuengine/plugins/cameras/Platformer															\
 			vuengine/plugins/entities/LowPowerEntity													\
 			vuengine/plugins/entities/ReflectiveEntity													\
 			vuengine/plugins/fonts/Astonish																\
+			vuengine/plugins/graphics/GuiBgmapAnimatedSprite											\
 			vuengine/plugins/other/AutomaticPause														\
 			vuengine/plugins/other/SaveDataManager														\
 			vuengine/plugins/postProcessing/Lantern														\
 			vuengine/plugins/postProcessing/Rain														\
 			vuengine/plugins/postProcessing/Rhombus														\
-			vuengine/plugins/states/SplashScreens														\
+			vuengine/plugins/states/SplashScreens
 
 # Compiler's output
 COMPILER_OUTPUT         = c
