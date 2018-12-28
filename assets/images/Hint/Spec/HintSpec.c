@@ -26,7 +26,7 @@
 
 #include <AnimatedEntity.h>
 #include <BgmapAnimatedSprite.h>
-#include <libgccvb.h>
+#include <Libgccvb.h>
 #include <Hint.h>
 #include <macros.h>
 

@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
+#include <Libgccvb.h>
 #include <ObjectAnimatedSprite.h>
 #include <Ball.h>
 #include "Bandana.h"

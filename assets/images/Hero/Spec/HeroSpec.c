@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
+#include <Libgccvb.h>
 #include <BgmapAnimatedSprite.h>
 #include <PlatformerCameraTriggerEntity.h>
 #include <Ball.h>

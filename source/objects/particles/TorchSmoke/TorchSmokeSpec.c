@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
+#include <Libgccvb.h>
 #include <ParticleSystem.h>
 #include <ObjectAnimatedSprite.h>
 #include <macros.h>

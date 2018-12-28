@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
+#include <Libgccvb.h>
 #include <AnimatedEntity.h>
 #include <BgmapAnimatedSprite.h>
 #include <macros.h>
