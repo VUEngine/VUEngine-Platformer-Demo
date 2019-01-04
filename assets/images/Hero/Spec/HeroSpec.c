@@ -620,7 +620,10 @@ HeroROMSpec HERO_AC =
 	/// true to create a body
 	true,
 
-	/// axes subject to gravity
+	/// axis subject to gravity
+	__Y_AXIS,
+
+	// axis around which to rotate the entity when syncronizing with body
 	__Y_AXIS
 };
 

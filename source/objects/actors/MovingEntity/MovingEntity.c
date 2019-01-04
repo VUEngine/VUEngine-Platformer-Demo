@@ -270,7 +270,7 @@ void MovingEntity::startMovement()
 	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMovingEntityCheckDirection, NULL);
 }
 
-u16 MovingEntity::getAxesForShapeSyncWithDirection()
+u16 MovingEntity::getAxisForShapeSyncWithDirection()
 {
-	return this->movingEntitySpec->axesForShapeSyncWithDirection;
+	return this->movingEntitySpec->axisForShapeSyncWithDirection;
 }

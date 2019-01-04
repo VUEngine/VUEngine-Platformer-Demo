@@ -155,7 +155,7 @@ class Hero : Actor
 	override bool updateCollision(const CollisionInformation* collisionInformation);
 	override void syncRotationWithBody();
 	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
-	override u16 getAxesForShapeSyncWithDirection();
+	override u16 getAxisForShapeSyncWithDirection();
 }
 
 

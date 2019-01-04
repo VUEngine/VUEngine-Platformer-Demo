@@ -64,8 +64,8 @@ typedef struct MovingEntitySpec
 	// movement direction
 	s8 direction;
 
-	// axes on which synchronize shape with direction
-	u16 axesForShapeSyncWithDirection;
+	// axis on which synchronize shape with direction
+	u16 axisForShapeSyncWithDirection;
 
 } MovingEntitySpec;
 
@@ -84,7 +84,7 @@ class MovingEntity : Actor
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 	override void setSpec(void* movingEntitySpec);
-	override u16 getAxesForShapeSyncWithDirection();
+	override u16 getAxisForShapeSyncWithDirection();
 }
 
 

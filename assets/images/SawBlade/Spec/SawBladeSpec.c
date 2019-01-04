@@ -215,7 +215,10 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 		/// true to create a body
 		true,
 
-		/// axes subject to gravity
+		/// axis subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
 		__NO_AXIS
 	},
 
@@ -234,8 +237,8 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 	// direction
 	__DOWN,
 
-	// axes on which synchronize shape with direction
-	__ALL_AXES,
+	// axis on which synchronize shape with direction
+	__ALL_AXIS,
 };
 
 MovingEntityROMSpec SAW_BLADE_H3_AC =
@@ -273,7 +276,10 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 		/// true to create a body
 		true,
 
-		/// axes subject to gravity
+		/// axis subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
 		__NO_AXIS
 	},
 
@@ -292,8 +298,8 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 	// direction
 	__LEFT,
 
-	// axes on which synchronize shape with direction
-	__ALL_AXES,
+	// axis on which synchronize shape with direction
+	__ALL_AXIS,
 };
 
 MovingEntityROMSpec SAW_BLADE_H8_AC =
@@ -331,7 +337,10 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 		/// true to create a body
 		true,
 
-		/// axes subject to gravity
+		/// axis subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
 		__NO_AXIS
 	},
 
@@ -350,6 +359,6 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 	// direction
 	__LEFT,
 
-	// axes on which synchronize shape with direction
-	__ALL_AXES,
+	// axis on which synchronize shape with direction
+	__ALL_AXIS,
 };

@@ -230,7 +230,10 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 		/// true to create a body
 		true,
 
-		/// axes subject to gravity
+		/// axis subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
 		__NO_AXIS
 	},
 
@@ -249,6 +252,6 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 	// direction
 	__DOWN,
 
-	// axes on which synchronize shape with direction
+	// axis on which synchronize shape with direction
 	__NO_AXIS,
 };

@@ -303,7 +303,7 @@ void Hero::addForce(u16 axis, bool enableAddingForce)
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != Body::getMovementType(this->body).x || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body::getMovementOnAllAxes(this->body))))
+		if(__UNIFORM_MOVEMENT != Body::getMovementType(this->body).x || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body::getMovementOnAllAxis(this->body))))
 		{
 			Velocity newVelocity =
 			{
@@ -427,7 +427,7 @@ bool Hero::stopMovingOnAxis(u16 axis)
 		return false;
 	}
 
-	bool movementState = Body::getMovementOnAllAxes(this->body);
+	bool movementState = Body::getMovementOnAllAxis(this->body);
 
 	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
@@ -508,7 +508,7 @@ bool Hero::stopMovingOnAxis(u16 axis)
 // check direction
 void Hero::checkDirection(u32 pressedKey, char* animation)
 {
-	bool movementState = Body::getMovementOnAllAxes(this->body);
+	bool movementState = Body::getMovementOnAllAxis(this->body);
 
 	Hero::hideDust(this);
 
@@ -722,7 +722,7 @@ Door Hero::getOverlappedDoor()
 
 void Hero::enterDoor()
 {
-	if((__Y_AXIS | __Z_AXIS) & Body::getMovementOnAllAxes(this->body))
+	if((__Y_AXIS | __Z_AXIS) & Body::getMovementOnAllAxis(this->body))
 	{
 		return;
 	}
@@ -732,7 +732,7 @@ void Hero::enterDoor()
 
 	// move towards door
 	/*
-	Body::setAxesSubjectToGravity(this->body, 0);
+	Body::setAxisSubjectToGravity(this->body, 0);
 	Velocity velocity = {0, 0, __I_TO_FIX10_6(8)};
 	Body::moveUniformly(this->body, velocity);
 	*/
@@ -996,7 +996,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 
 		case kWaterPond:
 
-			if(Body::getMovementOnAllAxes(this->body))
+			if(Body::getMovementOnAllAxis(this->body))
 			{
 				this->underWater = true;
 
@@ -1072,7 +1072,7 @@ bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 
 		case kWaterPond:
 
-			if(Body::getMovementOnAllAxes(this->body))
+			if(Body::getMovementOnAllAxis(this->body))
 			{
 				MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kReactToCollision, NULL);
 			}
@@ -1226,7 +1226,7 @@ void Hero::getOutOfDoor(Vector3D* outOfDoorPosition)
 
 	Container::invalidateGlobalTransformation(this);
 
-	Body::setAxesSubjectToGravity(this->body, __Y_AXIS);
+	Body::setAxisSubjectToGravity(this->body, __Y_AXIS);
 
 	this->currentlyOverlappedDoor = NULL;
 }
@@ -1313,7 +1313,7 @@ void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isSha
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
-u16 Hero::getAxesForShapeSyncWithDirection()
+u16 Hero::getAxisForShapeSyncWithDirection()
 {
 	return __NO_AXIS;
 }

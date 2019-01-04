@@ -214,7 +214,10 @@ CannonBallROMSpec CANNON_BALL_AC =
 	/// true to create a body
 	true,
 
-	/// axes subject to gravity
+	/// axis subject to gravity
+	__NO_AXIS,
+
+	// axis around which to rotate the entity when syncronizing with body
 	__NO_AXIS
 };
 

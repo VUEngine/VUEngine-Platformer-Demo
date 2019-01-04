@@ -213,8 +213,11 @@ MovingEntityROMSpec SNAIL_3_AC =
 		/// true to create a body
 		true,
 
-		/// axes subject to gravity
-		__NO_AXIS
+		/// axis subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
+		__Y_AXIS
 	},
 
 	// velocity
@@ -232,8 +235,8 @@ MovingEntityROMSpec SNAIL_3_AC =
 	// direction
 	__LEFT,
 
-	// axes on which synchronize shape with direction
-	__ALL_AXES,
+	// axis on which synchronize shape with direction
+	__ALL_AXIS,
 };
 
 MovingEntityROMSpec SNAIL_8_AC =
@@ -271,8 +274,11 @@ MovingEntityROMSpec SNAIL_8_AC =
 		/// true to create a body
 		true,
 
-		/// axes subject to gravity
-		__NO_AXIS
+		/// axis subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
+		__Y_AXIS
 	},
 
 	// velocity
@@ -290,6 +296,6 @@ MovingEntityROMSpec SNAIL_8_AC =
 	// direction
 	__LEFT,
 
-	// axes on which synchronize shape with direction
-	__ALL_AXES,
+	// axis on which synchronize shape with direction
+	__ALL_AXIS,
 };
