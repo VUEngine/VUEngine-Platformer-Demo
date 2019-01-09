@@ -1,10 +1,11 @@
 
+
 //{{BLOCK(BackgroundMoundCastleFlag)
 
 //======================================================================
 //
 //	BackgroundMoundCastleFlag, 8x16@2, 
-//	+ 3 tiles (t|f reduced) not compressed
+//	+ 2 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 1x2 
 //	Total size: 48 + 4 = 52
 //
@@ -15,13 +16,13 @@
 
 const unsigned int BackgroundMoundCastleFlagTiles[12] __attribute__((aligned(4)))=
 {
-	0x00000000,0x00000000,0x00000000,0x00000000,0x00050000,0x06A90159,0x05A51AA9,0x00000050,
+	0x00050000,0x06A90159,0x05A51AA9,0x00000050,
 	0x05550000,0x06A91AA9,0x005501A9,0x00000000,
 };
 
 const unsigned short BackgroundMoundCastleFlagMap[2] __attribute__((aligned(4)))=
 {
-	0x0001,0x0002,
+	0x0000,0x0001,
 };
 
 //}}BLOCK(BackgroundMoundCastleFlag)
