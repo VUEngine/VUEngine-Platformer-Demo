@@ -549,7 +549,7 @@ void Hero::checkDirection(u32 pressedKey, char* animation)
 	}
 }
 
-void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
+void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
 {
 #ifdef GOD_MODE
 	return;
@@ -1009,26 +1009,26 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 
 		case kLava:
 
-			Hero::takeHitFrom(this, NULL, this->energy, true, false);
+			Hero::takeDamageFrom(this, NULL, this->energy, true, false);
 			return false;
 			break;
 
 		case kSawBlade:
 		case kSnail:
 
-			Hero::takeHitFrom(this, collidingObject, 1, true, true);
+			Hero::takeDamageFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 
 		case kCannonBall:
 
-			Hero::takeHitFrom(this, collidingObject, 2, true, true);
+			Hero::takeDamageFrom(this, collidingObject, 2, true, true);
 			return false;
 			break;
 
 		case kHit:
 
-			Hero::takeHitFrom(this, collidingObject, 1, true, true);
+			Hero::takeDamageFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 
@@ -1066,7 +1066,7 @@ bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 	{
 		case kHit:
 
-			Hero::takeHitFrom(this, collidingObject, 1, true, true);
+			Hero::takeDamageFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 

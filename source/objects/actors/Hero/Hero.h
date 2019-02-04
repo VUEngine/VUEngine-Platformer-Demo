@@ -119,7 +119,7 @@ class Hero : Actor
 	void jump(bool checkIfYMovement);
 	void addMomentumToJump();
 	void checkDirection(u32 currentPressedKey, char * animation);
-	void takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
+	void takeDamageFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
 	void flash();
 	void toggleFlashPalette();
 	void resetPalette();
