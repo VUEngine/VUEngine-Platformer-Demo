@@ -72,7 +72,7 @@ void CannonBall::startMovement()
 }
 
 // move back to cannon
-void CannonBall::stopMovement()
+void CannonBall::stopMovement(u16 axis __attribute__((unused)))
 {
 	// stop movement
 	Actor::stopAllMovement(this);
@@ -89,7 +89,7 @@ void CannonBall::checkIfDistanceTraveled()
 {
 	if(this->transformation.globalPosition.z <= __PIXELS_TO_METERS(CANNON_BALL_MINIMUM_Z_VALUE))
 	{
-		CannonBall::stopMovement(this);
+		CannonBall::stopMovement(this, __ALL_AXIS);
 	}
 	else
 	{

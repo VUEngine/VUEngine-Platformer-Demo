@@ -176,7 +176,7 @@ void WaterPond::applyReflection(u32 currentDrawingFrameBufferSet)
 	ReflectiveEntitySpec* reflectiveEntitySpec = (ReflectiveEntitySpec*)this->entitySpec;
 	WaterPondSpec* waterPondSpec = (WaterPondSpec*)this->entitySpec;
 
-	WaterPond::drawReflection(this, currentDrawingFrameBufferSet,
+	WaterPond::drawCustomReflection(this, currentDrawingFrameBufferSet,
 								this->position2D.x + reflectiveEntitySpec->sourceDisplacement.x,
 								this->position2D.y + reflectiveEntitySpec->sourceDisplacement.y,
 								this->position2D.x + reflectiveEntitySpec->outputDisplacement.x,
@@ -214,7 +214,7 @@ static inline void WaterPond::shiftPixels(int pixelShift, POINTER_TYPE* sourceVa
 	}
 }
 
-void WaterPond::drawReflection(u32 currentDrawingFrameBufferSet,
+void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
 								s16 xSourceStart, s16 ySourceStart,
 								s16 xOutputStart, s16 yOutputStart,
 								s16 width, s16 height,

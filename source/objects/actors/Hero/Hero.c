@@ -82,6 +82,7 @@ static void Hero::setInstance(Hero instance)
 	hero = instance;
 }
 
+
 // class's constructor
 void Hero::constructor(HeroSpec* heroSpec, s16 id, s16 internalId, const char* const name)
 {
@@ -263,7 +264,7 @@ void Hero::jump(bool checkIfYMovement)
 }
 
 // keep movement
-void Hero::addForce(u16 axis, bool enableAddingForce)
+void Hero::addForceOnAxis(u16 axis, bool enableAddingForce)
 {
 	if(enableAddingForce)
 	{

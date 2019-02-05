@@ -75,7 +75,7 @@ void HeroMoving::enter(void* owner)
 
 	// make sure that the hero's body is awaken right now so the check during
 	// the execute method doesn't fail
-	Hero::addForce(owner, __X_AXIS, false);
+	Hero::addForceOnAxis(owner, __X_AXIS, false);
 }
 
 void HeroMoving::execute(void* owner)
@@ -83,7 +83,7 @@ void HeroMoving::execute(void* owner)
 	// keep adding force
 	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(owner)))
 	{
-		Hero::addForce(owner, __X_AXIS, false);
+		Hero::addForceOnAxis(owner, __X_AXIS, false);
 	}
 }
 
@@ -123,7 +123,7 @@ void HeroMoving::onKeyPressed(void* owner, const UserInput* userInput)
 	// check direction
 	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
-		Hero::addForce(owner, __X_AXIS, true);
+		Hero::addForceOnAxis(owner, __X_AXIS, true);
 
 		Hero::checkDirection(owner, userInput->pressedKey, "Walk");
 	}
