@@ -151,7 +151,6 @@ singleton class PlatformerLevelState : GameState
 	UserInput userInput;
 
 	static PlatformerLevelState getInstance(void);
-	Clock getClock();
 	PlatformerLevelSpec* getCurrentLevelSpec();
 	void startLevel(PlatformerLevelSpec* platformerLevelSpec);
 	void enterStage(StageEntryPointSpec* entryPointSpec);
@@ -164,6 +163,7 @@ singleton class PlatformerLevelState : GameState
 	override void resume(void* owner);
 	override bool processMessage(void* owner, Telegram telegram);
 	override void processUserInput(UserInput userInput);
+	override Clock getClock();
 }
 
 
