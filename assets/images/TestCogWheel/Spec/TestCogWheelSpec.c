@@ -246,7 +246,10 @@ PhysicalSpecificationROMSpec TEST_COG_WHEEL_IM_PHYSICAL_PROPERTIES =
 	__F_TO_FIX10_6(0.0f),
 
 	// maximum velocity
-	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)},
+
+	// maximum speed
+	__I_TO_FIX10_6(0)
 };
 
 TestCogWheelROMSpec TEST_COG_WHEEL_IM =

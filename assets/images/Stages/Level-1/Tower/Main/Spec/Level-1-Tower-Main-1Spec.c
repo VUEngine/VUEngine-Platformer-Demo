@@ -181,6 +181,12 @@ HbiasMaskMBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE =
 
 		// y loop
 		false,
+
+		// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+		0,
+
+		// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+		0
 	},
 
 	// name of the owner of the reference sprite

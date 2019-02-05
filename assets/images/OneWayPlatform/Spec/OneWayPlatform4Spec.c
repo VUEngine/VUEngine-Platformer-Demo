@@ -161,7 +161,10 @@ PhysicalSpecificationROMSpec ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =
 	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
 
 	// maximum velocity
-	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)},
+
+	// maximum speed
+	__I_TO_FIX10_6(0)
 };
 
 

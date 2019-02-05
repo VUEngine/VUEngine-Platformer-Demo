@@ -107,7 +107,10 @@ PhysicalSpecificationROMSpec WATER_POND_EN_PHYSICAL_PROPERTIES =
 	__F_TO_FIX10_6(0),
 
 	// maximum velocity
-	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)},
+
+	// maximum speed
+	__I_TO_FIX10_6(0)
 };
 
 WaterPondROMSpec WATER_POND_EN =

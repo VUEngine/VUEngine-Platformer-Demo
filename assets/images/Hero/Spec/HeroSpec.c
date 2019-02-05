@@ -583,7 +583,10 @@ PhysicalSpecificationROMSpec HERO_PHYSICAL_PROPERTIES =
 	__F_TO_FIX10_6(HERO_BOUNCINESS),
 
 	// maximum velocity
-	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)},
+
+	// maximum speed
+	__I_TO_FIX10_6(0)
 };
 
 HeroROMSpec HERO_AC =
