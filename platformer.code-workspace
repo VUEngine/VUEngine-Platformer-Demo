@@ -1,27 +1,28 @@
 {
 	"folders": [
 		{
+            "name": "Project",
 			"path": "."
 		},
 		{
+			"name": "VUEngine",
 			"path": "..\\..\\..\\libs\\vuengine\\core"
 		},
 		{
+			"name": "Plugins",
 			"path": "..\\..\\..\\libs\\vuengine\\plugins"
 		}
 	],
+	"extensions": {
+        "recommendations": [
+			//"kr155e.vbde",
+			"ms-vscode.cpptools"
+		]
+	},
 	"settings": {
-		"files.associations": {
-			"progressmanager.h": "c",
-			"game.h": "c",
-			"optics.h": "c",
-			"i18n.h": "c",
-			"titlescreenstate.h": "c",
-			"heroidle.h": "c",
-			"keypadmanager.h": "c",
-			"automaticpausescreenstate.h": "c",
-			"autopausemanager.h": "c",
-			"gamestate.h": "c"
-		}
+		"files.autoGuessEncoding": true,
+		"C_Cpp.autoAddFileAssociations": false,
+		"editor.insertSpaces": false,
+		"files.hotExit": "onExitAndWindowClose"
 	}
 }
