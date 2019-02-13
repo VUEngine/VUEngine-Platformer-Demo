@@ -14,6 +14,9 @@ PLUGINS = 	vuengine/plugins/cameras/Platformer															\
 # Compiler's output
 COMPILER_OUTPUT         = c
 
+# Make jobs
+MAKE_JOBS = 6
+
 # Compilation type
 # preprocessor:			The .o files are preprocessor's output instead of compiler's.
 # debug:				Adds lots of runtime assertions. Enables debugging tools too.
