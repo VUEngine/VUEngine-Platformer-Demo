@@ -52,7 +52,6 @@ class CannonBall : Actor
 	void constructor(CannonBallSpec* cannonBallSpec, s16 id, s16 internalId, const char* const name);
 	void startMovement();
 	void checkPosition();
-	override void stopMovement(u16 axis);
 	override bool handleMessage(Telegram telegram);
 }
 
