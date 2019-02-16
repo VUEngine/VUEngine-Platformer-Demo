@@ -80,4 +80,4 @@ VIRTUAL_TABLES_DATA_SECTION     = .dram_bss
 
 # Size of variables to be loaded in the .sdata section
 # Not working properly because rosdata is used instead of rodata section
-#Â MSDA_SIZE             = 0
+# MSDA_SIZE             = 0
