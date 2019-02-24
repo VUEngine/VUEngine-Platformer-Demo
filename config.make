@@ -2,7 +2,7 @@
 PLUGINS = 	vuengine/plugins/cameras/Platformer															\
 			vuengine/plugins/entities/LowPowerEntity													\
 			vuengine/plugins/entities/ReflectiveEntity													\
-			vuengine/plugins/fonts/Astonish																\
+			vuengine/plugins/fonts/AstonishFont															\
 			vuengine/plugins/graphics/GuiBgmapAnimatedSprite											\
 			vuengine/plugins/other/AutomaticPause														\
 			vuengine/plugins/other/SaveDataManager														\
@@ -80,4 +80,4 @@ VIRTUAL_TABLES_DATA_SECTION     = .dram_bss
 
 # Size of variables to be loaded in the .sdata section
 # Not working properly because rosdata is used instead of rodata section
-# MSDA_SIZE             = 0
+#ï¿½MSDA_SIZE             = 0
