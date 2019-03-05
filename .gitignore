@@ -1,4 +1,5 @@
 .idea/workspace.xml
+.history
 build/
 release.bat
 v810_err.txt

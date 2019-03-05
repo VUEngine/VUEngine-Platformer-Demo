@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-            "name": "Project",
+            "name": "Game",
 			"path": "."
 		},
 		{
@@ -13,16 +13,10 @@
 			"path": "..\\..\\..\\libs\\vuengine\\plugins"
 		}
 	],
-	"extensions": {
-        "recommendations": [
-			//"kr155e.vbde",
-			"ms-vscode.cpptools"
-		]
-	},
 	"settings": {
 		"files.autoGuessEncoding": true,
 		"C_Cpp.autoAddFileAssociations": false,
-		"editor.insertSpaces": false,
-		"files.hotExit": "onExitAndWindowClose"
+		"files.autoSave": "onFocusChange",
+		"editor.insertSpaces": false
 	}
 }
