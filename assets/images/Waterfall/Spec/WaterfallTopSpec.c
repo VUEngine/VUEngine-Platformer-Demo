@@ -162,8 +162,11 @@ AnimatedEntityROMSpec WATERFALL_TOP_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)WATERFALL_TOP_SPRITES,
+		(SpriteSpec**)WATERFALL_TOP_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

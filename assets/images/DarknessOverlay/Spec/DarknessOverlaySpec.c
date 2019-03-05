@@ -123,8 +123,11 @@ EntityROMSpec DARKNESS_OVERLAY_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)DARKNESS_OVERLAY_IM_SPRITES,
+	(SpriteSpec**)DARKNESS_OVERLAY_IM_SPRITES,
 
 	// collision shapes
 	NULL,

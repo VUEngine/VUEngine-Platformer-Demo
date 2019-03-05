@@ -411,8 +411,11 @@ AnimatedEntityROMSpec HINT_MC =
 		// class allocator
 		__TYPE(Hint),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)HINT_SPRITES,
+		(SpriteSpec**)HINT_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

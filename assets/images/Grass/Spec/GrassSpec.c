@@ -177,8 +177,11 @@ AnimatedEntityROMSpec GRASS_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)GRASS_SPRITES,
+		(SpriteSpec**)GRASS_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

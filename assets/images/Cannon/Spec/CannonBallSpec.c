@@ -187,8 +187,11 @@ CannonBallROMSpec CANNON_BALL_AC =
 			// class allocator
 			__TYPE(CannonBall),
 
+			// behaviors 
+			NULL,
+
 			// sprites
-			(SpriteROMSpec**)CANNON_BALL_SPRITES,
+			(SpriteSpec**)CANNON_BALL_SPRITES,
 
 			// collision shapes
 			(ShapeSpec*)CANNON_BALL_AC_SHAPES,

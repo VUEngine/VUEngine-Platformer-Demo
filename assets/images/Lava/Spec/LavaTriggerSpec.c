@@ -70,8 +70,11 @@ LavaTriggerROMSpec LAVA_TRIGGER_IG =
 	// class allocator
 	__TYPE(LavaTrigger),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)NULL,
+	(SpriteSpec**)NULL,
 
 	// collision shapes
 	(ShapeSpec*)LAVA_TRIGGER_IG_SHAPES,

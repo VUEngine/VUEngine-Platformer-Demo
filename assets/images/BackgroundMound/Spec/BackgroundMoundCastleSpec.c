@@ -122,8 +122,11 @@ EntityROMSpec MOUND_BG_CASTLE_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)MOUND_BG_CASTLE_IM_SPRITES,
+	(SpriteSpec**)MOUND_BG_CASTLE_IM_SPRITES,
 
 	// collision shapes
 	NULL,

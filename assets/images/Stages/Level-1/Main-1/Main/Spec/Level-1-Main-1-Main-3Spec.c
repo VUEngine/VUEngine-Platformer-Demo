@@ -132,8 +132,11 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_3_A_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)LEVEL_1_MAIN_1_MAIN_3_A_IM_SPRITES,
+	(SpriteSpec**)LEVEL_1_MAIN_1_MAIN_3_A_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,
@@ -154,8 +157,11 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_3_B_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)LEVEL_1_MAIN_1_MAIN_3_B_IM_SPRITES,
+	(SpriteSpec**)LEVEL_1_MAIN_1_MAIN_3_B_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

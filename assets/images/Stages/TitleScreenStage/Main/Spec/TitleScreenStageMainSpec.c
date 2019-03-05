@@ -127,8 +127,11 @@ EntityROMSpec TITLE_SCREEN_STAGE_MAIN_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES,
+	(SpriteSpec**)TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

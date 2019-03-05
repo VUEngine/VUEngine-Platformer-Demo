@@ -255,8 +255,11 @@ HideLayerROMSpec HIDE_LAYER_10x7_AG =
 		// class allocator
 		__TYPE(HideLayer),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)HIDE_LAYER_10x7_SPRITES,
+		(SpriteSpec**)HIDE_LAYER_10x7_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)HIDE_LAYER_10x7_AG_SHAPES,

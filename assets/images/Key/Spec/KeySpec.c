@@ -185,8 +185,11 @@ AnimatedEntityROMSpec KEY_AG =
 		// class allocator
 		__TYPE(Key),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)KEY_SPRITES,
+		(SpriteSpec**)KEY_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)KEY_AG_SHAPES,

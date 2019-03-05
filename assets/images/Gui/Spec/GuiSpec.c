@@ -252,8 +252,11 @@ AnimatedEntityROMSpec GUI_AG =
 		// class allocator
 		__TYPE(Gui),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)GUI_SPRITES,
+		(SpriteSpec**)GUI_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -282,8 +285,11 @@ AnimatedEntityROMSpec GUI_OVERWORLD_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)GUI_OVERWORLD_SPRITES,
+		(SpriteSpec**)GUI_OVERWORLD_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

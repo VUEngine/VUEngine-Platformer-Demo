@@ -149,8 +149,11 @@ EntityROMSpec OVERWORLD_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)OVERWORLD_1_IM_SPRITES,
+	(SpriteSpec**)OVERWORLD_1_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

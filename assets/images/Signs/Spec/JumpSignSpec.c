@@ -120,8 +120,11 @@ EntityROMSpec JUMP_SIGN_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)JUMP_SIGN_IM_SPRITES,
+	(SpriteSpec**)JUMP_SIGN_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

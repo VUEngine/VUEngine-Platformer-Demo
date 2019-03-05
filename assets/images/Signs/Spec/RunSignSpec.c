@@ -120,8 +120,11 @@ EntityROMSpec RUN_SIGN_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)RUN_SIGN_IM_SPRITES,
+	(SpriteSpec**)RUN_SIGN_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

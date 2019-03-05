@@ -168,8 +168,11 @@ LavaROMSpec LAVA_IG =
 	// class allocator
 	__TYPE(Lava),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)LAVA_BG_SPRITES,
+	(SpriteSpec**)LAVA_BG_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)LAVA_IG_SHAPES,

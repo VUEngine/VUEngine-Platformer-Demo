@@ -123,8 +123,11 @@ EntityROMSpec VUENGINE_LOGO_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)VUENGINE_LOGO_IM_SPRITES,
+	(SpriteSpec**)VUENGINE_LOGO_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

@@ -124,8 +124,11 @@ EntityROMSpec LEVEL_1_HOUSE_LIGHT_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)LEVEL_1_HOUSE_LIGHT_IM_SPRITES,
+	(SpriteSpec**)LEVEL_1_HOUSE_LIGHT_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

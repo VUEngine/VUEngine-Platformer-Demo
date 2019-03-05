@@ -127,8 +127,11 @@ EntityROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM_SPRITES,
+	(SpriteSpec**)LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

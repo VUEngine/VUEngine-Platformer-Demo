@@ -121,8 +121,11 @@ EntityROMSpec WATER_DROP_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)WATER_DROP_SPRITES,
+	(SpriteSpec**)WATER_DROP_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

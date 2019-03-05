@@ -121,8 +121,11 @@ EntityROMSpec DUST_PARTICLE_LARGE_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)DUST_PARTICLE_LARGE_SPRITES,
+	(SpriteSpec**)DUST_PARTICLE_LARGE_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

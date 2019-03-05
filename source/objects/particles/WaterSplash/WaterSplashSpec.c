@@ -84,8 +84,11 @@ ParticleSystemROMSpec WATER_SPLASH_PS =
 		// class allocator
 		__TYPE(ParticleSystem),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)NULL,
+		(SpriteSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

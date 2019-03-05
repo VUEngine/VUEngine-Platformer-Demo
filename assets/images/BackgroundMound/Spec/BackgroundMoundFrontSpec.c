@@ -150,8 +150,11 @@ EntityROMSpec MOUND_BG_FRONT_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)MOUND_BG_FRONT_SB_SPRITES,
+	(SpriteSpec**)MOUND_BG_FRONT_SB_SPRITES,
 
 	// collision shapes
 	NULL,

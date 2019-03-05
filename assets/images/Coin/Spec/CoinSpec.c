@@ -401,8 +401,11 @@ CoinROMSpec COIN_AG =
 		// class allocator
 		__TYPE(Coin),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)COIN_SPRITES,
+		(SpriteSpec**)COIN_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)COIN_SHAPES,
@@ -431,8 +434,11 @@ CoinROMSpec COIN_SILHOUETTE_AG =
 		// class allocator
 		__TYPE(Coin),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)COIN_SILHOUETTE_SPRITES,
+		(SpriteSpec**)COIN_SILHOUETTE_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)COIN_SHAPES,
@@ -558,8 +564,11 @@ CoinROMSpec COIN_BACK_AG =
 		// class allocator
 		__TYPE(Coin),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)COIN_BACK_SPRITES,
+		(SpriteSpec**)COIN_BACK_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)COIN_BACK_SHAPES,
@@ -588,8 +597,11 @@ CoinROMSpec COIN_BACK_SILHOUETTE_AG =
 		// class allocator
 		__TYPE(Coin),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)COIN_BACK_SILHOUETTE_SPRITES,
+		(SpriteSpec**)COIN_BACK_SILHOUETTE_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)COIN_BACK_SHAPES,

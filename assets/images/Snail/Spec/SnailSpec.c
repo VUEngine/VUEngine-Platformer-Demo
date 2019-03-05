@@ -186,8 +186,11 @@ MovingEntityROMSpec SNAIL_3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)SNAIL_SPRITES,
+				(SpriteSpec**)SNAIL_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)SNAIL_AC_SHAPES,
@@ -247,8 +250,11 @@ MovingEntityROMSpec SNAIL_8_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)SNAIL_SPRITES,
+				(SpriteSpec**)SNAIL_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)SNAIL_AC_SHAPES,

@@ -123,8 +123,11 @@ EntityROMSpec MOUND_2_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)MOUND_2_IM_SPRITES,
+	(SpriteSpec**)MOUND_2_IM_SPRITES,
 
 	// collision shapes
 	NULL,

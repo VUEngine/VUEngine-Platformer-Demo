@@ -122,8 +122,11 @@ EntityROMSpec TORCH_OFF_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TORCH_OFF_SPRITES,
+	(SpriteSpec**)TORCH_OFF_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

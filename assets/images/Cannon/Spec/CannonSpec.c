@@ -179,8 +179,11 @@ ActorROMSpec CANNON_AC =
 			// class allocator
 			__TYPE(Cannon),
 
+			// behaviors 
+			NULL,
+
 			// sprites
-			(SpriteROMSpec**)CANNON_SPRITES,
+			(SpriteSpec**)CANNON_SPRITES,
 
 			// collision shapes
 			(ShapeSpec*)NULL,

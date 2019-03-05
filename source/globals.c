@@ -70,6 +70,9 @@ EntityROMSpec SIMPLE_CONTAINER =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
 	NULL,
 
@@ -93,6 +96,9 @@ EntityROMSpec MANAGED_ENTITY =
 {
 	// class allocator
 	__TYPE(Entity),
+
+	// behaviors 
+	NULL,
 
 	// sprites
 	NULL,

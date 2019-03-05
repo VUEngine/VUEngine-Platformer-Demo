@@ -123,8 +123,11 @@ EntityROMSpec CLOUD_A_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)CLOUD_A_IM_SPRITES,
+	(SpriteSpec**)CLOUD_A_IM_SPRITES,
 
 	// collision shapes
 	NULL,

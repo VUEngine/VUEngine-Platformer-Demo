@@ -158,8 +158,11 @@ AnimatedEntityROMSpec LAVA_TOP_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)LAVA_TOP_SPRITES,
+		(SpriteSpec**)LAVA_TOP_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

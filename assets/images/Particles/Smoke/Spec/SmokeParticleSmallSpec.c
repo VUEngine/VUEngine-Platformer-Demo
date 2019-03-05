@@ -154,8 +154,11 @@ AnimatedEntityROMSpec SMOKE_PARTICLE_SMALL_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)SMOKE_PARTICLE_SMALL_SPRITES,
+		(SpriteSpec**)SMOKE_PARTICLE_SMALL_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

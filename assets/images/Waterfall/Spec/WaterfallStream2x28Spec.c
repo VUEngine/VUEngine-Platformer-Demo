@@ -162,8 +162,11 @@ AnimatedEntityROMSpec WATERFALL_STREAM_2x28_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)WATERFALL_STREAM_2x28_SPRITES,
+		(SpriteSpec**)WATERFALL_STREAM_2x28_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

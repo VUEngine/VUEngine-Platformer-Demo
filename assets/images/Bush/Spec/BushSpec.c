@@ -177,8 +177,11 @@ AnimatedEntityROMSpec BUSH_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)BUSH_SPRITES,
+		(SpriteSpec**)BUSH_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

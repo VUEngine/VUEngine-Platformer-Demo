@@ -257,8 +257,11 @@ TestCogWheelROMSpec TEST_COG_WHEEL_IM =
 	// class allocator
 	__TYPE(TestCogWheel),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TEST_COG_WHEEL_BG_SPRITES,
+	(SpriteSpec**)TEST_COG_WHEEL_BG_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)TEST_COG_WHEEL_IM_SHAPES,

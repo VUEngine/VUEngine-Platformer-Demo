@@ -167,8 +167,11 @@ AnimatedEntityROMSpec WATER_A_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)WATER_A_SPRITES,
+		(SpriteSpec**)WATER_A_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

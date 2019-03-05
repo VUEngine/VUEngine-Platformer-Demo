@@ -206,8 +206,11 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)MOVING_PLATFORM_SPRITES,
+				(SpriteSpec**)MOVING_PLATFORM_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)MOVING_PLATFORM_V6_AC_SHAPES,

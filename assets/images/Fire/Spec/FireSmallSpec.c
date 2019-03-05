@@ -154,8 +154,11 @@ AnimatedEntityROMSpec FIRE_SMALL_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)FIRE_SMALL_SPRITES,
+		(SpriteSpec**)FIRE_SMALL_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

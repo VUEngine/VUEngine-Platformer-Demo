@@ -154,8 +154,11 @@ AnimatedEntityROMSpec TORCH_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)TORCH_SPRITES,
+		(SpriteSpec**)TORCH_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

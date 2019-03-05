@@ -38,8 +38,11 @@ CollisionROMSpec COLLISION_HIT_CL =
 	// class allocator
 	__TYPE(Collision),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)NULL,
+	(SpriteSpec**)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

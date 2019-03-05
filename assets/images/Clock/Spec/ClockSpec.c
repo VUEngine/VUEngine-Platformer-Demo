@@ -154,8 +154,11 @@ AnimatedEntityROMSpec CLOCK_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)CLOCK_SPRITES,
+		(SpriteSpec**)CLOCK_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

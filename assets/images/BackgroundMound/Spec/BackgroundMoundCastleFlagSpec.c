@@ -154,8 +154,11 @@ AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)MOUND_BG_CASTLE_FLAG_SPRITES,
+		(SpriteSpec**)MOUND_BG_CASTLE_FLAG_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

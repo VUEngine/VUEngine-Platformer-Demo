@@ -127,8 +127,11 @@ EntityROMSpec TEST_ROOM_STAGE_TEST_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TEST_ROOM_STAGE_TEST_1_IM_SPRITES,
+	(SpriteSpec**)TEST_ROOM_STAGE_TEST_1_IM_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

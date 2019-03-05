@@ -308,8 +308,11 @@ DoorROMSpec DOOR_AG =
 		// class allocator
 		__TYPE(Door),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)DOOR_SPRITES,
+		(SpriteSpec**)DOOR_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
@@ -338,8 +341,11 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_AG =
 		// class allocator
 		__TYPE(LayerSwitchDoor),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)DOOR_SPRITES,
+		(SpriteSpec**)DOOR_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
@@ -369,8 +375,11 @@ GoalDoorROMSpec GOAL_DOOR_AG =
 		// class allocator
 		__TYPE(GoalDoor),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)DOOR_SPRITES,
+		(SpriteSpec**)DOOR_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
@@ -399,8 +408,11 @@ KeyDoorROMSpec KEY_DOOR_AG =
 		// class allocator
 		__TYPE(KeyDoor),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)DOOR_SPRITES,
+		(SpriteSpec**)DOOR_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
@@ -462,8 +474,11 @@ DoorROMSpec AFFINE_DOOR_AG =
 		// class allocator
 		__TYPE(Door),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)AFFINE_DOOR_SPRITES,
+		(SpriteSpec**)AFFINE_DOOR_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
@@ -569,8 +584,11 @@ DoorROMSpec DOOR_BACK_AG =
 		// class allocator
 		__TYPE(Door),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)DOOR_BACK_SPRITES,
+		(SpriteSpec**)DOOR_BACK_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
@@ -599,8 +617,11 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_AG =
 		// class allocator
 		__TYPE(LayerSwitchDoor),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)DOOR_BACK_SPRITES,
+		(SpriteSpec**)DOOR_BACK_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,

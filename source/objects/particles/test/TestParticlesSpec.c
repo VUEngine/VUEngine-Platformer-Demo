@@ -117,8 +117,11 @@ ParticleSystemROMSpec TEST_1_PS =
 		// class allocator
 		__TYPE(ParticleSystem),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)NULL,
+		(SpriteSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -180,8 +183,11 @@ ParticleSystemROMSpec TEST_2_PS =
 		// class allocator
 		__TYPE(ParticleSystem),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)NULL,
+		(SpriteSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

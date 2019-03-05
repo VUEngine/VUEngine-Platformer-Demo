@@ -188,8 +188,11 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)SAW_BLADE_SPRITES,
+				(SpriteSpec**)SAW_BLADE_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)SAW_BLADE_AC_SHAPES,
@@ -249,8 +252,11 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)SAW_BLADE_SPRITES,
+				(SpriteSpec**)SAW_BLADE_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)SAW_BLADE_AC_SHAPES,
@@ -310,8 +316,11 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)SAW_BLADE_SPRITES,
+				(SpriteSpec**)SAW_BLADE_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)SAW_BLADE_AC_SHAPES,

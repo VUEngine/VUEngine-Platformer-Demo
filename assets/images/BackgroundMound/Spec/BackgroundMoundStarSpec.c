@@ -177,8 +177,11 @@ AnimatedEntityROMSpec STAR_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)STAR_SPRITES,
+		(SpriteSpec**)STAR_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

@@ -167,8 +167,11 @@ AnimatedEntityROMSpec FLOWER_A_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)FLOWER_A_SPRITES,
+		(SpriteSpec**)FLOWER_A_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

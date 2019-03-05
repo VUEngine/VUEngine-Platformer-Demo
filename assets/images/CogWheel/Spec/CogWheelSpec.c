@@ -124,8 +124,11 @@ CogWheelROMSpec COG_WHEEL_IM =
 	// class allocator
 	__TYPE(CogWheel),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)COG_WHEEL_BG_SPRITES,
+	(SpriteSpec**)COG_WHEEL_BG_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

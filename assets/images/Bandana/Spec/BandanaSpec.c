@@ -186,8 +186,11 @@ AnimatedEntityROMSpec BANDANA_AG =
 		// class allocator
 		__TYPE(Bandana),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)BANDANA_SPRITES,
+		(SpriteSpec**)BANDANA_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)BANDANA_AG_SHAPES,

@@ -120,8 +120,11 @@ WaterPondROMSpec WATER_POND_EN =
 			// class allocator
 			__TYPE(WaterPond),
 
+			// behaviors 
+			NULL,
+
 			// sprites
-			(SpriteROMSpec**)WATER_POND_EN_SPRITES,
+			(SpriteSpec**)WATER_POND_EN_SPRITES,
 
 			// collision shapes
 			(ShapeSpec*)WATER_POND_EN_SHAPES,
