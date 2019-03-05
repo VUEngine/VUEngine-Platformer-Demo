@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../vuengine/core/.idea/core.iml" filepath="$PROJECT_DIR$/../../vuengine/core/.idea/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/platformer.iml" filepath="$PROJECT_DIR$/.idea/platformer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../libs/vuengine/core/.idea/core.iml" filepath="$PROJECT_DIR$/../../../libs/vuengine/core/.idea/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../libs/vuengine/plugins/.idea/plugins.iml" filepath="$PROJECT_DIR$/../../../libs/vuengine/plugins/.idea/plugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../vuengine/plugins/.idea/plugins.iml" filepath="$PROJECT_DIR$/../../vuengine/plugins/.idea/plugins.iml" />
     </modules>
   </component>
 </project>

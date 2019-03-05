@@ -1,18 +1,23 @@
 {
 	"folders": [
 		{
-            "name": "Game",
-			"path": "."
+			"path": ".",
+			"name": "VUEngine Platformer Demo"
 		},
 		{
-			"name": "VUEngine",
-			"path": "..\\..\\..\\libs\\vuengine\\core"
+			"path": "..\\..\\vuengine\\core",
+			"name": "VUEngine Core"
 		},
 		{
-			"name": "Plugins",
-			"path": "..\\..\\..\\libs\\vuengine\\plugins"
+			"path": "..\\..\\vuengine\\plugins",
+			"name": "VUEngine Plugins"
 		}
 	],
+	"extensions": {
+		"recommendations": [
+			//"kr155e.vuengine",
+		]		
+	},
 	"settings": {
 		"files.autoGuessEncoding": true,
 		"C_Cpp.autoAddFileAssociations": false,
