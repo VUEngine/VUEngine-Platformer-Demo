@@ -1,5 +1,5 @@
 # VUEngine based plugins that the project uses
-PLUGINS = 	vuengine/plugins/cameras/Platformer															\
+PLUGINS = 	vuengine/plugins/cameras/PlatformerCamera															\
 			vuengine/plugins/entities/LowPowerEntity													\
 			vuengine/plugins/entities/ReflectiveEntity													\
 			vuengine/plugins/fonts/AstonishFont															\
@@ -29,7 +29,7 @@ MAKE_JOBS = 6
 TYPE                    = tools
 
 # Optimization level
-# Do not use O3 for multiplayer games, it causes unexpected out of sync behaviour when framerate drops
+# Do not use O3 for multiplayer games, it causes unexpected out of sync behavior when framerate drops
 OPTIMIZATION            = O3
 
 # Enable pedantic warnings
