@@ -29,7 +29,7 @@ MAKE_JOBS = 6
 TYPE                    = tools
 
 # Optimization level
-# Do not use O3 for multiplayer games, it causes unexpected out of sync behaviour when framerate drops
+# Do not use O3 for multiplayer games, it causes unexpected out of sync behavior when framerate drops
 OPTIMIZATION            = O3
 
 # Enable pedantic warnings

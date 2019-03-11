@@ -6,11 +6,11 @@
 		},
 		{
 			"name": "VUEngine Core",
-			"path": "/Users/jorgeche/Documents/work/workspaces/vbde/libs/vuengine/core"
+			"path": "../vuengine/core"
 		},
 		{
 			"name": "VUEngine Plugins",
-			"path": "/Users/jorgeche/Documents/work/workspaces/vbde/libs/vuengine/plugins"
+			"path": "../vuengine/plugins"
 		}
 	],
 	"extensions": {
