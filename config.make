@@ -1,5 +1,5 @@
 # VUEngine based plugins that the project uses
-PLUGINS = 	vuengine/plugins/cameras/Platformer															\
+PLUGINS = 	vuengine/plugins/cameras/PlatformerCamera													\
 			vuengine/plugins/entities/LowPowerEntity													\
 			vuengine/plugins/entities/ReflectiveEntity													\
 			vuengine/plugins/fonts/AstonishFont															\
