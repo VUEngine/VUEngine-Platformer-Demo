@@ -6,22 +6,21 @@
 		},
 		{
 			"name": "VUEngine Core",
-			"path": "../vuengine/core"
+			"path": "../../vuengine/core"
 		},
 		{
 			"name": "VUEngine Plugins",
-			"path": "../vuengine/plugins"
+			"path": "../../vuengine/plugins"
 		}
 	],
 	"extensions": {
 		"recommendations": [
-			//"kr155e.vuengine",
+			//"vuengine.vuengine-ide",
 		]		
 	},
 	"settings": {
 		"files.autoGuessEncoding": true,
 		"C_Cpp.autoAddFileAssociations": false,
-		"files.autoSave": "onFocusChange",
 		"editor.insertSpaces": false
 	}
 }

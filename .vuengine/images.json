@@ -1,0 +1,42 @@
+{
+	"assets/images/Torch": {
+		"tileset": {
+			"shared": {
+				"enabled": false,
+				"name": null
+			},
+			"reduce": false
+		},
+		"map": {
+			"generate": true,
+			"reduce": {
+				"flipped": false,
+				"unique": false
+			}
+		},
+		"stackFrames": {
+			"enabled": false,
+			"name": null
+		}
+	},
+	"assets/images/Waterfall": {
+		"tileset": {
+			"shared": {
+				"enabled": false,
+				"name": null
+			},
+			"reduce": false
+		},
+		"map": {
+			"generate": true,
+			"reduce": {
+				"flipped": false,
+				"unique": false
+			}
+		},
+		"stackFrames": {
+			"enabled": false,
+			"name": null
+		}
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"compiler": {
+		"dumpElf": false,
+		"framePointer": false,
+		"optimization": "O3",
+		"output": "c",
+		"pedanticWarnings": false,
+		"prologFunctions": false,
+		"threads": 4
+	},
+	"linker": {
+		"sections": {
+			"initializedData": ".sdata",
+			"memoryPool": ".sbss",
+			"staticSingletons": ".dram_bss",
+			"uninitializedData": ".sbss",
+			"virtualTables": ".dram_bss"
+		}
+	},
+	"plugins": [
+		"vuengine/plugins/cameras/PlatformerCamera",
+		"vuengine/plugins/entities/LowPowerEntity",
+		"vuengine/plugins/entities/ReflectiveEntity",
+		"vuengine/plugins/fonts/AstonishFont",
+		"vuengine/plugins/graphics/GuiBgmapAnimatedSprite",
+		"vuengine/plugins/other/AutomaticPause",
+		"vuengine/plugins/other/SaveDataManager",
+		"vuengine/plugins/postProcessing/Lantern",
+		"vuengine/plugins/postProcessing/Rain",
+		"vuengine/plugins/postProcessing/Rhombus",
+		"vuengine/plugins/states/SplashScreens"
+	],
+	"romHeader": {
+		"gameCode": "VVPM",
+		"makerCode": "TV",
+		"revision": 0,
+		"title": "VUENGINE PLATFORMER "
+	}
+}
