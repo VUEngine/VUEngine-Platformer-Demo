@@ -91,7 +91,7 @@
 			}
 		}
 	},
-	"images": {
+	"folders": {
 		"assets/images/BackgroundMound": {
 			"template": "entity"
 		},
@@ -179,13 +179,13 @@
 		"assets/images/Particles/Waterdrop": {
 			"template": "entity"
 		},
-		"assets/images/Particles/SawBlade": {
+		"assets/images/SawBlade": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Particles/Signs": {
+		"assets/images/Signs": {
 			"template": "entity"
 		},
-		"assets/images/Particles/Snail": {
+		"assets/images/Snail": {
 			"template": "animatedEntity"
 		},
 		"assets/images/Stages/Level-1/Main-1/Back": {
