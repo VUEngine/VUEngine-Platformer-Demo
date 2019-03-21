@@ -32,8 +32,8 @@
 	],
 	"romHeader": {
 		"gameCode": "VVPM",
+		"gameTitle": "VUENGINE PLATFORMER ",
 		"makerCode": "TV",
-		"revision": 0,
-		"title": "VUENGINE PLATFORMER "
+		"revision": 0
 	}
 }
