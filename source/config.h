@@ -24,10 +24,17 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//											ROM HEADER INFO
 //---------------------------------------------------------------------------------------------------------
 
-#include <romInfo.h>
+// game title (20 chars) 	 ####################
+#define __GAME_TITLE		"VUENGINE PLATFORMER "
+// maker code (2 chars)		 ##
+#define __MAKER_CODE		"TV"
+// game code (4 chars)		 ####
+#define __GAME_CODE			"VVPM"
+// revision (1.x)			 #
+#define __ROM_VERSION		 0
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -153,7 +160,7 @@
 // Parallax values are divide by this factor to control their strength
 #define __PARALLAX_CORRECTION_FACTOR			4
 
-// Affects the strong of the scaling
+// Affects the strength of the scaling
 #define __SCALING_MODIFIER_FACTOR				0.20f
 
 // minimum number of pixels that the camera can move
@@ -163,12 +170,6 @@
 //---------------------------------------------------------------------------------------------------------
 //											FRAME RATE CONTROL
 //---------------------------------------------------------------------------------------------------------
-
-/* If defined, when the VIP's GAMESTART interrupt is fired before
- * the current game frame is done, the engine skips to the next
- * game frame.
- */
-#undef __FORCE_VIP_SYNC
 
 // Timer resolution
 #define __TIMER_RESOLUTION						10

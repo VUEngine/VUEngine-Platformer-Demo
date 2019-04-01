@@ -8,13 +8,42 @@
 		"prologFunctions": false,
 		"threads": 4
 	},
-	"linker": {
-		"sections": {
-			"initializedData": ".sdata",
-			"memoryPool": ".sbss",
-			"staticSingletons": ".dram_bss",
-			"uninitializedData": ".sbss",
-			"virtualTables": ".dram_bss"
+	"engine": {
+		"animation": {
+			"maxAnimationFunctionNameLength": 16,
+			"maxFramesPerAnimationFunction": 16,
+			"maxAnimationFunctions": 32,
+		},
+		"memoryPools": {
+			"cleanUp": false,
+			"pools": {
+				"168": 1,
+				"156": 5,
+				"144": 12,
+				"120": 52,
+				"112": 40,
+				"84": 60,
+				"72": 40,
+				"44": 20,
+				"32": 340,
+				"24": 680,
+				"20": 440
+			},
+			"warningThreshold": 85
+		},
+		"optics": {
+			"screenWidth": 384,
+			"screenHeight": 224,
+			"screenDepth": 2048,
+			"distanceEyeScreen": 384,
+			"maximumXViewDistance": 2048,
+			"maximumYViewDistance": 4096,
+			"baseFactor": 32,
+			"horizontalViewPointCenter": 192,
+			"verticalViewPointCenter": 112,
+			"parallaxCorrectionFactor": 4,
+			"scalingModifierFactor": 0.2,
+			"cameraMinimumDisplacementPixelsPower": 1,
 		}
 	},
 	"plugins": [
@@ -35,5 +64,15 @@
 		"gameTitle": "VUENGINE PLATFORMER ",
 		"makerCode": "TV",
 		"revision": 0
+	},
+	"sections": {
+		"initializedData": ".sdata",
+		"memoryPool": ".sbss",
+		"staticSingletons": ".dram_bss",
+		"uninitializedData": ".sbss",
+		"virtualTables": ".dram_bss"
+	},
+	"sram": {
+		"amount": 8192
 	}
 }
