@@ -5,14 +5,13 @@
 		"optimization": "O3",
 		"output": "c",
 		"pedanticWarnings": false,
-		"prologFunctions": false,
-		"threads": 4
+		"prologFunctions": false
 	},
 	"engine": {
 		"animation": {
 			"maxAnimationFunctionNameLength": 16,
 			"maxFramesPerAnimationFunction": 16,
-			"maxAnimationFunctions": 32,
+			"maxAnimationFunctions": 32
 		},
 		"memoryPools": {
 			"cleanUp": false,
@@ -43,7 +42,7 @@
 			"verticalViewPointCenter": 112,
 			"parallaxCorrectionFactor": 4,
 			"scalingModifierFactor": 0.2,
-			"cameraMinimumDisplacementPixelsPower": 1,
+			"cameraMinimumDisplacementPixelsPower": 1
 		}
 	},
 	"plugins": [
