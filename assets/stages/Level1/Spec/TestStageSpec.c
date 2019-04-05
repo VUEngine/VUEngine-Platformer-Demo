@@ -65,7 +65,6 @@ extern EntitySpec GRASS_AG;
 extern EntitySpec GUI_AG;
 extern EntitySpec HERO_AC;
 extern EntitySpec COG_WHEEL_IM;
-extern EntitySpec TEST_COG_WHEEL_IM;
 extern EntitySpec HIDE_LAYER_10x7_AG;
 extern EntitySpec JUMP_SIGN_IM;
 extern EntitySpec KEY_AG;
@@ -132,7 +131,7 @@ PositionedEntityROMSpec TEST_STAGE_ST_CHILDREN[] =
 //	{&TEST_2_PS,					{(10),	(112/16), 	(0), 0},0, NULL, NULL, NULL, false},
 	{&COLLISION_CL,					{(192),	(224/2+60), 	(0), 0},	0, "EntryPoint", NULL, (void*)&collision_48_5_2, false},
 //	{&MOVING_PLATFORM_V6_AC,		{(192),	(112), 	LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
-	{&TEST_COG_WHEEL_IM,			{(192),	(224/2), (0), 0},	0, "EntryPoint", NULL, NULL, false}, // right floor
+//	{&TEST_COG_WHEEL_IM,			{(192),	(224/2), (0), 0},	0, "EntryPoint", NULL, NULL, false}, // right floor
 //	{&HIDE_LAYER_10x7_AG,			{(192+100), (100),	(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false},
 //	{&WATER_POND_EN,			{(192+100), (100),	(LAYER_0_FOREGROUND + -SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false},
 //	{&KEY_DOOR_AG,					{(44), 	(112-12), 	LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "HouseEnt", NULL, (void*)&LEVEL1_HOUSE_STAGE_MAIN_EP, false},
