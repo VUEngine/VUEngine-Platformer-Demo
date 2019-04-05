@@ -27,6 +27,7 @@
 #include <Libgccvb.h>
 #include <AnimatedEntity.h>
 #include <ObjectAnimatedSprite.h>
+#include <Entity.h>
 #include <macros.h>
 
 
@@ -34,74 +35,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TorchTiles[];
-extern BYTE TorchMap[];
+extern BYTE TorchOffTiles[];
+extern BYTE TorchOffMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMSpec TORCH_BURN_ANIM =
-{
-	// number of frames of this animation function
-	4,
-
-	// frames to play in animation
-	{0, 1, 2, 1},
-
-	// number of cycles a frame of animation is displayed
-	6,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Burn",
-};
-
-// an animation spec
-AnimationDescriptionROMSpec TORCH_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&TORCH_BURN_ANIM,
-		NULL,
-	}
-};
-
-CharSetROMSpec TORCH_CH =
+CharSetROMSpec TORCH_OFF_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	3,
+	2,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SHARED,
+	__NOT_ANIMATED,
 
 	// char spec
-	TorchTiles,
+	TorchOffTiles,
 };
 
-TextureROMSpec TORCH_TX =
+TextureROMSpec TORCH_OFF_TX =
 {
 	// charset spec
-	(CharSetSpec*)&TORCH_CH,
+	(CharSetSpec*)&TORCH_OFF_CH,
 
 	// bgmap spec
-	TorchMap,
+	TorchOffMap,
 
 	// cols (max 64)
 	1,
 
 	// rows (max 64)
-	3,
+	2,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -118,14 +87,14 @@ TextureROMSpec TORCH_TX =
 	false,
 };
 
-ObjectSpriteROMSpec TORCH_SPRITE =
+ObjectSpriteROMSpec TORCH_OFF_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&TORCH_TX,
+		(TextureSpec*)&TORCH_OFF_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -142,41 +111,33 @@ ObjectSpriteROMSpec TORCH_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const TORCH_SPRITES[] =
+ObjectSpriteROMSpec* const TORCH_OFF_SPRITES[] =
 {
-	&TORCH_SPRITE,
+	&TORCH_OFF_SPRITE,
 	NULL
 };
 
-AnimatedEntityROMSpec TORCH_AG =
+EntityROMSpec TORCH_OFF_IM =
 {
-	{
-		// class allocator
-		__TYPE(AnimatedEntity),
+	// class allocator
+	__TYPE(Entity),
 
-		// behaviors 
-		NULL,
+	// behaviors 
+	NULL,
 
-		// sprites
-		(SpriteSpec**)TORCH_SPRITES,
+	// sprites
+	(SpriteSpec**)TORCH_OFF_SPRITES,
 
-		// collision shapes
-		(ShapeSpec*)NULL,
+	// collision shapes
+	(ShapeSpec*)NULL,
 
-		// size
-		// if 0, width and height will be inferred from the first sprite's texture's size
-		{0, 0, 0},
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
 
-		// gameworld's character's type
-		kNotShape,
+	// gameworld's character's type
+	kNoType,
 
-		// physical specification
-		(PhysicalSpecification*)NULL,
-	},
-
-	// pointer to the animation spec for the item
-	(AnimationDescription*)&TORCH_ANIM,
-
-	// initial animation
-	"Burn",
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };
