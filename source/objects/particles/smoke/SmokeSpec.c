@@ -27,6 +27,7 @@
 #include <Libgccvb.h>
 #include <ParticleSystem.h>
 #include <ObjectAnimatedSprite.h>
+#include <PhysicalParticle.h>
 #include <macros.h>
 
 
@@ -36,7 +37,7 @@
 
 extern AnimationDescriptionROMSpec SMOKE_PARTICLE_SMALL_ANIM;
 extern ObjectSpriteROMSpec SMOKE_PARTICLE_SMALL_SPRITE;
-
+const int padder [8192 * 16] = {1};
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
@@ -49,25 +50,17 @@ ObjectSpriteROMSpec* const SMOKE_SPRITES[] =
 };
 
 // particle's spec
-ParticleROMSpec SMOKE_PARTICLE =
+PhysicalParticleROMSpec SMOKE_PARTICLE =
 {
-	// allocator
-	__TYPE(Particle),
+	{	
+		// allocator
+		__TYPE(PhysicalParticle),
 
-	// particle's minimum life span in milliseconds
-	3000,
+		// particle's minimum life span in milliseconds
+		3000,
 
-	// particle's life span delta in milliseconds (maximum = minimum + delta)
-	3000,
-
-	// particle's minimum mass
-	__F_TO_FIX10_6(0.5f),
-
-	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX10_6(0.9f),
-
-	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
-	__NO_AXIS,
+		// particle's life span delta in milliseconds (maximum = minimum + delta)
+		3000,
 
 	// function pointer to control particle's behavior
 	//(void (*)(Particle))&smokeParticleBehavior,
@@ -78,6 +71,15 @@ ParticleROMSpec SMOKE_PARTICLE =
 
 	// name of animation to play
 	"Default"
+	},
+	// particle's minimum mass
+	__F_TO_FIX10_6(0.5f),
+
+	// particle's mass delta (maximum = minimum + delta)
+	__F_TO_FIX10_6(0.9f),
+
+	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
+	__NO_AXIS,
 };
 
 ParticleSystemROMSpec SMOKE_PS =

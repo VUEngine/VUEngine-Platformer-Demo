@@ -27,6 +27,7 @@
 #include <Libgccvb.h>
 #include <ParticleSystem.h>
 #include <ObjectSprite.h>
+#include <PhysicalParticle.h>
 #include <macros.h>
 
 
@@ -50,16 +51,28 @@ ObjectSpriteROMSpec* const DUST_PARTICLE_SPRITES[] =
 };
 
 // particle's spec
-ParticleROMSpec DUST_PARTICLE =
+PhysicalParticleROMSpec DUST_PARTICLE =
 {
-	// allocator
-	__TYPE(Particle),
+	{
+		// allocator
+		__TYPE(PhysicalParticle),
 
-	// particle's minimum life span in milliseconds
-	100,
+		// particle's minimum life span in milliseconds
+		100,
 
-	// particle's life span delta in milliseconds (maximum = minimum + delta)
-	100,
+		// particle's life span delta in milliseconds (maximum = minimum + delta)
+		100,
+
+		// function pointer to control particle's behavior
+		//(void (*)(Particle))&dustParticleBehavior,
+		NULL,
+
+		// animation description (used only if sprite is animated)
+		NULL,
+
+		// name of animation to play
+		NULL
+	},
 
 	// particle's minimum mass
 	__F_TO_FIX10_6(0.9f),
@@ -69,16 +82,6 @@ ParticleROMSpec DUST_PARTICLE =
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	false,
-
-	// function pointer to control particle's behavior
-	//(void (*)(Particle))&dustParticleBehavior,
-	NULL,
-
-	// animation description (used only if sprite is animated)
-	NULL,
-
-	// name of animation to play
-	NULL
 };
 
 ParticleSystemROMSpec DUST_PS =

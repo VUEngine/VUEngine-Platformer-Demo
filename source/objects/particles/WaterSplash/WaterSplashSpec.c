@@ -27,6 +27,7 @@
 #include <Libgccvb.h>
 #include <ParticleSystem.h>
 #include <ObjectSprite.h>
+#include <PhysicalParticle.h>
 #include <macros.h>
 
 
@@ -48,16 +49,27 @@ ObjectSpriteROMSpec* const WATER_SPLASH_SPRITES[] =
 };
 
 // particle's spec
-ParticleROMSpec WATER_SPLASH_PARTICLE =
+PhysicalParticleROMSpec WATER_SPLASH_PARTICLE =
 {
-	// allocator
-	__TYPE(Particle),
+	{
+		// allocator
+		__TYPE(PhysicalParticle),
 
-	// particle's minimum life span in milliseconds
-	1000,
+		// particle's minimum life span in milliseconds
+		1000,
 
-	// particle's life span delta in milliseconds (maximum = minimum + delta)
-	500,
+		// particle's life span delta in milliseconds (maximum = minimum + delta)
+		500,
+
+		// function pointer to control particle's behavior
+		NULL,
+
+		// animation description (used only if sprite is animated)
+		NULL,
+
+		// name of animation to play
+		NULL
+	},
 
 	// particle's minimum mass
 	__F_TO_FIX10_6(8.0f),
@@ -68,14 +80,6 @@ ParticleROMSpec WATER_SPLASH_PARTICLE =
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__Y_AXIS,
 
-	// function pointer to control particle's behavior
-	NULL,
-
-	// animation description (used only if sprite is animated)
-	NULL,
-
-	// name of animation to play
-	NULL
 };
 
 ParticleSystemROMSpec WATER_SPLASH_PS =

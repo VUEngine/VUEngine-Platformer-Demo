@@ -27,6 +27,7 @@
 #include <Libgccvb.h>
 #include <ParticleSystem.h>
 #include <ObjectAnimatedSprite.h>
+#include <PhysicalParticle.h>
 #include <macros.h>
 
 
@@ -49,16 +50,27 @@ ObjectSpriteROMSpec* const TORCH_SMOKE_SPRITES[] =
 };
 
 // particle's spec
-ParticleROMSpec TORCH_SMOKE_PARTICLE =
+PhysicalParticleROMSpec TORCH_SMOKE_PARTICLE =
 {
-	// allocator
-	__TYPE(Particle),
+	{
+		// allocator
+		__TYPE(PhysicalParticle),
 
-	// particle's minimum life span in milliseconds
-	3000,
+		// particle's minimum life span in milliseconds
+		3000,
 
-	// particle's life span delta in milliseconds (maximum = minimum + delta)
-	3000,
+		// particle's life span delta in milliseconds (maximum = minimum + delta)
+		3000,
+
+		// function pointer to control particle's behavior
+		NULL,
+
+		// animation description (used only if sprite is animated)
+		(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
+
+		// name of animation to play
+		"Default"
+	},
 
 	// particle's minimum mass
 	__F_TO_FIX10_6(1),
@@ -68,15 +80,6 @@ ParticleROMSpec TORCH_SMOKE_PARTICLE =
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__NO_AXIS,
-
-	// function pointer to control particle's behavior
-	NULL,
-
-	// animation description (used only if sprite is animated)
-	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
-
-	// name of animation to play
-	"Default"
 };
 
 ParticleSystemROMSpec TORCH_SMOKE_PS =
