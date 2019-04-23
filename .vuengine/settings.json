@@ -45,19 +45,6 @@
 			"cameraMinimumDisplacementPixelsPower": 1
 		}
 	},
-	"plugins": [
-		"vuengine/plugins/cameras/PlatformerCamera",
-		"vuengine/plugins/entities/LowPowerEntity",
-		"vuengine/plugins/entities/ReflectiveEntity",
-		"vuengine/plugins/fonts/AstonishFont",
-		"vuengine/plugins/graphics/GuiBgmapAnimatedSprite",
-		"vuengine/plugins/other/AutomaticPause",
-		"vuengine/plugins/other/SaveDataManager",
-		"vuengine/plugins/postProcessing/Lantern",
-		"vuengine/plugins/postProcessing/Rain",
-		"vuengine/plugins/postProcessing/Rhombus",
-		"vuengine/plugins/states/SplashScreens"
-	],
 	"romHeader": {
 		"gameCode": "VVPM",
 		"gameTitle": "VUENGINE PLATFORMER ",
