@@ -28,13 +28,6 @@ want as long as you include the original copyright and license notice in any cop
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-COMPILING ON WIN32
-------------------
-
-The VUEngine Platformer Demo as well as the VUEngine and VUEngine Plugins library come bundled with VBDE
-(http://vbde.planetvb.com). Compile by starting the VBDE build system.
-
-
 CREDITS
 -------
 
