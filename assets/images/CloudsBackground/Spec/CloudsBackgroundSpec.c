@@ -24,8 +24,8 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <BgmapSprite.h>
+#include <AwesomeCloud.h>
+#include <AwesomeCloudBgmapSprite.h>
 #include <macros.h>
 
 
@@ -46,7 +46,7 @@ CharSetROMSpec CLOUDS_BACKGROUND_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	1146,
+	1146 / 1,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -85,60 +85,73 @@ TextureROMSpec CLOUDS_BACKGROUND_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CLOUDS_BACKGROUND_IM_SPRITE =
+AwesomeCloudBgmapSpriteROMSpec CLOUDS_BACKGROUND_SPRITE =
 {
 	{
-		// sprite's type
-		__TYPE(BgmapSprite),
+		{
+			// sprite's type
+			__TYPE(AwesomeCloudBgmapSprite),
 
-		// texture spec
-		(TextureSpec*)&CLOUDS_BACKGROUND_TX,
+			// texture spec
+			(TextureSpec*)&CLOUDS_BACKGROUND_TX,
 
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-		__TRANSPARENCY_NONE,
+			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+			__TRANSPARENCY_EVEN,
 
-		// displacement
-		{0, 0, 0, 4},
+			// displacement
+			{0, 0, SORT_INCREMENT, 0},
+		},
+
+		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+		// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
+		__WORLD_AFFINE,
+
+		// pointer to affine/hbias manipulation function
+		NULL,
+
+		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+		__WORLD_ON,
 	},
 
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
+	/// X Displacement each render cycle
+	0,
 
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
+	/// Y Displacement each render cycle
+	8
 };
-
-BgmapSpriteROMSpec* const CLOUDS_BACKGROUND_SPRITES[] =
+SpriteROMSpec* const CLOUDS_BACKGROUND_SPRITES[] =
 {
-	&CLOUDS_BACKGROUND_SPRITE,
+	(SpriteROMSpec*)&CLOUDS_BACKGROUND_SPRITE,
 	NULL
 };
 
-EntityROMSpec CLOUDS_BACKGROUND_EN =
+AwesomeCloudROMSpec CLOUDS_BACKGROUND_EN =
 {
-	// class allocator
-	__TYPE(Entity),
+	// entity
+	{
+		// class allocator
+		__TYPE(AwesomeCloud),
 
-	// behaviors 
-	NULL,
+		// behaviors 
+		NULL,
 
-	// sprites
-	(SpriteSpec**)CLOUDS_BACKGROUND_SPRITES,
+		// sprites
+		(SpriteSpec**)CLOUDS_BACKGROUND_SPRITES,
 
-	// collision shapes
-	NULL,
+		// collision shapes
+		NULL,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-	// gameworld's character's type
-	kNoType,
+		// gameworld's character's type
+		kNoType,
 
-	// physical specification
-	NULL,
+		// physical specification
+		NULL,
+	},
+
+	/// Rotation around x axis
+	-112
 };
