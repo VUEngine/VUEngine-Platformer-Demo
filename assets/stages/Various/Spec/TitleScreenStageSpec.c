@@ -57,7 +57,7 @@ extern TextureSpec LOGO_OUTLINE_L_TX;
 extern TextureSpec LOGO_OUTLINE_R_TX;
 extern TextureSpec LOGO_R_TX;
 extern u16 KRISSE_BGM[][2];
-
+extern EntitySpec CLOUDS_BACKGROUND_EN;
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
@@ -66,7 +66,7 @@ extern u16 KRISSE_BGM[][2];
 PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{__LOW_POWER_ENTITY_X_POSITION, __LOW_POWER_ENTITY_Y_POSITION, __LOW_POWER_ENTITY_Z_POSITION, __LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
-
+	{&CLOUDS_BACKGROUND_EN, 				{192, 112 - 112/2 - 12, LAYER_3, 0}, 		0, NULL, NULL, NULL, true}, // Front
 	{&MOUND_BG_FRONT_IM, 					{  0, 136, LAYER_2, 0}, 		0, NULL, NULL, NULL, false}, // Front
 	{&GRASS_AG, 							{ 32, 152, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Grass
 	{&COIN_AG, 								{ 56, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
@@ -77,7 +77,7 @@ PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 	{&HERO_BANDANA_AG, 						{192, 157, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Hero
 	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, 	{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer Front
 	{&CLOUDS_IM, 							{194, 128, LAYER_4, 0}, 		0, NULL, NULL, NULL, false}, // Clouds
-	{&MOUND_BG_BACK_IM, 					{280,  82, LAYER_5, 0}, 		0, NULL, NULL, NULL, false}, // Mountains
+	{&MOUND_BG_BACK_IM, 					{280,  72, LAYER_5, 0}, 		0, NULL, NULL, NULL, false}, // Mountains
 	{&MOUND_BG_CASTLE_IM, 					{300, 104, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle
 	{&MOUND_BG_CASTLE_FLAG_AG, 				{274,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag L
 	{&MOUND_BG_CASTLE_FLAG_AG, 				{304,  95, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag M
@@ -100,19 +100,11 @@ PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 
 FontROMSpec* const TITLE_SCREEN_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_DEFAULT_FONT,
-	&PLATFORMER_GUI_FONT,
-	&ASTONISH_EXTENDED_FONT_SHADOW,
-
 	NULL
 };
 
 TextureSpec* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
 {
-	&LOGO_L_TX,
-	&LOGO_R_TX,
-	&LOGO_OUTLINE_L_TX,
-	&LOGO_OUTLINE_R_TX,
 	NULL
 };
 
@@ -190,7 +182,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 		12,
 
 		// maximum number of rows to compute on each call to the affine functions
-		16,
+		16 * 8,
 
 		// colors config
 		{
@@ -239,7 +231,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 
 		// bgmap segments configuration
 		// number of segments reserved for the param table
-		1,
+		5,
 
 		// object segments sizes (up to 1024 in total)
 		// can impact performance, make sure to configure only as large as maximally needed

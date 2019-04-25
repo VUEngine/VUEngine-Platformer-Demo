@@ -125,5 +125,8 @@ void AwesomeCloudBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
 
 	//worldPointer->gx -= 20;
 	//worldPointer->w = __SCREEN_WIDTH + 19;
+	worldPointer->h -= 4;
+
+//	Sprite::print(this, 20, 1);
 }
 

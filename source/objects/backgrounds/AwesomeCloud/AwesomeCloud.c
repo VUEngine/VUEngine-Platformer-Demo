@@ -25,6 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <AwesomeCloud.h>
+#include <TimerManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -58,3 +59,30 @@ void AwesomeCloud::ready(bool recursive)
 	
 	Entity::setLocalRotation(this, &this->transformation.localRotation);
 }
+
+void AwesomeCloud::update(u32 elapsedTime)
+{
+	Base::update(this, elapsedTime);
+/*
+	static s16 increment = 1;
+
+	this->transformation.localRotation.x+=increment;
+
+	if(96 < this->transformation.localRotation.x)
+	{
+		increment *= -1;
+	}
+	else if(-96 > this->transformation.localRotation.x)
+	{
+		increment *= -1;
+	}
+
+//	increment *= -1;
+
+	
+//	this->transformation.localRotation.x *= -1;
+	Entity::setLocalRotation(this, &this->transformation.localRotation);
+//	TimerManager::wait(TimerManager::getInstance(), 1000);
+*/
+}
+

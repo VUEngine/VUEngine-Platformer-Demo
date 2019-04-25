@@ -46,7 +46,7 @@ CharSetROMSpec CLOUDS_BACKGROUND_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	1146 / 1,
+	1146/2,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -96,10 +96,10 @@ AwesomeCloudBgmapSpriteROMSpec CLOUDS_BACKGROUND_SPRITE =
 			(TextureSpec*)&CLOUDS_BACKGROUND_TX,
 
 			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-			__TRANSPARENCY_EVEN,
+			__TRANSPARENCY_NONE,
 
 			// displacement
-			{0, 0, SORT_INCREMENT, 0},
+			{0, 0, 200, 0},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -117,7 +117,7 @@ AwesomeCloudBgmapSpriteROMSpec CLOUDS_BACKGROUND_SPRITE =
 	0,
 
 	/// Y Displacement each render cycle
-	8
+	1
 };
 SpriteROMSpec* const CLOUDS_BACKGROUND_SPRITES[] =
 {
@@ -153,5 +153,5 @@ AwesomeCloudROMSpec CLOUDS_BACKGROUND_EN =
 	},
 
 	/// Rotation around x axis
-	-112
+	-108
 };
