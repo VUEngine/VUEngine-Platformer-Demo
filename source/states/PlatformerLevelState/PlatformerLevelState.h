@@ -137,18 +137,18 @@ enum PlatformerLevelStateMessageTypes
 
 singleton class PlatformerLevelState : GameState
 {
+	/* previous user input */
+	UserInput userInput;
 	/* the currently loaded level */
 	PlatformerLevelSpec* currentLevel;
 	/* the currently loaded entry point */
 	StageEntryPointSpec* currentStageEntryPoint;
 	/* the last reached checkpoint */
 	StageEntryPointSpec* currentCheckPoint;
-	/* to allow moving the screen */
-	u8 mode;
 	/* in-game clock */
 	Clock clock;
-	/* previous user input */
-	UserInput userInput;
+	/* to allow moving the screen */
+	u8 mode;
 
 	static PlatformerLevelState getInstance(void);
 	PlatformerLevelSpec* getCurrentLevelSpec();
