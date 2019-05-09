@@ -1,15 +1,15 @@
 {
 	"plugins": [
-		"vuengine/plugins/cameras/PlatformerCamera",
-		"vuengine/plugins/entities/LowPowerEntity",
-		"vuengine/plugins/entities/ReflectiveEntity",
-		"vuengine/plugins/fonts/AstonishFont",
-		"vuengine/plugins/graphics/GuiBgmapAnimatedSprite",
-		"vuengine/plugins/other/AutomaticPause",
-		"vuengine/plugins/other/SaveDataManager",
-		"vuengine/plugins/postProcessing/Lantern",
-		"vuengine/plugins/postProcessing/Rain",
-		"vuengine/plugins/postProcessing/Rhombus",
-		"vuengine/plugins/states/SplashScreens"
+		"vuengine/cameras/PlatformerCamera",
+		"vuengine/entities/LowPowerEntity",
+		"vuengine/entities/ReflectiveEntity",
+		"vuengine/fonts/AstonishFont",
+		"vuengine/graphics/GuiBgmapAnimatedSprite",
+		"vuengine/other/AutomaticPause",
+		"vuengine/other/SaveDataManager",
+		"vuengine/postProcessing/Lantern",
+		"vuengine/postProcessing/Rain",
+		"vuengine/postProcessing/Rhombus",
+		"vuengine/states/SplashScreens"
 	]
 }

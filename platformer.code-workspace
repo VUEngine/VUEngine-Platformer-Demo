@@ -10,7 +10,7 @@
 		},
 		{
 			"name": "VUEngine Plugins",
-			"path": "../../vuengine/plugins"
+			"path": "../../vuengine/plugins/vuengine"
 		}
 	],
 	"extensions": {
