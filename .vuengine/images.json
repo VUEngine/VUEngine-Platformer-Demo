@@ -87,7 +87,7 @@
 		"assets/images/Particles/Smoke": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Particles/Waterdrop": {
+		"assets/images/Particles/WaterDrop": {
 			"template": "entity"
 		},
 		"assets/images/SawBlade": {
