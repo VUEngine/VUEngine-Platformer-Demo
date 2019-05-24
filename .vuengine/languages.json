@@ -1,24 +1,20 @@
 {
 	"languages": {
-		"DE": {
-			"flag": "FLAG_GERMANY_EN",
-			"name": "Deutsch",
-			"order": 2
-		},
 		"EN": {
 			"flag": "FLAG_UNITED_KINGDOM_EN",
-			"name": "English",
-			"order": 1
+			"name": "English"
+		},
+		"DE": {
+			"flag": "FLAG_GERMANY_EN",
+			"name": "Deutsch"
 		},
 		"ES": {
 			"flag": "FLAG_SPAIN_EN",
-			"name": "Español",
-			"order": 3
+			"name": "Español"
 		},
 		"FR": {
 			"flag": "FLAG_FRANCE_EN",
-			"name": "Français",
-			"order": 4
+			"name": "Français"
 		}
 	},
 	"strings": {
