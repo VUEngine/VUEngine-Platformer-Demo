@@ -1,10 +1,8 @@
 {
 	"compiler": {
-		"dumpElf": false,
 		"framePointer": false,
 		"optimization": "O3",
 		"output": "c",
-		"pedanticWarnings": false,
 		"prologFunctions": false
 	},
 	"engine": {

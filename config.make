@@ -22,11 +22,6 @@ COMPILER_OUTPUT					= c
 # Do not use O3 for multiplayer games, it causes unexpected out of sync behaviour when framerate drops
 OPTIMIZATION					= O3
 
-# Enable pedantic warnings
-# 0: Omit.
-# 1: Use.
-PRINT_PEDANTIC_WARNINGS 		= 0
-
 # Frame pointer's usage
 # 0: Omit.
 # 1: Use.
@@ -36,11 +31,6 @@ USE_FRAME_POINTER				= 0
 # 0: Omit.
 # 1: Use.
 USE_PROLOG_FUNCTIONS			= 0
-
-# Dump elf
-# 0: No dumping.
-# 1: Dump the assembly code and the memory sections.
-DUMP_ELF						= 0
 
 # Sections' usage
 # SRAM's usage
