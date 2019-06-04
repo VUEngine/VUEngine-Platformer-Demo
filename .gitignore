@@ -5,12 +5,3 @@ build/
 release.bat
 v810_err.txt
 .DS_Store
-config.make
-source/assets/Languages.h
-assets/fonts/Fonts.c
-assets/languages/Language_DE.c
-assets/languages/Language_EN.c
-assets/languages/Language_ES.c
-assets/languages/Language_FR.c
-assets/languages/Languages.c
-source/assets/Fonts.h
