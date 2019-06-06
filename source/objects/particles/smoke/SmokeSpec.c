@@ -57,10 +57,10 @@ PhysicalParticleROMSpec SMOKE_PARTICLE =
 		__TYPE(PhysicalParticle),
 
 		// particle's minimum life span in milliseconds
-		3000,
+		1500,
 
 		// particle's life span delta in milliseconds (maximum = minimum + delta)
-		3000,
+		1500,
 
 	// function pointer to control particle's behavior
 	//(void (*)(Particle))&smokeParticleBehavior,

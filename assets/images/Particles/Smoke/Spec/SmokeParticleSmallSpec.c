@@ -46,13 +46,13 @@ extern BYTE SmokeParticleSmallMap[];
 AnimationFunctionROMSpec SMOKE_PARTICLE_SMALL_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
-	8,
+	6,
 
 	// frames to play in animation
-	{0, 0, 0, 0, 0, 1, 2, 3},
+	{0, 0, 1, 1, 2, 3},
 
 	// number of cycles a frame of animation is displayed
-	32,
+	12,
 
 	// whether to play it in loop or not
 	false,

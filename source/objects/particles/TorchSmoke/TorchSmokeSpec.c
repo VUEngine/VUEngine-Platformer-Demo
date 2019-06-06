@@ -57,10 +57,10 @@ PhysicalParticleROMSpec TORCH_SMOKE_PARTICLE =
 		__TYPE(PhysicalParticle),
 
 		// particle's minimum life span in milliseconds
-		3000,
+		1000,
 
 		// particle's life span delta in milliseconds (maximum = minimum + delta)
-		3000,
+		1000,
 
 		// function pointer to control particle's behavior
 		NULL,
@@ -73,10 +73,10 @@ PhysicalParticleROMSpec TORCH_SMOKE_PARTICLE =
 	},
 
 	// particle's minimum mass
-	__F_TO_FIX10_6(1),
+	__F_TO_FIX10_6(0.9f),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX10_6(0),
+	__F_TO_FIX10_6(0.02f),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__NO_AXIS,
@@ -137,11 +137,11 @@ ParticleSystemROMSpec TORCH_SMOKE_PS =
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the spec to avoid overflow)
-	{__F_TO_FIX10_6(-0.2f), __F_TO_FIX10_6(-0.025f), __I_TO_FIX10_6(0)},
+	{__F_TO_FIX10_6(-0.025f), __F_TO_FIX10_6(-0.05f), __I_TO_FIX10_6(0)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the spec to avoid overflow)
-	{__F_TO_FIX10_6(0.4f), __F_TO_FIX10_6(-0.01f), __I_TO_FIX10_6(0)},
+	{__F_TO_FIX10_6(0.055f), __F_TO_FIX10_6(-0.02f), __I_TO_FIX10_6(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT
