@@ -47,24 +47,7 @@
 //												PLUGINS
 //---------------------------------------------------------------------------------------------------------
 
-#define __SAVE_DATA_MANAGER_SAVE_STAMP							"VUEnginePlatform"
-#define __SAVE_DATA_MANAGER_SAVE_STAMP_LENGTH					16
-
-#define __AUTOMATIC_PAUSE_SELECTION_SCREEN_TITLE_TEXT			__TRANSLATE(STR_AUTOMATIC_PAUSE)
-#define __AUTOMATIC_PAUSE_SELECTION_SCREEN_TITLE_TEXT_FONT		"AstonishSExt"
-#define __AUTOMATIC_PAUSE_SELECTION_SCREEN_BODY_TEXT			__TRANSLATE(STR_AUTO_PAUSE_EXPLANATION)
-#define __AUTOMATIC_PAUSE_SELECTION_SCREEN_ON_TEXT				__TRANSLATE(STR_ON)
-#define __AUTOMATIC_PAUSE_SELECTION_SCREEN_OFF_TEXT				__TRANSLATE(STR_OFF)
-#define __LANGUAGE_SELECTION_SCREEN_VARIANT						1
-#define __LANGUAGE_SELECTION_SCREEN_TITLE_TEXT					__TRANSLATE(STR_LANGUAGE_SELECT)
-#define __LANGUAGE_SELECTION_SCREEN_TITLE_TEXT_FONT				"AstonishSExt"
-#define __PRECAUTION_SCREEN_TEXT								__TRANSLATE(STR_PRECAUTION_SCREEN_TEXT)
-#define __PRECAUTION_SCREEN_TEXT_FONT							"AstonishSExt"
-
-#define __LOW_POWER_ENTITY_USE_GUI_BGMAP_ANIMATED_SPRITE		1
-
-#define __SPLASH_SCREENS_USE_LOW_POWER_ENTITY					1
-#define __AUTOMATIC_PAUSE_SCREEN_USE_LOW_POWER_ENTITY			1
+#include "pluginsConfig.h"
 
 
 //---------------------------------------------------------------------------------------------------------
