@@ -62,6 +62,7 @@
 	"frameRate": {
 		"timerResolution": 10,
 		"frameCycle": 0,
+		"forceVipSync": false,
 		"runDelayedMessagesAtHalfFrameRate": false
 	},
 	"memoryPools": {
