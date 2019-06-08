@@ -103,6 +103,9 @@
 		"stopVelocityThreshold": 8,
 		"stopBouncingVelocityThreshold": 48
 	},
+	"project": {
+		"name": "VUEngine Platformer Demo"
+	},
 	"random": {
 		"addUserInputAndTimeToRandomSeed": false,
 		"seedCycles": 2
