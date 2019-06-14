@@ -92,12 +92,12 @@ const char* const LANGUAGE_EN_STRINGS[] =
 
 const LangROMSpec LANGUAGE_EN =
 {
-	// Language Name
+	// language name
 	"English",
 
-	// Flag Entity
+	// flag entity
 	&FLAG_UNITED_KINGDOM_EN,
 	
-	// Strings
+	// strings
 	(const char**)LANGUAGE_EN_STRINGS
 };
