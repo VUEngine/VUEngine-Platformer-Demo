@@ -23,7 +23,7 @@ const unsigned int FlowerATiles[20] __attribute__((aligned(4)))=
 
 const unsigned short FlowerAMap[4] __attribute__((aligned(4)))=
 {
-	0x0000,0x0001,0x0002,0x0003,
+0x0000,0x0001,0x0002,0x0003,
 };
 
 //}}BLOCK(FlowerA)

@@ -24,7 +24,7 @@ const unsigned int BushTiles[28] __attribute__((aligned(4)))=
 
 const unsigned short BushMap[6] __attribute__((aligned(4)))=
 {
-	0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,
+0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,
 };
 
 //}}BLOCK(Bush)

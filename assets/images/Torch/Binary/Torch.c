@@ -1,4 +1,5 @@
 
+
 //{{BLOCK(Torch)
 
 //======================================================================
@@ -24,8 +25,8 @@ const unsigned int TorchTiles[40] __attribute__((aligned(4)))=
 
 const unsigned short TorchMap[10] __attribute__((aligned(4)))=
 {
-	0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
-	0x0009
+0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,
+0x0008,0x0000,
 };
 
 //}}BLOCK(Torch)

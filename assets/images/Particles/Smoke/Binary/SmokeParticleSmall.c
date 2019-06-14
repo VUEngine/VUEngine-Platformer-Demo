@@ -23,7 +23,7 @@ const unsigned int SmokeParticleSmallTiles[20] __attribute__((aligned(4)))=
 
 const unsigned short SmokeParticleSmallMap[4] __attribute__((aligned(4)))=
 {
-	0x0000,0x0001,0x0002,0x0003,
+0x0000,0x0001,0x0002,0x0003,
 };
 
 //}}BLOCK(SmokeParticleSmall)

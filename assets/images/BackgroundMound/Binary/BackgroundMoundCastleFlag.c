@@ -22,7 +22,7 @@ const unsigned int BackgroundMoundCastleFlagTiles[12] __attribute__((aligned(4))
 
 const unsigned short BackgroundMoundCastleFlagMap[2] __attribute__((aligned(4)))=
 {
-	0x0000,0x0001,
+0x0000,0x0001,
 };
 
 //}}BLOCK(BackgroundMoundCastleFlag)

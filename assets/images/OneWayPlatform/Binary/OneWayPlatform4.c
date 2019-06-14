@@ -23,7 +23,7 @@ const unsigned int OneWayPlatform4Tiles[20] __attribute__((aligned(4)))=
 
 const unsigned short OneWayPlatform4Map[8] __attribute__((aligned(4)))=
 {
-	0x0000,0x0001,0x02001,0x02000,0x0002,0x0003,0x02003,0x02002,
+0x0000,0x0001,0x02001,0x02000,0x0002,0x0003,0x02003,0x02002,
 };
 
 //}}BLOCK(OneWayPlatform4)
