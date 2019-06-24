@@ -9,6 +9,7 @@ PLUGINS 						= vuengine/cameras/PlatformerCamera \
 								  vuengine/fonts/AstonishFont \
 								  vuengine/graphics/GuiBgmapAnimatedSprite \
 								  vuengine/other/AutomaticPause \
+								  vuengine/other/I18n \
 								  vuengine/other/SaveDataManager \
 								  vuengine/postProcessing/Lantern \
 								  vuengine/postProcessing/Rain \
