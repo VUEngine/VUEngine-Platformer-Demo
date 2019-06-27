@@ -312,7 +312,7 @@ StageROMSpec LEVEL1_HOUSE_STAGE_ST =
 		// ui
 		{
 			LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES,
-			__TYPE(UiContainer),
+			__TYPE(UIContainer),
 		},
 
 		// children

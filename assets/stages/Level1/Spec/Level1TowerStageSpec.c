@@ -516,7 +516,7 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 		// ui
 		{
 			LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN,
-			__TYPE(UiContainer),
+			__TYPE(UIContainer),
 		},
 
 		// children

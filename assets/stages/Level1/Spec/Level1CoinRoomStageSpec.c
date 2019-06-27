@@ -331,7 +331,7 @@ StageROMSpec LEVEL1_COIN_ROOM_STAGE_ST =
 		// ui
 		{
 			LEVEL1_COIN_ROOM_STAGE_ST_UI_ENTITIES,
-			__TYPE(UiContainer),
+			__TYPE(UIContainer),
 		},
 
 		// children
