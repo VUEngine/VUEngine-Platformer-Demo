@@ -449,7 +449,7 @@ void PlatformerLevelState::resume(void* owner)
 void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 	extern TextureROMSpec GUI_TX;
-	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GUI_TX.rows * 8), 0);
+	Printing::setCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GUI_TX.rows * 8), 0);
 }
 
 void PlatformerLevelState::activateLantern()
