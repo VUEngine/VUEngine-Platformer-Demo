@@ -121,7 +121,7 @@ ParticleSystemROMSpec WATER_SPLASH_PS =
 	8,
 
 	// array of textures
-	(const ObjectSpriteSpec**)WATER_SPLASH_SPRITES,
+	(const SpriteSpec**)WATER_SPLASH_SPRITES,
 
 	// auto start
 	true,

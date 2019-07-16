@@ -123,7 +123,7 @@ ParticleSystemROMSpec DUST_PS =
 	4,
 
 	// array of textures
-	(const ObjectSpriteSpec**)DUST_PARTICLE_SPRITES,
+	(const SpriteSpec**)DUST_PARTICLE_SPRITES,
 
 	// auto start
 	false,
