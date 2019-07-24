@@ -242,15 +242,9 @@ void PlatformerLevelState::enter(void* owner)
 	{
 		Camera::startEffect(Camera::getInstance(), kScreenPulsate);
 	}
+
 	// activate lantern effect around hero
-	if(this->currentStageEntryPoint->stageSpec->rendering.colorConfig.brightness.brightRed == (__BRIGHTNESS_BRIGHT_RED >> 1))
-	{
-		Container hero = Container::getChildByName(this->stage, HERO_NAME, true);
-		if(hero)
-		{
-			Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingLantern::lantern, SpatialObject::safeCast(hero));
-		}
-	}
+	PlatformerLevelState::activateLantern(this);
 
 	// print level name if at level start point
 	if(PlatformerLevelState::isStartingLevel(this) && this->currentLevel->name)
@@ -446,13 +440,28 @@ void PlatformerLevelState::resume(void* owner)
 
 	PlatformerLevelState::setPrintingLayerCoordinates(this);
 
+	// activate lantern effect around hero
+	PlatformerLevelState::activateLantern(this);
+
 	Game::enableKeypad(Game::getInstance());
 }
 
 void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 	extern TextureROMSpec GUI_TX;
-	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GUI_TX.rows * 8));
+	Printing::setCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GUI_TX.rows * 8), 0);
+}
+
+void PlatformerLevelState::activateLantern()
+{
+	if(this->currentStageEntryPoint->stageSpec->rendering.colorConfig.brightness.brightRed == (__BRIGHTNESS_BRIGHT_RED >> 1))
+	{
+		Container hero = Container::getChildByName(this->stage, HERO_NAME, true);
+		if(hero)
+		{
+			Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingLantern::lantern, SpatialObject::safeCast(hero));
+		}
+	}
 }
 
 UserInput PlatformerLevelState::getUserInput()

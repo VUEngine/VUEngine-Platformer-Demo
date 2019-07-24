@@ -121,7 +121,7 @@ ParticleSystemROMSpec SMOKE_PS =
 	14,
 
 	// array of textures
-	(const ObjectSpriteSpec**)SMOKE_SPRITES,
+	(const SpriteSpec**)SMOKE_SPRITES,
 
 	// auto start
 	true,
