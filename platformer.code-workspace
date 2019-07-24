@@ -6,11 +6,11 @@
 		},
 		{
 			"name": "VUEngine",
-			"path": "../../vuengine/core"
+			"path": "D:\\dev\\vb\\vuengine\\core\\"
 		},
 		{
 			"name": "Plugins",
-			"path": "../../vuengine/plugins"
+			"path": "D:\\dev\\vb\\vuengine\\plugins"
 		}
 	],
 	"extensions": {
