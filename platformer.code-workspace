@@ -15,11 +15,10 @@
 	],
 	"extensions": {
 		"recommendations": [
-			//"vuengine.vuengine-ide",
+			"vuengine.vuengine-studio",
 		]		
 	},
 	"settings": {
-		"files.autoGuessEncoding": true,
 		"C_Cpp.autoAddFileAssociations": false,
 		"editor.insertSpaces": false
 	}

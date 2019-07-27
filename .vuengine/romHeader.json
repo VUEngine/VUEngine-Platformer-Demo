@@ -1,5 +1,7 @@
 {
-	"gameCode": "VVPM",
+	"gameCodeSystem": "V",
+	"gameCodeId": "VP",
+	"gameCodeLanguage": "M",
 	"gameTitle": "VUENGINE PLATFORMER ",
 	"makerCode": "TV",
 	"revision": 0

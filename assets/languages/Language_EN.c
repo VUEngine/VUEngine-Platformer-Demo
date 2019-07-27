@@ -2,8 +2,6 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// file encoded in: windows1252
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
@@ -22,6 +20,11 @@ extern EntitySpec FLAG_UNITED_KINGDOM_EN;
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
+
+/*
+ * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
+ * of the full extended ASCII character set including special characters of European languages.
+ */
 
 const char* const LANGUAGE_EN_STRINGS[] =
 {
