@@ -21,16 +21,48 @@
 		"palettes": {
 			"printingPalette": 0,
 			"bgMap": {
-				"0": "0b11100100",
-				"1": "0b11100000",
-				"2": "0b10010000",
-				"3": "0b01010000"
+				"0": {
+					"0": "11",
+					"1": "10",
+					"2": "01"
+				},
+				"1": {
+					"0": "11",
+					"1": "10",
+					"2": "00"
+				},
+				"2": {
+					"0": "10",
+					"1": "01",
+					"2": "00"
+				},
+				"3": {
+					"0": "01",
+					"1": "01",
+					"2": "00"
+				}
 			},
 			"object": {
-				"0": "0b11100100",
-				"1": "0b11100000",
-				"2": "0b10010000",
-				"3": "0b01010000"
+				"0": {
+					"0": "11",
+					"1": "10",
+					"2": "01"
+				},
+				"1": {
+					"0": "11",
+					"1": "10",
+					"2": "00"
+				},
+				"2": {
+					"0": "10",
+					"1": "01",
+					"2": "00"
+				},
+				"3": {
+					"0": "01",
+					"1": "01",
+					"2": "00"
+				}
 			}
 		}
 	},
@@ -66,22 +98,55 @@
 		"forceVipSync": false,
 		"runDelayedMessagesAtHalfFrameRate": false
 	},
-	"game": {},
+	"game": [],
 	"memoryPools": {
 		"cleanUp": false,
-		"pools": {
-			"20": 440,
-			"24": 680,
-			"32": 340,
-			"44": 20,
-			"72": 40,
-			"84": 60,
-			"112": 40,
-			"120": 52,
-			"144": 12,
-			"156": 5,
-			"168": 1
-		},
+		"pools": [
+			{
+				"size": 20,
+				"objects": 440
+			},
+			{
+				"size": 24,
+				"objects": 680
+			},
+			{
+				"size": 32,
+				"objects": 340
+			},
+			{
+				"size": 44,
+				"objects": 20
+			},
+			{
+				"size": 72,
+				"objects": 40
+			},
+			{
+				"size": 84,
+				"objects": 60
+			},
+			{
+				"size": 112,
+				"objects": 40
+			},
+			{
+				"size": 120,
+				"objects": 52
+			},
+			{
+				"size": 144,
+				"objects": 12
+			},
+			{
+				"size": 156,
+				"objects": 5
+			},
+			{
+				"size": 168,
+				"objects": 1
+			}
+		],
 		"warningThreshold": 85
 	},
 	"optics": {
@@ -119,13 +184,13 @@
 		"virtualTables": ".dram_bss"
 	},
 	"sound": {
+		"leftEarCenter": 96,
+		"rightEarCenter": 288,
+		"stereoAttenuationFactor": 0.75,
 		"bgmChannels": 2,
 		"fxChannels": 1,
 		"bgms": 1,
-		"fxs": 2,
-		"leftEarCenter": 96,
-		"rightEarCenter": 288,
-		"stereoAttenuationFactor": 0.75
+		"fxs": 2
 	},
 	"sprite": {
 		"totalLayers": 32
@@ -146,48 +211,9 @@
 			"offset": {
 				"x": 0,
 				"y": 0,
-				"parallax": 0,
-				"z": 0
+				"parallax": 0
 			},
 			"printableArea": 1792
-		}
-	},
-	"engine": {
-		"animation": {
-			"maxAnimationFunctionNameLength": 16,
-			"maxFramesPerAnimationFunction": 16,
-			"maxAnimationFunctions": 32
-		},
-		"memoryPools": {
-			"cleanUp": false,
-			"pools": {
-				"20": 440,
-				"24": 680,
-				"32": 340,
-				"44": 20,
-				"72": 40,
-				"84": 60,
-				"112": 40,
-				"120": 52,
-				"144": 12,
-				"156": 5,
-				"168": 1
-			},
-			"warningThreshold": 85
-		},
-		"optics": {
-			"screenWidth": 384,
-			"screenHeight": 224,
-			"screenDepth": 2048,
-			"distanceEyeScreen": 384,
-			"maximumXViewDistance": 2048,
-			"maximumYViewDistance": 4096,
-			"baseFactor": 32,
-			"horizontalViewPointCenter": 192,
-			"verticalViewPointCenter": 112,
-			"parallaxCorrectionFactor": 4,
-			"scalingModifierFactor": 0.2,
-			"cameraMinimumDisplacementPixelsPower": 1
 		}
 	}
 }

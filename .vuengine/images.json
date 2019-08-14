@@ -1,186 +1,186 @@
 {
 	"folders": {
-		"assets/images/BackgroundMound": {
+		"BackgroundMound": {
 			"template": "entity"
 		},
-		"assets/images/Bandana": {
+		"Bandana": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Bush": {
+		"Bush": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Cannon": {
+		"Cannon": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Clock": {
+		"Clock": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Clouds": {
+		"Clouds": {
 			"template": "entity"
 		},
-		"assets/images/CloudsBackground": {
+		"CloudsBackground": {
 			"template": "entity"
 		},
-		"assets/images/CogWheel": {
+		"CogWheel": {
 			"template": "entity"
 		},
-		"assets/images/Coin": {
+		"Coin": {
 			"template": "animatedEntity"
 		},
-		"assets/images/DarknessOverlay": {
+		"DarknessOverlay": {
 			"template": "entity"
 		},
-		"assets/images/Door": {
+		"Door": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Fire": {
+		"Fire": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Fonts": {
+		"Fonts": {
 			"template": "font"
 		},
-		"assets/images/Frog": {
+		"Frog": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Grass": {
+		"Grass": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Gui": {
+		"Gui": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Hero": {
+		"Hero": {
 			"template": "animatedEntity"
 		},
-		"assets/images/HideLayer": {
+		"HideLayer": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Hint": {
+		"Hint": {
 			"template": "animatedEntity"
 		},
-		"assets/images/JumpPad": {
+		"JumpPad": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Key": {
+		"Key": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Ladder": {
+		"Ladder": {
 			"template": "entity"
 		},
-		"assets/images/Lava": {
+		"Lava": {
 			"template": "entity"
 		},
-		"assets/images/LavaTop": {
+		"LavaTop": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Mound": {
+		"Mound": {
 			"template": "entity"
 		},
-		"assets/images/MovingPlatform": {
+		"MovingPlatform": {
 			"template": "entityAffine"
 		},
-		"assets/images/OneWayPlatform": {
+		"OneWayPlatform": {
 			"template": "entity"
 		},
-		"assets/images/Particles/Dust": {
+		"Particles/Dust": {
 			"template": "entity"
 		},
-		"assets/images/Particles/Smoke": {
+		"Particles/Smoke": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Particles/WaterDrop": {
+		"Particles/WaterDrop": {
 			"template": "entity"
 		},
-		"assets/images/SawBlade": {
+		"SawBlade": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Signs": {
+		"Signs": {
 			"template": "entity"
 		},
-		"assets/images/Snail": {
+		"Snail": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Stages/Level-1/Main-1/Back": {
+		"Stages/Level-1/Main-1/Back": {
 			"name": "Level-1-Main-1-Back",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level-1/Main-1/Main": {
+		"Stages/Level-1/Main-1/Main": {
 			"name": "Level-1-Main-1-Main",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level-1/Main-1/MainBack": {
+		"Stages/Level-1/Main-1/MainBack": {
 			"name": "Level-1-Main-1-MainBack",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level-1/Main-1/MainFront": {
+		"Stages/Level-1/Main-1/MainFront": {
 			"name": "Level-1-Main-1-MainFront",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level-1/Main-1/Other": {
+		"Stages/Level-1/Main-1/Other": {
 			"template": "entity"
 		},
-		"assets/images/Stages/Level-1/Tower/Back": {
+		"Stages/Level-1/Tower/Back": {
 			"name": "Level-1-Tower-Back",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level-1/Tower/Main": {
+		"Stages/Level-1/Tower/Main": {
 			"name": "Level-1-Tower-Main",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level-1/Tower/MainBack": {
+		"Stages/Level-1/Tower/MainBack": {
 			"name": "Level-1-Tower-MainBack",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level1CoinRoomStage/Back": {
+		"Stages/Level1CoinRoomStage/Back": {
 			"name": "Level1CoinRoomStageBack",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level1CoinRoomStage/Main": {
+		"Stages/Level1CoinRoomStage/Main": {
 			"name": "Level1CoinRoomStageMain",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level1CoinRoomStage/MainBack": {
+		"Stages/Level1CoinRoomStage/MainBack": {
 			"name": "Level1CoinRoomStageMainBack",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level1HouseStage": {
+		"Stages/Level1HouseStage": {
 			"template": "entity"
 		},
-		"assets/images/Stages/Level1IntersectionStage/Back": {
+		"Stages/Level1IntersectionStage/Back": {
 			"name": "Level1IntersectionStageBack",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level1IntersectionStage/Main": {
+		"Stages/Level1IntersectionStage/Main": {
 			"name": "Level1IntersectionStageMain",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Level1IntersectionStage/MainBack": {
+		"Stages/Level1IntersectionStage/MainBack": {
 			"name": "Level1IntersectionStageMainBack",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/Overworld/Background": {
+		"Stages/Overworld/Background": {
 			"template": "entity"
 		},
-		"assets/images/Stages/Overworld/Objects": {
+		"Stages/Overworld/Objects": {
 			"template": "animatedEntity"
 		},
-		"assets/images/Stages/TitleScreenStage/Main": {
+		"Stages/TitleScreenStage/Main": {
 			"name": "TitleScreenStageMain",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/TitleScreenStage/MainFront": {
+		"Stages/TitleScreenStage/MainFront": {
 			"name": "TitleScreenStageMainFront",
 			"template": "entitySharedTileset"
 		},
-		"assets/images/Stages/TitleScreenStage/Other": {
+		"Stages/TitleScreenStage/Other": {
 			"template": "entity"
 		},
-		"assets/images/Torch": {
+		"Torch": {
 			"template": "animatedEntity"
 		},
-		"assets/images/TorchOff": {
+		"TorchOff": {
 			"template": "entity"
 		},
-		"assets/images/Waterfall": {
+		"Waterfall": {
 			"template": "animatedEntity"
 		}
 	}
