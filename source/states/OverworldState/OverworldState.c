@@ -50,7 +50,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMSpec OVERWORLD1_STAGE_ST;
-extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -203,7 +202,7 @@ void OverworldState::processUserInput(UserInput userInput)
 
 		// play sound
 		Vector3D position = {192, 112, 0};
-		SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
+		//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
 
 	}
 	else if(K_B & userInput.pressedKey)

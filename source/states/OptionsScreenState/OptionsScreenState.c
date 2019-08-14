@@ -45,8 +45,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMSpec EMPTY_STAGE_ST;
-extern const u16 SPLASH_SCREENS_OPTION_SELECT_SND[];
-extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -158,16 +156,16 @@ void OptionsScreenState::print()
 
 	// buttons
 	const char* strSelect = I18n::getText(I18n::getInstance(), STR_SELECT);
-	FontSize strSelectSize = Printing::getTextSize(Printing::getInstance(), strSelect, NULL);
+	FontSize strSelectSize = Printing::getTextSize(Printing::getInstance(), strSelect, "Platformer");
 	const char* strBack = I18n::getText(I18n::getInstance(), STR_BACK);
 
 	u8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
 	u8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
 
-	Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, NULL);
-	Printing::text(Printing::getInstance(), strSelect, strSelectXPos + 1, 15, NULL);
-	Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strBackXPos, 15, NULL);
-	Printing::text(Printing::getInstance(), strBack, strBackXPos + 1, 15, NULL);
+	Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, "Platformer");
+	Printing::text(Printing::getInstance(), strSelect, strSelectXPos + 1, 15, "Platformer");
+	Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strBackXPos, 15, "Platformer");
+	Printing::text(Printing::getInstance(), strBack, strBackXPos + 1, 15, "Platformer");
 }
 
 void OptionsScreenState::processUserInput(UserInput userInput)
@@ -221,13 +219,13 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 void OptionsScreenState::playMenuSound()
 {
 	Vector3D position = {192, 112, 0};
-	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
+	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
 }
 
 void OptionsScreenState::playConfirmSound()
 {
 	Vector3D position = {192, 112, 0};
-	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
+	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
 }
 
 // handle event

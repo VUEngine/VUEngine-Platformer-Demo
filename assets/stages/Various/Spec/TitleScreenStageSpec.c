@@ -56,7 +56,6 @@ extern TextureSpec LOGO_L_TX;
 extern TextureSpec LOGO_OUTLINE_L_TX;
 extern TextureSpec LOGO_OUTLINE_R_TX;
 extern TextureSpec LOGO_R_TX;
-extern u16 KRISSE_BGM[][2];
 extern EntitySpec CLOUDS_BACKGROUND_EN;
 
 //---------------------------------------------------------------------------------------------------------
@@ -117,6 +116,18 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
+
+	// Timer config
+	{
+		__TIMER_100US,
+		10,
+		kMS
+	},
+
+	// Sound config
+	{
+		__DEFAULT_PCM_HZ,
+	},
 
 	// level
 	{
@@ -301,8 +312,8 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 		// textures to preload
 		(TextureSpec**)TITLE_SCREEN_STAGE_ST_TEXTURES,
 
-		// background music
-		(const u16 (*)[])KRISSE_BGM,
+		// background sounds
+		(Sound**)NULL,
 	},
 
 	// entities

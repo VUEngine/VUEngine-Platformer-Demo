@@ -132,9 +132,9 @@ void PlatformerLevelState::enter(void* owner)
 		Vector3D environmentPosition = {0, 0, 0};
 		Vector3D* initialPosition = Entity::calculateGlobalPositionFromSpecByName(this->currentStageEntryPoint->stageSpec->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
 
-		Printing::int(Printing::getInstance(), initialPosition->x, 0, 0, NULL);
-		Printing::int(Printing::getInstance(), initialPosition->y, 0, 1, NULL);
-		Printing::int(Printing::getInstance(), initialPosition->z, 0, 2, NULL);
+		Printing::int(Printing::getInstance(), initialPosition->x, 0, 0, "Platformer");
+		Printing::int(Printing::getInstance(), initialPosition->y, 0, 1, "Platformer");
+		Printing::int(Printing::getInstance(), initialPosition->z, 0, 2, "Platformer");
 
 //		ASSERT(initialPosition, "PlatformerLevelState::enter: no initial position");
 
@@ -269,27 +269,27 @@ void PlatformerLevelState::enter(void* owner)
 				strLevel,
 				((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1,
 				4,
-				NULL
+				"Platformer"
 			);
 			Printing::text(
 				Printing::getInstance(),
 				strLevelId,
 				(((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1) + strLevelLength + 1,
 				4,
-				NULL
+				"Platformer"
 			);
 		}
 
 		if(this->currentLevel->slogan)
 		{
 			const char* strLevelSlogan = I18n::getText(I18n::getInstance(), (int)this->currentLevel->slogan);
-			FontSize strLevelSloganSize = Printing::getTextSize(Printing::getInstance(), strLevelSlogan, NULL);
+			FontSize strLevelSloganSize = Printing::getTextSize(Printing::getInstance(), strLevelSlogan, "Platformer");
 			Printing::text(
 				Printing::getInstance(),
 				strLevelSlogan,
 				((__SCREEN_WIDTH_IN_CHARS) - strLevelSloganSize.x) >> 1,
 				9,
-				NULL
+				"Platformer"
 			);
 		}
 
@@ -305,7 +305,7 @@ void PlatformerLevelState::enter(void* owner)
 			strCheckpoint,
 			((__SCREEN_WIDTH_IN_CHARS) - strlen(strCheckpoint)) >> 1,
 			6,
-			NULL
+			"Platformer"
 		);
 
 		// erase checkpoint message in a moment

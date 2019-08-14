@@ -62,7 +62,6 @@ extern EntitySpec TORCH_LIGHT_AG;
 extern StageEntryPointROMSpec LEVEL1_COIN_ROOM_STAGE_EXIT_EP;
 extern StageEntryPointROMSpec LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP;
 extern StageEntryPointROMSpec LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP;
-extern u16 KRISSE_BGM[][2];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -118,8 +117,8 @@ PositionedEntityROMSpec LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES[] =
 
 FontROMSpec* const LEVEL1_INTERSECTION_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_DEFAULT_FONT,
-	&ASTONISH_FONT_SHADOW,
+	&PLATFORMER_FONT,
+	&ASTONISH_S_FONT,
 	&PLATFORMER_GUI_FONT,
 
 	NULL
@@ -139,6 +138,18 @@ StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
+
+	// Timer config
+	{
+		__TIMER_100US,
+		10,
+		kMS
+	},
+
+	// Sound config
+	{
+		__DEFAULT_PCM_HZ,
+	},
 
 	// level
 	{
@@ -323,8 +334,8 @@ StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
 		// textures to preload
 		(TextureSpec**)NULL,
 
-		// background music
-		(const u16 (*)[])KRISSE_BGM,
+		// background sounds
+		(Sound**)NULL,
 	},
 
 	// entities

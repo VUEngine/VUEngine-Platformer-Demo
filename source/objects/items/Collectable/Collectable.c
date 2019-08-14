@@ -36,8 +36,6 @@
 #include "Collectable.h"
 #include <PlatformerLevelState.h>
 
-extern const u16 COLLECT_SND[];
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -66,7 +64,7 @@ bool Collectable::handleMessage(Telegram telegram)
 		case kItemTaken:
 		{
 			// play collect sound
-			SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
+			//SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
 			// set shape to inactive so no other hits with this item can occur
 			Entity::allowCollisions(this, false);

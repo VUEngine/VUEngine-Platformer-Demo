@@ -122,8 +122,7 @@ void Cannon::spawnCannonBall()
 	Camera::startEffect(Camera::getInstance(), kShake, 250);
 
 	// play boom sound
-	extern const u16 FIRE_SND[];
-	SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
+	//SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
 
 	// set cannon ball to moving state
 	ASSERT(1 == VirtualList::getSize(this->children), "Cannon::spawnCannonBall: no children");

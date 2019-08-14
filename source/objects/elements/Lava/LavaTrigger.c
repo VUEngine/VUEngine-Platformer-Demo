@@ -45,8 +45,6 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern const u16 CRUMBLE_SND[];
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -100,7 +98,7 @@ void LavaTrigger::triggerEventStart()
 
 	// play sound
 	Vector3D position = {192, 112, 0};
-	SoundManager::playFxSound(SoundManager::getInstance(), CRUMBLE_SND, position);
+	//SoundManager::playFxSound(SoundManager::getInstance(), CRUMBLE_SND, position);
 
 	// remind myself to stop the trigger event soon
 	MessageDispatcher::dispatchMessage(3000, Object::safeCast(this), Object::safeCast(this), kLavaTriggerEnd, NULL);

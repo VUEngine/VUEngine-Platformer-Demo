@@ -98,7 +98,7 @@ void Gui::printBestTime()
 	}
 	else
 	{
-		Printing::text(Printing::getInstance(), "--:--", GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
+		Printing::text(Printing::getInstance(), "--:--", GUI_X_POS + 42, GUI_Y_POS + 1, "Platformer");
 	}
 }
 

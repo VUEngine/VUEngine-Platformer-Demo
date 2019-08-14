@@ -28,6 +28,7 @@
 #include <Debug.h>
 #include <StageEditor.h>
 #include <AnimationInspector.h>
+#include <SoundTest.h>
 #include <Entity.h>
 #include <Bandana.h>
 #include <Cannon.h>
@@ -64,40 +65,13 @@ extern EntitySpec SNAIL_3_AC;
 //										DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// only need to define one for all containers
-EntityROMSpec SIMPLE_CONTAINER =
-{
-	// class allocator
-	__TYPE(Entity),
-
-	// behaviors 
-	NULL,
-
-	// sprites
-	NULL,
-
-	// collision shapes
-	NULL,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	NULL,
-};
-
-
 // only need to define one for all managed entities
 EntityROMSpec MANAGED_ENTITY =
 {
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites
@@ -153,11 +127,16 @@ const UserAnimatedEntity _userAnimatedEntities[] =
 {
 	{(AnimatedEntitySpec*)&COIN_AG,						"Coin"},
 	{(AnimatedEntitySpec*)&DOOR_AG,						"Door"},
-	{(AnimatedEntitySpec*)&LAYER_SWITCH_DOOR_BACK_AG,		"Back Door"},
+	{(AnimatedEntitySpec*)&LAYER_SWITCH_DOOR_BACK_AG,	"Back Door"},
 	{(AnimatedEntitySpec*)&HERO_AC,						"Hero"},
 	{(AnimatedEntitySpec*)&KEY_AG,						"Key"},
 	{(AnimatedEntitySpec*)&SAW_BLADE_V3_AC,				"SawBlade"},
 	{(AnimatedEntitySpec*)&SNAIL_3_AC,					"Snail"},
 	{(AnimatedEntitySpec*)&LAVA_TOP_AG,					"Lava top"},
 	{NULL, ""},
+};
+
+SoundROM* const _userSounds[] =
+{
+	NULL
 };

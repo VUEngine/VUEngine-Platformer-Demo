@@ -35,7 +35,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define GUI_ICON_FONT	"GuiFont"
+#define GUI_ICON_FONT	"PlatformerGui"
 #define GUI_TEXT_FONT	"AstonishS"
 #define GUI_X_POS		0
 #define GUI_Y_POS		26

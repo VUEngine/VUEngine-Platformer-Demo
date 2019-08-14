@@ -43,7 +43,6 @@ extern StageEntryPointROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_EP;
 extern StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_UPPER_EP;
 extern StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_EXIT_EP;
 extern StageEntryPointROMSpec LEVEL1_TOWER_STAGE_MAIN_EP;
-extern u16 WORLD_0_0_0_BGM[][2];
 
 StageEntryPointROMSpec LEVEL_1_MAIN_LS_BACK_EP;
 StageEntryPointROMSpec LEVEL_1_MAIN_LS_FRONT_EP;
@@ -506,8 +505,8 @@ PositionedEntityROMSpec LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 
 FontROMSpec* const LEVEL_1_MAIN_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_DEFAULT_FONT,
-	&ASTONISH_FONT_SHADOW,
+	&PLATFORMER_FONT,
+	&ASTONISH_S_FONT,
 	&PLATFORMER_GUI_FONT,
 
 	NULL
@@ -600,6 +599,18 @@ StageROMSpec LEVEL_1_MAIN_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
+
+	// Timer config
+	{
+		__TIMER_100US,
+		10,
+		kMS
+	},
+
+	// Sound config
+	{
+		__DEFAULT_PCM_HZ,
+	},
 
 	// level
 	{
@@ -786,8 +797,8 @@ StageROMSpec LEVEL_1_MAIN_STAGE_ST =
 		// textures to preload
 		(TextureSpec**)LEVEL_1_MAIN_STAGE_ST_TEXTURES,
 
-		// background music
-		(const u16 (*)[])WORLD_0_0_0_BGM,
+		// background sounds
+		(Sound**)NULL,
 	},
 
 	// entities

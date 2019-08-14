@@ -70,7 +70,7 @@ void HeroIdle::enter(void* owner)
 	MessageDispatcher::dispatchMessage(HERO_SLEEP_DELAY, Object::safeCast(this), Object::safeCast(owner), kHeroSleep, NULL);
 
 #ifdef __DEBUG
-	Printing::text(Printing::getInstance(), "HeroIdle   ", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, NULL);
+	Printing::text(Printing::getInstance(), "HeroIdle   ", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, "Platformer");
 #endif
 
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);

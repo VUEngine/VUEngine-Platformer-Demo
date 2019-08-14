@@ -47,8 +47,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMSpec PAUSE_SCREEN_STAGE_ST;
-extern const u16 SPLASH_SCREENS_OPTION_SELECT_SND[];
-extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -191,7 +189,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 				{
 					// print confirmation message
 					const char* strYes = I18n::getText(I18n::getInstance(), STR_YES);
-					FontSize strYesSize = Printing::getTextSize(Printing::getInstance(), strYes, NULL);
+					FontSize strYesSize = Printing::getTextSize(Printing::getInstance(), strYes, "Platformer");
 					const char* strNo = I18n::getText(I18n::getInstance(), STR_NO);
 					const char* strAreYouSure = I18n::getText(I18n::getInstance(), STR_ARE_YOU_SURE);
 					const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
@@ -201,11 +199,11 @@ void PauseScreenState::processUserInput(UserInput userInput)
 					u8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;
 					u8 strNoXPos = strXPos + strYesSize.x + 2;
 
-					Printing::text(Printing::getInstance(), strAreYouSure, strXPos, 21, NULL);
-					Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strXPos, 22, NULL);
-					Printing::text(Printing::getInstance(), strYes, strXPos + 1, 22, NULL);
-					Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strNoXPos, 22, NULL);
-					Printing::text(Printing::getInstance(), strNo, strNoXPos + 1, 22, NULL);
+					Printing::text(Printing::getInstance(), strAreYouSure, strXPos, 21, "Platformer");
+					Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strXPos, 22, "Platformer");
+					Printing::text(Printing::getInstance(), strYes, strXPos + 1, 22, "Platformer");
+					Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strNoXPos, 22, "Platformer");
+					Printing::text(Printing::getInstance(), strNo, strNoXPos + 1, 22, "Platformer");
 
 					// set mode accordingly
 					this->mode = kPauseScreenModeShowConfirmQuit;
@@ -240,8 +238,8 @@ void PauseScreenState::processUserInput(UserInput userInput)
 	else if((this->mode == kPauseScreenModeShowConfirmQuit) && (userInput.pressedKey & K_B))
 	{
 		// remove confirmation message
-		Printing::text(Printing::getInstance(), "                                                ", 0, 21, NULL);
-		Printing::text(Printing::getInstance(), "                                                ", 0, 22, NULL);
+		Printing::text(Printing::getInstance(), "                                                ", 0, 21, "Platformer");
+		Printing::text(Printing::getInstance(), "                                                ", 0, 22, "Platformer");
 
 		// set mode back to main menu
 		this->mode = kPauseScreenModeShowOptions;
@@ -261,12 +259,12 @@ void PauseScreenState::processUserInput(UserInput userInput)
 void PauseScreenState::playMenuSound()
 {
 	Vector3D position = {192, 112, 0};
-	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
+	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
 }
 void PauseScreenState::playConfirmSound()
 {
 	Vector3D position = {192, 112, 0};
-	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
+	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
 }
 
 // handle event

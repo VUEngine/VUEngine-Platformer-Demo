@@ -68,7 +68,7 @@ void HeroMoving::enter(void* owner)
 	}
 
 #ifdef __DEBUG
-	Printing::text(Printing::getInstance(), "HeroMoving", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, NULL);
+	Printing::text(Printing::getInstance(), "HeroMoving", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, "Platformer");
 #endif
 
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED);

@@ -1,6 +1,22 @@
 [
-	"PLATFORMER_DEFAULT_FONT",
-	"PLATFORMER_GUI_FONT",
-	"ASTONISH_FONT_SHADOW",
-	"ASTONISH_EXTENDED_FONT_SHADOW"
+	{
+		"name": "Platformer",
+		"image": "Fonts/FontDefault",
+		"offset": 0,
+		"characterCount": 256,
+		"size": {
+			"x": 1,
+			"y": 1
+		}
+	},
+	{
+		"name": "PlatformerGui",
+		"image": "Fonts/FontGui",
+		"offset": 32,
+		"characterCount": 5,
+		"size": {
+			"x": 1,
+			"y": 2
+		}
+	}
 ]

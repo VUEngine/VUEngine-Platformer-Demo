@@ -59,9 +59,9 @@ PositionedEntityROMSpec EMPTY_STAGE_ST_UI_ENTITIES[] =
 
 FontROMSpec* const EMPTY_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_FONT,
 	&PLATFORMER_GUI_FONT,
-	&ASTONISH_EXTENDED_FONT_SHADOW,
+	&ASTONISH_S_EXT_FONT,
 
 	NULL
 };
@@ -75,6 +75,18 @@ StageROMSpec EMPTY_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
+
+	// Timer config
+	{
+		__TIMER_100US,
+		10,
+		kMS
+	},
+
+	// Sound config
+	{
+		__DEFAULT_PCM_HZ,
+	},
 
 	// level
 	{
@@ -259,8 +271,8 @@ StageROMSpec EMPTY_STAGE_ST =
 		// textures to preload
 		(TextureSpec**)NULL,
 
-		// background music
-		(const u16 (*)[])NULL,
+		// background sounds
+		(Sound**)NULL,
 	},
 
 	// entities

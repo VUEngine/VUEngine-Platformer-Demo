@@ -2,29 +2,51 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef FONTS_H_
-#define FONTS_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
-#include <CharSet.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern FontSpec DEFAULT_FONT;
-extern FontSpec ASTONISH_FONT;
-extern FontSpec ASTONISH_EXT_FONT;
-extern FontSpec ASTONISH_S_FONT;
-extern FontSpec ASTONISH_S_EXT_FONT;
-extern FontSpec PLATFORMER_FONT;
-extern FontSpec PLATFORMER_GUI_FONT;
+extern BYTE FontGuiTiles[];
 
 
-#endif
+//---------------------------------------------------------------------------------------------------------
+//												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+CharSetROMSpec PLATFORMER_GUI_FONT_CH =
+{
+	// number of chars
+	10,
+
+	// allocation type
+	__NOT_ANIMATED,
+
+	// char spec
+	FontGuiTiles,
+};
+
+FontROMSpec PLATFORMER_GUI_FONT =
+{
+	// font charset spec pointer
+	(CharSetSpec*)&PLATFORMER_GUI_FONT_CH,
+
+	// character number at which the font starts, allows you to skip the control characters for example
+	32,
+
+	// number of characters in this font
+	5,
+
+	// size of a single character (in chars) ({width, height})
+	{1, 2},
+
+	// font's name
+	"PlatformerGui",
+};

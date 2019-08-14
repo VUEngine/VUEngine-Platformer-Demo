@@ -52,9 +52,6 @@
 
 extern double fabs (double);
 
-extern const u16 COLLECT_SND[];
-extern const u16 FIRE_SND[];
-extern const u16 JUMP_SND[];
 extern CharSetSpec HERO_CH;
 extern CharSetSpec HERO_BANDANA_CH;
 
@@ -231,7 +228,7 @@ void Hero::jump(bool checkIfYMovement)
 				force.y = __FIX10_6_MULT(__ABS(yBouncingPlaneNormal), this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the hero jump
-				Actor::addForce(this, &force);
+				Actor::addForce(this, &force, true);
 			}
 			else
 			{
@@ -248,7 +245,7 @@ void Hero::jump(bool checkIfYMovement)
 				force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
 
 				// add the force to actually make the hero jump
-				Actor::addForce(this, &force);
+				Actor::addForce(this, &force, true);
 
 				// show dust
 				Hero::showDust(this, true);
@@ -258,7 +255,7 @@ void Hero::jump(bool checkIfYMovement)
 			AnimatedEntity::playAnimation(this, "Jump");
 
 			// play jump sound
-			SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
+			//SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
 		}
 	}
 }
@@ -300,7 +297,7 @@ void Hero::addForceOnAxis(u16 axis, bool enableAddingForce)
 			zForce
 		};
 
-		Actor::addForce(this, &force);
+		Actor::addForce(this, &force, true);
 	}
 	else
 	{
@@ -382,7 +379,7 @@ void Hero::stopAddingForce()
 			zForce
 		};
 
-		Actor::addForce(this, &force);
+		Actor::addForce(this, &force, true);
 	}
 	else
 	{
@@ -604,7 +601,7 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 		Camera::startEffect(Camera::getInstance(), kShake, 200);
 
 		// play hit sound
-		SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
+		//SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
 
 		AnimatedEntity::playAnimation(this, "Hit");
 
@@ -751,7 +748,7 @@ void Hero::enterDoor()
 	}
 
 	// play door sound
-	SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
+	//SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 }
 
 void Hero::addHint()

@@ -6,7 +6,7 @@
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
   <property name="stage.assets.charSets" value="COG_WHEEL_CH, GUI_CH"/>
-  <property name="stage.assets.fontSpecs" value="PLATFORMER_DEFAULT_FONT, PLATFORMER_GUI_FONT, ASTONISH_EXTENDED_FONT_SHADOW"/>
+  <property name="stage.assets.fontSpecs" value="PLATFORMER_FONT, PLATFORMER_GUI_FONT, ASTONISH_S_EXT_FONT"/>
   <property name="stage.assets.stageTextureEntrySpecs" value="COG_WHEEL_TX|false, GUI_TX|false"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>
   <property name="stage.level.screenInitialPosition.y" value="0"/>

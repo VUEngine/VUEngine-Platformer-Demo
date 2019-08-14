@@ -39,7 +39,6 @@
 
 extern StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP;
 extern BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
-extern u16 KRISSE_BGM[][2];
 
 extern EntitySpec BANDANA_AG;
 extern EntitySpec COIN_AG;
@@ -285,8 +284,8 @@ PositionedEntityROMSpec LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN[] =
 
 FontROMSpec* const LEVEL_1_TOWER_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_DEFAULT_FONT,
-	&ASTONISH_FONT_SHADOW,
+	&PLATFORMER_FONT,
+	&ASTONISH_S_FONT,
 	&PLATFORMER_GUI_FONT,
 
 	NULL
@@ -323,6 +322,18 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
+
+	// Timer config
+	{
+		__TIMER_100US,
+		10,
+		kMS
+	},
+
+	// Sound config
+	{
+		__DEFAULT_PCM_HZ,
+	},
 
 	// level
 	{
@@ -507,8 +518,8 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 		// textures to preload
 		(TextureSpec**)LEVEL_1_TOWER_STAGE_ST_TEXTURES,
 
-		// background music
-		(const u16 (*)[])KRISSE_BGM,
+		// background sounds
+		(Sound**)NULL,
 	},
 
 	// entities

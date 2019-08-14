@@ -50,8 +50,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMSpec TITLE_SCREEN_STAGE_ST;
-extern const u16 SPLASH_SCREENS_OPTION_SELECT_SND[];
-extern const u16 SPLASH_SCREENS_OPTION_CONFIRM_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -252,16 +250,16 @@ void TitleScreenState::suspend(void* owner)
 void TitleScreenState::showMessage()
 {
 	const char* strPressStartButton = I18n::getText(I18n::getInstance(), STR_PRESS_START_BUTTON);
-	FontSize strPressStartButtonSize = Printing::getTextSize(Printing::getInstance(), strPressStartButton, NULL);
+	FontSize strPressStartButtonSize = Printing::getTextSize(Printing::getInstance(), strPressStartButton, "Platformer");
 	u8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
-	Printing::text(Printing::getInstance(), strPressStartButton, strXPos, 26, NULL);
+	Printing::text(Printing::getInstance(), strPressStartButton, strXPos, 26, "Platformer");
 }
 
 void TitleScreenState::hideMessage()
 {
-	Printing::text(Printing::getInstance(), "                                                ", 0, 25, NULL);
-	Printing::text(Printing::getInstance(), "                                                ", 0, 26, NULL);
-	Printing::text(Printing::getInstance(), "                                                ", 0, 27, NULL);
+	Printing::text(Printing::getInstance(), "                                                ", 0, 25, "Platformer");
+	Printing::text(Printing::getInstance(), "                                                ", 0, 26, "Platformer");
+	Printing::text(Printing::getInstance(), "                                                ", 0, 27, "Platformer");
 }
 
 void TitleScreenState::processUserInput(UserInput userInput)
@@ -326,39 +324,39 @@ void TitleScreenState::processUserInput(UserInput userInput)
 
 						// print warning
 						const char* strNewGameConfirm = I18n::getText(I18n::getInstance(), STR_PROGRESS_WILL_BE_ERASED);
-						FontSize strNewGameConfirmSize = Printing::getTextSize(Printing::getInstance(), strNewGameConfirm, NULL);
+						FontSize strNewGameConfirmSize = Printing::getTextSize(Printing::getInstance(), strNewGameConfirm, "Platformer");
 						u8 strNewGameConfirmXPos = (((__SCREEN_WIDTH_IN_CHARS) - strNewGameConfirmSize.x) >> 1);
 						const char* strAreYouSure = I18n::getText(I18n::getInstance(), STR_ARE_YOU_SURE);
-						FontSize strAreYouSureSize = Printing::getTextSize(Printing::getInstance(), strAreYouSure, NULL);
+						FontSize strAreYouSureSize = Printing::getTextSize(Printing::getInstance(), strAreYouSure, "Platformer");
 						u8 strAreYouSureXPos = (((__SCREEN_WIDTH_IN_CHARS) - strAreYouSureSize.x) >> 1);
 						Printing::text(
 							Printing::getInstance(),
 							strNewGameConfirm,
 							strNewGameConfirmXPos,
 							25,
-							NULL
+							"Platformer"
 						);
 						Printing::text(
 							Printing::getInstance(),
 							strAreYouSure,
 							strAreYouSureXPos,
 							26,
-							NULL
+							"Platformer"
 						);
 
 						// print warning options
 						const char* strYes = I18n::getText(I18n::getInstance(), STR_YES);
-						FontSize strYesSize = Printing::getTextSize(Printing::getInstance(), strYes, NULL);
+						FontSize strYesSize = Printing::getTextSize(Printing::getInstance(), strYes, "Platformer");
 						const char* strNo = I18n::getText(I18n::getInstance(), STR_NO);
-						FontSize strNoSize = Printing::getTextSize(Printing::getInstance(), strNo, NULL);
+						FontSize strNoSize = Printing::getTextSize(Printing::getInstance(), strNo, "Platformer");
 
 						u8 strYesXPos = ((__SCREEN_WIDTH_IN_CHARS) - (strYesSize.x + strNoSize.x + 3)) >> 1;
 						u8 strNoXPos = strYesXPos + strYesSize.x + 2;
 
-						Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strYesXPos - 1, 27, NULL);
-						Printing::text(Printing::getInstance(), strYes, strYesXPos, 27, NULL);
-						Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strNoXPos - 1, 27, NULL);
-						Printing::text(Printing::getInstance(), strNo, strNoXPos, 27, NULL);
+						Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strYesXPos - 1, 27, "Platformer");
+						Printing::text(Printing::getInstance(), strYes, strYesXPos, 27, "Platformer");
+						Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strNoXPos - 1, 27, "Platformer");
+						Printing::text(Printing::getInstance(), strNo, strNoXPos, 27, "Platformer");
 
 						break;
 				}
@@ -419,13 +417,13 @@ void TitleScreenState::processUserInput(UserInput userInput)
 void TitleScreenState::playMenuSound()
 {
 	Vector3D position = {192, 112, 0};
-	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
+	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
 }
 
 void TitleScreenState::playConfirmSound()
 {
 	Vector3D position = {192, 112, 0};
-	SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
+	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
 }
 
 // handle event

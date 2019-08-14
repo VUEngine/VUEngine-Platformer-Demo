@@ -16,10 +16,13 @@
 
 FontSpec* const __FONTS[] =
 {
-	(FontSpec*)&PLATFORMER_DEFAULT_FONT,
+	(FontSpec*)&DEFAULT_FONT,
+	(FontSpec*)&ASTONISH_FONT,
+	(FontSpec*)&ASTONISH_EXT_FONT,
+	(FontSpec*)&ASTONISH_S_FONT,
+	(FontSpec*)&ASTONISH_S_EXT_FONT,
+	(FontSpec*)&PLATFORMER_FONT,
 	(FontSpec*)&PLATFORMER_GUI_FONT,
-	(FontSpec*)&ASTONISH_FONT_SHADOW,
-	(FontSpec*)&ASTONISH_EXTENDED_FONT_SHADOW,
 	
 	NULL
 };

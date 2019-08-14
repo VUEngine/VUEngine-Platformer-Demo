@@ -71,7 +71,7 @@ void AutomaticPauseScreenState::enter(void* owner __attribute__ ((unused)))
 	const char* strAutomaticPauseTitleFont = "AstonishSExt";
 	const char* strAutomaticPauseText = I18n::getText(I18n::getInstance(), STR_TAKE_A_REST);
 	FontSize strAutomaticPauseSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
-	FontSize strAutomaticPauseTextSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseText, NULL);
+	FontSize strAutomaticPauseTextSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseText, "Platformer");
 
 	u8 strHeaderXPos = ((__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseSize.x >> 1));
 	Printing::text(
@@ -83,7 +83,7 @@ void AutomaticPauseScreenState::enter(void* owner __attribute__ ((unused)))
 	);
 
 	u8 strTextXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseTextSize.x >> 1);
-	Printing::text(Printing::getInstance(), strAutomaticPauseText, strTextXPos, 15 + strAutomaticPauseSize.y, NULL);
+	Printing::text(Printing::getInstance(), strAutomaticPauseText, strTextXPos, 15 + strAutomaticPauseSize.y, "Platformer");
 
 	// disable user input
 	Game::disableKeypad(Game::getInstance());

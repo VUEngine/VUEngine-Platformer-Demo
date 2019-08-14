@@ -40,7 +40,6 @@ extern EntitySpec LOW_POWER_INDICATOR_LB;
 extern EntitySpec OVERWORLD_1_IM;
 extern EntitySpec SMOKE_PS;
 extern EntitySpec WATER_A_AG;
-extern u16 KRISSE_BGM[][2];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -81,9 +80,9 @@ PositionedEntityROMSpec OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
 
 FontROMSpec* const OVERWORLD1_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_DEFAULT_FONT,
+	&PLATFORMER_FONT,
 	&PLATFORMER_GUI_FONT,
-	&ASTONISH_EXTENDED_FONT_SHADOW,
+	&ASTONISH_S_EXT_FONT,
 
 	NULL
 };
@@ -97,6 +96,18 @@ StageROMSpec OVERWORLD1_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
+
+	// Timer config
+	{
+		__TIMER_100US,
+		10,
+		kMS
+	},
+
+	// Sound config
+	{
+		__DEFAULT_PCM_HZ,
+	},
 
 	// level
 	{
@@ -281,8 +292,8 @@ StageROMSpec OVERWORLD1_STAGE_ST =
 		// textures to preload
 		(TextureSpec**)NULL,
 
-		// background music
-		(const u16 (*)[])KRISSE_BGM,
+		// background sounds
+		(Sound**)NULL,
 	},
 
 	// entities

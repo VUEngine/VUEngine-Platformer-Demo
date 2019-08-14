@@ -116,19 +116,19 @@ void LevelDoneScreenState::print()
 	Printing::text(Printing::getInstance(), strLevelDone, strHeaderXPos, 9, "AstonishSExt");
 
 	// number of coins
-	Printing::text(Printing::getInstance(), "00/64", 22, 13, NULL);
+	Printing::text(Printing::getInstance(), "00/64", 22, 13, "Platformer");
 	u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
-	Printing::int(Printing::getInstance(), numberOfCollectedCoins, numberPrintPos, 13, NULL);
+	Printing::int(Printing::getInstance(), numberOfCollectedCoins, numberPrintPos, 13, "Platformer");
 
 	// print time
 	Clock inGameClock = PlatformerLevelState::getClock(PlatformerLevelState::getInstance());
-	Clock::print(inGameClock, 22, 15, NULL);
+	Clock::print(inGameClock, 22, 15, "Platformer");
 
 	// if new best time, print label (do not if first time beating level)
 	u32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
 	if(Clock::getTime(inGameClock) < bestTime)
 	{
-		Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_BEST), 22, 16, NULL);
+		Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_BEST), 22, 16, "Platformer");
 	}
 }
 
