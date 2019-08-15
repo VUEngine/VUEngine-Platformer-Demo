@@ -240,13 +240,13 @@ ShapeROMSpec HIDE_LAYER_10x7_AG_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kTriggersLayer,
+		kLayerTriggers,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 HideLayerROMSpec HIDE_LAYER_10x7_AG =
@@ -269,7 +269,7 @@ HideLayerROMSpec HIDE_LAYER_10x7_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kHideLayer,
+		kTypeHideLayer,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

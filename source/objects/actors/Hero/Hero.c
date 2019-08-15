@@ -123,8 +123,8 @@ void Hero::destructor()
 	Object::fireEvent(EventManager::getInstance(), kEventHeroDied);
 
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroCheckVelocity);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroFlash);
 
 	// free the instance pointers
 	this->feetDust = NULL;
@@ -232,7 +232,7 @@ void Hero::jump(bool checkIfYMovement)
 			}
 			else
 			{
-				// hack to avoid the processing of kBodyStopped message triggered by the call to Actor::stopMovement
+				// hack to avoid the processing of kMessageBodyStopped message triggered by the call to Actor::stopMovement
 				this->jumps = -1;
 
 				// stop movement to gain full momentum of the jump force that will be added
@@ -332,7 +332,7 @@ void Hero::showDust(bool autoHideDust)
 	if(autoHideDust)
 	{
 		// stop the dust after some time
-		MessageDispatcher::dispatchMessage(200, Object::safeCast(this), Object::safeCast(this), kHeroStopFeetDust, NULL);
+		MessageDispatcher::dispatchMessage(200, Object::safeCast(this), Object::safeCast(this), kMessageHeroStopFeetDust, NULL);
 	}
 }
 
@@ -439,7 +439,7 @@ bool Hero::stopMovingOnAxis(u16 axis)
 	{
 		if(__Y_AXIS & axis)
 		{
-			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroCheckVelocity);
 
 			PlatformerCameraMovementManager::lockMovement(PlatformerCameraMovementManager::getInstance(), __Y_AXIS, true);
 
@@ -560,11 +560,11 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 			Hero::setInvincible(this, true);
 
 			// reset invincible a bit later
-			MessageDispatcher::dispatchMessage(HERO_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kHeroStopInvincibility, NULL);
+			MessageDispatcher::dispatchMessage(HERO_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kMessageHeroStopInvincibility, NULL);
 
 			// start flashing of hero
-			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroFlash);
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kHeroFlash, NULL);
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroFlash);
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kMessageHeroFlash, NULL);
 
 			// lose power-up or reduce energy
 			if(this->powerUp != kPowerUpNone)
@@ -582,7 +582,7 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 				Game::disableKeypad(Game::getInstance());
 				GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 				//GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
-				MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kHeroResumePhysics, collidingObject);
+				MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kMessageHeroResumePhysics, collidingObject);
 			}
 		}
 		else
@@ -594,7 +594,7 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 			GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
 			Entity::allowCollisions(this, false);
-			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kHeroDied, NULL);
+			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kMessageHeroDied, NULL);
 		}
 
 		// start short screen shake
@@ -620,7 +620,7 @@ void Hero::flash()
 		Hero::toggleFlashPalette(this);
 
 		// next flash state change after HERO_FLASH_INTERVAL milliseconds
-		MessageDispatcher::dispatchMessage(HERO_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kHeroFlash, NULL);
+		MessageDispatcher::dispatchMessage(HERO_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kMessageHeroFlash, NULL);
 	}
 	else
 	{
@@ -738,7 +738,7 @@ void Hero::enterDoor()
 	// inform the door entity
 	if(this->currentlyOverlappedDoor)
 	{
-		MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this->currentlyOverlappedDoor), kHeroEnterDoor, NULL);
+		MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this->currentlyOverlappedDoor), kMessageHeroEnterDoor, NULL);
 	}
 
 	// hide hint immediately
@@ -813,7 +813,7 @@ void Hero::lookBack()
 // die hero
 void Hero::die()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroFlash);
 
 	Container::deleteMyself(this);
 
@@ -952,37 +952,37 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 	switch(SpatialObject::getInGameType(collidingObject))
 	{
 		// speed things up by breaking early
-		case kShape:
+		case kTypeShape:
 			break;
 
-		case kCoin:
+		case kTypeCoin:
 
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kItemTaken, NULL);
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageTakeItem, NULL);
 			return false;
 			break;
 
-		case kKey:
+		case kTypeKey:
 
 			this->hasKey = true;
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kItemTaken, NULL);
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageTakeItem, NULL);
 			return false;
 			break;
 
-		case kBandana:
+		case kTypeBandana:
 
 			Hero::collectPowerUp(this, kPowerUpBandana);
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kItemTaken, NULL);
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageTakeItem, NULL);
 			return false;
 			break;
 
-		case kHideLayer:
+		case kTypeHideLayer:
 
 			// first contact with hide layer?
 			HideLayer::setOverlapping((HideLayer)collidingObject);
 			return false;
 			break;
 
-		case kDoor:
+		case kTypeDoor:
 			{
 				Door door = Door::safeCast(collidingObject);
 				Hero::showHint(this, Door::getHintType(door));
@@ -992,53 +992,53 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			return false;
 			break;
 
-		case kWaterPond:
+		case kTypeWaterPond:
 
 			if(Body::getMovementOnAllAxis(this->body))
 			{
 				this->underWater = true;
 
-				MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageReactToCollision, NULL);
 
 				Body::setSurroundingFrictionCoefficient(this->body, Actor::getSurroundingFrictionCoefficient(this) + SpatialObject::getFrictionCoefficient(collidingObject));
 			}
 			return true;
 			break;
 
-		case kLava:
+		case kTypeLava:
 
 			Hero::takeDamageFrom(this, NULL, this->energy, true, false);
 			return false;
 			break;
 
-		case kSawBlade:
-		case kSnail:
+		case kTypeSawBlade:
+		case kTypeSnail:
 
 			Hero::takeDamageFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 
-		case kCannonBall:
+		case kTypeCannonBall:
 
 			Hero::takeDamageFrom(this, collidingObject, 2, true, true);
 			return false;
 			break;
 
-		case kHit:
+		case kTypeHit:
 
 			Hero::takeDamageFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 
-		case kLavaTrigger:
+		case kTypeLavaTrigger:
 
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kLavaTriggerStart, NULL);
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageLavaTriggerStart, NULL);
 			Hero::stopAddingForce(this);
 			return false;
 			break;
 
-		case kMovingPlatform:
-		case kTopShape:
+		case kTypeMovingPlatform:
+		case kTypeTopShape:
 			{
 				if((0 > Body::getVelocity(this->body).y) || Hero::isBelow(this, collisionInformation->shape, collisionInformation))
 				{
@@ -1062,17 +1062,17 @@ bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 
 	switch(SpatialObject::getInGameType(collidingObject))
 	{
-		case kHit:
+		case kTypeHit:
 
 			Hero::takeDamageFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 
-		case kWaterPond:
+		case kTypeWaterPond:
 
 			if(Body::getMovementOnAllAxis(this->body))
 			{
-				MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageReactToCollision, NULL);
 			}
 			return false;
 	}
@@ -1084,7 +1084,7 @@ void Hero::capVelocity(bool discardPreviousMessages)
 {
 	if(discardPreviousMessages)
 	{
-		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
+		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroCheckVelocity);
 	}
 
 	if(Body::isActive(this->body))
@@ -1103,12 +1103,12 @@ void Hero::capVelocity(bool discardPreviousMessages)
 			}
 			else if(0 < velocity.y)
 			{
-				MessageDispatcher::dispatchMessage(HERO_CHECK_Y_VELOCITY, Object::safeCast(this), Object::safeCast(this), kHeroCheckVelocity, NULL);
+				MessageDispatcher::dispatchMessage(HERO_CHECK_Y_VELOCITY, Object::safeCast(this), Object::safeCast(this), kMessageHeroCheckVelocity, NULL);
 			}
 		}
 		else
 		{
-			MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kHeroCheckVelocity, NULL);
+			MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kMessageHeroCheckVelocity, NULL);
 		}
 	}
 }
@@ -1118,31 +1118,31 @@ bool Hero::handleMessage(Telegram telegram)
 	// handle messages that any state would handle here
 	switch(Telegram::getMessage(telegram))
 	{
-		case kHeroCheckVelocity:
+		case kMessageHeroCheckVelocity:
 
 			Hero::capVelocity(this, false);
 			return true;
 			break;
 
-		case kHeroStopFeetDust:
+		case kMessageHeroStopFeetDust:
 
 			Hero::hideDust(this);
 			return true;
 			break;
 
-		case kHeroStopInvincibility:
+		case kMessageHeroStopInvincibility:
 
 			Hero::setInvincible(this, false);
 			return true;
 			break;
 
-		case kHeroFlash:
+		case kMessageHeroFlash:
 
 			Hero::flash(this);
 			return true;
 			break;
 
-		case kHeroResumePhysics:
+		case kMessageHeroResumePhysics:
 
 			Game::enableKeypad(Game::getInstance());
 			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), false);
@@ -1172,12 +1172,12 @@ bool Hero::handleMessage(Telegram telegram)
 
 			break;
 
-		case kHeroDied:
+		case kMessageHeroDied:
 
 			Hero::die(this);
 			break;
 
-		case kBodyStopped:
+		case kMessageBodyStopped:
 
 			if(-1 == this->jumps)
 			{
@@ -1194,7 +1194,7 @@ bool Hero::handlePropagatedMessage(int message)
 {
 	switch(message)
 	{
-		case kLevelStarted:
+		case kMessageLevelStarted:
 			{
 				Vector3DFlag positionFlag = {true, true, true};
 				PlatformerCameraMovementManager::setPositionFlag(PlatformerCameraMovementManager::getInstance(), positionFlag);
@@ -1258,7 +1258,7 @@ bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation
 
 void Hero::onPowerUpTransitionComplete(Object eventFirer __attribute__ ((unused)))
 {
-	MessageDispatcher::dispatchMessage(300, Object::safeCast(this), Object::safeCast(this), kHeroResumePhysics, NULL);
+	MessageDispatcher::dispatchMessage(300, Object::safeCast(this), Object::safeCast(this), kMessageHeroResumePhysics, NULL);
 }
 
 bool Hero::isAffectedByRelativity()
@@ -1290,19 +1290,19 @@ void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isSha
 
 	switch(SpatialObject::getInGameType(nonCollidingSpatialObject))
 	{
-		case kHideLayer:
+		case kTypeHideLayer:
 
 			HideLayer::unsetOverlapping(nonCollidingSpatialObject);
 			break;
 
-		case kDoor:
+		case kTypeDoor:
 
 			Hero::hideHint(this);
 			Door::unsetOverlapping(nonCollidingSpatialObject);
 			this->currentlyOverlappedDoor = NULL;
 			break;
 
-		case kWaterPond:
+		case kTypeWaterPond:
 
 			this->underWater = false;
 			break;

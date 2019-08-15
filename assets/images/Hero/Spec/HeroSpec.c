@@ -562,13 +562,13 @@ ShapeROMSpec HERO_AC_SHAPES[] =
 		true,
 
 		/// layers in which I live
-		kPlayerLayer,
+		kLayerPlayer,
 
 		/// layers to ignore when checking for collisions
-		kParticlesLayer | kCameraLayer,
+		kLayerParticles | kLayerCamera,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 PhysicalSpecificationROMSpec HERO_PHYSICAL_PROPERTIES =
@@ -610,7 +610,7 @@ HeroROMSpec HERO_AC =
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kHero,
+			kTypeHero,
 
 			// physical specification
 			(PhysicalSpecification*)&HERO_PHYSICAL_PROPERTIES,
@@ -653,7 +653,7 @@ AnimatedEntityROMSpec HERO_IDLE_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kHero,
+		kTypeHero,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -686,7 +686,7 @@ AnimatedEntityROMSpec HERO_SLEEPING_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kHero,
+		kTypeHero,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -720,7 +720,7 @@ AnimatedEntityROMSpec HERO_BANDANA_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kHero,
+		kTypeHero,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

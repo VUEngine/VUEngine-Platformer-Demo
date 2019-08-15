@@ -86,13 +86,13 @@ ShapeROMSpec WATER_POND_EN_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kSolidLayer,
+		kLayerSolid,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 PhysicalSpecificationROMSpec WATER_POND_EN_PHYSICAL_PROPERTIES =
@@ -134,7 +134,7 @@ WaterPondROMSpec WATER_POND_EN =
 			{WATER_POND_WIDTH, WATER_POND_HEIGHT, 10},
 
 			// gameworld's character's type
-			kWaterPond,
+			kTypeWaterPond,
 
 			// physical specification
 			(PhysicalSpecification*)&WATER_POND_EN_PHYSICAL_PROPERTIES,

@@ -85,7 +85,7 @@ void OverworldState::enter(void* owner)
 	GameState::startClocks(this);
 
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelSetUp);
+	GameState::propagateMessage(this, kMessageLevelSetUp);
 
 	OverworldState::print(this);
 
@@ -129,7 +129,7 @@ void OverworldState::resume(void* owner)
 #endif
 
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelResumed);
+	GameState::propagateMessage(this, kMessageLevelResumed);
 
 	// make a fade in
 	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
@@ -227,7 +227,7 @@ void OverworldState::processUserInput(UserInput userInput)
 void OverworldState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelStarted);
+	GameState::propagateMessage(this, kMessageLevelStarted);
 
 	// enable user input
 	Game::enableKeypad(Game::getInstance());

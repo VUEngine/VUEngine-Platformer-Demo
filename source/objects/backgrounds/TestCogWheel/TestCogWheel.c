@@ -56,7 +56,7 @@ void TestCogWheel::constructor(EntitySpec* EntitySpec, s16 id, s16 internalId, c
 void TestCogWheel::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCogWheelMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCogWheelMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -70,7 +70,7 @@ void TestCogWheel::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// start moving
-	MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(this), kCogWheelMove, NULL);
+	MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(this), kMessageCogWheelMove, NULL);
 
 	// listen for the shake end event
 	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)TestCogWheel::onShakeCompleted, kEventShakeCompleted);
@@ -87,12 +87,12 @@ bool TestCogWheel::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kCogWheelMove:
+		case kMessageCogWheelMove:
 
 			TestCogWheel::rotate(this);
 			break;
 
-		case kCogWheelStop:
+		case kMessageCogWheelStop:
 
 			TestCogWheel::stop(this);
 			break;
@@ -123,7 +123,7 @@ void TestCogWheel::rotate()
 	Entity::setLocalRotation(this, &this->transformation.localRotation);
 
 	// send delayed message to self to trigger next movement
-	MessageDispatcher::dispatchMessage(COG_WHEEL_ROTATION_DELAY, Object::safeCast(this), Object::safeCast(this), kCogWheelMove, NULL);
+	MessageDispatcher::dispatchMessage(COG_WHEEL_ROTATION_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCogWheelMove, NULL);
 }
 
 // stop cogwheel
@@ -133,7 +133,7 @@ void TestCogWheel::stop()
 	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)TestCogWheel::onShakeCompleted, kEventShakeCompleted);
 
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCogWheelMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCogWheelMove);
 
 	// change sprite's mode
 //	Sprite::setMode(Sprite::safeCast(VirtualList::front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
@@ -142,7 +142,7 @@ void TestCogWheel::stop()
 void TestCogWheel::onShakeCompleted(Object eventFirer __attribute__ ((unused)))
 {
 	// stop moving
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kCogWheelStop, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kMessageCogWheelStop, NULL);
 }
 
 

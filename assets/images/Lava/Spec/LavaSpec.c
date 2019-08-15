@@ -154,13 +154,13 @@ ShapeROMSpec LAVA_IG_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kEnemiesLayer,
+		kLayerEnemies,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 LavaROMSpec LAVA_IG =
@@ -182,7 +182,7 @@ LavaROMSpec LAVA_IG =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kLava,
+	kTypeLava,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

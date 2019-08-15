@@ -103,8 +103,8 @@ bool WaterPond::handleMessage(void* telegram)
 
 				switch(Entity::getInGameType(inGameEntity))
 				{
-					case kHero:
-					case kSawBlade:
+					case kTypeHero:
+					case kTypeSawBlade:
 
 						entityTypeChecked = Entity::isMoving(inGameEntity);
 						break;
@@ -117,7 +117,7 @@ bool WaterPond::handleMessage(void* telegram)
 			}
 		}
 	*/
-		case kReactToCollision:
+		case kMessageReactToCollision:
 
 //			if(entityTypeChecked &&
 			if(
@@ -138,22 +138,22 @@ bool WaterPond::handleMessage(void* telegram)
 				}
 
 				this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntitySpec->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntitySpec->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntitySpec->width)));
-				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kStopReactToCollision);
-				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kStopReactToCollision, NULL);
+				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageStopReactToCollision);
+				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kMessageStopReactToCollision, NULL);
 
 //				ParticleSystem::start(this->waterSplash);
 			}
 
 			break;
 
-		case kStopReactToCollision:
+		case kMessageStopReactToCollision:
 
 			this->amplitudeFactor -= __FIX10_6_DIV(waterPondSpec->amplitudeFactor - __I_TO_FIX10_6(1), __I_TO_FIX10_6(waterPondSpec->waveLutThrottleFactorIncrementDurationStep));
 			this->waveLutThrottleFactorIncrement -= __FIX10_6_DIV(waterPondSpec->waveLutThrottleFactorIncrement, __I_TO_FIX10_6(waterPondSpec->waveLutThrottleFactorIncrementDurationStep));
 
 			if(0 < this->waveLutThrottleFactorIncrement)
 			{
-				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kStopReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kMessageStopReactToCollision, NULL);
 			}
 			else
 			{

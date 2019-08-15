@@ -67,7 +67,7 @@ void HeroIdle::enter(void* owner)
 	AnimatedEntity::playAnimation(owner, "Idle");
 
 	// start sleeping after 6 seconds of inactivity
-	MessageDispatcher::dispatchMessage(HERO_SLEEP_DELAY, Object::safeCast(this), Object::safeCast(owner), kHeroSleep, NULL);
+	MessageDispatcher::dispatchMessage(HERO_SLEEP_DELAY, Object::safeCast(this), Object::safeCast(owner), kMessageHeroSleep, NULL);
 
 #ifdef __DEBUG
 	Printing::text(Printing::getInstance(), "HeroIdle   ", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, "Platformer");
@@ -80,7 +80,7 @@ void HeroIdle::enter(void* owner)
 void HeroIdle::exit(void* owner __attribute__ ((unused)))
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroSleep);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroSleep);
 }
 
 // state's handle message
@@ -88,17 +88,17 @@ bool HeroIdle::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kBodyStartedMoving:
+		case kMessageBodyStartedMoving:
 
 			Hero::startedMovingOnAxis(owner, *(u16*)Telegram::getExtraInfo(telegram));
 			break;
 
-		case kBodyStopped:
+		case kMessageBodyStopped:
 
 			return true;
 			break;
 
-		case kHeroSleep:
+		case kMessageHeroSleep:
 
 			AnimatedEntity::playAnimation(owner, "Sleep");
 			return true;

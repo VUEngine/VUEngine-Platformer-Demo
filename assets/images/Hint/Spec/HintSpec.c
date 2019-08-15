@@ -425,7 +425,7 @@ AnimatedEntityROMSpec HINT_MC =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kNotShape,
+		kTypeNoShape,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

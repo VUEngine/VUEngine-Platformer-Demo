@@ -51,7 +51,7 @@ void CannonBall::constructor(CannonBallSpec* cannonBallSpec, s16 id, s16 interna
 // class's constructor
 void CannonBall::destructor()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCannonBallCheckDisplacement);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCannonBallCheckDisplacement);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -68,7 +68,7 @@ void CannonBall::startMovement()
 	// show me
 	Entity::show(this);
 
-	MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonBallCheckDisplacement, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
 }
 
 // move back to cannon
@@ -93,7 +93,7 @@ void CannonBall::checkIfDistanceTraveled()
 	}
 	else
 	{
-		MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonBallCheckDisplacement, NULL);
+		MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
 	}
 }
 
@@ -102,12 +102,12 @@ bool CannonBall::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kCannonShoot:
+		case kMessageCannonShoot:
 
 			CannonBall::startMovement(this);
 			break;
 
-		case kCannonBallCheckDisplacement:
+		case kMessageCannonBallCheckDisplacement:
 
 			CannonBall::checkIfDistanceTraveled(this);
 			break;

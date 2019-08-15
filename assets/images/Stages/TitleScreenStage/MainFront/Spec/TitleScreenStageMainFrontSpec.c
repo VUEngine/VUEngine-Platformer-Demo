@@ -141,7 +141,7 @@ EntityROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

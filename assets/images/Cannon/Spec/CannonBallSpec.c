@@ -171,13 +171,13 @@ ShapeROMSpec CANNON_BALL_AC_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kEnemiesLayer,
+		kLayerEnemies,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 CannonBallROMSpec CANNON_BALL_AC =
@@ -201,7 +201,7 @@ CannonBallROMSpec CANNON_BALL_AC =
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kCannonBall,
+			kTypeCannonBall,
 
 			// physical specification
 			(PhysicalSpecification*)NULL,

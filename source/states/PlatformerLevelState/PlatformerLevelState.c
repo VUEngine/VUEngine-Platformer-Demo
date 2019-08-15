@@ -199,7 +199,7 @@ void PlatformerLevelState::enter(void* owner)
 			GameState::transform(this);
 
 			// Configure camera
-			PlatformerCameraMovementManager::configure(PlatformerCameraMovementManager::getInstance(), Entity::safeCast(hero), kPlayerLayer, kCameraLayer, (PixelSize){12 * 8, 20 * 8, 4 * 8}, (Vector3D){__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)}, (Vector3D){PLATFORMER_CAMERA_OFFSET_X, PLATFORMER_CAMERA_OFFSET_Y, 0});
+			PlatformerCameraMovementManager::configure(PlatformerCameraMovementManager::getInstance(), Entity::safeCast(hero), kLayerPlayer, kLayerCamera, (PixelSize){12 * 8, 20 * 8, 4 * 8}, (Vector3D){__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)}, (Vector3D){PLATFORMER_CAMERA_OFFSET_X, PLATFORMER_CAMERA_OFFSET_Y, 0});
 
 			// set direction according to entry point
 			Direction direction = {this->currentStageEntryPoint->direction, __DOWN, __FAR};
@@ -294,7 +294,7 @@ void PlatformerLevelState::enter(void* owner)
 		}
 
 		// erase level message in a moment
-		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
+		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, Object::safeCast(this), Object::safeCast(Game::getInstance()), kMessageHideLevelMessage, NULL);
 	}
 	else if(this->currentStageEntryPoint->isCheckPoint)
 	{
@@ -309,11 +309,11 @@ void PlatformerLevelState::enter(void* owner)
 		);
 
 		// erase checkpoint message in a moment
-		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
+		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, Object::safeCast(this), Object::safeCast(Game::getInstance()), kMessageHideLevelMessage, NULL);
 	}
 
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelSetUp);
+	GameState::propagateMessage(this, kMessageLevelSetUp);
 
 	this->mode = kShowingUp;
 
@@ -402,7 +402,7 @@ void PlatformerLevelState::resume(void* owner)
 #endif
 
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelResumed);
+	GameState::propagateMessage(this, kMessageLevelResumed);
 
 	// start a fade in effect
 	Camera::startEffect(Camera::getInstance(),
@@ -506,17 +506,17 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 	// process message
 	switch(Telegram::getMessage(telegram))
 	{
-		case kHideLevelMessage:
+		case kMessageHideLevelMessage:
 
 			PlatformerLevelState::setPrintingLayerCoordinates(this);
 			break;
 
-		case kScreenFocused:
+		case kMessageScreenFocused:
 
 			Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
 			break;
 
-		case kLoadCheckPoint:
+		case kMessageLoadCheckPoint:
 
 			PlatformerLevelState::startStage(this, this->currentCheckPoint);
 
@@ -530,7 +530,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 
 void PlatformerLevelState::onScreenFocused(Object eventFirer __attribute__ ((unused)))
 {
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kScreenFocused, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kMessageScreenFocused, NULL);
 
 	PlatformerCameraMovementManager::dontAlertWhenTargetFocused(PlatformerCameraMovementManager::getInstance());
 
@@ -647,7 +647,7 @@ void PlatformerLevelState::setModeToPlaying()
 void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelStarted);
+	GameState::propagateMessage(this, kMessageLevelStarted);
 
 	PlatformerLevelState::setModeToPlaying(this);
 
@@ -666,5 +666,5 @@ void PlatformerLevelState::onStartStageFadeOutComplete(Object eventFirer __attri
 // handle event
 void PlatformerLevelState::onHeroDiedFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLoadCheckPoint, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kMessageLoadCheckPoint, NULL);
 }

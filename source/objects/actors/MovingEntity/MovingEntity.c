@@ -75,8 +75,8 @@ void MovingEntity::constructor(MovingEntitySpec* movingEntitySpec, s16 id, s16 i
 // class's constructor
 void MovingEntity::destructor()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntityStartMoving);
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntityCheckDirection);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageMovingEntityStartMoving);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageMovingEntityCheckDirection);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -123,7 +123,7 @@ bool MovingEntity::handleMessage(Telegram telegram)
 
 	switch(Telegram::getMessage(telegram))
 	{
-		case kMovingEntityCheckDirection:
+		case kMessageMovingEntityCheckDirection:
 
 			if(Body::isAwake(this->body))
 			{
@@ -131,7 +131,7 @@ bool MovingEntity::handleMessage(Telegram telegram)
 			}
 			break;
 
-		case kMovingEntityStartMoving:
+		case kMessageMovingEntityStartMoving:
 			{
 				Vector3D position = this->transformation.globalPosition;
 
@@ -176,11 +176,11 @@ void MovingEntity::checkDisplacement()
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityStartMoving, NULL);
 				}
 				else
 				{
-					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMovingEntityCheckDirection, NULL);
+					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
 				}
 			}
 			break;
@@ -194,11 +194,11 @@ void MovingEntity::checkDisplacement()
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityStartMoving, NULL);
 				}
 				else
 				{
-					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMovingEntityCheckDirection, NULL);
+					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
 				}
 			}
 			break;
@@ -267,7 +267,7 @@ void MovingEntity::startMovement()
 			break;
 	}
 
-	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMovingEntityCheckDirection, NULL);
+	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
 }
 
 u16 MovingEntity::getAxisForShapeSyncWithDirection()

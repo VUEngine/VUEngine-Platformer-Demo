@@ -131,10 +131,10 @@ void Collision::initialTransform(Transformation* environmentTransform, u32 recur
 			false,
 
 			/// layers in which I live
-			kSolidLayer,
+			kLayerSolid,
 
 			/// layers to ignore when checking for collisions
-			kNoLayer,
+			kLayerNone,
 		};
 
 		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), SpatialObject::safeCast(this), &shapeSpec);

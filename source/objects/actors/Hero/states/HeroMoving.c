@@ -51,7 +51,7 @@ void HeroMoving::constructor()
 void HeroMoving::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kDisallowJumpOnBouncing);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageDisallowJumpOnBouncing);
 
 	// destroy base
 	Base::destructor();
@@ -92,13 +92,13 @@ bool HeroMoving::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kBodyStopped:
+		case kMessageBodyStopped:
 
 			Hero::stopMovingOnAxis(owner, *(int*)Telegram::getExtraInfo(telegram));
 			return true;
 			break;
 
-		case kBodyStartedMoving:
+		case kMessageBodyStartedMoving:
 
 			// start movement
 			Hero::startedMovingOnAxis(owner, *(int*)Telegram::getExtraInfo(telegram));

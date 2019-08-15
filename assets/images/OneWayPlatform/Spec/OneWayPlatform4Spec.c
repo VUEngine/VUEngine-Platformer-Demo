@@ -140,13 +140,13 @@ ShapeROMSpec ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kSolidLayer,
+		kLayerSolid,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 PhysicalSpecificationROMSpec ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =

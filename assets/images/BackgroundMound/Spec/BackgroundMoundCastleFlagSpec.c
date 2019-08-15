@@ -168,7 +168,7 @@ AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kNotShape,
+		kTypeNoShape,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

@@ -52,7 +52,7 @@ CollisionROMSpec COLLISION_HIT_CL =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kHit,
+	kTypeHit,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

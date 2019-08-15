@@ -61,7 +61,7 @@ bool Collectable::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kItemTaken:
+		case kMessageTakeItem:
 		{
 			// play collect sound
 			//SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);

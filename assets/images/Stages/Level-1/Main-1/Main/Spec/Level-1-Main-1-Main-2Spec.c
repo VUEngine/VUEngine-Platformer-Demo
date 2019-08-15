@@ -136,7 +136,7 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_2_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNotShape,
+	kTypeNoShape,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

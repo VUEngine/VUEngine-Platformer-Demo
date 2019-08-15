@@ -171,13 +171,13 @@ ShapeROMSpec BANDANA_AG_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kCollectablesLayer,
+		kLayerCollectables,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 AnimatedEntityROMSpec BANDANA_AG =
@@ -200,7 +200,7 @@ AnimatedEntityROMSpec BANDANA_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kBandana,
+		kTypeBandana,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

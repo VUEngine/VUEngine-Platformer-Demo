@@ -54,7 +54,7 @@ void Cannon::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 int
 void Cannon::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCannonShoot);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCannonShoot);
 
 	// not necessary to manually destroy the CannonBall here as all children are automatically
 	// destroyed as well when an entity is unloaded
@@ -70,7 +70,7 @@ void Cannon::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// send delayed message to self to trigger first shot
-	MessageDispatcher::dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonShoot, NULL);
 }
 
 // state's handle message
@@ -78,7 +78,7 @@ bool Cannon::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kCannonShoot:
+		case kMessageCannonShoot:
 
 			Cannon::shoot(this);
 			break;
@@ -103,7 +103,7 @@ void Cannon::shoot()
 	AnimatedEntity::playAnimation(this, "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonShoot, NULL);
 }
 
 void Cannon::onCannonBallSpawned(Object eventFirer __attribute__ ((unused)))
@@ -112,7 +112,7 @@ void Cannon::onCannonBallSpawned(Object eventFirer __attribute__ ((unused)))
 	AnimatedEntity::playAnimation(this, "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonShoot, NULL);
 }
 
 // spawn a cannon ball, this is the callback of the "Shoot" animation
@@ -128,5 +128,5 @@ void Cannon::spawnCannonBall()
 	ASSERT(1 == VirtualList::getSize(this->children), "Cannon::spawnCannonBall: no children");
 	CannonBall cannonBall = CannonBall::safeCast(VirtualList::front(this->children));
 
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(cannonBall), kCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(cannonBall), kMessageCannonShoot, NULL);
 }

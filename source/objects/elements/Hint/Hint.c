@@ -61,7 +61,7 @@ bool Hint::handleMessage(void* telegram)
 	// handle messages that any state would handle here
 	switch(Telegram::getMessage(telegram))
 	{
-		case kHintPlayAnimation:
+		case kMessageHintPlayAnimation:
 
 			AnimatedEntity::playAnimation(this, this->languageAnimName);
 			return true;
@@ -89,7 +89,7 @@ void Hint::open(u8 hintType)
 
 void Hint::close()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHintPlayAnimation);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHintPlayAnimation);
 
 	AnimatedEntity::playAnimation(this, "Close");
 }
@@ -150,10 +150,10 @@ void Hint::onHintOpened(Object eventFirer __attribute__ ((unused)))
 			}
 			break;
 
-		case kKeyHint:
+		case kTypeKeyHint:
 			this->languageAnimName = "Key";
 			break;
 	}
 
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kHintPlayAnimation, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kMessageHintPlayAnimation, NULL);
 }

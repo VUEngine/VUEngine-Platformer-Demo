@@ -141,7 +141,7 @@ EntityROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_1_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

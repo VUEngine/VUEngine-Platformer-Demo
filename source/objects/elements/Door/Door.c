@@ -90,7 +90,7 @@ bool Door::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kHeroEnterDoor:
+		case kMessageHeroEnterDoor:
 
 			if(Door::hasDestination(this))
 			{

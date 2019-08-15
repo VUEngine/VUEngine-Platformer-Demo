@@ -164,7 +164,7 @@ EntityROMSpec MOUND_BG_MIDDLE_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	NULL,
@@ -190,7 +190,7 @@ CloudsROMSpec CLOUDS_IM =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kNoType,
+		kTypeNone,
 
 		// physical specification
 		NULL,

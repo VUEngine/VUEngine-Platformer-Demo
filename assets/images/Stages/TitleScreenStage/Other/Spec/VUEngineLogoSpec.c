@@ -137,7 +137,7 @@ EntityROMSpec VUENGINE_LOGO_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

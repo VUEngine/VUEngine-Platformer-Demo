@@ -103,43 +103,38 @@
 #define FLOOR_BOUNCINESS 	0.0f
 
 // entity collision types
-enum PlatformerTypes
+enum GameCollisionTypes
 {
-	kHero = kNoType + 1,
-	kShape,
-	kTopShape,
-	kNotShape,
-	kCameraTarget,
-	kHit,
-	kHideLayer,
-	kFloor,
-	kDoor,
-	kCoin,
-	kUncollectableCoin,
-	kBandana,
-	kKey,
-	kLava,
-	kLavaTrigger,
-	kWaterPond,
-	kSawBlade,
-	kSnail,
-	kCannonBall,
-	kCannonBallStartMoving,
-	kMovingPlatform,
+	kTypeBandana = kTypeNone + 1,
+	kTypeCannonBall,
+	kTypeCoin,
+	kTypeDoor,
+	kTypeHero,
+	kTypeHideLayer,
+	kTypeHit,
+	kTypeKey,
+	kTypeLava,
+	kTypeLavaTrigger,
+	kTypeMovingPlatform,
+	kTypeNoShape,
+	kTypeSawBlade,
+	kTypeShape,
+	kTypeSnail,
+	kTypeTopShape,
+	kTypeWaterPond,
 };
 
-enum CollisionLayers
+enum GameCollisionLayers
 {
-    kSolidLayer		 					= 1 << (kNoLayer + 0), 	// hex 00000001
-    kEnemiesLayer						= 1 << (kNoLayer + 1), 	// hex 00000002
-    kPlayerLayer						= 1 << (kNoLayer + 2), 	// hex 00000004
-    kParticlesLayer						= 1 << (kNoLayer + 3), 	// hex 00000008
-    kItemsLayer							= 1 << (kNoLayer + 4), 	// hex 00000010
-    kCollectablesLayer					= 1 << (kNoLayer + 5), 	// hex 00000020
-    kTriggersLayer						= 1 << (kNoLayer + 6), 	// hex 00000040
-    kCameraLayer						= 1 << (kNoLayer + 7), 	// hex 00000080
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 8), 	// hex 00000100
-    kAllLayers							= 0xFFFFFFFF,
+    kLayerSolid		 					= 1 << (kLayerNone + 0), 	// hex 00000001
+    kLayerEnemies						= 1 << (kLayerNone + 1), 	// hex 00000002
+    kLayerPlayer						= 1 << (kLayerNone + 2), 	// hex 00000004
+    kLayerParticles						= 1 << (kLayerNone + 3), 	// hex 00000008
+    kLayerCollectables					= 1 << (kLayerNone + 5), 	// hex 00000020
+    kLayerTriggers						= 1 << (kLayerNone + 6), 	// hex 00000040
+    kLayerCamera						= 1 << (kLayerNone + 7), 	// hex 00000080
+    kLayerMovingPlatforms				= 1 << (kLayerNone + 8), 	// hex 00000100
+    kLayerAll							= 0xFFFFFFFF,
 };
 
 

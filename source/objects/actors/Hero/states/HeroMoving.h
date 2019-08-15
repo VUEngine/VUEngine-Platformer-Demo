@@ -37,17 +37,13 @@
 
 enum HeroMovingMessages
 {
-	 kDisallowJumpOnBouncing = kLastPlatformerMessage + 1,
+	 kMessageDisallowJumpOnBouncing = kMessageLastGame + 1,
 };
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
-
-
-
-
 
 singleton class HeroMoving : HeroState
 {

@@ -61,7 +61,7 @@ void LavaTrigger::constructor(EntitySpec* inanimatedEntitySpec, s16 id, s16 inte
 void LavaTrigger::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kLavaTriggerEnd);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageLavaTriggerEnd);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -73,12 +73,12 @@ bool LavaTrigger::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kLavaTriggerStart:
+		case kMessageLavaTriggerStart:
 
 			LavaTrigger::triggerEventStart(this);
 			break;
 
-		case kLavaTriggerEnd:
+		case kMessageLavaTriggerEnd:
 
 			LavaTrigger::triggerEventEnd(this);
 			break;
@@ -101,7 +101,7 @@ void LavaTrigger::triggerEventStart()
 	//SoundManager::playFxSound(SoundManager::getInstance(), CRUMBLE_SND, position);
 
 	// remind myself to stop the trigger event soon
-	MessageDispatcher::dispatchMessage(3000, Object::safeCast(this), Object::safeCast(this), kLavaTriggerEnd, NULL);
+	MessageDispatcher::dispatchMessage(3000, Object::safeCast(this), Object::safeCast(this), kMessageLavaTriggerEnd, NULL);
 
 	// deactivate shape so I won't get triggered again
 	Entity::allowCollisions(this, false);

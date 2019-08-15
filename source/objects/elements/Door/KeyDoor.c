@@ -102,6 +102,6 @@ u32 KeyDoor::getHintType()
 	}
 	else
 	{
-		return kKeyHint;
+		return kTypeKeyHint;
 	}
 }

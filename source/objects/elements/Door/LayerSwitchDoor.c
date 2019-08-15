@@ -58,7 +58,7 @@ bool LayerSwitchDoor::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kHeroEnterDoor:
+		case kMessageHeroEnterDoor:
 
 			if(this->destinationSpec)
 			{

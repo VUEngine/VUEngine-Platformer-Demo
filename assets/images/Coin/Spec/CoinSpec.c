@@ -386,13 +386,13 @@ ShapeROMSpec COIN_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kCollectablesLayer,
+		kLayerCollectables,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 CoinROMSpec COIN_AG =
@@ -415,7 +415,7 @@ CoinROMSpec COIN_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kCoin,
+		kTypeCoin,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -448,7 +448,7 @@ CoinROMSpec COIN_SILHOUETTE_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kCoin,
+		kTypeCoin,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -549,13 +549,13 @@ ShapeROMSpec COIN_BACK_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kCollectablesLayer,
+		kLayerCollectables,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 CoinROMSpec COIN_BACK_AG =
@@ -578,7 +578,7 @@ CoinROMSpec COIN_BACK_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kCoin,
+		kTypeCoin,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -611,7 +611,7 @@ CoinROMSpec COIN_BACK_SILHOUETTE_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kCoin,
+		kTypeCoin,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

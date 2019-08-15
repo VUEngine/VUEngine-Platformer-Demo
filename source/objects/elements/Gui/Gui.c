@@ -238,8 +238,8 @@ bool Gui::handlePropagatedMessage(int message)
 {
 	switch(message)
 	{
-		case kLevelSetUp:
-		case kLevelResumed:
+		case kMessageLevelSetUp:
+		case kMessageLevelResumed:
 
 			Gui::printAll(this);
 			break;

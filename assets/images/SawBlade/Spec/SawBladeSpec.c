@@ -171,13 +171,13 @@ ShapeROMSpec SAW_BLADE_AC_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kEnemiesLayer,
+		kLayerEnemies,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 MovingEntityROMSpec SAW_BLADE_V3_AC =
@@ -202,7 +202,7 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 				{0, 0, 0},
 
 				// gameworld's character's type
-				kSawBlade,
+				kTypeSawBlade,
 
 				// physical specification
 				(PhysicalSpecification*)NULL,
@@ -266,7 +266,7 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 				{0, 0, 0},
 
 				// gameworld's character's type
-				kSawBlade,
+				kTypeSawBlade,
 
 				// physical specification
 				(PhysicalSpecification*)NULL,
@@ -330,7 +330,7 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 				{0, 0, 0},
 
 				// gameworld's character's type
-				kSawBlade,
+				kTypeSawBlade,
 
 				// physical specification
 				(PhysicalSpecification*)NULL,

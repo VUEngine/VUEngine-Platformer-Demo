@@ -171,13 +171,13 @@ ShapeROMSpec MOVING_PLATFORM_V6_AC_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kMovingPlatformsLayer,
+		kLayerMovingPlatforms,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 PhysicalSpecificationROMSpec MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES =
@@ -220,7 +220,7 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 				{4 * 8, 2 * 8, 4},
 
 				// gameworld's character's type
-				kMovingPlatform,
+				kTypeMovingPlatform,
 
 				// physical specification
 				(PhysicalSpecification*)&MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES,

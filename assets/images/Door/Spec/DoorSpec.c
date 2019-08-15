@@ -293,13 +293,13 @@ ShapeROMSpec DOOR_AG_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kSolidLayer,
+		kLayerSolid,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 DoorROMSpec DOOR_AG =
@@ -322,7 +322,7 @@ DoorROMSpec DOOR_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kDoor,
+		kTypeDoor,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -355,7 +355,7 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kDoor,
+		kTypeDoor,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -389,7 +389,7 @@ GoalDoorROMSpec GOAL_DOOR_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kDoor,
+		kTypeDoor,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -422,7 +422,7 @@ KeyDoorROMSpec KEY_DOOR_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kDoor,
+		kTypeDoor,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -488,7 +488,7 @@ DoorROMSpec AFFINE_DOOR_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kDoor,
+		kTypeDoor,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -598,7 +598,7 @@ DoorROMSpec DOOR_BACK_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kDoor,
+		kTypeDoor,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
@@ -631,7 +631,7 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_AG =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kDoor,
+		kTypeDoor,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

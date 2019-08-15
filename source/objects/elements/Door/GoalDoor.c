@@ -75,7 +75,7 @@ bool GoalDoor::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kHeroEnterDoor:
+		case kMessageHeroEnterDoor:
 		{
 			// disable user input
 			Game::disableKeypad(Game::getInstance());

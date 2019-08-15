@@ -39,7 +39,7 @@ enum HintTypes
 {
 	kEnterHint = 0,
 	kPickUpHint,
-	kKeyHint
+	kTypeKeyHint
 };
 
 

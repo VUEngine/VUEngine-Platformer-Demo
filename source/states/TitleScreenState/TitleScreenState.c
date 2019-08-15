@@ -168,7 +168,7 @@ void TitleScreenState::enter(void* owner)
 	GameState::startClocks(this);
 
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelSetUp);
+	GameState::propagateMessage(this, kMessageLevelSetUp);
 
 	// fade in screen after a little delay
 	Camera::startEffect(Camera::getInstance(),
@@ -207,7 +207,7 @@ void TitleScreenState::resume(void* owner)
 #endif
 
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelResumed);
+	GameState::propagateMessage(this, kMessageLevelResumed);
 
 	// make a fade in
 	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
@@ -443,7 +443,7 @@ void TitleScreenState::onSecondChange(Object eventFirer __attribute__ ((unused))
 void TitleScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// tell any interested entity
-	GameState::propagateMessage(this, kLevelStarted);
+	GameState::propagateMessage(this, kMessageLevelStarted);
 
 	// enable user input
 	Game::enableKeypad(Game::getInstance());

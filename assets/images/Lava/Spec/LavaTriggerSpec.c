@@ -56,13 +56,13 @@ ShapeROMSpec LAVA_TRIGGER_IG_SHAPES[] =
 		false,
 
 		/// layers in which I live
-		kTriggersLayer,
+		kLayerTriggers,
 
 		/// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 LavaTriggerROMSpec LAVA_TRIGGER_IG =
@@ -84,7 +84,7 @@ LavaTriggerROMSpec LAVA_TRIGGER_IG =
 	{4 * 8, 2 * 8, 4},
 
 	// gameworld's character's type
-	kLavaTrigger,
+	kTypeLavaTrigger,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

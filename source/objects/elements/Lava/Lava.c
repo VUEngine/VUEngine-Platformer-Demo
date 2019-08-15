@@ -47,7 +47,7 @@ void Lava::constructor(EntitySpec* inanimatedEntitySpec, s16 id, s16 internalId,
 void Lava::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kLavaMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageLavaMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -58,7 +58,7 @@ void Lava::destructor()
 void Lava::startMoving()
 {
 	// start moving
-	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kLavaMove, NULL);
+	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageLavaMove, NULL);
 
 	// must make sure that the shape is updated
 	Entity::activeCollisionChecks(this, true);
@@ -76,7 +76,7 @@ bool Lava::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kLavaMove:
+		case kMessageLavaMove:
 
 			Lava::moveUpwards(this);
 			break;
@@ -96,5 +96,5 @@ void Lava::moveUpwards()
 	Container::setLocalPosition(this, &offset);
 
 	// send delayed message to self to trigger next movement
-	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kLavaMove, NULL);
+	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageLavaMove, NULL);
 }
