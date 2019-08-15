@@ -1,0 +1,35 @@
+[
+	{
+		"name": "CheckpointLoaded"
+	},
+	{
+		"name": "CoinTaken"
+	},
+	{
+		"name": "HeroDied"
+	},
+	{
+		"name": "HitTaken"
+	},
+	{
+		"name": "KeyTaken"
+	},
+	{
+		"name": "LevelCompleted"
+	},
+	{
+		"name": "LevelStarted"
+	},
+	{
+		"name": "PowerUp"
+	},
+	{
+		"name": "ScreenFocused"
+	},
+	{
+		"name": "ShakeCompleted"
+	},
+	{
+		"name": "UserInput"
+	}
+]
