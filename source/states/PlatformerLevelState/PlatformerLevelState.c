@@ -190,7 +190,7 @@ void PlatformerLevelState::enter(void* owner)
 				Stage::registerEntityId(this->stage, Entity::getInternalId(hero), &HERO_AC);
 			}
 
-			Object::addEventListener(hero, Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kStageChildStreamedOut);
+			Object::addEventListener(hero, Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kEventStageChildStreamedOut);
 
 			// set hero's position
 			Actor::setPosition(hero, initialPosition);

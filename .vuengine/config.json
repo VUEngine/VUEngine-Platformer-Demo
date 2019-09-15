@@ -184,13 +184,11 @@
 		"virtualTables": ".dram_bss"
 	},
 	"sound": {
-		"leftEarCenter": 96,
-		"rightEarCenter": 288,
-		"stereoAttenuationFactor": 0.75,
-		"bgmChannels": 2,
-		"fxChannels": 1,
-		"bgms": 1,
-		"fxs": 2
+		"leftEarCenter": 144,
+		"rightEarCenter": 240,
+		"stereoAttenuationFactor": 75,
+		"stereoHorizontalAttenuationFactor": 50,
+		"stereoVerticalAttenuationFactor": 50
 	},
 	"sprite": {
 		"totalLayers": 32

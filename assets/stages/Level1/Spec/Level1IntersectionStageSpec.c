@@ -149,7 +149,7 @@ StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
-	},
+		false	},
 
 	// level
 	{

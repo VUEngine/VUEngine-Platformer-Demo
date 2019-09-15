@@ -355,12 +355,13 @@
 //												SOUND
 //---------------------------------------------------------------------------------------------------------
 
-#define __LEFT_EAR_CENTER							96
-#define __RIGHT_EAR_CENTER							288
+#define __LEFT_EAR_CENTER							144
+#define __RIGHT_EAR_CENTER							240
 
 // affects the amount of attenuation caused by the distance between the x coordinate and each ear's
 // position defined by __LEFT_EAR_CENTER and __RIGHT_EAR_CENTER
-#define __SOUND_STEREO_ATTENUATION_FACTOR			__F_TO_FIX10_6(0.75f)
+#define __SOUND_STEREO_HORIZONTAL_ATTENUATION_FACTOR		50
+#define __SOUND_STEREO_VERTICAL_ATTENUATION_FACTOR			50
 
 
 //---------------------------------------------------------------------------------------------------------

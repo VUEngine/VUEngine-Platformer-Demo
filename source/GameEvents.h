@@ -20,7 +20,7 @@
 
 enum GameEvents
 {
-	kEventCheckpointLoaded = kLastEngineEvent + 1,
+	kEventCheckpointLoaded = kEventEngineLast + 1,
 	kEventCoinTaken,
 	kEventHeroDied,
 	kEventHitTaken,

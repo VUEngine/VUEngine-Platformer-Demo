@@ -86,7 +86,7 @@ StageROMSpec EMPTY_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
-	},
+		false	},
 
 	// level
 	{
