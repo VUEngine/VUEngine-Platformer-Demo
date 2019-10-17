@@ -17,7 +17,6 @@
 //											 DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
 enum GameEvents
 {
 	kEventCheckpointLoaded = kEventEngineLast + 1,
