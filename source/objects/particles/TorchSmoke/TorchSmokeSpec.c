@@ -73,10 +73,10 @@ PhysicalParticleROMSpec TORCH_SMOKE_PARTICLE =
 	},
 
 	// particle's minimum mass
-	__F_TO_FIX10_6(0.9f),
+	__F_TO_FIX10_6(0.5f),
 
 	// particle's mass delta (maximum = minimum + delta)
-	__F_TO_FIX10_6(0.02f),
+	__F_TO_FIX10_6(0),
 
 	// axis subject to gravity (bitwise or of __X_AXIS, __Y_AXIS, __Z_AXIS, or false to disable)
 	__NO_AXIS,
@@ -130,18 +130,18 @@ ParticleSystemROMSpec TORCH_SMOKE_PS =
 	(ParticleSpec*)&TORCH_SMOKE_PARTICLE,
 
 	// minimum relative spawn position (x, y, z)
-	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+	{__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(0), __PIXELS_TO_METERS(0)},
 
 	// maximum relative spawn position (x, y, z)
-	{__I_TO_FIX10_6(0), __I_TO_FIX10_6(0), __I_TO_FIX10_6(0)},
+	{__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(0), __PIXELS_TO_METERS(0)},
 
 	// minimum force to apply (x, y, z)
 	// (use int values in the spec to avoid overflow)
-	{__F_TO_FIX10_6(-0.025f), __F_TO_FIX10_6(-0.05f), __I_TO_FIX10_6(0)},
+	{-__PIXELS_TO_METERS(4), -__PIXELS_TO_METERS(8), __PIXELS_TO_METERS(0)},
 
 	// maximum force to apply (x, y, z)
 	// (use int values in the spec to avoid overflow)
-	{__F_TO_FIX10_6(0.055f), __F_TO_FIX10_6(-0.02f), __I_TO_FIX10_6(0)},
+	{__PIXELS_TO_METERS(4), -__PIXELS_TO_METERS(8), __PIXELS_TO_METERS(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
 	__UNIFORM_MOVEMENT
