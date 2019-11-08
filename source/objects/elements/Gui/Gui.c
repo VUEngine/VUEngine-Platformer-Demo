@@ -93,7 +93,7 @@ void Gui::printBestTime()
 	{
 		Clock clock = new Clock();
 		Clock::setTimeInMilliSeconds(clock, bestTime);
-		Clock::print(clock, GUI_X_POS + 42, GUI_Y_POS + 1, NULL);
+		Clock::print(clock, GUI_X_POS + 42, GUI_Y_POS + 1, "Platformer");
 		delete clock;
 	}
 	else

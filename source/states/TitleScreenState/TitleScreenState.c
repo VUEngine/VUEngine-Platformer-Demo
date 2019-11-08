@@ -129,9 +129,9 @@ void TitleScreenState::enter(void* owner)
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
-		FontSize strContinueSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_CONTINUE), NULL);
-		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), NULL);
-		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), NULL);
+		FontSize strContinueSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_CONTINUE), "Platformer");
+		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), "Platformer");
+		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), "Platformer");
 		u8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
 		width = (width > strNewGameSize.x) ? width : strNewGameSize.x;
 		OptionsSelector::setColumnWidth(this->optionsSelector, width + 1);
@@ -155,8 +155,8 @@ void TitleScreenState::enter(void* owner)
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
-		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), NULL);
-		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), NULL);
+		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), "Platformer");
+		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), "Platformer");
 		u8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
 		OptionsSelector::setColumnWidth(this->optionsSelector, width + 1);
 	}
