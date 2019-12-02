@@ -120,7 +120,7 @@ WaterPondROMSpec WATER_POND_EN =
 			// class allocator
 			__TYPE(WaterPond),
 
-			// behaviors 
+			// behaviors
 			NULL,
 
 			// sprites
@@ -185,6 +185,9 @@ WaterPondROMSpec WATER_POND_EN =
 		0x00000000,
 		0xC0000000,
 		0x00000003,
+
+		// noise passes
+		0
 	},
 
 	// throttle increment

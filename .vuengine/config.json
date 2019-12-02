@@ -186,7 +186,6 @@
 	"sound": {
 		"leftEarCenter": 144,
 		"rightEarCenter": 240,
-		"stereoAttenuationFactor": 75,
 		"stereoHorizontalAttenuationFactor": 50,
 		"stereoVerticalAttenuationFactor": 50
 	},
