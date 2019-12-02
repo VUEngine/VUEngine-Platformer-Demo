@@ -151,14 +151,8 @@ WaterPondROMSpec WATER_POND_EN =
 		// width and height of the reflection
 		WATER_POND_WIDTH, WATER_POND_HEIGHT,
 
-		// mask to apply to the whole reflection
-		0x00000000,
-
 		// mask to apply to the mirrored image
 		0xAAAAAAAA,
-
-		// mask to apply to the image behind the reflection
-		0x55555555,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
