@@ -7,7 +7,7 @@ SEARCH_DIR(.);
 
 MEMORY
 {
-    dram    (!r)    : ORIGIN =  0x00039400, LENGTH = 18k
+    dram    (!r)    : ORIGIN =  0x00039000, LENGTH = 19k
     wram    (!r)    : ORIGIN =  0x05000000, LENGTH = 64k
     exp     (r)     : ORIGIN =  0x04000000, LENGTH = 16M
     sram    (!r)    : ORIGIN =  0x06000000, LENGTH = 16M
