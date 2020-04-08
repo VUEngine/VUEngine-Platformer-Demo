@@ -139,6 +139,12 @@ TextureROMSpec STAR_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec STAR_SPRITE =
@@ -177,7 +183,7 @@ AnimatedEntityROMSpec STAR_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

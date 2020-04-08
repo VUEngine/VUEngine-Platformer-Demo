@@ -121,6 +121,12 @@ TextureROMSpec FLOWER_A_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec FLOWER_A_SPRITE =
@@ -167,7 +173,7 @@ AnimatedEntityROMSpec FLOWER_A_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

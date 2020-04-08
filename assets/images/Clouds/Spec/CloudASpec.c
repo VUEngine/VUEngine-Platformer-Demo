@@ -83,6 +83,12 @@ TextureROMSpec CLOUD_A_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CLOUD_A_IM_SPRITE =
@@ -123,7 +129,7 @@ EntityROMSpec CLOUD_A_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

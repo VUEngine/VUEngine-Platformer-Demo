@@ -83,6 +83,12 @@ TextureROMSpec VUENGINE_LOGO_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec VUENGINE_LOGO_IM_SPRITE =
@@ -123,7 +129,7 @@ EntityROMSpec VUENGINE_LOGO_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

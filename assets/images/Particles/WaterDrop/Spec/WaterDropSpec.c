@@ -84,6 +84,12 @@ TextureROMSpec WATER_DROP_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec WATER_DROP_SPRITE =
@@ -121,7 +127,7 @@ EntityROMSpec WATER_DROP_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

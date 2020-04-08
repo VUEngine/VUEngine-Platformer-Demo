@@ -65,6 +65,12 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_FRONT_3A_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const LEVEL_1_MAIN_1_MAIN_FRONT_3A_IM_TEXTURES[] =

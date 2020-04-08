@@ -92,6 +92,12 @@ TextureROMSpec LAVA_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LAVA_BG_SPRITE =
@@ -168,7 +174,7 @@ LavaROMSpec LAVA_IG =
 	// class allocator
 	__TYPE(Lava),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

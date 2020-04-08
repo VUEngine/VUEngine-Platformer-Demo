@@ -149,6 +149,12 @@ TextureROMSpec GUI_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec GUI_OVERWORLD_TX =
@@ -177,6 +183,12 @@ TextureROMSpec GUI_OVERWORLD_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -252,7 +264,7 @@ AnimatedEntityROMSpec GUI_AG =
 		// class allocator
 		__TYPE(Gui),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -285,7 +297,7 @@ AnimatedEntityROMSpec GUI_OVERWORLD_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

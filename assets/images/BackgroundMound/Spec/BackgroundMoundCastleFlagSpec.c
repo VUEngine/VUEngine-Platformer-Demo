@@ -116,6 +116,12 @@ TextureROMSpec MOUND_BG_CASTLE_FLAG_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec MOUND_BG_CASTLE_FLAG_SPRITE =
@@ -154,7 +160,7 @@ AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

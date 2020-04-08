@@ -114,6 +114,12 @@ TextureROMSpec CANNON_BALL_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CANNON_BALL_SPRITE =
@@ -187,7 +193,7 @@ CannonBallROMSpec CANNON_BALL_AC =
 			// class allocator
 			__TYPE(CannonBall),
 
-			// behaviors 
+			// behaviors
 			NULL,
 
 			// sprites

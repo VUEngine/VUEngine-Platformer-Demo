@@ -72,6 +72,12 @@ TextureROMSpec LEVEL_1_TOWER_MAIN_2_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const LEVEL_1_TOWER_MAIN_2_IM_TEXTURES[] =
@@ -197,7 +203,7 @@ EntityROMSpec LEVEL_1_TOWER_MAIN_2_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

@@ -115,6 +115,12 @@ TextureROMSpec SNAIL_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec SNAIL_SPRITE =
@@ -186,7 +192,7 @@ MovingEntityROMSpec SNAIL_3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
-				// behaviors 
+				// behaviors
 				NULL,
 
 				// sprites
@@ -250,7 +256,7 @@ MovingEntityROMSpec SNAIL_8_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
-				// behaviors 
+				// behaviors
 				NULL,
 
 				// sprites

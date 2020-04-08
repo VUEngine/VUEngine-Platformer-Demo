@@ -24,6 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <stdlib.h>
 #include <GameEvents.h>
 #include <Game.h>
 #include <EventManager.h>
@@ -59,7 +60,8 @@ void Coin::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 inter
 	Base::constructor(animatedEntitySpec, id, internalId, name);
 
 	// if coin has already been collected, show silhouette representation
-	if(ProgressManager::getCoinStatus(ProgressManager::getInstance(), this->id))
+	int coinId = atoi(this->name);
+	if(ProgressManager::getCoinStatus(ProgressManager::getInstance(), coinId))
 	{
 		AnimatedEntitySpec* animatedEntitySpec = this->animatedEntitySpec;
 
@@ -87,10 +89,11 @@ void Coin::destructor()
 void Coin::collect()
 {
 	// "collect" coin if it wasn't already
-	if(!ProgressManager::getCoinStatus(ProgressManager::getInstance(), this->id))
+	int coinId = atoi(this->name);
+	if(!ProgressManager::getCoinStatus(ProgressManager::getInstance(), coinId))
 	{
 		// set coin status to taken
-		ProgressManager::setCoinStatus(ProgressManager::getInstance(), this->id, true);
+		ProgressManager::setCoinStatus(ProgressManager::getInstance(), coinId, true);
 
 		// fire "taken" event
 		Object::fireEvent(EventManager::getInstance(), kEventCoinTaken);

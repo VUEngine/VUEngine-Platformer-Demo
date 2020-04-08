@@ -116,6 +116,12 @@ TextureROMSpec FIRE_SMALL_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec FIRE_SMALL_SPRITE =
@@ -154,7 +160,7 @@ AnimatedEntityROMSpec FIRE_SMALL_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

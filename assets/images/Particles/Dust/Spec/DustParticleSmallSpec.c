@@ -84,6 +84,12 @@ TextureROMSpec DUST_PARTICLE_SMALL_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec DUST_PARTICLE_SMALL_SPRITE =
@@ -121,7 +127,7 @@ EntityROMSpec DUST_PARTICLE_SMALL_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

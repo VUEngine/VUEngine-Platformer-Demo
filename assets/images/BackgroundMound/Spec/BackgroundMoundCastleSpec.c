@@ -82,6 +82,12 @@ TextureROMSpec MOUND_BG_CASTLE_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec MOUND_BG_CASTLE_IM_SPRITE =
@@ -122,7 +128,7 @@ EntityROMSpec MOUND_BG_CASTLE_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

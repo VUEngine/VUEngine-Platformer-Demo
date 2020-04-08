@@ -411,6 +411,12 @@ TextureROMSpec HERO_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec HERO_BANDANA_TX =
@@ -438,6 +444,12 @@ TextureROMSpec HERO_BANDANA_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -596,7 +608,7 @@ HeroROMSpec HERO_AC =
 			// class allocator
 			__TYPE(Hero),
 
-			// behaviors 
+			// behaviors
 			NULL,
 
 			// sprites
@@ -639,7 +651,7 @@ AnimatedEntityROMSpec HERO_IDLE_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -672,7 +684,7 @@ AnimatedEntityROMSpec HERO_SLEEPING_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -706,7 +718,7 @@ AnimatedEntityROMSpec HERO_BANDANA_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

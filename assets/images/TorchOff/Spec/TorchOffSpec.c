@@ -85,6 +85,12 @@ TextureROMSpec TORCH_OFF_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec TORCH_OFF_SPRITE =
@@ -122,7 +128,7 @@ EntityROMSpec TORCH_OFF_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

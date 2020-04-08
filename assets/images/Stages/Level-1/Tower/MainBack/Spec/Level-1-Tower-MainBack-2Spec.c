@@ -71,6 +71,12 @@ TextureROMSpec LEVEL_1_TOWER_MAIN_BACK_2_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 

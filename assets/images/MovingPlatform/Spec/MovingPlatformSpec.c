@@ -114,6 +114,12 @@ TextureROMSpec MOVING_PLATFORM_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec MOVING_PLATFORM_SPRITE =
@@ -206,7 +212,7 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
-				// behaviors 
+				// behaviors
 				NULL,
 
 				// sprites

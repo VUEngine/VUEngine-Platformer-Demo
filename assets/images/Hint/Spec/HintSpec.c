@@ -370,6 +370,12 @@ TextureROMSpec HINT_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec HINT_SPRITE =
@@ -411,7 +417,7 @@ AnimatedEntityROMSpec HINT_MC =
 		// class allocator
 		__TYPE(Hint),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

@@ -83,9 +83,6 @@
 #define __TOOLS
 #endif
 
-// print frame rate
-#define __PRINT_FRAMERATE
-
 // enable detailed profiling of each of the game's main processes
 // • it is more useful when __TIMER_RESOLUTION approaches 1
 #define __PROFILE_GAME
@@ -278,6 +275,9 @@
 // total number of layers (basically the number of worlds)
 #define __TOTAL_LAYERS								32
 
+// Account for VIP's design to draw 8 pixel when BGMAP WORLD's height is less than 8
+#undef __HACK_BGMAP_SPRITE_HEIGHT
+		
 
 //---------------------------------------------------------------------------------------------------------
 //											TEXTURE MANAGEMENT

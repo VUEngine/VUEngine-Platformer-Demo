@@ -236,6 +236,12 @@ TextureROMSpec DOOR_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec DOOR_SPRITE =
@@ -308,7 +314,7 @@ DoorROMSpec DOOR_AG =
 		// class allocator
 		__TYPE(Door),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -341,7 +347,7 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_AG =
 		// class allocator
 		__TYPE(LayerSwitchDoor),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -375,7 +381,7 @@ GoalDoorROMSpec GOAL_DOOR_AG =
 		// class allocator
 		__TYPE(GoalDoor),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -408,7 +414,7 @@ KeyDoorROMSpec KEY_DOOR_AG =
 		// class allocator
 		__TYPE(KeyDoor),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -474,7 +480,7 @@ DoorROMSpec AFFINE_DOOR_AG =
 		// class allocator
 		__TYPE(Door),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -543,6 +549,12 @@ TextureROMSpec DOOR_BACK_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec DOOR_BACK_SPRITE =
@@ -584,7 +596,7 @@ DoorROMSpec DOOR_BACK_AG =
 		// class allocator
 		__TYPE(Door),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -617,7 +629,7 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_AG =
 		// class allocator
 		__TYPE(LayerSwitchDoor),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

@@ -116,6 +116,12 @@ TextureROMSpec WATERFALL_STREAM_2x28_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec WATERFALL_STREAM_2x28_SPRITE =
@@ -162,7 +168,7 @@ AnimatedEntityROMSpec WATERFALL_STREAM_2x28_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

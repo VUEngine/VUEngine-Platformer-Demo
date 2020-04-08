@@ -83,6 +83,12 @@ TextureROMSpec JUMP_SIGN_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec JUMP_SIGN_IM_SPRITE =
@@ -120,7 +126,7 @@ EntityROMSpec JUMP_SIGN_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

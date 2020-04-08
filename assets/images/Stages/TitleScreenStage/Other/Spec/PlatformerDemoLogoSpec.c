@@ -89,6 +89,12 @@ TextureROMSpec LOGO_L_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 CharSetROMSpec LOGO_R_CH =
@@ -132,6 +138,12 @@ TextureROMSpec LOGO_R_TX =
 	0,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -177,6 +189,12 @@ TextureROMSpec LOGO_OUTLINE_L_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 CharSetROMSpec LOGO_OUTLINE_R_CH =
@@ -220,6 +238,12 @@ TextureROMSpec LOGO_OUTLINE_R_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -345,7 +369,7 @@ EntityROMSpec LOGO_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

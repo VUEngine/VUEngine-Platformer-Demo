@@ -116,6 +116,12 @@ TextureROMSpec CLOCK_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec CLOCK_SPRITE =
@@ -154,7 +160,7 @@ AnimatedEntityROMSpec CLOCK_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

@@ -139,6 +139,12 @@ TextureROMSpec GRASS_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec GRASS_SPRITE =
@@ -177,7 +183,7 @@ AnimatedEntityROMSpec GRASS_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

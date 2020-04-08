@@ -71,7 +71,7 @@ PositionedEntityROMSpec LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {(192), (88), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
 	{&CLOUDS_IM, {(194), (138), (LAYER_4), 0}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&LEVEL_1_HOUSE_LIGHT_IM, {(196), (140), (LAYER_0_ITEMS - 1), 0}, 0, NULL, NULL, NULL, false}, // Light
-	{&COIN_AG, {(204), (146), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 26, NULL, NULL, NULL, false}, // Coin
+	{&COIN_AG, {(204), (146), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "26", NULL, NULL, false}, // Coin
 	{&FIRE_SMALL_AG, {(240), (155), (32), 0}, 0, NULL, NULL, NULL, false}, // Fire
 	{&COLLISION_TOP_CL, {(240), (152), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
 	{&MOUND_BG_BACK_IM, {(255), (104), (LAYER_5), 0}, 0, NULL, NULL, NULL, false}, // Mountains

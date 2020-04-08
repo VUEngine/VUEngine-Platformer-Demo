@@ -70,6 +70,12 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3A_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
@@ -99,6 +105,12 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
@@ -128,6 +140,12 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =

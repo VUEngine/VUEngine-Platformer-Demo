@@ -117,6 +117,12 @@ TextureROMSpec BANDANA_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec BANDANA_SPRITE =
@@ -186,7 +192,7 @@ AnimatedEntityROMSpec BANDANA_AG =
 		// class allocator
 		__TYPE(Bandana),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

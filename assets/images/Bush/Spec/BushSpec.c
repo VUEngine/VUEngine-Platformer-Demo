@@ -139,6 +139,12 @@ TextureROMSpec BUSH_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec BUSH_SPRITE =
@@ -177,7 +183,7 @@ AnimatedEntityROMSpec BUSH_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

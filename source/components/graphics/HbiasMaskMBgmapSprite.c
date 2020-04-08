@@ -134,9 +134,8 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
  * @public
  *
  * @param this		Function scope
- * @param evenFrame
  */
-void HbiasMaskMBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
+void HbiasMaskMBgmapSprite::render()
 {
 	if(!this->positioned)
 	{

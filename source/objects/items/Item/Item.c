@@ -24,6 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <stdlib.h>
 #include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
@@ -58,5 +59,6 @@ void Item::destructor()
 void Item::collect()
 {
 	// set item status to taken
-	ProgressManager::setItemStatus(ProgressManager::getInstance(), this->id, true);
+	int itemId = atoi(this->name);
+	ProgressManager::setItemStatus(ProgressManager::getInstance(), itemId, true);
 }

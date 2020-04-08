@@ -83,6 +83,12 @@ TextureROMSpec CLOUDS_BACKGROUND_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 AwesomeCloudBgmapSpriteROMSpec CLOUDS_BACKGROUND_SPRITE =
@@ -132,7 +138,7 @@ AwesomeCloudROMSpec CLOUDS_BACKGROUND_EN =
 		// class allocator
 		__TYPE(AwesomeCloud),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

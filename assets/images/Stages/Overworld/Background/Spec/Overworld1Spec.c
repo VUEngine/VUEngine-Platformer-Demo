@@ -83,6 +83,12 @@ TextureROMSpec OVERWORLD_1_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const OVERWORLD_1_IM_TEXTURES[] =

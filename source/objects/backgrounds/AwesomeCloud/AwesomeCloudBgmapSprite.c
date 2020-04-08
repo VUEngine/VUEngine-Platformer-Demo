@@ -104,10 +104,8 @@ void AwesomeCloudBgmapSprite::setPosition(const PixelVector* position)
  *
  * @memberof		AwesomeCloudBgmapSprite
  * @public
- *
- * @param evenFrame
  */
-void AwesomeCloudBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
+void AwesomeCloudBgmapSprite::render()
 {
 	this->drawSpec.textureSource.my += this->awesomeCloudBgmapSpriteSpec->myStep;
 
@@ -118,7 +116,7 @@ void AwesomeCloudBgmapSprite::render(bool evenFrame __attribute__ ((unused)))
 
 	BgmapSprite::invalidateParamTable(this);
 
-	Base::render(this, evenFrame);
+	Base::render(this);
 
 	static WorldAttributes* worldPointer = NULL;
 	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];

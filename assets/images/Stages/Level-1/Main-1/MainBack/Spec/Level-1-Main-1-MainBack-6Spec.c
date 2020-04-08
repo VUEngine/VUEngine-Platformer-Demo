@@ -69,6 +69,12 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_6_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const LEVEL_1_MAIN_1_MAIN_BACK_6_IM_TEXTURES[] =

@@ -83,6 +83,12 @@ TextureROMSpec ONE_WAY_PLATFORM_4_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec ONE_WAY_PLATFORM_4_SPRITE =

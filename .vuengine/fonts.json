@@ -4,6 +4,7 @@
 		"image": "Fonts/FontDefault",
 		"offset": 0,
 		"characterCount": 256,
+		"charactersPerLine": 32,
 		"size": {
 			"x": 1,
 			"y": 1
@@ -14,6 +15,7 @@
 		"image": "Fonts/FontGui",
 		"offset": 32,
 		"characterCount": 5,
+		"charactersPerLine": 5,
 		"size": {
 			"x": 1,
 			"y": 2

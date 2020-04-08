@@ -116,6 +116,12 @@ TextureROMSpec KEY_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec KEY_SPRITE =
@@ -185,7 +191,7 @@ AnimatedEntityROMSpec KEY_AG =
 		// class allocator
 		__TYPE(Key),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

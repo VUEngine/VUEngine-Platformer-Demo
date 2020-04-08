@@ -116,6 +116,12 @@ TextureROMSpec WATERFALL_TOP_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec WATERFALL_TOP_SPRITE =
@@ -162,7 +168,7 @@ AnimatedEntityROMSpec WATERFALL_TOP_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

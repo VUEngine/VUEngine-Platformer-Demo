@@ -84,6 +84,12 @@ TextureROMSpec MOUND_BG_MIDDLE_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const MOUND_BG_MIDDLE_SB_TEXTURES[] =
@@ -150,7 +156,7 @@ EntityROMSpec MOUND_BG_MIDDLE_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites
@@ -176,7 +182,7 @@ CloudsROMSpec CLOUDS_IM =
 		// class allocator
 		__TYPE(Clouds),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

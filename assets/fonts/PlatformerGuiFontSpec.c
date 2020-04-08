@@ -44,6 +44,9 @@ FontROMSpec PLATFORMER_GUI_FONT =
 	// number of characters in this font
 	5,
 
+	// number of characters per line in charset
+	5,
+
 	// size of a single character (in chars) ({width, height})
 	{1, 2},
 

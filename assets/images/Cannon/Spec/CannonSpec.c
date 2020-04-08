@@ -137,6 +137,12 @@ TextureROMSpec CANNON_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CANNON_SPRITE =
@@ -179,7 +185,7 @@ ActorROMSpec CANNON_AC =
 			// class allocator
 			__TYPE(Cannon),
 
-			// behaviors 
+			// behaviors
 			NULL,
 
 			// sprites

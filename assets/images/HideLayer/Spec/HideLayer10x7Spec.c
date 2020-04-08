@@ -183,6 +183,12 @@ TextureROMSpec HIDE_LAYER_10x7_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec HIDE_LAYER_10x7_SPRITE =
@@ -255,7 +261,7 @@ HideLayerROMSpec HIDE_LAYER_10x7_AG =
 		// class allocator
 		__TYPE(HideLayer),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

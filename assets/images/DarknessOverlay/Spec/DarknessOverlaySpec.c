@@ -83,6 +83,12 @@ TextureROMSpec DARKNESS_OVERLAY_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec DARKNESS_OVERLAY_IM_SPRITE =
@@ -123,7 +129,7 @@ EntityROMSpec DARKNESS_OVERLAY_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

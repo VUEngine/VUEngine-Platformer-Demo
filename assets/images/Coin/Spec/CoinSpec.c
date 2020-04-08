@@ -122,6 +122,12 @@ TextureROMSpec COIN_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 CharSetROMSpec COIN_SILHOUETTE_CH =
@@ -165,6 +171,12 @@ TextureROMSpec COIN_SILHOUETTE_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -210,6 +222,12 @@ TextureROMSpec AFFINE_COIN_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 CharSetROMSpec COIN_BACK_CH =
@@ -254,6 +272,12 @@ TextureROMSpec COIN_BACK_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 CharSetROMSpec COIN_BACK_SILHOUETTE_CH =
@@ -297,6 +321,12 @@ TextureROMSpec COIN_BACK_SILHOUETTE_TX =
 	2,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -401,7 +431,7 @@ CoinROMSpec COIN_AG =
 		// class allocator
 		__TYPE(Coin),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -434,7 +464,7 @@ CoinROMSpec COIN_SILHOUETTE_AG =
 		// class allocator
 		__TYPE(Coin),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -564,7 +594,7 @@ CoinROMSpec COIN_BACK_AG =
 		// class allocator
 		__TYPE(Coin),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
@@ -597,7 +627,7 @@ CoinROMSpec COIN_BACK_SILHOUETTE_AG =
 		// class allocator
 		__TYPE(Coin),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

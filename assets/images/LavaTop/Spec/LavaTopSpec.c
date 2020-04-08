@@ -117,6 +117,12 @@ TextureROMSpec LAVA_TOP_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LAVA_TOP_SPRITE =
@@ -158,7 +164,7 @@ AnimatedEntityROMSpec LAVA_TOP_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

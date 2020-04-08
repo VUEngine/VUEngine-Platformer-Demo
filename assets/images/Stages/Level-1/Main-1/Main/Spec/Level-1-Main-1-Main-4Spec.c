@@ -70,6 +70,12 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_4_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const LEVEL_1_MAIN_1_MAIN_4_IM_TEXTURES[] =
@@ -117,7 +123,7 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_4_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

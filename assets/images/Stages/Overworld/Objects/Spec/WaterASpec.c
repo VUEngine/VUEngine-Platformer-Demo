@@ -121,6 +121,12 @@ TextureROMSpec WATER_A_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec WATER_A_SPRITE =
@@ -167,7 +173,7 @@ AnimatedEntityROMSpec WATER_A_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

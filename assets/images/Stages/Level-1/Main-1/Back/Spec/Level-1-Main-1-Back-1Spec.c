@@ -82,6 +82,12 @@ TextureROMSpec LEVEL_1_MAIN_1_BACK_1_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LEVEL_1_MAIN_1_BACK_1_IM_SPRITE =
@@ -122,7 +128,7 @@ EntityROMSpec LEVEL_1_MAIN_1_BACK_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

@@ -114,6 +114,12 @@ TextureROMSpec SAW_BLADE_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec SAW_BLADE_SPRITE =
@@ -188,7 +194,7 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
-				// behaviors 
+				// behaviors
 				NULL,
 
 				// sprites
@@ -252,7 +258,7 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
-				// behaviors 
+				// behaviors
 				NULL,
 
 				// sprites
@@ -316,7 +322,7 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
-				// behaviors 
+				// behaviors
 				NULL,
 
 				// sprites

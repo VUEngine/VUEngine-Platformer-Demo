@@ -83,6 +83,12 @@ TextureROMSpec MOUND_2_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec MOUND_2_IM_SPRITE =
@@ -123,7 +129,7 @@ EntityROMSpec MOUND_2_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites

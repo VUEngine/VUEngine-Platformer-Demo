@@ -116,6 +116,12 @@ TextureROMSpec TORCH_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec TORCH_SPRITE =
@@ -154,7 +160,7 @@ AnimatedEntityROMSpec TORCH_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites

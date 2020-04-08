@@ -84,6 +84,12 @@ TextureROMSpec COG_WHEEL_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec COG_WHEEL_BG_SPRITE =
@@ -124,7 +130,7 @@ CogWheelROMSpec COG_WHEEL_IM =
 	// class allocator
 	__TYPE(CogWheel),
 
-	// behaviors 
+	// behaviors
 	NULL,
 
 	// sprites
