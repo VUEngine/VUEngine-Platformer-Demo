@@ -50,10 +50,10 @@ extern CharSetSpec GUI_BANDANA_CH;
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Gui::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
+void Gui::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntitySpec, id, internalId, name);
+	Base::constructor(animatedEntitySpec, internalId, name);
 
 	// add event listeners
 	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);

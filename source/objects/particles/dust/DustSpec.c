@@ -96,7 +96,10 @@ ParticleSystemROMSpec DUST_PS =
 		// sprites
 		(SpriteSpec**)NULL,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size
@@ -121,6 +124,9 @@ ParticleSystemROMSpec DUST_PS =
 
 	// maximum total particles
 	4,
+
+	// maximum number of particles to spawn in each cycle
+	1,
 
 	// array of textures
 	(const SpriteSpec**)DUST_PARTICLE_SPRITES,

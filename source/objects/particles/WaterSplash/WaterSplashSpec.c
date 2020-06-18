@@ -94,7 +94,10 @@ ParticleSystemROMSpec WATER_SPLASH_PS =
 		// sprites
 		(SpriteSpec**)NULL,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size
@@ -119,6 +122,9 @@ ParticleSystemROMSpec WATER_SPLASH_PS =
 
 	// maximum total particles
 	8,
+
+	// maximum number of particles to spawn in each cycle
+	1,
 
 	// array of textures
 	(const SpriteSpec**)WATER_SPLASH_SPRITES,

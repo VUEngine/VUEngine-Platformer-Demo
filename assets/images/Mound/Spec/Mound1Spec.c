@@ -135,6 +135,9 @@ EntityROMSpec MOUND_1_IM =
 	// sprites
 	(SpriteSpec**)MOUND_1_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

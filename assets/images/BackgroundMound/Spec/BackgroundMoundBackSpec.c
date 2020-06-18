@@ -161,6 +161,9 @@ EntityROMSpec MOUND_BG_BACK_IM =
 	// sprites
 	(SpriteSpec**)MOUND_BG_BACK_SB_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

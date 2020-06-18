@@ -200,7 +200,10 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 				// sprites
 				(SpriteSpec**)SAW_BLADE_SPRITES,
 
-				// collision shapes
+				// use z displacement in projection
+	false,
+
+	// collision shapes
 				(ShapeSpec*)SAW_BLADE_AC_SHAPES,
 
 				// size
@@ -264,7 +267,10 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 				// sprites
 				(SpriteSpec**)SAW_BLADE_SPRITES,
 
-				// collision shapes
+				// use z displacement in projection
+	false,
+
+	// collision shapes
 				(ShapeSpec*)SAW_BLADE_AC_SHAPES,
 
 				// size
@@ -328,7 +334,10 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 				// sprites
 				(SpriteSpec**)SAW_BLADE_SPRITES,
 
-				// collision shapes
+				// use z displacement in projection
+	false,
+
+	// collision shapes
 				(ShapeSpec*)SAW_BLADE_AC_SHAPES,
 
 				// size

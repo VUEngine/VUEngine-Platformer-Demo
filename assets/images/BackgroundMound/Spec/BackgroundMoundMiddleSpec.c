@@ -162,6 +162,9 @@ EntityROMSpec MOUND_BG_MIDDLE_IM =
 	// sprites
 	(SpriteSpec**)MOUND_BG_MIDDLE_SB_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 
@@ -188,7 +191,10 @@ CloudsROMSpec CLOUDS_IM =
 		// sprites
 		(SpriteSpec**)MOUND_BG_MIDDLE_SB_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		NULL,
 
 		// size

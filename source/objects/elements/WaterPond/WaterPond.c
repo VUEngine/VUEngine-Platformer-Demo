@@ -40,10 +40,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void WaterPond::constructor(WaterPondSpec* reflectiveEntitySpec, s16 id, s16 internalId, const char* const name)
+void WaterPond::constructor(WaterPondSpec* reflectiveEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(&reflectiveEntitySpec->reflectiveEntitySpec, id, internalId, name);
+	Base::constructor(&reflectiveEntitySpec->reflectiveEntitySpec, internalId, name);
 
 	this->waveLutThrottleFactorIncrement = 0;
 	this->amplitudeFactor = __I_TO_FIX10_6(1);

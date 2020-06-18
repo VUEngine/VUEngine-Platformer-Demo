@@ -54,7 +54,7 @@ class Hint : AnimatedEntity
 	/* name of the animation to play */
 	char* languageAnimName;
 
-	void constructor(AnimatedEntitySpec* spec, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* spec, s16 internalId, const char* const name);
 	void open(u8 hintType);
 	void close();
 	void onCloseDone(Object eventFirer);

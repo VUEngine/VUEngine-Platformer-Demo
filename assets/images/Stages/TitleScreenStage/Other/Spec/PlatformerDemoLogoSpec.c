@@ -375,6 +375,9 @@ EntityROMSpec LOGO_IM =
 	// sprites
 	(SpriteSpec**)LOGO_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

@@ -191,7 +191,10 @@ ActorROMSpec CANNON_AC =
 			// sprites
 			(SpriteSpec**)CANNON_SPRITES,
 
-			// collision shapes
+			// use z displacement in projection
+	false,
+
+	// collision shapes
 			(ShapeSpec*)NULL,
 
 			// size

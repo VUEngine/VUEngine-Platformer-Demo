@@ -135,6 +135,9 @@ EntityROMSpec DARKNESS_OVERLAY_IM =
 	// sprites
 	(SpriteSpec**)DARKNESS_OVERLAY_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

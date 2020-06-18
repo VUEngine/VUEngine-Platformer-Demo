@@ -144,6 +144,9 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_3_A_IM =
 	// sprites
 	(SpriteSpec**)LEVEL_1_MAIN_1_MAIN_3_A_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 
@@ -168,6 +171,9 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_3_B_IM =
 
 	// sprites
 	(SpriteSpec**)LEVEL_1_MAIN_1_MAIN_3_B_IM_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

@@ -59,7 +59,7 @@ class Clouds : Entity
 	/* displacement per cycle */
 	fix10_6 displacement;
 
-	void constructor(CloudsSpec* cloudsSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(CloudsSpec* cloudsSpec, s16 internalId, const char* const name);
 	override void update(u32 elapsedTime);
 	override bool isVisible(int pad, bool recursive);
 }

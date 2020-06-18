@@ -218,7 +218,10 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 				// sprites
 				(SpriteSpec**)MOVING_PLATFORM_SPRITES,
 
-				// collision shapes
+				// use z displacement in projection
+	false,
+
+	// collision shapes
 				(ShapeSpec*)MOVING_PLATFORM_V6_AC_SHAPES,
 
 				// size

@@ -166,7 +166,10 @@ AnimatedEntityROMSpec FIRE_SMALL_AG =
 		// sprites
 		(SpriteSpec**)FIRE_SMALL_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

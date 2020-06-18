@@ -51,10 +51,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void LavaTrigger::constructor(EntitySpec* inanimatedEntitySpec, s16 id, s16 internalId, const char* const name)
+void LavaTrigger::constructor(EntitySpec* inanimatedEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(inanimatedEntitySpec, id, internalId, name);
+	Base::constructor(inanimatedEntitySpec, internalId, name);
 }
 
 // class's destructor

@@ -174,7 +174,10 @@ AnimatedEntityROMSpec WATERFALL_STREAM_2x16_AG =
 		// sprites
 		(SpriteSpec**)WATERFALL_STREAM_2x16_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

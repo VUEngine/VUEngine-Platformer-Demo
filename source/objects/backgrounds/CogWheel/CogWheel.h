@@ -47,7 +47,7 @@ typedef const CogWheelSpec CogWheelROMSpec;
 
 class CogWheel : Entity
 {
-	void constructor(EntitySpec* spec, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* spec, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 }

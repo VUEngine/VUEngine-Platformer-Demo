@@ -33,10 +33,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void AwesomeCloud::constructor(AwesomeCloudSpec* awesomeCloudSpec, s16 id, s16 internalId, const char* const name)
+void AwesomeCloud::constructor(AwesomeCloudSpec* awesomeCloudSpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(&awesomeCloudSpec->entitySpec, id, internalId, name);
+	Base::constructor(&awesomeCloudSpec->entitySpec, internalId, name);
 
 	this->awesomeCloudSpec = awesomeCloudSpec;
 }

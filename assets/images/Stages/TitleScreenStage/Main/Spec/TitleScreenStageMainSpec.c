@@ -139,6 +139,9 @@ EntityROMSpec TITLE_SCREEN_STAGE_MAIN_1_IM =
 	// sprites
 	(SpriteSpec**)TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

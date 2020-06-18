@@ -78,7 +78,7 @@ class MovingEntity : Actor
 	/* spec pointer */
 	MovingEntitySpec* movingEntitySpec;
 
-	void constructor(MovingEntitySpec* MovingEntitySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(MovingEntitySpec* MovingEntitySpec, s16 internalId, const char* const name);
 	void startMovement();
 	void checkDisplacement();
 	override void ready(bool recursive);

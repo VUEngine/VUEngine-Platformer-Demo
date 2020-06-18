@@ -40,7 +40,7 @@ typedef const KeyDoorSpec KeyDoorROMSpec;
 
 class KeyDoor : Door
 {
-	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 	override bool hasDestination();
 	override void setOverlapping();

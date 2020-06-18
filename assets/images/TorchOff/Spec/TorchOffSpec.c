@@ -134,6 +134,9 @@ EntityROMSpec TORCH_OFF_IM =
 	// sprites
 	(SpriteSpec**)TORCH_OFF_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

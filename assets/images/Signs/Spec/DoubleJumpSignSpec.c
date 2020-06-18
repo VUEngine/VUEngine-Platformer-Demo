@@ -132,6 +132,9 @@ EntityROMSpec DOUBLE_JUMP_SIGN_IM =
 	// sprites
 	(SpriteSpec**)DOUBLE_JUMP_SIGN_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

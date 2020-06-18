@@ -437,7 +437,10 @@ CoinROMSpec COIN_AG =
 		// sprites
 		(SpriteSpec**)COIN_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)COIN_SHAPES,
 
 		// size
@@ -470,7 +473,10 @@ CoinROMSpec COIN_SILHOUETTE_AG =
 		// sprites
 		(SpriteSpec**)COIN_SILHOUETTE_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)COIN_SHAPES,
 
 		// size
@@ -600,7 +606,10 @@ CoinROMSpec COIN_BACK_AG =
 		// sprites
 		(SpriteSpec**)COIN_BACK_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)COIN_BACK_SHAPES,
 
 		// size
@@ -633,7 +642,10 @@ CoinROMSpec COIN_BACK_SILHOUETTE_AG =
 		// sprites
 		(SpriteSpec**)COIN_BACK_SILHOUETTE_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)COIN_BACK_SHAPES,
 
 		// size

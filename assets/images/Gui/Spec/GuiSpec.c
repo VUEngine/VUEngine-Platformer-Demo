@@ -270,7 +270,10 @@ AnimatedEntityROMSpec GUI_AG =
 		// sprites
 		(SpriteSpec**)GUI_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size
@@ -303,7 +306,10 @@ AnimatedEntityROMSpec GUI_OVERWORLD_AG =
 		// sprites
 		(SpriteSpec**)GUI_OVERWORLD_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

@@ -135,30 +135,12 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
  *
  * @param this		Function scope
  */
-void HbiasMaskMBgmapSprite::render()
+u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unused)))
 {
-	if(!this->positioned)
-	{
-		return;
-	}
-
-	// if render flag is set
-	if(!this->worldLayer)
-	{
-		return;
-	}
-
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 
 	static WorldAttributes* worldPointer = NULL;
-	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
-
-	// if render flag is set
-	if(!this->texture)
-	{
-		worldPointer->head = __WORLD_OFF;
-		return;
-	}
+	worldPointer = &_worldAttributesBaseAddress[index];
 
 	if(isDeleted(this->owner) || isDeleted(this->referenceSprite))
 	{
@@ -169,13 +151,13 @@ void HbiasMaskMBgmapSprite::render()
 		worldPointer->w = 0;
 		worldPointer->h = 0;
 #endif
-		return;
+		return __NO_RENDER_INDEX;
 	}
 
 	if(!this->referenceSprite->positioned || !this->referenceSprite->texture || !this->referenceSprite->texture->written)
 	{
 		worldPointer->head = __WORLD_OFF;
-		return;
+		return __NO_RENDER_INDEX;
 	}
 
 	VirtualList ownerSprites = Entity::getSprites(this->owner);
@@ -228,7 +210,7 @@ void HbiasMaskMBgmapSprite::render()
 		worldPointer->w = 0;
 		worldPointer->h = 0;
 #endif
-		return;
+		return __NO_RENDER_INDEX;
 	}
 
 	worldPointer->mx = referenceSpriteWorldPointer->mx;
@@ -245,7 +227,9 @@ void HbiasMaskMBgmapSprite::render()
 	// set the head
 	worldPointer->head = this->head | (BgmapTexture::safeCast(this->texture))->segment;
 
-	BgmapSprite::processHbiasEffects(this);
+	BgmapSprite::processHbiasEffects(this, index);
+
+	return index;
 }
 
 s16 HbiasMaskMBgmapSprite::wave()

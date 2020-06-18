@@ -126,7 +126,10 @@ WaterPondROMSpec WATER_POND_EN =
 			// sprites
 			(SpriteSpec**)WATER_POND_EN_SPRITES,
 
-			// collision shapes
+			// use z displacement in projection
+	false,
+
+	// collision shapes
 			(ShapeSpec*)WATER_POND_EN_SHAPES,
 
 			// size

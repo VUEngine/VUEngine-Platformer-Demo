@@ -161,6 +161,9 @@ EntityROMSpec OVERWORLD_1_IM =
 	// sprites
 	(SpriteSpec**)OVERWORLD_1_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

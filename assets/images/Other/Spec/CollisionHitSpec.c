@@ -44,6 +44,9 @@ CollisionROMSpec COLLISION_HIT_CL =
 	// sprites
 	(SpriteSpec**)NULL,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

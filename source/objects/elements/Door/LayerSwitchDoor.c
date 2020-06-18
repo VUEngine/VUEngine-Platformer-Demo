@@ -39,10 +39,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void LayerSwitchDoor::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
+void LayerSwitchDoor::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntitySpec, id, internalId, name);
+	Base::constructor(animatedEntitySpec, internalId, name);
 }
 
 // class's destructor

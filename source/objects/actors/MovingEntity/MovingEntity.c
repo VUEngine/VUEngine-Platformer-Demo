@@ -42,10 +42,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void MovingEntity::constructor(MovingEntitySpec* movingEntitySpec, s16 id, s16 internalId, const char* const name)
+void MovingEntity::constructor(MovingEntitySpec* movingEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorSpec*)&movingEntitySpec->actorSpec, id, internalId, name);
+	Base::constructor((ActorSpec*)&movingEntitySpec->actorSpec, internalId, name);
 
 	this->movingEntitySpec = movingEntitySpec;
 

@@ -51,7 +51,7 @@ class Door : AnimatedEntity
 	/* destination of door */
 	StageEntryPointSpec* destinationSpec;
 
-	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name);
 	StageEntryPointSpec* getExtraInfo();
 	void onOverlapping();
 	virtual bool hasDestination();

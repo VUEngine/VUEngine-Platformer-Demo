@@ -142,6 +142,9 @@ EntityROMSpec LEVEL_1_MAIN_1_BACK_5_IM =
 	// sprites
 	(SpriteSpec**)LEVEL_1_MAIN_1_BACK_5_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

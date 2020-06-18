@@ -82,10 +82,10 @@ const PixelSize collision_62_25_4 = {62 * 8, 	25 * 8, 	8 * 8};
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Collision::constructor(EntitySpec* inGameEntitySpec, s16 id, s16 internalId, const char* const name)
+void Collision::constructor(EntitySpec* inGameEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(inGameEntitySpec, id, internalId, name);
+	Base::constructor(inGameEntitySpec, internalId, name);
 }
 
 // class's destructor

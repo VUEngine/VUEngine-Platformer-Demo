@@ -189,7 +189,10 @@ AnimatedEntityROMSpec BUSH_AG =
 		// sprites
 		(SpriteSpec**)BUSH_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

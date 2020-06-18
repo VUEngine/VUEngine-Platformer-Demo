@@ -135,6 +135,9 @@ EntityROMSpec VUENGINE_LOGO_IM =
 	// sprites
 	(SpriteSpec**)VUENGINE_LOGO_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

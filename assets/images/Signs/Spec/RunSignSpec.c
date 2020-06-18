@@ -132,6 +132,9 @@ EntityROMSpec RUN_SIGN_IM =
 	// sprites
 	(SpriteSpec**)RUN_SIGN_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

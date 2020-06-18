@@ -105,7 +105,7 @@ void AwesomeCloudBgmapSprite::setPosition(const PixelVector* position)
  * @memberof		AwesomeCloudBgmapSprite
  * @public
  */
-void AwesomeCloudBgmapSprite::render()
+u16 AwesomeCloudBgmapSprite::doRender(u16 index, bool evenFrame)
 {
 	this->drawSpec.textureSource.my += this->awesomeCloudBgmapSpriteSpec->myStep;
 
@@ -116,15 +116,16 @@ void AwesomeCloudBgmapSprite::render()
 
 	BgmapSprite::invalidateParamTable(this);
 
-	Base::render(this);
+	u16 result = Base::doRender(this, index, evenFrame);
 
 	static WorldAttributes* worldPointer = NULL;
-	worldPointer = &_worldAttributesBaseAddress[this->worldLayer];
+	worldPointer = &_worldAttributesBaseAddress[index];
 
 	//worldPointer->gx -= 20;
 	//worldPointer->w = __SCREEN_WIDTH + 19;
 	worldPointer->h -= 4;
 
 //	Sprite::print(this, 20, 1);
+	return result;
 }
 

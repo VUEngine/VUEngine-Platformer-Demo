@@ -136,6 +136,9 @@ CogWheelROMSpec COG_WHEEL_IM =
 	// sprites
 	(SpriteSpec**)COG_WHEEL_BG_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

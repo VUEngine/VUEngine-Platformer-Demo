@@ -423,7 +423,10 @@ AnimatedEntityROMSpec HINT_MC =
 		// sprites
 		(SpriteSpec**)HINT_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

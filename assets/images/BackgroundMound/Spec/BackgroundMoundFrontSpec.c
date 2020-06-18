@@ -162,6 +162,9 @@ EntityROMSpec MOUND_BG_FRONT_IM =
 	// sprites
 	(SpriteSpec**)MOUND_BG_FRONT_SB_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

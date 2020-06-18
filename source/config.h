@@ -48,8 +48,10 @@
 #undef __PROFILE_GAME_STATE_DURING_VIP_INTERRUPT
 
 // alert vip's overtime
-#define __ALERT_VIP_OVERTIME
+#undef __ALERT_VIP_OVERTIME
 
+// stack headroom
+#define __STACK_HEADROOM								1000
 
 //---------------------------------------------------------------------------------------------------------
 //											DEBUGGING TOOLS
@@ -276,25 +278,28 @@
 #define __TOTAL_LAYERS								32
 
 // Account for VIP's design to draw 8 pixel when BGMAP WORLD's height is less than 8
-#undef __HACK_BGMAP_SPRITE_HEIGHT
-		
+#define __HACK_BGMAP_SPRITE_HEIGHT
+
 
 //---------------------------------------------------------------------------------------------------------
 //											TEXTURE MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
 // total number of bgmap segments
-#define __TOTAL_NUMBER_OF_BGMAPS_SEGMENTS 			14
+#define __TOTAL_NUMBER_OF_BGMAPS_SEGMENTS 			11
 
-// bgmap segments to use (leave 2 to allocate param table, 1 for printing)
-#define __MAX_NUMBER_OF_BGMAPS_SEGMENTS 			(__TOTAL_NUMBER_OF_BGMAPS_SEGMENTS - 3)
+// number of segments for param tables
+#define __PARAM_TABLE_SEGMENTS						1
+
+// bgmap segments to use (1 for printing)
+#define __MAX_NUMBER_OF_BGMAPS_SEGMENTS 			(__TOTAL_NUMBER_OF_BGMAPS_SEGMENTS - __PARAM_TABLE_SEGMENTS)
 
 // number of bgmap specs in each bgmap segment
 #define __NUM_BGMAPS_PER_SEGMENT 					16
 
 // printing area
 #define __PRINTING_BGMAP_X_OFFSET					0
-#define __PRINTING_BGMAP_Y_OFFSET					0
+#define __PRINTING_BGMAP_Y_OFFSET					(64 * 8 - __SCREEN_HEIGHT)
 #define __PRINTING_BGMAP_PARALLAX_OFFSET			0
 #define __PRINTABLE_BGMAP_AREA 						1792
 
@@ -308,25 +313,6 @@
 
 // maximum number of rows to write on each call to affine calculation functions
 #define __MAXIMUM_AFFINE_ROWS_PER_CALL				16
-
-
-//---------------------------------------------------------------------------------------------------------
-//												STREAMING
-//---------------------------------------------------------------------------------------------------------
-
-// number of total calls to the streaming method which completes a cycle
-// there are 4 parts for the streaming algorithm:
-// 1) unload entities
-// 2) select the next entity to load
-// 3) create the selected entity
-// 4) initialize the loaded entity
-#define __STREAM_CYCLE_DURATION						24
-
-// padding to determine if an entity must be loaded/unloaded
-// • load pad must always be lower than unload pad!
-// • too close values will put the streaming under heavy usage!
-#define __ENTITY_LOAD_PAD 							256
-#define __ENTITY_UNLOAD_PAD 						312
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -378,6 +364,8 @@
 // default delay between steps in fade effect
 #define __FADE_DELAY								8
 
+// defaul step increment in fade transitions
+#define __CAMERA_EFFECT_FADE_INCREMENT				8
 
 //---------------------------------------------------------------------------------------------------------
 //											COLOR PALETTES

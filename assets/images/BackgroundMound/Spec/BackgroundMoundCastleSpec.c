@@ -134,6 +134,9 @@ EntityROMSpec MOUND_BG_CASTLE_IM =
 	// sprites
 	(SpriteSpec**)MOUND_BG_CASTLE_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

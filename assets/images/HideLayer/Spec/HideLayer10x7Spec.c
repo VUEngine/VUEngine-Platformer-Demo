@@ -267,7 +267,10 @@ HideLayerROMSpec HIDE_LAYER_10x7_AG =
 		// sprites
 		(SpriteSpec**)HIDE_LAYER_10x7_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)HIDE_LAYER_10x7_AG_SHAPES,
 
 		// size

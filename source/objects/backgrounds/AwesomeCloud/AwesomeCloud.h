@@ -58,7 +58,7 @@ class AwesomeCloud : Entity
 {
 	AwesomeCloudSpec* awesomeCloudSpec;
 
-	void constructor(AwesomeCloudSpec* AwesomeCloudSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(AwesomeCloudSpec* AwesomeCloudSpec, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 //	override void update(u32 elapsedTime);
 }

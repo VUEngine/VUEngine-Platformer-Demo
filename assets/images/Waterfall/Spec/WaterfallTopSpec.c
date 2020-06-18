@@ -174,7 +174,10 @@ AnimatedEntityROMSpec WATERFALL_TOP_AG =
 		// sprites
 		(SpriteSpec**)WATERFALL_TOP_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

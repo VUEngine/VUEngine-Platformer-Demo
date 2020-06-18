@@ -180,6 +180,9 @@ LavaROMSpec LAVA_IG =
 	// sprites
 	(SpriteSpec**)LAVA_BG_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)LAVA_IG_SHAPES,
 

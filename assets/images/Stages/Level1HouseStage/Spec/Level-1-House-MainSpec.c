@@ -141,6 +141,9 @@ EntityROMSpec LEVEL_1_HOUSE_MAIN_IM =
 	// sprites
 	(SpriteSpec**)LEVEL_1_HOUSE_MAIN_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

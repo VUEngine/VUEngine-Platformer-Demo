@@ -169,7 +169,10 @@ AnimatedEntityROMSpec TORCH_LIGHT_AG =
 		// sprites
 		(SpriteSpec**)TORCH_LIGHT_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

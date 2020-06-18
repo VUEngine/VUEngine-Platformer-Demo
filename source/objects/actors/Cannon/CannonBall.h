@@ -49,7 +49,7 @@ typedef const CannonBallSpec CannonBallROMSpec;
 
 class CannonBall : Actor
 {
-	void constructor(CannonBallSpec* cannonBallSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(CannonBallSpec* cannonBallSpec, s16 internalId, const char* const name);
 	void startMovement();
 	void checkPosition();
 	override bool handleMessage(Telegram telegram);

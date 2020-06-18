@@ -135,6 +135,9 @@ EntityROMSpec CLOUD_A_IM =
 	// sprites
 	(SpriteSpec**)CLOUD_A_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

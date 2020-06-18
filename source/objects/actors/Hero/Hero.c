@@ -81,10 +81,10 @@ static void Hero::setInstance(Hero instance)
 
 
 // class's constructor
-void Hero::constructor(HeroSpec* heroSpec, s16 id, s16 internalId, const char* const name)
+void Hero::constructor(HeroSpec* heroSpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorSpec*)heroSpec, id, internalId, name);
+	Base::constructor((ActorSpec*)heroSpec, internalId, name);
 
 	// construct the game state machine
 	this->stateMachine = new StateMachine(this);

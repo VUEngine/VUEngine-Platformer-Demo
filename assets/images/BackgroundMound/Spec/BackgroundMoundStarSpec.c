@@ -189,7 +189,10 @@ AnimatedEntityROMSpec STAR_AG =
 		// sprites
 		(SpriteSpec**)STAR_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

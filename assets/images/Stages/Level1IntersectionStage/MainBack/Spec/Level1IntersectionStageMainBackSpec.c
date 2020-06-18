@@ -139,6 +139,9 @@ EntityROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM =
 	// sprites
 	(SpriteSpec**)LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

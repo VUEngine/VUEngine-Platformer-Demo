@@ -144,7 +144,10 @@ AwesomeCloudROMSpec CLOUDS_BACKGROUND_EN =
 		// sprites
 		(SpriteSpec**)CLOUDS_BACKGROUND_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		NULL,
 
 		// size

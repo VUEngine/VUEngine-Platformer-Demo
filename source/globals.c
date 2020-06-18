@@ -77,6 +77,9 @@ EntityROMSpec MANAGED_ENTITY =
 	// sprites
 	NULL,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

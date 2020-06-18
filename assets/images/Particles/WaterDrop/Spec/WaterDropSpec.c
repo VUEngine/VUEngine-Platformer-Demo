@@ -133,6 +133,9 @@ EntityROMSpec WATER_DROP_IM =
 	// sprites
 	(SpriteSpec**)WATER_DROP_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

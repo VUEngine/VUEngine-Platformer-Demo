@@ -47,7 +47,7 @@ typedef const LavaSpec LavaROMSpec;
 
 class Lava : Entity
 {
-	void constructor(EntitySpec* spec, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* spec, s16 internalId, const char* const name);
 	void startMoving();
 	override bool handleMessage(Telegram telegram);
 	override bool isVisible(int pad, bool recursive);

@@ -40,10 +40,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Door::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
+void Door::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntitySpec, id, internalId, name);
+	Base::constructor(animatedEntitySpec, internalId, name);
 
 	// init class variables
 	this->destinationSpec = NULL;

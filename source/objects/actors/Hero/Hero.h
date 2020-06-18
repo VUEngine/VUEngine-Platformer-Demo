@@ -110,7 +110,7 @@ class Hero : Actor
 	bool underWater;
 
 	static Hero getInstance();
-	void constructor(HeroSpec* heroSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(HeroSpec* heroSpec, s16 internalId, const char* const name);
 	void addForceOnAxis(u16 axis, bool enableAddingForce);
 	void stopAddingForce();
 	void startedMovingOnAxis(u16 axis);

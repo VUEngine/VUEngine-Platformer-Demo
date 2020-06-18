@@ -133,6 +133,9 @@ EntityROMSpec DUST_PARTICLE_LARGE_IM =
 	// sprites
 	(SpriteSpec**)DUST_PARTICLE_LARGE_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	(ShapeSpec*)NULL,
 

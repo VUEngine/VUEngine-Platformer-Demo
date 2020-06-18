@@ -40,7 +40,7 @@ typedef const CollectableSpec CollectableROMSpec;
 
 class Collectable : AnimatedEntity
 {
-	void constructor(AnimatedEntitySpec* spec, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* spec, s16 internalId, const char* const name);
 	virtual void collect();
 	override bool handleMessage(Telegram telegram);
 }

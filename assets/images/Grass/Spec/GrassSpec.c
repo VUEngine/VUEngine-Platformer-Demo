@@ -189,7 +189,10 @@ AnimatedEntityROMSpec GRASS_AG =
 		// sprites
 		(SpriteSpec**)GRASS_SPRITES,
 
-		// collision shapes
+		// use z displacement in projection
+	false,
+
+	// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size
