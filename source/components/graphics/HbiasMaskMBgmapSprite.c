@@ -117,7 +117,7 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
 			if(!isDeleted(referenceSpriteOwnerSpritesList))
 			{
 				this->referenceSprite = Sprite::safeCast(VirtualList::front(referenceSpriteOwnerSpritesList));
-				this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z;
+				this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z - 1;
 
 				this->texture = Sprite::getTexture(this->referenceSprite);
 				this->param = ParamTableManager::allocate(ParamTableManager::getInstance(), this);
@@ -126,7 +126,7 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
 	}
 	else
 	{
-		this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z;
+		this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z - 1;
 	}
 }
 
