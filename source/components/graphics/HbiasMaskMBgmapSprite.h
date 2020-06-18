@@ -88,10 +88,11 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 	*/
 	u8 step;
 
+	static s16 wave(BgmapSprite bgmapSprite);
+
 	void constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, Object owner);
-	s16 wave();
 	override u16 doRender(u16 index, bool evenFrame);
-	override void position(const Vector3D* position);
+	override void setPosition(const Vector3D* position);
 	override void setMode(u16 display, u16 mode);
 }
 

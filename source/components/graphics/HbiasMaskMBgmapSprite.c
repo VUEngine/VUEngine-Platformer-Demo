@@ -92,9 +92,9 @@ void HbiasMaskMBgmapSprite::destructor()
 	Base::destructor();
 }
 
-void HbiasMaskMBgmapSprite::position(const Vector3D* position)
+void HbiasMaskMBgmapSprite::setPosition(const Vector3D* position)
 {
-	Base::position(this, position);
+	Base::setPosition(this, position);
 
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 }
@@ -118,6 +118,9 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
 			{
 				this->referenceSprite = Sprite::safeCast(VirtualList::front(referenceSpriteOwnerSpritesList));
 				this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z;
+
+				this->texture = Sprite::getTexture(this->referenceSprite);
+				this->param = ParamTableManager::allocate(ParamTableManager::getInstance(), this);
 			}
 		}
 	}
@@ -146,7 +149,6 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 	{
 		this->referenceSprite = NULL;
 
-		worldPointer->head = __WORLD_OFF;
 #ifdef __PROFILE_GAME
 		worldPointer->w = 0;
 		worldPointer->h = 0;
@@ -156,7 +158,6 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 
 	if(!this->referenceSprite->positioned || !this->referenceSprite->texture || !this->referenceSprite->texture->written)
 	{
-		worldPointer->head = __WORLD_OFF;
 		return __NO_RENDER_INDEX;
 	}
 
@@ -193,7 +194,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
 
-	if(!referenceSpriteWorldLayer
+	if(__NO_RENDER_INDEX == (signed)referenceSpriteWorldLayer
     	||
     	!Texture::isWritten(Sprite::getTexture(this->referenceSprite))
     	||
@@ -205,7 +206,6 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 		||
 		__WORLD_OFF == referenceSpriteWorldPointer->head)
 	{
-		worldPointer->head = __WORLD_OFF;
 #ifdef __PROFILE_GAME
 		worldPointer->w = 0;
 		worldPointer->h = 0;
@@ -226,14 +226,14 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 
 	// set the head
 	worldPointer->head = this->head | (BgmapTexture::safeCast(this->texture))->segment;
-
-	BgmapSprite::processHbiasEffects(this, index);
+	worldPointer->param = (u16)(((this->param) - 0x20000) >> 1) & 0xFFF0;
 
 	return index;
 }
 
-s16 HbiasMaskMBgmapSprite::wave()
+static s16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
 {
+	HbiasMaskMBgmapSprite this = HbiasMaskMBgmapSprite::safeCast(bgmapSprite);
 	s32 spriteHeight = Sprite::getWorldHeight(this);
 	s16 i = this->paramTableRow;
 	s16 j = 0;
