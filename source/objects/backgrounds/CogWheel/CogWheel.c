@@ -101,9 +101,10 @@ bool CogWheel::handleMessage(Telegram telegram)
 // rotate cogwheel
 void CogWheel::rotate()
 {
-	this->transformation.localRotation.z += 1;
+	Rotation localRotation = this->transformation.localRotation;
+	localRotation.z += 1;
 
-	Entity::setLocalRotation(this, &this->transformation.localRotation);
+	Entity::setLocalRotation(this, &localRotation);
 
 	// send delayed message to self to trigger next movement
 	MessageDispatcher::dispatchMessage(COG_WHEEL_ROTATION_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCogWheelMove, NULL);
