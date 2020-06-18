@@ -40,7 +40,7 @@
 #define INGAME_CAMERA_FRUSTUM_Y0				0
 #define INGAME_CAMERA_FRUSTUM_Z0				-10
 #define INGAME_CAMERA_FRUSTUM_X1				__SCREEN_WIDTH
-#define INGAME_CAMERA_FRUSTUM_Y1				__SCREEN_HEIGHT - (2 << 3)
+#define INGAME_CAMERA_FRUSTUM_Y1				(__SCREEN_HEIGHT - (2 << 3) + 4) // plus 4 to make sure that the GUI is not culled off
 #define INGAME_CAMERA_FRUSTUM_Z1				__SCREEN_WIDTH * 5
 
 // layers
