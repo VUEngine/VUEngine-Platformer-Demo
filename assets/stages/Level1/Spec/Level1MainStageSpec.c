@@ -745,11 +745,11 @@ StageROMSpec LEVEL_1_MAIN_STAGE_ST =
 		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
 			// __spt0
-			LAYER_0_PARTICLES,
+			LAYER_0_PARTICLES + 1,
 			// __spt1
-			LAYER_0_PARTICLES,
+			LAYER_0_PARTICLES + 1,
 			// __spt2
-			LAYER_0_PARTICLES,
+			LAYER_0_PARTICLES + 1,
 			// __spt3
 			15,
 		},
