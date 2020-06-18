@@ -438,9 +438,9 @@ CoinROMSpec COIN_AG =
 		(SpriteSpec**)COIN_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)COIN_SHAPES,
 
 		// size
