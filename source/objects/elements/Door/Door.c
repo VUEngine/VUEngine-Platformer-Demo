@@ -64,9 +64,9 @@ StageEntryPointSpec* Door::getExtraInfo()
 }
 
 // set destination
-void Door::setExtraInfo(void* extraInfo)
+void Door::setExtraInfo(const PositionedEntity* const positionedEntity)
 {
-	this->destinationSpec = (StageEntryPointSpec*)extraInfo;
+	this->destinationSpec = (StageEntryPointSpec*)positionedEntity->extraInfo;
 }
 
 // ready

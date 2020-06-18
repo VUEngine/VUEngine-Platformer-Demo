@@ -59,7 +59,7 @@ class Door : AnimatedEntity
 	virtual void unsetOverlapping();
 	virtual bool canEnter();
 	virtual u32 getHintType();
-	override void setExtraInfo(void* extraInfo);
+	override void setExtraInfo(const PositionedEntity* const positionedEntity);
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 }
