@@ -86,7 +86,7 @@
 		"profileStreaming": false,
 		"showGameProfiling": false,
 		"showStreamingProfiling": false,
-		"stackHeadroom": 1000,
+		"stackHeadroom": 500,
 		"alertForTornFrames": false
 	},
 	"exception": {
@@ -107,11 +107,11 @@
 		"pools": [
 			{
 				"size": 20,
-				"objects": 440
+				"objects": 400
 			},
 			{
 				"size": 24,
-				"objects": 680
+				"objects": 600
 			},
 			{
 				"size": 32,

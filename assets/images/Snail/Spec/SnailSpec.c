@@ -266,9 +266,9 @@ MovingEntityROMSpec SNAIL_8_AC =
 				(SpriteSpec**)SNAIL_SPRITES,
 
 				// use z displacement in projection
-	false,
+				false,
 
-	// collision shapes
+				// collision shapes
 				(ShapeSpec*)SNAIL_AC_SHAPES,
 
 				// size

@@ -51,7 +51,7 @@
 #undef __ALERT_VIP_OVERTIME
 
 // stack headroom
-#define __STACK_HEADROOM								1000
+#define __STACK_HEADROOM								500
 
 //---------------------------------------------------------------------------------------------------------
 //											DEBUGGING TOOLS
@@ -232,8 +232,8 @@
 	__BLOCK_DEFINITION(72, 40) \
 	__BLOCK_DEFINITION(44, 20) \
 	__BLOCK_DEFINITION(32, 340) \
-	__BLOCK_DEFINITION(24, 680) \
-	__BLOCK_DEFINITION(20, 440) \
+	__BLOCK_DEFINITION(24, 600) \
+	__BLOCK_DEFINITION(20, 400) \
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS \
