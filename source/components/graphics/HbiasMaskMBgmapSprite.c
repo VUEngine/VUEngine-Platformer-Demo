@@ -143,7 +143,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 
 	static WorldAttributes* worldPointer = NULL;
-	worldPointer = &_worldAttributesBaseAddress[index];
+	worldPointer = &_worldAttributesCache[index];
 
 	if(isDeleted(this->owner) || isDeleted(this->referenceSprite))
 	{
@@ -187,7 +187,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 
 	u8 referenceSpriteWorldLayer = Sprite::getWorldLayer(this->referenceSprite);
 
-	WorldAttributes* referenceSpriteWorldPointer = &_worldAttributesBaseAddress[referenceSpriteWorldLayer];
+	WorldAttributes* referenceSpriteWorldPointer = &_worldAttributesCache[referenceSpriteWorldLayer];
 
 	// get coordinates
 	worldPointer->gx = referenceSpriteWorldPointer->gx;
@@ -196,15 +196,13 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 
 	if(__NO_RENDER_INDEX == (signed)referenceSpriteWorldLayer
     	||
-    	!Texture::isWritten(Sprite::getTexture(this->referenceSprite))
-    	||
 		ownerSpriteGY < worldPointer->gy
 		||
 		_cameraFrustum->y1 <= ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight
 		||
 		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy
 		||
-		__WORLD_OFF == referenceSpriteWorldPointer->head)
+		this->referenceSprite->hidden)
 	{
 #ifdef __PROFILE_GAME
 		worldPointer->w = 0;
