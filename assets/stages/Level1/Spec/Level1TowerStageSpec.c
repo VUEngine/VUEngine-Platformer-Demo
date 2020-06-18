@@ -298,7 +298,7 @@ CharSetROMSpec* const LEVEL_1_TOWER_STAGE_ST_CHARSETS[] =
 
 TextureSpec* const LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 {
-	&COG_WHEEL_TX,
+/*	&COG_WHEEL_TX,
 	&LEVEL_1_TOWER_BACK_1_TX,
 	&LEVEL_1_TOWER_MAIN_BACK_1_TX,
 	&LEVEL_1_TOWER_MAIN_BACK_1_TX,
@@ -309,7 +309,7 @@ TextureSpec* const LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 	&LAVA_TX,
 	&LAVA_TOP_TX,
 	&DARKNESS_OVERLAY_TX,
-
+*/
 	NULL
 };
 
@@ -448,7 +448,7 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 
 		// bgmap segments configuration
 		// number of segments reserved for the param table
-		4,
+		2,
 
 		// object segments sizes (up to 1024 in total)
 		// can impact performance, make sure to configure only as large as maximally needed
