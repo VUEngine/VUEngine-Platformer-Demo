@@ -92,7 +92,7 @@ void HbiasMaskMBgmapSprite::destructor()
 	Base::destructor();
 }
 
-void HbiasMaskMBgmapSprite::setPosition(const Vector3D* position)
+void HbiasMaskMBgmapSprite::setPosition(const PixelVector* position)
 {
 	Base::setPosition(this, position);
 
@@ -194,7 +194,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
 
-	if(__NO_RENDER_INDEX == (signed)referenceSpriteWorldLayer
+	if((unsigned)__NO_RENDER_INDEX == referenceSpriteWorldLayer
     	||
 		ownerSpriteGY < worldPointer->gy
 		||
