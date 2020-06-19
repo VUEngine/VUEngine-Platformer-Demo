@@ -205,7 +205,7 @@ BgmapSpriteROMSpec GUI_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, INGAME_CAMERA_FRUSTUM_Z0 + 8, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -232,7 +232,7 @@ BgmapSpriteROMSpec GUI_OVERWORLD_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, INGAME_CAMERA_FRUSTUM_Z0 + 8, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
