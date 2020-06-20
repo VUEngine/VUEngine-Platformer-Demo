@@ -120,7 +120,7 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
 				this->position.z = Sprite::getDisplacedPosition(this->referenceSprite).z - 1;
 
 				this->texture = Sprite::getTexture(this->referenceSprite);
-				this->param = ParamTableManager::allocate(ParamTableManager::getInstance(), this);
+				this->param = ParamTableManager::allocate(ParamTableManager::getInstance(), BgmapSprite::safeCast(this));
 			}
 		}
 	}
@@ -185,7 +185,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 		ownerSpriteGY = __FIX10_6_TO_I(ownerPosition2D.y);
 	}
 
-	u8 referenceSpriteWorldLayer = Sprite::getWorldLayer(this->referenceSprite);
+	u8 referenceSpriteWorldLayer = Sprite::getIndex(this->referenceSprite);
 
 	WorldAttributes* referenceSpriteWorldPointer = &_worldAttributesCache[referenceSpriteWorldLayer];
 
@@ -194,7 +194,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
 
-	if((unsigned)__NO_RENDER_INDEX == referenceSpriteWorldLayer
+	if((u8)__NO_RENDER_INDEX == referenceSpriteWorldLayer
     	||
 		ownerSpriteGY < worldPointer->gy
 		||
