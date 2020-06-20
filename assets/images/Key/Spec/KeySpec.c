@@ -198,9 +198,9 @@ AnimatedEntityROMSpec KEY_AG =
 		(SpriteSpec**)KEY_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)KEY_AG_SHAPES,
 
 		// size

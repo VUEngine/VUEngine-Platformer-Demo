@@ -167,9 +167,9 @@ AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_AG =
 		(SpriteSpec**)MOUND_BG_CASTLE_FLAG_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

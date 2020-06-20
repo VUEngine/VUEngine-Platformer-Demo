@@ -753,7 +753,7 @@ void Hero::enterDoor()
 
 void Hero::addHint()
 {
-	Vector3D position = {0, 0, __PIXELS_TO_METERS(-1)};
+	Vector3D position = {0, 0, __PIXELS_TO_METERS(-4)};
 
 	// save the hint entity, so we can remove it later
 	this->hint = Entity::addChildEntity(this, &HINT_MC, -1, "hint", &position, NULL);

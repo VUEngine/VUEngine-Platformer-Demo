@@ -50,25 +50,25 @@ PositionedEntityROMSpec OVERWORLD1_STAGE_ST_ENTITIES[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{__LOW_POWER_ENTITY_X_POSITION, __LOW_POWER_ENTITY_Y_POSITION, __LOW_POWER_ENTITY_Z_POSITION, __LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&WATER_A_AG, {(26), (86), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_AG, {(70), (18), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_AG, {(74), (176), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Water
-	{&FLOWER_A_AG, {(124), (118), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {(130), (82), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {(156), (200), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&HERO_IDLE_AG, {(160), (92), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
+	{&WATER_A_AG, {(26), (86), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&WATER_A_AG, {(70), (18), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&WATER_A_AG, {(74), (176), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&FLOWER_A_AG, {(124), (118), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(130), (82), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(156), (200), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&HERO_IDLE_AG, {(160), (92), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
 	{&OVERWORLD_1_IM, {(192), (112), LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
-	{&FLOWER_A_AG, {(218), (168), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&SMOKE_PS, {(222.5), (48), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Smoke
-	{&FLOWER_A_AG, {(226), (132), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_AG, {(290), (136), (LAYER_0_BACKGROUND), 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(218), (168), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&SMOKE_PS, {(222.5), (48), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Smoke
+	{&FLOWER_A_AG, {(226), (132), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FLOWER_A_AG, {(290), (136), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
 {
-	{&GUI_OVERWORLD_AG, {(192), (216), (0), 0}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GUI_OVERWORLD_AG, {192, 215, -2, 0}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -107,7 +107,7 @@ StageROMSpec OVERWORLD1_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
-		false		
+		false
 	},
 
 	// level

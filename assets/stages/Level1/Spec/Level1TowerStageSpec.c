@@ -113,7 +113,7 @@ extern Size collision_48_28_4;
 
 PositionedEntityROMSpec LAVA_CHILD_ENTITIES[] =
 {
-	{&LAVA_TOP_AG, 					{0, -102, -1, 0}, 0, NULL, NULL, NULL, false},
+	{&LAVA_TOP_AG, 					{0, -104, -1, 0}, 0, NULL, NULL, NULL, false},
 	{&DARKNESS_OVERLAY_IM, 			{0, -460, -4, 0}, 0, NULL, NULL, NULL, false},
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -272,7 +272,7 @@ PositionedEntityROMSpec LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
 PositionedEntityROMSpec LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
-	{&GUI_AG, {192, 216, 0, -2}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

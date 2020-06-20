@@ -75,7 +75,7 @@ PositionedEntityROMSpec LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 	//{&TORCH_LIGHT_AG, {(56), (148), (0), 0}, 0, NULL, NULL, NULL, false}, // Lower Left Torch Light
 	{&TORCH_OFF_IM, {(56), (146), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Lower Left Torch
 	{&TORCH_SMOKE_PS, {(56), (136), LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&COLLISION_CL, {(112), (96), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_64_8, false}, // Center Collision
+	{&COLLISION_CL, {(112), (95), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_64_8, false}, // Center Collision
 	{&COLLISION_CL, {(136), (184), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_272_16_8, false}, // Bottom Collision
 	{&COLLISION_CL, {(144), (32), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_32_64_8, false}, // Top Left Collision
 	//{&SAW_BLADE_H8_AC, {(172), (176), LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Saw Blade
@@ -88,14 +88,14 @@ PositionedEntityROMSpec LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 	{&TORCH_OFF_IM, {(206), (146), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Lower Right Torch
 	//{&TORCH_LIGHT_AG, {(206), (36), (0), 0}, 0, NULL, NULL, NULL, false}, // Upper Left Torch Light
 	{&COIN_AG, {(236), (108), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "47", NULL, NULL, false}, // Coin
-	{&COLLISION_TOP_CL, {(248), (80), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_32_8, false}, // Upper One-Way
+	{&COLLISION_TOP_CL, {(248), (79), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_32_8, false}, // Upper One-Way
 	{&COLLISION_TOP_CL, {(248), (135), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_34_8, false}, // Lower One-Way
 	{&COIN_AG, {(260), (108), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "46", NULL, NULL, false}, // Coin
 	{&COLLISION_CL, {(272), (8), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_16_8, false}, // Top Collision
 	//{&TORCH_LIGHT_AG, {(320), (36), (0), 0}, 0, NULL, NULL, NULL, false}, // Upper Right Torch Light
 	{&TORCH_OFF_IM, {(320), (34), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Upper Right Torch
 	{&TORCH_SMOKE_PS, {(320), (24), LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&COLLISION_CL, {(328), (128), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_112_128_8, false}, // Bottom Right Collision
+	{&COLLISION_CL, {(328), (127), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_112_128_8, false}, // Bottom Right Collision
 	{&DOOR_AG, {(350), (48), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntExit", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false}, // Door (Exit)
 	{&COLLISION_CL, {(376), (40), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Top Right Collision
 
@@ -105,7 +105,7 @@ PositionedEntityROMSpec LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
 PositionedEntityROMSpec LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
-	{&GUI_AG, {192, 216, 0, -2}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

@@ -199,9 +199,9 @@ AnimatedEntityROMSpec BANDANA_AG =
 		(SpriteSpec**)BANDANA_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)BANDANA_AG_SHAPES,
 
 		// size

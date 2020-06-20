@@ -661,9 +661,9 @@ AnimatedEntityROMSpec HERO_IDLE_AG =
 		(SpriteSpec**)HERO_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size
@@ -697,9 +697,9 @@ AnimatedEntityROMSpec HERO_SLEEPING_AG =
 		(SpriteSpec**)HERO_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size
@@ -734,9 +734,9 @@ AnimatedEntityROMSpec HERO_BANDANA_AG =
 		(SpriteSpec**)HERO_BANDANA_AFFINE_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

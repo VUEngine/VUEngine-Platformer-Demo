@@ -167,9 +167,9 @@ AnimatedEntityROMSpec SMOKE_PARTICLE_SMALL_AG =
 		(SpriteSpec**)SMOKE_PARTICLE_SMALL_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

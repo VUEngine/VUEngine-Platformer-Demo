@@ -192,9 +192,9 @@ CloudsROMSpec CLOUDS_IM =
 		(SpriteSpec**)MOUND_BG_MIDDLE_SB_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		NULL,
 
 		// size

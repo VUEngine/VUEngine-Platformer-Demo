@@ -171,9 +171,9 @@ AnimatedEntityROMSpec LAVA_TOP_AG =
 		(SpriteSpec**)LAVA_TOP_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

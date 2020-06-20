@@ -180,9 +180,9 @@ AnimatedEntityROMSpec FLOWER_A_AG =
 		(SpriteSpec**)FLOWER_A_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

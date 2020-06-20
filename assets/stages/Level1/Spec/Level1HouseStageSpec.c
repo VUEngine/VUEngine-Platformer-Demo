@@ -70,7 +70,7 @@ PositionedEntityROMSpec LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 	{&COLLISION_CL, {(192), (168), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
 	{&COLLISION_CL, {(192), (88), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
 	{&CLOUDS_IM, {(194), (138), (LAYER_4), 0}, 0, NULL, NULL, NULL, false}, // Clouds
-	{&LEVEL_1_HOUSE_LIGHT_IM, {(196), (140), (LAYER_0_ITEMS - 1), 0}, 0, NULL, NULL, NULL, false}, // Light
+	{&LEVEL_1_HOUSE_LIGHT_IM, {(194), (139), (LAYER_0_ITEMS - 1), 0}, 0, NULL, NULL, NULL, false}, // Light
 	{&COIN_AG, {(204), (146), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "26", NULL, NULL, false}, // Coin
 	{&FIRE_SMALL_AG, {(240), (155), (32), 0}, 0, NULL, NULL, NULL, false}, // Fire
 	{&COLLISION_TOP_CL, {(240), (152), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
@@ -83,7 +83,7 @@ PositionedEntityROMSpec LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 PositionedEntityROMSpec LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
-	{&GUI_AG, {192, 216, 0, -2}, 0, NULL, NULL, NULL, true},
+	{&GUI_AG, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -254,9 +254,9 @@ StageROMSpec LEVEL1_HOUSE_STAGE_ST =
 			// __spt1
 			0,
 			// __spt2
-			64,
+			0,
 			// __spt3
-			64,
+			128,
 		},
 
 		// object segments z coordinates
@@ -264,13 +264,13 @@ StageROMSpec LEVEL1_HOUSE_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			0,
+			LAYER_0_PARTICLES,
 			// __spt1
-			0,
+			LAYER_0_PARTICLES,
 			// __spt2
-			16,
+			LAYER_0_PARTICLES,
 			// __spt3
-			1,
+			16,
 		},
 
 		// optical configuration values

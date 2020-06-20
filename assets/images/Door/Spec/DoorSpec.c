@@ -321,9 +321,9 @@ DoorROMSpec DOOR_AG =
 		(SpriteSpec**)DOOR_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
 
 		// size
@@ -357,9 +357,9 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_AG =
 		(SpriteSpec**)DOOR_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
 
 		// size
@@ -394,9 +394,9 @@ GoalDoorROMSpec GOAL_DOOR_AG =
 		(SpriteSpec**)DOOR_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
 
 		// size
@@ -430,9 +430,9 @@ KeyDoorROMSpec KEY_DOOR_AG =
 		(SpriteSpec**)DOOR_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
 
 		// size
@@ -499,9 +499,9 @@ DoorROMSpec AFFINE_DOOR_AG =
 		(SpriteSpec**)AFFINE_DOOR_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
 
 		// size
@@ -618,9 +618,9 @@ DoorROMSpec DOOR_BACK_AG =
 		(SpriteSpec**)DOOR_BACK_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
 
 		// size
@@ -654,9 +654,9 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_AG =
 		(SpriteSpec**)DOOR_BACK_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)DOOR_AG_SHAPES,
 
 		// size

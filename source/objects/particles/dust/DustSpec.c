@@ -90,16 +90,16 @@ ParticleSystemROMSpec DUST_PS =
 		// class allocator
 		__TYPE(ParticleSystem),
 
-		// behaviors 
+		// behaviors
 		NULL,
 
 		// sprites
 		(SpriteSpec**)NULL,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size

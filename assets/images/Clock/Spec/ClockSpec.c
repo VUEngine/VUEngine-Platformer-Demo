@@ -167,9 +167,9 @@ AnimatedEntityROMSpec CLOCK_AG =
 		(SpriteSpec**)CLOCK_SPRITES,
 
 		// use z displacement in projection
-	false,
+		false,
 
-	// collision shapes
+		// collision shapes
 		(ShapeSpec*)NULL,
 
 		// size
