@@ -156,7 +156,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 		return __NO_RENDER_INDEX;
 	}
 
-	if(!this->referenceSprite->positioned || !this->referenceSprite->texture || !this->referenceSprite->texture->written)
+	if(!this->referenceSprite->positioned || !this->referenceSprite->texture || kTexturePendingWriting >= this->referenceSprite->texture->status)
 	{
 		return __NO_RENDER_INDEX;
 	}
