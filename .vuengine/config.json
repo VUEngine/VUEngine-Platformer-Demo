@@ -75,19 +75,22 @@
 		"scrambleBinary": false
 	},
 	"debug": {
-		"alertStackOverflow": false,
+		"showStackOverflowAlert": false,
 		"alertVipOvertime": false,
 		"dimmForProfiling": false,
-		"printDetailedMemoryPoolStatus": false,
+		"showDetailedMemoryPoolStatus": false,
 		"printFramerate": false,
-		"printMemoryPoolStatus": false,
+		"showMemoryPoolStatus": false,
 		"profileGame": false,
 		"profileGameStateDuringVipInterrupt": false,
 		"profileStreaming": false,
 		"showGameProfiling": false,
 		"showStreamingProfiling": false,
 		"stackHeadroom": 500,
-		"alertForTornFrames": false
+		"alertForTornFrames": false,
+		"alertStackOverflow": false,
+		"printDetailedMemoryPoolStatus": false,
+		"printMemoryPoolStatus": false
 	},
 	"exception": {
 		"position": {
@@ -236,6 +239,11 @@
 			"printableArea": 1792
 		},
 		"paramTableSegments": 1
+	},
+	"hacks": {
+		"mednafen": {
+			"objectMemoryCleanup": true
+		}
 	},
 	"sections": {
 		"initializedData": ".sdata",

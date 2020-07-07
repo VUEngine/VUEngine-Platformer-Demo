@@ -404,6 +404,10 @@ void PlatformerLevelState::resume(void* owner)
 	// tell any interested entity
 	GameState::propagateMessage(this, kMessageLevelResumed);
 
+	// TODO: fix Camera::startEffect
+	__SET_BRIGHT(32, 64, 128);
+
+/*
 	// start a fade in effect
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
@@ -413,7 +417,7 @@ void PlatformerLevelState::resume(void* owner)
 		NULL, // callback function
 		NULL // callback scope
 	);
-
+*/
 #ifdef __DEBUG_TOOLS
 	}
 #endif

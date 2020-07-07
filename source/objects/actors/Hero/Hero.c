@@ -1261,11 +1261,6 @@ void Hero::onPowerUpTransitionComplete(Object eventFirer __attribute__ ((unused)
 	MessageDispatcher::dispatchMessage(300, Object::safeCast(this), Object::safeCast(this), kMessageHeroResumePhysics, NULL);
 }
 
-bool Hero::isAffectedByRelativity()
-{
-	return true;
-}
-
 void Hero::syncRotationWithBody()
 {
 	fix10_6 xLastDisplacement = Body::getLastDisplacement(this->body).x;

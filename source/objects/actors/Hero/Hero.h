@@ -149,7 +149,6 @@ class Hero : Actor
 	override bool handleMessage(Telegram telegram);
 	override void suspend();
 	override void resume();
-	override bool isAffectedByRelativity();
 	override fix10_6 getFrictionOnCollision(SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
 	override bool enterCollision(const CollisionInformation* collisionInformation);
 	override bool updateCollision(const CollisionInformation* collisionInformation);
