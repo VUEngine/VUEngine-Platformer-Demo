@@ -70,7 +70,13 @@ LavaTriggerROMSpec LAVA_TRIGGER_IG =
 	// class allocator
 	__TYPE(LavaTrigger),
 
+	// children 
+	NULL,
+
 	// behaviors 
+	NULL,
+
+	// extra info 
 	NULL,
 
 	// sprites
