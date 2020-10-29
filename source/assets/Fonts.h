@@ -19,6 +19,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern FontSpec DEFAULT_FONT;
+extern FontSpec PROFILER_FONT;
 extern FontSpec ASTONISH_FONT;
 extern FontSpec ASTONISH_EXT_FONT;
 extern FontSpec ASTONISH_S_FONT;

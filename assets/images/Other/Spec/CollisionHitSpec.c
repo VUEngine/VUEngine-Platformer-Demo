@@ -38,11 +38,17 @@ CollisionROMSpec COLLISION_HIT_CL =
 	// class allocator
 	__TYPE(Collision),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
-	(SpriteSpec**)NULL,
+	NULL,
 
 	// use z displacement in projection
 	false,

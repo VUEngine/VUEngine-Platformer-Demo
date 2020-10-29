@@ -216,7 +216,13 @@ EntityROMSpec LEVEL_1_TOWER_MAIN_BACK_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

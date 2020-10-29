@@ -133,7 +133,13 @@ EntityROMSpec TITLE_SCREEN_STAGE_MAIN_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

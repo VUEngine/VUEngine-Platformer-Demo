@@ -88,11 +88,17 @@ ParticleSystemROMSpec SMOKE_PS =
 		// class allocator
 		__TYPE(ParticleSystem),
 
-		// behaviors 
+		// children
+		NULL,
+
+		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
-		(SpriteSpec**)NULL,
+		NULL,
 
 		// use z displacement in projection
 		false,

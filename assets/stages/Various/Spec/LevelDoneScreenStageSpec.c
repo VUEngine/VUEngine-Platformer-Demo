@@ -284,12 +284,12 @@ StageROMSpec LEVEL_DONE_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			LEVEL_DONE_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)LEVEL_DONE_SCREEN_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

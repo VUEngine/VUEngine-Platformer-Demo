@@ -431,7 +431,13 @@ CoinROMSpec COIN_AG =
 		// class allocator
 		__TYPE(Coin),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -467,7 +473,13 @@ CoinROMSpec COIN_SILHOUETTE_AG =
 		// class allocator
 		__TYPE(Coin),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -600,7 +612,13 @@ CoinROMSpec COIN_BACK_AG =
 		// class allocator
 		__TYPE(Coin),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -636,7 +654,13 @@ CoinROMSpec COIN_BACK_SILHOUETTE_AG =
 		// class allocator
 		__TYPE(Coin),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

@@ -174,7 +174,13 @@ LavaROMSpec LAVA_IG =
 	// class allocator
 	__TYPE(Lava),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

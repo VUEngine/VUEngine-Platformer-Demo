@@ -326,6 +326,10 @@ void PlatformerLevelState::enter(void* owner)
 		(void (*)(Object, Object))PlatformerLevelState::onLevelStartedFadeInComplete, // callback function
 		Object::safeCast(this) // callback scope
 	);
+
+#ifdef __ENABLE_PROFILER
+	Game::startProfiling(Game::getInstance());
+#endif
 }
 
 // state's exit

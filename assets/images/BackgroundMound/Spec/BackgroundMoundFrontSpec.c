@@ -156,7 +156,13 @@ EntityROMSpec MOUND_BG_FRONT_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

@@ -74,7 +74,7 @@ LavaTriggerROMSpec LAVA_TRIGGER_IG =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)NULL,
+	NULL,
 
 	// use z displacement in projection
 	false,

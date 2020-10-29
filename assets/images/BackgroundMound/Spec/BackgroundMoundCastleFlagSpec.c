@@ -160,7 +160,13 @@ AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

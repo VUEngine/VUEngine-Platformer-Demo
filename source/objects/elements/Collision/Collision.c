@@ -97,11 +97,11 @@ void Collision::destructor()
 }
 
 // set extra info
-void Collision::setExtraInfo(const PositionedEntity* const positionedEntity)
+void Collision::setExtraInfo(void* extraInfo)
 {
-	NM_ASSERT(NULL != positionedEntity, "Collision::setExtraInfo: null positionedEntity");
+	NM_ASSERT(NULL != extraInfo, "Collision::setExtraInfo: null extraInfo");
 
-	this->size = Size::getFromPixelSize(*((PixelSize*)positionedEntity->extraInfo));
+	this->size = Size::getFromPixelSize(*((PixelSize*)extraInfo));
 }
 
 void Collision::initialTransform(Transformation* environmentTransform, u32 recursive)

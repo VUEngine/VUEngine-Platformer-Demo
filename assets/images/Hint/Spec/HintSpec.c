@@ -417,7 +417,13 @@ AnimatedEntityROMSpec HINT_MC =
 		// class allocator
 		__TYPE(Hint),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

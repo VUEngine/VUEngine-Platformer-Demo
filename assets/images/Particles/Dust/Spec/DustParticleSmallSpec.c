@@ -127,7 +127,13 @@ EntityROMSpec DUST_PARTICLE_SMALL_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

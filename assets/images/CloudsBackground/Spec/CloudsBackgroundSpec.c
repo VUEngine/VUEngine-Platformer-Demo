@@ -138,7 +138,13 @@ AwesomeCloudROMSpec CLOUDS_BACKGROUND_EN =
 		// class allocator
 		__TYPE(AwesomeCloud),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

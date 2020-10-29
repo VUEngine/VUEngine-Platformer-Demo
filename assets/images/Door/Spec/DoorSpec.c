@@ -314,7 +314,13 @@ DoorROMSpec DOOR_AG =
 		// class allocator
 		__TYPE(Door),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -350,7 +356,13 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_AG =
 		// class allocator
 		__TYPE(LayerSwitchDoor),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -387,7 +399,13 @@ GoalDoorROMSpec GOAL_DOOR_AG =
 		// class allocator
 		__TYPE(GoalDoor),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -423,7 +441,13 @@ KeyDoorROMSpec KEY_DOOR_AG =
 		// class allocator
 		__TYPE(KeyDoor),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -492,7 +516,13 @@ DoorROMSpec AFFINE_DOOR_AG =
 		// class allocator
 		__TYPE(Door),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -611,7 +641,13 @@ DoorROMSpec DOOR_BACK_AG =
 		// class allocator
 		__TYPE(Door),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -647,7 +683,13 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_AG =
 		// class allocator
 		__TYPE(LayerSwitchDoor),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

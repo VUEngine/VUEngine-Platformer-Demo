@@ -805,12 +805,12 @@ StageROMSpec LEVEL_1_MAIN_STAGE_ST =
 	{
 		// ui
 		{
-			LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN,
+			(PositionedEntity*)LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		LEVEL_1_MAIN_STAGE_ST_CHILDREN,
+		(PositionedEntity*)LEVEL_1_MAIN_STAGE_ST_CHILDREN,
 	},
 
 	// post processing effects

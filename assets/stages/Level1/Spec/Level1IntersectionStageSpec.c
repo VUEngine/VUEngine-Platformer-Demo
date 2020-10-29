@@ -342,12 +342,12 @@ StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
 	{
 		// ui
 		{
-			LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		LEVEL1_INTERSECTION_STAGE_ST_ENTITIES,
+		(PositionedEntity*)LEVEL1_INTERSECTION_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

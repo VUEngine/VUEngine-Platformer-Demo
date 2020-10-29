@@ -192,7 +192,13 @@ MovingEntityROMSpec SNAIL_3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// children
+				NULL,
+
 				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites
@@ -259,7 +265,13 @@ MovingEntityROMSpec SNAIL_8_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// children
+				NULL,
+
 				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites

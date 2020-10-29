@@ -133,7 +133,13 @@ EntityROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

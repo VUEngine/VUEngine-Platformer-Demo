@@ -179,6 +179,10 @@ void TitleScreenState::enter(void* owner)
 		(void (*)(Object, Object))TitleScreenState::onFadeInComplete, // callback function
 		Object::safeCast(this) // callback scope
 	);
+
+#ifdef __ENABLE_PROFILER
+	Game::startProfiling(Game::getInstance());
+#endif
 }
 
 // state's exit

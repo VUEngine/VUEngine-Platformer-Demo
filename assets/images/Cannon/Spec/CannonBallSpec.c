@@ -193,7 +193,13 @@ CannonBallROMSpec CANNON_BALL_AC =
 			// class allocator
 			__TYPE(CannonBall),
 
+			// children
+			NULL,
+
 			// behaviors
+			NULL,
+
+			// extra
 			NULL,
 
 			// sprites

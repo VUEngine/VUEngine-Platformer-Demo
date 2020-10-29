@@ -164,7 +164,13 @@ AnimatedEntityROMSpec LAVA_TOP_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

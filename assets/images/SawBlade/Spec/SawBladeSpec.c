@@ -194,7 +194,13 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// children
+				NULL,
+
 				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites
@@ -261,7 +267,13 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// children
+				NULL,
+
 				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites
@@ -328,7 +340,13 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// children
+				NULL,
+
 				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites

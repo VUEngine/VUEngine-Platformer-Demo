@@ -301,12 +301,12 @@ StageROMSpec OVERWORLD1_STAGE_ST =
 	{
 		// ui
 		{
-			OVERWORLD1_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)OVERWORLD1_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		OVERWORLD1_STAGE_ST_ENTITIES,
+		(PositionedEntity*)OVERWORLD1_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

@@ -160,7 +160,13 @@ AnimatedEntityROMSpec SMOKE_PARTICLE_SMALL_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

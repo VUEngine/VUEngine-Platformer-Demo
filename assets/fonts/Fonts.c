@@ -17,6 +17,7 @@
 FontSpec* const __FONTS[] =
 {
 	(FontSpec*)&DEFAULT_FONT,
+	(FontSpec*)&PROFILER_FONT,
 	(FontSpec*)&ASTONISH_FONT,
 	(FontSpec*)&ASTONISH_EXT_FONT,
 	(FontSpec*)&ASTONISH_S_FONT,

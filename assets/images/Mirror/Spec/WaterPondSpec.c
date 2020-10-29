@@ -120,7 +120,13 @@ WaterPondROMSpec WATER_POND_EN =
 			// class allocator
 			__TYPE(WaterPond),
 
+			// children
+			NULL,
+
 			// behaviors
+			NULL,
+
+			// extra
 			NULL,
 
 			// sprites

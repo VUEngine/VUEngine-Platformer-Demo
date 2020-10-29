@@ -261,7 +261,13 @@ HideLayerROMSpec HIDE_LAYER_10x7_AG =
 		// class allocator
 		__TYPE(HideLayer),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

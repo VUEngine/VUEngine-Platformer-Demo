@@ -130,7 +130,13 @@ CogWheelROMSpec COG_WHEEL_IM =
 	// class allocator
 	__TYPE(CogWheel),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

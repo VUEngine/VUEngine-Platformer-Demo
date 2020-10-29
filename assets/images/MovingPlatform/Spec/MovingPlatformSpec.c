@@ -212,7 +212,13 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 				// class allocator
 				__TYPE(MovingEntity),
 
+				// children
+				NULL,
+
 				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites

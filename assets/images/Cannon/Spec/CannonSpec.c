@@ -185,7 +185,13 @@ ActorROMSpec CANNON_AC =
 			// class allocator
 			__TYPE(Cannon),
 
+			// children
+			NULL,
+
 			// behaviors
+			NULL,
+
+			// extra
 			NULL,
 
 			// sprites

@@ -133,7 +133,13 @@ EntityROMSpec LEVEL1_COIN_ROOM_STAGE_BACK_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

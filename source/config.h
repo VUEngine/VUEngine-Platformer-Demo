@@ -14,6 +14,14 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//											COMMUNICATIONS
+//---------------------------------------------------------------------------------------------------------
+
+// Enable communications at the start of the game
+#define __ENABLE_COMMUNICATIONS
+
+
+//---------------------------------------------------------------------------------------------------------
 //											DEBUGGING / PROFILING
 //---------------------------------------------------------------------------------------------------------
 
@@ -21,21 +29,17 @@
 #undef __SHOW_MEMORY_POOL_STATUS
 #undef __SHOW_DETAILED_MEMORY_POOL_STATUS
 
+// Enable profiler
+#undef __ENABLE_PROFILER
+
 // print frame rate
 #undef __PRINT_FRAMERATE
 
 // alert stack overflows
 #undef __SHOW_STACK_OVERFLOW_ALERT
 
-// enable detailed profiling of each of the game's main processes
-// • it is more useful when __TIMER_RESOLUTION approaches 1
-#undef __PROFILE_GAME
-
 // enable streaming's profiling
 #undef __PROFILE_STREAMING
-
-// show games's profiling during game
-#undef __SHOW_GAME_PROFILING
 
 // show streaming's profiling during game
 #undef __SHOW_STREAMING_PROFILING
@@ -43,15 +47,12 @@
 // dimm screen to make it easier to read the profiling output
 #undef __DIMM_FOR_PROFILING
 
-// print the game's current process while the VIP's frame start and idle interrupts are fired, but the
-// game frame is still pending processes to complete
-#undef __PROFILE_GAME_STATE_DURING_VIP_INTERRUPT
-
 // alert vip's overtime
 #undef __SHOW_VIP_OVERTIME_COUNT
 
 // stack headroom
 #define __STACK_HEADROOM								500
+
 
 //---------------------------------------------------------------------------------------------------------
 //											DEBUGGING TOOLS
@@ -84,13 +85,6 @@
 #ifndef __TOOLS
 #define __TOOLS
 #endif
-
-// enable detailed profiling of each of the game's main processes
-// • it is more useful when __TIMER_RESOLUTION approaches 1
-#define __PROFILE_GAME
-
-// enable streaming's profiling
-#define __PROFILE_STREAMING
 
 #endif
 

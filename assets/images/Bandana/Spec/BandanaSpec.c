@@ -192,7 +192,13 @@ AnimatedEntityROMSpec BANDANA_AG =
 		// class allocator
 		__TYPE(Bandana),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

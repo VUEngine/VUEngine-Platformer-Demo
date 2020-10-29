@@ -156,7 +156,13 @@ EntityROMSpec MOUND_BG_MIDDLE_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
@@ -185,7 +191,13 @@ CloudsROMSpec CLOUDS_IM =
 		// class allocator
 		__TYPE(Clouds),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

@@ -130,7 +130,13 @@ EntityROMSpec LEVEL_1_HOUSE_LIGHT_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

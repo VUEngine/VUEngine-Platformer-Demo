@@ -123,7 +123,13 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_4_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

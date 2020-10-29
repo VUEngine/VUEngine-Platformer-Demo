@@ -608,16 +608,22 @@ HeroROMSpec HERO_AC =
 			// class allocator
 			__TYPE(Hero),
 
+			// children
+			NULL,
+
 			// behaviors
+			NULL,
+
+			// extra
 			NULL,
 
 			// sprites
 			(SpriteSpec**)HERO_AFFINE_SPRITES,
 
 			// use z displacement in projection
-	false,
+			false,
 
-	// collision shapes
+			// collision shapes
 			(ShapeSpec*)HERO_AC_SHAPES,
 
 			// size
@@ -654,7 +660,13 @@ AnimatedEntityROMSpec HERO_IDLE_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -690,7 +702,13 @@ AnimatedEntityROMSpec HERO_SLEEPING_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -727,7 +745,13 @@ AnimatedEntityROMSpec HERO_BANDANA_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

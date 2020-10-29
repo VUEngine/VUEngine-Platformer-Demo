@@ -168,7 +168,13 @@ AnimatedEntityROMSpec WATERFALL_STREAM_2x16_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

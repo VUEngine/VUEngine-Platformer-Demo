@@ -264,7 +264,13 @@ AnimatedEntityROMSpec GUI_AG =
 		// class allocator
 		__TYPE(Gui),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
@@ -300,7 +306,13 @@ AnimatedEntityROMSpec GUI_OVERWORLD_AG =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

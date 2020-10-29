@@ -191,7 +191,13 @@ AnimatedEntityROMSpec KEY_AG =
 		// class allocator
 		__TYPE(Key),
 
+		// children
+		NULL,
+
 		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites

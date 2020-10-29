@@ -128,7 +128,13 @@ EntityROMSpec MOUND_BG_CASTLE_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// children
+	NULL,
+
 	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
