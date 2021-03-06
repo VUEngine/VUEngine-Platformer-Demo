@@ -85,7 +85,10 @@
 		"profileStreaming": false,
 		"showStreamingProfiling": false,
 		"stackHeadroom": 500,
-		"alertForTornFrames": false
+		"alertForTornFrames": false,
+		"profileGame": false,
+		"profileGameStateDuringVipInterrupt": false,
+		"showGameProfiling": false
 	},
 	"exception": {
 		"position": {
@@ -100,7 +103,7 @@
 		"timerResolution": 10
 	},
 	"game": [],
-	"communications":{
+	"communications": {
 		"enable": true
 	},
 	"memoryPools": {
