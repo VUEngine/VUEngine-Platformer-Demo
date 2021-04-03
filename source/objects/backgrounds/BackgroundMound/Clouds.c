@@ -39,6 +39,7 @@ void Clouds::constructor(CloudsSpec* cloudsSpec, s16 internalId, const char* con
 	// construct base
 	Base::constructor(&cloudsSpec->EntitySpec, internalId, name);
 
+	this->dontStreamOut = true;
 	this->displacement = __PIXELS_TO_METERS(cloudsSpec->displacement);
 }
 
@@ -48,13 +49,6 @@ void Clouds::destructor()
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
-}
-
-// whether it is visible
-bool Clouds::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
-{
-	// always return true so the Clouds is never unloaded from the stage when it is not visible on screen
-	return true;
 }
 
 // state's handle message

@@ -86,9 +86,6 @@ void Hero::constructor(HeroSpec* heroSpec, s16 internalId, const char* const nam
 	// construct base
 	Base::constructor((ActorSpec*)heroSpec, internalId, name);
 
-	// construct the game state machine
-	this->stateMachine = new StateMachine(this);
-
 	// init class variables
 	this->coins = 0;
 	this->hasKey = false;
@@ -160,7 +157,7 @@ void Hero::ready(bool recursive)
 	}
 
 	// initialize me as idle
-	StateMachine::swapState(this->stateMachine, State::safeCast(HeroIdle::getInstance()));
+	Hero::initializeStateMachine(this, State::safeCast(HeroIdle::getInstance()));
 
 	Hero::addHint(this);
 	Hero::addFeetDust(this);

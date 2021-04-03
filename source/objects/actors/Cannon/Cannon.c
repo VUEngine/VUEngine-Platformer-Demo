@@ -93,7 +93,7 @@ void Cannon::shoot()
 	if(!this->children)
 	{
 		// add cannon ball as child
-		extern PositionedEntityROMSpec CANNON_BALL;
+		extern PositionedEntity CANNON_BALL;
 
 		Stage::spawnEntity(Game::getStage(Game::getInstance()), &CANNON_BALL, Container::safeCast(this), (EventListener)Cannon::onCannonBallSpawned);
 		return;

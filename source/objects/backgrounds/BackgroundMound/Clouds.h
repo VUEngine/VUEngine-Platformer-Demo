@@ -61,7 +61,6 @@ class Clouds : Entity
 
 	void constructor(CloudsSpec* cloudsSpec, s16 internalId, const char* const name);
 	override void update(u32 elapsedTime);
-	override bool isVisible(int pad, bool recursive);
 }
 
 

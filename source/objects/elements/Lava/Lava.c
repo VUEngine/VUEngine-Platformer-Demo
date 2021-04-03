@@ -41,6 +41,8 @@ void Lava::constructor(EntitySpec* inanimatedEntitySpec, s16 internalId, const c
 {
 	// construct base
 	Base::constructor(inanimatedEntitySpec, internalId, name);
+
+	this->dontStreamOut = true;
 }
 
 // class's destructor
@@ -62,13 +64,6 @@ void Lava::startMoving()
 
 	// must make sure that the shape is updated
 	Entity::activeCollisionChecks(this, true);
-}
-
-// whether it is visible
-bool Lava::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
-{
-	// always return true so the Lava is never unloaded from the stage when it is not visible on screen
-	return true;
 }
 
 // state's handle message

@@ -218,13 +218,13 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 
 void OptionsScreenState::playMenuSound()
 {
-	Vector3D position = {192, 112, 0};
+//	Vector3D position = {192, 112, 0};
 	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
 }
 
 void OptionsScreenState::playConfirmSound()
 {
-	Vector3D position = {192, 112, 0};
+//	Vector3D position = {192, 112, 0};
 	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
 }
 
