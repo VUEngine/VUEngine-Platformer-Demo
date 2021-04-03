@@ -240,6 +240,7 @@ bool Gui::handlePropagatedMessage(int message)
 	{
 		case kMessageLevelSetUp:
 		case kMessageLevelResumed:
+		case kMessagePrintUI:
 
 			Gui::printAll(this);
 			break;

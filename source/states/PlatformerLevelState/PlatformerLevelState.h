@@ -114,6 +114,7 @@ enum PlatformerLevelStateMessageTypes
 	kMessageLavaMove,
 	kMessageLavaTriggerEnd,
 	kMessageLavaTriggerStart,
+	kMessagePrintUI,
 	kMessageLevelResumed,
 	kMessageLevelSetUp,
 	kMessageLevelStarted,

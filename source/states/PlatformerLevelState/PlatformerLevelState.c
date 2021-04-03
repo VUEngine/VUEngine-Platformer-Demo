@@ -54,6 +54,9 @@
 extern PlatformerLevelSpec LEVEL_1_LV;
 extern EntitySpec HERO_AC;
 
+#define PRINTING_LAYER_Z_COORDINATE		INGAME_CAMERA_FRUSTUM_Z0
+#define PRINTING_LAYER_PARALLAX			-1
+
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -330,6 +333,8 @@ void PlatformerLevelState::enter(void* owner)
 #ifdef __ENABLE_PROFILER
 	Game::startProfiling(Game::getInstance());
 #endif
+
+	Printing::setWorldCoordinates(Printing::getInstance(), 0, 0, PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
 }
 
 // state's exit
@@ -458,9 +463,10 @@ void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 #ifdef __RELEASE
 	extern TextureROMSpec GUI_TX;
-	Printing::setCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GUI_TX.rows * 8), 0, 0);
+	Printing::setCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GUI_TX.rows * 8), PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
 #else
 	Printing::clear(Printing::getInstance());
+	PlatformerLevelState::propagateMessage(this, kMessagePrintUI);
 #endif
 }
 
