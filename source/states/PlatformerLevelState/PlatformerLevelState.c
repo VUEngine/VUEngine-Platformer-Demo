@@ -239,12 +239,8 @@ void PlatformerLevelState::enter(void* owner)
 	// register event listeners
 	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
-	// TODO: this is hacky
-	// activate pulsating effect in indoor stages
-	if(this->currentStageEntryPoint->stageSpec->rendering.colorConfig.brightnessRepeat != NULL)
-	{
-		Camera::startEffect(Camera::getInstance(), kScreenPulsate);
-	}
+	// activate light pulsating effect
+	PlatformerLevelState::activatePulsatingEffect(this);
 
 	// activate lantern effect around hero
 	PlatformerLevelState::activateLantern(this);
@@ -413,10 +409,7 @@ void PlatformerLevelState::resume(void* owner)
 	// tell any interested entity
 	GameState::propagateMessage(this, kMessageLevelResumed);
 
-	// TODO: fix Camera::startEffect
-	__SET_BRIGHT(32, 64, 128);
 
-/*
 	// start a fade in effect
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
@@ -426,7 +419,7 @@ void PlatformerLevelState::resume(void* owner)
 		NULL, // callback function
 		NULL // callback scope
 	);
-*/
+
 #ifdef __DEBUG_TOOLS
 	}
 #endif
@@ -453,6 +446,9 @@ void PlatformerLevelState::resume(void* owner)
 
 	PlatformerLevelState::setPrintingLayerCoordinates(this);
 
+	// activate light pulsating effect
+	PlatformerLevelState::activatePulsatingEffect(this);
+
 	// activate lantern effect around hero
 	PlatformerLevelState::activateLantern(this);
 
@@ -468,6 +464,16 @@ void PlatformerLevelState::setPrintingLayerCoordinates()
 	Printing::clear(Printing::getInstance());
 	PlatformerLevelState::propagateMessage(this, kMessagePrintUI);
 #endif
+}
+
+void PlatformerLevelState::activatePulsatingEffect()
+{
+	// TODO: this is hacky
+	// activate pulsating effect in indoor stages
+	if(this->currentStageEntryPoint->stageSpec->rendering.colorConfig.brightnessRepeat != NULL)
+	{
+		Camera::startEffect(Camera::getInstance(), kScreenPulsate);
+	}
 }
 
 void PlatformerLevelState::activateLantern()
