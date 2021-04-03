@@ -168,7 +168,7 @@
 
 // when defined, the engine skips to the next game frame when the VIP's GAMESTART interrupt is fired
 // beforethe current game frame is done
-#undef __FORCE_VIP_SYNC
+#define __FORCE_VIP_SYNC
 
 // timer resolution
 #define __TIMER_RESOLUTION							10

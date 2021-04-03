@@ -97,7 +97,7 @@
 		}
 	},
 	"frameRate": {
-		"forceVipSync": false,
+		"forceVipSync": true,
 		"frameCycle": 0,
 		"runDelayedMessagesAtHalfFrameRate": false,
 		"timerResolution": 10
