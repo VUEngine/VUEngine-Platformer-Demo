@@ -55,5 +55,3 @@ int main(void)
 	// end program
 	return true;
 }
-
-const int pad[8192 * 4 * 4 * 4] = {1};
