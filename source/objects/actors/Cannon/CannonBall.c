@@ -78,7 +78,7 @@ void CannonBall::stop(u16 axis __attribute__((unused)))
 	Actor::stopAllMovement(this);
 
 	// set back local position
-	Vector3D position = {0, 0, __F_TO_FIX10_6(-SORT_INCREMENT)};
+	Vector3D position = {0, 0, __PIXELS_TO_METERS(SORT_INCREMENT)};
 	Actor::setLocalPosition(this, &position);
 
 	// hide me

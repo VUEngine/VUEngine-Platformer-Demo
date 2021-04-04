@@ -206,9 +206,9 @@ CannonBallROMSpec CANNON_BALL_AC =
 			(SpriteSpec**)CANNON_BALL_SPRITES,
 
 			// use z displacement in projection
-	false,
+			false,
 
-	// collision shapes
+			// collision shapes
 			(ShapeSpec*)CANNON_BALL_AC_SHAPES,
 
 			// size
