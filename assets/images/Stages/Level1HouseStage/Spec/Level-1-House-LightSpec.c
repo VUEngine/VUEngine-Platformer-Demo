@@ -105,7 +105,7 @@ BgmapSpriteROMSpec LEVEL_1_HOUSE_LIGHT_IM_SPRITE =
 		__TRANSPARENCY_EVEN,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, -1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

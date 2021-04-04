@@ -299,8 +299,8 @@ PositionedEntityROMSpec LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3[] =
 
 PositionedEntityROMSpec LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1[] =
 {
-	{&COLLISION_CL, 				{  -8, -122, 0, 0},													0, NULL, NULL, (void*)&collision_44_3_4, false},
-	{&COLLISION_CL, 				{ -71,  -95, 0, 0},													0, NULL, NULL, (void*)&collision_45_5_4, false},
+	{&COLLISION_CL, 				{  -6, -122, 0, 0},													0, NULL, NULL, (void*)&collision_44_3_4, false},
+	{&COLLISION_CL, 				{ -68,  -95, 0, 0},													0, NULL, NULL, (void*)&collision_45_5_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -450,16 +450,16 @@ PositionedEntityROMSpec LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&MOUND_2_IM,					{2024, 301, LAYER_0_BACKGROUND + 16, LAYER_0_BACKGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 
 	// part 5 (back)
-	{&LEVEL_1_MAIN_1_BACK_5_IM,		{2336,  328, LAYER_2, LAYER_2_FOREGROUND_DISPLACEMENT}, 			0, NULL, NULL, NULL, false},
-	{&LAYER_SWITCH_DOOR_BACK_AG, 	{2481,  300, LAYER_2 + 16, -16}, 									0, "DoorBk1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
-	{&MANAGED_ENTITY,				{2336,  389, LAYER_2, LAYER_2_DOORS_DISPLACEMENT * 2}, 				0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,				{2328,  383, LAYER_2, LAYER_2_DOORS_DISPLACEMENT * 2}, 				0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2, NULL, false},
-	{&CANNON_AC,					{2180,  286, LAYER_2_FOREGROUND, LAYER_2_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&CANNON_AC,					{2404,  286, LAYER_2_FOREGROUND, LAYER_2_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&COIN_BACK_AG,					{2093,  264, LAYER_2_ITEMS, LAYER_2_ITEMS_DISPLACEMENT},			0, "16", NULL, NULL, false},
-	{&COIN_BACK_AG,					{2105,  264, LAYER_2_ITEMS, LAYER_2_ITEMS_DISPLACEMENT},			0, "17", NULL, NULL, false},
-	{&COIN_BACK_AG,					{2263,  244, LAYER_2_ITEMS, LAYER_2_ITEMS_DISPLACEMENT},			0, "18", NULL, NULL, false},
-	{&COIN_BACK_AG,					{2275,  244, LAYER_2_ITEMS, LAYER_2_ITEMS_DISPLACEMENT},			0, "19", NULL, NULL, false},
+	{&LEVEL_1_MAIN_1_BACK_5_IM,		{2336,  328, LAYER_2, 0}, 			0, NULL, NULL, NULL, false},
+	{&LAYER_SWITCH_DOOR_BACK_AG, 	{2481,  300, LAYER_2, 0}, 									0, "DoorBk1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
+	{&MANAGED_ENTITY,				{2336,  389, LAYER_2, 0}, 				0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,				{2328,  383, LAYER_2, 0}, 				0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2, NULL, false},
+	{&CANNON_AC,					{2180,  286, LAYER_2, 0},	0, NULL, NULL, NULL, false},
+	{&CANNON_AC,					{2404,  286, LAYER_2, 0},	0, NULL, NULL, NULL, false},
+	{&COIN_BACK_AG,					{2093,  264, LAYER_2_ITEMS, 0},			0, "16", NULL, NULL, false},
+	{&COIN_BACK_AG,					{2105,  264, LAYER_2_ITEMS, 0},			0, "17", NULL, NULL, false},
+	{&COIN_BACK_AG,					{2263,  244, LAYER_2_ITEMS, 0},			0, "18", NULL, NULL, false},
+	{&COIN_BACK_AG,					{2275,  244, LAYER_2_ITEMS, 0},			0, "19", NULL, NULL, false},
 
 	// part 5
 	{&LEVEL_1_MAIN_1_MAIN_5_IM, 	{2208, 392, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
