@@ -104,7 +104,7 @@
 	},
 	"game": [],
 	"communications": {
-		"enable": true
+		"enable": false
 	},
 	"memoryPools": {
 		"cleanUp": false,
