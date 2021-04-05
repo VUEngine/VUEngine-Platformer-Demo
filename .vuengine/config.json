@@ -4,8 +4,8 @@
 		"maxScale": 2
 	},
 	"animation": {
-		"maxAnimationFunctionNameLength": 16,
 		"maxAnimationFunctions": 32,
+		"maxAnimationFunctionNameLength": 16,
 		"maxFramesPerAnimationFunction": 16
 	},
 	"char": {
@@ -14,10 +14,10 @@
 	"colors": {
 		"brightness": {
 			"brightRed": 128,
+			"mediumRed": 64,
 			"darkRed": 32,
 			"fadeDelay": 8,
-			"fadeIncrement": 8,
-			"mediumRed": 64
+			"fadeIncrement": 8
 		},
 		"palettes": {
 			"bgMap": {
@@ -75,17 +75,18 @@
 		"scrambleBinary": false
 	},
 	"debug": {
-		"enableProfiler": false,
-		"showStackOverflowAlert": false,
 		"alertVipOvertime": false,
+		"alertForTornFrames": false,
 		"dimmForProfiling": false,
-		"showDetailedMemoryPoolStatus": false,
+		"enableProfiler": false,
 		"printFramerate": false,
-		"showMemoryPoolStatus": false,
 		"profileStreaming": false,
+		"showDetailedMemoryPoolStatus": false,
+		"showMemoryPoolStatus": false,
+		"showStackOverflowAlert": false,
 		"showStreamingProfiling": false,
-		"stackHeadroom": 500,
-		"alertForTornFrames": false
+		"stackHeadroom": 500
+
 	},
 	"exception": {
 		"position": {
