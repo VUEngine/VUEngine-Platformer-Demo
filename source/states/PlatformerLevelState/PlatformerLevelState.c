@@ -54,9 +54,6 @@
 extern PlatformerLevelSpec LEVEL_1_LV;
 extern EntitySpec HERO_AC;
 
-#define PRINTING_LAYER_Z_COORDINATE		INGAME_CAMERA_FRUSTUM_Z0
-#define PRINTING_LAYER_PARALLAX			-1
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS

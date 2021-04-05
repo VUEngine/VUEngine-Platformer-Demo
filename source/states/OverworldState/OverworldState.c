@@ -173,6 +173,8 @@ void OverworldState::suspend(void* owner)
 // print gui
 void OverworldState::print()
 {
+	Printing::setWorldCoordinates(Printing::getInstance(), 0, 0, PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
+
 	// coins
 	u8 coins = ProgressManager::getTotalNumberOfCollectedCoins(ProgressManager::getInstance());
 	Printing::int(Printing::getInstance(), coins, 4, 26, "AstonishSExt");

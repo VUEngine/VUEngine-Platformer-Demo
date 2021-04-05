@@ -31,6 +31,7 @@
 #define COINS_PER_LEVEL		64
 #define LEVELS_IN_GAME		1
 
+
 // ingame
 #define INGAME_LOW_POWER_ENTITY_X_POSITION		148
 #define INGAME_LOW_POWER_ENTITY_Y_POSITION		216
@@ -42,6 +43,10 @@
 #define INGAME_CAMERA_FRUSTUM_X1				__SCREEN_WIDTH
 #define INGAME_CAMERA_FRUSTUM_Y1				(__SCREEN_HEIGHT - (2 << 3) + 4) // plus 4 to make sure that the GUI is not culled off
 #define INGAME_CAMERA_FRUSTUM_Z1				__SCREEN_WIDTH * 5
+
+// printing
+#define PRINTING_LAYER_Z_COORDINATE				INGAME_CAMERA_FRUSTUM_Z0
+#define PRINTING_LAYER_PARALLAX					0
 
 // layers
 #define LAYER_INCREMENT		64
