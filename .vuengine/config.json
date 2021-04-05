@@ -85,10 +85,7 @@
 		"profileStreaming": false,
 		"showStreamingProfiling": false,
 		"stackHeadroom": 500,
-		"alertForTornFrames": false,
-		"profileGame": false,
-		"profileGameStateDuringVipInterrupt": false,
-		"showGameProfiling": false
+		"alertForTornFrames": false
 	},
 	"exception": {
 		"position": {
@@ -103,7 +100,7 @@
 		"timerResolution": 10
 	},
 	"game": [],
-	"communications": {
+	"communications":{
 		"enable": false
 	},
 	"memoryPools": {
@@ -242,8 +239,5 @@
 		"paramTableSegments": 1
 	},
 	"hacks": {
-		"mednafen": {
-			"objectMemoryCleanup": true
-		}
 	}
 }
