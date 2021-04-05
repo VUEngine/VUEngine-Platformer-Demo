@@ -86,7 +86,6 @@
 		"showStackOverflowAlert": false,
 		"showStreamingProfiling": false,
 		"stackHeadroom": 500
-
 	},
 	"exception": {
 		"position": {
