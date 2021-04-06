@@ -148,7 +148,8 @@ StageROMSpec LEVEL1_COIN_ROOM_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
-		false	},
+		false
+	},
 
 	// level
 	{
