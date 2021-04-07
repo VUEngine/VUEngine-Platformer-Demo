@@ -299,8 +299,8 @@ PositionedEntityROMSpec LEVEL_1_MAIN_1_MAIN_4_COLLISIONS_3[] =
 
 PositionedEntityROMSpec LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1[] =
 {
-	{&COLLISION_CL, 				{  -5 - 1, -122, 0, 0},													0, NULL, NULL, (void*)&collision_44_3_4, false},
-	{&COLLISION_CL, 				{ -67 - 1,  -95, 0, 0},													0, NULL, NULL, (void*)&collision_45_5_4, false},
+	{&COLLISION_CL, 				{  -5 - 1, -123, 0, 0},													0, NULL, NULL, (void*)&collision_44_3_4, false},
+	{&COLLISION_CL, 				{ -67 - 1,  -94, 0, 0},													0, NULL, NULL, (void*)&collision_45_5_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -356,8 +356,8 @@ PositionedEntityROMSpec LEVEL_1_MAIN_1_MAIN_1_IM_CHILDREN[] =
 PositionedEntityROMSpec LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this spec
-	{&MOUND_BG_BACK_IM,				{   0,  132, LAYER_5 + LAYER_INCREMENT*3, 0},						0, NULL, NULL, NULL, true},
-	{&CLOUDS_IM,					{   0,  204, LAYER_5 + LAYER_INCREMENT*2, 0},						0, NULL, NULL, NULL, true},
+	{&MOUND_BG_BACK_IM,				{   0,  120, LAYER_5 + LAYER_INCREMENT*3, 0},						0, NULL, NULL, NULL, true},
+	{&CLOUDS_IM,					{   0,  194, LAYER_5 + LAYER_INCREMENT*2, 0},						0, NULL, NULL, NULL, true},
 	{&MOUND_BG_FRONT_IM,			{   0,  212, LAYER_5 + LAYER_INCREMENT*0, 0},						0, NULL, NULL, NULL, true},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
@@ -451,9 +451,9 @@ PositionedEntityROMSpec LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	// part 5 (back)
 	{&LEVEL_1_MAIN_1_BACK_5_IM,		{2336,  328, LAYER_2, 0}, 			0, NULL, NULL, NULL, false},
-	{&LAYER_SWITCH_DOOR_BACK_AG, 	{2481,  300, LAYER_2, 0}, 									0, "DoorBk1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
-	{&MANAGED_ENTITY,				{2336,  389, LAYER_2, 0}, 				0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,				{2328,  383, LAYER_2, 0}, 				0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2, NULL, false},
+	{&LAYER_SWITCH_DOOR_BACK_AG, 	{2481,  298, LAYER_2, 0}, 									0, "DoorBk1", NULL, (void*)&LEVEL_1_MAIN_LS_FRONT_EP, false},
+	{&MANAGED_ENTITY,				{2336,  388, LAYER_2, 0}, 				0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_1, NULL, false},
+	{&MANAGED_ENTITY,				{2328,  384, LAYER_2, 0}, 				0, NULL, (struct PositionedEntity*)LEVEL_1_MAIN_1_BACK_5_COLLISIONS_2, NULL, false},
 	{&CANNON_AC,					{2180,  286, LAYER_2, 0},	0, NULL, NULL, NULL, false},
 	{&CANNON_AC,					{2404,  286, LAYER_2, 0},	0, NULL, NULL, NULL, false},
 	{&COIN_BACK_AG,					{2093,  264, LAYER_2_ITEMS, 0},			0, "16", NULL, NULL, false},

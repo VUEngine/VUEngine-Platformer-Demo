@@ -156,7 +156,7 @@
 #define __PARALLAX_CORRECTION_FACTOR				4
 
 // affects the strength of the scaling
-#define __SCALING_MODIFIER_FACTOR					0.2f
+#define __SCALING_MODIFIER_FACTOR					0.017f
 
 // minimum number of pixels that the camera can move
 #define __CAMERA_MINIMUM_DISPLACEMENT_PIXELS_POWER	1
