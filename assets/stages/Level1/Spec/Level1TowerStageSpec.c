@@ -131,60 +131,60 @@ PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_1_ENTITIES[] =
 
 PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_1_COLLISIONS_1[] =
 {
-	{&COLLISION_CL,					{-184,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
-	{&COLLISION_CL,					{ 184,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
-	{&COLLISION_CL,					{-128,	288, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom left floor
-	{&COLLISION_CL,					{ 302,	256, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom right floor
-	{&COLLISION_CL,					{ 160,	144, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // step stone bottom right
-	{&COLLISION_CL,					{  80,	 72, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone
+	{&COLLISION_CL,					{-185,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
+	{&COLLISION_CL,					{ 183,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
+	{&COLLISION_CL,					{-129,	288, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom left floor
+	{&COLLISION_CL,					{ 301,	256, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom right floor
+	{&COLLISION_CL,					{ 159,	144, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // step stone bottom right
+	{&COLLISION_CL,					{  79,	 72, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_1_COLLISIONS_2[] =
 {
-	{&COLLISION_CL,					{-172, 	  32,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 2nd level floor left
-	{&COLLISION_CL,					{  30,	 -96,	0, 0}, 0, NULL, NULL, (void*)&collision_32_4_4, false}, // 3rd level floor right
-	{&COLLISION_CL,					{ 160,	 -40,	0, 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // small stone right under 3rd
-	{&COLLISION_CL,					{ -80,	-176,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 4th level floor left
-	{&COLLISION_CL,					{ -82,	-248,	0, 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // floor below spikes
-	{&COLLISION_CL,					{-136, 	-216,	0, 0}, 0, NULL, NULL, (void*)&collision_14_6_4, false}, // left wall below spikes
+	{&COLLISION_CL,					{-173, 	  32,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 2nd level floor left
+	{&COLLISION_CL,					{  29,	 -96,	0, 0}, 0, NULL, NULL, (void*)&collision_32_4_4, false}, // 3rd level floor right
+	{&COLLISION_CL,					{ 159,	 -40,	0, 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // small stone right under 3rd
+	{&COLLISION_CL,					{ -81,	-176,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 4th level floor left
+	{&COLLISION_CL,					{ -83,	-248,	0, 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // floor below spikes
+	{&COLLISION_CL,					{-137, 	-216,	0, 0}, 0, NULL, NULL, (void*)&collision_14_6_4, false}, // left wall below spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_2_COLLISIONS_1[] =
 {
-	{&COLLISION_CL,					{-184, 	  0,	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
-	{&COLLISION_CL,					{ 184,	  0,	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
-	{&COLLISION_CL,					{-104,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_6_4_4, false}, // block between spikes left
-	{&COLLISION_CL,					{ -16,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_4_4_4, false}, // block between spikes middle
-	{&COLLISION_CL,					{  78,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_8_4_4, false}, // block between spikes right
-	{&COLLISION_HIT_CL,				{-104,  256,	0, 0}, 0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes
-	{&COLLISION_HIT_CL,				{ -16,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes
+	{&COLLISION_CL,					{-185, 	  0,	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
+	{&COLLISION_CL,					{ 183,	  0,	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
+	{&COLLISION_CL,					{-105,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_6_4_4, false}, // block between spikes left
+	{&COLLISION_CL,					{ -17,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_4_4_4, false}, // block between spikes middle
+	{&COLLISION_CL,					{  77,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_8_4_4, false}, // block between spikes right
+	{&COLLISION_HIT_CL,				{-105,  256,	0, 0}, 0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes
+	{&COLLISION_HIT_CL,				{ -17,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_2_COLLISIONS_2[] =
 {
-	{&COLLISION_CL,					{-176,	200,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // stepstone left
-	{&COLLISION_CL,					{ -96,	168,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 1
-	{&COLLISION_CL,					{ -16,	136,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 2
-	{&COLLISION_CL,					{  64,	104,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 3
-	{&COLLISION_CL,					{ 192,	 72,	0, 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // stepstone right
-	{&COLLISION_CL,					{ -80,	-16,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // floor above floating platforms
+	{&COLLISION_CL,					{-177,	200,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // stepstone left
+	{&COLLISION_CL,					{ -97,	168,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 1
+	{&COLLISION_CL,					{ -17,	136,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 2
+	{&COLLISION_CL,					{  63,	104,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 3
+	{&COLLISION_CL,					{ 191,	 72,	0, 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // stepstone right
+	{&COLLISION_CL,					{ -81,	-16,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // floor above floating platforms
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 {
-	{&COLLISION_TOP_CL,				{ -80,	-152,	0, 0}, 0, NULL, NULL, (void*)&collision_6_2_4, false}, // top room one way
-	{&COLLISION_CL,					{ 144,	-144,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // top room right floor
-	{&COLLISION_CL,					{-144,   -80,	0, 0}, 0, NULL, NULL, (void*)&collision_8_20_4, false}, // top room left floor
-	{&COLLISION_CL,					{   0,	-232,	0, 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // top room ceiling
-	{&COLLISION_CL,					{  80,	-192,	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // top room right wall
+	{&COLLISION_TOP_CL,				{ -81,	-152,	0, 0}, 0, NULL, NULL, (void*)&collision_6_2_4, false}, // top room one way
+	{&COLLISION_CL,					{ 143,	-144,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // top room right floor
+	{&COLLISION_CL,					{-145,   -80,	0, 0}, 0, NULL, NULL, (void*)&collision_8_20_4, false}, // top room left floor
+	{&COLLISION_CL,					{  -1,	-232,	0, 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // top room ceiling
+	{&COLLISION_CL,					{  79,	-192,	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // top room right wall
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -480,7 +480,7 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum view distance's power into the horizon
-			__MAXIMUM_X_VIEW_DISTANCE, __MAXIMUM_Y_VIEW_DISTANCE,
+			__MAXIMUM_X_VIEW_DISTANCE, __MAXIMUM_Y_VIEW_DISTANCE * 8,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
