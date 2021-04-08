@@ -56,17 +56,6 @@ void Bandana::destructor()
 	Base::destructor();
 }
 
-void Bandana::ready(bool recursive)
-{
-	Base::ready(this, recursive);
-
-	if(kPowerUpNone != ProgressManager::getHeroCurrentPowerUp(ProgressManager::getInstance()))
-	{
-		Bandana::hide(this);
-		Bandana::deleteMyself(this);
-	}
-}
-
 void Bandana::collect()
 {
 	// fire item taken event

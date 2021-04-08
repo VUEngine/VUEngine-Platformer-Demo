@@ -99,7 +99,9 @@ void PlatformerLevelState::getPositionedEntitiesToIgnore(VirtualList positionedE
 			if((this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&BANDANA_AG) ||
 				(this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&KEY_AG))
 			{
-				if(ProgressManager::getItemStatus(ProgressManager::getInstance(), this->currentStageEntryPoint->stageSpec->entities.children[i].id))
+				int itemId = atoi(this->currentStageEntryPoint->stageSpec->entities.children[i].name);
+
+				if(ProgressManager::getItemStatus(ProgressManager::getInstance(), itemId))
 				{
 					VirtualList::pushBack(positionedEntitiesToIgnore, &this->currentStageEntryPoint->stageSpec->entities.children[i]);
 				}
