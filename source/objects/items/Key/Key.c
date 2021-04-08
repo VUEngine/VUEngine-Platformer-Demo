@@ -64,8 +64,17 @@ void Key::ready(bool recursive)
 	// call base
 	Base::ready(this, recursive);
 
-	// add post processing effect to make key emit rhombuses
-	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+	// Remove key if already taken (this is hack-ish since it won't work for levels with more than one key)
+	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
+	{
+		Key::hide(this);
+		Key::deleteMyself(this);
+	}
+	else
+	{
+		// add post processing effect to make key emit rhombuses
+		Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+	}
 }
 
 void Key::collect()

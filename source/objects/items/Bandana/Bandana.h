@@ -38,6 +38,8 @@
 class Bandana : Item
 {
 	void constructor(AnimatedEntitySpec* spec, s16 internalId, const char* const name);
+
+	override void ready(bool recursive);
 	override void collect();
 }
 

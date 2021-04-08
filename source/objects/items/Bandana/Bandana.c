@@ -33,7 +33,8 @@
 #include <SoundManager.h>
 #include <EventManager.h>
 #include <Bandana.h>
-#include <PlatformerLevelState.h>
+#include <ProgressManager.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,6 +54,17 @@ void Bandana::destructor()
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
+}
+
+void Bandana::ready(bool recursive)
+{
+	Base::ready(this, recursive);
+
+	if(kPowerUpNone != ProgressManager::getHeroCurrentPowerUp(ProgressManager::getInstance()))
+	{
+		Bandana::hide(this);
+		Bandana::deleteMyself(this);
+	}
 }
 
 void Bandana::collect()
