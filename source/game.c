@@ -50,7 +50,7 @@ int main(void)
 	);
 
 	// start the game
-	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
 
 	// end program
 	return true;
