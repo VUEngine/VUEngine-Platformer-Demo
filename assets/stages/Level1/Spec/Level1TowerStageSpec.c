@@ -37,6 +37,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern SoundROM* const LEVEL_1_SOUNDS[];
+
 extern StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP;
 extern BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
 

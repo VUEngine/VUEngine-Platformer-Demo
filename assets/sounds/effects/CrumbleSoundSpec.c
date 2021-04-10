@@ -1,7 +1,7 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+/* VUHit - Virtual Utopia Hit <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction, including
@@ -24,64 +24,101 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameEvents.h>
-#include <Game.h>
-#include <CollisionManager.h>
-#include <MessageDispatcher.h>
-#include <Box.h>
-#include <PhysicalWorld.h>
 #include <SoundManager.h>
-#include <EventManager.h>
-#include <ProgressManager.h>
-#include "Collectable.h"
-#include <PlatformerLevelState.h>
+#include <WaveForms.h>
+#include <MIDI.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
-void Collectable::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
-{
-	// construct base
-	Base::constructor(animatedEntitySpec, internalId, name);
-}
 
-// class's destructor
-void Collectable::destructor()
-{
-	// delete the super object
-	// must always be called at the end of the destructor
-	Base::destructor();
-}
 
-// state's handle message
-bool Collectable::handleMessage(Telegram telegram)
+//---------------------------------------------------------------------------------------------------------
+//												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+
+const u16 CrumbleTrack[] =
 {
-	switch(Telegram::getMessage(telegram))
+  A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
+  100, 80, 100, 1, 100, 80, 100, 1, 100, 80, 100, 1, 1,
+  15, 15, 15, 15 , 15, 15, 15, 15 , 15, 15, 15, 15 , 0,
+  1, 4, 1, 2 , 1, 4, 1, 2 , 1, 4, 1, 2 , 0
+};
+
+SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
+{
+	/// kMIDI, kPCM
+	kMIDI,
+
+	/// SxINT
+	0x9F,
+
+	/// Volume SxLRV
+	0xFF,
+
+	/// SxRAM (this is overrode by the SoundManager)
+	0x00,
+
+	/// SxEV0
+	0x80,
+
+	/// SxEV1
+	0x00,
+
+	/// SxFQH
+	0x00,
+
+	/// SxFQL
+	0x00,
+
+	/// Ch. 5 only
+	0x00,
+
+	/// Waveform data pointer
+	sawtoothWaveForm,
+
+	/// kChannelNormal, kChannelModulation, kChannelNoise
+	kChannelNoise,
+
+	/// Volume
+	__SOUND_LR
+};
+
+SoundChannelROM CRUMBLE_SND_CHANNEL_1 =
+{
+	/// Configuration
+	(SoundChannelConfiguration*)&CRUMBLE_SND_CHANNEL_1_CONFIGURATION,
+
+	/// Length (PCM)
+	0,
+
+	/// Sound track
 	{
-		case kMessageTakeItem:
-		{
-			// play collect sound
-			extern Sound COLLECT_SND;
-			SoundManager::playSound(SoundManager::getInstance(), &COLLECT_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
-
-			// set shape to inactive so no other hits with this item can occur
-			Entity::allowCollisions(this, false);
-
-			// additional action
-			Collectable::collect(this);
-
-			// delete myself now
-			Container::deleteMyself(this);
-
-			break;
-		}
+		(const u8*)CrumbleTrack
 	}
+};
 
-	return false;
-}
 
-void Collectable::collect()
-{}
+SoundChannelROM* CRUMBLE_SND_CHANNELS[] =
+{
+	&CRUMBLE_SND_CHANNEL_1,
+	NULL
+};
+
+SoundROM CRUMBLE_SND =
+{
+	/// Name
+	"Fire sound",
+
+	/// Play in loop
+	false,
+
+	/// Target timer resolution in us
+	5000,
+
+	/// Tracks
+	(SoundChannel**)CRUMBLE_SND_CHANNELS
+};

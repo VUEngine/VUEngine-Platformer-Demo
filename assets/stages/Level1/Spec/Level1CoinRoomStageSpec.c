@@ -37,6 +37,8 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern SoundROM* const LEVEL_1_SOUNDS[];
+
 const PixelSize level1_coin_room_stage_collision_16_96_8 = {16, 96, 8};
 const PixelSize level1_coin_room_stage_collision_224_16_8 = {224, 16, 8};
 const PixelSize level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
@@ -335,7 +337,7 @@ StageROMSpec LEVEL1_COIN_ROOM_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background sounds
-		(Sound**)NULL,
+		(Sound**)LEVEL_1_SOUNDS,
 	},
 
 	// entities

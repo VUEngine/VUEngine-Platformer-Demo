@@ -97,8 +97,8 @@ void LavaTrigger::triggerEventStart()
 	Camera::startEffect(Camera::getInstance(), kShake, 2000);
 
 	// play sound
-	//Vector3D position = {192, 112, 0};
-	//SoundManager::playFxSound(SoundManager::getInstance(), CRUMBLE_SND, position);
+	extern Sound CRUMBLE_SND;
+	SoundManager::playSound(SoundManager::getInstance(), &CRUMBLE_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 
 	// remind myself to stop the trigger event soon
 	MessageDispatcher::dispatchMessage(3000, Object::safeCast(this), Object::safeCast(this), kMessageLavaTriggerEnd, NULL);

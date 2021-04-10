@@ -33,6 +33,8 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern SoundROM* const LEVEL_1_SOUNDS[];
+
 extern EntitySpec FLOWER_A_AG;
 extern EntitySpec GUI_OVERWORLD_AG;
 extern EntitySpec HERO_IDLE_AG;
@@ -294,7 +296,7 @@ StageROMSpec OVERWORLD1_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background sounds
-		(Sound**)NULL,
+		(Sound**)LEVEL_1_SOUNDS,
 	},
 
 	// entities

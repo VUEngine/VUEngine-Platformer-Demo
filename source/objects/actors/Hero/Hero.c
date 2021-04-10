@@ -251,8 +251,8 @@ void Hero::jump(bool checkIfYMovement)
 			// play jump animation
 			AnimatedEntity::playAnimation(this, "Jump");
 
-			// play jump sound
-			//SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
+			extern Sound JUMP_SND;
+			SoundManager::playSound(SoundManager::getInstance(), &JUMP_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 		}
 	}
 }
@@ -598,7 +598,8 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 		Camera::startEffect(Camera::getInstance(), kShake, 200);
 
 		// play hit sound
-		//SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
+		extern Sound FIRE_SND;
+		SoundManager::playSound(SoundManager::getInstance(), &FIRE_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 
 		AnimatedEntity::playAnimation(this, "Hit");
 
@@ -745,7 +746,8 @@ void Hero::enterDoor()
 	}
 
 	// play door sound
-	//SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
+	extern Sound COLLECT_SND;
+	SoundManager::playSound(SoundManager::getInstance(), &COLLECT_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 }
 
 void Hero::addHint()

@@ -108,6 +108,15 @@ TextureSpec* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
 };
 
 
+extern Sound SOUNDTRACK_01;
+
+SoundROM* const TITLE_SCREEN_STAGE_ST_SOUNDS[] =
+{
+	&SOUNDTRACK_01,
+	NULL
+};
+
+
 //---------------------------------------------------------------------------------------------------------
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
@@ -313,7 +322,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 		(TextureSpec**)TITLE_SCREEN_STAGE_ST_TEXTURES,
 
 		// background sounds
-		(Sound**)NULL,
+		(Sound**)TITLE_SCREEN_STAGE_ST_SOUNDS,
 	},
 
 	// entities

@@ -37,6 +37,8 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern SoundROM* const LEVEL_1_SOUNDS[];
+
 const Size level1_intersection_stage_collision_112_128_8 = {112, 128, 8};
 const Size level1_intersection_stage_collision_16_48_8 = {16, 48, 8};
 const Size level1_intersection_stage_collision_224_16_8 = {224, 16, 8};
@@ -335,7 +337,7 @@ StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background sounds
-		(Sound**)NULL,
+		(Sound**)LEVEL_1_SOUNDS,
 	},
 
 	// entities

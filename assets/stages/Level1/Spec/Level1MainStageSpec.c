@@ -38,6 +38,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern SoundROM* const LEVEL_1_SOUNDS[];
+
 extern StageEntryPointROMSpec LEVEL1_HOUSE_STAGE_MAIN_EP;
 extern StageEntryPointROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_EP;
 extern StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_UPPER_EP;
@@ -798,7 +800,7 @@ StageROMSpec LEVEL_1_MAIN_STAGE_ST =
 		(TextureSpec**)LEVEL_1_MAIN_STAGE_ST_TEXTURES,
 
 		// background sounds
-		(Sound**)NULL,
+		(Sound**)LEVEL_1_SOUNDS,
 	},
 
 	// entities

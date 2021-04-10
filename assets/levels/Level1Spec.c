@@ -26,6 +26,7 @@
 
 #include <PlatformerLevelState.h>
 #include <Languages.h>
+#include <SoundWrapper.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,6 +35,13 @@
 
 extern StageEntryPointROMSpec LEVEL_1_MAIN_MAIN_EP;
 
+extern Sound SOUNDTRACK_01;
+
+SoundROM* const LEVEL_1_SOUNDS[] =
+{
+	&SOUNDTRACK_01,
+	NULL,
+};
 
 //---------------------------------------------------------------------------------------------------------
 //												LEVEL DEFINITION
