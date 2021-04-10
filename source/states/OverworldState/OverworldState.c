@@ -203,8 +203,9 @@ void OverworldState::processUserInput(UserInput userInput)
 		);
 
 		// play sound
-		//Vector3D position = {192, 112, 0};
-		//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
+		extern Sound OPTION_CONFIRM_SND;
+		Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
+		SoundManager::playSound(SoundManager::getInstance(), &OPTION_CONFIRM_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
 
 	}
 	else if(K_B & userInput.pressedKey)

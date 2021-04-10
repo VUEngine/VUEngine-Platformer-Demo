@@ -24,6 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <stdlib.h>
 #include <string.h>
 #include <GameEvents.h>
 #include <Game.h>

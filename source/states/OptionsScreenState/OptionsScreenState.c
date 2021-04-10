@@ -218,14 +218,16 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 
 void OptionsScreenState::playMenuSound()
 {
-//	Vector3D position = {192, 112, 0};
-	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_SELECT_SND, position);
+	extern Sound OPTION_SELECT_SND;
+	Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
+	SoundManager::playSound(SoundManager::getInstance(), &OPTION_SELECT_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
 }
 
 void OptionsScreenState::playConfirmSound()
 {
-//	Vector3D position = {192, 112, 0};
-	//SoundManager::playFxSound(SoundManager::getInstance(), SPLASH_SCREENS_OPTION_CONFIRM_SND, position);
+	extern Sound OPTION_CONFIRM_SND;
+	Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
+	SoundManager::playSound(SoundManager::getInstance(), &OPTION_CONFIRM_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
 }
 
 // handle event

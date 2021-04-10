@@ -120,7 +120,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 	// Timer config
 	{
 		__TIMER_100US,
-		10,
+		1,
 		kMS
 	},
 
