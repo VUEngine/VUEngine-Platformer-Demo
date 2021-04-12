@@ -67,7 +67,7 @@ SoundChannelConfigurationROM SOUNDTRACK_01_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// SxEV0
-	0xF0,
+	0x30,
 
 	/// SxEV1
 	0x01,
@@ -106,7 +106,7 @@ SoundChannelConfigurationROM SOUNDTRACK_01_CHANNEL_2_CONFIGURATION =
 	0x00,
 
 	/// SxEV0
-	0xF0,
+	0x30,
 
 	/// SxEV1
 	0x01,
