@@ -317,6 +317,7 @@ void PlatformerLevelState::enter(void* owner)
 	this->mode = kShowingUp;
 
 	// fade in screen after a little delay
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		250, // initial delay (in ms)
@@ -409,8 +410,8 @@ void PlatformerLevelState::resume(void* owner)
 	// tell any interested entity
 	GameState::propagateMessage(this, kMessageLevelResumed);
 
-
 	// start a fade in effect
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)

@@ -171,6 +171,7 @@ void TitleScreenState::enter(void* owner)
 	GameState::propagateMessage(this, kMessageLevelSetUp);
 
 	// fade in screen after a little delay
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		250, // initial delay (in ms)

@@ -90,6 +90,7 @@ void OverworldState::enter(void* owner)
 	OverworldState::print(this);
 
 	// fade in screen after a little delay
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		250, // initial delay (in ms)
