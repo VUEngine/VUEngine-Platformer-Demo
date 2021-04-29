@@ -177,7 +177,7 @@ ObjectSpriteROMSpec* const STAR_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec STAR_AG =
+AnimatedEntityROMSpec STAR_EN =
 {
 	{
 		// class allocator

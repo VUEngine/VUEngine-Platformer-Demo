@@ -154,7 +154,7 @@ ObjectSpriteROMSpec* const FIRE_SMALL_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec FIRE_SMALL_AG =
+AnimatedEntityROMSpec FIRE_SMALL_EN =
 {
 	{
 		// class allocator

@@ -277,7 +277,7 @@ BgmapSpriteROMSpec* const DOOR_SPRITES[] =
 	NULL
 };
 
-ShapeROMSpec DOOR_AG_SHAPES[] =
+ShapeROMSpec DOOR_SHAPES[] =
 {
 	{
 		// shape
@@ -308,7 +308,7 @@ ShapeROMSpec DOOR_AG_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-DoorROMSpec DOOR_AG =
+DoorROMSpec DOOR_EN =
 {
 	{
 		// class allocator
@@ -330,7 +330,7 @@ DoorROMSpec DOOR_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_AG_SHAPES,
+		(ShapeSpec*)DOOR_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -350,7 +350,7 @@ DoorROMSpec DOOR_AG =
 	"Closed",
 };
 
-LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_AG =
+LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_EN =
 {
 	{
 		// class allocator
@@ -372,7 +372,7 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_AG_SHAPES,
+		(ShapeSpec*)DOOR_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -393,7 +393,7 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_AG =
 };
 
 
-GoalDoorROMSpec GOAL_DOOR_AG =
+GoalDoorROMSpec GOAL_DOOR_EN =
 {
 	{
 		// class allocator
@@ -415,7 +415,7 @@ GoalDoorROMSpec GOAL_DOOR_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_AG_SHAPES,
+		(ShapeSpec*)DOOR_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -435,7 +435,7 @@ GoalDoorROMSpec GOAL_DOOR_AG =
 	"Open",
 };
 
-KeyDoorROMSpec KEY_DOOR_AG =
+KeyDoorROMSpec KEY_DOOR_EN =
 {
 	{
 		// class allocator
@@ -457,7 +457,7 @@ KeyDoorROMSpec KEY_DOOR_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_AG_SHAPES,
+		(ShapeSpec*)DOOR_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -510,7 +510,7 @@ BgmapSpriteROMSpec* const AFFINE_DOOR_SPRITES[] =
 	NULL
 };
 
-DoorROMSpec AFFINE_DOOR_AG =
+DoorROMSpec AFFINE_DOOR_EN =
 {
 	{
 		// class allocator
@@ -532,7 +532,7 @@ DoorROMSpec AFFINE_DOOR_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_AG_SHAPES,
+		(ShapeSpec*)DOOR_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -635,7 +635,7 @@ BgmapSpriteROMSpec* const DOOR_BACK_SPRITES[] =
 	NULL
 };
 
-DoorROMSpec DOOR_BACK_AG =
+DoorROMSpec DOOR_BACK_EN =
 {
 	{
 		// class allocator
@@ -657,7 +657,7 @@ DoorROMSpec DOOR_BACK_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_AG_SHAPES,
+		(ShapeSpec*)DOOR_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -677,7 +677,7 @@ DoorROMSpec DOOR_BACK_AG =
 	"Closed",
 };
 
-LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_AG =
+LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_EN =
 {
 	{
 		// class allocator
@@ -699,7 +699,7 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_AG_SHAPES,
+		(ShapeSpec*)DOOR_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size

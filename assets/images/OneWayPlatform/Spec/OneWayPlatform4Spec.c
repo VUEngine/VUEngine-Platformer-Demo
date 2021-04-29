@@ -124,7 +124,7 @@ BgmapSpriteROMSpec* const ONE_WAY_PLATFORM_4_SPRITES[] =
 	NULL
 };
 
-ShapeROMSpec ONE_WAY_PLATFORM_4_IG_SHAPES[] =
+ShapeROMSpec ONE_WAY_PLATFORM_4_SHAPES[] =
 {
 	{
 		// shape
@@ -155,7 +155,7 @@ ShapeROMSpec ONE_WAY_PLATFORM_4_IG_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec ONE_WAY_PLATFORM_4_IG_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec ONE_WAY_PLATFORM_4_PHYSICAL_PROPERTIES =
 {
 	// mass
 	__F_TO_FIX10_6(0),

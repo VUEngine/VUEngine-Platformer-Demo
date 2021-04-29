@@ -154,7 +154,7 @@ ObjectSpriteROMSpec* const SMOKE_PARTICLE_SMALL_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec SMOKE_PARTICLE_SMALL_AG =
+AnimatedEntityROMSpec SMOKE_PARTICLE_SMALL_EN =
 {
 	{
 		// class allocator

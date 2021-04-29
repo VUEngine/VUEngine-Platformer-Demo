@@ -158,7 +158,7 @@ BgmapSpriteROMSpec* const LAVA_TOP_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec LAVA_TOP_AG =
+AnimatedEntityROMSpec LAVA_TOP_EN =
 {
 	{
 		// class allocator

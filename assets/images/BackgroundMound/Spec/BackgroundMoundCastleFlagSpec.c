@@ -154,7 +154,7 @@ ObjectSpriteROMSpec* const MOUND_BG_CASTLE_FLAG_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_AG =
+AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_EN =
 {
 	{
 		// class allocator

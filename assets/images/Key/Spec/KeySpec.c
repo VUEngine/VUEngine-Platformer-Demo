@@ -154,7 +154,7 @@ ObjectSpriteROMSpec* const KEY_SPRITES[] =
 	NULL
 };
 
-ShapeROMSpec KEY_AG_SHAPES[] =
+ShapeROMSpec KEY_SHAPES[] =
 {
 	{
 		// shape
@@ -185,7 +185,7 @@ ShapeROMSpec KEY_AG_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-AnimatedEntityROMSpec KEY_AG =
+AnimatedEntityROMSpec KEY_EN =
 {
 	{
 		// class allocator
@@ -207,7 +207,7 @@ AnimatedEntityROMSpec KEY_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)KEY_AG_SHAPES,
+		(ShapeSpec*)KEY_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size

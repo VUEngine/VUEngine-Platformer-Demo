@@ -654,7 +654,7 @@ HeroROMSpec HERO_AC =
 	__Y_AXIS
 };
 
-AnimatedEntityROMSpec HERO_IDLE_AG =
+AnimatedEntityROMSpec HERO_IDLE_EN =
 {
 	{
 		// class allocator
@@ -696,7 +696,7 @@ AnimatedEntityROMSpec HERO_IDLE_AG =
 	"Idle",
 };
 
-AnimatedEntityROMSpec HERO_SLEEPING_AG =
+AnimatedEntityROMSpec HERO_SLEEPING_EN =
 {
 	{
 		// class allocator
@@ -739,7 +739,7 @@ AnimatedEntityROMSpec HERO_SLEEPING_AG =
 };
 
 
-AnimatedEntityROMSpec HERO_BANDANA_AG =
+AnimatedEntityROMSpec HERO_BANDANA_EN =
 {
 	{
 		// class allocator

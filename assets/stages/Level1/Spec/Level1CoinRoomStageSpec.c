@@ -45,18 +45,18 @@ const PixelSize level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
 const PixelSize level1_coin_room_stage_collision_32_48_8 = {32, 48, 8};
 const PixelSize level1_coin_room_stage_collision_80_48_8 = {80, 48, 8};
 extern BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
-extern EntitySpec COIN_AG;
+extern EntitySpec COIN_EN;
 extern EntitySpec COLLISION_CL;
-extern EntitySpec DOOR_AG;
-extern EntitySpec GUI_AG;
+extern EntitySpec DOOR_EN;
+extern EntitySpec GUI_EN;
 extern EntitySpec HERO_AC;
 extern EntitySpec LEVEL1_COIN_ROOM_STAGE_BACK_1_IM;
 extern EntitySpec LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM;
 extern EntitySpec LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM;
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 extern EntitySpec SAW_BLADE_H8_AC;
-extern EntitySpec TORCH_AG;
-extern EntitySpec TORCH_LIGHT_AG;
+extern EntitySpec TORCH_EN;
+extern EntitySpec TORCH_LIGHT_EN;
 extern StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_LOWER_EP;
 extern StageEntryPointROMSpec LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP;
 
@@ -69,39 +69,39 @@ PositionedEntityROMSpec LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 {
 	{&COLLISION_CL, {(7), (112), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Left Collision
 	{&COLLISION_CL, {(15), (40), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Left Collision
-	{&DOOR_AG, {(36), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "CoinEntr", NULL, (void*)&LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP, false}, // Door (Entrance)
+	{&DOOR_EN, {(36), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "CoinEntr", NULL, (void*)&LEVEL_1_MAIN_COIN_ROOM_ENTRY_DOOR_EP, false}, // Door (Entrance)
 	{&COLLISION_CL, {(39), (184), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Left Collision
-	{&TORCH_LIGHT_AG, {(64), (128), (0), 0}, 0, NULL, NULL, NULL, false}, // Left Torch Light
-	{&TORCH_AG, {(64), (126), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Left Torch
-	{&COIN_AG, {(144), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "27", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(144), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "28", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(144), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "30", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(144), (136), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "29", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(160), (168), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "31", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(176), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "35", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(176), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "34", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(176), (136), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "33", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(176), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "32", NULL, NULL, false}, // Coin
+	{&TORCH_LIGHT_EN, {(64), (128), (0), 0}, 0, NULL, NULL, NULL, false}, // Left Torch Light
+	{&TORCH_EN, {(64), (126), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Left Torch
+	{&COIN_EN, {(144), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "27", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(144), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "28", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(144), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "30", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(144), (136), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "29", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(160), (168), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "31", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(176), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "35", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(176), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "34", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(176), (136), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "33", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(176), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "32", NULL, NULL, false}, // Coin
 	{&LEVEL1_COIN_ROOM_STAGE_MAIN_BACK_1_IM, {(192), (112), (-SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // MainBack
 	{&COLLISION_CL, {(191), (24), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_320_16_8, false}, // Top Collision
 	{&COLLISION_CL, {(191), (200), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_224_16_8, false}, // Bottom Collision
 	{&LEVEL1_COIN_ROOM_STAGE_BACK_1_IM, {(192), (112), 32, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Back
 	{&SAW_BLADE_H8_AC, {(192), (192), LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Saw Blade
 	{&LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM, {(192), (112), (-SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false}, // Main
-	{&COIN_AG, {(208), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "39", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(208), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "36", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(208), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "37", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(208), (136), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "38", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(208), (168), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "40", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(224), (136), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "42", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(224), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "41", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(224), (168), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "43", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(240), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "44", NULL, NULL, false}, // Coin
-	{&COIN_AG, {(240), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "45", NULL, NULL, false}, // Coin
-	{&TORCH_AG, {(320), (128), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Right Torch
-	{&TORCH_LIGHT_AG, {(320), (130), (0), 0}, 0, NULL, NULL, NULL, false}, // Right Torch Light
+	{&COIN_EN, {(208), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "39", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(208), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "36", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(208), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "37", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(208), (136), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "38", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(208), (168), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "40", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(224), (136), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "42", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(224), (104), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "41", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(224), (168), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "43", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(240), (120), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "44", NULL, NULL, false}, // Coin
+	{&COIN_EN, {(240), (152), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "45", NULL, NULL, false}, // Coin
+	{&TORCH_EN, {(320), (128), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Right Torch
+	{&TORCH_LIGHT_EN, {(320), (130), (0), 0}, 0, NULL, NULL, NULL, false}, // Right Torch Light
 	{&COLLISION_CL, {(343), (184), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_80_48_8, false}, // Bottom Right Collision
-	{&DOOR_AG, {(348), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "CoinExit", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_LOWER_EP, false}, // Door (Exit)
+	{&DOOR_EN, {(348), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "CoinExit", NULL, (void*)&LEVEL1_INTERSECTION_STAGE_LOWER_EP, false}, // Door (Exit)
 	{&COLLISION_CL, {(367), (40), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_32_48_8, false}, // Top Right Collision
 	{&COLLISION_CL, {(375), (112), (0), 0}, 0, NULL, NULL, (void*)&level1_coin_room_stage_collision_16_96_8, false}, // Right Collision
 
@@ -111,7 +111,7 @@ PositionedEntityROMSpec LEVEL1_COIN_ROOM_STAGE_ST_ENTITIES[] =
 PositionedEntityROMSpec LEVEL1_COIN_ROOM_STAGE_ST_UI_ENTITIES[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
-	{&GUI_AG, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
+	{&GUI_EN, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

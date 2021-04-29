@@ -44,9 +44,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec LEVEL_1_HOUSE_IM;
-extern AnimatedEntityROMSpec COIN_BACK_AG;
-extern AnimatedEntityROMSpec COIN_SILHOUETTE_AG;
-extern AnimatedEntityROMSpec COIN_BACK_SILHOUETTE_AG;
+extern AnimatedEntityROMSpec COIN_BACK_EN;
+extern AnimatedEntityROMSpec COIN_SILHOUETTE_EN;
+extern AnimatedEntityROMSpec COIN_BACK_SILHOUETTE_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -65,13 +65,13 @@ void Coin::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, c
 	{
 		AnimatedEntitySpec* animatedEntitySpec = this->animatedEntitySpec;
 
-		if((AnimatedEntitySpec*)&COIN_BACK_AG == animatedEntitySpec)
+		if((AnimatedEntitySpec*)&COIN_BACK_EN == animatedEntitySpec)
 		{
-			animatedEntitySpec = (AnimatedEntitySpec*)&COIN_BACK_SILHOUETTE_AG;
+			animatedEntitySpec = (AnimatedEntitySpec*)&COIN_BACK_SILHOUETTE_EN;
 		}
 		else
 		{
-			animatedEntitySpec = (AnimatedEntitySpec*)&COIN_SILHOUETTE_AG;
+			animatedEntitySpec = (AnimatedEntitySpec*)&COIN_SILHOUETTE_EN;
 		}
 
 		AnimatedEntity::setSpec(this, animatedEntitySpec);

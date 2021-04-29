@@ -90,15 +90,15 @@ void PlatformerLevelState::getPositionedEntitiesToIgnore(VirtualList positionedE
 
 	if(positionedEntitiesToIgnore)
 	{
-		extern EntitySpec BANDANA_AG;
-		extern EntitySpec KEY_AG;
+		extern EntitySpec BANDANA_EN;
+		extern EntitySpec KEY_EN;
 
 		// loop stage entities and remove items which have already been collected
 		int i = 0;
 		for(; this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec; i++)
 		{
-			if((this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&BANDANA_AG) ||
-				(this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&KEY_AG))
+			if((this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&BANDANA_EN) ||
+				(this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&KEY_EN))
 			{
 				int itemId = atoi(this->currentStageEntryPoint->stageSpec->entities.children[i].name);
 

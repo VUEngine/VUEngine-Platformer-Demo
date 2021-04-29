@@ -162,7 +162,7 @@ BgmapSpriteROMSpec* const WATERFALL_TOP_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec WATERFALL_TOP_AG =
+AnimatedEntityROMSpec WATERFALL_TOP_EN =
 {
 	{
 		// class allocator

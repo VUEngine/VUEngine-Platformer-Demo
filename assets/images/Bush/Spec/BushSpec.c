@@ -177,7 +177,7 @@ ObjectSpriteROMSpec* const BUSH_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec BUSH_AG =
+AnimatedEntityROMSpec BUSH_EN =
 {
 	{
 		// class allocator

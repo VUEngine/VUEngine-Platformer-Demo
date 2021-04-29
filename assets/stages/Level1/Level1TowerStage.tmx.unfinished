@@ -63,7 +63,7 @@
   <tile id="0">
    <properties>
     <property name="charsetName" value=""/>
-    <property name="entityName" value="LAVA_TRIGGER_IG"/>
+    <property name="entityName" value="LAVA_TRIGGER_EN"/>
     <property name="textureName" value=""/>
    </properties>
    <image width="16" height="96" source="../../images/Other/Preview/lavaTrigger.png"/>
@@ -71,7 +71,7 @@
   <tile id="1">
    <properties>
     <property name="charsetName" value="LAVA_CH"/>
-    <property name="entityName" value="LAVA_IG"/>
+    <property name="entityName" value="LAVA_EN"/>
     <property name="textureName" value="LAVA_TX"/>
    </properties>
    <image width="384" height="112" source="../../images/Lava/Preview/Lava.png"/>
