@@ -16,7 +16,8 @@
 			"brightRed": 128,
 			"darkRed": 32,
 			"fadeDelay": 48,
-			"fadeIncrement": 4
+			"fadeIncrement": 4,
+			"mediumRed": 64
 		},
 		"palettes": {
 			"bgMap": {
