@@ -129,7 +129,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 	// Timer config
 	{
 		__TIMER_100US,
-		1,
+		10,
 		kMS
 	},
 
@@ -195,9 +195,6 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 
 	// rendering
 	{
-		// number of cycles the texture writing is idle
-		__TARGET_FPS / 10,
-
 		// maximum number of texture's rows to write each time the texture writing is active
 		12,
 

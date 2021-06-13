@@ -79,7 +79,7 @@ void OverworldState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&OVERWORLD1_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&OVERWORLD1_STAGE_ST, NULL, true, false);
 
 	// make a little bit of physical simulations so each entity is placed at the floor
 	GameState::startClocks(this);

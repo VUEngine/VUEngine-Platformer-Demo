@@ -94,7 +94,7 @@ void TitleScreenState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&TITLE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&TITLE_SCREEN_STAGE_ST, NULL, true, false);
 
 	if(this->optionsSelector)
 	{

@@ -64,7 +64,7 @@ void AutomaticPauseScreenState::destructor()
 void AutomaticPauseScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&PAUSE_SCREEN_STAGE_ST, NULL, true, false);
 
 	// print text
 	const char* strAutomaticPauseTitle = I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);

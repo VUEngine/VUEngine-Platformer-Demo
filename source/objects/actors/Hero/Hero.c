@@ -756,6 +756,7 @@ void Hero::addHint()
 
 	// save the hint entity, so we can remove it later
 	this->hint = Entity::addChildEntity(this, &HINT_MC, -1, "hint", &position, NULL);
+	Entity::setInheritEnvironment(this->hint, __INHERIT_POSITION);
 
 	Hero::hideHint(this);
 }

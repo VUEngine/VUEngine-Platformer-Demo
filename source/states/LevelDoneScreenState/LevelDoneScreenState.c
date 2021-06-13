@@ -68,7 +68,7 @@ void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&LEVEL_DONE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&LEVEL_DONE_SCREEN_STAGE_ST, NULL, true, false);
 
 	// print stats
 	LevelDoneScreenState::print(this);

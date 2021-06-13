@@ -671,9 +671,6 @@ StageROMSpec LEVEL_1_MAIN_STAGE_ST =
 
 	// rendering
 	{
-		// number of cycles the texture writing is idle
-		1,
-
 		// maximum number of texture's rows to write each time the texture writing is active
 		12,
 

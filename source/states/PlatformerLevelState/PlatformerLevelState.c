@@ -163,7 +163,7 @@ void PlatformerLevelState::enter(void* owner)
 			Camera::setPosition(Camera::getInstance(), screenPosition);
 
 			// load stage
-			GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, false);
+			GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, false, false);
 
 			// get hero entity
 			Container hero = Container::getChildByName(this->stage, HERO_NAME, true);
@@ -214,13 +214,13 @@ void PlatformerLevelState::enter(void* owner)
 		else
 		{
 			// load stage
-			GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, true);
+			GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, true, false);
 		}
 	}
 	else
 	{
 		// load stage
-		GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, true);
+		GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, true, false);
 	}
 
 	PlatformerCameraMovementManager::disable(PlatformerCameraMovementManager::getInstance());
