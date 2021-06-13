@@ -224,7 +224,7 @@ BgmapSpriteROMSpec* const HIDE_LAYER_10x7_SPRITES[] =
 	NULL
 };
 
-ShapeROMSpec HIDE_LAYER_10x7_AG_SHAPES[] =
+ShapeROMSpec HIDE_LAYER_10x7_SHAPES[] =
 {
 	{
 		// shape
@@ -255,7 +255,7 @@ ShapeROMSpec HIDE_LAYER_10x7_AG_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-HideLayerROMSpec HIDE_LAYER_10x7_AG =
+HideLayerROMSpec HIDE_LAYER_10x7_EN =
 {
 	{
 		// class allocator
@@ -277,7 +277,7 @@ HideLayerROMSpec HIDE_LAYER_10x7_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)HIDE_LAYER_10x7_AG_SHAPES,
+		(ShapeSpec*)HIDE_LAYER_10x7_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size

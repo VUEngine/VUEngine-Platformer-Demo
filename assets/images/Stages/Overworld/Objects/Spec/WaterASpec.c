@@ -167,7 +167,7 @@ BgmapSpriteROMSpec* const WATER_A_SPRITES[] =
 //											ENTITY DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-AnimatedEntityROMSpec WATER_A_AG =
+AnimatedEntityROMSpec WATER_A_EN =
 {
 	{
 		// class allocator

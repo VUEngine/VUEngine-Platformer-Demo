@@ -36,7 +36,7 @@
  <tile id="8">
   <properties>
    <property name="charsetName" value="STAR_CH"/>
-   <property name="entityName" value="STAR_AG"/>
+   <property name="entityName" value="STAR_EN"/>
    <property name="textureName" value="STAR_TX"/>
   </properties>
   <image width="8" height="8" source="../../../images/BackgroundMound/Preview/BackgroundMoundStar.png"/>

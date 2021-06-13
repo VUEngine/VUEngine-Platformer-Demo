@@ -80,6 +80,7 @@ void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 	GameState::startClocks(this);
 
 	// fade in screen
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
@@ -144,7 +145,7 @@ void LevelDoneScreenState::processUserInput(UserInput userInput)
 		Camera::startEffect(Camera::getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
-			&brightness, // target brightness
+			&brightness, // target brightness@
 			__FADE_DELAY, // delay between fading steps (in ms)
 			(void (*)(Object, Object))LevelDoneScreenState::onFadeOutComplete, // callback function
 			Object::safeCast(this) // callback scope

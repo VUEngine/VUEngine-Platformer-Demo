@@ -90,15 +90,15 @@ void PlatformerLevelState::getPositionedEntitiesToIgnore(VirtualList positionedE
 
 	if(positionedEntitiesToIgnore)
 	{
-		extern EntitySpec BANDANA_AG;
-		extern EntitySpec KEY_AG;
+		extern EntitySpec BANDANA_EN;
+		extern EntitySpec KEY_EN;
 
 		// loop stage entities and remove items which have already been collected
 		int i = 0;
 		for(; this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec; i++)
 		{
-			if((this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&BANDANA_AG) ||
-				(this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&KEY_AG))
+			if((this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&BANDANA_EN) ||
+				(this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&KEY_EN))
 			{
 				int itemId = atoi(this->currentStageEntryPoint->stageSpec->entities.children[i].name);
 
@@ -317,6 +317,7 @@ void PlatformerLevelState::enter(void* owner)
 	this->mode = kShowingUp;
 
 	// fade in screen after a little delay
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		250, // initial delay (in ms)
@@ -409,8 +410,8 @@ void PlatformerLevelState::resume(void* owner)
 	// tell any interested entity
 	GameState::propagateMessage(this, kMessageLevelResumed);
 
-
 	// start a fade in effect
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)

@@ -37,18 +37,18 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec BUSH_AG;
+extern EntitySpec BUSH_EN;
 extern EntitySpec CLOUDS_IM;
-extern EntitySpec COIN_AG;
-extern EntitySpec GRASS_AG;
-extern EntitySpec HERO_BANDANA_AG;
+extern EntitySpec COIN_EN;
+extern EntitySpec GRASS_EN;
+extern EntitySpec HERO_BANDANA_EN;
 extern EntitySpec LOGO_IM;
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 extern EntitySpec MOUND_BG_BACK_IM;
-extern EntitySpec MOUND_BG_CASTLE_FLAG_AG;
+extern EntitySpec MOUND_BG_CASTLE_FLAG_EN;
 extern EntitySpec MOUND_BG_CASTLE_IM;
 extern EntitySpec MOUND_BG_FRONT_IM;
-extern EntitySpec STAR_AG;
+extern EntitySpec STAR_EN;
 extern EntitySpec TITLE_SCREEN_STAGE_MAIN_1_IM;
 extern EntitySpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM;
 extern EntitySpec VUENGINE_LOGO_IM;
@@ -67,22 +67,22 @@ PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 	{&LOW_POWER_INDICATOR_LB, 	{__LOW_POWER_ENTITY_X_POSITION, __LOW_POWER_ENTITY_Y_POSITION, __LOW_POWER_ENTITY_Z_POSITION, __LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 //	{&CLOUDS_BACKGROUND_EN, 				{192, 112 - 112/2 - 12, LAYER_3, 0}, 		0, NULL, NULL, NULL, true}, // Front
 	{&MOUND_BG_FRONT_IM, 					{  0, 136, LAYER_2, 0}, 		0, NULL, NULL, NULL, false}, // Front
-	{&GRASS_AG, 							{ 32, 152, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Grass
-	{&COIN_AG, 								{ 56, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
-	{&COIN_AG, 								{ 72, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
+	{&GRASS_EN, 							{ 32, 152, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Grass
+	{&COIN_EN, 								{ 56, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
+	{&COIN_EN, 								{ 72, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
 	{&TITLE_SCREEN_STAGE_MAIN_1_IM, 		{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer
 	{&LOGO_IM, 								{192,  53, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Logo
 	{&VUENGINE_LOGO_IM, 					{192,  18, LAYER_1, 0}, 		0, NULL, NULL, NULL, false}, // VUEngine
-	{&HERO_BANDANA_AG, 						{192, 157, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Hero
+	{&HERO_BANDANA_EN, 						{192, 157, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Hero
 	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, 	{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer Front
 	{&CLOUDS_IM, 							{194, 128, LAYER_4, 0}, 		0, NULL, NULL, NULL, false}, // Clouds
 	{&MOUND_BG_BACK_IM, 					{280,  72, LAYER_5, 0}, 		0, NULL, NULL, NULL, false}, // Mountains
 	{&MOUND_BG_CASTLE_IM, 					{300, 104, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_AG, 				{274,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag L
-	{&MOUND_BG_CASTLE_FLAG_AG, 				{304,  95, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag M
-	{&MOUND_BG_CASTLE_FLAG_AG, 				{334,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag R
-	{&STAR_AG, 								{392,  16, LAYER_5 - 1, 0},		0, NULL, NULL, NULL, false}, // Star
-	{&BUSH_AG, 								{368, 148, LAYER_0, 0},			0, NULL, NULL, NULL, false}, // Bush
+	{&MOUND_BG_CASTLE_FLAG_EN, 				{274,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag L
+	{&MOUND_BG_CASTLE_FLAG_EN, 				{304,  95, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag M
+	{&MOUND_BG_CASTLE_FLAG_EN, 				{334,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag R
+	{&STAR_EN, 								{392,  16, LAYER_5 - 1, 0},		0, NULL, NULL, NULL, false}, // Star
+	{&BUSH_EN, 								{368, 148, LAYER_0, 0},			0, NULL, NULL, NULL, false}, // Bush
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

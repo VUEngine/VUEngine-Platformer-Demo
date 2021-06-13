@@ -177,7 +177,7 @@ ObjectSpriteROMSpec* const GRASS_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec GRASS_AG =
+AnimatedEntityROMSpec GRASS_EN =
 {
 	{
 		// class allocator

@@ -43,15 +43,15 @@ const Size level1_house_stage_collision_128_16_8 = {128, 16, 8};
 const Size level1_house_stage_collision_16_96_8 = {16, 96, 8};
 const Size level1_house_stage_collision_24_24_8 = {24, 24, 8};
 extern CharSetSpec LEVEL_1_HOUSE_MAIN_CH;
-extern EntitySpec CLOCK_AG;
+extern EntitySpec CLOCK_EN;
 extern EntitySpec CLOUDS_IM;
-extern EntitySpec COIN_AG;
+extern EntitySpec COIN_EN;
 extern EntitySpec COLLISION_CL;
 extern EntitySpec COLLISION_TOP_CL;
-extern EntitySpec FIRE_SMALL_AG;
-extern EntitySpec GUI_AG;
+extern EntitySpec FIRE_SMALL_EN;
+extern EntitySpec GUI_EN;
 extern EntitySpec HERO_AC;
-extern EntitySpec KEY_DOOR_AG;
+extern EntitySpec KEY_DOOR_EN;
 extern EntitySpec LEVEL_1_HOUSE_LIGHT_IM;
 extern EntitySpec LEVEL_1_HOUSE_MAIN_IM;
 extern EntitySpec LOW_POWER_INDICATOR_LB;
@@ -66,15 +66,15 @@ extern StageEntryPointROMSpec LEVEL_1_MAIN_HOUSE_EP;
 PositionedEntityROMSpec LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 {
 	{&COLLISION_CL, {(119), (128), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Left Collision
-	{&KEY_DOOR_AG, {(148), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
-	{&CLOCK_AG, {(180), (128), (LAYER_0 + 32), 0}, 0, NULL, NULL, NULL, false}, // Clock
+	{&KEY_DOOR_EN, {(148), (144), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_HOUSE_EP, false}, // Door
+	{&CLOCK_EN, {(180), (128), (LAYER_0 + 32), 0}, 0, NULL, NULL, NULL, false}, // Clock
 	{&LEVEL_1_HOUSE_MAIN_IM, {(192), (112), 0, 0}, 0, NULL, NULL, NULL, false}, // House Background
 	{&COLLISION_CL, {(191), (168), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Bottom Collision
 	{&COLLISION_CL, {(191), (88), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_128_16_8, false}, // Top Collision
 	{&CLOUDS_IM, {(194), (138), (LAYER_4), 0}, 0, NULL, NULL, NULL, false}, // Clouds
 	{&LEVEL_1_HOUSE_LIGHT_IM, {(197), (139), (LAYER_0_ITEMS - 1), 0}, 0, NULL, NULL, NULL, false}, // Light
-	{&COIN_AG, {(204), (146), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "26", NULL, NULL, false}, // Coin
-	{&FIRE_SMALL_AG, {(240), (155), (32), 0}, 0, NULL, NULL, NULL, false}, // Fire
+	{&COIN_EN, {(204), (146), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "26", NULL, NULL, false}, // Coin
+	{&FIRE_SMALL_EN, {(240), (155), (32), 0}, 0, NULL, NULL, NULL, false}, // Fire
 	{&COLLISION_TOP_CL, {(240), (152), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_24_24_8, false}, // Fireplace Collision
 	{&MOUND_BG_BACK_IM, {(255), (104), (LAYER_5), 0}, 0, NULL, NULL, NULL, false}, // Mountains
 	{&COLLISION_CL, {(263), (128), (0), 0}, 0, NULL, NULL, (void*)&level1_house_stage_collision_16_96_8, false}, // Right Collision
@@ -85,7 +85,7 @@ PositionedEntityROMSpec LEVEL1_HOUSE_STAGE_ST_ENTITIES[] =
 PositionedEntityROMSpec LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
-	{&GUI_AG, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
+	{&GUI_EN, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

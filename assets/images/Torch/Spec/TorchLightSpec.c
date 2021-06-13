@@ -157,7 +157,7 @@ BgmapSpriteROMSpec* const TORCH_LIGHT_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec TORCH_LIGHT_AG =
+AnimatedEntityROMSpec TORCH_LIGHT_EN =
 {
 	{
 		// class allocator

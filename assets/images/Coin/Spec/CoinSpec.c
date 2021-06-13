@@ -425,7 +425,7 @@ ShapeROMSpec COIN_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-CoinROMSpec COIN_AG =
+CoinROMSpec COIN_EN =
 {
 	{
 		// class allocator
@@ -467,7 +467,7 @@ CoinROMSpec COIN_AG =
 	"Spin",
 };
 
-CoinROMSpec COIN_SILHOUETTE_AG =
+CoinROMSpec COIN_SILHOUETTE_EN =
 {
 	{
 		// class allocator
@@ -606,7 +606,7 @@ ShapeROMSpec COIN_BACK_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-CoinROMSpec COIN_BACK_AG =
+CoinROMSpec COIN_BACK_EN =
 {
 	{
 		// class allocator
@@ -648,7 +648,7 @@ CoinROMSpec COIN_BACK_AG =
 	"Spin",
 };
 
-CoinROMSpec COIN_BACK_SILHOUETTE_AG =
+CoinROMSpec COIN_BACK_SILHOUETTE_EN =
 {
 	{
 		// class allocator

@@ -81,7 +81,7 @@
   </tile>
   <tile id="12">
    <properties>
-    <property name="entityName" value="GUI_OVERWORLD_AG"/>
+    <property name="entityName" value="GUI_OVERWORLD_EN"/>
    </properties>
    <image width="384" height="16" source="../../images/Gui/Preview/GuiOverworld.png"/>
   </tile>

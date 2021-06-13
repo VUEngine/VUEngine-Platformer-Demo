@@ -48,13 +48,13 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec CANNON_BALL_AC;
-extern EntitySpec COIN_AG;
-extern EntitySpec DOOR_AG;
+extern EntitySpec COIN_EN;
+extern EntitySpec DOOR_EN;
 extern EntitySpec HERO_AC;
-extern EntitySpec HERO_AG;
-extern EntitySpec KEY_AG;
-extern EntitySpec LAVA_TOP_AG;
-extern EntitySpec LAYER_SWITCH_DOOR_BACK_AG;
+extern EntitySpec HERO_EN;
+extern EntitySpec KEY_EN;
+extern EntitySpec LAVA_TOP_EN;
+extern EntitySpec LAYER_SWITCH_DOOR_BACK_EN;
 extern EntitySpec LEVEL_1_HOUSE_IM;
 extern EntitySpec SAW_BLADE_H3_AC;
 extern EntitySpec SAW_BLADE_V3_AC;
@@ -123,10 +123,10 @@ const UserObject _userObjects[] =
 {
 	{&LEVEL_1_HOUSE_IM,		"House"},
 	{&CANNON_BALL_AC,		"CannonBall"},
-	{&COIN_AG,				"Coin"},
-	{&DOOR_AG,				"Door"},
+	{&COIN_EN,				"Coin"},
+	{&DOOR_EN,				"Door"},
 	{&HERO_AC,				"Hero"},
-	{&KEY_AG,				"Key"},
+	{&KEY_EN,				"Key"},
 	{&SAW_BLADE_V3_AC,		"SawBlade V3"},
 	{&SAW_BLADE_H3_AC,		"SawBlade H3"},
 	{NULL, ""},
@@ -134,14 +134,14 @@ const UserObject _userObjects[] =
 
 const UserAnimatedEntity _userAnimatedEntities[] =
 {
-	{(AnimatedEntitySpec*)&COIN_AG,						"Coin"},
-	{(AnimatedEntitySpec*)&DOOR_AG,						"Door"},
-	{(AnimatedEntitySpec*)&LAYER_SWITCH_DOOR_BACK_AG,	"Back Door"},
+	{(AnimatedEntitySpec*)&COIN_EN,						"Coin"},
+	{(AnimatedEntitySpec*)&DOOR_EN,						"Door"},
+	{(AnimatedEntitySpec*)&LAYER_SWITCH_DOOR_BACK_EN,	"Back Door"},
 	{(AnimatedEntitySpec*)&HERO_AC,						"Hero"},
-	{(AnimatedEntitySpec*)&KEY_AG,						"Key"},
+	{(AnimatedEntitySpec*)&KEY_EN,						"Key"},
 	{(AnimatedEntitySpec*)&SAW_BLADE_V3_AC,				"SawBlade"},
 	{(AnimatedEntitySpec*)&SNAIL_3_AC,					"Snail"},
-	{(AnimatedEntitySpec*)&LAVA_TOP_AG,					"Lava top"},
+	{(AnimatedEntitySpec*)&LAVA_TOP_EN,					"Lava top"},
 	{NULL, ""},
 };
 

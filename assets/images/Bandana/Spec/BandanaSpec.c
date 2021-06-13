@@ -155,7 +155,7 @@ ObjectSpriteROMSpec* const BANDANA_SPRITES[] =
 	NULL
 };
 
-ShapeROMSpec BANDANA_AG_SHAPES[] =
+ShapeROMSpec BANDANA_SHAPES[] =
 {
 	{
 		// shape
@@ -186,7 +186,7 @@ ShapeROMSpec BANDANA_AG_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-AnimatedEntityROMSpec BANDANA_AG =
+AnimatedEntityROMSpec BANDANA_EN =
 {
 	{
 		// class allocator
@@ -208,7 +208,7 @@ AnimatedEntityROMSpec BANDANA_AG =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)BANDANA_AG_SHAPES,
+		(ShapeSpec*)BANDANA_SHAPES,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size

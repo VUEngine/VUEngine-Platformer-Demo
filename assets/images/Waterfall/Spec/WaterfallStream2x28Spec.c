@@ -162,7 +162,7 @@ BgmapSpriteROMSpec* const WATERFALL_STREAM_2x28_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec WATERFALL_STREAM_2x28_AG =
+AnimatedEntityROMSpec WATERFALL_STREAM_2x28_EN =
 {
 	{
 		// class allocator

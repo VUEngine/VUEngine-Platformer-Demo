@@ -167,7 +167,7 @@ BgmapSpriteROMSpec* const FLOWER_A_SPRITES[] =
 //											ENTITY DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-AnimatedEntityROMSpec FLOWER_A_AG =
+AnimatedEntityROMSpec FLOWER_A_EN =
 {
 	{
 		// class allocator

@@ -258,7 +258,7 @@ BgmapSpriteROMSpec* const GUI_OVERWORLD_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec GUI_AG =
+AnimatedEntityROMSpec GUI_EN =
 {
 	{
 		// class allocator
@@ -300,7 +300,7 @@ AnimatedEntityROMSpec GUI_AG =
 	"Default",
 };
 
-AnimatedEntityROMSpec GUI_OVERWORLD_AG =
+AnimatedEntityROMSpec GUI_OVERWORLD_EN =
 {
 	{
 		// class allocator

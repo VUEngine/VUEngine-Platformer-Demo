@@ -154,7 +154,7 @@ ObjectSpriteROMSpec* const TORCH_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec TORCH_AG =
+AnimatedEntityROMSpec TORCH_EN =
 {
 	{
 		// class allocator

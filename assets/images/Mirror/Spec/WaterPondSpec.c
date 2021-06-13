@@ -40,7 +40,7 @@ extern BgmapSpriteSpec LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM;
 //---------------------------------------------------------------------------------------------------------
 
 
-BgmapSpriteROMSpec* const WATER_POND_EN_SPRITES[] =
+BgmapSpriteROMSpec* const WATER_POND_SPRITES[] =
 {
 //	(BgmapSpriteROMSpec*)&LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM,
 	NULL
@@ -64,7 +64,7 @@ const u8 WATER_POND_WAVE_LUT[] =
 #define WATER_POND_REFLECTION_HEIGHT	12
 #define WAVING_THROTTLE					__F_TO_FIX10_6(0.8f)
 
-ShapeROMSpec WATER_POND_EN_SHAPES[] =
+ShapeROMSpec WATER_POND_SHAPES[] =
 {
 	{
 		// shape
@@ -95,7 +95,7 @@ ShapeROMSpec WATER_POND_EN_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec WATER_POND_EN_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec WATER_POND_PHYSICAL_PROPERTIES =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -130,13 +130,13 @@ WaterPondROMSpec WATER_POND_EN =
 			NULL,
 
 			// sprites
-			(SpriteSpec**)WATER_POND_EN_SPRITES,
+			(SpriteSpec**)WATER_POND_SPRITES,
 
 			// use z displacement in projection
 	false,
 
 	// collision shapes
-			(ShapeSpec*)WATER_POND_EN_SHAPES,
+			(ShapeSpec*)WATER_POND_SHAPES,
 
 			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
@@ -146,7 +146,7 @@ WaterPondROMSpec WATER_POND_EN =
 			kTypeWaterPond,
 
 			// physical specification
-			(PhysicalSpecification*)&WATER_POND_EN_PHYSICAL_PROPERTIES,
+			(PhysicalSpecification*)&WATER_POND_PHYSICAL_PROPERTIES,
 		},
 
 		// the starting point from where start to reflect data

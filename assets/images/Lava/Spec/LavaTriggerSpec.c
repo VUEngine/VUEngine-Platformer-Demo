@@ -34,7 +34,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ShapeROMSpec LAVA_TRIGGER_IG_SHAPES[] =
+ShapeROMSpec LAVA_TRIGGER_SHAPES[] =
 {
 	{
 		// shape
@@ -65,7 +65,7 @@ ShapeROMSpec LAVA_TRIGGER_IG_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-LavaTriggerROMSpec LAVA_TRIGGER_IG =
+LavaTriggerROMSpec LAVA_TRIGGER_EN =
 {
 	// class allocator
 	__TYPE(LavaTrigger),
@@ -86,7 +86,7 @@ LavaTriggerROMSpec LAVA_TRIGGER_IG =
 	false,
 
 	// collision shapes
-	(ShapeSpec*)LAVA_TRIGGER_IG_SHAPES,
+	(ShapeSpec*)LAVA_TRIGGER_SHAPES,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size

@@ -138,7 +138,7 @@ BgmapSpriteROMSpec* const LAVA_BG_SPRITES[] =
 	NULL
 };
 
-ShapeROMSpec LAVA_IG_SHAPES[] =
+ShapeROMSpec LAVA_SHAPES[] =
 {
 	{
 		// shape
@@ -169,7 +169,7 @@ ShapeROMSpec LAVA_IG_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-LavaROMSpec LAVA_IG =
+LavaROMSpec LAVA_EN =
 {
 	// class allocator
 	__TYPE(Lava),
@@ -190,7 +190,7 @@ LavaROMSpec LAVA_IG =
 	false,
 
 	// collision shapes
-	(ShapeSpec*)LAVA_IG_SHAPES,
+	(ShapeSpec*)LAVA_SHAPES,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size

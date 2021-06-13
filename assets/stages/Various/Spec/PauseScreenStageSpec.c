@@ -33,7 +33,7 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec HERO_SLEEPING_AG;
+extern EntitySpec HERO_SLEEPING_EN;
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 
 
@@ -45,7 +45,7 @@ PositionedEntityROMSpec PAUSE_SCREEN_STAGE_ST_ENTITIES[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{__LOW_POWER_ENTITY_X_POSITION, __LOW_POWER_ENTITY_Y_POSITION, __LOW_POWER_ENTITY_Z_POSITION, __LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&HERO_SLEEPING_AG, {192, 92, LAYER_0, 0}, 0, NULL, NULL, NULL, false}, // Hero Sleeping
+	{&HERO_SLEEPING_EN, {192, 92, LAYER_0, 0}, 0, NULL, NULL, NULL, false}, // Hero Sleeping
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

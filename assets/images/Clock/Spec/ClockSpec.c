@@ -154,7 +154,7 @@ ObjectSpriteROMSpec* const CLOCK_SPRITES[] =
 	NULL
 };
 
-AnimatedEntityROMSpec CLOCK_AG =
+AnimatedEntityROMSpec CLOCK_EN =
 {
 	{
 		// class allocator
