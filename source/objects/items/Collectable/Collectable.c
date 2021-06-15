@@ -68,13 +68,13 @@ bool Collectable::handleMessage(Telegram telegram)
 			SoundManager::playSound(SoundManager::getInstance(), &COLLECT_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 
 			// set shape to inactive so no other hits with this item can occur
-			Entity::allowCollisions(this, false);
+			Collectable::allowCollisions(this, false);
 
 			// additional action
 			Collectable::collect(this);
 
 			// delete myself now
-			Container::deleteMyself(this);
+			Collectable::deleteMyself(this);
 
 			break;
 		}
