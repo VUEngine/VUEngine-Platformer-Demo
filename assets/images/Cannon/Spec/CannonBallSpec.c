@@ -180,7 +180,7 @@ ShapeROMSpec CANNON_BALL_AC_SHAPES[] =
 		kLayerEnemies,
 
 		/// layers to ignore when checking for collisions
-		kLayerNone,
+		kLayerAll,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
