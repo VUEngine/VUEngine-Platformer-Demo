@@ -26,11 +26,13 @@
 
 #include <Game.h>
 #include <ProgressManager.h>
-#include <AutoPauseManager.h>
+#include <AutomaticPauseManager.h>
 #include <PrecautionScreenState.h>
-#include <LangSelectScreenState.h>
+#include <LanguageSelectionScreenState.h>
 #include <TitleScreenState.h>
 #include <AutomaticPauseScreenState.h>
+#include <AdjustmentScreenState.h>
+#include <AutomaticPauseSelectionScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,12 +42,25 @@
 int main(void)
 {
 	// initialize plugins
-	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	AutoPauseManager::setAutomaticPauseState(AutoPauseManager::getInstance(), GameState::safeCast(AutomaticPauseScreenState::getInstance()));
-	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 15);
+	AutomaticPauseManager::setActive(AutomaticPauseManager::getInstance(), true);
+	AutomaticPauseManager::setAutomaticPauseState(AutomaticPauseManager::getInstance(), GameState::safeCast(AutomaticPauseScreenState::getInstance()));
+	AutomaticPauseManager::setAutomaticPauseDelay(AutomaticPauseManager::getInstance(), 15);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
+
 	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
+		SplashScreenState::safeCast(PrecautionScreenState::getInstance()),
+		GameState::safeCast(AdjustmentScreenState::getInstance())
+	);
+	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(AdjustmentScreenState::getInstance()),
+		GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance())
+	);
+	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(AutomaticPauseSelectionScreenState::getInstance()),
+		GameState::safeCast(LanguageSelectionScreenState::getInstance())
+	);
+	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()),
 		GameState::safeCast(TitleScreenState::getInstance())
 	);
 

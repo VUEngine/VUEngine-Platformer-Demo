@@ -194,22 +194,22 @@ void WaterPond::applyReflection(u32 currentDrawingFrameBufferSet)
 								waterPondSpec->surfaceHeight);
 }
 
-static inline void WaterPond::shiftPixels(int pixelShift, POINTER_TYPE* sourceValue, u32 nextSourceValue, POINTER_TYPE* remainderValue, u32 reflectionMask)
+static inline void WaterPond::shiftPixels(int pixelShift, REFLECTIVE_ENTITY_POINTER_TYPE* sourceValue, u32 nextSourceValue, REFLECTIVE_ENTITY_POINTER_TYPE* remainderValue, u32 reflectionMask)
 {
 	*sourceValue &= reflectionMask;
 	*remainderValue &= reflectionMask;
 
 	if(0 < pixelShift)
 	{
-		POINTER_TYPE remainderValueTemp = *remainderValue;
-		*remainderValue = (*sourceValue >> (BITS_PER_STEP - pixelShift));
+		REFLECTIVE_ENTITY_POINTER_TYPE remainderValueTemp = *remainderValue;
+		*remainderValue = (*sourceValue >> (REFLECTIVE_ENTITY_BITS_PER_STEP - pixelShift));
 		*sourceValue <<= pixelShift;
 		*sourceValue |= remainderValueTemp;
 	}
 	else if(0 > pixelShift)
 	{
 		*sourceValue >>= -pixelShift;
-		*sourceValue |= (nextSourceValue << (BITS_PER_STEP + pixelShift));
+		*sourceValue |= (nextSourceValue << (REFLECTIVE_ENTITY_BITS_PER_STEP + pixelShift));
 		*remainderValue = nextSourceValue >> (-pixelShift);
 	}
 }
@@ -317,7 +317,7 @@ void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
 	fix10_6 waveLutIndexIncrement = this->waveLutIndexIncrement;
 
 	int ySourceIncrement = 1;
-    int ySourceStartHelper = ySourceStart >> Y_STEP_SIZE_2_EXP;
+    int ySourceStartHelper = ySourceStart >> REFLECTIVE_ENTITY_Y_STEP_SIZE_2_EXP;
 	int xSourceDistance = __ABS(xSourceEnd - xSourceStart);
 	int xOutputDistance = __ABS(xOutput - xOutputLimit);
 	int xTotal = xOutputDistance > xSourceDistance ? xSourceDistance : xOutputDistance;
@@ -360,42 +360,42 @@ void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
 		int waveLutPixelDisplacement = __FIX10_6_TO_I(__FIX10_6_MULT(__I_TO_FIX10_6(waveLut[xIndex]), amplitudeFactor));
 
 		int ySource = ySourceStartHelper;
-		int yOutput = (yOutputStart + waveLutPixelDisplacement) >> Y_STEP_SIZE_2_EXP;
+		int yOutput = (yOutputStart + waveLutPixelDisplacement) >> REFLECTIVE_ENTITY_Y_STEP_SIZE_2_EXP;
 
-		int pixelShift = (__MODULO((yOutputStart + waveLutPixelDisplacement), Y_STEP_SIZE) - __MODULO(ySourceStart, Y_STEP_SIZE)) << 1;
+		int pixelShift = (__MODULO((yOutputStart + waveLutPixelDisplacement), REFLECTIVE_ENTITY_Y_STEP_SIZE) - __MODULO(ySourceStart, REFLECTIVE_ENTITY_Y_STEP_SIZE)) << 1;
 
 		reflectionMask = reflectionMaskSave;
 
-		u32 effectiveContentMaskDisplacement = (__MODULO((yOutputStart + (flattenTop? 0 : waveLutPixelDisplacement)), Y_STEP_SIZE) << 1);
+		u32 effectiveContentMaskDisplacement = (__MODULO((yOutputStart + (flattenTop? 0 : waveLutPixelDisplacement)), REFLECTIVE_ENTITY_Y_STEP_SIZE) << 1);
 		u32 effectiveContentMask = 0xFFFFFFFF << effectiveContentMaskDisplacement;
 		u32 effectiveBackgroundMask = ~effectiveContentMask;
 
-		POINTER_TYPE* columnSourcePointerLeft = (POINTER_TYPE*) (currentDrawingFrameBufferSet) + (xSource << Y_SHIFT) + ySource;
-		POINTER_TYPE* columnOutputPointerLeft = (POINTER_TYPE*) (currentDrawingFrameBufferSet) + (leftColumn << Y_SHIFT) + yOutput;
-		POINTER_TYPE* columnOutputPointerRight = (POINTER_TYPE*) (currentDrawingFrameBufferSet | 0x00010000) + (rightColumn << Y_SHIFT) + yOutput;
+		REFLECTIVE_ENTITY_POINTER_TYPE* columnSourcePointerLeft = (REFLECTIVE_ENTITY_POINTER_TYPE*) (currentDrawingFrameBufferSet) + (xSource << REFLECTIVE_ENTITY_Y_SHIFT) + ySource;
+		REFLECTIVE_ENTITY_POINTER_TYPE* columnOutputPointerLeft = (REFLECTIVE_ENTITY_POINTER_TYPE*) (currentDrawingFrameBufferSet) + (leftColumn << REFLECTIVE_ENTITY_Y_SHIFT) + yOutput;
+		REFLECTIVE_ENTITY_POINTER_TYPE* columnOutputPointerRight = (REFLECTIVE_ENTITY_POINTER_TYPE*) (currentDrawingFrameBufferSet | 0x00010000) + (rightColumn << REFLECTIVE_ENTITY_Y_SHIFT) + yOutput;
 
 		int columnSourcePointerLeftIncrement = ySourceIncrement;
 
-		POINTER_TYPE sourceCurrentValueLeft = *columnSourcePointerLeft;
-		POINTER_TYPE sourceNextValueLeft = *(columnSourcePointerLeft + columnSourcePointerLeftIncrement);
+		REFLECTIVE_ENTITY_POINTER_TYPE sourceCurrentValueLeft = *columnSourcePointerLeft;
+		REFLECTIVE_ENTITY_POINTER_TYPE sourceNextValueLeft = *(columnSourcePointerLeft + columnSourcePointerLeftIncrement);
 		columnSourcePointerLeft += columnSourcePointerLeftIncrement;
 
-		POINTER_TYPE outputValueLeft = *columnOutputPointerLeft;
+		REFLECTIVE_ENTITY_POINTER_TYPE outputValueLeft = *columnOutputPointerLeft;
 /*
 		u32 random = time % (xRelativeCoordinate + waveLutPixelDisplacement + 1);
 		u32 surfaceDisplacement = (effectiveContentMaskDisplacement + random % __FIX10_6_TO_I(__FIX10_6_MULT(__I_TO_FIX10_6(surfaceHeight << 1), waveLutIndexIncrement)));
 		u32 surfaceMask = 0xFFFFFFFF << (random % surfaceHeight);
-		POINTER_TYPE sourceReflectionValueLeft = (~surfaceMask << surfaceDisplacement);
+		REFLECTIVE_ENTITY_POINTER_TYPE sourceReflectionValueLeft = (~surfaceMask << surfaceDisplacement);
 */
-		POINTER_TYPE sourceReflectionValueLeft = (topBorderMask << effectiveContentMaskDisplacement) & xOutput & time;
+		REFLECTIVE_ENTITY_POINTER_TYPE sourceReflectionValueLeft = (topBorderMask << effectiveContentMaskDisplacement) & xOutput & time;
 
 		waveLutPixelDisplacement =  flattenBottom ? 0 : waveLutPixelDisplacement;
 
-		int yOutputRemainder = __MODULO((yOutputEnd + waveLutPixelDisplacement), Y_STEP_SIZE) << 1;
+		int yOutputRemainder = __MODULO((yOutputEnd + waveLutPixelDisplacement), REFLECTIVE_ENTITY_Y_STEP_SIZE) << 1;
 
-		POINTER_TYPE remainderLeftValue = 0;
+		REFLECTIVE_ENTITY_POINTER_TYPE remainderLeftValue = 0;
 
-		int yOutputLimit = (yOutputEnd + waveLutPixelDisplacement) >> Y_STEP_SIZE_2_EXP;
+		int yOutputLimit = (yOutputEnd + waveLutPixelDisplacement) >> REFLECTIVE_ENTITY_Y_STEP_SIZE_2_EXP;
 
 		for(; yOutput < yOutputLimit; ySource += ySourceIncrement)
 		{
@@ -429,7 +429,7 @@ void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
 
 		if(yOutputRemainder)
 		{
-			u32 maskDisplacement = (BITS_PER_STEP - yOutputRemainder);
+			u32 maskDisplacement = (REFLECTIVE_ENTITY_BITS_PER_STEP - yOutputRemainder);
 			effectiveContentMask = 0xFFFFFFFF >> maskDisplacement;
 			effectiveContentMask &= ~(bottomBorderMask >> maskDisplacement);
 

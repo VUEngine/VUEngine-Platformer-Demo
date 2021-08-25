@@ -3,18 +3,21 @@
 ###########################################################################################################
 
 # VUEngine based plugins that the project uses
-PLUGINS 						= vuengine/cameras/PlatformerCamera \
-								  vuengine/entities/LowPowerEntity \
-								  vuengine/entities/ReflectiveEntity \
-								  vuengine/fonts/AstonishFont \
-								  vuengine/graphics/GuiBgmapAnimatedSprite \
-								  vuengine/other/AutomaticPause \
-								  vuengine/other/I18n \
-								  vuengine/other/SaveDataManager \
-								  vuengine/postProcessing/Lantern \
-								  vuengine/postProcessing/Rain \
-								  vuengine/postProcessing/Rhombus \
-								  vuengine/states/SplashScreens
+PLUGINS 						= vuengine//cameras/PlatformerCamera \
+								  vuengine//entities/LowPowerEntity \
+								  vuengine//entities/ReflectiveEntity \
+								  vuengine//fonts/AstonishFont \
+								  vuengine//graphics/GuiBgmapAnimatedSprite \
+								  vuengine//other/AutomaticPause \
+								  vuengine//other/I18n \
+								  vuengine//other/SaveDataManager \
+								  vuengine//postProcessing/Lantern \
+								  vuengine//postProcessing/Rain \
+								  vuengine//postProcessing/Rhombus \
+								  vuengine//states/splash/AdjustmentScreenVUEngine \
+								  vuengine//states/splash/AutomaticPauseSelectionScreen \
+								  vuengine//states/splash/LanguageSelectionScreen \
+								  vuengine//states/splash/PrecautionScreen
 
 # Compiler's output
 COMPILER_OUTPUT					= c

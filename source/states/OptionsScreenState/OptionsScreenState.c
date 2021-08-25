@@ -32,8 +32,8 @@
 #include <Utilities.h>
 #include <Languages.h>
 #include <SplashScreenState.h>
-#include <AutoPauseSelectScreenState.h>
-#include <LangSelectScreenState.h>
+#include <AutomaticPauseSelectionScreenState.h>
+#include <LanguageSelectionScreenState.h>
 #include <TitleScreenState.h>
 #include <KeypadManager.h>
 #include <SoundManager.h>
@@ -135,7 +135,7 @@ void OptionsScreenState::print()
 	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
 	option->type = kString;
-	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutoPauseSelect;
+	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutomaticPauseSelect;
 	option->callbackScope = Object::safeCast(this);
 	VirtualList::pushBack(options, option);
 
@@ -248,14 +248,14 @@ void OptionsScreenState::onOptionSelectedFadeOutComplete(Object eventFirer __att
 	OptionsSelector::doCurrentSelectionCallback(this->optionsSelector);
 }
 
-void OptionsScreenState::onOptionAutoPauseSelect()
+void OptionsScreenState::onOptionAutomaticPauseSelect()
 {
-	SplashScreenState::setNextState(SplashScreenState::safeCast(AutoPauseSelectScreenState::getInstance()), GameState::safeCast(this));
-	Game::changeState(Game::getInstance(), GameState::safeCast(AutoPauseSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(AutomaticPauseSelectionScreenState::getInstance()), GameState::safeCast(this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance()));
 }
 
 void OptionsScreenState::onOptionLanguageSelect()
 {
-	SplashScreenState::setNextState(SplashScreenState::safeCast(LangSelectScreenState::getInstance()), GameState::safeCast(this));
-	Game::changeState(Game::getInstance(), GameState::safeCast(LangSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()), GameState::safeCast(this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(LanguageSelectionScreenState::getInstance()));
 }
