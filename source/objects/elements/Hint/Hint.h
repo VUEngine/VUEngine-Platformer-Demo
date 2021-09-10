@@ -50,12 +50,12 @@ enum HintTypes
 class Hint : AnimatedEntity
 {
 	/* the current hint type to show */
-	u8 type;
+	uint8 type;
 	/* name of the animation to play */
 	char* languageAnimName;
 
-	void constructor(AnimatedEntitySpec* spec, s16 internalId, const char* const name);
-	void open(u8 hintType);
+	void constructor(AnimatedEntitySpec* spec, int16 internalId, const char* const name);
+	void open(uint8 hintType);
 	void close();
 	void onCloseDone(Object eventFirer);
 	void onHintOpened(Object eventFirer);

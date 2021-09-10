@@ -56,7 +56,7 @@ enum TitleScreenOptions
 
 singleton class TitleScreenState : GameState
 {
-	u8 mode;
+	uint8 mode;
 	OptionsSelector optionsSelector;
 
 	static TitleScreenState getInstance(void);

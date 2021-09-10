@@ -48,7 +48,7 @@ typedef struct CloudsSpec
 	EntitySpec EntitySpec;
 
 	// displacement per cycle in pixels
-	s16 displacement;
+	int16 displacement;
 
 } CloudsSpec;
 
@@ -59,8 +59,8 @@ class Clouds : Entity
 	/* displacement per cycle */
 	fix10_6 displacement;
 
-	void constructor(CloudsSpec* cloudsSpec, s16 internalId, const char* const name);
-	override void update(u32 elapsedTime);
+	void constructor(CloudsSpec* cloudsSpec, int16 internalId, const char* const name);
+	override void update(uint32 elapsedTime);
 }
 
 

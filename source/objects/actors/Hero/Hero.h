@@ -91,17 +91,17 @@ class Hero : Actor
 	/* used to know if gap must be changed */
 	Direction inputDirection;
 	/* hero has energy	*/
-	u8 energy;
+	uint8 energy;
 	/* boost flag */
 	bool boost;
 	/* number of collected coins */
-	u8 coins;
+	uint8 coins;
 	/* flag for collected key */
 	bool hasKey;
 	/* currently active power-up */
-	u8 powerUp;
+	uint8 powerUp;
 	/* number of jumps performed (for double jump) */
-	s8 jumps;
+	int8 jumps;
 	/* flag for invincible mode (after being hit) */
 	bool invincible;
 	/* flag to keep applying force to the x axis */
@@ -110,15 +110,15 @@ class Hero : Actor
 	bool underWater;
 
 	static Hero getInstance();
-	void constructor(HeroSpec* heroSpec, s16 internalId, const char* const name);
-	void addForceOnAxis(u16 axis, bool enableAddingForce);
+	void constructor(HeroSpec* heroSpec, int16 internalId, const char* const name);
+	void addForceOnAxis(uint16 axis, bool enableAddingForce);
 	void stopAddingForce();
-	void startedMovingOnAxis(u16 axis);
-	bool stopMovingOnAxis(u16 axis);
+	void startedMovingOnAxis(uint16 axis);
+	bool stopMovingOnAxis(uint16 axis);
 	void move();
 	void jump(bool checkIfYMovement);
 	void addMomentumToJump();
-	void checkDirection(u32 currentPressedKey, char * animation);
+	void checkDirection(uint32 currentPressedKey, char * animation);
 	void takeDamageFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
 	void flash();
 	void toggleFlashPalette();
@@ -127,19 +127,19 @@ class Hero : Actor
 	void enableBoost();
 	Door getOverlappedDoor();
 	void enterDoor();
-	void showHint(u32 hintType);
+	void showHint(uint32 hintType);
 	void hideHint();
 	void lookFront();
 	void lookBack();
 	void die();
 	void collectKey();
 	bool hasKey();
-	void collectPowerUp(u8 powerUp);
-	u8 getPowerUp();
-	u8 getEnergy();
+	void collectPowerUp(uint8 powerUp);
+	uint8 getPowerUp();
+	uint8 getEnergy();
 	void setInvincible(bool invincible);
 	bool isInvincible();
-	void lockCameraTriggerMovement(u8 axisToLockUp, bool locked);
+	void lockCameraTriggerMovement(uint8 axisToLockUp, bool locked);
 	void getOutOfDoor(Vector3D* outOfDoorPosition);
 	bool isBelow(Shape shape, const CollisionInformation* collisionInformation);
 	void onPowerUpTransitionComplete(Object eventFirer);
@@ -154,7 +154,7 @@ class Hero : Actor
 	override bool updateCollision(const CollisionInformation* collisionInformation);
 	override void syncRotationWithBody();
 	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
-	override u16 getAxisForShapeSyncWithDirection();
+	override uint16 getAxisForShapeSyncWithDirection();
 }
 
 

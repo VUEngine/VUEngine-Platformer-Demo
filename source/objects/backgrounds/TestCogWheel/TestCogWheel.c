@@ -46,7 +46,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void TestCogWheel::constructor(EntitySpec* EntitySpec, s16 internalId, const char* const name)
+void TestCogWheel::constructor(EntitySpec* EntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(EntitySpec, internalId, name);

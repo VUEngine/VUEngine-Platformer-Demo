@@ -197,8 +197,8 @@ void PauseScreenState::processUserInput(UserInput userInput)
 					const char* strPauseFont = "AstonishSExt";
 					FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, strPauseFont);
 
-					u8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;
-					u8 strNoXPos = strXPos + strYesSize.x + 2;
+					uint8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;
+					uint8 strNoXPos = strXPos + strYesSize.x + 2;
 
 					Printing::text(Printing::getInstance(), strAreYouSure, strXPos, 21, "Platformer");
 					Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strXPos, 22, "Platformer");
@@ -259,16 +259,18 @@ void PauseScreenState::processUserInput(UserInput userInput)
 
 void PauseScreenState::playMenuSound()
 {
-	extern Sound OPTION_SELECT_SND;
+/*	extern Sound OPTION_SELECT_SND;
 	Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
 	SoundManager::playSound(SoundManager::getInstance(), &OPTION_SELECT_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
+	*/
 }
 
 void PauseScreenState::playConfirmSound()
 {
-	extern Sound OPTION_CONFIRM_SND;
+/*	extern Sound OPTION_CONFIRM_SND;
 	Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
 	SoundManager::playSound(SoundManager::getInstance(), &OPTION_CONFIRM_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
+*/
 }
 
 // handle event

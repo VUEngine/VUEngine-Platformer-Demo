@@ -38,17 +38,17 @@
 typedef struct LevelStatus
 {
 	// flag that tells whether the level was ever completed
-	u8 levelCompleted;
+	uint8 levelCompleted;
 
 	// number of collected coins in this level
-	u8 numberOfCollectedCoins;
+	uint8 numberOfCollectedCoins;
 
 	// the best time the level was ever completed in
-	u32 bestTime;
+	uint32 bestTime;
 
 	// bitstrings that hold collected coin flags
 	// 0 = not collected, 1 = collected
-	u32 collectedCoins[2];
+	uint32 collectedCoins[2];
 
 } LevelStatus;
 
@@ -60,10 +60,10 @@ typedef struct GameSaveData
 	SaveData baseSaveData;
 
 	// total number of completed levels
-	u8 numberOfCompletedLevels;
+	uint8 numberOfCompletedLevels;
 
 	// total number of collected coins
-	u16 numberOfCollectedCoins;
+	uint16 numberOfCollectedCoins;
 
 	// completion statuses for every level in the game
 	LevelStatus levelStatuses[LEVELS_IN_GAME];
@@ -78,46 +78,46 @@ typedef struct GameSaveData
 singleton class ProgressManager : SaveDataManager
 {
 	// time in current level
-	u32 currentLevelTime;
+	uint32 currentLevelTime;
 	// time in current level at last checkpoint
-	u32 checkpointCurrentLevelTime;
+	uint32 checkpointCurrentLevelTime;
 	// best time in current level
-	u32 currentLevelBestTime;
+	uint32 currentLevelBestTime;
 	// bitstrings that hold collected coin flags
-	u32 collectedCoins[2];
+	uint32 collectedCoins[2];
 	// bitstrings that hold collected coin flags at last checkpoint
-	u32 checkpointCollectedCoins[2];
+	uint32 checkpointCollectedCoins[2];
 	// bitstring that holds collected item flags
-	u16 collectedItems;
+	uint16 collectedItems;
 	// bitstring that holds collected item flags at last checkpoint
-	u16 checkpointCollectedItems;
+	uint16 checkpointCollectedItems;
 	// flag that tells if the hero has collected the current level's key
 	bool heroHasKey;
 	// flag that tells if the hero has collected the current level's key at last checkpoint
 	bool checkpointHeroHasKey;
 	// hero's current energy
-	u8 heroCurrentEnergy;
+	uint8 heroCurrentEnergy;
 	// hero's currently active power-up
-	u8 heroCurrentPowerUp;
+	uint8 heroCurrentPowerUp;
 
 	static ProgressManager getInstance();
 	void clearProgress();
-	bool getCoinStatus(u16 itemNumber);
-	u32  getCurrentLevelBestTime();
-	u8   getCurrentLevelNumberOfCollectedCoins();
-	u32  getCurrentLevelTime();
-	u8   getHeroCurrentEnergy();
-	u8   getHeroCurrentPowerUp();
-	bool getItemStatus(u16 itemNumber);
+	bool getCoinStatus(uint16 itemNumber);
+	uint32  getCurrentLevelBestTime();
+	uint8   getCurrentLevelNumberOfCollectedCoins();
+	uint32  getCurrentLevelTime();
+	uint8   getHeroCurrentEnergy();
+	uint8   getHeroCurrentPowerUp();
+	bool getItemStatus(uint16 itemNumber);
 	override int getSaveDataSize();
-	u16  getTotalNumberOfCollectedCoins();
+	uint16  getTotalNumberOfCollectedCoins();
 	bool hasProgress();
 	bool heroHasKey();
 	void loadCheckPointData();
 	override void restoreSettings();
 	void setCheckPointData();
-	bool setCoinStatus(u16 itemNumber, bool taken);
-	bool setItemStatus(u16 itemNumber, bool taken);
+	bool setCoinStatus(uint16 itemNumber, bool taken);
+	bool setItemStatus(uint16 itemNumber, bool taken);
 	void resetCurrentLevelProgress();
 }
 

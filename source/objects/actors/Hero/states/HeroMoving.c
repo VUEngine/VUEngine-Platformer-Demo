@@ -60,7 +60,7 @@ void HeroMoving::destructor()
 // state's enter
 void HeroMoving::enter(void* owner)
 {
-	u32 holdKey = KeypadManager::getHoldKey(KeypadManager::getInstance());
+	uint32 holdKey = KeypadManager::getHoldKey(KeypadManager::getInstance());
 
 	if(K_B & holdKey)
 	{

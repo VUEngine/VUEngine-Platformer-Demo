@@ -41,7 +41,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void KeyDoor::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void KeyDoor::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);
@@ -94,7 +94,7 @@ bool KeyDoor::canEnter()
 	return ProgressManager::heroHasKey(ProgressManager::getInstance());
 }
 
-u32 KeyDoor::getHintType()
+uint32 KeyDoor::getHintType()
 {
 	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
 	{

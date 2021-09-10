@@ -33,14 +33,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 Soundtrack01Track1[] =
+const uint16 Soundtrack01Track1[] =
 {
 	PAU, PAU, PAU, PAU, F_4, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, C_4, PAU, PAU, PAU, F_4, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, C_4, PAU, PAU, PAU, F_4, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, ENDSOUND,
 	30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
 	15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15
 };
 
-const u16 Soundtrack01Track2[] =
+const uint16 Soundtrack01Track2[] =
 {
 	PAU, PAU, PAU, PAU, F_5, PAU, PAU, D_4, F_6, PAU, E_3, F_5, PAU, C_4, F_6, PAU, F_5, PAU, C_4, PAU, F_5, PAU, PAU, D_4, F_6, PAU, E_4, F_5, PAU, C_4, F_6, PAU, F_5, PAU, C_4, PAU, F_6, F_5, PAU, D_4, PAU, PAU, E_4, PAU, PAU, C_4, PAU, PAU, C_4, PAU, C_4, PAU, F_4, PAU, PAU, D_4, PAU, PAU, E_4, PAU, PAU, C_4, PAU, PAU, C_4, PAU, C_4, PAU, ENDSOUND,
 	30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
@@ -140,7 +140,7 @@ SoundChannelROM SOUNDTRACK_01_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)Soundtrack01Track1
+		(const uint8*)Soundtrack01Track1
 	}
 };
 
@@ -155,7 +155,7 @@ SoundChannelROM SOUNDTRACK_01_CHANNEL_2 =
 
 	/// Sound track
 	{
-		(const u8*)Soundtrack01Track2
+		(const uint8*)Soundtrack01Track2
 	}
 };
 

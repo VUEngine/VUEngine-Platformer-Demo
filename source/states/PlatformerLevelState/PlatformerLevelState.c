@@ -135,9 +135,9 @@ void PlatformerLevelState::enter(void* owner)
 		Vector3D environmentPosition = {0, 0, 0};
 		Vector3D* initialPosition = Entity::calculateGlobalPositionFromSpecByName(this->currentStageEntryPoint->stageSpec->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
 
-		Printing::int(Printing::getInstance(), initialPosition->x, 0, 0, "Platformer");
-		Printing::int(Printing::getInstance(), initialPosition->y, 0, 1, "Platformer");
-		Printing::int(Printing::getInstance(), initialPosition->z, 0, 2, "Platformer");
+		Printing::int32(Printing::getInstance(), initialPosition->x, 0, 0, "Platformer");
+		Printing::int32(Printing::getInstance(), initialPosition->y, 0, 1, "Platformer");
+		Printing::int32(Printing::getInstance(), initialPosition->z, 0, 2, "Platformer");
 
 //		ASSERT(initialPosition, "PlatformerLevelState::enter: no initial position");
 
@@ -261,8 +261,8 @@ void PlatformerLevelState::enter(void* owner)
 		{
 			const char* strLevel = I18n::getText(I18n::getInstance(), STR_LEVEL);
 			const char* strLevelId = this->currentLevel->identifier;
-			u8 strLevelLength = strlen(strLevel);
-			u8 strLevelIdLength = strlen(strLevelId);
+			uint8 strLevelLength = strlen(strLevel);
+			uint8 strLevelIdLength = strlen(strLevelId);
 			Printing::text(
 				Printing::getInstance(),
 				strLevel,

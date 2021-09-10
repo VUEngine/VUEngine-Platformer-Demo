@@ -40,7 +40,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 JumpTrack[] =
+const uint16 JumpTrack[] =
 {
   A_4, B_4, E_5, HOLD, ENDSOUND,
   80, 80, 80, 1, 1,
@@ -96,7 +96,7 @@ SoundChannelROM JUMP_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)JumpTrack
+		(const uint8*)JumpTrack
 	}
 };
 

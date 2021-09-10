@@ -32,8 +32,8 @@
 #include <Utilities.h>
 #include <Languages.h>
 #include <SplashScreenState.h>
-#include <AutoPauseSelectScreenState.h>
-#include <LangSelectScreenState.h>
+#include <AutomaticPauseSelectionScreenState.h>
+#include <LanguageSelectionScreenState.h>
 #include <TitleScreenState.h>
 #include <KeypadManager.h>
 #include <SoundManager.h>
@@ -160,8 +160,8 @@ void OptionsScreenState::print()
 	FontSize strSelectSize = Printing::getTextSize(Printing::getInstance(), strSelect, "Platformer");
 	const char* strBack = I18n::getText(I18n::getInstance(), STR_BACK);
 
-	u8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
-	u8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
+	uint8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
+	uint8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
 
 	Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, "Platformer");
 	Printing::text(Printing::getInstance(), strSelect, strSelectXPos + 1, 15, "Platformer");
@@ -219,16 +219,18 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 
 void OptionsScreenState::playMenuSound()
 {
-	extern Sound OPTION_SELECT_SND;
+/*	extern Sound OPTION_SELECT_SND;
 	Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
 	SoundManager::playSound(SoundManager::getInstance(), &OPTION_SELECT_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
+	*/
 }
 
 void OptionsScreenState::playConfirmSound()
 {
-	extern Sound OPTION_CONFIRM_SND;
+/*	extern Sound OPTION_CONFIRM_SND;
 	Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
 	SoundManager::playSound(SoundManager::getInstance(), &OPTION_CONFIRM_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
+	*/
 }
 
 // handle event
@@ -250,12 +252,12 @@ void OptionsScreenState::onOptionSelectedFadeOutComplete(Object eventFirer __att
 
 void OptionsScreenState::onOptionAutoPauseSelect()
 {
-	SplashScreenState::setNextState(SplashScreenState::safeCast(AutoPauseSelectScreenState::getInstance()), GameState::safeCast(this));
-	Game::changeState(Game::getInstance(), GameState::safeCast(AutoPauseSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(AutomaticPauseSelectionScreenState::getInstance()), GameState::safeCast(this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance()));
 }
 
 void OptionsScreenState::onOptionLanguageSelect()
 {
-	SplashScreenState::setNextState(SplashScreenState::safeCast(LangSelectScreenState::getInstance()), GameState::safeCast(this));
-	Game::changeState(Game::getInstance(), GameState::safeCast(LangSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()), GameState::safeCast(this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(LanguageSelectionScreenState::getInstance()));
 }

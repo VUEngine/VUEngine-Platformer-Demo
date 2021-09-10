@@ -33,7 +33,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void AwesomeCloud::constructor(AwesomeCloudSpec* awesomeCloudSpec, s16 internalId, const char* const name)
+void AwesomeCloud::constructor(AwesomeCloudSpec* awesomeCloudSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(&awesomeCloudSpec->entitySpec, internalId, name);
@@ -60,11 +60,11 @@ void AwesomeCloud::ready(bool recursive)
 	Entity::setLocalRotation(this, &this->transformation.localRotation);
 }
 
-void AwesomeCloud::update(u32 elapsedTime)
+void AwesomeCloud::update(uint32 elapsedTime)
 {
 	Base::update(this, elapsedTime);
 /*
-	static s16 increment = 1;
+	static int16 increment = 1;
 
 	this->transformation.localRotation.x+=increment;
 

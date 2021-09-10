@@ -48,7 +48,7 @@ typedef struct AwesomeCloudSpec
 	EntitySpec entitySpec;
 
 	/// Rotation around x axis
-	s16 rotation;
+	int16 rotation;
 
 }AwesomeCloudSpec;
 
@@ -58,9 +58,9 @@ class AwesomeCloud : Entity
 {
 	AwesomeCloudSpec* awesomeCloudSpec;
 
-	void constructor(AwesomeCloudSpec* AwesomeCloudSpec, s16 internalId, const char* const name);
+	void constructor(AwesomeCloudSpec* AwesomeCloudSpec, int16 internalId, const char* const name);
 	override void ready(bool recursive);
-//	override void update(u32 elapsedTime);
+//	override void update(uint32 elapsedTime);
 }
 
 

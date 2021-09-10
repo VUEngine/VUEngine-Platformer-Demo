@@ -40,13 +40,13 @@ typedef const KeyDoorSpec KeyDoorROMSpec;
 
 class KeyDoor : Door
 {
-	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name);
 	override void ready(bool recursive);
 	override bool hasDestination();
 	override void setOverlapping();
 	override void unsetOverlapping();
 	override bool canEnter();
-	override u32 getHintType();
+	override uint32 getHintType();
 }
 
 

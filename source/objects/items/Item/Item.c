@@ -42,7 +42,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Item::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Item::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);

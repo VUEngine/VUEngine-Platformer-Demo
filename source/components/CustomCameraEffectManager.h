@@ -61,7 +61,7 @@ singleton class CustomCameraEffectManager : CameraEffectManager
 	/* time left in current shaking fx (in ms) */
 	int shakeTimeLeft;
 	/* values to load on next pulsate fx step */
-	u8 pulsateNextStep;
+	uint8 pulsateNextStep;
 
 	// declare a CustomCameraEffectManager
 	static CustomCameraEffectManager getInstance();

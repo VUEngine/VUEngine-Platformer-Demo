@@ -177,8 +177,8 @@ void OverworldState::print()
 	Printing::setWorldCoordinates(Printing::getInstance(), 0, 0, PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
 
 	// coins
-	u8 coins = ProgressManager::getTotalNumberOfCollectedCoins(ProgressManager::getInstance());
-	Printing::int(Printing::getInstance(), coins, 4, 26, "AstonishSExt");
+	uint8 coins = ProgressManager::getTotalNumberOfCollectedCoins(ProgressManager::getInstance());
+	Printing::int32(Printing::getInstance(), coins, 4, 26, "AstonishSExt");
 
 	// level name
 	Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_LEVEL_1_NAME), 16, 26, "AstonishSExt");
@@ -204,10 +204,10 @@ void OverworldState::processUserInput(UserInput userInput)
 		);
 
 		// play sound
-		extern Sound OPTION_CONFIRM_SND;
+/*		extern Sound OPTION_CONFIRM_SND;
 		Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
 		SoundManager::playSound(SoundManager::getInstance(), &OPTION_CONFIRM_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
-
+*/
 	}
 	else if(K_B & userInput.pressedKey)
 	{

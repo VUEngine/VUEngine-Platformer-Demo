@@ -40,7 +40,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 CollectTrack[] =
+const uint16 CollectTrack[] =
 {
   E_3, E_4, F_3, HOLD, ENDSOUND,
   80, 80, 80, 1, 1,
@@ -96,7 +96,7 @@ SoundChannelROM COLLECT_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)CollectTrack
+		(const uint8*)CollectTrack
 	}
 };
 

@@ -54,7 +54,7 @@ extern AnimatedEntityROMSpec COIN_BACK_SILHOUETTE_EN;
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Coin::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Coin::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);

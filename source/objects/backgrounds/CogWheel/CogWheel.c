@@ -45,7 +45,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CogWheel::constructor(EntitySpec* EntitySpec, s16 internalId, const char* const name)
+void CogWheel::constructor(EntitySpec* EntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(EntitySpec, internalId, name);

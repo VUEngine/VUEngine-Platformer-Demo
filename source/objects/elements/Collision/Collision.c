@@ -82,7 +82,7 @@ const PixelSize collision_62_25_4 = {62 * 8, 	25 * 8, 	8 * 8};
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Collision::constructor(EntitySpec* inGameEntitySpec, s16 internalId, const char* const name)
+void Collision::constructor(EntitySpec* inGameEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(inGameEntitySpec, internalId, name);
@@ -104,7 +104,7 @@ void Collision::setExtraInfo(void* extraInfo)
 	this->size = Size::getFromPixelSize(*((PixelSize*)extraInfo));
 }
 
-void Collision::initialTransform(Transformation* environmentTransform, u32 recursive)
+void Collision::initialTransform(Transformation* environmentTransform, uint32 recursive)
 {
 	Base::initialTransform(this, environmentTransform, recursive);
 

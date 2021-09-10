@@ -81,7 +81,7 @@ static void Hero::setInstance(Hero instance)
 
 
 // class's constructor
-void Hero::constructor(HeroSpec* heroSpec, s16 internalId, const char* const name)
+void Hero::constructor(HeroSpec* heroSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((ActorSpec*)heroSpec, internalId, name);
@@ -146,7 +146,7 @@ void Hero::ready(bool recursive)
 	{
 		this->energy = ProgressManager::getHeroCurrentEnergy(progressManager);
 
-		u8 currentPowerUp = ProgressManager::getHeroCurrentPowerUp(progressManager);
+		uint8 currentPowerUp = ProgressManager::getHeroCurrentPowerUp(progressManager);
 		if(currentPowerUp != this->powerUp)
 		{
 			this->powerUp = currentPowerUp;
@@ -190,7 +190,7 @@ void Hero::jump(bool checkIfYMovement)
 	if(this->body)
 	{
 		// determine the maximum number of possible jumps before reaching ground again
-		s8 allowedNumberOfJumps = this->underWater ? 127 : (this->powerUp == kPowerUpBandana) ? 2 : 1;
+		int8 allowedNumberOfJumps = this->underWater ? 127 : (this->powerUp == kPowerUpBandana) ? 2 : 1;
 
 #ifdef GOD_MODE
 	allowedNumberOfJumps = 127;
@@ -258,7 +258,7 @@ void Hero::jump(bool checkIfYMovement)
 }
 
 // keep movement
-void Hero::addForceOnAxis(u16 axis, bool enableAddingForce)
+void Hero::addForceOnAxis(uint16 axis, bool enableAddingForce)
 {
 	if(enableAddingForce)
 	{
@@ -360,7 +360,7 @@ void Hero::stopAddingForce()
 	}
 
 	// begin to decelerate
-	u16 axisOfDeacceleration = 0;
+	uint16 axisOfDeacceleration = 0;
 	axisOfDeacceleration |= velocity.x? __X_AXIS: 0;
 	axisOfDeacceleration |= velocity.z? __Z_AXIS: 0;
 
@@ -385,7 +385,7 @@ void Hero::stopAddingForce()
 }
 
 // started moving over axis
-void Hero::startedMovingOnAxis(u16 axis)
+void Hero::startedMovingOnAxis(uint16 axis)
 {
 	if(__Y_AXIS & axis)
 	{
@@ -414,7 +414,7 @@ void Hero::startedMovingOnAxis(u16 axis)
 }
 
 // stop moving over axis
-bool Hero::stopMovingOnAxis(u16 axis)
+bool Hero::stopMovingOnAxis(uint16 axis)
 {
 	// if being hit do nothing
 	if(!Body::isActive(this->body))
@@ -501,7 +501,7 @@ bool Hero::stopMovingOnAxis(u16 axis)
 }
 
 // check direction
-void Hero::checkDirection(u32 pressedKey, char* animation)
+void Hero::checkDirection(uint32 pressedKey, char* animation)
 {
 	bool movementState = Body::getMovementOnAllAxis(this->body);
 
@@ -771,7 +771,7 @@ void Hero::addFeetDust()
 	ParticleSystem::spawnAllParticles(this->feetDust);
 }
 
-void Hero::showHint(u32 hintType)
+void Hero::showHint(uint32 hintType)
 {
 	ASSERT(this->hint, "Hero::showHint: null hint");
 
@@ -859,7 +859,7 @@ bool Hero::hasKey()
 }
 
 // collect a power-up
-void Hero::collectPowerUp(u8 powerUp)
+void Hero::collectPowerUp(uint8 powerUp)
 {
 	this->powerUp = powerUp;
 	this->keepAddingForce = false;
@@ -907,13 +907,13 @@ void Hero::updateSprite()
 }
 
 // get current power-up
-u8 Hero::getPowerUp()
+uint8 Hero::getPowerUp()
 {
 	return this->powerUp;
 }
 
 // get energy
-u8 Hero::getEnergy()
+uint8 Hero::getEnergy()
 {
 	return this->energy;
 }
@@ -1306,7 +1306,7 @@ void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isSha
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
-u16 Hero::getAxisForShapeSyncWithDirection()
+uint16 Hero::getAxisForShapeSyncWithDirection()
 {
 	return __NO_AXIS;
 }

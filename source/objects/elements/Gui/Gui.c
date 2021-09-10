@@ -50,7 +50,7 @@ extern CharSetSpec GUI_BANDANA_CH;
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Gui::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Gui::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);
@@ -87,7 +87,7 @@ void Gui::printClock()
 // print best time to gui
 void Gui::printBestTime()
 {
-	u32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
+	uint32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
 
 	if(bestTime)
 	{
@@ -105,7 +105,7 @@ void Gui::printBestTime()
 // print number of coins to gui
 void Gui::printCoins()
 {
-	u8 coins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
+	uint8 coins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
 
 	// bound to 64
 	if(coins > 64)
@@ -114,18 +114,18 @@ void Gui::printCoins()
 	}
 
 	// compute x position
-	u8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
+	uint8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
 
 	// print
 	Printing::text(Printing::getInstance(), "00/64", GUI_X_POS + 11, GUI_Y_POS, GUI_TEXT_FONT);
-	Printing::int(Printing::getInstance(), coins, printPos, GUI_Y_POS, GUI_TEXT_FONT);
+	Printing::int32(Printing::getInstance(), coins, printPos, GUI_Y_POS, GUI_TEXT_FONT);
 }
 
 // print hero's energy to gui
 void Gui::printEnergy()
 {
 	Printing::text(Printing::getInstance(), "\x21\x21\x21", GUI_X_POS + 4, GUI_Y_POS, GUI_ICON_FONT);
-	u8 i;
+	uint8 i;
 	ASSERT(Hero::getInstance(), "Gui::printEnergy: null hero");
 
 	for(i=0; i < Hero::getEnergy(Hero::getInstance()); i++)

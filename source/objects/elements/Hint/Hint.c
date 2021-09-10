@@ -39,7 +39,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Hint::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Hint::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);
@@ -78,7 +78,7 @@ void Hint::resume()
 	Hint::onHintOpened(this, NULL);
 }
 
-void Hint::open(u8 hintType)
+void Hint::open(uint8 hintType)
 {
 	this->type = hintType;
 

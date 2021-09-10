@@ -48,7 +48,7 @@ typedef const CannonSpec CannonROMSpec;
 
 class Cannon : AnimatedEntity
 {
-	void constructor(AnimatedEntitySpec* spec, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* spec, int16 internalId, const char* const name);
 	void shoot();
 	void spawnCannonBall();
 	override bool handleMessage(Telegram telegram);

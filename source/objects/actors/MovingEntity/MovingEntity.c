@@ -42,7 +42,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void MovingEntity::constructor(MovingEntitySpec* movingEntitySpec, s16 internalId, const char* const name)
+void MovingEntity::constructor(MovingEntitySpec* movingEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((ActorSpec*)&movingEntitySpec->actorSpec, internalId, name);
@@ -158,7 +158,7 @@ bool MovingEntity::handleMessage(Telegram telegram)
 }
 
 // tell me I've been hit
-void MovingEntity::takeHit(u16 axis __attribute__ ((unused)), s8 direction __attribute__ ((unused)))
+void MovingEntity::takeHit(uint16 axis __attribute__ ((unused)), int8 direction __attribute__ ((unused)))
 {
 }
 
@@ -270,7 +270,7 @@ void MovingEntity::startMovement()
 	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
 }
 
-u16 MovingEntity::getAxisForShapeSyncWithDirection()
+uint16 MovingEntity::getAxisForShapeSyncWithDirection()
 {
 	return this->movingEntitySpec->axisForShapeSyncWithDirection;
 }

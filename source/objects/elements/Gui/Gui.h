@@ -47,7 +47,7 @@
 
 class Gui : AnimatedEntity
 {
-	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name);
 	void printClock();
 	void printBestTime();
 	void printCoins();

@@ -36,7 +36,7 @@
 
 static class HbiasEffects : Object
 {
-	static s16 wave(BgmapSprite bgmapSprite);
+	static int16 wave(BgmapSprite bgmapSprite);
 }
 
 

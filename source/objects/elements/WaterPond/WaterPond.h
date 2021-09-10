@@ -44,13 +44,13 @@ typedef struct WaterPondSpec
 	fix10_6 waveLutThrottleFactorIncrement;
 
 	// throttle increment duration
-	u32 waveLutThrottleFactorIncrementDuration;
+	uint32 waveLutThrottleFactorIncrementDuration;
 
 	// throttle increment duration step
-	u32 waveLutThrottleFactorIncrementDurationStep;
+	uint32 waveLutThrottleFactorIncrementDurationStep;
 
 	// surface height
-	u16 surfaceHeight;
+	uint16 surfaceHeight;
 
 	// wave amplitude factor
 	fix10_6 amplitudeFactor;
@@ -65,10 +65,10 @@ class WaterPond : ReflectiveEntity
 	fix10_6 amplitudeFactor;
 	ParticleSystem waterSplash;
 
-	void constructor(WaterPondSpec* mirrorSpec, s16 internalId, const char* const name);
+	void constructor(WaterPondSpec* mirrorSpec, int16 internalId, const char* const name);
 	override bool handleMessage(void* telegram);
 	override void ready(bool recursive);
-	override void applyReflection(u32 currentDrawingFrameBufferSet);
+	override void applyReflection(uint32 currentDrawingFrameBufferSet);
 }
 
 

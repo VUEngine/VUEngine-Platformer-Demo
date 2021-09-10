@@ -99,7 +99,7 @@ void HbiasMaskMBgmapSprite::setPosition(const PixelVector* position)
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 }
 
-void HbiasMaskMBgmapSprite::setMode(u16 display, u16 mode __attribute__ ((unused)))
+void HbiasMaskMBgmapSprite::setMode(uint16 display, uint16 mode __attribute__ ((unused)))
 {
 	this->head = display | __WORLD_HBIAS;
 }
@@ -138,7 +138,7 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
  *
  * @param this		Function scope
  */
-u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unused)))
+uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute__((unused)))
 {
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 
@@ -163,7 +163,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 
 	VirtualList ownerSprites = Entity::getSprites(this->owner);
 
-	u16 ownerSpriteGY = 0;
+	uint16 ownerSpriteGY = 0;
 	bool ownerSpriteGYSet = false;
 
 	if(ownerSprites)
@@ -185,7 +185,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 		ownerSpriteGY = __FIX10_6_TO_I(ownerPosition2D.y);
 	}
 
-	u8 referenceSpriteWorldLayer = Sprite::getIndex(this->referenceSprite);
+	uint8 referenceSpriteWorldLayer = Sprite::getIndex(this->referenceSprite);
 
 	WorldAttributes* referenceSpriteWorldPointer = &_worldAttributesCache[referenceSpriteWorldLayer];
 
@@ -194,7 +194,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
 
-	if((u8)__NO_RENDER_INDEX == referenceSpriteWorldLayer
+	if((uint8)__NO_RENDER_INDEX == referenceSpriteWorldLayer
     	||
 		ownerSpriteGY < worldPointer->gy
 		||
@@ -224,22 +224,22 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 
 	// set the head
 	worldPointer->head = this->head | (BgmapTexture::safeCast(this->texture))->segment;
-	worldPointer->param = (u16)(((this->param) - 0x20000) >> 1) & 0xFFF0;
+	worldPointer->param = (uint16)(((this->param) - 0x20000) >> 1) & 0xFFF0;
 
 	return index;
 }
 
-static s16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
+static int16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
 {
 	HbiasMaskMBgmapSprite this = HbiasMaskMBgmapSprite::safeCast(bgmapSprite);
-	s32 spriteHeight = Sprite::getWorldHeight(this);
-	s16 i = this->paramTableRow;
-	s16 j = 0;
+	int32 spriteHeight = Sprite::getWorldHeight(this);
+	int16 i = this->paramTableRow;
+	int16 j = 0;
 
 	// look up table of wave shifts
 	#define HBIAS_LAVA_HEAT_LUT_LENGTH 	32
 	#define HBIAS_LAVA_HEAT_THROTTLE 	2
-	const s16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
+	const int16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
 	{
 		-1, -1, -1, -1, -1, -1,
 		 0,  0,  0,  0,
@@ -257,7 +257,7 @@ static s16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
 	// write param table rows
 	for(j = 0; i < spriteHeight; i++, j++)
 	{
-		register s16 waveLutValue = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
+		register int16 waveLutValue = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
 
 		hbiasEntry[i].offsetLeft = waveLutValue;
 		hbiasEntry[i].offsetRight = waveLutValue;

@@ -63,7 +63,7 @@ typedef struct StageEntryPointSpec
 	ScreenPixelVector offset;
 
 	// facing direction of the hero
-	s8 direction;
+	int8 direction;
 
 	// whether this entry point acts as a checkpoint
 	bool isCheckPoint;
@@ -79,7 +79,7 @@ typedef struct PlatformerLevelSpec
 	StageEntryPointSpec* entryPoint;
 
 	// id
-	u8 id;
+	uint8 id;
 
 	// identifier
 	void* identifier;
@@ -144,7 +144,7 @@ singleton class PlatformerLevelState : GameState
 	/* in-game clock */
 	Clock clock;
 	/* to allow moving the screen */
-	u8 mode;
+	uint8 mode;
 
 	static PlatformerLevelState getInstance(void);
 	PlatformerLevelSpec* getCurrentLevelSpec();

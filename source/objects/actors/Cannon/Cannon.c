@@ -44,7 +44,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Cannon::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Cannon::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);

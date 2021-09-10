@@ -37,7 +37,7 @@
 
 class Key : Item
 {
-	void constructor(AnimatedEntitySpec* spec, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* spec, int16 internalId, const char* const name);
 	override void collect();
 	override void suspend();
 	override void resume();

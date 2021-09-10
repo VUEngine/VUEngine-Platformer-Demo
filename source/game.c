@@ -26,9 +26,9 @@
 
 #include <Game.h>
 #include <ProgressManager.h>
-#include <AutoPauseManager.h>
+#include <AutomaticPauseManager.h>
 #include <PrecautionScreenState.h>
-#include <LangSelectScreenState.h>
+#include <LanguageSelectionScreenState.h>
 #include <TitleScreenState.h>
 #include <AutomaticPauseScreenState.h>
 
@@ -40,17 +40,17 @@
 int main(void)
 {
 	// initialize plugins
-	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	AutoPauseManager::setAutomaticPauseState(AutoPauseManager::getInstance(), GameState::safeCast(AutomaticPauseScreenState::getInstance()));
-	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 15);
+	AutomaticPauseManager::setActive(AutomaticPauseManager::getInstance(), true);
+	AutomaticPauseManager::setAutomaticPauseState(AutomaticPauseManager::getInstance(), GameState::safeCast(AutomaticPauseScreenState::getInstance()));
+	AutomaticPauseManager::setAutomaticPauseDelay(AutomaticPauseManager::getInstance(), 15);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
+		SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()),
 		GameState::safeCast(TitleScreenState::getInstance())
 	);
 
 	// start the game
-	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
 
 	// end program
 	return true;

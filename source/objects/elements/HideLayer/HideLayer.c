@@ -39,7 +39,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void HideLayer::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void HideLayer::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);

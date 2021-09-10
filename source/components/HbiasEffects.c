@@ -35,18 +35,18 @@
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-static s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
+static int16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 {
-	u32 param = BgmapSprite::getParam(bgmapSprite);
-	s32 spriteHeight = Texture::getRows(Sprite::getTexture(bgmapSprite)) << 3;
-	s16 i = BgmapSprite::getParamTableRow(bgmapSprite);
+	uint32 param = BgmapSprite::getParam(bgmapSprite);
+	int32 spriteHeight = Texture::getRows(Sprite::getTexture(bgmapSprite)) << 3;
+	int16 i = BgmapSprite::getParamTableRow(bgmapSprite);
 	// if you want to defer the effect, compute up to counter rows
 	// int counter = SpriteManager::getMaximumParamTableRowsToComputePerCall(SpriteManager::getInstance());
 
 	// look up table of wave shifts
 	#define HBIAS_WAVE_LUT_LENGTH 	32
 	#define HBIAS_WAVE_THROTTLE 	2
-	const s16 waveLut[HBIAS_WAVE_LUT_LENGTH] =
+	const int16 waveLut[HBIAS_WAVE_LUT_LENGTH] =
 	{
 		-2, -2, -2, -2,
         -1, -1, -1,
@@ -61,7 +61,7 @@ static s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 	};
 
 	// look up table offset
-	static u8 step = 0;
+	static uint8 step = 0;
 	step = (step < ((HBIAS_WAVE_LUT_LENGTH << HBIAS_WAVE_THROTTLE) - 1)) ? step + 1 : 0;
 
 	HbiasEntry* hbiasEntry = (HbiasEntry*)param;
@@ -72,7 +72,7 @@ static s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 	// value returned by SpriteManager::getMaximumParamTableRowsToComputePerCall and return -1
 	for(; i < spriteHeight; i++)
 	{
-		register s16 waveLutValue = waveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
+		register int16 waveLutValue = waveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
 		hbiasEntry[i].offsetLeft = waveLutValue;
 		hbiasEntry[i].offsetRight = waveLutValue;
 	}

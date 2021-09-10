@@ -34,7 +34,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Clouds::constructor(CloudsSpec* cloudsSpec, s16 internalId, const char* const name)
+void Clouds::constructor(CloudsSpec* cloudsSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(&cloudsSpec->EntitySpec, internalId, name);
@@ -52,7 +52,7 @@ void Clouds::destructor()
 }
 
 // state's handle message
-void Clouds::update(u32 elapsedTime __attribute__ ((unused)))
+void Clouds::update(uint32 elapsedTime __attribute__ ((unused)))
 {
 	// get local position of clouds and subtract defined displacement from x value
 	Vector3D offset = this->transformation.localPosition;

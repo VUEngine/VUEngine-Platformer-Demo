@@ -105,18 +105,18 @@ void AwesomeCloudBgmapSprite::setPosition(const PixelVector* position)
  * @memberof		AwesomeCloudBgmapSprite
  * @public
  */
-u16 AwesomeCloudBgmapSprite::doRender(u16 index, bool evenFrame)
+uint16 AwesomeCloudBgmapSprite::doRender(uint16 index, bool evenFrame)
 {
 	this->drawSpec.textureSource.my += this->awesomeCloudBgmapSpriteSpec->myStep;
 
-	if((u16)this->drawSpec.textureSource.my >= (BgmapTexture::getYOffset(this->texture) << 3) + (BgmapTexture::getRows(this->texture) << 3))
+	if((uint16)this->drawSpec.textureSource.my >= (BgmapTexture::getYOffset(this->texture) << 3) + (BgmapTexture::getRows(this->texture) << 3))
 	{
 		this->drawSpec.textureSource.my = (BgmapTexture::getYOffset(this->texture) << 3);
 	}
 
 	BgmapSprite::invalidateParamTable(this);
 
-	u16 result = Base::doRender(this, index, evenFrame);
+	uint16 result = Base::doRender(this, index, evenFrame);
 
 	static WorldAttributes* worldPointer = NULL;
 	worldPointer = &_worldAttributesBaseAddress[index];

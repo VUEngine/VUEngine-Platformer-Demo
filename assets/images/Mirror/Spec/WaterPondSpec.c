@@ -46,7 +46,7 @@ BgmapSpriteROMSpec* const WATER_POND_SPRITES[] =
 	NULL
 };
 
-const u8 WATER_POND_WAVE_LUT[] =
+const uint8 WATER_POND_WAVE_LUT[] =
 {
 	0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1,
 	0, 0, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1,

@@ -56,16 +56,16 @@ typedef struct MovingEntitySpec
 	fix10_6 maximumDisplacement;
 
 	// time to rest idle
-	u16 idleDuration;
+	uint16 idleDuration;
 
 	// on which axis it moves
-	u8 axis;
+	uint8 axis;
 
 	// movement direction
-	s8 direction;
+	int8 direction;
 
 	// axis on which synchronize shape with direction
-	u16 axisForShapeSyncWithDirection;
+	uint16 axisForShapeSyncWithDirection;
 
 } MovingEntitySpec;
 
@@ -78,13 +78,13 @@ class MovingEntity : Actor
 	/* spec pointer */
 	MovingEntitySpec* movingEntitySpec;
 
-	void constructor(MovingEntitySpec* MovingEntitySpec, s16 internalId, const char* const name);
+	void constructor(MovingEntitySpec* MovingEntitySpec, int16 internalId, const char* const name);
 	void startMovement();
 	void checkDisplacement();
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 	override void setSpec(void* movingEntitySpec);
-	override u16 getAxisForShapeSyncWithDirection();
+	override uint16 getAxisForShapeSyncWithDirection();
 }
 
 

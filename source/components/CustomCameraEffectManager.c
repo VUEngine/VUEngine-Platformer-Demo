@@ -154,7 +154,7 @@ bool CustomCameraEffectManager::handleMessage(Telegram telegram)
 }
 
 // start shaking the screen
-void CustomCameraEffectManager::fxShakeStart(u16 duration)
+void CustomCameraEffectManager::fxShakeStart(uint16 duration)
 {
 	// don't follow the focus entity while shaking
 	//Camera _camera = Camera::getInstance();

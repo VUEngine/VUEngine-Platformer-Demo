@@ -40,7 +40,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 FireTrack[] =
+const uint16 FireTrack[] =
 {
   A_4, B_4, E_5, HOLD, ENDSOUND,
   100, 80, 100, 1, 1,
@@ -97,7 +97,7 @@ SoundChannelROM FIRE_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)FireTrack
+		(const uint8*)FireTrack
 	}
 };
 

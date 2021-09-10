@@ -40,7 +40,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Door::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Door::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);
@@ -130,7 +130,7 @@ bool Door::canEnter()
 	return Door::hasDestination(this);
 }
 
-u32 Door::getHintType()
+uint32 Door::getHintType()
 {
 	return kEnterHint;
 }

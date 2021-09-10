@@ -43,10 +43,10 @@ typedef struct HbiasMaskMBgmapSpriteSpec
 	char* referenceSpriteOwnerName;
 
 	// height of the effect
-	u16 effectHeight;
+	uint16 effectHeight;
 
 	// height addition
-	u16 effectHeightExcess;
+	uint16 effectHeightExcess;
 
 } HbiasMaskMBgmapSpriteSpec;
 
@@ -82,18 +82,18 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 	*/
 	const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec;
 	/**
-	* @var u8		step
+	* @var uint8		step
 	* @brief		current lut index
 	* @memberof 	HbiasMaskMBgmapSprite
 	*/
-	u8 step;
+	uint8 step;
 
-	static s16 wave(BgmapSprite bgmapSprite);
+	static int16 wave(BgmapSprite bgmapSprite);
 
 	void constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, Object owner);
-	override u16 doRender(u16 index, bool evenFrame);
+	override uint16 doRender(uint16 index, bool evenFrame);
 	override void setPosition(const PixelVector* position);
-	override void setMode(u16 display, u16 mode);
+	override void setMode(uint16 display, uint16 mode);
 }
 
 

@@ -90,7 +90,7 @@ bool HeroIdle::processMessage(void* owner, Telegram telegram)
 	{
 		case kMessageBodyStartedMoving:
 
-			Hero::startedMovingOnAxis(owner, *(u16*)Telegram::getExtraInfo(telegram));
+			Hero::startedMovingOnAxis(owner, *(uint16*)Telegram::getExtraInfo(telegram));
 			break;
 
 		case kMessageBodyStopped:

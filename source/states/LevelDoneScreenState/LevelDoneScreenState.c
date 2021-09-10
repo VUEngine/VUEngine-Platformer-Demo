@@ -104,7 +104,7 @@ void LevelDoneScreenState::exit(void* owner __attribute__ ((unused)))
 // print level stats
 void LevelDoneScreenState::print()
 {
-	u8 numberOfCollectedCoins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
+	uint8 numberOfCollectedCoins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
 
 	// "level completed/conquered"
 	const char* strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_DONE);
@@ -113,20 +113,20 @@ void LevelDoneScreenState::print()
 		strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_CONQUERED);
 	}
 	FontSize strLevelDoneSize = Printing::getTextSize(Printing::getInstance(), strLevelDone, "AstonishSExt");
-	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strLevelDoneSize.x >> 1);
+	uint8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strLevelDoneSize.x >> 1);
 	Printing::text(Printing::getInstance(), strLevelDone, strHeaderXPos, 9, "AstonishSExt");
 
 	// number of coins
 	Printing::text(Printing::getInstance(), "00/64", 22, 13, "Platformer");
-	u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
-	Printing::int(Printing::getInstance(), numberOfCollectedCoins, numberPrintPos, 13, "Platformer");
+	uint8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
+	Printing::int32(Printing::getInstance(), numberOfCollectedCoins, numberPrintPos, 13, "Platformer");
 
 	// print time
 	Clock inGameClock = PlatformerLevelState::getClock(PlatformerLevelState::getInstance());
 	Clock::print(inGameClock, 22, 15, "Platformer");
 
 	// if new best time, print label (do not if first time beating level)
-	u32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
+	uint32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
 	if(Clock::getTime(inGameClock) < bestTime)
 	{
 		Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_BEST), 22, 16, "Platformer");

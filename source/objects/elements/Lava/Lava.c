@@ -37,7 +37,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Lava::constructor(EntitySpec* inanimatedEntitySpec, s16 internalId, const char* const name)
+void Lava::constructor(EntitySpec* inanimatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(inanimatedEntitySpec, internalId, name);

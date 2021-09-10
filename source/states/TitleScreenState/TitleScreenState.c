@@ -132,7 +132,7 @@ void TitleScreenState::enter(void* owner)
 		FontSize strContinueSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_CONTINUE), "Platformer");
 		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), "Platformer");
 		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), "Platformer");
-		u8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
+		uint8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
 		width = (width > strNewGameSize.x) ? width : strNewGameSize.x;
 		OptionsSelector::setColumnWidth(this->optionsSelector, width + 1);
 	}
@@ -157,7 +157,7 @@ void TitleScreenState::enter(void* owner)
 
 		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), "Platformer");
 		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), "Platformer");
-		u8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
+		uint8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
 		OptionsSelector::setColumnWidth(this->optionsSelector, width + 1);
 	}
 
@@ -256,7 +256,7 @@ void TitleScreenState::showMessage()
 {
 	const char* strPressStartButton = I18n::getText(I18n::getInstance(), STR_PRESS_START_BUTTON);
 	FontSize strPressStartButtonSize = Printing::getTextSize(Printing::getInstance(), strPressStartButton, "Platformer");
-	u8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
+	uint8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
 	Printing::text(Printing::getInstance(), strPressStartButton, strXPos, 26, "Platformer");
 }
 
@@ -330,10 +330,10 @@ void TitleScreenState::processUserInput(UserInput userInput)
 						// print warning
 						const char* strNewGameConfirm = I18n::getText(I18n::getInstance(), STR_PROGRESS_WILL_BE_ERASED);
 						FontSize strNewGameConfirmSize = Printing::getTextSize(Printing::getInstance(), strNewGameConfirm, "Platformer");
-						u8 strNewGameConfirmXPos = (((__SCREEN_WIDTH_IN_CHARS) - strNewGameConfirmSize.x) >> 1);
+						uint8 strNewGameConfirmXPos = (((__SCREEN_WIDTH_IN_CHARS) - strNewGameConfirmSize.x) >> 1);
 						const char* strAreYouSure = I18n::getText(I18n::getInstance(), STR_ARE_YOU_SURE);
 						FontSize strAreYouSureSize = Printing::getTextSize(Printing::getInstance(), strAreYouSure, "Platformer");
-						u8 strAreYouSureXPos = (((__SCREEN_WIDTH_IN_CHARS) - strAreYouSureSize.x) >> 1);
+						uint8 strAreYouSureXPos = (((__SCREEN_WIDTH_IN_CHARS) - strAreYouSureSize.x) >> 1);
 						Printing::text(
 							Printing::getInstance(),
 							strNewGameConfirm,
@@ -355,8 +355,8 @@ void TitleScreenState::processUserInput(UserInput userInput)
 						const char* strNo = I18n::getText(I18n::getInstance(), STR_NO);
 						FontSize strNoSize = Printing::getTextSize(Printing::getInstance(), strNo, "Platformer");
 
-						u8 strYesXPos = ((__SCREEN_WIDTH_IN_CHARS) - (strYesSize.x + strNoSize.x + 3)) >> 1;
-						u8 strNoXPos = strYesXPos + strYesSize.x + 2;
+						uint8 strYesXPos = ((__SCREEN_WIDTH_IN_CHARS) - (strYesSize.x + strNoSize.x + 3)) >> 1;
+						uint8 strNoXPos = strYesXPos + strYesSize.x + 2;
 
 						Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strYesXPos - 1, 27, "Platformer");
 						Printing::text(Printing::getInstance(), strYes, strYesXPos, 27, "Platformer");
@@ -421,16 +421,18 @@ void TitleScreenState::processUserInput(UserInput userInput)
 
 void TitleScreenState::playMenuSound()
 {
-	extern Sound OPTION_SELECT_SND;
+/*	extern Sound OPTION_SELECT_SND;
 	Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
 	SoundManager::playSound(SoundManager::getInstance(), &OPTION_SELECT_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
+	*/
 }
 
 void TitleScreenState::playConfirmSound()
 {
-	extern Sound OPTION_CONFIRM_SND;
+/*	extern Sound OPTION_CONFIRM_SND;
 	Vector3D position = Vector3D::getFromPixelVector((PixelVector){192, 112, 0, 0});
 	SoundManager::playSound(SoundManager::getInstance(), &OPTION_CONFIRM_SND, kPlayAll, (const Vector3D*)&position, kSoundWrapperPlaybackNormal, NULL, NULL);
+	*/
 }
 
 // handle event

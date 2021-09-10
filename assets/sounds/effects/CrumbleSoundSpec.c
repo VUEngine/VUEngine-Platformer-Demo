@@ -40,7 +40,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 CrumbleTrack[] =
+const uint16 CrumbleTrack[] =
 {
   A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
   100, 80, 100, 1, 100, 80, 100, 1, 100, 80, 100, 1, 1,
@@ -97,7 +97,7 @@ SoundChannelROM CRUMBLE_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)CrumbleTrack
+		(const uint8*)CrumbleTrack
 	}
 };
 

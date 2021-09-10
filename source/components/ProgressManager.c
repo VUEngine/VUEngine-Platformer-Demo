@@ -130,7 +130,7 @@ void ProgressManager::clearProgress()
 
 bool ProgressManager::hasProgress()
 {
-	u8 numberOfCompletedLevels = 0;
+	uint8 numberOfCompletedLevels = 0;
 
 	if(this->sramAvailable)
 	{
@@ -158,9 +158,9 @@ void ProgressManager::loadCheckPointData()
 	this->collectedCoins[1] = this->checkpointCollectedCoins[1];
 }
 
-u8 ProgressManager::getCurrentLevelNumberOfCollectedCoins()
+uint8 ProgressManager::getCurrentLevelNumberOfCollectedCoins()
 {
-	u8 numberOfCollectedCoins = 0;
+	uint8 numberOfCollectedCoins = 0;
 	for(int i = 0; i < COINS_PER_LEVEL; i++)
 	{
 		numberOfCollectedCoins += GET_BIT(this->collectedCoins[i >> 5], i);
@@ -169,14 +169,14 @@ u8 ProgressManager::getCurrentLevelNumberOfCollectedCoins()
 	return numberOfCollectedCoins;
 }
 
-u32 ProgressManager::getCurrentLevelBestTime()
+uint32 ProgressManager::getCurrentLevelBestTime()
 {
 	return this->currentLevelBestTime;
 }
 
-u16 ProgressManager::getTotalNumberOfCollectedCoins()
+uint16 ProgressManager::getTotalNumberOfCollectedCoins()
 {
-	u16 numberOfCollectedCoins = 0;
+	uint16 numberOfCollectedCoins = 0;
 	if(this->sramAvailable)
 	{
 		SRAMManager::read(SRAMManager::getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct GameSaveData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
@@ -185,7 +185,7 @@ u16 ProgressManager::getTotalNumberOfCollectedCoins()
 	return numberOfCollectedCoins;
 }
 
-bool ProgressManager::getCoinStatus(u16 id)
+bool ProgressManager::getCoinStatus(uint16 id)
 {
 	if(id > 0 && id <= COINS_PER_LEVEL)
 	{
@@ -195,7 +195,7 @@ bool ProgressManager::getCoinStatus(u16 id)
 	return false;
 }
 
-bool ProgressManager::setCoinStatus(u16 id, bool taken)
+bool ProgressManager::setCoinStatus(uint16 id, bool taken)
 {
 	if(id > 0 && id <= COINS_PER_LEVEL)
 	{
@@ -214,7 +214,7 @@ bool ProgressManager::setCoinStatus(u16 id, bool taken)
 	return false;
 }
 
-bool ProgressManager::getItemStatus(u16 id)
+bool ProgressManager::getItemStatus(uint16 id)
 {
 	if(id > 0 && id <= sizeof(this->collectedItems))
 	{
@@ -224,7 +224,7 @@ bool ProgressManager::getItemStatus(u16 id)
 	return false;
 }
 
-bool ProgressManager::setItemStatus(u16 id, bool taken)
+bool ProgressManager::setItemStatus(uint16 id, bool taken)
 {
 	if(id > 0 && id <= sizeof(this->collectedItems))
 	{
@@ -243,9 +243,9 @@ bool ProgressManager::setItemStatus(u16 id, bool taken)
 	return false;
 }
 
-void ProgressManager::loadLevelStatus(u8 levelId)
+void ProgressManager::loadLevelStatus(uint8 levelId)
 {
-	u16 currentLevelOffset = 0;
+	uint16 currentLevelOffset = 0;
 
 	// reset all unsaved progress for current level
 	ProgressManager::resetCurrentLevelProgress(this);
@@ -264,12 +264,12 @@ void ProgressManager::loadLevelStatus(u8 levelId)
 	}
 }
 
-void ProgressManager::persistLevelStatus(u8 levelId)
+void ProgressManager::persistLevelStatus(uint8 levelId)
 {
 	if(this->sramAvailable)
 	{
-		u8 i, numberOfCollectedCoins, levelCompleted, totalNumberOfCompletedLevels;
-		u16 currentLevelOffset, totalNumberOfCollectedCoins;
+		uint8 i, numberOfCollectedCoins, levelCompleted, totalNumberOfCompletedLevels;
+		uint16 currentLevelOffset, totalNumberOfCollectedCoins;
 
 		// determine offset of current level in sram
 		currentLevelOffset = offsetof(struct GameSaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
@@ -321,13 +321,13 @@ void ProgressManager::persistLevelStatus(u8 levelId)
 }
 
 // get hero's current energy
-u8 ProgressManager::getHeroCurrentEnergy()
+uint8 ProgressManager::getHeroCurrentEnergy()
 {
 	return this->heroCurrentEnergy;
 }
 
 // get hero's current power-up
-u8 ProgressManager::getHeroCurrentPowerUp()
+uint8 ProgressManager::getHeroCurrentPowerUp()
 {
 	return this->heroCurrentPowerUp;
 }
@@ -338,7 +338,7 @@ bool ProgressManager::heroHasKey()
 }
 
 // get current level time
-u32 ProgressManager::getCurrentLevelTime()
+uint32 ProgressManager::getCurrentLevelTime()
 {
 	return this->currentLevelTime;
 }

@@ -73,7 +73,7 @@ void AutomaticPauseScreenState::enter(void* owner __attribute__ ((unused)))
 	FontSize strAutomaticPauseSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
 	FontSize strAutomaticPauseTextSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseText, "Platformer");
 
-	u8 strHeaderXPos = ((__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseSize.x >> 1));
+	uint8 strHeaderXPos = ((__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseSize.x >> 1));
 	Printing::text(
 		Printing::getInstance(),
 		Utilities::toUppercase(strAutomaticPauseTitle),
@@ -82,7 +82,7 @@ void AutomaticPauseScreenState::enter(void* owner __attribute__ ((unused)))
 		strAutomaticPauseTitleFont
 	);
 
-	u8 strTextXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseTextSize.x >> 1);
+	uint8 strTextXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseTextSize.x >> 1);
 	Printing::text(Printing::getInstance(), strAutomaticPauseText, strTextXPos, 15 + strAutomaticPauseSize.y, "Platformer");
 
 	// disable user input

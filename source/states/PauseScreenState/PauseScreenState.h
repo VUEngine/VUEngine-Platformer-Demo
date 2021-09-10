@@ -61,7 +61,7 @@ enum PauseScreenOptions
 
 singleton class PauseScreenState : GameState
 {
-	u8 mode;
+	uint8 mode;
 	OptionsSelector optionsSelector;
 
 	static PauseScreenState getInstance(void);

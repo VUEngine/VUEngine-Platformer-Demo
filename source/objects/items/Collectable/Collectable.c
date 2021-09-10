@@ -42,7 +42,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Collectable::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Collectable::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);

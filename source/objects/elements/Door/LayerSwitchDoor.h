@@ -40,7 +40,7 @@ typedef const LayerSwitchDoorSpec LayerSwitchDoorROMSpec;
 
 class LayerSwitchDoor : Door
 {
-	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 }
 

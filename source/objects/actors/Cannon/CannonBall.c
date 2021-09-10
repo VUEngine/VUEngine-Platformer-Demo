@@ -39,7 +39,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CannonBall::constructor(CannonBallSpec* cannonBallSpec, s16 internalId, const char* const name)
+void CannonBall::constructor(CannonBallSpec* cannonBallSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((ActorSpec*)cannonBallSpec, internalId, name);
@@ -72,7 +72,7 @@ void CannonBall::startMovement()
 }
 
 // move back to cannon
-void CannonBall::stop(u16 axis __attribute__((unused)))
+void CannonBall::stop(uint16 axis __attribute__((unused)))
 {
 	// stop movement
 	Actor::stopAllMovement(this);

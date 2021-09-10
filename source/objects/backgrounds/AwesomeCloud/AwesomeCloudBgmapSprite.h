@@ -45,10 +45,10 @@ typedef struct AwesomeCloudBgmapSpriteSpec
 	BgmapSpriteSpec bgmapSpriteSpec;
 
 	/// X Displacement each render cycle
-	s16 mxStep;
+	int16 mxStep;
 
 	/// Y Displacement each render cycle
-	s16 myStep;
+	int16 myStep;
 
 } AwesomeCloudBgmapSpriteSpec;
 
@@ -73,7 +73,7 @@ class AwesomeCloudBgmapSprite : BgmapSprite
 	void constructor(const AwesomeCloudBgmapSpriteSpec* awesomeCloudBgmapSpriteSpec, Object owner);
 	override void position(const Vector3D* position);
 	override void setPosition(const PixelVector* position);
-	override u16 doRender(u16 index, bool evenFrame);
+	override uint16 doRender(uint16 index, bool evenFrame);
 }
 
 
