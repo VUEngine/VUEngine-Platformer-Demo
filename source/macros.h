@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 #ifndef MACROS_H_
@@ -133,15 +121,15 @@ enum GameCollisionTypes
 
 enum GameCollisionLayers
 {
-    kLayerSolid		 					= 1 << (kLayerNone + 0), 	// hex 00000001
-    kLayerEnemies						= 1 << (kLayerNone + 1), 	// hex 00000002
-    kLayerPlayer						= 1 << (kLayerNone + 2), 	// hex 00000004
-    kLayerParticles						= 1 << (kLayerNone + 3), 	// hex 00000008
-    kLayerCollectables					= 1 << (kLayerNone + 5), 	// hex 00000020
-    kLayerTriggers						= 1 << (kLayerNone + 6), 	// hex 00000040
-    kLayerCamera						= 1 << (kLayerNone + 7), 	// hex 00000080
-    kLayerMovingPlatforms				= 1 << (kLayerNone + 8), 	// hex 00000100
-    kLayerAll							= 0xFFFFFFFF,
+	kLayerSolid		 					= 1 << (kLayerNone + 0), 	// hex 00000001
+	kLayerEnemies						= 1 << (kLayerNone + 1), 	// hex 00000002
+	kLayerPlayer						= 1 << (kLayerNone + 2), 	// hex 00000004
+	kLayerParticles						= 1 << (kLayerNone + 3), 	// hex 00000008
+	kLayerCollectables					= 1 << (kLayerNone + 5), 	// hex 00000020
+	kLayerTriggers						= 1 << (kLayerNone + 6), 	// hex 00000040
+	kLayerCamera						= 1 << (kLayerNone + 7), 	// hex 00000080
+	kLayerMovingPlatforms				= 1 << (kLayerNone + 8), 	// hex 00000100
+	kLayerAll							= 0xFFFFFFFF,
 };
 
 

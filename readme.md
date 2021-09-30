@@ -1,13 +1,11 @@
-VUEngine Platformer Demo
-========================
+# VUEngine Platformer Demo
 
 A platform demo game created using VUEngine to show off some of the engine's capabilities.
 
 
-LICENSE
--------
+## License
 
-Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+© Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
 
 This software is licensed under the MIT License, which means you can basically do with it whatever you
 want as long as you include the original copyright and license notice in any copy of the software/source.
@@ -26,25 +24,3 @@ want as long as you include the original copyright and license notice in any cop
 	NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 	WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-CREDITS
--------
-
-  - Jorge Eremiev
-    - Lead programmer
-    - Debugging and testing
-
-  - Christian Radke (KR155E)
-    - Programmer
-    - Game designer
-    - Graphics artist
-    - Level designer
-    - Debugging and testing
-    - Documentation
-
-Some graphics are based on open source sprites by Kenney (http://www.kenney.nl).
-
-
-V810 is a trade mark of NEC. Virtual Boy is a trade mark of Nintendo.
-Jorge Eremiev and Christian Radke are in no way affiliated with either of these parties.

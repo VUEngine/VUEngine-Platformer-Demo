@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 
@@ -132,7 +120,7 @@ void TitleScreenState::enter(void* owner)
 		FontSize strContinueSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_CONTINUE), "Platformer");
 		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), "Platformer");
 		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), "Platformer");
-		u8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
+		uint8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
 		width = (width > strNewGameSize.x) ? width : strNewGameSize.x;
 		OptionsSelector::setColumnWidth(this->optionsSelector, width + 1);
 	}
@@ -157,7 +145,7 @@ void TitleScreenState::enter(void* owner)
 
 		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), "Platformer");
 		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), "Platformer");
-		u8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
+		uint8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
 		OptionsSelector::setColumnWidth(this->optionsSelector, width + 1);
 	}
 
@@ -256,15 +244,15 @@ void TitleScreenState::showMessage()
 {
 	const char* strPressStartButton = I18n::getText(I18n::getInstance(), STR_PRESS_START_BUTTON);
 	FontSize strPressStartButtonSize = Printing::getTextSize(Printing::getInstance(), strPressStartButton, "Platformer");
-	u8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
+	uint8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
 	Printing::text(Printing::getInstance(), strPressStartButton, strXPos, 26, "Platformer");
 }
 
 void TitleScreenState::hideMessage()
 {
-	Printing::text(Printing::getInstance(), "                                                ", 0, 25, "Platformer");
-	Printing::text(Printing::getInstance(), "                                                ", 0, 26, "Platformer");
-	Printing::text(Printing::getInstance(), "                                                ", 0, 27, "Platformer");
+	Printing::text(Printing::getInstance(), "												", 0, 25, "Platformer");
+	Printing::text(Printing::getInstance(), "												", 0, 26, "Platformer");
+	Printing::text(Printing::getInstance(), "												", 0, 27, "Platformer");
 }
 
 void TitleScreenState::processUserInput(UserInput userInput)
@@ -330,10 +318,10 @@ void TitleScreenState::processUserInput(UserInput userInput)
 						// print warning
 						const char* strNewGameConfirm = I18n::getText(I18n::getInstance(), STR_PROGRESS_WILL_BE_ERASED);
 						FontSize strNewGameConfirmSize = Printing::getTextSize(Printing::getInstance(), strNewGameConfirm, "Platformer");
-						u8 strNewGameConfirmXPos = (((__SCREEN_WIDTH_IN_CHARS) - strNewGameConfirmSize.x) >> 1);
+						uint8 strNewGameConfirmXPos = (((__SCREEN_WIDTH_IN_CHARS) - strNewGameConfirmSize.x) >> 1);
 						const char* strAreYouSure = I18n::getText(I18n::getInstance(), STR_ARE_YOU_SURE);
 						FontSize strAreYouSureSize = Printing::getTextSize(Printing::getInstance(), strAreYouSure, "Platformer");
-						u8 strAreYouSureXPos = (((__SCREEN_WIDTH_IN_CHARS) - strAreYouSureSize.x) >> 1);
+						uint8 strAreYouSureXPos = (((__SCREEN_WIDTH_IN_CHARS) - strAreYouSureSize.x) >> 1);
 						Printing::text(
 							Printing::getInstance(),
 							strNewGameConfirm,
@@ -355,8 +343,8 @@ void TitleScreenState::processUserInput(UserInput userInput)
 						const char* strNo = I18n::getText(I18n::getInstance(), STR_NO);
 						FontSize strNoSize = Printing::getTextSize(Printing::getInstance(), strNo, "Platformer");
 
-						u8 strYesXPos = ((__SCREEN_WIDTH_IN_CHARS) - (strYesSize.x + strNoSize.x + 3)) >> 1;
-						u8 strNoXPos = strYesXPos + strYesSize.x + 2;
+						uint8 strYesXPos = ((__SCREEN_WIDTH_IN_CHARS) - (strYesSize.x + strNoSize.x + 3)) >> 1;
+						uint8 strNoXPos = strYesXPos + strYesSize.x + 2;
 
 						Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strYesXPos - 1, 27, "Platformer");
 						Printing::text(Printing::getInstance(), strYes, strYesXPos, 27, "Platformer");

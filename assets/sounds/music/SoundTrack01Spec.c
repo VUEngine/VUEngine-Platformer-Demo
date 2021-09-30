@@ -1,23 +1,10 @@
-
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT PAUERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 
@@ -33,14 +20,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 Soundtrack01Track1[] =
+const uint16 Soundtrack01Track1[] =
 {
 	PAU, PAU, PAU, PAU, F_4, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, C_4, PAU, PAU, PAU, F_4, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, C_4, PAU, PAU, PAU, F_4, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, PAU, ENDSOUND,
 	30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
 	15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15
 };
 
-const u16 Soundtrack01Track2[] =
+const uint16 Soundtrack01Track2[] =
 {
 	PAU, PAU, PAU, PAU, F_5, PAU, PAU, D_4, F_6, PAU, E_3, F_5, PAU, C_4, F_6, PAU, F_5, PAU, C_4, PAU, F_5, PAU, PAU, D_4, F_6, PAU, E_4, F_5, PAU, C_4, F_6, PAU, F_5, PAU, C_4, PAU, F_6, F_5, PAU, D_4, PAU, PAU, E_4, PAU, PAU, C_4, PAU, PAU, C_4, PAU, C_4, PAU, F_4, PAU, PAU, D_4, PAU, PAU, E_4, PAU, PAU, C_4, PAU, PAU, C_4, PAU, C_4, PAU, ENDSOUND,
 	30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
@@ -140,7 +127,7 @@ SoundChannelROM SOUNDTRACK_01_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)Soundtrack01Track1
+		(const uint8*)Soundtrack01Track1
 	}
 };
 
@@ -155,7 +142,7 @@ SoundChannelROM SOUNDTRACK_01_CHANNEL_2 =
 
 	/// Sound track
 	{
-		(const u8*)Soundtrack01Track2
+		(const uint8*)Soundtrack01Track2
 	}
 };
 

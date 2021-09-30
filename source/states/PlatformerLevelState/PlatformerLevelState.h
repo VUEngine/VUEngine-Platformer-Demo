@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 #ifndef PLATFORMER_LEVEL_STATE_H_
@@ -63,7 +51,7 @@ typedef struct StageEntryPointSpec
 	ScreenPixelVector offset;
 
 	// facing direction of the hero
-	s8 direction;
+	int8 direction;
 
 	// whether this entry point acts as a checkpoint
 	bool isCheckPoint;
@@ -79,7 +67,7 @@ typedef struct PlatformerLevelSpec
 	StageEntryPointSpec* entryPoint;
 
 	// id
-	u8 id;
+	uint8 id;
 
 	// identifier
 	void* identifier;
@@ -144,7 +132,7 @@ singleton class PlatformerLevelState : GameState
 	/* in-game clock */
 	Clock clock;
 	/* to allow moving the screen */
-	u8 mode;
+	uint8 mode;
 
 	static PlatformerLevelState getInstance(void);
 	PlatformerLevelSpec* getCurrentLevelSpec();

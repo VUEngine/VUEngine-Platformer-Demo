@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 
@@ -81,7 +69,7 @@ static void Hero::setInstance(Hero instance)
 
 
 // class's constructor
-void Hero::constructor(HeroSpec* heroSpec, s16 internalId, const char* const name)
+void Hero::constructor(HeroSpec* heroSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((ActorSpec*)heroSpec, internalId, name);
@@ -146,7 +134,7 @@ void Hero::ready(bool recursive)
 	{
 		this->energy = ProgressManager::getHeroCurrentEnergy(progressManager);
 
-		u8 currentPowerUp = ProgressManager::getHeroCurrentPowerUp(progressManager);
+		uint8 currentPowerUp = ProgressManager::getHeroCurrentPowerUp(progressManager);
 		if(currentPowerUp != this->powerUp)
 		{
 			this->powerUp = currentPowerUp;
@@ -190,7 +178,7 @@ void Hero::jump(bool checkIfYMovement)
 	if(this->body)
 	{
 		// determine the maximum number of possible jumps before reaching ground again
-		s8 allowedNumberOfJumps = this->underWater ? 127 : (this->powerUp == kPowerUpBandana) ? 2 : 1;
+		int8 allowedNumberOfJumps = this->underWater ? 127 : (this->powerUp == kPowerUpBandana) ? 2 : 1;
 
 #ifdef GOD_MODE
 	allowedNumberOfJumps = 127;
@@ -258,7 +246,7 @@ void Hero::jump(bool checkIfYMovement)
 }
 
 // keep movement
-void Hero::addForceOnAxis(u16 axis, bool enableAddingForce)
+void Hero::addForceOnAxis(uint16 axis, bool enableAddingForce)
 {
 	if(enableAddingForce)
 	{
@@ -360,7 +348,7 @@ void Hero::stopAddingForce()
 	}
 
 	// begin to decelerate
-	u16 axisOfDeacceleration = 0;
+	uint16 axisOfDeacceleration = 0;
 	axisOfDeacceleration |= velocity.x? __X_AXIS: 0;
 	axisOfDeacceleration |= velocity.z? __Z_AXIS: 0;
 
@@ -385,7 +373,7 @@ void Hero::stopAddingForce()
 }
 
 // started moving over axis
-void Hero::startedMovingOnAxis(u16 axis)
+void Hero::startedMovingOnAxis(uint16 axis)
 {
 	if(__Y_AXIS & axis)
 	{
@@ -414,7 +402,7 @@ void Hero::startedMovingOnAxis(u16 axis)
 }
 
 // stop moving over axis
-bool Hero::stopMovingOnAxis(u16 axis)
+bool Hero::stopMovingOnAxis(uint16 axis)
 {
 	// if being hit do nothing
 	if(!Body::isActive(this->body))
@@ -501,7 +489,7 @@ bool Hero::stopMovingOnAxis(u16 axis)
 }
 
 // check direction
-void Hero::checkDirection(u32 pressedKey, char* animation)
+void Hero::checkDirection(uint32 pressedKey, char* animation)
 {
 	bool movementState = Body::getMovementOnAllAxis(this->body);
 
@@ -771,7 +759,7 @@ void Hero::addFeetDust()
 	ParticleSystem::spawnAllParticles(this->feetDust);
 }
 
-void Hero::showHint(u32 hintType)
+void Hero::showHint(uint32 hintType)
 {
 	ASSERT(this->hint, "Hero::showHint: null hint");
 
@@ -859,7 +847,7 @@ bool Hero::hasKey()
 }
 
 // collect a power-up
-void Hero::collectPowerUp(u8 powerUp)
+void Hero::collectPowerUp(uint8 powerUp)
 {
 	this->powerUp = powerUp;
 	this->keepAddingForce = false;
@@ -907,13 +895,13 @@ void Hero::updateSprite()
 }
 
 // get current power-up
-u8 Hero::getPowerUp()
+uint8 Hero::getPowerUp()
 {
 	return this->powerUp;
 }
 
 // get energy
-u8 Hero::getEnergy()
+uint8 Hero::getEnergy()
 {
 	return this->energy;
 }
@@ -1306,7 +1294,7 @@ void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isSha
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
-u16 Hero::getAxisForShapeSyncWithDirection()
+uint16 Hero::getAxisForShapeSyncWithDirection()
 {
 	return __NO_AXIS;
 }

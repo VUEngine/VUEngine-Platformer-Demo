@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 
@@ -50,7 +38,7 @@ extern CharSetSpec GUI_BANDANA_CH;
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Gui::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Gui::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);
@@ -87,7 +75,7 @@ void Gui::printClock()
 // print best time to gui
 void Gui::printBestTime()
 {
-	u32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
+	uint32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
 
 	if(bestTime)
 	{
@@ -105,7 +93,7 @@ void Gui::printBestTime()
 // print number of coins to gui
 void Gui::printCoins()
 {
-	u8 coins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
+	uint8 coins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
 
 	// bound to 64
 	if(coins > 64)
@@ -114,18 +102,18 @@ void Gui::printCoins()
 	}
 
 	// compute x position
-	u8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
+	uint8 printPos = GUI_X_POS + (coins >= 10) ? 11 : 12;
 
 	// print
 	Printing::text(Printing::getInstance(), "00/64", GUI_X_POS + 11, GUI_Y_POS, GUI_TEXT_FONT);
-	Printing::int(Printing::getInstance(), coins, printPos, GUI_Y_POS, GUI_TEXT_FONT);
+	Printing::int32(Printing::getInstance(), coins, printPos, GUI_Y_POS, GUI_TEXT_FONT);
 }
 
 // print hero's energy to gui
 void Gui::printEnergy()
 {
 	Printing::text(Printing::getInstance(), "\x21\x21\x21", GUI_X_POS + 4, GUI_Y_POS, GUI_ICON_FONT);
-	u8 i;
+	uint8 i;
 	ASSERT(Hero::getInstance(), "Gui::printEnergy: null hero");
 
 	for(i=0; i < Hero::getEnergy(Hero::getInstance()); i++)

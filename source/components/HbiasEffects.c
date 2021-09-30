@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 
@@ -35,33 +23,33 @@
 //												FUNCTIONS
 //---------------------------------------------------------------------------------------------------------
 
-static s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
+static int16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 {
-	u32 param = BgmapSprite::getParam(bgmapSprite);
-	s32 spriteHeight = Texture::getRows(Sprite::getTexture(bgmapSprite)) << 3;
-	s16 i = BgmapSprite::getParamTableRow(bgmapSprite);
+	uint32 param = BgmapSprite::getParam(bgmapSprite);
+	int32 spriteHeight = Texture::getRows(Sprite::getTexture(bgmapSprite)) << 3;
+	int16 i = BgmapSprite::getParamTableRow(bgmapSprite);
 	// if you want to defer the effect, compute up to counter rows
 	// int counter = SpriteManager::getMaximumParamTableRowsToComputePerCall(SpriteManager::getInstance());
 
 	// look up table of wave shifts
 	#define HBIAS_WAVE_LUT_LENGTH 	32
 	#define HBIAS_WAVE_THROTTLE 	2
-	const s16 waveLut[HBIAS_WAVE_LUT_LENGTH] =
+	const int16 waveLut[HBIAS_WAVE_LUT_LENGTH] =
 	{
 		-2, -2, -2, -2,
-        -1, -1, -1,
-        0, 0,
-        1, 1, 1,
-        2, 2, 2, 2,
-        2, 2, 2, 2,
-        1, 1, 1,
-        0, 0,
-        -1, -1, -1,
-        -2, -2, -2, -2,
+		-1, -1, -1,
+		0, 0,
+		1, 1, 1,
+		2, 2, 2, 2,
+		2, 2, 2, 2,
+		1, 1, 1,
+		0, 0,
+		-1, -1, -1,
+		-2, -2, -2, -2,
 	};
 
 	// look up table offset
-	static u8 step = 0;
+	static uint8 step = 0;
 	step = (step < ((HBIAS_WAVE_LUT_LENGTH << HBIAS_WAVE_THROTTLE) - 1)) ? step + 1 : 0;
 
 	HbiasEntry* hbiasEntry = (HbiasEntry*)param;
@@ -72,7 +60,7 @@ static s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 	// value returned by SpriteManager::getMaximumParamTableRowsToComputePerCall and return -1
 	for(; i < spriteHeight; i++)
 	{
-		register s16 waveLutValue = waveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
+		register int16 waveLutValue = waveLut[(i + (step >> HBIAS_WAVE_THROTTLE)) & (HBIAS_WAVE_LUT_LENGTH - 1)];
 		hbiasEntry[i].offsetLeft = waveLutValue;
 		hbiasEntry[i].offsetRight = waveLutValue;
 	}
@@ -80,14 +68,14 @@ static s16 HbiasEffects::wave(BgmapSprite bgmapSprite)
 	// Possible return values and their effects:
 	//
 	// 0:  forces the effect to be triggered on the next rendering cycle without having to call
-	//     Sprite::applyHbiasEffects.
+	//	 Sprite::applyHbiasEffects.
 	//
 	// >0: forces the effect to be triggered on the next rendering cycle without having to call
-	//     Sprite::applyHbiasEffects. The returned value means the next param table row to compute.
-	//     Only used when deferring the effect across multiple rendering cycles.
+	//	 Sprite::applyHbiasEffects. The returned value means the next param table row to compute.
+	//	 Only used when deferring the effect across multiple rendering cycles.
 	//
 	// -1: means that the param table writing has been completed. To trigger the effect again,
-	//     Sprite::applyHbiasEffects must be called.
+	//	 Sprite::applyHbiasEffects must be called.
 
 	return 0;
 

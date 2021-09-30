@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 
@@ -104,7 +92,7 @@ void LevelDoneScreenState::exit(void* owner __attribute__ ((unused)))
 // print level stats
 void LevelDoneScreenState::print()
 {
-	u8 numberOfCollectedCoins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
+	uint8 numberOfCollectedCoins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
 
 	// "level completed/conquered"
 	const char* strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_DONE);
@@ -113,20 +101,20 @@ void LevelDoneScreenState::print()
 		strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_CONQUERED);
 	}
 	FontSize strLevelDoneSize = Printing::getTextSize(Printing::getInstance(), strLevelDone, "AstonishSExt");
-	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strLevelDoneSize.x >> 1);
+	uint8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strLevelDoneSize.x >> 1);
 	Printing::text(Printing::getInstance(), strLevelDone, strHeaderXPos, 9, "AstonishSExt");
 
 	// number of coins
 	Printing::text(Printing::getInstance(), "00/64", 22, 13, "Platformer");
-	u8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
-	Printing::int(Printing::getInstance(), numberOfCollectedCoins, numberPrintPos, 13, "Platformer");
+	uint8 numberPrintPos = (numberOfCollectedCoins < 10) ? 23 : 22;
+	Printing::int32(Printing::getInstance(), numberOfCollectedCoins, numberPrintPos, 13, "Platformer");
 
 	// print time
 	Clock inGameClock = PlatformerLevelState::getClock(PlatformerLevelState::getInstance());
 	Clock::print(inGameClock, 22, 15, "Platformer");
 
 	// if new best time, print label (do not if first time beating level)
-	u32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
+	uint32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
 	if(Clock::getTime(inGameClock) < bestTime)
 	{
 		Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_BEST), 22, 16, "Platformer");

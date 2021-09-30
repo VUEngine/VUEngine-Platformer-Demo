@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 
@@ -99,7 +87,7 @@ void HbiasMaskMBgmapSprite::setPosition(const PixelVector* position)
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 }
 
-void HbiasMaskMBgmapSprite::setMode(u16 display, u16 mode __attribute__ ((unused)))
+void HbiasMaskMBgmapSprite::setMode(uint16 display, uint16 mode __attribute__ ((unused)))
 {
 	this->head = display | __WORLD_HBIAS;
 }
@@ -138,7 +126,7 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
  *
  * @param this		Function scope
  */
-u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unused)))
+uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute__((unused)))
 {
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 
@@ -163,7 +151,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 
 	VirtualList ownerSprites = Entity::getSprites(this->owner);
 
-	u16 ownerSpriteGY = 0;
+	uint16 ownerSpriteGY = 0;
 	bool ownerSpriteGYSet = false;
 
 	if(ownerSprites)
@@ -185,7 +173,7 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 		ownerSpriteGY = __FIX10_6_TO_I(ownerPosition2D.y);
 	}
 
-	u8 referenceSpriteWorldLayer = Sprite::getIndex(this->referenceSprite);
+	uint8 referenceSpriteWorldLayer = Sprite::getIndex(this->referenceSprite);
 
 	WorldAttributes* referenceSpriteWorldPointer = &_worldAttributesCache[referenceSpriteWorldLayer];
 
@@ -194,8 +182,8 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight : referenceSpriteWorldPointer->gy;
 	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
 
-	if((u8)__NO_RENDER_INDEX == referenceSpriteWorldLayer
-    	||
+	if((uint8)__NO_RENDER_INDEX == referenceSpriteWorldLayer
+		||
 		ownerSpriteGY < worldPointer->gy
 		||
 		_cameraFrustum->y1 <= ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight
@@ -224,22 +212,22 @@ u16 HbiasMaskMBgmapSprite::doRender(u16 index, bool evenFrame __attribute__((unu
 
 	// set the head
 	worldPointer->head = this->head | (BgmapTexture::safeCast(this->texture))->segment;
-	worldPointer->param = (u16)(((this->param) - 0x20000) >> 1) & 0xFFF0;
+	worldPointer->param = (uint16)(((this->param) - 0x20000) >> 1) & 0xFFF0;
 
 	return index;
 }
 
-static s16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
+static int16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
 {
 	HbiasMaskMBgmapSprite this = HbiasMaskMBgmapSprite::safeCast(bgmapSprite);
-	s32 spriteHeight = Sprite::getWorldHeight(this);
-	s16 i = this->paramTableRow;
-	s16 j = 0;
+	int32 spriteHeight = Sprite::getWorldHeight(this);
+	int16 i = this->paramTableRow;
+	int16 j = 0;
 
 	// look up table of wave shifts
 	#define HBIAS_LAVA_HEAT_LUT_LENGTH 	32
 	#define HBIAS_LAVA_HEAT_THROTTLE 	2
-	const s16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
+	const int16 lavaWaveLut[HBIAS_LAVA_HEAT_LUT_LENGTH] =
 	{
 		-1, -1, -1, -1, -1, -1,
 		 0,  0,  0,  0,
@@ -257,7 +245,7 @@ static s16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
 	// write param table rows
 	for(j = 0; i < spriteHeight; i++, j++)
 	{
-		register s16 waveLutValue = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
+		register int16 waveLutValue = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
 
 		hbiasEntry[i].offsetLeft = waveLutValue;
 		hbiasEntry[i].offsetRight = waveLutValue;

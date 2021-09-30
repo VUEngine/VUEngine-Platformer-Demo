@@ -1,22 +1,10 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
- * A universal game engine for the Nintendo Virtual Boy
+/**
+ * VUEngine Platformer Demo
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
- * LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
- * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * For the full copyright and license information, please view the LICENSE file
+ * that was distributed with this source code.
  */
 
 
@@ -40,7 +28,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void WaterPond::constructor(WaterPondSpec* reflectiveEntitySpec, s16 internalId, const char* const name)
+void WaterPond::constructor(WaterPondSpec* reflectiveEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(&reflectiveEntitySpec->reflectiveEntitySpec, internalId, name);
@@ -171,7 +159,7 @@ bool WaterPond::handleMessage(void* telegram)
 	return false;
 }
 
-void WaterPond::applyReflection(u32 currentDrawingFrameBufferSet)
+void WaterPond::applyReflection(uint32 currentDrawingFrameBufferSet)
 {
 	ReflectiveEntitySpec* reflectiveEntitySpec = (ReflectiveEntitySpec*)this->entitySpec;
 	WaterPondSpec* waterPondSpec = (WaterPondSpec*)this->entitySpec;
@@ -194,7 +182,7 @@ void WaterPond::applyReflection(u32 currentDrawingFrameBufferSet)
 								waterPondSpec->surfaceHeight);
 }
 
-static inline void WaterPond::shiftPixels(int pixelShift, REFLECTIVE_ENTITY_POINTER_TYPE* sourceValue, u32 nextSourceValue, REFLECTIVE_ENTITY_POINTER_TYPE* remainderValue, u32 reflectionMask)
+static inline void WaterPond::shiftPixels(int pixelShift, REFLECTIVE_ENTITY_POINTER_TYPE* sourceValue, uint32 nextSourceValue, REFLECTIVE_ENTITY_POINTER_TYPE* remainderValue, uint32 reflectionMask)
 {
 	*sourceValue &= reflectionMask;
 	*remainderValue &= reflectionMask;
@@ -214,27 +202,27 @@ static inline void WaterPond::shiftPixels(int pixelShift, REFLECTIVE_ENTITY_POIN
 	}
 }
 
-void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
-								s16 xSourceStart, s16 ySourceStart,
-								s16 xOutputStart, s16 yOutputStart,
-								s16 width, s16 height,
-								u32 reflectionMask,
-								s16 parallaxDisplacement,
-								const u8 waveLut[], int numberOfWaveLutEntries, fix10_6 waveLutThrottleFactor,
+void WaterPond::drawCustomReflection(uint32 currentDrawingFrameBufferSet,
+								int16 xSourceStart, int16 ySourceStart,
+								int16 xOutputStart, int16 yOutputStart,
+								int16 width, int16 height,
+								uint32 reflectionMask,
+								int16 parallaxDisplacement,
+								const uint8 waveLut[], int numberOfWaveLutEntries, fix10_6 waveLutThrottleFactor,
 								fix10_6 amplitudeFactor,
 								bool flattenTop __attribute__ ((unused)), bool flattenBottom,
-								u32 topBorderMask __attribute__ ((unused)), u32 bottomBorderMask __attribute__ ((unused)),
-								u16 surfaceHeight __attribute__ ((unused)))
+								uint32 topBorderMask __attribute__ ((unused)), uint32 bottomBorderMask __attribute__ ((unused)),
+								uint16 surfaceHeight __attribute__ ((unused)))
 {
 	if(!waveLut)
 	{
 		return;
 	}
 
-    s16 xSourceEnd = xSourceStart + width;
-    s16 ySourceEnd = ySourceStart + height;
-	s16 xOutputEnd = xOutputStart + width;
-	s16 yOutputEnd = yOutputStart + height;
+	int16 xSourceEnd = xSourceStart + width;
+	int16 ySourceEnd = ySourceStart + height;
+	int16 xOutputEnd = xOutputStart + width;
+	int16 yOutputEnd = yOutputStart + height;
 
 	int xOutputStartSave = xOutputStart;
 
@@ -312,17 +300,17 @@ void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
 	int xOutputLimit = xOutputEnd;
 	int xOutputIncrement = 1;
 
-	u32 reflectionMaskSave = reflectionMask;
+	uint32 reflectionMaskSave = reflectionMask;
 
 	fix10_6 waveLutIndexIncrement = this->waveLutIndexIncrement;
 
 	int ySourceIncrement = 1;
-    int ySourceStartHelper = ySourceStart >> REFLECTIVE_ENTITY_Y_STEP_SIZE_2_EXP;
+	int ySourceStartHelper = ySourceStart >> REFLECTIVE_ENTITY_Y_STEP_SIZE_2_EXP;
 	int xSourceDistance = __ABS(xSourceEnd - xSourceStart);
 	int xOutputDistance = __ABS(xOutput - xOutputLimit);
 	int xTotal = xOutputDistance > xSourceDistance ? xSourceDistance : xOutputDistance;
 
-	u32 time = Game::getTime(Game::getInstance());
+	uint32 time = Game::getTime(Game::getInstance());
 
 	this->waveLutIndex += waveLutIndexIncrement;
 
@@ -366,9 +354,9 @@ void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
 
 		reflectionMask = reflectionMaskSave;
 
-		u32 effectiveContentMaskDisplacement = (__MODULO((yOutputStart + (flattenTop? 0 : waveLutPixelDisplacement)), REFLECTIVE_ENTITY_Y_STEP_SIZE) << 1);
-		u32 effectiveContentMask = 0xFFFFFFFF << effectiveContentMaskDisplacement;
-		u32 effectiveBackgroundMask = ~effectiveContentMask;
+		uint32 effectiveContentMaskDisplacement = (__MODULO((yOutputStart + (flattenTop? 0 : waveLutPixelDisplacement)), REFLECTIVE_ENTITY_Y_STEP_SIZE) << 1);
+		uint32 effectiveContentMask = 0xFFFFFFFF << effectiveContentMaskDisplacement;
+		uint32 effectiveBackgroundMask = ~effectiveContentMask;
 
 		REFLECTIVE_ENTITY_POINTER_TYPE* columnSourcePointerLeft = (REFLECTIVE_ENTITY_POINTER_TYPE*) (currentDrawingFrameBufferSet) + (xSource << REFLECTIVE_ENTITY_Y_SHIFT) + ySource;
 		REFLECTIVE_ENTITY_POINTER_TYPE* columnOutputPointerLeft = (REFLECTIVE_ENTITY_POINTER_TYPE*) (currentDrawingFrameBufferSet) + (leftColumn << REFLECTIVE_ENTITY_Y_SHIFT) + yOutput;
@@ -382,9 +370,9 @@ void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
 
 		REFLECTIVE_ENTITY_POINTER_TYPE outputValueLeft = *columnOutputPointerLeft;
 /*
-		u32 random = time % (xRelativeCoordinate + waveLutPixelDisplacement + 1);
-		u32 surfaceDisplacement = (effectiveContentMaskDisplacement + random % __FIX10_6_TO_I(__FIX10_6_MULT(__I_TO_FIX10_6(surfaceHeight << 1), waveLutIndexIncrement)));
-		u32 surfaceMask = 0xFFFFFFFF << (random % surfaceHeight);
+		uint32 random = time % (xRelativeCoordinate + waveLutPixelDisplacement + 1);
+		uint32 surfaceDisplacement = (effectiveContentMaskDisplacement + random % __FIX10_6_TO_I(__FIX10_6_MULT(__I_TO_FIX10_6(surfaceHeight << 1), waveLutIndexIncrement)));
+		uint32 surfaceMask = 0xFFFFFFFF << (random % surfaceHeight);
 		REFLECTIVE_ENTITY_POINTER_TYPE sourceReflectionValueLeft = (~surfaceMask << surfaceDisplacement);
 */
 		REFLECTIVE_ENTITY_POINTER_TYPE sourceReflectionValueLeft = (topBorderMask << effectiveContentMaskDisplacement) & xOutput & time;
@@ -429,7 +417,7 @@ void WaterPond::drawCustomReflection(u32 currentDrawingFrameBufferSet,
 
 		if(yOutputRemainder)
 		{
-			u32 maskDisplacement = (REFLECTIVE_ENTITY_BITS_PER_STEP - yOutputRemainder);
+			uint32 maskDisplacement = (REFLECTIVE_ENTITY_BITS_PER_STEP - yOutputRemainder);
 			effectiveContentMask = 0xFFFFFFFF >> maskDisplacement;
 			effectiveContentMask &= ~(bottomBorderMask >> maskDisplacement);
 
