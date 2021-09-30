@@ -446,8 +446,6 @@ void WaterPond::drawCustomReflection(uint32 currentDrawingFrameBufferSet,
 			*columnOutputPointerRight = (outputValueLeft & ~effectiveContentMask) | (remainderLeftValue & effectiveContentMask);
 		}
 	}
-
-
 }
 
 

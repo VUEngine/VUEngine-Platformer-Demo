@@ -31,6 +31,8 @@
 #include <LanguageSelectionScreenState.h>
 #include <TitleScreenState.h>
 #include <AutomaticPauseScreenState.h>
+#include <AdjustmentScreenState.h>
+#include <AutomaticPauseSelectionScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +46,19 @@ int main(void)
 	AutomaticPauseManager::setAutomaticPauseState(AutomaticPauseManager::getInstance(), GameState::safeCast(AutomaticPauseScreenState::getInstance()));
 	AutomaticPauseManager::setAutomaticPauseDelay(AutomaticPauseManager::getInstance(), 15);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
+
+	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(PrecautionScreenState::getInstance()),
+		GameState::safeCast(AdjustmentScreenState::getInstance())
+	);
+	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(AdjustmentScreenState::getInstance()),
+		GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance())
+	);
+	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(AutomaticPauseSelectionScreenState::getInstance()),
+		GameState::safeCast(LanguageSelectionScreenState::getInstance())
+	);
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()),
 		GameState::safeCast(TitleScreenState::getInstance())

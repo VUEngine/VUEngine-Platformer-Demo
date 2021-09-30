@@ -135,7 +135,7 @@ void OptionsScreenState::print()
 	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
 	option->type = kString;
-	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutoPauseSelect;
+	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutomaticPauseSelect;
 	option->callbackScope = Object::safeCast(this);
 	VirtualList::pushBack(options, option);
 
@@ -250,7 +250,7 @@ void OptionsScreenState::onOptionSelectedFadeOutComplete(Object eventFirer __att
 	OptionsSelector::doCurrentSelectionCallback(this->optionsSelector);
 }
 
-void OptionsScreenState::onOptionAutoPauseSelect()
+void OptionsScreenState::onOptionAutomaticPauseSelect()
 {
 	SplashScreenState::setNextState(SplashScreenState::safeCast(AutomaticPauseSelectionScreenState::getInstance()), GameState::safeCast(this));
 	Game::changeState(Game::getInstance(), GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance()));
