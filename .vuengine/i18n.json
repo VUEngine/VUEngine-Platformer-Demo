@@ -266,7 +266,7 @@
 				},
 				{
 					"language": "ES",
-					"translation": "\"Nublado con pronóstico\n       de lluvia\""
+					"translation": "\"Nublado con pronóstico\n	   de lluvia\""
 				},
 				{
 					"language": "FR",
@@ -468,19 +468,19 @@
 			"translations": [
 				{
 					"language": "DE",
-					"translation": "        WICHTIG\nBITTE LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE"
+					"translation": "		WICHTIG\nBITTE LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE"
 				},
 				{
 					"language": "EN",
-					"translation": "     IMPORTANT\nREAD INSTRUCTION AND\nPRECAUTION BOOKLETS\n  BEFORE OPERATING"
+					"translation": "	 IMPORTANT\nREAD INSTRUCTION AND\nPRECAUTION BOOKLETS\n  BEFORE OPERATING"
 				},
 				{
 					"language": "ES",
-					"translation": "         IMPORTANTE\n     LEE LOS LIBROS DE\nINSTRUCCIONES Y PRECAUCIONES\n       ANTES DE JUGAR"
+					"translation": "		 IMPORTANTE\n	 LEE LOS LIBROS DE\nINSTRUCCIONES Y PRECAUCIONES\n	   ANTES DE JUGAR"
 				},
 				{
 					"language": "FR",
-					"translation": "        IMPORTANT\nPRENEZ CONAISSANCE DE LA\nNOTICE ET DES PRÉCAUTIONS\n    A AVANT DE JOUER"
+					"translation": "		IMPORTANT\nPRENEZ CONAISSANCE DE LA\nNOTICE ET DES PRÉCAUTIONS\n	A AVANT DE JOUER"
 				}
 			]
 		},

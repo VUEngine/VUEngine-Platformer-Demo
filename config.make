@@ -14,11 +14,10 @@ PLUGINS 						= vuengine//cameras/PlatformerCamera \
 								  vuengine//postProcessing/Lantern \
 								  vuengine//postProcessing/Rain \
 								  vuengine//postProcessing/Rhombus \
-								  vuengine//states/splash/SplashScreen \
-								  vuengine//states/splash/PrecautionScreen \
-								  vuengine//states/splash/LanguageSelectionScreen \
+								  vuengine//states/splash/AdjustmentScreenVUEngine \
 								  vuengine//states/splash/AutomaticPauseSelectionScreen \
-								  vuengine//states/splash/AdjustmentScreenVUEngine
+								  vuengine//states/splash/LanguageSelectionScreen \
+								  vuengine//states/splash/PrecautionScreen
 
 # Compiler's output
 COMPILER_OUTPUT					= c
