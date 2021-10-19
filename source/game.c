@@ -53,7 +53,7 @@ int main(void)
 	);
 
 	// start the game
-	Game::start(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
 
 	// end program
 	return true;
