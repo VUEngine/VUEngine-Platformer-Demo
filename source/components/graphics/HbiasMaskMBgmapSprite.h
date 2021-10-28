@@ -52,12 +52,6 @@ typedef const HbiasMaskMBgmapSpriteSpec HbiasMaskMBgmapSpriteROMSpec;
 class HbiasMaskMBgmapSprite : MBgmapSprite
 {
 	/**
-	* @var SpatialObject 	owner
-	* @brief				owner
-	* @memberof 			HbiasMaskMBgmapSprite
-	*/
-	Entity owner;
-	/**
 	* @var Sprite 	sprite
 	* @brief		reference Sprite
 	* @memberof 	HbiasMaskMBgmapSprite
