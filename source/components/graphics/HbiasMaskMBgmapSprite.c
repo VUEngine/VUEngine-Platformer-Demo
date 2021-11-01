@@ -59,7 +59,7 @@ void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMa
 	this->owner = NULL;
 	this->referenceSprite = NULL;
 	this->step = 0;
-	this->owner = Entity::safeCast(owner);
+	this->owner = owner;
 }
 
 /**
