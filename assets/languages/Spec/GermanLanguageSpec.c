@@ -27,8 +27,18 @@ const char* const GermanLanguageStrings[] =
 	"Bist Du sicher?",
 	/* kStringAutomaticPause: */
 	"Automatische Pause",
-	/* kStringAutomaticPauseExplanation: */
+	/* kStringAutomaticPauseBody: */
+	"Bitte mache eine Pause!",
+	/* kStringAutomaticPauseSelectionBody: */
 	" Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
+	/* kStringAutomaticPauseSelectionOff: */
+	"Aus",
+	/* kStringAutomaticPauseSelectionOn: */
+	"An",
+	/* kStringAutomaticPauseSelectionTitle: */
+	"AUTOMATISCHE PAUSE",
+	/* kStringAutomaticPauseTitle: */
+	"AUTOMATISCHE PAUSE",
 	/* kStringBack: */
 	"Zurück",
 	/* kStringCheckpoint: */
@@ -39,14 +49,14 @@ const char* const GermanLanguageStrings[] =
 	"Mitwirkende",
 	/* kStringLanguage: */
 	"Sprache",
-	/* kStringLanguageSelect: */
-	"Sprachauswahl",
+	/* kStringLanguageSelectTitle: */
+	"SPRACHAUSWAHL",
+	/* kStringLevel: */
+	"Level",
 	/* kStringLevel1Name: */
 	"Plitsch Platsch Berge",
 	/* kStringLevel1Slogan: */
 	"   \"Bewölkt mit\nAussicht auf Regen\"",
-	/* kStringLevel: */
-	"Level",
 	/* kStringLevelConquered: */
 	"Level gemeistert!",
 	/* kStringLevelDone: */
@@ -57,15 +67,11 @@ const char* const GermanLanguageStrings[] =
 	"Neues Spiel",
 	/* kStringNo: */
 	"Nein",
-	/* kStringOff: */
-	"Aus",
-	/* kStringOn: */
-	"An",
 	/* kStringOptions: */
 	"Optionen",
 	/* kStringPause: */
 	"Pause",
-	/* kStringPrecautionScreenText: */
+	/* kStringPrecautionScreenBody: */
 	"        WICHTIG\nBITTE LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE",
 	/* kStringPressStartButton: */
 	"Start-Knopf drücken",
@@ -75,8 +81,6 @@ const char* const GermanLanguageStrings[] =
 	"Level beenden",
 	/* kStringSelect: */
 	"Auswählen",
-	/* kStringTakeARest: */
-	"Bitte mache eine Pause!",
 	/* kStringYes: */
 	"Ja",
 };

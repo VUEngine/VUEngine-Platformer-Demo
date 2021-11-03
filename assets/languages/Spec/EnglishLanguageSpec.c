@@ -27,8 +27,18 @@ const char* const EnglishLanguageStrings[] =
 	"Are you sure?",
 	/* kStringAutomaticPause: */
 	"Automatic Pause",
-	/* kStringAutomaticPauseExplanation: */
+	/* kStringAutomaticPauseBody: */
+	"Please take a rest!",
+	/* kStringAutomaticPauseSelectionBody: */
 	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
+	/* kStringAutomaticPauseSelectionOff: */
+	"Off",
+	/* kStringAutomaticPauseSelectionOn: */
+	"On",
+	/* kStringAutomaticPauseSelectionTitle: */
+	"AUTOMATIC PAUSE",
+	/* kStringAutomaticPauseTitle: */
+	"AUTOMATIC PAUSE",
 	/* kStringBack: */
 	"Back",
 	/* kStringCheckpoint: */
@@ -39,14 +49,14 @@ const char* const EnglishLanguageStrings[] =
 	"Credits",
 	/* kStringLanguage: */
 	"Language",
-	/* kStringLanguageSelect: */
-	"Language Select",
+	/* kStringLanguageSelectTitle: */
+	"LANGUAGE SELECT",
+	/* kStringLevel: */
+	"Level",
 	/* kStringLevel1Name: */
 	"Splish Splash Hills",
 	/* kStringLevel1Slogan: */
 	"\"Cloudy with a \n chance of rain\"",
-	/* kStringLevel: */
-	"Level",
 	/* kStringLevelConquered: */
 	"Level Conquered!",
 	/* kStringLevelDone: */
@@ -57,15 +67,11 @@ const char* const EnglishLanguageStrings[] =
 	"New Game",
 	/* kStringNo: */
 	"No",
-	/* kStringOff: */
-	"Off",
-	/* kStringOn: */
-	"On",
 	/* kStringOptions: */
 	"Options",
 	/* kStringPause: */
 	"Pause",
-	/* kStringPrecautionScreenText: */
+	/* kStringPrecautionScreenBody: */
 	"     IMPORTANT\nREAD INSTRUCTION AND\nPRECAUTION BOOKLETS\n  BEFORE OPERATING",
 	/* kStringPressStartButton: */
 	"Press Start Button",
@@ -75,8 +81,6 @@ const char* const EnglishLanguageStrings[] =
 	"Quit Level",
 	/* kStringSelect: */
 	"Select",
-	/* kStringTakeARest: */
-	"Please take a rest!",
 	/* kStringYes: */
 	"Yes",
 };

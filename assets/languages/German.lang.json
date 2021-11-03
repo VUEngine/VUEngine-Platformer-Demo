@@ -1,18 +1,17 @@
 {
 	"id": "German",
+	"code": "de",
 	"flag": "FLAG_GERMANY_EN",
 	"name": "Deutsch",
 	"order": 2,
 	"strings": {
 		"AreYouSure": "Bist Du sicher?",
 		"AutomaticPause": "Automatische Pause",
-		"AutomaticPauseExplanation": " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
 		"Back": "Zurück",
 		"Checkpoint": "Kontrollpunkt",
 		"Continue": "Fortsetzen",
 		"Credits": "Mitwirkende",
 		"Language": "Sprache",
-		"LanguageSelect": "Sprachauswahl",
 		"Level1Name": "Plitsch Platsch Berge",
 		"Level1Slogan": "   \"Bewölkt mit\nAussicht auf Regen\"",
 		"Level": "Level",
@@ -21,16 +20,12 @@
 		"NewBest": "Neue Bestleistung!",
 		"NewGame": "Neues Spiel",
 		"No": "Nein",
-		"Off": "Aus",
-		"On": "An",
 		"Options": "Optionen",
 		"Pause": "Pause",
-		"PrecautionScreenText": "        WICHTIG\nBITTE LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE",
 		"PressStartButton": "Start-Knopf drücken",
 		"ProgressWillBeErased": "Dein kompletter Fortschritt wird gelöscht.",
 		"QuitLevel": "Level beenden",
 		"Select": "Auswählen",
-		"TakeARest": "Bitte mache eine Pause!",
 		"Yes": "Ja"
 	}
 }

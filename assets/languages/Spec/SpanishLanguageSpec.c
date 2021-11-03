@@ -27,8 +27,18 @@ const char* const SpanishLanguageStrings[] =
 	"¿Estás seguro?",
 	/* kStringAutomaticPause: */
 	"Pausa Automatica",
-	/* kStringAutomaticPauseExplanation: */
+	/* kStringAutomaticPauseBody: */
+	"¡Por favor, tómese un descanso!",
+	/* kStringAutomaticPauseSelectionBody: */
 	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
+	/* kStringAutomaticPauseSelectionOff: */
+	"Apagado",
+	/* kStringAutomaticPauseSelectionOn: */
+	"Encendido",
+	/* kStringAutomaticPauseSelectionTitle: */
+	"PAUSA AUTOMÁTICA",
+	/* kStringAutomaticPauseTitle: */
+	"PAUSA AUTOMÁTICA",
 	/* kStringBack: */
 	"Regresar",
 	/* kStringCheckpoint: */
@@ -39,14 +49,14 @@ const char* const SpanishLanguageStrings[] =
 	"Créditos",
 	/* kStringLanguage: */
 	"Idioma",
-	/* kStringLanguageSelect: */
-	"Seleccionar Idioma",
+	/* kStringLanguageSelectTitle: */
+	"SELECCIONAR IDIOMA",
+	/* kStringLevel: */
+	"Nivel",
 	/* kStringLevel1Name: */
 	"Montanas Splish Splash",
 	/* kStringLevel1Slogan: */
 	"\"Nublado con pronóstico\n       de lluvia\"",
-	/* kStringLevel: */
-	"Nivel",
 	/* kStringLevelConquered: */
 	"¡Nivel conquistado!",
 	/* kStringLevelDone: */
@@ -57,15 +67,11 @@ const char* const SpanishLanguageStrings[] =
 	"Nuevo Juego",
 	/* kStringNo: */
 	"No",
-	/* kStringOff: */
-	"Apagado",
-	/* kStringOn: */
-	"Encendido",
 	/* kStringOptions: */
 	"Opciones",
 	/* kStringPause: */
 	"Pausa",
-	/* kStringPrecautionScreenText: */
+	/* kStringPrecautionScreenBody: */
 	"         IMPORTANTE\n     LEE LOS LIBROS DE\nINSTRUCCIONES Y PRECAUCIONES\n       ANTES DE JUGAR",
 	/* kStringPressStartButton: */
 	"Presionar Start",
@@ -75,8 +81,6 @@ const char* const SpanishLanguageStrings[] =
 	"Salir del nivel",
 	/* kStringSelect: */
 	"Seleccionar",
-	/* kStringTakeARest: */
-	"¡Por favor, tómate un descanso!",
 	/* kStringYes: */
 	"Sí",
 };

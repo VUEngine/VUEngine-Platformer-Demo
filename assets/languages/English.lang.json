@@ -1,18 +1,17 @@
 {
 	"id": "English",
+	"code": "en",
 	"flag": "FLAG_UNITED_KINGDOM_EN",
 	"name": "English",
 	"order": 1,
 	"strings": {
 		"AreYouSure": "Are you sure?",
 		"AutomaticPause": "Automatic Pause",
-		"AutomaticPauseExplanation": "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
 		"Back": "Back",
 		"Checkpoint": "Checkpoint",
 		"Continue": "Continue",
 		"Credits": "Credits",
 		"Language": "Language",
-		"LanguageSelect": "Language Select",
 		"Level1Name": "Splish Splash Hills",
 		"Level1Slogan": "\"Cloudy with a \n chance of rain\"",
 		"Level": "Level",
@@ -21,16 +20,12 @@
 		"NewBest": "New Best!",
 		"NewGame": "New Game",
 		"No": "No",
-		"Off": "Off",
-		"On": "On",
 		"Options": "Options",
 		"Pause": "Pause",
-		"PrecautionScreenText": "     IMPORTANT\nREAD INSTRUCTION AND\nPRECAUTION BOOKLETS\n  BEFORE OPERATING",
 		"PressStartButton": "Press Start Button",
 		"ProgressWillBeErased": "All your progress will be erased.",
 		"QuitLevel": "Quit Level",
 		"Select": "Select",
-		"TakeARest": "Please take a rest!",
 		"Yes": "Yes"
 	}
 }

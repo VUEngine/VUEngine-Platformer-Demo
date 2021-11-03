@@ -17,8 +17,8 @@
 
 extern LangROMSpec EnglishLanguage;
 extern LangROMSpec GermanLanguage;
-extern LangROMSpec FrenchLanguage;
 extern LangROMSpec SpanishLanguage;
+extern LangROMSpec FrenchLanguage;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -29,8 +29,8 @@ LangROMSpec* const __LANGUAGES[] =
 {
 	&EnglishLanguage,
 	&GermanLanguage,
-	&FrenchLanguage,
 	&SpanishLanguage,
+	&FrenchLanguage,
 	
 	NULL
 };
