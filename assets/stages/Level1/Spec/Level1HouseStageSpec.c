@@ -85,9 +85,9 @@ PositionedEntityROMSpec LEVEL1_HOUSE_STAGE_ST_UI_ENTITIES[] =
 
 FontROMSpec* const LEVEL1_HOUSE_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_FONT,
-	&ASTONISH_S_FONT,
-	&PLATFORMER_GUI_FONT,
+	&PlatformerFont,
+	&AstonishSFont,
+	&PlatformerGuiFont,
 
 	NULL
 };

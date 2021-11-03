@@ -32,7 +32,7 @@ const PixelSize level1_coin_room_stage_collision_224_16_8 = {224, 16, 8};
 const PixelSize level1_coin_room_stage_collision_320_16_8 = {320, 16, 8};
 const PixelSize level1_coin_room_stage_collision_32_48_8 = {32, 48, 8};
 const PixelSize level1_coin_room_stage_collision_80_48_8 = {80, 48, 8};
-extern BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat;
 extern EntitySpec COIN_EN;
 extern EntitySpec COLLISION_CL;
 extern EntitySpec DOOR_EN;
@@ -111,9 +111,9 @@ PositionedEntityROMSpec LEVEL1_COIN_ROOM_STAGE_ST_UI_ENTITIES[] =
 
 FontROMSpec* const LEVEL1_COIN_ROOM_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_FONT,
-	&ASTONISH_S_FONT,
-	&PLATFORMER_GUI_FONT,
+	&PlatformerFont,
+	&AstonishSFont,
+	&PlatformerGuiFont,
 
 	NULL
 };
@@ -222,7 +222,7 @@ StageROMSpec LEVEL1_COIN_ROOM_STAGE_ST =
 			},
 
 			// brightness repeat
-			(BrightnessRepeatSpec*)&EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
+			(BrightnessRepeatSpec*)&EdgeFadeOutBrightnessRepeat,
 		},
 
 		// palettes' config

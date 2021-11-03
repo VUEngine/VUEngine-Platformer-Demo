@@ -2,30 +2,27 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef FONTS_H_
-#define FONTS_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Printing.h>
-#include <CharSet.h>
+#include <VIPManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//                                              DECLARATIONS
+//                                               DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern FontSpec DefaultFont;
-extern FontSpec ProfilerFont;
-extern FontSpec AstonishFont;
-extern FontSpec AstonishExtFont;
-extern FontSpec AstonishSFont;
-extern FontSpec AstonishSExtFont;
-extern FontSpec PlatformerFont;
-extern FontSpec PlatformerGuiFont;
+BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat =
+{
+	// mirror spec?
+	true,
 
-
-#endif
+	// brightness repeat values
+	{
+		 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 
+    	15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 
+    	15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 
+	}
+};

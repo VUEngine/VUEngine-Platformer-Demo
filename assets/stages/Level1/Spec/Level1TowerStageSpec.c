@@ -28,7 +28,7 @@
 extern SoundROM* const LEVEL_1_SOUNDS[];
 
 extern StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP;
-extern BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat;
 
 extern EntitySpec BANDANA_EN;
 extern EntitySpec COIN_EN;
@@ -274,9 +274,9 @@ PositionedEntityROMSpec LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN[] =
 
 FontROMSpec* const LEVEL_1_TOWER_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_FONT,
-	&ASTONISH_S_FONT,
-	&PLATFORMER_GUI_FONT,
+	&PlatformerFont,
+	&AstonishSFont,
+	&PlatformerGuiFont,
 
 	NULL
 };
@@ -406,7 +406,7 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 			},
 
 			// brightness repeat
-			(BrightnessRepeatSpec*)&EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
+			(BrightnessRepeatSpec*)&EdgeFadeOutBrightnessRepeat,
 		},
 
 		// palettes' config

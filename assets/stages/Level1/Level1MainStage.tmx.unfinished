@@ -2,10 +2,10 @@
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="382" height="64" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="348">
  <properties>
-  <property name="declaration" value="StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP, BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
+  <property name="declaration" value="StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP, BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
   <property name="stage.assets.bgm" value="KRISSE_BGM"/>
-  <property name="stage.assets.fontSpecs" value="PLATFORMER_FONT, PLATFORMER_GUI_FONT, ASTONISH_S_FONT"/>
+  <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGuiFont, AstonishSFont"/>
   <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
   <property name="stage.level.screenInitialPosition.x" value="0"/>
@@ -22,7 +22,7 @@
   <property name="stage.rendering.colorConfig.brightness.brightRed" value="8"/>
   <property name="stage.rendering.colorConfig.brightness.darkRed" value="2"/>
   <property name="stage.rendering.colorConfig.brightness.mediumRed" value="4"/>
-  <property name="stage.rendering.colorConfig.brightnessRepeat" value="EDGE_FADE_OUT_BRIGHTNESS_REPEAT"/>
+  <property name="stage.rendering.colorConfig.brightnessRepeat" value="EdgeFadeOutBrightnessRepeat"/>
   <property name="stage.rendering.cyclesToWaitForTextureWriting" value="__TARGET_FPS / 10"/>
   <property name="stage.rendering.maximumAffineRowsToComputePerCall" value="16"/>
   <property name="stage.rendering.objectSpritesContainersSize.0" value="0"/>

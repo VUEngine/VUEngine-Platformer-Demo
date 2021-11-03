@@ -4,52 +4,52 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FontDefaultTiles[];
+extern BYTE FontGuiTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec PLATFORMER_FONT_CH =
+CharSetROMSpec PlatformerGuiFontCharSet =
 {
 	// number of chars
-	256,
+	10,
 
 	// allocation type
 	__NOT_ANIMATED,
 
 	// char spec
-	FontDefaultTiles,
+	FontGuiTiles,
 };
 
-FontROMSpec PLATFORMER_FONT =
+FontROMSpec PlatformerGuiFont =
 {
 	// font charset spec pointer
-	(CharSetSpec*)&PLATFORMER_FONT_CH,
+	(CharSetSpec*)&PlatformerGuiFontCharSet,
 
 	// character number at which the font starts, allows you to skip the control characters for example
-	0,
-
-	// number of characters in this font
-	256,
-
-	// number of characters per line in charset
 	32,
 
+	// number of characters in this font
+	5,
+
+	// number of characters per line in charset
+	5,
+
 	// size of a single character (in chars) ({width, height})
-	{1, 1},
+	{1, 2},
 
 	// font's name
-	"Platformer",
+	"PlatformerGui",
 };

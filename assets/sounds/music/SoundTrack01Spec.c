@@ -69,7 +69,7 @@ SoundChannelConfigurationROM SOUNDTRACK_01_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	PianoWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -108,7 +108,7 @@ SoundChannelConfigurationROM SOUNDTRACK_01_CHANNEL_2_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	violinWaveForm,
+	ViolinWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,

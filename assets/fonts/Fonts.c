@@ -4,26 +4,26 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Fonts.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 FontSpec* const __FONTS[] =
 {
-	(FontSpec*)&DEFAULT_FONT,
-	(FontSpec*)&PROFILER_FONT,
-	(FontSpec*)&ASTONISH_FONT,
-	(FontSpec*)&ASTONISH_EXT_FONT,
-	(FontSpec*)&ASTONISH_S_FONT,
-	(FontSpec*)&ASTONISH_S_EXT_FONT,
-	(FontSpec*)&PLATFORMER_FONT,
-	(FontSpec*)&PLATFORMER_GUI_FONT,
+	(FontSpec*)&DefaultFont,
+	(FontSpec*)&ProfilerFont,
+	(FontSpec*)&AstonishFont,
+	(FontSpec*)&AstonishExtFont,
+	(FontSpec*)&AstonishSFont,
+	(FontSpec*)&AstonishSExtFont,
+	(FontSpec*)&PlatformerFont,
+	(FontSpec*)&PlatformerGuiFont,
 	
 	NULL
 };

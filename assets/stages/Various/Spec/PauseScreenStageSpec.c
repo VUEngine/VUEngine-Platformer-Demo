@@ -50,9 +50,9 @@ PositionedEntityROMSpec PAUSE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 
 FontROMSpec* const PAUSE_SCREEN_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_FONT,
-	&PLATFORMER_GUI_FONT,
-	&ASTONISH_S_EXT_FONT,
+	&PlatformerFont,
+	&PlatformerGuiFont,
+	&AstonishSExtFont,
 
 	NULL
 };

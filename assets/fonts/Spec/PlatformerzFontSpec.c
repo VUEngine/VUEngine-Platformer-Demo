@@ -2,30 +2,54 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef FONTS_H_
-#define FONTS_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
-#include <CharSet.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //                                              DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern FontSpec DefaultFont;
-extern FontSpec ProfilerFont;
-extern FontSpec AstonishFont;
-extern FontSpec AstonishExtFont;
-extern FontSpec AstonishSFont;
-extern FontSpec AstonishSExtFont;
-extern FontSpec PlatformerFont;
-extern FontSpec PlatformerGuiFont;
+extern BYTE FontDefaultTiles[];
 
 
-#endif
+//---------------------------------------------------------------------------------------------------------
+//                                               DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+CharSetROMSpec PlatformerzFontCharSet =
+{
+	// number of chars
+	256,
+
+	// allocation type
+	__NOT_ANIMATED,
+
+	// char spec
+	FontDefaultTiles,
+};
+
+FontROMSpec PlatformerzFont =
+{
+	// font charset spec pointer
+	(CharSetSpec*)&PlatformerzFontCharSet,
+
+	// character number at which the font starts, allows you to skip the control characters for example
+	0,
+
+	// number of characters in this font
+	256,
+
+	// number of characters per line in charset
+	2,
+
+	// size of a single character (in chars) ({width, height})
+	{1, 1},
+
+	// font's name
+	"Platformerz",
+};

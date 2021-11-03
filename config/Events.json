@@ -1,0 +1,13 @@
+[
+	"CheckpointLoaded",
+	"CoinTaken",
+	"HeroDied",
+	"HitTaken",
+	"KeyTaken",
+	"LevelCompleted",
+	"LevelStarted",
+	"PowerUp",
+	"ScreenFocused",
+	"ShakeCompleted",
+	"UserInput"
+]

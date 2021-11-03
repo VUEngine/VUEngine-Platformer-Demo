@@ -1,0 +1,11 @@
+{
+	"name": "PlatformerGui",
+	"tiles": "FontGuiTiles",
+	"offset": 32,
+	"characterCount": 5,
+	"charactersPerLine": 5,
+	"size": {
+		"x": 1,
+		"y": 2
+	}
+}

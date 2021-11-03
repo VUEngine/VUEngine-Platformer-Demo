@@ -495,9 +495,9 @@ PositionedEntityROMSpec LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 
 FontROMSpec* const LEVEL_1_MAIN_STAGE_ST_FONTS[] =
 {
-	&PLATFORMER_FONT,
-	&ASTONISH_S_FONT,
-	&PLATFORMER_GUI_FONT,
+	&PlatformerFont,
+	&AstonishSFont,
+	&PlatformerGuiFont,
 
 	NULL
 };
