@@ -4,90 +4,84 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// IMPORTANT: Ensure that this file is encoded in Windows-1252 to make use of the full
-//            character set including special characters of European languages.
-//---------------------------------------------------------------------------------------------------------
-
-//---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <I18n.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec FLAG_UNITED_KINGDOM_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const char* const LANGUAGE_EN_STRINGS[] =
+const char* const EnglishLanguageStrings[] =
 {
-	/* STR_ARE_YOU_SURE: */
+	/* kStringAreYouSure: */
 	"Are you sure?",
-	/* STR_AUTO_PAUSE_EXPLANATION: */
-	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
-	/* STR_AUTOMATIC_PAUSE: */
+	/* kStringAutomaticPause: */
 	"Automatic Pause",
-	/* STR_BACK: */
+	/* kStringAutomaticPauseExplanation: */
+	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
+	/* kStringBack: */
 	"Back",
-	/* STR_CHECKPOINT: */
+	/* kStringCheckpoint: */
 	"Checkpoint",
-	/* STR_CONTINUE: */
+	/* kStringContinue: */
 	"Continue",
-	/* STR_CREDITS: */
+	/* kStringCredits: */
 	"Credits",
-	/* STR_LANGUAGE: */
+	/* kStringLanguage: */
 	"Language",
-	/* STR_LANGUAGE_SELECT: */
+	/* kStringLanguageSelect: */
 	"Language Select",
-	/* STR_LEVEL: */
-	"Level",
-	/* STR_LEVEL_1_NAME: */
+	/* kStringLevel1Name: */
 	"Splish Splash Hills",
-	/* STR_LEVEL_1_SLOGAN: */
+	/* kStringLevel1Slogan: */
 	"\"Cloudy with a \n chance of rain\"",
-	/* STR_LEVEL_CONQUERED: */
+	/* kStringLevel: */
+	"Level",
+	/* kStringLevelConquered: */
 	"Level Conquered!",
-	/* STR_LEVEL_DONE: */
+	/* kStringLevelDone: */
 	"Level Completed!",
-	/* STR_NEW_BEST: */
+	/* kStringNewBest: */
 	"New Best!",
-	/* STR_NEW_GAME: */
+	/* kStringNewGame: */
 	"New Game",
-	/* STR_NO: */
+	/* kStringNo: */
 	"No",
-	/* STR_OFF: */
+	/* kStringOff: */
 	"Off",
-	/* STR_ON: */
+	/* kStringOn: */
 	"On",
-	/* STR_OPTIONS: */
+	/* kStringOptions: */
 	"Options",
-	/* STR_PAUSE: */
+	/* kStringPause: */
 	"Pause",
-	/* STR_PRECAUTION_SCREEN_TEXT: */
+	/* kStringPrecautionScreenText: */
 	"     IMPORTANT\nREAD INSTRUCTION AND\nPRECAUTION BOOKLETS\n  BEFORE OPERATING",
-	/* STR_PRESS_START_BUTTON: */
+	/* kStringPressStartButton: */
 	"Press Start Button",
-	/* STR_PROGRESS_WILL_BE_ERASED: */
+	/* kStringProgressWillBeErased: */
 	"All your progress will be erased.",
-	/* STR_QUIT_LEVEL: */
+	/* kStringQuitLevel: */
 	"Quit Level",
-	/* STR_SELECT: */
+	/* kStringSelect: */
 	"Select",
-	/* STR_TAKE_A_REST: */
+	/* kStringTakeARest: */
 	"Please take a rest!",
-	/* STR_YES: */
+	/* kStringYes: */
 	"Yes",
-	
 };
 
-const LangROMSpec LANGUAGE_EN =
+const LangROMSpec EnglishLanguage =
 {
 	// language name
 	"English",
@@ -96,5 +90,5 @@ const LangROMSpec LANGUAGE_EN =
 	&FLAG_UNITED_KINGDOM_EN,
 	
 	// strings
-	(const char**)LANGUAGE_EN_STRINGS
+	(const char**)EnglishLanguageStrings
 };

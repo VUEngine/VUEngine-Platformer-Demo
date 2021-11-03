@@ -247,7 +247,7 @@ void PlatformerLevelState::enter(void* owner)
 
 		if(this->currentLevel->identifier)
 		{
-			const char* strLevel = I18n::getText(I18n::getInstance(), STR_LEVEL);
+			const char* strLevel = I18n::getText(I18n::getInstance(), kStringLevel);
 			const char* strLevelId = this->currentLevel->identifier;
 			uint8 strLevelLength = strlen(strLevel);
 			uint8 strLevelIdLength = strlen(strLevelId);
@@ -286,7 +286,7 @@ void PlatformerLevelState::enter(void* owner)
 	else if(this->currentStageEntryPoint->isCheckPoint)
 	{
 		// write checkpoint message to screen
-		const char* strCheckpoint = I18n::getText(I18n::getInstance(), STR_CHECKPOINT);
+		const char* strCheckpoint = I18n::getText(I18n::getInstance(), kStringCheckpoint);
 		Printing::text(
 			Printing::getInstance(),
 			strCheckpoint,

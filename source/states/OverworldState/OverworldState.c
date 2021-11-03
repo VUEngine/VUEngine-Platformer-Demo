@@ -169,7 +169,7 @@ void OverworldState::print()
 	Printing::int32(Printing::getInstance(), coins, 4, 26, "AstonishSExt");
 
 	// level name
-	Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_LEVEL_1_NAME), 16, 26, "AstonishSExt");
+	Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), kStringLevel1Name), 16, 26, "AstonishSExt");
 	Printing::text(Printing::getInstance(), "1-1", 12, 26, "AstonishSExt");
 }
 

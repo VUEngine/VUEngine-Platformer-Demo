@@ -4,90 +4,84 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// IMPORTANT: Ensure that this file is encoded in Windows-1252 to make use of the full
-//            character set including special characters of European languages.
-//---------------------------------------------------------------------------------------------------------
-
-//---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <I18n.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec FLAG_FRANCE_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const char* const LANGUAGE_FR_STRINGS[] =
+const char* const FrenchLanguageStrings[] =
 {
-	/* STR_ARE_YOU_SURE: */
+	/* kStringAreYouSure: */
 	"Es tu sûr?",
-	/* STR_AUTO_PAUSE_EXPLANATION: */
-	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
-	/* STR_AUTOMATIC_PAUSE: */
+	/* kStringAutomaticPause: */
 	"Pause Automatique",
-	/* STR_BACK: */
+	/* kStringAutomaticPauseExplanation: */
+	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
+	/* kStringBack: */
 	"Arrière",
-	/* STR_CHECKPOINT: */
+	/* kStringCheckpoint: */
 	"Poste de contrôle",
-	/* STR_CONTINUE: */
+	/* kStringContinue: */
 	"Continuer",
-	/* STR_CREDITS: */
+	/* kStringCredits: */
 	"Crédits",
-	/* STR_LANGUAGE: */
+	/* kStringLanguage: */
 	"Langue",
-	/* STR_LANGUAGE_SELECT: */
+	/* kStringLanguageSelect: */
 	"Choix de la langue",
-	/* STR_LEVEL: */
-	"Niveau",
-	/* STR_LEVEL_1_NAME: */
+	/* kStringLevel1Name: */
 	"Splish Splash Hills",
-	/* STR_LEVEL_1_SLOGAN: */
+	/* kStringLevel1Slogan: */
 	"\"Nuageux avec un\n risque de pluie\"",
-	/* STR_LEVEL_CONQUERED: */
+	/* kStringLevel: */
+	"Niveau",
+	/* kStringLevelConquered: */
 	"Niveau conquis!",
-	/* STR_LEVEL_DONE: */
+	/* kStringLevelDone: */
 	"Niveau terminé!",
-	/* STR_NEW_BEST: */
+	/* kStringNewBest: */
 	"Nouveau Record!",
-	/* STR_NEW_GAME: */
+	/* kStringNewGame: */
 	"Nouveau Jeu",
-	/* STR_NO: */
+	/* kStringNo: */
 	"Non",
-	/* STR_OFF: */
+	/* kStringOff: */
 	"Desactivé",
-	/* STR_ON: */
+	/* kStringOn: */
 	"Activé",
-	/* STR_OPTIONS: */
+	/* kStringOptions: */
 	"Options",
-	/* STR_PAUSE: */
+	/* kStringPause: */
 	"Pause",
-	/* STR_PRECAUTION_SCREEN_TEXT: */
+	/* kStringPrecautionScreenText: */
 	"        IMPORTANT\nPRENEZ CONAISSANCE DE LA\nNOTICE ET DES PRÉCAUTIONS\n    A AVANT DE JOUER",
-	/* STR_PRESS_START_BUTTON: */
+	/* kStringPressStartButton: */
 	"Appuyer sur Start",
-	/* STR_PROGRESS_WILL_BE_ERASED: */
+	/* kStringProgressWillBeErased: */
 	"Tout vôtre progrès sera effacé.",
-	/* STR_QUIT_LEVEL: */
+	/* kStringQuitLevel: */
 	"Quitter Niveau",
-	/* STR_SELECT: */
+	/* kStringSelect: */
 	"Sélectionner",
-	/* STR_TAKE_A_REST: */
+	/* kStringTakeARest: */
 	"Se il vous plaît, prendre un repos!",
-	/* STR_YES: */
+	/* kStringYes: */
 	"Oui",
-	
 };
 
-const LangROMSpec LANGUAGE_FR =
+const LangROMSpec FrenchLanguage =
 {
 	// language name
 	"Français",
@@ -96,5 +90,5 @@ const LangROMSpec LANGUAGE_FR =
 	&FLAG_FRANCE_EN,
 	
 	// strings
-	(const char**)LANGUAGE_FR_STRINGS
+	(const char**)FrenchLanguageStrings
 };

@@ -55,9 +55,9 @@ void AutomaticPauseScreenState::enter(void* owner __attribute__ ((unused)))
 	GameState::loadStage(this, (StageSpec*)&PAUSE_SCREEN_STAGE_ST, NULL, true, false);
 
 	// print text
-	const char* strAutomaticPauseTitle = I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
+	const char* strAutomaticPauseTitle = I18n::getText(I18n::getInstance(), kStringAutomaticPause);
 	const char* strAutomaticPauseTitleFont = "AstonishSExt";
-	const char* strAutomaticPauseText = I18n::getText(I18n::getInstance(), STR_TAKE_A_REST);
+	const char* strAutomaticPauseText = I18n::getText(I18n::getInstance(), kStringTakeARest);
 	FontSize strAutomaticPauseSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
 	FontSize strAutomaticPauseTextSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseText, "Platformer");
 

@@ -97,29 +97,29 @@ void TitleScreenState::enter(void* owner)
 		Option* option = NULL;
 
 		option = new Option;
-		option->value = (char*)I18n::getText(I18n::getInstance(), STR_CONTINUE);
+		option->value = (char*)I18n::getText(I18n::getInstance(), kStringContinue);
 		option->type = kString;
 		option->callback = NULL;
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
 		option = new Option;
-		option->value = (char*)I18n::getText(I18n::getInstance(), STR_OPTIONS);
+		option->value = (char*)I18n::getText(I18n::getInstance(), kStringOptions);
 		option->type = kString;
 		option->callback = NULL;
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
 		option = new Option;
-		option->value = (char*)I18n::getText(I18n::getInstance(), STR_NEW_GAME);
+		option->value = (char*)I18n::getText(I18n::getInstance(), kStringNewGame);
 		option->type = kString;
 		option->callback = NULL;
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
-		FontSize strContinueSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_CONTINUE), "Platformer");
-		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), "Platformer");
-		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), "Platformer");
+		FontSize strContinueSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), kStringContinue), "Platformer");
+		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), kStringOptions), "Platformer");
+		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), kStringNewGame), "Platformer");
 		uint8 width = (strContinueSize.x > strOptionsSize.x) ? strContinueSize.x : strOptionsSize.x;
 		width = (width > strNewGameSize.x) ? width : strNewGameSize.x;
 		OptionsSelector::setColumnWidth(this->optionsSelector, width + 1);
@@ -130,21 +130,21 @@ void TitleScreenState::enter(void* owner)
 		Option* option = NULL;
 
 		option = new Option;
-		option->value = (char*)I18n::getText(I18n::getInstance(), STR_NEW_GAME);
+		option->value = (char*)I18n::getText(I18n::getInstance(), kStringNewGame);
 		option->type = kString;
 		option->callback = NULL;
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
 		option = new Option;
-		option->value = (char*)I18n::getText(I18n::getInstance(), STR_OPTIONS);
+		option->value = (char*)I18n::getText(I18n::getInstance(), kStringOptions);
 		option->type = kString;
 		option->callback = NULL;
 		option->callbackScope = NULL;
 		VirtualList::pushBack(options, option);
 
-		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_OPTIONS), "Platformer");
-		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_GAME), "Platformer");
+		FontSize strOptionsSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), kStringOptions), "Platformer");
+		FontSize strNewGameSize = Printing::getTextSize(Printing::getInstance(), I18n::getText(I18n::getInstance(), kStringNewGame), "Platformer");
 		uint8 width = (strOptionsSize.x > strNewGameSize.x) ? strOptionsSize.x : strNewGameSize.x;
 		OptionsSelector::setColumnWidth(this->optionsSelector, width + 1);
 	}
@@ -242,7 +242,7 @@ void TitleScreenState::suspend(void* owner)
 
 void TitleScreenState::showMessage()
 {
-	const char* strPressStartButton = I18n::getText(I18n::getInstance(), STR_PRESS_START_BUTTON);
+	const char* strPressStartButton = I18n::getText(I18n::getInstance(), kStringPressStartButton);
 	FontSize strPressStartButtonSize = Printing::getTextSize(Printing::getInstance(), strPressStartButton, "Platformer");
 	uint8 strXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPressStartButtonSize.x >> 1);
 	Printing::text(Printing::getInstance(), strPressStartButton, strXPos, 26, "Platformer");
@@ -316,10 +316,10 @@ void TitleScreenState::processUserInput(UserInput userInput)
 						this->mode = kTitleScreenModeShowConfirmNewGame;
 
 						// print warning
-						const char* strNewGameConfirm = I18n::getText(I18n::getInstance(), STR_PROGRESS_WILL_BE_ERASED);
+						const char* strNewGameConfirm = I18n::getText(I18n::getInstance(), kStringProgressWillBeErased);
 						FontSize strNewGameConfirmSize = Printing::getTextSize(Printing::getInstance(), strNewGameConfirm, "Platformer");
 						uint8 strNewGameConfirmXPos = (((__SCREEN_WIDTH_IN_CHARS) - strNewGameConfirmSize.x) >> 1);
-						const char* strAreYouSure = I18n::getText(I18n::getInstance(), STR_ARE_YOU_SURE);
+						const char* strAreYouSure = I18n::getText(I18n::getInstance(), kStringAreYouSure);
 						FontSize strAreYouSureSize = Printing::getTextSize(Printing::getInstance(), strAreYouSure, "Platformer");
 						uint8 strAreYouSureXPos = (((__SCREEN_WIDTH_IN_CHARS) - strAreYouSureSize.x) >> 1);
 						Printing::text(
@@ -338,9 +338,9 @@ void TitleScreenState::processUserInput(UserInput userInput)
 						);
 
 						// print warning options
-						const char* strYes = I18n::getText(I18n::getInstance(), STR_YES);
+						const char* strYes = I18n::getText(I18n::getInstance(), kStringYes);
 						FontSize strYesSize = Printing::getTextSize(Printing::getInstance(), strYes, "Platformer");
-						const char* strNo = I18n::getText(I18n::getInstance(), STR_NO);
+						const char* strNo = I18n::getText(I18n::getInstance(), kStringNo);
 						FontSize strNoSize = Printing::getTextSize(Printing::getInstance(), strNo, "Platformer");
 
 						uint8 strYesXPos = ((__SCREEN_WIDTH_IN_CHARS) - (strYesSize.x + strNoSize.x + 3)) >> 1;

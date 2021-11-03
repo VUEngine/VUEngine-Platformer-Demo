@@ -4,90 +4,84 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// IMPORTANT: Ensure that this file is encoded in Windows-1252 to make use of the full
-//            character set including special characters of European languages.
-//---------------------------------------------------------------------------------------------------------
-
-//---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <I18n.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec FLAG_GERMANY_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const char* const LANGUAGE_DE_STRINGS[] =
+const char* const GermanLanguageStrings[] =
 {
-	/* STR_ARE_YOU_SURE: */
+	/* kStringAreYouSure: */
 	"Bist Du sicher?",
-	/* STR_AUTO_PAUSE_EXPLANATION: */
-	" Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
-	/* STR_AUTOMATIC_PAUSE: */
+	/* kStringAutomaticPause: */
 	"Automatische Pause",
-	/* STR_BACK: */
+	/* kStringAutomaticPauseExplanation: */
+	" Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
+	/* kStringBack: */
 	"Zurück",
-	/* STR_CHECKPOINT: */
+	/* kStringCheckpoint: */
 	"Kontrollpunkt",
-	/* STR_CONTINUE: */
+	/* kStringContinue: */
 	"Fortsetzen",
-	/* STR_CREDITS: */
+	/* kStringCredits: */
 	"Mitwirkende",
-	/* STR_LANGUAGE: */
+	/* kStringLanguage: */
 	"Sprache",
-	/* STR_LANGUAGE_SELECT: */
+	/* kStringLanguageSelect: */
 	"Sprachauswahl",
-	/* STR_LEVEL: */
-	"Level",
-	/* STR_LEVEL_1_NAME: */
+	/* kStringLevel1Name: */
 	"Plitsch Platsch Berge",
-	/* STR_LEVEL_1_SLOGAN: */
+	/* kStringLevel1Slogan: */
 	"   \"Bewölkt mit\nAussicht auf Regen\"",
-	/* STR_LEVEL_CONQUERED: */
+	/* kStringLevel: */
+	"Level",
+	/* kStringLevelConquered: */
 	"Level gemeistert!",
-	/* STR_LEVEL_DONE: */
+	/* kStringLevelDone: */
 	"Level geschafft!",
-	/* STR_NEW_BEST: */
+	/* kStringNewBest: */
 	"Neue Bestleistung!",
-	/* STR_NEW_GAME: */
+	/* kStringNewGame: */
 	"Neues Spiel",
-	/* STR_NO: */
+	/* kStringNo: */
 	"Nein",
-	/* STR_OFF: */
+	/* kStringOff: */
 	"Aus",
-	/* STR_ON: */
+	/* kStringOn: */
 	"An",
-	/* STR_OPTIONS: */
+	/* kStringOptions: */
 	"Optionen",
-	/* STR_PAUSE: */
+	/* kStringPause: */
 	"Pause",
-	/* STR_PRECAUTION_SCREEN_TEXT: */
+	/* kStringPrecautionScreenText: */
 	"        WICHTIG\nBITTE LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE",
-	/* STR_PRESS_START_BUTTON: */
+	/* kStringPressStartButton: */
 	"Start-Knopf drücken",
-	/* STR_PROGRESS_WILL_BE_ERASED: */
+	/* kStringProgressWillBeErased: */
 	"Dein kompletter Fortschritt wird gelöscht.",
-	/* STR_QUIT_LEVEL: */
+	/* kStringQuitLevel: */
 	"Level beenden",
-	/* STR_SELECT: */
+	/* kStringSelect: */
 	"Auswählen",
-	/* STR_TAKE_A_REST: */
+	/* kStringTakeARest: */
 	"Bitte mache eine Pause!",
-	/* STR_YES: */
+	/* kStringYes: */
 	"Ja",
-	
 };
 
-const LangROMSpec LANGUAGE_DE =
+const LangROMSpec GermanLanguage =
 {
 	// language name
 	"Deutsch",
@@ -96,5 +90,5 @@ const LangROMSpec LANGUAGE_DE =
 	&FLAG_GERMANY_EN,
 	
 	// strings
-	(const char**)LANGUAGE_DE_STRINGS
+	(const char**)GermanLanguageStrings
 };

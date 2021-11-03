@@ -95,10 +95,10 @@ void LevelDoneScreenState::print()
 	uint8 numberOfCollectedCoins = ProgressManager::getCurrentLevelNumberOfCollectedCoins(ProgressManager::getInstance());
 
 	// "level completed/conquered"
-	const char* strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_DONE);
+	const char* strLevelDone = I18n::getText(I18n::getInstance(), kStringLevelDone);
 	if(numberOfCollectedCoins == 64)
 	{
-		strLevelDone = I18n::getText(I18n::getInstance(), STR_LEVEL_CONQUERED);
+		strLevelDone = I18n::getText(I18n::getInstance(), kStringLevelConquered);
 	}
 	FontSize strLevelDoneSize = Printing::getTextSize(Printing::getInstance(), strLevelDone, "AstonishSExt");
 	uint8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strLevelDoneSize.x >> 1);
@@ -117,7 +117,7 @@ void LevelDoneScreenState::print()
 	uint32 bestTime = ProgressManager::getCurrentLevelBestTime(ProgressManager::getInstance());
 	if(Clock::getTime(inGameClock) < bestTime)
 	{
-		Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), STR_NEW_BEST), 22, 16, "Platformer");
+		Printing::text(Printing::getInstance(), I18n::getText(I18n::getInstance(), kStringNewBest), 22, 16, "Platformer");
 	}
 }
 

@@ -4,7 +4,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <I18n.h>
@@ -12,25 +12,25 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern LangROMSpec LANGUAGE_EN;
-extern LangROMSpec LANGUAGE_DE;
-extern LangROMSpec LANGUAGE_ES;
-extern LangROMSpec LANGUAGE_FR;
+extern LangROMSpec EnglishLanguage;
+extern LangROMSpec GermanLanguage;
+extern LangROMSpec FrenchLanguage;
+extern LangROMSpec SpanishLanguage;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 LangROMSpec* const __LANGUAGES[] =
 {
-	&LANGUAGE_EN,
-	&LANGUAGE_DE,
-	&LANGUAGE_ES,
-	&LANGUAGE_FR,
+	&EnglishLanguage,
+	&GermanLanguage,
+	&FrenchLanguage,
+	&SpanishLanguage,
 	
 	NULL
 };

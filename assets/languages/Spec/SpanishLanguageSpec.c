@@ -4,90 +4,84 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-// IMPORTANT: Ensure that this file is encoded in Windows-1252 to make use of the full
-//            character set including special characters of European languages.
-//---------------------------------------------------------------------------------------------------------
-
-//---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <I18n.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec FLAG_SPAIN_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const char* const LANGUAGE_ES_STRINGS[] =
+const char* const SpanishLanguageStrings[] =
 {
-	/* STR_ARE_YOU_SURE: */
+	/* kStringAreYouSure: */
 	"¿Estás seguro?",
-	/* STR_AUTO_PAUSE_EXPLANATION: */
-	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
-	/* STR_AUTOMATIC_PAUSE: */
+	/* kStringAutomaticPause: */
 	"Pausa Automatica",
-	/* STR_BACK: */
+	/* kStringAutomaticPauseExplanation: */
+	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
+	/* kStringBack: */
 	"Regresar",
-	/* STR_CHECKPOINT: */
+	/* kStringCheckpoint: */
 	"Punto de control",
-	/* STR_CONTINUE: */
+	/* kStringContinue: */
 	"Continuar",
-	/* STR_CREDITS: */
+	/* kStringCredits: */
 	"Créditos",
-	/* STR_LANGUAGE: */
+	/* kStringLanguage: */
 	"Idioma",
-	/* STR_LANGUAGE_SELECT: */
+	/* kStringLanguageSelect: */
 	"Seleccionar Idioma",
-	/* STR_LEVEL: */
-	"Nivel",
-	/* STR_LEVEL_1_NAME: */
+	/* kStringLevel1Name: */
 	"Montanas Splish Splash",
-	/* STR_LEVEL_1_SLOGAN: */
+	/* kStringLevel1Slogan: */
 	"\"Nublado con pronóstico\n       de lluvia\"",
-	/* STR_LEVEL_CONQUERED: */
+	/* kStringLevel: */
+	"Nivel",
+	/* kStringLevelConquered: */
 	"¡Nivel conquistado!",
-	/* STR_LEVEL_DONE: */
+	/* kStringLevelDone: */
 	"¡Nivel completo!",
-	/* STR_NEW_BEST: */
+	/* kStringNewBest: */
 	"¡Nuevo récord!",
-	/* STR_NEW_GAME: */
+	/* kStringNewGame: */
 	"Nuevo Juego",
-	/* STR_NO: */
+	/* kStringNo: */
 	"No",
-	/* STR_OFF: */
+	/* kStringOff: */
 	"Apagado",
-	/* STR_ON: */
+	/* kStringOn: */
 	"Encendido",
-	/* STR_OPTIONS: */
+	/* kStringOptions: */
 	"Opciones",
-	/* STR_PAUSE: */
+	/* kStringPause: */
 	"Pausa",
-	/* STR_PRECAUTION_SCREEN_TEXT: */
+	/* kStringPrecautionScreenText: */
 	"         IMPORTANTE\n     LEE LOS LIBROS DE\nINSTRUCCIONES Y PRECAUCIONES\n       ANTES DE JUGAR",
-	/* STR_PRESS_START_BUTTON: */
+	/* kStringPressStartButton: */
 	"Presionar Start",
-	/* STR_PROGRESS_WILL_BE_ERASED: */
+	/* kStringProgressWillBeErased: */
 	"Esto eliminará todo tu progreso.",
-	/* STR_QUIT_LEVEL: */
+	/* kStringQuitLevel: */
 	"Salir del nivel",
-	/* STR_SELECT: */
+	/* kStringSelect: */
 	"Seleccionar",
-	/* STR_TAKE_A_REST: */
+	/* kStringTakeARest: */
 	"¡Por favor, tómate un descanso!",
-	/* STR_YES: */
+	/* kStringYes: */
 	"Sí",
-	
 };
 
-const LangROMSpec LANGUAGE_ES =
+const LangROMSpec SpanishLanguage =
 {
 	// language name
 	"Español",
@@ -96,5 +90,5 @@ const LangROMSpec LANGUAGE_ES =
 	&FLAG_SPAIN_EN,
 	
 	// strings
-	(const char**)LANGUAGE_ES_STRINGS
+	(const char**)SpanishLanguageStrings
 };

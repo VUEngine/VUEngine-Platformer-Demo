@@ -70,7 +70,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	GameState::loadStage(this, (StageSpec*)&PAUSE_SCREEN_STAGE_ST, NULL, true, false);
 
 	// print pause text
-	const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
+	const char* strPause = I18n::getText(I18n::getInstance(), kStringPause);
 	const char* strPauseFont = "AstonishSExt";
 	FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, strPauseFont);
 	Printing::text(
@@ -86,21 +86,21 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	Option* option = NULL;
 
 	option = new Option;
-	option->value = (char*)I18n::getText(I18n::getInstance(), STR_CONTINUE);
+	option->value = (char*)I18n::getText(I18n::getInstance(), kStringContinue);
 	option->type = kString;
 	option->callback = NULL;
 	option->callbackScope = NULL;
 	VirtualList::pushBack(options, option);
 
 	option = new Option;
-	option->value = (char*)I18n::getText(I18n::getInstance(), STR_OPTIONS);
+	option->value = (char*)I18n::getText(I18n::getInstance(), kStringOptions);
 	option->type = kString;
 	option->callback = NULL;
 	option->callbackScope = NULL;
 	VirtualList::pushBack(options, option);
 
 	option = new Option;
-	option->value = (char*)I18n::getText(I18n::getInstance(), STR_QUIT_LEVEL);
+	option->value = (char*)I18n::getText(I18n::getInstance(), kStringQuitLevel);
 	option->type = kString;
 	option->callback = NULL;
 	option->callbackScope = NULL;
@@ -177,11 +177,11 @@ void PauseScreenState::processUserInput(UserInput userInput)
 				case kPauseScreenOptionQuitLevel:
 				{
 					// print confirmation message
-					const char* strYes = I18n::getText(I18n::getInstance(), STR_YES);
+					const char* strYes = I18n::getText(I18n::getInstance(), kStringYes);
 					FontSize strYesSize = Printing::getTextSize(Printing::getInstance(), strYes, "Platformer");
-					const char* strNo = I18n::getText(I18n::getInstance(), STR_NO);
-					const char* strAreYouSure = I18n::getText(I18n::getInstance(), STR_ARE_YOU_SURE);
-					const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
+					const char* strNo = I18n::getText(I18n::getInstance(), kStringNo);
+					const char* strAreYouSure = I18n::getText(I18n::getInstance(), kStringAreYouSure);
+					const char* strPause = I18n::getText(I18n::getInstance(), kStringPause);
 					const char* strPauseFont = "AstonishSExt";
 					FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, strPauseFont);
 
