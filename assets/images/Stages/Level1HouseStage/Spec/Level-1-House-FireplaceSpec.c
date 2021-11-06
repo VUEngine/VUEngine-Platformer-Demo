@@ -27,7 +27,7 @@ extern BYTE Level_1_House_FireplaceMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_HOUSE_FIREPLACE_CH =
+CharSetROMSpec Level1HouseFireplaceCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -42,10 +42,10 @@ CharSetROMSpec LEVEL_1_HOUSE_FIREPLACE_CH =
 	Level_1_House_FireplaceTiles,
 };
 
-TextureROMSpec LEVEL_1_HOUSE_FIREPLACE_TX =
+TextureROMSpec Level1HouseFireplaceTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_HOUSE_FIREPLACE_CH,
+	(CharSetSpec*)&Level1HouseFireplaceCharset,
 
 	// bgmap spec
 	Level_1_House_FireplaceMap,
@@ -77,14 +77,14 @@ TextureROMSpec LEVEL_1_HOUSE_FIREPLACE_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE =
+BgmapSpriteROMSpec Level1HouseFireplaceSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_HOUSE_FIREPLACE_TX,
+		(TextureSpec*)&Level1HouseFireplaceTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,

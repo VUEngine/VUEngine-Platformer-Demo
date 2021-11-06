@@ -32,7 +32,7 @@ extern BYTE HideLayer10x7Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec HIDE_LAYER_10x7_SOLID_ANIM =
+AnimationFunctionROMSpec HideLayer10x7SolidAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -53,7 +53,7 @@ AnimationFunctionROMSpec HIDE_LAYER_10x7_SOLID_ANIM =
 	"Shape",
 };
 
-AnimationFunctionROMSpec HIDE_LAYER_10x7_TRANSPARENT_ANIM =
+AnimationFunctionROMSpec HideLayer10x7TransparentAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -74,7 +74,7 @@ AnimationFunctionROMSpec HIDE_LAYER_10x7_TRANSPARENT_ANIM =
 	"Transparent",
 };
 
-AnimationFunctionROMSpec HIDE_LAYER_10x7_TO_SOLID_ANIM =
+AnimationFunctionROMSpec HideLayer10x7_TOSolidAnimation =
 {
 	// number of frames of this animation function
 	7,
@@ -95,7 +95,7 @@ AnimationFunctionROMSpec HIDE_LAYER_10x7_TO_SOLID_ANIM =
 	"ToShape",
 };
 
-AnimationFunctionROMSpec HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
+AnimationFunctionROMSpec HideLayer10x7_TOTransparentAnimation =
 {
 	// number of frames of this animation function
 	7,
@@ -117,19 +117,19 @@ AnimationFunctionROMSpec HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec HIDE_LAYER_10x7_ANIM =
+AnimationDescriptionROMSpec HideLayer10x7Animation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HIDE_LAYER_10x7_SOLID_ANIM,
-		(AnimationFunction*)&HIDE_LAYER_10x7_TRANSPARENT_ANIM,
-		(AnimationFunction*)&HIDE_LAYER_10x7_TO_SOLID_ANIM,
-		(AnimationFunction*)&HIDE_LAYER_10x7_TO_TRANSPARENT_ANIM,
+		(AnimationFunction*)&HideLayer10x7SolidAnimation,
+		(AnimationFunction*)&HideLayer10x7TransparentAnimation,
+		(AnimationFunction*)&HideLayer10x7_TOSolidAnimation,
+		(AnimationFunction*)&HideLayer10x7_TOTransparentAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec HIDE_LAYER_10x7_CH =
+CharSetROMSpec HideLayer10x7Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -144,10 +144,10 @@ CharSetROMSpec HIDE_LAYER_10x7_CH =
 	HideLayer10x7Tiles,
 };
 
-TextureROMSpec HIDE_LAYER_10x7_TX =
+TextureROMSpec HideLayer10x7Texture =
 {
 	// charset spec
-	(CharSetSpec*)&HIDE_LAYER_10x7_CH,
+	(CharSetSpec*)&HideLayer10x7Charset,
 
 	// bgmap spec
 	HideLayer10x7Map,
@@ -179,14 +179,14 @@ TextureROMSpec HIDE_LAYER_10x7_TX =
 	false,
 };
 
-BgmapSpriteROMSpec HIDE_LAYER_10x7_SPRITE =
+BgmapSpriteROMSpec HideLayer10x7Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&HIDE_LAYER_10x7_TX,
+		(TextureSpec*)&HideLayer10x7Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -206,13 +206,13 @@ BgmapSpriteROMSpec HIDE_LAYER_10x7_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const HIDE_LAYER_10x7_SPRITES[] =
+BgmapSpriteROMSpec* const HideLayer10x7Sprites[] =
 {
-	&HIDE_LAYER_10x7_SPRITE,
+	&HideLayer10x7Sprite,
 	NULL
 };
 
-ShapeROMSpec HIDE_LAYER_10x7_SHAPES[] =
+ShapeROMSpec HideLayer10x7Shapes[] =
 {
 	{
 		// shape
@@ -243,7 +243,7 @@ ShapeROMSpec HIDE_LAYER_10x7_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-HideLayerROMSpec HIDE_LAYER_10x7_EN =
+HideLayerROMSpec HideLayer10x7Entity =
 {
 	{
 		// class allocator
@@ -259,13 +259,13 @@ HideLayerROMSpec HIDE_LAYER_10x7_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)HIDE_LAYER_10x7_SPRITES,
+		(SpriteSpec**)HideLayer10x7Sprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)HIDE_LAYER_10x7_SHAPES,
+		(ShapeSpec*)HideLayer10x7Shapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -279,7 +279,7 @@ HideLayerROMSpec HIDE_LAYER_10x7_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&HIDE_LAYER_10x7_ANIM,
+	(AnimationDescription*)&HideLayer10x7Animation,
 
 	// initial animation
 	"Shape",

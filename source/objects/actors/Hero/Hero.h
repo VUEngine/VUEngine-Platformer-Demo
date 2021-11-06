@@ -58,7 +58,7 @@ enum HeroPowerUps
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)}
 
-#define HERO_CHECK_Y_VELOCITY				(20/16)
+#define HeroCharsetECK_Y_VELOCITY				(20/16)
 
 
 //---------------------------------------------------------------------------------------------------------

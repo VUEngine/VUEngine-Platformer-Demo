@@ -31,7 +31,7 @@ extern BYTE WaterAMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec WATER_A_DEFAULT_ANIM =
+AnimationFunctionROMSpec WaterADefaultAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -53,11 +53,11 @@ AnimationFunctionROMSpec WATER_A_DEFAULT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec WATER_A_ANIM =
+AnimationDescriptionROMSpec WaterAAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&WATER_A_DEFAULT_ANIM,
+		(AnimationFunction*)&WaterADefaultAnimation,
 		NULL,
 	}
 };
@@ -67,7 +67,7 @@ AnimationDescriptionROMSpec WATER_A_ANIM =
 //											SPRITE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec WATER_A_CH =
+CharSetROMSpec WaterACharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -82,10 +82,10 @@ CharSetROMSpec WATER_A_CH =
 	WaterATiles,
 };
 
-TextureROMSpec WATER_A_TX =
+TextureROMSpec WaterATexture =
 {
 	// charset spec
-	(CharSetSpec*)&WATER_A_CH,
+	(CharSetSpec*)&WaterACharset,
 
 	// bgmap spec
 	WaterAMap,
@@ -117,14 +117,14 @@ TextureROMSpec WATER_A_TX =
 	false,
 };
 
-BgmapSpriteROMSpec WATER_A_SPRITE =
+BgmapSpriteROMSpec WaterASprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&WATER_A_TX,
+		(TextureSpec*)&WaterATexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -144,9 +144,9 @@ BgmapSpriteROMSpec WATER_A_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const WATER_A_SPRITES[] =
+BgmapSpriteROMSpec* const WaterASprites[] =
 {
-	&WATER_A_SPRITE,
+	&WaterASprite,
 	NULL
 };
 
@@ -155,7 +155,7 @@ BgmapSpriteROMSpec* const WATER_A_SPRITES[] =
 //											ENTITY DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-AnimatedEntityROMSpec WATER_A_EN =
+AnimatedEntityROMSpec WaterAEntity =
 {
 	{
 		// class allocator
@@ -171,7 +171,7 @@ AnimatedEntityROMSpec WATER_A_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)WATER_A_SPRITES,
+		(SpriteSpec**)WaterASprites,
 
 		// use z displacement in projection
 		false,
@@ -191,7 +191,7 @@ AnimatedEntityROMSpec WATER_A_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&WATER_A_ANIM,
+	(AnimationDescription*)&WaterAAnimation,
 
 	// initial animation
 	"Default",

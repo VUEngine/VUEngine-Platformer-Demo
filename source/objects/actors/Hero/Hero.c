@@ -40,11 +40,11 @@
 
 extern double fabs (double);
 
-extern CharSetSpec HERO_CH;
-extern CharSetSpec HERO_BANDANA_CH;
+extern CharSetSpec HeroCharset;
+extern CharSetSpec HeroBandanaCharset;
 
-extern EntitySpec DUST_PS;
-extern EntitySpec HINT_MC;
+extern EntitySpec DustParticleSystem;
+extern EntitySpec HintMc;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -239,8 +239,8 @@ void Hero::jump(bool checkIfYMovement)
 			// play jump animation
 			AnimatedEntity::playAnimation(this, "Jump");
 
-			extern Sound JUMP_SND;
-			SoundManager::playSound(SoundManager::getInstance(), &JUMP_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
+			extern Sound JumpSound;
+			SoundManager::playSound(SoundManager::getInstance(), &JumpSound, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 		}
 	}
 }
@@ -586,8 +586,8 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 		Camera::startEffect(Camera::getInstance(), kShake, 200);
 
 		// play hit sound
-		extern Sound FIRE_SND;
-		SoundManager::playSound(SoundManager::getInstance(), &FIRE_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
+		extern Sound FireSound;
+		SoundManager::playSound(SoundManager::getInstance(), &FireSound, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 
 		AnimatedEntity::playAnimation(this, "Hit");
 
@@ -734,8 +734,8 @@ void Hero::enterDoor()
 	}
 
 	// play door sound
-	extern Sound COLLECT_SND;
-	SoundManager::playSound(SoundManager::getInstance(), &COLLECT_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
+	extern Sound CollectSound;
+	SoundManager::playSound(SoundManager::getInstance(), &CollectSound, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 }
 
 void Hero::addHint()
@@ -743,7 +743,7 @@ void Hero::addHint()
 	Vector3D position = {0, 0, __PIXELS_TO_METERS(-4)};
 
 	// save the hint entity, so we can remove it later
-	this->hint = Entity::addChildEntity(this, &HINT_MC, -1, "hint", &position, NULL);
+	this->hint = Entity::addChildEntity(this, &HintMc, -1, "hint", &position, NULL);
 	Entity::setInheritEnvironment(this->hint, __INHERIT_POSITION);
 
 	Hero::hideHint(this);
@@ -753,7 +753,7 @@ void Hero::addFeetDust()
 {
 	Vector3D position = {__PIXELS_TO_METERS(-8), __PIXELS_TO_METERS(10), __PIXELS_TO_METERS(12)};
 
-	this->feetDust = ParticleSystem::safeCast(Entity::addChildEntity(this, &DUST_PS, -1, "feetDust", &position, NULL));
+	this->feetDust = ParticleSystem::safeCast(Entity::addChildEntity(this, &DustParticleSystem, -1, "feetDust", &position, NULL));
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 
 	ParticleSystem::spawnAllParticles(this->feetDust);
@@ -880,13 +880,13 @@ void Hero::updateSprite()
 	{
 		case kPowerUpBandana:
 
-			charSetSpec = &HERO_BANDANA_CH;
+			charSetSpec = &HeroBandanaCharset;
 			break;
 
 		default:
 		case kPowerUpNone:
 
-			charSetSpec = &HERO_CH;
+			charSetSpec = &HeroCharset;
 			break;
 	}
 
@@ -1091,7 +1091,7 @@ void Hero::capVelocity(bool discardPreviousMessages)
 			}
 			else if(0 < velocity.y)
 			{
-				MessageDispatcher::dispatchMessage(HERO_CHECK_Y_VELOCITY, Object::safeCast(this), Object::safeCast(this), kMessageHeroCheckVelocity, NULL);
+				MessageDispatcher::dispatchMessage(HeroCharsetECK_Y_VELOCITY, Object::safeCast(this), Object::safeCast(this), kMessageHeroCheckVelocity, NULL);
 			}
 		}
 		else

@@ -31,7 +31,7 @@ extern BYTE SmokeParticleSmallMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec SMOKE_PARTICLE_SMALL_DEFAULT_ANIM =
+AnimationFunctionROMSpec SmokeParticleSmallDefaultAnimation =
 {
 	// number of frames of this animation function
 	6,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec SMOKE_PARTICLE_SMALL_DEFAULT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec SMOKE_PARTICLE_SMALL_ANIM =
+AnimationDescriptionROMSpec SmokeParticleSmallAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&SMOKE_PARTICLE_SMALL_DEFAULT_ANIM,
+		(AnimationFunction*)&SmokeParticleSmallDefaultAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec SMOKE_PARTICLE_SMALL_CH =
+CharSetROMSpec SmokeParticleSmallCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec SMOKE_PARTICLE_SMALL_CH =
 	SmokeParticleSmallTiles,
 };
 
-TextureROMSpec SMOKE_PARTICLE_SMALL_TX =
+TextureROMSpec SmokeParticleSmallTexture =
 {
 	// charset spec
-	(CharSetSpec*)&SMOKE_PARTICLE_SMALL_CH,
+	(CharSetSpec*)&SmokeParticleSmallCharset,
 
 	// bgmap spec
 	SmokeParticleSmallMap,
@@ -112,14 +112,14 @@ TextureROMSpec SMOKE_PARTICLE_SMALL_TX =
 	false,
 };
 
-ObjectSpriteROMSpec SMOKE_PARTICLE_SMALL_SPRITE =
+ObjectSpriteROMSpec SmokeParticleSmallSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&SMOKE_PARTICLE_SMALL_TX,
+		(TextureSpec*)&SmokeParticleSmallTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -136,13 +136,13 @@ ObjectSpriteROMSpec SMOKE_PARTICLE_SMALL_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const SMOKE_PARTICLE_SMALL_SPRITES[] =
+ObjectSpriteROMSpec* const SmokeParticleSmallSprites[] =
 {
-	&SMOKE_PARTICLE_SMALL_SPRITE,
+	&SmokeParticleSmallSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec SMOKE_PARTICLE_SMALL_EN =
+AnimatedEntityROMSpec SmokeParticleSmallEntity =
 {
 	{
 		// class allocator
@@ -158,7 +158,7 @@ AnimatedEntityROMSpec SMOKE_PARTICLE_SMALL_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)SMOKE_PARTICLE_SMALL_SPRITES,
+		(SpriteSpec**)SmokeParticleSmallSprites,
 
 		// use z displacement in projection
 		false,
@@ -178,7 +178,7 @@ AnimatedEntityROMSpec SMOKE_PARTICLE_SMALL_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
+	(AnimationDescription*)&SmokeParticleSmallAnimation,
 
 	// initial animation
 	"Default",

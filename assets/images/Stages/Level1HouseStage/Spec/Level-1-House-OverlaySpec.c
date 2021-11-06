@@ -27,7 +27,7 @@ extern BYTE Level_1_House_OverlayMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_HOUSE_OVERLAY_CH =
+CharSetROMSpec Level1HouseOverlayCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -43,10 +43,10 @@ CharSetROMSpec LEVEL_1_HOUSE_OVERLAY_CH =
 	Level_1_House_OverlayTiles,
 };
 
-TextureROMSpec LEVEL_1_HOUSE_OVERLAY_TX =
+TextureROMSpec Level1HouseOverlayTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_HOUSE_OVERLAY_CH,
+	(CharSetSpec*)&Level1HouseOverlayCharset,
 
 	// bgmap spec
 	Level_1_House_OverlayMap,
@@ -78,14 +78,14 @@ TextureROMSpec LEVEL_1_HOUSE_OVERLAY_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_HOUSE_OVERLAY_IM_SPRITE =
+BgmapSpriteROMSpec Level1HouseOverlaySprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_HOUSE_OVERLAY_TX,
+		(TextureSpec*)&Level1HouseOverlayTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,

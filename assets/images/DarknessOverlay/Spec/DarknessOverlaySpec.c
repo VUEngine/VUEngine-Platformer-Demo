@@ -29,7 +29,7 @@ extern BYTE DarknessOverlayMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec DARKNESS_OVERLAY_CH =
+CharSetROMSpec DarknessOverlayCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec DARKNESS_OVERLAY_CH =
 	DarknessOverlayTiles,
 };
 
-TextureROMSpec DARKNESS_OVERLAY_TX =
+TextureROMSpec DarknessOverlayTexture =
 {
 	// charset spec
-	(CharSetSpec*)&DARKNESS_OVERLAY_CH,
+	(CharSetSpec*)&DarknessOverlayCharset,
 
 	// bgmap spec
 	DarknessOverlayMap,
@@ -79,14 +79,14 @@ TextureROMSpec DARKNESS_OVERLAY_TX =
 	false,
 };
 
-BgmapSpriteROMSpec DARKNESS_OVERLAY_IM_SPRITE =
+BgmapSpriteROMSpec DarknessOverlaySprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&DARKNESS_OVERLAY_TX,
+		(TextureSpec*)&DarknessOverlayTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec DARKNESS_OVERLAY_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const DARKNESS_OVERLAY_IM_SPRITES[] =
+BgmapSpriteROMSpec* const DarknessOverlaySprites[] =
 {
-	&DARKNESS_OVERLAY_IM_SPRITE,
+	&DarknessOverlaySprite,
 	NULL
 };
 
-EntityROMSpec DARKNESS_OVERLAY_IM =
+EntityROMSpec DarknessOverlayEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec DARKNESS_OVERLAY_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)DARKNESS_OVERLAY_IM_SPRITES,
+	(SpriteSpec**)DarknessOverlaySprites,
 
 	// use z displacement in projection
 	false,

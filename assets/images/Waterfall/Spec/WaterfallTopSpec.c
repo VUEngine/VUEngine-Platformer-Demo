@@ -31,7 +31,7 @@ extern BYTE WaterfallTopMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec WATERFALL_TOP_DEFAULT_ANIM =
+AnimationFunctionROMSpec WaterfallTopDefaultAnimation =
 {
 	// number of frames of this animation function
 	3,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec WATERFALL_TOP_DEFAULT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec WATERFALL_TOP_ANIM =
+AnimationDescriptionROMSpec WaterfallTopAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&WATERFALL_TOP_DEFAULT_ANIM,
+		(AnimationFunction*)&WaterfallTopDefaultAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec WATERFALL_TOP_CH =
+CharSetROMSpec WaterfallTopCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec WATERFALL_TOP_CH =
 	WaterfallTopTiles,
 };
 
-TextureROMSpec WATERFALL_TOP_TX =
+TextureROMSpec WaterfallTopTexture =
 {
 	// charset spec
-	(CharSetSpec*)&WATERFALL_TOP_CH,
+	(CharSetSpec*)&WaterfallTopCharset,
 
 	// bgmap spec
 	WaterfallTopMap,
@@ -112,14 +112,14 @@ TextureROMSpec WATERFALL_TOP_TX =
 	false,
 };
 
-BgmapSpriteROMSpec WATERFALL_TOP_SPRITE =
+BgmapSpriteROMSpec WaterfallTopSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&WATERFALL_TOP_TX,
+		(TextureSpec*)&WaterfallTopTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -144,13 +144,13 @@ BgmapSpriteROMSpec WATERFALL_TOP_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const WATERFALL_TOP_SPRITES[] =
+BgmapSpriteROMSpec* const WaterfallTopSprites[] =
 {
-	&WATERFALL_TOP_SPRITE,
+	&WaterfallTopSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec WATERFALL_TOP_EN =
+AnimatedEntityROMSpec WaterfallTopEntity =
 {
 	{
 		// class allocator
@@ -166,7 +166,7 @@ AnimatedEntityROMSpec WATERFALL_TOP_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)WATERFALL_TOP_SPRITES,
+		(SpriteSpec**)WaterfallTopSprites,
 
 		// use z displacement in projection
 		false,
@@ -186,7 +186,7 @@ AnimatedEntityROMSpec WATERFALL_TOP_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&WATERFALL_TOP_ANIM,
+	(AnimationDescription*)&WaterfallTopAnimation,
 
 	// initial animation
 	"Default",

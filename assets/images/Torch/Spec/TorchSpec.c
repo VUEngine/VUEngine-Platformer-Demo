@@ -31,7 +31,7 @@ extern BYTE TorchMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec TORCH_BURN_ANIM =
+AnimationFunctionROMSpec TorchBurnAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec TORCH_BURN_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec TORCH_ANIM =
+AnimationDescriptionROMSpec TorchAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&TORCH_BURN_ANIM,
+		(AnimationFunction*)&TorchBurnAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec TORCH_CH =
+CharSetROMSpec TorchCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec TORCH_CH =
 	TorchTiles,
 };
 
-TextureROMSpec TORCH_TX =
+TextureROMSpec TorchTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TORCH_CH,
+	(CharSetSpec*)&TorchCharset,
 
 	// bgmap spec
 	TorchMap,
@@ -112,14 +112,14 @@ TextureROMSpec TORCH_TX =
 	false,
 };
 
-ObjectSpriteROMSpec TORCH_SPRITE =
+ObjectSpriteROMSpec TorchSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&TORCH_TX,
+		(TextureSpec*)&TorchTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -136,13 +136,13 @@ ObjectSpriteROMSpec TORCH_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const TORCH_SPRITES[] =
+ObjectSpriteROMSpec* const TorchSprites[] =
 {
-	&TORCH_SPRITE,
+	&TorchSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec TORCH_EN =
+AnimatedEntityROMSpec TorchEntity =
 {
 	{
 		// class allocator
@@ -158,7 +158,7 @@ AnimatedEntityROMSpec TORCH_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)TORCH_SPRITES,
+		(SpriteSpec**)TorchSprites,
 
 		// use z displacement in projection
 		false,
@@ -178,7 +178,7 @@ AnimatedEntityROMSpec TORCH_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&TORCH_ANIM,
+	(AnimationDescription*)&TorchAnimation,
 
 	// initial animation
 	"Burn",

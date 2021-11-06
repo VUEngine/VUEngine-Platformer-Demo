@@ -28,7 +28,7 @@ extern BYTE Level_1_TowerMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_TOWER_CH =
+CharSetROMSpec Level1TowerCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -43,10 +43,10 @@ CharSetROMSpec LEVEL_1_TOWER_CH =
 	Level_1_TowerTiles,
 };
 
-TextureROMSpec LEVEL_1_TOWER_TX =
+TextureROMSpec Level1TowerTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_TOWER_CH,
+	(CharSetSpec*)&Level1TowerCharset,
 
 	// bgmap spec
 	Level_1_TowerMap,
@@ -78,14 +78,14 @@ TextureROMSpec LEVEL_1_TOWER_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_TOWER_IM_SPRITE =
+BgmapSpriteROMSpec Level1TowerSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_TOWER_TX,
+		(TextureSpec*)&Level1TowerTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -105,13 +105,13 @@ BgmapSpriteROMSpec LEVEL_1_TOWER_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_TOWER_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1TowerSprites[] =
 {
-	&LEVEL_1_TOWER_IM_SPRITE,
+	&Level1TowerSprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_TOWER_IM =
+EntityROMSpec Level1TowerEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -126,7 +126,7 @@ EntityROMSpec LEVEL_1_TOWER_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_TOWER_IM_SPRITES,
+	(SpriteSpec**)Level1TowerSprites,
 
 	// use z displacement in projection
 	false,

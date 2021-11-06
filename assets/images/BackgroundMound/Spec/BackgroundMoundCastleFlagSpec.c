@@ -31,7 +31,7 @@ extern BYTE BackgroundMoundCastleFlagMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec MOUND_BG_CASTLE_FLAG_WAVE_ANIM =
+AnimationFunctionROMSpec MoundBgCastleFlagWaveAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec MOUND_BG_CASTLE_FLAG_WAVE_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec MOUND_BG_CASTLE_FLAG_ANIM =
+AnimationDescriptionROMSpec MoundBgCastleFlagAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&MOUND_BG_CASTLE_FLAG_WAVE_ANIM,
+		(AnimationFunction*)&MoundBgCastleFlagWaveAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec MOUND_BG_CASTLE_FLAG_CH =
+CharSetROMSpec MoundBgCastleFlagCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec MOUND_BG_CASTLE_FLAG_CH =
 	BackgroundMoundCastleFlagTiles,
 };
 
-TextureROMSpec MOUND_BG_CASTLE_FLAG_TX =
+TextureROMSpec MoundBgCastleFlagTexture =
 {
 	// charset spec
-	(CharSetSpec*)&MOUND_BG_CASTLE_FLAG_CH,
+	(CharSetSpec*)&MoundBgCastleFlagCharset,
 
 	// bgmap spec
 	BackgroundMoundCastleFlagMap,
@@ -112,14 +112,14 @@ TextureROMSpec MOUND_BG_CASTLE_FLAG_TX =
 	false,
 };
 
-ObjectSpriteROMSpec MOUND_BG_CASTLE_FLAG_SPRITE =
+ObjectSpriteROMSpec MoundBgCastleFlagSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&MOUND_BG_CASTLE_FLAG_TX,
+		(TextureSpec*)&MoundBgCastleFlagTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -136,13 +136,13 @@ ObjectSpriteROMSpec MOUND_BG_CASTLE_FLAG_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const MOUND_BG_CASTLE_FLAG_SPRITES[] =
+ObjectSpriteROMSpec* const MoundBgCastleFlagSprites[] =
 {
-	&MOUND_BG_CASTLE_FLAG_SPRITE,
+	&MoundBgCastleFlagSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_EN =
+AnimatedEntityROMSpec MoundBgCastleFlagEntity =
 {
 	{
 		// class allocator
@@ -158,7 +158,7 @@ AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)MOUND_BG_CASTLE_FLAG_SPRITES,
+		(SpriteSpec**)MoundBgCastleFlagSprites,
 
 		// use z displacement in projection
 		false,
@@ -178,7 +178,7 @@ AnimatedEntityROMSpec MOUND_BG_CASTLE_FLAG_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&MOUND_BG_CASTLE_FLAG_ANIM,
+	(AnimationDescription*)&MoundBgCastleFlagAnimation,
 
 	// initial animation
 	"Wave",

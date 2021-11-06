@@ -23,16 +23,16 @@
 extern BYTE Level_1_House_MainTiles[];
 extern BYTE Level_1_House_MainMap[];
 
-extern BgmapSpriteROMSpec LEVEL_1_HOUSE_PIPE_IM_SPRITE;
-extern BgmapSpriteROMSpec LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE;
-extern BgmapSpriteROMSpec LEVEL_1_HOUSE_OVERLAY_IM_SPRITE;
+extern BgmapSpriteROMSpec Level1HousePipeSprite;
+extern BgmapSpriteROMSpec Level1HouseFireplaceSprite;
+extern BgmapSpriteROMSpec Level1HouseOverlaySprite;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_HOUSE_MAIN_CH =
+CharSetROMSpec Level1HouseMainCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -47,10 +47,10 @@ CharSetROMSpec LEVEL_1_HOUSE_MAIN_CH =
 	Level_1_House_MainTiles,
 };
 
-TextureROMSpec LEVEL_1_HOUSE_MAIN_TX =
+TextureROMSpec Level1HouseMainTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_HOUSE_MAIN_CH,
+	(CharSetSpec*)&Level1HouseMainCharset,
 
 	// bgmap spec
 	Level_1_House_MainMap,
@@ -82,14 +82,14 @@ TextureROMSpec LEVEL_1_HOUSE_MAIN_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_HOUSE_MAIN_IM_SPRITE =
+BgmapSpriteROMSpec Level1HouseMainSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_HOUSE_MAIN_TX,
+		(TextureSpec*)&Level1HouseMainTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -109,16 +109,16 @@ BgmapSpriteROMSpec LEVEL_1_HOUSE_MAIN_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_HOUSE_MAIN_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1HouseMainSprites[] =
 {
-	&LEVEL_1_HOUSE_MAIN_IM_SPRITE,
-	&LEVEL_1_HOUSE_PIPE_IM_SPRITE,
-	&LEVEL_1_HOUSE_FIREPLACE_IM_SPRITE,
-	&LEVEL_1_HOUSE_OVERLAY_IM_SPRITE,
+	&Level1HouseMainSprite,
+	&Level1HousePipeSprite,
+	&Level1HouseFireplaceSprite,
+	&Level1HouseOverlaySprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_HOUSE_MAIN_IM =
+EntityROMSpec Level1HouseMainEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -133,7 +133,7 @@ EntityROMSpec LEVEL_1_HOUSE_MAIN_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_HOUSE_MAIN_IM_SPRITES,
+	(SpriteSpec**)Level1HouseMainSprites,
 
 	// use z displacement in projection
 	false,

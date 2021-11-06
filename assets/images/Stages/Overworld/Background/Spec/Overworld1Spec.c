@@ -29,7 +29,7 @@ extern BYTE Overworld_1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec OVERWORLD_CH =
+CharSetROMSpec OverworldCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec OVERWORLD_CH =
 	Overworld_1Tiles,
 };
 
-TextureROMSpec OVERWORLD_1_TX =
+TextureROMSpec Overworld1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&OVERWORLD_CH,
+	(CharSetSpec*)&OverworldCharset,
 
 	// bgmap spec
 	Overworld_1Map,
@@ -79,13 +79,13 @@ TextureROMSpec OVERWORLD_1_TX =
 	false,
 };
 
-TextureROMSpec* const OVERWORLD_1_IM_TEXTURES[] =
+TextureROMSpec* const Overworld1Textures[] =
 {
-	(TextureSpec*)&OVERWORLD_1_TX,
+	(TextureSpec*)&Overworld1Texture,
 	NULL
 };
 
-MBgmapSpriteROMSpec OVERWORLD_1_IM_SPRITE =
+MBgmapSpriteROMSpec Overworld1Sprite =
 {
 	{
 		{
@@ -113,7 +113,7 @@ MBgmapSpriteROMSpec OVERWORLD_1_IM_SPRITE =
 		__WORLD_ON,
 	},
 
-	(TextureSpec**)OVERWORLD_1_IM_TEXTURES,
+	(TextureSpec**)Overworld1Textures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -132,13 +132,13 @@ MBgmapSpriteROMSpec OVERWORLD_1_IM_SPRITE =
 	0,
 };
 
-BgmapSpriteROMSpec* const OVERWORLD_1_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Overworld1Sprites[] =
 {
-	(BgmapSpriteROMSpec*)&OVERWORLD_1_IM_SPRITE,
+	(BgmapSpriteROMSpec*)&Overworld1Sprite,
 	NULL
 };
 
-EntityROMSpec OVERWORLD_1_IM =
+EntityROMSpec Overworld1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -153,7 +153,7 @@ EntityROMSpec OVERWORLD_1_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)OVERWORLD_1_IM_SPRITES,
+	(SpriteSpec**)Overworld1Sprites,
 
 	// use z displacement in projection
 	false,

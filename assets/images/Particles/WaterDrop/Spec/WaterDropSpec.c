@@ -30,7 +30,7 @@ extern BYTE WaterDropMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec WATER_DROP_CH =
+CharSetROMSpec WaterDropCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec WATER_DROP_CH =
 	WaterDropTiles,
 };
 
-TextureROMSpec WATER_DROP_TX =
+TextureROMSpec WaterDropTexture =
 {
 	// charset spec
-	(CharSetSpec*)&WATER_DROP_CH,
+	(CharSetSpec*)&WaterDropCharset,
 
 	// bgmap spec
 	WaterDropMap,
@@ -80,14 +80,14 @@ TextureROMSpec WATER_DROP_TX =
 	false,
 };
 
-ObjectSpriteROMSpec WATER_DROP_SPRITE =
+ObjectSpriteROMSpec WaterDropSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectSprite),
 
 		// texture spec
-		(TextureSpec*)&WATER_DROP_TX,
+		(TextureSpec*)&WaterDropTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -104,13 +104,13 @@ ObjectSpriteROMSpec WATER_DROP_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const WATER_DROP_SPRITES[] =
+ObjectSpriteROMSpec* const WaterDropSprites[] =
 {
-	&WATER_DROP_SPRITE,
+	&WaterDropSprite,
 	NULL
 };
 
-EntityROMSpec WATER_DROP_IM =
+EntityROMSpec WaterDropEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -125,7 +125,7 @@ EntityROMSpec WATER_DROP_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)WATER_DROP_SPRITES,
+	(SpriteSpec**)WaterDropSprites,
 
 	// use z displacement in projection
 	false,

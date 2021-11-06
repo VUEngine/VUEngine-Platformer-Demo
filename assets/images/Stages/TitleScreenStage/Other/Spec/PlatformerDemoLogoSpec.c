@@ -35,7 +35,7 @@ extern BYTE PlatformerDemoLogoOutlineRMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LOGO_L_CH =
+CharSetROMSpec LogoLCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -50,10 +50,10 @@ CharSetROMSpec LOGO_L_CH =
 	PlatformerDemoLogoLTiles,
 };
 
-TextureROMSpec LOGO_L_TX =
+TextureROMSpec LogoLTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LOGO_L_CH,
+	(CharSetSpec*)&LogoLCharset,
 
 	// bgmap spec
 	PlatformerDemoLogoLMap,
@@ -85,7 +85,7 @@ TextureROMSpec LOGO_L_TX =
 	false,
 };
 
-CharSetROMSpec LOGO_R_CH =
+CharSetROMSpec LogoRCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -100,10 +100,10 @@ CharSetROMSpec LOGO_R_CH =
 	PlatformerDemoLogoRTiles,
 };
 
-TextureROMSpec LOGO_R_TX =
+TextureROMSpec LogoRTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LOGO_R_CH,
+	(CharSetSpec*)&LogoRCharset,
 
 	// bgmap spec
 	PlatformerDemoLogoRMap,
@@ -135,7 +135,7 @@ TextureROMSpec LOGO_R_TX =
 	false,
 };
 
-CharSetROMSpec LOGO_OUTLINE_L_CH =
+CharSetROMSpec LogoOutlineLCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -150,10 +150,10 @@ CharSetROMSpec LOGO_OUTLINE_L_CH =
 	PlatformerDemoLogoOutlineLTiles,
 };
 
-TextureROMSpec LOGO_OUTLINE_L_TX =
+TextureROMSpec LogoOutlineLTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LOGO_OUTLINE_L_CH,
+	(CharSetSpec*)&LogoOutlineLCharset,
 
 	// bgmap spec
 	PlatformerDemoLogoOutlineLMap,
@@ -185,7 +185,7 @@ TextureROMSpec LOGO_OUTLINE_L_TX =
 	false,
 };
 
-CharSetROMSpec LOGO_OUTLINE_R_CH =
+CharSetROMSpec LogoOutlineRCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -200,10 +200,10 @@ CharSetROMSpec LOGO_OUTLINE_R_CH =
 	PlatformerDemoLogoOutlineRTiles,
 };
 
-TextureROMSpec LOGO_OUTLINE_R_TX =
+TextureROMSpec LogoOutlineRTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LOGO_OUTLINE_R_CH,
+	(CharSetSpec*)&LogoOutlineRCharset,
 
 	// bgmap spec
 	PlatformerDemoLogoOutlineRMap,
@@ -235,14 +235,14 @@ TextureROMSpec LOGO_OUTLINE_R_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LOGO_L_IM_SPRITE =
+BgmapSpriteROMSpec LogoLSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LOGO_L_TX,
+		(TextureSpec*)&LogoLTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -262,14 +262,14 @@ BgmapSpriteROMSpec LOGO_L_IM_SPRITE =
 	__WORLD_LON,
 };
 
-BgmapSpriteROMSpec LOGO_R_IM_SPRITE =
+BgmapSpriteROMSpec LogoRSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LOGO_R_TX,
+		(TextureSpec*)&LogoRTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -289,14 +289,14 @@ BgmapSpriteROMSpec LOGO_R_IM_SPRITE =
 	__WORLD_RON,
 };
 
-BgmapSpriteROMSpec LOGO_OUTLINE_L_IM_SPRITE =
+BgmapSpriteROMSpec LogoOutlineLSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LOGO_OUTLINE_L_TX,
+		(TextureSpec*)&LogoOutlineLTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -316,14 +316,14 @@ BgmapSpriteROMSpec LOGO_OUTLINE_L_IM_SPRITE =
 	__WORLD_LON,
 };
 
-BgmapSpriteROMSpec LOGO_OUTLINE_R_IM_SPRITE =
+BgmapSpriteROMSpec LogoOutlineRSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LOGO_OUTLINE_R_TX,
+		(TextureSpec*)&LogoOutlineRTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -343,16 +343,16 @@ BgmapSpriteROMSpec LOGO_OUTLINE_R_IM_SPRITE =
 	__WORLD_RON,
 };
 
-BgmapSpriteROMSpec* const LOGO_IM_SPRITES[] =
+BgmapSpriteROMSpec* const LogoSprites[] =
 {
-	&LOGO_OUTLINE_L_IM_SPRITE,
-	&LOGO_OUTLINE_R_IM_SPRITE,
-	&LOGO_L_IM_SPRITE,
-	&LOGO_R_IM_SPRITE,
+	&LogoOutlineLSprite,
+	&LogoOutlineRSprite,
+	&LogoLSprite,
+	&LogoRSprite,
 	NULL
 };
 
-EntityROMSpec LOGO_IM =
+EntityROMSpec LogoEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -367,7 +367,7 @@ EntityROMSpec LOGO_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LOGO_IM_SPRITES,
+	(SpriteSpec**)LogoSprites,
 
 	// use z displacement in projection
 	false,

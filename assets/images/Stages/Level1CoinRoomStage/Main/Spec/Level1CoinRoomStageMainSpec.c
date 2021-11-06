@@ -29,7 +29,7 @@ extern BYTE Level1CoinRoomStageMain1Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_CH =
+CharSetROMSpec Level1CoinRoomStageMainCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_CH =
 	Level1CoinRoomStageMainTiles,
 };
 
-TextureROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_1_TX =
+TextureROMSpec Level1CoinRoomStageMain1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL1_COIN_ROOM_STAGE_MAIN_CH,
+	(CharSetSpec*)&Level1CoinRoomStageMainCharset,
 
 	// bgmap spec
 	Level1CoinRoomStageMain1Map,
@@ -79,14 +79,14 @@ TextureROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM_SPRITE =
+BgmapSpriteROMSpec Level1CoinRoomStageMain1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL1_COIN_ROOM_STAGE_MAIN_1_TX,
+		(TextureSpec*)&Level1CoinRoomStageMain1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -110,13 +110,13 @@ BgmapSpriteROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1CoinRoomStageMain1Sprites[] =
 {
-	&LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM_SPRITE,
+	&Level1CoinRoomStageMain1Sprite,
 	NULL
 };
 
-EntityROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM =
+EntityROMSpec Level1CoinRoomStageMain1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -131,7 +131,7 @@ EntityROMSpec LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL1_COIN_ROOM_STAGE_MAIN_1_IM_SPRITES,
+	(SpriteSpec**)Level1CoinRoomStageMain1Sprites,
 
 	// use z displacement in projection
 	false,

@@ -30,7 +30,7 @@ extern BYTE SnailMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec SNAIL_MOVE_ANIM =
+AnimationFunctionROMSpec SnailMoveAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -52,16 +52,16 @@ AnimationFunctionROMSpec SNAIL_MOVE_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec SNAIL_ANIM =
+AnimationDescriptionROMSpec SnailAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&SNAIL_MOVE_ANIM,
+		(AnimationFunction*)&SnailMoveAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec SNAIL_CH =
+CharSetROMSpec SnailCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -76,10 +76,10 @@ CharSetROMSpec SNAIL_CH =
 	SnailTiles,
 };
 
-TextureROMSpec SNAIL_TX =
+TextureROMSpec SnailTexture =
 {
 	// charset spec
-	(CharSetSpec*)&SNAIL_CH,
+	(CharSetSpec*)&SnailCharset,
 
 	// bgmap spec
 	SnailMap,
@@ -111,14 +111,14 @@ TextureROMSpec SNAIL_TX =
 	false,
 };
 
-ObjectSpriteROMSpec SNAIL_SPRITE =
+ObjectSpriteROMSpec SnailSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&SNAIL_TX,
+		(TextureSpec*)&SnailTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -135,13 +135,13 @@ ObjectSpriteROMSpec SNAIL_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const SNAIL_SPRITES[] =
+ObjectSpriteROMSpec* const SnailSprites[] =
 {
-	&SNAIL_SPRITE,
+	&SnailSprite,
 	NULL
 };
 
-ShapeROMSpec SNAIL_AC_SHAPES[] =
+ShapeROMSpec SnailShapes[] =
 {
 	{
 		// shape
@@ -172,7 +172,7 @@ ShapeROMSpec SNAIL_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-MovingEntityROMSpec SNAIL_3_AC =
+MovingEntityROMSpec Snail3Entity =
 {
 	{
 		{
@@ -190,13 +190,13 @@ MovingEntityROMSpec SNAIL_3_AC =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)SNAIL_SPRITES,
+				(SpriteSpec**)SnailSprites,
 
 				// use z displacement in projection
 	false,
 
 	// collision shapes
-				(ShapeSpec*)SNAIL_AC_SHAPES,
+				(ShapeSpec*)SnailShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -210,7 +210,7 @@ MovingEntityROMSpec SNAIL_3_AC =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SNAIL_ANIM,
+			(AnimationDescription*)&SnailAnimation,
 
 			// initial animation
 			"Move"
@@ -245,7 +245,7 @@ MovingEntityROMSpec SNAIL_3_AC =
 	__ALL_AXIS,
 };
 
-MovingEntityROMSpec SNAIL_8_AC =
+MovingEntityROMSpec Snail8Entity =
 {
 	{
 		{
@@ -263,13 +263,13 @@ MovingEntityROMSpec SNAIL_8_AC =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)SNAIL_SPRITES,
+				(SpriteSpec**)SnailSprites,
 
 				// use z displacement in projection
 				false,
 
 				// collision shapes
-				(ShapeSpec*)SNAIL_AC_SHAPES,
+				(ShapeSpec*)SnailShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -283,7 +283,7 @@ MovingEntityROMSpec SNAIL_8_AC =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SNAIL_ANIM,
+			(AnimationDescription*)&SnailAnimation,
 
 			// initial animation
 			"Move"

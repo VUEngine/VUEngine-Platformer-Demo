@@ -30,7 +30,7 @@ extern BYTE BackgroundMoundMiddleMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec MOUND_BG_MIDDLE_CH =
+CharSetROMSpec MoundBgMiddleCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec MOUND_BG_MIDDLE_CH =
 	BackgroundMoundMiddleTiles,
 };
 
-TextureROMSpec MOUND_BG_MIDDLE_TX =
+TextureROMSpec MoundBgMiddleTexture =
 {
 	// charset spec
-	(CharSetSpec*)&MOUND_BG_MIDDLE_CH,
+	(CharSetSpec*)&MoundBgMiddleCharset,
 
 	// bgmap spec
 	BackgroundMoundMiddleMap,
@@ -80,13 +80,13 @@ TextureROMSpec MOUND_BG_MIDDLE_TX =
 	false,
 };
 
-TextureROMSpec* const MOUND_BG_MIDDLE_SB_TEXTURES[] =
+TextureROMSpec* const MoundBgMiddleSbTextures[] =
 {
-	(TextureSpec*)&MOUND_BG_MIDDLE_TX,
+	(TextureSpec*)&MoundBgMiddleTexture,
 	NULL
 };
 
-MBgmapSpriteROMSpec MOUND_BG_MIDDLE_SB_SPRITE =
+MBgmapSpriteROMSpec MoundBgMiddleSbSprite =
 {
 	{
 		{
@@ -114,7 +114,7 @@ MBgmapSpriteROMSpec MOUND_BG_MIDDLE_SB_SPRITE =
 		__WORLD_ON,
 	},
 
-	(TextureSpec**)MOUND_BG_MIDDLE_SB_TEXTURES,
+	(TextureSpec**)MoundBgMiddleSbTextures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -133,13 +133,13 @@ MBgmapSpriteROMSpec MOUND_BG_MIDDLE_SB_SPRITE =
 	0,
 };
 
-BgmapSpriteROMSpec* const MOUND_BG_MIDDLE_SB_SPRITES[] =
+BgmapSpriteROMSpec* const MoundBgMiddleSbSprites[] =
 {
-	(BgmapSpriteROMSpec*)&MOUND_BG_MIDDLE_SB_SPRITE,
+	(BgmapSpriteROMSpec*)&MoundBgMiddleSbSprite,
 	NULL
 };
 
-EntityROMSpec MOUND_BG_MIDDLE_IM =
+EntityROMSpec MoundBgMiddleEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -154,7 +154,7 @@ EntityROMSpec MOUND_BG_MIDDLE_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)MOUND_BG_MIDDLE_SB_SPRITES,
+	(SpriteSpec**)MoundBgMiddleSbSprites,
 
 	// use z displacement in projection
 	false,
@@ -173,7 +173,7 @@ EntityROMSpec MOUND_BG_MIDDLE_IM =
 	NULL,
 };
 
-CloudsROMSpec CLOUDS_IM =
+CloudsROMSpec CloudsEntity =
 {
 	{
 		// class allocator
@@ -189,7 +189,7 @@ CloudsROMSpec CLOUDS_IM =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)MOUND_BG_MIDDLE_SB_SPRITES,
+		(SpriteSpec**)MoundBgMiddleSbSprites,
 
 		// use z displacement in projection
 		false,

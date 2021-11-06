@@ -30,7 +30,7 @@ extern BYTE CogWheelMap[];
 //---------------------------------------------------------------------------------------------------------
 
 
-CharSetROMSpec COG_WHEEL_CH =
+CharSetROMSpec CogWheelCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec COG_WHEEL_CH =
 	CogWheelTiles,
 };
 
-TextureROMSpec COG_WHEEL_TX =
+TextureROMSpec CogWheelTexture =
 {
 	// charset spec
-	(CharSetSpec*)&COG_WHEEL_CH,
+	(CharSetSpec*)&CogWheelCharset,
 
 	// bgmap spec
 	CogWheelMap,
@@ -80,14 +80,14 @@ TextureROMSpec COG_WHEEL_TX =
 	false,
 };
 
-BgmapSpriteROMSpec COG_WHEEL_BG_SPRITE =
+BgmapSpriteROMSpec CogWheelBgSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&COG_WHEEL_TX,
+		(TextureSpec*)&CogWheelTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec COG_WHEEL_BG_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const COG_WHEEL_BG_SPRITES[] =
+BgmapSpriteROMSpec* const CogWheelBgSprites[] =
 {
-	&COG_WHEEL_BG_SPRITE,
+	&CogWheelBgSprite,
 	NULL
 };
 
-CogWheelROMSpec COG_WHEEL_IM =
+CogWheelROMSpec CogWheelEntity =
 {
 	// class allocator
 	__TYPE(CogWheel),
@@ -128,7 +128,7 @@ CogWheelROMSpec COG_WHEEL_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)COG_WHEEL_BG_SPRITES,
+	(SpriteSpec**)CogWheelBgSprites,
 
 	// use z displacement in projection
 	false,

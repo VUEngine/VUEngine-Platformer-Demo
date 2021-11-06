@@ -36,7 +36,7 @@ const uint16 CrumbleTrack[] =
   1, 4, 1, 2 , 1, 4, 1, 2 , 1, 4, 1, 2 , 0
 };
 
-SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM CrumbleSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -75,10 +75,10 @@ SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM CRUMBLE_SND_CHANNEL_1 =
+SoundChannelROM CrumbleSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&CRUMBLE_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&CrumbleSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -90,13 +90,13 @@ SoundChannelROM CRUMBLE_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* CRUMBLE_SND_CHANNELS[] =
+SoundChannelROM* CrumbleSoundChannels[] =
 {
-	&CRUMBLE_SND_CHANNEL_1,
+	&CrumbleSoundChannel1,
 	NULL
 };
 
-SoundROM CRUMBLE_SND =
+SoundROM CrumbleSound =
 {
 	/// Name
 	"Fire sound",
@@ -108,5 +108,5 @@ SoundROM CRUMBLE_SND =
 	5000,
 
 	/// Tracks
-	(SoundChannel**)CRUMBLE_SND_CHANNELS
+	(SoundChannel**)CrumbleSoundChannels
 };

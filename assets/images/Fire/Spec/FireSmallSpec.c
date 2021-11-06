@@ -31,7 +31,7 @@ extern BYTE FireSmallMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec FIRE_SMALL_BURN_ANIM =
+AnimationFunctionROMSpec FireSmallBurnAnimation =
 {
 	// number of frames of this animation function
 	3,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec FIRE_SMALL_BURN_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec FIRE_SMALL_ANIM =
+AnimationDescriptionROMSpec FireSmallAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&FIRE_SMALL_BURN_ANIM,
+		(AnimationFunction*)&FireSmallBurnAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec FIRE_SMALL_CH =
+CharSetROMSpec FireSmallCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec FIRE_SMALL_CH =
 	FireSmallTiles,
 };
 
-TextureROMSpec FIRE_SMALL_TX =
+TextureROMSpec FireSmallTexture =
 {
 	// charset spec
-	(CharSetSpec*)&FIRE_SMALL_CH,
+	(CharSetSpec*)&FireSmallCharset,
 
 	// bgmap spec
 	FireSmallMap,
@@ -112,14 +112,14 @@ TextureROMSpec FIRE_SMALL_TX =
 	false,
 };
 
-ObjectSpriteROMSpec FIRE_SMALL_SPRITE =
+ObjectSpriteROMSpec FireSmallSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&FIRE_SMALL_TX,
+		(TextureSpec*)&FireSmallTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -136,13 +136,13 @@ ObjectSpriteROMSpec FIRE_SMALL_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const FIRE_SMALL_SPRITES[] =
+ObjectSpriteROMSpec* const FireSmallSprites[] =
 {
-	&FIRE_SMALL_SPRITE,
+	&FireSmallSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec FIRE_SMALL_EN =
+AnimatedEntityROMSpec FireSmallEntity =
 {
 	{
 		// class allocator
@@ -158,7 +158,7 @@ AnimatedEntityROMSpec FIRE_SMALL_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)FIRE_SMALL_SPRITES,
+		(SpriteSpec**)FireSmallSprites,
 
 		// use z displacement in projection
 		false,
@@ -178,7 +178,7 @@ AnimatedEntityROMSpec FIRE_SMALL_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&FIRE_SMALL_ANIM,
+	(AnimationDescription*)&FireSmallAnimation,
 
 	// initial animation
 	"Burn",

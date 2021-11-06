@@ -29,7 +29,7 @@ extern BYTE Mound1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec MOUND_1_CH =
+CharSetROMSpec Mound1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec MOUND_1_CH =
 	Mound1Tiles,
 };
 
-TextureROMSpec MOUND_1_TX =
+TextureROMSpec Mound1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&MOUND_1_CH,
+	(CharSetSpec*)&Mound1Charset,
 
 	// bgmap spec
 	Mound1Map,
@@ -79,14 +79,14 @@ TextureROMSpec MOUND_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec MOUND_1_IM_SPRITE =
+BgmapSpriteROMSpec Mound1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&MOUND_1_TX,
+		(TextureSpec*)&Mound1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec MOUND_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const MOUND_1_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Mound1Sprites[] =
 {
-	&MOUND_1_IM_SPRITE,
+	&Mound1Sprite,
 	NULL
 };
 
-EntityROMSpec MOUND_1_IM =
+EntityROMSpec Mound1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec MOUND_1_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)MOUND_1_IM_SPRITES,
+	(SpriteSpec**)Mound1Sprites,
 
 	// use z displacement in projection
 	false,

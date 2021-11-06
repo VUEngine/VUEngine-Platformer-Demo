@@ -52,8 +52,8 @@ bool Collectable::handleMessage(Telegram telegram)
 		case kMessageTakeItem:
 		{
 			// play collect sound
-			extern Sound COLLECT_SND;
-			SoundManager::playSound(SoundManager::getInstance(), &COLLECT_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
+			extern Sound CollectSound;
+			SoundManager::playSound(SoundManager::getInstance(), &CollectSound, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 
 			// set shape to inactive so no other hits with this item can occur
 			Collectable::allowCollisions(this, false);

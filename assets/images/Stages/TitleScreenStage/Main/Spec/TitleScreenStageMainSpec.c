@@ -29,7 +29,7 @@ extern BYTE TitleScreenStageMain1Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec TITLE_SCREEN_STAGE_MAIN_CH =
+CharSetROMSpec TitleScreenStageMainCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec TITLE_SCREEN_STAGE_MAIN_CH =
 	TitleScreenStageMainTiles,
 };
 
-TextureROMSpec TITLE_SCREEN_STAGE_MAIN_1_TX =
+TextureROMSpec TitleScreenStageMain1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&TITLE_SCREEN_STAGE_MAIN_CH,
+	(CharSetSpec*)&TitleScreenStageMainCharset,
 
 	// bgmap spec
 	TitleScreenStageMain1Map,
@@ -79,14 +79,14 @@ TextureROMSpec TITLE_SCREEN_STAGE_MAIN_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITE =
+BgmapSpriteROMSpec TitleScreenStageMain1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&TITLE_SCREEN_STAGE_MAIN_1_TX,
+		(TextureSpec*)&TitleScreenStageMain1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -110,13 +110,13 @@ BgmapSpriteROMSpec TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES[] =
+BgmapSpriteROMSpec* const TitleScreenStageMain1Sprites[] =
 {
-	&TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITE,
+	&TitleScreenStageMain1Sprite,
 	NULL
 };
 
-EntityROMSpec TITLE_SCREEN_STAGE_MAIN_1_IM =
+EntityROMSpec TitleScreenStageMain1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -131,7 +131,7 @@ EntityROMSpec TITLE_SCREEN_STAGE_MAIN_1_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)TITLE_SCREEN_STAGE_MAIN_1_IM_SPRITES,
+	(SpriteSpec**)TitleScreenStageMain1Sprites,
 
 	// use z displacement in projection
 	false,

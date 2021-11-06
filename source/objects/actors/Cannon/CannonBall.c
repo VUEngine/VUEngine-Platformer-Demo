@@ -56,7 +56,7 @@ void CannonBall::startMovement()
 	// show me
 	Entity::show(this);
 
-	MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
+	MessageDispatcher::dispatchMessage(CannonBall_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
 }
 
 // move back to cannon
@@ -75,13 +75,13 @@ void CannonBall::stop(uint16 axis __attribute__((unused)))
 
 void CannonBall::checkIfDistanceTraveled()
 {
-	if(this->transformation.globalPosition.z <= __PIXELS_TO_METERS(CANNON_BALL_MINIMUM_Z_VALUE))
+	if(this->transformation.globalPosition.z <= __PIXELS_TO_METERS(CannonBall_MINIMUM_Z_VALUE))
 	{
 		CannonBall::stop(this, __ALL_AXIS);
 	}
 	else
 	{
-		MessageDispatcher::dispatchMessage(CANNON_BALL_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
+		MessageDispatcher::dispatchMessage(CannonBall_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
 	}
 }
 

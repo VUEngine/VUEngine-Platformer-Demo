@@ -58,9 +58,9 @@ void WaterPond::addSplashParticles()
 {
 	Vector3D position = {__F_TO_FIX10_6(-2), __F_TO_FIX10_6(-1), __F_TO_FIX10_6(-1)};
 
-	extern EntitySpec WATER_SPLASH_PS;
+	extern EntitySpec WaterSplashParticleSystem;
 
-	this->waterSplash = ParticleSystem::safeCast(Entity::addChildEntity(this, &WATER_SPLASH_PS, -1, NULL, &position, NULL));
+	this->waterSplash = ParticleSystem::safeCast(Entity::addChildEntity(this, &WaterSplashParticleSystem, -1, NULL, &position, NULL));
 
 	ParticleSystem::spawnAllParticles(this->waterSplash);
 	ParticleSystem::start(this->waterSplash);

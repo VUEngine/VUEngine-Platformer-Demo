@@ -23,22 +23,22 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern AnimationDescriptionROMSpec SMOKE_PARTICLE_SMALL_ANIM;
-extern ObjectSpriteROMSpec SMOKE_PARTICLE_SMALL_SPRITE;
+extern AnimationDescriptionROMSpec SmokeParticleSmallAnimation;
+extern ObjectSpriteROMSpec SmokeParticleSmallSprite;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMSpec* const TORCH_SMOKE_SPRITES[] =
+ObjectSpriteROMSpec* const TorchSmokeSprites[] =
 {
-	&SMOKE_PARTICLE_SMALL_SPRITE,
+	&SmokeParticleSmallSprite,
 	NULL
 };
 
 // particle's spec
-PhysicalParticleROMSpec TORCH_SMOKE_PARTICLE =
+PhysicalParticleROMSpec TorchSmokeParticle =
 {
 	{
 		// allocator
@@ -54,7 +54,7 @@ PhysicalParticleROMSpec TORCH_SMOKE_PARTICLE =
 		NULL,
 
 		// animation description (used only if sprite is animated)
-		(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
+		(AnimationDescription*)&SmokeParticleSmallAnimation,
 
 		// name of animation to play
 		"Default"
@@ -70,7 +70,7 @@ PhysicalParticleROMSpec TORCH_SMOKE_PARTICLE =
 	__NO_AXIS,
 };
 
-ParticleSystemROMSpec TORCH_SMOKE_PS =
+ParticleSystemROMSpec TorchSmokeParticleSystem =
 {
 	{
 		// class allocator
@@ -121,13 +121,13 @@ ParticleSystemROMSpec TORCH_SMOKE_PS =
 	1,
 
 	// array of textures
-	(const SpriteSpec**)TORCH_SMOKE_SPRITES,
+	(const SpriteSpec**)TorchSmokeSprites,
 
 	// auto start
 	true,
 
 	// particle spec
-	(ParticleSpec*)&TORCH_SMOKE_PARTICLE,
+	(ParticleSpec*)&TorchSmokeParticle,
 
 	// minimum relative spawn position (x, y, z)
 	{__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(0), __PIXELS_TO_METERS(0)},

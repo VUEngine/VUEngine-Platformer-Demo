@@ -27,18 +27,18 @@
 extern BYTE LavaTiles[];
 extern BYTE LavaMap[];
 
-extern BgmapSpriteROMSpec LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE;
-extern BgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE;
-extern BgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE;
-extern BgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_BACK_1_HOT_AIR_IM_SPRITE;
-extern BgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_BACK_2_HOT_AIR_IM_SPRITE;
+extern BgmapSpriteROMSpec Level1TowerBack1HotAirSprite;
+extern BgmapSpriteROMSpec Level1TowerMain1HotAirSprite;
+extern BgmapSpriteROMSpec Level1TowerMain2HotAirSprite;
+extern BgmapSpriteROMSpec Level1TowerMainBack1HotAirSprite;
+extern BgmapSpriteROMSpec Level1TowerMainBack2HotAirSprite;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LAVA_CH =
+CharSetROMSpec LavaCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -53,10 +53,10 @@ CharSetROMSpec LAVA_CH =
 	LavaTiles,
 };
 
-TextureROMSpec LAVA_TX =
+TextureROMSpec LavaTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LAVA_CH,
+	(CharSetSpec*)&LavaCharset,
 
 	// bgmap spec
 	LavaMap,
@@ -88,14 +88,14 @@ TextureROMSpec LAVA_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LAVA_BG_SPRITE =
+BgmapSpriteROMSpec LavaBgSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LAVA_TX,
+		(TextureSpec*)&LavaTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -115,18 +115,18 @@ BgmapSpriteROMSpec LAVA_BG_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LAVA_BG_SPRITES[] =
+BgmapSpriteROMSpec* const LavaBgSprites[] =
 {
-	&LAVA_BG_SPRITE,
-	&LEVEL_1_TOWER_BACK_1_HOT_AIR_IM_SPRITE,
-//	&LEVEL_1_TOWER_MAIN_BACK_1_HOT_AIR_IM_SPRITE,
-	&LEVEL_1_TOWER_MAIN_1_HOT_AIR_IM_SPRITE,
-//	&LEVEL_1_TOWER_MAIN_BACK_2_HOT_AIR_IM_SPRITE,
-	&LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE,
+	&LavaBgSprite,
+	&Level1TowerBack1HotAirSprite,
+//	&Level1TowerMainBack1HotAirSprite,
+	&Level1TowerMain1HotAirSprite,
+//	&Level1TowerMainBack2HotAirSprite,
+	&Level1TowerMain2HotAirSprite,
 	NULL
 };
 
-ShapeROMSpec LAVA_SHAPES[] =
+ShapeROMSpec LavaShapes[] =
 {
 	{
 		// shape
@@ -157,7 +157,7 @@ ShapeROMSpec LAVA_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-LavaROMSpec LAVA_EN =
+LavaROMSpec LavaEntity =
 {
 	// class allocator
 	__TYPE(Lava),
@@ -172,13 +172,13 @@ LavaROMSpec LAVA_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LAVA_BG_SPRITES,
+	(SpriteSpec**)LavaBgSprites,
 
 	// use z displacement in projection
 	false,
 
 	// collision shapes
-	(ShapeSpec*)LAVA_SHAPES,
+	(ShapeSpec*)LavaShapes,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size

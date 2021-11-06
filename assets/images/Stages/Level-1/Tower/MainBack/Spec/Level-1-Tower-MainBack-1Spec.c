@@ -29,7 +29,7 @@ extern BYTE Level_1_Tower_MainBack_1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_TOWER_MAIN_BACK_CH =
+CharSetROMSpec Level1TowerMainBackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec LEVEL_1_TOWER_MAIN_BACK_CH =
 	Level_1_Tower_MainBackTiles,
 };
 
-TextureROMSpec LEVEL_1_TOWER_MAIN_BACK_1_TX =
+TextureROMSpec Level1TowerMainBack1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_TOWER_MAIN_BACK_CH,
+	(CharSetSpec*)&Level1TowerMainBackCharset,
 
 	// bgmap spec
 	Level_1_Tower_MainBack_1Map,
@@ -80,13 +80,13 @@ TextureROMSpec LEVEL_1_TOWER_MAIN_BACK_1_TX =
 };
 
 
-TextureROMSpec* const LEVEL_1_TOWER_MAIN_BACK_1_IM_TEXTURES[] =
+TextureROMSpec* const Level1TowerMainBack1Textures[] =
 {
-	(TextureSpec*)&LEVEL_1_TOWER_MAIN_BACK_1_TX,
+	(TextureSpec*)&Level1TowerMainBack1Texture,
 	NULL
 };
 
-MBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
+MBgmapSpriteROMSpec Level1TowerMainBack1Sprite =
 {
 	{
 		{
@@ -114,7 +114,7 @@ MBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 		__WORLD_ON,
 	},
 
-	(TextureSpec**)LEVEL_1_TOWER_MAIN_BACK_1_IM_TEXTURES,
+	(TextureSpec**)Level1TowerMainBack1Textures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -133,7 +133,7 @@ MBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_BACK_1_IM_SPRITE =
 	0,
 };
 
-HbiasMaskMBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_BACK_1_HOT_AIR_IM_SPRITE =
+HbiasMaskMBgmapSpriteROMSpec Level1TowerMainBack1HotAirSprite =
 {
 	{
 		{
@@ -162,7 +162,7 @@ HbiasMaskMBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_BACK_1_HOT_AIR_IM_SPRITE =
 			__WORLD_ON,
 		},
 
-		(TextureSpec**)LEVEL_1_TOWER_MAIN_BACK_1_IM_TEXTURES,
+		(TextureSpec**)Level1TowerMainBack1Textures,
 
 		// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 		// textures must be 64x64 for anything other than 1x1

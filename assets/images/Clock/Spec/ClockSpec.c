@@ -31,7 +31,7 @@ extern BYTE ClockMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec CLOCK_DEFAULT_ANIM =
+AnimationFunctionROMSpec ClockDefaultAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec CLOCK_DEFAULT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec CLOCK_ANIM =
+AnimationDescriptionROMSpec ClockAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&CLOCK_DEFAULT_ANIM,
+		(AnimationFunction*)&ClockDefaultAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec CLOCK_CH =
+CharSetROMSpec ClockCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec CLOCK_CH =
 	ClockTiles,
 };
 
-TextureROMSpec CLOCK_TX =
+TextureROMSpec ClockTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CLOCK_CH,
+	(CharSetSpec*)&ClockCharset,
 
 	// bgmap spec
 	ClockMap,
@@ -112,14 +112,14 @@ TextureROMSpec CLOCK_TX =
 	false,
 };
 
-ObjectSpriteROMSpec CLOCK_SPRITE =
+ObjectSpriteROMSpec ClockSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CLOCK_TX,
+		(TextureSpec*)&ClockTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -136,13 +136,13 @@ ObjectSpriteROMSpec CLOCK_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const CLOCK_SPRITES[] =
+ObjectSpriteROMSpec* const ClockSprites[] =
 {
-	&CLOCK_SPRITE,
+	&ClockSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec CLOCK_EN =
+AnimatedEntityROMSpec ClockEntity =
 {
 	{
 		// class allocator
@@ -158,7 +158,7 @@ AnimatedEntityROMSpec CLOCK_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)CLOCK_SPRITES,
+		(SpriteSpec**)ClockSprites,
 
 		// use z displacement in projection
 		false,
@@ -178,7 +178,7 @@ AnimatedEntityROMSpec CLOCK_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&CLOCK_ANIM,
+	(AnimationDescription*)&ClockAnimation,
 
 	// initial animation
 	"Default",

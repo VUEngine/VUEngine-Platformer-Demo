@@ -40,8 +40,8 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern PlatformerLevelSpec LEVEL_1_LV;
-extern EntitySpec HERO_AC;
+extern PlatformerLevelSpec Level1;
+extern EntitySpec HeroEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ void PlatformerLevelState::constructor()
 	this->clock = new Clock();
 
 	// set default entry point
-	this->currentLevel = (PlatformerLevelSpec*)&LEVEL_1_LV;
+	this->currentLevel = (PlatformerLevelSpec*)&Level1;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
 	this->currentCheckPoint = this->currentLevel->entryPoint;
 	this->userInput = (UserInput){0, 0, 0, 0, 0, 0, 0};
@@ -78,15 +78,15 @@ void PlatformerLevelState::getPositionedEntitiesToIgnore(VirtualList positionedE
 
 	if(positionedEntitiesToIgnore)
 	{
-		extern EntitySpec BANDANA_EN;
-		extern EntitySpec KEY_EN;
+		extern EntitySpec BandanaEntity;
+		extern EntitySpec KeyEntity;
 
 		// loop stage entities and remove items which have already been collected
 		int i = 0;
 		for(; this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec; i++)
 		{
-			if((this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&BANDANA_EN) ||
-				(this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&KEY_EN))
+			if((this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&BandanaEntity) ||
+				(this->currentStageEntryPoint->stageSpec->entities.children[i].entitySpec == (EntitySpec*)&KeyEntity))
 			{
 				int itemId = atoi(this->currentStageEntryPoint->stageSpec->entities.children[i].name);
 
@@ -161,7 +161,7 @@ void PlatformerLevelState::enter(void* owner)
 			{
 				PositionedEntity positionedEntity =
 				{
-					&HERO_AC,
+					&HeroEntity,
 					{
 						__METERS_TO_PIXELS(initialPosition->x),
 						__METERS_TO_PIXELS(initialPosition->y),
@@ -178,7 +178,7 @@ void PlatformerLevelState::enter(void* owner)
 				hero = Container::safeCast(Stage::addChildEntity(this->stage, &positionedEntity, true));
 
 				// make sure that the streaming doesn't load the hero again
-				Stage::registerEntityId(this->stage, Entity::getInternalId(hero), &HERO_AC);
+				Stage::registerEntityId(this->stage, Entity::getInternalId(hero), &HeroEntity);
 			}
 
 			Object::addEventListener(hero, Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kEventStageChildStreamedOut);
@@ -447,8 +447,8 @@ void PlatformerLevelState::resume(void* owner)
 void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 #ifdef __RELEASE
-	extern TextureROMSpec GUI_TX;
-	Printing::setCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GUI_TX.rows * 8), PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
+	extern TextureROMSpec GuiTexture;
+	Printing::setCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GuiTexture.rows * 8), PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
 #else
 	Printing::clear(Printing::getInstance());
 	PlatformerLevelState::propagateMessage(this, kMessagePrintUI);

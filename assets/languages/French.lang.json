@@ -1,7 +1,7 @@
 {
 	"id": "French",
 	"code": "fr",
-	"flag": "FLAG_FRANCE_EN",
+	"flag": "FlagFranceEntity",
 	"name": "Français",
 	"order": 4,
 	"strings": {

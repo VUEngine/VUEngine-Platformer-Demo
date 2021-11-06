@@ -35,7 +35,7 @@ extern BYTE HeroMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_IDLE_ANIM =
+AnimationFunctionROMSpec HeroIdleAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -57,7 +57,7 @@ AnimationFunctionROMSpec HERO_IDLE_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_WALKING_ANIM =
+AnimationFunctionROMSpec HeroWalkingAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -79,7 +79,7 @@ AnimationFunctionROMSpec HERO_WALKING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_JUMPING_ANIM =
+AnimationFunctionROMSpec HeroJumpingAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -101,7 +101,7 @@ AnimationFunctionROMSpec HERO_JUMPING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_FALLING_ANIM =
+AnimationFunctionROMSpec HeroFallingAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -123,7 +123,7 @@ AnimationFunctionROMSpec HERO_FALLING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_SLIDING_ANIM =
+AnimationFunctionROMSpec HeroSlidingAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -145,7 +145,7 @@ AnimationFunctionROMSpec HERO_SLIDING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_HIT_ANIM =
+AnimationFunctionROMSpec HeroHitAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -167,7 +167,7 @@ AnimationFunctionROMSpec HERO_HIT_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_CLIMB_ANIM =
+AnimationFunctionROMSpec HeroClimbAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -189,7 +189,7 @@ AnimationFunctionROMSpec HERO_CLIMB_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_FRONT_ANIM =
+AnimationFunctionROMSpec HeroFrontAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -211,7 +211,7 @@ AnimationFunctionROMSpec HERO_FRONT_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_BACK_ANIM =
+AnimationFunctionROMSpec HeroBackAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -233,7 +233,7 @@ AnimationFunctionROMSpec HERO_BACK_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_WALKING_FRONT_ANIM =
+AnimationFunctionROMSpec HeroWalkingFrontAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -255,7 +255,7 @@ AnimationFunctionROMSpec HERO_WALKING_FRONT_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_WALKING_BACK_ANIM =
+AnimationFunctionROMSpec HeroWalkingBackAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -277,7 +277,7 @@ AnimationFunctionROMSpec HERO_WALKING_BACK_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_TRANSITION_ANIM =
+AnimationFunctionROMSpec HeroTransitionAnimation =
 {
 	// number of frames of this animation function
 	5,
@@ -299,7 +299,7 @@ AnimationFunctionROMSpec HERO_TRANSITION_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HERO_SLEEP_ANIM =
+AnimationFunctionROMSpec HeroSleepAnimation =
 {
 	// number of frames of this animation function
 	10,
@@ -322,28 +322,28 @@ AnimationFunctionROMSpec HERO_SLEEP_ANIM =
 
 
 // an animation spec
-AnimationDescriptionROMSpec HERO_ANIM =
+AnimationDescriptionROMSpec HeroAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HERO_IDLE_ANIM,
-		(AnimationFunction*)&HERO_WALKING_ANIM,
-		(AnimationFunction*)&HERO_JUMPING_ANIM,
-		(AnimationFunction*)&HERO_FALLING_ANIM,
-		(AnimationFunction*)&HERO_SLIDING_ANIM,
-		(AnimationFunction*)&HERO_HIT_ANIM,
-		(AnimationFunction*)&HERO_CLIMB_ANIM,
-		(AnimationFunction*)&HERO_FRONT_ANIM,
-		(AnimationFunction*)&HERO_BACK_ANIM,
-		(AnimationFunction*)&HERO_WALKING_FRONT_ANIM,
-		(AnimationFunction*)&HERO_WALKING_BACK_ANIM,
-		(AnimationFunction*)&HERO_TRANSITION_ANIM,
-		(AnimationFunction*)&HERO_SLEEP_ANIM,
+		(AnimationFunction*)&HeroIdleAnimation,
+		(AnimationFunction*)&HeroWalkingAnimation,
+		(AnimationFunction*)&HeroJumpingAnimation,
+		(AnimationFunction*)&HeroFallingAnimation,
+		(AnimationFunction*)&HeroSlidingAnimation,
+		(AnimationFunction*)&HeroHitAnimation,
+		(AnimationFunction*)&HeroClimbAnimation,
+		(AnimationFunction*)&HeroFrontAnimation,
+		(AnimationFunction*)&HeroBackAnimation,
+		(AnimationFunction*)&HeroWalkingFrontAnimation,
+		(AnimationFunction*)&HeroWalkingBackAnimation,
+		(AnimationFunction*)&HeroTransitionAnimation,
+		(AnimationFunction*)&HeroSleepAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec HERO_CH =
+CharSetROMSpec HeroCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -358,7 +358,7 @@ CharSetROMSpec HERO_CH =
 	HeroTiles,
 };
 
-CharSetROMSpec HERO_BANDANA_CH =
+CharSetROMSpec HeroBandanaCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -373,9 +373,9 @@ CharSetROMSpec HERO_BANDANA_CH =
 	HeroBandanaTiles,
 };
 
-TextureROMSpec HERO_TX =
+TextureROMSpec HeroTexture =
 {
-	(CharSetSpec*)&HERO_CH,
+	(CharSetSpec*)&HeroCharset,
 
 	// bgmap spec
 	HeroMap,
@@ -407,9 +407,9 @@ TextureROMSpec HERO_TX =
 	false,
 };
 
-TextureROMSpec HERO_BANDANA_TX =
+TextureROMSpec HeroBandanaTexture =
 {
-	(CharSetSpec*)&HERO_BANDANA_CH,
+	(CharSetSpec*)&HeroBandanaCharset,
 
 	// bgmap spec
 	HeroMap,
@@ -441,14 +441,14 @@ TextureROMSpec HERO_BANDANA_TX =
 	false,
 };
 
-BgmapSpriteROMSpec HERO_AFFINE_SPRITE =
+BgmapSpriteROMSpec HeroAffineSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&HERO_TX,
+		(TextureSpec*)&HeroTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -468,14 +468,14 @@ BgmapSpriteROMSpec HERO_AFFINE_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec HERO_BANDANA_AFFINE_SPRITE =
+BgmapSpriteROMSpec HeroBandanaAffineSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&HERO_BANDANA_TX,
+		(TextureSpec*)&HeroBandanaTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -495,14 +495,14 @@ BgmapSpriteROMSpec HERO_BANDANA_AFFINE_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec HERO_SPRITE =
+BgmapSpriteROMSpec HeroSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&HERO_TX,
+		(TextureSpec*)&HeroTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -522,25 +522,25 @@ BgmapSpriteROMSpec HERO_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const HERO_AFFINE_SPRITES[] =
+BgmapSpriteROMSpec* const HeroAffineSprites[] =
 {
-	&HERO_AFFINE_SPRITE,
+	&HeroAffineSprite,
 	NULL
 };
 
-BgmapSpriteROMSpec* const HERO_BANDANA_AFFINE_SPRITES[] =
+BgmapSpriteROMSpec* const HeroBandanaAffineSprites[] =
 {
-	&HERO_BANDANA_AFFINE_SPRITE,
+	&HeroBandanaAffineSprite,
 	NULL
 };
 
-BgmapSpriteROMSpec* const HERO_SPRITES[] =
+BgmapSpriteROMSpec* const HeroSprites[] =
 {
-	&HERO_SPRITE,
+	&HeroSprite,
 	NULL
 };
 
-ShapeROMSpec HERO_AC_SHAPES[] =
+ShapeROMSpec HeroShapes[] =
 {
 	{
 		// shape
@@ -571,7 +571,7 @@ ShapeROMSpec HERO_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec HERO_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec HeroPhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0.65f),
@@ -589,7 +589,7 @@ PhysicalSpecificationROMSpec HERO_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-HeroROMSpec HERO_AC =
+HeroROMSpec HeroEntity =
 {
 	{
 		{
@@ -606,13 +606,13 @@ HeroROMSpec HERO_AC =
 			NULL,
 
 			// sprites
-			(SpriteSpec**)HERO_AFFINE_SPRITES,
+			(SpriteSpec**)HeroAffineSprites,
 
 			// use z displacement in projection
 			false,
 
 			// collision shapes
-			(ShapeSpec*)HERO_AC_SHAPES,
+			(ShapeSpec*)HeroShapes,
 
 			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
@@ -622,11 +622,11 @@ HeroROMSpec HERO_AC =
 			kTypeHero,
 
 			// physical specification
-			(PhysicalSpecification*)&HERO_PHYSICAL_PROPERTIES,
+			(PhysicalSpecification*)&HeroPhysicalProperties,
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&HERO_ANIM,
+		(AnimationDescription*)&HeroAnimation,
 
 		// initial animation
 		"Idle",
@@ -642,7 +642,7 @@ HeroROMSpec HERO_AC =
 	__Y_AXIS
 };
 
-AnimatedEntityROMSpec HERO_IDLE_EN =
+AnimatedEntityROMSpec HeroIdleEntity =
 {
 	{
 		// class allocator
@@ -658,7 +658,7 @@ AnimatedEntityROMSpec HERO_IDLE_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)HERO_SPRITES,
+		(SpriteSpec**)HeroSprites,
 
 		// use z displacement in projection
 		false,
@@ -678,13 +678,13 @@ AnimatedEntityROMSpec HERO_IDLE_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&HERO_ANIM,
+	(AnimationDescription*)&HeroAnimation,
 
 	// initial animation
 	"Idle",
 };
 
-AnimatedEntityROMSpec HERO_SLEEPING_EN =
+AnimatedEntityROMSpec HeroSleepingEntity =
 {
 	{
 		// class allocator
@@ -700,7 +700,7 @@ AnimatedEntityROMSpec HERO_SLEEPING_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)HERO_SPRITES,
+		(SpriteSpec**)HeroSprites,
 
 		// use z displacement in projection
 		false,
@@ -720,14 +720,14 @@ AnimatedEntityROMSpec HERO_SLEEPING_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&HERO_ANIM,
+	(AnimationDescription*)&HeroAnimation,
 
 	// initial animation
 	"Sleep",
 };
 
 
-AnimatedEntityROMSpec HERO_BANDANA_EN =
+AnimatedEntityROMSpec HeroBandanaEntity =
 {
 	{
 		// class allocator
@@ -743,7 +743,7 @@ AnimatedEntityROMSpec HERO_BANDANA_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)HERO_BANDANA_AFFINE_SPRITES,
+		(SpriteSpec**)HeroBandanaAffineSprites,
 
 		// use z displacement in projection
 		false,
@@ -763,7 +763,7 @@ AnimatedEntityROMSpec HERO_BANDANA_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&HERO_ANIM,
+	(AnimationDescription*)&HeroAnimation,
 
 	// initial animation
 	"Idle",

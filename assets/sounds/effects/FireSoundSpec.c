@@ -36,7 +36,7 @@ const uint16 FireTrack[] =
   1, 4, 1, 2 , 0
 };
 
-SoundChannelConfigurationROM FIRE_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM FireSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -75,10 +75,10 @@ SoundChannelConfigurationROM FIRE_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM FIRE_SND_CHANNEL_1 =
+SoundChannelROM FireSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&FIRE_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&FireSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -90,13 +90,13 @@ SoundChannelROM FIRE_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* FIRE_SND_CHANNELS[] =
+SoundChannelROM* FireSoundChannels[] =
 {
-	&FIRE_SND_CHANNEL_1,
+	&FireSoundChannel1,
 	NULL
 };
 
-SoundROM FIRE_SND =
+SoundROM FireSound =
 {
 	/// Name
 	"Fire sound",
@@ -108,5 +108,5 @@ SoundROM FIRE_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)FIRE_SND_CHANNELS
+	(SoundChannel**)FireSoundChannels
 };

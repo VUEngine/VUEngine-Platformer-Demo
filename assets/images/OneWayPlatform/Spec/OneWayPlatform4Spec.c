@@ -29,7 +29,7 @@ extern BYTE OneWayPlatform4Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec ONE_WAY_PLATFORM_4_CH =
+CharSetROMSpec OneWayPlatform4Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec ONE_WAY_PLATFORM_4_CH =
 	OneWayPlatform4Tiles,
 };
 
-TextureROMSpec ONE_WAY_PLATFORM_4_TX =
+TextureROMSpec OneWayPlatform4Texture =
 {
 	// charset spec
-	(CharSetSpec*)&ONE_WAY_PLATFORM_4_CH,
+	(CharSetSpec*)&OneWayPlatform4Charset,
 
 	// bgmap spec
 	OneWayPlatform4Map,
@@ -79,14 +79,14 @@ TextureROMSpec ONE_WAY_PLATFORM_4_TX =
 	false,
 };
 
-BgmapSpriteROMSpec ONE_WAY_PLATFORM_4_SPRITE =
+BgmapSpriteROMSpec OneWayPlatform4Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&ONE_WAY_PLATFORM_4_TX,
+		(TextureSpec*)&OneWayPlatform4Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec ONE_WAY_PLATFORM_4_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const ONE_WAY_PLATFORM_4_SPRITES[] =
+BgmapSpriteROMSpec* const OneWayPlatform4Sprites[] =
 {
-	&ONE_WAY_PLATFORM_4_SPRITE,
+	&OneWayPlatform4Sprite,
 	NULL
 };
 
-ShapeROMSpec ONE_WAY_PLATFORM_4_SHAPES[] =
+ShapeROMSpec OneWayPlatform4Shapes[] =
 {
 	{
 		// shape
@@ -143,7 +143,7 @@ ShapeROMSpec ONE_WAY_PLATFORM_4_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec ONE_WAY_PLATFORM_4_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec OneWayPlatform4PhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),

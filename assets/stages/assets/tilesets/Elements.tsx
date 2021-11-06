@@ -4,7 +4,7 @@
  <tile id="1" type="Collision">
   <properties>
    <property name="charsetName" value=""/>
-   <property name="entityName" value="COLLISION_CL"/>
+   <property name="entityName" value="CollisionCl"/>
    <property name="textureName" value=""/>
   </properties>
   <image width="64" height="64" source="../../../images/Other/Preview/collision.png"/>
@@ -12,7 +12,7 @@
  <tile id="2" type="Collision">
   <properties>
    <property name="charsetName" value=""/>
-   <property name="entityName" value="COLLISION_TOP_CL"/>
+   <property name="entityName" value="CollisionTopCl"/>
    <property name="textureName" value=""/>
   </properties>
   <image width="64" height="64" source="../../../images/Other/Preview/collisionTop.png"/>
@@ -20,23 +20,23 @@
  <tile id="3" type="Collision">
   <properties>
    <property name="charsetName" value=""/>
-   <property name="entityName" value="COLLISION_HIT_CL"/>
+   <property name="entityName" value="CollisionHitCl"/>
    <property name="textureName" value=""/>
   </properties>
   <image width="64" height="64" source="../../../images/Other/Preview/collisionHit.png"/>
  </tile>
  <tile id="4" type="Entity">
   <properties>
-   <property name="charsetName" value="GUI_CH"/>
-   <property name="entityName" value="GUI_AG"/>
-   <property name="textureName" value="GUI_TX"/>
+   <property name="charsetName" value="GuiCharset"/>
+   <property name="entityName" value="GuiEntity"/>
+   <property name="textureName" value="GuiTexture"/>
   </properties>
   <image width="384" height="16" source="../../../images/Gui/Preview/Gui.png"/>
  </tile>
  <tile id="5" type="Entity">
   <properties>
    <property name="charsetName" value=""/>
-   <property name="entityName" value="MANAGED_ENTITY"/>
+   <property name="entityName" value="ManagedEntity"/>
    <property name="textureName" value=""/>
   </properties>
   <image width="56" height="56" source="../../../images/Other/Preview/collisionContainer.png"/>
@@ -44,7 +44,7 @@
  <tile id="6" type="Entity">
   <properties>
    <property name="charsetName" value=""/>
-   <property name="entityName" value="MANAGED_ENTITY"/>
+   <property name="entityName" value="ManagedEntity"/>
    <property name="textureName" value=""/>
   </properties>
   <image width="56" height="56" source="../../../images/Other/Preview/managedEntity.png"/>

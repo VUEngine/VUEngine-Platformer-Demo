@@ -31,7 +31,7 @@ extern BYTE GrassMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec GRASS_STILL_ANIM =
+AnimationFunctionROMSpec GrassStillAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -53,7 +53,7 @@ AnimationFunctionROMSpec GRASS_STILL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec GRASS_WINDY_ANIM =
+AnimationFunctionROMSpec GrassWindyAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -75,17 +75,17 @@ AnimationFunctionROMSpec GRASS_WINDY_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec GRASS_ANIM =
+AnimationDescriptionROMSpec GrassAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&GRASS_STILL_ANIM,
-		(AnimationFunction*)&GRASS_WINDY_ANIM,
+		(AnimationFunction*)&GrassStillAnimation,
+		(AnimationFunction*)&GrassWindyAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec GRASS_CH =
+CharSetROMSpec GrassCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -100,10 +100,10 @@ CharSetROMSpec GRASS_CH =
 	GrassTiles,
 };
 
-TextureROMSpec GRASS_TX =
+TextureROMSpec GrassTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GRASS_CH,
+	(CharSetSpec*)&GrassCharset,
 
 	// bgmap spec
 	GrassMap,
@@ -135,14 +135,14 @@ TextureROMSpec GRASS_TX =
 	false,
 };
 
-ObjectSpriteROMSpec GRASS_SPRITE =
+ObjectSpriteROMSpec GrassSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&GRASS_TX,
+		(TextureSpec*)&GrassTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -159,13 +159,13 @@ ObjectSpriteROMSpec GRASS_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const GRASS_SPRITES[] =
+ObjectSpriteROMSpec* const GrassSprites[] =
 {
-	&GRASS_SPRITE,
+	&GrassSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec GRASS_EN =
+AnimatedEntityROMSpec GrassEntity =
 {
 	{
 		// class allocator
@@ -181,7 +181,7 @@ AnimatedEntityROMSpec GRASS_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)GRASS_SPRITES,
+		(SpriteSpec**)GrassSprites,
 
 		// use z displacement in projection
 		false,
@@ -201,7 +201,7 @@ AnimatedEntityROMSpec GRASS_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&GRASS_ANIM,
+	(AnimationDescription*)&GrassAnimation,
 
 	// initial animation
 	"Windy",

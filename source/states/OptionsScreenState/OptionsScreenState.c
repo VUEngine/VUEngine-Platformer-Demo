@@ -32,7 +32,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMSpec EMPTY_STAGE_ST;
+extern StageROMSpec EmptyStage;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&EMPTY_STAGE_ST, NULL, true, false);
+	GameState::loadStage(this, (StageSpec*)&EmptyStage, NULL, true, false);
 
 	// print options
 	OptionsScreenState::print(this);

@@ -28,7 +28,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMSpec PAUSE_SCREEN_STAGE_ST;
+extern StageROMSpec PauseScreenStage;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ void AutomaticPauseScreenState::destructor()
 void AutomaticPauseScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&PAUSE_SCREEN_STAGE_ST, NULL, true, false);
+	GameState::loadStage(this, (StageSpec*)&PauseScreenStage, NULL, true, false);
 
 	// print text
 	const char* strAutomaticPauseTitle = I18n::getText(I18n::getInstance(), kStringAutomaticPauseTitle);

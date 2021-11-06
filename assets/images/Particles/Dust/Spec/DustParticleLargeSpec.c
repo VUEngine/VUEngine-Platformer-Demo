@@ -30,7 +30,7 @@ extern BYTE DustParticleLargeMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec DUST_PARTICLE_LARGE_CH =
+CharSetROMSpec DustParticleLargeCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec DUST_PARTICLE_LARGE_CH =
 	DustParticleLargeTiles,
 };
 
-TextureROMSpec DUST_PARTICLE_LARGE_TX =
+TextureROMSpec DustParticleLargeTexture =
 {
 	// charset spec
-	(CharSetSpec*)&DUST_PARTICLE_LARGE_CH,
+	(CharSetSpec*)&DustParticleLargeCharset,
 
 	// bgmap spec
 	DustParticleLargeMap,
@@ -80,14 +80,14 @@ TextureROMSpec DUST_PARTICLE_LARGE_TX =
 	false,
 };
 
-ObjectSpriteROMSpec DUST_PARTICLE_LARGE_SPRITE =
+ObjectSpriteROMSpec DustParticleLargeSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectSprite),
 
 		// texture spec
-		(TextureSpec*)&DUST_PARTICLE_LARGE_TX,
+		(TextureSpec*)&DustParticleLargeTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -104,13 +104,13 @@ ObjectSpriteROMSpec DUST_PARTICLE_LARGE_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const DUST_PARTICLE_LARGE_SPRITES[] =
+ObjectSpriteROMSpec* const DustParticleLargeSprites[] =
 {
-	&DUST_PARTICLE_LARGE_SPRITE,
+	&DustParticleLargeSprite,
 	NULL
 };
 
-EntityROMSpec DUST_PARTICLE_LARGE_IM =
+EntityROMSpec DustParticleLargeEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -125,7 +125,7 @@ EntityROMSpec DUST_PARTICLE_LARGE_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)DUST_PARTICLE_LARGE_SPRITES,
+	(SpriteSpec**)DustParticleLargeSprites,
 
 	// use z displacement in projection
 	false,

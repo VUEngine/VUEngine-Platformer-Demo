@@ -34,7 +34,7 @@ extern BYTE GuiMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec GUI_DEFAULT_ANIM =
+AnimationFunctionROMSpec GuiDefaultAnimation =
 {
 	// number of frames of this animation function
 	15,
@@ -56,16 +56,16 @@ AnimationFunctionROMSpec GUI_DEFAULT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec GUI_ANIM =
+AnimationDescriptionROMSpec GuiAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&GUI_DEFAULT_ANIM,
+		(AnimationFunction*)&GuiDefaultAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec GUI_CH =
+CharSetROMSpec GuiCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -80,7 +80,7 @@ CharSetROMSpec GUI_CH =
 	GuiTiles,
 };
 
-CharSetROMSpec GUI_BANDANA_CH =
+CharSetROMSpec GuiBandanaCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -95,7 +95,7 @@ CharSetROMSpec GUI_BANDANA_CH =
 	GuiBandanaTiles,
 };
 
-CharSetROMSpec GUI_OVERWORLD_CH =
+CharSetROMSpec GUI_OverworldCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -110,10 +110,10 @@ CharSetROMSpec GUI_OVERWORLD_CH =
 	GuiOverworldTiles,
 };
 
-TextureROMSpec GUI_TX =
+TextureROMSpec GuiTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GUI_CH,
+	(CharSetSpec*)&GuiCharset,
 
 	// bgmap spec
 	GuiMap,
@@ -145,10 +145,10 @@ TextureROMSpec GUI_TX =
 	false,
 };
 
-TextureROMSpec GUI_OVERWORLD_TX =
+TextureROMSpec GuiOverworldTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GUI_OVERWORLD_CH,
+	(CharSetSpec*)&GUI_OverworldCharset,
 
 	// bgmap spec
 	GuiMap,
@@ -180,14 +180,14 @@ TextureROMSpec GUI_OVERWORLD_TX =
 	false,
 };
 
-BgmapSpriteROMSpec GUI_SPRITE =
+BgmapSpriteROMSpec GuiSprite =
 {
 	{
 		// sprite's type
 		__TYPE(GuiBgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&GUI_TX,
+		(TextureSpec*)&GuiTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -207,14 +207,14 @@ BgmapSpriteROMSpec GUI_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec GUI_OVERWORLD_SPRITE =
+BgmapSpriteROMSpec GuiOverworldSprite =
 {
 	{
 		// sprite's type
 		__TYPE(GuiBgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&GUI_OVERWORLD_TX,
+		(TextureSpec*)&GuiOverworldTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -234,19 +234,19 @@ BgmapSpriteROMSpec GUI_OVERWORLD_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const GUI_SPRITES[] =
+BgmapSpriteROMSpec* const GuiSprites[] =
 {
-	&GUI_SPRITE,
+	&GuiSprite,
 	NULL
 };
 
-BgmapSpriteROMSpec* const GUI_OVERWORLD_SPRITES[] =
+BgmapSpriteROMSpec* const GuiOverworldSprites[] =
 {
-	&GUI_OVERWORLD_SPRITE,
+	&GuiOverworldSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec GUI_EN =
+AnimatedEntityROMSpec GuiEntity =
 {
 	{
 		// class allocator
@@ -262,7 +262,7 @@ AnimatedEntityROMSpec GUI_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)GUI_SPRITES,
+		(SpriteSpec**)GuiSprites,
 
 		// use z displacement in projection
 		false,
@@ -282,13 +282,13 @@ AnimatedEntityROMSpec GUI_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&GUI_ANIM,
+	(AnimationDescription*)&GuiAnimation,
 
 	// initial animation
 	"Default",
 };
 
-AnimatedEntityROMSpec GUI_OVERWORLD_EN =
+AnimatedEntityROMSpec GuiOverworldEntity =
 {
 	{
 		// class allocator
@@ -304,7 +304,7 @@ AnimatedEntityROMSpec GUI_OVERWORLD_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)GUI_OVERWORLD_SPRITES,
+		(SpriteSpec**)GuiOverworldSprites,
 
 		// use z displacement in projection
 		false,
@@ -324,7 +324,7 @@ AnimatedEntityROMSpec GUI_OVERWORLD_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&GUI_ANIM,
+	(AnimationDescription*)&GuiAnimation,
 
 	// initial animation
 	"Default",

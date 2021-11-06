@@ -7,8 +7,8 @@
  * that was distributed with this source code.
  */
 
-#ifndef CANNON_BALL_H_
-#define CANNON_BALL_H_
+#ifndef CannonBall_H_
+#define CannonBall_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -24,8 +24,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define CANNON_BALL_MINIMUM_Z_VALUE				-64
-#define CANNON_BALL_DISPLACEMENT_CHECK_DELAY	500
+#define CannonBall_MINIMUM_Z_VALUE				-64
+#define CannonBall_DISPLACEMENT_CHECK_DELAY	500
 
 
 //---------------------------------------------------------------------------------------------------------

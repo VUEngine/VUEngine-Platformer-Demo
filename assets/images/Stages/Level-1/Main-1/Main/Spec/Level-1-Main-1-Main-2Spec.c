@@ -23,21 +23,21 @@
 
 extern BYTE Level_1_Main_1_Main_2Map[];
 
-extern CharSetROMSpec LEVEL_1_MAIN_1_MAIN_CH;
+extern CharSetROMSpec Level1Main1MainCharset;
 
-extern BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE;
-extern BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_FRONT_2A_IM_SPRITE;
-extern BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_FRONT_2B_IM_SPRITE;
+extern BgmapSpriteROMSpec Level1Main1MainBack2Sprite;
+extern BgmapSpriteROMSpec Level1Main1MainFront2aSprite;
+extern BgmapSpriteROMSpec Level1Main1MainFront2bSprite;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec LEVEL_1_MAIN_1_MAIN_2_TX =
+TextureROMSpec Level1Main1Main2Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_MAIN_CH,
+	(CharSetSpec*)&Level1Main1MainCharset,
 
 	// bgmap spec
 	Level_1_Main_1_Main_2Map,
@@ -69,20 +69,20 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_2_TX =
 	false,
 };
 
-TextureROMSpec* const LEVEL_1_MAIN_1_MAIN_2_IM_TEXTURES[] =
+TextureROMSpec* const Level1Main1Main2Textures[] =
 {
-	(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_2_TX,
+	(TextureSpec*)&Level1Main1Main2Texture,
 	NULL
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_2_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1Main2Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_2_TX,
+		(TextureSpec*)&Level1Main1Main2Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -102,16 +102,16 @@ BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_2_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_MAIN_1_MAIN_2_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Main1Main2Sprites[] =
 {
-	(BgmapSpriteROMSpec*)&LEVEL_1_MAIN_1_MAIN_2_IM_SPRITE,
-	(BgmapSpriteROMSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE,
-	(BgmapSpriteROMSpec*)&LEVEL_1_MAIN_1_MAIN_FRONT_2A_IM_SPRITE,
-	(BgmapSpriteROMSpec*)&LEVEL_1_MAIN_1_MAIN_FRONT_2B_IM_SPRITE,
+	(BgmapSpriteROMSpec*)&Level1Main1Main2Sprite,
+	(BgmapSpriteROMSpec*)&Level1Main1MainBack2Sprite,
+	(BgmapSpriteROMSpec*)&Level1Main1MainFront2aSprite,
+	(BgmapSpriteROMSpec*)&Level1Main1MainFront2bSprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_MAIN_1_MAIN_2_IM =
+EntityROMSpec Level1Main1Main2Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -126,7 +126,7 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_2_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_MAIN_1_MAIN_2_IM_SPRITES,
+	(SpriteSpec**)Level1Main1Main2Sprites,
 
 	// use z displacement in projection
 	false,

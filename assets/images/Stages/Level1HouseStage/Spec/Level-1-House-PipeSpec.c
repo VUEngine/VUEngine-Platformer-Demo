@@ -27,7 +27,7 @@ extern BYTE Level_1_House_PipeMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_HOUSE_PIPE_CH =
+CharSetROMSpec Level1HousePipeCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -42,10 +42,10 @@ CharSetROMSpec LEVEL_1_HOUSE_PIPE_CH =
 	Level_1_House_PipeTiles,
 };
 
-TextureROMSpec LEVEL_1_HOUSE_PIPE_TX =
+TextureROMSpec Level1HousePipeTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_HOUSE_PIPE_CH,
+	(CharSetSpec*)&Level1HousePipeCharset,
 
 	// bgmap spec
 	Level_1_House_PipeMap,
@@ -77,14 +77,14 @@ TextureROMSpec LEVEL_1_HOUSE_PIPE_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_HOUSE_PIPE_IM_SPRITE =
+BgmapSpriteROMSpec Level1HousePipeSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_HOUSE_PIPE_TX,
+		(TextureSpec*)&Level1HousePipeTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,

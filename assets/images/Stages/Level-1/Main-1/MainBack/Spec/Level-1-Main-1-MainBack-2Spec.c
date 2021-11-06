@@ -29,7 +29,7 @@ extern BYTE Level_1_Main_1_MainBack_2Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_MAIN_1_MAIN_BACK_CH =
+CharSetROMSpec Level1Main1MainBackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec LEVEL_1_MAIN_1_MAIN_BACK_CH =
 	Level_1_Main_1_MainBackTiles,
 };
 
-TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_2_TX =
+TextureROMSpec Level1Main1MainBack2Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+	(CharSetSpec*)&Level1Main1MainBackCharset,
 
 	// bgmap spec
 	Level_1_Main_1_MainBack_2Map,
@@ -79,14 +79,14 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_2_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_2_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1MainBack2Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_2_TX,
+		(TextureSpec*)&Level1Main1MainBack2Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,

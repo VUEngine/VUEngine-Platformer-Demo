@@ -32,7 +32,7 @@ extern BYTE BandanaMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec BANDANA_SPIN_ANIM =
+AnimationFunctionROMSpec BandanaSpinAnimation =
 {
 	// number of frames of this animation function
 	8,
@@ -54,16 +54,16 @@ AnimationFunctionROMSpec BANDANA_SPIN_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec BANDANA_ANIM =
+AnimationDescriptionROMSpec BandanaAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&BANDANA_SPIN_ANIM,
+		(AnimationFunction*)&BandanaSpinAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec BANDANA_CH =
+CharSetROMSpec BandanaCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -78,10 +78,10 @@ CharSetROMSpec BANDANA_CH =
 	BandanaTiles,
 };
 
-TextureROMSpec BANDANA_TX =
+TextureROMSpec BandanaTexture =
 {
 	// charset spec
-	(CharSetSpec*)&BANDANA_CH,
+	(CharSetSpec*)&BandanaCharset,
 
 	// bgmap spec
 	BandanaMap,
@@ -113,14 +113,14 @@ TextureROMSpec BANDANA_TX =
 	false,
 };
 
-ObjectSpriteROMSpec BANDANA_SPRITE =
+ObjectSpriteROMSpec BandanaSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&BANDANA_TX,
+		(TextureSpec*)&BandanaTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -137,13 +137,13 @@ ObjectSpriteROMSpec BANDANA_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const BANDANA_SPRITES[] =
+ObjectSpriteROMSpec* const BandanaSprites[] =
 {
-	&BANDANA_SPRITE,
+	&BandanaSprite,
 	NULL
 };
 
-ShapeROMSpec BANDANA_SHAPES[] =
+ShapeROMSpec BandanaShapes[] =
 {
 	{
 		// shape
@@ -174,7 +174,7 @@ ShapeROMSpec BANDANA_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-AnimatedEntityROMSpec BANDANA_EN =
+AnimatedEntityROMSpec BandanaEntity =
 {
 	{
 		// class allocator
@@ -190,13 +190,13 @@ AnimatedEntityROMSpec BANDANA_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)BANDANA_SPRITES,
+		(SpriteSpec**)BandanaSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)BANDANA_SHAPES,
+		(ShapeSpec*)BandanaShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -210,7 +210,7 @@ AnimatedEntityROMSpec BANDANA_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&BANDANA_ANIM,
+	(AnimationDescription*)&BandanaAnimation,
 
 	// initial animation
 	"Spin",

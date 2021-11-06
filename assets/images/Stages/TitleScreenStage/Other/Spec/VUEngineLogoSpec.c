@@ -29,7 +29,7 @@ extern BYTE VUEngineLogoMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec VUENGINE_LOGO_CH =
+CharSetROMSpec VUEngineLogoCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec VUENGINE_LOGO_CH =
 	VUEngineLogoTiles,
 };
 
-TextureROMSpec VUENGINE_LOGO_TX =
+TextureROMSpec VUEngineLogoTexture =
 {
 	// charset spec
-	(CharSetSpec*)&VUENGINE_LOGO_CH,
+	(CharSetSpec*)&VUEngineLogoCharset,
 
 	// bgmap spec
 	VUEngineLogoMap,
@@ -79,14 +79,14 @@ TextureROMSpec VUENGINE_LOGO_TX =
 	false,
 };
 
-BgmapSpriteROMSpec VUENGINE_LOGO_IM_SPRITE =
+BgmapSpriteROMSpec VUEngineLogoSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&VUENGINE_LOGO_TX,
+		(TextureSpec*)&VUEngineLogoTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec VUENGINE_LOGO_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const VUENGINE_LOGO_IM_SPRITES[] =
+BgmapSpriteROMSpec* const VUEngineLogoSprites[] =
 {
-	&VUENGINE_LOGO_IM_SPRITE,
+	&VUEngineLogoSprite,
 	NULL
 };
 
-EntityROMSpec VUENGINE_LOGO_IM =
+EntityROMSpec VUEngineLogoEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec VUENGINE_LOGO_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)VUENGINE_LOGO_IM_SPRITES,
+	(SpriteSpec**)VUEngineLogoSprites,
 
 	// use z displacement in projection
 	false,

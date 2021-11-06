@@ -36,7 +36,7 @@ extern BYTE DoorBackMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec DOOR_OPENING_ANIM =
+AnimationFunctionROMSpec DoorOpeningAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -58,7 +58,7 @@ AnimationFunctionROMSpec DOOR_OPENING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec DOOR_CLOSING_ANIM =
+AnimationFunctionROMSpec DoorClosingAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -80,7 +80,7 @@ AnimationFunctionROMSpec DOOR_CLOSING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec DOOR_OPEN_ANIM =
+AnimationFunctionROMSpec DoorOpenAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -102,7 +102,7 @@ AnimationFunctionROMSpec DOOR_OPEN_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec DOOR_CLOSED_ANIM =
+AnimationFunctionROMSpec DoorClosedAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -124,7 +124,7 @@ AnimationFunctionROMSpec DOOR_CLOSED_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec DOOR_KEY_ANIM =
+AnimationFunctionROMSpec DOOR_KeyAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -146,7 +146,7 @@ AnimationFunctionROMSpec DOOR_KEY_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec DOOR_GOAL_ANIM =
+AnimationFunctionROMSpec DoorGoalAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -168,21 +168,21 @@ AnimationFunctionROMSpec DOOR_GOAL_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec DOOR_ANIM =
+AnimationDescriptionROMSpec DoorAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&DOOR_OPENING_ANIM,
-		(AnimationFunction*)&DOOR_CLOSING_ANIM,
-		(AnimationFunction*)&DOOR_OPEN_ANIM,
-		(AnimationFunction*)&DOOR_CLOSED_ANIM,
-		(AnimationFunction*)&DOOR_KEY_ANIM,
-		(AnimationFunction*)&DOOR_GOAL_ANIM,
+		(AnimationFunction*)&DoorOpeningAnimation,
+		(AnimationFunction*)&DoorClosingAnimation,
+		(AnimationFunction*)&DoorOpenAnimation,
+		(AnimationFunction*)&DoorClosedAnimation,
+		(AnimationFunction*)&DOOR_KeyAnimation,
+		(AnimationFunction*)&DoorGoalAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec DOOR_CH =
+CharSetROMSpec DoorCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -197,10 +197,10 @@ CharSetROMSpec DOOR_CH =
 	DoorTiles,
 };
 
-TextureROMSpec DOOR_TX =
+TextureROMSpec DoorTexture =
 {
 	// charset spec
-	(CharSetSpec*)&DOOR_CH,
+	(CharSetSpec*)&DoorCharset,
 
 	// bgmap spec
 	DoorMap,
@@ -232,14 +232,14 @@ TextureROMSpec DOOR_TX =
 	false,
 };
 
-BgmapSpriteROMSpec DOOR_SPRITE =
+BgmapSpriteROMSpec DoorSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&DOOR_TX,
+		(TextureSpec*)&DoorTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -259,13 +259,13 @@ BgmapSpriteROMSpec DOOR_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const DOOR_SPRITES[] =
+BgmapSpriteROMSpec* const DoorSprites[] =
 {
-	&DOOR_SPRITE,
+	&DoorSprite,
 	NULL
 };
 
-ShapeROMSpec DOOR_SHAPES[] =
+ShapeROMSpec DoorShapes[] =
 {
 	{
 		// shape
@@ -296,7 +296,7 @@ ShapeROMSpec DOOR_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-DoorROMSpec DOOR_EN =
+DoorROMSpec DoorEntity =
 {
 	{
 		// class allocator
@@ -312,13 +312,13 @@ DoorROMSpec DOOR_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)DOOR_SPRITES,
+		(SpriteSpec**)DoorSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_SHAPES,
+		(ShapeSpec*)DoorShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -332,13 +332,13 @@ DoorROMSpec DOOR_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DOOR_ANIM,
+	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
 	"Closed",
 };
 
-LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_EN =
+LayerSwitchDoorROMSpec LayerSwitchDoorEntity =
 {
 	{
 		// class allocator
@@ -354,13 +354,13 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)DOOR_SPRITES,
+		(SpriteSpec**)DoorSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_SHAPES,
+		(ShapeSpec*)DoorShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -374,14 +374,14 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DOOR_ANIM,
+	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
 	"Closed",
 };
 
 
-GoalDoorROMSpec GOAL_DOOR_EN =
+GoalDoorROMSpec GoalDoorEntity =
 {
 	{
 		// class allocator
@@ -397,13 +397,13 @@ GoalDoorROMSpec GOAL_DOOR_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)DOOR_SPRITES,
+		(SpriteSpec**)DoorSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_SHAPES,
+		(ShapeSpec*)DoorShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -417,13 +417,13 @@ GoalDoorROMSpec GOAL_DOOR_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DOOR_ANIM,
+	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
 	"Open",
 };
 
-KeyDoorROMSpec KEY_DOOR_EN =
+KeyDoorROMSpec KeyDoorEntity =
 {
 	{
 		// class allocator
@@ -439,13 +439,13 @@ KeyDoorROMSpec KEY_DOOR_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)DOOR_SPRITES,
+		(SpriteSpec**)DoorSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_SHAPES,
+		(ShapeSpec*)DoorShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -459,20 +459,20 @@ KeyDoorROMSpec KEY_DOOR_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DOOR_ANIM,
+	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
 	"Closed",
 };
 
-BgmapSpriteROMSpec AFFINE_DOOR_SPRITE =
+BgmapSpriteROMSpec AFFINE_DoorSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&DOOR_TX,
+		(TextureSpec*)&DoorTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -492,13 +492,13 @@ BgmapSpriteROMSpec AFFINE_DOOR_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const AFFINE_DOOR_SPRITES[] =
+BgmapSpriteROMSpec* const AFFINE_DoorSprites[] =
 {
-	&AFFINE_DOOR_SPRITE,
+	&AFFINE_DoorSprite,
 	NULL
 };
 
-DoorROMSpec AFFINE_DOOR_EN =
+DoorROMSpec AFFINE_DoorEntity =
 {
 	{
 		// class allocator
@@ -514,13 +514,13 @@ DoorROMSpec AFFINE_DOOR_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)AFFINE_DOOR_SPRITES,
+		(SpriteSpec**)AFFINE_DoorSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_SHAPES,
+		(ShapeSpec*)DoorShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -534,13 +534,13 @@ DoorROMSpec AFFINE_DOOR_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DOOR_ANIM,
+	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
 	"Closed",
 };
 
-CharSetROMSpec DOOR_BACK_CH =
+CharSetROMSpec DoorBackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -555,10 +555,10 @@ CharSetROMSpec DOOR_BACK_CH =
 	DoorBackTiles,
 };
 
-TextureROMSpec DOOR_BACK_TX =
+TextureROMSpec DoorBackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&DOOR_BACK_CH,
+	(CharSetSpec*)&DoorBackCharset,
 
 	// bgmap spec
 	DoorBackMap,
@@ -590,14 +590,14 @@ TextureROMSpec DOOR_BACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec DOOR_BACK_SPRITE =
+BgmapSpriteROMSpec DoorBackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&DOOR_BACK_TX,
+		(TextureSpec*)&DoorBackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -617,13 +617,13 @@ BgmapSpriteROMSpec DOOR_BACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const DOOR_BACK_SPRITES[] =
+BgmapSpriteROMSpec* const DoorBackSprites[] =
 {
-	&DOOR_BACK_SPRITE,
+	&DoorBackSprite,
 	NULL
 };
 
-DoorROMSpec DOOR_BACK_EN =
+DoorROMSpec DoorBackEntity =
 {
 	{
 		// class allocator
@@ -639,13 +639,13 @@ DoorROMSpec DOOR_BACK_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)DOOR_BACK_SPRITES,
+		(SpriteSpec**)DoorBackSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_SHAPES,
+		(ShapeSpec*)DoorShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -659,13 +659,13 @@ DoorROMSpec DOOR_BACK_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DOOR_ANIM,
+	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
 	"Closed",
 };
 
-LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_EN =
+LayerSwitchDoorROMSpec LayerSwitchDoorBackEntity =
 {
 	{
 		// class allocator
@@ -681,13 +681,13 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)DOOR_BACK_SPRITES,
+		(SpriteSpec**)DoorBackSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)DOOR_SHAPES,
+		(ShapeSpec*)DoorShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -701,7 +701,7 @@ LayerSwitchDoorROMSpec LAYER_SWITCH_DOOR_BACK_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DOOR_ANIM,
+	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
 	"Open",

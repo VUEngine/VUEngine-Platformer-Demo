@@ -13,7 +13,7 @@
 //                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec FLAG_GERMANY_EN;
+extern EntitySpec FlagGermanyEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ const LangROMSpec GermanLanguage =
 	"Deutsch",
 
 	// flag entity
-	&FLAG_GERMANY_EN,
+	&FlagGermanyEntity,
 	
 	// strings
 	(const char**)GermanLanguageStrings

@@ -29,7 +29,7 @@ extern BYTE CannonBallMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec CANNON_BALL_FLY_ANIM =
+AnimationFunctionROMSpec CannonBallFlyAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -51,16 +51,16 @@ AnimationFunctionROMSpec CANNON_BALL_FLY_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec CANNON_BALL_ANIM =
+AnimationDescriptionROMSpec CannonBallAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&CANNON_BALL_FLY_ANIM,
+		(AnimationFunction*)&CannonBallFlyAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec CANNON_BALL_CH =
+CharSetROMSpec CannonBallCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -75,10 +75,10 @@ CharSetROMSpec CANNON_BALL_CH =
 	CannonBallTiles,
 };
 
-TextureROMSpec CANNON_BALL_TX =
+TextureROMSpec CannonBallTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CANNON_BALL_CH,
+	(CharSetSpec*)&CannonBallCharset,
 
 	// bgmap spec
 	CannonBallMap,
@@ -110,14 +110,14 @@ TextureROMSpec CANNON_BALL_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CANNON_BALL_SPRITE =
+BgmapSpriteROMSpec CannonBallSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CANNON_BALL_TX,
+		(TextureSpec*)&CannonBallTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -137,13 +137,13 @@ BgmapSpriteROMSpec CANNON_BALL_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CANNON_BALL_SPRITES[] =
+BgmapSpriteROMSpec* const CannonBallSprites[] =
 {
-	&CANNON_BALL_SPRITE,
+	&CannonBallSprite,
 	NULL
 };
 
-ShapeROMSpec CANNON_BALL_AC_SHAPES[] =
+ShapeROMSpec CannonBallShapes[] =
 {
 	{
 		// shape
@@ -174,7 +174,7 @@ ShapeROMSpec CANNON_BALL_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-CannonBallROMSpec CANNON_BALL_AC =
+CannonBallROMSpec CannonBallEntity =
 {
 	{
 		{
@@ -191,13 +191,13 @@ CannonBallROMSpec CANNON_BALL_AC =
 			NULL,
 
 			// sprites
-			(SpriteSpec**)CANNON_BALL_SPRITES,
+			(SpriteSpec**)CannonBallSprites,
 
 			// use z displacement in projection
 			false,
 
 			// collision shapes
-			(ShapeSpec*)CANNON_BALL_AC_SHAPES,
+			(ShapeSpec*)CannonBallShapes,
 
 			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
@@ -211,7 +211,7 @@ CannonBallROMSpec CANNON_BALL_AC =
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&CANNON_BALL_ANIM,
+		(AnimationDescription*)&CannonBallAnimation,
 
 		// initial animation
 		NULL
@@ -227,9 +227,9 @@ CannonBallROMSpec CANNON_BALL_AC =
 	__NO_AXIS
 };
 
-PositionedEntityROMSpec CANNON_BALL =
+PositionedEntityROMSpec CannonBallPositionedEntity =
 {
-	(EntitySpec*)&CANNON_BALL_AC,
+	(EntitySpec*)&CannonBallEntity,
 	{0, 0, -SORT_INCREMENT, 0},
 	0,
 	NULL,

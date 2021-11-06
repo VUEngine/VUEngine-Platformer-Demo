@@ -37,7 +37,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMSpec TITLE_SCREEN_STAGE_ST;
+extern StageROMSpec TitleScreenStage;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ void TitleScreenState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&TITLE_SCREEN_STAGE_ST, NULL, true, false);
+	GameState::loadStage(this, (StageSpec*)&TitleScreenStage, NULL, true, false);
 
 	if(this->optionsSelector)
 	{

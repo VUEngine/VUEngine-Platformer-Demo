@@ -28,7 +28,7 @@ extern BYTE Level_1_Main_1_Back_1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_MAIN_1_BACK_1_CH =
+CharSetROMSpec Level1Main1Back1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -43,10 +43,10 @@ CharSetROMSpec LEVEL_1_MAIN_1_BACK_1_CH =
 	Level_1_Main_1_BackTiles,
 };
 
-TextureROMSpec LEVEL_1_MAIN_1_BACK_1_TX =
+TextureROMSpec Level1Main1Back1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_BACK_1_CH,
+	(CharSetSpec*)&Level1Main1Back1Charset,
 
 	// bgmap spec
 	Level_1_Main_1_Back_1Map,
@@ -78,14 +78,14 @@ TextureROMSpec LEVEL_1_MAIN_1_BACK_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_BACK_1_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1Back1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_BACK_1_TX,
+		(TextureSpec*)&Level1Main1Back1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -105,13 +105,13 @@ BgmapSpriteROMSpec LEVEL_1_MAIN_1_BACK_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_MAIN_1_BACK_1_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Main1Back1Sprites[] =
 {
-	&LEVEL_1_MAIN_1_BACK_1_IM_SPRITE,
+	&Level1Main1Back1Sprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_MAIN_1_BACK_1_IM =
+EntityROMSpec Level1Main1Back1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -126,7 +126,7 @@ EntityROMSpec LEVEL_1_MAIN_1_BACK_1_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_MAIN_1_BACK_1_IM_SPRITES,
+	(SpriteSpec**)Level1Main1Back1Sprites,
 
 	// use z displacement in projection
 	false,

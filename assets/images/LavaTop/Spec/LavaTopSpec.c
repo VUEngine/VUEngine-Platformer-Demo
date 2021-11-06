@@ -31,7 +31,7 @@ extern BYTE LavaTopMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec LAVA_TOP_ANIM_1 =
+AnimationFunctionROMSpec LavaTopAnim1 =
 {
 	// number of frames of this animation function
 	9,
@@ -54,16 +54,16 @@ AnimationFunctionROMSpec LAVA_TOP_ANIM_1 =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec LAVA_TOP_ANIM =
+AnimationDescriptionROMSpec LavaTopAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&LAVA_TOP_ANIM_1,
+		(AnimationFunction*)&LavaTopAnim1,
 		NULL,
 	}
 };
 
-CharSetROMSpec LAVA_TOP_CH =
+CharSetROMSpec LavaTopCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -78,10 +78,10 @@ CharSetROMSpec LAVA_TOP_CH =
 	LavaTopTiles,
 };
 
-TextureROMSpec LAVA_TOP_TX =
+TextureROMSpec LavaTopTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LAVA_TOP_CH,
+	(CharSetSpec*)&LavaTopCharset,
 
 	// bgmap spec
 	LavaTopMap,
@@ -113,14 +113,14 @@ TextureROMSpec LAVA_TOP_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LAVA_TOP_SPRITE =
+BgmapSpriteROMSpec LavaTopSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&LAVA_TOP_TX,
+		(TextureSpec*)&LavaTopTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -140,13 +140,13 @@ BgmapSpriteROMSpec LAVA_TOP_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LAVA_TOP_SPRITES[] =
+BgmapSpriteROMSpec* const LavaTopSprites[] =
 {
-	&LAVA_TOP_SPRITE,
+	&LavaTopSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec LAVA_TOP_EN =
+AnimatedEntityROMSpec LavaTopEntity =
 {
 	{
 		// class allocator
@@ -162,7 +162,7 @@ AnimatedEntityROMSpec LAVA_TOP_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)LAVA_TOP_SPRITES,
+		(SpriteSpec**)LavaTopSprites,
 
 		// use z displacement in projection
 		false,
@@ -182,7 +182,7 @@ AnimatedEntityROMSpec LAVA_TOP_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&LAVA_TOP_ANIM,
+	(AnimationDescription*)&LavaTopAnimation,
 
 	// initial animation
 	"Lava",

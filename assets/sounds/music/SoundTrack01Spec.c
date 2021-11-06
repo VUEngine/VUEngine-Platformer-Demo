@@ -39,7 +39,7 @@ const uint16 Soundtrack01Track2[] =
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-SoundChannelConfigurationROM SOUNDTRACK_01_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM Soundtrack01Channel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -78,7 +78,7 @@ SoundChannelConfigurationROM SOUNDTRACK_01_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelConfigurationROM SOUNDTRACK_01_CHANNEL_2_CONFIGURATION =
+SoundChannelConfigurationROM Soundtrack01Channel2Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -117,10 +117,10 @@ SoundChannelConfigurationROM SOUNDTRACK_01_CHANNEL_2_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM SOUNDTRACK_01_CHANNEL_1 =
+SoundChannelROM Soundtrack01Channel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&SOUNDTRACK_01_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&Soundtrack01Channel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -132,10 +132,10 @@ SoundChannelROM SOUNDTRACK_01_CHANNEL_1 =
 };
 
 
-SoundChannelROM SOUNDTRACK_01_CHANNEL_2 =
+SoundChannelROM Soundtrack01Channel2 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&SOUNDTRACK_01_CHANNEL_2_CONFIGURATION,
+	(SoundChannelConfiguration*)&Soundtrack01Channel2Configuration,
 
 	/// Length (PCM)
 	0,
@@ -146,14 +146,14 @@ SoundChannelROM SOUNDTRACK_01_CHANNEL_2 =
 	}
 };
 
-SoundChannelROM* SOUNDTRACK_01_CHANNELS[] =
+SoundChannelROM* Soundtrack01Channels[] =
 {
-	&SOUNDTRACK_01_CHANNEL_1,
-	&SOUNDTRACK_01_CHANNEL_2,
+	&Soundtrack01Channel1,
+	&Soundtrack01Channel2,
 	NULL
 };
 
-SoundROM SOUNDTRACK_01 =
+SoundROM Soundtrack01 =
 {
 	/// Name
 	"some soundtrack",
@@ -165,5 +165,5 @@ SoundROM SOUNDTRACK_01 =
 	5000,
 
 	/// Tracks
-	(SoundChannel**)SOUNDTRACK_01_CHANNELS
+	(SoundChannel**)Soundtrack01Channels
 };

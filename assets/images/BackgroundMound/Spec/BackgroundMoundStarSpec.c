@@ -31,7 +31,7 @@ extern BYTE BackgroundMoundStarMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec STAR_STILL_ANIM =
+AnimationFunctionROMSpec StarStillAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -53,7 +53,7 @@ AnimationFunctionROMSpec STAR_STILL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec STAR_FLASH_ANIM =
+AnimationFunctionROMSpec StarFlashAnimation =
 {
 	// number of frames of this animation function
 	6,
@@ -75,17 +75,17 @@ AnimationFunctionROMSpec STAR_FLASH_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec STAR_ANIM =
+AnimationDescriptionROMSpec StarAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&STAR_STILL_ANIM,
-		(AnimationFunction*)&STAR_FLASH_ANIM,
+		(AnimationFunction*)&StarStillAnimation,
+		(AnimationFunction*)&StarFlashAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec STAR_CH =
+CharSetROMSpec StarCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -100,10 +100,10 @@ CharSetROMSpec STAR_CH =
 	BackgroundMoundStarTiles,
 };
 
-TextureROMSpec STAR_TX =
+TextureROMSpec StarTexture =
 {
 	// charset spec
-	(CharSetSpec*)&STAR_CH,
+	(CharSetSpec*)&StarCharset,
 
 	// bgmap spec
 	BackgroundMoundStarMap,
@@ -135,14 +135,14 @@ TextureROMSpec STAR_TX =
 	false,
 };
 
-ObjectSpriteROMSpec STAR_SPRITE =
+ObjectSpriteROMSpec StarSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&STAR_TX,
+		(TextureSpec*)&StarTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -159,13 +159,13 @@ ObjectSpriteROMSpec STAR_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const STAR_SPRITES[] =
+ObjectSpriteROMSpec* const StarSprites[] =
 {
-	&STAR_SPRITE,
+	&StarSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec STAR_EN =
+AnimatedEntityROMSpec StarEntity =
 {
 	{
 		// class allocator
@@ -181,7 +181,7 @@ AnimatedEntityROMSpec STAR_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)STAR_SPRITES,
+		(SpriteSpec**)StarSprites,
 
 		// use z displacement in projection
 		false,
@@ -201,7 +201,7 @@ AnimatedEntityROMSpec STAR_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&STAR_ANIM,
+	(AnimationDescription*)&StarAnimation,
 
 	// initial animation
 	"Flash",

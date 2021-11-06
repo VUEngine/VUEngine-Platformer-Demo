@@ -4,7 +4,7 @@
  <properties>
   <property name="declaration" value="NULL"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
-  <property name="stage.assets.bgm" value="KRISSE_BGM"/>
+  <property name="stage.assets.bgm" value="KrisseBgm"/>
   <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGFont"/>
   <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
@@ -63,17 +63,17 @@
  <tileset firstgid="64" name="Other" tilewidth="288" tileheight="56" tilecount="2" columns="0">
   <tile id="2">
    <properties>
-    <property name="charsetName" value="LOGO_L_CH, LOGO_R_CH, LOGO_OUTLINE_L_CH, LOGO_OUTLINE_R_CH"/>
-    <property name="entityName" value="LOGO_IM"/>
-    <property name="textureName" value="LOGO_L_TX, LOGO_R_TX, LOGO_OUTLINE_L_TX, LOGO_OUTLINE_R_TX"/>
+    <property name="charsetName" value="LogoLCharset, LogoRCharset, LogoOutlineLCharset, LogoOutlineRCharset"/>
+    <property name="entityName" value="LogoEntity"/>
+    <property name="textureName" value="LogoLTexture, LogoRTexture, LogoOutlineLTexture, LogoOutlineRTexture"/>
    </properties>
    <image width="288" height="56" source="../../images/Stages/TitleScreenStage/Other/Preview/PlatformerDemoLogo.png"/>
   </tile>
   <tile id="3">
    <properties>
-    <property name="charsetName" value="VUENGINE_LOGO_CH"/>
-    <property name="entityName" value="VUENGINE_LOGO_IM"/>
-    <property name="textureName" value="VUENGINE_LOGO_TX"/>
+    <property name="charsetName" value="VUEngineLogoCharset"/>
+    <property name="entityName" value="VUEngineLogoEntity"/>
+    <property name="textureName" value="VUEngineLogoTexture"/>
    </properties>
    <image width="96" height="16" source="../../images/Stages/TitleScreenStage/Other/Preview/VUEngineLogo.png"/>
   </tile>

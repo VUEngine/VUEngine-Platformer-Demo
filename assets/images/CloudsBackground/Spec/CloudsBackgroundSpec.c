@@ -29,7 +29,7 @@ extern BYTE CloudsBackgroundMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CLOUDS_BACKGROUND_CH =
+CharSetROMSpec CloudsBackgroundCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec CLOUDS_BACKGROUND_CH =
 	CloudsBackgroundTiles,
 };
 
-TextureROMSpec CLOUDS_BACKGROUND_TX =
+TextureROMSpec CloudsBackgroundTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CLOUDS_BACKGROUND_CH,
+	(CharSetSpec*)&CloudsBackgroundCharset,
 
 	// bgmap spec
 	CloudsBackgroundMap,
@@ -79,7 +79,7 @@ TextureROMSpec CLOUDS_BACKGROUND_TX =
 	false,
 };
 
-AwesomeCloudBgmapSpriteROMSpec CLOUDS_BACKGROUND_SPRITE =
+AwesomeCloudBgmapSpriteROMSpec CloudsBackgroundSprite =
 {
 	{
 		{
@@ -87,7 +87,7 @@ AwesomeCloudBgmapSpriteROMSpec CLOUDS_BACKGROUND_SPRITE =
 			__TYPE(AwesomeCloudBgmapSprite),
 
 			// texture spec
-			(TextureSpec*)&CLOUDS_BACKGROUND_TX,
+			(TextureSpec*)&CloudsBackgroundTexture,
 
 			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 			__TRANSPARENCY_NONE,
@@ -113,13 +113,13 @@ AwesomeCloudBgmapSpriteROMSpec CLOUDS_BACKGROUND_SPRITE =
 	/// Y Displacement each render cycle
 	1
 };
-SpriteROMSpec* const CLOUDS_BACKGROUND_SPRITES[] =
+SpriteROMSpec* const CloudsBackgroundSprites[] =
 {
-	(SpriteROMSpec*)&CLOUDS_BACKGROUND_SPRITE,
+	(SpriteROMSpec*)&CloudsBackgroundSprite,
 	NULL
 };
 
-AwesomeCloudROMSpec CLOUDS_BACKGROUND_EN =
+AwesomeCloudROMSpec CloudsBackgroundEntity =
 {
 	// entity
 	{
@@ -136,7 +136,7 @@ AwesomeCloudROMSpec CLOUDS_BACKGROUND_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)CLOUDS_BACKGROUND_SPRITES,
+		(SpriteSpec**)CloudsBackgroundSprites,
 
 		// use z displacement in projection
 		false,

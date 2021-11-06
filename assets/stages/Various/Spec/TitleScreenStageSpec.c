@@ -25,57 +25,57 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec BUSH_EN;
-extern EntitySpec CLOUDS_IM;
-extern EntitySpec COIN_EN;
-extern EntitySpec GRASS_EN;
-extern EntitySpec HERO_BANDANA_EN;
-extern EntitySpec LOGO_IM;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec MOUND_BG_BACK_IM;
-extern EntitySpec MOUND_BG_CASTLE_FLAG_EN;
-extern EntitySpec MOUND_BG_CASTLE_IM;
-extern EntitySpec MOUND_BG_FRONT_IM;
-extern EntitySpec STAR_EN;
-extern EntitySpec TITLE_SCREEN_STAGE_MAIN_1_IM;
-extern EntitySpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM;
-extern EntitySpec VUENGINE_LOGO_IM;
-extern TextureSpec LOGO_L_TX;
-extern TextureSpec LOGO_OUTLINE_L_TX;
-extern TextureSpec LOGO_OUTLINE_R_TX;
-extern TextureSpec LOGO_R_TX;
-extern EntitySpec CLOUDS_BACKGROUND_EN;
+extern EntitySpec BushEntity;
+extern EntitySpec CloudsEntity;
+extern EntitySpec CoinEntity;
+extern EntitySpec GrassEntity;
+extern EntitySpec HeroBandanaEntity;
+extern EntitySpec LogoEntity;
+extern EntitySpec LowPowerIndicatorEntity;
+extern EntitySpec MoundBgBackEntity;
+extern EntitySpec MoundBgCastleFlagEntity;
+extern EntitySpec MoundBgCastleEntity;
+extern EntitySpec MoundBgFrontEntity;
+extern EntitySpec StarEntity;
+extern EntitySpec TitleScreenStageMain1Entity;
+extern EntitySpec TitleScreenStageMainFront1Entity;
+extern EntitySpec VUEngineLogoEntity;
+extern TextureSpec LogoLTexture;
+extern TextureSpec LogoOutlineLTexture;
+extern TextureSpec LogoOutlineRTexture;
+extern TextureSpec LogoRTexture;
+extern EntitySpec CloudsBackgroundEntity;
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec TitleScreenStageEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
-//	{&CLOUDS_BACKGROUND_EN, 				{192, 112 - 112/2 - 12, LAYER_3, 0}, 		0, NULL, NULL, NULL, true}, // Front
-	{&MOUND_BG_FRONT_IM, 					{  0, 136, LAYER_2, 0}, 		0, NULL, NULL, NULL, false}, // Front
-	{&GRASS_EN, 							{ 32, 152, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Grass
-	{&COIN_EN, 								{ 56, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
-	{&COIN_EN, 								{ 72, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
-	{&TITLE_SCREEN_STAGE_MAIN_1_IM, 		{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer
-	{&LOGO_IM, 								{192,  53, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Logo
-	{&VUENGINE_LOGO_IM, 					{192,  18, LAYER_1, 0}, 		0, NULL, NULL, NULL, false}, // VUEngine
-	{&HERO_BANDANA_EN, 						{192, 157, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Hero
-	{&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM, 	{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer Front
-	{&CLOUDS_IM, 							{194, 128, LAYER_4, 0}, 		0, NULL, NULL, NULL, false}, // Clouds
-	{&MOUND_BG_BACK_IM, 					{280,  72, LAYER_5, 0}, 		0, NULL, NULL, NULL, false}, // Mountains
-	{&MOUND_BG_CASTLE_IM, 					{300, 104, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle
-	{&MOUND_BG_CASTLE_FLAG_EN, 				{274,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag L
-	{&MOUND_BG_CASTLE_FLAG_EN, 				{304,  95, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag M
-	{&MOUND_BG_CASTLE_FLAG_EN, 				{334,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag R
-	{&STAR_EN, 								{392,  16, LAYER_5 - 1, 0},		0, NULL, NULL, NULL, false}, // Star
-	{&BUSH_EN, 								{368, 148, LAYER_0, 0},			0, NULL, NULL, NULL, false}, // Bush
+	{&LowPowerIndicatorEntity, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+//	{&CloudsBackgroundEntity, 				{192, 112 - 112/2 - 12, LAYER_3, 0}, 		0, NULL, NULL, NULL, true}, // Front
+	{&MoundBgFrontEntity, 					{  0, 136, LAYER_2, 0}, 		0, NULL, NULL, NULL, false}, // Front
+	{&GrassEntity, 							{ 32, 152, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Grass
+	{&CoinEntity, 								{ 56, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
+	{&CoinEntity, 								{ 72, 134, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Coin
+	{&TitleScreenStageMain1Entity, 		{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer
+	{&LogoEntity, 								{192,  53, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Logo
+	{&VUEngineLogoEntity, 					{192,  18, LAYER_1, 0}, 		0, NULL, NULL, NULL, false}, // VUEngine
+	{&HeroBandanaEntity, 						{192, 157, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Hero
+	{&TitleScreenStageMainFront1Entity, 	{192, 168, LAYER_0, 0}, 		0, NULL, NULL, NULL, false}, // Main Layer Front
+	{&CloudsEntity, 							{194, 128, LAYER_4, 0}, 		0, NULL, NULL, NULL, false}, // Clouds
+	{&MoundBgBackEntity, 					{280,  72, LAYER_5, 0}, 		0, NULL, NULL, NULL, false}, // Mountains
+	{&MoundBgCastleEntity, 					{300, 104, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle
+	{&MoundBgCastleFlagEntity, 				{274,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag L
+	{&MoundBgCastleFlagEntity, 				{304,  95, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag M
+	{&MoundBgCastleFlagEntity, 				{334,  85, LAYER_2 + 32, 0}, 	0, NULL, NULL, NULL, false}, // Castle Flag R
+	{&StarEntity, 								{392,  16, LAYER_5 - 1, 0},		0, NULL, NULL, NULL, false}, // Star
+	{&BushEntity, 								{368, 148, LAYER_0, 0},			0, NULL, NULL, NULL, false}, // Bush
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec TitleScreenStageUiEntities[] =
 {
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -85,22 +85,22 @@ PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const TITLE_SCREEN_STAGE_ST_FONTS[] =
+FontROMSpec* const TitleScreenStageFonts[] =
 {
 	NULL
 };
 
-TextureSpec* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
+TextureSpec* const TitleScreenStageTextures[] =
 {
 	NULL
 };
 
 
-extern Sound SOUNDTRACK_01;
+extern Sound Soundtrack01;
 
-SoundROM* const TITLE_SCREEN_STAGE_ST_SOUNDS[] =
+SoundROM* const TitleScreenStageSounds[] =
 {
-	&SOUNDTRACK_01,
+	&Soundtrack01,
 	NULL
 };
 
@@ -109,7 +109,7 @@ SoundROM* const TITLE_SCREEN_STAGE_ST_SOUNDS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec TITLE_SCREEN_STAGE_ST =
+StageROMSpec TitleScreenStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -298,28 +298,28 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)TITLE_SCREEN_STAGE_ST_FONTS,
+		(FontSpec**)TitleScreenStageFonts,
 
 		// char sets to preload
 		(CharSetSpec**)NULL,
 
 		// textures to preload
-		(TextureSpec**)TITLE_SCREEN_STAGE_ST_TEXTURES,
+		(TextureSpec**)TitleScreenStageTextures,
 
 		// background sounds
-		(Sound**)TITLE_SCREEN_STAGE_ST_SOUNDS,
+		(Sound**)TitleScreenStageSounds,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)TITLE_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)TitleScreenStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)TITLE_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)TitleScreenStageEntities,
 	},
 
 	// post processing effects

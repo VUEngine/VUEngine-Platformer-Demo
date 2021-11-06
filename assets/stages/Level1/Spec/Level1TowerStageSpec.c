@@ -25,49 +25,49 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern SoundROM* const LEVEL_1_SOUNDS[];
+extern SoundROM* const Level1Sounds[];
 
-extern StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP;
+extern StageEntryPointROMSpec Level1MainTowerEntryPoint;
 extern BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat;
 
-extern EntitySpec BANDANA_EN;
-extern EntitySpec COIN_EN;
-extern EntitySpec COG_WHEEL_IM;
-extern EntitySpec COLLISION_CL;
-extern EntitySpec COLLISION_HIT_CL;
-extern EntitySpec COLLISION_TOP_CL;
-extern EntitySpec MANAGED_ENTITY;
-extern EntitySpec KEY_DOOR_EN;
-extern EntitySpec GOAL_DOOR_EN;
-extern EntitySpec GRASS_EN;
-extern EntitySpec GUI_EN;
-extern EntitySpec HERO_AC;
-extern EntitySpec LAVA_EN;
-extern EntitySpec LAVA_TOP_EN;
-extern EntitySpec LAVA_TRIGGER_EN;
-extern EntitySpec LEVEL_1_TOWER_MAIN_1_IM;
-extern EntitySpec LEVEL_1_TOWER_MAIN_2_IM;
-extern EntitySpec LEVEL_1_TOWER_MAIN_BACK_IM;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec MANAGED_ENTITY;
-extern EntitySpec MOVING_PLATFORM_V6_AC;
-extern EntitySpec SAW_BLADE_H8_AC;
-extern EntitySpec SNAIL_8_AC;
-extern EntitySpec TORCH_EN;
-extern EntitySpec TORCH_OFF_IM;
-extern EntitySpec TORCH_LIGHT_EN;
-extern EntitySpec DARKNESS_OVERLAY_IM;
-extern EntitySpec TORCH_SMOKE_PS;
+extern EntitySpec BandanaEntity;
+extern EntitySpec CoinEntity;
+extern EntitySpec CogWheelEntity;
+extern EntitySpec CollisionCl;
+extern EntitySpec CollisionHitCl;
+extern EntitySpec CollisionTopCl;
+extern EntitySpec ManagedEntity;
+extern EntitySpec KeyDoorEntity;
+extern EntitySpec GoalDoorEntity;
+extern EntitySpec GrassEntity;
+extern EntitySpec GuiEntity;
+extern EntitySpec HeroEntity;
+extern EntitySpec LavaEntity;
+extern EntitySpec LavaTopEntity;
+extern EntitySpec LavaTriggerEntity;
+extern EntitySpec Level1TowerMain1Entity;
+extern EntitySpec Level1TowerMain2Entity;
+extern EntitySpec Level1TowerMainBackEntity;
+extern EntitySpec LowPowerIndicatorEntity;
+extern EntitySpec ManagedEntity;
+extern EntitySpec MovingPlatformV6Entity;
+extern EntitySpec SawBladeH8Entity;
+extern EntitySpec Snail8Entity;
+extern EntitySpec TorchEntity;
+extern EntitySpec TorchOffEntity;
+extern EntitySpec TorchLightEntity;
+extern EntitySpec DarknessOverlayEntity;
+extern EntitySpec TorchSmokeParticleSystem;
 
-extern TextureSpec COG_WHEEL_TX;
-extern TextureSpec DOOR_TX;
-extern TextureSpec GUI_TX;
-extern TextureSpec LAVA_TOP_TX;
-extern TextureSpec LAVA_TX;
-extern TextureSpec LEVEL_1_TOWER_BACK_1_TX;
-extern TextureSpec LEVEL_1_TOWER_MAIN_1_TX;
-extern TextureSpec LEVEL_1_TOWER_MAIN_BACK_1_TX;
-extern TextureSpec DARKNESS_OVERLAY_TX;
+extern TextureSpec CogWheelTexture;
+extern TextureSpec DoorTexture;
+extern TextureSpec GuiTexture;
+extern TextureSpec LavaTopTexture;
+extern TextureSpec LavaTexture;
+extern TextureSpec Level1TowerBack1Texture;
+extern TextureSpec Level1TowerMain1Texture;
+extern TextureSpec Level1TowerMainBack1Texture;
+extern TextureSpec DarknessOverlayTexture;
 
 extern Size collision_2_64_4;
 extern Size collision_4_2_4;
@@ -101,80 +101,80 @@ extern Size collision_48_28_4;
 // Don't forget to place the NULL markers at the end of each array. It's the only way the engine has to
 // know that it must stop reading the stage's/ui's textures and entities.
 
-PositionedEntityROMSpec LAVA_CHILD_ENTITIES[] =
+PositionedEntityROMSpec LavaChildEntities[] =
 {
-	{&LAVA_TOP_EN, 					{0, -104, -1, 0}, 0, NULL, NULL, NULL, false},
-	{&DARKNESS_OVERLAY_IM, 			{0, -460, -4, 0}, 0, NULL, NULL, NULL, false},
+	{&LavaTopEntity, 					{0, -104, -1, 0}, 0, NULL, NULL, NULL, false},
+	{&DarknessOverlayEntity, 			{0, -460, -4, 0}, 0, NULL, NULL, NULL, false},
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_1_ENTITIES[] =
+PositionedEntityROMSpec Level1TowerMain1Entities[] =
 {
-	{&LEVEL_1_TOWER_MAIN_1_IM,		{   0, 	  0, 	0, -SORT_INCREMENT}, 0, "Main_1", NULL, NULL, false},
-	{&TORCH_LIGHT_EN,				{-107, 	136, 	-SORT_INCREMENT, 0}, 0, NULL, NULL, NULL, false},
-	{&TORCH_EN,						{-107, 	136, 	LAYER_0_DECORATIONS - LAYER_0_FOREGROUND, LAYER_0_DECORATIONS_DISPLACEMENT - LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
-//	{&TORCH_LIGHT_EN,				{  12, 	136, 	-SORT_INCREMENT, 0}, 0, NULL, NULL, NULL, false},
-	{&TORCH_OFF_IM,					{  12, 	140, 	LAYER_0_DECORATIONS - LAYER_0_FOREGROUND, LAYER_0_DECORATIONS_DISPLACEMENT - LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
-
-	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
-};
-
-PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_1_COLLISIONS_1[] =
-{
-	{&COLLISION_CL,					{-185,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
-	{&COLLISION_CL,					{ 183,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
-	{&COLLISION_CL,					{-129,	288, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom left floor
-	{&COLLISION_CL,					{ 301,	256, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom right floor
-	{&COLLISION_CL,					{ 159,	144, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // step stone bottom right
-	{&COLLISION_CL,					{  79,	 72, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone
+	{&Level1TowerMain1Entity,		{   0, 	  0, 	0, -SORT_INCREMENT}, 0, "Main_1", NULL, NULL, false},
+	{&TorchLightEntity,				{-107, 	136, 	-SORT_INCREMENT, 0}, 0, NULL, NULL, NULL, false},
+	{&TorchEntity,						{-107, 	136, 	LAYER_0_DECORATIONS - LAYER_0_FOREGROUND, LAYER_0_DECORATIONS_DISPLACEMENT - LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+//	{&TorchLightEntity,				{  12, 	136, 	-SORT_INCREMENT, 0}, 0, NULL, NULL, NULL, false},
+	{&TorchOffEntity,					{  12, 	140, 	LAYER_0_DECORATIONS - LAYER_0_FOREGROUND, LAYER_0_DECORATIONS_DISPLACEMENT - LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_1_COLLISIONS_2[] =
+PositionedEntityROMSpec Level1TowerMain1Collisions1[] =
 {
-	{&COLLISION_CL,					{-173, 	  32,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 2nd level floor left
-	{&COLLISION_CL,					{  29,	 -96,	0, 0}, 0, NULL, NULL, (void*)&collision_32_4_4, false}, // 3rd level floor right
-	{&COLLISION_CL,					{ 159,	 -40,	0, 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // small stone right under 3rd
-	{&COLLISION_CL,					{ -81,	-176,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 4th level floor left
-	{&COLLISION_CL,					{ -83,	-248,	0, 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // floor below spikes
-	{&COLLISION_CL,					{-137, 	-216,	0, 0}, 0, NULL, NULL, (void*)&collision_14_6_4, false}, // left wall below spikes
+	{&CollisionCl,					{-185,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
+	{&CollisionCl,					{ 183,	  0, 	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
+	{&CollisionCl,					{-129,	288, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom left floor
+	{&CollisionCl,					{ 301,	256, 	0, 0}, 0, NULL, NULL, (void*)&collision_48_28_4, false}, // bottom right floor
+	{&CollisionCl,					{ 159,	144, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // step stone bottom right
+	{&CollisionCl,					{  79,	 72, 	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_2_COLLISIONS_1[] =
+PositionedEntityROMSpec Level1TowerMain1Collisions2[] =
 {
-	{&COLLISION_CL,					{-185, 	  0,	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
-	{&COLLISION_CL,					{ 183,	  0,	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
-	{&COLLISION_CL,					{-105,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_6_4_4, false}, // block between spikes left
-	{&COLLISION_CL,					{ -17,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_4_4_4, false}, // block between spikes middle
-	{&COLLISION_CL,					{  77,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_8_4_4, false}, // block between spikes right
-	{&COLLISION_HIT_CL,				{-105,  256,	0, 0}, 0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes
-	{&COLLISION_HIT_CL,				{ -17,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes
+	{&CollisionCl,					{-173, 	  32,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 2nd level floor left
+	{&CollisionCl,					{  29,	 -96,	0, 0}, 0, NULL, NULL, (void*)&collision_32_4_4, false}, // 3rd level floor right
+	{&CollisionCl,					{ 159,	 -40,	0, 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // small stone right under 3rd
+	{&CollisionCl,					{ -81,	-176,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // 4th level floor left
+	{&CollisionCl,					{ -83,	-248,	0, 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // floor below spikes
+	{&CollisionCl,					{-137, 	-216,	0, 0}, 0, NULL, NULL, (void*)&collision_14_6_4, false}, // left wall below spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_2_COLLISIONS_2[] =
+PositionedEntityROMSpec Level1TowerMain2Collisions1[] =
 {
-	{&COLLISION_CL,					{-177,	200,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // stepstone left
-	{&COLLISION_CL,					{ -97,	168,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 1
-	{&COLLISION_CL,					{ -17,	136,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 2
-	{&COLLISION_CL,					{  63,	104,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 3
-	{&COLLISION_CL,					{ 191,	 72,	0, 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // stepstone right
-	{&COLLISION_CL,					{ -81,	-16,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // floor above floating platforms
+	{&CollisionCl,					{-185, 	  0,	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer left wall
+	{&CollisionCl,					{ 183,	  0,	0, 0}, 0, NULL, NULL, (void*)&collision_2_64_4, false}, // outer right wall
+	{&CollisionCl,					{-105,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_6_4_4, false}, // block between spikes left
+	{&CollisionCl,					{ -17,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_4_4_4, false}, // block between spikes middle
+	{&CollisionCl,					{  77,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_8_4_4, false}, // block between spikes right
+	{&CollisionHitCl,				{-105,  256,	0, 0}, 0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes
+	{&CollisionHitCl,				{ -17,	256,	0, 0}, 0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
+PositionedEntityROMSpec Level1TowerMain2Collisions2[] =
 {
-	{&COLLISION_TOP_CL,				{ -81,	-152,	0, 0}, 0, NULL, NULL, (void*)&collision_6_2_4, false}, // top room one way
-	{&COLLISION_CL,					{ 143,	-144,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // top room right floor
-	{&COLLISION_CL,					{-145,   -80,	0, 0}, 0, NULL, NULL, (void*)&collision_8_20_4, false}, // top room left floor
-	{&COLLISION_CL,					{  -1,	-232,	0, 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // top room ceiling
-	{&COLLISION_CL,					{  79,	-192,	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // top room right wall
+	{&CollisionCl,					{-177,	200,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // stepstone left
+	{&CollisionCl,					{ -97,	168,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 1
+	{&CollisionCl,					{ -17,	136,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 2
+	{&CollisionCl,					{  63,	104,	0, 0}, 0, NULL, NULL, (void*)&collision_4_2_4, false}, // floating stone 3
+	{&CollisionCl,					{ 191,	 72,	0, 0}, 0, NULL, NULL, (void*)&collision_16_2_4, false}, // stepstone right
+	{&CollisionCl,					{ -81,	-16,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // floor above floating platforms
+
+	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
+};
+
+PositionedEntityROMSpec Level1TowerMain2Collisions3[] =
+{
+	{&CollisionTopCl,				{ -81,	-152,	0, 0}, 0, NULL, NULL, (void*)&collision_6_2_4, false}, // top room one way
+	{&CollisionCl,					{ 143,	-144,	0, 0}, 0, NULL, NULL, (void*)&collision_48_4_4, false}, // top room right floor
+	{&CollisionCl,					{-145,   -80,	0, 0}, 0, NULL, NULL, (void*)&collision_8_20_4, false}, // top room left floor
+	{&CollisionCl,					{  -1,	-232,	0, 0}, 0, NULL, NULL, (void*)&collision_48_2_4, false}, // top room ceiling
+	{&CollisionCl,					{  79,	-192,	0, 0}, 0, NULL, NULL, (void*)&collision_4_8_4, false}, // top room right wall
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -184,85 +184,85 @@ PositionedEntityROMSpec LEVEL_1_TOWER_MAIN_2_COLLISIONS_3[] =
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec LEVEL_1_TOWER_STAGE_ST_CHILDREN[] =
+PositionedEntityROMSpec Level1TowerStageChildren[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this spec
-	{&LEVEL_1_TOWER_MAIN_BACK_IM,	{192,	LEVEL_1_TOWER_HEIGHT, 32, LAYER_0_BACKGROUND_DISPLACEMENT + 1}, 0, "BkgImg", NULL, NULL, true},
-	{&LAVA_EN,						{190,	LEVEL_1_TOWER_HEIGHT + 64, 	LAYER_0, 0}, 0, "Lava", (struct PositionedEntity*)LAVA_CHILD_ENTITIES, NULL, false},
+	{&Level1TowerMainBackEntity,	{192,	LEVEL_1_TOWER_HEIGHT, 32, LAYER_0_BACKGROUND_DISPLACEMENT + 1}, 0, "BkgImg", NULL, NULL, true},
+	{&LavaEntity,						{190,	LEVEL_1_TOWER_HEIGHT + 64, 	LAYER_0, 0}, 0, "Lava", (struct PositionedEntity*)LavaChildEntities, NULL, false},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
 
 	// part 1
-	{&KEY_DOOR_EN,					{48, 	LEVEL_1_TOWER_HEIGHT - 96, 		LAYER_0_DOORS - LAYER_0_FOREGROUND, LAYER_0_DOORS_DISPLACEMENT - LAYER_0_FOREGROUND_DISPLACEMENT}, 0, "EntryDoor", NULL, (void*)&LEVEL_1_MAIN_TOWER_EP, false},
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 256,		LAYER_0_FOREGROUND, 0}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_ENTITIES, NULL, false},
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 257,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 257,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_1_COLLISIONS_2, NULL, false},
-	{&TORCH_SMOKE_PS,				{204,	LEVEL_1_TOWER_HEIGHT - 126, 	LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&KeyDoorEntity,					{48, 	LEVEL_1_TOWER_HEIGHT - 96, 		LAYER_0_DOORS - LAYER_0_FOREGROUND, LAYER_0_DOORS_DISPLACEMENT - LAYER_0_FOREGROUND_DISPLACEMENT}, 0, "EntryDoor", NULL, (void*)&Level1MainTowerEntryPoint, false},
+	{&ManagedEntity,				{192,	LEVEL_1_TOWER_HEIGHT - 256,		LAYER_0_FOREGROUND, 0}, 0, NULL, (struct PositionedEntity*)Level1TowerMain1Entities, NULL, false},
+	{&ManagedEntity,				{192,	LEVEL_1_TOWER_HEIGHT - 257,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)Level1TowerMain1Collisions1, NULL, false},
+	{&ManagedEntity,				{192,	LEVEL_1_TOWER_HEIGHT - 257,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)Level1TowerMain1Collisions2, NULL, false},
+	{&TorchSmokeParticleSystem,				{204,	LEVEL_1_TOWER_HEIGHT - 126, 	LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 
-	{&LAVA_TRIGGER_EN,				{174,	LEVEL_1_TOWER_HEIGHT - 130, 	LAYER_0, 0}, 0, NULL, NULL, NULL, false},
-	{&COG_WHEEL_IM,					{310,	LEVEL_1_TOWER_HEIGHT - 40, 		LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT + 1}, 0, NULL, NULL, NULL, false},
+	{&LavaTriggerEntity,				{174,	LEVEL_1_TOWER_HEIGHT - 130, 	LAYER_0, 0}, 0, NULL, NULL, NULL, false},
+	{&CogWheelEntity,					{310,	LEVEL_1_TOWER_HEIGHT - 40, 		LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT + 1}, 0, NULL, NULL, NULL, false},
 
-	{&COIN_EN, 						{132,	LEVEL_1_TOWER_HEIGHT - 92, 		LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "48", NULL, NULL, false},
-	{&COIN_EN, 						{148,	LEVEL_1_TOWER_HEIGHT - 92, 		LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "49", NULL, NULL, false},
-	{&COIN_EN, 						{164,	LEVEL_1_TOWER_HEIGHT - 92, 		LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "50", NULL, NULL, false},
-	{&COIN_EN, 						{180,	LEVEL_1_TOWER_HEIGHT - 92, 		LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "51", NULL, NULL, false},
+	{&CoinEntity, 						{132,	LEVEL_1_TOWER_HEIGHT - 92, 		LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "48", NULL, NULL, false},
+	{&CoinEntity, 						{148,	LEVEL_1_TOWER_HEIGHT - 92, 		LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "49", NULL, NULL, false},
+	{&CoinEntity, 						{164,	LEVEL_1_TOWER_HEIGHT - 92, 		LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "50", NULL, NULL, false},
+	{&CoinEntity, 						{180,	LEVEL_1_TOWER_HEIGHT - 92, 		LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "51", NULL, NULL, false},
 
-	{&GRASS_EN, 					{324,	LEVEL_1_TOWER_HEIGHT - 121, 	LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&GrassEntity, 					{324,	LEVEL_1_TOWER_HEIGHT - 121, 	LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&COIN_EN, 						{264,	LEVEL_1_TOWER_HEIGHT - 204, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "52", NULL, NULL, false},
-	{&COIN_EN, 						{280,	LEVEL_1_TOWER_HEIGHT - 204, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "53", NULL, NULL, false},
+	{&CoinEntity, 						{264,	LEVEL_1_TOWER_HEIGHT - 204, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "52", NULL, NULL, false},
+	{&CoinEntity, 						{280,	LEVEL_1_TOWER_HEIGHT - 204, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "53", NULL, NULL, false},
 
-	{&SNAIL_8_AC, 					{132,	LEVEL_1_TOWER_HEIGHT - 248, 	LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&Snail8Entity, 					{132,	LEVEL_1_TOWER_HEIGHT - 248, 	LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&MOVING_PLATFORM_V6_AC,		{60,	LEVEL_1_TOWER_HEIGHT - 300, 	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&MovingPlatformV6Entity,		{60,	LEVEL_1_TOWER_HEIGHT - 300, 	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&BANDANA_EN, 					{296,	LEVEL_1_TOWER_HEIGHT - 317, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "3", NULL, NULL, false},
-	{&COIN_EN, 						{312,	LEVEL_1_TOWER_HEIGHT - 317, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "54", NULL, NULL, false},
-	{&COIN_EN, 						{328,	LEVEL_1_TOWER_HEIGHT - 317, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "55", NULL, NULL, false},
+	{&BandanaEntity, 					{296,	LEVEL_1_TOWER_HEIGHT - 317, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "3", NULL, NULL, false},
+	{&CoinEntity, 						{312,	LEVEL_1_TOWER_HEIGHT - 317, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "54", NULL, NULL, false},
+	{&CoinEntity, 						{328,	LEVEL_1_TOWER_HEIGHT - 317, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "55", NULL, NULL, false},
 
-	{&SAW_BLADE_H8_AC, 				{200,	LEVEL_1_TOWER_HEIGHT - 370, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
-	{&SAW_BLADE_H8_AC, 				{224,	LEVEL_1_TOWER_HEIGHT - 450, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&SawBladeH8Entity, 				{200,	LEVEL_1_TOWER_HEIGHT - 370, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&SawBladeH8Entity, 				{224,	LEVEL_1_TOWER_HEIGHT - 450, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&COIN_EN, 						{120,	LEVEL_1_TOWER_HEIGHT - 464, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "56", NULL, NULL, false},
-	{&COIN_EN, 						{136,	LEVEL_1_TOWER_HEIGHT - 464, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "57", NULL, NULL, false},
+	{&CoinEntity, 						{120,	LEVEL_1_TOWER_HEIGHT - 464, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "56", NULL, NULL, false},
+	{&CoinEntity, 						{136,	LEVEL_1_TOWER_HEIGHT - 464, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "57", NULL, NULL, false},
 
-	{&MOVING_PLATFORM_V6_AC,		{336,	LEVEL_1_TOWER_HEIGHT - 424, 	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&MovingPlatformV6Entity,		{336,	LEVEL_1_TOWER_HEIGHT - 424, 	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
 	// part 2
-	{&LEVEL_1_TOWER_MAIN_2_IM,		{192,	LEVEL_1_TOWER_HEIGHT - 768, 	LAYER_0_FOREGROUND, 0}, 0, "Main_2", NULL, NULL, false},
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 769,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_1, NULL, false},
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 769,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_2, NULL, false},
+	{&Level1TowerMain2Entity,		{192,	LEVEL_1_TOWER_HEIGHT - 768, 	LAYER_0_FOREGROUND, 0}, 0, "Main_2", NULL, NULL, false},
+	{&ManagedEntity,				{192,	LEVEL_1_TOWER_HEIGHT - 769,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)Level1TowerMain2Collisions1, NULL, false},
+	{&ManagedEntity,				{192,	LEVEL_1_TOWER_HEIGHT - 769,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)Level1TowerMain2Collisions2, NULL, false},
 
-	{&COIN_EN, 						{88,	LEVEL_1_TOWER_HEIGHT - 623, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "58", NULL, NULL, false},
-	{&COIN_EN, 						{104,	LEVEL_1_TOWER_HEIGHT - 623, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "59", NULL, NULL, false},
+	{&CoinEntity, 						{88,	LEVEL_1_TOWER_HEIGHT - 623, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "58", NULL, NULL, false},
+	{&CoinEntity, 						{104,	LEVEL_1_TOWER_HEIGHT - 623, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "59", NULL, NULL, false},
 
-	{&COIN_EN, 						{168,	LEVEL_1_TOWER_HEIGHT - 655, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "60", NULL, NULL, false},
-	{&COIN_EN, 						{184,	LEVEL_1_TOWER_HEIGHT - 655, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "61", NULL, NULL, false},
+	{&CoinEntity, 						{168,	LEVEL_1_TOWER_HEIGHT - 655, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "60", NULL, NULL, false},
+	{&CoinEntity, 						{184,	LEVEL_1_TOWER_HEIGHT - 655, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "61", NULL, NULL, false},
 
-	{&COIN_EN, 						{248,	LEVEL_1_TOWER_HEIGHT - 687, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "62", NULL, NULL, false},
-	{&COIN_EN, 						{264,	LEVEL_1_TOWER_HEIGHT - 687, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "63", NULL, NULL, false},
+	{&CoinEntity, 						{248,	LEVEL_1_TOWER_HEIGHT - 687, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "62", NULL, NULL, false},
+	{&CoinEntity, 						{264,	LEVEL_1_TOWER_HEIGHT - 687, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "63", NULL, NULL, false},
 
-	{&MOVING_PLATFORM_V6_AC,		{336,	LEVEL_1_TOWER_HEIGHT - 760,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&MovingPlatformV6Entity,		{336,	LEVEL_1_TOWER_HEIGHT - 760,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&SNAIL_8_AC, 					{210,	LEVEL_1_TOWER_HEIGHT - 808, 	LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&Snail8Entity, 					{210,	LEVEL_1_TOWER_HEIGHT - 808, 	LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&MOVING_PLATFORM_V6_AC,		{112,	LEVEL_1_TOWER_HEIGHT - 852,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
-	{&COIN_EN, 						{40, 	LEVEL_1_TOWER_HEIGHT - 942, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "64", NULL, NULL, false},
-	{&GOAL_DOOR_EN, 				{208,	LEVEL_1_TOWER_HEIGHT - 944, 	LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "GoalDoor", NULL, NULL, false},
-	{&TORCH_OFF_IM,					{176,	LEVEL_1_TOWER_HEIGHT - 948, 	LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
-	{&TORCH_SMOKE_PS,				{176,	LEVEL_1_TOWER_HEIGHT - 958, 	LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&TORCH_OFF_IM,					{240,	LEVEL_1_TOWER_HEIGHT - 948, 	LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&MovingPlatformV6Entity,		{112,	LEVEL_1_TOWER_HEIGHT - 852,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&CoinEntity, 						{40, 	LEVEL_1_TOWER_HEIGHT - 942, 	LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "64", NULL, NULL, false},
+	{&GoalDoorEntity, 				{208,	LEVEL_1_TOWER_HEIGHT - 944, 	LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "GoalDoor", NULL, NULL, false},
+	{&TorchOffEntity,					{176,	LEVEL_1_TOWER_HEIGHT - 948, 	LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&TorchSmokeParticleSystem,				{176,	LEVEL_1_TOWER_HEIGHT - 958, 	LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&TorchOffEntity,					{240,	LEVEL_1_TOWER_HEIGHT - 948, 	LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&MANAGED_ENTITY,				{192,	LEVEL_1_TOWER_HEIGHT - 769,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)LEVEL_1_TOWER_MAIN_2_COLLISIONS_3, NULL, false},
+	{&ManagedEntity,				{192,	LEVEL_1_TOWER_HEIGHT - 769,		LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 0, NULL, (struct PositionedEntity*)Level1TowerMain2Collisions3, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN[] =
+PositionedEntityROMSpec Level1TowerStageUiChildren[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
-	{&GUI_EN, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
+	{&LowPowerIndicatorEntity, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
+	{&GuiEntity, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -272,7 +272,7 @@ PositionedEntityROMSpec LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN[] =
 //											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const LEVEL_1_TOWER_STAGE_ST_FONTS[] =
+FontROMSpec* const Level1TowerStageFonts[] =
 {
 	&PlatformerFont,
 	&AstonishSFont,
@@ -281,24 +281,24 @@ FontROMSpec* const LEVEL_1_TOWER_STAGE_ST_FONTS[] =
 	NULL
 };
 
-CharSetROMSpec* const LEVEL_1_TOWER_STAGE_ST_CHARSETS[] =
+CharSetROMSpec* const Level1TowerStageCharsets[] =
 {
 	NULL
 };
 
-TextureSpec* const LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
+TextureSpec* const Level1TowerStageTextures[] =
 {
-/*	&COG_WHEEL_TX,
-	&LEVEL_1_TOWER_BACK_1_TX,
-	&LEVEL_1_TOWER_MAIN_BACK_1_TX,
-	&LEVEL_1_TOWER_MAIN_BACK_1_TX,
-	&LEVEL_1_TOWER_MAIN_1_TX,
-	&LEVEL_1_TOWER_MAIN_1_TX,
-	&DOOR_TX,
-	&GUI_TX,
-	&LAVA_TX,
-	&LAVA_TOP_TX,
-	&DARKNESS_OVERLAY_TX,
+/*	&CogWheelTexture,
+	&Level1TowerBack1Texture,
+	&Level1TowerMainBack1Texture,
+	&Level1TowerMainBack1Texture,
+	&Level1TowerMain1Texture,
+	&Level1TowerMain1Texture,
+	&DoorTexture,
+	&GuiTexture,
+	&LavaTexture,
+	&LavaTopTexture,
+	&DarknessOverlayTexture,
 */
 	NULL
 };
@@ -308,7 +308,7 @@ TextureSpec* const LEVEL_1_TOWER_STAGE_ST_TEXTURES[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec LEVEL_1_TOWER_STAGE_ST =
+StageROMSpec Level1TowerStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -497,13 +497,13 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)LEVEL_1_TOWER_STAGE_ST_FONTS,
+		(FontSpec**)Level1TowerStageFonts,
 
 		// char sets to preload
-		(CharSetSpec**)LEVEL_1_TOWER_STAGE_ST_CHARSETS,
+		(CharSetSpec**)Level1TowerStageCharsets,
 
 		// textures to preload
-		(TextureSpec**)LEVEL_1_TOWER_STAGE_ST_TEXTURES,
+		(TextureSpec**)Level1TowerStageTextures,
 
 		// background sounds
 		(Sound**)NULL,
@@ -513,12 +513,12 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 	{
 		// ui
 		{
-			(PositionedEntity*)LEVEL_1_TOWER_STAGE_ST_UI_CHILDREN,
+			(PositionedEntity*)Level1TowerStageUiChildren,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)LEVEL_1_TOWER_STAGE_ST_CHILDREN,
+		(PositionedEntity*)Level1TowerStageChildren,
 	},
 
 	// post processing effects
@@ -530,10 +530,10 @@ StageROMSpec LEVEL_1_TOWER_STAGE_ST =
 //												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMSpec LEVEL1_TOWER_STAGE_MAIN_EP =
+StageEntryPointROMSpec Level1TowerStageMainEntryPoint =
 {
 	// the stage to load
-	(StageSpec*)&LEVEL_1_TOWER_STAGE_ST,
+	(StageSpec*)&Level1TowerStage,
 
 	// name of the entity to start at
 	"EntryDoor",

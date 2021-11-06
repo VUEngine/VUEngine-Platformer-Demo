@@ -25,18 +25,18 @@
 extern BYTE Level_1_Tower_MainTiles[];
 extern BYTE Level_1_Tower_Main_2Map[];
 
-extern BgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_BACK_2_IM_SPRITE;
-extern CharSetROMSpec LEVEL_1_TOWER_MAIN_CH;
+extern BgmapSpriteROMSpec Level1TowerMainBack2Sprite;
+extern CharSetROMSpec Level1TowerMainCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec LEVEL_1_TOWER_MAIN_2_TX =
+TextureROMSpec Level1TowerMain2Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_TOWER_MAIN_CH,
+	(CharSetSpec*)&Level1TowerMainCharset,
 
 	// bgmap spec
 	Level_1_Tower_Main_2Map,
@@ -68,13 +68,13 @@ TextureROMSpec LEVEL_1_TOWER_MAIN_2_TX =
 	false,
 };
 
-TextureROMSpec* const LEVEL_1_TOWER_MAIN_2_IM_TEXTURES[] =
+TextureROMSpec* const Level1TowerMain2Textures[] =
 {
-	(TextureSpec*)&LEVEL_1_TOWER_MAIN_2_TX,
+	(TextureSpec*)&Level1TowerMain2Texture,
 	NULL
 };
 
-MBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_2_IM_SPRITE =
+MBgmapSpriteROMSpec Level1TowerMain2Sprite =
 {
 	{
 		{
@@ -102,7 +102,7 @@ MBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_2_IM_SPRITE =
 		__WORLD_ON,
 	},
 
-	(TextureSpec**)LEVEL_1_TOWER_MAIN_2_IM_TEXTURES,
+	(TextureSpec**)Level1TowerMain2Textures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -121,7 +121,7 @@ MBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_2_IM_SPRITE =
 	0,
 };
 
-HbiasMaskMBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE =
+HbiasMaskMBgmapSpriteROMSpec Level1TowerMain2HotAirSprite =
 {
 	{
 		{
@@ -150,7 +150,7 @@ HbiasMaskMBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE =
 			__WORLD_ON,
 		},
 
-		(TextureSpec**)LEVEL_1_TOWER_MAIN_2_IM_TEXTURES,
+		(TextureSpec**)Level1TowerMain2Textures,
 
 		// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 		// textures must be 64x64 for anything other than 1x1
@@ -179,14 +179,14 @@ HbiasMaskMBgmapSpriteROMSpec LEVEL_1_TOWER_MAIN_2_HOT_AIR_IM_SPRITE =
 	0
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_TOWER_MAIN_2_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1TowerMain2Sprites[] =
 {
-	(BgmapSpriteROMSpec*)&LEVEL_1_TOWER_MAIN_2_IM_SPRITE,
-	(BgmapSpriteROMSpec*)&LEVEL_1_TOWER_MAIN_BACK_2_IM_SPRITE,
+	(BgmapSpriteROMSpec*)&Level1TowerMain2Sprite,
+	(BgmapSpriteROMSpec*)&Level1TowerMainBack2Sprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_TOWER_MAIN_2_IM =
+EntityROMSpec Level1TowerMain2Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -201,7 +201,7 @@ EntityROMSpec LEVEL_1_TOWER_MAIN_2_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_TOWER_MAIN_2_IM_SPRITES,
+	(SpriteSpec**)Level1TowerMain2Sprites,
 
 	// use z displacement in projection
 	false,

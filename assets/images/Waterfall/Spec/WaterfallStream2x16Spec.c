@@ -31,7 +31,7 @@ extern BYTE WaterfallStream2x16Map[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec WATERFALL_STREAM_2x16_DEFAULT_ANIM =
+AnimationFunctionROMSpec WaterfallStream2x16DefaultAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec WATERFALL_STREAM_2x16_DEFAULT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec WATERFALL_STREAM_2x16_ANIM =
+AnimationDescriptionROMSpec WaterfallStream2x16Animation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&WATERFALL_STREAM_2x16_DEFAULT_ANIM,
+		(AnimationFunction*)&WaterfallStream2x16DefaultAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec WATERFALL_STREAM_2x16_CH =
+CharSetROMSpec WaterfallStream2x16Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec WATERFALL_STREAM_2x16_CH =
 	WaterfallStream2x16Tiles,
 };
 
-TextureROMSpec WATERFALL_STREAM_2x16_TX =
+TextureROMSpec WaterfallStream2x16Texture =
 {
 	// charset spec
-	(CharSetSpec*)&WATERFALL_STREAM_2x16_CH,
+	(CharSetSpec*)&WaterfallStream2x16Charset,
 
 	// bgmap spec
 	WaterfallStream2x16Map,
@@ -112,14 +112,14 @@ TextureROMSpec WATERFALL_STREAM_2x16_TX =
 	false,
 };
 
-BgmapSpriteROMSpec WATERFALL_STREAM_2x16_SPRITE =
+BgmapSpriteROMSpec WaterfallStream2x16Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&WATERFALL_STREAM_2x16_TX,
+		(TextureSpec*)&WaterfallStream2x16Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_EVEN,
@@ -144,13 +144,13 @@ BgmapSpriteROMSpec WATERFALL_STREAM_2x16_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const WATERFALL_STREAM_2x16_SPRITES[] =
+BgmapSpriteROMSpec* const WaterfallStream2x16Sprites[] =
 {
-	&WATERFALL_STREAM_2x16_SPRITE,
+	&WaterfallStream2x16Sprite,
 	NULL
 };
 
-AnimatedEntityROMSpec WATERFALL_STREAM_2x16_EN =
+AnimatedEntityROMSpec WaterfallStream2x16Entity =
 {
 	{
 		// class allocator
@@ -166,7 +166,7 @@ AnimatedEntityROMSpec WATERFALL_STREAM_2x16_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)WATERFALL_STREAM_2x16_SPRITES,
+		(SpriteSpec**)WaterfallStream2x16Sprites,
 
 		// use z displacement in projection
 		false,
@@ -186,7 +186,7 @@ AnimatedEntityROMSpec WATERFALL_STREAM_2x16_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&WATERFALL_STREAM_2x16_ANIM,
+	(AnimationDescription*)&WaterfallStream2x16Animation,
 
 	// initial animation
 	"Default",

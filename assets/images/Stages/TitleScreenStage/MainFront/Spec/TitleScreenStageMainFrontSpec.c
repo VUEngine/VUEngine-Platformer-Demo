@@ -29,7 +29,7 @@ extern BYTE TitleScreenStageMainFront1Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_CH =
+CharSetROMSpec TitleScreenStageMainFrontCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_CH =
 	TitleScreenStageMainFrontTiles,
 };
 
-TextureROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_TX =
+TextureROMSpec TitleScreenStageMainFront1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&TITLE_SCREEN_STAGE_MAIN_FRONT_CH,
+	(CharSetSpec*)&TitleScreenStageMainFrontCharset,
 
 	// bgmap spec
 	TitleScreenStageMainFront1Map,
@@ -79,14 +79,14 @@ TextureROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITE =
+BgmapSpriteROMSpec TitleScreenStageMainFront1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&TITLE_SCREEN_STAGE_MAIN_FRONT_1_TX,
+		(TextureSpec*)&TitleScreenStageMainFront1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -110,13 +110,13 @@ BgmapSpriteROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITES[] =
+BgmapSpriteROMSpec* const TitleScreenStageMainFront1Sprites[] =
 {
-	&TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITE,
+	&TitleScreenStageMainFront1Sprite,
 	NULL
 };
 
-EntityROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM =
+EntityROMSpec TitleScreenStageMainFront1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -131,7 +131,7 @@ EntityROMSpec TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)TITLE_SCREEN_STAGE_MAIN_FRONT_1_IM_SPRITES,
+	(SpriteSpec**)TitleScreenStageMainFront1Sprites,
 
 	// use z displacement in projection
 	false,

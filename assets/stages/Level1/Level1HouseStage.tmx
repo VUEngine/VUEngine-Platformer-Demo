@@ -2,9 +2,9 @@
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="81">
  <properties>
-  <property name="declaration" value="StageEntryPointROMSpec LEVEL_1_MAIN_HOUSE_EP"/>
+  <property name="declaration" value="StageEntryPointROMSpec Level1MainHouseEntryPoint"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
-  <property name="stage.assets.bgm" value="KRISSE_BGM"/>
+  <property name="stage.assets.bgm" value="KrisseBgm"/>
   <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGuiFont, AstonishSFont"/>
   <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
@@ -63,17 +63,17 @@
  <tileset firstgid="64" name="Other" tilewidth="384" tileheight="224" tilecount="2" columns="0">
   <tile id="2">
    <properties>
-    <property name="charsetName" value="LEVEL_1_HOUSE_LIGHT_CH"/>
-    <property name="entityName" value="LEVEL_1_HOUSE_LIGHT_IM"/>
-    <property name="textureName" value="LEVEL_1_HOUSE_LIGHT_TX"/>
+    <property name="charsetName" value="Level1HouseLightCharset"/>
+    <property name="entityName" value="Level1HouseLightEntity"/>
+    <property name="textureName" value="Level1HouseLightTexture"/>
    </properties>
    <image width="56" height="40" source="../../images/Stages/Level1HouseStage/Preview/Level-1-House-Light.png"/>
   </tile>
   <tile id="3">
    <properties>
-    <property name="charsetName" value="LEVEL_1_HOUSE_MAIN_CH"/>
-    <property name="entityName" value="LEVEL_1_HOUSE_MAIN_IM"/>
-    <property name="textureName" value="LEVEL_1_HOUSE_MAIN_TX"/>
+    <property name="charsetName" value="Level1HouseMainCharset"/>
+    <property name="entityName" value="Level1HouseMainEntity"/>
+    <property name="textureName" value="Level1HouseMainTexture"/>
    </properties>
    <image width="384" height="224" source="../../images/Stages/Level1HouseStage/Preview/Level-1-House-Main.png"/>
   </tile>
@@ -114,7 +114,7 @@
   </object>
   <object id="63" name="Door" type="Entity" gid="21" x="136" y="160" width="24" height="32">
    <properties>
-    <property name="extraInfo" value="(void*)&amp;LEVEL_1_MAIN_HOUSE_EP"/>
+    <property name="extraInfo" value="(void*)&amp;Level1MainHouseEntryPoint"/>
     <property name="name" value="&quot;EntryDoor&quot;"/>
     <property name="position.z" value="LAYER_0_DOORS"/>
    </properties>

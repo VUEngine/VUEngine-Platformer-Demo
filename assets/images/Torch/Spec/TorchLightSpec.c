@@ -31,7 +31,7 @@ extern BYTE TorchLightMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec TORCH_LIGHT_DEFAULT_ANIM =
+AnimationFunctionROMSpec TorchLightDefaultAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec TORCH_LIGHT_DEFAULT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec TORCH_LIGHT_ANIM =
+AnimationDescriptionROMSpec TorchLightAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&TORCH_LIGHT_DEFAULT_ANIM,
+		(AnimationFunction*)&TorchLightDefaultAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec TORCH_LIGHT_CH =
+CharSetROMSpec TorchLightCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec TORCH_LIGHT_CH =
 	TorchLightTiles,
 };
 
-TextureROMSpec TORCH_LIGHT_TX =
+TextureROMSpec TorchLightTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TORCH_LIGHT_CH,
+	(CharSetSpec*)&TorchLightCharset,
 
 	// bgmap spec
 	TorchLightMap,
@@ -112,14 +112,14 @@ TextureROMSpec TORCH_LIGHT_TX =
 	false,
 };
 
-BgmapSpriteROMSpec TORCH_LIGHT_SPRITE =
+BgmapSpriteROMSpec TorchLightSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&TORCH_LIGHT_TX,
+		(TextureSpec*)&TorchLightTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_EVEN,
@@ -139,13 +139,13 @@ BgmapSpriteROMSpec TORCH_LIGHT_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const TORCH_LIGHT_SPRITES[] =
+BgmapSpriteROMSpec* const TorchLightSprites[] =
 {
-	&TORCH_LIGHT_SPRITE,
+	&TorchLightSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec TORCH_LIGHT_EN =
+AnimatedEntityROMSpec TorchLightEntity =
 {
 	{
 		// class allocator
@@ -161,7 +161,7 @@ AnimatedEntityROMSpec TORCH_LIGHT_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)TORCH_LIGHT_SPRITES,
+		(SpriteSpec**)TorchLightSprites,
 
 		// use z displacement in projection
 		false,
@@ -181,7 +181,7 @@ AnimatedEntityROMSpec TORCH_LIGHT_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&TORCH_LIGHT_ANIM,
+	(AnimationDescription*)&TorchLightAnimation,
 
 	// initial animation
 	"Default",

@@ -29,7 +29,7 @@ extern BYTE MovingPlatform4Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec MOVING_PLATFORM_MOVE_ANIM =
+AnimationFunctionROMSpec MovingPlatformMoveAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -51,16 +51,16 @@ AnimationFunctionROMSpec MOVING_PLATFORM_MOVE_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec MOVING_PLATFORM_ANIM =
+AnimationDescriptionROMSpec MovingPlatformAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&MOVING_PLATFORM_MOVE_ANIM,
+		(AnimationFunction*)&MovingPlatformMoveAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec MOVING_PLATFORM_CH =
+CharSetROMSpec MovingPlatformCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -75,10 +75,10 @@ CharSetROMSpec MOVING_PLATFORM_CH =
 	MovingPlatform4Tiles,
 };
 
-TextureROMSpec MOVING_PLATFORM_TX =
+TextureROMSpec MovingPlatformTexture =
 {
 	// charset spec
-	(CharSetSpec*)&MOVING_PLATFORM_CH,
+	(CharSetSpec*)&MovingPlatformCharset,
 
 	// bgmap spec
 	MovingPlatform4Map,
@@ -110,14 +110,14 @@ TextureROMSpec MOVING_PLATFORM_TX =
 	false,
 };
 
-BgmapSpriteROMSpec MOVING_PLATFORM_SPRITE =
+BgmapSpriteROMSpec MovingPlatformSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&MOVING_PLATFORM_TX,
+		(TextureSpec*)&MovingPlatformTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -137,13 +137,13 @@ BgmapSpriteROMSpec MOVING_PLATFORM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const MOVING_PLATFORM_SPRITES[] =
+BgmapSpriteROMSpec* const MovingPlatformSprites[] =
 {
-	&MOVING_PLATFORM_SPRITE,
+	&MovingPlatformSprite,
 	NULL
 };
 
-ShapeROMSpec MOVING_PLATFORM_V6_AC_SHAPES[] =
+ShapeROMSpec MovingPlatformV6Shapes[] =
 {
 	{
 		// shape
@@ -174,7 +174,7 @@ ShapeROMSpec MOVING_PLATFORM_V6_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec MovingPlatformV6PhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -192,7 +192,7 @@ PhysicalSpecificationROMSpec MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
+MovingEntityROMSpec MovingPlatformV6Entity =
 {
 	{
 		{
@@ -210,13 +210,13 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)MOVING_PLATFORM_SPRITES,
+				(SpriteSpec**)MovingPlatformSprites,
 
 				// use z displacement in projection
 	false,
 
 	// collision shapes
-				(ShapeSpec*)MOVING_PLATFORM_V6_AC_SHAPES,
+				(ShapeSpec*)MovingPlatformV6Shapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -226,11 +226,11 @@ MovingEntityROMSpec MOVING_PLATFORM_V6_AC =
 				kTypeMovingPlatform,
 
 				// physical specification
-				(PhysicalSpecification*)&MOVING_PLATFORM_V6_AC_PHYSICAL_PROPERTIES,
+				(PhysicalSpecification*)&MovingPlatformV6PhysicalProperties,
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&MOVING_PLATFORM_ANIM,
+			(AnimationDescription*)&MovingPlatformAnimation,
 
 			// initial animation
 			"Move"

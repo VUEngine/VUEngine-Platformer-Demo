@@ -30,7 +30,7 @@ extern BYTE CannonMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec CANNON_IDLE_ANIM =
+AnimationFunctionROMSpec CannonIdleAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -51,7 +51,7 @@ AnimationFunctionROMSpec CANNON_IDLE_ANIM =
 	"Idle",
 };
 
-AnimationFunctionROMSpec CANNON_SHOOT_ANIM =
+AnimationFunctionROMSpec CannonShootAnimation =
 {
 	// number of frames of this animation function
 	15,
@@ -73,17 +73,17 @@ AnimationFunctionROMSpec CANNON_SHOOT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec CANNON_ANIM =
+AnimationDescriptionROMSpec CannonAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&CANNON_IDLE_ANIM,
-		(AnimationFunction*)&CANNON_SHOOT_ANIM,
+		(AnimationFunction*)&CannonIdleAnimation,
+		(AnimationFunction*)&CannonShootAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec CANNON_CH =
+CharSetROMSpec CannonCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -98,10 +98,10 @@ CharSetROMSpec CANNON_CH =
 	CannonTiles,
 };
 
-TextureROMSpec CANNON_TX =
+TextureROMSpec CannonTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CANNON_CH,
+	(CharSetSpec*)&CannonCharset,
 
 	// bgmap spec
 	CannonMap,
@@ -133,14 +133,14 @@ TextureROMSpec CANNON_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CANNON_SPRITE =
+BgmapSpriteROMSpec CannonSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CANNON_TX,
+		(TextureSpec*)&CannonTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -160,13 +160,13 @@ BgmapSpriteROMSpec CANNON_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CANNON_SPRITES[] =
+BgmapSpriteROMSpec* const CannonSprites[] =
 {
-	&CANNON_SPRITE,
+	&CannonSprite,
 	NULL
 };
 
-ActorROMSpec CANNON_AC =
+ActorROMSpec CannonEntity =
 {
 	{
 		{
@@ -183,7 +183,7 @@ ActorROMSpec CANNON_AC =
 			NULL,
 
 			// sprites
-			(SpriteSpec**)CANNON_SPRITES,
+			(SpriteSpec**)CannonSprites,
 
 			// use z displacement in projection
 	false,
@@ -203,7 +203,7 @@ ActorROMSpec CANNON_AC =
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&CANNON_ANIM,
+		(AnimationDescription*)&CannonAnimation,
 
 		// initial animation
 		"Idle"

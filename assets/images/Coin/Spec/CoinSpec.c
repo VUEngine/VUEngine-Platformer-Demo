@@ -37,7 +37,7 @@ extern BYTE CoinBackSilhouetteMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec COIN_SPIN_ANIM =
+AnimationFunctionROMSpec CoinSpinAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -59,16 +59,16 @@ AnimationFunctionROMSpec COIN_SPIN_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec COIN_ANIM =
+AnimationDescriptionROMSpec CoinAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&COIN_SPIN_ANIM,
+		(AnimationFunction*)&CoinSpinAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec COIN_CH =
+CharSetROMSpec CoinCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -83,10 +83,10 @@ CharSetROMSpec COIN_CH =
 	CoinTiles,
 };
 
-TextureROMSpec COIN_TX =
+TextureROMSpec CoinTexture =
 {
 	// charset spec
-	(CharSetSpec*)&COIN_CH,
+	(CharSetSpec*)&CoinCharset,
 
 	// bgmap spec
 	CoinMap,
@@ -118,7 +118,7 @@ TextureROMSpec COIN_TX =
 	false,
 };
 
-CharSetROMSpec COIN_SILHOUETTE_CH =
+CharSetROMSpec CoinSilhouetteCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -133,10 +133,10 @@ CharSetROMSpec COIN_SILHOUETTE_CH =
 	CoinSilhouetteTiles,
 };
 
-TextureROMSpec COIN_SILHOUETTE_TX =
+TextureROMSpec CoinSilhouetteTexture =
 {
 	// charset spec
-	(CharSetSpec*)&COIN_SILHOUETTE_CH,
+	(CharSetSpec*)&CoinSilhouetteCharset,
 
 	// bgmap spec
 	CoinSilhouetteMap,
@@ -168,7 +168,7 @@ TextureROMSpec COIN_SILHOUETTE_TX =
 	false,
 };
 
-CharSetROMSpec AFFINE_COIN_CH =
+CharSetROMSpec AFFINE_CoinCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -183,10 +183,10 @@ CharSetROMSpec AFFINE_COIN_CH =
 	CoinTiles,
 };
 
-TextureROMSpec AFFINE_COIN_TX =
+TextureROMSpec AFFINE_CoinTexture =
 {
 	// charset spec
-	(CharSetSpec*)&AFFINE_COIN_CH,
+	(CharSetSpec*)&AFFINE_CoinCharset,
 
 	// bgmap spec
 	CoinMap,
@@ -218,7 +218,7 @@ TextureROMSpec AFFINE_COIN_TX =
 	false,
 };
 
-CharSetROMSpec COIN_BACK_CH =
+CharSetROMSpec CoinBackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -233,10 +233,10 @@ CharSetROMSpec COIN_BACK_CH =
 	CoinBackTiles,
 };
 
-TextureROMSpec COIN_BACK_TX =
+TextureROMSpec CoinBackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&COIN_BACK_CH,
+	(CharSetSpec*)&CoinBackCharset,
 
 	// bgmap spec
 	CoinBackMap,
@@ -268,7 +268,7 @@ TextureROMSpec COIN_BACK_TX =
 	false,
 };
 
-CharSetROMSpec COIN_BACK_SILHOUETTE_CH =
+CharSetROMSpec CoinBackSilhouetteCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -283,10 +283,10 @@ CharSetROMSpec COIN_BACK_SILHOUETTE_CH =
 	CoinBackSilhouetteTiles,
 };
 
-TextureROMSpec COIN_BACK_SILHOUETTE_TX =
+TextureROMSpec CoinBackSilhouetteTexture =
 {
 	// charset spec
-	(CharSetSpec*)&COIN_BACK_SILHOUETTE_CH,
+	(CharSetSpec*)&CoinBackSilhouetteCharset,
 
 	// bgmap spec
 	CoinBackSilhouetteMap,
@@ -322,14 +322,14 @@ TextureROMSpec COIN_BACK_SILHOUETTE_TX =
 //											OBJECT COIN
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMSpec COIN_SPRITE =
+ObjectSpriteROMSpec CoinSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&COIN_TX,
+		(TextureSpec*)&CoinTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -346,20 +346,20 @@ ObjectSpriteROMSpec COIN_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const COIN_SPRITES[] =
+ObjectSpriteROMSpec* const CoinSprites[] =
 {
-	&COIN_SPRITE,
+	&CoinSprite,
 	NULL
 };
 
-ObjectSpriteROMSpec COIN_SILHOUETTE_SPRITE =
+ObjectSpriteROMSpec CoinSilhouetteSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&COIN_SILHOUETTE_TX,
+		(TextureSpec*)&CoinSilhouetteTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -376,13 +376,13 @@ ObjectSpriteROMSpec COIN_SILHOUETTE_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const COIN_SILHOUETTE_SPRITES[] =
+ObjectSpriteROMSpec* const CoinSilhouetteSprites[] =
 {
-	&COIN_SILHOUETTE_SPRITE,
+	&CoinSilhouetteSprite,
 	NULL
 };
 
-ShapeROMSpec COIN_SHAPES[] =
+ShapeROMSpec CoinShapes[] =
 {
 	{
 		// shape
@@ -413,7 +413,7 @@ ShapeROMSpec COIN_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-CoinROMSpec COIN_EN =
+CoinROMSpec CoinEntity =
 {
 	{
 		// class allocator
@@ -429,13 +429,13 @@ CoinROMSpec COIN_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)COIN_SPRITES,
+		(SpriteSpec**)CoinSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)COIN_SHAPES,
+		(ShapeSpec*)CoinShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -449,13 +449,13 @@ CoinROMSpec COIN_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&COIN_ANIM,
+	(AnimationDescription*)&CoinAnimation,
 
 	// initial animation
 	"Spin",
 };
 
-CoinROMSpec COIN_SILHOUETTE_EN =
+CoinROMSpec CoinSilhouetteEntity =
 {
 	{
 		// class allocator
@@ -471,13 +471,13 @@ CoinROMSpec COIN_SILHOUETTE_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)COIN_SILHOUETTE_SPRITES,
+		(SpriteSpec**)CoinSilhouetteSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)COIN_SHAPES,
+		(ShapeSpec*)CoinShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -491,7 +491,7 @@ CoinROMSpec COIN_SILHOUETTE_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&COIN_ANIM,
+	(AnimationDescription*)&CoinAnimation,
 
 	// initial animation
 	"Spin",
@@ -502,14 +502,14 @@ CoinROMSpec COIN_SILHOUETTE_EN =
 //											OBJECT COIN BACKGROUND
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMSpec COIN_BACK_SPRITE =
+ObjectSpriteROMSpec CoinBackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&COIN_BACK_TX,
+		(TextureSpec*)&CoinBackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -526,20 +526,20 @@ ObjectSpriteROMSpec COIN_BACK_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const COIN_BACK_SPRITES[] =
+ObjectSpriteROMSpec* const CoinBackSprites[] =
 {
-	&COIN_BACK_SPRITE,
+	&CoinBackSprite,
 	NULL
 };
 
-ObjectSpriteROMSpec COIN_BACK_SILHOUETTE_SPRITE =
+ObjectSpriteROMSpec CoinBackSilhouetteSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&COIN_BACK_SILHOUETTE_TX,
+		(TextureSpec*)&CoinBackSilhouetteTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -556,14 +556,14 @@ ObjectSpriteROMSpec COIN_BACK_SILHOUETTE_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const COIN_BACK_SILHOUETTE_SPRITES[] =
+ObjectSpriteROMSpec* const CoinBackSilhouetteSprites[] =
 {
-	&COIN_BACK_SILHOUETTE_SPRITE,
+	&CoinBackSilhouetteSprite,
 	NULL
 };
 
 
-ShapeROMSpec COIN_BACK_SHAPES[] =
+ShapeROMSpec CoinBackShapes[] =
 {
 	{
 		// shape
@@ -594,7 +594,7 @@ ShapeROMSpec COIN_BACK_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-CoinROMSpec COIN_BACK_EN =
+CoinROMSpec CoinBackEntity =
 {
 	{
 		// class allocator
@@ -610,13 +610,13 @@ CoinROMSpec COIN_BACK_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)COIN_BACK_SPRITES,
+		(SpriteSpec**)CoinBackSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)COIN_BACK_SHAPES,
+		(ShapeSpec*)CoinBackShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -630,13 +630,13 @@ CoinROMSpec COIN_BACK_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&COIN_ANIM,
+	(AnimationDescription*)&CoinAnimation,
 
 	// initial animation
 	"Spin",
 };
 
-CoinROMSpec COIN_BACK_SILHOUETTE_EN =
+CoinROMSpec CoinBackSilhouetteEntity =
 {
 	{
 		// class allocator
@@ -652,13 +652,13 @@ CoinROMSpec COIN_BACK_SILHOUETTE_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)COIN_BACK_SILHOUETTE_SPRITES,
+		(SpriteSpec**)CoinBackSilhouetteSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)COIN_BACK_SHAPES,
+		(ShapeSpec*)CoinBackShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -672,7 +672,7 @@ CoinROMSpec COIN_BACK_SILHOUETTE_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&COIN_ANIM,
+	(AnimationDescription*)&CoinAnimation,
 
 	// initial animation
 	"Spin",

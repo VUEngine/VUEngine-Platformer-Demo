@@ -21,26 +21,26 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec CLOCK_EN;
-extern EntitySpec COIN_EN;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
+extern EntitySpec ClockEntity;
+extern EntitySpec CoinEntity;
+extern EntitySpec LowPowerIndicatorEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec LevelDoneScreenStageEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&LowPowerIndicatorEntity, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&COIN_EN,  {164, 106, -8, 0}, 0, NULL, NULL, NULL, false}, // Coin
-	{&CLOCK_EN, {164, 123, LAYER_0_ITEMS, 0}, 0, NULL, NULL, NULL, false}, // Clock
+	{&CoinEntity,  {164, 106, -8, 0}, 0, NULL, NULL, NULL, false}, // Coin
+	{&ClockEntity, {164, 123, LAYER_0_ITEMS, 0}, 0, NULL, NULL, NULL, false}, // Clock
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_DONE_SCREEN_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec LevelDoneScreenStageUiEntities[] =
 {
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -50,7 +50,7 @@ PositionedEntityROMSpec LEVEL_DONE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const LEVEL_DONE_SCREEN_STAGE_ST_FONTS[] =
+FontROMSpec* const LevelDoneScreenStageFonts[] =
 {
 	&PlatformerFont,
 	&PlatformerGuiFont,
@@ -64,7 +64,7 @@ FontROMSpec* const LEVEL_DONE_SCREEN_STAGE_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec LEVEL_DONE_SCREEN_STAGE_ST =
+StageROMSpec LevelDoneScreenStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -253,7 +253,7 @@ StageROMSpec LEVEL_DONE_SCREEN_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)LEVEL_DONE_SCREEN_STAGE_ST_FONTS,
+		(FontSpec**)LevelDoneScreenStageFonts,
 
 		// char sets to preload
 		(CharSetSpec**)NULL,
@@ -269,12 +269,12 @@ StageROMSpec LEVEL_DONE_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			(PositionedEntity*)LEVEL_DONE_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)LevelDoneScreenStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)LEVEL_DONE_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)LevelDoneScreenStageEntities,
 	},
 
 	// post processing effects

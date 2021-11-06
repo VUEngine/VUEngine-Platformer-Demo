@@ -1,7 +1,7 @@
 {
 	"id": "German",
 	"code": "de",
-	"flag": "FLAG_GERMANY_EN",
+	"flag": "FlagGermanyEntity",
 	"name": "Deutsch",
 	"order": 2,
 	"strings": {

@@ -28,7 +28,7 @@ extern BYTE BackgroundMoundCastleMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec MOUND_BG_CASTLE_CH =
+CharSetROMSpec MoundBgCastleCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -43,10 +43,10 @@ CharSetROMSpec MOUND_BG_CASTLE_CH =
 	BackgroundMoundCastleTiles,
 };
 
-TextureROMSpec MOUND_BG_CASTLE_TX =
+TextureROMSpec MoundBgCastleTexture =
 {
 	// charset spec
-	(CharSetSpec*)&MOUND_BG_CASTLE_CH,
+	(CharSetSpec*)&MoundBgCastleCharset,
 
 	// bgmap spec
 	BackgroundMoundCastleMap,
@@ -78,14 +78,14 @@ TextureROMSpec MOUND_BG_CASTLE_TX =
 	false,
 };
 
-BgmapSpriteROMSpec MOUND_BG_CASTLE_IM_SPRITE =
+BgmapSpriteROMSpec MoundBgCastleSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&MOUND_BG_CASTLE_TX,
+		(TextureSpec*)&MoundBgCastleTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -105,13 +105,13 @@ BgmapSpriteROMSpec MOUND_BG_CASTLE_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const MOUND_BG_CASTLE_IM_SPRITES[] =
+BgmapSpriteROMSpec* const MoundBgCastleSprites[] =
 {
-	&MOUND_BG_CASTLE_IM_SPRITE,
+	&MoundBgCastleSprite,
 	NULL
 };
 
-EntityROMSpec MOUND_BG_CASTLE_IM =
+EntityROMSpec MoundBgCastleEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -126,7 +126,7 @@ EntityROMSpec MOUND_BG_CASTLE_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)MOUND_BG_CASTLE_IM_SPRITES,
+	(SpriteSpec**)MoundBgCastleSprites,
 
 	// use z displacement in projection
 	false,

@@ -21,7 +21,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CollisionROMSpec COLLISION_HIT_CL =
+CollisionROMSpec CollisionHitCl =
 {
 	// class allocator
 	__TYPE(Collision),

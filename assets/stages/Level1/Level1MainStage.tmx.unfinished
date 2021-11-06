@@ -2,9 +2,9 @@
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="382" height="64" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="348">
  <properties>
-  <property name="declaration" value="StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP, BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat"/>
+  <property name="declaration" value="StageEntryPointROMSpec Level1MainTowerEntryPoint, BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
-  <property name="stage.assets.bgm" value="KRISSE_BGM"/>
+  <property name="stage.assets.bgm" value="KrisseBgm"/>
   <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGuiFont, AstonishSFont"/>
   <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
@@ -63,17 +63,17 @@
  <tileset firstgid="64" name="Other" tilewidth="224" tileheight="184" tilecount="2" columns="0">
   <tile id="5">
    <properties>
-    <property name="charsetName" value="LEVEL_1_HOUSE_CH"/>
-    <property name="entityName" value="LEVEL_1_HOUSE_IM"/>
-    <property name="textureName" value="LEVEL_1_HOUSE_TX"/>
+    <property name="charsetName" value="Level1HouseCharset"/>
+    <property name="entityName" value="Level1HouseEntity"/>
+    <property name="textureName" value="Level1HouseTexture"/>
    </properties>
    <image width="152" height="88" source="../../images/Stages/Level-1/Main-1/Other/Preview/Level-1-House.png"/>
   </tile>
   <tile id="6">
    <properties>
-    <property name="charsetName" value="LEVEL_1_TOWER_CH"/>
-    <property name="entityName" value="LEVEL_1_TOWER_IM"/>
-    <property name="textureName" value="LEVEL_1_TOWER_TX"/>
+    <property name="charsetName" value="Level1TowerCharset"/>
+    <property name="entityName" value="Level1TowerEntity"/>
+    <property name="textureName" value="Level1TowerTexture"/>
    </properties>
    <image width="224" height="184" source="../../images/Stages/Level-1/Main-1/Other/Preview/Level-1-Tower.png"/>
   </tile>

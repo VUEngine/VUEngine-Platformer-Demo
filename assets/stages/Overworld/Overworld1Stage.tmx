@@ -4,7 +4,7 @@
  <properties>
   <property name="declaration" value="NULL"/>
   <property name="include" value="Fonts.h, macros.h"/>
-  <property name="stage.assets.bgm" value="KRISSE_BGM"/>
+  <property name="stage.assets.bgm" value="KrisseBgm"/>
   <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGuiFont, AstonishSExtFont"/>
   <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
@@ -63,25 +63,25 @@
  <tileset firstgid="53" name="Overworld" tilewidth="384" tileheight="224" tilecount="4" columns="0">
   <tile id="9">
    <properties>
-    <property name="entityName" value="OVERWORLD_1_IM"/>
+    <property name="entityName" value="Overworld1Entity"/>
    </properties>
    <image width="384" height="224" source="../../images/Stages/Overworld/Overworld_1.png"/>
   </tile>
   <tile id="10">
    <properties>
-    <property name="entityName" value="FLOWER_A_AG"/>
+    <property name="entityName" value="FlowerAEntity"/>
    </properties>
    <image width="16" height="8" source="../../images/Stages/Overworld/Preview/FlowerA.png"/>
   </tile>
   <tile id="11">
    <properties>
-    <property name="entityName" value="WATER_A_AG"/>
+    <property name="entityName" value="WaterAEntity"/>
    </properties>
    <image width="32" height="16" source="../../images/Stages/Overworld/Preview/WaterA.png"/>
   </tile>
   <tile id="12">
    <properties>
-    <property name="entityName" value="GUI_OVERWORLD_EN"/>
+    <property name="entityName" value="GuiOverworldEntity"/>
    </properties>
    <image width="384" height="16" source="../../images/Gui/Preview/GuiOverworld.png"/>
   </tile>

@@ -29,7 +29,7 @@ extern BYTE RunSignMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec RUN_SIGN_CH =
+CharSetROMSpec RunSignCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec RUN_SIGN_CH =
 	RunSignTiles,
 };
 
-TextureROMSpec RUN_SIGN_TX =
+TextureROMSpec RunSignTexture =
 {
 	// charset spec
-	(CharSetSpec*)&RUN_SIGN_CH,
+	(CharSetSpec*)&RunSignCharset,
 
 	// bgmap spec
 	RunSignMap,
@@ -79,14 +79,14 @@ TextureROMSpec RUN_SIGN_TX =
 	false,
 };
 
-ObjectSpriteROMSpec RUN_SIGN_IM_SPRITE =
+ObjectSpriteROMSpec RunSignSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectSprite),
 
 		// texture spec
-		(TextureSpec*)&RUN_SIGN_TX,
+		(TextureSpec*)&RunSignTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -103,13 +103,13 @@ ObjectSpriteROMSpec RUN_SIGN_IM_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const RUN_SIGN_IM_SPRITES[] =
+ObjectSpriteROMSpec* const RunSignSprites[] =
 {
-	&RUN_SIGN_IM_SPRITE,
+	&RunSignSprite,
 	NULL
 };
 
-EntityROMSpec RUN_SIGN_IM =
+EntityROMSpec RunSignEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -124,7 +124,7 @@ EntityROMSpec RUN_SIGN_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)RUN_SIGN_IM_SPRITES,
+	(SpriteSpec**)RunSignSprites,
 
 	// use z displacement in projection
 	false,

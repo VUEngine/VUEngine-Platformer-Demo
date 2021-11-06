@@ -29,7 +29,7 @@ extern BYTE JumpSignMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec JUMP_SIGN_CH =
+CharSetROMSpec JumpSignCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec JUMP_SIGN_CH =
 	JumpSignTiles,
 };
 
-TextureROMSpec JUMP_SIGN_TX =
+TextureROMSpec JumpSignTexture =
 {
 	// charset spec
-	(CharSetSpec*)&JUMP_SIGN_CH,
+	(CharSetSpec*)&JumpSignCharset,
 
 	// bgmap spec
 	JumpSignMap,
@@ -79,14 +79,14 @@ TextureROMSpec JUMP_SIGN_TX =
 	false,
 };
 
-ObjectSpriteROMSpec JUMP_SIGN_IM_SPRITE =
+ObjectSpriteROMSpec JumpSignSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectSprite),
 
 		// texture spec
-		(TextureSpec*)&JUMP_SIGN_TX,
+		(TextureSpec*)&JumpSignTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -103,13 +103,13 @@ ObjectSpriteROMSpec JUMP_SIGN_IM_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const JUMP_SIGN_IM_SPRITES[] =
+ObjectSpriteROMSpec* const JumpSignSprites[] =
 {
-	&JUMP_SIGN_IM_SPRITE,
+	&JumpSignSprite,
 	NULL
 };
 
-EntityROMSpec JUMP_SIGN_IM =
+EntityROMSpec JumpSignEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -124,7 +124,7 @@ EntityROMSpec JUMP_SIGN_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)JUMP_SIGN_IM_SPRITES,
+	(SpriteSpec**)JumpSignSprites,
 
 	// use z displacement in projection
 	false,

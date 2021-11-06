@@ -1,7 +1,7 @@
 {
 	"id": "English",
 	"code": "en",
-	"flag": "FLAG_UNITED_KINGDOM_EN",
+	"flag": "FlagUnitedKingdomEntity",
 	"name": "English",
 	"order": 1,
 	"strings": {

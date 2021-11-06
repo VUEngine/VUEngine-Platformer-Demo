@@ -29,7 +29,7 @@ extern BYTE Level1IntersectionStageMainBack1Map[];
 // 												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_CH =
+CharSetROMSpec Level1IntersectionStageMainBackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_CH =
 	Level1IntersectionStageMainBackTiles,
 };
 
-TextureROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_TX =
+TextureROMSpec Level1IntersectionStageMainBack1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_CH,
+	(CharSetSpec*)&Level1IntersectionStageMainBackCharset,
 
 	// bgmap spec
 	Level1IntersectionStageMainBack1Map,
@@ -79,14 +79,14 @@ TextureROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITE =
+BgmapSpriteROMSpec Level1IntersectionStageMainBack1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_TX,
+		(TextureSpec*)&Level1IntersectionStageMainBack1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -110,13 +110,13 @@ BgmapSpriteROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1IntersectionStageMainBack1Sprites[] =
 {
-	&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITE,
+	&Level1IntersectionStageMainBack1Sprite,
 	NULL
 };
 
-EntityROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM =
+EntityROMSpec Level1IntersectionStageMainBack1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -131,7 +131,7 @@ EntityROMSpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM_SPRITES,
+	(SpriteSpec**)Level1IntersectionStageMainBack1Sprites,
 
 	// use z displacement in projection
 	false,

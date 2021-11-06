@@ -23,17 +23,17 @@
 
 extern BYTE Level_1_Main_1_MainBackTiles[];
 extern BYTE Level_1_Main_1_MainBack_6Map[];
-extern CharSetROMSpec LEVEL_1_MAIN_1_MAIN_BACK_CH;
+extern CharSetROMSpec Level1Main1MainBackCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_6_TX =
+TextureROMSpec Level1Main1MainBack6Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+	(CharSetSpec*)&Level1Main1MainBackCharset,
 
 	// bgmap spec
 	Level_1_Main_1_MainBack_6Map,
@@ -65,20 +65,20 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_6_TX =
 	false,
 };
 
-TextureROMSpec* const LEVEL_1_MAIN_1_MAIN_BACK_6_IM_TEXTURES[] =
+TextureROMSpec* const Level1Main1MainBack6Textures[] =
 {
-	(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_6_TX,
+	(TextureSpec*)&Level1Main1MainBack6Texture,
 	NULL
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_6_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1MainBack6Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_6_TX,
+		(TextureSpec*)&Level1Main1MainBack6Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,

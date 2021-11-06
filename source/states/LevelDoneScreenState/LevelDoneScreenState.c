@@ -29,7 +29,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMSpec LEVEL_DONE_SCREEN_STAGE_ST;
+extern StageROMSpec LevelDoneScreenStage;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&LEVEL_DONE_SCREEN_STAGE_ST, NULL, true, false);
+	GameState::loadStage(this, (StageSpec*)&LevelDoneScreenStage, NULL, true, false);
 
 	// print stats
 	LevelDoneScreenState::print(this);

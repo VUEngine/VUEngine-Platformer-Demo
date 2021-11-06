@@ -21,24 +21,24 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec HERO_SLEEPING_EN;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
+extern EntitySpec HeroSleepingEntity;
+extern EntitySpec LowPowerIndicatorEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec PAUSE_SCREEN_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec PauseScreenStageEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&LowPowerIndicatorEntity, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&HERO_SLEEPING_EN, {192, 92, LAYER_0, 0}, 0, NULL, NULL, NULL, false}, // Hero Sleeping
+	{&HeroSleepingEntity, {192, 92, LAYER_0, 0}, 0, NULL, NULL, NULL, false}, // Hero Sleeping
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec PAUSE_SCREEN_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec PauseScreenStageUiEntities[] =
 {
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -48,7 +48,7 @@ PositionedEntityROMSpec PAUSE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const PAUSE_SCREEN_STAGE_ST_FONTS[] =
+FontROMSpec* const PauseScreenStageFonts[] =
 {
 	&PlatformerFont,
 	&PlatformerGuiFont,
@@ -62,7 +62,7 @@ FontROMSpec* const PAUSE_SCREEN_STAGE_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec PAUSE_SCREEN_STAGE_ST =
+StageROMSpec PauseScreenStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -251,7 +251,7 @@ StageROMSpec PAUSE_SCREEN_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)PAUSE_SCREEN_STAGE_ST_FONTS,
+		(FontSpec**)PauseScreenStageFonts,
 
 		// char sets to preload
 		(CharSetSpec**)NULL,
@@ -267,12 +267,12 @@ StageROMSpec PAUSE_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			(PositionedEntity*)PAUSE_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)PauseScreenStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)PAUSE_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)PauseScreenStageEntities,
 	},
 
 	// post processing effects

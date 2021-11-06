@@ -30,7 +30,7 @@ extern BYTE Level_1_Main_1_Back_5Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_MAIN_1_BACK_5_CH =
+CharSetROMSpec Level1Main1Back5Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec LEVEL_1_MAIN_1_BACK_5_CH =
 	Level_1_Main_1_BackTiles,
 };
 
-TextureROMSpec LEVEL_1_MAIN_1_BACK_5_TX =
+TextureROMSpec Level1Main1Back5Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_BACK_5_CH,
+	(CharSetSpec*)&Level1Main1Back5Charset,
 
 	// bgmap spec
 	Level_1_Main_1_Back_5Map,
@@ -80,20 +80,20 @@ TextureROMSpec LEVEL_1_MAIN_1_BACK_5_TX =
 	false,
 };
 
-TextureROMSpec* const LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES[] =
+TextureROMSpec* const Level1Main1Back5Textures[] =
 {
-	(TextureSpec*)&LEVEL_1_MAIN_1_BACK_5_TX,
+	(TextureSpec*)&Level1Main1Back5Texture,
 	NULL
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1Back5Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_BACK_5_TX,
+		(TextureSpec*)&Level1Main1Back5Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -113,13 +113,13 @@ BgmapSpriteROMSpec LEVEL_1_MAIN_1_BACK_5_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_MAIN_1_BACK_5_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Main1Back5Sprites[] =
 {
-	(BgmapSpriteROMSpec*)&LEVEL_1_MAIN_1_BACK_5_IM_SPRITE,
+	(BgmapSpriteROMSpec*)&Level1Main1Back5Sprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_MAIN_1_BACK_5_IM =
+EntityROMSpec Level1Main1Back5Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -134,7 +134,7 @@ EntityROMSpec LEVEL_1_MAIN_1_BACK_5_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_MAIN_1_BACK_5_IM_SPRITES,
+	(SpriteSpec**)Level1Main1Back5Sprites,
 
 	// use z displacement in projection
 	false,
@@ -153,7 +153,7 @@ EntityROMSpec LEVEL_1_MAIN_1_BACK_5_IM =
 	(PhysicalSpecification*)NULL,
 };
 
-HbiasMaskMBgmapSpriteROMSpec LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM =
+HbiasMaskMBgmapSpriteROMSpec Level1Main1Back5HbiasMaskEntity =
 {
 	{
 		{
@@ -182,7 +182,7 @@ HbiasMaskMBgmapSpriteROMSpec LEVEL_1_MAIN_1_BACK_5_HBIAS_MASK_IM =
 			__WORLD_ON,
 		},
 
-		(TextureSpec**)LEVEL_1_MAIN_1_BACK_5_IM_TEXTURES,
+		(TextureSpec**)Level1Main1Back5Textures,
 
 		// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 		// textures must be 64x64 for anything other than 1x1

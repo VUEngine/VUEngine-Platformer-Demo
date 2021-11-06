@@ -23,22 +23,22 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern AnimationDescriptionROMSpec SMOKE_PARTICLE_SMALL_ANIM;
-extern ObjectSpriteROMSpec SMOKE_PARTICLE_SMALL_SPRITE;
+extern AnimationDescriptionROMSpec SmokeParticleSmallAnimation;
+extern ObjectSpriteROMSpec SmokeParticleSmallSprite;
 const int padder [8192 * 16] = {1};
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMSpec* const SMOKE_SPRITES[] =
+ObjectSpriteROMSpec* const SmokeSprites[] =
 {
-	&SMOKE_PARTICLE_SMALL_SPRITE,
+	&SmokeParticleSmallSprite,
 	NULL
 };
 
 // particle's spec
-PhysicalParticleROMSpec SMOKE_PARTICLE =
+PhysicalParticleROMSpec SmokeParticle =
 {
 	{	
 		// allocator
@@ -55,7 +55,7 @@ PhysicalParticleROMSpec SMOKE_PARTICLE =
 	NULL,
 
 	// animation description (used only if sprite is animated)
-	(AnimationDescription*)&SMOKE_PARTICLE_SMALL_ANIM,
+	(AnimationDescription*)&SmokeParticleSmallAnimation,
 
 	// name of animation to play
 	"Default"
@@ -70,7 +70,7 @@ PhysicalParticleROMSpec SMOKE_PARTICLE =
 	__NO_AXIS,
 };
 
-ParticleSystemROMSpec SMOKE_PS =
+ParticleSystemROMSpec SmokeParticleSystem =
 {
 	{
 		// class allocator
@@ -121,13 +121,13 @@ ParticleSystemROMSpec SMOKE_PS =
 	1,
 
 	// array of textures
-	(const SpriteSpec**)SMOKE_SPRITES,
+	(const SpriteSpec**)SmokeSprites,
 
 	// auto start
 	true,
 
 	// particle spec
-	(ParticleSpec*)&SMOKE_PARTICLE,
+	(ParticleSpec*)&SmokeParticle,
 
 	// minimum relative spawn position (x, y, z)
 	{-__PIXELS_TO_METERS(2), __PIXELS_TO_METERS(2), __I_TO_FIX10_6(0)},

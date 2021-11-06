@@ -81,9 +81,9 @@ void Cannon::shoot()
 	if(!this->children)
 	{
 		// add cannon ball as child
-		extern PositionedEntity CANNON_BALL;
+		extern PositionedEntity CannonBallPositionedEntity;
 
-		Stage::spawnEntity(Game::getStage(Game::getInstance()), &CANNON_BALL, Container::safeCast(this), (EventListener)Cannon::onCannonBallSpawned);
+		Stage::spawnEntity(Game::getStage(Game::getInstance()), &CannonBallPositionedEntity, Container::safeCast(this), (EventListener)Cannon::onCannonBallSpawned);
 		return;
 	}
 
@@ -110,8 +110,8 @@ void Cannon::spawnCannonBall()
 	Camera::startEffect(Camera::getInstance(), kShake, 250);
 
 	// play boom sound
-	extern Sound FIRE_SND;
-	SoundManager::playSound(SoundManager::getInstance(), &FIRE_SND, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
+	extern Sound FireSound;
+	SoundManager::playSound(SoundManager::getInstance(), &FireSound, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 
 	// set cannon ball to moving state
 	NM_ASSERT(1 == VirtualList::getSize(this->children), "Cannon::spawnCannonBall: no children");

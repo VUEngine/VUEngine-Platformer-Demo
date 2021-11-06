@@ -32,7 +32,7 @@ extern BYTE HintMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_OPEN_ANIM =
+AnimationFunctionROMSpec HintOpenAnimation =
 {
 	// number of frames of this animation function
 	5,
@@ -54,7 +54,7 @@ AnimationFunctionROMSpec HINT_OPEN_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_CLOSE_ANIM =
+AnimationFunctionROMSpec HintCloseAnimation =
 {
 	// number of frames of this animation function
 	5,
@@ -76,7 +76,7 @@ AnimationFunctionROMSpec HINT_CLOSE_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_CLOSED_ANIM =
+AnimationFunctionROMSpec HintClosedAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -98,7 +98,7 @@ AnimationFunctionROMSpec HINT_CLOSED_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_ENTER_ENGLISH_ANIM =
+AnimationFunctionROMSpec HintEnterEnglishAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -120,7 +120,7 @@ AnimationFunctionROMSpec HINT_ENTER_ENGLISH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_ENTER_DEUTSCH_ANIM =
+AnimationFunctionROMSpec HintEnterDeutschAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -142,7 +142,7 @@ AnimationFunctionROMSpec HINT_ENTER_DEUTSCH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_ENTER_ESPANOL_ANIM =
+AnimationFunctionROMSpec HintEnterEspanolAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -164,7 +164,7 @@ AnimationFunctionROMSpec HINT_ENTER_ESPANOL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_ENTER_FRANCAIS_ANIM =
+AnimationFunctionROMSpec HintEnterFrancaisAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -186,7 +186,7 @@ AnimationFunctionROMSpec HINT_ENTER_FRANCAIS_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_PICK_UP_ENGLISH_ANIM =
+AnimationFunctionROMSpec HintPickUpEnglishAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -208,7 +208,7 @@ AnimationFunctionROMSpec HINT_PICK_UP_ENGLISH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_PICK_UP_DEUTSCH_ANIM =
+AnimationFunctionROMSpec HintPickUpDeutschAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -230,7 +230,7 @@ AnimationFunctionROMSpec HINT_PICK_UP_DEUTSCH_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_PICK_UP_ESPANOL_ANIM =
+AnimationFunctionROMSpec HintPickUpEspanolAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -252,7 +252,7 @@ AnimationFunctionROMSpec HINT_PICK_UP_ESPANOL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_PICK_UP_FRANCAIS_ANIM =
+AnimationFunctionROMSpec HintPickUpFrancaisAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -274,7 +274,7 @@ AnimationFunctionROMSpec HINT_PICK_UP_FRANCAIS_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec HINT_KEY_ANIM =
+AnimationFunctionROMSpec HINT_KeyAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -296,27 +296,27 @@ AnimationFunctionROMSpec HINT_KEY_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec HINT_ANIM =
+AnimationDescriptionROMSpec HintAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HINT_OPEN_ANIM,
-		(AnimationFunction*)&HINT_CLOSE_ANIM,
-		(AnimationFunction*)&HINT_CLOSED_ANIM,
-		(AnimationFunction*)&HINT_ENTER_ENGLISH_ANIM,
-		(AnimationFunction*)&HINT_ENTER_DEUTSCH_ANIM,
-		(AnimationFunction*)&HINT_ENTER_ESPANOL_ANIM,
-		(AnimationFunction*)&HINT_ENTER_FRANCAIS_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_ENGLISH_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_DEUTSCH_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_ESPANOL_ANIM,
-		(AnimationFunction*)&HINT_PICK_UP_FRANCAIS_ANIM,
-		(AnimationFunction*)&HINT_KEY_ANIM,
+		(AnimationFunction*)&HintOpenAnimation,
+		(AnimationFunction*)&HintCloseAnimation,
+		(AnimationFunction*)&HintClosedAnimation,
+		(AnimationFunction*)&HintEnterEnglishAnimation,
+		(AnimationFunction*)&HintEnterDeutschAnimation,
+		(AnimationFunction*)&HintEnterEspanolAnimation,
+		(AnimationFunction*)&HintEnterFrancaisAnimation,
+		(AnimationFunction*)&HintPickUpEnglishAnimation,
+		(AnimationFunction*)&HintPickUpDeutschAnimation,
+		(AnimationFunction*)&HintPickUpEspanolAnimation,
+		(AnimationFunction*)&HintPickUpFrancaisAnimation,
+		(AnimationFunction*)&HINT_KeyAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec HINT_CH =
+CharSetROMSpec HintCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -331,10 +331,10 @@ CharSetROMSpec HINT_CH =
 	HintTiles,
 };
 
-TextureROMSpec HINT_TX =
+TextureROMSpec HintTexture =
 {
 	// charset spec
-	(CharSetSpec*)&HINT_CH,
+	(CharSetSpec*)&HintCharset,
 
 	// bgmap spec
 	HintMap,
@@ -366,14 +366,14 @@ TextureROMSpec HINT_TX =
 	false,
 };
 
-BgmapSpriteROMSpec HINT_SPRITE =
+BgmapSpriteROMSpec HintSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&HINT_TX,
+		(TextureSpec*)&HintTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -393,13 +393,13 @@ BgmapSpriteROMSpec HINT_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const HINT_SPRITES[] =
+BgmapSpriteROMSpec* const HintSprites[] =
 {
-	&HINT_SPRITE,
+	&HintSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec HINT_MC =
+AnimatedEntityROMSpec HintMc =
 {
 	{
 		// class allocator
@@ -415,7 +415,7 @@ AnimatedEntityROMSpec HINT_MC =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)HINT_SPRITES,
+		(SpriteSpec**)HintSprites,
 
 		// use z displacement in projection
 		false,
@@ -435,7 +435,7 @@ AnimatedEntityROMSpec HINT_MC =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&HINT_ANIM,
+	(AnimationDescription*)&HintAnimation,
 
 	// initial animation
 	"Closed",

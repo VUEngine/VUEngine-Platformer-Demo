@@ -29,7 +29,7 @@ extern BYTE BackgroundMoundBackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec MOUND_BG_BACK_CH =
+CharSetROMSpec MoundBgBackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec MOUND_BG_BACK_CH =
 	BackgroundMoundBackTiles,
 };
 
-TextureROMSpec MOUND_BG_BACK_TX =
+TextureROMSpec MoundBgBackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&MOUND_BG_BACK_CH,
+	(CharSetSpec*)&MoundBgBackCharset,
 
 	// bgmap spec
 	BackgroundMoundBackMap,
@@ -79,13 +79,13 @@ TextureROMSpec MOUND_BG_BACK_TX =
 	false,
 };
 
-TextureROMSpec* const MOUND_BG_BACK_SB_TEXTURES[] =
+TextureROMSpec* const MoundBgBackSbTextures[] =
 {
-	(TextureSpec*)&MOUND_BG_BACK_TX,
+	(TextureSpec*)&MoundBgBackTexture,
 	NULL
 };
 
-MBgmapSpriteROMSpec MOUND_BG_BACK_SB_SPRITE =
+MBgmapSpriteROMSpec MoundBgBackSbSprite =
 {
 	{
 		{
@@ -113,7 +113,7 @@ MBgmapSpriteROMSpec MOUND_BG_BACK_SB_SPRITE =
 		__WORLD_ON,
 	},
 
-	(TextureSpec**)MOUND_BG_BACK_SB_TEXTURES,
+	(TextureSpec**)MoundBgBackSbTextures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -132,13 +132,13 @@ MBgmapSpriteROMSpec MOUND_BG_BACK_SB_SPRITE =
 	0,
 };
 
-BgmapSpriteROMSpec* const MOUND_BG_BACK_SB_SPRITES[] =
+BgmapSpriteROMSpec* const MoundBgBackSbSprites[] =
 {
-	(BgmapSpriteROMSpec*)&MOUND_BG_BACK_SB_SPRITE,
+	(BgmapSpriteROMSpec*)&MoundBgBackSbSprite,
 	NULL
 };
 
-EntityROMSpec MOUND_BG_BACK_IM =
+EntityROMSpec MoundBgBackEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -153,7 +153,7 @@ EntityROMSpec MOUND_BG_BACK_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)MOUND_BG_BACK_SB_SPRITES,
+	(SpriteSpec**)MoundBgBackSbSprites,
 
 	// use z displacement in projection
 	false,

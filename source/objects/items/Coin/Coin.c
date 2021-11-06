@@ -31,10 +31,10 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec LEVEL_1_HOUSE_IM;
-extern AnimatedEntityROMSpec COIN_BACK_EN;
-extern AnimatedEntityROMSpec COIN_SILHOUETTE_EN;
-extern AnimatedEntityROMSpec COIN_BACK_SILHOUETTE_EN;
+extern EntitySpec Level1HouseEntity;
+extern AnimatedEntityROMSpec CoinBackEntity;
+extern AnimatedEntityROMSpec CoinSilhouetteEntity;
+extern AnimatedEntityROMSpec CoinBackSilhouetteEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,13 +53,13 @@ void Coin::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId,
 	{
 		AnimatedEntitySpec* animatedEntitySpec = this->animatedEntitySpec;
 
-		if((AnimatedEntitySpec*)&COIN_BACK_EN == animatedEntitySpec)
+		if((AnimatedEntitySpec*)&CoinBackEntity == animatedEntitySpec)
 		{
-			animatedEntitySpec = (AnimatedEntitySpec*)&COIN_BACK_SILHOUETTE_EN;
+			animatedEntitySpec = (AnimatedEntitySpec*)&CoinBackSilhouetteEntity;
 		}
 		else
 		{
-			animatedEntitySpec = (AnimatedEntitySpec*)&COIN_SILHOUETTE_EN;
+			animatedEntitySpec = (AnimatedEntitySpec*)&CoinSilhouetteEntity;
 		}
 
 		AnimatedEntity::setSpec(this, animatedEntitySpec);

@@ -29,7 +29,7 @@ extern BYTE Mound2Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec MOUND_2_CH =
+CharSetROMSpec Mound2Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec MOUND_2_CH =
 	Mound2Tiles,
 };
 
-TextureROMSpec MOUND_2_TX =
+TextureROMSpec Mound2Texture =
 {
 	// charset spec
-	(CharSetSpec*)&MOUND_2_CH,
+	(CharSetSpec*)&Mound2Charset,
 
 	// bgmap spec
 	Mound2Map,
@@ -79,14 +79,14 @@ TextureROMSpec MOUND_2_TX =
 	false,
 };
 
-BgmapSpriteROMSpec MOUND_2_IM_SPRITE =
+BgmapSpriteROMSpec Mound2Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&MOUND_2_TX,
+		(TextureSpec*)&Mound2Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec MOUND_2_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const MOUND_2_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Mound2Sprites[] =
 {
-	&MOUND_2_IM_SPRITE,
+	&Mound2Sprite,
 	NULL
 };
 
-EntityROMSpec MOUND_2_IM =
+EntityROMSpec Mound2Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec MOUND_2_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)MOUND_2_IM_SPRITES,
+	(SpriteSpec**)Mound2Sprites,
 
 	// use z displacement in projection
 	false,

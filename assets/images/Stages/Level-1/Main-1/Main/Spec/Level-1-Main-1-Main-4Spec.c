@@ -22,19 +22,19 @@
 
 extern BYTE Level_1_Main_1_Main_4Map[];
 
-extern CharSetROMSpec LEVEL_1_MAIN_1_MAIN_CH;
+extern CharSetROMSpec Level1Main1MainCharset;
 
-extern BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE;
+extern BgmapSpriteROMSpec Level1Main1MainFront4Sprite;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec LEVEL_1_MAIN_1_MAIN_4_TX =
+TextureROMSpec Level1Main1Main4Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_MAIN_CH,
+	(CharSetSpec*)&Level1Main1MainCharset,
 
 	// bgmap spec
 	Level_1_Main_1_Main_4Map,
@@ -66,20 +66,20 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_4_TX =
 	false,
 };
 
-TextureROMSpec* const LEVEL_1_MAIN_1_MAIN_4_IM_TEXTURES[] =
+TextureROMSpec* const Level1Main1Main4Textures[] =
 {
-	(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_4_TX,
+	(TextureSpec*)&Level1Main1Main4Texture,
 	NULL
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_4_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1Main4Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_4_TX,
+		(TextureSpec*)&Level1Main1Main4Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -99,14 +99,14 @@ BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_4_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_MAIN_1_MAIN_4_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Main1Main4Sprites[] =
 {
-	(BgmapSpriteROMSpec*)&LEVEL_1_MAIN_1_MAIN_4_IM_SPRITE,
-	(BgmapSpriteROMSpec*)&LEVEL_1_MAIN_1_MAIN_FRONT_4_IM_SPRITE,
+	(BgmapSpriteROMSpec*)&Level1Main1Main4Sprite,
+	(BgmapSpriteROMSpec*)&Level1Main1MainFront4Sprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_MAIN_1_MAIN_4_IM =
+EntityROMSpec Level1Main1Main4Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -121,7 +121,7 @@ EntityROMSpec LEVEL_1_MAIN_1_MAIN_4_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_MAIN_1_MAIN_4_IM_SPRITES,
+	(SpriteSpec**)Level1Main1Main4Sprites,
 
 	// use z displacement in projection
 	false,

@@ -31,7 +31,7 @@ extern BYTE FlowerAMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec FLOWER_A_DEFAULT_ANIM =
+AnimationFunctionROMSpec FlowerADefaultAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -53,11 +53,11 @@ AnimationFunctionROMSpec FLOWER_A_DEFAULT_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec FLOWER_A_ANIM =
+AnimationDescriptionROMSpec FlowerAAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&FLOWER_A_DEFAULT_ANIM,
+		(AnimationFunction*)&FlowerADefaultAnimation,
 		NULL,
 	}
 };
@@ -67,7 +67,7 @@ AnimationDescriptionROMSpec FLOWER_A_ANIM =
 //											SPRITE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec FLOWER_A_CH =
+CharSetROMSpec FlowerACharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -82,10 +82,10 @@ CharSetROMSpec FLOWER_A_CH =
 	FlowerATiles,
 };
 
-TextureROMSpec FLOWER_A_TX =
+TextureROMSpec FlowerATexture =
 {
 	// charset spec
-	(CharSetSpec*)&FLOWER_A_CH,
+	(CharSetSpec*)&FlowerACharset,
 
 	// bgmap spec
 	FlowerAMap,
@@ -117,14 +117,14 @@ TextureROMSpec FLOWER_A_TX =
 	false,
 };
 
-BgmapSpriteROMSpec FLOWER_A_SPRITE =
+BgmapSpriteROMSpec FlowerASprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&FLOWER_A_TX,
+		(TextureSpec*)&FlowerATexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -144,9 +144,9 @@ BgmapSpriteROMSpec FLOWER_A_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const FLOWER_A_SPRITES[] =
+BgmapSpriteROMSpec* const FlowerASprites[] =
 {
-	&FLOWER_A_SPRITE,
+	&FlowerASprite,
 	NULL
 };
 
@@ -155,7 +155,7 @@ BgmapSpriteROMSpec* const FLOWER_A_SPRITES[] =
 //											ENTITY DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-AnimatedEntityROMSpec FLOWER_A_EN =
+AnimatedEntityROMSpec FlowerAEntity =
 {
 	{
 		// class allocator
@@ -171,7 +171,7 @@ AnimatedEntityROMSpec FLOWER_A_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)FLOWER_A_SPRITES,
+		(SpriteSpec**)FlowerASprites,
 
 		// use z displacement in projection
 		false,
@@ -191,7 +191,7 @@ AnimatedEntityROMSpec FLOWER_A_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&FLOWER_A_ANIM,
+	(AnimationDescription*)&FlowerAAnimation,
 
 	// initial animation
 	"Default",

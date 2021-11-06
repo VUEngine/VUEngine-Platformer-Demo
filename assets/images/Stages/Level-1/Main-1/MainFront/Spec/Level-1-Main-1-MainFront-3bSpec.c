@@ -19,17 +19,17 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE Level_1_Main_1_MainFront_3bMap[];
-extern CharSetROMSpec LEVEL_1_MAIN_1_MAIN_FRONT_CH;
+extern CharSetROMSpec Level1Main1MainFrontCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX =
+TextureROMSpec Level1Main1MainFront3bTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_MAIN_FRONT_CH,
+	(CharSetSpec*)&Level1Main1MainFrontCharset,
 
 	// bgmap spec
 	Level_1_Main_1_MainFront_3bMap,
@@ -61,20 +61,20 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX =
 	false,
 };
 
-TextureROMSpec* const LEVEL_1_MAIN_1_MAIN_FRONT_3B_IM_TEXTURES[] =
+TextureROMSpec* const Level1Main1MainFront3bTextures[] =
 {
-	(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX,
+	(TextureSpec*)&Level1Main1MainFront3bTexture,
 	NULL
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_FRONT_3B_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1MainFront3bSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_FRONT_3B_TX,
+		(TextureSpec*)&Level1Main1MainFront3bTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,

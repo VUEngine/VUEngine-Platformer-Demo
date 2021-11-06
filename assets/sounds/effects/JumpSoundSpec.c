@@ -35,7 +35,7 @@ const uint16 CollectTrack[] =
   15, 15, 15, 15 , 0,
 };
 
-SoundChannelConfigurationROM COLLECT_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM CollectSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -74,10 +74,10 @@ SoundChannelConfigurationROM COLLECT_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM COLLECT_SND_CHANNEL_1 =
+SoundChannelROM CollectSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&COLLECT_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&CollectSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -89,13 +89,13 @@ SoundChannelROM COLLECT_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* COLLECT_SND_CHANNELS[] =
+SoundChannelROM* CollectSoundChannels[] =
 {
-	&COLLECT_SND_CHANNEL_1,
+	&CollectSoundChannel1,
 	NULL
 };
 
-SoundROM COLLECT_SND =
+SoundROM CollectSound =
 {
 	/// Name
 	"Collect sound",
@@ -107,5 +107,5 @@ SoundROM COLLECT_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)COLLECT_SND_CHANNELS
+	(SoundChannel**)CollectSoundChannels
 };

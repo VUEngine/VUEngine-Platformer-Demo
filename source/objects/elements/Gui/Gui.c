@@ -29,8 +29,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern CharSetSpec GUI_CH;
-extern CharSetSpec GUI_BANDANA_CH;
+extern CharSetSpec GuiCharset;
+extern CharSetSpec GuiBandanaCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -153,13 +153,13 @@ void Gui::updateSprite()
 	{
 		case kPowerUpBandana:
 
-			charSetSpec = &GUI_BANDANA_CH;
+			charSetSpec = &GuiBandanaCharset;
 			break;
 
 		default:
 		case kPowerUpNone:
 
-			charSetSpec = &GUI_CH;
+			charSetSpec = &GuiCharset;
 			break;
 	}
 

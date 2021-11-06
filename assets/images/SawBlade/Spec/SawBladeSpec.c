@@ -29,7 +29,7 @@ extern BYTE SawBladeMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec SAW_BLADE_SPIN_ANIM =
+AnimationFunctionROMSpec SawBladeSpinAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -51,16 +51,16 @@ AnimationFunctionROMSpec SAW_BLADE_SPIN_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec SAW_BLADE_ANIM =
+AnimationDescriptionROMSpec SawBladeAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&SAW_BLADE_SPIN_ANIM,
+		(AnimationFunction*)&SawBladeSpinAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec SAW_BLADE_CH =
+CharSetROMSpec SawBladeCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -75,10 +75,10 @@ CharSetROMSpec SAW_BLADE_CH =
 	SawBladeTiles,
 };
 
-TextureROMSpec SAW_BLADE_TX =
+TextureROMSpec SawBladeTexture =
 {
 	// charset spec
-	(CharSetSpec*)&SAW_BLADE_CH,
+	(CharSetSpec*)&SawBladeCharset,
 
 	// bgmap spec
 	SawBladeMap,
@@ -110,14 +110,14 @@ TextureROMSpec SAW_BLADE_TX =
 	false,
 };
 
-BgmapSpriteROMSpec SAW_BLADE_SPRITE =
+BgmapSpriteROMSpec SawBladeSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&SAW_BLADE_TX,
+		(TextureSpec*)&SawBladeTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -137,13 +137,13 @@ BgmapSpriteROMSpec SAW_BLADE_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const SAW_BLADE_SPRITES[] =
+BgmapSpriteROMSpec* const SawBladeSprites[] =
 {
-	&SAW_BLADE_SPRITE,
+	&SawBladeSprite,
 	NULL
 };
 
-ShapeROMSpec SAW_BLADE_AC_SHAPES[] =
+ShapeROMSpec SawBladeShapes[] =
 {
 	{
 		// shape
@@ -174,7 +174,7 @@ ShapeROMSpec SAW_BLADE_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-MovingEntityROMSpec SAW_BLADE_V3_AC =
+MovingEntityROMSpec SawBladeV3Entity =
 {
 	{
 		{
@@ -192,13 +192,13 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)SAW_BLADE_SPRITES,
+				(SpriteSpec**)SawBladeSprites,
 
 				// use z displacement in projection
 	false,
 
 	// collision shapes
-				(ShapeSpec*)SAW_BLADE_AC_SHAPES,
+				(ShapeSpec*)SawBladeShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -212,7 +212,7 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SAW_BLADE_ANIM,
+			(AnimationDescription*)&SawBladeAnimation,
 
 			// initial animation
 			"Spin"
@@ -247,7 +247,7 @@ MovingEntityROMSpec SAW_BLADE_V3_AC =
 	__ALL_AXIS,
 };
 
-MovingEntityROMSpec SAW_BLADE_H3_AC =
+MovingEntityROMSpec SawBladeH3Entity =
 {
 	{
 		{
@@ -265,13 +265,13 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)SAW_BLADE_SPRITES,
+				(SpriteSpec**)SawBladeSprites,
 
 				// use z displacement in projection
 	false,
 
 	// collision shapes
-				(ShapeSpec*)SAW_BLADE_AC_SHAPES,
+				(ShapeSpec*)SawBladeShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -285,7 +285,7 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SAW_BLADE_ANIM,
+			(AnimationDescription*)&SawBladeAnimation,
 
 			// initial animation
 			"Spin"
@@ -320,7 +320,7 @@ MovingEntityROMSpec SAW_BLADE_H3_AC =
 	__ALL_AXIS,
 };
 
-MovingEntityROMSpec SAW_BLADE_H8_AC =
+MovingEntityROMSpec SawBladeH8Entity =
 {
 	{
 		{
@@ -338,13 +338,13 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)SAW_BLADE_SPRITES,
+				(SpriteSpec**)SawBladeSprites,
 
 				// use z displacement in projection
 	false,
 
 	// collision shapes
-				(ShapeSpec*)SAW_BLADE_AC_SHAPES,
+				(ShapeSpec*)SawBladeShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -358,7 +358,7 @@ MovingEntityROMSpec SAW_BLADE_H8_AC =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SAW_BLADE_ANIM,
+			(AnimationDescription*)&SawBladeAnimation,
 
 			// initial animation
 			"Spin"

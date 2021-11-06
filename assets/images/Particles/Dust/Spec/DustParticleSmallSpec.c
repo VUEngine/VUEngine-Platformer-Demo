@@ -30,7 +30,7 @@ extern BYTE DustParticleSmallMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec DUST_PARTICLE_SMALL_CH =
+CharSetROMSpec DustParticleSmallCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec DUST_PARTICLE_SMALL_CH =
 	DustParticleSmallTiles,
 };
 
-TextureROMSpec DUST_PARTICLE_SMALL_TX =
+TextureROMSpec DustParticleSmallTexture =
 {
 	// charset spec
-	(CharSetSpec*)&DUST_PARTICLE_SMALL_CH,
+	(CharSetSpec*)&DustParticleSmallCharset,
 
 	// bgmap spec
 	DustParticleSmallMap,
@@ -80,14 +80,14 @@ TextureROMSpec DUST_PARTICLE_SMALL_TX =
 	false,
 };
 
-ObjectSpriteROMSpec DUST_PARTICLE_SMALL_SPRITE =
+ObjectSpriteROMSpec DustParticleSmallSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectSprite),
 
 		// texture spec
-		(TextureSpec*)&DUST_PARTICLE_SMALL_TX,
+		(TextureSpec*)&DustParticleSmallTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -104,13 +104,13 @@ ObjectSpriteROMSpec DUST_PARTICLE_SMALL_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const DUST_PARTICLE_SMALL_SPRITES[] =
+ObjectSpriteROMSpec* const DustParticleSmallSprites[] =
 {
-	&DUST_PARTICLE_SMALL_SPRITE,
+	&DustParticleSmallSprite,
 	NULL
 };
 
-EntityROMSpec DUST_PARTICLE_SMALL_IM =
+EntityROMSpec DustParticleSmallEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -125,7 +125,7 @@ EntityROMSpec DUST_PARTICLE_SMALL_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)DUST_PARTICLE_SMALL_SPRITES,
+	(SpriteSpec**)DustParticleSmallSprites,
 
 	// use z displacement in projection
 	false,

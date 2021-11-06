@@ -25,7 +25,7 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern SoundROM* const LEVEL_1_SOUNDS[];
+extern SoundROM* const Level1Sounds[];
 
 const Size level1_intersection_stage_collision_112_128_8 = {112, 128, 8};
 const Size level1_intersection_stage_collision_16_48_8 = {16, 48, 8};
@@ -35,67 +35,67 @@ const Size level1_intersection_stage_collision_272_16_8 = {272, 16, 8};
 const Size level1_intersection_stage_collision_32_64_8 = {32, 64, 8};
 const Size level1_intersection_stage_collision_48_32_8 = {48, 32, 8};
 const Size level1_intersection_stage_collision_48_34_8 = {48, 34, 8};
-extern EntitySpec COIN_EN;
-extern EntitySpec COLLISION_CL;
-extern EntitySpec COLLISION_TOP_CL;
-extern EntitySpec DOOR_EN;
-extern EntitySpec GUI_EN;
-extern EntitySpec HERO_AC;
-extern EntitySpec LEVEL1_INTERSECTION_STAGE_BACK_1_IM;
-extern EntitySpec LEVEL1_INTERSECTION_STAGE_MAIN_1_IM;
-extern EntitySpec LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec SAW_BLADE_H8_AC;
-extern EntitySpec TORCH_OFF_IM;
-extern EntitySpec TORCH_SMOKE_PS;
-extern EntitySpec TORCH_LIGHT_EN;
-extern StageEntryPointROMSpec LEVEL1_COIN_ROOM_STAGE_EXIT_EP;
-extern StageEntryPointROMSpec LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP;
-extern StageEntryPointROMSpec LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP;
+extern EntitySpec CoinEntity;
+extern EntitySpec CollisionCl;
+extern EntitySpec CollisionTopCl;
+extern EntitySpec DoorEntity;
+extern EntitySpec GuiEntity;
+extern EntitySpec HeroEntity;
+extern EntitySpec Level1IntersectionStageBack1Entity;
+extern EntitySpec Level1IntersectionStageMain1Entity;
+extern EntitySpec Level1IntersectionStageMainBack1Entity;
+extern EntitySpec LowPowerIndicatorEntity;
+extern EntitySpec SawBladeH8Entity;
+extern EntitySpec TorchOffEntity;
+extern EntitySpec TorchSmokeParticleSystem;
+extern EntitySpec TorchLightEntity;
+extern StageEntryPointROMSpec Level1CoinRoomStageExitEntryPoint;
+extern StageEntryPointROMSpec Level1MainIntersectionEntryDoorEntryPoint;
+extern StageEntryPointROMSpec Level1MainIntersectionExitDoorEntryPoint;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec LEVEL1_INTERSECTION_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec Level1IntersectionStageEntities[] =
 {
-	{&COLLISION_CL, {(7), (152), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Left Collision
-	{&DOOR_EN, {(36), (160), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntEntr2", NULL, (void*)&LEVEL1_COIN_ROOM_STAGE_EXIT_EP, false}, // Door (Lower Entrance)
-	//{&TORCH_LIGHT_EN, {(56), (148), (0), 0}, 0, NULL, NULL, NULL, false}, // Lower Left Torch Light
-	{&TORCH_OFF_IM, {(56), (146), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Lower Left Torch
-	{&TORCH_SMOKE_PS, {(56), (136), LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&COLLISION_CL, {(111), (95), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_64_8, false}, // Center Collision
-	{&COLLISION_CL, {(135), (184), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_272_16_8, false}, // Bottom Collision
-	{&COLLISION_CL, {(143), (32), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_32_64_8, false}, // Top Left Collision
-	//{&SAW_BLADE_H8_AC, {(172), (176), LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Saw Blade
-	{&DOOR_EN, {(178), (48), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntEntr1", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_ENTRY_DOOR_EP, false}, // Door (Upper Entrance)
-	{&LEVEL1_INTERSECTION_STAGE_MAIN_BACK_1_IM, {(192), (96), (-SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // MainBack
-	{&LEVEL1_INTERSECTION_STAGE_BACK_1_IM, {(192), (96), 32, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Back
-	{&LEVEL1_INTERSECTION_STAGE_MAIN_1_IM, {(192), (96), (-SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false}, // Main
-	{&TORCH_OFF_IM, {(206), (34), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Upper Left Torch
-	//{&TORCH_LIGHT_EN, {(206), (148), (0), 0}, 0, NULL, NULL, NULL, false}, // Lower Right Torch Light
-	{&TORCH_OFF_IM, {(206), (146), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Lower Right Torch
-	//{&TORCH_LIGHT_EN, {(206), (36), (0), 0}, 0, NULL, NULL, NULL, false}, // Upper Left Torch Light
-	{&COIN_EN, {(236), (108), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "47", NULL, NULL, false}, // Coin
-	{&COLLISION_TOP_CL, {(248), (79), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_32_8, false}, // Upper One-Way
-	{&COLLISION_TOP_CL, {(248), (135), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_34_8, false}, // Lower One-Way
-	{&COIN_EN, {(260), (108), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "46", NULL, NULL, false}, // Coin
-	{&COLLISION_CL, {(271), (8), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_16_8, false}, // Top Collision
-	//{&TORCH_LIGHT_EN, {(320), (36), (0), 0}, 0, NULL, NULL, NULL, false}, // Upper Right Torch Light
-	{&TORCH_OFF_IM, {(320), (34), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Upper Right Torch
-	{&TORCH_SMOKE_PS, {(320), (24), LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&COLLISION_CL, {(327), (127), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_112_128_8, false}, // Bottom Right Collision
-	{&DOOR_EN, {(350), (48), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntExit", NULL, (void*)&LEVEL_1_MAIN_INTERSECTION_EXIT_DOOR_EP, false}, // Door (Exit)
-	{&COLLISION_CL, {(375), (40), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Top Right Collision
+	{&CollisionCl, {(7), (152), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Left Collision
+	{&DoorEntity, {(36), (160), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntEntr2", NULL, (void*)&Level1CoinRoomStageExitEntryPoint, false}, // Door (Lower Entrance)
+	//{&TorchLightEntity, {(56), (148), (0), 0}, 0, NULL, NULL, NULL, false}, // Lower Left Torch Light
+	{&TorchOffEntity, {(56), (146), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Lower Left Torch
+	{&TorchSmokeParticleSystem, {(56), (136), LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&CollisionCl, {(111), (95), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_64_8, false}, // Center Collision
+	{&CollisionCl, {(135), (184), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_272_16_8, false}, // Bottom Collision
+	{&CollisionCl, {(143), (32), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_32_64_8, false}, // Top Left Collision
+	//{&SawBladeH8Entity, {(172), (176), LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Saw Blade
+	{&DoorEntity, {(178), (48), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntEntr1", NULL, (void*)&Level1MainIntersectionEntryDoorEntryPoint, false}, // Door (Upper Entrance)
+	{&Level1IntersectionStageMainBack1Entity, {(192), (96), (-SORT_INCREMENT), 0}, 0, NULL, NULL, NULL, false}, // MainBack
+	{&Level1IntersectionStageBack1Entity, {(192), (96), 32, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Back
+	{&Level1IntersectionStageMain1Entity, {(192), (96), (-SORT_INCREMENT * 2), 0}, 0, NULL, NULL, NULL, false}, // Main
+	{&TorchOffEntity, {(206), (34), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Upper Left Torch
+	//{&TorchLightEntity, {(206), (148), (0), 0}, 0, NULL, NULL, NULL, false}, // Lower Right Torch Light
+	{&TorchOffEntity, {(206), (146), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Lower Right Torch
+	//{&TorchLightEntity, {(206), (36), (0), 0}, 0, NULL, NULL, NULL, false}, // Upper Left Torch Light
+	{&CoinEntity, {(236), (108), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "47", NULL, NULL, false}, // Coin
+	{&CollisionTopCl, {(248), (79), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_32_8, false}, // Upper One-Way
+	{&CollisionTopCl, {(248), (135), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_48_34_8, false}, // Lower One-Way
+	{&CoinEntity, {(260), (108), LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT}, 0, "46", NULL, NULL, false}, // Coin
+	{&CollisionCl, {(271), (8), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_224_16_8, false}, // Top Collision
+	//{&TorchLightEntity, {(320), (36), (0), 0}, 0, NULL, NULL, NULL, false}, // Upper Right Torch Light
+	{&TorchOffEntity, {(320), (34), LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Upper Right Torch
+	{&TorchSmokeParticleSystem, {(320), (24), LAYER_0_FOREGROUND + 12, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&CollisionCl, {(327), (127), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_112_128_8, false}, // Bottom Right Collision
+	{&DoorEntity, {(350), (48), LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 0, "IntExit", NULL, (void*)&Level1MainIntersectionExitDoorEntryPoint, false}, // Door (Exit)
+	{&CollisionCl, {(375), (40), (0), 0}, 0, NULL, NULL, (void*)&level1_intersection_stage_collision_16_48_8, false}, // Top Right Collision
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec Level1IntersectionStageUiEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
-	{&GUI_EN, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
+	{&LowPowerIndicatorEntity, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
+	{&GuiEntity, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -105,7 +105,7 @@ PositionedEntityROMSpec LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const LEVEL1_INTERSECTION_STAGE_ST_FONTS[] =
+FontROMSpec* const Level1IntersectionStageFonts[] =
 {
 	&PlatformerFont,
 	&AstonishSFont,
@@ -114,7 +114,7 @@ FontROMSpec* const LEVEL1_INTERSECTION_STAGE_ST_FONTS[] =
 	NULL
 };
 
-const PostProcessingEffect LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS[] =
+const PostProcessingEffect Level1IntersectionStage_POST_PROCESSING_EFFECTS[] =
 {
 	NULL
 };
@@ -124,7 +124,7 @@ const PostProcessingEffect LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS[
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
+StageROMSpec Level1IntersectionStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -313,7 +313,7 @@ StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)LEVEL1_INTERSECTION_STAGE_ST_FONTS,
+		(FontSpec**)Level1IntersectionStageFonts,
 
 		// char sets to preload
 		(CharSetSpec**)NULL,
@@ -322,23 +322,23 @@ StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background sounds
-		(Sound**)LEVEL_1_SOUNDS,
+		(Sound**)Level1Sounds,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)LEVEL1_INTERSECTION_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)Level1IntersectionStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)LEVEL1_INTERSECTION_STAGE_ST_ENTITIES,
+		(PositionedEntity*)Level1IntersectionStageEntities,
 	},
 
 	// post processing effects
-	(PostProcessingEffect*)LEVEL1_INTERSECTION_STAGE_ST_POST_PROCESSING_EFFECTS,
+	(PostProcessingEffect*)Level1IntersectionStage_POST_PROCESSING_EFFECTS,
 };
 
 
@@ -346,10 +346,10 @@ StageROMSpec LEVEL1_INTERSECTION_STAGE_ST =
 // 												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_EXIT_EP =
+StageEntryPointROMSpec Level1IntersectionStageExitEntryPoint =
 {
 	// the stage to load
-	(StageSpec*)&LEVEL1_INTERSECTION_STAGE_ST,
+	(StageSpec*)&Level1IntersectionStage,
 
 	// name of the entity to start at
 	"IntExit",
@@ -369,10 +369,10 @@ StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_EXIT_EP =
 	false,
 };
 
-StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_LOWER_EP =
+StageEntryPointROMSpec Level1IntersectionStageLowerEntryPoint =
 {
 	// the stage to load
-	(StageSpec*)&LEVEL1_INTERSECTION_STAGE_ST,
+	(StageSpec*)&Level1IntersectionStage,
 
 	// name of the entity to start at
 	"IntEntr2",
@@ -392,10 +392,10 @@ StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_LOWER_EP =
 	false,
 };
 
-StageEntryPointROMSpec LEVEL1_INTERSECTION_STAGE_UPPER_EP =
+StageEntryPointROMSpec Level1IntersectionStageUpperEntryPoint =
 {
 	// the stage to load
-	(StageSpec*)&LEVEL1_INTERSECTION_STAGE_ST,
+	(StageSpec*)&Level1IntersectionStage,
 
 	// name of the entity to start at
 	"IntEntr1",

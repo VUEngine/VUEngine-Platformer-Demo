@@ -35,18 +35,18 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec CANNON_BALL_AC;
-extern EntitySpec COIN_EN;
-extern EntitySpec DOOR_EN;
-extern EntitySpec HERO_AC;
+extern EntitySpec CannonBallEntity;
+extern EntitySpec CoinEntity;
+extern EntitySpec DoorEntity;
+extern EntitySpec HeroEntity;
 extern EntitySpec HERO_EN;
-extern EntitySpec KEY_EN;
-extern EntitySpec LAVA_TOP_EN;
-extern EntitySpec LAYER_SWITCH_DOOR_BACK_EN;
-extern EntitySpec LEVEL_1_HOUSE_IM;
-extern EntitySpec SAW_BLADE_H3_AC;
-extern EntitySpec SAW_BLADE_V3_AC;
-extern EntitySpec SNAIL_3_AC;
+extern EntitySpec KeyEntity;
+extern EntitySpec LavaTopEntity;
+extern EntitySpec LayerSwitchDoorBackEntity;
+extern EntitySpec Level1HouseEntity;
+extern EntitySpec SawBladeH3Entity;
+extern EntitySpec SawBladeV3Entity;
+extern EntitySpec Snail3Entity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ extern EntitySpec SNAIL_3_AC;
 //---------------------------------------------------------------------------------------------------------
 
 // only need to define one for all managed entities
-EntityROMSpec MANAGED_ENTITY =
+EntityROMSpec ManagedEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -109,27 +109,27 @@ const ClassSizeData _userClassesSizeData[] =
 
 const UserObject _userObjects[] =
 {
-	{&LEVEL_1_HOUSE_IM,		"House"},
-	{&CANNON_BALL_AC,		"CannonBall"},
-	{&COIN_EN,				"Coin"},
-	{&DOOR_EN,				"Door"},
-	{&HERO_AC,				"Hero"},
-	{&KEY_EN,				"Key"},
-	{&SAW_BLADE_V3_AC,		"SawBlade V3"},
-	{&SAW_BLADE_H3_AC,		"SawBlade H3"},
+	{&Level1HouseEntity,		"House"},
+	{&CannonBallEntity,		"CannonBall"},
+	{&CoinEntity,				"Coin"},
+	{&DoorEntity,				"Door"},
+	{&HeroEntity,				"Hero"},
+	{&KeyEntity,				"Key"},
+	{&SawBladeV3Entity,		"SawBlade V3"},
+	{&SawBladeH3Entity,		"SawBlade H3"},
 	{NULL, ""},
 };
 
 const UserAnimatedEntity _userAnimatedEntities[] =
 {
-	{(AnimatedEntitySpec*)&COIN_EN,						"Coin"},
-	{(AnimatedEntitySpec*)&DOOR_EN,						"Door"},
-	{(AnimatedEntitySpec*)&LAYER_SWITCH_DOOR_BACK_EN,	"Back Door"},
-	{(AnimatedEntitySpec*)&HERO_AC,						"Hero"},
-	{(AnimatedEntitySpec*)&KEY_EN,						"Key"},
-	{(AnimatedEntitySpec*)&SAW_BLADE_V3_AC,				"SawBlade"},
-	{(AnimatedEntitySpec*)&SNAIL_3_AC,					"Snail"},
-	{(AnimatedEntitySpec*)&LAVA_TOP_EN,					"Lava top"},
+	{(AnimatedEntitySpec*)&CoinEntity,						"Coin"},
+	{(AnimatedEntitySpec*)&DoorEntity,						"Door"},
+	{(AnimatedEntitySpec*)&LayerSwitchDoorBackEntity,	"Back Door"},
+	{(AnimatedEntitySpec*)&HeroEntity,						"Hero"},
+	{(AnimatedEntitySpec*)&KeyEntity,						"Key"},
+	{(AnimatedEntitySpec*)&SawBladeV3Entity,				"SawBlade"},
+	{(AnimatedEntitySpec*)&Snail3Entity,					"Snail"},
+	{(AnimatedEntitySpec*)&LavaTopEntity,					"Lava top"},
 	{NULL, ""},
 };
 

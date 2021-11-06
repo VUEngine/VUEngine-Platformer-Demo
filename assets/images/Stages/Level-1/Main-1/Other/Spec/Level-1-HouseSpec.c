@@ -28,7 +28,7 @@ extern BYTE Level_1_HouseMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_HOUSE_CH =
+CharSetROMSpec Level1HouseCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -43,10 +43,10 @@ CharSetROMSpec LEVEL_1_HOUSE_CH =
 	Level_1_HouseTiles,
 };
 
-TextureROMSpec LEVEL_1_HOUSE_TX =
+TextureROMSpec Level1HouseTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_HOUSE_CH,
+	(CharSetSpec*)&Level1HouseCharset,
 
 	// bgmap spec
 	Level_1_HouseMap,
@@ -78,14 +78,14 @@ TextureROMSpec LEVEL_1_HOUSE_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_HOUSE_IM_SPRITE =
+BgmapSpriteROMSpec Level1HouseSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_HOUSE_TX,
+		(TextureSpec*)&Level1HouseTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -105,13 +105,13 @@ BgmapSpriteROMSpec LEVEL_1_HOUSE_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_HOUSE_IM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1HouseSprites[] =
 {
-	&LEVEL_1_HOUSE_IM_SPRITE,
+	&Level1HouseSprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_HOUSE_IM =
+EntityROMSpec Level1HouseEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -126,7 +126,7 @@ EntityROMSpec LEVEL_1_HOUSE_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_HOUSE_IM_SPRITES,
+	(SpriteSpec**)Level1HouseSprites,
 
 	// use z displacement in projection
 	false,

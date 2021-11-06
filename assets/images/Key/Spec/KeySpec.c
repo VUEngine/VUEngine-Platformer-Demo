@@ -31,7 +31,7 @@ extern BYTE KeyMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec KEY_SPIN_ANIM =
+AnimationFunctionROMSpec KeySpinAnimation =
 {
 	// number of frames of this animation function
 	8,
@@ -53,16 +53,16 @@ AnimationFunctionROMSpec KEY_SPIN_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec KEY_ANIM =
+AnimationDescriptionROMSpec KeyAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&KEY_SPIN_ANIM,
+		(AnimationFunction*)&KeySpinAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec KEY_CH =
+CharSetROMSpec KeyCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -77,10 +77,10 @@ CharSetROMSpec KEY_CH =
 	KeyTiles,
 };
 
-TextureROMSpec KEY_TX =
+TextureROMSpec KeyTexture =
 {
 	// charset spec
-	(CharSetSpec*)&KEY_CH,
+	(CharSetSpec*)&KeyCharset,
 
 	// bgmap spec
 	KeyMap,
@@ -112,14 +112,14 @@ TextureROMSpec KEY_TX =
 	false,
 };
 
-ObjectSpriteROMSpec KEY_SPRITE =
+ObjectSpriteROMSpec KeySprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&KEY_TX,
+		(TextureSpec*)&KeyTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -136,13 +136,13 @@ ObjectSpriteROMSpec KEY_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const KEY_SPRITES[] =
+ObjectSpriteROMSpec* const KeySprites[] =
 {
-	&KEY_SPRITE,
+	&KeySprite,
 	NULL
 };
 
-ShapeROMSpec KEY_SHAPES[] =
+ShapeROMSpec KeyShapes[] =
 {
 	{
 		// shape
@@ -173,7 +173,7 @@ ShapeROMSpec KEY_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-AnimatedEntityROMSpec KEY_EN =
+AnimatedEntityROMSpec KeyEntity =
 {
 	{
 		// class allocator
@@ -189,13 +189,13 @@ AnimatedEntityROMSpec KEY_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)KEY_SPRITES,
+		(SpriteSpec**)KeySprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)KEY_SHAPES,
+		(ShapeSpec*)KeyShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -209,7 +209,7 @@ AnimatedEntityROMSpec KEY_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&KEY_ANIM,
+	(AnimationDescription*)&KeyAnimation,
 
 	// initial animation
 	"Spin",

@@ -23,21 +23,21 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ObjectSpriteROMSpec WATER_DROP_SPRITE;
+extern ObjectSpriteROMSpec WaterDropSprite;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMSpec* const WATER_SPLASH_SPRITES[] =
+ObjectSpriteROMSpec* const WaterSplashSprites[] =
 {
-	&WATER_DROP_SPRITE,
+	&WaterDropSprite,
 	NULL
 };
 
 // particle's spec
-PhysicalParticleROMSpec WATER_SPLASH_PARTICLE =
+PhysicalParticleROMSpec WaterSplashParticle =
 {
 	{
 		// allocator
@@ -70,7 +70,7 @@ PhysicalParticleROMSpec WATER_SPLASH_PARTICLE =
 
 };
 
-ParticleSystemROMSpec WATER_SPLASH_PS =
+ParticleSystemROMSpec WaterSplashParticleSystem =
 {
 	{
 		// class allocator
@@ -121,13 +121,13 @@ ParticleSystemROMSpec WATER_SPLASH_PS =
 	1,
 
 	// array of textures
-	(const SpriteSpec**)WATER_SPLASH_SPRITES,
+	(const SpriteSpec**)WaterSplashSprites,
 
 	// auto start
 	true,
 
 	// particle spec
-	(ParticleSpec*)&WATER_SPLASH_PARTICLE,
+	(ParticleSpec*)&WaterSplashParticle,
 
 	// minimum relative spawn position (x, y, z)
 	{__I_TO_FIX10_6(-16), __I_TO_FIX10_6(0), __I_TO_FIX10_6(-1)},

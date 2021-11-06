@@ -29,7 +29,7 @@ extern BYTE CloudAMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CLOUD_A_CH =
+CharSetROMSpec CloudACharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec CLOUD_A_CH =
 	CloudATiles,
 };
 
-TextureROMSpec CLOUD_A_TX =
+TextureROMSpec CloudATexture =
 {
 	// charset spec
-	(CharSetSpec*)&CLOUD_A_CH,
+	(CharSetSpec*)&CloudACharset,
 
 	// bgmap spec
 	CloudAMap,
@@ -79,14 +79,14 @@ TextureROMSpec CLOUD_A_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CLOUD_A_IM_SPRITE =
+BgmapSpriteROMSpec CloudASprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CLOUD_A_TX,
+		(TextureSpec*)&CloudATexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_EVEN,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec CLOUD_A_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CLOUD_A_IM_SPRITES[] =
+BgmapSpriteROMSpec* const CloudASprites[] =
 {
-	&CLOUD_A_IM_SPRITE,
+	&CloudASprite,
 	NULL
 };
 
-EntityROMSpec CLOUD_A_IM =
+EntityROMSpec CloudAEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec CLOUD_A_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CLOUD_A_IM_SPRITES,
+	(SpriteSpec**)CloudASprites,
 
 	// use z displacement in projection
 	false,

@@ -23,23 +23,23 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ObjectSpriteROMSpec DUST_PARTICLE_SMALL_SPRITE;
-extern ObjectSpriteROMSpec DUST_PARTICLE_LARGE_SPRITE;
+extern ObjectSpriteROMSpec DustParticleSmallSprite;
+extern ObjectSpriteROMSpec DustParticleLargeSprite;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ObjectSpriteROMSpec* const DUST_PARTICLE_SPRITES[] =
+ObjectSpriteROMSpec* const DustParticleSprites[] =
 {
-	&DUST_PARTICLE_SMALL_SPRITE,
-	&DUST_PARTICLE_LARGE_SPRITE,
+	&DustParticleSmallSprite,
+	&DustParticleLargeSprite,
 	NULL
 };
 
 // particle's spec
-PhysicalParticleROMSpec DUST_PARTICLE =
+PhysicalParticleROMSpec DustParticle =
 {
 	{
 		// allocator
@@ -72,7 +72,7 @@ PhysicalParticleROMSpec DUST_PARTICLE =
 	false,
 };
 
-ParticleSystemROMSpec DUST_PS =
+ParticleSystemROMSpec DustParticleSystem =
 {
 	{
 		// class allocator
@@ -123,13 +123,13 @@ ParticleSystemROMSpec DUST_PS =
 	1,
 
 	// array of textures
-	(const SpriteSpec**)DUST_PARTICLE_SPRITES,
+	(const SpriteSpec**)DustParticleSprites,
 
 	// auto start
 	false,
 
 	// particle spec
-	(ParticleSpec*)&DUST_PARTICLE,
+	(ParticleSpec*)&DustParticle,
 
 	// minimum relative spawn position (x, y, z)
 	{__PIXELS_TO_METERS(-2), __PIXELS_TO_METERS(0), __PIXELS_TO_METERS(0)},

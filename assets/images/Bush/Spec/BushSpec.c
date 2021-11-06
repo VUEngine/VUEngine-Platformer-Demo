@@ -31,7 +31,7 @@ extern BYTE BushMap[];
 //---------------------------------------------------------------------------------------------------------
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec BUSH_STILL_ANIM =
+AnimationFunctionROMSpec BushStillAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -53,7 +53,7 @@ AnimationFunctionROMSpec BUSH_STILL_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec BUSH_WINDY_ANIM =
+AnimationFunctionROMSpec BushWindyAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -75,17 +75,17 @@ AnimationFunctionROMSpec BUSH_WINDY_ANIM =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec BUSH_ANIM =
+AnimationDescriptionROMSpec BushAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&BUSH_STILL_ANIM,
-		(AnimationFunction*)&BUSH_WINDY_ANIM,
+		(AnimationFunction*)&BushStillAnimation,
+		(AnimationFunction*)&BushWindyAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec BUSH_CH =
+CharSetROMSpec BushCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -100,10 +100,10 @@ CharSetROMSpec BUSH_CH =
 	BushTiles,
 };
 
-TextureROMSpec BUSH_TX =
+TextureROMSpec BushTexture =
 {
 	// charset spec
-	(CharSetSpec*)&BUSH_CH,
+	(CharSetSpec*)&BushCharset,
 
 	// bgmap spec
 	BushMap,
@@ -135,14 +135,14 @@ TextureROMSpec BUSH_TX =
 	false,
 };
 
-ObjectSpriteROMSpec BUSH_SPRITE =
+ObjectSpriteROMSpec BushSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&BUSH_TX,
+		(TextureSpec*)&BushTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -159,13 +159,13 @@ ObjectSpriteROMSpec BUSH_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const BUSH_SPRITES[] =
+ObjectSpriteROMSpec* const BushSprites[] =
 {
-	&BUSH_SPRITE,
+	&BushSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec BUSH_EN =
+AnimatedEntityROMSpec BushEntity =
 {
 	{
 		// class allocator
@@ -181,7 +181,7 @@ AnimatedEntityROMSpec BUSH_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)BUSH_SPRITES,
+		(SpriteSpec**)BushSprites,
 
 		// use z displacement in projection
 		false,
@@ -201,7 +201,7 @@ AnimatedEntityROMSpec BUSH_EN =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&BUSH_ANIM,
+	(AnimationDescription*)&BushAnimation,
 
 	// initial animation
 	"Windy",

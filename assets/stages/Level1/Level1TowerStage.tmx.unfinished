@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="128" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="253">
  <properties>
-  <property name="declaration" value="StageEntryPointROMSpec LEVEL_1_MAIN_TOWER_EP, BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat"/>
+  <property name="declaration" value="StageEntryPointROMSpec Level1MainTowerEntryPoint, BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat"/>
   <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
-  <property name="stage.assets.bgm" value="KRISSE_BGM"/>
+  <property name="stage.assets.bgm" value="KrisseBgm"/>
   <property name="stage.assets.charSets" value="NULL"/>
   <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGuiFont, AstonishSFont"/>
   <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
@@ -63,32 +63,32 @@
   <tile id="0">
    <properties>
     <property name="charsetName" value=""/>
-    <property name="entityName" value="LAVA_TRIGGER_EN"/>
+    <property name="entityName" value="LavaTriggerEntity"/>
     <property name="textureName" value=""/>
    </properties>
    <image width="16" height="96" source="../../images/Other/Preview/lavaTrigger.png"/>
   </tile>
   <tile id="1">
    <properties>
-    <property name="charsetName" value="LAVA_CH"/>
-    <property name="entityName" value="LAVA_EN"/>
-    <property name="textureName" value="LAVA_TX"/>
+    <property name="charsetName" value="LavaCharset"/>
+    <property name="entityName" value="LavaEntity"/>
+    <property name="textureName" value="LavaTexture"/>
    </properties>
    <image width="384" height="112" source="../../images/Lava/Preview/Lava.png"/>
   </tile>
   <tile id="2">
    <properties>
-    <property name="charsetName" value="LAVA_TOP_CH"/>
-    <property name="entityName" value="LAVA_TOP_AG"/>
-    <property name="textureName" value="LAVA_TOP_TX"/>
+    <property name="charsetName" value="LavaTopCharset"/>
+    <property name="entityName" value="LavaTopEntity"/>
+    <property name="textureName" value="LavaTopTexture"/>
    </properties>
    <image width="384" height="16" source="../../images/Lava/Preview/LavaTop.png"/>
   </tile>
   <tile id="4">
    <properties>
-    <property name="charsetName" value="COG_WHEEL_CH"/>
-    <property name="entityName" value="COG_WHEEL_IM"/>
-    <property name="textureName" value="COG_WHEEL_TX"/>
+    <property name="charsetName" value="CogWheelCharset"/>
+    <property name="entityName" value="CogWheelEntity"/>
+    <property name="textureName" value="CogWheelTexture"/>
    </properties>
    <image width="200" height="200" source="../../images/CogWheel/Preview/CogWheel.png"/>
   </tile>
@@ -810,7 +810,7 @@
   </object>
   <object id="166" name="Door" type="Entity" gid="21" x="34" y="944" width="24" height="32">
    <properties>
-    <property name="extraInfo" value="(void*)&amp;LEVEL_1_MAIN_TOWER_EP"/>
+    <property name="extraInfo" value="(void*)&amp;Level1MainTowerEntryPoint"/>
     <property name="name" value="&quot;EntryDoor&quot;"/>
     <property name="position.z" value="LAYER_0_DOORS"/>
     <property name="preloadTexture" type="bool" value="true"/>

@@ -31,7 +31,7 @@ extern BYTE TorchOffMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec TORCH_OFF_CH =
+CharSetROMSpec TorchOffCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -46,10 +46,10 @@ CharSetROMSpec TORCH_OFF_CH =
 	TorchOffTiles,
 };
 
-TextureROMSpec TORCH_OFF_TX =
+TextureROMSpec TorchOffTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TORCH_OFF_CH,
+	(CharSetSpec*)&TorchOffCharset,
 
 	// bgmap spec
 	TorchOffMap,
@@ -81,14 +81,14 @@ TextureROMSpec TORCH_OFF_TX =
 	false,
 };
 
-ObjectSpriteROMSpec TORCH_OFF_SPRITE =
+ObjectSpriteROMSpec TorchOffSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&TORCH_OFF_TX,
+		(TextureSpec*)&TorchOffTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -105,13 +105,13 @@ ObjectSpriteROMSpec TORCH_OFF_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const TORCH_OFF_SPRITES[] =
+ObjectSpriteROMSpec* const TorchOffSprites[] =
 {
-	&TORCH_OFF_SPRITE,
+	&TorchOffSprite,
 	NULL
 };
 
-EntityROMSpec TORCH_OFF_IM =
+EntityROMSpec TorchOffEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -126,7 +126,7 @@ EntityROMSpec TORCH_OFF_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)TORCH_OFF_SPRITES,
+	(SpriteSpec**)TorchOffSprites,
 
 	// use z displacement in projection
 	false,

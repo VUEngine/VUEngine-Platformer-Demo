@@ -21,13 +21,13 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointROMSpec LEVEL_1_MAIN_MAIN_EP;
+extern StageEntryPointROMSpec Level1MainMainEntryPoint;
 
-extern Sound SOUNDTRACK_01;
+extern Sound Soundtrack01;
 
-SoundROM* const LEVEL_1_SOUNDS[] =
+SoundROM* const Level1Sounds[] =
 {
-	&SOUNDTRACK_01,
+	&Soundtrack01,
 	NULL,
 };
 
@@ -35,10 +35,10 @@ SoundROM* const LEVEL_1_SOUNDS[] =
 //												LEVEL DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerLevelROMSpec LEVEL_1_LV =
+PlatformerLevelROMSpec Level1 =
 {
 	// starting entry point
-	(StageEntryPointSpec*)&LEVEL_1_MAIN_MAIN_EP,
+	(StageEntryPointSpec*)&Level1MainMainEntryPoint,
 
 	// id
 	1,

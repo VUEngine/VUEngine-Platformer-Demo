@@ -21,44 +21,44 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern SoundROM* const LEVEL_1_SOUNDS[];
+extern SoundROM* const Level1Sounds[];
 
-extern EntitySpec FLOWER_A_EN;
-extern EntitySpec GUI_OVERWORLD_EN;
-extern EntitySpec HERO_IDLE_EN;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec OVERWORLD_1_IM;
-extern EntitySpec SMOKE_PS;
-extern EntitySpec WATER_A_EN;
+extern EntitySpec FlowerAEntity;
+extern EntitySpec GuiOverworldEntity;
+extern EntitySpec HeroIdleEntity;
+extern EntitySpec LowPowerIndicatorEntity;
+extern EntitySpec Overworld1Entity;
+extern EntitySpec SmokeParticleSystem;
+extern EntitySpec WaterAEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec OVERWORLD1_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec Overworld1StageEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
+	{&LowPowerIndicatorEntity, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, false},
 
-	{&WATER_A_EN, {(26), (86), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_EN, {(70), (18), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
-	{&WATER_A_EN, {(74), (176), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
-	{&FLOWER_A_EN, {(124), (118), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_EN, {(130), (82), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_EN, {(156), (200), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&HERO_IDLE_EN, {(160), (92), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
-	{&OVERWORLD_1_IM, {(192), (112), LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
-	{&FLOWER_A_EN, {(218), (168), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&SMOKE_PS, {(222.5), (48), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Smoke
-	{&FLOWER_A_EN, {(226), (132), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
-	{&FLOWER_A_EN, {(290), (136), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&WaterAEntity, {(26), (86), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&WaterAEntity, {(70), (18), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&WaterAEntity, {(74), (176), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Water
+	{&FlowerAEntity, {(124), (118), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FlowerAEntity, {(130), (82), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FlowerAEntity, {(156), (200), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&HeroIdleEntity, {(160), (92), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Hero (Idle)
+	{&Overworld1Entity, {(192), (112), LAYER_0_BACKGROUND, LAYER_0_BACKGROUND_DISPLACEMENT}, 0, NULL, NULL, NULL, false}, // Overworld Static Image
+	{&FlowerAEntity, {(218), (168), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&SmokeParticleSystem, {(222.5), (48), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Smoke
+	{&FlowerAEntity, {(226), (132), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
+	{&FlowerAEntity, {(290), (136), LAYER_0_BACKGROUND, 0}, 0, NULL, NULL, NULL, false}, // Flower
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec Overworld1StageUiEntities[] =
 {
-	{&GUI_OVERWORLD_EN, {192, 216, -2, 0}, 0, NULL, NULL, NULL, false}, // GUI
+	{&GuiOverworldEntity, {192, 216, -2, 0}, 0, NULL, NULL, NULL, false}, // GUI
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -68,7 +68,7 @@ PositionedEntityROMSpec OVERWORLD1_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const OVERWORLD1_STAGE_ST_FONTS[] =
+FontROMSpec* const Overworld1StageFonts[] =
 {
 	&PlatformerFont,
 	&PlatformerGuiFont,
@@ -82,7 +82,7 @@ FontROMSpec* const OVERWORLD1_STAGE_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec OVERWORLD1_STAGE_ST =
+StageROMSpec Overworld1Stage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -272,7 +272,7 @@ StageROMSpec OVERWORLD1_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)OVERWORLD1_STAGE_ST_FONTS,
+		(FontSpec**)Overworld1StageFonts,
 
 		// char sets to preload
 		(CharSetSpec**)NULL,
@@ -281,19 +281,19 @@ StageROMSpec OVERWORLD1_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background sounds
-		(Sound**)LEVEL_1_SOUNDS,
+		(Sound**)Level1Sounds,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)OVERWORLD1_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)Overworld1StageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)OVERWORLD1_STAGE_ST_ENTITIES,
+		(PositionedEntity*)Overworld1StageEntities,
 	},
 
 	// post processing effects

@@ -29,7 +29,7 @@ extern BYTE DoubleJumpSignMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec DOUBLE_JUMP_SIGN_CH =
+CharSetROMSpec DoubleJumpSignCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec DOUBLE_JUMP_SIGN_CH =
 	DoubleJumpSignTiles,
 };
 
-TextureROMSpec DOUBLE_JUMP_SIGN_TX =
+TextureROMSpec DoubleJumpSignTexture =
 {
 	// charset spec
-	(CharSetSpec*)&DOUBLE_JUMP_SIGN_CH,
+	(CharSetSpec*)&DoubleJumpSignCharset,
 
 	// bgmap spec
 	DoubleJumpSignMap,
@@ -79,14 +79,14 @@ TextureROMSpec DOUBLE_JUMP_SIGN_TX =
 	false,
 };
 
-ObjectSpriteROMSpec DOUBLE_JUMP_SIGN_IM_SPRITE =
+ObjectSpriteROMSpec DoubleJumpSignSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectSprite),
 
 		// texture spec
-		(TextureSpec*)&DOUBLE_JUMP_SIGN_TX,
+		(TextureSpec*)&DoubleJumpSignTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -103,13 +103,13 @@ ObjectSpriteROMSpec DOUBLE_JUMP_SIGN_IM_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const DOUBLE_JUMP_SIGN_IM_SPRITES[] =
+ObjectSpriteROMSpec* const DoubleJumpSignSprites[] =
 {
-	&DOUBLE_JUMP_SIGN_IM_SPRITE,
+	&DoubleJumpSignSprite,
 	NULL
 };
 
-EntityROMSpec DOUBLE_JUMP_SIGN_IM =
+EntityROMSpec DoubleJumpSignEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -124,7 +124,7 @@ EntityROMSpec DOUBLE_JUMP_SIGN_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)DOUBLE_JUMP_SIGN_IM_SPRITES,
+	(SpriteSpec**)DoubleJumpSignSprites,
 
 	// use z displacement in projection
 	false,

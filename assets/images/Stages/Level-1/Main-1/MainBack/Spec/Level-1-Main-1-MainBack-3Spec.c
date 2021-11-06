@@ -24,17 +24,17 @@
 extern BYTE Level_1_Main_1_MainBackTiles[];
 extern BYTE Level_1_Main_1_MainBack_3AMap[];
 extern BYTE Level_1_Main_1_MainBack_3CMap[];
-extern CharSetROMSpec LEVEL_1_MAIN_1_MAIN_BACK_CH;
+extern CharSetROMSpec Level1Main1MainBackCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3A_TX =
+TextureROMSpec Level1Main1MainBack3aTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+	(CharSetSpec*)&Level1Main1MainBackCharset,
 
 	// bgmap spec
 	Level_1_Main_1_MainBack_3AMap,
@@ -66,10 +66,10 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3A_TX =
 	false,
 };
 
-TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
+TextureROMSpec Level1Main1MainBack3bTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+	(CharSetSpec*)&Level1Main1MainBackCharset,
 
 	// bgmap spec
 	Level_1_Main_1_MainBack_3AMap,
@@ -101,10 +101,10 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3B_TX =
 	false,
 };
 
-TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
+TextureROMSpec Level1Main1MainBack3cTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_CH,
+	(CharSetSpec*)&Level1Main1MainBackCharset,
 
 	// bgmap spec
 	Level_1_Main_1_MainBack_3CMap,
@@ -136,14 +136,14 @@ TextureROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3C_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1MainBack3aSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_3A_TX,
+		(TextureSpec*)&Level1Main1MainBack3aTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -163,14 +163,14 @@ BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3A_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3B_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1MainBack3bSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_3A_TX,
+		(TextureSpec*)&Level1Main1MainBack3aTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -190,14 +190,14 @@ BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3B_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec LEVEL_1_MAIN_1_MAIN_BACK_3C_IM_SPRITE =
+BgmapSpriteROMSpec Level1Main1MainBack3cSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_MAIN_1_MAIN_BACK_3C_TX,
+		(TextureSpec*)&Level1Main1MainBack3cTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
