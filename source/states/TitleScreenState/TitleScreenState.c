@@ -93,7 +93,7 @@ void TitleScreenState::enter(void* owner)
 	VirtualList options = new VirtualList();
 	if(ProgressManager::hasProgress(ProgressManager::getInstance()))
 	{
-		this->optionsSelector = new OptionsSelector(3, 1, NULL);
+		this->optionsSelector = new OptionsSelector(3, 1, "Platformer");
 		Option* option = NULL;
 
 		option = new Option;
@@ -126,7 +126,7 @@ void TitleScreenState::enter(void* owner)
 	}
 	else
 	{
-		this->optionsSelector = new OptionsSelector(2, 1, NULL);
+		this->optionsSelector = new OptionsSelector(2, 1, "Platformer");
 		Option* option = NULL;
 
 		option = new Option;

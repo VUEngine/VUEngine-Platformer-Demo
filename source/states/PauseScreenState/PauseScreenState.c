@@ -48,7 +48,7 @@ void PauseScreenState::constructor()
 
 	// init members
 	this->mode = kPauseScreenModeShowOptions;
-	this->optionsSelector = new OptionsSelector(1, 3, NULL);
+	this->optionsSelector = new OptionsSelector(1, 3, "Platformer");
 }
 
 // class's destructor

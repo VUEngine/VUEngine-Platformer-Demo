@@ -45,7 +45,7 @@ void OptionsScreenState::constructor()
 	Base::constructor();
 
 	// init members
-	this->optionsSelector = new OptionsSelector(1, 2, NULL);
+	this->optionsSelector = new OptionsSelector(1, 2, "Platformer");
 	OptionsScreenState::setNextState(this, GameState::safeCast(TitleScreenState::getInstance()));
 }
 
