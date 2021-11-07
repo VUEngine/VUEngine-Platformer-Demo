@@ -1,6 +1,11 @@
 {
-	"name": ["VUEngine Platformer Demo"],
-	"authors": ["Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>"],
+	"name": [
+		"VUEngine Platformer Demo"
+	],
+	"authors": [
+		"Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>"
+	],
+	"description": "A platform demo game created using VUEngine to show off some of the engine's capabilities.",
 	"headerName": "VUENGINE PLATFORMER",
 	"makerCode": "VU"
 }
