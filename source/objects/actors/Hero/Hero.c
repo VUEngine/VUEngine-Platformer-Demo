@@ -803,6 +803,7 @@ void Hero::die()
 {
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroFlash);
 
+	GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), false);
 	Container::deleteMyself(this);
 
 	/*
