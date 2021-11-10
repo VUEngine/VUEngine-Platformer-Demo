@@ -378,6 +378,7 @@ void PlatformerLevelState::resume(void* owner)
 	// resume in-game clock
 	Clock::pause(this->messagingClock, false);
 	Clock::pause(this->clock, false);
+	Clock::pause(this->updateClock, false);
 
 	// call base
 	Base::resume(this, owner);
@@ -442,6 +443,8 @@ void PlatformerLevelState::resume(void* owner)
 	PlatformerLevelState::activateLantern(this);
 
 	Game::enableKeypad(Game::getInstance());
+
+	Printing::setWorldCoordinates(Printing::getInstance(), 0, 0, PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
 }
 
 void PlatformerLevelState::setPrintingLayerCoordinates()
