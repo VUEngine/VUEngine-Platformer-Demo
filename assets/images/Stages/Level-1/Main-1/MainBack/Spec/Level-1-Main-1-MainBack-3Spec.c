@@ -21,9 +21,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainBackTiles[];
-extern BYTE Level_1_Main_1_MainBack_3AMap[];
-extern BYTE Level_1_Main_1_MainBack_3CMap[];
+extern uint32 Level_1_Main_1_MainBackTiles[];
+extern uint16 Level_1_Main_1_MainBack_3AMap[];
+extern uint16 Level_1_Main_1_MainBack_3CMap[];
 extern CharSetROMSpec Level1Main1MainBackCharset;
 
 

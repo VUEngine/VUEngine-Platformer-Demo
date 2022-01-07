@@ -24,8 +24,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HideLayer10x7Tiles[];
-extern BYTE HideLayer10x7Map[];
+extern uint32 HideLayer10x7Tiles[];
+extern uint16 HideLayer10x7Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -142,6 +142,9 @@ CharSetROMSpec HideLayer10x7Charset =
 
 	// char spec
 	HideLayer10x7Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec HideLayer10x7Texture =

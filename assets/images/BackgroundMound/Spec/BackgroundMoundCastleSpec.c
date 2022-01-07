@@ -20,8 +20,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BackgroundMoundCastleTiles[];
-extern BYTE BackgroundMoundCastleMap[];
+extern uint32 BackgroundMoundCastleTiles[];
+extern uint16 BackgroundMoundCastleMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -41,6 +41,9 @@ CharSetROMSpec MoundBgCastleCharset =
 
 	// char spec
 	BackgroundMoundCastleTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec MoundBgCastleTexture =

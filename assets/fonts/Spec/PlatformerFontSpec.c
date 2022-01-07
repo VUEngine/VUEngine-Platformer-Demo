@@ -13,7 +13,7 @@
 //                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FontDefaultTiles[];
+extern uint32 FontDefaultTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,8 +30,10 @@ CharSetROMSpec PlatformerFontCharSet =
 
 	// char spec
 	FontDefaultTiles,
-};
 
+	// pointer to the frames offsets
+	NULL,
+};
 FontROMSpec PlatformerFont =
 {
 	// font charset spec pointer

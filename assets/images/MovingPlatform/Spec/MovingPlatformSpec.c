@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE MovingPlatform4Tiles[];
-extern BYTE MovingPlatform4Map[];
+extern uint32 MovingPlatform4Tiles[];
+extern uint16 MovingPlatform4Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -73,6 +73,9 @@ CharSetROMSpec MovingPlatformCharset =
 
 	// char spec
 	MovingPlatform4Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec MovingPlatformTexture =

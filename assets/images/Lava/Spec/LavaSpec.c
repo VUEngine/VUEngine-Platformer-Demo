@@ -24,8 +24,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE LavaTiles[];
-extern BYTE LavaMap[];
+extern uint32 LavaTiles[];
+extern uint16 LavaMap[];
 
 extern BgmapSpriteROMSpec Level1TowerBack1HotAirSprite;
 extern BgmapSpriteROMSpec Level1TowerMain1HotAirSprite;
@@ -51,6 +51,9 @@ CharSetROMSpec LavaCharset =
 
 	// char spec
 	LavaTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec LavaTexture =

@@ -23,8 +23,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TorchOffTiles[];
-extern BYTE TorchOffMap[];
+extern uint32 TorchOffTiles[];
+extern uint16 TorchOffMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec TorchOffCharset =
 
 	// char spec
 	TorchOffTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec TorchOffTexture =

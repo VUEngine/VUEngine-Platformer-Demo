@@ -21,8 +21,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1CoinRoomStageMainBackTiles[];
-extern BYTE Level1CoinRoomStageMainBack1Map[];
+extern uint32 Level1CoinRoomStageMainBackTiles[];
+extern uint16 Level1CoinRoomStageMainBack1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1CoinRoomStageMainBackCharset =
 
 	// char spec
 	Level1CoinRoomStageMainBackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1CoinRoomStageMainBack1Texture =

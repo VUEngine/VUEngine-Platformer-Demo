@@ -23,8 +23,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HintTiles[];
-extern BYTE HintMap[];
+extern uint32 HintTiles[];
+extern uint16 HintMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -329,6 +329,9 @@ CharSetROMSpec HintCharset =
 
 	// char spec
 	HintTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec HintTexture =

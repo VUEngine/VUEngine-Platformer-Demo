@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SnailTiles[];
-extern BYTE SnailMap[];
+extern uint32 SnailTiles[];
+extern uint16 SnailMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -74,6 +74,9 @@ CharSetROMSpec SnailCharset =
 
 	// char spec
 	SnailTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec SnailTexture =

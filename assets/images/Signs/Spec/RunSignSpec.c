@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE RunSignTiles[];
-extern BYTE RunSignMap[];
+extern uint32 RunSignTiles[];
+extern uint16 RunSignMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec RunSignCharset =
 
 	// char spec
 	RunSignTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec RunSignTexture =

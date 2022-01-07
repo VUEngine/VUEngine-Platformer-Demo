@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CogWheelTiles[];
-extern BYTE CogWheelMap[];
+extern uint32 CogWheelTiles[];
+extern uint16 CogWheelMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +43,9 @@ CharSetROMSpec CogWheelCharset =
 
 	// char spec
 	CogWheelTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CogWheelTexture =

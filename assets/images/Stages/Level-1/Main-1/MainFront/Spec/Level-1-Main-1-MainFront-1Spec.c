@@ -19,8 +19,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainFrontTiles[];
-extern BYTE Level_1_Main_1_MainFront_1Map[];
+extern uint32 Level_1_Main_1_MainFrontTiles[];
+extern uint16 Level_1_Main_1_MainFront_1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,6 +40,9 @@ CharSetROMSpec Level1Main1MainFrontCharset =
 
 	// char spec
 	Level_1_Main_1_MainFrontTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Main1MainFront1Texture =

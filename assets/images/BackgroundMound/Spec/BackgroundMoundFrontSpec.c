@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BackgroundMoundFrontTiles[];
-extern BYTE BackgroundMoundFrontMap[];
+extern uint32 BackgroundMoundFrontTiles[];
+extern uint16 BackgroundMoundFrontMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec MoundBgFrontCharset =
 
 	// char spec
 	BackgroundMoundFrontTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec MoundBgFrontTexture =

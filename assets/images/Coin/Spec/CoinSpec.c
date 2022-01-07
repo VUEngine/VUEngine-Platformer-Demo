@@ -22,14 +22,14 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CoinTiles[];
-extern BYTE CoinMap[];
-extern BYTE CoinSilhouetteTiles[];
-extern BYTE CoinSilhouetteMap[];
-extern BYTE CoinBackTiles[];
-extern BYTE CoinBackMap[];
-extern BYTE CoinBackSilhouetteTiles[];
-extern BYTE CoinBackSilhouetteMap[];
+extern uint32 CoinTiles[];
+extern uint16 CoinMap[];
+extern uint32 CoinSilhouetteTiles[];
+extern uint16 CoinSilhouetteMap[];
+extern uint32 CoinBackTiles[];
+extern uint16 CoinBackMap[];
+extern uint32 CoinBackSilhouetteTiles[];
+extern uint16 CoinBackSilhouetteMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -81,6 +81,9 @@ CharSetROMSpec CoinCharset =
 
 	// char spec
 	CoinTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CoinTexture =
@@ -131,6 +134,9 @@ CharSetROMSpec CoinSilhouetteCharset =
 
 	// char spec
 	CoinSilhouetteTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CoinSilhouetteTexture =
@@ -181,6 +187,9 @@ CharSetROMSpec AFFINE_CoinCharset =
 
 	// char spec
 	CoinTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec AFFINE_CoinTexture =
@@ -231,6 +240,9 @@ CharSetROMSpec CoinBackCharset =
 
 	// char spec
 	CoinBackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CoinBackTexture =
@@ -281,6 +293,9 @@ CharSetROMSpec CoinBackSilhouetteCharset =
 
 	// char spec
 	CoinBackSilhouetteTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CoinBackSilhouetteTexture =

@@ -21,14 +21,14 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PlatformerDemoLogoLTiles[];
-extern BYTE PlatformerDemoLogoLMap[];
-extern BYTE PlatformerDemoLogoRTiles[];
-extern BYTE PlatformerDemoLogoRMap[];
-extern BYTE PlatformerDemoLogoOutlineLTiles[];
-extern BYTE PlatformerDemoLogoOutlineLMap[];
-extern BYTE PlatformerDemoLogoOutlineRTiles[];
-extern BYTE PlatformerDemoLogoOutlineRMap[];
+extern uint32 PlatformerDemoLogoLTiles[];
+extern uint16 PlatformerDemoLogoLMap[];
+extern uint32 PlatformerDemoLogoRTiles[];
+extern uint16 PlatformerDemoLogoRMap[];
+extern uint32 PlatformerDemoLogoOutlineLTiles[];
+extern uint16 PlatformerDemoLogoOutlineLMap[];
+extern uint32 PlatformerDemoLogoOutlineRTiles[];
+extern uint16 PlatformerDemoLogoOutlineRMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,6 +48,9 @@ CharSetROMSpec LogoLCharset =
 
 	// char spec
 	PlatformerDemoLogoLTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec LogoLTexture =
@@ -98,6 +101,9 @@ CharSetROMSpec LogoRCharset =
 
 	// char spec
 	PlatformerDemoLogoRTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec LogoRTexture =
@@ -148,6 +154,9 @@ CharSetROMSpec LogoOutlineLCharset =
 
 	// char spec
 	PlatformerDemoLogoOutlineLTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec LogoOutlineLTexture =
@@ -198,6 +207,9 @@ CharSetROMSpec LogoOutlineRCharset =
 
 	// char spec
 	PlatformerDemoLogoOutlineRTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec LogoOutlineRTexture =

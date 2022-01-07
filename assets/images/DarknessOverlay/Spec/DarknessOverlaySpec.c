@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DarknessOverlayTiles[];
-extern BYTE DarknessOverlayMap[];
+extern uint32 DarknessOverlayTiles[];
+extern uint16 DarknessOverlayMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec DarknessOverlayCharset =
 
 	// char spec
 	DarknessOverlayTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec DarknessOverlayTexture =

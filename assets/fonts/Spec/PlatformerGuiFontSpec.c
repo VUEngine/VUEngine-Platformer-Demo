@@ -13,7 +13,7 @@
 //                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FontGuiTiles[];
+extern uint32 FontGuiTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,8 +30,10 @@ CharSetROMSpec PlatformerGuiFontCharSet =
 
 	// char spec
 	FontGuiTiles,
-};
 
+	// pointer to the frames offsets
+	NULL,
+};
 FontROMSpec PlatformerGuiFont =
 {
 	// font charset spec pointer

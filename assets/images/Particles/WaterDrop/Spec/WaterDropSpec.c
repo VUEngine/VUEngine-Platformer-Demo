@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE WaterDropTiles[];
-extern BYTE WaterDropMap[];
+extern uint32 WaterDropTiles[];
+extern uint16 WaterDropMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +43,9 @@ CharSetROMSpec WaterDropCharset =
 
 	// char spec
 	WaterDropTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec WaterDropTexture =

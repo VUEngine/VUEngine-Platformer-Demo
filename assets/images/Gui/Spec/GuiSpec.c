@@ -24,10 +24,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GuiTiles[];
-extern BYTE GuiOverworldTiles[];
-extern BYTE GuiBandanaTiles[];
-extern BYTE GuiMap[];
+extern uint32 GuiTiles[];
+extern uint32 GuiOverworldTiles[];
+extern uint32 GuiBandanaTiles[];
+extern uint16 GuiMap[];
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
@@ -78,8 +78,10 @@ CharSetROMSpec GuiCharset =
 
 	// char spec
 	GuiTiles,
-};
 
+	// pointer to the frames offsets
+	NULL,
+};
 CharSetROMSpec GuiBandanaCharset =
 {
 	// number of chars, depending on allocation type:
@@ -93,8 +95,10 @@ CharSetROMSpec GuiBandanaCharset =
 
 	// char spec
 	GuiBandanaTiles,
-};
 
+	// pointer to the frames offsets
+	NULL,
+};
 CharSetROMSpec GUI_OverworldCharset =
 {
 	// number of chars, depending on allocation type:
@@ -108,6 +112,9 @@ CharSetROMSpec GUI_OverworldCharset =
 
 	// char spec
 	GuiOverworldTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec GuiTexture =

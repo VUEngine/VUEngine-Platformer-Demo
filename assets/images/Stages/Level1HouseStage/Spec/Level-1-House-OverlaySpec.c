@@ -19,8 +19,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_House_OverlayTiles[];
-extern BYTE Level_1_House_OverlayMap[];
+extern uint32 Level_1_House_OverlayTiles[];
+extern uint16 Level_1_House_OverlayMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -41,6 +41,9 @@ CharSetROMSpec Level1HouseOverlayCharset =
 
 	// char spec
 	Level_1_House_OverlayTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1HouseOverlayTexture =

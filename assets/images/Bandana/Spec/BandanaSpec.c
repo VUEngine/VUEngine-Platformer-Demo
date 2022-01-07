@@ -23,8 +23,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BandanaTiles[];
-extern BYTE BandanaMap[];
+extern uint32 BandanaTiles[];
+extern uint16 BandanaMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,6 +76,9 @@ CharSetROMSpec BandanaCharset =
 
 	// char spec
 	BandanaTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec BandanaTexture =

@@ -21,8 +21,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1IntersectionStageMainBackTiles[];
-extern BYTE Level1IntersectionStageMainBack1Map[];
+extern uint32 Level1IntersectionStageMainBackTiles[];
+extern uint16 Level1IntersectionStageMainBack1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1IntersectionStageMainBackCharset =
 
 	// char spec
 	Level1IntersectionStageMainBackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1IntersectionStageMainBack1Texture =

@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Mound1Tiles[];
-extern BYTE Mound1Map[];
+extern uint32 Mound1Tiles[];
+extern uint16 Mound1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Mound1Charset =
 
 	// char spec
 	Mound1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Mound1Texture =

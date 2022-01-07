@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CannonTiles[];
-extern BYTE CannonMap[];
+extern uint32 CannonTiles[];
+extern uint16 CannonMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -96,6 +96,9 @@ CharSetROMSpec CannonCharset =
 
 	// char spec
 	CannonTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CannonTexture =

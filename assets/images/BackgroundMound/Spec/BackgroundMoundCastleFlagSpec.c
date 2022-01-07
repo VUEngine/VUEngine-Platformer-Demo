@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BackgroundMoundCastleFlagTiles[];
-extern BYTE BackgroundMoundCastleFlagMap[];
+extern uint32 BackgroundMoundCastleFlagTiles[];
+extern uint16 BackgroundMoundCastleFlagMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,6 +75,9 @@ CharSetROMSpec MoundBgCastleFlagCharset =
 
 	// char spec
 	BackgroundMoundCastleFlagTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec MoundBgCastleFlagTexture =

@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE JumpSignTiles[];
-extern BYTE JumpSignMap[];
+extern uint32 JumpSignTiles[];
+extern uint16 JumpSignMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec JumpSignCharset =
 
 	// char spec
 	JumpSignTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec JumpSignTexture =

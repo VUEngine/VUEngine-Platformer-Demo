@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Tower_MainBackTiles[];
-extern BYTE Level_1_Tower_MainBack_2Map[];
+extern uint32 Level_1_Tower_MainBackTiles[];
+extern uint16 Level_1_Tower_MainBack_2Map[];
 
 extern CharSetROMSpec Level1TowerMainBackCharset;
 

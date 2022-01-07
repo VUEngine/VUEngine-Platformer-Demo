@@ -20,8 +20,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_BackTiles[];
-extern BYTE Level_1_Main_1_Back_1Map[];
+extern uint32 Level_1_Main_1_BackTiles[];
+extern uint16 Level_1_Main_1_Back_1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -41,6 +41,9 @@ CharSetROMSpec Level1Main1Back1Charset =
 
 	// char spec
 	Level_1_Main_1_BackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Main1Back1Texture =

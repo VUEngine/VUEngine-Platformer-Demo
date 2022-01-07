@@ -25,10 +25,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DoorTiles[];
-extern BYTE DoorMap[];
-extern BYTE DoorBackTiles[];
-extern BYTE DoorBackMap[];
+extern uint32 DoorTiles[];
+extern uint16 DoorMap[];
+extern uint32 DoorBackTiles[];
+extern uint16 DoorBackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -195,6 +195,9 @@ CharSetROMSpec DoorCharset =
 
 	// char spec
 	DoorTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec DoorTexture =
@@ -553,6 +556,9 @@ CharSetROMSpec DoorBackCharset =
 
 	// char spec
 	DoorBackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec DoorBackTexture =

@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DustParticleSmallTiles[];
-extern BYTE DustParticleSmallMap[];
+extern uint32 DustParticleSmallTiles[];
+extern uint16 DustParticleSmallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +43,9 @@ CharSetROMSpec DustParticleSmallCharset =
 
 	// char spec
 	DustParticleSmallTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec DustParticleSmallTexture =

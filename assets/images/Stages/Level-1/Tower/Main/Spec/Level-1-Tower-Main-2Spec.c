@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Tower_MainTiles[];
-extern BYTE Level_1_Tower_Main_2Map[];
+extern uint32 Level_1_Tower_MainTiles[];
+extern uint16 Level_1_Tower_Main_2Map[];
 
 extern BgmapSpriteROMSpec Level1TowerMainBack2Sprite;
 extern CharSetROMSpec Level1TowerMainCharset;
