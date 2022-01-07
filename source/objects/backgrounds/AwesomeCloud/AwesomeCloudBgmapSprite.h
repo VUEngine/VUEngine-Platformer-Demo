@@ -60,7 +60,6 @@ class AwesomeCloudBgmapSprite : BgmapSprite
 	/// @publicsection
 	void constructor(const AwesomeCloudBgmapSpriteSpec* awesomeCloudBgmapSpriteSpec, Object owner);
 	override void position(const Vector3D* position);
-	override void setPosition(const PixelVector* position);
 	override uint16 doRender(uint16 index, bool evenFrame);
 }
 

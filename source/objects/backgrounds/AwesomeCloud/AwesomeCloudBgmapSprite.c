@@ -74,20 +74,6 @@ void AwesomeCloudBgmapSprite::position(const Vector3D* position)
 }
 
 /**
- * Set 2D position
- *
- * @memberof			BgmapSprite
- * @public
- *
- * @param position		New 2D position
- */
-void AwesomeCloudBgmapSprite::setPosition(const PixelVector* position)
-{
-	Base::setPosition(this, position);
-}
-
-
-/**
  * Write WORLD data to DRAM
  *
  * @memberof		AwesomeCloudBgmapSprite

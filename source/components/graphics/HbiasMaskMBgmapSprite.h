@@ -74,7 +74,6 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 
 	void constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, Object owner);
 	override uint16 doRender(uint16 index, bool evenFrame);
-	override void setPosition(const PixelVector* position);
 	override void setMode(uint16 display, uint16 mode);
 }
 

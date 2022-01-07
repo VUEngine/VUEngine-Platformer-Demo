@@ -1,22 +1,20 @@
-//======================================================================
+//---------------------------------------------------------------------------------------------------------
 //
-//	FireSmall, 8x24@2, 
-//	+ 3 tiles not compressed
-//	+ regular map (flat), not compressed, 1x3 
-//	Total size: 48 + 8 = 56
+//	FireSmall
+//  • 8×24 pixels
+//  • 3 tiles, not compressed
+//  • 1×3 map, not compressed
+//  Size: 52 + 6 = 58
 //
-//	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
-//	( http://www.coranac.com/projects/#grit )
-//
-//======================================================================
+//---------------------------------------------------------------------------------------------------------
 
-const uint32 FireSmallTiles[12] __attribute__((aligned(4)))=
+const uint32 FireSmallTiles[13] __attribute__((aligned(4))) =
 {
-	0x28000800,0xAA802A00,0xAFE0ABA0,0x2BA02FE0,
-	0x08800080,0x0AA00280,0x2FE02BE0,0x2BA02FE0,0x08000020,0x2A800880,0x2FE02FA0,0x2BA02FE0,
+    0x00000000,0x28000800,0xAA802A00,0xAFE0ABA0,0x2BA02FE0,0x08800080,0x0AA00280,0x2FE02BE0,
+    0x2BA02FE0,0x08000020,0x2A800880,0x2FE02FA0,0x2BA02FE0,
 };
 
-const uint16 FireSmallMap[4] __attribute__((aligned(4)))=
+const uint16 FireSmallMap[3] __attribute__((aligned(4))) =
 {
-	0x0000,0x0001,0x0002,0x0000,
+    0x0000,0x0001,0x0002,
 };

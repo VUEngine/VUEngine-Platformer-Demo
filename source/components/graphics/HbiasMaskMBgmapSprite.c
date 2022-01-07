@@ -80,13 +80,6 @@ void HbiasMaskMBgmapSprite::destructor()
 	Base::destructor();
 }
 
-void HbiasMaskMBgmapSprite::setPosition(const PixelVector* position)
-{
-	Base::setPosition(this, position);
-
-	HbiasMaskMBgmapSprite::getReferenceSprite(this);
-}
-
 void HbiasMaskMBgmapSprite::setMode(uint16 display, uint16 mode __attribute__ ((unused)))
 {
 	this->head = display | __WORLD_HBIAS;
