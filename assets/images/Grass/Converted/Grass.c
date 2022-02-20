@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Grass
+//  Grass
 //  • 16×32 pixels
-//  • 8 tiles, not compressed
+//  • 8 tiles, unreduced, not compressed
 //  • 2×4 map, not compressed
+//  • 2 animation frames, 2×2, spritesheet
 //  Size: 132 + 16 = 148
 //
 //---------------------------------------------------------------------------------------------------------
@@ -20,4 +21,9 @@ const uint32 GrassTiles[33] __attribute__((aligned(4))) =
 const uint16 GrassMap[8] __attribute__((aligned(4))) =
 {
     0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,
+};
+
+const uint32 GrassTilesFrameOffsets[2] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000011,
 };

@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE OneWayPlatform4Tiles[];
-extern BYTE OneWayPlatform4Map[];
+extern uint32 OneWayPlatform4Tiles[];
+extern uint16 OneWayPlatform4Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec OneWayPlatform4Charset =
 
 	// char spec
 	OneWayPlatform4Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec OneWayPlatform4Texture =

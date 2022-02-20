@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level_1_House_Pipe
+//  Level_1_House_Pipe
 //  • 16×64 pixels
 //  • 5 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 2×8 map, not compressed

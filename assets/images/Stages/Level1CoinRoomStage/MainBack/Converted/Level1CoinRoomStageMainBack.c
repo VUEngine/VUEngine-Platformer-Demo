@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level1CoinRoomStageMainBack
+//  Level1CoinRoomStageMainBack
 //  • 8×16 pixels
 //  • 2 tiles, reduced by non-unique and flipped tiles, not compressed
 //  Size: 36

@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DoubleJumpSignTiles[];
-extern BYTE DoubleJumpSignMap[];
+extern uint32 DoubleJumpSignTiles[];
+extern uint16 DoubleJumpSignMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec DoubleJumpSignCharset =
 
 	// char spec
 	DoubleJumpSignTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec DoubleJumpSignTexture =

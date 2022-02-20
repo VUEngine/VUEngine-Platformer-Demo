@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level_1_Tower_Main
+//  Level_1_Tower_Main
 //  • 8×368 pixels
 //  • 46 tiles, reduced by non-unique and flipped tiles, not compressed
 //  Size: 740

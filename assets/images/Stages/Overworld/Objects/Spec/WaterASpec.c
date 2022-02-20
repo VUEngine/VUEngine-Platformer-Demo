@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE WaterATiles[];
-extern BYTE WaterAMap[];
+extern uint32 WaterATiles[];
+extern uint32 WaterATilesFrameOffsets[];
+extern uint16 WaterAMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -80,6 +81,9 @@ CharSetROMSpec WaterACharset =
 
 	// char spec
 	WaterATiles,
+
+	// pointer to the frames offsets
+	WaterATilesFrameOffsets,
 };
 
 TextureROMSpec WaterATexture =

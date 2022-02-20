@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level1CoinRoomStageMainBack1
+//  Level1CoinRoomStageMainBack1
 //  • 384×192 pixels
 //  • 48×24 map, not compressed
 //  Size: 2304

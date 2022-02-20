@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BushTiles[];
-extern BYTE BushMap[];
+extern uint32 BushTiles[];
+extern uint32 BushTilesFrameOffsets[];
+extern uint16 BushMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -98,6 +99,9 @@ CharSetROMSpec BushCharset =
 
 	// char spec
 	BushTiles,
+
+	// pointer to the frames offsets
+	BushTilesFrameOffsets,
 };
 
 TextureROMSpec BushTexture =

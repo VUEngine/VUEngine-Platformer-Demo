@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Torch
+//  Torch
 //  • 8×72 pixels
-//  • 9 tiles, not compressed
+//  • 9 tiles, unreduced, not compressed
 //  • 1×9 map, not compressed
+//  • 3 animation frames, 1×3, spritesheet
 //  Size: 148 + 18 = 166
 //
 //---------------------------------------------------------------------------------------------------------
@@ -21,4 +22,9 @@ const uint16 TorchMap[9] __attribute__((aligned(4))) =
 {
     0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,
     0x0008,
+};
+
+const uint32 TorchTilesFrameOffsets[3] __attribute__((aligned(4))) =
+{
+    0x00000001,0x0000000D,0x00000019,
 };

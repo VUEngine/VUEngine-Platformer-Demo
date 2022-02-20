@@ -21,8 +21,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SawBladeTiles[];
-extern BYTE SawBladeMap[];
+extern uint32 SawBladeTiles[];
+extern uint32 SawBladeTilesFrameOffsets[];
+extern uint16 SawBladeMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -73,6 +74,9 @@ CharSetROMSpec SawBladeCharset =
 
 	// char spec
 	SawBladeTiles,
+
+	// pointer to the frames offsets
+	SawBladeTilesFrameOffsets,
 };
 
 TextureROMSpec SawBladeTexture =

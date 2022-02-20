@@ -19,8 +19,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_House_FireplaceTiles[];
-extern BYTE Level_1_House_FireplaceMap[];
+extern uint32 Level_1_House_FireplaceTiles[];
+extern uint16 Level_1_House_FireplaceMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,6 +40,9 @@ CharSetROMSpec Level1HouseFireplaceCharset =
 
 	// char spec
 	Level_1_House_FireplaceTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1HouseFireplaceTexture =

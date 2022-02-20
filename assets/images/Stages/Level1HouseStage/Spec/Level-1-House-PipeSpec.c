@@ -19,8 +19,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_House_PipeTiles[];
-extern BYTE Level_1_House_PipeMap[];
+extern uint32 Level_1_House_PipeTiles[];
+extern uint16 Level_1_House_PipeMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,6 +40,9 @@ CharSetROMSpec Level1HousePipeCharset =
 
 	// char spec
 	Level_1_House_PipeTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1HousePipeTexture =

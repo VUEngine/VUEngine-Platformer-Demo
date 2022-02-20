@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FlowerATiles[];
-extern BYTE FlowerAMap[];
+extern uint32 FlowerATiles[];
+extern uint32 FlowerATilesFrameOffsets[];
+extern uint16 FlowerAMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -80,6 +81,9 @@ CharSetROMSpec FlowerACharset =
 
 	// char spec
 	FlowerATiles,
+
+	// pointer to the frames offsets
+	FlowerATilesFrameOffsets,
 };
 
 TextureROMSpec FlowerATexture =

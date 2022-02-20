@@ -18,9 +18,9 @@
         "compress": false
     },
     "animation": {
-        "isAnimation": false,
+        "isAnimation": true,
         "individualFiles": false,
-        "frameWidth": 0,
-        "frameHeight": 0
+        "frameWidth": 3,
+        "frameHeight": 1
     }
 }

@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Mound1
+//  Mound1
 //  • 48×40 pixels
 //  • 7 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 6×5 map, not compressed

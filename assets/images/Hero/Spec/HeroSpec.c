@@ -25,9 +25,11 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HeroTiles[];
-extern BYTE HeroBandanaTiles[];
-extern BYTE HeroMap[];
+extern uint32 HeroTiles[];
+extern uint32 HeroTilesFrameOffsets[];
+extern uint32 HeroBandanaTiles[];
+extern uint32 HeroBandanaTilesFrameOffsets[];
+extern uint16 HeroMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -356,6 +358,9 @@ CharSetROMSpec HeroCharset =
 
 	// char spec
 	HeroTiles,
+
+	// pointer to the frames offsets
+	HeroTilesFrameOffsets,
 };
 
 CharSetROMSpec HeroBandanaCharset =
@@ -371,6 +376,9 @@ CharSetROMSpec HeroBandanaCharset =
 
 	// char spec
 	HeroBandanaTiles,
+
+	// pointer to the frames offsets
+	HeroBandanaTilesFrameOffsets,
 };
 
 TextureROMSpec HeroTexture =

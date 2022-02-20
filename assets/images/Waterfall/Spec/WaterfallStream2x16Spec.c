@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE WaterfallStream2x16Tiles[];
-extern BYTE WaterfallStream2x16Map[];
+extern uint32 WaterfallStream2x16Tiles[];
+extern uint32 WaterfallStream2x16TilesFrameOffsets[];
+extern uint16 WaterfallStream2x16Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,6 +76,9 @@ CharSetROMSpec WaterfallStream2x16Charset =
 
 	// char spec
 	WaterfallStream2x16Tiles,
+
+	// pointer to the frames offsets
+	WaterfallStream2x16TilesFrameOffsets,
 };
 
 TextureROMSpec WaterfallStream2x16Texture =

@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	DoorBack
+//  DoorBack
 //  • 16×168 pixels
-//  • 42 tiles, not compressed
+//  • 42 tiles, unreduced, not compressed
 //  • 2×21 map, not compressed
+//  • 7 animation frames, 2×3, spritesheet
 //  Size: 676 + 84 = 760
 //
 //---------------------------------------------------------------------------------------------------------
@@ -42,4 +43,9 @@ const uint16 DoorBackMap[42] __attribute__((aligned(4))) =
     0x0018,0x0019,0x001A,0x001B,0x001C,0x001D,0x001E,0x001F,
     0x0020,0x0021,0x0022,0x0023,0x0024,0x0025,0x0026,0x0027,
     0x0028,0x0029,
+};
+
+const uint32 DoorBackTilesFrameOffsets[7] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000019,0x00000031,0x00000049,0x00000061,0x00000079,0x00000091,
 };

@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	JumpPad
+//  JumpPad
 //  • 24×48 pixels
-//  • 18 tiles, not compressed
+//  • 18 tiles, unreduced, not compressed
 //  • 3×6 map, not compressed
+//  • 3 animation frames, 3×2, spritesheet
 //  Size: 292 + 36 = 328
 //
 //---------------------------------------------------------------------------------------------------------
@@ -27,4 +28,9 @@ const uint16 JumpPadMap[18] __attribute__((aligned(4))) =
     0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,
     0x0008,0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,
     0x0010,0x0011,
+};
+
+const uint32 JumpPadTilesFrameOffsets[3] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000019,0x00000031,
 };

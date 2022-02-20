@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	OneWayPlatform4
+//  OneWayPlatform4
 //  • 32×16 pixels
 //  • 4 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 4×2 map, not compressed

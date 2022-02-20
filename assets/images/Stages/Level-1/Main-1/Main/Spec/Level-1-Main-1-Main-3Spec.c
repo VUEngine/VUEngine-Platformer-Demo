@@ -22,7 +22,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_Main_3Map[];
+extern uint16 Level_1_Main_1_Main_3Map[];
 
 extern CharSetROMSpec Level1Main1MainCharset;
 

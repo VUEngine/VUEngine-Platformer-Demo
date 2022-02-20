@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CloudATiles[];
-extern BYTE CloudAMap[];
+extern uint32 CloudATiles[];
+extern uint16 CloudAMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec CloudACharset =
 
 	// char spec
 	CloudATiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CloudATexture =

@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BackgroundMoundStarTiles[];
-extern BYTE BackgroundMoundStarMap[];
+extern uint32 BackgroundMoundStarTiles[];
+extern uint16 BackgroundMoundStarMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -98,6 +98,9 @@ CharSetROMSpec StarCharset =
 
 	// char spec
 	BackgroundMoundStarTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec StarTexture =

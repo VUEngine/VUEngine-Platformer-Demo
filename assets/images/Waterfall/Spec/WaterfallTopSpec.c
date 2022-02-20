@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE WaterfallTopTiles[];
-extern BYTE WaterfallTopMap[];
+extern uint32 WaterfallTopTiles[];
+extern uint32 WaterfallTopTilesFrameOffsets[];
+extern uint16 WaterfallTopMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,6 +76,9 @@ CharSetROMSpec WaterfallTopCharset =
 
 	// char spec
 	WaterfallTopTiles,
+
+	// pointer to the frames offsets
+	WaterfallTopTilesFrameOffsets,
 };
 
 TextureROMSpec WaterfallTopTexture =

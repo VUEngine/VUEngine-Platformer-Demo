@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level_1_Main_1_MainFront
+//  Level_1_Main_1_MainFront
 //  • 8×40 pixels
 //  • 5 tiles, reduced by non-unique and flipped tiles, not compressed
 //  Size: 84

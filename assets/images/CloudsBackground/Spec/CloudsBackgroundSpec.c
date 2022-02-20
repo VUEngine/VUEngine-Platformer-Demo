@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CloudsBackgroundTiles[];
-extern BYTE CloudsBackgroundMap[];
+extern uint32 CloudsBackgroundTiles[];
+extern uint16 CloudsBackgroundMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec CloudsBackgroundCharset =
 
 	// char spec
 	CloudsBackgroundTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CloudsBackgroundTexture =

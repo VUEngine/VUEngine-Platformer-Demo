@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	TorchOff
+//  TorchOff
 //  • 8×16 pixels
 //  • 2 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 1×2 map, not compressed

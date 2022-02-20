@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Lava
+//  Lava
 //  • 384×192 pixels
 //  • 19 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 48×24 map, not compressed

@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_MainTiles[];
-extern BYTE Level_1_Main_1_Main_1Map[];
+extern uint32 Level_1_Main_1_MainTiles[];
+extern uint16 Level_1_Main_1_Main_1Map[];
 
 extern BgmapSpriteROMSpec Level1Main1MainFront1Sprite;
 
@@ -44,6 +44,9 @@ CharSetROMSpec Level1Main1MainCharset =
 
 	// char spec
 	Level_1_Main_1_MainTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Main1Main1Texture =

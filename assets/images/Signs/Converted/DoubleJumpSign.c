@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	DoubleJumpSign
+//  DoubleJumpSign
 //  • 32×32 pixels
 //  • 15 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 4×4 map, not compressed

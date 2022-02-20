@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE ClockTiles[];
-extern BYTE ClockMap[];
+extern uint32 ClockTiles[];
+extern uint32 ClockTilesFrameOffsets[];
+extern uint16 ClockMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,6 +76,9 @@ CharSetROMSpec ClockCharset =
 
 	// char spec
 	ClockTiles,
+
+	// pointer to the frames offsets
+	ClockTilesFrameOffsets,
 };
 
 TextureROMSpec ClockTexture =

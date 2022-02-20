@@ -21,8 +21,8 @@
 // 												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleScreenStageMainTiles[];
-extern BYTE TitleScreenStageMain1Map[];
+extern uint32 TitleScreenStageMainTiles[];
+extern uint16 TitleScreenStageMain1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec TitleScreenStageMainCharset =
 
 	// char spec
 	TitleScreenStageMainTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec TitleScreenStageMain1Texture =

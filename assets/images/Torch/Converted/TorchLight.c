@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	TorchLight
+//  TorchLight
 //  • 80×240 pixels
-//  • 300 tiles, not compressed
+//  • 300 tiles, unreduced, not compressed
 //  • 10×30 map, not compressed
+//  • 3 animation frames, 10×10, spritesheet
 //  Size: 4804 + 600 = 5404
 //
 //---------------------------------------------------------------------------------------------------------
@@ -203,4 +204,9 @@ const uint16 TorchLightMap[300] __attribute__((aligned(4))) =
     0x0118,0x0119,0x011A,0x011B,0x011C,0x011D,0x011E,0x011F,
     0x0120,0x0121,0x0122,0x0123,0x0124,0x0125,0x0126,0x0127,
     0x0128,0x0129,0x012A,0x012B,
+};
+
+const uint32 TorchLightTilesFrameOffsets[3] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000191,0x00000321,
 };

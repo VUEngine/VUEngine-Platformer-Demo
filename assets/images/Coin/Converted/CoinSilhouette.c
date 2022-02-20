@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	CoinSilhouette
+//  CoinSilhouette
 //  • 16×64 pixels
-//  • 16 tiles, not compressed
+//  • 16 tiles, unreduced, not compressed
 //  • 2×8 map, not compressed
+//  • 4 animation frames, 2×2, spritesheet
 //  Size: 260 + 32 = 292
 //
 //---------------------------------------------------------------------------------------------------------
@@ -25,4 +26,9 @@ const uint16 CoinSilhouetteMap[16] __attribute__((aligned(4))) =
 {
     0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,
     0x0008,0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,
+};
+
+const uint32 CoinSilhouetteTilesFrameOffsets[4] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000011,0x00000021,0x00000031,
 };

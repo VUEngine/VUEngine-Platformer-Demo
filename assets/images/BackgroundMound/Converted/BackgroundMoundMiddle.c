@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	BackgroundMoundMiddle
+//  BackgroundMoundMiddle
 //  • 512×32 pixels
 //  • 81 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 64×4 map, not compressed

@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GrassTiles[];
-extern BYTE GrassMap[];
+extern uint32 GrassTiles[];
+extern uint32 GrassTilesFrameOffsets[];
+extern uint16 GrassMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -98,6 +99,9 @@ CharSetROMSpec GrassCharset =
 
 	// char spec
 	GrassTiles,
+
+	// pointer to the frames offsets
+	GrassTilesFrameOffsets,
 };
 
 TextureROMSpec GrassTexture =

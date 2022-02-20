@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	TitleScreenStageMainFront
+//  TitleScreenStageMainFront
 //  • 8×32 pixels
 //  • 4 tiles, reduced by non-unique and flipped tiles, not compressed
 //  Size: 68

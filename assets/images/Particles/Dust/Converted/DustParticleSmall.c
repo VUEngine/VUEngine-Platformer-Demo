@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	DustParticleSmall
+//  DustParticleSmall
 //  • 8×8 pixels
 //  • 1 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 1×1 map, not compressed

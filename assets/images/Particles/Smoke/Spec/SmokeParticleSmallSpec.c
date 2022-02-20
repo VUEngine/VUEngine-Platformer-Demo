@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SmokeParticleSmallTiles[];
-extern BYTE SmokeParticleSmallMap[];
+extern uint32 SmokeParticleSmallTiles[];
+extern uint32 SmokeParticleSmallTilesFrameOffsets[];
+extern uint16 SmokeParticleSmallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,6 +76,9 @@ CharSetROMSpec SmokeParticleSmallCharset =
 
 	// char spec
 	SmokeParticleSmallTiles,
+
+	// pointer to the frames offsets
+	SmokeParticleSmallTilesFrameOffsets,
 };
 
 TextureROMSpec SmokeParticleSmallTexture =

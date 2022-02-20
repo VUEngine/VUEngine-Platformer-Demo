@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TorchLightTiles[];
-extern BYTE TorchLightMap[];
+extern uint32 TorchLightTiles[];
+extern uint32 TorchLightTilesFrameOffsets[];
+extern uint16 TorchLightMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,6 +76,9 @@ CharSetROMSpec TorchLightCharset =
 
 	// char spec
 	TorchLightTiles,
+
+	// pointer to the frames offsets
+	TorchLightTilesFrameOffsets,
 };
 
 TextureROMSpec TorchLightTexture =

@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Bush
+//  Bush
 //  • 24×16 pixels
-//  • 6 tiles, not compressed
+//  • 6 tiles, unreduced, not compressed
 //  • 3×2 map, not compressed
+//  • 2 animation frames, 3×1, spritesheet
 //  Size: 100 + 12 = 112
 //
 //---------------------------------------------------------------------------------------------------------
@@ -19,4 +20,9 @@ const uint32 BushTiles[25] __attribute__((aligned(4))) =
 const uint16 BushMap[6] __attribute__((aligned(4))) =
 {
     0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,
+};
+
+const uint32 BushTilesFrameOffsets[2] __attribute__((aligned(4))) =
+{
+    0x00000001,0x0000000D,
 };

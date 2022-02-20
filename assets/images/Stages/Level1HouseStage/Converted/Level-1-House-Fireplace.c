@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level_1_House_Fireplace
+//  Level_1_House_Fireplace
 //  • 24×24 pixels
 //  • 9 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 3×3 map, not compressed

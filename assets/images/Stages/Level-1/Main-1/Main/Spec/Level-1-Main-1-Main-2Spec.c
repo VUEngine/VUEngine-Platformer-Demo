@@ -21,7 +21,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level_1_Main_1_Main_2Map[];
+extern uint16 Level_1_Main_1_Main_2Map[];
 
 extern CharSetROMSpec Level1Main1MainCharset;
 

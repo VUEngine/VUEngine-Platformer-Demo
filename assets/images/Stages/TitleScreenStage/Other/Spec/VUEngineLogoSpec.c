@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE VUEngineLogoTiles[];
-extern BYTE VUEngineLogoMap[];
+extern uint32 VUEngineLogoTiles[];
+extern uint16 VUEngineLogoMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec VUEngineLogoCharset =
 
 	// char spec
 	VUEngineLogoTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec VUEngineLogoTexture =

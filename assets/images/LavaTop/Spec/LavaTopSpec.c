@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE LavaTopTiles[];
-extern BYTE LavaTopMap[];
+extern uint32 LavaTopTiles[];
+extern uint32 LavaTopTilesFrameOffsets[];
+extern uint16 LavaTopMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,6 +77,9 @@ CharSetROMSpec LavaTopCharset =
 
 	// char spec
 	LavaTopTiles,
+
+	// pointer to the frames offsets
+	LavaTopTilesFrameOffsets,
 };
 
 TextureROMSpec LavaTopTexture =

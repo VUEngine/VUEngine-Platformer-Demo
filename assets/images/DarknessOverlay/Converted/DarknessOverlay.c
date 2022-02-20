@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	DarknessOverlay
+//  DarknessOverlay
 //  • 384×512 pixels
 //  • 98 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 48×64 map, not compressed

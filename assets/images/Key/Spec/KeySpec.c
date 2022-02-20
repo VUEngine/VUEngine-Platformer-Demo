@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE KeyTiles[];
-extern BYTE KeyMap[];
+extern uint32 KeyTiles[];
+extern uint32 KeyTilesFrameOffsets[];
+extern uint16 KeyMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,6 +76,9 @@ CharSetROMSpec KeyCharset =
 
 	// char spec
 	KeyTiles,
+
+	// pointer to the frames offsets
+	KeyTilesFrameOffsets,
 };
 
 TextureROMSpec KeyTexture =

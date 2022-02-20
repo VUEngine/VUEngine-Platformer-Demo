@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	UnderConstructionSign
+//  UnderConstructionSign
 //  • 72×32 pixels
 //  • 28 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 9×4 map, not compressed

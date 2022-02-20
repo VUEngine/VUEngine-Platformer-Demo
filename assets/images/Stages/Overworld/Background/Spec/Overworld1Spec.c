@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Overworld_1Tiles[];
-extern BYTE Overworld_1Map[];
+extern uint32 Overworld_1Tiles[];
+extern uint16 Overworld_1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec OverworldCharset =
 
 	// char spec
 	Overworld_1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Overworld1Texture =
