@@ -109,38 +109,38 @@
 			},
 			{
 				"size": 32,
-				"objects": 340
+				"objects": 250
 			},
 			{
-				"size": 44,
-				"objects": 20
+				"size": 48,
+				"objects": 100
 			},
 			{
-				"size": 76,
+				"size": 80,
+				"objects": 100
+			},
+			{
+				"size": 92,
 				"objects": 40
 			},
 			{
-				"size": 88,
-				"objects": 60
-			},
-			{
-				"size": 116,
+				"size": 120,
 				"objects": 40
 			},
 			{
-				"size": 124,
-				"objects": 52
+				"size": 128,
+				"objects": 42
 			},
 			{
-				"size": 148,
+				"size": 152,
 				"objects": 12
 			},
 			{
-				"size": 160,
+				"size": 164,
 				"objects": 5
 			},
 			{
-				"size": 172,
+				"size": 176,
 				"objects": 1
 			}
 		],
