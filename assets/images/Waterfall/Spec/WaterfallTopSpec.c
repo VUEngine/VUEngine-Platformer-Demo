@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 WaterfallTopTiles[];
+extern uint32 WaterfallTopTilesFrameOffsets[];
 extern uint16 WaterfallTopMap[];
 
 
@@ -77,7 +78,7 @@ CharSetROMSpec WaterfallTopCharset =
 	WaterfallTopTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	WaterfallTopTilesFrameOffsets,
 };
 
 TextureROMSpec WaterfallTopTexture =

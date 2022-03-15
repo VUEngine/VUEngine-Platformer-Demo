@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 GrassTiles[];
+extern uint32 GrassTilesFrameOffsets[];
 extern uint16 GrassMap[];
 
 
@@ -100,7 +101,7 @@ CharSetROMSpec GrassCharset =
 	GrassTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	GrassTilesFrameOffsets,
 };
 
 TextureROMSpec GrassTexture =

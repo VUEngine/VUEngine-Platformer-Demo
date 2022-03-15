@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	WaterfallStream2x16
+//  WaterfallStream2x16
 //  • 16×512 pixels
-//  • 128 tiles, not compressed
+//  • 128 tiles, unreduced, not compressed
 //  • 2×64 map, not compressed
+//  • 4 animation frames, 2×16, spritesheet
 //  Size: 2052 + 256 = 2308
 //
 //---------------------------------------------------------------------------------------------------------
@@ -95,4 +96,9 @@ const uint16 WaterfallStream2x16Map[128] __attribute__((aligned(4))) =
     0x0068,0x0069,0x006A,0x006B,0x006C,0x006D,0x006E,0x006F,
     0x0070,0x0071,0x0072,0x0073,0x0074,0x0075,0x0076,0x0077,
     0x0078,0x0079,0x007A,0x007B,0x007C,0x007D,0x007E,0x007F,
+};
+
+const uint32 WaterfallStream2x16TilesFrameOffsets[4] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000081,0x00000101,0x00000181,
 };

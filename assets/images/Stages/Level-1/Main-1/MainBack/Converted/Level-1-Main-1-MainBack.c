@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level_1_Main_1_MainBack
+//  Level_1_Main_1_MainBack
 //  • 8×424 pixels
 //  • 52 tiles, reduced by non-unique and flipped tiles, not compressed
 //  Size: 836

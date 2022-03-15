@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level_1_Tower
+//  Level_1_Tower
 //  • 224×224 pixels
 //  • 29 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 28×28 map, not compressed

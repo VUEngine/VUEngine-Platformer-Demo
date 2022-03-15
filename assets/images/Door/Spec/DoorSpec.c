@@ -26,8 +26,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 DoorTiles[];
+extern uint32 DoorTilesFrameOffsets[];
 extern uint16 DoorMap[];
 extern uint32 DoorBackTiles[];
+extern uint32 DoorBackTilesFrameOffsets[];
 extern uint16 DoorBackMap[];
 
 
@@ -197,7 +199,7 @@ CharSetROMSpec DoorCharset =
 	DoorTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	DoorTilesFrameOffsets,
 };
 
 TextureROMSpec DoorTexture =
@@ -558,7 +560,7 @@ CharSetROMSpec DoorBackCharset =
 	DoorBackTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	DoorBackTilesFrameOffsets,
 };
 
 TextureROMSpec DoorBackTexture =

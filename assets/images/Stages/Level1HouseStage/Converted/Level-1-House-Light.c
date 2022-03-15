@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level_1_House_Light
+//  Level_1_House_Light
 //  • 56×40 pixels
 //  • 10 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 7×5 map, not compressed

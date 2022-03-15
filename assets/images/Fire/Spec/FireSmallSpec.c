@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 FireSmallTiles[];
+extern uint32 FireSmallTilesFrameOffsets[];
 extern uint16 FireSmallMap[];
 
 
@@ -77,7 +78,7 @@ CharSetROMSpec FireSmallCharset =
 	FireSmallTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	FireSmallTilesFrameOffsets,
 };
 
 TextureROMSpec FireSmallTexture =

@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	BackgroundMoundStar
+//  BackgroundMoundStar
 //  • 8×24 pixels
 //  • 3 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 1×3 map, not compressed

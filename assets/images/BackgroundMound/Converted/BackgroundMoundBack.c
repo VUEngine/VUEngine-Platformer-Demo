@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	BackgroundMoundBack
+//  BackgroundMoundBack
 //  • 512×144 pixels
 //  • 133 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 64×18 map, not compressed

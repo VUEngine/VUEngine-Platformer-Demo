@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	CogWheel
+//  CogWheel
 //  • 160×160 pixels
 //  • 133 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 20×20 map, not compressed

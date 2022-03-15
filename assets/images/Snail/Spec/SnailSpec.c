@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 SnailTiles[];
+extern uint32 SnailTilesFrameOffsets[];
 extern uint16 SnailMap[];
 
 
@@ -76,7 +77,7 @@ CharSetROMSpec SnailCharset =
 	SnailTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	SnailTilesFrameOffsets,
 };
 
 TextureROMSpec SnailTexture =

@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	TitleScreenStageMainFront1
+//  TitleScreenStageMainFront1
 //  • 384×64 pixels
 //  • 48×8 map, not compressed
 //  Size: 768

@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	MovingPlatform4
+//  MovingPlatform4
 //  • 32×8 pixels
 //  • 3 tiles, reduced by non-unique tiles, not compressed
 //  • 4×1 map, not compressed

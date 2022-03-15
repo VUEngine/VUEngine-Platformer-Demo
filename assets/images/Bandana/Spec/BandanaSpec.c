@@ -24,6 +24,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 BandanaTiles[];
+extern uint32 BandanaTilesFrameOffsets[];
 extern uint16 BandanaMap[];
 
 
@@ -78,7 +79,7 @@ CharSetROMSpec BandanaCharset =
 	BandanaTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	BandanaTilesFrameOffsets,
 };
 
 TextureROMSpec BandanaTexture =

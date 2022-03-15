@@ -1,8 +1,8 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	CannonBall
+//  CannonBall
 //  • 24×24 pixels
-//  • 9 tiles, not compressed
+//  • 9 tiles, unreduced, not compressed
 //  • 3×3 map, not compressed
 //  Size: 148 + 18 = 166
 //

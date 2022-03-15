@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Frog
+//  Frog
 //  • 24×72 pixels
-//  • 27 tiles, not compressed
+//  • 27 tiles, unreduced, not compressed
 //  • 3×9 map, not compressed
+//  • 3 animation frames, 3×3, spritesheet
 //  Size: 436 + 54 = 490
 //
 //---------------------------------------------------------------------------------------------------------
@@ -32,4 +33,9 @@ const uint16 FrogMap[27] __attribute__((aligned(4))) =
     0x0008,0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,
     0x0010,0x0011,0x0012,0x0013,0x0014,0x0015,0x0016,0x0017,
     0x0018,0x0019,0x001A,
+};
+
+const uint32 FrogTilesFrameOffsets[3] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000025,0x00000049,
 };

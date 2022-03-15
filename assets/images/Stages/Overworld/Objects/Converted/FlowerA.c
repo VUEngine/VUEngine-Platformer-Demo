@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	FlowerA
+//  FlowerA
 //  • 16×16 pixels
-//  • 4 tiles, not compressed
+//  • 4 tiles, unreduced, not compressed
 //  • 2×2 map, not compressed
+//  • 2 animation frames, 2×1, spritesheet
 //  Size: 68 + 8 = 76
 //
 //---------------------------------------------------------------------------------------------------------
@@ -18,4 +19,9 @@ const uint32 FlowerATiles[17] __attribute__((aligned(4))) =
 const uint16 FlowerAMap[4] __attribute__((aligned(4))) =
 {
     0x0000,0x0001,0x0002,0x0003,
+};
+
+const uint32 FlowerATilesFrameOffsets[2] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000009,
 };

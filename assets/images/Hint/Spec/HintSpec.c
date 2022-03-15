@@ -24,6 +24,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 HintTiles[];
+extern uint32 HintTilesFrameOffsets[];
 extern uint16 HintMap[];
 
 
@@ -331,7 +332,7 @@ CharSetROMSpec HintCharset =
 	HintTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	HintTilesFrameOffsets,
 };
 
 TextureROMSpec HintTexture =

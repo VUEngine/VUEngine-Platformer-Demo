@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	PlatformerDemoLogoOutlineL
+//  PlatformerDemoLogoOutlineL
 //  • 288×56 pixels
 //  • 90 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 36×7 map, not compressed

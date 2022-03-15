@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level1IntersectionStageBack
+//  Level1IntersectionStageBack
 //  • 8×336 pixels
 //  • 42 tiles, reduced by non-unique and flipped tiles, not compressed
 //  Size: 676

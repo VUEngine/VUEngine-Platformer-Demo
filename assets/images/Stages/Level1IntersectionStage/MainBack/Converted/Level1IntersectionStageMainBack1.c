@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level1IntersectionStageMainBack1
+//  Level1IntersectionStageMainBack1
 //  • 384×192 pixels
 //  • 48×24 map, not compressed
 //  Size: 2304

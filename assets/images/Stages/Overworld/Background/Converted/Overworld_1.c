@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Overworld_1
+//  Overworld_1
 //  • 384×224 pixels
 //  • 331 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 48×28 map, not compressed

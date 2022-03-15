@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	GuiBandana
+//  GuiBandana
 //  • 384×80 pixels
-//  • 480 tiles, not compressed
+//  • 480 tiles, unreduced, not compressed
 //  • 48×10 map, not compressed
+//  • 5 animation frames, 48×2, spritesheet
 //  Size: 7684 + 960 = 8644
 //
 //---------------------------------------------------------------------------------------------------------
@@ -315,4 +316,9 @@ const uint16 GuiBandanaMap[480] __attribute__((aligned(4))) =
     0x01C8,0x01C9,0x01CA,0x01CB,0x01CC,0x01CD,0x01CE,0x01CF,
     0x01D0,0x01D1,0x01D2,0x01D3,0x01D4,0x01D5,0x01D6,0x01D7,
     0x01D8,0x01D9,0x01DA,0x01DB,0x01DC,0x01DD,0x01DE,0x01DF,
+};
+
+const uint32 GuiBandanaTilesFrameOffsets[5] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000181,0x00000301,0x00000481,0x00000601,
 };

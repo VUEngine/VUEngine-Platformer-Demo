@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	FireSmall
+//  FireSmall
 //  • 8×24 pixels
-//  • 3 tiles, not compressed
+//  • 3 tiles, unreduced, not compressed
 //  • 1×3 map, not compressed
+//  • 3 animation frames, 1×1, spritesheet
 //  Size: 52 + 6 = 58
 //
 //---------------------------------------------------------------------------------------------------------
@@ -17,4 +18,9 @@ const uint32 FireSmallTiles[13] __attribute__((aligned(4))) =
 const uint16 FireSmallMap[3] __attribute__((aligned(4))) =
 {
     0x0000,0x0001,0x0002,
+};
+
+const uint32 FireSmallTilesFrameOffsets[3] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000005,0x00000009,
 };

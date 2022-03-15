@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Level_1_House
+//  Level_1_House
 //  • 152×88 pixels
 //  • 53 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 19×11 map, not compressed

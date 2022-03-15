@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	Ladder24
+//  Ladder24
 //  • 24×192 pixels
 //  • 6 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 3×24 map, not compressed

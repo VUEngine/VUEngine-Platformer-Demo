@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	VUEngineLogo
+//  VUEngineLogo
 //  • 96×16 pixels
 //  • 24 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 12×2 map, not compressed

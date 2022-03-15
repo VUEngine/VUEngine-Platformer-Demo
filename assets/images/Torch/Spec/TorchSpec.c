@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 TorchTiles[];
+extern uint32 TorchTilesFrameOffsets[];
 extern uint16 TorchMap[];
 
 
@@ -77,7 +78,7 @@ CharSetROMSpec TorchCharset =
 	TorchTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	TorchTilesFrameOffsets,
 };
 
 TextureROMSpec TorchTexture =

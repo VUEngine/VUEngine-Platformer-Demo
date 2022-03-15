@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 KeyTiles[];
+extern uint32 KeyTilesFrameOffsets[];
 extern uint16 KeyMap[];
 
 
@@ -77,7 +78,7 @@ CharSetROMSpec KeyCharset =
 	KeyTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	KeyTilesFrameOffsets,
 };
 
 TextureROMSpec KeyTexture =

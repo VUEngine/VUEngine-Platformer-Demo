@@ -26,7 +26,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 HeroTiles[];
+extern uint32 HeroTilesFrameOffsets[];
 extern uint32 HeroBandanaTiles[];
+extern uint32 HeroBandanaTilesFrameOffsets[];
 extern uint16 HeroMap[];
 
 
@@ -358,8 +360,9 @@ CharSetROMSpec HeroCharset =
 	HeroTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	HeroTilesFrameOffsets,
 };
+
 CharSetROMSpec HeroBandanaCharset =
 {
 	// number of chars, depending on allocation type:
@@ -375,7 +378,7 @@ CharSetROMSpec HeroBandanaCharset =
 	HeroBandanaTiles,
 
 	// pointer to the frames offsets
-	NULL,
+	HeroBandanaTilesFrameOffsets,
 };
 
 TextureROMSpec HeroTexture =

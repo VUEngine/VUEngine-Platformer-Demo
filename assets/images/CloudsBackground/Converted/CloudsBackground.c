@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	CloudsBackground
+//  CloudsBackground
 //  • 512×512 pixels
 //  • 1146 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 64×64 map, not compressed

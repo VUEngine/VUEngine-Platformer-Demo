@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	CloudA
+//  CloudA
 //  • 64×32 pixels
 //  • 24 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 8×4 map, not compressed

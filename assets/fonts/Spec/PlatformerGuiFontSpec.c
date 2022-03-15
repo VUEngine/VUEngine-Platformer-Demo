@@ -34,6 +34,7 @@ CharSetROMSpec PlatformerGuiFontCharSet =
 	// pointer to the frames offsets
 	NULL,
 };
+
 FontROMSpec PlatformerGuiFont =
 {
 	// font charset spec pointer

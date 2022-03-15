@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 FlowerATiles[];
+extern uint32 FlowerATilesFrameOffsets[];
 extern uint16 FlowerAMap[];
 
 
@@ -82,7 +83,7 @@ CharSetROMSpec FlowerACharset =
 	FlowerATiles,
 
 	// pointer to the frames offsets
-	NULL,
+	FlowerATilesFrameOffsets,
 };
 
 TextureROMSpec FlowerATexture =

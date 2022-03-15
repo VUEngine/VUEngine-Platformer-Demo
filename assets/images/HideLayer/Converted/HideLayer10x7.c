@@ -1,9 +1,10 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	HideLayer10x7
+//  HideLayer10x7
 //  • 80×392 pixels
-//  • 490 tiles, not compressed
+//  • 490 tiles, unreduced, not compressed
 //  • 10×49 map, not compressed
+//  • 7 animation frames, 10×7, spritesheet
 //  Size: 7844 + 980 = 8824
 //
 //---------------------------------------------------------------------------------------------------------
@@ -322,4 +323,9 @@ const uint16 HideLayer10x7Map[490] __attribute__((aligned(4))) =
     0x01D8,0x01D9,0x01DA,0x01DB,0x01DC,0x01DD,0x01DE,0x01DF,
     0x01E0,0x01E1,0x01E2,0x01E3,0x01E4,0x01E5,0x01E6,0x01E7,
     0x01E8,0x01E9,
+};
+
+const uint32 HideLayer10x7TilesFrameOffsets[7] __attribute__((aligned(4))) =
+{
+    0x00000001,0x00000119,0x00000231,0x00000349,0x00000461,0x00000579,0x00000691,
 };

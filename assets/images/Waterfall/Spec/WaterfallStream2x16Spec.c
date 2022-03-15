@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern uint32 WaterfallStream2x16Tiles[];
+extern uint32 WaterfallStream2x16TilesFrameOffsets[];
 extern uint16 WaterfallStream2x16Map[];
 
 
@@ -77,7 +78,7 @@ CharSetROMSpec WaterfallStream2x16Charset =
 	WaterfallStream2x16Tiles,
 
 	// pointer to the frames offsets
-	NULL,
+	WaterfallStream2x16TilesFrameOffsets,
 };
 
 TextureROMSpec WaterfallStream2x16Texture =

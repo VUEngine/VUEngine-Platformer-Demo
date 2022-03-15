@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	ArrowRightSign
+//  ArrowRightSign
 //  • 24×24 pixels
 //  • 8 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 3×3 map, not compressed

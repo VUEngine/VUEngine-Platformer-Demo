@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------
 //
-//	BackgroundMoundCastle
+//  BackgroundMoundCastle
 //  • 88×48 pixels
 //  • 34 tiles, reduced by non-unique and flipped tiles, not compressed
 //  • 11×6 map, not compressed
