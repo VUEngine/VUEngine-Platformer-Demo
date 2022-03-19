@@ -69,12 +69,14 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 	* @memberof 	HbiasMaskMBgmapSprite
 	*/
 	uint8 step;
+	int16 spriteHeight;
 
 	static int16 wave(BgmapSprite bgmapSprite);
 
 	void constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, Object owner);
 	override uint16 doRender(uint16 index, bool evenFrame);
 	override void setMode(uint16 display, uint16 mode);
+	override void setPosition(const PixelVector* position);
 }
 
 

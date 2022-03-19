@@ -60,6 +60,7 @@ void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMa
 	this->referenceSprite = NULL;
 	this->step = 0;
 	this->owner = owner;
+	this->spriteHeight = 0;
 }
 
 /**
@@ -78,6 +79,14 @@ void HbiasMaskMBgmapSprite::destructor()
 	// destroy the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
+}
+
+
+void HbiasMaskMBgmapSprite::setPosition(const PixelVector* position)
+{
+	Base::setPosition(this, position);
+
+	HbiasMaskMBgmapSprite::getReferenceSprite(this);
 }
 
 void HbiasMaskMBgmapSprite::setMode(uint16 display, uint16 mode __attribute__ ((unused)))
@@ -121,8 +130,6 @@ void HbiasMaskMBgmapSprite::getReferenceSprite()
  */
 uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute__((unused)))
 {
-	HbiasMaskMBgmapSprite::getReferenceSprite(this);
-
 	static WorldAttributes* worldPointer = NULL;
 	worldPointer = &_worldAttributesCache[index];
 
@@ -130,10 +137,6 @@ uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute_
 	{
 		this->referenceSprite = NULL;
 
-#ifdef __PROFILE_GAME
-		worldPointer->w = 0;
-		worldPointer->h = 0;
-#endif
 		return __NO_RENDER_INDEX;
 	}
 
@@ -166,31 +169,35 @@ uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute_
 		ownerSpriteGY = __FIX10_6_TO_I(ownerPosition2D.y);
 	}
 
-	uint8 referenceSpriteWorldLayer = Sprite::getIndex(this->referenceSprite);
+	int16 referenceSpriteWorldLayer = Sprite::getIndex(this->referenceSprite);
+
+	if(__NO_RENDER_INDEX == referenceSpriteWorldLayer || !(referenceSpriteWorldLayer > index))
+	{
+		return __NO_RENDER_INDEX;
+	}
 
 	WorldAttributes* referenceSpriteWorldPointer = &_worldAttributesCache[referenceSpriteWorldLayer];
 
 	// get coordinates
-	worldPointer->gx = referenceSpriteWorldPointer->gx;
-	worldPointer->gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight : referenceSpriteWorldPointer->gy;
-	worldPointer->gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
+	int16 gx = referenceSpriteWorldPointer->gx;
+	int16 gy = ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight > referenceSpriteWorldPointer->gy ? ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight : referenceSpriteWorldPointer->gy;
+	int16 gp = referenceSpriteWorldPointer->gp + this->displacement.parallax;
 
-	if((uint8)__NO_RENDER_INDEX == referenceSpriteWorldLayer
-		||
-		ownerSpriteGY < worldPointer->gy
+	if(
+		ownerSpriteGY < gy
 		||
 		_cameraFrustum->y1 <= ownerSpriteGY - this->hbiasMaskMBgmapSpriteSpec->effectHeight
 		||
-		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < worldPointer->gy
+		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < gy
 		||
 		this->referenceSprite->hidden)
 	{
-#ifdef __PROFILE_GAME
-		worldPointer->w = 0;
-		worldPointer->h = 0;
-#endif
 		return __NO_RENDER_INDEX;
 	}
+
+	worldPointer->gx = gx;
+	worldPointer->gy = gy;
+	worldPointer->gp = gp;
 
 	worldPointer->mx = referenceSpriteWorldPointer->mx;
 	worldPointer->my = referenceSpriteWorldPointer->my - referenceSpriteWorldPointer->gy + worldPointer->gy;
@@ -203,6 +210,8 @@ uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute_
 		worldPointer->h = referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h - worldPointer->gy;
 	}
 
+	this->spriteHeight = worldPointer->h;
+
 	// set the head
 	worldPointer->head = this->head | (BgmapTexture::safeCast(this->texture))->segment;
 	worldPointer->param = (uint16)(((this->param) - 0x20000) >> 1) & 0xFFF0;
@@ -213,7 +222,7 @@ uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute_
 static int16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
 {
 	HbiasMaskMBgmapSprite this = HbiasMaskMBgmapSprite::safeCast(bgmapSprite);
-	int32 spriteHeight = Sprite::getWorldHeight(this);
+
 	int16 i = this->paramTableRow;
 	int16 j = 0;
 
@@ -236,7 +245,7 @@ static int16 HbiasMaskMBgmapSprite::wave(BgmapSprite bgmapSprite)
 	HbiasEntry* hbiasEntry = (HbiasEntry*)this->param;
 
 	// write param table rows
-	for(j = 0; i < spriteHeight; i++, j++)
+	for(j = 0; i < this->spriteHeight; i++, j++)
 	{
 		register int16 waveLutValue = lavaWaveLut[(i + (this->step >> HBIAS_LAVA_HEAT_THROTTLE)) % HBIAS_LAVA_HEAT_LUT_LENGTH];
 
