@@ -125,11 +125,11 @@
 			},
 			{
 				"size": 120,
-				"objects": 40
+				"objects": 70
 			},
 			{
 				"size": 128,
-				"objects": 42
+				"objects": 15
 			},
 			{
 				"size": 152,
@@ -138,10 +138,6 @@
 			{
 				"size": 164,
 				"objects": 5
-			},
-			{
-				"size": 176,
-				"objects": 1
 			}
 		],
 		"warningThreshold": 85
