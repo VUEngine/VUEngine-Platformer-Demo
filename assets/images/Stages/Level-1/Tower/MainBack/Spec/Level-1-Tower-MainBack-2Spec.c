@@ -88,7 +88,7 @@ MBgmapSpriteROMSpec Level1TowerMainBack2Sprite =
 			__TRANSPARENCY_NONE,
 
 			// displacement
-			{0, 0, 32, 0},
+			{0, 0, 31, 0},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
