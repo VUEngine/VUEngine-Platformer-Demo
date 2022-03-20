@@ -483,7 +483,7 @@ PositionedEntityROMSpec Level1MainStageChildren[] =
 PositionedEntityROMSpec Level1MainStageUiChildren[] =
 {
 	{&LowPowerIndicatorEntity, 	{INGAME_LOW_POWER_ENTITY_X_POSITION, INGAME_LOW_POWER_ENTITY_Y_POSITION, INGAME_LOW_POWER_ENTITY_Z_POSITION, INGAME_LOW_POWER_ENTITY_Z_DISPLACEMENT}, 0, NULL, NULL, NULL, true},
-	{&GuiEntity, {192, 215, -2, 0}, 0, NULL, NULL, NULL, true},
+	{&GuiEntity, {192, 215, 0, 0}, 0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
