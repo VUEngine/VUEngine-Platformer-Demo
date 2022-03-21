@@ -21,7 +21,7 @@
 #include "KeyDoor.h"
 #include <PlatformerLevelState.h>
 #include <LevelDoneScreenState.h>
-#include <ProgressManager.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ bool KeyDoor::hasDestination()
 
 void KeyDoor::setOverlapping()
 {
-	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
+	if(Hero::hasKey(Hero::getInstance()))
 	{
 		AnimatedEntity::playAnimation(this, "Opening");
 	}
@@ -69,7 +69,7 @@ void KeyDoor::setOverlapping()
 
 void KeyDoor::unsetOverlapping()
 {
-	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
+	if(Hero::hasKey(Hero::getInstance()))
 	{
 		AnimatedEntity::playAnimation(this, "Closing");
 	}
@@ -79,12 +79,12 @@ void KeyDoor::unsetOverlapping()
 
 bool KeyDoor::canEnter()
 {
-	return ProgressManager::heroHasKey(ProgressManager::getInstance());
+	return Hero::hasKey(Hero::getInstance());
 }
 
 uint32 KeyDoor::getHintType()
 {
-	if(ProgressManager::heroHasKey(ProgressManager::getInstance()))
+	if(Hero::hasKey(Hero::getInstance()))
 	{
 		return kEnterHint;
 	}
