@@ -126,7 +126,7 @@ AnimationFunctionROMSpec DoorClosedAnimation =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec DOOR_KeyAnimation =
+AnimationFunctionROMSpec DoorKeyAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -178,7 +178,7 @@ AnimationDescriptionROMSpec DoorAnimation =
 		(AnimationFunction*)&DoorClosingAnimation,
 		(AnimationFunction*)&DoorOpenAnimation,
 		(AnimationFunction*)&DoorClosedAnimation,
-		(AnimationFunction*)&DOOR_KeyAnimation,
+		(AnimationFunction*)&DoorKeyAnimation,
 		(AnimationFunction*)&DoorGoalAnimation,
 		NULL,
 	}
@@ -467,10 +467,10 @@ KeyDoorROMSpec KeyDoorEntity =
 	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
-	"Closed",
+	"Key",
 };
 
-BgmapSpriteROMSpec AFFINE_DoorSprite =
+BgmapSpriteROMSpec AffineDoorSprite =
 {
 	{
 		// sprite's type
@@ -497,13 +497,13 @@ BgmapSpriteROMSpec AFFINE_DoorSprite =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const AFFINE_DoorSprites[] =
+BgmapSpriteROMSpec* const AffineDoorSprites[] =
 {
-	&AFFINE_DoorSprite,
+	&AffineDoorSprite,
 	NULL
 };
 
-DoorROMSpec AFFINE_DoorEntity =
+DoorROMSpec AffineDoorEntity =
 {
 	{
 		// class allocator
@@ -519,7 +519,7 @@ DoorROMSpec AFFINE_DoorEntity =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)AFFINE_DoorSprites,
+		(SpriteSpec**)AffineDoorSprites,
 
 		// use z displacement in projection
 		false,
