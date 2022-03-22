@@ -443,8 +443,6 @@ void PlatformerLevelState::resume(void* owner)
 	PlatformerLevelState::activateLantern(this);
 
 	Game::enableKeypad(Game::getInstance());
-
-	Printing::setWorldCoordinates(Printing::getInstance(), 0, 0, PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
 }
 
 void PlatformerLevelState::setPrintingLayerCoordinates()
@@ -453,6 +451,7 @@ void PlatformerLevelState::setPrintingLayerCoordinates()
 	extern TextureROMSpec GuiTexture;
 	Printing::setCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - (GuiTexture.rows * 8), PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
 #else
+	Printing::setWorldCoordinates(Printing::getInstance(), 0, 0, PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
 	Printing::clear(Printing::getInstance());
 	PlatformerLevelState::propagateMessage(this, kMessagePrintUI);
 #endif
