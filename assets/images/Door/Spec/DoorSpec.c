@@ -126,7 +126,7 @@ AnimationFunctionROMSpec DoorClosedAnimation =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMSpec DOOR_KeyAnimation =
+AnimationFunctionROMSpec DoorKeyAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -178,7 +178,7 @@ AnimationDescriptionROMSpec DoorAnimation =
 		(AnimationFunction*)&DoorClosingAnimation,
 		(AnimationFunction*)&DoorOpenAnimation,
 		(AnimationFunction*)&DoorClosedAnimation,
-		(AnimationFunction*)&DOOR_KeyAnimation,
+		(AnimationFunction*)&DoorKeyAnimation,
 		(AnimationFunction*)&DoorGoalAnimation,
 		NULL,
 	}
@@ -189,7 +189,7 @@ CharSetROMSpec DoorCharset =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	85,
+	84,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -467,10 +467,10 @@ KeyDoorROMSpec KeyDoorEntity =
 	(AnimationDescription*)&DoorAnimation,
 
 	// initial animation
-	"Closed",
+	"Key",
 };
 
-BgmapSpriteROMSpec AFFINE_DoorSprite =
+BgmapSpriteROMSpec AffineDoorSprite =
 {
 	{
 		// sprite's type
@@ -497,13 +497,13 @@ BgmapSpriteROMSpec AFFINE_DoorSprite =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const AFFINE_DoorSprites[] =
+BgmapSpriteROMSpec* const AffineDoorSprites[] =
 {
-	&AFFINE_DoorSprite,
+	&AffineDoorSprite,
 	NULL
 };
 
-DoorROMSpec AFFINE_DoorEntity =
+DoorROMSpec AffineDoorEntity =
 {
 	{
 		// class allocator
@@ -519,7 +519,7 @@ DoorROMSpec AFFINE_DoorEntity =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)AFFINE_DoorSprites,
+		(SpriteSpec**)AffineDoorSprites,
 
 		// use z displacement in projection
 		false,
@@ -550,7 +550,7 @@ CharSetROMSpec DoorBackCharset =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	25,
+	42,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)

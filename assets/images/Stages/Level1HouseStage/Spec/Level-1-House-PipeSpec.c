@@ -93,7 +93,7 @@ BgmapSpriteROMSpec Level1HousePipeSprite =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{48, 16, 24, 2},
+		{48, 16, 25, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

@@ -185,147 +185,147 @@ extern Size collision_62_25_4;
 
 PositionedEntityROMSpec Level1Main1Main1Collisions[] =
 {
-	{&CollisionCl,					{-136 - 1, -12, 0, 0},											0, NULL, NULL, (void*)&collision_34_30_4, false}, // left floor
-	{&CollisionCl,					{ 112 - 1,  12, 0, 0},											0, NULL, NULL, (void*)&collision_34_30_4, false}, // right floor
+	{&CollisionCl,						{-137, -12, 0, 0},											0, NULL, NULL, (void*)&collision_34_30_4, false}, // left floor
+	{&CollisionCl,						{ 111,  12, 0, 0},											0, NULL, NULL, (void*)&collision_34_30_4, false}, // right floor
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main2Collisions1[] =
 {
-	{&CollisionTopCl,				{-226 - 1, -104, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // left top one-way
-	{&CollisionCl, 				{-147 - 1,  -56, 0, 0},											0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor left to spikes
-	{&CollisionCl, 				{ 127 - 1,  -56, 0, 0},											0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor right to spikes
+	{&CollisionTopCl,					{-227, -104, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // left top one-way
+	{&CollisionCl, 						{-148,  -56, 0, 0},											0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor left to spikes
+	{&CollisionCl, 						{ 126,  -56, 0, 0},											0, NULL, NULL, (void*)&collision_14_18_4, false}, // floor right to spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main2Collisions2[] =
 {
-	{&CollisionCl, 				{  -8 - 1, -132, 0, 0},											0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
-	{&CollisionHitCl,				{  -8 - 1,  -94, 0, 0},											0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
-	{&CollisionCl, 				{  -8 - 1,  -40, 0, 0},											0, NULL, NULL, (void*)&collision_32_14_4, false}, // floor below spikes
+	{&CollisionCl, 						{  -9, -132, 0, 0},											0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
+	{&CollisionHitCl,					{  -9,  -94, 0, 0},											0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
+	{&CollisionCl, 						{  -9,  -40, 0, 0},											0, NULL, NULL, (void*)&collision_32_14_4, false}, // floor below spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main2Collisions3[] =
 {
-	{&CollisionTopCl,				{-226 - 1,   72, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // left bottom one-way
-	{&CollisionCl, 				{ -10 - 1,  136, 0, 0},											0, NULL, NULL, (void*)&collision_48_18_4, false}, // secret bottom floor
-	{&CollisionTopCl,				{ 210 - 1,  -72, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // right top one-way
+	{&CollisionTopCl,					{-227,   72, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // left bottom one-way
+	{&CollisionCl, 						{ -11,  136, 0, 0},											0, NULL, NULL, (void*)&collision_48_18_4, false}, // secret bottom floor
+	{&CollisionTopCl,					{ 209,  -72, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // right top one-way
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main2Collisions4[] =
 {
-	{&CollisionTopCl,				{ 210 - 1,  24, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // right bottom one-way
-	{&CollisionCl,					{ 127 - 1,  38, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // wall right to the secret door
-	{&CollisionCl,					{ 239 - 1,  88, 0, 0},											0, NULL, NULL, (void*)&collision_18_6_4, false}, // floor under the one-way passage
+	{&CollisionTopCl,					{ 209,  24, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // right bottom one-way
+	{&CollisionCl,						{ 126,  38, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // wall right to the secret door
+	{&CollisionCl,						{ 238,  88, 0, 0},											0, NULL, NULL, (void*)&collision_18_6_4, false}, // floor under the one-way passage
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main3Collisions1[] =
 {
-	{&CollisionTopCl, 			{-226 - 1,   -8, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // top one-way
-	{&CollisionTopCl, 			{-226 - 1,   88, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // bottom one-way
-	{&CollisionCl, 				{  -8 - 1, -138, 0, 0},											0, NULL, NULL, (void*)&collision_48_18_4, false}, // above hidden area
+	{&CollisionTopCl, 					{-227,   -8, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // top one-way
+	{&CollisionTopCl, 					{-227,   88, 0, 0},											0, NULL, NULL, (void*)&collision_6_2_4, false}, // bottom one-way
+	{&CollisionCl, 						{  -9, -138, 0, 0},											0, NULL, NULL, (void*)&collision_48_18_4, false}, // above hidden area
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main3Collisions2[] =
 {
-	{&CollisionCl, 				{ -48 - 1,  24,	0, 0},											0, NULL, NULL, (void*)&collision_38_10_4, false},
-	{&CollisionCl, 				{  -8 - 1, -13,	0, 0},											0, NULL, NULL, (void*)&collision_28_16_4, false},
-	{&CollisionCl, 				{  32 - 1, -41,	0, 0},											0, NULL, NULL, (void*)&collision_38_10_4, false},
+	{&CollisionCl, 						{ -49,  24,	0, 0},											0, NULL, NULL, (void*)&collision_38_10_4, false},
+	{&CollisionCl, 						{  -9, -13,	0, 0},											0, NULL, NULL, (void*)&collision_28_16_4, false},
+	{&CollisionCl, 						{  31, -41,	0, 0},											0, NULL, NULL, (void*)&collision_38_10_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main3Collisions3[] =
 {
-	{&CollisionCl, 				{  -8 - 1,	88, 0, 0},											0, NULL, NULL, (void*)&collision_48_10_4, false}, // ceiling above steps area
-	{&CollisionCl,					{-161 - 1, 232, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // 2nd lowest left step
-	{&CollisionCl,					{-112 - 1, 256, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest left step
+	{&CollisionCl, 						{  -9,	88, 0, 0},											0, NULL, NULL, (void*)&collision_48_10_4, false}, // ceiling above steps area
+	{&CollisionCl,						{-162, 232, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // 2nd lowest left step
+	{&CollisionCl,						{-113, 256, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest left step
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main3Collisions4[] =
 {
-	{&CollisionCl,					{ 104 - 1, 272, 0, 0},											0, NULL, NULL, (void*)&collision_28_16_4, false}, // lowest right step
+	{&CollisionCl,						{ 103, 272, 0, 0},											0, NULL, NULL, (void*)&collision_28_16_4, false}, // lowest right step
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main4Collisions1[] =
 {
-	{&CollisionCl,					{-296 - 1,  40, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest step after ceiling
-	{&CollisionCl,					{-216 - 1,   8, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // middle step after ceiling
-	{&CollisionCl,					{-136 - 1, -24, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // highest step after ceiling
+	{&CollisionCl,						{-297,  40, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // lowest step after ceiling
+	{&CollisionCl,						{-217,   8, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // middle step after ceiling
+	{&CollisionCl,						{-137, -24, 0, 0},											0, NULL, NULL, (void*)&collision_14_6_4, false}, // highest step after ceiling
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main4Collisions2[] =
 {
-	{&CollisionCl,					{ -32 - 1,  -56, 0, 0},											0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor left to spikes
-	{&CollisionCl, 				{ 128 - 1,  -84, 0, 0},											0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
-	{&CollisionCl,					{ 124 - 1,  -24, 0, 0},											0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor right to spikes
+	{&CollisionCl,						{ -33,  -56, 0, 0},											0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor left to spikes
+	{&CollisionCl, 						{ 127,  -84, 0, 0},											0, NULL, NULL, (void*)&collision_8_3_4, false}, // floating block over spikes
+	{&CollisionCl,						{ 123,  -24, 0, 0},											0, NULL, NULL, (void*)&collision_20_6_4, false}, // floor right to spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main4Collisions3[] =
 {
-	{&CollisionHitCl, 			{ 128 - 1,	-46, 0, 0},													0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
-	{&CollisionCl, 				{ 288 - 1,	 48, 0, 0},													0, NULL, NULL, (void*)&collision_20_32_4, false}, // floor below spikes
+	{&CollisionHitCl, 					{ 127,	-46, 0, 0},													0, NULL, NULL, (void*)&collision_20_2_4, false}, // spikes hit collision
+	{&CollisionCl, 						{ 287,	 48, 0, 0},													0, NULL, NULL, (void*)&collision_20_32_4, false}, // floor below spikes
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Back5Collisions1[] =
 {
-	{&CollisionCl, 				{  -5 - 1, -123, 0, 0},													0, NULL, NULL, (void*)&collision_44_3_4, false},
-	{&CollisionCl, 				{ -67 - 1,  -94, 0, 0},													0, NULL, NULL, (void*)&collision_45_5_4, false},
+	{&CollisionCl, 						{  -6, -123, 0, 0},													0, NULL, NULL, (void*)&collision_44_3_4, false},
+	{&CollisionCl, 						{ -68,  -94, 0, 0},													0, NULL, NULL, (void*)&collision_45_5_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Back5Collisions2[] =
 {
-	{&CollisionCl, 				{  -2 - 1,   29, 0, 0},													0, NULL, NULL, (void*)&collision_62_25_4, false},
-	{&CollisionTopCl, 			{ 180 - 1, -110, 0, 0},													0, NULL, NULL, (void*)&collision_6_2_4, false},
+	{&CollisionCl, 						{  -3,   28, 0, 0},													0, NULL, NULL, (void*)&collision_62_25_4, false},
+	{&CollisionTopCl, 					{ 179, -112, 0, 0},													0, NULL, NULL, (void*)&collision_6_2_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main5Collisions[] =
 {
-	{&CollisionCl, 				{ -28 - 1,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
-	{&CollisionCl, 				{  82 - 1,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
-	{&CollisionCl, 				{ 196 - 1,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
+	{&CollisionCl, 						{ -29,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
+	{&CollisionCl, 						{  81,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
+	{&CollisionCl, 						{ 195,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main6Children[] =
 {
-	{&Level1Main1Main6Entity, 	{   0, 	  0, 0, 0},													0, NULL, NULL, NULL, false},
-	{&HideLayer10x7Entity,			{ -64,  -76, -SORT_INCREMENT * 2, 0}, 								0, NULL, NULL, NULL, false},
+	{&Level1Main1Main6Entity, 			{   0, 	  0, 0, 0},													0, NULL, NULL, NULL, false},
+	{&HideLayer10x7Entity,				{ -64,  -76, -SORT_INCREMENT * 2, 0}, 								0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main6Collisions[] =
 {
-	{&CollisionCl, 				{ -56 - 1,	 64, 0, 0},													0, NULL, NULL, (void*)&collision_48_28_4, false},
-	{&CollisionTopCl, 			{-130 - 1, -104, 0, 0},													0, NULL, NULL, (void*)&collision_6_2_4, false},
-	{&CollisionCl,					{ -56 - 1, -112, 0, 0},													0, NULL, NULL, (void*)&collision_12_4_4, false},
-	{&CollisionCl, 				{ 168 - 1,	-16, 0, 0},													0, NULL, NULL, (void*)&collision_48_28_4, false},
+	{&CollisionCl, 						{ -57,	 64, 0, 0},													0, NULL, NULL, (void*)&collision_48_28_4, false},
+	{&CollisionTopCl, 					{-131, -104, 0, 0},													0, NULL, NULL, (void*)&collision_6_2_4, false},
+	{&CollisionCl,						{ -57, -112, 0, 0},													0, NULL, NULL, (void*)&collision_12_4_4, false},
+	{&CollisionCl, 						{ 167,	-16, 0, 0},													0, NULL, NULL, (void*)&collision_48_28_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -347,41 +347,41 @@ PositionedEntityROMSpec Level1MainStageChildren[] =
 {
 	// since these are always visible it doesn't matter that they are not logically placed in this spec
 	{&MoundBgBackEntity,				{   0,  120, LAYER_5 + LAYER_INCREMENT*3, 0},						0, NULL, NULL, NULL, true},
-	{&CloudsEntity,					{   0,  194, LAYER_5 + LAYER_INCREMENT*2, 0},						0, NULL, NULL, NULL, true},
-	{&MoundBgFrontEntity,			{   0,  212, LAYER_5 + LAYER_INCREMENT*0, 0},						0, NULL, NULL, NULL, true},
+	{&CloudsEntity,						{   0,  194, LAYER_5 + LAYER_INCREMENT*2, 0},						0, NULL, NULL, NULL, true},
+	{&MoundBgFrontEntity,				{   0,  212, LAYER_5 + LAYER_INCREMENT*0, 0},						0, NULL, NULL, NULL, true},
 
 	// the following entities must be placed in logical (spatial) order, according to the level's disposition,
 	// for the streaming to work properly. beware of edge case scenarios!
 
 	// left border
-	{&CollisionCl,					{  -8 - 1,  128, LAYER_0, 0},											0, NULL, NULL, (void*)&collision_2_28_4, false},
+	{&CollisionCl,						{  -8,  128, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, (void*)&collision_2_28_4, false},
 
 	// part 1
-	{&Level1Main1Main1Entity,		{ 256,  360, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&SmokeParticleSystem,						{  88,  150, 40, LAYER_0_BACKGROUND_DISPLACEMENT},					0, NULL, NULL, NULL, false},
+	{&Level1Main1Main1Entity,			{ 256,  360, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&SmokeParticleSystem,				{  88,  150, 40, LAYER_0_BACKGROUND_DISPLACEMENT},					0, NULL, NULL, NULL, false},
 	{&Level1HouseEntity,				{  88,  192, LAYER_0_DECORATIONS, LAYER_0_DOORS_DISPLACEMENT}, 		0, "House", NULL, NULL, false},
 	{&KeyDoorEntity,					{  44,  220, LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "HouseEnt", NULL, (void*)&Level1HouseStageMainEntryPoint, false},
-	{&ManagedEntity,				{ 256,  368, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main1Collisions, NULL, false},
+	{&ManagedEntity,					{ 256,  368, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main1Collisions, NULL, false},
 
 	{&RunSignEntity,					{ 232,  220, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},0, NULL, NULL, NULL, false},
 	{&CoinEntity,						{ 184,  225, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			0, "1", NULL, NULL, false},
 	{&CoinEntity,						{ 200,  225, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			0, "2", NULL, NULL, false},
 
-	{&Level1Main1Back1Entity,		{ 360,  248, LAYER_3, 0},											0, NULL, NULL, NULL, false},
+	{&Level1Main1Back1Entity,			{ 360,  248, LAYER_3, 0},											0, NULL, NULL, NULL, false},
 
 	{&StarEntity,						{ 240,	 96, LAYER_5 + LAYER_INCREMENT*3, 0},						0, NULL, NULL, NULL, false},
 
 	{&CoinEntity,						{ 320,	248, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			0, "3", NULL, NULL, false},
 	{&CoinEntity,						{ 336,	248, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},			0, "4", NULL, NULL, false},
-	{&SawBladeH8Entity,				{ 352,	259, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},		0, NULL, NULL, NULL, false},
+	{&SawBladeH8Entity,					{ 352,	259, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},		0, NULL, NULL, NULL, false},
 	{&JumpSignEntity,					{ 472,	244, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},0, NULL, NULL, NULL, false},
 
 	// part 2
-	{&Level1Main1Main2Entity,		{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&ManagedEntity,				{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main2Collisions1, NULL, false},
-	{&ManagedEntity,				{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main2Collisions2, NULL, false},
-	{&ManagedEntity,				{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main2Collisions3, NULL, false},
-	{&ManagedEntity,				{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main2Collisions4, NULL, false},
+	{&Level1Main1Main2Entity,			{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&ManagedEntity,					{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main2Collisions1, NULL, false},
+	{&ManagedEntity,					{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main2Collisions2, NULL, false},
+	{&ManagedEntity,					{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main2Collisions3, NULL, false},
+	{&ManagedEntity,					{ 764, 352, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main2Collisions4, NULL, false},
 
 	{&WaterfallTopEntity,				{ 596, 266, LAYER_0_FOREGROUND, - SORT_INCREMENT*2},				0, NULL, NULL, NULL, false},
 	{&WaterfallStream2x28Entity,		{ 596, 378, LAYER_0_FOREGROUND, - SORT_INCREMENT*2}, 				0, NULL, NULL, NULL, false},
@@ -395,16 +395,16 @@ PositionedEntityROMSpec Level1MainStageChildren[] =
 	{&BushEntity,						{ 600, 412, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 
 	// part 3
-	{&HideLayer10x7Entity,			{1068, 196,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 	0, NULL, NULL, NULL, false},
-	{&Level1Main1Main3AEntity, 	{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&Level1Main1Main3BEntity, 	{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&HideLayer10x7Entity,				{1068, 196,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 	0, NULL, NULL, NULL, false},
+	{&Level1Main1Main3AEntity, 			{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&Level1Main1Main3BEntity, 			{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&DoorEntity,						{ 798, 401, LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT},				0, "CoinEntr", NULL, (void*)&Level1CoinRoomStageMainEntryPoint, false},
-	{&HideLayer10x7Entity,			{1372, 260,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 	0, NULL, NULL, NULL, false},
+	{&HideLayer10x7Entity,				{1372, 260,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT}, 	0, NULL, NULL, NULL, false},
 
-	{&ManagedEntity,				{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main3Collisions1, NULL, false},
-	{&ManagedEntity,				{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main3Collisions2, NULL, false},
-	{&ManagedEntity,				{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main3Collisions3, NULL, false},
-	{&ManagedEntity,				{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main3Collisions4, NULL, false},
+	{&ManagedEntity,					{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main3Collisions1, NULL, false},
+	{&ManagedEntity,					{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main3Collisions2, NULL, false},
+	{&ManagedEntity,					{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main3Collisions3, NULL, false},
+	{&ManagedEntity,					{1228, 240,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main3Collisions4, NULL, false},
 
 	{&CoinEntity,						{ 988, 260, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "9", NULL, NULL, false},
 	{&CoinEntity,						{ 988, 308, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "10", NULL, NULL, false},
@@ -414,68 +414,68 @@ PositionedEntityROMSpec Level1MainStageChildren[] =
 
 	{&WaterfallTopEntity,				{1156, 346, LAYER_0_FOREGROUND, -(SORT_INCREMENT*2)},				0, NULL, NULL, NULL, false},
 	{&WaterfallStream2x16Entity,		{1156, 408, LAYER_0_FOREGROUND, -(SORT_INCREMENT*2)}, 				0, NULL, NULL, NULL, false},
-	{&WaterPondEntity,				{1173, 465, LAYER_0_FOREGROUND, 0},									0, NULL, NULL, NULL, false},
+	{&WaterPondEntity,					{1173, 465, LAYER_0_FOREGROUND, 0},									0, NULL, NULL, NULL, false},
 
-	{&SawBladeV3Entity,				{1197, 472, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},			0, NULL, NULL, NULL, false},
-	{&DoubleJumpSignEntity,			{1244, 432, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&SawBladeV3Entity,					{1197, 472, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},			0, NULL, NULL, NULL, false},
+	{&DoubleJumpSignEntity,				{1244, 432, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&GrassEntity,						{1280, 440, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&CoinEntity,						{1340, 432, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "12", NULL, NULL, false},
 	{&CoinEntity,						{1356, 432, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "13", NULL, NULL, false},
 	{&DoorEntity,						{1373, 272, LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT},				0, "IntExitD", NULL, (void*)&Level1IntersectionStageExitEntryPoint, false},
 	{&KeyEntity,						{1348, 276, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "2", NULL, NULL, false},
 	{&BushEntity,						{1430, 412, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&Snail3Entity,					{1496, 377, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},			0, NULL, NULL, NULL, false},
-	{&Snail3Entity,					{1576, 345, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},			0, NULL, NULL, NULL, false},
-	{&Mound1Entity,					{1668, 300, LAYER_0_BACKGROUND + 16, LAYER_0_BACKGROUND_DISPLACEMENT},		0, NULL, NULL, NULL, false},
+	{&Snail3Entity,						{1496, 377, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},			0, NULL, NULL, NULL, false},
+	{&Snail3Entity,						{1576, 345, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},			0, NULL, NULL, NULL, false},
+	{&Mound1Entity,						{1668, 300, LAYER_0_BACKGROUND + 16, LAYER_0_BACKGROUND_DISPLACEMENT},		0, NULL, NULL, NULL, false},
 	{&CoinEntity,						{1724, 304, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "14", NULL, NULL, false},
 	{&CoinEntity,						{1740, 304, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "15", NULL, NULL, false},
 
 	// part 4
-	{&Level1Main1Main4Entity, 	{1732, 400, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&ManagedEntity,				{1732, 400,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main4Collisions1, NULL, false},
-	{&ManagedEntity,				{1732, 400,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main4Collisions2, NULL, false},
-	{&ManagedEntity,				{1732, 400,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main4Collisions3, NULL, false},
+	{&Level1Main1Main4Entity, 			{1732, 400, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&ManagedEntity,					{1732, 400,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main4Collisions1, NULL, false},
+	{&ManagedEntity,					{1732, 400,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main4Collisions2, NULL, false},
+	{&ManagedEntity,					{1732, 400,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main4Collisions3, NULL, false},
 
-	{&SawBladeH3Entity,				{1861, 303, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},				0, NULL, NULL, NULL, false},
-	{&Mound2Entity,					{2024, 301, LAYER_0_BACKGROUND + 16, LAYER_0_BACKGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&SawBladeH3Entity,					{1861, 303, LAYER_0_ENEMIES, LAYER_0_ENEMIES_DISPLACEMENT},				0, NULL, NULL, NULL, false},
+	{&Mound2Entity,						{2024, 301, LAYER_0_BACKGROUND + 16, LAYER_0_BACKGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 
 	// part 5 (back)
-	{&Level1Main1Back5Entity,		{2336,  328, LAYER_2, 0}, 			0, NULL, NULL, NULL, false},
-	{&LayerSwitchDoorBackEntity, 	{2481,  298, LAYER_2, 0}, 									0, "DoorBk1", NULL, (void*)&Level1MainLsFrontEntryPoint, false},
-	{&ManagedEntity,				{2336,  388, LAYER_2, 0}, 				0, NULL, (struct PositionedEntity*)Level1Main1Back5Collisions1, NULL, false},
-	{&ManagedEntity,				{2328,  384, LAYER_2, 0}, 				0, NULL, (struct PositionedEntity*)Level1Main1Back5Collisions2, NULL, false},
-	{&CannonEntity,					{2180,  286, LAYER_2, 0},	0, NULL, NULL, NULL, false},
-	{&CannonEntity,					{2404,  286, LAYER_2, 0},	0, NULL, NULL, NULL, false},
-	{&CoinBackEntity,					{2093,  264, LAYER_2_ITEMS, 0},			0, "16", NULL, NULL, false},
-	{&CoinBackEntity,					{2105,  264, LAYER_2_ITEMS, 0},			0, "17", NULL, NULL, false},
-	{&CoinBackEntity,					{2263,  244, LAYER_2_ITEMS, 0},			0, "18", NULL, NULL, false},
-	{&CoinBackEntity,					{2275,  244, LAYER_2_ITEMS, 0},			0, "19", NULL, NULL, false},
+	{&Level1Main1Back5Entity,			{2336,  328, LAYER_2, 0}, 											0, NULL, NULL, NULL, false},
+	{&LayerSwitchDoorBackEntity, 		{2481,  299, LAYER_2, 0}, 											0, "DoorBk1", NULL, (void*)&Level1MainLsFrontEntryPoint, false},
+	{&ManagedEntity,					{2336,  388, LAYER_2, 0}, 											0, NULL, (struct PositionedEntity*)Level1Main1Back5Collisions1, NULL, false},
+	{&ManagedEntity,					{2328,  384, LAYER_2, 0}, 											0, NULL, (struct PositionedEntity*)Level1Main1Back5Collisions2, NULL, false},
+	{&CannonEntity,						{2180,  286, LAYER_2, 0},											0, NULL, NULL, NULL, false},
+	{&CannonEntity,						{2404,  286, LAYER_2, 0},											0, NULL, NULL, NULL, false},
+	{&CoinBackEntity,					{2093,  264, LAYER_2_ITEMS, 0},										0, "16", NULL, NULL, false},
+	{&CoinBackEntity,					{2105,  264, LAYER_2_ITEMS, 0},										0, "17", NULL, NULL, false},
+	{&CoinBackEntity,					{2263,  244, LAYER_2_ITEMS, 0},										0, "18", NULL, NULL, false},
+	{&CoinBackEntity,					{2275,  244, LAYER_2_ITEMS, 0},										0, "19", NULL, NULL, false},
 
 	// part 5
-	{&Level1Main1Main5Entity, 	{2208, 392, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&ManagedEntity,				{2208, 400,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main5Collisions, NULL, false},
+	{&Level1Main1Main5Entity, 			{2208, 392, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&ManagedEntity,					{2208, 400,	LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main5Collisions, NULL, false},
 	{&CoinEntity,						{2172, 292, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "20", NULL, NULL, false},
 	{&CoinEntity,						{2188, 292, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "21", NULL, NULL, false},
 	{&CoinEntity,						{2396, 292, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "22", NULL, NULL, false},
 	{&CoinEntity,						{2412, 292, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "23", NULL, NULL, false},
 
 	// part 6
-	{&Level1Main1Main6Entity, 	{2732, 364, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&HideLayer10x7Entity,			{2668, 296, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&ManagedEntity,				{2732, 372, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main6Collisions, NULL, false},
+	{&Level1Main1Main6Entity, 			{2732, 364, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&HideLayer10x7Entity,				{2668, 296, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&ManagedEntity,					{2732, 372, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, (struct PositionedEntity*)Level1Main1Main6Collisions, NULL, false},
 	{&StarEntity,						{2588, 112, LAYER_5 + LAYER_INCREMENT*3, 0},						0, NULL, NULL, NULL, false},
 	{&LayerSwitchDoorEntity,			{2669, 308, LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "DoorFt1", NULL, (void*)&Level1MainLsBackEntryPoint, false},
 	{&CoinEntity,						{2732, 232, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "24", NULL, NULL, false},
 	{&CoinEntity,						{2748, 232, LAYER_0_ITEMS, LAYER_0_ITEMS_DISPLACEMENT},				0, "25", NULL, NULL, false},
 	{&Level1TowerEntity,				{2894, 132, 32, LAYER_0_BACKGROUND_DISPLACEMENT},					0, NULL, NULL, NULL, false},
-	{&CloudAEntity,					{2796, 104, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&CloudAEntity,					{2868, 120, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
-	{&CloudAEntity,					{2972, 112, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&CloudAEntity,						{2796, 104, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&CloudAEntity,						{2868, 120, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
+	{&CloudAEntity,						{2972, 112, LAYER_0_FOREGROUND, LAYER_0_FOREGROUND_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 	{&KeyDoorEntity,					{2891, 228, LAYER_0_DOORS, LAYER_0_DOORS_DISPLACEMENT}, 			0, "TowrEnt", NULL, (void*)&Level1TowerStageMainEntryPoint, false},
 	{&GrassEntity,						{2960, 237, LAYER_0_DECORATIONS, LAYER_0_DECORATIONS_DISPLACEMENT},	0, NULL, NULL, NULL, false},
 
 	// right border
-	{&CollisionCl,					{2996 - 1, 132, LAYER_0, 0},											0, NULL, NULL, (void*)&collision_2_28_4, false},
+	{&CollisionCl,						{2995, 132, LAYER_0, 0},											0, NULL, NULL, (void*)&collision_2_28_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -958,8 +958,8 @@ StageEntryPointROMSpec Level1MainLsBackEntryPoint =
 	// offset from entry point (x, y, z)
 	{
 		0,
-		0,
-		0,
+		-6,
+		-1,
 		-1
 	},
 

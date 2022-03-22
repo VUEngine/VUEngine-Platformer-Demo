@@ -26,6 +26,7 @@
 class Key : Item
 {
 	void constructor(AnimatedEntitySpec* spec, int16 internalId, const char* const name);
+	override void ready(bool recursive);
 	override void collect();
 	override void suspend();
 	override void resume();
