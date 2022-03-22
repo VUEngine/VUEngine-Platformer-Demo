@@ -297,17 +297,17 @@ PositionedEntityROMSpec Level1Main1Back5Collisions1[] =
 
 PositionedEntityROMSpec Level1Main1Back5Collisions2[] =
 {
-	{&CollisionCl, 						{  -3,   29, 0, 0},													0, NULL, NULL, (void*)&collision_62_25_4, false},
-	{&CollisionTopCl, 					{ 179, -110, 0, 0},													0, NULL, NULL, (void*)&collision_6_2_4, false},
+	{&CollisionCl, 						{  -3,   28, 0, 0},													0, NULL, NULL, (void*)&collision_62_25_4, false},
+	{&CollisionTopCl, 					{ 179, -112, 0, 0},													0, NULL, NULL, (void*)&collision_6_2_4, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMSpec Level1Main1Main5Collisions[] =
 {
-	{&CollisionCl, 						{ -29,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
-	{&CollisionCl, 						{  81,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
-	{&CollisionCl, 						{ 195,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
+	{&CollisionCl, 						{ -29,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
+	{&CollisionCl, 						{  81,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
+	{&CollisionCl, 						{ 195,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -441,7 +441,7 @@ PositionedEntityROMSpec Level1MainStageChildren[] =
 
 	// part 5 (back)
 	{&Level1Main1Back5Entity,			{2336,  328, LAYER_2, 0}, 											0, NULL, NULL, NULL, false},
-	{&LayerSwitchDoorBackEntity, 		{2481,  298, LAYER_2, 0}, 											0, "DoorBk1", NULL, (void*)&Level1MainLsFrontEntryPoint, false},
+	{&LayerSwitchDoorBackEntity, 		{2481,  299, LAYER_2, 0}, 											0, "DoorBk1", NULL, (void*)&Level1MainLsFrontEntryPoint, false},
 	{&ManagedEntity,					{2336,  388, LAYER_2, 0}, 											0, NULL, (struct PositionedEntity*)Level1Main1Back5Collisions1, NULL, false},
 	{&ManagedEntity,					{2328,  384, LAYER_2, 0}, 											0, NULL, (struct PositionedEntity*)Level1Main1Back5Collisions2, NULL, false},
 	{&CannonEntity,						{2180,  286, LAYER_2, 0},											0, NULL, NULL, NULL, false},
@@ -958,7 +958,7 @@ StageEntryPointROMSpec Level1MainLsBackEntryPoint =
 	// offset from entry point (x, y, z)
 	{
 		0,
-		-4,
+		-6,
 		-1,
 		-1
 	},
