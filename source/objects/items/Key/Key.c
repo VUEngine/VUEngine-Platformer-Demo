@@ -47,6 +47,15 @@ void Key::destructor()
 	Base::destructor();
 }
 
+void Key::ready(bool recursive)
+{
+	// call base
+	Base::ready(this, recursive);
+
+	// add post processing effect to make key emit rhombuses
+	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+}
+
 void Key::collect()
 {
 	// fire item taken event
