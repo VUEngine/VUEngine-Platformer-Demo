@@ -312,6 +312,7 @@ void Hero::showDust(bool autoHideDust)
 	if(this->feetDust)
 	{
 		ParticleSystem::start(this->feetDust);
+		ParticleSystem::show(this->feetDust);
 	}
 
 	if(autoHideDust)
@@ -326,6 +327,7 @@ void Hero::hideDust()
 	if(this->feetDust)
 	{
 		ParticleSystem::pause(this->feetDust);
+		ParticleSystem::hide(this->feetDust);
 	}
 }
 
@@ -757,6 +759,8 @@ void Hero::addFeetDust()
 	ASSERT(this->feetDust, "Hero::addFeetDust: null feetDust");
 
 	ParticleSystem::spawnAllParticles(this->feetDust);
+
+	Hero::hideDust(this);
 }
 
 void Hero::showHint(uint32 hintType)
@@ -1233,6 +1237,8 @@ void Hero::resume()
 	Base::resume(this);
 
 	Hero::updateSprite(this);
+
+	Hero::hideDust(this);
 }
 
 bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation)
