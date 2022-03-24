@@ -121,9 +121,9 @@ WaterPondROMSpec WaterPondEntity =
 			(SpriteSpec**)WaterPondSprites,
 
 			// use z displacement in projection
-	false,
+			false,
 
-	// collision shapes
+			// collision shapes
 			(ShapeSpec*)WaterPondShapes,
 
 			// size

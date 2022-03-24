@@ -146,5 +146,8 @@ ParticleSystemROMSpec DustParticleSystem =
 	{__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(1), __PIXELS_TO_METERS(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
-	__UNIFORM_MOVEMENT
+	__UNIFORM_MOVEMENT,
+
+	/// use particle system movement vector for the force to apply to the particles
+	false
 };

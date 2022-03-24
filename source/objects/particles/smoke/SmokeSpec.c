@@ -144,5 +144,8 @@ ParticleSystemROMSpec SmokeParticleSystem =
 	{-__PIXELS_TO_METERS(8), -__PIXELS_TO_METERS(8), __I_TO_FIX10_6(0)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
-	__UNIFORM_MOVEMENT
+	__UNIFORM_MOVEMENT,
+
+	/// use particle system movement vector for the force to apply to the particles
+	false
 };

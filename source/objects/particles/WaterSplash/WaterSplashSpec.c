@@ -144,5 +144,8 @@ ParticleSystemROMSpec WaterSplashParticleSystem =
 	{__I_TO_FIX10_6(1000), __I_TO_FIX10_6(-15500), __I_TO_FIX10_6(200)},
 
 	// movement type (__UNIFORM_MOVEMENT or __ACCELERATED_MOVEMENT)
-	__ACCELERATED_MOVEMENT
+	__ACCELERATED_MOVEMENT,
+
+	/// use particle system movement vector for the force to apply to the particles
+	false
 };

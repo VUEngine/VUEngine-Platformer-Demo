@@ -99,7 +99,7 @@ class Hero : Actor
 
 	static Hero getInstance();
 	void constructor(HeroSpec* heroSpec, int16 internalId, const char* const name);
-	void addForceOnAxis(uint16 axis, bool enableAddingForce);
+	void applyForceOnAxis(uint16 axis, bool enableAddingForce);
 	void stopAddingForce();
 	void startedMovingOnAxis(uint16 axis);
 	bool stopMovingOnAxis(uint16 axis);
