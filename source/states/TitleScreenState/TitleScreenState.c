@@ -250,9 +250,9 @@ void TitleScreenState::showMessage()
 
 void TitleScreenState::hideMessage()
 {
-	Printing::text(Printing::getInstance(), "												", 0, 25, "Platformer");
-	Printing::text(Printing::getInstance(), "												", 0, 26, "Platformer");
-	Printing::text(Printing::getInstance(), "												", 0, 27, "Platformer");
+	Printing::text(Printing::getInstance(), "                                                ", 0, 25, "Platformer");
+	Printing::text(Printing::getInstance(), "                                                ", 0, 26, "Platformer");
+	Printing::text(Printing::getInstance(), "                                                ", 0, 27, "Platformer");
 }
 
 void TitleScreenState::processUserInput(UserInput userInput)
