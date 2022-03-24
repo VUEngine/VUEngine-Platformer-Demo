@@ -305,9 +305,9 @@ PositionedEntityROMSpec Level1Main1Back5Collisions2[] =
 
 PositionedEntityROMSpec Level1Main1Main5Collisions[] =
 {
-	{&CollisionCl, 						{ -29,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
-	{&CollisionCl, 						{  81,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
-	{&CollisionCl, 						{ 195,  -82, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
+	{&CollisionCl, 						{ -29,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // left floating block
+	{&CollisionCl, 						{  81,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // middle floating block
+	{&CollisionCl, 						{ 195,  -84, 0, 0},													0, NULL, NULL, (void*)&collision_8_3_4, false}, // right floating block
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -958,7 +958,7 @@ StageEntryPointROMSpec Level1MainLsBackEntryPoint =
 	// offset from entry point (x, y, z)
 	{
 		0,
-		-6,
+		-8,
 		-1,
 		-1
 	},
