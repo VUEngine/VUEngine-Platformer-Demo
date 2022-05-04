@@ -198,6 +198,9 @@ MovingEntityROMSpec Snail3Entity =
 
 				// use z displacement in projection
 	false,
+			
+	/// meshes
+	(MeshSpec*)NULL,
 
 	// collision shapes
 				(ShapeSpec*)SnailShapes,
@@ -271,6 +274,9 @@ MovingEntityROMSpec Snail8Entity =
 
 				// use z displacement in projection
 				false,
+			
+				/// meshes
+				(MeshSpec*)NULL,
 
 				// collision shapes
 				(ShapeSpec*)SnailShapes,

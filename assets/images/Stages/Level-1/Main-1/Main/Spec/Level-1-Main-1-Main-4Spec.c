@@ -125,6 +125,9 @@ EntityROMSpec Level1Main1Main4Entity =
 
 	// use z displacement in projection
 	false,
+			
+	/// meshes
+	(MeshSpec*)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

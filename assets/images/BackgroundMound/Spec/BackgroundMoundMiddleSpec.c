@@ -161,6 +161,9 @@ EntityROMSpec MoundBgMiddleEntity =
 
 	// use z displacement in projection
 	false,
+			
+	/// meshes
+	(MeshSpec*)NULL,
 
 	// collision shapes
 	NULL,
@@ -196,6 +199,9 @@ CloudsROMSpec CloudsEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		NULL,

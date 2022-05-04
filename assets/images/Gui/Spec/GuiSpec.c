@@ -278,6 +278,9 @@ AnimatedEntityROMSpec GuiEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -320,6 +323,9 @@ AnimatedEntityROMSpec GuiOverworldEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

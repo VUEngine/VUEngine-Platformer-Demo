@@ -267,6 +267,9 @@ HideLayerROMSpec HideLayer10x7Entity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)HideLayer10x7Shapes,

@@ -618,6 +618,9 @@ HeroROMSpec HeroEntity =
 
 			// use z displacement in projection
 			false,
+			
+			/// meshes
+			(MeshSpec*)NULL,
 
 			// collision shapes
 			(ShapeSpec*)HeroShapes,
@@ -670,6 +673,9 @@ AnimatedEntityROMSpec HeroIdleEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -712,6 +718,9 @@ AnimatedEntityROMSpec HeroSleepingEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -755,6 +764,9 @@ AnimatedEntityROMSpec HeroBandanaEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

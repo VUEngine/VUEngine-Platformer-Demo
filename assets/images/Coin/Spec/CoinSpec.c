@@ -452,6 +452,9 @@ CoinROMSpec CoinEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)CoinShapes,
@@ -494,6 +497,9 @@ CoinROMSpec CoinSilhouetteEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)CoinShapes,
@@ -633,6 +639,9 @@ CoinROMSpec CoinBackEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)CoinBackShapes,
@@ -675,6 +684,9 @@ CoinROMSpec CoinBackSilhouetteEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)CoinBackShapes,

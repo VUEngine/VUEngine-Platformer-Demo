@@ -321,6 +321,9 @@ DoorROMSpec DoorEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -363,6 +366,9 @@ LayerSwitchDoorROMSpec LayerSwitchDoorEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -406,6 +412,9 @@ GoalDoorROMSpec GoalDoorEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -448,6 +457,9 @@ KeyDoorROMSpec KeyDoorEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -523,6 +535,9 @@ DoorROMSpec AffineDoorEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -651,6 +666,9 @@ DoorROMSpec DoorBackEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -693,6 +711,9 @@ LayerSwitchDoorROMSpec LayerSwitchDoorBackEntity =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
