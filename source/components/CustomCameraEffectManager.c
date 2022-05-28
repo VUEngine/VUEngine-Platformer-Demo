@@ -212,7 +212,7 @@ void CustomCameraEffectManager::onScreenShake()
 	this->lastShakeOffset.x = -this->lastShakeOffset.x;
 
 	// move screen a bit
-	Camera::move(_camera, this->lastShakeOffset, false);
+	Camera::translate(_camera, &this->lastShakeOffset, false);
 
 	// send message for next screen movement
 	MessageDispatcher::dispatchMessage(nextShakeDelay, Object::safeCast(this), Object::safeCast(this), kShake, NULL);
