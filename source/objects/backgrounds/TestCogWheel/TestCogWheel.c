@@ -77,7 +77,7 @@ bool TestCogWheel::handleMessage(Telegram telegram)
 	{
 		case kMessageCogWheelMove:
 
-			TestCogWheel::rotate(this);
+			TestCogWheel::applyRotation(this);
 			break;
 
 		case kMessageCogWheelStop:
@@ -90,7 +90,7 @@ bool TestCogWheel::handleMessage(Telegram telegram)
 }
 
 // rotate cogwheel
-void TestCogWheel::rotate()
+void TestCogWheel::applyRotation()
 {
 //	Shape::show(VirtualList::front(this->shapes));
 //	Shape::show(VirtualList::back(this->shapes));

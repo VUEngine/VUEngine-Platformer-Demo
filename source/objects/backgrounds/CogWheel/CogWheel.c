@@ -74,7 +74,7 @@ bool CogWheel::handleMessage(Telegram telegram)
 	{
 		case kMessageCogWheelMove:
 
-			CogWheel::rotate(this);
+			CogWheel::applyRotation(this);
 			break;
 
 		case kMessageCogWheelStop:
@@ -87,7 +87,7 @@ bool CogWheel::handleMessage(Telegram telegram)
 }
 
 // rotate cogwheel
-void CogWheel::rotate()
+void CogWheel::applyRotation()
 {
 	Rotation localRotation = this->transformation.localRotation;
 	localRotation.z += 1;
