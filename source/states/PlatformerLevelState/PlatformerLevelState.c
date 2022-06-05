@@ -148,7 +148,7 @@ void PlatformerLevelState::enter(void* owner)
 				__PIXELS_TO_METERS(this->currentStageEntryPoint->stageSpec->level.cameraInitialPosition.z),
 			};
 
-			Camera::setPosition(Camera::getInstance(), screenPosition);
+			Camera::setPosition(Camera::getInstance(), screenPosition, true);
 
 			// load stage
 			GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, false, false);
