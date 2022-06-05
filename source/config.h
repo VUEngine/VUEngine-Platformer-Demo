@@ -145,6 +145,9 @@
 // affects the strength of the scaling
 #define __SCALING_MODIFIER_FACTOR					0.017f
 
+// affects the strength of the scaling
+#define __PROJECTION_PLANE_SIZE						384
+
 // minimum number of pixels that the camera can move
 #define __CAMERA_MINIMUM_DISPLACEMENT_PIXELS_POWER	1
 
