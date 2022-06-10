@@ -344,7 +344,7 @@ StageROMSpec Level1TowerStage =
 			// y
 			SCREEN_Y_POSITION - __SCREEN_HEIGHT / 2,
 			// z
-			0,
+			LAYER_0_FOREGROUND - LAYER_0_DOORS,
 			// p
 			0,
 		},

@@ -112,6 +112,9 @@
 //                                           OPTICS / PROJECTION                                           
 //---------------------------------------------------------------------------------------------------------
 
+// legacy coordinate system (0, 0, 0) is at the top left corner of the screen
+#define __LEGACY_COORDINATE_PROJECTION
+
 // screen width in pixels
 #define __SCREEN_WIDTH								384
 
@@ -121,14 +124,14 @@
 // screen depth in pixels
 #define __SCREEN_DEPTH								2048
 
-// distance from player's eyes to the virtual screen
-#define __DISTANCE_EYE_SCREEN						384
-
 // maximum x view distance (depth) (power of two)
 #define __MAXIMUM_X_VIEW_DISTANCE					8192
 
 // maximum y view distance (depth) (power of two)
 #define __MAXIMUM_Y_VIEW_DISTANCE					8192
+
+// distance from player's eyes to the virtual screen
+#define __DISTANCE_EYE_SCREEN						340
 
 // distance between eyes
 #define __BASE_FACTOR								32
@@ -143,10 +146,7 @@
 #define __PARALLAX_CORRECTION_FACTOR				4
 
 // affects the strength of the scaling
-#define __SCALING_MODIFIER_FACTOR					0.017f
-
-// affects the strength of the scaling
-#define __PROJECTION_PLANE_SIZE						384
+#define __SCALING_MODIFIER_FACTOR					1.0f
 
 // minimum number of pixels that the camera can move
 #define __CAMERA_MINIMUM_DISPLACEMENT_PIXELS_POWER	1

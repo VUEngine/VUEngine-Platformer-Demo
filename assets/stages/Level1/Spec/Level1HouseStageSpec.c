@@ -140,7 +140,7 @@ StageROMSpec Level1HouseStage =
 			// y
 			0,
 			// z
-			0,
+			LAYER_0_FOREGROUND - LAYER_0_DOORS,
 			// p
 			0,
 		},
