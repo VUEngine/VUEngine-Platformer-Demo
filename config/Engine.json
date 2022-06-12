@@ -145,7 +145,7 @@
 	"optics": {
 		"baseFactor": 32,
 		"cameraMinimumDisplacementPixelsPower": 1,
-		"distanceEyeScreen": 340,
+		"cameraNearPlane": 0,
 		"useLegacyCoordinateProjection": true,
 		"horizontalViewPointCenter": 192,
 		"maximumXViewDistance": 8192,

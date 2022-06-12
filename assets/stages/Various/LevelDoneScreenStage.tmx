@@ -34,7 +34,7 @@
   <property name="stage.rendering.objectSpritesContainersZPosition.2" value="LAYER_0_PARTICLES"/>
   <property name="stage.rendering.objectSpritesContainersZPosition.3" value="LAYER_0_PARTICLES"/>
   <property name="stage.rendering.optical.baseDistance" value="__BASE_FACTOR"/>
-  <property name="stage.rendering.optical.distanceEyeScreen" value="__DISTANCE_EYE_SCREEN"/>
+  <property name="stage.rendering.optical.cameraNearPlane" value="__CAMERA_NEAR_PLANE"/>
   <property name="stage.rendering.optical.horizontalViewPointCenter" value="__HORIZONTAL_VIEW_POINT_CENTER"/>
   <property name="stage.rendering.optical.maximumViewDistancePower" value="__MAXIMUM_VIEW_DISTANCE_POWER"/>
   <property name="stage.rendering.optical.verticalViewPointCenter" value="__VERTICAL_VIEW_POINT_CENTER"/>

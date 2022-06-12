@@ -131,7 +131,7 @@
 #define __MAXIMUM_Y_VIEW_DISTANCE					8192
 
 // distance from player's eyes to the virtual screen
-#define __DISTANCE_EYE_SCREEN						340
+#define __CAMERA_NEAR_PLANE							0
 
 // distance between eyes
 #define __BASE_FACTOR								32
