@@ -142,6 +142,10 @@
 		],
 		"warningThreshold": 85
 	},
+	"directDraw":
+	{
+		"interlacedThreshold": 1500
+	},
 	"optics": {
 		"baseFactor": 32,
 		"cameraMinimumDisplacementPixelsPower": 1,
