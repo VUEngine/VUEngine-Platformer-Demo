@@ -112,7 +112,7 @@
 //                                             DIRECT DRAWING                                              
 //---------------------------------------------------------------------------------------------------------
 
-#define __DIRECT_DRAW_INTERLACED_THRESHOLD							__PIXELS_TO_METERS(1500)
+#define __DIRECT_DRAW_INTERLACED_THRESHOLD								1500  
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -325,6 +325,8 @@
 
 #define __FRICTION_FORCE_FACTOR_POWER								2
 
+// fixed data 10.6 doesn't have enough precision and in some cases it is necessary to actively correct the cumulative error
+#define __BODY_PRECISION_CORRECTION									1 
 
 //---------------------------------------------------------------------------------------------------------
 //                                                  SOUND                                                  
