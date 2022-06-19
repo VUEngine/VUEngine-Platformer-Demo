@@ -650,7 +650,7 @@ HeroROMSpec HeroEntity =
 	__Y_AXIS,
 
 	// axis around which to rotate the entity when syncronizing with body
-	__Y_AXIS
+	__LOCK_AXIS
 };
 
 AnimatedEntityROMSpec HeroIdleEntity =

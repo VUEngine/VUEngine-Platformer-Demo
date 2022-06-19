@@ -156,7 +156,7 @@
 		"maximumYViewDistance": 8192,
 		"parallaxCorrectionFactor": 4,
 		"projectionPlaneSize": 384,
-		"scalingModifierFactor": 1.0,
+		"scalingModifierFactor": 1.01,
 		"screenDepth": 2048,
 		"screenHeight": 224,
 		"screenWidth": 384,
