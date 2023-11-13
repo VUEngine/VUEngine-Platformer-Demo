@@ -14,7 +14,7 @@
 
 #include <stdlib.h>
 #include <GameEvents.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <EventManager.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
@@ -42,16 +42,16 @@ extern AnimatedEntityROMSpec CoinBackSilhouetteEntity;
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Coin::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
+void Coin::constructor(CoinSpec* coinSpec, int16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntitySpec, internalId, name);
+	Base::constructor((CollectableSpec*)coinSpec, internalId, name);
 
 	// if coin has already been collected, show silhouette representation
 	int coinId = atoi(this->name);
 	if(ProgressManager::getCoinStatus(ProgressManager::getInstance(), coinId))
 	{
-		AnimatedEntitySpec* animatedEntitySpec = this->animatedEntitySpec;
+		AnimatedEntitySpec* animatedEntitySpec = (CollectableSpec*)coinSpec;
 
 		if((AnimatedEntitySpec*)&CoinBackEntity == animatedEntitySpec)
 		{
@@ -84,6 +84,6 @@ void Coin::collect()
 		ProgressManager::setCoinStatus(ProgressManager::getInstance(), coinId, true);
 
 		// fire "taken" event
-		Object::fireEvent(EventManager::getInstance(), kEventCoinTaken);
+		ListenerObject::fireEvent(EventManager::getInstance(), kEventCoinTaken);
 	}
 }

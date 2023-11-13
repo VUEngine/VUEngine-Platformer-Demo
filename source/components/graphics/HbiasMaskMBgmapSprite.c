@@ -16,9 +16,10 @@
 #include <Optics.h>
 #include <Camera.h>
 #include <BgmapTexture.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <Entity.h>
 #include <ParamTableManager.h>
+#include <VirtualList.h>
 #include <debugConfig.h>
 
 
@@ -51,7 +52,7 @@ friend class BgmapTexture;
  * @param mBgmapSpriteSpec		Spec to use
  * @param owner							Sprite's owner
  */
-void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, Object owner)
+void HbiasMaskMBgmapSprite::constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, ListenerObject owner)
 {
 	Base::constructor(&hbiasMaskMBgmapSpriteSpec->mBgmapSpriteSpec, owner);
 
@@ -81,24 +82,18 @@ void HbiasMaskMBgmapSprite::destructor()
 	Base::destructor();
 }
 
-
-void HbiasMaskMBgmapSprite::setPosition(const PixelVector* position)
+void HbiasMaskMBgmapSprite::registerWithManager()
 {
-	Base::setPosition(this, position);
+	Base::registerWithManager(this);
 
 	HbiasMaskMBgmapSprite::getReferenceSprite(this);
-}
-
-void HbiasMaskMBgmapSprite::setMode(uint16 display, uint16 mode __attribute__ ((unused)))
-{
-	this->head = display | __WORLD_HBIAS;
 }
 
 void HbiasMaskMBgmapSprite::getReferenceSprite()
 {
 	if(isDeleted(this->referenceSprite))
 	{
-		Container referenceSpriteOwner = Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), this->hbiasMaskMBgmapSpriteSpec->referenceSpriteOwnerName, true);
+		Container referenceSpriteOwner = Container::getChildByName(Container::safeCast(VUEngine::getStage(VUEngine::getInstance())), this->hbiasMaskMBgmapSpriteSpec->referenceSpriteOwnerName, true);
 
 		if(!isDeleted(referenceSpriteOwner))
 		{
@@ -190,7 +185,7 @@ uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute_
 		||
 		referenceSpriteWorldPointer->gy + referenceSpriteWorldPointer->h < gy
 		||
-		this->referenceSprite->hidden)
+		!Sprite::isVisible(this->referenceSprite))
 	{
 		return __NO_RENDER_INDEX;
 	}

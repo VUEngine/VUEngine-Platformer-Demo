@@ -28,7 +28,7 @@ typedef const CollectableSpec CollectableROMSpec;
 
 class Collectable : AnimatedEntity
 {
-	void constructor(AnimatedEntitySpec* spec, int16 internalId, const char* const name);
+	void constructor(CollectableSpec* collectableSpec, int16 internalId, const char* const name);
 	virtual void collect();
 	override bool handleMessage(Telegram telegram);
 }

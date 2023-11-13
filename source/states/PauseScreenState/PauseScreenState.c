@@ -14,8 +14,9 @@
 
 #include <string.h>
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <Camera.h>
+#include <CameraEffectManager.h>
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <PhysicalWorld.h>
@@ -28,6 +29,8 @@
 #include <KeypadManager.h>
 #include <SoundManager.h>
 #include <Utilities.h>
+#include <VirtualList.h>
+#include <Printing.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,7 +51,7 @@ void PauseScreenState::constructor()
 
 	// init members
 	this->mode = kPauseScreenModeShowOptions;
-	this->optionsSelector = new OptionsSelector(1, 3, "Platformer");
+	this->optionsSelector = new OptionsSelector(1, 3, "Platformer", NULL, NULL);
 }
 
 // class's destructor
@@ -112,11 +115,12 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	OptionsSelector::printOptions(
 		this->optionsSelector,
 		(((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1) - 1,
-		17
+		17,
+		kOptionsAlignLeft, 0
 	);
 
 	// disable user input
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 
 	// start clocks to start animations
 	GameState::startClocks(this);
@@ -156,7 +160,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 				case kPauseScreenOptionOptions:
 
 					// disable user input
-					Game::disableKeypad(Game::getInstance());
+					VUEngine::disableKeypad(VUEngine::getInstance());
 
 					// fade out screen
 					Brightness brightness = (Brightness){0, 0, 0};
@@ -207,7 +211,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 		else if(this->mode == kPauseScreenModeShowConfirmQuit)
 		{
 			// disable user input
-			Game::disableKeypad(Game::getInstance());
+			VUEngine::disableKeypad(VUEngine::getInstance());
 
 			// fade out screen
 			Brightness brightness = (Brightness){0, 0, 0};
@@ -264,14 +268,14 @@ void PauseScreenState::playConfirmSound()
 // handle event
 void PauseScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 }
 
 // handle event
 void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// re-enable user input
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 
 	// switch state according to selection
 	int selectedOption = OptionsSelector::getSelectedOption(this->optionsSelector);
@@ -280,20 +284,20 @@ void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unuse
 		case kPauseScreenOptionContinue:
 
 			// resume game
-			Game::unpause(Game::getInstance(), GameState::safeCast(this));
+			VUEngine::unpause(VUEngine::getInstance(), GameState::safeCast(this));
 			break;
 
 		case kPauseScreenOptionOptions:
 
 			// switch to options state
 			OptionsScreenState::setNextState(OptionsScreenState::getInstance(), GameState::safeCast(this));
-			Game::changeState(Game::getInstance(), GameState::safeCast(OptionsScreenState::getInstance()));
+			VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(OptionsScreenState::getInstance()));
 			break;
 
 		case kPauseScreenOptionQuitLevel:
 
 			// switch to overworld after deleting paused game state
-			Game::cleanAndChangeState(Game::getInstance(), GameState::safeCast(OverworldState::getInstance()));
+			VUEngine::cleanAndChangeState(VUEngine::getInstance(), GameState::safeCast(OverworldState::getInstance()));
 
 			break;
 	}

@@ -200,7 +200,7 @@ MovingEntityROMSpec Snail3Entity =
 	false,
 			
 	/// meshes
-	(MeshSpec*)NULL,
+	(WireframeSpec*)NULL,
 
 	// collision shapes
 				(ShapeSpec*)SnailShapes,
@@ -276,7 +276,7 @@ MovingEntityROMSpec Snail8Entity =
 				false,
 			
 				/// meshes
-				(MeshSpec*)NULL,
+				(WireframeSpec*)NULL,
 
 				// collision shapes
 				(ShapeSpec*)SnailShapes,

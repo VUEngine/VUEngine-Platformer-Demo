@@ -12,12 +12,13 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
 #include <PhysicalWorld.h>
 #include <macros.h>
+#include <VirtualList.h>
 #include <debugConfig.h>
 #include "Collision.h"
 
@@ -127,7 +128,7 @@ void Collision::initialTransform(Transformation* environmentTransform, uint32 re
 			kLayerNone,
 		};
 
-		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), SpatialObject::safeCast(this), &shapeSpec);
+		Shape shape = CollisionManager::createShape(VUEngine::getCollisionManager(VUEngine::getInstance()), SpatialObject::safeCast(this), &shapeSpec);
 
 		const Vector3D* myPosition = Entity::getPosition(this);
 		const Rotation* myRotation = Entity::getRotation(this);

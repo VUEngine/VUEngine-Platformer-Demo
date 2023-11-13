@@ -14,8 +14,9 @@
 
 #include <string.h>
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <Camera.h>
+#include <CameraEffectManager.h>
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <Languages.h>
@@ -64,7 +65,7 @@ void OverworldState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// disable user input
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 
 	// load stage
 	GameState::loadStage(this, (StageSpec*)&Overworld1Stage, NULL, true, false);
@@ -105,15 +106,15 @@ void OverworldState::resume(void* owner)
 	Base::resume(this, owner);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 
@@ -144,13 +145,13 @@ void OverworldState::suspend(void* owner)
 	GameState::pausePhysics(this, true);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game::isEnteringSpecialMode(Game::getInstance()))
+	if(!VUEngine::isEnteringSpecialMode(VUEngine::getInstance()))
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game::isEnteringSpecialMode(Game::getInstance()))
+	if(!VUEngine::isEnteringSpecialMode(VUEngine::getInstance()))
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game::isEnteringSpecialMode(Game::getInstance()))
+	if(!VUEngine::isEnteringSpecialMode(VUEngine::getInstance()))
 #endif
 
 	// make a fade out
@@ -178,7 +179,7 @@ void OverworldState::processUserInput(UserInput userInput)
 	if((K_STA & userInput.pressedKey) || (K_A & userInput.pressedKey))
 	{
 		// disable user input
-		Game::disableKeypad(Game::getInstance());
+		VUEngine::disableKeypad(VUEngine::getInstance());
 
 		// start a fade out effect
 		Brightness brightness = (Brightness){0, 0, 0};
@@ -200,7 +201,7 @@ void OverworldState::processUserInput(UserInput userInput)
 	else if(K_B & userInput.pressedKey)
 	{
 		// disable user input
-		Game::disableKeypad(Game::getInstance());
+		VUEngine::disableKeypad(VUEngine::getInstance());
 
 		// start a fade out effect
 		Brightness brightness = (Brightness){0, 0, 0};
@@ -222,7 +223,7 @@ void OverworldState::onFadeInComplete(Object eventFirer __attribute__ ((unused))
 	GameState::propagateMessage(this, kMessageLevelStarted);
 
 	// enable user input
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 }
 
 // handle event
@@ -237,5 +238,5 @@ void OverworldState::onStartLevelFadeOutComplete(Object eventFirer __attribute__
 void OverworldState::onReturnToTitleFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// load title screen state
-	Game::changeState(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
+	VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
 }

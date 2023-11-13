@@ -135,7 +135,7 @@ EntityROMSpec Level1HouseEntity =
 	false,
 			
 	/// meshes
-	(MeshSpec*)NULL,
+	(WireframeSpec*)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

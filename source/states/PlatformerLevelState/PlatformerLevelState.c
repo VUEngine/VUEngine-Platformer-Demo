@@ -15,9 +15,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <GameEvents.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <Optics.h>
 #include <Camera.h>
+#include <CameraEffectManager.h>
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
 #include <PhysicalWorld.h>
@@ -33,6 +34,8 @@
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
 #include <PostProcessingLantern.h>
+#include <Printing.h>
+#include <VirtualList.h>
 #include <debugUtilities.h>
 
 
@@ -110,7 +113,7 @@ void PlatformerLevelState::enter(void* owner)
 	Camera::setCameraEffectManager(Camera::getInstance(), CameraEffectManager::safeCast(CustomCameraEffectManager::getInstance()));
 
 	// disable user input
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 
 	// get list of entities that should not be loaded
 	VirtualList positionedEntitiesToIgnore = new VirtualList();
@@ -181,7 +184,7 @@ void PlatformerLevelState::enter(void* owner)
 				Stage::registerEntityId(this->stage, Entity::getInternalId(hero), &HeroEntity);
 			}
 
-			Object::addEventListener(hero, Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kEventStageChildStreamedOut);
+			ListenerObject::addEventListener(hero, ListenerObject::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kEventStageChildStreamedOut);
 
 			// set hero's position
 			Actor::setPosition(hero, initialPosition);
@@ -225,7 +228,7 @@ void PlatformerLevelState::enter(void* owner)
 	GameState::startClocks(this);
 
 	// register event listeners
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
+	ListenerObject::addEventListener(ListenerObject::safeCast(EventManager::getInstance()), ListenerObject::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
 	// activate light pulsating effect
 	PlatformerLevelState::activatePulsatingEffect(this);
@@ -281,7 +284,7 @@ void PlatformerLevelState::enter(void* owner)
 		}
 
 		// erase level message in a moment
-		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, Object::safeCast(this), Object::safeCast(Game::getInstance()), kMessageHideLevelMessage, NULL);
+		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, ListenerObject::safeCast(this), ListenerObject::safeCast(VUEngine::getInstance()), kMessageHideLevelMessage, NULL);
 	}
 	else if(this->currentStageEntryPoint->isCheckPoint)
 	{
@@ -296,7 +299,7 @@ void PlatformerLevelState::enter(void* owner)
 		);
 
 		// erase checkpoint message in a moment
-		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, Object::safeCast(this), Object::safeCast(Game::getInstance()), kMessageHideLevelMessage, NULL);
+		MessageDispatcher::dispatchMessage(PLATFORMER_MESSAGE_DURATION, ListenerObject::safeCast(this), ListenerObject::safeCast(VUEngine::getInstance()), kMessageHideLevelMessage, NULL);
 	}
 
 	// tell any interested entity
@@ -312,11 +315,11 @@ void PlatformerLevelState::enter(void* owner)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))PlatformerLevelState::onLevelStartedFadeInComplete, // callback function
-		Object::safeCast(this) // callback scope
+		ListenerObject::safeCast(this) // callback scope
 	);
 
 #ifdef __ENABLE_PROFILER
-	Game::startProfiling(Game::getInstance());
+	VUEngine::startProfiling(VUEngine::getInstance());
 #endif
 
 	Printing::setWorldCoordinates(Printing::getInstance(), 0, 0, PRINTING_LAYER_Z_COORDINATE, PRINTING_LAYER_PARALLAX);
@@ -325,7 +328,7 @@ void PlatformerLevelState::enter(void* owner)
 // state's exit
 void PlatformerLevelState::exit(void* owner)
 {
-	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
+	ListenerObject::removeEventListener(EventManager::getInstance(), ListenerObject::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
 	// call base
 	Base::exit(this, owner);
@@ -344,15 +347,15 @@ void PlatformerLevelState::suspend(void* owner)
 	GameState::pausePhysics(this, true);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 
@@ -384,15 +387,15 @@ void PlatformerLevelState::resume(void* owner)
 	Base::resume(this, owner);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 
@@ -432,7 +435,7 @@ void PlatformerLevelState::resume(void* owner)
 	this->userInput.holdKey 	= userInput.allKeys & this->userInput.previousKey;
 
 	// make sure that user input is taken into account
-	Object::fireEvent(this, kEventUserInput);
+	ListenerObject::fireEvent(this, kEventUserInput);
 
 	PlatformerLevelState::setPrintingLayerCoordinates(this);
 
@@ -442,7 +445,7 @@ void PlatformerLevelState::resume(void* owner)
 	// activate lantern effect around hero
 	PlatformerLevelState::activateLantern(this);
 
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 }
 
 void PlatformerLevelState::setPrintingLayerCoordinates()
@@ -474,7 +477,7 @@ void PlatformerLevelState::activateLantern()
 		Container hero = Container::getChildByName(this->stage, HERO_NAME, true);
 		if(hero)
 		{
-			Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingLantern::lantern, SpatialObject::safeCast(hero));
+			VUEngine::pushBackProcessingEffect(VUEngine::getInstance(), PostProcessingLantern::lantern, SpatialObject::safeCast(hero));
 		}
 	}
 }
@@ -498,20 +501,20 @@ void PlatformerLevelState::processUserInput(UserInput userInput)
 				PlatformerLevelState::setModeToPaused(this);
 
 				// pause game and switch to adjustment screen state
-				Game::pause(Game::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
+				VUEngine::pause(VUEngine::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
 
 				return;
 			}
 			else if(K_STA & this->userInput.pressedKey)
 			{
 				// pause game and switch to pause screen state
-				Game::pause(Game::getInstance(), GameState::safeCast(PauseScreenState::getInstance()));
+				VUEngine::pause(VUEngine::getInstance(), GameState::safeCast(PauseScreenState::getInstance()));
 
 				return;
 			}
 		}
 
-		Object::fireEvent(this, kEventUserInput);
+		ListenerObject::fireEvent(this, kEventUserInput);
 	}
 }
 
@@ -528,7 +531,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 
 		case kMessageScreenFocused:
 
-			Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
+			ListenerObject::removeEventListener(EventManager::getInstance(), ListenerObject::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
 			break;
 
 		case kMessageLoadCheckPoint:
@@ -536,7 +539,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 			PlatformerLevelState::startStage(this, this->currentCheckPoint);
 
 			// announce checkpoint loaded
-			Object::fireEvent(EventManager::getInstance(), kEventCheckpointLoaded);
+			ListenerObject::fireEvent(EventManager::getInstance(), kEventCheckpointLoaded);
 			break;
 	}
 
@@ -545,11 +548,11 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 
 void PlatformerLevelState::onScreenFocused(Object eventFirer __attribute__ ((unused)))
 {
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kMessageScreenFocused, NULL);
+	MessageDispatcher::dispatchMessage(1, ListenerObject::safeCast(this), ListenerObject::safeCast(VUEngine::getInstance()), kMessageScreenFocused, NULL);
 
 	PlatformerCameraMovementManager::dontAlertWhenTargetFocused(PlatformerCameraMovementManager::getInstance());
 
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 }
 
 void PlatformerLevelState::onHeroDied(Object eventFirer __attribute__ ((unused)))
@@ -565,10 +568,10 @@ void PlatformerLevelState::onHeroDied(Object eventFirer __attribute__ ((unused))
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))PlatformerLevelState::onHeroDiedFadeOutComplete, // callback function
-		Object::safeCast(this) // callback scope
+		ListenerObject::safeCast(this) // callback scope
 	);
 
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 }
 
 void PlatformerLevelState::onHeroStreamedOut(Object eventFirer __attribute__ ((unused)))
@@ -595,9 +598,9 @@ void PlatformerLevelState::startLevel(PlatformerLevelSpec* platformerLevelSpec)
 	this->currentCheckPoint = this->currentStageEntryPoint = this->currentLevel->entryPoint;
 
 	// announce level start
-	Object::fireEvent(EventManager::getInstance(), kEventLevelStarted);
+	ListenerObject::fireEvent(EventManager::getInstance(), kEventLevelStarted);
 
-	Game::changeState(Game::getInstance(), GameState::safeCast(this));
+	VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(this));
 }
 
 // enter a given stage
@@ -623,7 +626,7 @@ void PlatformerLevelState::startStage(StageEntryPointSpec* entryPointSpec)
 	this->currentStageEntryPoint = entryPointSpec;
 
 	// disable user input
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 
 	// pause physical simulations
 	GameState::pausePhysics(this, true);
@@ -636,7 +639,7 @@ void PlatformerLevelState::startStage(StageEntryPointSpec* entryPointSpec)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))PlatformerLevelState::onStartStageFadeOutComplete, // callback function
-		Object::safeCast(this) // callback scope
+		ListenerObject::safeCast(this) // callback scope
 	);
 }
 
@@ -667,7 +670,7 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 	PlatformerLevelState::setModeToPlaying(this);
 
 	// enable focus easing
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
+	ListenerObject::addEventListener(ListenerObject::safeCast(EventManager::getInstance()), ListenerObject::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
 	PlatformerCameraMovementManager::enableFocusEasing(PlatformerCameraMovementManager::getInstance());
 	PlatformerCameraMovementManager::alertWhenTargetFocused(PlatformerCameraMovementManager::getInstance());
 }
@@ -675,11 +678,11 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 // handle event
 void PlatformerLevelState::onStartStageFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	Game::changeState(Game::getInstance(), GameState::safeCast(this));
+	VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(this));
 }
 
 // handle event
 void PlatformerLevelState::onHeroDiedFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kMessageLoadCheckPoint, NULL);
+	MessageDispatcher::dispatchMessage(1, ListenerObject::safeCast(this), ListenerObject::safeCast(VUEngine::getInstance()), kMessageLoadCheckPoint, NULL);
 }

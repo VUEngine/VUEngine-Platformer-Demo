@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -47,7 +47,7 @@ void Bandana::destructor()
 void Bandana::collect()
 {
 	// fire item taken event
-	Object::fireEvent(EventManager::getInstance(), kEventPowerUp);
+	ListenerObject::fireEvent(EventManager::getInstance(), kEventPowerUp);
 
 	// call base
 	Base::collect(this);

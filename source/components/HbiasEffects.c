@@ -14,7 +14,7 @@
 
 #include <HbiasEffects.h>
 #include <Entity.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <SpriteManager.h>
 #include <ParamTableManager.h>
 

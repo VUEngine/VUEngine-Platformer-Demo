@@ -163,7 +163,7 @@ EntityROMSpec MoundBgMiddleEntity =
 	false,
 			
 	/// meshes
-	(MeshSpec*)NULL,
+	(WireframeSpec*)NULL,
 
 	// collision shapes
 	NULL,
@@ -201,7 +201,7 @@ CloudsROMSpec CloudsEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		NULL,

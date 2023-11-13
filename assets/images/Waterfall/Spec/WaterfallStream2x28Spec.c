@@ -176,7 +176,7 @@ AnimatedEntityROMSpec WaterfallStream2x28Entity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

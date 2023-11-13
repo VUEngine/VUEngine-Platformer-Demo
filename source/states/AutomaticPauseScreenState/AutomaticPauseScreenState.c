@@ -13,8 +13,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <string.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <Camera.h>
+#include <CameraEffectManager.h>
 #include <MessageDispatcher.h>
 #include <PhysicalWorld.h>
 #include <I18n.h>
@@ -22,6 +23,7 @@
 #include <KeypadManager.h>
 #include <Languages.h>
 #include <Utilities.h>
+#include <Printing.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -74,7 +76,7 @@ void AutomaticPauseScreenState::enter(void* owner __attribute__ ((unused)))
 	Printing::text(Printing::getInstance(), strAutomaticPauseText, strTextXPos, 15 + strAutomaticPauseSize.y, "Platformer");
 
 	// disable user input
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 
 	// start clocks to start animations
 	GameState::startClocks(this);
@@ -98,12 +100,12 @@ void AutomaticPauseScreenState::exit(void* owner __attribute__ ((unused)))
 	Base::exit(this, owner);
 }
 
-void AutomaticPauseScreenState::processUserInput(UserInput userInput)
+void AutomaticPauseScreenState::processUserInput(const UserInput*  userInput)
 {
-	if(K_STA & userInput.pressedKey)
+	if(K_STA & userInput->pressedKey)
 	{
 		// disable user input
-		Game::disableKeypad(Game::getInstance());
+		VUEngine::disableKeypad(VUEngine::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
@@ -122,15 +124,15 @@ void AutomaticPauseScreenState::processUserInput(UserInput userInput)
 void AutomaticPauseScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// re-enable user input
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 }
 
 // handle event
 void AutomaticPauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// re-enable user input
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 
 	// resume game
-	Game::unpause(Game::getInstance(), GameState::safeCast(this));
+	VUEngine::unpause(VUEngine::getInstance(), GameState::safeCast(this));
 }

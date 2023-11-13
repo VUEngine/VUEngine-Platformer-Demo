@@ -207,7 +207,7 @@ EntityROMSpec Level1TowerMain2Entity =
 	false,
 			
 	/// meshes
-	(MeshSpec*)NULL,
+	(WireframeSpec*)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

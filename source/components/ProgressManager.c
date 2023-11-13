@@ -15,7 +15,7 @@
 #include <string.h>
 #include <stddef.h>
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <I18n.h>
 #include <Error.h>
 #include <GameEvents.h>
@@ -42,14 +42,14 @@ void ProgressManager::constructor()
 	ProgressManager::resetCurrentLevelProgress(this);
 
 	// add event listeners
-	Object eventManager = Object::safeCast(EventManager::getInstance());
-	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
+	ListenerObject eventManager = ListenerObject::safeCast(EventManager::getInstance());
+	ListenerObject::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), ListenerObject::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
+	ListenerObject::addEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
+	ListenerObject::addEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
+	ListenerObject::addEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
+	ListenerObject::addEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
+	ListenerObject::addEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
+	ListenerObject::addEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
 }
 
 // class's destructor
@@ -58,14 +58,14 @@ void ProgressManager::destructor()
 	ASSERT(EventManager::getInstance(), "ProgressManager::destructor: null eventManager");
 
 	// remove event listeners
-	Object eventManager = Object::safeCast(EventManager::getInstance());
-	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
+	ListenerObject eventManager = ListenerObject::safeCast(EventManager::getInstance());
+	ListenerObject::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), ListenerObject::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
+	ListenerObject::removeEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
+	ListenerObject::removeEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onKeyTaken, kEventKeyTaken);
+	ListenerObject::removeEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onPowerUp, kEventPowerUp);
+	ListenerObject::removeEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
+	ListenerObject::removeEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
+	ListenerObject::removeEventListener(eventManager, ListenerObject::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
 
 	// destroy base
 	Base::destructor();

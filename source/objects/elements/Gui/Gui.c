@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -44,22 +44,22 @@ void Gui::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, 
 	Base::constructor(animatedEntitySpec, internalId, name);
 
 	// add event listeners
-	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onPowerUp, kEventPowerUp);
+	ListenerObject::addEventListener(ListenerObject::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), ListenerObject::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	ListenerObject::addEventListener(ListenerObject::safeCast(EventManager::getInstance()), ListenerObject::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	ListenerObject::addEventListener(ListenerObject::safeCast(EventManager::getInstance()), ListenerObject::safeCast(this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
+	ListenerObject::addEventListener(ListenerObject::safeCast(EventManager::getInstance()), ListenerObject::safeCast(this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
+	ListenerObject::addEventListener(ListenerObject::safeCast(EventManager::getInstance()), ListenerObject::safeCast(this), (EventListener)Gui::onPowerUp, kEventPowerUp);
 }
 
 // class's destructor
 void Gui::destructor()
 {
 	// remove event listeners
-	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
-	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
-	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
-	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)Gui::onPowerUp, kEventPowerUp);
+	ListenerObject::removeEventListener(ListenerObject::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), ListenerObject::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	ListenerObject::removeEventListener(EventManager::getInstance(), ListenerObject::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	ListenerObject::removeEventListener(EventManager::getInstance(), ListenerObject::safeCast(this), (EventListener)Gui::onCoinTaken, kEventCoinTaken);
+	ListenerObject::removeEventListener(EventManager::getInstance(), ListenerObject::safeCast(this), (EventListener)Gui::onKeyTaken, kEventKeyTaken);
+	ListenerObject::removeEventListener(EventManager::getInstance(), ListenerObject::safeCast(this), (EventListener)Gui::onPowerUp, kEventPowerUp);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -186,13 +186,13 @@ void Gui::printAll()
 void Gui::onSecondChange(Object eventFirer __attribute__ ((unused)))
 {
 #ifdef __DEBUG_TOOLS
-	if(!Game::isInSpecialMode(Game::getInstance()))
+	if(!VUEngine::isInSpecialMode(VUEngine::getInstance()))
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game::isInSpecialMode(Game::getInstance()))
+	if(!VUEngine::isInSpecialMode(VUEngine::getInstance()))
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game::isInSpecialMode(Game::getInstance()))
+	if(!VUEngine::isInSpecialMode(VUEngine::getInstance()))
 #endif
 
 	Gui::printClock(this);

@@ -51,6 +51,7 @@ typedef const HbiasMaskMBgmapSpriteSpec HbiasMaskMBgmapSpriteROMSpec;
 
 class HbiasMaskMBgmapSprite : MBgmapSprite
 {
+	ListenerObject owner;
 	/**
 	* @var Sprite 	sprite
 	* @brief		reference Sprite
@@ -73,10 +74,9 @@ class HbiasMaskMBgmapSprite : MBgmapSprite
 
 	static int16 wave(BgmapSprite bgmapSprite);
 
-	void constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, Object owner);
+	void constructor(const HbiasMaskMBgmapSpriteSpec* hbiasMaskMBgmapSpriteSpec, ListenerObject owner);
 	override uint16 doRender(uint16 index, bool evenFrame);
-	override void setMode(uint16 display, uint16 mode);
-	override void setPosition(const PixelVector* position);
+	override void registerWithManager();
 }
 
 

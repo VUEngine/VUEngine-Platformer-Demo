@@ -454,7 +454,7 @@ CoinROMSpec CoinEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)CoinShapes,
@@ -499,7 +499,7 @@ CoinROMSpec CoinSilhouetteEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)CoinShapes,
@@ -641,7 +641,7 @@ CoinROMSpec CoinBackEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)CoinBackShapes,
@@ -686,7 +686,7 @@ CoinROMSpec CoinBackSilhouetteEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)CoinBackShapes,

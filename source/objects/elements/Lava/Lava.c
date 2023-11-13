@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -48,7 +48,7 @@ void Lava::destructor()
 void Lava::startMoving()
 {
 	// start moving
-	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageLavaMove, NULL);
+	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageLavaMove, NULL);
 
 	// must make sure that the shape is updated
 	Entity::activeCollisionChecks(this, true);
@@ -79,5 +79,5 @@ void Lava::moveUpwards()
 	Container::setLocalPosition(this, &offset);
 
 	// send delayed message to self to trigger next movement
-	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageLavaMove, NULL);
+	MessageDispatcher::dispatchMessage(LAVA_MOVE_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageLavaMove, NULL);
 }

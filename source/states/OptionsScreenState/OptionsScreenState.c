@@ -14,8 +14,9 @@
 
 #include <string.h>
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <Camera.h>
+#include <CameraEffectManager.h>
 #include <I18n.h>
 #include <Utilities.h>
 #include <Languages.h>
@@ -25,6 +26,8 @@
 #include <TitleScreenState.h>
 #include <KeypadManager.h>
 #include <SoundManager.h>
+#include <Printing.h>
+#include <VirtualList.h>
 #include "OptionsScreenState.h"
 
 
@@ -45,7 +48,7 @@ void OptionsScreenState::constructor()
 	Base::constructor();
 
 	// init members
-	this->optionsSelector = new OptionsSelector(1, 2, "Platformer");
+	this->optionsSelector = new OptionsSelector(1, 2, "Platformer", NULL, NULL);
 	OptionsScreenState::setNextState(this, GameState::safeCast(TitleScreenState::getInstance()));
 }
 
@@ -74,7 +77,7 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 	GameState::startClocks(this);
 
 	// disable user input
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(), kHide);
@@ -83,7 +86,7 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 		0, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))OptionsScreenState::onFadeInComplete, // callback function
+		(void (*)(ListenerObject, ListenerObject))OptionsScreenState::onFadeInComplete, // callback function
 		Object::safeCast(this) // callback scope
 	);
 }
@@ -123,15 +126,15 @@ void OptionsScreenState::print()
 	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), kStringAutomaticPause);
 	option->type = kString;
-	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutomaticPauseSelect;
-	option->callbackScope = Object::safeCast(this);
+	option->callback = (void (*)(ListenerObject))OptionsScreenState::onOptionAutomaticPauseSelect;
+	option->callbackScope = ListenerObject::safeCast(this);
 	VirtualList::pushBack(options, option);
 
 	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), kStringLanguage);
 	option->type = kString;
-	option->callback = (void (*)(Object))OptionsScreenState::onOptionLanguageSelect;
-	option->callbackScope = Object::safeCast(this);
+	option->callback = (void (*)(ListenerObject))OptionsScreenState::onOptionLanguageSelect;
+	option->callbackScope = ListenerObject::safeCast(this);
 	VirtualList::pushBack(options, option);
 
 	OptionsSelector::setOptions(this->optionsSelector, options);
@@ -140,7 +143,8 @@ void OptionsScreenState::print()
 	OptionsSelector::printOptions(
 		this->optionsSelector,
 		((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1,
-		11
+		11,
+		kOptionsAlignLeft, 0
 	);
 
 	// buttons
@@ -162,7 +166,7 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 	if((userInput.pressedKey & K_A) || (userInput.pressedKey & K_STA))
 	{
 		// disable user input
-		Game::disableKeypad(Game::getInstance());
+		VUEngine::disableKeypad(VUEngine::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
@@ -171,8 +175,8 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))OptionsScreenState::onOptionSelectedFadeOutComplete, // callback function
-			Object::safeCast(this) // callback scope
+			(void (*)(ListenerObject, ListenerObject))OptionsScreenState::onOptionSelectedFadeOutComplete, // callback function
+			ListenerObject::safeCast(this) // callback scope
 		);
 
 		OptionsScreenState::playConfirmSound(this);
@@ -180,7 +184,7 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 	else if((userInput.pressedKey & K_B) || (userInput.pressedKey & K_SEL))
 	{
 		// disable user input
-		Game::disableKeypad(Game::getInstance());
+		VUEngine::disableKeypad(VUEngine::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
@@ -189,7 +193,7 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))OptionsScreenState::onExitFadeOutComplete, // callback function
+			(void (*)(ListenerObject, ListenerObject))OptionsScreenState::onExitFadeOutComplete, // callback function
 			Object::safeCast(this) // callback scope
 		);
 	}
@@ -222,30 +226,30 @@ void OptionsScreenState::playConfirmSound()
 }
 
 // handle event
-void OptionsScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
+void OptionsScreenState::onFadeInComplete(ListenerObject eventFirer __attribute__ ((unused)))
 {
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 }
 
-void OptionsScreenState::onExitFadeOutComplete(Object eventFirer __attribute__ ((unused)))
+void OptionsScreenState::onExitFadeOutComplete(ListenerObject eventFirer __attribute__ ((unused)))
 {
 	// switch to next screen
-	Game::changeState(Game::getInstance(), this->nextState);
+	VUEngine::changeState(VUEngine::getInstance(), this->nextState);
 }
 
-void OptionsScreenState::onOptionSelectedFadeOutComplete(Object eventFirer __attribute__ ((unused)))
+void OptionsScreenState::onOptionSelectedFadeOutComplete(ListenerObject eventFirer __attribute__ ((unused)))
 {
 	OptionsSelector::doCurrentSelectionCallback(this->optionsSelector);
 }
 
-void OptionsScreenState::onOptionAutomaticPauseSelect()
+void OptionsScreenState::onOptionAutomaticPauseSelect(ListenerObject eventFirer __attribute__((unused)))
 {
 	SplashScreenState::setNextState(SplashScreenState::safeCast(AutomaticPauseSelectionScreenState::getInstance()), GameState::safeCast(this));
-	Game::changeState(Game::getInstance(), GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance()));
+	VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance()));
 }
 
-void OptionsScreenState::onOptionLanguageSelect()
+void OptionsScreenState::onOptionLanguageSelect(ListenerObject eventFirer __attribute__((unused)))
 {
 	SplashScreenState::setNextState(SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()), GameState::safeCast(this));
-	Game::changeState(Game::getInstance(), GameState::safeCast(LanguageSelectionScreenState::getInstance()));
+	VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(LanguageSelectionScreenState::getInstance()));
 }

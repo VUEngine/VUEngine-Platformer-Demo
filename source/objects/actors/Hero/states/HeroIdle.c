@@ -55,7 +55,7 @@ void HeroIdle::enter(void* owner)
 	AnimatedEntity::playAnimation(owner, "Idle");
 
 	// start sleeping after 6 seconds of inactivity
-	MessageDispatcher::dispatchMessage(HERO_SLEEP_DELAY, Object::safeCast(this), Object::safeCast(owner), kMessageHeroSleep, NULL);
+	MessageDispatcher::dispatchMessage(HERO_SLEEP_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(owner), kMessageHeroSleep, NULL);
 
 #ifdef __DEBUG
 	Printing::text(Printing::getInstance(), "HeroIdle   ", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, "Platformer");

@@ -2,30 +2,27 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef FONTS_H_
-#define FONTS_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 //                                                INCLUDES                                                 
 //---------------------------------------------------------------------------------------------------------
 
-#include <Printing.h>
-#include <CharSet.h>
+#include <Fonts.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//                                              DECLARATIONS                                               
+//                                               DEFINITIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-extern FontSpec DefaultFont;
-extern FontSpec ProfilerFont;
-extern FontSpec DebugFont;
-extern FontSpec AstonishFont;
-extern FontSpec AstonishExtFont;
-extern FontSpec AstonishSFont;
-extern FontSpec AstonishSExtFont;
-extern FontSpec FVSmallFont;
-
-
-#endif
+FontSpec* const _fonts[] =
+{
+	(FontSpec*)&DefaultFont,
+	(FontSpec*)&ProfilerFont,
+	(FontSpec*)&DebugFont,
+	(FontSpec*)&AstonishFont,
+	(FontSpec*)&AstonishExtFont,
+	(FontSpec*)&AstonishSFont,
+	(FontSpec*)&AstonishSExtFont,
+	(FontSpec*)&FVSmallFont,
+	
+	NULL
+};

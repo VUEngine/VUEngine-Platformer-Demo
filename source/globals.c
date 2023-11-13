@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <Debug.h>
 #include <StageEditor.h>
 #include <AnimationInspector.h>
@@ -75,7 +75,7 @@ EntityROMSpec ManagedEntity =
 	false,
 			
 	/// meshes
-	(MeshSpec*)NULL,
+	(WireframeSpec*)NULL,
 
 	// collision shapes
 	NULL,

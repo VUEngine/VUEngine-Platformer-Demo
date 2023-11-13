@@ -14,8 +14,9 @@
 
 #include <string.h>
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <Camera.h>
+#include <CameraEffectManager.h>
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <Languages.h>
@@ -30,7 +31,9 @@
 #include <EventManager.h>
 #include <OverworldState.h>
 #include <KeypadManager.h>
+#include <Printing.h>
 #include <SoundManager.h>
+#include <VirtualList.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -73,13 +76,13 @@ void TitleScreenState::enter(void* owner)
 	this->mode = kTitleScreenModeShowPressStart;
 
 	// add event listener for "press start" message
-	Object::addEventListener(Object::safeCast(Game::getUpdateClock(Game::getInstance())), Object::safeCast(this), (EventListener)TitleScreenState::onSecondChange, kEventSecondChanged);
+	ListenerObject::addEventListener(ListenerObject::safeCast(VUEngine::getUpdateClock(VUEngine::getInstance())), ListenerObject::safeCast(this), (EventListener)TitleScreenState::onSecondChange, kEventSecondChanged);
 
 	// call base
 	Base::enter(this, owner);
 
 	// disable user input
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 
 	// load stage
 	GameState::loadStage(this, (StageSpec*)&TitleScreenStage, NULL, true, false);
@@ -93,7 +96,7 @@ void TitleScreenState::enter(void* owner)
 	VirtualList options = new VirtualList();
 	if(ProgressManager::hasProgress(ProgressManager::getInstance()))
 	{
-		this->optionsSelector = new OptionsSelector(3, 1, "Platformer");
+		this->optionsSelector = new OptionsSelector(3, 1, "Platformer", NULL, NULL);
 		Option* option = NULL;
 
 		option = new Option;
@@ -126,7 +129,7 @@ void TitleScreenState::enter(void* owner)
 	}
 	else
 	{
-		this->optionsSelector = new OptionsSelector(2, 1, "Platformer");
+		this->optionsSelector = new OptionsSelector(2, 1, "Platformer", NULL, NULL);
 		Option* option = NULL;
 
 		option = new Option;
@@ -170,7 +173,7 @@ void TitleScreenState::enter(void* owner)
 	);
 
 #ifdef __ENABLE_PROFILER
-	Game::startProfiling(Game::getInstance());
+	VUEngine::startProfiling(VUEngine::getInstance());
 #endif
 }
 
@@ -187,15 +190,15 @@ void TitleScreenState::resume(void* owner)
 	Base::resume(this, owner);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game::isExitingSpecialMode(Game::getInstance()))
+	if(!VUEngine::isExitingSpecialMode(VUEngine::getInstance()))
 	{
 #endif
 
@@ -225,13 +228,13 @@ void TitleScreenState::suspend(void* owner)
 	GameState::pausePhysics(this, true);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game::isEnteringSpecialMode(Game::getInstance()))
+	if(!VUEngine::isEnteringSpecialMode(VUEngine::getInstance()))
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game::isEnteringSpecialMode(Game::getInstance()))
+	if(!VUEngine::isEnteringSpecialMode(VUEngine::getInstance()))
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game::isEnteringSpecialMode(Game::getInstance()))
+	if(!VUEngine::isEnteringSpecialMode(VUEngine::getInstance()))
 #endif
 
 	// make a fade out
@@ -264,14 +267,15 @@ void TitleScreenState::processUserInput(UserInput userInput)
 			case kTitleScreenModeShowPressStart:
 			{
 				// disable flashing "press start button"
-				Object::removeEventListener(Object::safeCast(Game::getUpdateClock(Game::getInstance())), Object::safeCast(this), (void (*)(Object, Object))TitleScreenState::onSecondChange, kEventSecondChanged);
+				ListenerObject::removeEventListener(ListenerObject::safeCast(VUEngine::getUpdateClock(VUEngine::getInstance())), ListenerObject::safeCast(this), (void (*)(Object, Object))TitleScreenState::onSecondChange, kEventSecondChanged);
 				TitleScreenState::hideMessage(this);
 
 				// print options
 				OptionsSelector::printOptions(
 					this->optionsSelector,
 					1 + (((__SCREEN_WIDTH_IN_CHARS) - OptionsSelector::getWidth(this->optionsSelector)) >> 1),
-					26
+					26,
+					kOptionsAlignLeft, 0
 				);
 
 				// set mode to showing options
@@ -289,7 +293,7 @@ void TitleScreenState::processUserInput(UserInput userInput)
 					case kTitleScreenOptionOptions:
 
 						// disable user input
-						Game::disableKeypad(Game::getInstance());
+						VUEngine::disableKeypad(VUEngine::getInstance());
 
 						// fade out screen
 						Brightness brightness = (Brightness){0, 0, 0};
@@ -362,7 +366,7 @@ void TitleScreenState::processUserInput(UserInput userInput)
 				ProgressManager::clearProgress(ProgressManager::getInstance());
 
 				// disable user input
-				Game::disableKeypad(Game::getInstance());
+				VUEngine::disableKeypad(VUEngine::getInstance());
 
 				// fade out screen
 				Brightness brightness = (Brightness){0, 0, 0};
@@ -399,7 +403,8 @@ void TitleScreenState::processUserInput(UserInput userInput)
 		OptionsSelector::printOptions(
 			this->optionsSelector,
 			1 + (((__SCREEN_WIDTH_IN_CHARS) - OptionsSelector::getWidth(this->optionsSelector)) >> 1),
-			26
+			26,
+			kOptionsAlignLeft, 0
 		);
 
 		// set mode to showing options
@@ -426,7 +431,7 @@ void TitleScreenState::playConfirmSound()
 // handle event
 void TitleScreenState::onSecondChange(Object eventFirer __attribute__ ((unused)))
 {
-	if((Clock::getSeconds(Game::getUpdateClock(Game::getInstance())) % 2) == 0)
+	if((Clock::getSeconds(VUEngine::getUpdateClock(VUEngine::getInstance())) % 2) == 0)
 	{
 		TitleScreenState::showMessage(this);
 	}
@@ -443,7 +448,7 @@ void TitleScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused
 	GameState::propagateMessage(this, kMessageLevelStarted);
 
 	// enable user input
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 }
 
 // handle event
@@ -457,7 +462,7 @@ void TitleScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unuse
 		case kTitleScreenOptionNewGame:
 
 			// switch to overworld
-			Game::changeState(Game::getInstance(), GameState::safeCast(OverworldState::getInstance()));
+			VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(OverworldState::getInstance()));
 
 			break;
 
@@ -465,7 +470,7 @@ void TitleScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unuse
 
 			// switch to options screen
 			OptionsScreenState::setNextState(OptionsScreenState::getInstance(), GameState::safeCast(this));
-			Game::changeState(Game::getInstance(), GameState::safeCast(OptionsScreenState::getInstance()));
+			VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(OptionsScreenState::getInstance()));
 
 			break;
 	}

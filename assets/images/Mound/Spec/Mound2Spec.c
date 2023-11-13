@@ -136,7 +136,7 @@ EntityROMSpec Mound2Entity =
 	false,
 			
 	/// meshes
-	(MeshSpec*)NULL,
+	(WireframeSpec*)NULL,
 
 	// collision shapes
 	NULL,

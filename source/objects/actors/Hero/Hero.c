@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Camera.h>
@@ -90,7 +90,7 @@ void Hero::constructor(HeroSpec* heroSpec, int16 internalId, const char* const n
 
 	Hero::setInstance(this);
 
-	Object::addEventListener(Object::safeCast(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
+	ListenerObject::addEventListener(ListenerObject::safeCast(PlatformerLevelState::getInstance()), ListenerObject::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
 
 	this->inputDirection = Entity::getDirection(this);
 }
@@ -102,14 +102,14 @@ void Hero::destructor()
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
 	// remove event listeners
-	Object::removeEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
+	ListenerObject::removeEventListener(PlatformerLevelState::getInstance(), ListenerObject::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
 
 	// announce my dead
-	Object::fireEvent(EventManager::getInstance(), kEventHeroDied);
+	ListenerObject::fireEvent(EventManager::getInstance(), kEventHeroDied);
 
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroCheckVelocity);
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageHeroCheckVelocity);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageHeroFlash);
 
 	// free the instance pointers
 	this->feetDust = NULL;
@@ -155,7 +155,7 @@ void Hero::locateOverNextFloor()
 {
 /*	Vector3D direction = {0, 1, 0};
 
-	SpatialObject collidingSpatialObject = CollisionManager::searchNextObjectOfCollision(Game::getCollisionManager(Game::getInstance()), this->shape, direction);
+	SpatialObject collidingSpatialObject = CollisionManager::searchNextObjectOfCollision(VUEngine::getCollisionManager(VUEngine::getInstance()), this->shape, direction);
 	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
 
 	if(collidingSpatialObject)
@@ -318,7 +318,7 @@ void Hero::showDust(bool autoHideDust)
 	if(autoHideDust)
 	{
 		// stop the dust after some time
-		MessageDispatcher::dispatchMessage(200, Object::safeCast(this), Object::safeCast(this), kMessageHeroStopFeetDust, NULL);
+		MessageDispatcher::dispatchMessage(200, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroStopFeetDust, NULL);
 	}
 }
 
@@ -426,7 +426,7 @@ bool Hero::stopMovingOnAxis(uint16 axis)
 	{
 		if(__Y_AXIS & axis)
 		{
-			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroCheckVelocity);
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageHeroCheckVelocity);
 
 			PlatformerCameraMovementManager::lockMovement(PlatformerCameraMovementManager::getInstance(), __Y_AXIS, true);
 
@@ -547,11 +547,11 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 			Hero::setInvincible(this, true);
 
 			// reset invincible a bit later
-			MessageDispatcher::dispatchMessage(HERO_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kMessageHeroStopInvincibility, NULL);
+			MessageDispatcher::dispatchMessage(HERO_FLASH_DURATION, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroStopInvincibility, NULL);
 
 			// start flashing of hero
-			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroFlash);
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kMessageHeroFlash, NULL);
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageHeroFlash);
+			MessageDispatcher::dispatchMessage(0, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroFlash, NULL);
 
 			// lose power-up or reduce energy
 			if(this->powerUp != kPowerUpNone)
@@ -566,22 +566,22 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 			if(pause)
 			{
 				Actor::stopAllMovement(this);
-				Game::disableKeypad(Game::getInstance());
-				GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
-				//GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
-				MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kMessageHeroResumePhysics, collidingObject);
+				VUEngine::disableKeypad(VUEngine::getInstance());
+				GameState::pausePhysics(VUEngine::getCurrentState(VUEngine::getInstance()), true);
+				//GameState::pauseAnimations(VUEngine::getCurrentState(VUEngine::getInstance()), true);
+				MessageDispatcher::dispatchMessage(500, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroResumePhysics, collidingObject);
 			}
 		}
 		else
 		{
-			Game::disableKeypad(Game::getInstance());
+			VUEngine::disableKeypad(VUEngine::getInstance());
 			Hero::setInvincible(this, true);
 			this->energy = 0;
 			Hero::flash(this);
-			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
-			GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
+			GameState::pausePhysics(VUEngine::getCurrentState(VUEngine::getInstance()), true);
+			GameState::pauseAnimations(VUEngine::getCurrentState(VUEngine::getInstance()), true);
 			Entity::allowCollisions(this, false);
-			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kMessageHeroDied, NULL);
+			MessageDispatcher::dispatchMessage(500, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroDied, NULL);
 		}
 
 		// start short screen shake
@@ -594,7 +594,7 @@ void Hero::takeDamageFrom(SpatialObject collidingObject, int energyToReduce, boo
 		AnimatedEntity::playAnimation(this, "Hit");
 
 		// inform others to update ui etc
-		Object::fireEvent(EventManager::getInstance(), kEventHitTaken);
+		ListenerObject::fireEvent(EventManager::getInstance(), kEventHitTaken);
 	}
 }
 
@@ -608,7 +608,7 @@ void Hero::flash()
 		Hero::toggleFlashPalette(this);
 
 		// next flash state change after HERO_FLASH_INTERVAL milliseconds
-		MessageDispatcher::dispatchMessage(HERO_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kMessageHeroFlash, NULL);
+		MessageDispatcher::dispatchMessage(HERO_FLASH_INTERVAL, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroFlash, NULL);
 	}
 	else
 	{
@@ -726,7 +726,7 @@ void Hero::enterDoor()
 	// inform the door entity
 	if(this->currentlyOverlappedDoor)
 	{
-		MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this->currentlyOverlappedDoor), kMessageHeroEnterDoor, NULL);
+		MessageDispatcher::dispatchMessage(1, ListenerObject::safeCast(this), ListenerObject::safeCast(this->currentlyOverlappedDoor), kMessageHeroEnterDoor, NULL);
 	}
 
 	// hide hint immediately
@@ -805,9 +805,9 @@ void Hero::lookBack()
 // die hero
 void Hero::die()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageHeroFlash);
 
-	GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), false);
+	GameState::pauseAnimations(VUEngine::getCurrentState(VUEngine::getInstance()), false);
 	Container::deleteMyself(this);
 
 	/*
@@ -860,8 +860,8 @@ void Hero::collectPowerUp(uint8 powerUp)
 	Hero::updateSprite(this);
 
 	Actor::stopAllMovement(this);
-	Game::disableKeypad(Game::getInstance());
-	GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
+	VUEngine::disableKeypad(VUEngine::getInstance());
+	GameState::pausePhysics(VUEngine::getCurrentState(VUEngine::getInstance()), true);
 
 	AnimatedEntity::playAnimation(this, "Transition");
 }
@@ -871,7 +871,7 @@ void Hero::losePowerUp()
 {
 	this->powerUp = kPowerUpNone;
 	Hero::updateSprite(this);
-	Object::fireEvent(EventManager::getInstance(), kEventPowerUp);
+	ListenerObject::fireEvent(EventManager::getInstance(), kEventPowerUp);
 }
 
 // update sprite, e.g. after collecting a power-up
@@ -950,21 +950,21 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 
 		case kTypeCoin:
 
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageTakeItem, NULL);
+			MessageDispatcher::dispatchMessage(0, ListenerObject::safeCast(this), ListenerObject::safeCast(collidingObject), kMessageTakeItem, NULL);
 			return false;
 			break;
 
 		case kTypeKey:
 
 			this->hasKey = true;
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageTakeItem, NULL);
+			MessageDispatcher::dispatchMessage(0, ListenerObject::safeCast(this), ListenerObject::safeCast(collidingObject), kMessageTakeItem, NULL);
 			return false;
 			break;
 
 		case kTypeBandana:
 
 			Hero::collectPowerUp(this, kPowerUpBandana);
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageTakeItem, NULL);
+			MessageDispatcher::dispatchMessage(0, ListenerObject::safeCast(this), ListenerObject::safeCast(collidingObject), kMessageTakeItem, NULL);
 			return false;
 			break;
 
@@ -991,7 +991,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			{
 				this->underWater = true;
 
-				MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(0, ListenerObject::safeCast(this), ListenerObject::safeCast(collidingObject), kMessageReactToCollision, NULL);
 
 				Body::setSurroundingFrictionCoefficient(this->body, Actor::getSurroundingFrictionCoefficient(this) + SpatialObject::getFrictionCoefficient(collidingObject));
 			}
@@ -1025,7 +1025,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 
 		case kTypeLavaTrigger:
 
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageLavaTriggerStart, NULL);
+			MessageDispatcher::dispatchMessage(0, ListenerObject::safeCast(this), ListenerObject::safeCast(collidingObject), kMessageLavaTriggerStart, NULL);
 			Hero::stopAddingForce(this);
 			return false;
 			break;
@@ -1065,7 +1065,7 @@ bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 
 			if(Body::getMovementOnAllAxis(this->body))
 			{
-				MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kMessageReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(0, ListenerObject::safeCast(this), ListenerObject::safeCast(collidingObject), kMessageReactToCollision, NULL);
 			}
 			return false;
 	}
@@ -1077,7 +1077,7 @@ void Hero::capVelocity(bool discardPreviousMessages)
 {
 	if(discardPreviousMessages)
 	{
-		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroCheckVelocity);
+		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageHeroCheckVelocity);
 	}
 
 	if(Body::isActive(this->body))
@@ -1096,12 +1096,12 @@ void Hero::capVelocity(bool discardPreviousMessages)
 			}
 			else if(0 < velocity.y)
 			{
-				MessageDispatcher::dispatchMessage(HeroCharsetECK_Y_VELOCITY, Object::safeCast(this), Object::safeCast(this), kMessageHeroCheckVelocity, NULL);
+				MessageDispatcher::dispatchMessage(HeroCharsetECK_Y_VELOCITY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroCheckVelocity, NULL);
 			}
 		}
 		else
 		{
-			MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kMessageHeroCheckVelocity, NULL);
+			MessageDispatcher::dispatchMessage(1, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroCheckVelocity, NULL);
 		}
 	}
 }
@@ -1137,9 +1137,9 @@ bool Hero::handleMessage(Telegram telegram)
 
 		case kMessageHeroResumePhysics:
 
-			Game::enableKeypad(Game::getInstance());
-			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), false);
-			GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), false);
+			VUEngine::enableKeypad(VUEngine::getInstance());
+			GameState::pausePhysics(VUEngine::getCurrentState(VUEngine::getInstance()), false);
+			GameState::pauseAnimations(VUEngine::getCurrentState(VUEngine::getInstance()), false);
 
 			Velocity velocity = Body::getVelocity(this->body);
 
@@ -1253,7 +1253,7 @@ bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation
 
 void Hero::onPowerUpTransitionComplete(Object eventFirer __attribute__ ((unused)))
 {
-	MessageDispatcher::dispatchMessage(300, Object::safeCast(this), Object::safeCast(this), kMessageHeroResumePhysics, NULL);
+	MessageDispatcher::dispatchMessage(300, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHeroResumePhysics, NULL);
 }
 
 void Hero::syncRotationWithBody()

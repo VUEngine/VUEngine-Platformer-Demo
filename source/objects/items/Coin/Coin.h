@@ -28,7 +28,7 @@ typedef const CoinSpec CoinROMSpec;
 
 class Coin : Collectable
 {
-	void constructor(AnimatedEntitySpec* spec, int16 internalId, const char* const name);
+	void constructor(CoinSpec* coinSpec, int16 internalId, const char* const name);
 	override void collect();
 }
 

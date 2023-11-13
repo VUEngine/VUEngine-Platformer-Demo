@@ -14,14 +14,16 @@
 
 #include <string.h>
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <Camera.h>
+#include <CameraEffectManager.h>
 #include <I18n.h>
 #include <Languages.h>
 #include <PlatformerLevelState.h>
 #include <OverworldState.h>
 #include <ProgressManager.h>
 #include <KeypadManager.h>
+#include <Printing.h>
 #include "LevelDoneScreenState.h"
 
 
@@ -62,7 +64,7 @@ void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 	LevelDoneScreenState::print(this);
 
 	// disable user input
-	Game::disableKeypad(Game::getInstance());
+	VUEngine::disableKeypad(VUEngine::getInstance());
 
 	// start clocks to start animations
 	GameState::startClocks(this);
@@ -126,7 +128,7 @@ void LevelDoneScreenState::processUserInput(UserInput userInput)
 	if(userInput.pressedKey)
 	{
 		// disable user input
-		Game::disableKeypad(Game::getInstance());
+		VUEngine::disableKeypad(VUEngine::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
@@ -144,12 +146,12 @@ void LevelDoneScreenState::processUserInput(UserInput userInput)
 // handle event
 void LevelDoneScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	Game::enableKeypad(Game::getInstance());
+	VUEngine::enableKeypad(VUEngine::getInstance());
 }
 
 // handle event
 void LevelDoneScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// switch to next screen
-	Game::changeState(Game::getInstance(), GameState::safeCast(OverworldState::getInstance()));
+	VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(OverworldState::getInstance()));
 }

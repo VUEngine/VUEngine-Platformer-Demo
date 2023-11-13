@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <Optics.h>
 #include <PhysicalWorld.h>
@@ -39,7 +39,7 @@ void CannonBall::constructor(CannonBallSpec* cannonBallSpec, int16 internalId, c
 // class's constructor
 void CannonBall::destructor()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCannonBallCheckDisplacement);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageCannonBallCheckDisplacement);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -56,7 +56,7 @@ void CannonBall::startMovement()
 	// show me
 	Entity::show(this);
 
-	MessageDispatcher::dispatchMessage(CannonBall_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
+	MessageDispatcher::dispatchMessage(CannonBall_DISPLACEMENT_CHECK_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
 }
 
 // move back to cannon
@@ -81,7 +81,7 @@ void CannonBall::checkIfDistanceTraveled()
 	}
 	else
 	{
-		MessageDispatcher::dispatchMessage(CannonBall_DISPLACEMENT_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
+		MessageDispatcher::dispatchMessage(CannonBall_DISPLACEMENT_CHECK_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageCannonBallCheckDisplacement, NULL);
 	}
 }
 

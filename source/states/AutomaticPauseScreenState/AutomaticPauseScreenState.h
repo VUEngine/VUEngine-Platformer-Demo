@@ -28,7 +28,7 @@ dynamic_singleton class AutomaticPauseScreenState : GameState
 
 	override void enter(void* owner);
 	override void exit(void* owner);
-	override void processUserInput(UserInput userInput);
+	override void processUserInput(const UserInput*  userInput);
 }
 
 

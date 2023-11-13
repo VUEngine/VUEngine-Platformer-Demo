@@ -200,7 +200,7 @@ AnimatedEntityROMSpec BandanaEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)BandanaShapes,

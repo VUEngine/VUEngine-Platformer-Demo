@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <Entity.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -42,7 +42,7 @@ void Cannon::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalI
 void Cannon::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCannonShoot);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageCannonShoot);
 
 	// not necessary to manually destroy the CannonBall here as all children are automatically
 	// destroyed as well when an entity is unloaded
@@ -58,7 +58,7 @@ void Cannon::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// send delayed message to self to trigger first shot
-	MessageDispatcher::dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_INITIAL_SHOOT_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageCannonShoot, NULL);
 }
 
 // state's handle message
@@ -83,7 +83,7 @@ void Cannon::shoot()
 		// add cannon ball as child
 		extern PositionedEntity CannonBallPositionedEntity;
 
-		Stage::spawnEntity(Game::getStage(Game::getInstance()), &CannonBallPositionedEntity, Container::safeCast(this), (EventListener)Cannon::onCannonBallSpawned);
+		Stage::spawnEntity(VUEngine::getStage(VUEngine::getInstance()), &CannonBallPositionedEntity, Container::safeCast(this), (EventListener)Cannon::onCannonBallSpawned);
 		return;
 	}
 
@@ -91,7 +91,7 @@ void Cannon::shoot()
 	AnimatedEntity::playAnimation(this, "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageCannonShoot, NULL);
 }
 
 void Cannon::onCannonBallSpawned(Object eventFirer __attribute__ ((unused)))
@@ -100,7 +100,7 @@ void Cannon::onCannonBallSpawned(Object eventFirer __attribute__ ((unused)))
 	AnimatedEntity::playAnimation(this, "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(CANNON_SHOOT_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageCannonShoot, NULL);
 }
 
 // spawn a cannon ball, this is the callback of the "Shoot" animation
@@ -117,5 +117,5 @@ void Cannon::spawnCannonBall()
 	NM_ASSERT(1 == VirtualList::getSize(this->children), "Cannon::spawnCannonBall: no children");
 	CannonBall cannonBall = CannonBall::safeCast(VirtualList::front(this->children));
 
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(cannonBall), kMessageCannonShoot, NULL);
+	MessageDispatcher::dispatchMessage(1, ListenerObject::safeCast(this), ListenerObject::safeCast(cannonBall), kMessageCannonShoot, NULL);
 }

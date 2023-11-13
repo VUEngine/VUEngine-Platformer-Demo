@@ -199,7 +199,7 @@ AnimatedEntityROMSpec KeyEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)KeyShapes,

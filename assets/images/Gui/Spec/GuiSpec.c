@@ -280,7 +280,7 @@ AnimatedEntityROMSpec GuiEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -325,7 +325,7 @@ AnimatedEntityROMSpec GuiOverworldEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

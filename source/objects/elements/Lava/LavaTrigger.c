@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <Container.h>
 #include <Stage.h>
 #include <CollisionManager.h>
@@ -73,7 +73,7 @@ bool LavaTrigger::handleMessage(Telegram telegram)
 void LavaTrigger::triggerEventStart()
 {
 	// set level mode to paused so that player can't move
-	PlatformerLevelState platformerState = (PlatformerLevelState)Game::getCurrentState(Game::getInstance());
+	PlatformerLevelState platformerState = (PlatformerLevelState)VUEngine::getCurrentState(VUEngine::getInstance());
 	PlatformerLevelState::setModeToPaused(platformerState);
 
 	// initialize a dramatic screen shake effect
@@ -84,7 +84,7 @@ void LavaTrigger::triggerEventStart()
 	SoundManager::playSound(SoundManager::getInstance(), &CrumbleSound, kPlayAll, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackNormal, NULL, NULL);
 
 	// remind myself to stop the trigger event soon
-	MessageDispatcher::dispatchMessage(3000, Object::safeCast(this), Object::safeCast(this), kMessageLavaTriggerEnd, NULL);
+	MessageDispatcher::dispatchMessage(3000, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageLavaTriggerEnd, NULL);
 
 	// deactivate shape so I won't get triggered again
 	Entity::allowCollisions(this, false);
@@ -93,15 +93,15 @@ void LavaTrigger::triggerEventStart()
 void LavaTrigger::triggerEventEnd()
 {
 	// get lava entity from stage and start its movement
-	Lava lava = (Lava)Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "Lava", true);
+	Lava lava = (Lava)Container::getChildByName(Container::safeCast(VUEngine::getStage(VUEngine::getInstance())), "Lava", true);
 	Lava::startMoving(lava);
 
 	// release player
-	PlatformerLevelState platformerState = (PlatformerLevelState)Game::getCurrentState(Game::getInstance());
+	PlatformerLevelState platformerState = (PlatformerLevelState)VUEngine::getCurrentState(VUEngine::getInstance());
 	PlatformerLevelState::setModeToPlaying(platformerState);
 
 	// tell anyone interested about
-	Object::fireEvent(EventManager::getInstance(), kEventShakeCompleted);
+	ListenerObject::fireEvent(EventManager::getInstance(), kEventShakeCompleted);
 
 	// remove me from stage so I don't waste resources
 	Container::deleteMyself(this);

@@ -23,7 +23,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern AnimationDescriptionROMSpec SmokeParticleSmallAnimation;
+extern const AnimationFunction** SmokeParticleSmallAnimations;
 extern ObjectSpriteROMSpec SmokeParticleSmallSprite;
 const int padder [8192 * 16] = {1};
 
@@ -50,15 +50,15 @@ PhysicalParticleROMSpec SmokeParticle =
 		// particle's life span delta in milliseconds (maximum = minimum + delta)
 		1500,
 
-	// function pointer to control particle's behavior
-	//(void (*)(Particle))&smokeParticleBehavior,
-	NULL,
+		// function pointer to control particle's behavior
+		//(void (*)(Particle))&smokeParticleBehavior,
+		NULL,
 
-	// animation description (used only if sprite is animated)
-	(AnimationDescription*)&SmokeParticleSmallAnimation,
+		// animation description (used only if sprite is animated)
+		(const AnimationFunction**)SmokeParticleSmallAnimations,
 
-	// name of animation to play
-	"Default"
+		// name of animation to play
+		"Default"
 	},
 	// particle's minimum mass
 	__F_TO_FIX10_6(0.5f),
@@ -92,7 +92,7 @@ ParticleSystemROMSpec SmokeParticleSystem =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

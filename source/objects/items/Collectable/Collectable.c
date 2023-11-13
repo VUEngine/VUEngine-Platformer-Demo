@@ -13,13 +13,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
 #include <PhysicalWorld.h>
 #include <SoundManager.h>
 #include <EventManager.h>
+#include <Telegram.h>
 #include <ProgressManager.h>
 #include "Collectable.h"
 #include <PlatformerLevelState.h>
@@ -30,10 +31,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void Collectable::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
+void Collectable::constructor(CollectableSpec* collectableSpec, int16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntitySpec, internalId, name);
+	Base::constructor((AnimatedEntitySpec*)collectableSpec, internalId, name);
 }
 
 // class's destructor

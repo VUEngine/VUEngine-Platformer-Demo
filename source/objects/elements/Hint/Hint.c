@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -143,5 +143,5 @@ void Hint::onHintOpened(Object eventFirer __attribute__ ((unused)))
 			break;
 	}
 
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kMessageHintPlayAnimation, NULL);
+	MessageDispatcher::dispatchMessage(1, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageHintPlayAnimation, NULL);
 }

@@ -145,7 +145,7 @@ AwesomeCloudROMSpec CloudsBackgroundEntity =
 		false,
 			
 		/// meshes
-		(MeshSpec*)NULL,
+		(WireframeSpec*)NULL,
 
 		// collision shapes
 		NULL,

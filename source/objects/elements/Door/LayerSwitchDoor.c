@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -51,7 +51,7 @@ bool LayerSwitchDoor::handleMessage(Telegram telegram)
 			if(this->destinationSpec)
 			{
 				// get global position of destination door
-				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), (char *)this->destinationSpec->destinationName, true);
+				LayerSwitchDoor destinationDoor = (LayerSwitchDoor)Container::getChildByName(Container::safeCast(VUEngine::getStage(VUEngine::getInstance())), (char *)this->destinationSpec->destinationName, true);
 				Vector3D destinationDoorPosition = *Container::getGlobalPosition(destinationDoor);
 
 				// apply offset

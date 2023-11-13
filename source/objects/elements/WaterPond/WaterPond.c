@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include "WaterPond.h"
-#include <Game.h>
+#include <VUEngine.h>
 #include <Optics.h>
 #include <Camera.h>
 #include <PlatformerLevelState.h>
@@ -127,7 +127,7 @@ bool WaterPond::handleMessage(void* telegram)
 
 				this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntitySpec->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntitySpec->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntitySpec->width)));
 				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageStopReactToCollision);
-				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kMessageStopReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageStopReactToCollision, NULL);
 
 //				ParticleSystem::start(this->waterSplash);
 			}
@@ -141,7 +141,7 @@ bool WaterPond::handleMessage(void* telegram)
 
 			if(0 < this->waveLutThrottleFactorIncrement)
 			{
-				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, Object::safeCast(this), Object::safeCast(this), kMessageStopReactToCollision, NULL);
+				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageStopReactToCollision, NULL);
 			}
 			else
 			{
@@ -310,7 +310,7 @@ void WaterPond::drawCustomReflection(uint32 currentDrawingFrameBufferSet,
 	int xOutputDistance = __ABS(xOutput - xOutputLimit);
 	int xTotal = xOutputDistance > xSourceDistance ? xSourceDistance : xOutputDistance;
 
-	uint32 time = Game::getTime(Game::getInstance());
+	uint32 time = VUEngine::getTime(VUEngine::getInstance());
 
 	this->waveLutIndex += waveLutIndexIncrement;
 

@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <MessageDispatcher.h>
 #include <CollisionManager.h>
 #include <Optics.h>
@@ -164,11 +164,11 @@ void MovingEntity::checkDisplacement()
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityStartMoving, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageMovingEntityStartMoving, NULL);
 				}
 				else
 				{
-					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
+					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
 				}
 			}
 			break;
@@ -182,11 +182,11 @@ void MovingEntity::checkDisplacement()
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityStartMoving, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntitySpec->idleDuration, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageMovingEntityStartMoving, NULL);
 				}
 				else
 				{
-					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
+					MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
 				}
 			}
 			break;
@@ -255,7 +255,7 @@ void MovingEntity::startMovement()
 			break;
 	}
 
-	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
+	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
 }
 
 uint16 MovingEntity::getAxisForShapeSyncWithDirection()

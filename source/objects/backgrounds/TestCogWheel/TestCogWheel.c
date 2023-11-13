@@ -12,7 +12,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -58,10 +58,10 @@ void TestCogWheel::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// start moving
-	MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(this), kMessageCogWheelMove, NULL);
+	MessageDispatcher::dispatchMessage(2000, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageCogWheelMove, NULL);
 
 	// listen for the shake end event
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)TestCogWheel::onShakeCompleted, kEventShakeCompleted);
+	ListenerObject::addEventListener(ListenerObject::safeCast(EventManager::getInstance()), ListenerObject::safeCast(this), (EventListener)TestCogWheel::onShakeCompleted, kEventShakeCompleted);
 
 	this->transformation.localRotation.z = 32;
 	Entity::setLocalRotation(this, &this->transformation.localRotation);
@@ -118,10 +118,10 @@ void TestCogWheel::applyRotation()
 void TestCogWheel::stop()
 {
 	// stop listening for the shake end event
-	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)TestCogWheel::onShakeCompleted, kEventShakeCompleted);
+	ListenerObject::removeEventListener(EventManager::getInstance(), ListenerObject::safeCast(this), (EventListener)TestCogWheel::onShakeCompleted, kEventShakeCompleted);
 
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCogWheelMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageCogWheelMove);
 
 	// change sprite's mode
 //	Sprite::setMode(Sprite::safeCast(VirtualList::front(this->sprites)), __WORLD_ON, __WORLD_BGMAP);
@@ -130,7 +130,7 @@ void TestCogWheel::stop()
 void TestCogWheel::onShakeCompleted(Object eventFirer __attribute__ ((unused)))
 {
 	// stop moving
-	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kMessageCogWheelStop, NULL);
+	MessageDispatcher::dispatchMessage(1, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageCogWheelStop, NULL);
 }
 
 

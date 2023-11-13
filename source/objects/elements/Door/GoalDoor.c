@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -66,7 +66,7 @@ bool GoalDoor::handleMessage(Telegram telegram)
 		case kMessageHeroEnterDoor:
 		{
 			// disable user input
-			Game::disableKeypad(Game::getInstance());
+			VUEngine::disableKeypad(VUEngine::getInstance());
 
 			// fade out screen
 			Brightness brightness = (Brightness){0, 0, 0};
@@ -96,8 +96,8 @@ bool GoalDoor::canEnter()
 void GoalDoor::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// announce level completion
-	Object::fireEvent(EventManager::getInstance(), kEventLevelCompleted);
+	ListenerObject::fireEvent(EventManager::getInstance(), kEventLevelCompleted);
 
 	// switch to next screen
-	Game::changeState(Game::getInstance(), GameState::safeCast(LevelDoneScreenState::getInstance()));
+	VUEngine::changeState(VUEngine::getInstance(), GameState::safeCast(LevelDoneScreenState::getInstance()));
 }

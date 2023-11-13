@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <GameEvents.h>
-#include <Game.h>
+#include <VUEngine.h>
 #include <CollisionManager.h>
 #include <SoundManager.h>
 #include <MessageDispatcher.h>
@@ -40,7 +40,7 @@ void Key::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, 
 void Key::destructor()
 {
 	// remove post processing effect
-	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+	VUEngine::removePostProcessingEffect(VUEngine::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -53,13 +53,13 @@ void Key::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// add post processing effect to make key emit rhombuses
-	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+	VUEngine::pushBackProcessingEffect(VUEngine::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
 }
 
 void Key::collect()
 {
 	// fire item taken event
-	Object::fireEvent(EventManager::getInstance(), kEventKeyTaken);
+	ListenerObject::fireEvent(EventManager::getInstance(), kEventKeyTaken);
 
 	// call base
 	Base::collect(this);
@@ -70,7 +70,7 @@ void Key::suspend()
 	Base::suspend(this);
 
 	// remove post processing effect
-	Game::removePostProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+	VUEngine::removePostProcessingEffect(VUEngine::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
 }
 
 void Key::resume()
@@ -78,5 +78,5 @@ void Key::resume()
 	Base::resume(this);
 
 	// add post processing effect to make key emit rhombuses
-	Game::pushBackProcessingEffect(Game::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+	VUEngine::pushBackProcessingEffect(VUEngine::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
 }
