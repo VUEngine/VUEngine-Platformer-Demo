@@ -48,7 +48,7 @@ class Clouds : Entity
 	fix10_6 displacement;
 
 	void constructor(CloudsSpec* cloudsSpec, int16 internalId, const char* const name);
-	override void update(uint32 elapsedTime);
+	override void update();
 }
 
 

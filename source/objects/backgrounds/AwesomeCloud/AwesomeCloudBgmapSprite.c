@@ -39,7 +39,7 @@
  * @param AwesomeCloudBgmapSpriteSpec		Spec to use
  * @param owner							Sprite's owner
  */
-void AwesomeCloudBgmapSprite::constructor(const AwesomeCloudBgmapSpriteSpec* awesomeCloudBgmapSpriteSpec, Object owner)
+void AwesomeCloudBgmapSprite::constructor(const AwesomeCloudBgmapSpriteSpec* awesomeCloudBgmapSpriteSpec, ListenerObject owner)
 {
 	Base::constructor(&awesomeCloudBgmapSpriteSpec->bgmapSpriteSpec, owner);
 
@@ -59,20 +59,6 @@ void AwesomeCloudBgmapSprite::destructor()
 	Base::destructor();
 }
 
-
-/**
- * Calculate 2D position
- *
- * @memberof			AwesomeCloudBgmapSprite
- * @public
- *
- * @param position		3D position
- */
-void AwesomeCloudBgmapSprite::position(const Vector3D* position)
-{
-	Base::position(this, position);
-}
-
 /**
  * Write WORLD data to DRAM
  *
@@ -81,11 +67,11 @@ void AwesomeCloudBgmapSprite::position(const Vector3D* position)
  */
 uint16 AwesomeCloudBgmapSprite::doRender(uint16 index, bool evenFrame)
 {
-	this->drawSpec.textureSource.my += this->awesomeCloudBgmapSpriteSpec->myStep;
+	this->textureSource.my += this->awesomeCloudBgmapSpriteSpec->myStep;
 
-	if((uint16)this->drawSpec.textureSource.my >= (BgmapTexture::getYOffset(this->texture) << 3) + (BgmapTexture::getRows(this->texture) << 3))
+	if((uint16)this->textureSource.my >= (BgmapTexture::getYOffset(this->texture) << 3) + (BgmapTexture::getRows(this->texture) << 3))
 	{
-		this->drawSpec.textureSource.my = (BgmapTexture::getYOffset(this->texture) << 3);
+		this->textureSource.my = (BgmapTexture::getYOffset(this->texture) << 3);
 	}
 
 	BgmapSprite::invalidateParamTable(this);

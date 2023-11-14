@@ -168,7 +168,7 @@ void TitleScreenState::enter(void* owner)
 		250, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))TitleScreenState::onFadeInComplete, // callback function
+		(EventListener)TitleScreenState::onFadeInComplete, // callback function
 		Object::safeCast(this) // callback scope
 	);
 
@@ -267,7 +267,7 @@ void TitleScreenState::processUserInput(UserInput userInput)
 			case kTitleScreenModeShowPressStart:
 			{
 				// disable flashing "press start button"
-				ListenerObject::removeEventListener(ListenerObject::safeCast(VUEngine::getUpdateClock(VUEngine::getInstance())), ListenerObject::safeCast(this), (void (*)(Object, Object))TitleScreenState::onSecondChange, kEventSecondChanged);
+				ListenerObject::removeEventListener(ListenerObject::safeCast(VUEngine::getUpdateClock(VUEngine::getInstance())), ListenerObject::safeCast(this), (EventListener)TitleScreenState::onSecondChange, kEventSecondChanged);
 				TitleScreenState::hideMessage(this);
 
 				// print options
@@ -302,7 +302,7 @@ void TitleScreenState::processUserInput(UserInput userInput)
 							0, // initial delay (in ms)
 							&brightness, // target brightness
 							__FADE_DELAY, // delay between fading steps (in ms)
-							(void (*)(Object, Object))TitleScreenState::onFadeOutComplete, // callback function
+							(EventListener)TitleScreenState::onFadeOutComplete, // callback function
 							Object::safeCast(this) // callback scope
 						);
 
@@ -375,7 +375,7 @@ void TitleScreenState::processUserInput(UserInput userInput)
 					0, // initial delay (in ms)
 					&brightness, // target brightness
 					__FADE_DELAY, // delay between fading steps (in ms)
-					(void (*)(Object, Object))TitleScreenState::onFadeOutComplete, // callback function
+					(EventListener)TitleScreenState::onFadeOutComplete, // callback function
 					Object::safeCast(this) // callback scope
 				);
 

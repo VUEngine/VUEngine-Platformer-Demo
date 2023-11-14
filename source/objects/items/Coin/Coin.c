@@ -62,7 +62,7 @@ void Coin::constructor(CoinSpec* coinSpec, int16 internalId, const char* const n
 			animatedEntitySpec = (AnimatedEntitySpec*)&CoinSilhouetteEntity;
 		}
 
-		AnimatedEntity::setSpec(this, animatedEntitySpec);
+		Coin::setSpec(this, &animatedEntitySpec->entitySpec);
 	}
 }
 

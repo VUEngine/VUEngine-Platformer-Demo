@@ -77,7 +77,7 @@ class Hero : Actor
 	/* feet dust */
 	ParticleSystem feetDust;
 	/* used to know if gap must be changed */
-	Direction inputDirection;
+	NormalizedDirection inputDirection;
 	/* hero has energy	*/
 	uint8 energy;
 	/* boost flag */
@@ -142,7 +142,6 @@ class Hero : Actor
 	override bool updateCollision(const CollisionInformation* collisionInformation);
 	override void syncRotationWithBody();
 	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
-	override uint16 getAxisForShapeSyncWithDirection();
 }
 
 

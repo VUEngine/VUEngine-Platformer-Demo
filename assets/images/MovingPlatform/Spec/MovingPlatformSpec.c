@@ -219,7 +219,7 @@ MovingEntityROMSpec MovingPlatformV6Entity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 				(ShapeSpec*)MovingPlatformV6Shapes,

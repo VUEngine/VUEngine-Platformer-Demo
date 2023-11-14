@@ -620,7 +620,7 @@ HeroROMSpec HeroEntity =
 			false,
 			
 			/// meshes
-			(WireframeSpec*)NULL,
+			(WireframeSpec**)NULL,
 
 			// collision shapes
 			(ShapeSpec*)HeroShapes,
@@ -675,7 +675,7 @@ AnimatedEntityROMSpec HeroIdleEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -720,7 +720,7 @@ AnimatedEntityROMSpec HeroSleepingEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -766,7 +766,7 @@ AnimatedEntityROMSpec HeroBandanaEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

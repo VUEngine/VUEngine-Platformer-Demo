@@ -140,7 +140,7 @@ EntityROMSpec Level1IntersectionStageMainBack1Entity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

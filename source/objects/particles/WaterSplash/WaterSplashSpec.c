@@ -92,7 +92,7 @@ ParticleSystemROMSpec WaterSplashParticleSystem =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -125,6 +125,9 @@ ParticleSystemROMSpec WaterSplashParticleSystem =
 
 	// array of textures
 	(const SpriteSpec**)WaterSplashSprites,
+
+	// array of wireframes
+	(const WireframeSpec**)NULL,
 
 	// auto start
 	true,

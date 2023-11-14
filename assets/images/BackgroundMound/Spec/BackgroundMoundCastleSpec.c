@@ -135,7 +135,7 @@ EntityROMSpec MoundBgCastleEntity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 	NULL,

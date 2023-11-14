@@ -14,6 +14,7 @@
 
 #include <GameEvents.h>
 #include <VUEngine.h>
+#include <CameraEffectManager.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
@@ -23,6 +24,7 @@
 #include <GoalDoor.h>
 #include <PlatformerLevelState.h>
 #include <LevelDoneScreenState.h>
+#include <Telegram.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,7 +77,7 @@ bool GoalDoor::handleMessage(Telegram telegram)
 				0, // initial delay (in ms)
 				&brightness, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))GoalDoor::onFadeOutComplete, // callback function
+				(EventListener)GoalDoor::onFadeOutComplete, // callback function
 				Object::safeCast(this) // callback scope
 			);
 

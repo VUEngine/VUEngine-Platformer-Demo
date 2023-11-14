@@ -269,7 +269,7 @@ HideLayerROMSpec HideLayer10x7Entity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)HideLayer10x7Shapes,

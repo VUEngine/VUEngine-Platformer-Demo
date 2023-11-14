@@ -19,6 +19,7 @@
 #include <PlatformerLevelState.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
+#include <Telegram.h>
 #include "CannonBall.h"
 
 
@@ -49,7 +50,7 @@ void CannonBall::destructor()
 // start moving
 void CannonBall::startMovement()
 {
-	Velocity velocity = {0, 0, __I_TO_FIX10_6(-8)};
+	Vector3D velocity = {0, 0, __I_TO_FIX10_6(-8)};
 
 	Actor::moveUniformly(this, &velocity);
 

@@ -53,7 +53,7 @@ void Key::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// add post processing effect to make key emit rhombuses
-	VUEngine::pushBackProcessingEffect(VUEngine::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+	VUEngine::pushBackPostProcessingEffect(VUEngine::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
 }
 
 void Key::collect()
@@ -78,5 +78,5 @@ void Key::resume()
 	Base::resume(this);
 
 	// add post processing effect to make key emit rhombuses
-	VUEngine::pushBackProcessingEffect(VUEngine::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
+	VUEngine::pushBackPostProcessingEffect(VUEngine::getInstance(), PostProcessingRhombus::rhombus, SpatialObject::safeCast(this));
 }

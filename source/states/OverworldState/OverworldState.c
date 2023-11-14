@@ -32,6 +32,7 @@
 #include <EventManager.h>
 #include <KeypadManager.h>
 #include <SoundManager.h>
+#include <Printing.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -85,7 +86,7 @@ void OverworldState::enter(void* owner)
 		250, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))OverworldState::onFadeInComplete, // callback function
+		(EventListener)OverworldState::onFadeInComplete, // callback function
 		Object::safeCast(this) // callback scope
 	);
 }
@@ -188,7 +189,7 @@ void OverworldState::processUserInput(UserInput userInput)
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))OverworldState::onStartLevelFadeOutComplete, // callback function
+			(EventListener)OverworldState::onStartLevelFadeOutComplete, // callback function
 			Object::safeCast(this) // callback scope
 		);
 
@@ -210,7 +211,7 @@ void OverworldState::processUserInput(UserInput userInput)
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))OverworldState::onReturnToTitleFadeOutComplete, // callback function
+			(EventListener)OverworldState::onReturnToTitleFadeOutComplete, // callback function
 			Object::safeCast(this) // callback scope
 		);
 	}

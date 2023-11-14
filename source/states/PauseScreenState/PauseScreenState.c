@@ -132,7 +132,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 		0, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PauseScreenState::onFadeInComplete, // callback function
+		(EventListener)PauseScreenState::onFadeInComplete, // callback function
 		Object::safeCast(this) // callback scope
 	);
 
@@ -169,7 +169,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 						0, // initial delay (in ms)
 						&brightness, // target brightness
 						__FADE_DELAY, // delay between fading steps (in ms)
-						(void (*)(Object, Object))PauseScreenState::onFadeOutComplete, // callback function
+						(EventListener)PauseScreenState::onFadeOutComplete, // callback function
 						Object::safeCast(this) // callback scope
 					);
 
@@ -220,7 +220,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 				0, // initial delay (in ms)
 				&brightness, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))PauseScreenState::onFadeOutComplete, // callback function
+				(EventListener)PauseScreenState::onFadeOutComplete, // callback function
 				Object::safeCast(this) // callback scope
 			);
 

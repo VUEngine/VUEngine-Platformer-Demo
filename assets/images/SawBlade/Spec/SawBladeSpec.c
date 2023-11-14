@@ -202,7 +202,7 @@ MovingEntityROMSpec SawBladeV3Entity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 				(ShapeSpec*)SawBladeShapes,
@@ -278,7 +278,7 @@ MovingEntityROMSpec SawBladeH3Entity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 				(ShapeSpec*)SawBladeShapes,
@@ -354,7 +354,7 @@ MovingEntityROMSpec SawBladeH8Entity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 				(ShapeSpec*)SawBladeShapes,

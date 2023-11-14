@@ -76,7 +76,7 @@ void LevelDoneScreenState::enter(void* owner __attribute__ ((unused)))
 		0, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))LevelDoneScreenState::onFadeInComplete, // callback function
+		(EventListener)LevelDoneScreenState::onFadeInComplete, // callback function
 		Object::safeCast(this) // callback scope
 	);
 }
@@ -137,7 +137,7 @@ void LevelDoneScreenState::processUserInput(UserInput userInput)
 			0, // initial delay (in ms)
 			&brightness, // target brightness@
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))LevelDoneScreenState::onFadeOutComplete, // callback function
+			(EventListener)LevelDoneScreenState::onFadeOutComplete, // callback function
 			Object::safeCast(this) // callback scope
 		);
 	}

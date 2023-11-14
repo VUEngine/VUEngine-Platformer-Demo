@@ -19,6 +19,7 @@
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
+#include <Telegram.h>
 #include <debugUtilities.h>
 
 #ifdef __DEBUG
@@ -68,7 +69,7 @@ void HeroIdle::enter(void* owner)
 void HeroIdle::exit(void* owner __attribute__ ((unused)))
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHeroSleep);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageHeroSleep);
 }
 
 // state's handle message
@@ -120,7 +121,7 @@ void HeroIdle::onKeyPressed(void* owner, const UserInput* userInput)
 
 	if((K_LL | K_LR | K_A) & userInput->pressedKey)
 	{
-		Acceleration acceleration =
+		Vector3D acceleration =
 		{
 			K_LL & userInput->pressedKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->pressedKey ? __1I_FIX10_6 : 0,
 			K_A & userInput->pressedKey ? __I_TO_FIX10_6(-1) : 0,

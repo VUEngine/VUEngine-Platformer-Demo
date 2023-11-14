@@ -32,6 +32,8 @@
 #include <debugConfig.h>
 #include <gameDebugConfig.h>
 #include <HideLayer.h>
+#include <StateMachine.h>
+#include <VirtualList.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -92,7 +94,7 @@ void Hero::constructor(HeroSpec* heroSpec, int16 internalId, const char* const n
 
 	ListenerObject::addEventListener(ListenerObject::safeCast(PlatformerLevelState::getInstance()), ListenerObject::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
 
-	this->inputDirection = Entity::getDirection(this);
+	this->inputDirection = Entity::getNormalizedDirection(this);
 }
 
 // class's destructor
@@ -188,7 +190,7 @@ void Hero::jump(bool checkIfYMovement)
 		if(this->jumps < allowedNumberOfJumps)
 		{
 			// init a force to add to the hero's momentum
-			Force force = {0, 0, 0};
+			Vector3D force = {0, 0, 0};
 
 			fix10_6 yBouncingPlaneNormal = Body::getLastNormalDirection(this->body).y;
 
@@ -262,20 +264,23 @@ void Hero::applyForceOnAxis(uint16 axis, bool enableAddingForce)
 
 	maxVelocity = this->underWater ? maxVelocity >> 1: maxVelocity;
 
-	Velocity velocity = Body::getVelocity(this->body);
+	Vector3D velocity = *Body::getVelocity(this->body);
 
-	Direction direction = Entity::getDirection(this);
+	NormalizedDirection direction = Entity::getNormalizedDirection(this);
 
 	if(direction.x != this->inputDirection.x ||
 		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
 		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
-		Actor::hasChangedDirection(this, __X_AXIS) ||
-		Actor::hasChangedDirection(this, __Z_AXIS))
+
+		// BREAKS MOVEMENT
+		Actor::hasChangedDirection(this, __X_AXIS, NULL) ||
+		Actor::hasChangedDirection(this, __Z_AXIS, NULL))
 	{
 		fix10_6 inputForce = !Body::getNormal(this->body).y ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix10_6 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
 		fix10_6 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
-		Force force =
+		
+		Vector3D force =
 		{
 			xForce,
 			0,
@@ -288,7 +293,7 @@ void Hero::applyForceOnAxis(uint16 axis, bool enableAddingForce)
 	{
 		if(__UNIFORM_MOVEMENT != Body::getMovementType(this->body).x || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body::getMovementOnAllAxis(this->body))))
 		{
-			Velocity newVelocity =
+			Vector3D newVelocity =
 			{
 				(__X_AXIS & axis) ? ((int)maxVelocity * this->inputDirection.x) : 0,
 				0,
@@ -334,7 +339,7 @@ void Hero::hideDust()
 // start movement
 void Hero::stopAddingForce()
 {
-	Velocity velocity = Body::getVelocity(this->body);
+	Vector3D velocity = *Body::getVelocity(this->body);
 
 	this->keepAddingForce = false;
 
@@ -359,7 +364,8 @@ void Hero::stopAddingForce()
 		fix10_6 inputForce = HERO_FORCE_FOR_STOPPING;
 		fix10_6 xForce = __RIGHT == this->inputDirection.x ? inputForce : -inputForce;
 		fix10_6 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
-		Force force =
+		
+		Vector3D force =
 		{
 			xForce,
 			0,
@@ -432,7 +438,7 @@ bool Hero::stopMovingOnAxis(uint16 axis)
 
 			this->jumps = 0;
 
-			if(Body::getVelocity(this->body).x)
+			if(Body::getVelocity(this->body)->x)
 			{
 				if(this->inputDirection.x)
 				{
@@ -469,7 +475,7 @@ bool Hero::stopMovingOnAxis(uint16 axis)
 			{
 				fix10_6 maxVelocity = HERO_BOOST_VELOCITY_X;
 
-				Velocity newVelocity =
+				Vector3D newVelocity =
 				{
 					(int)maxVelocity * this->inputDirection.x,
 					0,
@@ -719,7 +725,7 @@ void Hero::enterDoor()
 	// move towards door
 	/*
 	Body::setAxisSubjectToGravity(this->body, 0);
-	Velocity velocity = {0, 0, __I_TO_FIX10_6(8)};
+	Vector3D velocity = {0, 0, __I_TO_FIX10_6(8)};
 	Body::moveUniformly(this->body, velocity);
 	*/
 
@@ -1033,7 +1039,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 		case kTypeMovingPlatform:
 		case kTypeTopShape:
 			{
-				if((0 > Body::getVelocity(this->body).y) || Hero::isBelow(this, collisionInformation->shape, collisionInformation))
+				if((0 > Body::getVelocity(this->body)->y) || Hero::isBelow(this, collisionInformation->shape, collisionInformation))
 				{
 					// don't further process collision
 					return false;
@@ -1082,7 +1088,7 @@ void Hero::capVelocity(bool discardPreviousMessages)
 
 	if(Body::isActive(this->body))
 	{
-		Velocity velocity = Body::getVelocity(this->body);
+		Vector3D velocity = *Body::getVelocity(this->body);
 
 		if(velocity.y)
 		{
@@ -1141,7 +1147,7 @@ bool Hero::handleMessage(Telegram telegram)
 			GameState::pausePhysics(VUEngine::getCurrentState(VUEngine::getInstance()), false);
 			GameState::pauseAnimations(VUEngine::getCurrentState(VUEngine::getInstance()), false);
 
-			Velocity velocity = Body::getVelocity(this->body);
+			Vector3D velocity = *Body::getVelocity(this->body);
 
 			if(!velocity.y)
 			{
@@ -1241,14 +1247,17 @@ void Hero::resume()
 	Hero::hideDust(this);
 }
 
-bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation)
+bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation __attribute__((unused)))
 {
+	return false;
+/*	
 	RightBox shapeRightBox = Shape::getSurroundingRightBox(shape);
 	RightBox collidingShapeRightBox = Shape::getSurroundingRightBox(collisionInformation->collidingShape);
 
 	fix10_6 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body::getLastDisplacement(this->body).y << 1) / 2;
 
 	return heroBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
+	*/
 }
 
 void Hero::onPowerUpTransitionComplete(Object eventFirer __attribute__ ((unused)))
@@ -1260,17 +1269,17 @@ void Hero::syncRotationWithBody()
 {
 	fix10_6 xLastDisplacement = Body::getLastDisplacement(this->body).x;
 
-	Direction direction = Entity::getDirection(this);
+	NormalizedDirection normalizedDirection = Entity::getNormalizedDirection(this);
 
 	if(0 < xLastDisplacement)
 	{
-		direction.x = __RIGHT;
-		Entity::setDirection(this, direction);
+		normalizedDirection.x = __RIGHT;
+		Entity::setNormalizedDirection(this, normalizedDirection);
 	}
 	else if(0 > xLastDisplacement)
 	{
-		direction.x = __LEFT;
-		Entity::setDirection(this, direction);
+		normalizedDirection.x = __LEFT;
+		Entity::setNormalizedDirection(this, normalizedDirection);
 	}
 }
 
@@ -1299,9 +1308,4 @@ void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isSha
 	}
 
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
-}
-
-uint16 Hero::getAxisForShapeSyncWithDirection()
-{
-	return __NO_AXIS;
 }

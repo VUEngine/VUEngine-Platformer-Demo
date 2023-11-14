@@ -140,7 +140,7 @@ EntityROMSpec Level1CoinRoomStageBack1Entity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

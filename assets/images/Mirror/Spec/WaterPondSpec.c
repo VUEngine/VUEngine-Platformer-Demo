@@ -124,7 +124,7 @@ WaterPondROMSpec WaterPondEntity =
 			false,
 			
 			/// meshes
-			(WireframeSpec*)NULL,
+			(WireframeSpec**)NULL,
 
 			// collision shapes
 			(ShapeSpec*)WaterPondShapes,

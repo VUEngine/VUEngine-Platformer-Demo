@@ -74,7 +74,7 @@ LavaTriggerROMSpec LavaTriggerEntity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 	(ShapeSpec*)LavaTriggerShapes,

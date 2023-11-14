@@ -23,7 +23,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern const AnimationFunction** SmokeParticleSmallAnimations;
+extern const AnimationFunction* const SmokeParticleSmallAnimations[];
 extern ObjectSpriteROMSpec SmokeParticleSmallSprite;
 const int padder [8192 * 16] = {1};
 
@@ -60,6 +60,7 @@ PhysicalParticleROMSpec SmokeParticle =
 		// name of animation to play
 		"Default"
 	},
+
 	// particle's minimum mass
 	__F_TO_FIX10_6(0.5f),
 
@@ -92,7 +93,7 @@ ParticleSystemROMSpec SmokeParticleSystem =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -125,6 +126,9 @@ ParticleSystemROMSpec SmokeParticleSystem =
 
 	// array of textures
 	(const SpriteSpec**)SmokeSprites,
+
+	// array of wireframes
+	(const WireframeSpec**)NULL,
 
 	// auto start
 	true,

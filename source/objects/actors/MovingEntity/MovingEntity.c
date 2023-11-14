@@ -19,6 +19,7 @@
 #include <PhysicalWorld.h>
 #include <MessageDispatcher.h>
 #include <PlatformerLevelState.h>
+#include <Telegram.h>
 #include <debugUtilities.h>
 
 
@@ -39,7 +40,7 @@ void MovingEntity::constructor(MovingEntitySpec* movingEntitySpec, int16 interna
 
 	this->initialPosition = 0;
 
-	Direction direction =
+	NormalizedDirection normalizedDirection =
 	{
 		__RIGHT, __DOWN, __FAR
 	};
@@ -48,29 +49,29 @@ void MovingEntity::constructor(MovingEntitySpec* movingEntitySpec, int16 interna
 	{
 		case __X_AXIS:
 
-			direction.x = this->movingEntitySpec->direction;
+			normalizedDirection.x = this->movingEntitySpec->normalizedDirection;
 			break;
 
 		case __Y_AXIS:
 
-			direction.y = this->movingEntitySpec->direction;
+			normalizedDirection.y = this->movingEntitySpec->normalizedDirection;
 			break;
 	}
 
-	Entity::setDirection(this, direction);
+	Entity::setNormalizedDirection(this, normalizedDirection);
 }
 
 // class's constructor
 void MovingEntity::destructor()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageMovingEntityStartMoving);
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageMovingEntityCheckDirection);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageMovingEntityStartMoving);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageMovingEntityCheckDirection);
 
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
-
+/*
 // set spec
 void MovingEntity::setSpec(void* movingEntitySpec)
 {
@@ -81,6 +82,7 @@ void MovingEntity::setSpec(void* movingEntitySpec)
 
 	Base::setSpec(this, &((MovingEntitySpec*)movingEntitySpec)->actorSpec);
 }
+*/
 
 // ready method
 void MovingEntity::ready(bool recursive)
@@ -107,7 +109,7 @@ void MovingEntity::ready(bool recursive)
 
 bool MovingEntity::handleMessage(Telegram telegram)
 {
-	Direction direction = Entity::getDirection(this);
+	NormalizedDirection normalizedDirection = Entity::getNormalizedDirection(this);
 
 	switch(Telegram::getMessage(telegram))
 	{
@@ -126,11 +128,11 @@ bool MovingEntity::handleMessage(Telegram telegram)
 				switch(this->movingEntitySpec->axis)
 				{
 					case __X_AXIS:
-						position.x = this->initialPosition + this->movingEntitySpec->maximumDisplacement * direction.x;
+						position.x = this->initialPosition + this->movingEntitySpec->maximumDisplacement * normalizedDirection.x;
 						break;
 
 					case __Y_AXIS:
-						position.y = this->initialPosition + this->movingEntitySpec->maximumDisplacement * direction.y;
+						position.y = this->initialPosition + this->movingEntitySpec->maximumDisplacement * normalizedDirection.y;
 						break;
 				}
 
@@ -196,29 +198,29 @@ void MovingEntity::checkDisplacement()
 // start moving
 void MovingEntity::startMovement()
 {
-	Direction direction = Entity::getDirection(this);
+	NormalizedDirection normalizedDirection = Entity::getNormalizedDirection(this);
 
 	switch(this->movingEntitySpec->axis)
 	{
 		case __X_AXIS:
 
-			switch(direction.x)
+			switch(normalizedDirection.x)
 			{
 				case __LEFT:
 
-					direction.x = __RIGHT;
+					normalizedDirection.x = __RIGHT;
 					break;
 
 				case __RIGHT:
 
-					direction.x = __LEFT;
+					normalizedDirection.x = __LEFT;
 					break;
 			}
 
 			{
-				Velocity velocity =
+				Vector3D velocity =
 				{
-					((int)this->movingEntitySpec->velocity * direction.x),
+					((int)this->movingEntitySpec->velocity * normalizedDirection.x),
 					0,
 					0,
 				};
@@ -229,24 +231,24 @@ void MovingEntity::startMovement()
 
 		case __Y_AXIS:
 
-			switch(direction.y)
+			switch(normalizedDirection.y)
 			{
 				case __UP:
 
-					direction.y = __DOWN;
+					normalizedDirection.y = __DOWN;
 					break;
 
 				case __DOWN:
 
-					direction.y = __UP;
+					normalizedDirection.y = __UP;
 					break;
 			}
 
 			{
-				Velocity velocity =
+				Vector3D velocity =
 				{
 					0,
-					((int)this->movingEntitySpec->velocity * direction.y),
+					((int)this->movingEntitySpec->velocity * normalizedDirection.y),
 					0,
 				};
 
@@ -256,9 +258,4 @@ void MovingEntity::startMovement()
 	}
 
 	MessageDispatcher::dispatchMessage(MOVING_ENTITY_DIRECTION_CHECK_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageMovingEntityCheckDirection, NULL);
-}
-
-uint16 MovingEntity::getAxisForShapeSyncWithDirection()
-{
-	return this->movingEntitySpec->axisForShapeSyncWithDirection;
 }

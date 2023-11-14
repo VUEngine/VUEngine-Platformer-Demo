@@ -323,7 +323,7 @@ DoorROMSpec DoorEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -368,7 +368,7 @@ LayerSwitchDoorROMSpec LayerSwitchDoorEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -414,7 +414,7 @@ GoalDoorROMSpec GoalDoorEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -459,7 +459,7 @@ KeyDoorROMSpec KeyDoorEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -537,7 +537,7 @@ DoorROMSpec AffineDoorEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -668,7 +668,7 @@ DoorROMSpec DoorBackEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,
@@ -713,7 +713,7 @@ LayerSwitchDoorROMSpec LayerSwitchDoorBackEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)DoorShapes,

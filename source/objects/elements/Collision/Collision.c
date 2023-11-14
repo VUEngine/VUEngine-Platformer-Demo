@@ -93,9 +93,9 @@ void Collision::setExtraInfo(void* extraInfo)
 	this->size = Size::getFromPixelSize(*((PixelSize*)extraInfo));
 }
 
-void Collision::initialTransform(Transformation* environmentTransform, uint32 recursive)
+void Collision::initialTransform(const Transformation* environmentTransform)
 {
-	Base::initialTransform(this, environmentTransform, recursive);
+	Base::initialTransform(this, environmentTransform);
 
 	if(!this->shapes)
 	{
@@ -134,7 +134,7 @@ void Collision::initialTransform(Transformation* environmentTransform, uint32 re
 		const Rotation* myRotation = Entity::getRotation(this);
 		const Scale* myScale = Entity::getScale(this);
 
-		Shape::position(shape, myPosition, myRotation, myScale, &this->size);
+		Shape::transform(shape, myPosition, myRotation, myScale, &this->size);
 
 		VirtualList::pushBack(this->shapes, shape);
 	}

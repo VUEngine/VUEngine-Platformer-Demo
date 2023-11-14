@@ -137,7 +137,7 @@ EntityROMSpec Level1HouseLightEntity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

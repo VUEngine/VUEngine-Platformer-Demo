@@ -48,9 +48,9 @@ void AwesomeCloud::ready(bool recursive)
 	Entity::setLocalRotation(this, &this->transformation.localRotation);
 }
 
-void AwesomeCloud::update(uint32 elapsedTime)
+void AwesomeCloud::update()
 {
-	Base::update(this, elapsedTime);
+	Base::update(this);
 /*
 	static int16 increment = 1;
 

@@ -141,13 +141,13 @@ singleton class PlatformerLevelState : GameState
 	void setModeToPaused();
 	void setModeToPlaying();
 	UserInput getUserInput();
+	Clock getClock();
 	override void enter(void* owner);
 	override void exit(void* owner);
 	override void suspend(void* owner);
 	override void resume(void* owner);
 	override bool processMessage(void* owner, Telegram telegram);
 	override void processUserInput(UserInput userInput);
-	override Clock getClock();
 }
 
 

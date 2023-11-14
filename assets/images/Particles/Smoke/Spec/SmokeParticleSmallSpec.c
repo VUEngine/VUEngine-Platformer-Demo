@@ -54,7 +54,7 @@ AnimationFunctionROMSpec SmokeParticleSmallDefaultAnimation =
 };
 
 // an animation spec
-const AnimationFunction* SmokeParticleSmallAnimations[] =
+const AnimationFunction* const SmokeParticleSmallAnimations[] =
 {
 	(AnimationFunction*)&SmokeParticleSmallDefaultAnimation,
 	NULL,
@@ -165,7 +165,7 @@ AnimatedEntityROMSpec SmokeParticleSmallEntity =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

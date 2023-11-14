@@ -181,7 +181,7 @@ LavaROMSpec LavaEntity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 	(ShapeSpec*)LavaShapes,

@@ -26,6 +26,8 @@ extern FontSpec AstonishExtFont;
 extern FontSpec AstonishSFont;
 extern FontSpec AstonishSExtFont;
 extern FontSpec FVSmallFont;
+extern FontSpec PlatformerFont;
+extern FontSpec PlatformerGuiFont;
 
 
 #endif

@@ -94,7 +94,7 @@ ParticleSystemROMSpec DustParticleSystem =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -127,6 +127,9 @@ ParticleSystemROMSpec DustParticleSystem =
 
 	// array of textures
 	(const SpriteSpec**)DustParticleSprites,
+
+	// array of wireframes
+	(const WireframeSpec**)NULL,
 
 	// auto start
 	false,

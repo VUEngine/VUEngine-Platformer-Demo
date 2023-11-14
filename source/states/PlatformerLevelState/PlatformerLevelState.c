@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <GameEvents.h>
-#include <VUEngine.h>
+#include <Camera.h>
 #include <Optics.h>
 #include <Camera.h>
 #include <CameraEffectManager.h>
@@ -36,6 +36,7 @@
 #include <PostProcessingLantern.h>
 #include <Printing.h>
 #include <VirtualList.h>
+#include <VUEngine.h>
 #include <debugUtilities.h>
 
 
@@ -196,8 +197,8 @@ void PlatformerLevelState::enter(void* owner)
 			PlatformerCameraMovementManager::configure(PlatformerCameraMovementManager::getInstance(), Entity::safeCast(hero), kLayerPlayer, kLayerCamera, (PixelSize){12 * 8, 20 * 8, 4 * 8}, (Vector3D){__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)}, (Vector3D){PLATFORMER_CAMERA_OFFSET_X, PLATFORMER_CAMERA_OFFSET_Y, 0});
 
 			// set direction according to entry point
-			Direction direction = {this->currentStageEntryPoint->direction, __DOWN, __FAR};
-			Entity::setDirection(hero, direction);
+			NormalizedDirection normalizedDirection = {this->currentStageEntryPoint->direction, __DOWN, __FAR};
+			Entity::setNormalizedDirection(hero, normalizedDirection);
 
 			// apply changes to the visuals
 			GameState::synchronizeGraphics(this);
@@ -314,7 +315,7 @@ void PlatformerLevelState::enter(void* owner)
 		250, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState::onLevelStartedFadeInComplete, // callback function
+		(EventListener)PlatformerLevelState::onLevelStartedFadeInComplete, // callback function
 		ListenerObject::safeCast(this) // callback scope
 	);
 
@@ -477,7 +478,7 @@ void PlatformerLevelState::activateLantern()
 		Container hero = Container::getChildByName(this->stage, HERO_NAME, true);
 		if(hero)
 		{
-			VUEngine::pushBackProcessingEffect(VUEngine::getInstance(), PostProcessingLantern::lantern, SpatialObject::safeCast(hero));
+			VUEngine::pushBackPostProcessingEffect(VUEngine::getInstance(), PostProcessingLantern::lantern, SpatialObject::safeCast(hero));
 		}
 	}
 }
@@ -567,7 +568,7 @@ void PlatformerLevelState::onHeroDied(Object eventFirer __attribute__ ((unused))
 		0, // initial delay (in ms)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState::onHeroDiedFadeOutComplete, // callback function
+		(EventListener)PlatformerLevelState::onHeroDiedFadeOutComplete, // callback function
 		ListenerObject::safeCast(this) // callback scope
 	);
 
@@ -638,7 +639,7 @@ void PlatformerLevelState::startStage(StageEntryPointSpec* entryPointSpec)
 		0, // initial delay (in ms)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState::onStartStageFadeOutComplete, // callback function
+		(EventListener)PlatformerLevelState::onStartStageFadeOutComplete, // callback function
 		ListenerObject::safeCast(this) // callback scope
 	);
 }

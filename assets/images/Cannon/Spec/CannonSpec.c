@@ -194,7 +194,7 @@ ActorROMSpec CannonEntity =
 	false,
 			
 	/// meshes
-	(WireframeSpec*)NULL,
+	(WireframeSpec**)NULL,
 
 	// collision shapes
 			(ShapeSpec*)NULL,

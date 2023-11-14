@@ -21,6 +21,7 @@
 #include <PlatformerLevelState.h>
 #include <EventManager.h>
 #include <GameEvents.h>
+#include <Telegram.h>
 #include <debugUtilities.h>
 
 
@@ -33,17 +34,17 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CogWheel::constructor(EntitySpec* EntitySpec, int16 internalId, const char* const name)
+void CogWheel::constructor(EntitySpec* entitySpec, int16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(EntitySpec, internalId, name);
+	Base::constructor(entitySpec, internalId, name);
 }
 
 // class's destructor
 void CogWheel::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCogWheelMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageCogWheelMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -102,7 +103,7 @@ void CogWheel::applyRotation()
 void CogWheel::stop()
 {
 	// stop listening for the shake end event
-	ListenerObject::removeEventListener(EventManager::getInstance(), ObjListenerObjectect::safeCast(this), (EventListener)CogWheel::onShakeCompleted, kEventShakeCompleted);
+	ListenerObject::removeEventListener(EventManager::getInstance(), ListenerObject::safeCast(this), (EventListener)CogWheel::onShakeCompleted, kEventShakeCompleted);
 
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageCogWheelMove);

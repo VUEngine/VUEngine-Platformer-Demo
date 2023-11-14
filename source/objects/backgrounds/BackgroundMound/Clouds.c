@@ -40,11 +40,11 @@ void Clouds::destructor()
 }
 
 // state's handle message
-void Clouds::update(uint32 elapsedTime __attribute__ ((unused)))
+void Clouds::update()
 {
 	// get local position of clouds and subtract defined displacement from x value
 	Vector3D offset = this->transformation.localPosition;
-	offset.x -= __FIX10_6_MULT(this->displacement, elapsedTime);
+	offset.x -= __FIX10_6_MULT(this->displacement, __GAME_FRAME_DURATION);
 
 	// update clouds' position
 	Container::setLocalPosition(this, &offset);

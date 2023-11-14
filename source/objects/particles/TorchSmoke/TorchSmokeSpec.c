@@ -23,7 +23,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern AnimationDescriptionROMSpec SmokeParticleSmallAnimation;
+extern const AnimationFunction* const SmokeParticleSmallAnimations[];
 extern ObjectSpriteROMSpec SmokeParticleSmallSprite;
 
 
@@ -54,7 +54,7 @@ PhysicalParticleROMSpec TorchSmokeParticle =
 		NULL,
 
 		// animation description (used only if sprite is animated)
-		(AnimationDescription*)&SmokeParticleSmallAnimation,
+		(const AnimationFunction**)SmokeParticleSmallAnimations,
 
 		// name of animation to play
 		"Default"
@@ -92,7 +92,7 @@ ParticleSystemROMSpec TorchSmokeParticleSystem =
 		false,
 			
 		/// meshes
-		(WireframeSpec*)NULL,
+		(WireframeSpec**)NULL,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -125,6 +125,9 @@ ParticleSystemROMSpec TorchSmokeParticleSystem =
 
 	// array of textures
 	(const SpriteSpec**)TorchSmokeSprites,
+
+	// array of wireframes
+	(const WireframeSpec**)NULL,
 
 	// auto start
 	true,

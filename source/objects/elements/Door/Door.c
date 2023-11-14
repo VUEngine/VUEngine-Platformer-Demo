@@ -18,7 +18,9 @@
 #include <Box.h>
 #include <PhysicalWorld.h>
 #include <Hint.h>
+#include <CameraEffectManager.h>
 #include <Hero.h>
+#include <Telegram.h>
 #include "Door.h"
 #include <PlatformerLevelState.h>
 
