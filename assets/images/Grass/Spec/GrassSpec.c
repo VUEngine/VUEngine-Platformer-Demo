@@ -76,14 +76,11 @@ AnimationFunctionROMSpec GrassWindyAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec GrassAnimation =
+const AnimationFunction* const GassAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&GrassStillAnimation,
-		(AnimationFunction*)&GrassWindyAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&GrassStillAnimation,
+	(AnimationFunction*)&GrassWindyAnimation,
+	NULL,
 };
 
 CharSetROMSpec GrassCharset =
@@ -208,7 +205,7 @@ AnimatedEntityROMSpec GrassEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&GrassAnimation,
+	(const AnimationFunction**)GassAnimations,
 
 	// initial animation
 	"Windy",

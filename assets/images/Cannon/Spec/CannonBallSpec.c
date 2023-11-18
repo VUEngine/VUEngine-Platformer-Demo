@@ -51,13 +51,10 @@ AnimationFunctionROMSpec CannonBallFlyAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec CannonBallAnimation =
+const AnimationFunction* const CannonBallAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&CannonBallFlyAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&CannonBallFlyAnimation,
+	NULL,
 };
 
 CharSetROMSpec CannonBallCharset =
@@ -217,7 +214,7 @@ CannonBallROMSpec CannonBallEntity =
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&CannonBallAnimation,
+		(const AnimationFunction**)CannonBallAnimations,
 
 		// initial animation
 		NULL

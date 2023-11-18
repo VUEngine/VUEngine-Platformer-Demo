@@ -20,6 +20,10 @@
 #include <I18n.h>
 #include "Hint.h"
 #include <PlatformerLevelState.h>
+#include <MessageDispatcher.h>
+#include <Telegram.h>
+
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -77,7 +81,7 @@ void Hint::open(uint8 hintType)
 
 void Hint::close()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageHintPlayAnimation);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageHintPlayAnimation);
 
 	AnimatedEntity::playAnimation(this, "Close");
 }

@@ -53,13 +53,10 @@ AnimationFunctionROMSpec MoundBgCastleFlagWaveAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec MoundBgCastleFlagAnimation =
+const AnimationFunction* const MoundBgCastleFlagAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&MoundBgCastleFlagWaveAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&MoundBgCastleFlagWaveAnimation,
+	NULL,
 };
 
 CharSetROMSpec MoundBgCastleFlagCharset =
@@ -184,7 +181,7 @@ AnimatedEntityROMSpec MoundBgCastleFlagEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&MoundBgCastleFlagAnimation,
+	(const AnimationFunction**)MoundBgCastleFlagAnimations,
 
 	// initial animation
 	"Wave",

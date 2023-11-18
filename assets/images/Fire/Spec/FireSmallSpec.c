@@ -54,13 +54,10 @@ AnimationFunctionROMSpec FireSmallBurnAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec FireSmallAnimation =
+const AnimationFunction* const FireSmallAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&FireSmallBurnAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&FireSmallBurnAnimation,
+	NULL,
 };
 
 CharSetROMSpec FireSmallCharset =
@@ -185,7 +182,7 @@ AnimatedEntityROMSpec FireSmallEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&FireSmallAnimation,
+	(const AnimationFunction**)FireSmallAnimations,
 
 	// initial animation
 	"Burn",

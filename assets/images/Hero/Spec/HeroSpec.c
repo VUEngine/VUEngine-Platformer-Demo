@@ -324,25 +324,22 @@ AnimationFunctionROMSpec HeroSleepAnimation =
 
 
 // an animation spec
-AnimationDescriptionROMSpec HeroAnimation =
+const AnimationFunction* const HeroAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&HeroIdleAnimation,
-		(AnimationFunction*)&HeroWalkingAnimation,
-		(AnimationFunction*)&HeroJumpingAnimation,
-		(AnimationFunction*)&HeroFallingAnimation,
-		(AnimationFunction*)&HeroSlidingAnimation,
-		(AnimationFunction*)&HeroHitAnimation,
-		(AnimationFunction*)&HeroClimbAnimation,
-		(AnimationFunction*)&HeroFrontAnimation,
-		(AnimationFunction*)&HeroBackAnimation,
-		(AnimationFunction*)&HeroWalkingFrontAnimation,
-		(AnimationFunction*)&HeroWalkingBackAnimation,
-		(AnimationFunction*)&HeroTransitionAnimation,
-		(AnimationFunction*)&HeroSleepAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&HeroIdleAnimation,
+	(AnimationFunction*)&HeroWalkingAnimation,
+	(AnimationFunction*)&HeroJumpingAnimation,
+	(AnimationFunction*)&HeroFallingAnimation,
+	(AnimationFunction*)&HeroSlidingAnimation,
+	(AnimationFunction*)&HeroHitAnimation,
+	(AnimationFunction*)&HeroClimbAnimation,
+	(AnimationFunction*)&HeroFrontAnimation,
+	(AnimationFunction*)&HeroBackAnimation,
+	(AnimationFunction*)&HeroWalkingFrontAnimation,
+	(AnimationFunction*)&HeroWalkingBackAnimation,
+	(AnimationFunction*)&HeroTransitionAnimation,
+	(AnimationFunction*)&HeroSleepAnimation,
+	NULL,
 };
 
 CharSetROMSpec HeroCharset =
@@ -637,7 +634,7 @@ HeroROMSpec HeroEntity =
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&HeroAnimation,
+		(const AnimationFunction**)HeroAnimations,
 
 		// initial animation
 		"Idle",
@@ -692,7 +689,7 @@ AnimatedEntityROMSpec HeroIdleEntity =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&HeroAnimation,
+	(const AnimationFunction**)HeroAnimations,
 
 	// initial animation
 	"Idle",
@@ -737,7 +734,7 @@ AnimatedEntityROMSpec HeroSleepingEntity =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&HeroAnimation,
+	(const AnimationFunction**)HeroAnimations,
 
 	// initial animation
 	"Sleep",
@@ -783,7 +780,7 @@ AnimatedEntityROMSpec HeroBandanaEntity =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&HeroAnimation,
+	(const AnimationFunction**)HeroAnimations,
 
 	// initial animation
 	"Idle",

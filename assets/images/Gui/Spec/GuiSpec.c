@@ -59,13 +59,10 @@ AnimationFunctionROMSpec GuiDefaultAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec GuiAnimation =
+const AnimationFunction* const GuiAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&GuiDefaultAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&GuiDefaultAnimation,
+	NULL,
 };
 
 CharSetROMSpec GuiCharset =
@@ -297,7 +294,7 @@ AnimatedEntityROMSpec GuiEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&GuiAnimation,
+	(const AnimationFunction**)GuiAnimations,
 
 	// initial animation
 	"Default",
@@ -342,7 +339,7 @@ AnimatedEntityROMSpec GuiOverworldEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&GuiAnimation,
+	(const AnimationFunction**)GuiAnimations,
 
 	// initial animation
 	"Default",

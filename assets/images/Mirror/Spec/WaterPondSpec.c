@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Libgccvb.h>
+#include <BgmapSprite.h>
 #include <WaterPond.h>
 #include <Box.h>
 

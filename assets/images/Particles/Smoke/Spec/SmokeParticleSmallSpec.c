@@ -182,7 +182,7 @@ AnimatedEntityROMSpec SmokeParticleSmallEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&SmokeParticleSmallAnimation,
+	(const AnimationFunction**)SmokeParticleSmallAnimations,
 
 	// initial animation
 	"Default",

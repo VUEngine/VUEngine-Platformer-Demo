@@ -55,13 +55,10 @@ AnimationFunctionROMSpec LavaTopAnim1 =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec LavaTopAnimation =
+const AnimationFunction* const LavaTopAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&LavaTopAnim1,
-		NULL,
-	}
+	(AnimationFunction*)&LavaTopAnim1,
+	NULL,
 };
 
 CharSetROMSpec LavaTopCharset =
@@ -189,7 +186,7 @@ AnimatedEntityROMSpec LavaTopEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&LavaTopAnimation,
+	(const AnimationFunction**)LavaTopAnimations,
 
 	// initial animation
 	"Lava",

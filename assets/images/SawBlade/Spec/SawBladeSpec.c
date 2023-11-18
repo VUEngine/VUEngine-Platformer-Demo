@@ -52,13 +52,10 @@ AnimationFunctionROMSpec SawBladeSpinAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec SawBladeAnimation =
+const AnimationFunction* const SawBladeAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&SawBladeSpinAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&SawBladeSpinAnimation,
+	NULL,
 };
 
 CharSetROMSpec SawBladeCharset =
@@ -219,7 +216,7 @@ MovingEntityROMSpec SawBladeV3Entity =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SawBladeAnimation,
+			(const AnimationFunction**)SawBladeAnimations,
 
 			// initial animation
 			"Spin"
@@ -295,7 +292,7 @@ MovingEntityROMSpec SawBladeH3Entity =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SawBladeAnimation,
+			(const AnimationFunction**)SawBladeAnimations,
 
 			// initial animation
 			"Spin"
@@ -371,7 +368,7 @@ MovingEntityROMSpec SawBladeH8Entity =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SawBladeAnimation,
+			(const AnimationFunction**)SawBladeAnimations,
 
 			// initial animation
 			"Spin"

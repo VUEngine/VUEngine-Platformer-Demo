@@ -27,6 +27,7 @@
 #include <EventManager.h>
 #include <GameEvents.h>
 #include <SoundManager.h>
+#include <MessageDispatcher.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,7 +45,7 @@ void LavaTrigger::constructor(EntitySpec* inanimatedEntitySpec, int16 internalId
 void LavaTrigger::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageLavaTriggerEnd);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageLavaTriggerEnd);
 
 	// delete the super object
 	// must always be called at the end of the destructor

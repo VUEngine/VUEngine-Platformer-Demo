@@ -21,6 +21,7 @@
 #include <PlatformerLevelState.h>
 #include <EventManager.h>
 #include <GameEvents.h>
+#include <Telegram.h>
 #include <debugUtilities.h>
 
 
@@ -44,7 +45,7 @@ void TestCogWheel::constructor(EntitySpec* EntitySpec, int16 internalId, const c
 void TestCogWheel::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageCogWheelMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageCogWheelMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -111,7 +112,7 @@ void TestCogWheel::applyRotation()
 	Entity::setLocalRotation(this, &this->transformation.localRotation);
 
 	// send delayed message to self to trigger next movement
-	MessageDispatcher::dispatchMessage(COG_WHEEL_ROTATION_DELAY, Object::safeCast(this), Object::safeCast(this), kMessageCogWheelMove, NULL);
+	MessageDispatcher::dispatchMessage(COG_WHEEL_ROTATION_DELAY, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageCogWheelMove, NULL);
 }
 
 // stop cogwheel

@@ -76,14 +76,11 @@ AnimationFunctionROMSpec BushWindyAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec BushAnimation =
+const AnimationFunction* const BushAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&BushStillAnimation,
-		(AnimationFunction*)&BushWindyAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&BushStillAnimation,
+	(AnimationFunction*)&BushWindyAnimation,
+	NULL,
 };
 
 CharSetROMSpec BushCharset =
@@ -208,7 +205,7 @@ AnimatedEntityROMSpec BushEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&BushAnimation,
+	(const AnimationFunction**)BushAnimations,
 
 	// initial animation
 	"Windy",

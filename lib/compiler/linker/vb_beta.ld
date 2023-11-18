@@ -74,11 +74,11 @@ SECTIONS
 
 	.dram_data __dramVma : AT(v + SIZEOF(.data) + SIZEOF(.sdata))
 	{
-		PROVIDE (__dram_dirty_start = .);
+		PROVIDE (__dramDirtyStart = .);
 		*(.dram_dirty*)
 		PROVIDE (__dramDataStart = .);
 		*(.dram_data*)
-		PROVIDE (__dram_dataEnd = .);
+		PROVIDE (__dramDataEnd = .);
 	} >dram = 0xFF
 
 	.sram_data __sramVma : AT(v + SIZEOF(.data) + SIZEOF(.sdata) + SIZEOF(.dram_data)) SUBALIGN(2)
@@ -102,7 +102,7 @@ SECTIONS
 		PROVIDE (__bssEnd = .);
 	} >wram = 0xFF
 
-	.dram_bss (NOLOAD): AT(__dram_dataEnd)
+	.dram_bss (NOLOAD): AT(__dramDataEnd)
 	{
 		PROVIDE(__dramBssStart = .);
 		*(.dram_bss*)

@@ -19,6 +19,8 @@
 #include <PhysicalWorld.h>
 #include "Lava.h"
 #include <PlatformerLevelState.h>
+#include <Telegram.h>
+
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -37,7 +39,7 @@ void Lava::constructor(EntitySpec* inanimatedEntitySpec, int16 internalId, const
 void Lava::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageLavaMove);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageLavaMove);
 
 	// delete the super object
 	// must always be called at the end of the destructor

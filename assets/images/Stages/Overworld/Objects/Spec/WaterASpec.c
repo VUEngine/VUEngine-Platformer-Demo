@@ -54,13 +54,10 @@ AnimationFunctionROMSpec WaterADefaultAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec WaterAAnimation =
+const AnimationFunction* const WaterAAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&WaterADefaultAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&WaterADefaultAnimation,
+	NULL,
 };
 
 
@@ -198,7 +195,7 @@ AnimatedEntityROMSpec WaterAEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&WaterAAnimation,
+	(const AnimationFunction**)WaterAAnimations,
 
 	// initial animation
 	"Default",

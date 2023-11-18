@@ -51,13 +51,10 @@ AnimationFunctionROMSpec MovingPlatformMoveAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec MovingPlatformAnimation =
+const AnimationFunction* const MovingPlatformAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&MovingPlatformMoveAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&MovingPlatformMoveAnimation,
+	NULL,
 };
 
 CharSetROMSpec MovingPlatformCharset =
@@ -236,7 +233,7 @@ MovingEntityROMSpec MovingPlatformV6Entity =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&MovingPlatformAnimation,
+			(const AnimationFunction**)MovingPlatformAnimations,
 
 			// initial animation
 			"Move"

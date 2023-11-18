@@ -152,7 +152,7 @@
                     "maxScale": 2
                 },
                 "animation": {
-                    "maxAnimationFunctionNameLength": 10,
+                    "maxAnimationFunctionNameLength": 14,
                     "maxFramesPerAnimationFunction": 96
                 },
                 "brightness": {
@@ -1473,8 +1473,8 @@
         "Project": {
             "bVQcaaY9tNRsHiTU": {
                 "author": "Team VUEngine",
-                "description": "Faaast futuristic top-down racing game",
-                "name": "Formula V"
+                "description": "VUEngine Platformer Demo",
+                "name": "VUEngine Platformer Demo"
             }
         },
         "RomHeader": {

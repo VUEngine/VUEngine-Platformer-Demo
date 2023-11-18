@@ -13,7 +13,7 @@
 //                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-const uint32 FVSmallFontTiles[112] __attribute__((aligned(4))) =
+const uint32 FVSmallFontTiles[] __attribute__((aligned(4))) =
 {
     0x00000001,
     0xF0F00000,0x00010F0D,0x00011500,0x011D0001,0x0F0D4001,0x15700000,0x0001070D,0x00011500,
@@ -34,7 +34,7 @@ const uint32 FVSmallFontTiles[112] __attribute__((aligned(4))) =
     0x0F0D5005,0x04700000,0x00010F0D,0x00011500,0x010F0D00,0x010F0540,0x01157000,
 };
 
-const uint32 FVSmallFontTilesFrameOffsets[27] __attribute__((aligned(4))) =
+const uint32 FVSmallFontTilesFrameOffsets[] __attribute__((aligned(4))) =
 {
     0x00000001,0x00000002,0x00000007,0x00000012,0x00000017,0x00000021,0x00000026,0x00000031,
     0x00000036,0x00000041,0x00000045,0x00000049,0x00000054,0x00000059,0x00000064,0x00000069,

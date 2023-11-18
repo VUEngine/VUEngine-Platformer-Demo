@@ -74,14 +74,11 @@ AnimationFunctionROMSpec CannonShootAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec CannonAnimation =
+const AnimationFunction* const CannonAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&CannonIdleAnimation,
-		(AnimationFunction*)&CannonShootAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&CannonIdleAnimation,
+	(AnimationFunction*)&CannonShootAnimation,
+	NULL,
 };
 
 CharSetROMSpec CannonCharset =
@@ -211,7 +208,7 @@ ActorROMSpec CannonEntity =
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&CannonAnimation,
+		(const AnimationFunction**)CannonAnimations,
 
 		// initial animation
 		"Idle"

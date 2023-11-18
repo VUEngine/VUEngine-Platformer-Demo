@@ -53,13 +53,10 @@ AnimationFunctionROMSpec SnailMoveAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec SnailAnimation =
+const AnimationFunction* const SnailAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&SnailMoveAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&SnailMoveAnimation,
+	NULL,
 };
 
 CharSetROMSpec SnailCharset =
@@ -217,7 +214,7 @@ MovingEntityROMSpec Snail3Entity =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SnailAnimation,
+			(const AnimationFunction**)SnailAnimations,
 
 			// initial animation
 			"Move"
@@ -293,7 +290,7 @@ MovingEntityROMSpec Snail8Entity =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SnailAnimation,
+			(const AnimationFunction**)SnailAnimations,
 
 			// initial animation
 			"Move"

@@ -54,13 +54,10 @@ AnimationFunctionROMSpec KeySpinAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec KeyAnimation =
+const AnimationFunction* const KeyAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&KeySpinAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&KeySpinAnimation,
+	NULL,
 };
 
 CharSetROMSpec KeyCharset =
@@ -216,7 +213,7 @@ AnimatedEntityROMSpec KeyEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&KeyAnimation,
+	(const AnimationFunction**)KeyAnimations,
 
 	// initial animation
 	"Spin",

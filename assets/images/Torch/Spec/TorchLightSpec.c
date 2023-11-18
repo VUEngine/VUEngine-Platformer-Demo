@@ -54,13 +54,10 @@ AnimationFunctionROMSpec TorchLightDefaultAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec TorchLightAnimation =
+const AnimationFunction* const TorchLightAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&TorchLightDefaultAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&TorchLightDefaultAnimation,
+	NULL,
 };
 
 CharSetROMSpec TorchLightCharset =
@@ -188,7 +185,7 @@ AnimatedEntityROMSpec TorchLightEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&TorchLightAnimation,
+	(const AnimationFunction**)TorchLightAnimations,
 
 	// initial animation
 	"Default",

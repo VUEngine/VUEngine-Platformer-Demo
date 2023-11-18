@@ -51,7 +51,7 @@ void Coin::constructor(CoinSpec* coinSpec, int16 internalId, const char* const n
 	int coinId = atoi(this->name);
 	if(ProgressManager::getCoinStatus(ProgressManager::getInstance(), coinId))
 	{
-		AnimatedEntitySpec* animatedEntitySpec = (CollectableSpec*)coinSpec;
+		AnimatedEntitySpec* animatedEntitySpec = (AnimatedEntitySpec*)coinSpec;
 
 		if((AnimatedEntitySpec*)&CoinBackEntity == animatedEntitySpec)
 		{

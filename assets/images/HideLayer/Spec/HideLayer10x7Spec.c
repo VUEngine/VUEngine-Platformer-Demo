@@ -118,16 +118,13 @@ AnimationFunctionROMSpec HideLayer10x7_TOTransparentAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec HideLayer10x7Animation =
+const AnimationFunction* const HideLayer10x7Animations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&HideLayer10x7SolidAnimation,
-		(AnimationFunction*)&HideLayer10x7TransparentAnimation,
-		(AnimationFunction*)&HideLayer10x7_TOSolidAnimation,
-		(AnimationFunction*)&HideLayer10x7_TOTransparentAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&HideLayer10x7SolidAnimation,
+	(AnimationFunction*)&HideLayer10x7TransparentAnimation,
+	(AnimationFunction*)&HideLayer10x7_TOSolidAnimation,
+	(AnimationFunction*)&HideLayer10x7_TOTransparentAnimation,
+	NULL,
 };
 
 CharSetROMSpec HideLayer10x7Charset =
@@ -286,7 +283,7 @@ HideLayerROMSpec HideLayer10x7Entity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&HideLayer10x7Animation,
+	(const AnimationFunction**)HideLayer10x7Animations,
 
 	// initial animation
 	"Shape",

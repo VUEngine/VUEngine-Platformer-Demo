@@ -54,13 +54,10 @@ AnimationFunctionROMSpec ClockDefaultAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec ClockAnimation =
+const AnimationFunction* const ClockAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&ClockDefaultAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&ClockDefaultAnimation,
+	NULL,
 };
 
 CharSetROMSpec ClockCharset =
@@ -185,7 +182,7 @@ AnimatedEntityROMSpec ClockEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&ClockAnimation,
+	(const AnimationFunction**)ClockAnimations,
 
 	// initial animation
 	"Default",

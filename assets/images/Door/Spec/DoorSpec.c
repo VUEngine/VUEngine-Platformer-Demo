@@ -170,18 +170,15 @@ AnimationFunctionROMSpec DoorGoalAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec DoorAnimation =
+const AnimationFunction* const DoorAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&DoorOpeningAnimation,
-		(AnimationFunction*)&DoorClosingAnimation,
-		(AnimationFunction*)&DoorOpenAnimation,
-		(AnimationFunction*)&DoorClosedAnimation,
-		(AnimationFunction*)&DoorKeyAnimation,
-		(AnimationFunction*)&DoorGoalAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&DoorOpeningAnimation,
+	(AnimationFunction*)&DoorClosingAnimation,
+	(AnimationFunction*)&DoorOpenAnimation,
+	(AnimationFunction*)&DoorClosedAnimation,
+	(AnimationFunction*)&DoorKeyAnimation,
+	(AnimationFunction*)&DoorGoalAnimation,
+	NULL,
 };
 
 CharSetROMSpec DoorCharset =
@@ -340,7 +337,7 @@ DoorROMSpec DoorEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DoorAnimation,
+	(const AnimationFunction**)DoorAnimations,
 
 	// initial animation
 	"Closed",
@@ -385,7 +382,7 @@ LayerSwitchDoorROMSpec LayerSwitchDoorEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DoorAnimation,
+	(const AnimationFunction**)DoorAnimations,
 
 	// initial animation
 	"Closed",
@@ -431,7 +428,7 @@ GoalDoorROMSpec GoalDoorEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DoorAnimation,
+	(const AnimationFunction**)DoorAnimations,
 
 	// initial animation
 	"Open",
@@ -476,7 +473,7 @@ KeyDoorROMSpec KeyDoorEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DoorAnimation,
+	(const AnimationFunction**)DoorAnimations,
 
 	// initial animation
 	"Key",
@@ -554,7 +551,7 @@ DoorROMSpec AffineDoorEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DoorAnimation,
+	(const AnimationFunction**)DoorAnimations,
 
 	// initial animation
 	"Closed",
@@ -685,7 +682,7 @@ DoorROMSpec DoorBackEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DoorAnimation,
+	(const AnimationFunction**)DoorAnimations,
 
 	// initial animation
 	"Closed",
@@ -730,7 +727,7 @@ LayerSwitchDoorROMSpec LayerSwitchDoorBackEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&DoorAnimation,
+	(const AnimationFunction**)DoorAnimations,
 
 	// initial animation
 	"Open",

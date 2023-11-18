@@ -75,14 +75,11 @@ AnimationFunctionROMSpec StarFlashAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec StarAnimation =
+const AnimationFunction* const StarAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&StarStillAnimation,
-		(AnimationFunction*)&StarFlashAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&StarStillAnimation,
+	(AnimationFunction*)&StarFlashAnimation,
+	NULL,
 };
 
 CharSetROMSpec StarCharset =
@@ -207,7 +204,7 @@ AnimatedEntityROMSpec StarEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&StarAnimation,
+	(const AnimationFunction**)StarAnimations,
 
 	// initial animation
 	"Flash",

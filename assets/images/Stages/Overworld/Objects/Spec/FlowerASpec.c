@@ -54,13 +54,10 @@ AnimationFunctionROMSpec FlowerADefaultAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec FlowerAAnimation =
+const AnimationFunction* const FlowerAAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&FlowerADefaultAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&FlowerADefaultAnimation,
+	NULL,
 };
 
 
@@ -198,7 +195,7 @@ AnimatedEntityROMSpec FlowerAEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&FlowerAAnimation,
+	(const AnimationFunction**)FlowerAAnimations,
 
 	// initial animation
 	"Default",

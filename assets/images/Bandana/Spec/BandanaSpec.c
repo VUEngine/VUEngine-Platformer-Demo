@@ -55,13 +55,10 @@ AnimationFunctionROMSpec BandanaSpinAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec BandanaAnimation =
+const AnimationFunction* const BandanaAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&BandanaSpinAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&BandanaSpinAnimation,
+	NULL,
 };
 
 CharSetROMSpec BandanaCharset =
@@ -217,7 +214,7 @@ AnimatedEntityROMSpec BandanaEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&BandanaAnimation,
+	(const AnimationFunction**)BandanaAnimations,
 
 	// initial animation
 	"Spin",

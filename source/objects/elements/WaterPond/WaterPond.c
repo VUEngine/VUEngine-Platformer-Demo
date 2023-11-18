@@ -21,6 +21,7 @@
 #include <Utilities.h>
 #include <CollisionManager.h>
 #include <debugConfig.h>
+#include <Telegram.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -126,7 +127,7 @@ bool WaterPond::handleMessage(void* telegram)
 				}
 
 				this->waveLutIndexIncrement = __FIX10_6_MULT(this->waveLutThrottleFactorIncrement + reflectiveEntitySpec->waveLutThrottleFactor, __FIX10_6_DIV(__I_TO_FIX10_6(reflectiveEntitySpec->numberOfWaveLutEntries), __I_TO_FIX10_6(reflectiveEntitySpec->width)));
-				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageStopReactToCollision);
+				MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageStopReactToCollision);
 				MessageDispatcher::dispatchMessage(waterPondSpec->waveLutThrottleFactorIncrementDuration / waterPondSpec->waveLutThrottleFactorIncrementDurationStep, ListenerObject::safeCast(this), ListenerObject::safeCast(this), kMessageStopReactToCollision, NULL);
 
 //				ParticleSystem::start(this->waterSplash);

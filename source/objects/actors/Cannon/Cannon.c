@@ -25,6 +25,7 @@
 #include <CannonBall.h>
 #include "Cannon.h"
 #include <PlatformerLevelState.h>
+#include <VirtualList.h>
 
 
 //---------------------------------------------------------------------------------------------------------

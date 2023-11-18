@@ -19,6 +19,8 @@
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
+#include <MessageDispatcher.h>
+#include <Telegram.h>
 #include <debugUtilities.h>
 
 
@@ -39,7 +41,7 @@ void HeroMoving::constructor()
 void HeroMoving::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMessageDisallowJumpOnBouncing);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), ListenerObject::safeCast(this), kMessageDisallowJumpOnBouncing);
 
 	// destroy base
 	Base::destructor();

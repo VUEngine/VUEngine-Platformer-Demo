@@ -54,13 +54,10 @@ AnimationFunctionROMSpec WaterfallStream2x16DefaultAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec WaterfallStream2x16Animation =
+const AnimationFunction* const WaterfallStream2x16Animations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&WaterfallStream2x16DefaultAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&WaterfallStream2x16DefaultAnimation,
+	NULL,
 };
 
 CharSetROMSpec WaterfallStream2x16Charset =
@@ -193,7 +190,7 @@ AnimatedEntityROMSpec WaterfallStream2x16Entity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&WaterfallStream2x16Animation,
+	(const AnimationFunction**)WaterfallStream2x16Animations,
 
 	// initial animation
 	"Default",

@@ -54,13 +54,10 @@ AnimationFunctionROMSpec WaterfallTopDefaultAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec WaterfallTopAnimation =
+const AnimationFunction* const WaterfallTopAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&WaterfallTopDefaultAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&WaterfallTopDefaultAnimation,
+	NULL,
 };
 
 CharSetROMSpec WaterfallTopCharset =
@@ -193,7 +190,7 @@ AnimatedEntityROMSpec WaterfallTopEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&WaterfallTopAnimation,
+	(const AnimationFunction**)WaterfallTopAnimations,
 
 	// initial animation
 	"Default",

@@ -559,7 +559,7 @@ void PlatformerLevelState::onScreenFocused(Object eventFirer __attribute__ ((unu
 void PlatformerLevelState::onHeroDied(Object eventFirer __attribute__ ((unused)))
 {
 	// unset the hero as focus entity from the custom screen movement manager
-	Camera::setFocusGameEntity(Camera::getInstance(), NULL);
+	Camera::setFocusEntity(Camera::getInstance(), NULL);
 
 	// start a fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};

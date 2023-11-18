@@ -63,13 +63,10 @@ AnimationFunctionROMSpec CoinSpinAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec CoinAnimation =
+const AnimationFunction* const CoinAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&CoinSpinAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&CoinSpinAnimation,
+	NULL,
 };
 
 CharSetROMSpec CoinCharset =
@@ -471,7 +468,7 @@ CoinROMSpec CoinEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&CoinAnimation,
+	(const AnimationFunction**)CoinAnimations,
 
 	// initial animation
 	"Spin",
@@ -516,7 +513,7 @@ CoinROMSpec CoinSilhouetteEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&CoinAnimation,
+	(const AnimationFunction**)CoinAnimations,
 
 	// initial animation
 	"Spin",
@@ -658,7 +655,7 @@ CoinROMSpec CoinBackEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&CoinAnimation,
+	(const AnimationFunction**)CoinAnimations,
 
 	// initial animation
 	"Spin",
@@ -703,7 +700,7 @@ CoinROMSpec CoinBackSilhouetteEntity =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&CoinAnimation,
+	(const AnimationFunction**)CoinAnimations,
 
 	// initial animation
 	"Spin",

@@ -15,6 +15,7 @@
 #include <string.h>
 
 #include <VUEngine.h>
+#include <Clock.h>
 #include <Camera.h>
 #include <CameraEffectManager.h>
 #include <I18n.h>

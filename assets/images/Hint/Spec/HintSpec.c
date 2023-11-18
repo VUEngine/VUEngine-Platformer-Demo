@@ -297,24 +297,20 @@ AnimationFunctionROMSpec HINT_KeyAnimation =
 };
 
 // an animation spec
-AnimationDescriptionROMSpec HintAnimation =
+const AnimationFunction* const HintAnimations[] =
 {
-	// animation functions
-	{
-		(AnimationFunction*)&HintOpenAnimation,
-		(AnimationFunction*)&HintCloseAnimation,
-		(AnimationFunction*)&HintClosedAnimation,
-		(AnimationFunction*)&HintEnterEnglishAnimation,
-		(AnimationFunction*)&HintEnterDeutschAnimation,
-		(AnimationFunction*)&HintEnterEspanolAnimation,
-		(AnimationFunction*)&HintEnterFrancaisAnimation,
-		(AnimationFunction*)&HintPickUpEnglishAnimation,
-		(AnimationFunction*)&HintPickUpDeutschAnimation,
-		(AnimationFunction*)&HintPickUpEspanolAnimation,
-		(AnimationFunction*)&HintPickUpFrancaisAnimation,
-		(AnimationFunction*)&HINT_KeyAnimation,
-		NULL,
-	}
+	(AnimationFunction*)&HintOpenAnimation,
+	(AnimationFunction*)&HintCloseAnimation,
+	(AnimationFunction*)&HintClosedAnimation,
+	(AnimationFunction*)&HintEnterEnglishAnimation,
+	(AnimationFunction*)&HintEnterDeutschAnimation,
+	(AnimationFunction*)&HintEnterEspanolAnimation,
+	(AnimationFunction*)&HintEnterFrancaisAnimation,
+	(AnimationFunction*)&HintPickUpEnglishAnimation,
+	(AnimationFunction*)&HintPickUpDeutschAnimation,
+	(AnimationFunction*)&HintPickUpEspanolAnimation,
+	(AnimationFunction*)&HintPickUpFrancaisAnimation,
+	(AnimationFunction*)&HINT_KeyAnimation,
 };
 
 CharSetROMSpec HintCharset =
@@ -442,7 +438,7 @@ AnimatedEntityROMSpec HintMc =
 	},
 
 	// pointer to the animation spec for the item
-	(AnimationDescription*)&HintAnimation,
+	(const AnimationFunction**)HintAnimations,
 
 	// initial animation
 	"Closed",

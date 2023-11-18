@@ -20,6 +20,7 @@
 #include "LayerSwitchDoor.h"
 #include <PlatformerLevelState.h>
 #include <Hero.h>
+#include <Telegram.h>
 
 
 //---------------------------------------------------------------------------------------------------------

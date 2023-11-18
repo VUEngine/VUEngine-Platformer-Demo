@@ -23,6 +23,9 @@
 #include <ProgressManager.h>
 #include <Hero.h>
 #include <EventManager.h>
+#include <Printing.h>
+#include <VirtualList.h>
+
 
 
 //---------------------------------------------------------------------------------------------------------

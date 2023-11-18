@@ -14,6 +14,7 @@
 
 #include <Entity.h>
 #include <Box.h>
+#include <BgmapSprite.h>
 #include <macros.h>
 
 
