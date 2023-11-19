@@ -215,7 +215,7 @@ void Hero::jump(bool checkIfYMovement)
 				force.y = __FIX10_6_MULT(__ABS(yBouncingPlaneNormal), this->boost ? HERO_BOOST_JUMP_INPUT_FORCE : HERO_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the hero jump
-				Actor::applyForce(this, &force, true);
+				Hero::applyForce(this, &force, true);
 			}
 			else
 			{
@@ -232,7 +232,7 @@ void Hero::jump(bool checkIfYMovement)
 				force.y = HERO_NORMAL_JUMP_INPUT_FORCE;
 
 				// add the force to actually make the hero jump
-				Actor::applyForce(this, &force, true);
+				Hero::applyForce(this, &force, true);
 
 				// show dust
 				Hero::showDust(this, true);
@@ -287,7 +287,7 @@ void Hero::applyForceOnAxis(uint16 axis, bool enableAddingForce)
 			zForce
 		};
 
-		Actor::applyForce(this, &force, true);
+		Hero::applyForce(this, &force, true);
 	}
 	else
 	{
@@ -372,7 +372,7 @@ void Hero::stopAddingForce()
 			zForce
 		};
 
-		Actor::applyForce(this, &force, true);
+		Hero::applyForce(this, &force, true);
 	}
 	else
 	{

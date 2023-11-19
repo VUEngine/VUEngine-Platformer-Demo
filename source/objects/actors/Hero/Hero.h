@@ -45,8 +45,8 @@ enum HeroPowerUps
 
 #define HERO_SLEEP_DELAY					7500
 
-#define HERO_FORCE_FOR_STOPPING 			__F_TO_FIX10_6(-4.5f)
-#define HERO_INPUT_FORCE 					__I_TO_FIX10_6(60)
+#define HERO_FORCE_FOR_STOPPING 			__F_TO_FIX10_6(-0.05f)
+#define HERO_INPUT_FORCE 					__I_TO_FIX10_6(5)
 #define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(10)
 
 #define HERO_MAX_VELOCITY_X					__F_TO_FIX10_6(3.5f)
