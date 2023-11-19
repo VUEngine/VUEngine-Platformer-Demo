@@ -55,20 +55,20 @@ SECTIONS
 		*(.rodata*)
 	} >rom = 0xFF
 
-	v = .;
+	v = . + 0x20;
 
 	/* Ram memory */
 	__dataLma = .;
-	.data __dataVma : AT(__dataLma)
+	.sdata __dataVma : AT(__dataLma)
 	{
 		PROVIDE (__dataStart = .);
-		*(.data*)
-	} >wram = 0xFF
-
-	.sdata ALIGN(2):
-	{
 		PROVIDE (__gp = . + 0x8000);
 		*(.sdata*)
+	} >wram = 0xFF
+
+	.data ALIGN(2):
+	{
+		*(.data*)
 		PROVIDE (__dataEnd = .);
 	} >wram = 0xFF
 

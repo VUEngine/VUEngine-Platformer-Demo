@@ -36,7 +36,7 @@
                 "framePointer": false,
                 "memorySections": {
                     "dram": {
-                        "length": -38,
+                        "length": -26,
                         "origin": "0x0003D800"
                     },
                     "exp": {
