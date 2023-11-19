@@ -266,7 +266,7 @@
                     "objectPalette1": "11100000",
                     "objectPalette2": "10010000",
                     "objectPalette3": "01010000",
-                    "printingPalette": 3
+                    "printingPalette": 0
                 },
                 "physics": {
                     "angleToPreventShapeDisplacement": 10,

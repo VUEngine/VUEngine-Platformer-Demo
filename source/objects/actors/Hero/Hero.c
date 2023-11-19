@@ -314,7 +314,7 @@ void Hero::slide()
 
 void Hero::showDust(bool autoHideDust)
 {
-	if(this->feetDust)
+	if(!isDeleted(this->feetDust))
 	{
 		ParticleSystem::start(this->feetDust);
 		ParticleSystem::show(this->feetDust);
@@ -329,7 +329,7 @@ void Hero::showDust(bool autoHideDust)
 
 void Hero::hideDust()
 {
-	if(this->feetDust)
+	if(!isDeleted(this->feetDust))
 	{
 		ParticleSystem::pause(this->feetDust);
 		ParticleSystem::hide(this->feetDust);
@@ -507,7 +507,7 @@ void Hero::checkDirection(uint32 pressedKey, char* animation)
 	{
 		this->inputDirection.x = __RIGHT;
 
-		if(this->feetDust)
+		if(!isDeleted(this->feetDust))
 		{
 			Vector3D position = *Container::getLocalPosition(this->feetDust);
 			position.x = __ABS(position.x) * -1;
@@ -518,7 +518,7 @@ void Hero::checkDirection(uint32 pressedKey, char* animation)
 	{
 		this->inputDirection.x = __LEFT;
 
-		if(this->feetDust)
+		if(!isDeleted(this->feetDust))
 		{
 			Vector3D position = *Container::getLocalPosition(this->feetDust);
 			position.x = __ABS(position.x);
@@ -1232,7 +1232,7 @@ void Hero::suspend()
 {
 	Base::suspend(this);
 
-	if(this->feetDust)
+	if(!isDeleted(this->feetDust))
 	{
 		ParticleSystem::pause(this->feetDust);
 	}
@@ -1270,6 +1270,8 @@ void Hero::syncRotationWithBody()
 	fix10_6 xLastDisplacement = Body::getLastDisplacement(this->body).x;
 
 	NormalizedDirection normalizedDirection = Entity::getNormalizedDirection(this);
+
+	PRINT_INT(normalizedDirection.x, 1, 3);
 
 	if(0 < xLastDisplacement)
 	{
