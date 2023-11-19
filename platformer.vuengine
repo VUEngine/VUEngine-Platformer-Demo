@@ -200,51 +200,43 @@
                     "cleanUp": false,
                     "pools": [
                         {
-                            "objects": 110,
-                            "size": 12
-                        },
-                        {
-                            "objects": 530,
+                            "objects": 300,
                             "size": 16
                         },
                         {
-                            "objects": 940,
+                            "objects": 500,
                             "size": 20
                         },
                         {
-                            "objects": 145,
-                            "size": 24
-                        },
-                        {
-                            "objects": 150,
+                            "objects": 200,
                             "size": 28
                         },
                         {
-                            "objects": 35,
+                            "objects": 100,
                             "size": 32
                         },
                         {
-                            "objects": 75,
+                            "objects": 100,
                             "size": 44
                         },
                         {
-                            "objects": 53,
+                            "objects": 100,
                             "size": 72
                         },
                         {
-                            "objects": 40,
+                            "objects": 100,
                             "size": 96
                         },
                         {
-                            "objects": 20,
+                            "objects": 50,
                             "size": 120
                         },
                         {
-                            "objects": 15,
-                            "size": 136
+                            "objects": 30,
+                            "size": 160
                         },
                         {
-                            "objects": 21,
+                            "objects": 30,
                             "size": 176
                         }
                     ],
