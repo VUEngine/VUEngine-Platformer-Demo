@@ -1271,8 +1271,6 @@ void Hero::syncRotationWithBody()
 
 	NormalizedDirection normalizedDirection = Entity::getNormalizedDirection(this);
 
-	PRINT_INT(normalizedDirection.x, 1, 3);
-
 	if(0 < xLastDisplacement)
 	{
 		normalizedDirection.x = __RIGHT;
