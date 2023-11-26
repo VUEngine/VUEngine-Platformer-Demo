@@ -62,14 +62,14 @@ const AnimationFunction* const TorchLightAnimations[] =
 
 CharSetROMSpec TorchLightCharset =
 {
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	// number of chars in function of the number of frames to load at the same time
 	100,
 
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SHARED,
+	// whether it is shared or not
+	true,
+	
+	// whether the tiles are optimized or not
+	false,
 
 	// char spec
 	TorchLightTiles,
@@ -95,9 +95,7 @@ TextureROMSpec TorchLightTexture =
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
+	// number of frames
 	1,
 
 	// palette number (0-3)

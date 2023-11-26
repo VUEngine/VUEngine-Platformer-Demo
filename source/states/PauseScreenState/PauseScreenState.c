@@ -297,7 +297,7 @@ void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unuse
 		case kPauseScreenOptionQuitLevel:
 
 			// switch to overworld after deleting paused game state
-			VUEngine::cleanAndChangeState(VUEngine::getInstance(), GameState::safeCast(OverworldState::getInstance()));
+			VUEngine::setState(VUEngine::getInstance(), GameState::safeCast(OverworldState::getInstance()));
 
 			break;
 	}

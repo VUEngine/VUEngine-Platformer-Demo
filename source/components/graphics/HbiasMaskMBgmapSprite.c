@@ -151,7 +151,7 @@ uint16 HbiasMaskMBgmapSprite::doRender(uint16 index, bool evenFrame __attribute_
 
 		if(ownerFirstSprite && ownerFirstSprite != Sprite::safeCast(this))
 		{
-			ownerSpriteGY = Sprite::getWorldGY(ownerFirstSprite);
+			ownerSpriteGY = Sprite::getEffectiveY(ownerFirstSprite);
 			ownerSpriteGYSet = true;
 		}
 	}

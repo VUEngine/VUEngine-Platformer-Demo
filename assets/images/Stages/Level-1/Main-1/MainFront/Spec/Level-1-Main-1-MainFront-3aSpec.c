@@ -43,9 +43,7 @@ TextureROMSpec Level1Main1MainFront3aTexture =
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
 
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
+	// number of frames
 	1,
 
 	// palette number (0-3)

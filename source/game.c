@@ -21,6 +21,7 @@
 #include <AutomaticPauseScreenState.h>
 #include <AdjustmentScreenState.h>
 #include <AutomaticPauseSelectionScreenState.h>
+#include <PlatformerLevelState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -53,7 +54,7 @@ int game(void)
 	);
 
 	// start the game
-	VUEngine::start(VUEngine::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
+	VUEngine::start(VUEngine::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 
 	// end program
 	return true;
