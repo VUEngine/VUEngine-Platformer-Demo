@@ -67,11 +67,11 @@ void AwesomeCloudBgmapSprite::destructor()
  */
 uint16 AwesomeCloudBgmapSprite::doRender(uint16 index, bool evenFrame)
 {
-	this->textureSource.my += this->awesomeCloudBgmapSpriteSpec->myStep;
+	this->bgmapTextureSource.my += this->awesomeCloudBgmapSpriteSpec->myStep;
 
-	if((uint16)this->textureSource.my >= (BgmapTexture::getYOffset(this->texture) << 3) + (BgmapTexture::getRows(this->texture) << 3))
+	if((uint16)this->bgmapTextureSource.my >= (BgmapTexture::getYOffset(this->texture) << 3) + (BgmapTexture::getRows(this->texture) << 3))
 	{
-		this->textureSource.my = (BgmapTexture::getYOffset(this->texture) << 3);
+		this->bgmapTextureSource.my = (BgmapTexture::getYOffset(this->texture) << 3);
 	}
 
 	BgmapSprite::invalidateParamTable(this);
