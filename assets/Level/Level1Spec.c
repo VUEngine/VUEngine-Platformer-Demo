@@ -14,7 +14,7 @@
 
 #include <PlatformerLevelState.h>
 #include <Languages.h>
-#include <SoundWrapper.h>
+#include <SoundManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

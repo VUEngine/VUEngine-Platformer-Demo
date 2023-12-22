@@ -73,23 +73,23 @@
             },
             {
                 "objects": 40,
-                "size": 96
+                "size": 100
             },
             {
                 "objects": 70,
-                "size": 124
+                "size": 128
             },
             {
                 "objects": 15,
-                "size": 132
+                "size": 136
             },
             {
                 "objects": 12,
-                "size": 156
+                "size": 160
             },
             {
                 "objects": 5,
-                "size": 168
+                "size": 172
             }
         ],
         "warningThreshold": 85
