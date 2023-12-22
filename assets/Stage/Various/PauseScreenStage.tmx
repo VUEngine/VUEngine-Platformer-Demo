@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="66">
+ <properties>
+  <property name="declaration" value="NULL"/>
+  <property name="include" value="Fonts.h, macros.h"/>
+  <property name="stage.assets.bgm" value="NULL"/>
+  <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGuiFont, AstonishSExtFont"/>
+  <property name="stage.assets.charSets" value="NULL"/>
+  <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
+  <property name="stage.assets.charSets" value="NULL"/>
+  <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
+  <property name="stage.level.screenInitialPosition.x" value="0"/>
+  <property name="stage.level.screenInitialPosition.y" value="0"/>
+  <property name="stage.level.screenInitialPosition.z" value="0"/>
+  <property name="stage.level.size.x" value="__SCREEN_WIDTH"/>
+  <property name="stage.level.size.y" value="__SCREEN_HEIGHT"/>
+  <property name="stage.level.size.z" value="__SCREEN_DEPTH"/>
+  <property name="stage.physics.friction" value="0.1f"/>
+  <property name="stage.physics.gravity.x" value="0"/>
+  <property name="stage.physics.gravity.y" value="__GRAVITY"/>
+  <property name="stage.physics.gravity.z" value="0"/>
+  <property name="stage.rendering.colorConfig.backgroundColor" value="__COLOR_BLACK"/>
+  <property name="stage.rendering.colorConfig.brightness.brightRed" value="__BRIGHTNESS_BRIGHT_RED"/>
+  <property name="stage.rendering.colorConfig.brightness.darkRed" value="__BRIGHTNESS_DARK_RED"/>
+  <property name="stage.rendering.colorConfig.brightness.mediumRed" value="__BRIGHTNESS_MEDIUM_RED"/>
+  <property name="stage.rendering.colorConfig.brightnessRepeat" value="NULL"/>
+  <property name="stage.rendering.cyclesToWaitForTextureWriting" value="__TARGET_FPS / 10"/>
+  <property name="stage.rendering.maximumAffineRowsToComputePerCall" value="16"/>
+  <property name="stage.rendering.objectSpritesContainersSize.0" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersSize.1" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersSize.2" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersSize.3" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.0" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.1" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.2" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.3" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.optical.baseDistance" value="__BASE_FACTOR"/>
+  <property name="stage.rendering.optical.cameraNearPlane" value="__CAMERA_NEAR_PLANE"/>
+  <property name="stage.rendering.optical.horizontalViewPointCenter" value="__HORIZONTAL_VIEW_POINT_CENTER"/>
+  <property name="stage.rendering.optical.maximumViewDistancePower" value="__MAXIMUM_VIEW_DISTANCE_POWER"/>
+  <property name="stage.rendering.optical.verticalViewPointCenter" value="__VERTICAL_VIEW_POINT_CENTER"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt0" value="__BGMAP_PALETTE_0"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt1" value="__BGMAP_PALETTE_1"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt2" value="__BGMAP_PALETTE_2"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt3" value="__BGMAP_PALETTE_3"/>
+  <property name="stage.rendering.paletteConfig.object.jplt0" value="__OBJECT_PALETTE_0"/>
+  <property name="stage.rendering.paletteConfig.object.jplt1" value="__OBJECT_PALETTE_1"/>
+  <property name="stage.rendering.paletteConfig.object.jplt2" value="__OBJECT_PALETTE_2"/>
+  <property name="stage.rendering.paletteConfig.object.jplt3" value="__OBJECT_PALETTE_3"/>
+  <property name="stage.rendering.paramTableSegments" value="1"/>
+  <property name="stage.rendering.texturesMaximumRowsToWrite" value="12"/>
+  <property name="stage.streaming.loadPadding" value="40"/>
+  <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
+  <property name="stage.streaming.streamingAmplitude" value="24"/>
+  <property name="stage.streaming.unloadPadding" value="16"/>
+  <property name="stage.postProcessingEffects" value="NULL"/>
+ </properties>
+ <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
+ <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
+ <tileset firstgid="34" source="../assets/tilesets/Items.tsx"/>
+ <tileset firstgid="37" source="../assets/tilesets/Elements.tsx"/>
+ <tileset firstgid="42" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="52" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="53" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="151" source="../assets/tilesets/OuterTiles.tsx"/>
+ <objectgroup draworder="index" name="UI" opacity="0.5">
+  <properties>
+   <property name="containerType" value="Ui"/>
+   <property name="position.z" value="0"/>
+  </properties>
+ </objectgroup>
+ <objectgroup draworder="index" name="Main">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="LAYER_0"/>
+  </properties>
+  <object id="64" name="Hero Sleeping" type="Entity" gid="33" x="180" y="104" width="24" height="24"/>
+ </objectgroup>
+</map>

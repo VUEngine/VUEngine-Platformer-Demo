@@ -1,0 +1,162 @@
+{
+    "languages": [
+        {
+            "code": "en",
+            "flag": "FlagUnitedKingdomEntitySpec",
+            "localizedName": "English",
+            "name": "English"
+        },
+        {
+            "code": "de",
+            "flag": "FlagGermanyEntitySpec",
+            "localizedName": "Deutsch",
+            "name": "German"
+        },
+        {
+            "code": "es",
+            "flag": "FlagSpainEntitySpec",
+            "localizedName": "Español",
+            "name": "Spanish"
+        },
+        {
+            "code": "fr",
+            "flag": "FlagFranceEntitySpec",
+            "localizedName": "French",
+            "name": "French"
+        }
+    ],
+    "translations": {
+		"AreYouSure": {
+			"de": "Bist Du sicher?",
+			"en": "Are you sure?",
+			"es": "¿Estás seguro?",
+			"fr": "Es tu sûr?"
+		},
+		"AutomaticPause": {
+			"de": "Automatische Pause",
+			"en": "Automatic Pause",
+			"es": "Pausa Automatica",
+			"fr": "Pause Automatique"
+		},
+		"Back": {
+			"de": "Zurück",
+			"en": "Back",
+			"es": "Regresar",
+			"fr": "Arrière"
+		},
+		"Checkpoint": {
+			"de": "Kontrollpunkt",
+			"en": "Checkpoint",
+			"es": "Punto de control",
+			"fr": "Poste de contrôle"
+		},
+		"Continue": {
+			"de": "Fortsetzen",
+			"en": "Continue",
+			"es": "Continuar",
+			"fr": "Continuer"
+		},
+		"Credits": {
+			"de": "Mitwirkende",
+			"en": "Credits",
+			"es": "Créditos",
+			"fr": "Crédits"
+		},
+		"Language": {
+			"de": "Sprache",
+			"en": "Language",
+			"es": "Idioma",
+			"fr": "Langue"
+		},
+		"Level1Name": {
+			"de": "Plitsch Platsch Berge",
+			"en": "Splish Splash Hills",
+			"es": "Montanas Splish Splash",
+			"fr": "Splish Splash Hills"
+		},
+		"Level1Slogan": {
+			"de": "   \"Bewölkt mit\nAussicht auf Regen\"",
+			"en": "\"Cloudy with a \n chance of rain\"",
+			"es": "\"Nublado con pronóstico\n       de lluvia\"",
+			"fr": "\"Nuageux avec un\n risque de pluie\""
+		},
+		"Level": {
+			"de": "Level",
+			"en": "Level",
+			"es": "Nivel",
+			"fr": "Niveau"
+		},
+		"LevelConquered": {
+			"de": "Level gemeistert!",
+			"en": "Level Conquered!",
+			"es": "¡Nivel conquistado!",
+			"fr": "Niveau conquis!"
+		},
+		"LevelDone": {
+			"de": "Level geschafft!",
+			"en": "Level Completed!",
+			"es": "¡Nivel completo!",
+			"fr": "Niveau terminé!"
+		},
+		"NewBest": {
+			"de": "Neue Bestleistung!",
+			"en": "New Best!",
+			"es": "¡Nuevo récord!",
+			"fr": "Nouveau Record!"
+		},
+		"NewGame": {
+			"de": "Neues Spiel",
+			"en": "New Game",
+			"es": "Nuevo Juego",
+			"fr": "Nouveau Jeu"
+		},
+		"No": {
+			"de": "Nein",
+			"en": "No",
+			"es": "No",
+			"fr": "Non"
+		},
+		"Options": {
+			"de": "Optionen",
+			"en": "Options",
+			"es": "Opciones",
+			"fr": "Options"
+		},
+		"Pause": {
+			"de": "Pause",
+			"en": "Pause",
+			"es": "Pausa",
+			"fr": "Pause"
+		},
+		"PressStartButton": {
+			"de": "Start-Knopf drücken",
+			"en": "Press Start Button",
+			"es": "Presionar Start",
+			"fr": "Appuyer sur Start"
+		},
+		"ProgressWillBeErased": {
+			"de": "Dein kompletter Fortschritt wird gelöscht.",
+			"en": "All your progress will be erased.",
+			"es": "Esto eliminará todo tu progreso.",
+			"fr": "Tout vôtre progrès sera effacé."
+		},
+		"QuitLevel": {
+			"de": "Level beenden",
+			"en": "Quit Level",
+			"es": "Salir del nivel",
+			"fr": "Quitter Niveau"
+		},
+		"Select": {
+			"de": "Auswählen",
+			"en": "Select",
+			"es": "Seleccionar",
+			"fr": "Sélectionner"
+		},
+		"Yes": {
+			"de": "Ja",
+			"en": "Yes",
+			"es": "Sí",
+			"fr": "Oui"
+		}
+    }
+}

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="97">
+ <properties>
+  <property name="declaration" value="NULL"/>
+  <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
+  <property name="stage.assets.bgm" value="KrisseBgm"/>
+  <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGFont"/>
+  <property name="stage.assets.charSets" value="NULL"/>
+  <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
+  <property name="stage.level.screenInitialPosition.x" value="0"/>
+  <property name="stage.level.screenInitialPosition.y" value="0"/>
+  <property name="stage.level.screenInitialPosition.z" value="0"/>
+  <property name="stage.level.size.x" value="__SCREEN_WIDTH"/>
+  <property name="stage.level.size.y" value="__SCREEN_HEIGHT"/>
+  <property name="stage.level.size.z" value="__SCREEN_DEPTH"/>
+  <property name="stage.physics.friction" value="0.1f"/>
+  <property name="stage.physics.gravity.x" value="0"/>
+  <property name="stage.physics.gravity.y" value="__GRAVITY"/>
+  <property name="stage.physics.gravity.z" value="0"/>
+  <property name="stage.rendering.colorConfig.backgroundColor" value="__COLOR_BLACK"/>
+  <property name="stage.rendering.colorConfig.brightness.brightRed" value="__BRIGHTNESS_BRIGHT_RED"/>
+  <property name="stage.rendering.colorConfig.brightness.darkRed" value="__BRIGHTNESS_DARK_RED"/>
+  <property name="stage.rendering.colorConfig.brightness.mediumRed" value="__BRIGHTNESS_MEDIUM_RED"/>
+  <property name="stage.rendering.colorConfig.brightnessRepeat" value="NULL"/>
+  <property name="stage.rendering.cyclesToWaitForTextureWriting" value="__TARGET_FPS / 10"/>
+  <property name="stage.rendering.maximumAffineRowsToComputePerCall" value="16"/>
+  <property name="stage.rendering.objectSpritesContainersSize.0" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersSize.1" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersSize.2" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersSize.3" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.0" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.1" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.2" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.3" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.optical.baseDistance" value="__BASE_FACTOR"/>
+  <property name="stage.rendering.optical.cameraNearPlane" value="__CAMERA_NEAR_PLANE"/>
+  <property name="stage.rendering.optical.horizontalViewPointCenter" value="__HORIZONTAL_VIEW_POINT_CENTER"/>
+  <property name="stage.rendering.optical.maximumViewDistancePower" value="__MAXIMUM_VIEW_DISTANCE_POWER"/>
+  <property name="stage.rendering.optical.verticalViewPointCenter" value="__VERTICAL_VIEW_POINT_CENTER"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt0" value="__BGMAP_PALETTE_0"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt1" value="__BGMAP_PALETTE_1"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt2" value="__BGMAP_PALETTE_2"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt3" value="__BGMAP_PALETTE_3"/>
+  <property name="stage.rendering.paletteConfig.object.jplt0" value="__OBJECT_PALETTE_0"/>
+  <property name="stage.rendering.paletteConfig.object.jplt1" value="__OBJECT_PALETTE_1"/>
+  <property name="stage.rendering.paletteConfig.object.jplt2" value="__OBJECT_PALETTE_2"/>
+  <property name="stage.rendering.paletteConfig.object.jplt3" value="__OBJECT_PALETTE_3"/>
+  <property name="stage.rendering.paramTableSegments" value="1"/>
+  <property name="stage.rendering.texturesMaximumRowsToWrite" value="12"/>
+  <property name="stage.streaming.loadPadding" value="40"/>
+  <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
+  <property name="stage.streaming.streamingAmplitude" value="24"/>
+  <property name="stage.streaming.unloadPadding" value="16"/>
+  <property name="stage.postProcessingEffects" value="NULL"/>
+ </properties>
+ <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
+ <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
+ <tileset firstgid="43" source="../assets/tilesets/Items.tsx"/>
+ <tileset firstgid="46" source="../assets/tilesets/Elements.tsx"/>
+ <tileset firstgid="53" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="63" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="64" name="Other" tilewidth="288" tileheight="56" tilecount="2" columns="0">
+  <tile id="2">
+   <properties>
+    <property name="charsetName" value="LogoLCharset, LogoRCharset, LogoOutlineLCharset, LogoOutlineRCharset"/>
+    <property name="entityName" value="LogoEntity"/>
+    <property name="textureName" value="LogoLTexture, LogoRTexture, LogoOutlineLTexture, LogoOutlineRTexture"/>
+   </properties>
+   <image width="288" height="56" source="../../images/Stages/TitleScreenStage/Other/Preview/PlatformerDemoLogo.png"/>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="charsetName" value="VUEngineLogoCharset"/>
+    <property name="entityName" value="VUEngineLogoEntity"/>
+    <property name="textureName" value="VUEngineLogoTexture"/>
+   </properties>
+   <image width="96" height="16" source="../../images/Stages/TitleScreenStage/Other/Preview/VUEngineLogo.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="68" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="1092" source="../assets/tilesets/OuterTiles.tsx"/>
+ <objectgroup draworder="index" name="Background">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="LAYER_3"/>
+  </properties>
+  <object id="85" name="Mountains" type="Entity" gid="57" x="-1" y="139" width="512" height="144">
+   <properties>
+    <property name="position.z" value="LAYER_5"/>
+   </properties>
+  </object>
+  <object id="87" name="Clouds" type="Entity" gid="60" x="-62" y="146" width="512" height="32">
+   <properties>
+    <property name="position.z" value="LAYER_4 - (LAYER_4 - LAYER_3) / 2 + 8"/>
+   </properties>
+  </object>
+  <object id="88" name="Front" type="Entity" gid="59" x="-272" y="168" width="512" height="48">
+   <properties>
+    <property name="position.z" value="LAYER_3"/>
+   </properties>
+  </object>
+  <object id="90" name="Star" type="Entity" gid="61" x="358" y="-14" width="8" height="8">
+   <properties>
+    <property name="position.z" value="LAYER_5 - SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="91" name="Castle" type="Entity" gid="58" x="273" y="128" width="88" height="48">
+   <properties>
+    <property name="position.z" value="LAYER_4 + SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="92" name="Castle Flag" type="Entity" gid="62" x="283" y="88" width="8" height="8">
+   <properties>
+    <property name="position.z" value="LAYER_4 + SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="93" name="Castle Flag" type="Entity" gid="62" x="317" y="99" width="8" height="8">
+   <properties>
+    <property name="position.z" value="LAYER_4 + SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="94" name="Castle Flag" type="Entity" gid="62" x="352" y="88" width="8" height="8">
+   <properties>
+    <property name="position.z" value="LAYER_4 + SORT_INCREMENT"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="(C1) Main Layer" width="48" height="28">
+  <properties>
+   <property name="bgmapMode" value="__WORLD_BGMAP"/>
+   <property name="class" value="Entity"/>
+   <property name="containerType" value="Composite"/>
+   <property name="displacement.p" value="0"/>
+   <property name="displacement.x" value="0"/>
+   <property name="displacement.y" value="0"/>
+   <property name="displacement.z" value="0"/>
+   <property name="display" value="__WORLD_ON"/>
+   <property name="entityName" value="MAIN"/>
+   <property name="id" type="int" value="1"/>
+   <property name="include" value="macros.h"/>
+   <property name="name" value="Main"/>
+   <property name="paletteId" type="int" value="1"/>
+   <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1627,1628,1629,1630,1631,1632,0,0,0,0,
+0,0,0,0,0,1604,1605,1606,1607,1608,1609,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1691,1692,1693,1694,1695,1696,0,0,0,0,
+0,0,0,0,0,1668,1669,1670,1671,1672,1673,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1604,1605,1606,1607,1606,1607,1606,1607,1606,1607,1606,1607,
+1607,1606,1607,1606,1607,1606,1675,1734,1735,1736,1673,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1668,1669,1670,1671,1670,1671,1670,1671,1670,1671,1670,1671,
+1671,1670,1671,1670,1671,1670,1799,1798,1799,1800,1673,0,1604,1607,1606,1607,1606,1607,1606,1607,1606,1607,1606,1607,1606,1607,1606,1607,1606,1607,1606,1607,1606,1607,1608,1609,1668,1733,1734,1735,1734,1735,1734,1735,1734,1735,1734,1735,
+1735,1734,1735,1734,1735,1734,1735,1734,1735,1736,1673,0,1668,1671,1670,1671,1670,1671,1670,1671,1670,1671,1670,1671,1670,1671,1670,1671,1670,1671,1670,1671,1670,1671,1672,1673,1668,1797,1798,1799,1798,1799,1798,1799,1798,1799,1798,1799,
+1799,1798,1799,1798,1799,1798,1799,1798,1799,1800,1673,0,1668,1735,1734,1735,1734,1735,1734,1735,1734,1735,1734,1735,1734,1735,1734,1735,1734,1735,1734,1735,1734,1735,1736,1673,1668,1733,1734,1735,1734,1735,1734,1735,1734,1735,1734,1735,
+1863,1862,1863,1862,1863,1734,1735,1734,1735,1736,1673,0,1668,1799,1798,1799,1798,1799,1798,1799,1798,1799,1798,1799,1798,1799,1798,1799,1798,1799,1798,1799,1798,1799,1800,1673,1668,1797,1798,1799,1798,1799,1798,1799,1798,1799,1798,1799,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="(C2) Main Layer Front" width="48" height="28">
+  <properties>
+   <property name="bgmapMode" value="__WORLD_BGMAP"/>
+   <property name="class" value="Entity"/>
+   <property name="containerType" value="Composite"/>
+   <property name="displacement.p" value="0"/>
+   <property name="displacement.x" value="0"/>
+   <property name="displacement.y" value="0"/>
+   <property name="displacement.z" value="-1"/>
+   <property name="display" value="__WORLD_ON"/>
+   <property name="entityName" value="MAIN_FRONT"/>
+   <property name="id" type="int" value="2"/>
+   <property name="include" value="macros.h"/>
+   <property name="name" value="MainFront"/>
+   <property name="paletteId" type="int" value="1"/>
+   <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1757,1758,1759,1758,1759,1760,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1822,1823,1822,1823,1824,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1757,1758,1759,1758,1759,1758,1759,1758,1759,1758,1759,1758,
+1758,1759,1758,1759,1758,1759,1760,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1819,1822,1823,1822,1823,1822,1823,1822,1823,1822,1823,1822,
+1822,1823,1822,1823,1822,1823,1824,0,0,0,0,0,1757,1758,1759,1758,1759,1758,1759,1758,1759,1758,1759,1758,1759,1758,1759,1758,1759,1758,1759,1758,1759,1758,1759,1760,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1819,1822,1823,1822,1823,1822,1823,1822,1823,1822,1823,1822,1823,1822,1823,1822,1823,1822,1823,1822,1823,1822,1823,1824,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup draworder="index" name="Main">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="LAYER_0"/>
+  </properties>
+  <object id="28" name="Main Layer" type="Composite" x="0" y="136" width="384" height="64">
+   <properties>
+    <property name="containerId" value="1"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="81" name="Main Layer Front" type="Composite" x="0" y="136" width="384" height="64">
+   <properties>
+    <property name="containerId" value="2"/>
+    <property name="position.z" value="LAYER_0_FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="19" name="Coin" type="Entity" gid="44" x="48" y="142" width="16" height="16"/>
+  <object id="20" name="Coin" type="Entity" gid="44" x="64" y="142" width="16" height="16"/>
+  <object id="76" name="Grass" type="Entity" gid="18" x="24" y="160" width="16" height="16"/>
+  <object id="77" name="Bush" type="Entity" gid="12" x="356" y="152" width="24" height="8"/>
+  <object id="80" name="Hero" type="Entity" gid="31" x="180" y="169" width="24" height="24"/>
+ </objectgroup>
+ <objectgroup draworder="index" name="Logo">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="LAYER_3"/>
+  </properties>
+  <object id="70" name="VUEngine" type="Entity" gid="67" x="144" y="26" width="96" height="16">
+   <properties>
+    <property name="position.z" value="LAYER_1"/>
+   </properties>
+  </object>
+  <object id="69" name="Logo" type="Entity" gid="66" x="48" y="81" width="288" height="56">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+    <property name="preloadTexture" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" name="UI" opacity="0.5">
+  <properties>
+   <property name="containerType" value="Ui"/>
+   <property name="position.z" value="0"/>
+  </properties>
+ </objectgroup>
+</map>

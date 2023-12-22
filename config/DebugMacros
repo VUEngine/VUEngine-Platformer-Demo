@@ -1,0 +1,75 @@
+{
+	"macros": [
+		{
+			"define": false,
+			"name": "__printFramerate"
+		},
+		{
+			"define": false,
+			"dependent": [
+				"__dimmForProfiling",
+				"__forcePrintingLayer"
+			],
+			"name": "__showSpritesProfiling"
+		},
+		{
+			"define": false,
+			"dependent": [
+				"__forcePrintingLayer"
+			],
+			"name": "__showVipStatus"
+		},
+		{
+			"define": false,
+			"name": "__directDrawInterlacing"
+		},
+		{
+			"define": false,
+			"name": "customGameMacro",
+			"value": 123
+		},
+		{
+			"define": true,
+			"name": "__defaultFont",
+			"value": "GuiTime"
+		},
+		{
+			"define": false,
+			"name": "__directDrawStrictBufferCheck"
+		},
+		{
+			"define": false,
+			"name": "__profileDirectDrawing"
+		},
+		{
+			"define": false,
+			"name": "__showTimerManagerStatus"
+		},
+		{
+			"define": false,
+			"name": "__showPhysicsProfiling"
+		},
+		{
+			"define": false,
+			"name": "__drmPrintState"
+		},
+		{
+			"define": false,
+			"name": "__drmPrintProgress"
+		},
+		{
+			"define": true,
+			"name": "__drmPrintProgressX",
+			"value": 1
+		},
+		{
+			"define": true,
+			"name": "__drmPrintProgressY",
+			"value": 6
+		},
+		{
+			"define": false,
+			"name": "__showMemoryPoolStatus"
+		}
+	]
+}

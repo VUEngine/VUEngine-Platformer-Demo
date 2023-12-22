@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="28" tilewidth="8" tileheight="8" backgroundcolor="#000000" nextobjectid="148">
+ <properties>
+  <property name="declaration" value="StageEntryPointROMSpec Level1MainIntersectionExitDoorEntryPoint, StageEntryPointROMSpec Level1CoinRoomStageExitEntryPoint, StageEntryPointROMSpec Level1MainIntersectionEntryDoorEntryPoint, BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat"/>
+  <property name="include" value="macros.h, PlatformerLevelState.h, Languages.h, VIPManager.h, Fonts.h, Hero.h"/>
+  <property name="stage.assets.bgm" value="KrisseBgm"/>
+  <property name="stage.assets.charSets" value="NULL"/>
+  <property name="stage.assets.fontSpecs" value="PlatformerFont, PlatformerGuiFont, AstonishSFont"/>
+  <property name="stage.assets.stageTextureEntrySpecs" value="NULL"/>
+  <property name="stage.level.screenInitialPosition.x" value="0"/>
+  <property name="stage.level.screenInitialPosition.y" value="0"/>
+  <property name="stage.level.screenInitialPosition.z" value="0"/>
+  <property name="stage.level.size.x" value="__SCREEN_WIDTH"/>
+  <property name="stage.level.size.y" value="__SCREEN_HEIGHT"/>
+  <property name="stage.level.size.z" value="__SCREEN_DEPTH"/>
+  <property name="stage.physics.friction" value="0.1f"/>
+  <property name="stage.physics.gravity.x" value="0"/>
+  <property name="stage.physics.gravity.y" value="__GRAVITY"/>
+  <property name="stage.physics.gravity.z" value="0"/>
+  <property name="stage.postProcessingEffects" value="PostProcessingEffects_lantern"/>
+  <property name="stage.rendering.colorConfig.backgroundColor" value="__COLOR_BLACK"/>
+  <property name="stage.rendering.colorConfig.brightness.brightRed" value="8"/>
+  <property name="stage.rendering.colorConfig.brightness.darkRed" value="2"/>
+  <property name="stage.rendering.colorConfig.brightness.mediumRed" value="4"/>
+  <property name="stage.rendering.colorConfig.brightnessRepeat" value="EdgeFadeOutBrightnessRepeat"/>
+  <property name="stage.rendering.cyclesToWaitForTextureWriting" value="__TARGET_FPS / 10"/>
+  <property name="stage.rendering.maximumAffineRowsToComputePerCall" value="16"/>
+  <property name="stage.rendering.objectSpritesContainersSize.0" value="0"/>
+  <property name="stage.rendering.objectSpritesContainersSize.1" value="0"/>
+  <property name="stage.rendering.objectSpritesContainersSize.2" value="0"/>
+  <property name="stage.rendering.objectSpritesContainersSize.3" value="__AVAILABLE_CHAR_OBJECTS / __TOTAL_OBJECT_SEGMENTS"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.0" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.1" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.2" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.objectSpritesContainersZPosition.3" value="LAYER_0_PARTICLES"/>
+  <property name="stage.rendering.optical.baseDistance" value="__BASE_FACTOR"/>
+  <property name="stage.rendering.optical.cameraNearPlane" value="__CAMERA_NEAR_PLANE"/>
+  <property name="stage.rendering.optical.horizontalViewPointCenter" value="__HORIZONTAL_VIEW_POINT_CENTER"/>
+  <property name="stage.rendering.optical.maximumViewDistancePower" value="__MAXIMUM_VIEW_DISTANCE_POWER"/>
+  <property name="stage.rendering.optical.verticalViewPointCenter" value="__VERTICAL_VIEW_POINT_CENTER"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt0" value="__BGMAP_PALETTE_0"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt1" value="__BGMAP_PALETTE_1"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt2" value="__BGMAP_PALETTE_2"/>
+  <property name="stage.rendering.paletteConfig.bgmap.gplt3" value="__BGMAP_PALETTE_3"/>
+  <property name="stage.rendering.paletteConfig.object.jplt0" value="__OBJECT_PALETTE_0"/>
+  <property name="stage.rendering.paletteConfig.object.jplt1" value="__OBJECT_PALETTE_1"/>
+  <property name="stage.rendering.paletteConfig.object.jplt2" value="__OBJECT_PALETTE_2"/>
+  <property name="stage.rendering.paletteConfig.object.jplt3" value="__OBJECT_PALETTE_3"/>
+  <property name="stage.rendering.paramTableSegments" value="1"/>
+  <property name="stage.rendering.texturesMaximumRowsToWrite" value="12"/>
+  <property name="stage.streaming.loadPadding" value="40"/>
+  <property name="stage.streaming.particleRemovalDelayCycles" value="0"/>
+  <property name="stage.streaming.streamingAmplitude" value="24"/>
+  <property name="stage.streaming.unloadPadding" value="16"/>
+ </properties>
+ <tileset firstgid="1" source="../assets/tilesets/Actors.tsx"/>
+ <tileset firstgid="12" source="../assets/tilesets/Objects.tsx"/>
+ <tileset firstgid="43" source="../assets/tilesets/Items.tsx"/>
+ <tileset firstgid="46" source="../assets/tilesets/Elements.tsx"/>
+ <tileset firstgid="53" source="../assets/tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="63" source="../assets/tilesets/Particles.tsx"/>
+ <tileset firstgid="64" source="../assets/tilesets/InnerTiles.tsx"/>
+ <tileset firstgid="1088" source="../assets/tilesets/OuterTiles.tsx"/>
+ <layer name="(C3) Background" width="48" height="28">
+  <properties>
+   <property name="bgmapMode" value="__WORLD_BGMAP"/>
+   <property name="class" value="Entity"/>
+   <property name="containerType" value="Composite"/>
+   <property name="displacement.p" value="0"/>
+   <property name="displacement.x" value="0"/>
+   <property name="displacement.y" value="0"/>
+   <property name="displacement.z" value="2"/>
+   <property name="display" value="__WORLD_ON"/>
+   <property name="entityName" value="BACK"/>
+   <property name="id" value="3"/>
+   <property name="include" value="macros.h"/>
+   <property name="name" value="Back"/>
+   <property name="paletteId" type="int" value="0"/>
+   <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,161,0,0,0,0,0,164,0,165,0,166,0,167,0,168,169,0,0,0,171,0,172,0,173,0,160,0,161,0,0,0,0,0,164,0,165,0,166,0,167,0,168,169,160,0,161,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,194,0,195,0,0,0,197,0,198,199,0,200,0,201,0,0,0,0,0,0,0,205,0,0,0,0,0,194,0,195,0,0,0,197,0,198,199,0,200,0,201,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,225,0,226,0,227,0,228,0,229,0,0,231,0,232,0,233,0,234,0,235,0,236,0,0,0,0,0,225,0,226,0,227,0,228,0,229,0,0,231,0,232,0,233,0,0,225,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,267,0,268,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,161,0,0,0,0,0,164,0,165,0,166,0,167,0,168,169,0,0,0,171,0,172,0,173,0,160,0,161,0,0,0,0,0,164,0,165,0,166,0,167,0,168,169,160,0,161,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,194,0,195,0,0,0,197,0,198,199,0,200,0,201,0,0,0,0,0,0,0,205,0,0,0,0,0,194,0,195,0,0,0,197,0,198,199,0,200,0,201,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,225,0,226,0,227,0,228,0,229,0,0,231,0,232,0,233,0,234,0,235,0,236,0,0,0,0,0,225,0,226,0,227,0,228,0,229,0,0,231,0,232,0,233,0,0,225,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,267,0,268,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,161,0,0,0,0,0,164,0,165,0,166,0,167,0,168,169,0,0,0,171,0,172,0,173,0,160,0,161,0,0,0,0,0,164,0,165,0,166,0,167,0,168,169,160,0,161,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,194,0,195,0,0,0,197,0,198,199,0,200,0,201,0,0,0,0,0,0,0,205,0,0,0,0,0,194,0,195,0,0,0,197,0,198,199,0,200,0,201,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,225,0,226,0,227,0,228,0,229,0,0,231,0,232,0,233,0,234,0,235,0,236,0,0,0,0,0,225,0,226,0,227,0,228,0,229,0,0,231,0,232,0,233,0,0,225,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,267,0,268,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="(C2) Main Back" width="48" height="28">
+  <properties>
+   <property name="bgmapMode" value="__WORLD_BGMAP"/>
+   <property name="class" value="Entity"/>
+   <property name="containerType" value="Composite"/>
+   <property name="displacement.p" value="0"/>
+   <property name="displacement.x" value="0"/>
+   <property name="displacement.y" value="0"/>
+   <property name="displacement.z" value="0"/>
+   <property name="display" value="__WORLD_ON"/>
+   <property name="entityName" value="MAIN_BACK"/>
+   <property name="id" value="2"/>
+   <property name="include" value="macros.h"/>
+   <property name="name" value="MainBack"/>
+   <property name="paletteId" type="int" value="1"/>
+   <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,71,0,72,0,73,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,0,0,0,0,0,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,0,0,0,0,0,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,103,0,104,0,105,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,134,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="(C1) Main Walls" width="48" height="28">
+  <properties>
+   <property name="bgmapMode" value="__WORLD_BGMAP"/>
+   <property name="class" value="Entity"/>
+   <property name="containerType" value="Composite"/>
+   <property name="displacement.p" value="0"/>
+   <property name="displacement.x" value="0"/>
+   <property name="displacement.y" value="0"/>
+   <property name="displacement.z" value="0"/>
+   <property name="display" value="__WORLD_ON"/>
+   <property name="entityName" value="MAIN"/>
+   <property name="id" value="1"/>
+   <property name="include" value="macros.h"/>
+   <property name="name" value="Main"/>
+   <property name="paletteId" type="int" value="0"/>
+   <property name="transparent" type="bool" value="false"/>
+   <property name="applyParamTableEffect" value="NULL"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,99,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,96,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,96,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,96,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,0,65,0,65,0,65,0,66,0,0,0,0,0,0,0,64,0,65,0,65,0,65,0,65,0,65,0,67,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,96,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,96,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+100,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,130,0,0,0,0,0,0,0,96,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,96,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,96,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,96,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+68,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,65,0,67,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup draworder="index" name="Composites">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="145" name="Back" type="Composite" x="0" y="0" width="384" height="192">
+   <properties>
+    <property name="containerId" type="int" value="3"/>
+    <property name="position.z" value="LAYER_0_BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="146" name="MainBack" type="Composite" x="0" y="0" width="384" height="192">
+   <properties>
+    <property name="containerId" type="int" value="2"/>
+    <property name="position.z" value="-SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="147" name="Main" type="Composite" x="0" y="0" width="384" height="192">
+   <properties>
+    <property name="containerId" type="int" value="1"/>
+    <property name="position.z" value="-SORT_INCREMENT * 2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Collisions">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="25" name="Left Collision" type="Collision" gid="47" x="0" y="176" width="16" height="48"/>
+  <object id="27" name="Bottom Collision" type="Collision" gid="47" x="0" y="192" width="272" height="16"/>
+  <object id="32" name="Top Collision" type="Collision" gid="47" x="160" y="16" width="224" height="16"/>
+  <object id="82" name="Bottom Right Collision" type="Collision" gid="47" x="272" y="192" width="112" height="128"/>
+  <object id="83" name="Center Collision" type="Collision" gid="47" x="0" y="128" width="224" height="64"/>
+  <object id="84" name="Top Left Collision" type="Collision" gid="47" x="128" y="64" width="32" height="64"/>
+  <object id="85" name="Top Right Collision" type="Collision" gid="47" x="368" y="64" width="16" height="48"/>
+  <object id="129" name="Lower One-Way" type="Collision" gid="48" x="224" y="152" width="48" height="34"/>
+  <object id="128" name="Upper One-Way" type="Collision" gid="48" x="224" y="96" width="48" height="32"/>
+ </objectgroup>
+ <objectgroup draworder="index" name="Main">
+  <properties>
+   <property name="containerType" value="Main"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="109" name="Coin" type="Entity" gid="44" x="228" y="116" width="16" height="16">
+   <properties>
+    <property name="id" type="int" value="47"/>
+    <property name="position.z" value="LAYER_0_ITEMS"/>
+   </properties>
+  </object>
+  <object id="110" name="Coin" type="Entity" gid="44" x="252" y="116" width="16" height="16">
+   <properties>
+    <property name="id" type="int" value="46"/>
+    <property name="position.z" value="LAYER_0_ITEMS"/>
+   </properties>
+  </object>
+  <object id="86" name="Saw Blade" type="Entity" gid="6" x="96" y="188" width="152" height="24" visible="0">
+   <properties>
+    <property name="position.z" value="LAYER_0_ENEMIES"/>
+   </properties>
+  </object>
+  <object id="111" name="Lower Left Torch Light" type="Entity" gid="34" x="16" y="188" width="80" height="80"/>
+  <object id="98" name="Lower Left Torch" type="Entity" gid="28" x="52" y="158" width="8" height="24">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="113" name="Upper Right Torch Light" type="Entity" gid="34" x="280" y="76" width="80" height="80"/>
+  <object id="99" name="Upper Right Torch" type="Entity" gid="28" x="316" y="46" width="8" height="24">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="121" name="Upper Left Torch Light" type="Entity" gid="34" x="166" y="76" width="80" height="80"/>
+  <object id="122" name="Upper Left Torch" type="Entity" gid="28" x="202" y="46" width="8" height="24">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="127" name="Lower Right Torch Light" type="Entity" gid="34" x="166" y="188" width="80" height="80"/>
+  <object id="126" name="Lower Right Torch" type="Entity" gid="28" x="202" y="158" width="8" height="24">
+   <properties>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+  <object id="119" name="Door (Exit)" type="Entity" gid="15" x="338" y="64" width="24" height="32">
+   <properties>
+    <property name="extraInfo" value="(void*)&amp;Level1MainIntersectionExitDoorEntryPoint"/>
+    <property name="name" value="&quot;IntExit&quot;"/>
+    <property name="position.z" value="LAYER_0_DOORS"/>
+   </properties>
+  </object>
+  <object id="117" name="Door (Lower Entrance)" type="Entity" gid="15" x="24" y="176" width="24" height="32">
+   <properties>
+    <property name="extraInfo" value="(void*)&amp;Level1CoinRoomStageExitEntryPoint"/>
+    <property name="name" value="&quot;IntEntr2&quot;"/>
+    <property name="position.z" value="LAYER_0_DOORS"/>
+   </properties>
+  </object>
+  <object id="120" name="Door (Upper Entrance)" type="Entity" gid="15" x="166" y="64" width="24" height="32">
+   <properties>
+    <property name="extraInfo" value="(void*)&amp;Level1MainIntersectionEntryDoorEntryPoint"/>
+    <property name="name" value="&quot;IntEntr1&quot;"/>
+    <property name="position.z" value="LAYER_0_DOORS"/>
+   </properties>
+  </object>
+  <object id="69" name="Hero" type="Entity" gid="3" x="44" y="176" width="24" height="24">
+   <properties>
+    <property name="name" value="HERO_NAME"/>
+    <property name="position.z" value="LAYER_0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" name="UI" opacity="0.5">
+  <properties>
+   <property name="containerType" value="Ui"/>
+   <property name="position.z" value="0"/>
+  </properties>
+  <object id="38" name="GUI" type="Entity" gid="50" x="0" y="224" width="384" height="16"/>
+ </objectgroup>
+ <objectgroup name="Entry Points">
+  <properties>
+   <property name="containerType" value="Main"/>
+  </properties>
+  <object id="22" name="Exit" type="EntryPoint" x="340" y="36" width="20" height="28">
+   <properties>
+    <property name="destinationName" value="IntExit"/>
+    <property name="name" value="EXIT"/>
+    <property name="offset.x" value="-16"/>
+    <property name="offset.z" value="-SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="89" name="Lower" type="EntryPoint" x="26" y="148" width="20" height="28">
+   <properties>
+    <property name="destinationName" value="IntEntr2"/>
+    <property name="name" value="LOWER"/>
+    <property name="offset.x" value="16"/>
+    <property name="offset.z" value="-SORT_INCREMENT"/>
+   </properties>
+  </object>
+  <object id="123" name="Upper" type="EntryPoint" x="168" y="36" width="20" height="28">
+   <properties>
+    <property name="destinationName" value="IntEntr1"/>
+    <property name="name" value="UPPER"/>
+    <property name="offset.x" value="16"/>
+    <property name="offset.z" value="-SORT_INCREMENT"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
