@@ -1,10 +1,4 @@
 {
-    "folders": [
-        {
-            "path": "."
-        }
-    ],
-    "name": "VUEngine Platformer Demo",
     "plugins": [
 		"vuengine//cameras/PlatformerCamera",
 		"vuengine//entities/LowPowerEntity",
@@ -21,5 +15,6 @@
 		"vuengine//states/splash/AutomaticPauseSelectionScreen",
 		"vuengine//states/splash/LanguageSelectionScreen",
 		"vuengine//states/splash/PrecautionScreen"
-    ]
+    ],
+    "projectTitle": "VUEngine Platformer Demo"
 }
